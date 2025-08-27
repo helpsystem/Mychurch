@@ -1,0 +1,23 @@
+{
+  "short_name": "ICCDC",
+  "name": "Iranian Christian Church of D.C.",
+  "description": "A comprehensive, bilingual (English/Farsi) website for the Iranian Christian Church of Washington D.C., featuring dynamic content, a Bible reader, and an AI-powered assistant.",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/gA0939q.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.imgur.com/gA0939q.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00040F",
+  "background_color": "#00040F"
+}
