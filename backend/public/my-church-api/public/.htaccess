@@ -1,0 +1,24 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/npyugcbr/my-church-api"
+PassengerBaseURI "/"
+PassengerNodejs "/home/npyugcbr/nodevenv/my-church-api/20/bin/node"
+PassengerAppType node
+PassengerStartupFile server.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+RewriteEngine On
+# ارسال API به بک‌اند
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ http://localhost:8080/$1 [P,L]
+# همه مسیرهای دیگر به index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [QSA,L]
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+SetEnv DB_HOST localhost
+SetEnv DB_NAME npyugcbr_iranjesusdc
+SetEnv DB_PASS Samyar@@1989
+SetEnv DB_USER npyugcbr_saman
+SetEnv JWT_SECRET eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTc1MzUzNjIyMiwiaWF0IjoxNzUzNTM2MjIyfQ.h0wllgDpFYF4A_Ic8HmfbB0o7GZMq4Cc6Sn-RQCgsZE
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END
