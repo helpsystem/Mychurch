@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../types';
-import { X, BookOpen, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { X, BookOpen, ChevronLeft, ChevronRight, RotateCcw, Hand } from 'lucide-react';
 import { getRandomImage } from '../lib/theme';
 import HTMLFlipBook from 'react-pageflip';
 import Spinner from './Spinner';
@@ -96,14 +96,15 @@ const VerseOfTheDayModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     
     const PageTurnHint = () => (
       <div className="page-turn-hint-container flex items-center justify-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-          <div className="flex items-center gap-2 bg-black/70 px-4 py-2 rounded-full animate-bounce">
-              <BookOpen className="h-5 w-5 text-white animate-pulse" />
-              <span className="text-white text-sm font-medium">
+          <div className="flex items-center gap-3 bg-black/80 px-5 py-3 rounded-full animate-bounce border border-white/20">
+              <Hand className="h-6 w-6 text-yellow-400 animate-pulse transform rotate-12" />
+              <BookOpen className="h-5 w-5 text-white" />
+              <span className="text-white text-base font-semibold">
                   {lang === 'fa' ? 'ورق بزنید' : 'Turn Page'}
               </span>
               {lang === 'fa' ? 
-                  <ChevronLeft className="h-5 w-5 text-white animate-pulse" /> : 
-                  <ChevronRight className="h-5 w-5 text-white animate-pulse" />
+                  <ChevronRight className="h-6 w-6 text-yellow-400 animate-pulse" /> : 
+                  <ChevronLeft className="h-6 w-6 text-yellow-400 animate-pulse" />
               }
           </div>
       </div>
