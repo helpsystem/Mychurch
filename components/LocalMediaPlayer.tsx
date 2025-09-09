@@ -125,6 +125,107 @@ const LocalMediaPlayer = ({
     document.body.removeChild(link);
   };
 
+  // Karaoke functionality - Break text into lines and words with timing
+  const getLyricsLines = () => {
+    const lyricsData = lang === 'fa' ? [
+      {
+        words: [
+          { id: 'w1', text: 'در', startTime: 0.5 },
+          { id: 'w2', text: 'ابتدا', startTime: 1.0 },
+          { id: 'w3', text: 'خدا', startTime: 1.8 },
+          { id: 'w4', text: 'آسمان‌ها', startTime: 2.5 },
+          { id: 'w5', text: 'و', startTime: 3.2 },
+          { id: 'w6', text: 'زمین', startTime: 3.5 },
+          { id: 'w7', text: 'را', startTime: 4.0 },
+          { id: 'w8', text: 'آفرید', startTime: 4.5 }
+        ]
+      },
+      {
+        words: [
+          { id: 'w9', text: 'زمین', startTime: 5.5 },
+          { id: 'w10', text: 'بی‌صورت', startTime: 6.0 },
+          { id: 'w11', text: 'و', startTime: 6.8 },
+          { id: 'w12', text: 'خالی', startTime: 7.0 },
+          { id: 'w13', text: 'بود', startTime: 7.5 }
+        ]
+      },
+      {
+        words: [
+          { id: 'w14', text: 'خدا', startTime: 8.5 },
+          { id: 'w15', text: 'گفت:', startTime: 9.0 },
+          { id: 'w16', text: 'نور', startTime: 9.8 },
+          { id: 'w17', text: 'بشود', startTime: 10.2 },
+          { id: 'w18', text: 'و', startTime: 11.0 },
+          { id: 'w19', text: 'نور', startTime: 11.2 },
+          { id: 'w20', text: 'شد', startTime: 11.8 }
+        ]
+      }
+    ] : [
+      {
+        words: [
+          { id: 'w1', text: 'In', startTime: 0.5 },
+          { id: 'w2', text: 'the', startTime: 0.8 },
+          { id: 'w3', text: 'beginning', startTime: 1.0 },
+          { id: 'w4', text: 'God', startTime: 1.8 },
+          { id: 'w5', text: 'created', startTime: 2.2 },
+          { id: 'w6', text: 'the', startTime: 2.8 },
+          { id: 'w7', text: 'heavens', startTime: 3.0 },
+          { id: 'w8', text: 'and', startTime: 3.5 },
+          { id: 'w9', text: 'earth', startTime: 3.8 }
+        ]
+      },
+      {
+        words: [
+          { id: 'w10', text: 'Now', startTime: 5.0 },
+          { id: 'w11', text: 'the', startTime: 5.3 },
+          { id: 'w12', text: 'earth', startTime: 5.5 },
+          { id: 'w13', text: 'was', startTime: 5.8 },
+          { id: 'w14', text: 'formless', startTime: 6.0 },
+          { id: 'w15', text: 'and', startTime: 6.5 },
+          { id: 'w16', text: 'empty', startTime: 6.8 }
+        ]
+      },
+      {
+        words: [
+          { id: 'w17', text: 'And', startTime: 8.0 },
+          { id: 'w18', text: 'God', startTime: 8.3 },
+          { id: 'w19', text: 'said,', startTime: 8.6 },
+          { id: 'w20', text: '"Let', startTime: 9.0 },
+          { id: 'w21', text: 'there', startTime: 9.3 },
+          { id: 'w22', text: 'be', startTime: 9.6 },
+          { id: 'w23', text: 'light,"', startTime: 9.8 },
+          { id: 'w24', text: 'and', startTime: 10.3 },
+          { id: 'w25', text: 'there', startTime: 10.6 },
+          { id: 'w26', text: 'was', startTime: 10.8 },
+          { id: 'w27', text: 'light', startTime: 11.0 }
+        ]
+      }
+    ];
+
+    return lyricsData;
+  };
+
+  // Get currently highlighted word based on audio time
+  const getCurrentHighlightedWord = () => {
+    if (!isPlaying) return null;
+    
+    const lines = getLyricsLines();
+    let currentWordId = null;
+    
+    // Find the word that should be highlighted based on current time
+    for (const line of lines) {
+      for (const word of line.words) {
+        if (currentTime >= word.startTime && currentTime < word.startTime + 0.5) {
+          currentWordId = word.id;
+          break;
+        }
+      }
+      if (currentWordId) break;
+    }
+    
+    return currentWordId;
+  };
+
   return (
     <div className={`fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 ${isFullscreen ? 'bg-black' : ''}`}>
       <div className={`bg-white rounded-lg w-full ${isFullscreen ? 'h-full max-w-none max-h-none' : 'max-w-4xl max-h-[90vh]'} overflow-hidden`}>
