@@ -19,10 +19,10 @@ const LeaderCard: React.FC<{ leader: Leader }> = ({ leader }) => {
       <div className="bg-primary rounded-[18px] h-full flex flex-col">
         <div className="w-full h-72 image-container rounded-t-[18px]">
           <img src={leader.imageUrl} alt="" className="image-background" aria-hidden="true" />
-          <img src={leader.imageUrl} alt={leader.name} className="image-foreground" />
+          <img src={leader.imageUrl} alt={leader.name[lang]} className="image-foreground" />
         </div>
         <div className="p-6 flex flex-col flex-grow">
-          <h3 className="text-2xl font-semibold text-white">{leader.name}</h3>
+          <h3 className="text-2xl font-semibold text-white">{leader.name[lang]}</h3>
           <p className="text-dimWhite mt-1">{leader.title[lang]}</p>
           <div className="flex-grow my-4 flex justify-between items-start gap-4">
             <p className="text-dimWhite text-left flex-grow">{leader.bio[lang]}</p>

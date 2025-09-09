@@ -94,9 +94,14 @@ const Footer: React.FC<{ onOpenVerseModal: () => void }> = ({ onOpenVerseModal }
       </div>
 
       <div className="w-full flex justify-between items-center md:flex-row flex-col pt-6 border-t-[1px] border-t-[#3F3E45]">
-        <p className="font-normal text-center text-[14px] leading-[27px] text-dimWhite">
-          {t('copyright')}
-        </p>
+        <div className="text-center md:text-left">
+          <p className="font-normal text-[14px] leading-[27px] text-dimWhite">
+            {t('copyright')}
+          </p>
+          <p className="font-normal text-[12px] leading-[20px] text-dimWhite/70 mt-1">
+            {lang === 'fa' ? 'طراحی و توسعه توسط سامان آبیار' : 'Designed & Developed by Saman Abyar'}
+          </p>
+        </div>
         
         <div className="flex flex-row items-center md:mt-0 mt-6">
             <LanguageSwitcher />
