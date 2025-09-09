@@ -21,7 +21,7 @@ const initialSettings: SiteSettings = {
     facebookUrl: FACEBOOK_URL,
     youtubeUrl: YOUTUBE_URL,
     instagramUrl: INSTAGRAM_URL,
-    logoUrl: '/images/logo.png',
+    logoUrl: '/images/Church_cross_logo_design_bae53bfc.png',
     verseOfTheDayAttribution: { en: 'In His Service,\nRev. Javad Pishghadamian\nSenior Pastor', fa: 'در خدمت او،\nکشیش جواد پیشقدمیان\nکشیش ارشد' },
     newsletterUrl: '#',
     telegramUrl: '#',
