@@ -3,8 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
-const ftp = require('basic-ftp');
 const path = require('path');
+const { initializeDatabase } = require('./initDB-postgres');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -12,7 +12,7 @@ const profileRoutes = require('./routes/profileRoutes');
 const invitationRoutes = require('./routes/invitationRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 // ---------- CORS ----------
 app.use(cors({
@@ -159,6 +159,28 @@ app.get('/', (req, res) => {
   res.send('Church API is running with FTP upload!');
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
-});
+// راه‌اندازی دیتابیس و شروع سرور
+const startServer = async () => {
+  try {
+    // اول دیتابیس را راه‌اندازی کن
+    await initializeDatabase();
+    console.log('✅ دیتابیس آماده است');
+    
+    // سپس سرور را شروع کن
+    app.listen(PORT, 'localhost', () => {
+      console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
+      console.log('API endpoints available:');
+      console.log('  🔐 /api/auth/* - Authentication routes');
+      console.log('  👥 /api/users/* - User management');
+      console.log('  👤 /api/profile/* - User profiles');
+      console.log('  📨 /api/invitations/* - Invitations');
+      console.log('  📁 /api/files/* - File upload/management');
+      console.log('  ❤️ /api/health - Health check');
+    });
+  } catch (error) {
+    console.error('❌ خطا در راه‌اندازی سرور:', error);
+    process.exit(1);
+  }
+};
+
+startServer();
