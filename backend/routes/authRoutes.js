@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { pool, parseUser } = require('../db');
+const { pool, parseUser } = require('../db-postgres');
 const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
@@ -23,7 +23,8 @@ router.post('/signup', async (req, res) => {
     return res.status(400).json({ message: 'Name, email, and password are required.' });
   }
   try {
-    const [existingUsers] = await pool.query('SELECT email FROM users WHERE email = ?', [email]);
+    const result = await pool.query('SELECT email FROM users WHERE email = $1', [email]);
+    const existingUsers = result.rows;
     if (existingUsers.length > 0) {
       return res.status(409).json({ message: 'Email already in use.' });
     }
@@ -36,7 +37,7 @@ router.post('/signup', async (req, res) => {
     });
 
     await pool.query(
-      'INSERT INTO users (email, password, role, permissions, profileData, invitations) VALUES (?, ?, ?, ?, ?, ?)',
+      'INSERT INTO users (email, password, role, permissions, profileData, invitations) VALUES ($1, $2, $3, $4, $5, $6)',
       [email, hashedPassword, 'USER', '[]', profileData, '[]']
     );
 
