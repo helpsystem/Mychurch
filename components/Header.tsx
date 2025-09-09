@@ -13,7 +13,7 @@ import { useLiveTranslation } from '../hooks/useLiveTranslation';
 import Spinner from './Spinner';
 import GlobalSearchModal from './GlobalSearchModal';
 
-const InvitationsDropdown: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+const InvitationsDropdown = ({ onClose }: { onClose: () => void }) => {
     const { user, acceptInvitation } = useAuth();
     const { t } = useLanguage();
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -57,16 +57,35 @@ const InvitationsDropdown: React.FC<{ onClose: () => void }> = ({ onClose }) => 
     );
 };
 
-const NavDropdown: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => {
+const NavDropdown = ({ title, children }: { title: string; children: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
+
+    const handleMouseEnter = () => {
+        if (hoverTimer) {
+            clearTimeout(hoverTimer);
+            setHoverTimer(null);
+        }
+        setIsOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        const timer = setTimeout(() => {
+            setIsOpen(false);
+        }, 300); // 300ms delay before closing
+        setHoverTimer(timer);
+    };
+
     return (
-        <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
-            <button className="font-normal cursor-pointer text-[16px] text-dimWhite hover:text-white flex items-center gap-1">
+        <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <button className="font-normal cursor-pointer text-[16px] text-dimWhite hover:text-white flex items-center gap-1 py-2">
                 {title}
                 <ChevronDown size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
             </button>
             {isOpen && (
-                <div className="absolute top-full mt-2 w-48 bg-black-gradient border border-gray-700 rounded-lg shadow-lg z-50 py-2">
+                <div className="absolute top-full mt-0 w-48 bg-black-gradient border border-gray-700 rounded-lg shadow-lg z-50 py-2"
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}>
                     {children}
                 </div>
             )}
@@ -74,7 +93,7 @@ const NavDropdown: React.FC<{ title: string; children: React.ReactNode }> = ({ t
     );
 };
 
-const Header: React.FC<{ onOpenVerseModal: () => void }> = ({ onOpenVerseModal }) => {
+const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
     const { t, lang } = useLanguage();
     const { isAuthenticated, user, logout } = useAuth();
     const { content } = useContent();
