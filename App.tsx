@@ -34,6 +34,7 @@ import GuidedTour from './components/GuidedTour';
 import ConnectPage from './pages/ConnectPage';
 import ScrollToTop from './components/ScrollToTop';
 import LoadingScreen from './components/LoadingScreen';
+import VerseOfTheDayModal from './components/VerseOfTheDayModal';
 import HelpCenterPage from './pages/HelpCenterPage';
 import NewHerePage from './pages/NewHerePage';
 import TestimonialsPage from './pages/TestimonialsPage';
@@ -43,11 +44,18 @@ import LetterViewerPage from './pages/LetterViewerPage';
 function App() {
   const { lang } = useLanguage();
   const [showLoading, setShowLoading] = useState(true);
+  const [showVerseModal, setShowVerseModal] = useState(false);
 
   useEffect(() => {
     // Simulate content loading and reduce to 2.5 seconds
     const timer = setTimeout(() => {
       setShowLoading(false);
+      // Show verse modal right after loading finishes
+      const verseTimer = setTimeout(() => {
+        setShowVerseModal(true);
+      }, 500); // Small delay to let the main content render first
+      
+      return () => clearTimeout(verseTimer);
     }, 2500); // Optimized loading time
 
     return () => clearTimeout(timer);
@@ -114,6 +122,9 @@ function App() {
           <Route path="presentation" element={<PresentationPage />} />
         </Routes>
       </HashRouter>
+      
+      {/* Verse Modal - Show after loading */}
+      {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
     </div>
   );
 }
