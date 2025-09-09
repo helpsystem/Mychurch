@@ -8,7 +8,7 @@ export const leadersData: Leader[] = [
     id: 1,
     name: 'Rev. Javad Pishghadamian',
     title: { en: 'Senior Pastor', fa: 'کشیش ارشد' },
-    imageUrl: DEFAULT_AVATAR_URL,
+    imageUrl: '/images/pastor-javad.png',
     bio: {
         en: 'Rev. Javad has been leading our church with passion and dedication for over 15 years, guiding our community with wisdom and a deep love for the Word of God.',
         fa: 'کشیش جواد بیش از ۱۵ سال است که با اشتیاق و فداکاری کلیسای ما را رهبری می‌کند و جامعه ما را با حکمت و عشقی عمیق به کلام خدا هدایت می‌نماید.'
@@ -19,7 +19,7 @@ export const leadersData: Leader[] = [
     id: 2,
     name: 'Nazi Rasti',
     title: { en: "Women's Bible Study Leader", fa: 'رهبر مطالعه کتاب مقدس بانوان' },
-    imageUrl: DEFAULT_AVATAR_URL,
+    imageUrl: '/images/leader-nazi.png',
     bio: {
         en: "Nazi Rasti leads our women's ministry with a heart for fellowship and discipleship, creating a welcoming space for women to grow in their faith together.",
         fa: 'نازی راستی خدمت بانوان ما را با قلبی برای مشارکت و شاگردسازی رهبری می‌کند و فضایی پذیرا برای رشد مشترک بانوان در ایمانشان ایجاد می‌نماید.'
