@@ -40,6 +40,8 @@ import NewHerePage from './pages/NewHerePage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import LivePage from './pages/LivePage';
 import LetterViewerPage from './pages/LetterViewerPage';
+import AudioBiblePage from './pages/AudioBiblePage';
+import WorshipSongsPage from './pages/WorshipSongsPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -78,6 +80,8 @@ function App() {
             <Route path="sermons" element={<SermonsPage />} />
             <Route path="worship" element={<WorshipPage />} />
             <Route path="bible" element={<BiblePage />} />
+            <Route path="audio-bible" element={<AudioBiblePage />} />
+            <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="giving" element={<GivingPage />} />
             <Route path="prayer" element={<PrayerPage />} />
             <Route path="events" element={<EventsPage />} />

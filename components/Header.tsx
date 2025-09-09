@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
-import { Menu, X, Bell, Check, ChevronDown, User as UserIcon, LogOut, LayoutDashboard, Home, BookOpen, HeartHandshake, Info, DollarSign, MessageSquare, Phone, BrainCircuit, Image, Globe, HelpCircle, Users, Tv, Search, Bookmark, Gamepad2 } from 'lucide-react';
+import { Menu, X, Bell, Check, ChevronDown, User as UserIcon, LogOut, LayoutDashboard, Home, BookOpen, HeartHandshake, Info, DollarSign, MessageSquare, Phone, BrainCircuit, Image, Globe, HelpCircle, Users, Tv, Search, Bookmark, Gamepad2, Volume2, Music } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { getProfilePictureUrl } from '../lib/utils';
 import { User } from '../types';
@@ -106,6 +106,8 @@ const Header: React.FC<{ onOpenVerseModal: () => void }> = ({ onOpenVerseModal }
         ],
         resources: [
             { to: '/bible', title: t('navBible'), icon: <BookOpen size={16}/> },
+            { to: '/audio-bible', title: lang === 'fa' ? 'کتاب مقدس صوتی' : 'Audio Bible', icon: <Volume2 size={16}/> },
+            { to: '/worship-songs', title: lang === 'fa' ? 'سرودهای مسیحی' : 'Worship Songs', icon: <Music size={16}/> },
             { title: t('verseForToday'), icon: <Bookmark size={16} />, action: onOpenVerseModal },
             { to: '/connect', title: t('navConnectVR'), icon: <Gamepad2 size={16}/> },
             { to: '/gallery', title: t('galleries'), icon: <Image size={16}/> },
