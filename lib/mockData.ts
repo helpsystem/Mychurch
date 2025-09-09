@@ -8,7 +8,7 @@ export const leadersData: Leader[] = [
     id: 1,
     name: 'Rev. Javad Pishghadamian',
     title: { en: 'Senior Pastor', fa: 'کشیش ارشد' },
-    imageUrl: '/images/pastor-javad.png',
+    imageUrl: '/images/pastor-javad-real.jpg',
     bio: {
         en: 'Rev. Javad has been leading our church with passion and dedication for over 15 years, guiding our community with wisdom and a deep love for the Word of God.',
         fa: 'کشیش جواد بیش از ۱۵ سال است که با اشتیاق و فداکاری کلیسای ما را رهبری می‌کند و جامعه ما را با حکمت و عشقی عمیق به کلام خدا هدایت می‌نماید.'
