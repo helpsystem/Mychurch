@@ -12,10 +12,26 @@ const LoadingScreen: React.FC<Props> = ({ onFinished }) => {
     const [currentStep, setCurrentStep] = useState(0);
 
     const loadingSteps = [
-        { en: "Loading Church Community...", fa: "بارگذاری اجتماع کلیسا..." },
-        { en: "Preparing Worship Space...", fa: "آماده‌سازی فضای عبادت..." },
-        { en: "Connecting Hearts in Faith...", fa: "اتصال دل‌ها در ایمان..." },
-        { en: "Welcome to our Family!", fa: "به خانواده ما خوش آمدید!" }
+        { 
+            en: "Welcome to Iranian Christian Church of Washington D.C. - A place of faith, fellowship, and worship", 
+            fa: "به کلیسای مسیحیان ایرانی واشنگتن دی سی خوش آمدید - مکانی از ایمان، رفاقت و پرستش" 
+        },
+        { 
+            en: "Our mission is to serve God and connect hearts through Persian culture and Christian faith", 
+            fa: "ماموریت ما خدمت به خدا و اتصال دل‌ها از طریق فرهنگ ایرانی و ایمان مسیحی است" 
+        },
+        { 
+            en: "Join us for Bible study, worship songs, prayer meetings, and community events", 
+            fa: "به ما بپیوندید برای مطالعه کتاب مقدس، سرودهای پرستش، جلسات دعا و رویدادهای اجتماعی" 
+        },
+        { 
+            en: "Experience God's love in both English and Persian - All are welcome in our spiritual family", 
+            fa: "عشق خدا را به زبان انگلیسی و فارسی تجربه کنید - همه در خانواده روحانی ما خوش آمدند" 
+        },
+        { 
+            en: "Loading complete - Ready to worship and connect with your church community!", 
+            fa: "بارگذاری تکمیل شد - آماده برای عبادت و ارتباط با اجتماع کلیساتان!" 
+        }
     ];
 
     useEffect(() => {
@@ -25,13 +41,13 @@ const LoadingScreen: React.FC<Props> = ({ onFinished }) => {
                     clearInterval(interval);
                     return 100;
                 }
-                return prev + 2;
+                return prev + 1; // Slower progress for more reading time
             });
-        }, 50);
+        }, 100); // Slower interval
 
         const stepInterval = setInterval(() => {
             setCurrentStep(prev => (prev + 1) % loadingSteps.length);
-        }, 600);
+        }, 2000); // Increased to 2 seconds for better readability
 
         return () => {
             clearInterval(interval);
@@ -69,9 +85,10 @@ const LoadingScreen: React.FC<Props> = ({ onFinished }) => {
                     </h1>
                 </div>
 
-                <div className="role w-full relative flex items-center justify-center h-[40px] mb-6">
+                <div className="role w-full relative flex items-center justify-center min-h-[80px] mb-6 px-4">
                     <span className="block"></span>
-                    <p className="text-center text-lg">
+                    <p className="text-center text-base leading-relaxed max-w-2xl mx-auto font-medium" 
+                       dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                         {loadingSteps[currentStep][lang]}
                     </p>
                 </div>
