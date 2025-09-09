@@ -8,7 +8,8 @@ const authenticateToken = (req, res, next) => {
     return res.status(401).json({ message: 'Authentication token required.' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-for-development';
+  jwt.verify(token, jwtSecret, (err, user) => {
     if (err) {
       return res.status(403).json({ message: 'Invalid or expired token.' });
     }
