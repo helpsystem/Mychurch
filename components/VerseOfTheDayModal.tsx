@@ -99,7 +99,7 @@ const VerseOfTheDayModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           <div className="flex items-center gap-3 bg-black/80 px-5 py-3 rounded-full animate-bounce border border-white/20">
               <Hand className="h-6 w-6 text-yellow-400 animate-pulse transform rotate-12" />
               <BookOpen className="h-5 w-5 text-white" />
-              <span className="text-white text-base font-semibold">
+              <span className="text-white text-base font-semibold" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                   {lang === 'fa' ? 'ورق بزنید' : 'Turn Page'}
               </span>
               {lang === 'fa' ? 
