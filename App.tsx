@@ -121,10 +121,10 @@ function App() {
 
           <Route path="presentation" element={<PresentationPage />} />
         </Routes>
+        
+        {/* Verse Modal - Show after loading - Inside Router context */}
+        {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
       </HashRouter>
-      
-      {/* Verse Modal - Show after loading */}
-      {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
     </div>
   );
 }
