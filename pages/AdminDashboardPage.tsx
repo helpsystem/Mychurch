@@ -28,6 +28,7 @@ import BibleManager from '../components/admin/BibleManager';
 import PushNotificationsManager from '../components/admin/PushNotificationsManager';
 import GalleryManager from '../components/admin/GalleryManager';
 import FileManager from '../components/admin/FileManager';
+import ImageManager from '../components/admin/ImageManager';
 import CommunicationsManager from '../components/admin/CommunicationsManager';
 import TestimonialsManager from '../components/admin/TestimonialsManager';
 import LettersManager from '../components/admin/LettersManager';
@@ -115,6 +116,7 @@ const AdminDashboardPage: React.FC = () => {
         ],
         fileManager: [
             { id: 'galleries', label: t('galleries'), icon: <ImageIcon/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
+            { id: 'image-manager', label: 'تصاویر سایت', icon: <Folder/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'file-manager', label: t('adminMenuFileManager'), icon: <ImageUp/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'image-studio', label: t('imageStudio'), icon: <Wand2/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
         ],
@@ -139,6 +141,7 @@ const AdminDashboardPage: React.FC = () => {
             case 'testimonials': return <TestimonialsManager />;
             case 'letters': return <LettersManager />;
             case 'galleries': return <GalleryManager />;
+            case 'image-manager': return <ImageManager images={[]} title="مدیریت تصاویر سایت" />;
             case 'file-manager': return <FileManager />;
             case 'bible': return <BibleManager />;
             case 'image-studio': return <ImageStudioPage />;
