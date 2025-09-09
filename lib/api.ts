@@ -20,9 +20,22 @@ export const getApiBaseUrl = (): string => {
             return storedUrl.replace(/\/+$/, '');
         }
     }
-    // Fallback to an empty string for relative paths by default.
-    // The previous hardcoded URL was incorrect.
-    // A Vite env variable is not applicable in this project's setup.
+    // Fallback to backend URL in development
+    if (typeof process !== 'undefined' && process.env.VITE_API_BASE) {
+        return process.env.VITE_API_BASE;
+    }
+    
+    // For development, use localhost backend
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+        return 'http://localhost:3001';
+    }
+    
+    // For Replit environment, construct backend URL
+    if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
+        const domain = window.location.hostname.replace('-00-', '-01-');
+        return `https://${domain}`;
+    }
+    
     return ''; 
 };
 
@@ -43,9 +56,17 @@ export const setApiBaseUrl = (url: string) => {
  * @returns The JSON response from the API.
  */
 async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryParams?: Record<string, string>): Promise<T> {
-  const API_BASE_URL = getApiBaseUrl();
+  // Force set API URL for Replit environment
+  if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
+    const backendUrl = `https://${window.location.hostname}:3001`;
+    localStorage.setItem(LOCAL_STORAGE_API_KEY, backendUrl);
+    console.log('🔗 API URL set to:', backendUrl);
+  }
   
-  // The API is considered unconfigured if the local storage key has never been set.
+  const API_BASE_URL = getApiBaseUrl();
+  console.log('🌐 Using API URL:', API_BASE_URL);
+  
+  // Check if API is still unconfigured after auto-configuration attempt
   const isApiUnconfigured = typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null;
 
   if (isApiUnconfigured) {
@@ -115,6 +136,16 @@ async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryPar
 
 async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST' | 'PUT' = 'POST'): Promise<T> {
   const API_BASE_URL = getApiBaseUrl();
+  
+  // Auto-configure API in development if not set
+  if (typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null) {
+    if (window.location.hostname.includes('.replit.dev')) {
+      const backendUrl = `https://${window.location.hostname}:3001`;
+      localStorage.setItem(LOCAL_STORAGE_API_KEY, backendUrl);
+    } else if (window.location.hostname === 'localhost') {
+      localStorage.setItem(LOCAL_STORAGE_API_KEY, 'http://localhost:3001');
+    }
+  }
   
   const isApiUnconfigured = typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null;
   
