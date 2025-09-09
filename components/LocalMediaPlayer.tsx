@@ -162,30 +162,44 @@ const LocalMediaPlayer = ({
                   <Volume2 className="h-24 w-24 text-white opacity-80" />
                 </div>
                 
-                {/* Lyrics/Subtitles Display */}
+                {/* Karaoke-Style Lyrics Display */}
                 <div className="bg-white rounded-lg p-4 border mt-6">
                   <h5 className="font-medium text-gray-900 mb-3 text-center">
                     {lang === 'fa' ? 'متن سرود / زیرنویس' : 'Lyrics / Subtitles'}
                   </h5>
-                  <div className="bg-gray-50 rounded-lg p-4 max-h-32 overflow-y-auto">
-                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                      {lang === 'fa' 
-                        ? `متن سرود: ${title}
-
-♪ در ابتدا خدا آسمان‌ها و زمین را آفرید ♪
-♪ زمین بی‌صورت و خالی بود ♪
-♪ خدا گفت نور بشود و نور شد ♪
-
-[این متن همزمان با پخش صوت نمایش داده می‌شود]` 
-                        : `Song Lyrics: ${title}
-
-♪ In the beginning God created the heavens and the earth ♪
-♪ Now the earth was formless and empty ♪
-♪ And God said "Let there be light," and there was light ♪
-
-[This text is displayed simultaneously with audio playback]`
-                      }
-                    </p>
+                  <div className="bg-gray-50 rounded-lg p-6 max-h-40 overflow-y-auto">
+                    <div className="space-y-3" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                      {getLyricsLines().map((line, lineIndex) => (
+                        <div key={lineIndex} className="text-center">
+                          <div className="flex flex-wrap justify-center gap-1">
+                            {line.words.map((wordData, wordIndex) => (
+                              <span
+                                key={`${lineIndex}-${wordIndex}`}
+                                className={`
+                                  text-lg font-medium transition-all duration-200 px-1 py-0.5 rounded
+                                  ${getCurrentHighlightedWord() === wordData.id 
+                                    ? 'bg-blue-500 text-white shadow-lg transform scale-105' 
+                                    : 'text-gray-700 hover:text-gray-900'
+                                  }
+                                `}
+                              >
+                                {wordData.text}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      
+                      {/* Progress indicator */}
+                      <div className="mt-4 pt-3 border-t border-gray-200">
+                        <div className="flex items-center justify-center space-x-2 rtl:space-x-reverse text-sm text-gray-500">
+                          <span className="flex items-center">
+                            <div className={`w-2 h-2 rounded-full mr-2 rtl:ml-2 rtl:mr-0 ${isPlaying ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
+                            {lang === 'fa' ? 'در حال پخش' : 'Now Playing'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
