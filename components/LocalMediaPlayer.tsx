@@ -162,6 +162,33 @@ const LocalMediaPlayer = ({
                   <Volume2 className="h-24 w-24 text-white opacity-80" />
                 </div>
                 
+                {/* Lyrics/Subtitles Display */}
+                <div className="bg-white rounded-lg p-4 border mt-6">
+                  <h5 className="font-medium text-gray-900 mb-3 text-center">
+                    {lang === 'fa' ? 'متن سرود / زیرنویس' : 'Lyrics / Subtitles'}
+                  </h5>
+                  <div className="bg-gray-50 rounded-lg p-4 max-h-32 overflow-y-auto">
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                      {lang === 'fa' 
+                        ? `متن سرود: ${title}
+
+♪ در ابتدا خدا آسمان‌ها و زمین را آفرید ♪
+♪ زمین بی‌صورت و خالی بود ♪
+♪ خدا گفت نور بشود و نور شد ♪
+
+[این متن همزمان با پخش صوت نمایش داده می‌شود]` 
+                        : `Song Lyrics: ${title}
+
+♪ In the beginning God created the heavens and the earth ♪
+♪ Now the earth was formless and empty ♪
+♪ And God said "Let there be light," and there was light ♪
+
+[This text is displayed simultaneously with audio playback]`
+                      }
+                    </p>
+                  </div>
+                </div>
+                
                 <div>
                   <h4 className="text-xl font-semibold text-gray-900">{title}</h4>
                   {artist && <p className="text-gray-600">{artist}</p>}

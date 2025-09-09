@@ -19,7 +19,7 @@ const AudioBible = () => {
   };
 
   const handleReadOnline = () => {
-    window.open('https://www.bible.com/bible/118/GEN.1.NMV', '_blank');
+    window.open('/#/bible-reader', '_blank');
   };
 
   const BibleBookCard = ({ book }: { book: LocalBibleBook }) => (

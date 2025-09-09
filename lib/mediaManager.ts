@@ -38,7 +38,7 @@ export const localSongs: LocalSong[] = [
     artist: 'مجموعه سرودهای مسیحی',
     key: 'G',
     mode: 'Major',
-    localAudioPath: '/assets/audio/amazing-grace.mp3',
+    localAudioPath: '/assets/audio/sample-worship.wav',
     localVideoPath: '/assets/video/amazing-grace.mp4',
     localPowerpointPath: '/assets/presentations/amazing-grace.pptx',
     localPdfPath: '/assets/documents/amazing-grace-lyrics.pdf',
