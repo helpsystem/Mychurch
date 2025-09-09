@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { BookOpen, Play, Pause, Volume2, ExternalLink } from 'lucide-react';
+import MediaPlayer from './MediaPlayer';
 
 interface BibleBook {
   id: number;
@@ -14,6 +15,8 @@ const AudioBible = () => {
   const { t, lang } = useLanguage();
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [playerOpen, setPlayerOpen] = useState(false);
+  const [currentBook, setCurrentBook] = useState<BibleBook | null>(null);
 
   // List of Bible books with WordProject audio links
   const oldTestamentBooks: BibleBook[] = [
@@ -89,7 +92,14 @@ const AudioBible = () => {
   ];
 
   const handleOpenAudio = (book: BibleBook) => {
+    // For now, we'll open in new tab since WordProject doesn't provide direct audio files
+    // In a real implementation, you would need to extract actual audio file URLs
     window.open(book.audioUrl, '_blank');
+  };
+
+  const handlePlayAudio = (book: BibleBook) => {
+    setCurrentBook(book);
+    setPlayerOpen(true);
   };
 
   const handleReadOnline = () => {
@@ -114,7 +124,7 @@ const AudioBible = () => {
 
       <div className="flex space-x-2 rtl:space-x-reverse">
         <button
-          onClick={() => handleOpenAudio(book)}
+          onClick={() => handlePlayAudio(book)}
           className="flex-1 flex items-center justify-center px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors text-sm"
         >
           <Volume2 className="h-4 w-4 mr-2 rtl:ml-2 rtl:mr-0" />
@@ -219,6 +229,65 @@ const AudioBible = () => {
           }
         </p>
       </div>
+
+      {/* Audio Player for Bible books */}
+      {currentBook && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                {currentBook.name[lang]}
+              </h3>
+              <button 
+                onClick={() => setPlayerOpen(false)}
+                className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <ExternalLink className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 text-center space-y-4">
+              <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="h-12 w-12 text-blue-600" />
+              </div>
+              
+              <h4 className="text-xl font-semibold text-gray-900">
+                {currentBook.name[lang]}
+              </h4>
+              
+              <p className="text-gray-600">
+                {currentBook.chapters} {lang === 'fa' ? 'فصل' : 'chapters'}
+              </p>
+              
+              <p className="text-sm text-gray-500 max-w-md mx-auto">
+                {lang === 'fa' 
+                  ? 'برای گوش دادن به این کتاب، روی دکمه زیر کلیک کنید تا به صفحه WordProject منتقل شوید.' 
+                  : 'To listen to this book, click the button below to be redirected to WordProject.'
+                }
+              </p>
+              
+              <div className="flex justify-center space-x-4 rtl:space-x-reverse mt-6">
+                <button
+                  onClick={() => handleOpenAudio(currentBook)}
+                  className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Volume2 className="h-5 w-5 mr-2 rtl:ml-2 rtl:mr-0" />
+                  {lang === 'fa' ? 'گوش دادن' : 'Listen'}
+                </button>
+                
+                <button
+                  onClick={() => setPlayerOpen(false)}
+                  className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                >
+                  {lang === 'fa' ? 'بستن' : 'Close'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
