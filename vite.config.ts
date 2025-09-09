@@ -11,7 +11,8 @@ export default defineConfig(({ mode }) => {
       },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env.VITE_API_BASE': JSON.stringify(`https://${env.REPLIT_DEV_DOMAIN?.replace(':5000', '')}:3001`)
       },
       resolve: {
         alias: {

@@ -169,7 +169,7 @@ const startServer = async () => {
     console.log('✅ دیتابیس آماده است');
     
     // سپس سرور را شروع کن
-    app.listen(PORT, 'localhost', () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
       console.log('API endpoints available:');
       console.log('  🔐 /api/auth/* - Authentication routes');
