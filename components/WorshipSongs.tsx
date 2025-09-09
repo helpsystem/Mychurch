@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { Music, Play, Download, ExternalLink, FileText, Video } from 'lucide-react';
-import MediaPlayer from './MediaPlayer';
+import { Music, Play, Download, ExternalLink, FileText, Video, File } from 'lucide-react';
+import LocalMediaPlayer from './LocalMediaPlayer';
+import { localSongs, LocalSong } from '../lib/mediaManager';
 
-interface Song {
-  id: number;
-  title: { en: string; fa: string };
-  artist: string;
-  key: string;
-  mode: 'Major' | 'Minor';
-  audioUrl?: string;
-  videoUrl?: string;
-  lyricsVideoUrl?: string;
-  powerpointUrl?: string;
-  downloadUrl?: string;
-  chordUrl?: string;
-  duration?: string;
-  size?: string;
-}
+// Using LocalSong interface from mediaManager
 
 const WorshipSongs = () => {
   const { t, lang } = useLanguage();
@@ -26,120 +13,16 @@ const WorshipSongs = () => {
   const [playerOpen, setPlayerOpen] = useState(false);
   const [currentMedia, setCurrentMedia] = useState<{
     title: string;
-    videoUrl?: string;
+    artist?: string;
     audioUrl?: string;
-    type: 'video' | 'audio';
+    videoUrl?: string;
+    pdfUrl?: string;
+    powerpointUrl?: string;
+    type: 'video' | 'audio' | 'pdf' | 'powerpoint';
   } | null>(null);
 
-  // Sample songs from Kalameh.com
-  const songs: Song[] = [
-    {
-      id: 1,
-      title: { en: 'I Love You Romantically', fa: 'تو را عاشقانه دوستت دارم' },
-      artist: 'نیلوفر',
-      key: 'D',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/16679/download',
-      videoUrl: 'https://www.youtube.com/embed/SoetDZ6kOfc',
-      lyricsVideoUrl: 'https://www.youtube.com/embed/xdv4z3z7Upk',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/TORAASHEGHANEDUSTATDARAM.pptx',
-      duration: '00:00',
-      size: '6.06 MB'
-    },
-    {
-      id: 2,
-      title: { en: 'Call the Name of Jesus', fa: 'بخوان نام عیسی را' },
-      artist: 'مجید دستوری',
-      key: 'B',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/16641/download',
-      videoUrl: 'https://www.youtube.com/embed/v8wDZ9pxTPc',
-      lyricsVideoUrl: 'https://www.youtube.com/embed/imH_tsWORto',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/BEKHANNAMEISARA.pptx',
-      size: '4.76 MB'
-    },
-    {
-      id: 3,
-      title: { en: 'The Lord is my Shepherd', fa: 'خداوند شبان جانم است' },
-      artist: 'رضا وطن‌پرست',
-      key: 'D',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/16609/download',
-      videoUrl: 'https://www.youtube.com/embed/XL7Q6YOzZ1M',
-      lyricsVideoUrl: 'https://www.youtube.com/embed/3mN1xLVIbbk',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAVANDSHABANEJANAMAST.pptx',
-      size: '3.21 MB'
-    },
-    {
-      id: 4,
-      title: { en: 'I Am Yours, Abba', fa: 'من از آن توام ابا' },
-      artist: 'سینا مسیحا',
-      key: 'Bb',
-      mode: 'Major',
-      audioUrl: 'https://www.kalameh.com/file/16507/download',
-      videoUrl: 'https://www.youtube.com/embed/HjoBg1LdvXQ',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/MANAZANETOAMABBA.pptx',
-      size: '5.82 MB'
-    },
-    {
-      id: 5,
-      title: { en: 'My World Has No Meaning Without You', fa: 'جهانم بی تو دگر معنا ندارد' },
-      artist: 'آراد طفلان',
-      key: 'Eb',
-      mode: 'Major',
-      audioUrl: 'https://www.kalameh.com/file/16309/download',
-      videoUrl: 'https://www.youtube.com/embed/o2D_n7LvHmI',
-      lyricsVideoUrl: 'https://www.youtube.com/embed/qziXfCBUtOE',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/JAHANAMBITODEGARMANANADARAD.pptx',
-      size: '3.47 MB'
-    },
-    {
-      id: 6,
-      title: { en: 'The Most Beautiful Picture in the World', fa: 'تماشایی‌ترین تصویر دنیا' },
-      artist: 'روزبه نجارنژاد',
-      key: 'A',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/15376/download',
-      videoUrl: 'https://www.youtube.com/embed/W_DeB7ZOAwo',
-      lyricsVideoUrl: 'https://www.youtube.com/embed/Z5gG6yy66ws',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/TAMASHAYITARINTASVIREDONYA.pptx',
-      size: '3.96 MB'
-    },
-    {
-      id: 7,
-      title: { en: 'To a New Vision and Touch', fa: 'به دیدار و لمسی تازه' },
-      artist: 'أنا محتاج لمسة روحك',
-      key: 'G',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/15355/download',
-      videoUrl: 'https://www.youtube.com/embed/jn1VM50hws4',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/BEDIDAROLAMSITAZE.pptx',
-      size: '8.81 MB'
-    },
-    {
-      id: 8,
-      title: { en: 'Jesus I Worship You', fa: 'عیسی تو را می‌پرستم' },
-      artist: 'دریا',
-      key: 'E',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/15301/download',
-      videoUrl: 'https://www.youtube.com/embed/aLSI9gIDepg',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/ISATORAMIPARASTAM.pptx',
-      size: '7.95 MB'
-    },
-    {
-      id: 9,
-      title: { en: 'The Word Became Flesh', fa: 'کلمه جسم گردید' },
-      artist: 'سینا مسیحا',
-      key: 'A',
-      mode: 'Minor',
-      audioUrl: 'https://www.kalameh.com/file/15587/download',
-      videoUrl: 'https://www.youtube.com/embed/eV-1Or6qfOw',
-      lyricsVideoUrl: 'https://www.youtube.com/embed/s3HFJes72I4',
-      powerpointUrl: 'https://www.kalameh.com/sites/default/files/songs/powerpoints/KALAMEHJESMGARDID.pptx',
-      size: '1.93 MB'
-    }
-  ];
+  // Using local songs from mediaManager
+  const songs = localSongs;
 
   const filteredSongs = songs.filter(song => {
     const matchesSearch = song.title[lang].toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -152,20 +35,39 @@ const WorshipSongs = () => {
     window.open('https://www.kalameh.com/song-archive', '_blank');
   };
 
-  const handlePlayMedia = (song: Song, type: 'video' | 'audio', url?: string) => {
-    const mediaUrl = type === 'video' ? (url || song.videoUrl || song.lyricsVideoUrl) : song.audioUrl;
+  const handlePlayMedia = (song: LocalSong, type: 'video' | 'audio' | 'pdf' | 'powerpoint', url?: string) => {
+    let mediaUrl = '';
+    
+    switch (type) {
+      case 'video':
+        mediaUrl = url || song.localVideoPath || song.localLyricsVideoPath || '';
+        break;
+      case 'audio':
+        mediaUrl = song.localAudioPath || '';
+        break;
+      case 'pdf':
+        mediaUrl = song.localPdfPath || '';
+        break;
+      case 'powerpoint':
+        mediaUrl = song.localPowerpointPath || '';
+        break;
+    }
+    
     if (mediaUrl) {
       setCurrentMedia({
         title: song.title[lang],
-        videoUrl: type === 'video' ? mediaUrl : undefined,
+        artist: song.artist,
         audioUrl: type === 'audio' ? mediaUrl : undefined,
+        videoUrl: type === 'video' ? mediaUrl : undefined,
+        pdfUrl: type === 'pdf' ? mediaUrl : undefined,
+        powerpointUrl: type === 'powerpoint' ? mediaUrl : undefined,
         type
       });
       setPlayerOpen(true);
     }
   };
 
-  const SongCard = ({ song }: { song: Song }) => (
+  const SongCard = ({ song }: { song: LocalSong }) => (
     <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
@@ -187,7 +89,7 @@ const WorshipSongs = () => {
 
       {/* Action Buttons */}
       <div className="grid grid-cols-2 gap-2 mb-4">
-        {song.audioUrl && (
+        {song.localAudioPath && (
           <button
             onClick={() => handlePlayMedia(song, 'audio')}
             className="flex items-center justify-center px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors text-sm"
@@ -197,7 +99,7 @@ const WorshipSongs = () => {
           </button>
         )}
 
-        {song.videoUrl && (
+        {song.localVideoPath && (
           <button
             onClick={() => handlePlayMedia(song, 'video')}
             className="flex items-center justify-center px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors text-sm"
@@ -207,9 +109,9 @@ const WorshipSongs = () => {
           </button>
         )}
 
-        {song.lyricsVideoUrl && (
+        {song.localLyricsVideoPath && (
           <button
-            onClick={() => handlePlayMedia(song, 'video', song.lyricsVideoUrl)}
+            onClick={() => handlePlayMedia(song, 'video', song.localLyricsVideoPath)}
             className="flex items-center justify-center px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors text-sm"
           >
             <FileText className="h-4 w-4 mr-1 rtl:ml-1 rtl:mr-0" />
@@ -217,16 +119,24 @@ const WorshipSongs = () => {
           </button>
         )}
 
-        {song.powerpointUrl && (
-          <a
-            href={song.powerpointUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+        {song.localPdfPath && (
+          <button
+            onClick={() => handlePlayMedia(song, 'pdf')}
+            className="flex items-center justify-center px-3 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors text-sm"
+          >
+            <File className="h-4 w-4 mr-1 rtl:ml-1 rtl:mr-0" />
+            {lang === 'fa' ? 'مشاهده PDF' : 'View PDF'}
+          </button>
+        )}
+
+        {song.localPowerpointPath && (
+          <button
+            onClick={() => handlePlayMedia(song, 'powerpoint')}
             className="flex items-center justify-center px-3 py-2 bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 transition-colors text-sm"
           >
             <Download className="h-4 w-4 mr-1 rtl:ml-1 rtl:mr-0" />
             {lang === 'fa' ? 'پاورپوینت' : 'PowerPoint'}
-          </a>
+          </button>
         )}
       </div>
     </div>
@@ -342,14 +252,17 @@ const WorshipSongs = () => {
         </div>
       </div>
 
-      {/* Media Player */}
+      {/* Local Media Player */}
       {currentMedia && (
-        <MediaPlayer
+        <LocalMediaPlayer
           isOpen={playerOpen}
           onClose={() => setPlayerOpen(false)}
           title={currentMedia.title}
-          videoUrl={currentMedia.videoUrl}
+          artist={currentMedia.artist}
           audioUrl={currentMedia.audioUrl}
+          videoUrl={currentMedia.videoUrl}
+          pdfUrl={currentMedia.pdfUrl}
+          powerpointUrl={currentMedia.powerpointUrl}
           type={currentMedia.type}
         />
       )}
