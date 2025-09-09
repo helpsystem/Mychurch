@@ -5,7 +5,9 @@ export const CHRISTIAN_IMAGES = [
   '/images/Bible_study_peaceful_setting_6bb44b27.png', // open Bible with peaceful study setting
   '/images/Modern_church_building_exterior_83da6dba.png', // modern church building exterior
   '/images/Persian_Christian_choir_singing_bfe3adf8.png', // Persian Christian choir singing together
-  '/images/Children_Sunday_school_class_ade575b6.png' // children's Sunday school class
+  '/images/Children_Sunday_school_class_ade575b6.png', // children's Sunday school class
+  '/images/cross-cave-sunset.jpg', // cross in cave with sunset background
+  '/images/jesus-cross-sunset.jpg' // Jesus cross with beautiful sunset
 ];
 
 export const getRandomImage = () => {
