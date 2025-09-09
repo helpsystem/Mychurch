@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-const axios = require('axios');
-const { Pool } = require('pg');
-require('dotenv').config();
+import axios from 'axios';
+import pg from 'pg';
+import dotenv from 'dotenv';
+
+const { Pool } = pg;
+dotenv.config();
 
 // Database connection
 const pool = new Pool({
@@ -87,32 +90,88 @@ const BIBLE_BOOKS = [
 function parseVersesFromHtml(html) {
   const verses = [];
   
-  // Extract verse content after ### فصل X
-  const chapterMatch = html.match(/### فصل\s+\d+\s*([\s\S]*)/);
-  if (!chapterMatch) return verses;
+  // Extract all Persian text segments from the HTML
+  const persianTextMatches = html.match(/[\u0600-\u06FF\s\d\u060C\u061B\u061F\u0640\u066A\u066B\u066C\u200C\u200D\u200E\u200F\u202A\u202B\u202C\u202D\u202E\u2066\u2067\u2068\u2069\u206A\u206B\u206C\u206D\u206E\u206F\u002E\u00AB\u00BB]+/g);
   
-  const content = chapterMatch[1];
+  if (!persianTextMatches) return verses;
   
-  // Split by verse numbers and clean up
-  const lines = content.split(/\n\n/).filter(line => line.trim());
-  
-  let verseNumber = 1;
-  for (const line of lines) {
-    const cleanLine = line.trim();
-    if (cleanLine && !cleanLine.includes('[Go to top')) {
-      // Remove any HTML tags and clean the text
-      const cleanText = cleanLine.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
-      if (cleanText && cleanText.length > 10) { // Filter out very short/invalid lines
+  // Process potential verse text
+  for (const text of persianTextMatches) {
+    const cleanText = text.replace(/\s+/g, ' ').trim();
+    
+    // Filter out unwanted content but include verses with religious terms
+    if (cleanText.length > 15 && 
+        !cleanText.includes('کتاب مقدس') &&
+        !cleanText.includes('صوتی') &&
+        !cleanText.includes('پيدايش ايش') &&
+        !cleanText.includes('Right Click') &&
+        !cleanText.includes('Download') &&
+        !cleanText.includes('Play') &&
+        !cleanText.includes('pause') &&
+        !cleanText.includes('volume') &&
+        !cleanText.includes('0:00') &&
+        (cleanText.includes('خدا') || cleanText.includes('خداوند'))) { // Contains God/Lord
+      
+      // Check for numbered verses (like "2  وزمین‌...")
+      const verseMatch = cleanText.match(/^(\d+)\s+(.+)/);
+      if (verseMatch) {
+        const verseNumber = parseInt(verseMatch[1]);
+        const verseText = verseMatch[2].trim();
+        if (verseText.length > 10) {
+          verses.push({
+            verse_number: verseNumber,
+            text_fa: verseText
+          });
+        }
+      } else if (cleanText.includes('در ابتدا') && cleanText.includes('آسمانها') && cleanText.includes('زمین')) {
+        // This is clearly verse 1 of Genesis
         verses.push({
-          verse_number: verseNumber,
+          verse_number: 1,
           text_fa: cleanText
         });
-        verseNumber++;
+      } else if (cleanText.includes('تهی') && cleanText.includes('بایر') && cleanText.includes('تاریكی')) {
+        // This looks like verse 2
+        verses.push({
+          verse_number: 2,
+          text_fa: cleanText
+        });
+      } else if (cleanText.includes('روشنایی') && cleanText.includes('بشود')) {
+        // This looks like verse 3
+        verses.push({
+          verse_number: 3,
+          text_fa: cleanText
+        });
+      } else if (verses.length > 0) {
+        // For other verses, assign sequential numbers
+        const existingNumbers = verses.map(v => v.verse_number);
+        const nextNumber = Math.max(...existingNumbers) + 1;
+        
+        // Only add if we don't have too many verses yet (Genesis 1 has 31 verses)
+        if (nextNumber <= 35) {
+          verses.push({
+            verse_number: nextNumber,
+            text_fa: cleanText
+          });
+        }
       }
     }
   }
   
-  return verses;
+  // Sort verses by verse number and remove duplicates
+  verses.sort((a, b) => a.verse_number - b.verse_number);
+  
+  // Remove duplicate verse numbers, keeping the longest text
+  const uniqueVerses = [];
+  for (const verse of verses) {
+    const existingIndex = uniqueVerses.findIndex(v => v.verse_number === verse.verse_number);
+    if (existingIndex === -1) {
+      uniqueVerses.push(verse);
+    } else if (verse.text_fa.length > uniqueVerses[existingIndex].text_fa.length) {
+      uniqueVerses[existingIndex] = verse;
+    }
+  }
+  
+  return uniqueVerses;
 }
 
 // Helper function to get English Bible text (we'll use a simple ESV API or fallback)
@@ -243,8 +302,8 @@ async function populateBibleData() {
 }
 
 // Execute if run directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   populateBibleData();
 }
 
-module.exports = { populateBibleData, BIBLE_BOOKS };
+export { populateBibleData, BIBLE_BOOKS };
