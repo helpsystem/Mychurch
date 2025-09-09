@@ -7,7 +7,7 @@ import { getOldTestamentBooks, getNewTestamentBooks, LocalBibleBook } from '../l
 const AudioBible = () => {
   const { lang } = useLanguage();
   const [playerOpen, setPlayerOpen] = useState(false);
-  const [currentBook, setCurrentBook] = useState<LocalBibleBook | null>(null);
+  const [currentBook, setCurrentBook] = useState(null);
 
   // Using local Bible books data
   const oldTestamentBooks = getOldTestamentBooks();
@@ -90,7 +90,9 @@ const AudioBible = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {oldTestamentBooks.map(book => (
-            <BibleBookCard key={book.id} book={book} />
+            <div key={book.id}>
+              <BibleBookCard book={book} />
+            </div>
           ))}
         </div>
       </div>
@@ -109,7 +111,9 @@ const AudioBible = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {newTestamentBooks.map(book => (
-            <BibleBookCard key={book.id} book={book} />
+            <div key={book.id}>
+              <BibleBookCard book={book} />
+            </div>
           ))}
         </div>
       </div>
