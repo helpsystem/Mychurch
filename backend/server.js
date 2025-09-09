@@ -10,6 +10,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const invitationRoutes = require('./routes/invitationRoutes');
+const bibleRoutes = require('./routes/bibleRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -101,6 +102,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/invitations', invitationRoutes);
+app.use('/api/bible', bibleRoutes);
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {
@@ -174,6 +176,7 @@ const startServer = async () => {
       console.log('  👥 /api/users/* - User management');
       console.log('  👤 /api/profile/* - User profiles');
       console.log('  📨 /api/invitations/* - Invitations');
+      console.log('  📖 /api/bible/* - Bible content and search');
       console.log('  📁 /api/files/* - File upload/management');
       console.log('  ❤️ /api/health - Health check');
     });
