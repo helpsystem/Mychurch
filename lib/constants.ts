@@ -13,5 +13,6 @@ export const WHATSAPP_CONNECT_TRIGGER = "[CONNECT_TO_WHATSAPP]";
 
 export const MANAGEABLE_PAGES = ['Home', 'About', 'Leaders', 'Sermons', 'Worship', 'Events', 'Contact', 'Schedule'];
 
-// Profile Avatars
+// Profile Avatars & Church Logo
 export const DEFAULT_AVATAR_URL = 'https://i.imgur.com/gA0939q.png';
+export const CHURCH_LOGO_URL = '/images/Church_cross_logo_design_bae53bfc.png';
