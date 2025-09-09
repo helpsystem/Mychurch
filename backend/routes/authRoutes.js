@@ -8,9 +8,10 @@ const router = express.Router();
 
 const generateToken = (user) => {
   const name = user.profileData && user.profileData.name ? user.profileData.name : null;
+  const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-for-development';
   return jwt.sign(
     { email: user.email, role: user.role, name },
-    process.env.JWT_SECRET,
+    jwtSecret,
     { expiresIn: '24h' }
   );
 };
@@ -98,9 +99,10 @@ router.post('/admin-login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
+    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-for-development';
     const token = jwt.sign(
       { email: user.email, role: user.role },
-      process.env.JWT_SECRET,
+      jwtSecret,
       { expiresIn: '24h' }
     );
 

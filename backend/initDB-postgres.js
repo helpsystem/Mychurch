@@ -99,15 +99,15 @@ const initializeDatabase = async () => {
     console.log('✅ تمامی جداول با موفقیت در PostgreSQL ساخته شدند');
     
     // ایجاد کاربر admin پیش‌فرض
-    const adminCheck = await client.query('SELECT * FROM users WHERE email = $1', ['admin@church.com']);
+    const adminCheck = await client.query('SELECT * FROM users WHERE email = $1', ['help.system@ymail.com']);
     if (adminCheck.rows.length === 0) {
       const bcrypt = require('bcrypt');
       const hashedPassword = await bcrypt.hash('admin123', 10);
       await client.query(
         'INSERT INTO users (email, password, role, permissions) VALUES ($1, $2, $3, $4)',
-        ['admin@church.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['all'])]
+        ['help.system@ymail.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['all'])]
       );
-      console.log('✅ کاربر admin پیش‌فرض ایجاد شد (admin@church.com / admin123)');
+      console.log('✅ کاربر admin پیش‌فرض ایجاد شد (help.system@ymail.com / admin123)');
     }
     
   } catch (err) {
