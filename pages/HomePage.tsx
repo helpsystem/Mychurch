@@ -11,6 +11,7 @@ import { Leader } from '../types';
 import ScrambledText from '../components/ScrambledText';
 import { DEFAULT_AVATAR_URL } from '../lib/constants';
 import { useAuth } from '../hooks/useAuth';
+import ImageSlider from '../components/ImageSlider';
 
 const ParticleCanvas: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -238,7 +239,17 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10`}>
-                    <img src="https://i.ibb.co/C7Yp6b1/robot.png" alt="billing" className="w-[100%] h-[100%] relative z-[5]"/>
+                    <ImageSlider 
+                        images={[
+                            '/images/Church_interior_worship_space_70ed9ac2.png',
+                            '/images/Church_community_gathering_a97f90e1.png',
+                            '/images/Modern_church_building_exterior_83da6dba.png',
+                            '/images/Persian_Christian_choir_singing_bfe3adf8.png'
+                        ]}
+                        autoplay={true}
+                        autoplayInterval={4000}
+                        className="w-full max-w-[600px] relative z-[5]"
+                    />
                     <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />
                     <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient" />
                     <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient" />
@@ -269,12 +280,41 @@ const HomePage: React.FC = () => {
               <div className="reveal-on-scroll delay-3"><Stats /></div>
               <div className="reveal-on-scroll delay-4"><WeeklySchedule /></div>
 
+              {/* Gallery Section */}
+              <section className="sm:py-16 py-6 reveal-on-scroll delay-5">
+                <div className="text-center mb-12">
+                    <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-4">{lang === 'fa' ? 'گالری تصاویر کلیسا' : 'Church Gallery'}</h2>
+                    <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[600px] mx-auto">{lang === 'fa' ? 'نگاهی به فضاهای زیبا و لحظات مقدس کلیسای ما' : 'A glimpse into the beautiful spaces and sacred moments of our church community'}</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                        <img src="/images/Prayer_circle_hands_together_feb88f83.png" alt="Prayer Circle" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                        <img src="/images/Bible_study_peaceful_setting_6bb44b27.png" alt="Bible Study" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                        <img src="/images/Children_Sunday_school_class_ade575b6.png" alt="Sunday School" className="w-full h-full object-cover" />
+                    </div>
+                </div>
+                <div className="text-center">
+                    <Button styles="" text={lang === 'fa' ? 'مشاهده گالری کامل' : 'View Full Gallery'} to="/gallery"/>
+                </div>
+              </section>
+
               {/* About Section */}
-              <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll delay-5">
+              <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll delay-6">
                 <div className="flex-1 flex justify-center items-center md:mr-10 mr-0 md:mt-0 mt-10 relative rtl:md:ml-10 rtl:md:mr-0">
                     <div className="w-full h-80 image-container rounded-xl">
                         <img src={aboutImage} alt="" className="image-background" aria-hidden="true" />
                         <img src={aboutImage} alt="community" className="image-foreground" />
+                        <button 
+                            onClick={() => setAboutImage(getRandomImage())}
+                            className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-full text-sm transition-all duration-300 opacity-75 hover:opacity-100"
+                            title={lang === 'fa' ? 'تغییر تصویر' : 'Change Image'}
+                        >
+                            🔄
+                        </button>
                     </div>
                 </div>
                 <div className="flex-1 flex justify-center items-start flex-col">
