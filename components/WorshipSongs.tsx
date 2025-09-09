@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Music, Play, Download, ExternalLink, FileText, Video } from 'lucide-react';
+import MediaPlayer from './MediaPlayer';
 
 interface Song {
   id: number;
@@ -22,6 +23,13 @@ const WorshipSongs = () => {
   const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedMode, setSelectedMode] = useState('all');
+  const [playerOpen, setPlayerOpen] = useState(false);
+  const [currentMedia, setCurrentMedia] = useState<{
+    title: string;
+    videoUrl?: string;
+    audioUrl?: string;
+    type: 'video' | 'audio';
+  } | null>(null);
 
   // Sample songs from Kalameh.com
   const songs: Song[] = [
@@ -144,6 +152,19 @@ const WorshipSongs = () => {
     window.open('https://www.kalameh.com/song-archive', '_blank');
   };
 
+  const handlePlayMedia = (song: Song, type: 'video' | 'audio', url?: string) => {
+    const mediaUrl = type === 'video' ? (url || song.videoUrl || song.lyricsVideoUrl) : song.audioUrl;
+    if (mediaUrl) {
+      setCurrentMedia({
+        title: song.title[lang],
+        videoUrl: type === 'video' ? mediaUrl : undefined,
+        audioUrl: type === 'audio' ? mediaUrl : undefined,
+        type
+      });
+      setPlayerOpen(true);
+    }
+  };
+
   const SongCard = ({ song }: { song: Song }) => (
     <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between mb-4">
@@ -167,39 +188,33 @@ const WorshipSongs = () => {
       {/* Action Buttons */}
       <div className="grid grid-cols-2 gap-2 mb-4">
         {song.audioUrl && (
-          <a
-            href={song.audioUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => handlePlayMedia(song, 'audio')}
             className="flex items-center justify-center px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors text-sm"
           >
             <Play className="h-4 w-4 mr-1 rtl:ml-1 rtl:mr-0" />
-            {lang === 'fa' ? 'پخش' : 'Play'}
-          </a>
+            {lang === 'fa' ? 'پخش صوتی' : 'Play Audio'}
+          </button>
         )}
 
         {song.videoUrl && (
-          <a
-            href={song.videoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => handlePlayMedia(song, 'video')}
             className="flex items-center justify-center px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors text-sm"
           >
             <Video className="h-4 w-4 mr-1 rtl:ml-1 rtl:mr-0" />
-            {lang === 'fa' ? 'ویدیو' : 'Video'}
-          </a>
+            {lang === 'fa' ? 'پخش ویدیو' : 'Play Video'}
+          </button>
         )}
 
         {song.lyricsVideoUrl && (
-          <a
-            href={song.lyricsVideoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => handlePlayMedia(song, 'video', song.lyricsVideoUrl)}
             className="flex items-center justify-center px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors text-sm"
           >
             <FileText className="h-4 w-4 mr-1 rtl:ml-1 rtl:mr-0" />
-            {lang === 'fa' ? 'متن + صوت' : 'Lyrics'}
-          </a>
+            {lang === 'fa' ? 'ویدیو + متن' : 'Video with Lyrics'}
+          </button>
         )}
 
         {song.powerpointUrl && (
@@ -326,6 +341,18 @@ const WorshipSongs = () => {
           </a>
         </div>
       </div>
+
+      {/* Media Player */}
+      {currentMedia && (
+        <MediaPlayer
+          isOpen={playerOpen}
+          onClose={() => setPlayerOpen(false)}
+          title={currentMedia.title}
+          videoUrl={currentMedia.videoUrl}
+          audioUrl={currentMedia.audioUrl}
+          type={currentMedia.type}
+        />
+      )}
     </div>
   );
 };
