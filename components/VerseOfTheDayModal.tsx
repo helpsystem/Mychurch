@@ -103,8 +103,8 @@ const VerseOfTheDayModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                   {lang === 'fa' ? 'ورق بزنید' : 'Turn Page'}
               </span>
               {lang === 'fa' ? 
-                  <ChevronRight className="h-6 w-6 text-yellow-400 animate-pulse" /> : 
-                  <ChevronLeft className="h-6 w-6 text-yellow-400 animate-pulse" />
+                  <ChevronLeft className="h-6 w-6 text-yellow-400 animate-pulse" /> : 
+                  <ChevronRight className="h-6 w-6 text-yellow-400 animate-pulse" />
               }
           </div>
       </div>
