@@ -56,11 +56,11 @@ router.post('/login', async (req, res) => {
     return res.status(400).json({ message: 'Email and password are required.' });
   }
   try {
-    const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
-    if (users.length === 0) {
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (result.rows.length === 0) {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
-    let user = users[0];
+    let user = result.rows[0];
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid email or password.' });
@@ -83,12 +83,12 @@ router.post('/admin-login', async (req, res) => {
   }
 
   try {
-    const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
-    if (users.length === 0) {
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (result.rows.length === 0) {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
-    let user = users[0];
+    let user = result.rows[0];
     if (user.role !== 'SUPER_ADMIN') {
       return res.status(403).json({ message: 'Access denied. Admins only.' });
     }
@@ -116,11 +116,11 @@ router.post('/admin-login', async (req, res) => {
 // -------------------- PROFILE --------------------
 router.get('/me', authenticateToken, async (req, res) => {
   try {
-    const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [req.user.email]);
-    if (users.length === 0) {
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [req.user.email]);
+    if (result.rows.length === 0) {
       return res.status(404).json({ message: 'User not found.' });
     }
-    let user = users[0];
+    let user = result.rows[0];
     user = parseUser(user);
     delete user.password;
     res.json({ user });
