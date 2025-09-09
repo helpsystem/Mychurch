@@ -13,6 +13,7 @@ const Layout: React.FC = () => {
     const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
     const lastSeenDate = localStorage.getItem('lastSeenVerseModalDate');
     
+    // Auto-show verse modal once per day
     if (lastSeenDate !== today) {
       const timer = setTimeout(() => {
         setShowVerseModal(true);
@@ -20,6 +21,16 @@ const Layout: React.FC = () => {
       }, 1500); // Delay to avoid being too intrusive
       return () => clearTimeout(timer);
     }
+
+    // Listen for manual verse modal open
+    const handleOpenVerseModal = () => {
+      setShowVerseModal(true);
+    };
+    
+    window.addEventListener('openVerseModal', handleOpenVerseModal);
+    return () => {
+      window.removeEventListener('openVerseModal', handleOpenVerseModal);
+    };
   }, []);
 
   useEffect(() => {
