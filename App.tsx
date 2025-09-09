@@ -45,9 +45,10 @@ function App() {
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
+    // Simulate content loading and reduce to 2.5 seconds
     const timer = setTimeout(() => {
       setShowLoading(false);
-    }, 5000); // Minimum 5 seconds loading screen
+    }, 2500); // Optimized loading time
 
     return () => clearTimeout(timer);
   }, []);
