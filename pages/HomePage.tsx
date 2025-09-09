@@ -280,8 +280,36 @@ const HomePage: React.FC = () => {
               <div className="reveal-on-scroll delay-3"><Stats /></div>
               <div className="reveal-on-scroll delay-4"><WeeklySchedule /></div>
 
-              {/* Gallery Section */}
+              {/* Daily Verse Section */}
               <section className="sm:py-16 py-6 reveal-on-scroll delay-5">
+                <div className="text-center mb-12">
+                    <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-4">{lang === 'fa' ? 'آیه امروز' : 'Today\'s Verse'}</h2>
+                    <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[600px] mx-auto mb-8">{lang === 'fa' ? 'کلام خدا را در قلب خود نگه دارید و از برکات آن بهره‌مند شوید' : 'Keep God\'s word in your heart and be blessed by its wisdom'}</p>
+                    
+                    <div className="flex justify-center">
+                        <button 
+                            onClick={() => {
+                                // Find parent with onOpenVerseModal
+                                const event = new CustomEvent('openVerseModal');
+                                window.dispatchEvent(event);
+                            }}
+                            className="group relative bg-gradient-to-r from-secondary to-blue-400 hover:from-blue-400 hover:to-secondary text-black font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-secondary/25"
+                        >
+                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:rotate-12 transition-transform">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                </svg>
+                                <span>{lang === 'fa' ? 'مشاهده آیه امروز' : 'Read Today\'s Verse'}</span>
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </button>
+                    </div>
+                </div>
+              </section>
+
+              {/* Gallery Section */}
+              <section className="sm:py-16 py-6 reveal-on-scroll delay-6">
                 <div className="text-center mb-12">
                     <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-4">{lang === 'fa' ? 'گالری تصاویر کلیسا' : 'Church Gallery'}</h2>
                     <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[600px] mx-auto">{lang === 'fa' ? 'نگاهی به فضاهای زیبا و لحظات مقدس کلیسای ما' : 'A glimpse into the beautiful spaces and sacred moments of our church community'}</p>
@@ -303,7 +331,7 @@ const HomePage: React.FC = () => {
               </section>
 
               {/* About Section */}
-              <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll delay-6">
+              <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll delay-7">
                 <div className="flex-1 flex justify-center items-center md:mr-10 mr-0 md:mt-0 mt-10 relative rtl:md:ml-10 rtl:md:mr-0">
                     <div className="w-full h-80 image-container rounded-xl">
                         <img src={aboutImage} alt="" className="image-background" aria-hidden="true" />
