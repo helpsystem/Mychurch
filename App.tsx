@@ -41,6 +41,7 @@ import TestimonialsPage from './pages/TestimonialsPage';
 import LivePage from './pages/LivePage';
 import LetterViewerPage from './pages/LetterViewerPage';
 import AudioBiblePage from './pages/AudioBiblePage';
+import BibleReaderPage from './pages/BibleReaderPage';
 import WorshipSongsPage from './pages/WorshipSongsPage';
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
             <Route path="worship" element={<WorshipPage />} />
             <Route path="bible" element={<BiblePage />} />
             <Route path="audio-bible" element={<AudioBiblePage />} />
+            <Route path="bible-reader" element={<BibleReaderPage />} />
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="giving" element={<GivingPage />} />
             <Route path="prayer" element={<PrayerPage />} />

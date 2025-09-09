@@ -11,7 +11,7 @@ export interface LocalBibleBook {
 // Sample local Bible books with local audio files
 export const localBibleBooks: LocalBibleBook[] = [
   // Old Testament
-  { id: 1, name: { en: 'Genesis', fa: 'پیدایش' }, abbreviation: 'Gen', chapters: 50, localAudioPath: '/assets/audio/bible/genesis.mp3', testament: 'old' },
+  { id: 1, name: { en: 'Genesis', fa: 'پیدایش' }, abbreviation: 'Gen', chapters: 50, localAudioPath: '/assets/audio/bible/genesis.wav', testament: 'old' },
   { id: 2, name: { en: 'Exodus', fa: 'خروج' }, abbreviation: 'Ex', chapters: 40, localAudioPath: '/assets/audio/bible/exodus.mp3', testament: 'old' },
   { id: 3, name: { en: 'Leviticus', fa: 'احبار' }, abbreviation: 'Lv', chapters: 27, localAudioPath: '/assets/audio/bible/leviticus.mp3', testament: 'old' },
   { id: 4, name: { en: 'Numbers', fa: 'اعداد' }, abbreviation: 'Nm', chapters: 36, localAudioPath: '/assets/audio/bible/numbers.mp3', testament: 'old' },
