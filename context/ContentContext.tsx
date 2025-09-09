@@ -79,6 +79,18 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             setLoading(true);
             let apiWarningLogged = false;
             
+            // Auto-configure API base URL if not set
+            try {
+                const currentUrl = api.getApiBaseUrl();
+                if (!currentUrl) {
+                    // Set to localhost:3001 for backend connection
+                    api.setApiBaseUrl('http://localhost:3001');
+                    console.log('📡 Auto-configured API base URL to http://localhost:3001');
+                }
+            } catch (error) {
+                console.warn('Could not auto-configure API base URL:', error);
+            }
+            
             const contentEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
                 { key: 'leaders', path: '/api/leaders', mockData: leadersData },
                 { key: 'sermons', path: '/api/sermons', mockData: sermonsData },
@@ -109,15 +121,32 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                     })
             );
             
-            // Separately fetch Bible data
-            const biblePromise = api.get<{ books: BibleBook[], content: ContentData['bibleContent'] }>('/api/bible/all')
-                 .then(data => ({ success: true, ...data }))
+            // Separately fetch Bible books and convert to expected format
+            const biblePromise = api.get<{ success: boolean, books: any[] }>('/api/bible/books')
+                 .then(data => {
+                    if (data.success && data.books) {
+                        // Transform API format to frontend format
+                        const books: BibleBook[] = data.books.map((book: any) => ({
+                            key: book.key,
+                            name: book.name,
+                            chapters: book.chapters
+                        }));
+                        
+                        // For now, use mock content as we populate more data
+                        const content = INITIAL_BIBLE_CONTENT;
+                        
+                        console.log(`📖 Loaded ${books.length} Bible books from API`);
+                        return { success: true, books, content };
+                    } else {
+                        throw new Error('Invalid API response format');
+                    }
+                 })
                  .catch(error => {
                         if (error.name === 'ApiNotConfiguredError' && !apiWarningLogged) {
                             console.warn("API base URL is not configured. The application is running on mock data. Please configure it in the admin panel under 'API Configuration'.");
                             apiWarningLogged = true;
                         } else if (error.name !== 'ApiNotConfiguredError') {
-                            console.error(`API Fetch Error: Could not fetch bible from /api/bible/all. Using mock data.`, error.message);
+                            console.error(`API Fetch Error: Could not fetch bible from /api/bible/books. Using mock data.`, error.message);
                         }
                         return { success: false, books: INITIAL_BIBLE_BOOKS, content: INITIAL_BIBLE_CONTENT };
                  });
