@@ -55,6 +55,9 @@ iranian-church-website/
 - 2025-09-09: Configured Vite for Replit environment with proper host settings
 - 2025-09-09: Resolved React version compatibility issues with legacy peer deps
 - 2025-09-09: Configured Google Gemini API integration
+- 2025-09-09: Enhanced homepage with ImageSlider component and beautiful church photo gallery
+- 2025-09-09: Replaced external robot image with church imagery in hero section
+- 2025-09-09: Added interactive gallery section with hover effects and church photos
 
 ## User Preferences
 - Multi-language support for English and Farsi speakers
