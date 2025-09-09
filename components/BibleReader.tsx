@@ -21,7 +21,7 @@ const BibleReader = () => {
   const [selectedBook, setSelectedBook] = useState('Genesis');
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [verses, setVerses] = useState<BibleVerse[]>([]);
+  const [verses, setVerses] = useState([]);
 
   const oldTestamentBooks = getOldTestamentBooks();
   const newTestamentBooks = getNewTestamentBooks();
