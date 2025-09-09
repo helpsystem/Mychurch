@@ -145,7 +145,7 @@ export interface WorshipSong {
 
 export interface Leader {
   id: number;
-  name: string;
+  name: Record<Language, string>;
   title: Record<Language, string>;
   imageUrl: string;
   bio: Record<Language, string>;

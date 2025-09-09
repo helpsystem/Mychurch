@@ -132,9 +132,9 @@ const LeaderCardHome: React.FC<{ leader: Leader }> = ({ leader }) => {
         <div className="flex flex-col p-6 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 feature-card interactive-card-glow">
             <div className="w-full h-60 mb-4 rounded-[10px] overflow-hidden image-container">
                  <img src={leader.imageUrl} alt="" className="image-background" aria-hidden="true" />
-                 <img src={leader.imageUrl} alt={leader.name} className="image-foreground" />
+                 <img src={leader.imageUrl} alt={leader.name[lang]} className="image-foreground" />
             </div>
-            <h4 className="font-semibold text-white text-[20px] leading-[32px]">{leader.name}</h4>
+            <h4 className="font-semibold text-white text-[20px] leading-[32px]">{leader.name[lang]}</h4>
             <p className="font-normal text-dimWhite text-[16px] leading-[24px] mb-4">{leader.title[lang]}</p>
             <p className="font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow">{shortBio}</p>
             <Link to="/leaders" className="text-secondary hover:text-white font-semibold mt-auto">{t('viewProfile')}</Link>
