@@ -19,7 +19,7 @@ export const leadersData: Leader[] = [
     id: 2,
     name: 'Nazi Rasti',
     title: { en: "Women's Bible Study Leader", fa: 'رهبر مطالعه کتاب مقدس بانوان' },
-    imageUrl: '/images/leader-nazi.png',
+    imageUrl: '/images/leader-nazi-real.jpg',
     bio: {
         en: "Nazi Rasti leads our women's ministry with a heart for fellowship and discipleship, creating a welcoming space for women to grow in their faith together.",
         fa: 'نازی راستی خدمت بانوان ما را با قلبی برای مشارکت و شاگردسازی رهبری می‌کند و فضایی پذیرا برای رشد مشترک بانوان در ایمانشان ایجاد می‌نماید.'
