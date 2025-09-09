@@ -189,10 +189,11 @@ const HomePage: React.FC = () => {
   const { t, lang } = useLanguage();
   const { content } = useContent();
   const { isAuthenticated, user } = useAuth();
-  const [aboutImage, setAboutImage] = useState('');
+  const [aboutImage, setAboutImage] = useState('/images/jesus-cross-sunset.jpg');
 
   useEffect(() => {
-    setAboutImage(getRandomImage());
+    // Set a beautiful default image instead of random
+    setAboutImage('/images/jesus-cross-sunset.jpg');
   }, []);
 
   return (
