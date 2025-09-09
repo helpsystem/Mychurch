@@ -6,7 +6,7 @@ import { CHURCH_ADDRESS, DEFAULT_AVATAR_URL } from './constants';
 export const leadersData: Leader[] = [
   {
     id: 1,
-    name: 'Rev. Javad Pishghadamian',
+    name: { en: 'Rev. Javad Pishghadamian', fa: 'کشیش جواد پیشقدمیان' },
     title: { en: 'Senior Pastor', fa: 'کشیش ارشد' },
     imageUrl: '/images/pastor-javad-real.jpg',
     bio: {
@@ -17,7 +17,7 @@ export const leadersData: Leader[] = [
   },
   {
     id: 2,
-    name: 'Nazi Rasti',
+    name: { en: 'Nazi Rasti', fa: 'نازی راستی' },
     title: { en: "Women's Bible Study Leader", fa: 'رهبر مطالعه کتاب مقدس بانوان' },
     imageUrl: '/images/leader-nazi-real.jpg',
     bio: {
