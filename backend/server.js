@@ -11,6 +11,18 @@ const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const invitationRoutes = require('./routes/invitationRoutes');
 const bibleRoutes = require('./routes/bibleRoutes');
+const leadersRoutes = require('./routes/leadersRoutes');
+const sermonsRoutes = require('./routes/sermonsRoutes');
+const eventsRoutes = require('./routes/eventsRoutes');
+const worshipRoutes = require('./routes/worshipRoutes');
+const scheduleRoutes = require('./routes/scheduleRoutes');
+const galleriesRoutes = require('./routes/galleriesRoutes');
+const prayerRoutes = require('./routes/prayerRoutes');
+const testimonialsRoutes = require('./routes/testimonialsRoutes');
+const lettersRoutes = require('./routes/lettersRoutes');
+const pagesRoutes = require('./routes/pagesRoutes');
+const settingsRoutes = require('./routes/settingsRoutes');
+const filesRoutes = require('./routes/filesRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -103,6 +115,18 @@ app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/invitations', invitationRoutes);
 app.use('/api/bible', bibleRoutes);
+app.use('/api/leaders', leadersRoutes);
+app.use('/api/sermons', sermonsRoutes);
+app.use('/api/events', eventsRoutes);
+app.use('/api/worship-songs', worshipRoutes);
+app.use('/api/schedule-events', scheduleRoutes);
+app.use('/api/galleries', galleriesRoutes);
+app.use('/api/prayer-requests', prayerRoutes);
+app.use('/api/testimonials', testimonialsRoutes);
+app.use('/api/letters', lettersRoutes);
+app.use('/api/pages', pagesRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/files', filesRoutes);
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {
@@ -177,7 +201,18 @@ const startServer = async () => {
       console.log('  👤 /api/profile/* - User profiles');
       console.log('  📨 /api/invitations/* - Invitations');
       console.log('  📖 /api/bible/* - Bible content and search');
-      console.log('  📁 /api/files/* - File upload/management');
+      console.log('  👥 /api/leaders/* - Church leaders');
+      console.log('  🎤 /api/sermons/* - Sermons');
+      console.log('  📅 /api/events/* - Church events');
+      console.log('  🎵 /api/worship-songs/* - Worship songs');
+      console.log('  📋 /api/schedule-events/* - Schedule events');
+      console.log('  🖼️ /api/galleries/* - Photo galleries');
+      console.log('  🙏 /api/prayer-requests/* - Prayer requests');
+      console.log('  ✨ /api/testimonials/* - Testimonials');
+      console.log('  📜 /api/letters/* - Church letters');
+      console.log('  📄 /api/pages/* - Custom pages');
+      console.log('  ⚙️ /api/settings/* - Site settings');
+      console.log('  📁 /api/files/* - File management');
       console.log('  ❤️ /api/health - Health check');
     });
   } catch (error) {
