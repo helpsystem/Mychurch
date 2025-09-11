@@ -66,12 +66,24 @@ router.get('/', authenticateToken, authorizeAdmin, async (req, res) => {
       "SELECT id, email, role, invitations FROM users WHERE invitations IS NOT NULL AND invitations != '[]'"
     );
 
-    const invitations = result.rows.map(row => ({
-      id: row.id,
-      email: row.email,
-      role: row.role,
-      invitations: JSON.parse(row.invitations || '[]')
-    }));
+    const invitations = result.rows.map(row => {
+      try {
+        return {
+          id: row.id,
+          email: row.email,
+          role: row.role,
+          invitations: typeof row.invitations === 'string' ? JSON.parse(row.invitations || '[]') : (row.invitations || [])
+        };
+      } catch (e) {
+        console.error('Error parsing invitation row:', e, row);
+        return {
+          id: row.id,
+          email: row.email,
+          role: row.role,
+          invitations: []
+        };
+      }
+    });
 
     res.status(200).json(invitations);
   } catch (error) {
