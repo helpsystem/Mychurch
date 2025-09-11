@@ -83,9 +83,9 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             try {
                 const currentUrl = api.getApiBaseUrl();
                 if (!currentUrl) {
-                    // Set to localhost:3001 for backend connection
-                    api.setApiBaseUrl('http://localhost:3001');
-                    console.log('📡 Auto-configured API base URL to http://localhost:3001');
+                    // Use empty string for relative URLs with proxy
+                    api.setApiBaseUrl('');
+                    console.log('📡 Auto-configured API base URL for proxy mode');
                 }
             } catch (error) {
                 console.warn('Could not auto-configure API base URL:', error);
