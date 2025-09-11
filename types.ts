@@ -350,3 +350,40 @@ export interface AudioPlayerContextType {
   seek: (time: number) => void;
   closePlayer: () => void;
 }
+
+export interface ChurchAnnouncement {
+  id: number;
+  title: Record<Language, string>;
+  content: Record<Language, string>;
+  type: 'general' | 'urgent' | 'event' | 'announcement';
+  priority: 'low' | 'normal' | 'high' | 'urgent';
+  targetAudience: string[];
+  channels: ('website' | 'email' | 'sms' | 'whatsapp' | 'notification')[];
+  autoTranslate: boolean;
+  sourceLanguage: 'en' | 'fa';
+  authorEmail: string;
+  status: 'draft' | 'published' | 'archived';
+  publishDate?: string;
+  expiryDate?: string;
+  referenceNumber: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MessageLog {
+  id: number;
+  referenceId: number;
+  referenceType: string;
+  channel: 'website' | 'email' | 'sms' | 'whatsapp' | 'notification';
+  recipientType: string;
+  recipientAddress: string;
+  language: 'en' | 'fa';
+  subject: Record<Language, string>;
+  content: Record<Language, string>;
+  status: 'pending' | 'sent' | 'delivered' | 'failed';
+  sentAt?: string;
+  deliveryStatus?: string;
+  errorMessage?: string;
+  metadata: Record<string, any>;
+  createdAt: string;
+}
