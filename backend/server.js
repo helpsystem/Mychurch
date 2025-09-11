@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
+const ftp = require('basic-ftp');
 const { initializeDatabase } = require('./initDB-postgres');
 
 const authRoutes = require('./routes/authRoutes');
