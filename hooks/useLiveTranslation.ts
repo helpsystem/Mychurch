@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Language } from '../types';
-import { translationService } from '../services/translationService';
 
 export const useLiveTranslation = () => {
     const [isTranslated, setIsTranslated] = useState(false);
@@ -63,14 +62,13 @@ export const useLiveTranslation = () => {
         }
 
         try {
-            const translatedTexts = await translationService.bulkTranslate(textsToTranslate, targetLang);
+            // Live translation is temporarily disabled
+            // Future implementation will use backend translation service
+            console.log("Live translation feature is currently unavailable");
             
-            textNodes.forEach((node, index) => {
-                if(translatedTexts[index]) {
-                   node.nodeValue = translatedTexts[index];
-                }
-            });
-            setIsTranslated(true);
+            // For now, just indicate that translation is not available
+            setIsLoading(false);
+            return;
         } catch (error) {
             console.error("Live translation failed:", error);
             revertTranslation(); // Revert on error

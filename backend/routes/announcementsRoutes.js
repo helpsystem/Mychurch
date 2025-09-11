@@ -1,6 +1,7 @@
 const express = require('express');
 const { pool } = require('../db');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
+const { translationService } = require('../services/translationService');
 const router = express.Router();
 
 // Helper function to parse JSON safely
@@ -187,9 +188,31 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
 // PUT /api/announcements/:id/translate - ترجمه خودکار اطلاعیه
 router.put('/:id/translate', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
   const { id } = req.params;
-  const { translatedTitle, translatedContent, targetLanguage } = req.body;
+  const { targetLanguage } = req.body;
 
   try {
+    // First, get the announcement
+    const announcementResult = await pool.query('SELECT * FROM church_announcements WHERE id = $1', [id]);
+    
+    if (announcementResult.rows.length === 0) {
+      return res.status(404).json({ message: 'Announcement not found.' });
+    }
+
+    const announcement = announcementResult.rows[0];
+    const sourceLang = announcement.source_language;
+    
+    // Get source content
+    const sourceTitle = sourceLang === 'en' ? announcement.title_en : announcement.title_fa;
+    const sourceContent = sourceLang === 'en' ? announcement.content_en : announcement.content_fa;
+
+    if (!sourceTitle || !sourceContent) {
+      return res.status(400).json({ message: 'Source content not found.' });
+    }
+
+    // Translate using the translation service
+    const translatedTitle = await translationService.translateText(sourceTitle, sourceLang, targetLanguage, 'announcement');
+    const translatedContent = await translationService.translateText(sourceContent, sourceLang, targetLanguage, 'announcement');
+
     // Determine which fields to update based on target language
     const updateFields = targetLanguage === 'fa' 
       ? 'title_fa = $1, content_fa = $2'
@@ -199,10 +222,6 @@ router.put('/:id/translate', authenticateToken, authorizeRoles('SUPER_ADMIN', 'M
       `UPDATE church_announcements SET ${updateFields}, updated_at = CURRENT_TIMESTAMP WHERE id = $3 RETURNING *`,
       [translatedTitle, translatedContent, id]
     );
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({ message: 'Announcement not found.' });
-    }
 
     const updatedAnnouncement = result.rows[0];
     res.json({
@@ -220,7 +239,7 @@ router.put('/:id/translate', authenticateToken, authorizeRoles('SUPER_ADMIN', 'M
     });
   } catch (error) {
     console.error('Translate Announcement Error:', error);
-    res.status(500).json({ message: 'Internal server error.' });
+    res.status(500).json({ message: 'Translation failed: ' + error.message });
   }
 });
 
