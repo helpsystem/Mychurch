@@ -6,8 +6,8 @@ const router = express.Router();
 // GET /api/users
 router.get('/', authenticateToken, authorizeRoles('MANAGER', 'SUPER_ADMIN'), async (req, res) => {
   try {
-    const [users] = await pool.query('SELECT * FROM users');
-    const sanitizedUsers = users.map(user => {
+    const result = await pool.query('SELECT * FROM users');
+    const sanitizedUsers = result.rows.map(user => {
       const parsedUser = parseUser(user);
       delete parsedUser.password;
       return parsedUser;
@@ -28,8 +28,8 @@ router.put('/:email/permissions', authenticateToken, authorizeRoles('SUPER_ADMIN
   }
   try {
     const permissionsJSON = JSON.stringify(permissions);
-    const [result] = await pool.query('UPDATE users SET permissions = ? WHERE email = ?', [permissionsJSON, email]);
-    if (result.affectedRows === 0) {
+    const result = await pool.query('UPDATE users SET permissions = $1 WHERE email = $2', [permissionsJSON, email]);
+    if (result.rowCount === 0) {
       return res.status(404).json({ message: 'User not found.' });
     }
     res.status(204).send();
