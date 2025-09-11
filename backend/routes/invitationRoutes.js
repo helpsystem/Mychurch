@@ -32,13 +32,13 @@ router.post('/', authenticateToken, authorizeAdmin, async (req, res) => {
   if (!email) return res.status(400).json({ message: 'Email is required' });
 
   try {
-    const [existing] = await pool.query('SELECT id FROM users WHERE email = ?', [email]);
-    if (existing.length > 0) {
+    const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
+    if (existing.rows.length > 0) {
       return res.status(409).json({ message: 'User already exists' });
     }
 
-    const [result] = await pool.query(
-      'INSERT INTO users (email, password, role, permissions, profileData, invitations) VALUES (?, ?, ?, ?, ?, ?)',
+    const result = await pool.query(
+      'INSERT INTO users (email, password, role, permissions, profiledata, invitations) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
       [
         email,
         '', // رمز بعداً توسط کاربر تنظیم می‌شود
@@ -51,7 +51,7 @@ router.post('/', authenticateToken, authorizeAdmin, async (req, res) => {
 
     res.status(201).json({
       message: 'Invitation created successfully',
-      invitationId: result.insertId
+      invitationId: result.rows[0].id
     });
   } catch (error) {
     console.error('Error creating invitation:', error.message);
@@ -62,11 +62,11 @@ router.post('/', authenticateToken, authorizeAdmin, async (req, res) => {
 // 📌 2. دریافت لیست دعوت‌نامه‌ها
 router.get('/', authenticateToken, authorizeAdmin, async (req, res) => {
   try {
-    const [rows] = await pool.query(
+    const result = await pool.query(
       "SELECT id, email, role, invitations FROM users WHERE invitations IS NOT NULL AND invitations != '[]'"
     );
 
-    const invitations = rows.map(row => ({
+    const invitations = result.rows.map(row => ({
       id: row.id,
       email: row.email,
       role: row.role,
@@ -85,12 +85,12 @@ router.delete('/:id', authenticateToken, authorizeAdmin, async (req, res) => {
   const { id } = req.params;
 
   try {
-    const [result] = await pool.query(
-      'DELETE FROM users WHERE id = ? AND invitations IS NOT NULL AND invitations != "[]"',
+    const result = await pool.query(
+      'DELETE FROM users WHERE id = $1 AND invitations IS NOT NULL AND invitations != \'[]\'',
       [id]
     );
 
-    if (result.affectedRows === 0) {
+    if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Invitation not found' });
     }
 
