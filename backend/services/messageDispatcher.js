@@ -42,6 +42,11 @@ class MessageDispatcher {
           channel,
           status: 'sent',
           recipientCount: result.recipientCount || 0,
+          language: options.language || 'en',
+          subjectEn: announcement.title?.en,
+          subjectFa: announcement.title?.fa,
+          contentEn: announcement.content?.en,
+          contentFa: announcement.content?.fa,
           result,
           timestamp
         });
@@ -63,6 +68,11 @@ class MessageDispatcher {
           announcementId: announcement.id,
           channel,
           status: 'failed',
+          language: options.language || 'en',
+          subjectEn: announcement.title?.en,
+          subjectFa: announcement.title?.fa,
+          contentEn: announcement.content?.en,
+          contentFa: announcement.content?.fa,
           error: error.message,
           timestamp
         });
@@ -94,16 +104,26 @@ class MessageDispatcher {
     try {
       await pool.query(`
         INSERT INTO message_logs 
-        (announcement_id, channel, status, recipient_count, result_data, error_message, sent_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        (reference_id, reference_type, channel, recipient_type, recipient_address, language,
+         subject_en, subject_fa, content_en, content_fa, status, sent_at, delivery_status, 
+         error_message, metadata, created_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, CURRENT_TIMESTAMP)
       `, [
         logEntry.announcementId,
+        'announcement',
         logEntry.channel,
+        'broadcast',
+        logEntry.recipientAddress || 'multiple',
+        logEntry.language || 'en',
+        logEntry.subjectEn || '',
+        logEntry.subjectFa || '',
+        logEntry.contentEn || '',
+        logEntry.contentFa || '',
         logEntry.status,
-        logEntry.recipientCount || 0,
-        JSON.stringify(logEntry.result || {}),
+        logEntry.timestamp,
+        logEntry.status === 'sent' ? 'delivered' : 'failed',
         logEntry.error || null,
-        logEntry.timestamp
+        JSON.stringify(logEntry.result || {})
       ]);
     } catch (error) {
       console.error('Failed to log message:', error);
@@ -130,8 +150,8 @@ class MessageDispatcher {
   async getMessageHistory(announcementId) {
     try {
       const result = await pool.query(
-        'SELECT * FROM message_logs WHERE announcement_id = $1 ORDER BY sent_at DESC',
-        [announcementId]
+        'SELECT * FROM message_logs WHERE reference_id = $1 AND reference_type = $2 ORDER BY sent_at DESC',
+        [announcementId, 'announcement']
       );
       return result.rows;
     } catch (error) {
