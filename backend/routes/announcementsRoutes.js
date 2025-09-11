@@ -2,6 +2,7 @@ const express = require('express');
 const { pool } = require('../db');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const { translationService } = require('../services/translationService');
+const { messageDispatcher } = require('../services/messageDispatcher');
 const router = express.Router();
 
 // Helper function to parse JSON safely
@@ -27,6 +28,48 @@ const generateReferenceNumber = (type) => {
   const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
   return `${prefix[type] || 'ANN'}-${date}-${random}`;
 };
+
+// GET /api/announcements/:id - دریافت یک اطلاعیه
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM church_announcements WHERE id = $1', [id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Announcement not found.' });
+    }
+
+    const announcement = result.rows[0];
+    res.json({
+      id: announcement.id,
+      title: {
+        en: announcement.title_en,
+        fa: announcement.title_fa
+      },
+      content: {
+        en: announcement.content_en,
+        fa: announcement.content_fa
+      },
+      type: announcement.announcement_type,
+      priority: announcement.priority,
+      targetAudience: parseJSON(announcement.target_audience, ['all']),
+      channels: parseJSON(announcement.channels, ['website']),
+      autoTranslate: announcement.auto_translate,
+      sourceLanguage: announcement.source_language,
+      authorEmail: announcement.author_email,
+      status: announcement.status,
+      publishDate: announcement.publish_date,
+      expiryDate: announcement.expiry_date,
+      referenceNumber: announcement.reference_number,
+      createdAt: announcement.created_at,
+      updatedAt: announcement.updated_at
+    });
+  } catch (error) {
+    console.error('Get Announcement Error:', error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+});
 
 // GET /api/announcements - دریافت همه اطلاعیه‌ها
 router.get('/', async (req, res) => {
@@ -243,40 +286,62 @@ router.put('/:id/translate', authenticateToken, authorizeRoles('SUPER_ADMIN', 'M
   }
 });
 
-// PUT /api/announcements/:id/publish - انتشار اطلاعیه
+// PUT /api/announcements/:id/publish - انتشار اطلاعیه با ارسال چندکاناله
 router.put('/:id/publish', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
   const { id } = req.params;
-  const { channels = ['website'], sendNotifications = false } = req.body;
+  const { language = 'en' } = req.body; // Default language for sending
 
   try {
-    const result = await pool.query(
-      `UPDATE church_announcements SET 
-        status = 'published', 
-        publish_date = CURRENT_TIMESTAMP,
-        channels = $1,
-        updated_at = CURRENT_TIMESTAMP 
-      WHERE id = $2 RETURNING *`,
-      [JSON.stringify(channels), id]
-    );
-
-    if (result.rows.length === 0) {
+    // First get the announcement
+    const announcementResult = await pool.query('SELECT * FROM church_announcements WHERE id = $1', [id]);
+    
+    if (announcementResult.rows.length === 0) {
       return res.status(404).json({ message: 'Announcement not found.' });
     }
 
-    const announcement = result.rows[0];
+    const announcement = announcementResult.rows[0];
     
-    // TODO: If sendNotifications is true, trigger message sending
-    if (sendNotifications) {
-      // This will be handled by the message service
-      console.log(`Notifications requested for announcement ${announcement.reference_number}`);
-    }
+    // Format announcement for dispatcher
+    const announcementData = {
+      id: announcement.id,
+      title: {
+        en: announcement.title_en,
+        fa: announcement.title_fa
+      },
+      content: {
+        en: announcement.content_en,
+        fa: announcement.content_fa
+      },
+      type: announcement.announcement_type,
+      priority: announcement.priority,
+      targetAudience: parseJSON(announcement.target_audience, ['all']),
+      channels: parseJSON(announcement.channels, ['website']),
+      referenceNumber: announcement.reference_number,
+      sourceLanguage: announcement.source_language
+    };
 
+    // Dispatch to selected channels
+    const dispatchResult = await messageDispatcher.dispatchAnnouncement(
+      announcementData, 
+      announcementData.channels,
+      { language }
+    );
+
+    // Return results
     res.json({
       id: announcement.id,
-      status: announcement.status,
-      publishDate: announcement.publish_date,
-      channels: parseJSON(announcement.channels, ['website']),
-      referenceNumber: announcement.reference_number
+      referenceNumber: announcement.reference_number,
+      status: dispatchResult.success ? 'published' : 'failed',
+      channels: announcementData.channels,
+      dispatch: {
+        success: dispatchResult.success,
+        totalRecipients: dispatchResult.totalRecipients,
+        results: dispatchResult.results
+      },
+      updatedAt: new Date().toISOString(),
+      message: dispatchResult.success 
+        ? `Announcement published successfully to ${dispatchResult.totalRecipients} recipients across ${dispatchResult.results.length} channels.`
+        : 'Failed to publish announcement to all channels.'
     });
   } catch (error) {
     console.error('Publish Announcement Error:', error);
