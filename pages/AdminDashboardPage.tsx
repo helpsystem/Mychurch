@@ -32,6 +32,7 @@ import ImageManager from '../components/admin/ImageManager';
 import CommunicationsManager from '../components/admin/CommunicationsManager';
 import TestimonialsManager from '../components/admin/TestimonialsManager';
 import LettersManager from '../components/admin/LettersManager';
+import AnnouncementsManager from '../components/admin/AnnouncementsManager';
 
 
 const AdminDashboardPage: React.FC = () => {
@@ -112,6 +113,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'content', label: t('footerLinkContent'), icon: <Settings/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'letters', label: t('navLetters'), icon: <Mail/>, roles: ['SUPER_ADMIN'] },
+            { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'bible', label: t('navBible'), icon: <BookOpen/>, roles: ['SUPER_ADMIN'] },
         ],
         fileManager: [
@@ -140,6 +142,7 @@ const AdminDashboardPage: React.FC = () => {
             case 'content': return <ContentManager />;
             case 'testimonials': return <TestimonialsManager />;
             case 'letters': return <LettersManager />;
+            case 'announcements': return <AnnouncementsManager />;
             case 'galleries': return <GalleryManager />;
             case 'image-manager': return <ImageManager images={[]} title="مدیریت تصاویر سایت" />;
             case 'file-manager': return <FileManager />;

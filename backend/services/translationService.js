@@ -1,11 +1,11 @@
-// Translation Service for Church Website
+// Translation Service for Church Website Backend
 // Integrates with Google Gemini for professional translations
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-export class TranslationService {
+class TranslationService {
   constructor() {
     this.model = genAI.getGenerativeModel({ model: "gemini-pro" });
   }
@@ -142,4 +142,5 @@ Provide ONLY the translation, no explanations or additional text:`;
   }
 }
 
-export const translationService = new TranslationService();
+const translationService = new TranslationService();
+module.exports = { translationService };
