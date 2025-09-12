@@ -1,7 +1,8 @@
 
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { ContentContextType, ContentData, ContentType, SiteSettings, Language, BibleImportData, BibleBook, ManagedFile, StorageSettings, PrayerRequest, Testimonial } from '../types';
-import { api } from '../lib/api';
+import { api, getApiBaseUrl, setApiBaseUrl } from '../lib/api';
+import { getAuthToken } from '../lib/tokenManager';
 import { leadersData, sermonsData, eventsData, worshipSongsData, scheduleData, galleriesData, prayerRequestsData, testimonialsData, churchLettersData } from '../lib/mockData';
 import { INITIAL_BIBLE_BOOKS, INITIAL_BIBLE_CONTENT } from '../lib/bibleData';
 import { 
@@ -81,17 +82,20 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             
             // Auto-configure API base URL if not set
             try {
-                const currentUrl = api.getApiBaseUrl();
+                const currentUrl = getApiBaseUrl();
                 if (!currentUrl) {
                     // Use empty string for relative URLs with proxy
-                    api.setApiBaseUrl('');
+                    setApiBaseUrl('');
                     console.log('📡 Auto-configured API base URL for proxy mode');
                 }
             } catch (error) {
                 console.warn('Could not auto-configure API base URL:', error);
             }
             
-            const contentEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
+            // Separate public and authenticated endpoints
+            const token = getAuthToken();
+            
+            const publicEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
                 { key: 'leaders', path: '/api/leaders', mockData: leadersData },
                 { key: 'sermons', path: '/api/sermons', mockData: sermonsData },
                 { key: 'events', path: '/api/events', mockData: eventsData },
@@ -102,10 +106,21 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                 { key: 'testimonials', path: '/api/testimonials', mockData: testimonialsData },
                 { key: 'churchLetters', path: '/api/letters', mockData: churchLettersData },
                 { key: 'pages', path: '/api/pages', mockData: initialContent.pages },
+            ];
+
+            const authenticatedEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
                 { key: 'settings', path: '/api/settings', mockData: initialSettings },
                 { key: 'storage', path: '/api/settings/storage', mockData: initialStorageSettings },
                 { key: 'files', path: '/api/files', mockData: initialContent.files },
             ];
+
+            // Always fetch public endpoints
+            const contentEndpoints = [...publicEndpoints];
+            
+            // Only add authenticated endpoints if user is logged in
+            if (token) {
+                contentEndpoints.push(...authenticatedEndpoints);
+            }
 
             const promises = contentEndpoints.map(endpoint => 
                 api.get(endpoint.path)

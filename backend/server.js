@@ -30,15 +30,24 @@ const settingsRoutes = require('./routes/settingsRoutes');
 const filesRoutes = require('./routes/filesRoutes');
 const presentationRoutes = require('./routes/presentationRoutes');
 const dailyContentRoutes = require('./routes/dailyContentRoutes');
+const aiRoutes = require('./routes/aiRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // ---------- CORS ----------
+const allowedOrigins = [
+  'http://localhost:5000',
+  'https://localhost:5000',
+  process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : null,
+  process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN.replace(':5000', '')}` : null
+].filter(Boolean);
+
 app.use(cors({
-  origin: '*',
+  origin: process.env.NODE_ENV === 'production' ? allowedOrigins : '*',
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true
 }));
 app.use(express.json());
 
@@ -140,6 +149,7 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);
 app.use('/api/daily-content', dailyContentRoutes);
+app.use('/api/ai', aiRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت

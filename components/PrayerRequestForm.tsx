@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Heart, Lock, User, Mail, Phone, Send, AlertCircle, CheckCircle, Wand2, Eye, EyeOff, Globe, Shield } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
-import { geminiService } from '../services/geminiService';
+import { secureGeminiService } from '../services/secureGeminiService';
 import { api } from '../lib/api';
 import Spinner from './Spinner';
 
@@ -104,7 +104,7 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
     setStatus(null);
     setGeneratedPrayer('');
     try {
-      const response = await geminiService.generatePrayer(prayerText);
+      const response = await secureGeminiService.generatePrayer(prayerText);
       setGeneratedPrayer(response.text);
     } catch (err) {
       setStatus({ message: t('prayerRequestError') || 'Error generating prayer', type: 'error' });
