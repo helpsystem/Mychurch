@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Star, Heart, Lock, User, Mail, Phone, Send, AlertCircle, CheckCircle, MessageSquare, Eye, EyeOff } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
+import MathCaptcha from './MathCaptcha';
+import HoneypotField from './HoneypotField';
 
 interface TestimonialFormProps {
   onSubmit?: (testimonial: any) => void;
@@ -14,6 +16,12 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Anti-spam state
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [honeypotValue, setHoneypotValue] = useState('');
+  const [rateLimited, setRateLimited] = useState(false);
 
   const [formData, setFormData] = useState({
     type: 'testimony' as 'testimony' | 'blessing' | 'confession',
@@ -39,6 +47,14 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
     }));
   };
 
+  const handleCaptchaVerify = (isValid: boolean, token: string) => {
+    setCaptchaVerified(isValid);
+    setCaptchaToken(token);
+    if (isValid) {
+      setError(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -48,6 +64,14 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
       // Validation
       if (!formData.testimonialText.trim()) {
         throw new Error(lang === 'fa' ? 'لطفاً متن شهادت را وارد کنید' : 'Please enter your testimony');
+      }
+      
+      if (!captchaVerified) {
+        throw new Error(lang === 'fa' ? 'لطفاً تایید امنیتی را تکمیل کنید' : 'Please complete the security verification');
+      }
+      
+      if (formData.testimonialText.trim().length < 20) {
+        throw new Error(lang === 'fa' ? 'شهادت حداقل باید ۲۰ حرف باشد' : 'Testimonial must be at least 20 characters long');
       }
 
       if (!formData.isAnonymous && !formData.name.trim()) {
@@ -73,7 +97,9 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
         verificationConsent: formData.verificationConsent,
         includeInNewsletter: formData.includeInNewsletter,
         rating: formData.rating,
-        userId: user?.email || null
+        userId: user?.email || null,
+        captchaToken,
+        website: honeypotValue // Honeypot field
       };
 
       const response = await fetch('/api/testimonials', {
@@ -87,7 +113,19 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit testimonial');
+        
+        if (errorData.rateLimited) {
+          setRateLimited(true);
+          throw new Error(`Rate limit exceeded. Please wait ${errorData.retryAfter} minutes.`);
+        } else if (errorData.field === 'security') {
+          throw new Error(lang === 'fa' ? 'فعالیت مشکوک شناسایی شد' : 'Suspicious activity detected');
+        } else if (errorData.field === 'captcha') {
+          setCaptchaVerified(false);
+          setCaptchaToken('');
+          throw new Error(lang === 'fa' ? 'تایید امنیتی ناموفق بود' : 'Security verification failed');
+        } else {
+          throw new Error(errorData.message || 'Failed to submit testimonial');
+        }
       }
 
       setSubmitted(true);
@@ -109,6 +147,10 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
         includeInNewsletter: false,
         rating: 5
       });
+      setCaptchaVerified(false);
+      setCaptchaToken('');
+      setHoneypotValue('');
+      setRateLimited(false);
 
       if (onSubmit) {
         onSubmit(testimonialData);
@@ -373,8 +415,27 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
             }
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
             required
+            minLength={20}
+            maxLength={3000}
           />
+          <div className="text-xs text-gray-500 mt-1">
+            {formData.testimonialText.length}/3000 characters (minimum 20)
+          </div>
         </div>
+        
+        {/* CAPTCHA Component */}
+        <MathCaptcha
+          onVerify={handleCaptchaVerify}
+          className=""
+          required={true}
+        />
+        
+        {/* Honeypot Field (hidden) */}
+        <HoneypotField
+          value={honeypotValue}
+          onChange={setHoneypotValue}
+          name="website"
+        />
 
         {/* Location */}
         <div>
@@ -469,7 +530,7 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || !captchaVerified || rateLimited}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
@@ -489,6 +550,12 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
             </>
           )}
         </button>
+        
+        {!captchaVerified && !loading && (
+          <div className="text-center text-xs text-gray-500 mt-2">
+            {lang === 'fa' ? 'این به ما کمک می‌کند تا از هرزنامه جلوگیری کنیم' : 'This helps us prevent spam and automated submissions'}
+          </div>
+        )}
       </form>
     </div>
   );

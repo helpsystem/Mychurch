@@ -5,6 +5,8 @@ import { useAuth } from '../hooks/useAuth';
 import { secureGeminiService } from '../services/secureGeminiService';
 import { api } from '../lib/api';
 import Spinner from './Spinner';
+import MathCaptcha from './MathCaptcha';
+import HoneypotField from './HoneypotField';
 
 interface PrayerRequestFormProps {
   onSubmit?: (request: any) => void;
@@ -33,6 +35,12 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
 
   const [showContactFields, setShowContactFields] = useState(!user);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Anti-spam state
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [honeypotValue, setHoneypotValue] = useState('');
+  const [rateLimited, setRateLimited] = useState(false);
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({
@@ -41,9 +49,27 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
     }));
   };
 
+  const handleCaptchaVerify = (isValid: boolean, token: string) => {
+    setCaptchaVerified(isValid);
+    setCaptchaToken(token);
+    if (isValid) {
+      setStatus(null);
+    }
+  };
+
   const validateForm = () => {
     if (!formData.text.trim()) {
       setStatus({ message: t('prayerRequestTextRequired') || 'Prayer request text is required', type: 'error' });
+      return false;
+    }
+    
+    if (!captchaVerified) {
+      setStatus({ message: t('captchaRequired') || 'Please complete the security verification', type: 'error' });
+      return false;
+    }
+    
+    if (formData.text.trim().length < 10) {
+      setStatus({ message: t('prayerRequestTooShort') || 'Prayer request must be at least 10 characters long', type: 'error' });
       return false;
     }
     
@@ -67,9 +93,16 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
     
     setIsSubmitting(true);
     setStatus(null);
+    setRateLimited(false);
     
     try {
-      const response = await api.post('/api/prayer-requests', formData);
+      const submissionData = {
+        ...formData,
+        captchaToken,
+        website: honeypotValue // Honeypot field
+      };
+      
+      const response = await api.post('/api/prayer-requests', submissionData);
       setStatus({ message: t('prayerRequestSuccess') || 'Prayer request submitted successfully!', type: 'success' });
       
       // Reset form after successful submission
@@ -85,13 +118,41 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
       });
       setRequest('');
       setGeneratedPrayer('');
+      setCaptchaVerified(false);
+      setCaptchaToken('');
+      setHoneypotValue('');
       
       // Call onSubmit callback if provided
       if (onSubmit) {
         onSubmit(response);
       }
     } catch (error: any) {
-      setStatus({ message: error.message || t('prayerRequestError') || 'Error submitting prayer request', type: 'error' });
+      const errorData = error.response?.data;
+      
+      if (errorData?.rateLimited) {
+        setRateLimited(true);
+        setStatus({ 
+          message: t('rateLimitExceeded') || `${errorData.message} Please wait ${errorData.retryAfter} minutes.`, 
+          type: 'error' 
+        });
+      } else if (errorData?.field === 'security') {
+        setStatus({ 
+          message: t('suspiciousActivity') || errorData.message || 'Suspicious activity detected', 
+          type: 'error' 
+        });
+      } else if (errorData?.field === 'captcha') {
+        setCaptchaVerified(false);
+        setCaptchaToken('');
+        setStatus({ 
+          message: t('captchaRequired') || errorData.message || 'Security verification failed', 
+          type: 'error' 
+        });
+      } else {
+        setStatus({ 
+          message: error.message || t('prayerRequestError') || 'Error submitting prayer request', 
+          type: 'error' 
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -326,15 +387,37 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
             className="w-full p-4 border border-gray-600 bg-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-white"
             dir={lang === 'fa' ? 'rtl' : 'ltr'}
             required
+            minLength={10}
+            maxLength={2000}
           ></textarea>
+          <div className="text-xs text-gray-400 mt-1">
+            {formData.text.length}/2000 characters (minimum 10)
+          </div>
         </div>
+        
+        {/* CAPTCHA Component */}
+        <MathCaptcha
+          onVerify={handleCaptchaVerify}
+          className="mb-6"
+          required={true}
+        />
+        
+        {/* Honeypot Field (hidden) */}
+        <HoneypotField
+          value={honeypotValue}
+          onChange={setHoneypotValue}
+          name="website"
+        />
 
         {status && (
-          <div className={`mb-4 p-3 text-center rounded-lg border ${
+          <div className={`mb-4 p-3 text-center rounded-lg border flex items-center gap-2 ${
               status.type === 'success' 
               ? 'text-green-300 bg-green-900/50 border-green-500/50' 
+              : rateLimited 
+              ? 'text-orange-300 bg-orange-900/50 border-orange-500/50'
               : 'text-red-300 bg-red-900/50 border-red-500/50'
             }`}>
+            {status.type === 'success' ? <CheckCircle className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}
             {status.message}
           </div>
         )}
@@ -342,7 +425,7 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             type="submit"
-            disabled={isSubmitting || !formData.text.trim()}
+            disabled={isSubmitting || !formData.text.trim() || !captchaVerified || rateLimited}
             className="w-full sm:w-auto flex-1 bg-blue-600 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
@@ -357,6 +440,12 @@ const PrayerRequestForm: React.FC<PrayerRequestFormProps> = ({ onSubmit, classNa
               </>
             )}
           </button>
+          
+          {!captchaVerified && !isSubmitting && (
+            <div className="text-center text-xs text-gray-400 mt-2">
+              {t('captchaHelp')}
+            </div>
+          )}
           
           <button
             type="button"

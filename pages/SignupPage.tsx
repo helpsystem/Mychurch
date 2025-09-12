@@ -3,8 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import Spinner from '../components/Spinner';
-import { Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { Eye, EyeOff, CheckCircle, AlertTriangle } from 'lucide-react';
 import StandaloneHeader from '../components/StandaloneHeader';
+import MathCaptcha from '../components/MathCaptcha';
+import HoneypotField from '../components/HoneypotField';
 
 const SIGNUP_BG = 'https://images.unsplash.com/photo-1508361001413-7a9dca2c302d?q=80&w=2070&auto=format&fit=crop';
 
@@ -19,6 +21,12 @@ const SignupPage: React.FC = () => {
   const [error, setError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [signupSuccess, setSignupSuccess] = useState(false);
+  
+  // Anti-spam state
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [honeypotValue, setHoneypotValue] = useState('');
+  const [rateLimited, setRateLimited] = useState(false);
 
   const { signup, loading } = useAuth();
   const { t, lang } = useLanguage();
@@ -40,11 +48,21 @@ const SignupPage: React.FC = () => {
     fieldSetter(sanitizedValue);
   };
 
+  const handleCaptchaVerify = (isValid: boolean, token: string) => {
+    setCaptchaVerified(isValid);
+    setCaptchaToken(token);
+    if (isValid) {
+      setError('');
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setPasswordError('');
+    setRateLimited(false);
 
+    // Client-side validation
     if (password !== confirmPassword) {
         setError(t('errorPasswordMismatch'));
         return;
@@ -54,11 +72,53 @@ const SignupPage: React.FC = () => {
         setError('You must agree to the Terms and Conditions.');
         return;
     }
+    
+    if (!captchaVerified) {
+        setError(t('captchaRequired'));
+        return;
+    }
+    
+    // Enhanced name validation
+    if (name.trim().length < 2) {
+        setError(t('nameRequired') || 'Please enter a valid name (at least 2 characters).');
+        return;
+    }
+    
     try {
-      await signup(name, email, password);
+      await signup(name.trim(), email.toLowerCase(), password, captchaToken, honeypotValue);
       setSignupSuccess(true);
     } catch (err: any) {
-      setError(err.message || 'Failed to sign up.');
+      const errorData = err.response?.data;
+      
+      if (errorData?.rateLimited) {
+        setRateLimited(true);
+        setError(t('rateLimitExceeded') || `${errorData.message} Please wait ${errorData.retryAfter} minutes.`);
+      } else if (errorData?.field) {
+        // Handle field-specific errors
+        switch (errorData.field) {
+          case 'captcha':
+            setCaptchaVerified(false);
+            setCaptchaToken('');
+            setError(t('captchaRequired') || errorData.message);
+            break;
+          case 'security':
+            setError(t('suspiciousActivity') || errorData.message);
+            break;
+          case 'email':
+            setError(errorData.message || 'Invalid email address.');
+            break;
+          case 'name':
+            setError(errorData.message || 'Invalid name format.');
+            break;
+          case 'password':
+            setPasswordError(errorData.message || 'Password requirements not met.');
+            break;
+          default:
+            setError(errorData.message || 'An error occurred during signup.');
+        }
+      } else {
+        setError(err.message || 'Failed to sign up.');
+      }
     }
   };
 
@@ -166,6 +226,20 @@ const SignupPage: React.FC = () => {
                           </button>
                         </div>
                       </div>
+                      
+                      {/* CAPTCHA Component */}
+                      <MathCaptcha
+                        onVerify={handleCaptchaVerify}
+                        className=""
+                        required={true}
+                      />
+                      
+                      {/* Honeypot Field (hidden) */}
+                      <HoneypotField
+                        value={honeypotValue}
+                        onChange={setHoneypotValue}
+                        name="website"
+                      />
 
                       <div className="flex items-center">
                         <input
@@ -181,7 +255,10 @@ const SignupPage: React.FC = () => {
                       </div>
 
                       {error && (
-                        <div className="text-red-400 text-sm text-center bg-red-900/20 p-2 rounded-md">
+                        <div className={`text-sm text-center p-3 rounded-md flex items-center gap-2 ${
+                          rateLimited ? 'text-orange-400 bg-orange-900/20' : 'text-red-400 bg-red-900/20'
+                        }`}>
+                            <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                             <p className="break-words">{error}</p>
                         </div>
                       )}
@@ -189,11 +266,17 @@ const SignupPage: React.FC = () => {
                       <div>
                         <button
                           type="submit"
-                          disabled={loading}
-                          className="w-full flex justify-center py-3 px-4 font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none disabled:opacity-50"
+                          disabled={loading || !captchaVerified || rateLimited}
+                          className="w-full flex justify-center py-3 px-4 font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none disabled:opacity-50 transition-opacity"
                         >
                           {loading ? <Spinner size="5" /> : t('signup')}
                         </button>
+                        
+                        {!captchaVerified && !loading && (
+                          <div className="text-center text-xs text-gray-400 mt-2">
+                            {t('captchaHelp')}
+                          </div>
+                        )}
                       </div>
                     </form>
                     <p className="mt-6 text-center text-sm text-dimWhite">

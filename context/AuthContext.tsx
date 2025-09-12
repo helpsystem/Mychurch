@@ -52,9 +52,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = (email: string, password: string) => handleAuthAction(authService.login({ email, password }));
   const adminLogin = (email: string, password: string) => handleAuthAction(authService.adminLogin({ email, password }));
   
-  const signup = async (name: string, email: string, password: string): Promise<void> => {
+  const signup = async (name: string, email: string, password: string, captchaToken?: string, website?: string): Promise<void> => {
     try {
-        await authService.signup({ name, email, password });
+        await authService.signup({ name, email, password, captchaToken, website });
     } catch (error) {
         console.error("Signup failed:", error);
         throw error;

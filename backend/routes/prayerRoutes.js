@@ -1,7 +1,54 @@
 const express = require('express');
 const { pool } = require('../db-postgres');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
+const { prayerRateLimit, resetRateLimit } = require('../middleware/rateLimiter');
 const router = express.Router();
+
+/**
+ * Validate CAPTCHA token for prayer requests
+ */
+const validateCaptcha = (token) => {
+  try {
+    const decoded = atob(token);
+    const [equation, timestamp] = decoded.split(':');
+    
+    // Check if token is not too old (5 minutes max)
+    const tokenTime = parseInt(timestamp);
+    const now = Date.now();
+    if (now - tokenTime > 5 * 60 * 1000) {
+      return { valid: false, reason: 'Token expired' };
+    }
+    
+    // Parse the equation
+    const [left, answer] = equation.split('=');
+    const [num1, operator, num2] = left.match(/(\d+)([+\-])(\d+)/).slice(1);
+    
+    // Calculate expected answer
+    let expectedAnswer;
+    if (operator === '+') {
+      expectedAnswer = parseInt(num1) + parseInt(num2);
+    } else if (operator === '-') {
+      expectedAnswer = parseInt(num1) - parseInt(num2);
+    } else {
+      return { valid: false, reason: 'Invalid operator' };
+    }
+    
+    if (parseInt(answer) === expectedAnswer) {
+      return { valid: true };
+    } else {
+      return { valid: false, reason: 'Incorrect answer' };
+    }
+  } catch (error) {
+    return { valid: false, reason: 'Invalid token format' };
+  }
+};
+
+/**
+ * Check for honeypot field (should be empty)
+ */
+const checkHoneypot = (honeypotValue) => {
+  return !honeypotValue || honeypotValue.trim() === '';
+};
 
 // Helper function to parse JSON safely
 const parseJSON = (value, defaultValue = {}) => {
@@ -46,8 +93,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST /api/prayer-requests - Create new prayer request
-router.post('/', async (req, res) => {
+// POST /api/prayer-requests - Create new prayer request with anti-spam protection
+router.post('/', prayerRateLimit, async (req, res) => {
   const { 
     text, 
     category = 'other', 
@@ -56,23 +103,96 @@ router.post('/', async (req, res) => {
     authorEmail, 
     authorPhone,
     urgency = 'normal',
-    isPublic = false
+    isPublic = false,
+    captchaToken,
+    website // honeypot field
   } = req.body;
   
-  if (!text) {
-    return res.status(400).json({ message: 'Prayer request text is required.' });
+  // Basic validation
+  if (!text || !text.trim()) {
+    return res.status(400).json({ 
+      message: 'Prayer request text is required.',
+      field: 'text'
+    });
+  }
+  
+  // Honeypot check
+  if (!checkHoneypot(website)) {
+    console.log(`Prayer request honeypot triggered for IP: ${req.ip}, value: ${website}`);
+    return res.status(400).json({ 
+      message: 'Suspicious activity detected. Please contact support if this continues.',
+      field: 'security'
+    });
+  }
+  
+  // CAPTCHA validation
+  if (!captchaToken) {
+    return res.status(400).json({ 
+      message: 'Please complete the security verification.',
+      field: 'captcha'
+    });
+  }
+  
+  const captchaResult = validateCaptcha(captchaToken);
+  if (!captchaResult.valid) {
+    console.log(`Prayer request CAPTCHA failed for IP: ${req.ip}, reason: ${captchaResult.reason}`);
+    return res.status(400).json({ 
+      message: 'Security verification failed. Please try again.',
+      field: 'captcha',
+      reason: captchaResult.reason
+    });
   }
 
   // Validate category
   const validCategories = ['thanksgiving', 'healing', 'guidance', 'family', 'other'];
   if (!validCategories.includes(category)) {
-    return res.status(400).json({ message: 'Invalid category.' });
+    return res.status(400).json({ 
+      message: 'Invalid category.',
+      field: 'category'
+    });
   }
 
   // Validate urgency
   const validUrgencies = ['low', 'normal', 'high', 'urgent'];
   if (!validUrgencies.includes(urgency)) {
-    return res.status(400).json({ message: 'Invalid urgency level.' });
+    return res.status(400).json({ 
+      message: 'Invalid urgency level.',
+      field: 'urgency'
+    });
+  }
+  
+  // Enhanced text validation
+  if (text.trim().length < 10) {
+    return res.status(400).json({ 
+      message: 'Prayer request must be at least 10 characters long.',
+      field: 'text'
+    });
+  }
+  
+  if (text.trim().length > 2000) {
+    return res.status(400).json({ 
+      message: 'Prayer request must be less than 2000 characters.',
+      field: 'text'
+    });
+  }
+  
+  // Enhanced email validation if provided
+  if (authorEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(authorEmail)) {
+    return res.status(400).json({ 
+      message: 'Please enter a valid email address.',
+      field: 'email'
+    });
+  }
+  
+  // Enhanced name validation if not anonymous
+  if (!isAnonymous && authorName) {
+    const nameRegex = /^[a-zA-Z\u0600-\u06FF\s'-]{2,50}$/;
+    if (!nameRegex.test(authorName.trim())) {
+      return res.status(400).json({ 
+        message: 'Please enter a valid name (2-50 characters, letters only).',
+        field: 'name'
+      });
+    }
   }
 
   try {
@@ -81,17 +201,20 @@ router.post('/', async (req, res) => {
        (text, category, is_anonymous, author_name, author_email, author_phone, urgency, is_public, prayer_count) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
       [
-        text,
+        text.trim(),
         category,
         isAnonymous,
-        authorName || null,
-        authorEmail || null,
-        authorPhone || null,
+        isAnonymous ? null : (authorName?.trim() || null),
+        isAnonymous ? null : (authorEmail?.toLowerCase() || null),
+        isAnonymous ? null : (authorPhone?.trim() || null),
         urgency,
         isPublic,
         0
       ]
     );
+
+    // Reset rate limit on successful submission
+    resetRateLimit(req, 'prayer');
 
     const newPrayer = result.rows[0];
     res.status(201).json({
@@ -109,7 +232,10 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     console.error('Create Prayer Request Error:', error);
-    res.status(500).json({ message: 'Internal server error.' });
+    res.status(500).json({ 
+      message: 'Internal server error.',
+      field: 'server'
+    });
   }
 });
 

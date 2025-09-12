@@ -59,6 +59,21 @@ const translations: Record<string, Record<Language, string>> = {
   verifyErrorSubtext: { en: 'This verification link is invalid or has expired. Please try signing up again or contact support.', fa: 'این لینک تایید نامعتبر است یا منقضی شده است. لطفا دوباره ثبت نام کنید یا با پشتیبانی تماس بگیرید.' },
   goToLogin: { en: 'Go to Login', fa: 'رفتن به صفحه ورود' },
 
+  // Security & CAPTCHA
+  securityVerification: { en: 'Security Verification', fa: 'تایید امنیتی' },
+  captchaEnterNumber: { en: 'Please enter a number', fa: 'لطفاً یک عدد وارد کنید' },
+  captchaWrongAnswer: { en: 'Incorrect answer. Please try again.', fa: 'پاسخ نادرست. لطفاً دوباره تلاش کنید.' },
+  refreshCaptcha: { en: 'Refresh challenge', fa: 'تولید مجدد سوال' },
+  captchaAnswerPlaceholder: { en: 'Your answer...', fa: 'پاسخ شما...' },
+  verified: { en: 'Verified', fa: 'تأیید شد' },
+  verify: { en: 'Verify', fa: 'تأیید' },
+  captchaVerified: { en: 'Security verification completed', fa: 'تایید امنیتی تکمیل شد' },
+  captchaHelp: { en: 'This helps us prevent spam and automated registrations.', fa: 'این به ما کمک می‌کند تا از هرزنامه و ثبت نام‌های خودکار جلوگیری کنیم.' },
+  captchaRequired: { en: 'Please complete the security verification', fa: 'لطفاً تایید امنیتی را تکمیل کنید' },
+  tooManyAttempts: { en: 'Too many attempts. Please try again later.', fa: 'تلاش‌های زیادی انجام داده‌اید. لطفاً بعداً دوباره تلاش کنید.' },
+  suspiciousActivity: { en: 'Suspicious activity detected. Please contact support if this continues.', fa: 'فعالیت مشکوک شناسایی شد. در صورت ادامه، لطفاً با پشتیبانی تماس بگیرید.' },
+  rateLimitExceeded: { en: 'Rate limit exceeded. Please wait before trying again.', fa: 'حد مجاز تلاش فراتر رفت. لطفاً قبل از تلاش مجدد صبر کنید.' },
+
   signupGreeting: { en: 'Join us today', fa: 'امروز به ما بپیوندید' },
   signupSubGreeting: { en: 'Discover a new world of faith and community.', fa: 'دنیای جدیدی از ایمان و اجتماع را کشف کنید.' },
   loginGreeting: { en: 'Inspired by Faith, Driven by Community', fa: 'الهام گرفته از ایمان، هدایت شده توسط جامعه' },
