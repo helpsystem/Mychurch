@@ -24,6 +24,8 @@ A comprehensive, modern church website with AI-powered features built for the Ir
 - **Live Streaming**: Integration for church services
 - **Email System**: Built-in communication tools
 - **Progressive Web App**: Mobile-friendly with offline capabilities
+- **Prayer Slides System**: Interactive prayer slides for worship presentations with beautiful heart icons and gradients
+- **Daily Messages System**: Inspirational message system inspired by Pastor Javad's WhatsApp messages with multi-channel delivery (website, email, SMS, WhatsApp)
 
 ## Tech Stack
 - **Frontend**: React 19, TypeScript, Vite, Lucide Icons
@@ -58,6 +60,11 @@ iranian-church-website/
 - 2025-09-09: Enhanced homepage with ImageSlider component and beautiful church photo gallery
 - 2025-09-09: Replaced external robot image with church imagery in hero section
 - 2025-09-09: Added interactive gallery section with hover effects and church photos
+- 2025-09-12: Implemented comprehensive prayer slide system with Heart icons and spiritual themes for worship presentations
+- 2025-09-12: Created daily message system inspired by Pastor Javad's WhatsApp messages with multi-channel delivery
+- 2025-09-12: Added PostgreSQL database support with proper schema migration and authentication
+- 2025-09-12: Integrated admin dashboard with secure navigation for prayer slides and daily messages management
+- 2025-09-12: Fixed critical API issues including snake_case to camelCase normalization and route protection
 
 ## User Preferences
 - Multi-language support for English and Farsi speakers
