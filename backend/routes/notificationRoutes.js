@@ -103,9 +103,7 @@ async function sendTwilioWhatsApp(to, message, mediaUrl = null) {
   }
 
   const whatsappTo = to.startsWith('whatsapp:') ? to : `whatsapp:${to}`;
-  const whatsappFrom = TWILIO_CONFIG.phoneNumber.startsWith('whatsapp:') 
-    ? TWILIO_CONFIG.phoneNumber 
-    : `whatsapp:${TWILIO_CONFIG.phoneNumber}`;
+  const whatsappFrom = `whatsapp:${TWILIO_CONFIG.phoneNumber}`;
 
   const messageOptions = {
     body: message,
@@ -125,7 +123,7 @@ async function sendTwilioWhatsApp(to, message, mediaUrl = null) {
   };
 }
 
-// Test endpoint removed - use the main notification system instead
+// All test endpoints removed - secure production system only
 
 // Get service connectivity status
 router.get('/connectivity', authenticateToken, authorizeRoles('MANAGER', 'SUPER_ADMIN'), (req, res) => {
@@ -139,8 +137,8 @@ router.get('/connectivity', authenticateToken, authorizeRoles('MANAGER', 'SUPER_
       error: !twilioClient ? 'Twilio not configured' : undefined
     },
     whatsapp: {
-      available: !!twilioClient,
-      error: !twilioClient ? 'Twilio not configured' : undefined
+      available: false,
+      error: 'WhatsApp Business API required - current number is SMS-only'
     }
   };
 
