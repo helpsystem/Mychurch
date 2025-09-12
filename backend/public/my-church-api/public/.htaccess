@@ -17,8 +17,9 @@ RewriteRule ^ index.html [QSA,L]
 <IfModule Litespeed>
 SetEnv DB_HOST localhost
 SetEnv DB_NAME npyugcbr_iranjesusdc
-SetEnv DB_PASS Samyar@@1989
+# SetEnv DB_PASS [SET_VIA_HOSTING_PROVIDER_ENV_VARS]
 SetEnv DB_USER npyugcbr_saman
-SetEnv JWT_SECRET eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTc1MzUzNjIyMiwiaWF0IjoxNzUzNTM2MjIyfQ.h0wllgDpFYF4A_Ic8HmfbB0o7GZMq4Cc6Sn-RQCgsZE
+# SetEnv JWT_SECRET [SET_VIA_HOSTING_PROVIDER_ENV_VARS]
+# SECURITY: Configure JWT_SECRET through your hosting provider's environment variables panel
 </IfModule>
 # DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END
