@@ -138,7 +138,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             
             // Separately fetch Bible books and convert to expected format
             const biblePromise = api.get<{ success: boolean, books: any[] }>('/api/bible/books')
-                 .then(data => {
+                 .then(async data => {
                     if (data.success && data.books) {
                         // Transform API format to frontend format
                         const books: BibleBook[] = data.books.map((book: any) => ({
@@ -147,10 +147,10 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                             chapters: book.chapters
                         }));
                         
-                        // For now, use mock content as we populate more data
-                        const content = INITIAL_BIBLE_CONTENT;
+                        // Initialize empty content structure - will be loaded on demand
+                        const content: any = {};
                         
-                        console.log(`📖 Loaded ${books.length} Bible books from API`);
+                        console.log(`📖 Loaded ${books.length} Bible books from API with initial content`);
                         return { success: true, books, content };
                     } else {
                         throw new Error('Invalid API response format');

@@ -212,7 +212,8 @@ const BiblePage: React.FC = () => {
     });
   };
 
-  const loadChapterContent = useCallback(() => {
+  const loadChapterContent = useCallback(async () => {
+    // Check if content is already loaded
     const bookData = bibleContent[selectedBook];
     if (bookData && bookData[selectedChapter]) {
       setContent({
@@ -222,9 +223,37 @@ const BiblePage: React.FC = () => {
       setStartVerse(1);
       setEndVerse(bookData[selectedChapter].en?.length || 1);
     } else {
-      setContent({ en: [], fa: [] });
-      setStartVerse(1);
-      setEndVerse(1);
+      // Load content from API
+      try {
+        const response = await fetch(`/api/bible/content/${selectedBook}/${selectedChapter}`);
+        const data = await response.json();
+        
+        if (data.success && data.verses) {
+          const chapterContent = {
+            en: data.verses.en || [],
+            fa: data.verses.fa || []
+          };
+          
+          setContent(chapterContent);
+          setStartVerse(1);
+          setEndVerse(chapterContent.en?.length || 1);
+          
+          // Cache the loaded content
+          if (!bibleContent[selectedBook]) {
+            bibleContent[selectedBook] = {};
+          }
+          bibleContent[selectedBook][selectedChapter] = chapterContent;
+        } else {
+          setContent({ en: [], fa: [] });
+          setStartVerse(1);
+          setEndVerse(1);
+        }
+      } catch (error) {
+        console.error('Failed to load chapter content:', error);
+        setContent({ en: [], fa: [] });
+        setStartVerse(1);
+        setEndVerse(1);
+      }
     }
     setHasInteracted(false); // Reset interaction state on chapter change
   }, [selectedBook, selectedChapter, bibleContent]);
