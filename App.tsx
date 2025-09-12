@@ -48,6 +48,7 @@ import AnnouncementsPage from './pages/AnnouncementsPage';
 import CalendarPage from './pages/CalendarPage';
 import PrayerRequestsPage from './pages/PrayerRequestsPage';
 import DailyDevotionalPage from './pages/DailyDevotionalPage';
+import NotificationCenterPage from './pages/NotificationCenterPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -91,6 +92,7 @@ function App() {
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="worship-presentation" element={<WorshipPresentationPage />} />
             <Route path="daily-devotional" element={<DailyDevotionalPage />} />
+            <Route path="notification-center" element={<NotificationCenterPage />} />
             <Route path="giving" element={<GivingPage />} />
             <Route path="prayer" element={<PrayerPage />} />
             <Route path="prayer-requests" element={<PrayerRequestsPage />} />

@@ -24,7 +24,9 @@
     "react-dom": "^19.1.0",
     "react-pageflip": "^2.0.3",
     "react-quill": "^2.0.0",
-    "react-router-dom": "^7.6.3"
+    "react-router-dom": "^7.6.3",
+    "twilio": "^5.9.0",
+    "zod": "^4.1.8"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
