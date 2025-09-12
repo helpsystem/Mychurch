@@ -34,6 +34,7 @@ import TestimonialsManager from '../components/admin/TestimonialsManager';
 import LettersManager from '../components/admin/LettersManager';
 import AnnouncementsManager from '../components/admin/AnnouncementsManager';
 import { AnalyticsDashboard } from '../components/admin/AnalyticsDashboard';
+import MessageHistory from '../components/admin/MessageHistory';
 
 
 const AdminDashboardPage: React.FC = () => {
@@ -116,6 +117,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'letters', label: t('navLetters'), icon: <Mail/>, roles: ['SUPER_ADMIN'] },
             { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'analytics', label: 'آمار و گزارش‌گیری', icon: <BarChart2/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
+            { id: 'message-history', label: 'تاریخچه پیام‌ها', icon: <History/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'bible', label: t('navBible'), icon: <BookOpen/>, roles: ['SUPER_ADMIN'] },
         ],
         fileManager: [
@@ -146,6 +148,7 @@ const AdminDashboardPage: React.FC = () => {
             case 'letters': return <LettersManager />;
             case 'announcements': return <AnnouncementsManager />;
             case 'analytics': return <AnalyticsDashboard />;
+            case 'message-history': return <MessageHistory />;
             case 'galleries': return <GalleryManager />;
             case 'image-manager': return <ImageManager images={[]} title="مدیریت تصاویر سایت" />;
             case 'file-manager': return <FileManager />;
