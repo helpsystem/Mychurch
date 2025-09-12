@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { PrayerRequest } from '../types';
 import { Heart, User } from 'lucide-react';
+import { api } from '../lib/api';
 
-const PrayerCard: React.FC<{ prayer: PrayerRequest }> = ({ prayer }) => {
+interface PrayerCardProps {
+  prayer: PrayerRequest;
+  onPrayerUpdate?: (prayerId: number) => void;
+}
+
+const PrayerCard: React.FC<PrayerCardProps> = ({ prayer, onPrayerUpdate }) => {
     const { t } = useLanguage();
     const storageKey = `prayed_for_${prayer.id}`;
     
@@ -19,10 +25,11 @@ const PrayerCard: React.FC<{ prayer: PrayerRequest }> = ({ prayer }) => {
         }
     }, [storageKey]);
 
-    const handlePrayClick = () => {
+    const handlePrayClick = async () => {
         if (!hasPrayed) {
             setHasPrayed(true);
-            setPrayerCount(prev => prev + 1);
+            const newCount = prayerCount + 1;
+            setPrayerCount(newCount);
             localStorage.setItem(storageKey, 'true');
             setAnimate(true);
             
@@ -30,11 +37,23 @@ const PrayerCard: React.FC<{ prayer: PrayerRequest }> = ({ prayer }) => {
             setHearts(prev => [...prev, newHeart]);
             setTimeout(() => {
                 setHearts(prev => prev.filter(h => h.id !== newHeart.id));
-            }, 2000); // Animation duration is 2s
+            }, 2000);
 
             setTimeout(() => setAnimate(false), 500);
-            // In a real app, you would also send this update to the backend.
-            // e.g., api.post(`/api/prayer-requests/${prayer.id}/pray`);
+            
+            // Call the API to update the prayer count
+            try {
+                await api.incrementPrayerCount(prayer.id);
+                if (onPrayerUpdate) {
+                    onPrayerUpdate(prayer.id);
+                }
+            } catch (error) {
+                console.error('Failed to update prayer count:', error);
+                // Revert optimistic update on error
+                setHasPrayed(false);
+                setPrayerCount(prev => prev - 1);
+                localStorage.removeItem(storageKey);
+            }
         }
     };
 
