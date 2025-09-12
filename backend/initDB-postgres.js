@@ -103,6 +103,18 @@ const queries = [
     created_by VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS daily_contents (
+    id SERIAL PRIMARY KEY,
+    date DATE UNIQUE NOT NULL,
+    scripture JSONB,
+    worship_song JSONB,
+    devotional_theme JSONB,
+    is_active BOOLEAN DEFAULT true,
+    created_by VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`
 ];
 
