@@ -76,44 +76,25 @@ const DailyMessagesPage: React.FC = () => {
   const loadDailyMessages = async () => {
     setLoading(true);
     try {
-      // Load from API when available
-      const response = await fetch('/api/daily-messages');
+      const token = localStorage.getItem('authToken');
+      const response = await fetch('/api/daily-messages', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
       if (response.ok) {
         const data = await response.json();
         setMessages(data.messages || []);
       } else {
-        // Mock data for now
-        setMessages([
-          {
-            id: '1',
-            title: { 
-              en: 'Morning Blessing', 
-              fa: 'برکت صبحگاهی' 
-            },
-            content: {
-              en: '🌅 Good morning, beloved family in Christ!\n\n✨ May God\'s peace fill your heart today\n\n🙏 Remember that His love never fails\n\n💝 Have a blessed day!',
-              fa: '🌅 صبح بخیر خانواده محبوب در مسیح!\n\n✨ باشد که آرامش خدا دل شما را امروز پر کند\n\n🙏 به یاد داشته باشید که محبت او هرگز ناکام نمی‌شود\n\n💝 روز پربرکتی داشته باشید!'
-            },
-            bibleVerse: {
-              reference: 'Psalm 23:1',
-              text: {
-                en: 'The Lord is my shepherd, I lack nothing.',
-                fa: 'خداوند شبان من است، محتاج چیزی نخواهم بود.'
-              }
-            },
-            scheduledDate: new Date().toISOString().split('T')[0],
-            scheduledTime: '09:00',
-            isPublished: true,
-            channels: ['email', 'website'],
-            createdBy: 'Pastor Javad',
-            createdAt: new Date().toISOString(),
-            sentAt: new Date().toISOString(),
-            recipientCount: 150
-          }
-        ]);
+        console.error('Failed to load daily messages:', response.statusText);
+        // Fallback to empty array instead of mock data
+        setMessages([]);
       }
     } catch (error) {
       console.error('Error loading daily messages:', error);
+      setMessages([]);
     } finally {
       setLoading(false);
     }
@@ -123,58 +104,117 @@ const DailyMessagesPage: React.FC = () => {
     if (!isAdmin) return;
     
     try {
-      const messageToCreate: DailyMessage = {
-        id: `msg-${Date.now()}`,
-        title: newMessage.title!,
-        content: newMessage.content!,
-        bibleVerse: newMessage.bibleVerse,
-        scheduledDate: newMessage.scheduledDate!,
-        scheduledTime: newMessage.scheduledTime!,
-        isPublished: false,
-        channels: newMessage.channels!,
-        createdBy: user?.name || user?.email || 'Unknown',
-        createdAt: new Date().toISOString()
-      };
-
-      setMessages(prev => [messageToCreate, ...prev]);
-      
-      // Reset form
-      setNewMessage({
-        title: { en: '', fa: '' },
-        content: { en: '', fa: '' },
-        bibleVerse: { reference: '', text: { en: '', fa: '' } },
-        scheduledDate: new Date().toISOString().split('T')[0],
-        scheduledTime: '09:00',
-        isPublished: false,
-        channels: ['website']
+      const token = localStorage.getItem('authToken');
+      const response = await fetch('/api/daily-messages', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: newMessage.title,
+          content: newMessage.content,
+          bibleVerse: newMessage.bibleVerse,
+          scheduledDate: newMessage.scheduledDate,
+          scheduledTime: newMessage.scheduledTime,
+          channels: newMessage.channels,
+          isPublished: false
+        })
       });
-      
-      setActiveTab('list');
-      
-      alert(lang === 'fa' ? 'پیام ایجاد شد' : 'Message created successfully');
+
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Reload messages to get updated list
+        await loadDailyMessages();
+        
+        // Reset form
+        setNewMessage({
+          title: { en: '', fa: '' },
+          content: { en: '', fa: '' },
+          bibleVerse: { reference: '', text: { en: '', fa: '' } },
+          scheduledDate: new Date().toISOString().split('T')[0],
+          scheduledTime: '09:00',
+          isPublished: false,
+          channels: ['website']
+        });
+        
+        setActiveTab('list');
+        
+        alert(lang === 'fa' ? 'پیام ایجاد شد' : 'Message created successfully');
+      } else {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to create message');
+      }
     } catch (error) {
       console.error('Error creating message:', error);
-      alert(lang === 'fa' ? 'خطا در ایجاد پیام' : 'Error creating message');
+      alert(lang === 'fa' ? `خطا در ایجاد پیام: ${error.message}` : `Error creating message: ${error.message}`);
     }
   };
 
   const publishMessage = async (messageId: string) => {
     if (!isAdmin) return;
     
-    setMessages(prev => prev.map(msg => 
-      msg.id === messageId 
-        ? { ...msg, isPublished: true, sentAt: new Date().toISOString(), recipientCount: 150 }
-        : msg
-    ));
-    
-    alert(lang === 'fa' ? 'پیام منتشر شد' : 'Message published successfully');
+    try {
+      const token = localStorage.getItem('authToken');
+      const response = await fetch(`/api/daily-messages/${messageId}/publish`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sendNow: true // Send immediately when published
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Reload messages to get updated status
+        await loadDailyMessages();
+        
+        alert(lang === 'fa' 
+          ? `پیام منتشر شد و به ${data.recipientCount} نفر ارسال شد` 
+          : `Message published and sent to ${data.recipientCount} recipients`
+        );
+      } else {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to publish message');
+      }
+    } catch (error) {
+      console.error('Error publishing message:', error);
+      alert(lang === 'fa' ? `خطا در انتشار پیام: ${error.message}` : `Error publishing message: ${error.message}`);
+    }
   };
 
   const deleteMessage = async (messageId: string) => {
     if (!isAdmin) return;
     
     if (confirm(lang === 'fa' ? 'آیا مطمئن هستید؟' : 'Are you sure?')) {
-      setMessages(prev => prev.filter(msg => msg.id !== messageId));
+      try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch(`/api/daily-messages/${messageId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Reload messages to get updated list
+          await loadDailyMessages();
+          
+          alert(lang === 'fa' ? 'پیام حذف شد' : 'Message deleted successfully');
+        } else {
+          const error = await response.json();
+          throw new Error(error.message || 'Failed to delete message');
+        }
+      } catch (error) {
+        console.error('Error deleting message:', error);
+        alert(lang === 'fa' ? `خطا در حذف پیام: ${error.message}` : `Error deleting message: ${error.message}`);
+      }
     }
   };
 
