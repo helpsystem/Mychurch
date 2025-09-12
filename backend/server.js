@@ -30,6 +30,7 @@ const settingsRoutes = require('./routes/settingsRoutes');
 const filesRoutes = require('./routes/filesRoutes');
 const presentationRoutes = require('./routes/presentationRoutes');
 const dailyContentRoutes = require('./routes/dailyContentRoutes');
+const dailyMessagesRoutes = require('./routes/dailyMessagesRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 
 const app = express();
@@ -149,6 +150,7 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);
 app.use('/api/daily-content', dailyContentRoutes);
+app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 

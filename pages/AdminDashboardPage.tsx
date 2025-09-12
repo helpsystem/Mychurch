@@ -116,6 +116,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'letters', label: t('navLetters'), icon: <Mail/>, roles: ['SUPER_ADMIN'] },
             { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
+            { id: 'daily-messages', label: lang === 'fa' ? 'پیام‌های روزانه' : 'Daily Messages', icon: <Send/>, roles: ['SUPER_ADMIN', 'MANAGER'], externalLink: '/daily-messages' },
             { id: 'analytics', label: 'آمار و گزارش‌گیری', icon: <BarChart2/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'message-history', label: 'تاریخچه پیام‌ها', icon: <History/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'bible', label: t('navBible'), icon: <BookOpen/>, roles: ['SUPER_ADMIN'] },

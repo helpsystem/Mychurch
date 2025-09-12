@@ -115,6 +115,23 @@ const queries = [
     created_by VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS daily_messages (
+    id SERIAL PRIMARY KEY,
+    title JSONB NOT NULL,
+    content JSONB NOT NULL,
+    bible_verse JSONB,
+    scheduled_date DATE NOT NULL,
+    scheduled_time TIME NOT NULL,
+    channels JSONB NOT NULL DEFAULT '["website"]',
+    is_published BOOLEAN DEFAULT false,
+    sent_at TIMESTAMP,
+    recipient_count INTEGER DEFAULT 0,
+    created_by VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(scheduled_date, scheduled_time)
   );`
 ];
 
