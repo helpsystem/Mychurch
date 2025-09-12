@@ -140,6 +140,7 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);
 app.use('/api/daily-content', dailyContentRoutes);
+app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {
@@ -229,6 +230,7 @@ const startServer = async () => {
       console.log('  ⚙️ /api/settings/* - Site settings');
       console.log('  📁 /api/files/* - File management');
       console.log('  📖✨ /api/daily-content/* - Daily scripture content');
+      console.log('  📮 /api/notifications/* - Multi-channel notifications');
       console.log('  ❤️ /api/health - Health check');
     });
   } catch (error) {
