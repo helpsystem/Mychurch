@@ -95,17 +95,9 @@ const VerseOfTheDayModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     }, []);
     
     const PageTurnHint = () => (
-      <div className="page-turn-hint-container flex items-center justify-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-          <div className="flex items-center gap-3 bg-black/80 px-5 py-3 rounded-full animate-bounce border border-white/20">
-              <Hand className="h-6 w-6 text-yellow-400 animate-pulse transform rotate-12" />
-              <BookOpen className="h-5 w-5 text-white" />
-              <span className="text-white text-base font-semibold" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                  {lang === 'fa' ? 'ورق بزنید' : 'Turn Page'}
-              </span>
-              {lang === 'fa' ? 
-                  <ChevronLeft className="h-6 w-6 text-yellow-400 animate-pulse" /> : 
-                  <ChevronRight className="h-6 w-6 text-yellow-400 animate-pulse" />
-              }
+      <div className="page-turn-hint-container flex items-center justify-center">
+          <div className="bg-black/80 p-4 rounded-full animate-bounce border border-white/20">
+              <span className="text-4xl cursor-pointer">👉</span>
           </div>
       </div>
     );
