@@ -122,6 +122,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
             { to: '/sermons', title: t('navSermons'), icon: <BookOpen size={16}/> },
             { to: '/worship', title: t('worshipTitle'), icon: <HeartHandshake size={16}/> },
             { to: '/events', title: t('navEvents'), icon: <UserIcon size={16}/> },
+            { to: '/calendar', title: lang === 'fa' ? 'تقویم رویدادها' : 'Calendar', icon: <Bookmark size={16}/> },
         ],
         resources: [
             { to: '/bible', title: t('navBible'), icon: <BookOpen size={16}/> },
