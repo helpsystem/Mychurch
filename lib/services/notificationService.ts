@@ -88,9 +88,11 @@ class NotificationService {
   private apiUrl: string;
 
   constructor() {
-    this.apiUrl = window.location.hostname === 'localhost' 
+    // Use the same domain as the frontend, with API detection
+    const baseUrl = window.location.hostname === 'localhost' 
       ? 'http://localhost:3001' 
-      : `${window.location.protocol}//${window.location.hostname}:3001`;
+      : '';
+    this.apiUrl = baseUrl;
   }
 
   private async fetchWithAuth(url: string, options: RequestInit = {}) {

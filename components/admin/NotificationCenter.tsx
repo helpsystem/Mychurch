@@ -97,46 +97,68 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ className = '' 
   const loadInitialData = async () => {
     setLoading(true);
     try {
-      // Load recipients (mock data - in real implementation, load from API)
-      const mockRecipients: NotificationRecipient[] = [
-        {
-          id: '1',
-          name: 'اعضای کلیسا',
-          email: 'members@church.com',
-          phone: '+12345678901',
-          whatsappNumber: '+12345678901',
-          preferredLanguage: 'fa',
-          channels: { email: true, sms: true, whatsapp: true }
-        },
-        {
-          id: '2',
-          name: 'رهبران کلیسا',
-          email: 'leaders@church.com',
-          phone: '+12345678902',
-          whatsappNumber: '+12345678902',
-          preferredLanguage: 'en',
-          channels: { email: true, sms: true, whatsapp: false }
+      // Load recipients from API with fallback
+      try {
+        const apiRecipients = await notificationService.getRecipients();
+        if (Array.isArray(apiRecipients) && apiRecipients.length > 0) {
+          setRecipients(apiRecipients);
+        } else {
+          // Fallback to empty array if no recipients
+          setRecipients([]);
         }
-      ];
-      setRecipients(mockRecipients);
+      } catch (recipientError) {
+        console.warn('Failed to load recipients:', recipientError);
+        setRecipients([]);
+      }
       
-      // Load templates
-      const availableTemplates = notificationService.getTemplates();
-      setTemplates(availableTemplates);
+      // Load templates with fallback
+      try {
+        const availableTemplates = await notificationService.getTemplates();
+        setTemplates(Array.isArray(availableTemplates) ? availableTemplates : []);
+      } catch (templateError) {
+        console.warn('Failed to load templates:', templateError);
+        setTemplates([]);
+      }
       
-      // Load notification history
-      const history = notificationService.getDeliveryLog(50);
-      setNotificationHistory(history);
+      // Load notification history with fallback
+      try {
+        const history = await notificationService.getDeliveryLog(50);
+        setNotificationHistory(Array.isArray(history) ? history : []);
+      } catch (historyError) {
+        console.warn('Failed to load notification history:', historyError);
+        setNotificationHistory([]);
+      }
       
-      // Load stats
-      const currentStats = notificationService.getDeliveryStats(24);
-      setStats(currentStats);
+      // Load stats with fallback
+      try {
+        const currentStats = await notificationService.getDeliveryStats(24);
+        if (currentStats && typeof currentStats === 'object') {
+          setStats(currentStats);
+        }
+      } catch (statsError) {
+        console.warn('Failed to load stats:', statsError);
+        // Keep default stats structure
+      }
       
       // Test connectivity
-      const connectivityStatus = await notificationService.testConnectivity();
-      setConnectivity(connectivityStatus);
+      try {
+        const connectivityStatus = await notificationService.testConnectivity();
+        setConnectivity(connectivityStatus);
+      } catch (connectivityError) {
+        console.warn('Failed to test connectivity:', connectivityError);
+        setConnectivity({
+          email: { available: false, error: 'Connection test failed' },
+          sms: { available: false, error: 'Connection test failed' },
+          whatsapp: { available: false, error: 'Connection test failed' }
+        });
+      }
     } catch (error) {
-      console.error('Error loading notification center data:', error);
+      console.error('Critical error loading notification center data:', error);
+      // Show user-friendly error message
+      const errorMessage = lang === 'fa' 
+        ? 'خطا در بارگذاری اطلاعات مرکز اعلان‌رسانی. لطفاً دوباره تلاش کنید.' 
+        : 'Error loading notification center data. Please try again.';
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -156,14 +178,29 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ className = '' 
     setSending(true);
     try {
       const targetRecipients = recipients.filter(r => selectedRecipients.includes(r.id));
+      
+      if (targetRecipients.length === 0) {
+        throw new Error(lang === 'fa' ? 'گیرنده معتبری یافت نشد' : 'No valid recipients found');
+      }
+      
       const results = await notificationService.sendBulkNotification(targetRecipients, notificationOptions);
+      
+      if (!Array.isArray(results)) {
+        throw new Error(lang === 'fa' ? 'پاسخ نامعتبر از سرور' : 'Invalid response from server');
+      }
       
       // Update history
       setNotificationHistory(prev => [...results, ...prev]);
       
-      // Update stats
-      const newStats = notificationService.getDeliveryStats(24);
-      setStats(newStats);
+      // Update stats with error handling
+      try {
+        const newStats = await notificationService.getDeliveryStats(24);
+        if (newStats && typeof newStats === 'object') {
+          setStats(newStats);
+        }
+      } catch (statsError) {
+        console.warn('Failed to update stats after sending:', statsError);
+      }
       
       // Success feedback
       const successCount = results.filter(r => r.status === 'sent').length;
