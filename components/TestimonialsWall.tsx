@@ -56,7 +56,7 @@ const TestimonialsWall: React.FC<TestimonialsWallProps> = ({
       if (selectedType !== 'all') params.append('type', selectedType);
       params.append('sort', sortBy);
       
-      const response = await fetch(`/api/testimonials?${params.toString()}`, {
+      const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/testimonials?${params.toString()}`, {
         headers: user && !showOnlyPublic ? {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         } : {}
@@ -125,7 +125,7 @@ const TestimonialsWall: React.FC<TestimonialsWallProps> = ({
 
   const handleLikeTestimonial = async (testimonialId: string) => {
     try {
-      const response = await fetch(`/api/testimonials/${testimonialId}/like`, {
+      const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/testimonials/${testimonialId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

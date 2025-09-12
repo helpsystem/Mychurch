@@ -14,9 +14,12 @@ router.get('/', async (req, res) => {
       youtubeId: song.youtubeid,
       lyrics: parseJSON(song.lyrics, {}),
       audioUrl: song.audiourl,
-      videoUrl: song.videourl
+      videoUrl: song.videourl,
+      category: song.category || 'worship',
+      tags: parseJSON(song.tags, []),
+      copyright: song.copyright
     }));
-    res.json(worshipSongs);
+    res.json({ songs: worshipSongs });
   } catch (error) {
     console.error('Fetch Worship Songs Error:', error);
     res.status(500).json({ message: 'Internal server error.' });

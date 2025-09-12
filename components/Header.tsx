@@ -128,6 +128,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
             { to: '/bible', title: t('navBible'), icon: <BookOpen size={16}/> },
             { to: '/audio-bible', title: lang === 'fa' ? 'کتاب مقدس صوتی' : 'Audio Bible', icon: <Volume2 size={16}/> },
             { to: '/worship-songs', title: lang === 'fa' ? 'سرودهای مسیحی' : 'Worship Songs', icon: <Music size={16}/> },
+            { to: '/worship-presentation', title: lang === 'fa' ? 'پرزنتیشن عبادت' : 'Worship Presentation', icon: <Music size={16}/> },
             { title: t('verseForToday'), icon: <Bookmark size={16} />, action: onOpenVerseModal },
             { to: '/connect', title: t('navConnectVR'), icon: <Gamepad2 size={16}/> },
             { to: '/gallery', title: t('galleries'), icon: <Image size={16}/> },
