@@ -54,8 +54,8 @@ const insertData = async () => {
       ('DB_HOST', 'localhost', 0),
       ('DB_NAME', 'npyugcbr_iranjesusdc', 0),
       ('DB_USER', 'npyugcbr_saman', 0),
-      ('DB_PASS', 'Samyar@@1368', 1),
-      ('JWT_SECRET', 'eyJhbGciOiJIUzI1NiJ9.MySuperSecretKey.3GSrJhSk', 1)
+      ('DB_PASS', process.env.DB_PASS || 'CHANGE_ME_IN_PRODUCTION', 1),
+      ('JWT_SECRET', process.env.JWT_SECRET || 'CHANGE_ME_IN_PRODUCTION', 1)
       ON DUPLICATE KEY UPDATE value=VALUES(value);
     `);
 
