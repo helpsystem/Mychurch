@@ -48,7 +48,7 @@ interface MessageHistoryResponse {
 }
 
 const MessageHistory: React.FC = () => {
-  const { currentLanguage } = useLanguage();
+  const { lang } = useLanguage();
   const [messages, setMessages] = useState<MessageLog[]>([]);
   const [pagination, setPagination] = useState<{page: number; limit: number; total: number; pages: number}>({page: 1, limit: 20, total: 0, pages: 0});
   const [loading, setLoading] = useState(true);
@@ -65,7 +65,7 @@ const MessageHistory: React.FC = () => {
 
   useEffect(() => {
     fetchMessageHistory();
-  }, [currentLanguage, filterChannel, filterStatus, filterType, dateRange, pagination.page]);
+  }, [lang, filterChannel, filterStatus, filterType, dateRange, pagination.page]);
   
   // Reset to first page when filters change
   useEffect(() => {
@@ -94,7 +94,7 @@ const MessageHistory: React.FC = () => {
       // Process messages to handle language-specific titles
       const processedMessages = data.messages.map(message => ({
         ...message,
-        title: currentLanguage === 'fa' 
+        title: lang === 'fa' 
           ? (message.title_fa || message.title_en || message.title || 'No title')
           : (message.title_en || message.title_fa || message.title || 'No title')
       }));
@@ -154,7 +154,7 @@ const MessageHistory: React.FC = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString(currentLanguage === 'fa' ? 'fa-IR' : 'en-US', {
+    return new Date(dateString).toLocaleDateString(lang === 'fa' ? 'fa-IR' : 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -191,7 +191,7 @@ const MessageHistory: React.FC = () => {
       <div className="flex items-center justify-center h-64">
         <RefreshCw className="w-8 h-8 animate-spin text-indigo-600" />
         <span className="mr-3 text-lg">
-          {currentLanguage === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}
+          {lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}
         </span>
       </div>
     );
@@ -203,10 +203,10 @@ const MessageHistory: React.FC = () => {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">
-            {currentLanguage === 'fa' ? 'تاریخچه ارسال پیام‌ها' : 'Message History'}
+            {lang === 'fa' ? 'تاریخچه ارسال پیام‌ها' : 'Message History'}
           </h2>
           <p className="text-gray-600 mt-1">
-            {currentLanguage === 'fa' 
+            {lang === 'fa' 
               ? 'مشاهده جزئیات ارسال و لاگ‌های تحویل پیام‌ها'
               : 'View detailed delivery logs and message sending history'
             }
@@ -217,7 +217,7 @@ const MessageHistory: React.FC = () => {
           className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
         >
           <RefreshCw className="w-4 h-4" />
-          {currentLanguage === 'fa' ? 'بروزرسانی' : 'Refresh'}
+          {lang === 'fa' ? 'بروزرسانی' : 'Refresh'}
         </button>
       </div>
 
@@ -229,7 +229,7 @@ const MessageHistory: React.FC = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder={currentLanguage === 'fa' ? 'جستجو...' : 'Search...'}
+              placeholder={lang === 'fa' ? 'جستجو...' : 'Search...'}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
@@ -244,11 +244,11 @@ const MessageHistory: React.FC = () => {
               onChange={(e) => setFilterChannel(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
             >
-              <option value="all">{currentLanguage === 'fa' ? 'همه کانال‌ها' : 'All Channels'}</option>
-              <option value="email">{currentLanguage === 'fa' ? 'ایمیل' : 'Email'}</option>
-              <option value="sms">{currentLanguage === 'fa' ? 'پیامک' : 'SMS'}</option>
-              <option value="whatsapp">{currentLanguage === 'fa' ? 'واتساپ' : 'WhatsApp'}</option>
-              <option value="website">{currentLanguage === 'fa' ? 'وبسایت' : 'Website'}</option>
+              <option value="all">{lang === 'fa' ? 'همه کانال‌ها' : 'All Channels'}</option>
+              <option value="email">{lang === 'fa' ? 'ایمیل' : 'Email'}</option>
+              <option value="sms">{lang === 'fa' ? 'پیامک' : 'SMS'}</option>
+              <option value="whatsapp">{lang === 'fa' ? 'واتساپ' : 'WhatsApp'}</option>
+              <option value="website">{lang === 'fa' ? 'وبسایت' : 'Website'}</option>
             </select>
           </div>
 
@@ -259,11 +259,11 @@ const MessageHistory: React.FC = () => {
               onChange={(e) => setFilterStatus(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
             >
-              <option value="all">{currentLanguage === 'fa' ? 'همه وضعیت‌ها' : 'All Status'}</option>
-              <option value="published">{currentLanguage === 'fa' ? 'منتشر شده' : 'Published'}</option>
-              <option value="draft">{currentLanguage === 'fa' ? 'پیش نویس' : 'Draft'}</option>
-              <option value="sending">{currentLanguage === 'fa' ? 'در حال ارسال' : 'Sending'}</option>
-              <option value="failed">{currentLanguage === 'fa' ? 'ناموفق' : 'Failed'}</option>
+              <option value="all">{lang === 'fa' ? 'همه وضعیت‌ها' : 'All Status'}</option>
+              <option value="published">{lang === 'fa' ? 'منتشر شده' : 'Published'}</option>
+              <option value="draft">{lang === 'fa' ? 'پیش نویس' : 'Draft'}</option>
+              <option value="sending">{lang === 'fa' ? 'در حال ارسال' : 'Sending'}</option>
+              <option value="failed">{lang === 'fa' ? 'ناموفق' : 'Failed'}</option>
             </select>
           </div>
 
@@ -274,11 +274,11 @@ const MessageHistory: React.FC = () => {
               onChange={(e) => setFilterType(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
             >
-              <option value="all">{currentLanguage === 'fa' ? 'همه انواع' : 'All Types'}</option>
-              <option value="announcement">{currentLanguage === 'fa' ? 'اطلاعیه' : 'Announcement'}</option>
-              <option value="event">{currentLanguage === 'fa' ? 'رویداد' : 'Event'}</option>
-              <option value="newsletter">{currentLanguage === 'fa' ? 'خبرنامه' : 'Newsletter'}</option>
-              <option value="alert">{currentLanguage === 'fa' ? 'هشدار' : 'Alert'}</option>
+              <option value="all">{lang === 'fa' ? 'همه انواع' : 'All Types'}</option>
+              <option value="announcement">{lang === 'fa' ? 'اطلاعیه' : 'Announcement'}</option>
+              <option value="event">{lang === 'fa' ? 'رویداد' : 'Event'}</option>
+              <option value="newsletter">{lang === 'fa' ? 'خبرنامه' : 'Newsletter'}</option>
+              <option value="alert">{lang === 'fa' ? 'هشدار' : 'Alert'}</option>
             </select>
           </div>
 
@@ -289,10 +289,10 @@ const MessageHistory: React.FC = () => {
               onChange={(e) => setDateRange(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
             >
-              <option value="all">{currentLanguage === 'fa' ? 'همه تاریخ‌ها' : 'All Dates'}</option>
-              <option value="today">{currentLanguage === 'fa' ? 'امروز' : 'Today'}</option>
-              <option value="week">{currentLanguage === 'fa' ? 'این هفته' : 'This Week'}</option>
-              <option value="month">{currentLanguage === 'fa' ? 'این ماه' : 'This Month'}</option>
+              <option value="all">{lang === 'fa' ? 'همه تاریخ‌ها' : 'All Dates'}</option>
+              <option value="today">{lang === 'fa' ? 'امروز' : 'Today'}</option>
+              <option value="week">{lang === 'fa' ? 'این هفته' : 'This Week'}</option>
+              <option value="month">{lang === 'fa' ? 'این ماه' : 'This Month'}</option>
             </select>
           </div>
         </div>
@@ -304,7 +304,7 @@ const MessageHistory: React.FC = () => {
           <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200">
             <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <p className="text-gray-500">
-              {currentLanguage === 'fa' ? 'هیچ پیامی یافت نشد' : 'No messages found'}
+              {lang === 'fa' ? 'هیچ پیامی یافت نشد' : 'No messages found'}
             </p>
           </div>
         ) : (
@@ -322,7 +322,7 @@ const MessageHistory: React.FC = () => {
                         <div className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(message.status)}`}>
                           {getStatusIcon(message.status)}
                           <span className="mr-1">
-                            {currentLanguage === 'fa' 
+                            {lang === 'fa' 
                               ? {sent: 'ارسال شده', sending: 'در حال ارسال', failed: 'ناموفق', draft: 'پیش‌نویس'}[message.status]
                               : message.status.charAt(0).toUpperCase() + message.status.slice(1)
                             }
@@ -340,7 +340,7 @@ const MessageHistory: React.FC = () => {
                         </span>
                         <span className="flex items-center gap-1">
                           <Send className="w-4 h-4" />
-                          {message.totalRecipients} {currentLanguage === 'fa' ? 'گیرنده' : 'recipients'}
+                          {message.totalRecipients} {lang === 'fa' ? 'گیرنده' : 'recipients'}
                         </span>
                       </div>
                     </div>
@@ -353,7 +353,7 @@ const MessageHistory: React.FC = () => {
                         className="flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         <Eye className="w-4 h-4" />
-                        {currentLanguage === 'fa' ? 'جزئیات' : 'Details'}
+                        {lang === 'fa' ? 'جزئیات' : 'Details'}
                       </button>
                     </div>
                   </div>
@@ -361,7 +361,7 @@ const MessageHistory: React.FC = () => {
                   {/* Channels */}
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-sm text-gray-600">
-                      {currentLanguage === 'fa' ? 'کانال‌ها:' : 'Channels:'}
+                      {lang === 'fa' ? 'کانال‌ها:' : 'Channels:'}
                     </span>
                     {message.channels.map(channel => (
                       <div key={channel} className="flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">
@@ -376,25 +376,25 @@ const MessageHistory: React.FC = () => {
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-600">{successRate}%</div>
                       <div className="text-xs text-gray-600">
-                        {currentLanguage === 'fa' ? 'نرخ موفقیت' : 'Success Rate'}
+                        {lang === 'fa' ? 'نرخ موفقیت' : 'Success Rate'}
                       </div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-600">{stats.delivered}</div>
                       <div className="text-xs text-gray-600">
-                        {currentLanguage === 'fa' ? 'تحویل شده' : 'Delivered'}
+                        {lang === 'fa' ? 'تحویل شده' : 'Delivered'}
                       </div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-red-600">{stats.failed}</div>
                       <div className="text-xs text-gray-600">
-                        {currentLanguage === 'fa' ? 'ناموفق' : 'Failed'}
+                        {lang === 'fa' ? 'ناموفق' : 'Failed'}
                       </div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
                       <div className="text-xs text-gray-600">
-                        {currentLanguage === 'fa' ? 'در انتظار' : 'Pending'}
+                        {lang === 'fa' ? 'در انتظار' : 'Pending'}
                       </div>
                     </div>
                   </div>
@@ -413,7 +413,7 @@ const MessageHistory: React.FC = () => {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    {currentLanguage === 'fa' ? 'جزئیات تحویل پیام' : 'Message Delivery Details'}
+                    {lang === 'fa' ? 'جزئیات تحویل پیام' : 'Message Delivery Details'}
                   </h3>
                   <p className="text-gray-600">{selectedMessage.title}</p>
                 </div>
@@ -444,7 +444,7 @@ const MessageHistory: React.FC = () => {
                         </div>
                         {log.deliveredAt && (
                           <div className="text-xs text-green-600">
-                            {currentLanguage === 'fa' ? 'تحویل:' : 'Delivered:'} {formatDate(log.deliveredAt)}
+                            {lang === 'fa' ? 'تحویل:' : 'Delivered:'} {formatDate(log.deliveredAt)}
                           </div>
                         )}
                         {log.errorMessage && (
