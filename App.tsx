@@ -43,6 +43,7 @@ import LetterViewerPage from './pages/LetterViewerPage';
 import AudioBiblePage from './pages/AudioBiblePage';
 import BibleReaderPage from './pages/BibleReaderPage';
 import WorshipSongsPage from './pages/WorshipSongsPage';
+import AnnouncementsPage from './pages/AnnouncementsPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -87,6 +88,7 @@ function App() {
             <Route path="giving" element={<GivingPage />} />
             <Route path="prayer" element={<PrayerPage />} />
             <Route path="events" element={<EventsPage />} />
+            <Route path="announcements" element={<AnnouncementsPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="ai-helper" element={<AiHelperPage />} />
             <Route path="gallery" element={<GalleryPage />} />

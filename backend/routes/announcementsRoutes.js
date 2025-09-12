@@ -29,6 +29,49 @@ const generateReferenceNumber = (type) => {
   return `${prefix[type] || 'ANN'}-${date}-${random}`;
 };
 
+// GET /api/announcements/published - دریافت اطلاعیه‌های منتشر شده برای نمایش عمومی
+router.get('/published', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT * FROM church_announcements 
+      WHERE status = 'published' 
+      AND (publish_date IS NULL OR publish_date <= CURRENT_TIMESTAMP)
+      AND (expiry_date IS NULL OR expiry_date > CURRENT_TIMESTAMP)
+      ORDER BY 
+        CASE priority 
+          WHEN 'urgent' THEN 1 
+          WHEN 'high' THEN 2 
+          WHEN 'normal' THEN 3 
+          WHEN 'low' THEN 4 
+          ELSE 5 
+        END,
+        publish_date DESC, 
+        created_at DESC
+    `);
+
+    const announcements = result.rows.map(announcement => ({
+      id: announcement.id,
+      title: {
+        en: announcement.title_en,
+        fa: announcement.title_fa
+      },
+      content: {
+        en: announcement.content_en,
+        fa: announcement.content_fa
+      },
+      type: announcement.announcement_type,
+      priority: announcement.priority,
+      publishDate: announcement.publish_date,
+      referenceNumber: announcement.reference_number
+    }));
+
+    res.json(announcements);
+  } catch (error) {
+    console.error('Fetch Published Announcements Error:', error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+});
+
 // GET /api/announcements/:id - دریافت یک اطلاعیه
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
@@ -363,48 +406,6 @@ router.delete('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN'), async (r
     res.status(204).send();
   } catch (error) {
     console.error('Delete Announcement Error:', error);
-    res.status(500).json({ message: 'Internal server error.' });
-  }
-});
-
-// GET /api/announcements/published - دریافت اطلاعیه‌های منتشر شده برای نمایش عمومی
-router.get('/published', async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT * FROM church_announcements 
-      WHERE status = 'published' 
-      AND (publish_date IS NULL OR publish_date <= CURRENT_TIMESTAMP)
-      AND (expiry_date IS NULL OR expiry_date > CURRENT_TIMESTAMP)
-      ORDER BY 
-        CASE priority 
-          WHEN 'urgent' THEN 1 
-          WHEN 'high' THEN 2 
-          WHEN 'normal' THEN 3 
-          WHEN 'low' THEN 4 
-        END,
-        publish_date DESC, 
-        created_at DESC
-    `);
-
-    const announcements = result.rows.map(announcement => ({
-      id: announcement.id,
-      title: {
-        en: announcement.title_en,
-        fa: announcement.title_fa
-      },
-      content: {
-        en: announcement.content_en,
-        fa: announcement.content_fa
-      },
-      type: announcement.announcement_type,
-      priority: announcement.priority,
-      publishDate: announcement.publish_date,
-      referenceNumber: announcement.reference_number
-    }));
-
-    res.json(announcements);
-  } catch (error) {
-    console.error('Fetch Published Announcements Error:', error);
     res.status(500).json({ message: 'Internal server error.' });
   }
 });
