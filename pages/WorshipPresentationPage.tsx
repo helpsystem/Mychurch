@@ -16,12 +16,13 @@ import {
   List,
   Search,
   Filter,
-  Settings
+  Settings,
+  Heart
 } from 'lucide-react';
 
 interface PresentationSlide {
   id: string;
-  type: 'song' | 'scripture' | 'image' | 'video';
+  type: 'song' | 'scripture' | 'image' | 'video' | 'prayer';
   title: string;
   content: {
     en: string;
@@ -36,6 +37,8 @@ interface PresentationSlide {
     background?: string;
     textColor?: string;
     fontSize?: 'small' | 'medium' | 'large' | 'extra-large';
+    prayerType?: 'thanksgiving' | 'worship' | 'intercession' | 'blessing';
+    duration?: number; // Duration in seconds for prayer slides
   };
 }
 
@@ -244,6 +247,54 @@ How great Thou art! How great Thou art!`,
     }
   });
 
+  const createPrayerSlide = (prayerType: string): PresentationSlide => {
+    const prayerTemplates = {
+      thanksgiving: {
+        en: '🙏 Let us give thanks to the Lord\n\n💝 For His goodness and mercy endure forever\n\n🌟 Take a moment to thank God for His blessings',
+        fa: '🙏 بیایید از خداوند سپاسگزاری کنیم\n\n💝 چون نیکویی و رحمت او تا ابد است\n\n🌟 لحظه‌ای برای شکرگزاری از برکات خدا وقت بگذارید'
+      },
+      worship: {
+        en: '🌟 Let us worship the Lord together\n\n✨ Holy, Holy, Holy is the Lord\n\n🙌 Lift your hearts in praise',
+        fa: '🌟 بیایید با یکدیگر خداوند را پرستش کنیم\n\n✨ قدوس، قدوس، قدوس، خداوند\n\n🙌 دل‌هایتان را به ستایش بلند کنید'
+      },
+      intercession: {
+        en: '🤲 Time for Prayer\n\n💙 Let us pray for one another\n\n🕊️ Bring your requests before the Lord',
+        fa: '🤲 زمان دعا\n\n💙 بیایید برای یکدیگر دعا کنیم\n\n🕊️ درخواست‌هایتان را پیش خداوند بیاورید'
+      },
+      blessing: {
+        en: '✨ Blessing and Benediction\n\n🌸 May God\'s peace be with you\n\n🕊️ Go in peace to love and serve the Lord',
+        fa: '✨ برکت و دعای خیر\n\n🌸 صلح خدا با شما باد\n\n🕊️ در آرامش بروید تا خداوند را دوست بدارید و خدمت کنید'
+      }
+    };
+
+    const template = prayerTemplates[prayerType as keyof typeof prayerTemplates] || prayerTemplates.worship;
+
+    return {
+      id: `prayer-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      type: 'prayer' as const,
+      title: lang === 'fa' 
+        ? `دعا - ${prayerType === 'thanksgiving' ? 'شکرگزاری' : prayerType === 'worship' ? 'پرستش' : prayerType === 'intercession' ? 'شفاعت' : 'برکت'}`
+        : `Prayer - ${prayerType.charAt(0).toUpperCase() + prayerType.slice(1)}`,
+      content: {
+        en: template.en,
+        fa: template.fa
+      },
+      metadata: {
+        prayerType: prayerType as 'thanksgiving' | 'worship' | 'intercession' | 'blessing',
+        background: prayerType === 'thanksgiving' 
+          ? 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)'
+          : prayerType === 'worship'
+          ? 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
+          : prayerType === 'intercession'
+          ? 'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)'
+          : 'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
+        textColor: '#2d3748',
+        fontSize: 'large',
+        duration: 120 // 2 minutes default
+      }
+    };
+  };
+
   const addSongToPresentation = (song: WorshipSong) => {
     const slides = createSlideFromSong(song);
     setCurrentSlides(prev => [...prev, ...slides]);
@@ -251,6 +302,11 @@ How great Thou art! How great Thou art!`,
 
   const addVerseToPresentation = (verse: BibleVerse) => {
     const slide = createSlideFromVerse(verse);
+    setCurrentSlides(prev => [...prev, slide]);
+  };
+
+  const addPrayerToPresentation = (prayerType: string) => {
+    const slide = createPrayerSlide(prayerType);
     setCurrentSlides(prev => [...prev, slide]);
   };
 
@@ -421,7 +477,9 @@ How great Thou art! How great Thou art!`,
                           <span className="text-sm font-medium text-gray-500">#{index + 1}</span>
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
-                              {slide.type === 'song' ? <Music className="w-4 h-4 text-purple-600" /> : <BookOpen className="w-4 h-4 text-green-600" />}
+                              {slide.type === 'song' ? <Music className="w-4 h-4 text-purple-600" /> : 
+                               slide.type === 'prayer' ? <Heart className="w-4 h-4 text-blue-600" /> :
+                               <BookOpen className="w-4 h-4 text-green-600" />}
                               <span className="text-sm font-medium text-gray-900 truncate">{slide.title}</span>
                             </div>
                             <p className="text-xs text-gray-600 truncate">
@@ -588,25 +646,123 @@ How great Thou art! How great Thou art!`,
 
           {activeTab === 'create' && isAdmin && (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="text-center py-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                  {lang === 'fa' ? 'ایجاد محتوای جدید' : 'Create New Content'}
+              <div className="text-center mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center justify-center gap-2">
+                  <Plus className="w-6 h-6 text-purple-600" />
+                  {lang === 'fa' ? 'ایجاد اسلایدهای ویژه' : 'Create Special Slides'}
                 </h3>
                 <p className="text-gray-600 mb-6">
                   {lang === 'fa' 
-                    ? 'این بخش برای ایجاد سرودها و آیات جدید در دست توسعه است'
-                    : 'This section for creating new songs and verses is under development'
+                    ? 'اسلایدهای دعا و عبادت زیبا برای خدمات کلیسا اضافه کنید'
+                    : 'Add beautiful prayer and worship slides for church services'
                   }
                 </p>
-                <div className="flex justify-center gap-4">
-                  <button className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
-                    <Plus className="w-5 h-5" />
-                    {lang === 'fa' ? 'سرود جدید' : 'New Song'}
+              </div>
+
+              {/* Prayer Slides Section */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-blue-600" />
+                  {lang === 'fa' ? '🙏 اسلایدهای دعا' : '🙏 Prayer Slides'}
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <button 
+                    onClick={() => addPrayerToPresentation('thanksgiving')}
+                    className="p-4 border-2 border-pink-200 rounded-xl hover:border-pink-400 hover:bg-pink-50 transition-all group"
+                  >
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">🙏</div>
+                      <h5 className="font-semibold text-gray-800 mb-1">
+                        {lang === 'fa' ? 'شکرگزاری' : 'Thanksgiving'}
+                      </h5>
+                      <p className="text-sm text-gray-600">
+                        {lang === 'fa' 
+                          ? 'دعای سپاس و قدردانی' 
+                          : 'Prayer of thanks and gratitude'
+                        }
+                      </p>
+                    </div>
                   </button>
-                  <button className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                    <Plus className="w-5 h-5" />
-                    {lang === 'fa' ? 'آیه جدید' : 'New Verse'}
+
+                  <button 
+                    onClick={() => addPrayerToPresentation('worship')}
+                    className="p-4 border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all group"
+                  >
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">🌟</div>
+                      <h5 className="font-semibold text-gray-800 mb-1">
+                        {lang === 'fa' ? 'پرستش' : 'Worship'}
+                      </h5>
+                      <p className="text-sm text-gray-600">
+                        {lang === 'fa' 
+                          ? 'دعای پرستش و ستایش' 
+                          : 'Prayer of worship and praise'
+                        }
+                      </p>
+                    </div>
                   </button>
+
+                  <button 
+                    onClick={() => addPrayerToPresentation('intercession')}
+                    className="p-4 border-2 border-purple-200 rounded-xl hover:border-purple-400 hover:bg-purple-50 transition-all group"
+                  >
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">🤲</div>
+                      <h5 className="font-semibold text-gray-800 mb-1">
+                        {lang === 'fa' ? 'شفاعت' : 'Intercession'}
+                      </h5>
+                      <p className="text-sm text-gray-600">
+                        {lang === 'fa' 
+                          ? 'دعا برای دیگران' 
+                          : 'Prayer for others'
+                        }
+                      </p>
+                    </div>
+                  </button>
+
+                  <button 
+                    onClick={() => addPrayerToPresentation('blessing')}
+                    className="p-4 border-2 border-green-200 rounded-xl hover:border-green-400 hover:bg-green-50 transition-all group"
+                  >
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">✨</div>
+                      <h5 className="font-semibold text-gray-800 mb-1">
+                        {lang === 'fa' ? 'برکت' : 'Blessing'}
+                      </h5>
+                      <p className="text-sm text-gray-600">
+                        {lang === 'fa' 
+                          ? 'دعای برکت و خداحافظی' 
+                          : 'Blessing and benediction'
+                        }
+                      </p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Future Content Creation Section */}
+              <div className="border-t pt-6">
+                <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <Plus className="w-5 h-5 text-gray-600" />
+                  {lang === 'fa' ? 'محتوای آینده' : 'Future Content'}
+                </h4>
+                <div className="text-center py-6 bg-gray-50 rounded-lg">
+                  <p className="text-gray-600 mb-4">
+                    {lang === 'fa' 
+                      ? 'بخش‌های آینده: ایجاد سرود و آیه سفارشی'
+                      : 'Coming soon: Custom song and verse creation'
+                    }
+                  </p>
+                  <div className="flex justify-center gap-4 opacity-50">
+                    <button disabled className="flex items-center gap-2 px-6 py-3 bg-purple-300 text-white rounded-lg cursor-not-allowed">
+                      <Plus className="w-5 h-5" />
+                      {lang === 'fa' ? 'سرود جدید' : 'New Song'}
+                    </button>
+                    <button disabled className="flex items-center gap-2 px-6 py-3 bg-green-300 text-white rounded-lg cursor-not-allowed">
+                      <Plus className="w-5 h-5" />
+                      {lang === 'fa' ? 'آیه جدید' : 'New Verse'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

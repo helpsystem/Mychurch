@@ -49,6 +49,7 @@ import CalendarPage from './pages/CalendarPage';
 import PrayerRequestsPage from './pages/PrayerRequestsPage';
 import DailyDevotionalPage from './pages/DailyDevotionalPage';
 import NotificationCenterPage from './pages/NotificationCenterPage';
+import DailyMessagesPage from './pages/DailyMessagesPage';
 import CriticalResourceLoader, { criticalResources } from './components/Performance/CriticalResourceLoader';
 import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
@@ -101,6 +102,7 @@ function App() {
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="worship-presentation" element={<WorshipPresentationPage />} />
             <Route path="daily-devotional" element={<DailyDevotionalPage />} />
+            <Route path="daily-messages" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><DailyMessagesPage /></ProtectedRoute>} />
             <Route path="notification-center" element={<NotificationCenterPage />} />
             <Route path="giving" element={<GivingPage />} />
             <Route path="prayer" element={<PrayerPage />} />

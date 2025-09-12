@@ -13,13 +13,14 @@ import {
   Music,
   Timer,
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Heart
 } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 
 interface PresentationSlide {
   id: string;
-  type: 'song' | 'scripture' | 'image' | 'video';
+  type: 'song' | 'scripture' | 'image' | 'video' | 'prayer';
   title: string;
   content: {
     en: string;
@@ -34,6 +35,8 @@ interface PresentationSlide {
     background?: string;
     textColor?: string;
     fontSize?: 'small' | 'medium' | 'large' | 'extra-large';
+    prayerType?: 'thanksgiving' | 'worship' | 'intercession' | 'blessing';
+    duration?: number;
   };
 }
 
@@ -292,6 +295,7 @@ const PresentationViewer: React.FC<PresentationViewerProps> = ({
               <div className="flex items-center justify-center gap-2 mb-2">
                 {currentSlideData.type === 'song' && <Music className="w-6 h-6" />}
                 {currentSlideData.type === 'scripture' && <BookOpen className="w-6 h-6" />}
+                {currentSlideData.type === 'prayer' && <Heart className="w-6 h-6" />}
                 <h2 className="text-lg md:text-xl font-semibold opacity-90">
                   {currentSlideData.title}
                 </h2>
