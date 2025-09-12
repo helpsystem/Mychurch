@@ -138,6 +138,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
         connect: [
             { to: '/new-here', title: t('navNewHere'), icon: <Users size={16}/> },
             { to: '/about', title: t('navAbout'), icon: <Info size={16}/> },
+            { to: '/announcements', title: lang === 'fa' ? 'اطلاعیه‌ها' : 'Announcements', icon: <Bell size={16}/> },
             { to: '/testimonials', title: t('navTestimonials'), icon: <MessageSquare size={16}/> },
             { to: '/prayer', title: t('navPrayer'), icon: <HeartHandshake size={16}/> },
             { to: '/contact', title: t('navContact'), icon: <Phone size={16}/> },
