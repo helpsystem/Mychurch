@@ -29,6 +29,7 @@ const pagesRoutes = require('./routes/pagesRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const filesRoutes = require('./routes/filesRoutes');
 const presentationRoutes = require('./routes/presentationRoutes');
+const dailyContentRoutes = require('./routes/dailyContentRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -138,6 +139,7 @@ app.use('/api/pages', pagesRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);
+app.use('/api/daily-content', dailyContentRoutes);
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {
@@ -226,6 +228,7 @@ const startServer = async () => {
       console.log('  📄 /api/pages/* - Custom pages');
       console.log('  ⚙️ /api/settings/* - Site settings');
       console.log('  📁 /api/files/* - File management');
+      console.log('  📖✨ /api/daily-content/* - Daily scripture content');
       console.log('  ❤️ /api/health - Health check');
     });
   } catch (error) {

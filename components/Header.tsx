@@ -126,6 +126,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
         ],
         resources: [
             { to: '/bible', title: t('navBible'), icon: <BookOpen size={16}/> },
+            { to: '/daily-devotional', title: lang === 'fa' ? 'تعبدات روزانه' : 'Daily Devotional', icon: <BookOpen size={16}/> },
             { to: '/audio-bible', title: lang === 'fa' ? 'کتاب مقدس صوتی' : 'Audio Bible', icon: <Volume2 size={16}/> },
             { to: '/worship-songs', title: lang === 'fa' ? 'سرودهای مسیحی' : 'Worship Songs', icon: <Music size={16}/> },
             { to: '/worship-presentation', title: lang === 'fa' ? 'پرزنتیشن عبادت' : 'Worship Presentation', icon: <Music size={16}/> },
