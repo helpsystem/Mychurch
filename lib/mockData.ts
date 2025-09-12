@@ -29,9 +29,54 @@ export const leadersData: Leader[] = [
 
 const today = new Date();
 const sermons: Sermon[] = [
-  { id: 1, title: { en: 'The Power of Forgiveness', fa: 'قدرت بخشش' }, speaker: 'Rev. Javad Pishghadamian', date: new Date(new Date().setDate(today.getDate() - 7)).toISOString().split('T')[0], audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', series: { en: 'Foundations of Faith', fa: 'مبانی ایمان' }, notesUrl: '/sample-notes.pdf' },
-  { id: 2, title: { en: 'Living in Hope', fa: 'زندگی در امید' }, speaker: 'Rev. Javad Pishghadamian', date: new Date(new Date().setDate(today.getDate() - 14)).toISOString().split('T')[0], audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', series: { en: 'Foundations of Faith', fa: 'مبانی ایمان' } },
-  { id: 3, title: { en: 'The Heart of a Servant', fa: 'قلب یک خدمتگزار' }, speaker: 'Guest Speaker', date: new Date(new Date().setDate(today.getDate() - 21)).toISOString().split('T')[0], audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+  { 
+    id: 1, 
+    title: { en: 'The Power of Forgiveness', fa: 'قدرت بخشش' }, 
+    speaker: 'Rev. Javad Pishghadamian', 
+    date: new Date(new Date().setDate(today.getDate() - 7)).toISOString().split('T')[0], 
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 
+    series: { en: 'Foundations of Faith', fa: 'مبانی ایمان' }, 
+    notesUrl: '/sample-notes.pdf',
+    bibleReference: 'Matthew 6:14-15',
+    bibleBook: 'Matthew',
+    bibleChapter: '6',
+    bibleVerses: '14-15',
+    closingBlessing: { 
+      en: 'May the grace of our Lord Jesus Christ be with you all. Amen.', 
+      fa: 'فیض خداوند ما عیسی مسیح شامل حال همه شما باد. آمین.' 
+    }
+  },
+  { 
+    id: 2, 
+    title: { en: 'Living in Hope', fa: 'زندگی در امید' }, 
+    speaker: 'Rev. Javad Pishghadamian', 
+    date: new Date(new Date().setDate(today.getDate() - 14)).toISOString().split('T')[0], 
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', 
+    series: { en: 'Foundations of Faith', fa: 'مبانی ایمان' },
+    bibleReference: 'Romans 15:13',
+    bibleBook: 'Romans',
+    bibleChapter: '15',
+    bibleVerses: '13',
+    closingBlessing: { 
+      en: 'The Lord bless you and keep you; the Lord make his face shine on you. Amen.', 
+      fa: 'خداوند تو را برکت داده، محفوظ بدارد. خداوند روی خود را بر تو بتاباند. آمین.' 
+    }
+  },
+  { 
+    id: 3, 
+    title: { en: 'The Heart of a Servant', fa: 'قلب یک خدمتگزار' }, 
+    speaker: 'Guest Speaker', 
+    date: new Date(new Date().setDate(today.getDate() - 21)).toISOString().split('T')[0], 
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+    bibleReference: 'Philippians 2:5-8',
+    bibleBook: 'Philippians',
+    bibleChapter: '2',
+    bibleVerses: '5-8',
+    closingBlessing: { 
+      en: 'Go in peace to love and serve the Lord. Amen.', 
+      fa: 'در صلح بروید تا خداوند را دوست بدارید و خدمت کنید. آمین.' 
+    }
+  },
 ];
 export const sermonsData: Sermon[] = sermons;
 

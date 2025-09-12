@@ -131,6 +131,11 @@ export interface Sermon {
   audioUrl: string;
   series?: { en: string; fa: string; };
   notesUrl?: string;
+  bibleReference?: string;
+  bibleBook?: string;
+  bibleChapter?: string;
+  bibleVerses?: string;
+  closingBlessing?: Record<Language, string>;
 }
 
 export interface WorshipSong {

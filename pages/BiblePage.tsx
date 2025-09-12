@@ -6,6 +6,7 @@ import { ChevronDown, Search, X, Book, BookOpen, MonitorPlay } from 'lucide-reac
 import Spinner from '../components/Spinner';
 import HTMLFlipBook from 'react-pageflip';
 import { useAuth } from '../hooks/useAuth';
+import { OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '../lib/bibleData';
 
 const VERSES_PER_PAGE = 10; // Adjust this number to control how much text appears on each page
 
@@ -76,6 +77,7 @@ const BiblePage: React.FC = () => {
   const { bibleBooks, bibleContent } = fullContent;
   const [selectedBook, setSelectedBook] = useState<string>(bibleBooks[0]?.key || '');
   const [selectedChapter, setSelectedChapter] = useState<number>(1);
+  const [selectedTestament, setSelectedTestament] = useState<'OT' | 'NT' | 'ALL'>('ALL');
   const [content, setContent] = useState<{ en: string[]; fa: string[] }>({ en: [], fa: [] });
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -93,6 +95,17 @@ const BiblePage: React.FC = () => {
   const [enableHighlight, setEnableHighlight] = useState(true);
 
   const isAdmin = user && (user.role === 'SUPER_ADMIN' || user.role === 'MANAGER');
+
+  // Filter books based on selected testament
+  const filteredBooks = selectedTestament === 'ALL' 
+    ? bibleBooks 
+    : bibleBooks.filter((book: any) => {
+        if (selectedTestament === 'OT') {
+          return book.testament === 'OT' || OLD_TESTAMENT_BOOKS.includes(book.key);
+        } else {
+          return book.testament === 'NT' || NEW_TESTAMENT_BOOKS.includes(book.key);
+        }
+      });
 
   useEffect(() => {
     // Cleanup when component unmounts
@@ -372,10 +385,39 @@ const BiblePage: React.FC = () => {
       </div>
 
       <div className="bg-black-gradient p-4 rounded-[20px] box-shadow sticky top-[88px] z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 items-center">
+          <div className="relative">
+            <select 
+              value={selectedTestament} 
+              onChange={(e) => {
+                const newTestament = e.target.value as 'OT' | 'NT' | 'ALL';
+                setSelectedTestament(newTestament);
+                // Reset book to first available in new testament
+                const availableBooks = newTestament === 'ALL' 
+                  ? bibleBooks 
+                  : bibleBooks.filter((book: any) => {
+                      if (newTestament === 'OT') {
+                        return book.testament === 'OT' || OLD_TESTAMENT_BOOKS.includes(book.key);
+                      } else {
+                        return book.testament === 'NT' || NEW_TESTAMENT_BOOKS.includes(book.key);
+                      }
+                    });
+                if (availableBooks.length > 0) {
+                  setSelectedBook(availableBooks[0].key);
+                  setSelectedChapter(1);
+                }
+              }} 
+              className={`${inputClass} pr-10 rtl:pl-10 rtl:pr-4`}
+            >
+              <option value="ALL">{lang === 'fa' ? 'همه کتاب‌ها' : 'All Books'}</option>
+              <option value="OT">{lang === 'fa' ? 'عهد عتیق' : 'Old Testament'}</option>
+              <option value="NT">{lang === 'fa' ? 'عهد جدید' : 'New Testament'}</option>
+            </select>
+            <ChevronDown className="absolute top-1/2 -translate-y-1/2 right-3 rtl:left-3 rtl:right-auto text-gray-400 pointer-events-none" />
+          </div>
           <div className="relative">
             <select value={selectedBook} onChange={handleBookChange} className={`${inputClass} pr-10 rtl:pl-10 rtl:pr-4`}>
-              {bibleBooks.map(book => <option key={book.key} value={book.key}>{book.name[lang]}</option>)}
+              {filteredBooks.map(book => <option key={book.key} value={book.key}>{book.name[lang]}</option>)}
             </select>
             <ChevronDown className="absolute top-1/2 -translate-y-1/2 right-3 rtl:left-3 rtl:right-auto text-gray-400 pointer-events-none" />
           </div>
