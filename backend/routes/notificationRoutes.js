@@ -125,6 +125,45 @@ async function sendTwilioWhatsApp(to, message, mediaUrl = null) {
   };
 }
 
+// Test SMS sending (temporary endpoint for testing) - bypassing auth for testing
+router.post('/test-sms', (req, res, next) => {
+  // Skip authentication for this test endpoint
+  next();
+}, async (req, res) => {
+  try {
+    const { phone, message } = req.body;
+    
+    if (!phone || !message) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Phone number and message required' 
+      });
+    }
+
+    if (!twilioClient) {
+      return res.status(500).json({ 
+        success: false, 
+        error: 'Twilio not configured' 
+      });
+    }
+
+    const smsResult = await sendTwilioSMS(phone, message);
+    
+    res.json({ 
+      success: true, 
+      result: smsResult,
+      message: 'Test SMS sent successfully'
+    });
+
+  } catch (error) {
+    console.error('Test SMS error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message || 'Failed to send test SMS' 
+    });
+  }
+});
+
 // Get service connectivity status
 router.get('/connectivity', authenticateToken, authorizeRoles('MANAGER', 'SUPER_ADMIN'), (req, res) => {
   const connectivity = {
