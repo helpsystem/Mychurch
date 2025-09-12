@@ -445,7 +445,6 @@ const translations: Record<string, Record<Language, string>> = {
   styleByzantineIcon: { en: 'Byzantine Icon', fa: 'شمایل بیزانسی' },
   generate: { en: 'Generate', fa: 'تولید' },
   generatedImages: { en: 'Generated Images', fa: 'تصاویر تولید شده' },
-  download: { en: 'Download', fa: 'دانلود' },
   caption: { en: 'Caption', fa: 'عنوان' },
   captionEn: { en: 'Caption (EN)', fa: 'عنوان (EN)' },
   captionFa: { en: 'Caption (FA)', fa: 'عنوان (FA)' },

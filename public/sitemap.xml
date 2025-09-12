@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://your-domain.com</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/about</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/about"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/leaders</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/leaders"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/leaders"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/leaders"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/sermons</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/sermons"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/sermons"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/sermons"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/worship</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/worship"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/worship"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/worship"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/bible</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/bible"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/bible"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/bible"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/audio-bible</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/audio-bible"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/audio-bible"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/audio-bible"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/bible-reader</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/bible-reader"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/bible-reader"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/bible-reader"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/worship-songs</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/worship-songs"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/worship-songs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/worship-songs"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/worship-presentation</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/worship-presentation"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/worship-presentation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/worship-presentation"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/daily-devotional</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/daily-devotional"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/daily-devotional"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/daily-devotional"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/giving</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/giving"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/giving"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/giving"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/prayer</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/prayer"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/prayer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/prayer"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/prayer-requests</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/prayer-requests"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/prayer-requests"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/prayer-requests"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/events</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/events"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/events"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/events"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/calendar</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/calendar"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/calendar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/calendar"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/announcements</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/announcements"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/announcements"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/announcements"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/contact</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/contact"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/ai-helper</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/ai-helper"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/ai-helper"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/ai-helper"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/gallery</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/gallery"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/gallery"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/gallery"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/help-center</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/help-center"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/help-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/help-center"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/new-here</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/new-here"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/new-here"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/new-here"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/connect</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/connect"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/connect"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/connect"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/testimonials</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/testimonials"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/testimonials"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/testimonials"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/live</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/live"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/live"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/live"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/notification-center</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/notification-center"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/notification-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/notification-center"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/login</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/login"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/login"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/signup</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/signup"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/signup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/signup"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/verify-email</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/verify-email"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/verify-email"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/verify-email"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/en/presentation</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/presentation"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/presentation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/presentation"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/about</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/about"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/leaders</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/leaders"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/leaders"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/leaders"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/sermons</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/sermons"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/sermons"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/sermons"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/worship</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/worship"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/worship"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/worship"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/bible</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/bible"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/bible"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/bible"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/audio-bible</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/audio-bible"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/audio-bible"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/audio-bible"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/bible-reader</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/bible-reader"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/bible-reader"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/bible-reader"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/worship-songs</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/worship-songs"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/worship-songs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/worship-songs"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/worship-presentation</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/worship-presentation"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/worship-presentation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/worship-presentation"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/daily-devotional</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/daily-devotional"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/daily-devotional"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/daily-devotional"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/giving</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/giving"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/giving"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/giving"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/prayer</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/prayer"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/prayer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/prayer"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/prayer-requests</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/prayer-requests"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/prayer-requests"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/prayer-requests"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/events</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/events"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/events"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/events"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/calendar</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/calendar"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/calendar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/calendar"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/announcements</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/announcements"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/announcements"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/announcements"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/contact</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/contact"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/ai-helper</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/ai-helper"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/ai-helper"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/ai-helper"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/gallery</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/gallery"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/gallery"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/gallery"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/help-center</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/help-center"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/help-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/help-center"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/new-here</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/new-here"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/new-here"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/new-here"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/connect</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/connect"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/connect"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/connect"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/testimonials</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/testimonials"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/testimonials"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/testimonials"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/live</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/live"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/live"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/live"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/notification-center</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/notification-center"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/notification-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/notification-center"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/login</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/login"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/login"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/signup</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/signup"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/signup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/signup"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/verify-email</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/verify-email"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/verify-email"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/verify-email"/>
+  </url>
+  <url>
+    <loc>https://your-domain.com/fa/presentation</loc>
+    <lastmod>2025-09-12T07:47:34.897Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-domain.com/en/presentation"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://your-domain.com/fa/presentation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-domain.com/en/presentation"/>
+  </url>
+</urlset>

@@ -3,7 +3,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLanguage } from './hooks/useLanguage';
 
 import Layout from './components/Layout';
@@ -49,6 +49,10 @@ import CalendarPage from './pages/CalendarPage';
 import PrayerRequestsPage from './pages/PrayerRequestsPage';
 import DailyDevotionalPage from './pages/DailyDevotionalPage';
 import NotificationCenterPage from './pages/NotificationCenterPage';
+import CriticalResourceLoader, { criticalResources } from './components/Performance/CriticalResourceLoader';
+import FontOptimizer from './components/Performance/FontOptimizer';
+import SecurityHeaders from './components/SEO/SecurityHeaders';
+import AnalyticsSetup from './components/Analytics/AnalyticsSetup';
 
 function App() {
   const { lang } = useLanguage();
@@ -75,8 +79,13 @@ function App() {
   }
 
   return (
-    <div dir={lang === 'fa' ? 'rtl' : 'ltr'} className={`bg-primary text-white w-full overflow-hidden min-h-screen ${lang === 'fa' ? 'font-vazir' : 'font-poppins'}`}>
-      <HashRouter>
+    <>
+      <SecurityHeaders />
+      <AnalyticsSetup enableGoogleAnalytics={false} /> {/* Enable for production */}
+      <CriticalResourceLoader resources={criticalResources} />
+      <FontOptimizer />
+      <div dir={lang === 'fa' ? 'rtl' : 'ltr'} className={`bg-primary text-white w-full overflow-hidden min-h-screen ${lang === 'fa' ? 'font-vazir' : 'font-poppins'}`}>
+        <BrowserRouter>
         <ScrollToTop />
         <GuidedTour />
         <Routes>
@@ -142,8 +151,9 @@ function App() {
         
         {/* Verse Modal - Show after loading - Inside Router context */}
         {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
-      </HashRouter>
-    </div>
+      </BrowserRouter>
+      </div>
+    </>
   );
 }
 

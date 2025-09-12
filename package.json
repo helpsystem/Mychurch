@@ -6,9 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "vite build --mode production && npx vite-bundle-analyzer dist",
+    "build:prod": "NODE_ENV=production vite build",
+    "build:staging": "NODE_ENV=staging vite build",
     "preview": "vite preview",
+    "preview:prod": "vite build && vite preview",
     "backend": "cd backend && npm start",
-    "start-all": "concurrently \"npm run dev\" \"npm run backend\""
+    "start-all": "concurrently \"npm run dev\" \"npm run backend\"",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "echo 'Linting not configured yet'",
+    "sitemap:generate": "node scripts/generate-sitemap.js",
+    "optimize:images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@google/genai": "^1.9.0",

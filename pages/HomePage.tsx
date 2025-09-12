@@ -12,6 +12,8 @@ import ScrambledText from '../components/ScrambledText';
 import { DEFAULT_AVATAR_URL } from '../lib/constants';
 import { useAuth } from '../hooks/useAuth';
 import ImageSlider from '../components/ImageSlider';
+import SEOHead from '../components/SEO/SEOHead';
+import { getPageSEOConfig } from '../lib/seoConfig';
 
 const ParticleCanvas: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -190,6 +192,9 @@ const HomePage: React.FC = () => {
   const { t, lang } = useLanguage();
   const { content } = useContent();
   const { isAuthenticated, user } = useAuth();
+  
+  // Get SEO configuration for home page
+  const seoConfig = getPageSEOConfig('home', lang);
   const [aboutImage, setAboutImage] = useState('/images/jesus-cross-sunset.jpg');
 
   useEffect(() => {
@@ -198,9 +203,11 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-primary w-full overflow-hidden">
-      {/* Hero Section */}
-      <div className="flex justify-center items-start">
+    <>
+      <SEOHead {...seoConfig} />
+      <div className="bg-primary w-full overflow-hidden">
+        {/* Hero Section */}
+        <div className="flex justify-center items-start">
         <div className="xl:max-w-[1280px] w-full">
             <section id="home" className="flex md:flex-row flex-col sm:py-16 py-6 relative">
                 <ParticleCanvas />
@@ -397,8 +404,9 @@ const HomePage: React.FC = () => {
                     </div>
               </section>
           </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
