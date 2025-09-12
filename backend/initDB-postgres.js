@@ -43,6 +43,12 @@ const queries = [
     title JSONB NOT NULL,
     artist VARCHAR(255) NOT NULL,
     youtubeId VARCHAR(50) NOT NULL,
+    lyrics JSONB DEFAULT '{}',
+    audioUrl VARCHAR(500),
+    videoUrl VARCHAR(500),
+    category VARCHAR(50) DEFAULT 'worship',
+    tags JSONB DEFAULT '[]',
+    copyright VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 
@@ -88,6 +94,15 @@ const queries = [
     author VARCHAR(255) NOT NULL,
     status VARCHAR(20) CHECK (status IN ('pending', 'approved', 'rejected')) DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS presentations (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slides JSONB NOT NULL DEFAULT '[]',
+    created_by VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`
 ];
 

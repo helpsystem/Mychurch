@@ -230,6 +230,108 @@ router.get('/stats', async (req, res) => {
   }
 });
 
+// GET /api/bible/daily-verses - Get daily verses for worship presentations
+router.get('/daily-verses', async (req, res) => {
+  try {
+    // Get a selection of popular verses for worship presentations
+    const versesQuery = `
+      SELECT 
+        bb.abbreviation as book_key,
+        bb.name_en,
+        bb.name_fa,
+        bc.chapter_number,
+        bv.verse_number,
+        bv.text_en,
+        bv.text_fa
+      FROM bible_verses bv
+      JOIN bible_chapters bc ON bv.chapter_id = bc.id
+      JOIN bible_books bb ON bc.book_id = bb.id
+      WHERE (
+        (bb.abbreviation = 'John' AND bc.chapter_number = 3 AND bv.verse_number = 16) OR
+        (bb.abbreviation = 'Psalm' AND bc.chapter_number = 23 AND bv.verse_number = 1) OR
+        (bb.abbreviation = 'Matt' AND bc.chapter_number = 5 AND bv.verse_number = 14) OR
+        (bb.abbreviation = 'Rom' AND bc.chapter_number = 8 AND bv.verse_number = 28) OR
+        (bb.abbreviation = 'Phil' AND bc.chapter_number = 4 AND bv.verse_number = 13) OR
+        (bb.abbreviation = '1Cor' AND bc.chapter_number = 13 AND bv.verse_number = 13) OR
+        (bb.abbreviation = 'Jer' AND bc.chapter_number = 29 AND bv.verse_number = 11) OR
+        (bb.abbreviation = 'Prov' AND bc.chapter_number = 3 AND bv.verse_number = 5)
+      )
+      ORDER BY bb.book_number, bc.chapter_number, bv.verse_number
+    `;
+    
+    const result = await pool.query(versesQuery);
+    
+    const verses = result.rows.map(row => ({
+      id: `${row.book_key}-${row.chapter_number}-${row.verse_number}`,
+      book: row.book_key === 'Psalm' ? 'Psalms' : row.book_key,
+      chapter: row.chapter_number,
+      verse: row.verse_number.toString(),
+      text: {
+        en: row.text_en || `${row.book_key} ${row.chapter_number}:${row.verse_number} (English translation pending)`,
+        fa: row.text_fa || `${row.name_fa} ${row.chapter_number}:${row.verse_number} (ترجمه فارسی در حال تکمیل)`
+      },
+      version: 'NIV / ترجمه معاصر'
+    }));
+
+    // If no verses found in database, return mock data
+    if (verses.length === 0) {
+      const mockVerses = [
+        {
+          id: '1',
+          book: 'John',
+          chapter: 3,
+          verse: '16',
+          text: {
+            en: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.',
+            fa: 'زیرا خدا آنقدر جهان را دوست داشت که پسر یگانه خود را داد، تا هر که بر او ایمان آورد هلاک نشود، بلکه حیات جاودانی یابد.'
+          },
+          version: 'NIV / ترجمه معاصر'
+        },
+        {
+          id: '2',
+          book: 'Psalms',
+          chapter: 23,
+          verse: '1',
+          text: {
+            en: 'The Lord is my shepherd, I lack nothing.',
+            fa: 'خداوند شبان من است، محتاج چیزی نخواهم بود.'
+          },
+          version: 'NIV / ترجمه معاصر'
+        },
+        {
+          id: '3',
+          book: 'Matthew',
+          chapter: 5,
+          verse: '14',
+          text: {
+            en: 'You are the light of the world. A town built on a hill cannot be hidden.',
+            fa: 'شما نور جهان هستید. شهری که بر کوه واقع است نمی‌تواند پنهان شود.'
+          },
+          version: 'NIV / ترجمه معاصر'
+        }
+      ];
+      
+      res.json({
+        success: true,
+        verses: mockVerses
+      });
+    } else {
+      res.json({
+        success: true,
+        verses: verses
+      });
+    }
+    
+  } catch (error) {
+    console.error('❌ Error fetching daily verses:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to fetch daily verses',
+      error: error.message 
+    });
+  }
+});
+
 // POST /api/bible/import - Import Bible data (for future use with population script)
 router.post('/import', async (req, res) => {
   try {

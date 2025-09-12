@@ -28,6 +28,7 @@ const messageHistoryRoutes = require('./routes/messageHistoryRoutes');
 const pagesRoutes = require('./routes/pagesRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const filesRoutes = require('./routes/filesRoutes');
+const presentationRoutes = require('./routes/presentationRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -136,6 +137,7 @@ app.use('/api/messages', messageHistoryRoutes);
 app.use('/api/pages', pagesRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
+app.use('/api/presentations', presentationRoutes);
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {
