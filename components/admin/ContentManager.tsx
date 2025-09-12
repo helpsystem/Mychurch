@@ -42,6 +42,12 @@ const ContentManager: React.FC = () => {
                     { name: 'speaker', label: t('speaker'), type: 'text' },
                     { name: 'date', label: t('dateYYYYMMDD'), type: 'text' },
                     { name: 'audioUrl', label: t('audioUrl'), type: 'text' },
+                    { name: 'bibleReference', label: 'Bible Reference', type: 'text' },
+                    { name: 'bibleBook', label: 'Bible Book', type: 'text' },
+                    { name: 'bibleChapter', label: 'Bible Chapter', type: 'text' },
+                    { name: 'bibleVerses', label: 'Bible Verses', type: 'text' },
+                    { name: 'closingBlessing', label: 'Closing Blessing (EN)', type: 'textarea', lang: 'en' },
+                    { name: 'closingBlessing', label: 'Closing Blessing (FA)', type: 'textarea', lang: 'fa' },
                 ];
              case 'events':
                 return [
