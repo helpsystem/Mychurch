@@ -4,7 +4,7 @@ import { getAuthToken, removeToken } from './tokenManager';
 
 // All paths have been reviewed and corrected to ensure they point to the correct backend endpoints.
 
-export const signup = async (signupData: { name: string; email: string; password: string; }): Promise<void> => {
+export const signup = async (signupData: { name: string; email: string; password: string; captchaToken?: string; website?: string; }): Promise<void> => {
   await api.post('/api/auth/signup', signupData);
 };
 

@@ -62,9 +62,260 @@ Here in the love of Christ I stand`,
     },
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
   },
-  { id: 2, title: { en: 'Amazing Grace (My Chains Are Gone)', fa: 'فیض حیرت‌انگیز (زنجیرهایم گسست)' }, artist: 'Chris Tomlin', youtubeId: 'Jbe7OruLk8I', videoUrl: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4' },
-  { id: 3, title: { en: '10,000 Reasons (Bless the Lord)', fa: 'ده هزار دلیل (خداوند را متبارک بخوان)' }, artist: 'Matt Redman', youtubeId: 'XtwIT8JjddM' },
-  { id: 4, title: { en: 'What A Beautiful Name', fa: 'چه نام زیبایی' }, artist: 'Hillsong Worship', youtubeId: 'nQWFzMvCfLE' },
+  
+  // Persian Worship Songs
+  {
+    id: 2,
+    title: { en: 'The Lord is My Shepherd', fa: 'خداوند شبان من است' },
+    artist: 'Persian Christian Musicians',
+    youtubeId: 'dQw4w9WgXcQ',
+    lyrics: {
+      en: `The Lord is my shepherd, I lack nothing
+He makes me lie down in green pastures
+He leads me beside quiet waters
+He refreshes my soul`,
+      fa: `خداوند شبان من است، محتاج به هیچ چیز نخواهم بود
+او مرا در مراتع سرسبز می‌خواباند
+نزد آبهای آرام رهبری می‌کند
+جانم را تازه می‌سازد`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+  },
+
+  {
+    id: 3,
+    title: { en: 'Above All Kings', fa: 'برتر از شاهان' },
+    artist: 'Farsi Christian Worship',
+    youtubeId: 'nLWDpKxaHR0',
+    lyrics: {
+      en: `Above all kings and kingdoms
+Above all nature and all created things
+Above all wisdom and all the ways of man
+You were here before the world began`,
+      fa: `برتر از همه شاهان و پادشاهی‌ها
+برتر از طبیعت و همه چیزهای آفریده شده
+برتر از حکمت و همه راه‌های انسان
+تو پیش از آفرینش جهان اینجا بودی`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+  },
+
+  {
+    id: 4,
+    title: { en: 'Holy', fa: 'مقدس' },
+    artist: 'Persian Church Choir',
+    youtubeId: 'XtwIT8JjddM',
+    lyrics: {
+      en: `Holy, holy, holy
+Lord God Almighty
+Early in the morning
+Our song shall rise to Thee`,
+      fa: `مقدس، مقدس، مقدس
+خداوند خدای قادر مطلق
+صبح زود
+سرود ما به سوی تو برمی‌خیزد`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
+  },
+
+  {
+    id: 5,
+    title: { en: 'His Name', fa: 'نام او' },
+    artist: 'Iranian Christian Musicians',
+    youtubeId: 'rJgN-p_8p9Y',
+    lyrics: {
+      en: `His name is wonderful
+His name is powerful
+His name brings healing
+His name brings peace`,
+      fa: `نام او شگفت‌انگیز است
+نام او قدرتمند است
+نام او شفا می‌آورد
+نام او آرامش می‌آورد`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3'
+  },
+
+  {
+    id: 6,
+    title: { en: 'Amazing Grace (My Chains Are Gone)', fa: 'فیض حیرت‌انگیز (زنجیرهایم گسست)' },
+    artist: 'Chris Tomlin',
+    youtubeId: 'Jbe7OruLk8I',
+    lyrics: {
+      en: `Amazing grace, how sweet the sound
+That saved a wretch like me
+I once was lost, but now I'm found
+Was blind but now I see`,
+      fa: `فیض حیرت‌انگیز، چه آوازی شیرین
+که مثل من بدبخت را نجات داد
+زمانی گم بودم، اما حالا یافته شده‌ام
+نابینا بودم اما حالا می‌بینم`
+    },
+    videoUrl: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3'
+  },
+
+  {
+    id: 7,
+    title: { en: '10,000 Reasons (Bless the Lord)', fa: 'ده هزار دلیل (خداوند را متبارک بخوان)' },
+    artist: 'Matt Redman',
+    youtubeId: 'XtwIT8JjddM',
+    lyrics: {
+      en: `Bless the Lord, oh my soul
+Oh my soul, worship His holy name
+Sing like never before, oh my soul
+I'll worship Your holy name`,
+      fa: `خداوند را متبارک بخوان، ای جان من
+ای جان من، نام مقدس او را پرستش کن
+مثل هیچ وقت نخوانده‌ای بخوان، ای جان من
+نام مقدس تو را پرستش خواهم کرد`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3'
+  },
+
+  {
+    id: 8,
+    title: { en: 'What A Beautiful Name', fa: 'چه نام زیبایی' },
+    artist: 'Hillsong Worship',
+    youtubeId: 'nQWFzMvCfLE',
+    lyrics: {
+      en: `What a beautiful name it is
+What a beautiful name it is
+The name of Jesus Christ, my King
+What a beautiful name it is`,
+      fa: `چه نام زیبایی است
+چه نام زیبایی است
+نام عیسی مسیح، پادشاه من
+چه نام زیبایی است`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3'
+  },
+
+  {
+    id: 9,
+    title: { en: 'How Great Thou Art', fa: 'چه عظیم هستی' },
+    artist: 'Persian Hymns Collection',
+    youtubeId: 'dQw4w9WgXcQ',
+    lyrics: {
+      en: `O Lord my God, when I in awesome wonder
+Consider all the worlds Thy hands have made
+I see the stars, I hear the rolling thunder
+Thy power throughout the universe displayed`,
+      fa: `ای خداوند، خدای من، وقتی با تعجب
+همه جهان‌هایی که دستانت ساخته را می‌نگرم
+ستاره‌ها را می‌بینم، غرش رعد را می‌شنوم
+قدرت تو در سراسر کائنات نمایان است`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3'
+  },
+
+  {
+    id: 10,
+    title: { en: 'Be Thou My Vision', fa: 'رویای من باش' },
+    artist: 'Celtic Christian Hymns',
+    youtubeId: 'rJgN-p_8p9Y',
+    lyrics: {
+      en: `Be thou my vision, O Lord of my heart
+Naught be all else to me, save that thou art
+Thou my best thought, by day or by night
+Waking or sleeping, thy presence my light`,
+      fa: `رویای من باش، ای خداوند قلب من
+هیچ چیز دیگری برایم نباشد جز آنکه تو هستی
+تو بهترین فکر من، روز یا شب
+بیدار یا خواب، حضور تو نور من است`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3'
+  },
+
+  {
+    id: 11,
+    title: { en: 'Persian Psalm of Praise', fa: 'مزمور ستایش فارسی' },
+    artist: 'Iranian Church Music Ministry',
+    youtubeId: 'XtwIT8JjddM',
+    lyrics: {
+      en: `Let everything that has breath praise the Lord
+From the rising of the sun to its setting
+Let the name of the Lord be praised
+Both now and forevermore`,
+      fa: `هر آنچه نفس دارد خداوند را ستایش کند
+از طلوع آفتاب تا غروب آن
+نام خداوند ستوده باد
+هم اکنون و تا ابدالاباد`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3'
+  },
+
+  {
+    id: 12,
+    title: { en: 'Jesus Loves Me', fa: 'عیسی مرا دوست دارد' },
+    artist: 'Children\'s Persian Songs',
+    youtubeId: 'nQWFzMvCfLE',
+    lyrics: {
+      en: `Jesus loves me, this I know
+For the Bible tells me so
+Little ones to Him belong
+They are weak but He is strong`,
+      fa: `عیسی مرا دوست دارد، این را می‌دانم
+زیرا کتاب مقدس این را به من می‌گوید
+کودکان کوچک متعلق به او هستند
+آنها ضعیفند اما او قوی است`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3'
+  },
+
+  {
+    id: 13,
+    title: { en: 'Crown Him with Many Crowns', fa: 'او را با تاج‌های فراوان تاج‌گذاری کنید' },
+    artist: 'Persian Traditional Hymns',
+    youtubeId: 'dQw4w9WgXcQ',
+    lyrics: {
+      en: `Crown Him with many crowns
+The Lamb upon His throne
+Hark! how the heavenly anthem drowns
+All music but its own`,
+      fa: `او را با تاج‌های فراوان تاج‌گذاری کنید
+بره بر تخت خود
+بشنوید! چگونه سرود آسمانی
+همه موسیقی را غرق در خود می‌کند`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3'
+  },
+
+  {
+    id: 14,
+    title: { en: 'Persian Love Song to Jesus', fa: 'ترانه عشق فارسی به عیسی' },
+    artist: 'Contemporary Persian Worship',
+    youtubeId: 'rJgN-p_8p9Y',
+    lyrics: {
+      en: `My heart belongs to You alone
+Jesus, You are my love
+In every season, every storm
+You remain faithful above`,
+      fa: `قلب من فقط متعلق به توست
+عیسی، تو عشق من هستی
+در هر فصل، هر طوفان
+تو در بالا وفادار می‌مانی`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3'
+  },
+
+  {
+    id: 15,
+    title: { en: 'Persian Christmas Carol', fa: 'سرود کریسمس فارسی' },
+    artist: 'Iranian Christmas Choir',
+    youtubeId: 'XtwIT8JjddM',
+    lyrics: {
+      en: `Silent night, holy night
+All is calm, all is bright
+Round yon virgin mother and Child
+Holy Infant so tender and mild`,
+      fa: `شب خاموش، شب مقدس
+همه چیز آرام، همه چیز روشن
+دور مادر باکره و کودک
+نوزاد مقدس، بسیار لطیف و ملایم`
+    },
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3'
+  }
 ];
 
 const futureEvent1 = new Date();
