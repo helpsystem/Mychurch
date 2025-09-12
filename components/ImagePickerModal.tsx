@@ -3,7 +3,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
 import { X, Wand2, Folder, UploadCloud } from 'lucide-react';
 import Spinner from './Spinner';
-import { geminiService } from '../services/geminiService';
+import { secureGeminiService } from '../services/secureGeminiService';
 
 interface Props {
     onClose: () => void;
@@ -29,7 +29,7 @@ const FilePickerModal: React.FC<Props> = ({ onClose, onSelect, fileTypeFilter = 
         setError('');
         setGeneratedImage(null);
         try {
-            const imageUrl = await geminiService.generateImage(prompt);
+            const imageUrl = await secureGeminiService.generateImage(prompt);
             setGeneratedImage(imageUrl);
         } catch (err) {
             console.error("Image generation failed:", err);

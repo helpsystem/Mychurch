@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { TimedWord } from '../types';
-import { geminiService } from '../services/geminiService';
+import { secureGeminiService } from '../services/secureGeminiService';
 import Spinner from '../components/Spinner';
 
 interface PresentationContent {
@@ -55,7 +55,7 @@ const PresentationPage: React.FC = () => {
                 if (settings.audio) {
                     const farsiTextToSpeak = verses.fa.join(' ');
                     try {
-                        const ttsResponse = await geminiService.textToSpeech(farsiTextToSpeak);
+                        const ttsResponse = await secureGeminiService.textToSpeech(farsiTextToSpeak);
                         audioSrc = `data:audio/mpeg;base64,${ttsResponse.audioB64}`;
                         timedWords = ttsResponse.timedWords;
                     } catch (e) {

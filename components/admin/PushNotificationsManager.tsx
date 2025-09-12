@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import Spinner from '../Spinner';
 import { Send, Wand2 } from 'lucide-react';
-import { geminiService } from '../../services/geminiService';
+import { secureGeminiService } from '../../services/secureGeminiService';
 
 const PushNotificationsManager: React.FC = () => {
     const { t } = useLanguage();
@@ -42,7 +42,7 @@ const PushNotificationsManager: React.FC = () => {
         if(!textToImprove) return;
         
         try {
-            const response = await geminiService.improveNotificationText(textToImprove);
+            const response = await secureGeminiService.improveNotificationText(textToImprove);
             const improvedText = response.text;
             if (field === 'title') {
                 lang === 'en' ? setTitle(improvedText) : setTitleFa(improvedText);

@@ -3,7 +3,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
 import { Wand2, Download, BookOpen } from 'lucide-react';
 import Spinner from '../components/Spinner';
-import { geminiService } from '../services/geminiService';
+import { secureGeminiService } from '../services/secureGeminiService';
 import { Language } from '../types';
 
 const ImageStudioPage: React.FC = () => {
@@ -51,7 +51,7 @@ const ImageStudioPage: React.FC = () => {
         }
 
         try {
-            const imageUrl = await geminiService.generateImage(finalPrompt);
+            const imageUrl = await secureGeminiService.generateImage(finalPrompt);
             setGeneratedImages(prev => [imageUrl, ...prev]);
         } catch (err) {
             console.error(err);

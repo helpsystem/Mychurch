@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { geminiService } from '../services/geminiService';
+import { secureGeminiService } from '../services/secureGeminiService';
 import { ChatMessage } from '../types';
 import ChatMessageComponent from '../components/ChatMessage';
 import Spinner from '../components/Spinner';
@@ -57,7 +57,7 @@ const AiHelperPage: React.FC = () => {
     try {
       // Filter out the initial UI-only welcome message from the history sent to the API
       const historyForApi = newMessages.filter(m => m.text !== t('aiWelcome'));
-      const response = await geminiService.chatWithAlHayat(historyForApi);
+      const response = await secureGeminiService.chatWithAlHayat(historyForApi);
       let aiText = response.text.trim();
       
       let aiMessage: ChatMessage;
