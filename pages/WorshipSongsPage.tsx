@@ -1,13 +1,8 @@
 import React from 'react';
-import WorshipSongs from '../components/WorshipSongs';
-import Layout from '../components/Layout';
+import EnhancedWorshipSongs from '../components/EnhancedWorshipSongs';
 
 const WorshipSongsPage = () => {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <WorshipSongs />
-    </div>
-  );
+  return <EnhancedWorshipSongs />;
 };
 
 export default WorshipSongsPage;
