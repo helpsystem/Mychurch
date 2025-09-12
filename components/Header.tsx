@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
-import { Menu, X, Bell, Check, ChevronDown, User as UserIcon, LogOut, LayoutDashboard, Home, BookOpen, HeartHandshake, Info, DollarSign, MessageSquare, Phone, BrainCircuit, Image, Globe, HelpCircle, Users, Tv, Search, Bookmark, Gamepad2, Volume2, Music } from 'lucide-react';
+import { Menu, X, Bell, Check, ChevronDown, User as UserIcon, LogOut, LayoutDashboard, Home, BookOpen, HeartHandshake, Heart, Info, DollarSign, MessageSquare, Phone, BrainCircuit, Image, Globe, HelpCircle, Users, Tv, Search, Bookmark, Gamepad2, Volume2, Music } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { getProfilePictureUrl } from '../lib/utils';
 import { User } from '../types';
@@ -142,6 +142,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
             { to: '/announcements', title: lang === 'fa' ? 'اطلاعیه‌ها' : 'Announcements', icon: <Bell size={16}/> },
             { to: '/testimonials', title: t('navTestimonials'), icon: <MessageSquare size={16}/> },
             { to: '/prayer', title: t('navPrayer'), icon: <HeartHandshake size={16}/> },
+            { to: '/prayer-requests', title: lang === 'fa' ? 'درخواست‌های دعا' : 'Prayer Requests', icon: <Heart size={16}/> },
             { to: '/contact', title: t('navContact'), icon: <Phone size={16}/> },
         ]
     };

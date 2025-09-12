@@ -67,12 +67,17 @@ const queries = [
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 
-  `CREATE TABLE IF NOT EXISTS prayers (
+  `CREATE TABLE IF NOT EXISTS prayer_requests (
     id SERIAL PRIMARY KEY,
-    title JSONB NOT NULL,
-    description JSONB NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    status VARCHAR(20) CHECK (status IN ('pending', 'approved', 'rejected')) DEFAULT 'pending',
+    text TEXT NOT NULL,
+    category VARCHAR(50) CHECK (category IN ('thanksgiving', 'healing', 'guidance', 'family', 'other')) DEFAULT 'other',
+    is_anonymous BOOLEAN DEFAULT false,
+    author_name VARCHAR(255),
+    author_email VARCHAR(255),
+    author_phone VARCHAR(50),
+    prayer_count INTEGER DEFAULT 0,
+    urgency VARCHAR(20) CHECK (urgency IN ('low', 'normal', 'high', 'urgent')) DEFAULT 'normal',
+    is_public BOOLEAN DEFAULT false,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 

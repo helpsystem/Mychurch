@@ -217,4 +217,22 @@ export const api = {
 
   importBibleChapter: (data: BibleImportData): Promise<{ books: BibleBook[], content: ContentData['bibleContent'] }> =>
     api.post('/api/bible/import', data),
+
+  // Prayer Requests API methods
+  getPrayerRequests: (publicOnly?: boolean) => {
+    const queryParams = publicOnly ? { public_only: 'true' } : {};
+    return api.get<any[]>('/api/prayer-requests', queryParams);
+  },
+
+  createPrayerRequest: (data: any) => 
+    api.post<any>('/api/prayer-requests', data),
+
+  updatePrayerRequest: (id: number, data: any) =>
+    api.put<any>(`/api/prayer-requests/${id}`, data),
+
+  incrementPrayerCount: (id: number) =>
+    api.patch<any>(`/api/prayer-requests/${id}/pray`, {}),
+
+  deletePrayerRequest: (id: number) =>
+    api.delete(`/api/prayer-requests/${id}`),
 };

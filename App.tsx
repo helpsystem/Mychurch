@@ -45,6 +45,7 @@ import BibleReaderPage from './pages/BibleReaderPage';
 import WorshipSongsPage from './pages/WorshipSongsPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
 import CalendarPage from './pages/CalendarPage';
+import PrayerRequestsPage from './pages/PrayerRequestsPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -88,6 +89,7 @@ function App() {
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="giving" element={<GivingPage />} />
             <Route path="prayer" element={<PrayerPage />} />
+            <Route path="prayer-requests" element={<PrayerRequestsPage />} />
             <Route path="events" element={<EventsPage />} />
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="announcements" element={<AnnouncementsPage />} />
