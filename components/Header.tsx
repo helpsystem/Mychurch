@@ -114,9 +114,9 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
     const closeMenu = () => setIsMenuOpen(false);
 
     const menuItems: {
-        ministries: { to: string, title: string, icon: JSX.Element }[],
-        resources: ({ to: string, title: string, icon: JSX.Element, action?: undefined } | { action: () => void, title: string, icon: JSX.Element, to?: undefined })[],
-        connect: { to: string, title: string, icon: JSX.Element }[]
+        ministries: { to: string, title: string, icon: React.ReactElement }[],
+        resources: ({ to: string, title: string, icon: React.ReactElement, action?: undefined } | { action: () => void, title: string, icon: React.ReactElement, to?: undefined })[],
+        connect: { to: string, title: string, icon: React.ReactElement }[]
     } = {
         ministries: [
             { to: '/sermons', title: t('navSermons'), icon: <BookOpen size={16}/> },
