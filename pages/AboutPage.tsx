@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { BookOpen, Target, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { getRandomImage } from '../lib/theme';
+import SEOHead from '../components/SEO/SEOHead';
+import { getPageSEOConfig } from '../lib/seoConfig';
 
 const BeliefCard: React.FC<{ icon: React.ReactNode; title: string; text: string }> = ({ icon, title, text }) => (
   <div className="flex flex-row p-6 rounded-[20px] feature-card interactive-card-glow">
@@ -16,9 +18,12 @@ const BeliefCard: React.FC<{ icon: React.ReactNode; title: string; text: string 
 );
 
 const AboutPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [storyImage, setStoryImage] = useState('');
   const [missionImage, setMissionImage] = useState('');
+  
+  // Get SEO configuration for about page
+  const seoConfig = getPageSEOConfig('about', lang);
 
   useEffect(() => {
     setStoryImage(getRandomImage());
@@ -33,7 +38,9 @@ const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div className="sm:px-16 px-6 sm:py-12 py-4">
+    <>
+      <SEOHead {...seoConfig} />
+      <div className="sm:px-16 px-6 sm:py-12 py-4">
       <div className="text-center mb-16 reveal-on-scroll">
         <h1 className="font-semibold text-4xl md:text-5xl text-white mb-2 leading-tight">
           {t('navAbout')} <span className="text-gradient">{t('churchTitle')}</span>
@@ -75,7 +82,8 @@ const AboutPage: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

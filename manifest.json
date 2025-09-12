@@ -2,22 +2,101 @@
   "short_name": "ICC-DC",
   "name": "Iranian Christian Church of D.C.",
   "description": "A comprehensive, bilingual (English/Farsi) website for the Iranian Christian Church of Washington D.C., featuring dynamic content, a Bible reader, and an AI-powered assistant.",
+  "categories": ["religion", "community", "education"],
+  "lang": "en",
+  "dir": "auto",
   "icons": [
     {
-      "src": "/images/logo.png",
+      "src": "/images/church-logo-hq.png",
       "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/church-logo-hq.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/images/church-logo-hq.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/church-logo-hq.png",
+      "type": "image/png", 
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
   "theme_color": "#00040F",
-  "background_color": "#00040F"
+  "background_color": "#00040F",
+  "screenshots": [
+    {
+      "src": "/images/Church_interior_worship_space_70ed9ac2.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/Church_community_gathering_a97f90e1.png", 
+      "type": "image/png",
+      "sizes": "750x1334",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bible Reader",
+      "short_name": "Bible",
+      "description": "Read the Bible in multiple languages",
+      "url": "/bible-reader",
+      "icons": [
+        {
+          "src": "/images/Bible_study_peaceful_setting_6bb44b27.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Prayer Requests",
+      "short_name": "Prayer",
+      "description": "Submit and view prayer requests",
+      "url": "/prayer",
+      "icons": [
+        {
+          "src": "/images/Prayer_circle_hands_together_feb88f83.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Live Service",
+      "short_name": "Live",
+      "description": "Join our live worship service",
+      "url": "/live",
+      "icons": [
+        {
+          "src": "/images/Persian_Christian_choir_singing_bfe3adf8.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }

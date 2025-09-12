@@ -1,0 +1,23 @@
+# Netlify redirects for SPA routing
+/*    /index.html   200
+
+# Redirect root to English by default
+/    /en/    302
+
+# Language-specific redirects
+/en/*   /index.html   200
+/fa/*   /index.html   200
+
+# API routes should not be redirected
+/api/*  200
+
+# Asset routes should not be redirected
+/images/*  200
+/assets/*  200
+/fonts/*   200
+
+# Manifest and service worker
+/manifest.json  200
+/sw.js  200
+/robots.txt  200
+/sitemap.xml  200

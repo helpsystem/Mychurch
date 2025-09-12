@@ -1,92 +1,161 @@
-const CACHE_NAME = 'iccdc-v2';
+const CACHE_NAME = 'iccdc-v3-optimized';
+const STATIC_CACHE = 'iccdc-static-v3';
+const DYNAMIC_CACHE = 'iccdc-dynamic-v3';
+const API_CACHE = 'iccdc-api-v3';
+
+// Critical resources to cache immediately
 const urlsToCache = [
   '/',
   '/index.html',
-  '/images/logo.png'
+  '/images/church-logo-hq.png',
+  '/images/jesus-cross-sunset.jpg',
+  '/manifest.json'
+];
+
+// Static assets to cache (with longer TTL)
+const staticAssets = [
+  '/images/',
+  '/assets/',
+  '/fonts/',
+  'https://fonts.googleapis.com/',
+  'https://fonts.gstatic.com/',
+  'https://cdn.tailwindcss.com'
+];
+
+// API routes to cache with network-first strategy
+const apiRoutes = [
+  '/api/'
 ];
 
 self.addEventListener('install', event => {
+  console.log('Service Worker installing...');
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
+    Promise.all([
+      caches.open(STATIC_CACHE).then(cache => {
+        console.log('Caching critical resources...');
         return cache.addAll(urlsToCache);
-      })
+      }),
+      self.skipWaiting() // Activate immediately
+    ])
   );
 });
 
 self.addEventListener('fetch', event => {
-  // For API calls, use Network First, then Cache strategy.
-  // This ensures users get the most up-to-date data when online.
-  if (event.request.url.includes('/api/')) {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
+    return;
+  }
+
+  // Handle API requests - Network First strategy
+  if (url.pathname.startsWith('/api/')) {
     event.respondWith(
-      fetch(event.request)
+      fetch(request)
         .then(networkResponse => {
-          // If the network request is successful, clone it and cache it for offline use.
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            if(event.request.method === 'GET') {
-              cache.put(event.request, responseToCache);
-            }
-          });
+          if (networkResponse.ok) {
+            const responseToCache = networkResponse.clone();
+            caches.open(API_CACHE).then(cache => {
+              cache.put(request, responseToCache);
+            });
+          }
           return networkResponse;
         })
         .catch(() => {
-          // If the network request fails (e.g., offline), try to serve from the cache.
-          return caches.match(event.request);
+          return caches.match(request);
         })
     );
     return;
   }
 
-  // For all other requests (static assets), use Cache First, then Network strategy.
-  // This is fast and enables the app to work offline.
-  event.respondWith(
-    caches.match(event.request)
-      .then(cachedResponse => {
-        // Cache hit - return response
-        if (cachedResponse) {
-          return cachedResponse;
-        }
+  // Handle static assets - Cache First strategy
+  const isStaticAsset = staticAssets.some(pattern => 
+    url.pathname.startsWith(pattern) || url.href.includes(pattern)
+  );
 
-        // Not in cache, fetch from network.
-        return fetch(event.request).then(
-          networkResponse => {
-            // Check if we received a valid response to cache.
-            // We only cache basic same-origin GET requests.
-            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-              return networkResponse;
-            }
-
-            const responseToCache = networkResponse.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                if(event.request.method === 'GET') {
-                    cache.put(event.request, responseToCache);
-                }
-              });
-
-            return networkResponse;
+  if (isStaticAsset) {
+    event.respondWith(
+      caches.match(request)
+        .then(cachedResponse => {
+          if (cachedResponse) {
+            return cachedResponse;
           }
-        );
+          
+          return fetch(request).then(networkResponse => {
+            if (networkResponse.ok) {
+              const responseToCache = networkResponse.clone();
+              caches.open(STATIC_CACHE).then(cache => {
+                cache.put(request, responseToCache);
+              });
+            }
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // Return fallback for images
+          if (request.destination === 'image') {
+            return caches.match('/images/placeholder.jpg');
+          }
+        })
+    );
+    return;
+  }
+
+  // Handle documents and pages - Stale While Revalidate strategy
+  if (request.mode === 'navigate' || request.destination === 'document') {
+    event.respondWith(
+      caches.match(request)
+        .then(cachedResponse => {
+          const fetchPromise = fetch(request)
+            .then(networkResponse => {
+              if (networkResponse.ok) {
+                const responseToCache = networkResponse.clone();
+                caches.open(DYNAMIC_CACHE).then(cache => {
+                  cache.put(request, responseToCache);
+                });
+              }
+              return networkResponse;
+            });
+
+          return cachedResponse || fetchPromise;
+        })
+        .catch(() => {
+          return caches.match('/index.html');
+        })
+    );
+    return;
+  }
+
+  // Default - try cache first, then network
+  event.respondWith(
+    caches.match(request)
+      .then(cachedResponse => {
+        return cachedResponse || fetch(request);
       })
   );
 });
 
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
+  console.log('Service Worker activating...');
+  const cacheWhitelist = [STATIC_CACHE, DYNAMIC_CACHE, API_CACHE];
+  
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    Promise.all([
+      // Clean up old caches
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (!cacheWhitelist.includes(cacheName)) {
+              console.log('Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      // Take control of all clients immediately
+      self.clients.claim()
+    ])
   );
 });
 
