@@ -116,7 +116,7 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     res.json({
       success: true,
       book: {
-        key: bookKey,
+        key: book.abbreviation, // Use standardized abbreviation instead of user input
         name: {
           en: book.name_en,
           fa: book.name_fa
