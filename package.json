@@ -11,7 +11,7 @@
     "build:staging": "NODE_ENV=staging vite build",
     "preview": "vite preview",
     "preview:prod": "vite build && vite preview",
-    "backend": "cd backend && npm start",
+    "start": "serve -s dist -l 5000",
     "start-all": "concurrently \"npm run dev\" \"npm run backend\"",
     "clean": "rm -rf dist",
     "type-check": "tsc --noEmit",
