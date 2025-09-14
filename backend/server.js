@@ -34,7 +34,7 @@ const dailyMessagesRoutes = require('./routes/dailyMessagesRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
 // ---------- CORS ----------
 const allowedOrigins = [
@@ -51,6 +51,10 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+
+// ---------- STATIC FILE SERVING ----------
+// Serve built frontend files from dist directory
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // ---------- FTP CONFIG ----------
 const ftpConfig = {
@@ -153,6 +157,16 @@ app.use('/api/daily-content', dailyContentRoutes);
 app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
+
+// ---------- CATCH-ALL FOR REACT ROUTING ----------
+// Serve index.html for any non-API routes (React Router support)
+app.get('*', (req, res) => {
+  // Skip API routes
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ message: 'API endpoint not found' });
+  }
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {

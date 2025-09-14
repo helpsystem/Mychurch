@@ -27,7 +27,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run build && concurrently -k -n \"web,api\" \"serve -s dist -l 5000\" \"node backend/server.js\""
+args = "npm run build && node backend/server.js"
 waitForPort = 5000
 
 [[ports]]
@@ -37,10 +37,6 @@ externalPort = 3001
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 38937
-externalPort = 3000
 
 [[ports]]
 localPort = 46337
