@@ -32,29 +32,8 @@ export default defineConfig(({ mode }) => {
         
         rollupOptions: {
           output: {
-            // Manual chunk splitting for better caching
-            manualChunks: {
-              // Core React libraries
-              'react-vendor': ['react', 'react-dom'],
-              'router': ['react-router-dom'],
-              
-              // UI and styling libraries
-              'ui-vendor': ['lucide-react'],
-              'chart-vendor': ['chart.js', 'react-chartjs-2'],
-              
-              // Large libraries
-              'editor': ['react-quill'],
-              'pageflip': ['react-pageflip'],
-              
-              // Google services
-              'google-vendor': ['@google/genai'],
-              
-              // Utilities
-              'utils-vendor': ['axios', 'zod'],
-              
-              // jQuery (if needed for legacy components)
-              'jquery-vendor': ['jquery', 'jquery-easing']
-            },
+            // Automatic chunk splitting
+            manualChunks: undefined,
             
             // Asset naming for better caching
             chunkFileNames: (chunkInfo) => {
