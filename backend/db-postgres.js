@@ -2,10 +2,14 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 // استفاده از متغیرهای محیطی PostgreSQL که Replit تنظیم کرده
+// Force SSL mode for Neon connections
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+  ssl: { rejectUnauthorized: false }
 });
+
+// Log connection attempt (without credentials)
+console.log(`🔗 PostgreSQL connecting with SSL required`);
 
 // تست اتصال
 pool.connect((err, client, release) => {

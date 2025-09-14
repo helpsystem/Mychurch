@@ -34,13 +34,13 @@
     "react-pageflip": "^2.0.3",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.6.3",
+    "serve": "^14.2.1",
     "twilio": "^5.9.0",
     "zod": "^4.1.8"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "concurrently": "^9.2.1",
-    "serve": "^14.2.1",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   },
