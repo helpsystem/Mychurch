@@ -109,7 +109,7 @@ export default defineConfig(({ mode }) => {
       define: {
         'process.env.VITE_API_BASE': JSON.stringify(
           isProduction 
-            ? 'https://your-production-domain.com/api'
+            ? `https://${env.REPLIT_DEV_DOMAIN?.replace(':5000', '')}:3001`
             : `https://${env.REPLIT_DEV_DOMAIN?.replace(':5000', '')}:3001`
         ),
         'process.env.NODE_ENV': JSON.stringify(mode),

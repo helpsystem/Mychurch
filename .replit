@@ -27,7 +27,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run build && npm run start"
+args = "npm run build && concurrently -k -n \"web,api\" \"serve -s dist -l 5000\" \"node backend/server.js\""
 waitForPort = 5000
 
 [[ports]]
