@@ -5,7 +5,7 @@ A comprehensive, modern church website with AI-powered features built for the Ir
 
 ## Current State
 - ✅ Fully functional church website running on Replit
-- ✅ React 19 with TypeScript and Vite build system
+- ✅ React 18.3.1 with TypeScript and Vite build system
 - ✅ AI-powered features with Google Gemini integration
 - ✅ Comprehensive backend with Node.js/Express and SQLite
 - ✅ Multi-language support (English/Farsi)
@@ -28,7 +28,7 @@ A comprehensive, modern church website with AI-powered features built for the Ir
 - **Daily Messages System**: Inspirational message system inspired by Pastor Javad's WhatsApp messages with multi-channel delivery (website, email, SMS, WhatsApp)
 
 ## Tech Stack
-- **Frontend**: React 19, TypeScript, Vite, Lucide Icons
+- **Frontend**: React 18.3.1, TypeScript, Vite, Lucide Icons
 - **Backend**: Node.js, Express, SQLite database
 - **AI Services**: Google Gemini API integration
 - **Styling**: Modern CSS with responsive design
