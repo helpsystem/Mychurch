@@ -50,11 +50,14 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
   try {
     const { bookKey, chapter } = req.params;
     
-    // Find book by abbreviation (key)
+    // Find book by abbreviation, English name, or Farsi name (case-insensitive)
     const bookQuery = `
-      SELECT id, name_en, name_fa, book_number
+      SELECT id, name_en, name_fa, book_number, abbreviation
       FROM bible_books 
-      WHERE abbreviation = $1
+      WHERE LOWER(abbreviation) = LOWER($1) 
+         OR LOWER(name_en) = LOWER($1)
+         OR LOWER(name_fa) = LOWER($1)
+         OR LOWER($1) = LOWER(REPLACE(name_en, ' ', ''))
     `;
     const bookResult = await pool.query(bookQuery, [bookKey]);
     
