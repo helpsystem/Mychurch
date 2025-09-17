@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { BookOpen, ChevronLeft, ChevronRight, Search, Volume2, Play, Pause, Square } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Search, Volume2, Play, Pause, Square, Globe } from 'lucide-react';
 import { getOldTestamentBooks, getNewTestamentBooks } from '../lib/localBibleData';
 import TextToSpeech from './TextToSpeech';
 import useBibleTTS from '../hooks/useBibleTTS';
+import HTMLFlipBook from 'react-pageflip';
 
 interface BibleVerse {
   book: string;
@@ -28,6 +29,10 @@ const BibleReader = () => {
   const [error, setError] = useState(null);
   const [currentVersePlaying, setCurrentVersePlaying] = useState(null);
   const [showTTSControls, setShowTTSControls] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [readingLang, setReadingLang] = useState('fa');
+  const bookRef = useRef(null);
+  const versesPerPage = 8; // تعداد آیات در هر صفحه
   
   const {
     isPlaying,
@@ -161,24 +166,94 @@ const BibleReader = () => {
     }
   };
 
+  // تقسیم verses به صفحات
+  const pages = [];
+  for (let i = 0; i < filteredVerses.length; i += versesPerPage) {
+    pages.push(filteredVerses.slice(i, i + versesPerPage));
+  }
+
+  // اگر صفحه‌ای وجود نداشت، صفحه خالی اضافه کن
+  if (pages.length === 0) {
+    pages.push([]);
+  }
+
+  // Reset flipbook page when content changes
+  useEffect(() => {
+    setCurrentPage(0);
+    if (bookRef.current) {
+      setTimeout(() => {
+        bookRef.current?.pageFlip()?.turnToPage(0);
+      }, 100);
+    }
+  }, [selectedBook, selectedChapter, searchTerm]);
+
+  // Clamp current page when pages change
+  useEffect(() => {
+    const lastFlipIndex = pages.length; // Cover + content pages
+    if (currentPage > lastFlipIndex && lastFlipIndex > 0) {
+      const targetPage = lastFlipIndex;
+      setCurrentPage(targetPage);
+      if (bookRef.current) {
+        setTimeout(() => {
+          bookRef.current?.pageFlip()?.turnToPage(targetPage);
+        }, 100);
+      }
+    }
+  }, [pages.length, currentPage]);
+
+  const handlePageFlip = (e) => {
+    setCurrentPage(e.data);
+  };
+
+  const goToNextPage = () => {
+    const lastFlipIndex = pages.length; // Cover + content pages
+    if (bookRef.current && currentPage < lastFlipIndex) {
+      bookRef.current.pageFlip().flipNext();
+    }
+  };
+
+  const goToPrevPage = () => {
+    if (bookRef.current && currentPage > 0) {
+      bookRef.current.pageFlip().flipPrev();
+    }
+  };
+
+  // Helper for display
+  const getPageDisplayInfo = () => {
+    if (currentPage === 0) {
+      return {
+        label: lang === 'fa' ? 'جلد' : 'Cover',
+        pageInfo: lang === 'fa' ? 'صفحه جلد' : 'Cover Page'
+      };
+    }
+    
+    const contentPageNum = currentPage; // Since cover is index 0, content starts at 1
+    return {
+      label: lang === 'fa' ? `صفحه ${contentPageNum}` : `Page ${contentPageNum}`,
+      pageInfo: lang === 'fa' 
+        ? `صفحه ${contentPageNum} از ${pages.length}` 
+        : `Page ${contentPageNum} of ${pages.length}`
+    };
+  };
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fa' ? 'کتاب مقدس آنلاین' : 'Online Bible'}
+          {lang === 'fa' ? 'کتاب مقدس' : 'Holy Bible'}
         </h1>
         <p className="text-lg text-gray-600">
           {lang === 'fa' 
-            ? 'کتاب مقدس کامل را آنلاین مطالعه کنید' 
-            : 'Study the complete Bible online'
+            ? 'تجربه مطالعه کتاب مقدس به شکل کتاب واقعی' 
+            : 'Experience the Bible like a real book'
           }
         </p>
       </div>
 
       {/* Controls */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
           {/* Book Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -189,6 +264,7 @@ const BibleReader = () => {
               onChange={(e) => {
                 setSelectedBook(e.target.value);
                 setSelectedChapter(1);
+                setCurrentPage(0);
               }}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
@@ -224,7 +300,10 @@ const BibleReader = () => {
               </button>
               <select
                 value={selectedChapter}
-                onChange={(e) => setSelectedChapter(parseInt(e.target.value))}
+                onChange={(e) => {
+                  setSelectedChapter(parseInt(e.target.value));
+                  setCurrentPage(0);
+                }}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {Array.from({ length: Math.max(1, maxChapters) }, (_, i) => i + 1).map(chapter => (
@@ -259,179 +338,262 @@ const BibleReader = () => {
               <Search className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
+
+          {/* Reading Language */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {lang === 'fa' ? 'زبان روخوانی' : 'Reading Language'}
+            </label>
+            <select
+              value={readingLang}
+              onChange={(e) => setReadingLang(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="fa">فارسی</option>
+              <option value="en">English</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      {/* Bible Text */}
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-          <div className="flex items-center">
-            <BookOpen className="h-6 w-6 text-blue-600 mr-3" />
-            <h2 className="text-2xl font-bold text-gray-900">
+      {/* TTS Controls Bar */}
+      {isSupported && verses.length > 0 && (
+        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="font-medium text-gray-700">
+                {lang === 'fa' ? 'کنترل‌های صوتی' : 'Audio Controls'}
+              </h3>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setReadingLang(readingLang === 'fa' ? 'en' : 'fa')}
+                  className="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+                  title={lang === 'fa' ? 'تغییر زبان روخوانی' : 'Change reading language'}
+                >
+                  <Globe className="h-4 w-4" />
+                  <span className="ml-1 text-sm">{readingLang === 'fa' ? 'فارسی' : 'English'}</span>
+                </button>
+                
+                {!isPlaying ? (
+                  <button
+                    onClick={() => {
+                      const chapterText = verses.map(v => v.text[readingLang]).join(' ');
+                      speakChapter(verses.map(v => ({ text: v.text[readingLang], number: v.verse })), readingLang);
+                    }}
+                    className="p-2 rounded-lg bg-green-100 text-green-600 hover:bg-green-200 transition-colors"
+                    title={lang === 'fa' ? 'خواندن کل فصل' : 'Read Entire Chapter'}
+                  >
+                    <Play className="h-5 w-5" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={pauseSpeech}
+                    className="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition-colors"
+                    title={lang === 'fa' ? 'مکث' : 'Pause'}
+                  >
+                    <Pause className="h-5 w-5" />
+                  </button>
+                )}
+                
+                <button
+                  onClick={stopSpeech}
+                  className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors"
+                  title={lang === 'fa' ? 'توقف' : 'Stop'}
+                >
+                  <Square className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="text-sm text-gray-500">
               {currentBook?.name[lang]} {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
-            </h2>
+            </div>
           </div>
-          
-          {/* TTS Controls */}
-          {isSupported && verses.length > 0 && (
-            <div className="flex items-center space-x-2 rtl:space-x-reverse">
-              <button
-                onClick={() => setShowTTSControls(!showTTSControls)}
-                className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
-                title={lang === 'fa' ? 'کنترل‌های صوتی' : 'Audio Controls'}
-              >
-                <Volume2 className="h-5 w-5" />
-              </button>
-              
-              {!isPlaying ? (
-                <button
-                  onClick={() => {
-                    const chapterText = verses.map(v => v.text[lang]).join(' ');
-                    speakChapter(verses.map(v => ({ text: v.text[lang], number: v.verse })), lang);
-                  }}
-                  className="p-2 rounded-lg bg-green-100 text-green-600 hover:bg-green-200 transition-colors"
-                  title={lang === 'fa' ? 'خواندن کل فصل' : 'Read Entire Chapter'}
-                >
-                  <Play className="h-5 w-5" />
-                </button>
-              ) : (
-                <button
-                  onClick={pauseSpeech}
-                  className="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition-colors"
-                  title={lang === 'fa' ? 'مکث' : 'Pause'}
-                >
-                  <Pause className="h-5 w-5" />
-                </button>
-              )}
-              
-              <button
-                onClick={stopSpeech}
-                className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors"
-                title={lang === 'fa' ? 'توقف' : 'Stop'}
-              >
-                <Square className="h-5 w-5" />
-              </button>
+        </div>
+      )}
+
+      {/* Bible Book */}
+      <div className="flex justify-center mb-8">
+        <div className="relative">
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10 rounded-lg">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+                <p className="text-gray-500">{lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}</p>
+              </div>
             </div>
           )}
-        </div>
 
-        {/* Advanced TTS Controls */}
-        {showTTSControls && isSupported && (
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-medium text-gray-700 mb-3">
-              {lang === 'fa' ? 'تنظیمات صوتی' : 'Audio Settings'}
-            </h3>
-            <TextToSpeech
-              text={verses.map(v => v.text[lang]).join(' ')}
-              language={lang}
-              showControls={true}
-              className="mb-4"
-            />
-          </div>
-        )}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md">
+              <p className="text-red-600 text-center">
+                {lang === 'fa' ? 'خطا در بارگذاری:' : 'Error loading:'} {error}
+              </p>
+            </div>
+          )}
 
-        {/* Loading State */}
-        {isLoading && (
-          <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-            <p className="text-gray-500">{lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-            <p className="text-red-600">
-              {lang === 'fa' ? 'خطا در بارگذاری:' : 'Error loading:'} {error}
-            </p>
-          </div>
-        )}
-
-        {/* Verses */}
-        {!isLoading && !error && filteredVerses.length > 0 && (
-          <div className="space-y-4" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-            {filteredVerses.map((verse, index) => (
-              <div 
-                key={`verse-${selectedBook}-${selectedChapter}-${verse.verse}-${index}`} 
-                className={`group ${
-                  currentVerse?.number === verse.verse ? 'bg-yellow-50 border-l-4 border-yellow-400' : ''
-                }`}
-              >
-                <div className="flex items-start space-x-4 rtl:space-x-reverse p-4 rounded-lg hover:bg-gray-50 transition-colors">
-                  <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                    {verse.verse}
-                  </span>
-                  <div className="flex-1">
-                    <p className={`text-gray-800 leading-relaxed text-lg ${
-                      currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
-                    }`}>
-                      {verse.text?.[lang] || 'Loading...'}
+          {!isLoading && !error && (
+            <HTMLFlipBook
+              ref={bookRef}
+              width={400}
+              height={600}
+              size="stretch"
+              minWidth={300}
+              maxWidth={500}
+              minHeight={400}
+              maxHeight={700}
+              showCover={true}
+              flippingTime={1000}
+              usePortrait={true}
+              startPage={0}
+              drawShadow={true}
+              onFlip={handlePageFlip}
+              className="bible-book"
+            >
+              {/* صفحه جلد */}
+              <div className="page cover" key="cover">
+                <div className="h-full bg-gradient-to-br from-blue-900 to-blue-700 text-white flex flex-col justify-center items-center p-8 relative">
+                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-20"></div>
+                  <div className="relative z-10 text-center">
+                    <BookOpen className="h-16 w-16 mx-auto mb-4" />
+                    <h1 className="text-2xl font-bold mb-2">
+                      {lang === 'fa' ? 'کتاب مقدس' : 'Holy Bible'}
+                    </h1>
+                    <h2 className="text-xl mb-1">
+                      {currentBook?.name[lang]}
+                    </h2>
+                    <p className="text-lg">
+                      {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
                     </p>
-                    
-                    {/* Individual Verse TTS Controls */}
-                    {isSupported && verse.text?.[lang] && (
-                      <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button
-                          onClick={() => speakVerse(verse.text[lang], verse.verse, lang)}
-                          className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors"
-                          title={lang === 'fa' ? 'خواندن این آیه' : 'Read this verse'}
-                        >
-                          <Play className="h-3 w-3 inline mr-1" />
-                          {lang === 'fa' ? 'خواندن' : 'Read'}
-                        </button>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
 
-        {/* No verses found message */}
-        {!isLoading && !error && filteredVerses.length === 0 && !searchTerm && (
-          <div className="text-center py-8">
-            <p className="text-gray-500">
-              {lang === 'fa' ? 'هیچ آیه‌ای در این فصل موجود نیست' : 'No verses available in this chapter'}
-            </p>
-          </div>
-        )}
-
-        {filteredVerses.length === 0 && searchTerm && (
-          <div className="text-center py-8">
-            <p className="text-gray-500">
-              {lang === 'fa' ? 'آیه‌ای یافت نشد' : 'No verses found'}
-            </p>
-          </div>
-        )}
+              {/* صفحات آیات */}
+              {pages.map((pageVerses, pageIndex) => (
+                <div className="page" key={`page-${pageIndex}`}>
+                  <div className="h-full bg-cream bg-opacity-95 p-6 flex flex-col" style={{backgroundColor: '#fefcf7'}}>
+                    <div className="flex-1 space-y-4" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                      {pageVerses.length > 0 ? (
+                        pageVerses.map((verse, index) => (
+                          <div 
+                            key={`verse-${verse.verse}`}
+                            className={`verse-container group ${
+                              currentVerse?.number === verse.verse ? 'bg-yellow-100 border-r-2 border-yellow-400 pr-2' : ''
+                            }`}
+                          >
+                            <div className="flex items-start space-x-3" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                                {verse.verse}
+                              </span>
+                              <div className="flex-1">
+                                <p className={`text-gray-800 leading-relaxed ${
+                                  currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
+                                }`} style={{fontSize: '14px', lineHeight: '1.6'}}>
+                                  {verse.text?.[lang] || 'Loading...'}
+                                </p>
+                                
+                                {/* Individual Verse TTS Controls */}
+                                {isSupported && verse.text?.[readingLang] && (
+                                  <button
+                                    onClick={() => speakVerse(verse.text[readingLang], verse.verse, readingLang)}
+                                    className="mt-1 text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors opacity-0 group-hover:opacity-100"
+                                    title={lang === 'fa' ? 'خواندن این آیه' : 'Read this verse'}
+                                  >
+                                    <Play className="h-2 w-2 inline mr-1" />
+                                    {lang === 'fa' ? 'خواندن' : 'Read'}
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="text-center py-8 text-gray-500">
+                          {lang === 'fa' ? 'هیچ آیه‌ای موجود نیست' : 'No verses available'}
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* شماره صفحه */}
+                    <div className="text-center text-xs text-gray-500 mt-4 pt-2 border-t border-gray-200">
+                      {pageIndex + 1}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </HTMLFlipBook>
+          )}
+        </div>
       </div>
 
-      {/* Navigation Footer */}
-      <div className="flex justify-between items-center mt-8">
-        <button
-          onClick={() => navigateChapter('prev')}
-          disabled={selectedChapter <= 1}
-          className="flex items-center px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        >
-          <ChevronLeft className="h-5 w-5 mr-2" />
-          {lang === 'fa' ? 'فصل قبل' : 'Previous Chapter'}
-        </button>
+      {/* Book Navigation Footer */}
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+          {/* صفحه قبل */}
+          <div className="flex justify-start">
+            <button
+              onClick={goToPrevPage}
+              disabled={currentPage <= 0}
+              className="flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft className="h-4 w-4 mr-1" />
+              {lang === 'fa' ? 'صفحه قبل' : 'Previous Page'}
+            </button>
+          </div>
 
-        <span className="text-sm text-gray-500">
-          {lang === 'fa' 
-            ? `فصل ${selectedChapter} از ${maxChapters}` 
-            : `Chapter ${selectedChapter} of ${maxChapters}`
-          }
-        </span>
+          {/* اطلاعات صفحه */}
+          <div className="text-center">
+            <div className="text-sm text-gray-600 mb-1">
+              {getPageDisplayInfo().pageInfo}
+            </div>
+            <div className="text-xs text-gray-500">
+              {lang === 'fa' 
+                ? `فصل ${selectedChapter} از ${maxChapters}` 
+                : `Chapter ${selectedChapter} of ${maxChapters}`
+              }
+            </div>
+          </div>
 
-        <button
-          onClick={() => navigateChapter('next')}
-          disabled={selectedChapter >= maxChapters}
-          className="flex items-center px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        >
-          {lang === 'fa' ? 'فصل بعد' : 'Next Chapter'}
-          <ChevronRight className="h-5 w-5 ml-2" />
-        </button>
+          {/* صفحه بعد */}
+          <div className="flex justify-end">
+            <button
+              onClick={goToNextPage}
+              disabled={currentPage >= pages.length}
+              className="flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {lang === 'fa' ? 'صفحه بعد' : 'Next Page'}
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </button>
+          </div>
+        </div>
+
+        {/* کنترل‌های فصل */}
+        <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
+          <button
+            onClick={() => navigateChapter('prev')}
+            disabled={selectedChapter <= 1}
+            className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+          >
+            <ChevronLeft className="h-4 w-4 mr-1" />
+            {lang === 'fa' ? 'فصل قبل' : 'Previous Chapter'}
+          </button>
+
+          <div className="text-center">
+            <div className="text-sm font-medium text-gray-800">
+              {currentBook?.name[lang]}
+            </div>
+          </div>
+
+          <button
+            onClick={() => navigateChapter('next')}
+            disabled={selectedChapter >= maxChapters}
+            className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+          >
+            {lang === 'fa' ? 'فصل بعد' : 'Next Chapter'}
+            <ChevronRight className="h-4 w-4 ml-1" />
+          </button>
+        </div>
       </div>
     </div>
   );
