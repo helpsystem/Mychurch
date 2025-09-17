@@ -3,12 +3,12 @@
 
 import { ChatMessage, TTSResponse } from '../types';
 
-const API_BASE = process.env.VITE_API_BASE || 'http://localhost:3001';
+const API_BASE = process.env.VITE_API_BASE || '/api';
 
 export const secureGeminiService = {
   chatWithAlHayat: async (history: ChatMessage[]) => {
     try {
-      const response = await fetch(`${API_BASE}/api/ai/chat`, {
+      const response = await fetch(`${API_BASE}/ai/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const secureGeminiService = {
 
   generatePrayer: async (request: string) => {
     try {
-      const response = await fetch(`${API_BASE}/api/ai/generate-prayer`, {
+      const response = await fetch(`${API_BASE}/ai/generate-prayer`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const secureGeminiService = {
 
   generateAboutText: async (keywords: string) => {
     try {
-      const response = await fetch(`${API_BASE}/api/ai/generate-about`, {
+      const response = await fetch(`${API_BASE}/ai/generate-about`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const secureGeminiService = {
 
   textToSpeech: async (text: string): Promise<TTSResponse> => {
     try {
-      const response = await fetch(`${API_BASE}/api/ai/text-to-speech`, {
+      const response = await fetch(`${API_BASE}/ai/text-to-speech`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export const secureGeminiService = {
 
   improveNotificationText: async (text: string) => {
     try {
-      const response = await fetch(`${API_BASE}/api/ai/improve-notification`, {
+      const response = await fetch(`${API_BASE}/ai/improve-notification`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export const secureGeminiService = {
 
   generateImage: async (prompt: string): Promise<string> => {
     try {
-      const response = await fetch(`${API_BASE}/api/ai/generate-image`, {
+      const response = await fetch(`${API_BASE}/ai/generate-image`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

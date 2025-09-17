@@ -8,11 +8,11 @@ export default defineConfig(({ mode }) => {
     return {
       server: {
         host: '0.0.0.0',
-        port: 5000,
+        port: 5173,
         allowedHosts: true,
         proxy: {
           '/api': {
-            target: 'http://localhost:3001',
+            target: 'http://localhost:5000',
             changeOrigin: true,
             secure: false
           }
@@ -107,11 +107,7 @@ export default defineConfig(({ mode }) => {
       },
       
       define: {
-        'process.env.VITE_API_BASE': JSON.stringify(
-          isProduction 
-            ? `https://${env.REPLIT_DEV_DOMAIN?.replace(':5000', '')}:3001`
-            : `https://${env.REPLIT_DEV_DOMAIN?.replace(':5000', '')}:3001`
-        ),
+        'process.env.VITE_API_BASE': JSON.stringify('/api'),
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.VITE_APP_VERSION': JSON.stringify(process.env.npm_package_version || '1.0.0'),
         '__DEV__': !isProduction

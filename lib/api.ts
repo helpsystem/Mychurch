@@ -25,9 +25,9 @@ export const getApiBaseUrl = (): string => {
         return process.env.VITE_API_BASE;
     }
     
-    // For development, use localhost backend
+    // For development, use relative API path
     if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-        return 'http://localhost:3001';
+        return '/api';
     }
     
     // For Replit environment, construct backend URL
@@ -58,7 +58,7 @@ export const setApiBaseUrl = (url: string) => {
 async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryParams?: Record<string, string>): Promise<T> {
   // Force set API URL for Replit environment
   if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
-    const backendUrl = `https://${window.location.hostname}:3001`;
+    const backendUrl = '/api';
     localStorage.setItem(LOCAL_STORAGE_API_KEY, backendUrl);
     console.log('🔗 API URL set to:', backendUrl);
   }
@@ -140,10 +140,10 @@ async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST'
   // Auto-configure API in development if not set
   if (typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null) {
     if (window.location.hostname.includes('.replit.dev')) {
-      const backendUrl = `https://${window.location.hostname}:3001`;
+      const backendUrl = '/api';
       localStorage.setItem(LOCAL_STORAGE_API_KEY, backendUrl);
     } else if (window.location.hostname === 'localhost') {
-      localStorage.setItem(LOCAL_STORAGE_API_KEY, 'http://localhost:3001');
+      localStorage.setItem(LOCAL_STORAGE_API_KEY, '/api');
     }
   }
   

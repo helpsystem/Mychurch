@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { BookOpen, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Search, Volume2, Play, Pause, Square } from 'lucide-react';
 import { getOldTestamentBooks, getNewTestamentBooks } from '../lib/localBibleData';
+import TextToSpeech from './TextToSpeech';
+import useBibleTTS from '../hooks/useBibleTTS';
 
 interface BibleVerse {
   book: string;
@@ -22,6 +24,21 @@ const BibleReader = () => {
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [verses, setVerses] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [currentVersePlaying, setCurrentVersePlaying] = useState(null);
+  const [showTTSControls, setShowTTSControls] = useState(false);
+  
+  const {
+    isPlaying,
+    currentVerse,
+    speakVerse,
+    speakChapter,
+    pauseSpeech,
+    resumeSpeech,
+    stopSpeech,
+    isSupported
+  } = useBibleTTS();
 
   const oldTestamentBooks = getOldTestamentBooks();
   const newTestamentBooks = getNewTestamentBooks();
@@ -76,25 +93,57 @@ const BibleReader = () => {
     }
   ];
 
+  // Fetch verses from Bible API
   useEffect(() => {
-    // In a real implementation, you would fetch verses from an API or database
-    // For now, we'll use sample data for Genesis 1
-    if (selectedBook === 'Genesis' && selectedChapter === 1) {
-      setVerses(sampleVerses);
-    } else {
-      // For other books/chapters, show placeholder
-      setVerses([
-        {
-          book: selectedBook,
-          chapter: selectedChapter,
-          verse: 1,
-          text: {
-            en: `Sample verse from ${selectedBook} chapter ${selectedChapter}. In a full implementation, this would load actual Bible text.`,
-            fa: `آیه نمونه از ${selectedBook} فصل ${selectedChapter}. در پیاده‌سازی کامل، متن واقعی کتاب مقدس بارگذاری می‌شود.`
-          }
+    const fetchBibleContent = async () => {
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        const response = await fetch(`/api/bible/content/${selectedBook}/${selectedChapter}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch chapter: ${response.statusText}`);
         }
-      ]);
-    }
+        
+        const data = await response.json();
+        
+        if (data.success && data.verses) {
+          // Transform API response to component format
+          const versesData = [];
+          const versesEn = data.verses.en || [];
+          const versesFa = data.verses.fa || [];
+          
+          for (let i = 0; i < Math.max(versesEn.length, versesFa.length); i++) {
+            versesData.push({
+              book: selectedBook,
+              chapter: selectedChapter,
+              verse: i + 1,
+              text: {
+                en: versesEn[i] || `Verse ${i + 1} (English translation pending)`,
+                fa: versesFa[i] || `آیه ${i + 1} (ترجمه فارسی در حال تکمیل)`
+              }
+            });
+          }
+          
+          setVerses(versesData);
+        } else {
+          throw new Error(data.message || 'Failed to load Bible content');
+        }
+      } catch (err) {
+        console.error('Error fetching Bible content:', err);
+        setError(err.message);
+        // Fallback to sample data for Genesis 1
+        if (selectedBook === 'Genesis' && selectedChapter === 1) {
+          setVerses(sampleVerses);
+        } else {
+          setVerses([]);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBibleContent();
   }, [selectedBook, selectedChapter]);
 
   const currentBook = allBooks.find(book => book.name.en === selectedBook);
@@ -215,27 +264,129 @@ const BibleReader = () => {
 
       {/* Bible Text */}
       <div className="bg-white rounded-lg shadow-md p-8">
-        <div className="flex items-center mb-6 pb-4 border-b border-gray-200">
-          <BookOpen className="h-6 w-6 text-blue-600 mr-3" />
-          <h2 className="text-2xl font-bold text-gray-900">
-            {currentBook?.name[lang]} {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
-          </h2>
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+          <div className="flex items-center">
+            <BookOpen className="h-6 w-6 text-blue-600 mr-3" />
+            <h2 className="text-2xl font-bold text-gray-900">
+              {currentBook?.name[lang]} {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
+            </h2>
+          </div>
+          
+          {/* TTS Controls */}
+          {isSupported && verses.length > 0 && (
+            <div className="flex items-center space-x-2 rtl:space-x-reverse">
+              <button
+                onClick={() => setShowTTSControls(!showTTSControls)}
+                className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
+                title={lang === 'fa' ? 'کنترل‌های صوتی' : 'Audio Controls'}
+              >
+                <Volume2 className="h-5 w-5" />
+              </button>
+              
+              {!isPlaying ? (
+                <button
+                  onClick={() => {
+                    const chapterText = verses.map(v => v.text[lang]).join(' ');
+                    speakChapter(verses.map(v => ({ text: v.text[lang], number: v.verse })), lang);
+                  }}
+                  className="p-2 rounded-lg bg-green-100 text-green-600 hover:bg-green-200 transition-colors"
+                  title={lang === 'fa' ? 'خواندن کل فصل' : 'Read Entire Chapter'}
+                >
+                  <Play className="h-5 w-5" />
+                </button>
+              ) : (
+                <button
+                  onClick={pauseSpeech}
+                  className="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition-colors"
+                  title={lang === 'fa' ? 'مکث' : 'Pause'}
+                >
+                  <Pause className="h-5 w-5" />
+                </button>
+              )}
+              
+              <button
+                onClick={stopSpeech}
+                className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors"
+                title={lang === 'fa' ? 'توقف' : 'Stop'}
+              >
+                <Square className="h-5 w-5" />
+              </button>
+            </div>
+          )}
         </div>
 
-        <div className="space-y-4" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-          {filteredVerses.map(verse => (
-            <div key={`${verse.book}-${verse.chapter}-${verse.verse}`} className="group">
-              <div className="flex items-start space-x-4 rtl:space-x-reverse p-4 rounded-lg hover:bg-gray-50 transition-colors">
-                <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                  {verse.verse}
-                </span>
-                <p className="flex-1 text-gray-800 leading-relaxed text-lg">
-                  {verse.text[lang]}
-                </p>
+        {/* Advanced TTS Controls */}
+        {showTTSControls && isSupported && (
+          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+            <h3 className="font-medium text-gray-700 mb-3">
+              {lang === 'fa' ? 'تنظیمات صوتی' : 'Audio Settings'}
+            </h3>
+            <TextToSpeech
+              text={verses.map(v => v.text[lang]).join(' ')}
+              language={lang}
+              showControls={true}
+              className="mb-4"
+            />
+          </div>
+        )}
+
+        {/* Loading State */}
+        {isLoading && (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+            <p className="text-gray-500">{lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}</p>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <p className="text-red-600">
+              {lang === 'fa' ? 'خطا در بارگذاری:' : 'Error loading:'} {error}
+            </p>
+          </div>
+        )}
+
+        {/* Verses */}
+        {!isLoading && !error && (
+          <div className="space-y-4" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+            {filteredVerses.map(verse => (
+              <div 
+                key={`${verse.book}-${verse.chapter}-${verse.verse}`} 
+                className={`group ${
+                  currentVerse?.number === verse.verse ? 'bg-yellow-50 border-l-4 border-yellow-400' : ''
+                }`}
+              >
+                <div className="flex items-start space-x-4 rtl:space-x-reverse p-4 rounded-lg hover:bg-gray-50 transition-colors">
+                  <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                    {verse.verse}
+                  </span>
+                  <div className="flex-1">
+                    <p className={`text-gray-800 leading-relaxed text-lg ${
+                      currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
+                    }`}>
+                      {verse.text[lang]}
+                    </p>
+                    
+                    {/* Individual Verse TTS Controls */}
+                    {isSupported && (
+                      <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => speakVerse(verse.text[lang], verse.verse, lang)}
+                          className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors"
+                          title={lang === 'fa' ? 'خواندن این آیه' : 'Read this verse'}
+                        >
+                          <Play className="h-3 w-3 inline mr-1" />
+                          {lang === 'fa' ? 'خواندن' : 'Read'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {filteredVerses.length === 0 && searchTerm && (
           <div className="text-center py-8">
