@@ -251,7 +251,7 @@ router.get('/daily-verses', async (req, res) => {
       JOIN bible_books bb ON bc.book_id = bb.id
       WHERE (
         (bb.abbreviation = 'John' AND bc.chapter_number = 3 AND bv.verse_number = 16) OR
-        (bb.abbreviation = 'Psalm' AND bc.chapter_number = 23 AND bv.verse_number = 1) OR
+        (bb.abbreviation IN ('Ps', 'Psalm', 'Psalms') AND bc.chapter_number = 23 AND bv.verse_number = 1) OR
         (bb.abbreviation = 'Matt' AND bc.chapter_number = 5 AND bv.verse_number = 14) OR
         (bb.abbreviation = 'Rom' AND bc.chapter_number = 8 AND bv.verse_number = 28) OR
         (bb.abbreviation = 'Phil' AND bc.chapter_number = 4 AND bv.verse_number = 13) OR
@@ -266,7 +266,7 @@ router.get('/daily-verses', async (req, res) => {
     
     const verses = result.rows.map(row => ({
       id: `${row.book_key}-${row.chapter_number}-${row.verse_number}`,
-      book: row.book_key === 'Psalm' ? 'Psalms' : row.book_key,
+      book: ['Ps', 'Psalm', 'Psalms'].includes(row.book_key) ? 'Psalms' : row.book_key,
       chapter: row.chapter_number,
       verse: row.verse_number.toString(),
       text: {
