@@ -150,7 +150,7 @@ const BibleReader = () => {
   const maxChapters = currentBook?.chapters || 1;
 
   const filteredVerses = verses.filter(verse =>
-    verse.text[lang].toLowerCase().includes(searchTerm.toLowerCase())
+    (verse.text?.[lang] || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const navigateChapter = (direction: 'prev' | 'next') => {
@@ -227,8 +227,8 @@ const BibleReader = () => {
                 onChange={(e) => setSelectedChapter(parseInt(e.target.value))}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                {Array.from({ length: maxChapters }, (_, i) => i + 1).map(chapter => (
-                  <option key={chapter} value={chapter}>
+                {Array.from({ length: Math.max(1, maxChapters) }, (_, i) => i + 1).map(chapter => (
+                  <option key={`chapter-${chapter}`} value={chapter}>
                     {lang === 'fa' ? `فصل ${chapter}` : `Chapter ${chapter}`}
                   </option>
                 ))}
@@ -348,11 +348,11 @@ const BibleReader = () => {
         )}
 
         {/* Verses */}
-        {!isLoading && !error && (
+        {!isLoading && !error && filteredVerses.length > 0 && (
           <div className="space-y-4" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-            {filteredVerses.map(verse => (
+            {filteredVerses.map((verse, index) => (
               <div 
-                key={`${verse.book}-${verse.chapter}-${verse.verse}`} 
+                key={`verse-${selectedBook}-${selectedChapter}-${verse.verse}-${index}`} 
                 className={`group ${
                   currentVerse?.number === verse.verse ? 'bg-yellow-50 border-l-4 border-yellow-400' : ''
                 }`}
@@ -365,11 +365,11 @@ const BibleReader = () => {
                     <p className={`text-gray-800 leading-relaxed text-lg ${
                       currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
                     }`}>
-                      {verse.text[lang]}
+                      {verse.text?.[lang] || 'Loading...'}
                     </p>
                     
                     {/* Individual Verse TTS Controls */}
-                    {isSupported && (
+                    {isSupported && verse.text?.[lang] && (
                       <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={() => speakVerse(verse.text[lang], verse.verse, lang)}
@@ -385,6 +385,15 @@ const BibleReader = () => {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* No verses found message */}
+        {!isLoading && !error && filteredVerses.length === 0 && !searchTerm && (
+          <div className="text-center py-8">
+            <p className="text-gray-500">
+              {lang === 'fa' ? 'هیچ آیه‌ای در این فصل موجود نیست' : 'No verses available in this chapter'}
+            </p>
           </div>
         )}
 
