@@ -87,13 +87,17 @@ const TextToSpeech = ({
   }, [processText]);
 
   // Enhanced speech with word boundary detection
-  const speak = useCallback(() => {
+  const speak = useCallback((startFromIndex = 0) => {
     if (!isSupported || !text) return;
 
     // Stop any current speech
     speechSynthesis.cancel();
     
-    const utterance = new SpeechSynthesisUtterance(text);
+    // Create utterance from specified word index
+    const wordsToSpeak = words.slice(startFromIndex);
+    const textToSpeak = wordsToSpeak.join(' ');
+    
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
     
     // Set voice if available, otherwise use system default
     if (selectedVoice) {
@@ -107,28 +111,45 @@ const TextToSpeech = ({
     utterance.pitch = pitch;
     utterance.volume = volume;
 
-    let wordIndex = 0;
-    const startTime = Date.now();
+    // Precompute character positions for robust boundary detection
+    const wordCharPositions = [];
+    let charPos = 0;
+    wordsToSpeak.forEach((word, index) => {
+      wordCharPositions.push({
+        wordIndex: startFromIndex + index,
+        startChar: charPos,
+        endChar: charPos + word.length,
+        word: word
+      });
+      charPos += word.length + 1; // +1 for space
+    });
 
-    // Handle word boundaries for highlighting
+    // Handle word boundaries for highlighting using character index
     utterance.onboundary = (event) => {
-      if (event.name === 'word') {
-        const currentTime = Date.now() - startTime;
+      if (event.name === 'word' || event.charIndex !== undefined) {
+        const charIndex = event.charIndex || 0;
         
-        // Update word timings based on actual speech
-        if (wordIndex < words.length) {
-          wordTimingsRef.current[wordIndex] = {
-            ...wordTimingsRef.current[wordIndex],
-            actualStartTime: currentTime
-          };
+        // Find word based on character position (using half-open range)
+        const wordPosition = wordCharPositions.find(pos => 
+          charIndex >= pos.startChar && charIndex < pos.endChar
+        );
+        
+        if (wordPosition) {
+          const absoluteWordIndex = wordPosition.wordIndex;
           
-          setCurrentWordIndex(wordIndex);
-          
-          if (onWordHighlight) {
-            onWordHighlight(wordIndex, words[wordIndex]);
+          // Update word timings
+          if (absoluteWordIndex < words.length) {
+            wordTimingsRef.current[absoluteWordIndex] = {
+              ...wordTimingsRef.current[absoluteWordIndex],
+              actualStartTime: Date.now()
+            };
+            
+            setCurrentWordIndex(absoluteWordIndex);
+            
+            if (onWordHighlight) {
+              onWordHighlight(absoluteWordIndex, words[absoluteWordIndex]);
+            }
           }
-          
-          wordIndex++;
         }
       }
     };
@@ -136,7 +157,7 @@ const TextToSpeech = ({
     utterance.onstart = () => {
       setIsPlaying(true);
       setIsPaused(false);
-      setCurrentWordIndex(0);
+      setCurrentWordIndex(startFromIndex);
     };
 
     utterance.onend = () => {
@@ -154,7 +175,7 @@ const TextToSpeech = ({
 
     speechRef.current = utterance;
     speechSynthesis.speak(utterance);
-  }, [isSupported, text, selectedVoice, rate, pitch, volume, words, onWordHighlight]);
+  }, [isSupported, text, selectedVoice, rate, pitch, volume, words, onWordHighlight, language]);
 
   // Control functions
   const handlePlay = () => {
@@ -187,20 +208,11 @@ const TextToSpeech = ({
       ? Math.min(currentWordIndex + 1, words.length - 1)
       : Math.max(currentWordIndex - 1, 0);
     
-    setCurrentWordIndex(newIndex);
-    
-    // Restart speech from new position
+    // Restart speech from new position using improved speak function
     if (isPlaying || isPaused) {
-      const remainingText = words.slice(newIndex).join(' ');
-      speechSynthesis.cancel();
-      
-      const utterance = new SpeechSynthesisUtterance(remainingText);
-      utterance.voice = selectedVoice;
-      utterance.rate = rate;
-      utterance.pitch = pitch;
-      utterance.volume = volume;
-      
-      speechSynthesis.speak(utterance);
+      speak(newIndex);
+    } else {
+      setCurrentWordIndex(newIndex);
     }
   };
 
@@ -243,16 +255,10 @@ const TextToSpeech = ({
                 : 'hover:bg-gray-100'
             } transition-all duration-200 rounded px-1 mx-0.5 cursor-pointer`}
             onClick={() => {
-              setCurrentWordIndex(index);
-              if (isPlaying) {
-                const remainingText = words.slice(index).join(' ');
-                speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(remainingText);
-                utterance.voice = selectedVoice;
-                utterance.rate = rate;
-                utterance.pitch = pitch;
-                utterance.volume = volume;
-                speechSynthesis.speak(utterance);
+              if (isPlaying || isPaused) {
+                speak(index);
+              } else {
+                setCurrentWordIndex(index);
               }
             }}
           >
