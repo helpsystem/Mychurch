@@ -211,6 +211,9 @@ export const api = {
   delete: <T>(endpoint: string, queryParams?: Record<string, string>, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'DELETE' }, queryParams),
   
+  patch: <T>(endpoint: string, body: any, options?: RequestInit) =>
+    apiFetch<T>(endpoint, { ...options, method: 'PATCH', body: JSON.stringify(body) }),
+  
   upload: <T>(endpoint: string, formData: FormData) => apiUpload<T>(endpoint, formData, 'POST'),
   
   replace: <T>(endpoint: string, formData: FormData) => apiUpload<T>(endpoint, formData, 'PUT'),

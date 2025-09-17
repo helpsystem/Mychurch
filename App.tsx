@@ -96,7 +96,7 @@ function App() {
             <Route path="leaders" element={<LeadersPage />} />
             <Route path="sermons" element={<SermonsPage />} />
             <Route path="worship" element={<WorshipPage />} />
-            <Route path="bible" element={<BiblePage />} />
+            <Route path="bible" element={<BibleReaderPage />} />
             <Route path="audio-bible" element={<AudioBiblePage />} />
             <Route path="bible-reader" element={<BibleReaderPage />} />
             <Route path="worship-songs" element={<WorshipSongsPage />} />
