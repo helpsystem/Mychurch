@@ -1,15 +1,34 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// استفاده از متغیرهای محیطی PostgreSQL که Replit تنظیم کرده
-// Force SSL mode for Neon connections
+// بررسی و تنظیم DATABASE_URL
+let databaseUrl = process.env.DATABASE_URL;
+
+// اگر DATABASE_URL وجود ندارد
+if (!databaseUrl) {
+  console.error('❌ DATABASE_URL وجود ندارد');
+  console.log('💡 لطفاً DATABASE_URL صحیح Supabase را تنظیم کنید');
+  process.exit(1);
+}
+
+// بررسی فرمت URL
+try {
+  new URL(databaseUrl);
+  console.log('✅ DATABASE_URL فرمت صحیح دارد');
+} catch (e) {
+  console.error('❌ DATABASE_URL فرمت نامعتبر دارد:', e.message);
+  console.log('💡 مثال صحیح: postgresql://postgres.abc:password@host:6543/postgres');
+  process.exit(1);
+}
+
+// Force SSL mode for Supabase connections
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: databaseUrl,
   ssl: { rejectUnauthorized: false }
 });
 
 // Log connection attempt (without credentials)
-console.log(`🔗 PostgreSQL connecting with SSL required`);
+console.log(`🔗 PostgreSQL connecting to Supabase with SSL required`);
 
 // تست اتصال
 pool.connect((err, client, release) => {
