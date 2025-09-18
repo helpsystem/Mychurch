@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const { pool, parseUser } = require('../db');
+const { pool, parseUser } = require('../db-postgres');
 
 // Middleware: بررسی JWT
 const authenticateToken = (req, res, next) => {

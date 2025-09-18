@@ -1,5 +1,5 @@
 const express = require('express');
-const { pool, parseUser } = require('../db');
+const { pool, parseUser } = require('../db-postgres');
 const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
 

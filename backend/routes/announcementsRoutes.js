@@ -1,5 +1,5 @@
 const express = require('express');
-const { pool } = require('../db');
+const { pool } = require('../db-postgres');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const { translationService } = require('../services/translationService');
 const { messageDispatcher } = require('../services/messageDispatcher');

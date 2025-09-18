@@ -132,6 +132,47 @@ const queries = [
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(scheduled_date, scheduled_time)
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS galleries (
+    id SERIAL PRIMARY KEY,
+    title JSONB NOT NULL,
+    description JSONB DEFAULT '{}',
+    images JSONB DEFAULT '[]',
+    coverImage VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS pages (
+    id SERIAL PRIMARY KEY,
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    title JSONB NOT NULL,
+    content JSONB NOT NULL,
+    status VARCHAR(20) CHECK (status IN ('draft', 'published', 'archived')) DEFAULT 'draft',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS bible_books (
+    id SERIAL PRIMARY KEY,
+    book_number INTEGER UNIQUE NOT NULL,
+    name_en VARCHAR(255) NOT NULL,
+    name_fa VARCHAR(255) NOT NULL,
+    abbreviation VARCHAR(10) UNIQUE NOT NULL,
+    testament VARCHAR(10) CHECK (testament IN ('old', 'new')) NOT NULL,
+    chapters_count INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS bible_verses (
+    id SERIAL PRIMARY KEY,
+    book_id INTEGER REFERENCES bible_books(id),
+    chapter INTEGER NOT NULL,
+    verse INTEGER NOT NULL,
+    text_en TEXT,
+    text_fa TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(book_id, chapter, verse)
   );`
 ];
 
