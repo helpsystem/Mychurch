@@ -225,44 +225,55 @@ app.get('/', (req, res) => {
   res.send('Church API is running with FTP upload!');
 });
 
-// راه‌اندازی دیتابیس و شروع سرور
-const startServer = async () => {
+// مقداردهی اولیه دیتابیس در پس‌زمینه
+const initializeDatabaseAsync = async () => {
   try {
-    // اول دیتابیس را راه‌اندازی کن
-    await initializeDatabase();
+    console.log('🔄 شروع مقداردهی اولیه دیتابیس...');
+    await Promise.race([
+      initializeDatabase(),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Database initialization timeout')), 30000)
+      )
+    ]);
     console.log('✅ دیتابیس آماده است');
-    
-    // سپس سرور را شروع کن
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
-      console.log('API endpoints available:');
-      console.log('  🔐 /api/auth/* - Authentication routes');
-      console.log('  👥 /api/users/* - User management');
-      console.log('  👤 /api/profile/* - User profiles');
-      console.log('  📨 /api/invitations/* - Invitations');
-      console.log('  📖 /api/bible/* - Bible content and search');
-      console.log('  👥 /api/leaders/* - Church leaders');
-      console.log('  🎤 /api/sermons/* - Sermons');
-      console.log('  📅 /api/events/* - Church events');
-      console.log('  🎵 /api/worship-songs/* - Worship songs');
-      console.log('  📋 /api/schedule-events/* - Schedule events');
-      console.log('  🖼️ /api/galleries/* - Photo galleries');
-      console.log('  🙏 /api/prayer-requests/* - Prayer requests');
-      console.log('  ✨ /api/testimonials/* - Testimonials');
-      console.log('  📜 /api/letters/* - Church letters');
-      console.log('  📢 /api/announcements/* - Church announcements');
-      console.log('  📊 /api/analytics/* - Analytics and reporting');
-      console.log('  📄 /api/pages/* - Custom pages');
-      console.log('  ⚙️ /api/settings/* - Site settings');
-      console.log('  📁 /api/files/* - File management');
-      console.log('  📖✨ /api/daily-content/* - Daily scripture content');
-      console.log('  📮 /api/notifications/* - Multi-channel notifications');
-      console.log('  ❤️ /api/health - Health check');
-    });
   } catch (error) {
-    console.error('❌ خطا در راه‌اندازی سرور:', error);
-    process.exit(1);
+    console.error('⚠️ خطا در مقداردهی اولیه دیتابیس:', error.message);
+    console.log('🔄 ادامه اجرا بدون مقداردهی اولیه...');
   }
+};
+
+// شروع سرور
+const startServer = () => {
+  // سرور را اول شروع کن
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
+    console.log('API endpoints available:');
+    console.log('  🔐 /api/auth/* - Authentication routes');
+    console.log('  👥 /api/users/* - User management');
+    console.log('  👤 /api/profile/* - User profiles');
+    console.log('  📨 /api/invitations/* - Invitations');
+    console.log('  📖 /api/bible/* - Bible content and search');
+    console.log('  👥 /api/leaders/* - Church leaders');
+    console.log('  🎤 /api/sermons/* - Sermons');
+    console.log('  📅 /api/events/* - Church events');
+    console.log('  🎵 /api/worship-songs/* - Worship songs');
+    console.log('  📋 /api/schedule-events/* - Schedule events');
+    console.log('  🖼️ /api/galleries/* - Photo galleries');
+    console.log('  🙏 /api/prayer-requests/* - Prayer requests');
+    console.log('  ✨ /api/testimonials/* - Testimonials');
+    console.log('  📜 /api/letters/* - Church letters');
+    console.log('  📢 /api/announcements/* - Church announcements');
+    console.log('  📊 /api/analytics/* - Analytics and reporting');
+    console.log('  📄 /api/pages/* - Custom pages');
+    console.log('  ⚙️ /api/settings/* - Site settings');
+    console.log('  📁 /api/files/* - File management');
+    console.log('  📖✨ /api/daily-content/* - Daily scripture content');
+    console.log('  📮 /api/notifications/* - Multi-channel notifications');
+    console.log('  ❤️ /api/health - Health check');
+    
+    // مقداردهی اولیه دیتابیس در پس‌زمینه
+    initializeDatabaseAsync();
+  });
 };
 
 startServer();
