@@ -11,21 +11,60 @@ if (!databaseUrl) {
   process.exit(1);
 }
 
-// بررسی فرمت URL
+// بررسی فرمت URL و رفع مشکل کاراکترهای خاص
+console.log('🔍 بررسی DATABASE_URL...');
+
+// جایگزینی کاراکترهای خاص در پسورد برای URL parsing
+let encodedUrl = databaseUrl;
 try {
-  new URL(databaseUrl);
-  console.log('✅ DATABASE_URL فرمت صحیح دارد');
+  // Parse the URL manually to handle special characters in password
+  const urlPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/;
+  const match = databaseUrl.match(urlPattern);
+  
+  if (match) {
+    const [, username, password, host, port, database] = match;
+    const encodedPassword = encodeURIComponent(password);
+    encodedUrl = `postgresql://${username}:${encodedPassword}@${host}:${port}/${database}`;
+    console.log('✅ DATABASE_URL پردازش شد (کاراکترهای خاص پسورد encode شدند)');
+  } else {
+    throw new Error('فرمت URL قابل تشخیص نیست');
+  }
 } catch (e) {
-  console.error('❌ DATABASE_URL فرمت نامعتبر دارد:', e.message);
-  console.log('💡 مثال صحیح: postgresql://postgres.abc:password@host:6543/postgres');
+  console.error('❌ خطا در پردازش DATABASE_URL:', e.message);
+  console.log('💡 فرمت مورد انتظار: postgresql://username:password@host:port/database');
+  process.exit(1);
+}
+
+// استفاده از URL اصلی (غیر encoded) برای اتصال PostgreSQL
+databaseUrl = databaseUrl; // PostgreSQL client can handle raw passwords
+
+// Parse URL manually and use individual parameters for better compatibility
+let connectionConfig;
+try {
+  const urlPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/;
+  const match = databaseUrl.match(urlPattern);
+  
+  if (match) {
+    const [, username, password, host, port, database] = match;
+    connectionConfig = {
+      user: username,
+      password: password,
+      host: host,
+      port: parseInt(port),
+      database: database,
+      ssl: { rejectUnauthorized: false }
+    };
+    console.log('✅ اتصال با پارامترهای جداگانه تنظیم شد');
+  } else {
+    throw new Error('فرمت URL قابل پارس نیست');
+  }
+} catch (e) {
+  console.error('❌ خطا در پارس کردن اطلاعات اتصال:', e.message);
   process.exit(1);
 }
 
 // Force SSL mode for Supabase connections
-const pool = new Pool({
-  connectionString: databaseUrl,
-  ssl: { rejectUnauthorized: false }
-});
+const pool = new Pool(connectionConfig);
 
 // Log connection attempt (without credentials)
 console.log(`🔗 PostgreSQL connecting to Supabase with SSL required`);
