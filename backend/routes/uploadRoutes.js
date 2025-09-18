@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const { pool } = require('../db');
+const { pool } = require('../db-postgres');
 
 const router = express.Router();
 
