@@ -18,13 +18,30 @@ console.log('🔍 بررسی DATABASE_URL...');
 let encodedUrl = databaseUrl;
 try {
   // Parse the URL manually to handle special characters in password
-  const urlPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/;
-  const match = databaseUrl.match(urlPattern);
+  // Handle both formats: with port and without port (Supabase style)
+  const urlWithPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/([^?]+)(\?.*)?$/;
+  const urlWithoutPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^\/]+)\/([^?]+)(\?.*)?$/;
+  
+  let match = databaseUrl.match(urlWithPortPattern);
+  let hasPort = true;
+  
+  if (!match) {
+    match = databaseUrl.match(urlWithoutPortPattern);
+    hasPort = false;
+  }
   
   if (match) {
-    const [, username, password, host, port, database] = match;
+    let username, password, host, port, database, queryString;
+    
+    if (hasPort) {
+      [, username, password, host, port, database, queryString] = match;
+    } else {
+      [, username, password, host, database, queryString] = match;
+      port = '5432'; // Default PostgreSQL port
+    }
+    
     const encodedPassword = encodeURIComponent(password);
-    encodedUrl = `postgresql://${username}:${encodedPassword}@${host}:${port}/${database}`;
+    encodedUrl = `postgresql://${username}:${encodedPassword}@${host}:${port}/${database}${queryString || ''}`;
     console.log('✅ DATABASE_URL پردازش شد (کاراکترهای خاص پسورد encode شدند)');
   } else {
     throw new Error('فرمت URL قابل تشخیص نیست');
@@ -41,11 +58,27 @@ databaseUrl = databaseUrl; // PostgreSQL client can handle raw passwords
 // Parse URL manually and use individual parameters for better compatibility
 let connectionConfig;
 try {
-  const urlPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/;
-  const match = databaseUrl.match(urlPattern);
+  const urlWithPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/([^?]+)(\?.*)?$/;
+  const urlWithoutPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^\/]+)\/([^?]+)(\?.*)?$/;
+  
+  let match = databaseUrl.match(urlWithPortPattern);
+  let hasPort = true;
+  
+  if (!match) {
+    match = databaseUrl.match(urlWithoutPortPattern);
+    hasPort = false;
+  }
   
   if (match) {
-    const [, username, password, host, port, database] = match;
+    let username, password, host, port, database;
+    
+    if (hasPort) {
+      [, username, password, host, port, database] = match;
+    } else {
+      [, username, password, host, database] = match;
+      port = '5432'; // Default PostgreSQL port
+    }
+    
     connectionConfig = {
       user: username,
       password: password,
@@ -69,13 +102,36 @@ const pool = new Pool(connectionConfig);
 // Log connection attempt (without credentials)
 console.log(`🔗 PostgreSQL connecting to Supabase with SSL required`);
 
-// تست اتصال
-pool.connect((err, client, release) => {
-  if (err) {
-    console.error('❌ خطا در اتصال به PostgreSQL:', err);
-  } else {
-    console.log('✅ اتصال به PostgreSQL برقرار شد');
-    release();
+// اتصال با retry برای Neon scale-to-zero
+const connectWithRetry = async (maxRetries = 5) => {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const client = await pool.connect();
+      console.log('✅ اتصال به PostgreSQL برقرار شد');
+      client.release();
+      return true;
+    } catch (err) {
+      const isEndpointDisabled = err.message && err.message.includes('endpoint has been disabled');
+      
+      if (isEndpointDisabled && attempt < maxRetries) {
+        const waitTime = Math.pow(2, attempt - 1) * 2000; // Exponential backoff: 2s, 4s, 8s, 16s
+        console.log(`🔄 Neon endpoint در حال بیدار شدن... تلاش ${attempt}/${maxRetries} - انتظار ${waitTime/1000}s`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+        continue;
+      }
+      
+      if (attempt === maxRetries) {
+        console.error('❌ خطا در اتصال به PostgreSQL پس از', maxRetries, 'تلاش:', err.message);
+        return false;
+      }
+    }
+  }
+};
+
+// شروع اتصال با retry
+connectWithRetry().then(success => {
+  if (!success) {
+    console.log('⚠️ اتصال دیتابیس ناموفق - ادامه بدون دیتابیس...');
   }
 });
 
