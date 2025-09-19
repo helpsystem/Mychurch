@@ -158,6 +158,11 @@ app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
+// Health برای تست اتصال فرانت
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true, uptime: process.uptime(), ts: Date.now() });
+});
+
 // ---------- CATCH-ALL FOR REACT ROUTING ----------
 // Serve index.html for any non-API routes (React Router support)
 app.get('*', (req, res) => {
@@ -166,11 +171,6 @@ app.get('*', (req, res) => {
     return res.status(404).json({ message: 'API endpoint not found' });
   }
   res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
-// Health برای تست اتصال فرانت
-app.get('/api/health', (req, res) => {
-  res.json({ ok: true, uptime: process.uptime(), ts: Date.now() });
 });
 
 // Upload جدید
