@@ -17,35 +17,38 @@ console.log('🔍 بررسی DATABASE_URL...');
 // جایگزینی کاراکترهای خاص در پسورد برای URL parsing
 let encodedUrl = databaseUrl;
 try {
-  // Parse the URL manually to handle special characters in password
-  // Handle both formats: with port and without port (Supabase style)
-  const urlWithPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/([^?]+)(\?.*)?$/;
-  const urlWithoutPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^\/]+)\/([^?]+)(\?.*)?$/;
+  // Parse URL by finding the last @ (to handle @ in password)
+  const protocolEnd = databaseUrl.indexOf('://') + 3;
+  const afterProtocol = databaseUrl.substring(protocolEnd);
+  const lastAtIndex = afterProtocol.lastIndexOf('@');
   
-  let match = databaseUrl.match(urlWithPortPattern);
-  let hasPort = true;
-  
-  if (!match) {
-    match = databaseUrl.match(urlWithoutPortPattern);
-    hasPort = false;
+  if (lastAtIndex === -1) {
+    throw new Error('Invalid URL format - no @ found');
   }
   
-  if (match) {
-    let username, password, host, port, database, queryString;
-    
-    if (hasPort) {
-      [, username, password, host, port, database, queryString] = match;
-    } else {
-      [, username, password, host, database, queryString] = match;
-      port = '5432'; // Default PostgreSQL port
-    }
-    
-    const encodedPassword = encodeURIComponent(password);
-    encodedUrl = `postgresql://${username}:${encodedPassword}@${host}:${port}/${database}${queryString || ''}`;
-    console.log('✅ DATABASE_URL پردازش شد (کاراکترهای خاص پسورد encode شدند)');
-  } else {
-    throw new Error('فرمت URL قابل تشخیص نیست');
-  }
+  const credentials = afterProtocol.substring(0, lastAtIndex);
+  const hostAndPath = afterProtocol.substring(lastAtIndex + 1);
+  
+  const colonIndex = credentials.indexOf(':');
+  const username = credentials.substring(0, colonIndex);
+  const password = credentials.substring(colonIndex + 1);
+  
+  // Parse host, port, database, query
+  const slashIndex = hostAndPath.indexOf('/');
+  const hostPort = hostAndPath.substring(0, slashIndex);
+  const pathAndQuery = hostAndPath.substring(slashIndex + 1);
+  
+  const questionIndex = pathAndQuery.indexOf('?');
+  const database = questionIndex > -1 ? pathAndQuery.substring(0, questionIndex) : pathAndQuery;
+  const queryString = questionIndex > -1 ? pathAndQuery.substring(questionIndex) : '';
+  
+  const portColonIndex = hostPort.lastIndexOf(':');
+  const host = portColonIndex > -1 ? hostPort.substring(0, portColonIndex) : hostPort;
+  const port = portColonIndex > -1 ? hostPort.substring(portColonIndex + 1) : '5432';
+  
+  const encodedPassword = encodeURIComponent(password);
+  encodedUrl = `postgresql://${username}:${encodedPassword}@${host}:${port}/${database}${queryString}`;
+  console.log('✅ DATABASE_URL پردازش شد (کاراکترهای خاص پسورد encode شدند)');
 } catch (e) {
   console.error('❌ خطا در پردازش DATABASE_URL:', e.message);
   console.log('💡 فرمت مورد انتظار: postgresql://username:password@host:port/database');
@@ -58,39 +61,43 @@ databaseUrl = databaseUrl; // PostgreSQL client can handle raw passwords
 // Parse URL manually and use individual parameters for better compatibility
 let connectionConfig;
 try {
-  const urlWithPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/([^?]+)(\?.*)?$/;
-  const urlWithoutPortPattern = /^postgresql:\/\/([^:]+):([^@]+)@([^\/]+)\/([^?]+)(\?.*)?$/;
+  // Parse URL by finding the last @ (to handle @ in password)
+  const protocolEnd = databaseUrl.indexOf('://') + 3;
+  const afterProtocol = databaseUrl.substring(protocolEnd);
+  const lastAtIndex = afterProtocol.lastIndexOf('@');
   
-  let match = databaseUrl.match(urlWithPortPattern);
-  let hasPort = true;
-  
-  if (!match) {
-    match = databaseUrl.match(urlWithoutPortPattern);
-    hasPort = false;
+  if (lastAtIndex === -1) {
+    throw new Error('Invalid URL format - no @ found');
   }
   
-  if (match) {
-    let username, password, host, port, database;
-    
-    if (hasPort) {
-      [, username, password, host, port, database] = match;
-    } else {
-      [, username, password, host, database] = match;
-      port = '5432'; // Default PostgreSQL port
-    }
-    
-    connectionConfig = {
-      user: username,
-      password: password,
-      host: host,
-      port: parseInt(port),
-      database: database,
-      ssl: { rejectUnauthorized: false }
-    };
-    console.log('✅ اتصال با پارامترهای جداگانه تنظیم شد');
-  } else {
-    throw new Error('فرمت URL قابل پارس نیست');
-  }
+  const credentials = afterProtocol.substring(0, lastAtIndex);
+  const hostAndPath = afterProtocol.substring(lastAtIndex + 1);
+  
+  const colonIndex = credentials.indexOf(':');
+  const username = credentials.substring(0, colonIndex);
+  const password = credentials.substring(colonIndex + 1);
+  
+  // Parse host, port, database
+  const slashIndex = hostAndPath.indexOf('/');
+  const hostPort = hostAndPath.substring(0, slashIndex);
+  const pathAndQuery = hostAndPath.substring(slashIndex + 1);
+  
+  const questionIndex = pathAndQuery.indexOf('?');
+  const database = questionIndex > -1 ? pathAndQuery.substring(0, questionIndex) : pathAndQuery;
+  
+  const portColonIndex = hostPort.lastIndexOf(':');
+  const host = portColonIndex > -1 ? hostPort.substring(0, portColonIndex) : hostPort;
+  const port = portColonIndex > -1 ? hostPort.substring(portColonIndex + 1) : '5432';
+  
+  connectionConfig = {
+    user: username,
+    password: password,
+    host: host,
+    port: parseInt(port),
+    database: database,
+    ssl: { rejectUnauthorized: false }
+  };
+  console.log('✅ اتصال با پارامترهای جداگانه تنظیم شد');
 } catch (e) {
   console.error('❌ خطا در پارس کردن اطلاعات اتصال:', e.message);
   process.exit(1);
