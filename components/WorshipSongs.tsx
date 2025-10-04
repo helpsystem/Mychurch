@@ -67,9 +67,9 @@ const WorshipSongs = () => {
     }
   };
 
-  const SongCard = ({ song }: { song: LocalSong }) => (
+  const SongCard: React.FC<{ song: LocalSong }> = ({ song }) => (
     <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-      <div className="flex items-start justify-between mb-4">
+          <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <h3 className="font-semibold text-gray-900 mb-1">
             {song.title[lang]}

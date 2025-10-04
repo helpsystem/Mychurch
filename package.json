@@ -21,12 +21,18 @@
   },
   "dependencies": {
     "@google/genai": "^1.9.0",
+    "@supabase/supabase-js": "^2.58.0",
     "axios": "^1.7.2",
+    "basic-ftp": "^5.0.5",
+    "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.3",
-    "dotenv": "^17.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "jquery": "^3.7.1",
     "jquery-easing": "^0.0.1",
     "lucide-react": "^0.525.0",
+    "multer": "^2.0.2",
     "pg": "^8.16.3",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
@@ -35,6 +41,7 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.6.3",
     "serve": "^14.2.1",
+    "sqlite3": "^5.1.7",
     "twilio": "^5.9.0",
     "zod": "^4.1.8"
   },
@@ -46,5 +53,13 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "description": "<div align=\"center\">\r <img width=\"1200\" height=\"475\" alt=\"GHBanner\" src=\"https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6\" />\r </div>",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

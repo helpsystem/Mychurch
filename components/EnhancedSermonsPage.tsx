@@ -350,18 +350,22 @@ const EnhancedSermonsPage: React.FC = () => {
         {/* Sermons Display */}
         {viewMode === 'grid' ? (
           <div className="space-y-12 max-w-4xl mx-auto">
-            {Object.entries(groupedSermons).map(([seriesTitle, sermons], index) => (
-              <section key={seriesTitle} className="reveal-on-scroll" style={{transitionDelay: `${index * 150}ms`}}>
-                <h2 className="text-2xl font-bold text-gradient mb-6 border-b-2 border-secondary/20 pb-2">
-                  {seriesTitle}
-                </h2>
-                <div className="grid grid-cols-1 gap-6">
-                  {sermons.map(sermon => (
-                    <SermonCard key={sermon.id} sermon={sermon} />
-                  ))}
-                </div>
-              </section>
-            ))}
+            {Object.entries(groupedSermons).map(([seriesTitle, sermons], index) => {
+              const sermonList = sermons as Sermon[];
+              return (
+                <section key={seriesTitle} className="reveal-on-scroll" style={{transitionDelay: `${index * 150}ms`}}>
+                  <h2 className="text-2xl font-bold text-gradient mb-6 border-b-2 border-secondary/20 pb-2">
+                    {seriesTitle}
+                  </h2>
+                  <div className="grid grid-cols-1 gap-6">
+                    {sermonList.map(sermon => (
+                      <SermonCard key={sermon.id} sermon={sermon} />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+            
           </div>
         ) : (
           <div className="space-y-4 max-w-4xl mx-auto">

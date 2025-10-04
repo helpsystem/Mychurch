@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
 import { ChevronDown, Search, X, Book, BookOpen, MonitorPlay } from 'lucide-react';
+import AudioBible from '../components/AudioBible';
 import Spinner from '../components/Spinner';
 import HTMLFlipBook from 'react-pageflip';
 import { useAuth } from '../hooks/useAuth';
@@ -48,26 +49,28 @@ const LatinCrossIcon: React.FC<{ className?: string, size?: number }> = ({ class
 );
 
 // Moved Page and PageCover outside the component to prevent re-creation on every render.
-const Page = React.forwardRef<HTMLDivElement, { children: React.ReactNode, number?: number, className?: string, style?: React.CSSProperties }>((props, ref) => {
-    return (
-        <div className={`page ${props.className || ''}`} ref={ref} style={props.style}>
-            <div className="page-content">{props.children}</div>
-            {props.number && <div className="page-footer">{props.number}</div>}
-        </div>
-    );
+const Page = React.forwardRef<HTMLDivElement, { children: React.ReactNode, number?: number, className?: string, style?: React.CSSProperties, dir?: 'rtl' | 'ltr' }>((props, ref) => {
+  // Accept `dir` and merge className/style so pages can be RTL when rendering Farsi content
+  const { children, number, className, style, dir } = props as any;
+  return (
+    <div className={`page ${className || ''}`} ref={ref} style={style} dir={dir}>
+      <div className="page-content">{children}</div>
+      {number && <div className="page-footer">{number}</div>}
+    </div>
+  );
 });
 
-const PageCover = React.forwardRef<HTMLDivElement, { children: React.ReactNode, isBackCover?: boolean, bgImage?: string }>((props, ref) => {
-    const style = props.bgImage ? {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${props.bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    } : {};
-    return (
-        <div className={`page page--cover ${props.isBackCover ? 'page--cover-back' : ''}`} ref={ref} style={style}>
-            <div className="page-content">{props.children}</div>
-        </div>
-    );
+const PageCover = React.forwardRef<HTMLDivElement, { children: React.ReactNode, isBackCover?: boolean, bgImage?: string, dir?: 'rtl' | 'ltr', className?: string }>(({ children, isBackCover, bgImage, dir, className }, ref) => {
+  const style = bgImage ? {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${bgImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  } : {};
+  return (
+    <div className={`page page--cover ${isBackCover ? 'page--cover-back' : ''} ${className || ''}`} ref={ref} style={style} dir={dir}>
+      <div className="page-content">{children}</div>
+    </div>
+  );
 });
 
 const BiblePage: React.FC = () => {
@@ -87,6 +90,7 @@ const BiblePage: React.FC = () => {
   
   const [presentationWindow, setPresentationWindow] = useState<Window | null>(null);
   const [broadcastChannel, setBroadcastChannel] = useState<BroadcastChannel | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   // Admin presentation controls state
   const [startVerse, setStartVerse] = useState(1);
@@ -238,7 +242,9 @@ const BiblePage: React.FC = () => {
     } else {
       // Load content from API
       try {
+        setFetchError(null);
         const response = await fetch(`/api/bible/content/${selectedBook}/${selectedChapter}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         
         if (data.success && data.verses) {
@@ -263,12 +269,62 @@ const BiblePage: React.FC = () => {
         }
       } catch (error) {
         console.error('Failed to load chapter content:', error);
+        setFetchError(String(error));
         setContent({ en: [], fa: [] });
         setStartVerse(1);
         setEndVerse(1);
       }
     }
     setHasInteracted(false); // Reset interaction state on chapter change
+  }, [selectedBook, selectedChapter, bibleContent]);
+
+  // Load entire book (all chapters) and cache in bibleContent
+  const loadFullBook = useCallback(async (bookKey?: string) => {
+    const key = bookKey || selectedBook;
+    if (!key) return;
+    try {
+      setFetchError(null);
+      const resp = await fetch(`/api/bible/content/${key}`);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+      if (data.success && data.chapters) {
+        // Merge into bibleContent cache
+        if (!bibleContent[key]) bibleContent[key] = {};
+        Object.keys(data.chapters).forEach(chap => {
+          const num = Number(chap);
+          bibleContent[key][num] = data.chapters[chap];
+        });
+
+        // If currently viewing this book, load the selected chapter into view
+        if (key === selectedBook) {
+          // Combine all chapters into single arrays so user can read full book
+          const combinedEn: string[] = [];
+          const combinedFa: string[] = [];
+          const chaptersKeys = Object.keys(bibleContent[key]).map(k => Number(k)).sort((a,b) => a-b);
+          for (const chNum of chaptersKeys) {
+            const ch = bibleContent[key][chNum];
+            // Chapter header
+            combinedEn.push(`${currentBook?.name?.en ?? key} — ${t('chapter')} ${chNum}`);
+            combinedFa.push(`${currentBook?.name?.fa ?? key} — فصل ${chNum}`);
+            // Append verses
+            const enVerses = ch.en || [];
+            const faVerses = ch.fa || [];
+            for (let i = 0; i < Math.max(enVerses.length, faVerses.length); i++) {
+              combinedEn.push(enVerses[i] || '');
+              combinedFa.push(faVerses[i] || '');
+            }
+          }
+          setContent({ en: combinedEn, fa: combinedFa });
+          setStartVerse(1);
+          setEndVerse(combinedEn.length || 1);
+        }
+      } else {
+        console.warn('Failed to load full book or no chapters returned', data);
+      }
+    } catch (err) {
+      console.error('Error loading full book:', err);
+      setFetchError(String(err));
+    }
   }, [selectedBook, selectedChapter, bibleContent]);
 
   useEffect(() => {
@@ -313,7 +369,7 @@ const BiblePage: React.FC = () => {
   const renderBookPages = () => {
       if (!content.en.length) return [];
 
-      const pages: JSX.Element[] = [];
+  const pages: React.ReactElement[] = [];
       const totalVerses = content.en.length;
       let verseCounter = 0;
 
@@ -321,7 +377,7 @@ const BiblePage: React.FC = () => {
 
       while(verseCounter < totalVerses) {
           // English page
-          const enPageContent: JSX.Element[] = [];
+          const enPageContent: React.ReactElement[] = [];
           let enPageVerseCount = 0;
           while(verseCounter + enPageVerseCount < totalVerses && enPageVerseCount < VERSES_PER_PAGE) {
               const verseIndex = verseCounter + enPageVerseCount;
@@ -345,7 +401,7 @@ const BiblePage: React.FC = () => {
           pages.push(<Page number={(pages.length / 2) + 2} key={`en-page-${pages.length}`}>{enPageContent}</Page>);
 
           // Farsi page
-          const faPageContent: JSX.Element[] = [];
+          const faPageContent: React.ReactElement[] = [];
           let faPageVerseCount = 0;
           while(verseCounter + faPageVerseCount < totalVerses && faPageVerseCount < VERSES_PER_PAGE) {
               const verseIndex = verseCounter + faPageVerseCount;
@@ -428,6 +484,22 @@ const BiblePage: React.FC = () => {
                 ))}
               </select>
             <ChevronDown className="absolute top-1/2 -translate-y-1/2 right-3 rtl:left-3 rtl:right-auto text-gray-400 pointer-events-none" />
+          </div>
+          <div className="flex items-center">
+            <AudioBible bookKey={selectedBook} chapter={selectedChapter} />
+          </div>
+          <div className="flex items-center">
+            <div className="flex items-center gap-2">
+              <button onClick={() => loadFullBook()} className="py-2 px-3 bg-secondary/90 text-primary rounded-lg text-sm font-semibold hover:bg-secondary">
+                {lang === 'fa' ? 'بارگیری کل کتاب' : 'Load full book'}
+              </button>
+              {fetchError && (
+                <div className="text-sm text-red-300 bg-red-900/40 px-3 py-2 rounded-md flex items-center gap-2">
+                  <span title={fetchError}>Failed to fetch</span>
+                  <button onClick={() => { setFetchError(null); loadFullBook(); }} className="underline text-red-100">Retry</button>
+                </div>
+              )}
+            </div>
           </div>
           <div className="relative col-span-1 lg:col-span-2">
             <input
