@@ -119,6 +119,11 @@
       input[dir="rtl"] {
         text-align: right;
       }
+      /* Fallback to ensure inputs/selects remain readable even if utility classes resolve unexpectedly */
+      select, input, textarea {
+        background-color: #07111a !important; /* safe dark fallback */
+        color: #ffffff !important;
+      }
       html[dir="rtl"] .rtl-position-helper {
         right: auto;
         left: 0;

@@ -1,13 +1,22 @@
 // Translation Service for Church Website Backend
 // Integrates with Google Gemini for professional translations
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+let GoogleGenerativeAI = null;
+let genAI = null;
+try {
+  GoogleGenerativeAI = require('@google/generative-ai').GoogleGenerativeAI;
+  genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+} catch (err) {
+  console.warn('⚠️ @google/generative-ai not available. Translation service will use fallback behavior.');
+}
 
 class TranslationService {
   constructor() {
-    this.model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    if (genAI) {
+      this.model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    } else {
+      this.model = null;
+    }
   }
 
   /**
@@ -48,6 +57,11 @@ ${text}
 Provide ONLY the translation, no explanations or additional text:`;
 
     try {
+      if (!this.model) {
+        // Fallback: return a marker or the original text depending on direction
+        console.warn('🟨 TranslationService: using fallback translateText (no AI model)');
+        return fromLang === 'fa' ? `[ترجمه نیاز است] ${text}` : `[Translation needed] ${text}`;
+      }
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       return response.text().trim();

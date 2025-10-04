@@ -88,7 +88,7 @@ export interface AuthContextType {
   canEdit: (section: string) => boolean;
   login: (email: string, password: string) => Promise<User | null>;
   adminLogin: (email: string, password: string) => Promise<User | null>;
-  signup: (name: string, email: string, password: string) => Promise<void>;
+  signup: (name: string, email: string, password: string, captchaToken?: string, website?: string) => Promise<void>;
   verifyEmail: (token: string) => Promise<User | null>;
   logout: () => void;
   loading: boolean;

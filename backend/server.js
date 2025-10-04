@@ -165,7 +165,8 @@ app.get('/api/health', (req, res) => {
 
 // ---------- CATCH-ALL FOR REACT ROUTING ----------
 // Serve index.html for any non-API routes (React Router support)
-app.get('*', (req, res) => {
+// Use a regex route to avoid some path-to-regexp edge cases with '*' in certain router versions
+app.get(/.*/, (req, res) => {
   // Skip API routes
   if (req.path.startsWith('/api/')) {
     return res.status(404).json({ message: 'API endpoint not found' });
