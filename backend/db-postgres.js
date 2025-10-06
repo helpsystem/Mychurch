@@ -1,9 +1,10 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-let databaseUrl = process.env.DATABASE_URL;
+// Prefer DATABASE_URL; optionally allow DIRECT_DATABASE_URL for heavy operations
+let databaseUrl = process.env.DATABASE_URL || process.env.DIRECT_DATABASE_URL;
 if (!databaseUrl) {
-  throw new Error('DATABASE_URL for Supabase is required!');
+  throw new Error('DATABASE_URL (or DIRECT_DATABASE_URL) is required!');
 }
 
 // If password contains characters like '@', percent-encode it so the URL parses correctly
@@ -33,7 +34,16 @@ let pool;
 try {
   pool = new Pool({
     connectionString: databaseUrl,
-    ssl: { rejectUnauthorized: false }
+    ssl: { rejectUnauthorized: false },
+    max: process.env.PG_POOL_MAX ? Number(process.env.PG_POOL_MAX) : 10,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 10000
+  });
+  // Test initial connectivity (non-blocking for entire app startup)
+  pool.query('SELECT 1').then(()=>{
+    console.log('✅ PostgreSQL connection OK');
+  }).catch(err=>{
+    console.warn('⚠️ Initial DB test query failed:', err.message);
   });
 } catch (err) {
   console.error('⚠️ Failed to create pg Pool:', err && err.message ? err.message : err);

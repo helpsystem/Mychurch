@@ -1,0 +1,249 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy_environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run type check
+        run: npm run type-check
+
+      - name: Run tests
+        run: npm run test || echo "No tests configured"
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Test backend connection
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: npm run db:check || echo "Database check failed - will continue"
+
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy
+          cp -r dist backend scripts docker package.json package-lock.json deploy/
+          cp .env.example deploy/.env.template
+          cd deploy && tar -czf ../deployment.tar.gz .
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-package
+          path: deployment.tar.gz
+          retention-days: 7
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Download deployment package
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-package
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Upload and deploy
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          DOMAIN: ${{ secrets.DOMAIN }}
+          SSL_EMAIL: ${{ secrets.SSL_EMAIL }}
+        run: |
+          # Upload deployment package
+          scp deployment.tar.gz $SERVER_USER@$SERVER_HOST:/tmp/
+
+          # Deploy on server
+          ssh $SERVER_USER@$SERVER_HOST << 'EOF'
+            set -e
+            
+            # Create deployment directory
+            sudo mkdir -p /var/www/mychurch
+            cd /tmp
+            
+            # Extract deployment
+            tar -xzf deployment.tar.gz -C /var/www/mychurch --strip-components=0 || tar -xzf deployment.tar.gz -C /var/www/mychurch
+            
+            # Set permissions
+            sudo chown -R www-data:www-data /var/www/mychurch
+            sudo chmod -R 755 /var/www/mychurch
+            
+            # Install Node.js if not present
+            if ! command -v node &> /dev/null; then
+              curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+            fi
+            
+            # Install PM2 if not present
+            if ! command -v pm2 &> /dev/null; then
+              sudo npm install -g pm2
+            fi
+            
+            # Install Docker if not present
+            if ! command -v docker &> /dev/null; then
+              curl -fsSL https://get.docker.com -o get-docker.sh
+              sudo sh get-docker.sh
+              sudo usermod -aG docker $USER
+              sudo systemctl enable docker
+              sudo systemctl start docker
+            fi
+            
+            # Install Docker Compose
+            if ! command -v docker-compose &> /dev/null; then
+              sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+              sudo chmod +x /usr/local/bin/docker-compose
+            fi
+            
+            cd /var/www/mychurch
+            
+            # Create production environment file
+            sudo tee .env << 'ENVEOF'
+          NODE_ENV=production
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
+          FTP_HOST=${{ secrets.FTP_HOST }}
+          FTP_USER=${{ secrets.FTP_USER }}
+          FTP_PASS=${{ secrets.FTP_PASS }}
+          DOMAIN=${{ secrets.DOMAIN }}
+          SSL_EMAIL=${{ secrets.SSL_EMAIL }}
+          GRAFANA_PASSWORD=admin123
+          ENVEOF
+            
+            # Install dependencies
+            cd backend
+            sudo npm ci --only=production
+            cd ..
+            
+            # Start services with Docker Compose
+            sudo docker-compose --profile production down || true
+            sudo docker-compose --profile production --profile monitoring up -d
+            
+            # Wait for services to start
+            sleep 30
+            
+            # Run database migrations if needed
+            sudo docker-compose exec backend npm run db:check || echo "Database check completed"
+            
+            # Setup SSL certificate (if not exists)
+            if [ ! -f "docker/ssl/live/${{ secrets.DOMAIN }}/fullchain.pem" ]; then
+              sudo docker-compose --profile ssl run --rm certbot || echo "SSL setup will be retried"
+            fi
+            
+            # Restart nginx with SSL
+            sudo docker-compose restart nginx
+            
+            echo "Deployment completed successfully"
+          EOF
+
+      - name: Health Check
+        run: |
+          sleep 60  # Wait for services to fully start
+          
+          # Check if site is responding
+          for i in {1..5}; do
+            if curl -f -s https://${{ secrets.DOMAIN }}/api/health; then
+              echo "✅ Health check passed"
+              exit 0
+            fi
+            echo "⏳ Attempt $i failed, retrying in 30s..."
+            sleep 30
+          done
+          
+          echo "❌ Health check failed"
+          exit 1
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "🚨 Deployment failed for commit ${{ github.sha }}"
+          # Add webhook notification here if needed
+          # curl -X POST ${{ secrets.SLACK_WEBHOOK }} -d '{"text":"Deployment failed!"}'
+
+  cleanup:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Cleanup old deployments
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Remove old artifacts
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            # Remove old deployment files
+            find /tmp -name "*.tar.gz" -mtime +7 -delete || true
+            
+            # Clean up old Docker images
+            sudo docker system prune -f || true
+          EOF

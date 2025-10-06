@@ -57,13 +57,28 @@ const EnhancedSermonsPage: React.FC = () => {
 
   // Get unique series and speakers
   const series = useMemo(() => {
-    const seriesSet = new Set(content.sermons.filter(s => s.series).map(s => s.series![lang]));
-    return Array.from(seriesSet).sort();
+    const seriesSet = new Set<string>();
+    content.sermons.forEach(s => {
+      if (s.series && s.series[lang]) {
+        seriesSet.add(s.series[lang]);
+      }
+    });
+    // Manual conversion to array to avoid potential TS lib iterator mismatch
+    const arr: string[] = [];
+    seriesSet.forEach(v => arr.push(v));
+    arr.sort();
+    return arr;
   }, [content.sermons, lang]);
 
   const speakers = useMemo(() => {
-    const speakerSet = new Set(content.sermons.map(s => s.speaker));
-    return Array.from(speakerSet).sort();
+    const speakerSet = new Set<string>();
+    content.sermons.forEach(s => {
+      if (s.speaker) speakerSet.add(s.speaker);
+    });
+    const arr: string[] = [];
+    speakerSet.forEach(v => arr.push(v));
+    arr.sort();
+    return arr;
   }, [content.sermons]);
 
   // Group sermons by series
