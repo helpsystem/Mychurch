@@ -70,12 +70,38 @@ The Bible content is stored in three tables:
 - `bible_chapters`: Chapter information
 - `bible_verses`: Actual verse content in English and Persian
 
-To re-import Bible data:
+### Bible Data Import
 
-1. Ensure you have the SQLite file in `attached_assets/bible_fa_en_1758111193552.sqlite`
-2. Run:
+You can import Bible data from either a SQLite file or a directory containing `books.json` and `verses.json` (or CSV equivalents).
+
+#### 1) SQLite Mode (default)
 ```bash
-node scripts/db/import-bible-data.js
+export SUPABASE_URL=... # or set in .env
+export SUPABASE_KEY=...
+export SQLITE_PATH=./attached_assets/bible_fa_en_1758111193552.sqlite
+npm run bible:sqlite
+```
+
+#### 2) Directory Mode
+Prepare a folder (e.g. `C:/Users/Sami/Desktop/En Fr Bible`) containing:
+```
+books.json   # [{ "book_number":1, "name_en":"Genesis", "name_fa":"پیدایش", "testament":"old", "chapters_count":50 }, ...]
+verses.json  # [{ "book_number":1, "chapter":1, "verse":1, "text_en":"...", "text_fa":"..." }, ...]
+```
+Then run:
+```bash
+export BIBLE_SOURCE_MODE=directory
+export BIBLE_DIR_PATH="C:/Users/Sami/Desktop/En Fr Bible"
+export SECOND_LANG_CODE=fa   # or fr, etc.
+npm run bible:dir
+```
+
+Both modes upsert into:
+`bible_books (book_number)` and `bible_verses (book_id, chapter, verse)`.
+
+If you need to (re)create the tables locally (PostgreSQL connection via `DATABASE_URL`):
+```bash
+npm run db:create:bible
 ```
 
 ### Frontend Development
@@ -98,9 +124,39 @@ Key components:
 npm run build
 ```
 
-2. Deploy the `dist` folder to your hosting service
+2. Backend deployment (example with pm2):
+```bash
+cd backend
+npm install
+pm2 start server.js --name church-api
+pm2 save
+```
 
-3. Set up environment variables on your hosting platform:
+3. Serve frontend (options):
+	 - Upload `dist/` to static host
+	 - Or serve via nginx:
+```nginx
+server {
+	server_name samanabyar.online;
+	root /var/www/mychurch/dist;
+	index index.html;
+
+	location /api/ {
+		proxy_pass http://127.0.0.1:5000/api/;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+
+	location / {
+		try_files $uri /index.html;
+	}
+}
+```
+
+4. Set environment variables (backend):
 - `SUPABASE_URL`
 - `SUPABASE_KEY`
 - `NODE_ENV=production`
+- `DATABASE_URL` (if direct Postgres)
+- `FTP_HOST/FTP_USER/FTP_PASS/DOMAIN` for image upload
+- (Optional) `BIBLE_SOURCE_MODE`, `SQLITE_PATH`, or `BIBLE_DIR_PATH`
