@@ -198,10 +198,10 @@ services:
     command: >
       sh -c "
         while true; do
-          echo 'Starting backup at $(date)'
-          pg_dump -h postgres -U postgres -d mychurch > /backups/backup_$(date +%Y%m%d_%H%M%S).sql
+          echo 'Starting backup at $$(date)'
+          pg_dump -h postgres -U postgres -d mychurch > /backups/backup_$$(date +%Y%m%d_%H%M%S).sql
           find /backups -name '*.sql' -mtime +7 -delete
-          echo 'Backup completed at $(date)'
+          echo 'Backup completed at $$(date)'
           sleep 86400
         done
       "
