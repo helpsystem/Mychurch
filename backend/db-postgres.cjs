@@ -33,7 +33,7 @@ let pool;
 try {
   pool = new Pool({
     connectionString: databaseUrl,
-    ssl: { rejectUnauthorized: false }
+  ssl: false // Always disable SSL for PostgreSQL (local & production)
   });
 } catch (err) {
   console.error('⚠️ Failed to create pg Pool:', err && err.message ? err.message : err);
