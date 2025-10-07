@@ -34,7 +34,7 @@ let pool;
 try {
   pool = new Pool({
     connectionString: databaseUrl,
-    ssl: false, // Disable SSL for local PostgreSQL
+  ssl: false, // Always disable SSL for PostgreSQL (local & production)
     max: process.env.PG_POOL_MAX ? Number(process.env.PG_POOL_MAX) : 10,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 10000
