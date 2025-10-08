@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
+// const fitz = require('pymupdf'); // حذف شده برای جلوگیری از خطا
 
 // Prefer DATABASE_URL; optionally allow DIRECT_DATABASE_URL for heavy operations
 let databaseUrl = process.env.DATABASE_URL || process.env.DIRECT_DATABASE_URL;
