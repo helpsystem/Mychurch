@@ -59,6 +59,16 @@ function App() {
   const { lang } = useLanguage();
   const [showLoading, setShowLoading] = useState(true);
   const [showVerseModal, setShowVerseModal] = useState(false);
+  
+  // Detect subpath when hosted on GitHub Pages (e.g., /Mychurch)
+  const baseName = (() => {
+    if (typeof window !== 'undefined' && window.location.hostname.endsWith('github.io')) {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      // first segment is repo name when using user/repo pages
+      if (parts.length > 0) return `/${parts[0]}`;
+    }
+    return '';
+  })();
 
   useEffect(() => {
     // Simulate content loading and reduce to 2.5 seconds
@@ -86,7 +96,7 @@ function App() {
       <CriticalResourceLoader resources={criticalResources} />
       <FontOptimizer />
       <div dir={lang === 'fa' ? 'rtl' : 'ltr'} className={`bg-primary text-white w-full overflow-hidden min-h-screen ${lang === 'fa' ? 'font-vazir' : 'font-poppins'}`}>
-        <BrowserRouter>
+  <BrowserRouter basename={baseName}>
         <ScrollToTop />
         <GuidedTour />
         <Routes>
