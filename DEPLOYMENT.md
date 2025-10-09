@@ -42,10 +42,21 @@ Key points:
 - Node: 20
 - PORT env is set to `10000` (Render will map its internal port to external automatically). The server already reads `process.env.PORT`.
 
-Required environment variables (set in Render Dashboard):
-- `DATABASE_URL` (Supabase / Postgres connection string)
-- `FTP_HOST`, `FTP_USER`, `FTP_PASS`, `FTP_PORT`, `FTP_SECURE` (optional if you need image upload to shared hosting)
-- `DOMAIN` (used to build public image URLs)
+Required environment variables (set in Render Dashboard → your service → Environment):
+
+Essential:
+- DATABASE_URL: Supabase/Postgres connection string (with ?sslmode=require if needed)
+- FRONTEND_ORIGIN: https://samanabyar.online
+- JWT_SECRET: a long random string (use 32+ hex chars)
+
+Optional but recommended:
+- GEMINI_API_KEY: for AI endpoints under /api/ai/*
+
+Optional integrations:
+- TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER: to enable SMS/WhatsApp via Twilio
+- FTP_HOST, FTP_USER, FTP_PASS, FTP_PORT, FTP_SECURE: required only if you want to upload images to shared hosting over FTP
+- DOMAIN: your public assets domain used to build image URLs (e.g., samanabyar.online)
+- FRONTEND_ORIGIN_2, FRONTEND_ORIGIN_3: additional allowed origins if you add more domains/subdomains
 
 After deploy, note the public URL, e.g.: `https://mychurch-backend.onrender.com`.
 

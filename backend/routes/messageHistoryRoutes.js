@@ -3,8 +3,15 @@ const router = express.Router();
 const { Client } = require('pg');
 const { authenticateToken } = require('../middleware/auth');
 
-// Create database client connection
+// Create database client connection (prefer DATABASE_URL like the rest of the app)
 const getClient = () => {
+  if (process.env.DATABASE_URL) {
+    return new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    });
+  }
+  // Fallback to discrete PG* vars for backwards compatibility
   return new Client({
     host: process.env.PGHOST,
     port: process.env.PGPORT,

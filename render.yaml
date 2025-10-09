@@ -13,6 +13,26 @@ services:
         value: 10000
       - key: DATABASE_URL
         sync: false
+      # CORS: allow your frontend origins
+      - key: FRONTEND_ORIGIN
+        value: https://samanabyar.online
+      - key: FRONTEND_ORIGIN_2
+        sync: false
+      - key: FRONTEND_ORIGIN_3
+        sync: false
+      # Auth
+      - key: JWT_SECRET
+        sync: false
+      # AI (Gemini)
+      - key: GEMINI_API_KEY
+        sync: false
+      # Notifications (Twilio) - optional
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
       - key: FTP_HOST
         sync: false
       - key: FTP_USER
