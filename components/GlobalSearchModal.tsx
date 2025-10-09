@@ -37,11 +37,7 @@ const GlobalSearchModal: React.FC<Props> = ({ isOpen, onClose }) => {
             sermons: content.sermons.filter(s => s.title[lang].toLowerCase().includes(term) || s.speaker.toLowerCase().includes(term)),
             pages: content.pages.filter(p => p.status === 'published' && (p.title[lang].toLowerCase().includes(term) || p.content[lang].toLowerCase().includes(term))),
             events: content.events.filter(e => e.title[lang].toLowerCase().includes(term) || e.description[lang].toLowerCase().includes(term)),
-            leaders: content.leaders.filter(l => {
-                const nameStr = (typeof l.name === 'string') ? l.name : (l.name && l.name[lang]) ? l.name[lang] : '';
-                const bioStr = (l.bio && l.bio[lang]) ? l.bio[lang] : '';
-                return nameStr.toLowerCase().includes(term) || bioStr.toLowerCase().includes(term);
-            }),
+            leaders: content.leaders.filter(l => l.name.toLowerCase().includes(term) || l.bio[lang].toLowerCase().includes(term)),
         };
 
         const total = results.sermons.length + results.pages.length + results.events.length + results.leaders.length;

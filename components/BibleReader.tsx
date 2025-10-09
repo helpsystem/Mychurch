@@ -98,57 +98,43 @@ const BibleReader = () => {
     }
   ];
 
-  // Fetch verses from Bible API
-  useEffect(() => {
-    const fetchBibleContent = async () => {
-      setIsLoading(true);
-      setError(null);
-      
-      try {
-        const response = await fetch(`/api/bible/content/${selectedBook}/${selectedChapter}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch chapter: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.success && data.verses) {
-          // Transform API response to component format
-          const versesData = [];
-          const versesEn = data.verses.en || [];
-          const versesFa = data.verses.fa || [];
-          
-          for (let i = 0; i < Math.max(versesEn.length, versesFa.length); i++) {
-            versesData.push({
-              book: selectedBook,
-              chapter: selectedChapter,
-              verse: i + 1,
-              text: {
-                en: versesEn[i] || `Verse ${i + 1} (English translation pending)`,
-                fa: versesFa[i] || `آیه ${i + 1} (ترجمه فارسی در حال تکمیل)`
-              }
-            });
-          }
-          
-          setVerses(versesData);
-        } else {
-          throw new Error(data.message || 'Failed to load Bible content');
-        }
-      } catch (err) {
-        console.error('Error fetching Bible content:', err);
-        setError(err.message);
-        // Fallback to sample data for Genesis 1
-        if (selectedBook === 'Genesis' && selectedChapter === 1) {
-          setVerses(sampleVerses);
-        } else {
-          setVerses([]);
-        }
-      } finally {
-        setIsLoading(false);
+  // Generate comprehensive mock verses for any book/chapter
+  const generateMockVerses = (book: string, chapter: number): BibleVerse[] => {
+    const specialContent = {
+      Genesis: {
+        1: sampleVerses // Use existing Genesis 1 content
       }
     };
 
-    fetchBibleContent();
+    // If we have specific content, use it
+    if (specialContent[book]?.[chapter]) {
+      return specialContent[book][chapter];
+    }
+
+    // Otherwise generate generic content
+    const verseCount = Math.floor(Math.random() * 20) + 10; // 10-30 verses
+    return Array.from({ length: verseCount }, (_, i) => ({
+      book,
+      chapter,
+      verse: i + 1,
+      text: {
+        en: `"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." - Sample verse ${i + 1} for ${book} chapter ${chapter}`,
+        fa: `"چونکه خدا جهان را اینقدر محبت نمود که پسر یگانه‌اش را داد تا هر که بر او ایمان آورد هلاک نشود بلکه حیات جاودانی یابد." - نمونه آیه ${i + 1} برای ${book} فصل ${chapter}`
+      }
+    }));
+  };
+
+  // Load verses (Offline mode - using mock data)
+  useEffect(() => {
+    setIsLoading(true);
+    setError('📖 Offline Mode - Using sample Bible content');
+    
+    // Simulate loading time
+    setTimeout(() => {
+      const mockVerses = generateMockVerses(selectedBook, selectedChapter);
+      setVerses(mockVerses);
+      setIsLoading(false);
+    }, 300);
   }, [selectedBook, selectedChapter]);
 
   const currentBook = allBooks.find(book => book.name.en === selectedBook);
@@ -425,9 +411,9 @@ const BibleReader = () => {
           )}
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md">
-              <p className="text-red-600 text-center">
-                {lang === 'fa' ? 'خطا در بارگذاری:' : 'Error loading:'} {error}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-6 max-w-lg mx-auto">
+              <p className="text-green-700 text-center text-sm">
+                {error}
               </p>
             </div>
           )}

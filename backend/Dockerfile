@@ -1,24 +1,20 @@
-FROM node:18-alpine
+# Use the official lightweight Node.js image
+FROM node:18-slim
 
-WORKDIR /app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Install system dependencies
-RUN apk add --no-cache curl postgresql-client
-
-# Copy package files
+# Copy package.json and package-lock.json
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
 
-# Copy application source
+# Install production dependencies
+RUN npm install --omit=dev
+
+# Copy the rest of your app's source code
 COPY . .
 
-# Create required directories
-RUN mkdir -p logs attached_assets
+# Expose the port the app runs on
+EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:5000/api/health || exit 1
-
-EXPOSE 5000
-
-CMD ["node", "server.js"]
+# CORRECTED: Define the command to run your app from the root
+CMD [ "node", "server.js" ]

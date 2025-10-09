@@ -2,17 +2,11 @@
 // Secure server-side AI functionality using Gemini
 
 const express = require('express');
-let GoogleGenerativeAI = null;
-let genAI = null;
-try {
-  GoogleGenerativeAI = require('@google/generative-ai').GoogleGenerativeAI;
-  genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-} catch (err) {
-  console.warn('⚠️ @google/generative-ai not installed — AI endpoints will return fallback responses.');
-}
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const router = express.Router();
 
 // Initialize Gemini AI
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // System Instructions for different AI functions
 const chatSystemInstruction = `You are "Al Hayat GPT", an AI assistant for the "Iranian Christian Church of Washington D.C.". Your purpose is to answer questions about Christianity, the Bible, and our church in a helpful, respectful, and theologically sound manner, consistent with mainstream evangelical beliefs. Your tone should be warm, encouraging, and pastoral. When relevant, you can refer to the church by its full name. Never provide medical, legal, or financial advice. If a user asks to speak with a real person, or expresses a need that requires human interaction (like counseling, urgent help, or a personal conversation), you MUST respond with ONLY the exact string "WHATSAPP_CONNECT" and nothing else.`;
@@ -32,7 +26,6 @@ router.post('/chat', async (req, res) => {
             return res.status(400).json({ error: 'Invalid chat history provided' });
         }
 
-        if (!genAI) return res.status(501).json({ error: 'AI service not configured on this server' });
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         const contents = history
@@ -71,7 +64,6 @@ router.post('/generate-prayer', async (req, res) => {
             return res.status(400).json({ error: 'Invalid prayer request provided' });
         }
 
-        if (!genAI) return res.status(501).json({ error: 'AI service not configured on this server' });
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         const result = await model.generateContent({
@@ -103,7 +95,6 @@ router.post('/generate-about', async (req, res) => {
             return res.status(400).json({ error: 'Invalid keywords provided' });
         }
 
-        if (!genAI) return res.status(501).json({ error: 'AI service not configured on this server' });
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         const result = await model.generateContent({
@@ -163,7 +154,6 @@ router.post('/improve-notification', async (req, res) => {
             return res.status(400).json({ error: 'Invalid text provided for improvement' });
         }
 
-        if (!genAI) return res.status(501).json({ error: 'AI service not configured on this server' });
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         const result = await model.generateContent({

@@ -1,43 +1,5 @@
 const { pool } = require('./db-postgres');
 
-// bcrypt fallback: prefer native bcrypt, fall back to bcryptjs if native not available
-let bcrypt;
-try {
-  bcrypt = require('bcrypt');
-} catch (e) {
-  try {
-    bcrypt = require('bcryptjs');
-    console.warn('⚠️ native bcrypt not found, using bcryptjs as fallback');
-  } catch (e2) {
-    bcrypt = null;
-    console.warn('⚠️ bcrypt and bcryptjs not available — admin password will be inserted without hashing (not secure)');
-  }
-}
-
-// Helper to run queries that works with both real pool and dummyPool exported when DATABASE_URL is missing
-const runQuery = async (sql, params = []) => {
-  // If pool exposes query directly (normal Pool & dummyPool), use it
-  if (pool && typeof pool.query === 'function') {
-    return pool.query(sql, params);
-  }
-
-  // Otherwise try to connect and use client.query
-  if (pool && typeof pool.connect === 'function') {
-    const client = await pool.connect();
-    try {
-      if (client && typeof client.query === 'function') {
-        return await client.query(sql, params);
-      }
-      // If client doesn't have query, but pool had a fallback query earlier, throw
-      throw new Error('Database client has no query method');
-    } finally {
-      try { client.release && client.release(); } catch (e) {}
-    }
-  }
-
-  throw new Error('No database query method available');
-};
-
 const queries = [
   `CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -215,35 +177,34 @@ const queries = [
 ];
 
 const initializeDatabase = async () => {
+  const client = await pool.connect();
   try {
     console.log('🔄 در حال ایجاد جداول PostgreSQL...');
-
+    
     for (let i = 0; i < queries.length; i++) {
-      await runQuery(queries[i]);
+      await client.query(queries[i]);
       console.log(`✅ جدول ${i + 1} با موفقیت ایجاد شد`);
     }
     
     console.log('✅ تمامی جداول با موفقیت در PostgreSQL ساخته شدند');
     
     // ایجاد کاربر admin پیش‌فرض
-    const adminCheck = await runQuery('SELECT * FROM users WHERE email = $1', ['help.system@ymail.com']);
-    if ((adminCheck.rows || []).length === 0) {
-      let hashedPassword;
-      if (bcrypt && typeof bcrypt.hash === 'function') {
-        hashedPassword = await bcrypt.hash('admin123', 10);
-      } else {
-        // As a last resort, store plain text (not secure) — better than crashing during init
-        hashedPassword = 'admin123';
-      }
-      await runQuery(
+    const adminCheck = await client.query('SELECT * FROM users WHERE email = $1', ['help.system@ymail.com']);
+    if (adminCheck.rows.length === 0) {
+      const bcrypt = require('bcrypt');
+      const hashedPassword = await bcrypt.hash('admin123', 10);
+      await client.query(
         'INSERT INTO users (email, password, role, permissions) VALUES ($1, $2, $3, $4)',
         ['help.system@ymail.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['all'])]
       );
       console.log('✅ کاربر admin پیش‌فرض ایجاد شد (help.system@ymail.com / admin123)');
     }
+    
   } catch (err) {
     console.error('❌ خطا در ساخت جداول:', err.message);
     throw err;
+  } finally {
+    client.release();
   }
 };
 

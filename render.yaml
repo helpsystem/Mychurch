@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: mychurch-backend
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install --prefix backend
+    startCommand: node backend/server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: FTP_HOST
+        sync: false
+      - key: FTP_USER
+        sync: false
+      - key: FTP_PASS
+        sync: false
+      - key: FTP_PORT
+        sync: false
+      - key: FTP_SECURE
+        sync: false
+      - key: DOMAIN
+        sync: false

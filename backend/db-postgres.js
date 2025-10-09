@@ -1,59 +1,78 @@
 const { Pool } = require('pg');
 require('dotenv').config();
-// const fitz = require('pymupdf'); // حذف شده برای جلوگیری از خطا
 
-// Prefer DATABASE_URL; optionally allow DIRECT_DATABASE_URL for heavy operations
-let databaseUrl = process.env.DATABASE_URL || process.env.DIRECT_DATABASE_URL;
+// Check if we have DATABASE_URL (Supabase)
+const databaseUrl = process.env.DATABASE_URL;
+
 if (!databaseUrl) {
-  throw new Error('DATABASE_URL (or DIRECT_DATABASE_URL) is required!');
+  console.error('❌ DATABASE_URL not found in environment variables');
+  console.log('💡 Please set DATABASE_URL to your Supabase connection string');
+  process.exit(1);
 }
 
-// If password contains characters like '@', percent-encode it so the URL parses correctly
-try {
-  const protocolEnd = databaseUrl.indexOf('://') + 3;
-  const afterProtocol = databaseUrl.substring(protocolEnd);
-  const lastAtIndex = afterProtocol.lastIndexOf('@');
-  if (lastAtIndex !== -1) {
-    const credentials = afterProtocol.substring(0, lastAtIndex);
-    const hostAndPath = afterProtocol.substring(lastAtIndex + 1);
-    const colonIndex = credentials.indexOf(':');
-    if (colonIndex !== -1) {
-      const username = credentials.substring(0, colonIndex);
-      const password = credentials.substring(colonIndex + 1);
-      const encodedPassword = encodeURIComponent(password);
-      const protocol = databaseUrl.substring(0, protocolEnd);
-      const rebuilt = `${protocol}${username}:${encodedPassword}@${hostAndPath}`;
-      databaseUrl = rebuilt;
-      console.log('🔐 Encoded DATABASE_URL password for safe parsing');
+console.log('🔗 Connecting to Supabase PostgreSQL...');
+
+// Create connection pool with Supabase configuration
+const pool = new Pool({
+  connectionString: databaseUrl,
+  ssl: {
+    rejectUnauthorized: false
+  },
+  // Connection pool settings for Supabase
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
+});
+
+// Test connection with retry logic for scale-to-zero databases
+const connectWithRetry = async (maxRetries = 5) => {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const client = await pool.connect();
+      console.log('✅ Successfully connected to Supabase PostgreSQL');
+      client.release();
+      return true;
+    } catch (err) {
+      const isEndpointDisabled = err.message && err.message.includes('endpoint has been disabled');
+      
+      if (isEndpointDisabled && attempt < maxRetries) {
+        const waitTime = Math.pow(2, attempt - 1) * 2000; // Exponential backoff: 2s, 4s, 8s, 16s
+        console.log(`🔄 Database endpoint waking up... Attempt ${attempt}/${maxRetries} - Waiting ${waitTime/1000}s`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+        continue;
+      }
+      
+      if (attempt === maxRetries) {
+        console.error('❌ Failed to connect to PostgreSQL after', maxRetries, 'attempts:', err.message);
+        return false;
+      }
     }
   }
-} catch (e) {
-  console.warn('⚠️ Could not encode DATABASE_URL, using raw value');
-}
+};
 
-let pool;
-try {
-  pool = new Pool({
-    connectionString: databaseUrl,
-  ssl: false, // Always disable SSL for PostgreSQL (local & production)
-    max: process.env.PG_POOL_MAX ? Number(process.env.PG_POOL_MAX) : 10,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 10000
-  });
-  // Test initial connectivity (non-blocking for entire app startup)
-  pool.query('SELECT 1').then(()=>{
-    console.log('✅ PostgreSQL connection OK');
-  }).catch(err=>{
-    console.warn('⚠️ Initial DB test query failed:', err.message);
-  });
-} catch (err) {
-  console.error('⚠️ Failed to create pg Pool:', err && err.message ? err.message : err);
-  // Provide a minimal fallback that fails fast but keeps the app running
-  pool = {
-    query: () => Promise.reject(new Error('Database pool not available')),
-    connect: () => Promise.reject(new Error('Database pool not available')),
-    end: () => Promise.resolve()
-  };
-}
+// Initialize connection with retry
+connectWithRetry().then(success => {
+  if (!success) {
+    console.log('⚠️ Database connection failed - continuing without database...');
+  }
+});
 
-module.exports = { pool };
+// Helper function to parse user JSON fields
+const parseUser = (user) => {
+  if (user) {
+    try {
+      user.permissions = typeof user.permissions === 'string' ? JSON.parse(user.permissions || '[]') : (user.permissions || []);
+      user.invitations = typeof user.invitations === 'string' ? JSON.parse(user.invitations || '[]') : (user.invitations || []);
+      if (typeof user.profileData === 'string') {
+        user.profileData = JSON.parse(user.profileData);
+      }
+    } catch (e) {
+      console.error('Failed to parse user JSON fields:', e);
+      user.permissions = [];
+      user.invitations = [];
+    }
+  }
+  return user;
+};
+
+module.exports = { pool, parseUser };

@@ -17,22 +17,7 @@
     "type-check": "tsc --noEmit",
     "lint": "echo 'Linting not configured yet'",
     "sitemap:generate": "node scripts/generate-sitemap.js",
-    "optimize:images": "node scripts/optimize-images.js",
-    "bible:sqlite": "node scripts/db/import-bible-data.js",
-    "bible:dir": "cross-env BIBLE_SOURCE_MODE=directory node scripts/db/import-bible-data.js",
-    "db:create:bible": "node scripts/db/create-bible-tables.js",
-    "health": "node scripts/health-check.js",
-    "deploy:package": "powershell -ExecutionPolicy Bypass -File scripts/deploy/upload-and-push.ps1",
-    "db:check": "node scripts/db/connection-check.js",
-    "deploy:full": "npm run build && npm run deploy:package",
-    "docker:dev": "docker-compose --profile development up -d",
-    "docker:prod": "docker-compose --profile production --profile monitoring up -d",
-    "docker:stop": "docker-compose down",
-    "backup:create": "docker-compose exec postgres pg_dump -U postgres mychurch > backups/backup_$(date +%Y%m%d_%H%M%S).sql",
-    "backup:restore": "docker-compose exec -T postgres psql -U postgres -d mychurch",
-    "logs:backend": "docker-compose logs -f backend",
-    "logs:health": "docker-compose logs -f healthcheck",
-    "test": "echo \"Tests not configured yet\" && exit 0"
+    "optimize:images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@google/genai": "^1.9.0",

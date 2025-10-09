@@ -25,12 +25,5 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  },
-  "exclude": [
-    "dist",
-    "backend/public",
-    "node_modules",
-    "attached_assets",
-    "dist/**/*"
-  ]
+  }
 }
