@@ -5,14 +5,20 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 // --- Configuration & Environment ---
-// Create PostgreSQL connection pool for server
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  console.error('❌ DATABASE_URL is required');
+  process.exit(1);
+}
+
+// Create PostgreSQL connection pool
 const pool = new Pool({
   user: 'postgres',
   password: 'SamyarBB1989',
-  host: 'samanabyar.online',
-  port: 5432,
+  host: 'localhost',
+  port: 5433,
   database: 'mychurch',
-  ssl: false, // Server PostgreSQL
+  ssl: false, // For local development
   max: 10,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000
@@ -268,12 +274,11 @@ async function main() {
     }
     console.log('🎉 Import completed successfully');
   } catch (err) {
-    console.error('❌ Import failed:', err);
-    console.error('Stack trace:', err.stack);
+    console.error('❌ Import failed:', err.message || err);
     process.exitCode = 1;
   } finally {
     await pool.end();
   }
 }
 
-main().catch(console.error);
+main();

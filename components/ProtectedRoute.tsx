@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Spinner from './Spinner';
 
 interface ProtectedRouteProps {
-  children: ReactNode;
+  children: JSX.Element;
   roles?: Array<'USER' | 'MANAGER' | 'SUPER_ADMIN'>;
 }
 
@@ -29,7 +29,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, roles }) => {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
-  return <>{children}</>;
+  return children;
 };
 
 export default ProtectedRoute;

@@ -24,7 +24,7 @@ const ImageManager: React.FC<ImageManagerProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files || []) as File[];
+    const files = Array.from(event.target.files || []);
     if (files.length === 0) return;
 
     setUploading(true);

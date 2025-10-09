@@ -57,28 +57,13 @@ const EnhancedSermonsPage: React.FC = () => {
 
   // Get unique series and speakers
   const series = useMemo(() => {
-    const seriesSet = new Set<string>();
-    content.sermons.forEach(s => {
-      if (s.series && s.series[lang]) {
-        seriesSet.add(s.series[lang]);
-      }
-    });
-    // Manual conversion to array to avoid potential TS lib iterator mismatch
-    const arr: string[] = [];
-    seriesSet.forEach(v => arr.push(v));
-    arr.sort();
-    return arr;
+    const seriesSet = new Set(content.sermons.filter(s => s.series).map(s => s.series![lang]));
+    return Array.from(seriesSet).sort();
   }, [content.sermons, lang]);
 
   const speakers = useMemo(() => {
-    const speakerSet = new Set<string>();
-    content.sermons.forEach(s => {
-      if (s.speaker) speakerSet.add(s.speaker);
-    });
-    const arr: string[] = [];
-    speakerSet.forEach(v => arr.push(v));
-    arr.sort();
-    return arr;
+    const speakerSet = new Set(content.sermons.map(s => s.speaker));
+    return Array.from(speakerSet).sort();
   }, [content.sermons]);
 
   // Group sermons by series
@@ -365,22 +350,18 @@ const EnhancedSermonsPage: React.FC = () => {
         {/* Sermons Display */}
         {viewMode === 'grid' ? (
           <div className="space-y-12 max-w-4xl mx-auto">
-            {Object.entries(groupedSermons).map(([seriesTitle, sermons], index) => {
-              const sermonList = sermons as Sermon[];
-              return (
-                <section key={seriesTitle} className="reveal-on-scroll" style={{transitionDelay: `${index * 150}ms`}}>
-                  <h2 className="text-2xl font-bold text-gradient mb-6 border-b-2 border-secondary/20 pb-2">
-                    {seriesTitle}
-                  </h2>
-                  <div className="grid grid-cols-1 gap-6">
-                    {sermonList.map(sermon => (
-                      <SermonCard key={sermon.id} sermon={sermon} />
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
-            
+            {Object.entries(groupedSermons).map(([seriesTitle, sermons], index) => (
+              <section key={seriesTitle} className="reveal-on-scroll" style={{transitionDelay: `${index * 150}ms`}}>
+                <h2 className="text-2xl font-bold text-gradient mb-6 border-b-2 border-secondary/20 pb-2">
+                  {seriesTitle}
+                </h2>
+                <div className="grid grid-cols-1 gap-6">
+                  {sermons.map(sermon => (
+                    <SermonCard key={sermon.id} sermon={sermon} />
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
         ) : (
           <div className="space-y-4 max-w-4xl mx-auto">
