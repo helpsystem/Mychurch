@@ -30,6 +30,8 @@ jobs:
         run: npm install
 
       - name: Build (use relative base for GitHub Pages)
+        env:
+          VITE_API_BASE: ${{ vars.VITE_API_BASE || secrets.VITE_API_BASE || '' }}
         run: npm run build -- --base=./
 
       - name: Add SPA fallback (404.html)

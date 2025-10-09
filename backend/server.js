@@ -41,12 +41,23 @@ const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:5173', // Vite dev server
   'https://localhost:3001',
+  // GitHub Pages (user/organization pages)
+  'https://helpsystem.github.io',
+  // Optional configurable frontend origins
+  process.env.FRONTEND_ORIGIN || null,
+  process.env.FRONTEND_ORIGIN_2 || null,
+  process.env.FRONTEND_ORIGIN_3 || null,
   process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : null,
   process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN.replace(':3001', '')}` : null
 ].filter(Boolean);
 
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? allowedOrigins : '*',
+  origin: (origin, cb) => {
+    // Allow requests with no origin (like mobile apps or curl) and in non-production
+    if (!origin || process.env.NODE_ENV !== 'production') return cb(null, true);
+    if (allowedOrigins.includes(origin)) return cb(null, true);
+    return cb(new Error(`CORS blocked for origin: ${origin}`));
+  },
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type','Authorization'],
   credentials: true
