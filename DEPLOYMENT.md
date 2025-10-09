@@ -18,6 +18,16 @@ After first run:
 - In the GitHub repo settings → Pages, ensure the source is set to "GitHub Actions" (it will be if you use this workflow).
 - Your site will be available at `https://<owner>.github.io/<repo>/`.
 
+Custom Domain (optional):
+- We added `public/CNAME` with `samanabyar.online`.
+- In your DNS provider, create these records:
+	- A @ → 185.199.108.153
+	- A @ → 185.199.109.153
+	- A @ → 185.199.110.153
+	- A @ → 185.199.111.153
+	- CNAME www → <owner>.github.io
+- Then go to GitHub → Settings → Pages, set Custom domain to `samanabyar.online` and enforce HTTPS.
+
 Frontend environment:
 - API base is controlled by `localStorage` key `iccdc-api-base-url` (see `lib/api.ts`).
 - For GitHub Pages, set it at runtime using the Environment page or dev tools to your backend URL, e.g. `https://mychurch-backend.onrender.com/api`.

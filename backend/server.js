@@ -41,6 +41,9 @@ const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:5173', // Vite dev server
   'https://localhost:3001',
+  // Custom domain(s)
+  'https://samanabyar.online',
+  'https://www.samanabyar.online',
   // GitHub Pages (user/organization pages)
   'https://helpsystem.github.io',
   // Optional configurable frontend origins
