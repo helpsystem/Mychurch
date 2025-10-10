@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { BookOpen, ChevronLeft, ChevronRight, Search, Volume2, Play, Pause, Square, Globe } from 'lucide-react';
-import { getOldTestamentBooks, getNewTestamentBooks } from '../lib/localBibleData';
-import TextToSpeech from './TextToSpeech';
+import { BookOpen, ChevronLeft, ChevronRight, Search, Play, Pause, Square, Globe } from 'lucide-react';
 import useBibleTTS from '../hooks/useBibleTTS';
+import { api } from '../lib/api';
 import HTMLFlipBook from 'react-pageflip';
 
 interface BibleVerse {
@@ -13,24 +12,42 @@ interface BibleVerse {
   text: { en: string; fa: string };
 }
 
-interface BibleChapter {
-  book: string;
+interface ApiBibleBook {
+  key: string;
+  name: { en: string; fa: string };
+  chapters: number;
+  testament?: 'old' | 'new';
+  bookNumber?: number;
+}
+
+interface BibleBooksResponse {
+  success: boolean;
+  books: ApiBibleBook[];
+}
+
+interface BibleChapterResponse {
+  success: boolean;
+  book: { key: string; name: { en: string; fa: string } };
   chapter: number;
-  verses: BibleVerse[];
+  verses: {
+    en: string[];
+    fa: string[];
+  };
 }
 
 const BibleReader = () => {
   const { lang } = useLanguage();
-  const [selectedBook, setSelectedBook] = useState('Genesis');
+  const [books, setBooks] = useState<ApiBibleBook[]>([]);
+  const [booksLoading, setBooksLoading] = useState(true);
+  const [booksError, setBooksError] = useState<string | null>(null);
+  const [selectedBookKey, setSelectedBookKey] = useState<string | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [verses, setVerses] = useState([]);
+  const [verses, setVerses] = useState<BibleVerse[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [currentVersePlaying, setCurrentVersePlaying] = useState(null);
-  const [showTTSControls, setShowTTSControls] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [readingLang, setReadingLang] = useState('fa');
+  const [readingLang, setReadingLang] = useState<'fa' | 'en'>('fa');
   const bookRef = useRef(null);
   const versesPerPage = 8; // تعداد آیات در هر صفحه
   
@@ -45,100 +62,116 @@ const BibleReader = () => {
     isSupported
   } = useBibleTTS();
 
-  const oldTestamentBooks = getOldTestamentBooks();
-  const newTestamentBooks = getNewTestamentBooks();
-  const allBooks = [...oldTestamentBooks, ...newTestamentBooks];
+  const testamentGroups = useMemo(() => {
+    const oldBooks = books.filter(book => book.testament === 'old');
+    const newBooks = books.filter(book => book.testament === 'new');
+    return {
+      old: oldBooks,
+      new: newBooks
+    };
+  }, [books]);
 
-  // Sample verses for Genesis 1
-  const sampleVerses: BibleVerse[] = [
-    {
-      book: 'Genesis',
-      chapter: 1,
-      verse: 1,
-      text: {
-        en: 'In the beginning God created the heavens and the earth.',
-        fa: 'در ابتدا خدا آسمانها و زمین را آفرید.'
-      }
-    },
-    {
-      book: 'Genesis',
-      chapter: 1,
-      verse: 2,
-      text: {
-        en: 'Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.',
-        fa: 'و زمین بی‌صورت و خالی بود و تاریکی بر وجه لجه بود و روح خدا بر سطح آبها حوم می‌کرد.'
-      }
-    },
-    {
-      book: 'Genesis',
-      chapter: 1,
-      verse: 3,
-      text: {
-        en: 'And God said, "Let there be light," and there was light.',
-        fa: 'و خدا گفت: «نور بشود.» و نور شد.'
-      }
-    },
-    {
-      book: 'Genesis',
-      chapter: 1,
-      verse: 4,
-      text: {
-        en: 'God saw that the light was good, and he separated the light from the darkness.',
-        fa: 'و خدا نور را دید که نیکوست. و خدا در میان نور و تاریکی تمیز کرد.'
-      }
-    },
-    {
-      book: 'Genesis',
-      chapter: 1,
-      verse: 5,
-      text: {
-        en: 'God called the light "day," and the darkness he called "night." And there was evening, and there was morning—the first day.',
-        fa: 'و خدا نور را روز نامید و تاریکی را شب نامید. پس شام بود و صبح بود، روز اول.'
-      }
-    }
-  ];
+  const allBooks = useMemo(() => books, [books]);
 
-  // Generate comprehensive mock verses for any book/chapter
-  const generateMockVerses = (book: string, chapter: number): BibleVerse[] => {
-    const specialContent = {
-      Genesis: {
-        1: sampleVerses // Use existing Genesis 1 content
+  const currentBook = allBooks.find(book => book.key === selectedBookKey);
+  const maxChapters = currentBook?.chapters || 1;
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadBooks = async () => {
+      setBooksLoading(true);
+      setBooksError(null);
+      try {
+        const response = await api.get<BibleBooksResponse>('/api/bible/books');
+        if (!response?.success) {
+          throw new Error(lang === 'fa' ? 'بارگذاری فهرست کتاب‌ها ناموفق بود.' : 'Failed to load Bible books.');
+        }
+
+        if (isMounted) {
+          const fetchedBooks = Array.isArray(response.books) ? response.books : [];
+          setBooks(fetchedBooks);
+          setSelectedBookKey(prev => prev ?? fetchedBooks[0]?.key ?? null);
+        }
+      } catch (err) {
+        if (isMounted) {
+          const message = err instanceof Error ? err.message : 'Failed to load Bible books.';
+          setBooksError(message);
+          setBooks([]);
+        }
+      } finally {
+        if (isMounted) {
+          setBooksLoading(false);
+        }
       }
     };
 
-    // If we have specific content, use it
-    if (specialContent[book]?.[chapter]) {
-      return specialContent[book][chapter];
+    loadBooks();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [lang]);
+
+  useEffect(() => {
+    if (!selectedBookKey) {
+      return;
     }
 
-    // Otherwise generate generic content
-    const verseCount = Math.floor(Math.random() * 20) + 10; // 10-30 verses
-    return Array.from({ length: verseCount }, (_, i) => ({
-      book,
-      chapter,
-      verse: i + 1,
-      text: {
-        en: `"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." - Sample verse ${i + 1} for ${book} chapter ${chapter}`,
-        fa: `"چونکه خدا جهان را اینقدر محبت نمود که پسر یگانه‌اش را داد تا هر که بر او ایمان آورد هلاک نشود بلکه حیات جاودانی یابد." - نمونه آیه ${i + 1} برای ${book} فصل ${chapter}`
+    let isMounted = true;
+
+    const loadChapter = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await api.get<BibleChapterResponse>(`/api/bible/content/${selectedBookKey}/${selectedChapter}`);
+
+        if (!response?.success) {
+          throw new Error(lang === 'fa' ? 'بارگذاری آیات با خطا مواجه شد.' : 'Failed to load chapter content.');
+        }
+
+        const versesData = response.verses ?? { en: [], fa: [] };
+        const verseCount = Math.max(versesData.en?.length ?? 0, versesData.fa?.length ?? 0);
+
+        const normalizedVerses: BibleVerse[] = Array.from({ length: verseCount }, (_, index) => ({
+          book: response.book?.name?.en ?? selectedBookKey,
+          chapter: response.chapter,
+          verse: index + 1,
+          text: {
+            en: versesData.en?.[index] ?? '',
+            fa: versesData.fa?.[index] ?? ''
+          }
+        }));
+
+        if (isMounted) {
+          setVerses(normalizedVerses);
+        }
+      } catch (err) {
+        if (isMounted) {
+          const message = err instanceof Error ? err.message : 'Failed to load chapter content.';
+          setError(message);
+          setVerses([]);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
-    }));
-  };
+    };
 
-  // Load verses (Offline mode - using mock data)
+    loadChapter();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedBookKey, selectedChapter, lang]);
+
   useEffect(() => {
-    setIsLoading(true);
-    setError('📖 Offline Mode - Using sample Bible content');
-    
-    // Simulate loading time
-    setTimeout(() => {
-      const mockVerses = generateMockVerses(selectedBook, selectedChapter);
-      setVerses(mockVerses);
-      setIsLoading(false);
-    }, 300);
-  }, [selectedBook, selectedChapter]);
-
-  const currentBook = allBooks.find(book => book.name.en === selectedBook);
-  const maxChapters = currentBook?.chapters || 1;
+    if (lang === 'fa' || lang === 'en') {
+      setReadingLang(lang);
+    }
+  }, [lang]);
 
   const filteredVerses = verses.filter(verse =>
     (verse.text?.[lang] || '').toLowerCase().includes(searchTerm.toLowerCase())
@@ -171,7 +204,7 @@ const BibleReader = () => {
         bookRef.current?.pageFlip()?.turnToPage(0);
       }, 100);
     }
-  }, [selectedBook, selectedChapter, searchTerm]);
+  }, [selectedBookKey, selectedChapter, searchTerm]);
 
   // Clamp current page when pages change
   useEffect(() => {
@@ -246,24 +279,33 @@ const BibleReader = () => {
               {lang === 'fa' ? 'کتاب' : 'Book'}
             </label>
             <select
-              value={selectedBook}
+              value={selectedBookKey ?? ''}
               onChange={(e) => {
-                setSelectedBook(e.target.value);
+                const nextKey = e.target.value || null;
+                setSelectedBookKey(nextKey);
                 setSelectedChapter(1);
                 setCurrentPage(0);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              disabled={booksLoading || !!booksError || books.length === 0}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-60"
             >
+              <option value="" disabled>
+                {booksLoading
+                  ? (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...')
+                  : lang === 'fa'
+                    ? 'یک کتاب انتخاب کنید'
+                    : 'Select a book'}
+              </option>
               <optgroup label={lang === 'fa' ? 'عهد عتیق' : 'Old Testament'}>
-                {oldTestamentBooks.map(book => (
-                  <option key={book.id} value={book.name.en}>
+                {testamentGroups.old.map(book => (
+                  <option key={book.key} value={book.key}>
                     {book.name[lang]}
                   </option>
                 ))}
               </optgroup>
               <optgroup label={lang === 'fa' ? 'عهد جدید' : 'New Testament'}>
-                {newTestamentBooks.map(book => (
-                  <option key={book.id} value={book.name.en}>
+                {testamentGroups.new.map(book => (
+                  <option key={book.key} value={book.key}>
                     {book.name[lang]}
                   </option>
                 ))}
@@ -340,6 +382,12 @@ const BibleReader = () => {
             </select>
           </div>
         </div>
+
+        {booksError && (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+            {booksError}
+          </div>
+        )}
       </div>
 
       {/* TTS Controls Bar */}
