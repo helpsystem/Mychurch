@@ -12,6 +12,19 @@ dist/
 .env.development.local
 .env.test.local
 .env.production.local
+backend/.env
+
+# Generated images (too large for git)
+public/generated-images/*.jpg
+public/generated-images/*.png
+public/generated-images/*.jpeg
+backend/public/generated-images/*.jpg
+backend/public/generated-images/*.png
+backend/public/generated-images/*.jpeg
+
+# Keep metadata but not images
+!public/generated-images/metadata.json
+!backend/public/generated-images/metadata.json
 
 # Logs
 npm-debug.log*

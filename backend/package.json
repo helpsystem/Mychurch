@@ -4,7 +4,9 @@
   "description": "API for the Iranian Christian Church website",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node dev-server.js",
+    "test": "node test-api-complete.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

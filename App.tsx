@@ -55,6 +55,7 @@ import CriticalResourceLoader, { criticalResources } from './components/Performa
 import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
 import AnalyticsSetup from './components/Analytics/AnalyticsSetup';
+import BibleAIChatWidget from './components/BibleAIChatWidget';
 
 function App() {
   const { lang } = useLanguage();
@@ -162,6 +163,9 @@ function App() {
 
           <Route path="presentation" element={<PresentationPage />} />
         </Routes>
+        
+        {/* Bible AI Chat Widget - Always visible */}
+        <BibleAIChatWidget />
         
         {/* Verse Modal - Show after loading - Inside Router context */}
         {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
