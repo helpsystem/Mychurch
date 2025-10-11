@@ -12,28 +12,28 @@ const LOCAL_STORAGE_API_KEY = 'iccdc-api-base-url';
 
 // Exported for use in the settings page
 export const getApiBaseUrl = (): string => {
-    if (typeof window !== 'undefined') {
-        const storedUrl = localStorage.getItem(LOCAL_STORAGE_API_KEY);
-        // If a value is stored in localStorage (even an empty string), use it.
-        // This allows for relative paths if the user leaves the field blank.
-        if (storedUrl !== null) {
-            return storedUrl.replace(/\/+$/, '');
-        }
-    }
-    // Fallback to backend URL in development
-    if (typeof process !== 'undefined' && process.env.VITE_API_BASE) {
-        return process.env.VITE_API_BASE;
-    }
-    
-    // For development, use relative API path
+    // For localhost development, always use Vite proxy
     if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-        return '/api';
+        return '';
     }
     
     // For Replit environment, construct backend URL
     if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
         const domain = window.location.hostname.replace('-00-', '-01-');
         return `https://${domain}`;
+    }
+    
+    // Check localStorage for custom API URL
+    if (typeof window !== 'undefined') {
+        const storedUrl = localStorage.getItem(LOCAL_STORAGE_API_KEY);
+        if (storedUrl !== null) {
+            return storedUrl.replace(/\/+$/, '');
+        }
+    }
+    
+    // Fallback to environment variable
+    if (typeof process !== 'undefined' && process.env.VITE_API_BASE) {
+        return process.env.VITE_API_BASE;
     }
     
     return ''; 
@@ -56,24 +56,8 @@ export const setApiBaseUrl = (url: string) => {
  * @returns The JSON response from the API.
  */
 async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryParams?: Record<string, string>): Promise<T> {
-  // Force set API URL for Replit environment
-  if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
-    const backendUrl = '/api';
-    localStorage.setItem(LOCAL_STORAGE_API_KEY, backendUrl);
-    console.log('🔗 API URL set to:', backendUrl);
-  }
-  
   const API_BASE_URL = getApiBaseUrl();
   console.log('🌐 Using API URL:', API_BASE_URL);
-  
-  // Check if API is still unconfigured after auto-configuration attempt
-  const isApiUnconfigured = typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null;
-
-  if (isApiUnconfigured) {
-    // This allows the app to function with mock data until configured.
-    // It prevents failed network requests on first load.
-    throw new ApiNotConfiguredError("API not configured. Using mock data.");
-  }
 
   const token = getAuthToken();
   

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { BookOpen, ChevronLeft, ChevronRight, Search, Play, Pause, Square, Globe } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Search, Play, Pause, Square, Globe, Highlighter, BookmarkPlus, Bookmark, StickyNote, X, Save } from 'lucide-react';
 import useBibleTTS from '../hooks/useBibleTTS';
 import { api } from '../lib/api';
 import HTMLFlipBook from 'react-pageflip';
@@ -10,6 +10,9 @@ interface BibleVerse {
   chapter: number;
   verse: number;
   text: { en: string; fa: string };
+  highlight?: string; // رنگ هایلایت: 'yellow', 'green', 'blue', 'pink', 'purple', null
+  note?: string; // یادداشت کاربر
+  bookmarked?: boolean; // نشانک‌گذاری
 }
 
 interface ApiBibleBook {
@@ -48,6 +51,14 @@ const BibleReader = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [readingLang, setReadingLang] = useState<'fa' | 'en'>('fa');
+  
+  // امکانات جدید
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
+  const [currentNote, setCurrentNote] = useState('');
+  const [highlightColor, setHighlightColor] = useState<string | null>(null);
+  const [showBookmarks, setShowBookmarks] = useState(false);
+  
   const bookRef = useRef(null);
   const versesPerPage = 8; // تعداد آیات در هر صفحه
   
@@ -146,6 +157,15 @@ const BibleReader = () => {
 
         if (isMounted) {
           setVerses(normalizedVerses);
+          
+          // بارگذاری داده‌های ذخیره‌شده از LocalStorage
+          const savedData = loadFromLocalStorage(selectedBookKey, selectedChapter);
+          setVerses(prev => prev.map(v => ({
+            ...v,
+            highlight: savedData[v.verse]?.highlight,
+            note: savedData[v.verse]?.note,
+            bookmarked: savedData[v.verse]?.bookmark
+          })));
         }
       } catch (err) {
         if (isMounted) {
@@ -183,6 +203,80 @@ const BibleReader = () => {
     } else if (direction === 'next' && selectedChapter < maxChapters) {
       setSelectedChapter(selectedChapter + 1);
     }
+  };
+
+  // توابع Highlighting
+  const toggleHighlight = (verseNumber: number, color: string) => {
+    setVerses(prevVerses => 
+      prevVerses.map(v => 
+        v.verse === verseNumber 
+          ? { ...v, highlight: v.highlight === color ? undefined : color }
+          : v
+      )
+    );
+    saveToLocalStorage(selectedBookKey!, selectedChapter, 'highlight', verseNumber, color);
+  };
+
+  // توابع Bookmark
+  const toggleBookmark = (verseNumber: number) => {
+    setVerses(prevVerses => 
+      prevVerses.map(v => 
+        v.verse === verseNumber 
+          ? { ...v, bookmarked: !v.bookmarked }
+          : v
+      )
+    );
+    saveToLocalStorage(selectedBookKey!, selectedChapter, 'bookmark', verseNumber, undefined);
+  };
+
+  // توابع Note
+  const openNoteModal = (verseNumber: number) => {
+    const verse = verses.find(v => v.verse === verseNumber);
+    setSelectedVerse(verseNumber);
+    setCurrentNote(verse?.note || '');
+    setNoteModalOpen(true);
+  };
+
+  const saveNote = () => {
+    if (selectedVerse !== null) {
+      setVerses(prevVerses => 
+        prevVerses.map(v => 
+          v.verse === selectedVerse 
+            ? { ...v, note: currentNote }
+            : v
+        )
+      );
+      saveToLocalStorage(selectedBookKey!, selectedChapter, 'note', selectedVerse, currentNote);
+      setNoteModalOpen(false);
+    }
+  };
+
+  // ذخیره در LocalStorage
+  const saveToLocalStorage = (bookKey: string, chapter: number, type: string, verseNumber: number, value: any) => {
+    const key = `bible_${bookKey}_${chapter}_${verseNumber}_${type}`;
+    if (value === undefined || value === null || value === '') {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+  };
+
+  // بارگذاری از LocalStorage
+  const loadFromLocalStorage = (bookKey: string, chapter: number) => {
+    const savedData: any = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith(`bible_${bookKey}_${chapter}_`)) {
+        const parts = key.split('_');
+        const verseNumber = parseInt(parts[3]);
+        const type = parts[4];
+        const value = JSON.parse(localStorage.getItem(key)!);
+        
+        if (!savedData[verseNumber]) savedData[verseNumber] = {};
+        savedData[verseNumber][type] = value;
+      }
+    }
+    return savedData;
   };
 
   // تقسیم verses به صفحات
@@ -393,7 +487,7 @@ const BibleReader = () => {
       {/* TTS Controls Bar */}
       {isSupported && verses.length > 0 && (
         <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center space-x-4">
               <h3 className="font-medium text-gray-700">
                 {lang === 'fa' ? 'کنترل‌های صوتی' : 'Audio Controls'}
@@ -437,6 +531,22 @@ const BibleReader = () => {
                   <Square className="h-5 w-5" />
                 </button>
               </div>
+            </div>
+            
+            {/* دکمه‌های امکانات جدید */}
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setShowBookmarks(!showBookmarks)}
+                className={`flex items-center px-3 py-2 rounded-lg transition-colors ${
+                  showBookmarks 
+                    ? 'bg-blue-100 text-blue-700' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+                title={lang === 'fa' ? 'نشانک‌های من' : 'My Bookmarks'}
+              >
+                <Bookmark className="h-4 w-4 mr-1" />
+                <span className="text-sm">{lang === 'fa' ? 'نشانک‌ها' : 'Bookmarks'}</span>
+              </button>
             </div>
             
             <div className="text-sm text-gray-500">
@@ -509,39 +619,120 @@ const BibleReader = () => {
                   <div className="h-full bg-cream bg-opacity-95 p-6 flex flex-col" style={{backgroundColor: '#fefcf7'}}>
                     <div className="flex-1 space-y-4" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                       {pageVerses.length > 0 ? (
-                        pageVerses.map((verse, index) => (
-                          <div 
-                            key={`verse-${verse.verse}`}
-                            className={`verse-container group ${
-                              currentVerse?.number === verse.verse ? 'bg-yellow-100 border-r-2 border-yellow-400 pr-2' : ''
-                            }`}
-                          >
-                            <div className="flex items-start space-x-3" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                                {verse.verse}
-                              </span>
-                              <div className="flex-1">
-                                <p className={`text-gray-800 leading-relaxed ${
-                                  currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
-                                }`} style={{fontSize: '14px', lineHeight: '1.6'}}>
-                                  {verse.text?.[lang] || 'Loading...'}
-                                </p>
-                                
-                                {/* Individual Verse TTS Controls */}
-                                {isSupported && verse.text?.[readingLang] && (
-                                  <button
-                                    onClick={() => speakVerse(verse.text[readingLang], verse.verse, readingLang)}
-                                    className="mt-1 text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors opacity-0 group-hover:opacity-100"
-                                    title={lang === 'fa' ? 'خواندن این آیه' : 'Read this verse'}
-                                  >
-                                    <Play className="h-2 w-2 inline mr-1" />
-                                    {lang === 'fa' ? 'خواندن' : 'Read'}
-                                  </button>
-                                )}
+                        pageVerses.map((verse, index) => {
+                          const highlightColors = {
+                            yellow: 'bg-yellow-100 border-yellow-300',
+                            green: 'bg-green-100 border-green-300',
+                            blue: 'bg-blue-100 border-blue-300',
+                            pink: 'bg-pink-100 border-pink-300',
+                            purple: 'bg-purple-100 border-purple-300'
+                          };
+                          
+                          const highlightClass = verse.highlight 
+                            ? highlightColors[verse.highlight as keyof typeof highlightColors]
+                            : '';
+                          
+                          return (
+                            <div 
+                              key={`verse-${verse.verse}`}
+                              className={`verse-container group relative rounded-lg p-3 transition-all ${
+                                highlightClass ? `${highlightClass} border-l-4` : 'hover:bg-gray-50'
+                              } ${
+                                currentVerse?.number === verse.verse ? 'ring-2 ring-yellow-400' : ''
+                              }`}
+                            >
+                              {/* نشانک */}
+                              {verse.bookmarked && (
+                                <div className="absolute -top-2 right-2 z-10">
+                                  <Bookmark className="h-5 w-5 text-red-500 fill-red-500" />
+                                </div>
+                              )}
+                              
+                              <div className="flex items-start space-x-3" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                                <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 bg-blue-600 text-white rounded-full text-sm font-bold shadow-sm">
+                                  {verse.verse}
+                                </span>
+                                <div className="flex-1">
+                                  <p className={`text-gray-800 leading-relaxed ${
+                                    currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
+                                  }`} style={{fontSize: '15px', lineHeight: '1.8'}}>
+                                    {verse.text?.[lang] || 'Loading...'}
+                                  </p>
+                                  
+                                  {/* یادداشت */}
+                                  {verse.note && (
+                                    <div className="mt-2 p-2 bg-amber-50 border-l-2 border-amber-400 rounded text-xs text-gray-700 italic">
+                                      <StickyNote className="h-3 w-3 inline mr-1" />
+                                      {verse.note}
+                                    </div>
+                                  )}
+                                  
+                                  {/* دکمه‌های عملیات - نمایش در hover */}
+                                  <div className="mt-2 flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    {/* TTS */}
+                                    {isSupported && verse.text?.[readingLang] && (
+                                      <button
+                                        onClick={() => speakVerse(verse.text[readingLang], verse.verse, readingLang)}
+                                        className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors flex items-center"
+                                        title={lang === 'fa' ? 'خواندن' : 'Read'}
+                                      >
+                                        <Play className="h-3 w-3 mr-1" />
+                                        {lang === 'fa' ? 'خواندن' : 'Read'}
+                                      </button>
+                                    )}
+                                    
+                                    {/* Highlight Colors */}
+                                    <div className="flex items-center space-x-1 bg-white rounded px-1 py-1 shadow-sm">
+                                      {['yellow', 'green', 'blue', 'pink', 'purple'].map(color => (
+                                        <button
+                                          key={color}
+                                          onClick={() => toggleHighlight(verse.verse, color)}
+                                          className={`w-5 h-5 rounded-full border-2 hover:scale-110 transition-transform ${
+                                            verse.highlight === color ? 'ring-2 ring-gray-400' : ''
+                                          }`}
+                                          style={{ 
+                                            backgroundColor: color === 'yellow' ? '#fef08a' 
+                                              : color === 'green' ? '#bbf7d0' 
+                                              : color === 'blue' ? '#bfdbfe'
+                                              : color === 'pink' ? '#fbcfe8'
+                                              : '#e9d5ff'
+                                          }}
+                                          title={lang === 'fa' ? 'رنگ‌آمیزی' : 'Highlight'}
+                                        />
+                                      ))}
+                                    </div>
+                                    
+                                    {/* Bookmark */}
+                                    <button
+                                      onClick={() => toggleBookmark(verse.verse)}
+                                      className={`text-xs px-2 py-1 rounded transition-colors flex items-center ${
+                                        verse.bookmarked 
+                                          ? 'bg-red-100 text-red-700 hover:bg-red-200' 
+                                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                      }`}
+                                      title={lang === 'fa' ? 'نشانک' : 'Bookmark'}
+                                    >
+                                      {verse.bookmarked ? <Bookmark className="h-3 w-3 fill-current" /> : <BookmarkPlus className="h-3 w-3" />}
+                                    </button>
+                                    
+                                    {/* Note */}
+                                    <button
+                                      onClick={() => openNoteModal(verse.verse)}
+                                      className={`text-xs px-2 py-1 rounded transition-colors flex items-center ${
+                                        verse.note 
+                                          ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' 
+                                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                      }`}
+                                      title={lang === 'fa' ? 'یادداشت' : 'Note'}
+                                    >
+                                      <StickyNote className="h-3 w-3" />
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))
+                          );
+                        })
                       ) : (
                         <div className="text-center py-8 text-gray-500">
                           {lang === 'fa' ? 'هیچ آیه‌ای موجود نیست' : 'No verses available'}
@@ -629,6 +820,102 @@ const BibleReader = () => {
           </button>
         </div>
       </div>
+
+      {/* Note Modal */}
+      {noteModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-lg w-full p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-gray-900">
+                {lang === 'fa' ? `یادداشت برای آیه ${selectedVerse}` : `Note for Verse ${selectedVerse}`}
+              </h3>
+              <button
+                onClick={() => setNoteModalOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <textarea
+              value={currentNote}
+              onChange={(e) => setCurrentNote(e.target.value)}
+              placeholder={lang === 'fa' ? 'یادداشت خود را بنویسید...' : 'Write your note...'}
+              className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              dir={lang === 'fa' ? 'rtl' : 'ltr'}
+            />
+            
+            <div className="flex items-center justify-end space-x-2 mt-4">
+              <button
+                onClick={() => setNoteModalOpen(false)}
+                className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                {lang === 'fa' ? 'لغو' : 'Cancel'}
+              </button>
+              <button
+                onClick={saveNote}
+                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+              >
+                <Save className="h-4 w-4 mr-1" />
+                {lang === 'fa' ? 'ذخیره' : 'Save'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bookmarks Panel */}
+      {showBookmarks && (
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-gray-900">
+              {lang === 'fa' ? 'نشانک‌های من' : 'My Bookmarks'}
+            </h3>
+            <button
+              onClick={() => setShowBookmarks(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          
+          <div className="space-y-2 max-h-64 overflow-y-auto">
+            {verses.filter(v => v.bookmarked).length > 0 ? (
+              verses.filter(v => v.bookmarked).map(verse => (
+                <div 
+                  key={verse.verse}
+                  className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                  onClick={() => {
+                    // پیدا کردن صفحه‌ای که این آیه در آن است
+                    const pageIndex = Math.floor((verse.verse - 1) / versesPerPage);
+                    setCurrentPage(pageIndex + 1);
+                    if (bookRef.current) {
+                      bookRef.current.pageFlip().turnToPage(pageIndex + 1);
+                    }
+                    setShowBookmarks(false);
+                  }}
+                >
+                  <div className="flex items-start space-x-2" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                    <Bookmark className="h-4 w-4 text-red-500 fill-red-500 flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-gray-900 mb-1">
+                        {lang === 'fa' ? `آیه ${verse.verse}` : `Verse ${verse.verse}`}
+                      </div>
+                      <div className="text-xs text-gray-600 line-clamp-2">
+                        {verse.text[lang]}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                {lang === 'fa' ? 'هیچ نشانکی ذخیره نشده است' : 'No bookmarks saved'}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
