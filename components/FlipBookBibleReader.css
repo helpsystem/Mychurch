@@ -1,11 +1,22 @@
 /* FlipBook Bible Reader Styles */
 
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .flipbook-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  font-family: 'Crimson Text', serif;
+}
+
+/* فونت فارسی برای متن‌های فارسی */
+.flipbook-container[dir="rtl"],
+.flipbook-container[dir="rtl"] * {
+  font-family: 'Amiri', 'Tahoma', 'Vazirmatn', serif;
+}
+
+.flipbook-container[dir="ltr"] {
   font-family: 'Crimson Text', serif;
 }
 

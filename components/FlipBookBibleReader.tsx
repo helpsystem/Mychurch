@@ -295,7 +295,7 @@ const FlipBookBibleReader = () => {
   };
 
   return (
-    <div className="flipbook-container">
+    <div className="flipbook-container" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
       {/* Header */}
       <div className="flipbook-header">
         <h1 className="flipbook-title">
@@ -490,14 +490,15 @@ const FlipBookBibleReader = () => {
 
         {!isLoading && !error && (
           <div className="book-wrapper" ref={bookRef}>
-            {/* Left Page Navigation Button */}
+            {/* Navigation Buttons - در فارسی عکس میشن */}
+            {/* Left Button */}
             <button 
               className="page-nav-btn left" 
-              onClick={prevPage} 
-              disabled={currentPage <= 0 || isFlipping}
-              aria-label={lang === 'fa' ? 'صفحه قبل' : 'Previous Page'}
+              onClick={lang === 'fa' ? nextPage : prevPage} 
+              disabled={lang === 'fa' ? (currentPage >= totalPages - 1 || isFlipping) : (currentPage <= 0 || isFlipping)}
+              aria-label={lang === 'fa' ? 'صفحه بعد' : 'Previous Page'}
             >
-              <ChevronLeft className="nav-icon" />
+              {lang === 'fa' ? <ChevronRight className="nav-icon" /> : <ChevronLeft className="nav-icon" />}
             </button>
 
             {/* The Book */}
@@ -651,14 +652,14 @@ const FlipBookBibleReader = () => {
               )}
             </div>
 
-            {/* Right Page Navigation Button */}
+            {/* Right Navigation Button */}
             <button 
               className="page-nav-btn right" 
-              onClick={nextPage} 
-              disabled={currentPage >= totalPages - 1 || isFlipping}
-              aria-label={lang === 'fa' ? 'صفحه بعد' : 'Next Page'}
+              onClick={lang === 'fa' ? prevPage : nextPage} 
+              disabled={lang === 'fa' ? (currentPage <= 0 || isFlipping) : (currentPage >= totalPages - 1 || isFlipping)}
+              aria-label={lang === 'fa' ? 'صفحه قبل' : 'Next Page'}
             >
-              <ChevronRight className="nav-icon" />
+              {lang === 'fa' ? <ChevronLeft className="nav-icon" /> : <ChevronRight className="nav-icon" />}
             </button>
           </div>
         )}
@@ -666,9 +667,14 @@ const FlipBookBibleReader = () => {
 
       {/* Page Navigation Footer */}
       <div className="navigation-footer">
-        <button onClick={prevPage} disabled={currentPage <= 0} className="footer-btn">
-          <ChevronLeft className="icon" />
-          {lang === 'fa' ? 'صفحه قبل' : 'Previous'}
+        {/* در فارسی دکمه‌ها عکس میشن */}
+        <button 
+          onClick={lang === 'fa' ? nextPage : prevPage} 
+          disabled={lang === 'fa' ? (currentPage >= totalPages - 1) : (currentPage <= 0)} 
+          className="footer-btn"
+        >
+          {lang === 'fa' ? <ChevronRight className="icon" /> : <ChevronLeft className="icon" />}
+          {lang === 'fa' ? 'صفحه بعد' : 'Previous'}
         </button>
         
         <div className="page-indicator">
@@ -677,9 +683,13 @@ const FlipBookBibleReader = () => {
           <span className="total">{totalPages - 1}</span>
         </div>
 
-        <button onClick={nextPage} disabled={currentPage >= totalPages - 1} className="footer-btn">
-          {lang === 'fa' ? 'صفحه بعد' : 'Next'}
-          <ChevronRight className="icon" />
+        <button 
+          onClick={lang === 'fa' ? prevPage : nextPage} 
+          disabled={lang === 'fa' ? (currentPage <= 0) : (currentPage >= totalPages - 1)} 
+          className="footer-btn"
+        >
+          {lang === 'fa' ? 'صفحه قبل' : 'Next'}
+          {lang === 'fa' ? <ChevronLeft className="icon" /> : <ChevronRight className="icon" />}
         </button>
       </div>
 
