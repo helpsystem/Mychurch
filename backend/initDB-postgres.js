@@ -233,15 +233,16 @@ const initializeDatabase = async () => {
 
 // اگر مستقیماً اجرا شود
 if (require.main === module) {
-  initializeDatabase()
-    .then(() => {
+  (async () => {
+    try {
+      await initializeDatabase();
       console.log('🎉 دیتابیس آماده است!');
       process.exit(0);
-    })
-    .catch((err) => {
+    } catch (err) {
       console.error('❌ خطا:', err);
       process.exit(1);
-    });
+    }
+  })();
 }
 
 module.exports = { initializeDatabase };

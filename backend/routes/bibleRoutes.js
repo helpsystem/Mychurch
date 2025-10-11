@@ -8,27 +8,25 @@ router.get('/books', async (req, res) => {
     const query = `
       SELECT 
         id,
-        book_number,
+        code,
         name_en,
         name_fa,
-        abbreviation,
         testament,
         chapters_count
       FROM bible_books 
-      ORDER BY book_number
+      ORDER BY id
     `;
     const result = await pool.query(query);
     
     // Transform data for frontend format
     const books = result.rows.map(book => ({
-      key: book.abbreviation,
+      key: book.code,
       name: {
         en: book.name_en,
         fa: book.name_fa
       },
       chapters: book.chapters_count,
-      testament: book.testament,
-      bookNumber: book.book_number
+      testament: book.testament
     }));
 
     res.json({
@@ -50,11 +48,11 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
   try {
     const { bookKey, chapter } = req.params;
     
-    // Find book by abbreviation, English name, or Farsi name (case-insensitive)
+    // Find book by code, English name, or Farsi name (case-insensitive)
     const bookQuery = `
-      SELECT id, name_en, name_fa, book_number, abbreviation
+      SELECT id, name_en, name_fa, code
       FROM bible_books 
-      WHERE LOWER(abbreviation) = LOWER($1) 
+      WHERE LOWER(code) = LOWER($1) 
          OR LOWER(name_en) = LOWER($1)
          OR LOWER(name_fa) = LOWER($1)
          OR LOWER($1) = LOWER(REPLACE(name_en, ' ', ''))
@@ -71,23 +69,39 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     const book = bookResult.rows[0];
     const chapterNum = parseInt(chapter);
     
-    // Get verses directly from bible_verses table
+    // Get chapter ID
+    const chapterQuery = `
+      SELECT id FROM bible_chapters 
+      WHERE book_id = $1 AND chapter_number = $2
+    `;
+    const chapterResult = await pool.query(chapterQuery, [book.id, chapterNum]);
+    
+    if (chapterResult.rows.length === 0) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Chapter not found' 
+      });
+    }
+    
+    const chapterId = chapterResult.rows[0].id;
+    
+    // Get verses from bible_verses table
     const versesQuery = `
       SELECT 
-        verse as verse_number,
+        verse_number,
         text_en,
         text_fa
       FROM bible_verses 
-      WHERE book_id = $1 AND chapter = $2
-      ORDER BY verse
+      WHERE chapter_id = $1
+      ORDER BY verse_number
     `;
-    const versesResult = await pool.query(versesQuery, [book.id, chapterNum]);
+    const versesResult = await pool.query(versesQuery, [chapterId]);
     
-    // Check if chapter exists
+    // Check if verses exist
     if (versesResult.rows.length === 0) {
       return res.status(404).json({ 
         success: false, 
-        message: 'Chapter not found or no verses available' 
+        message: 'No verses available for this chapter yet. Verses will be loaded dynamically.' 
       });
     }
     
@@ -107,7 +121,7 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     res.json({
       success: true,
       book: {
-        key: book.abbreviation, // Use standardized abbreviation instead of user input
+        key: book.code, // Use standardized code instead of user input
         name: {
           en: book.name_en,
           fa: book.name_fa

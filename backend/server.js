@@ -32,6 +32,7 @@ const presentationRoutes = require('./routes/presentationRoutes');
 const dailyContentRoutes = require('./routes/dailyContentRoutes');
 const dailyMessagesRoutes = require('./routes/dailyMessagesRoutes');
 const aiRoutes = require('./routes/aiRoutes');
+const aiChatRoutes = require('./routes/aiChatRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -171,6 +172,7 @@ app.use('/api/presentations', presentationRoutes);
 app.use('/api/daily-content', dailyContentRoutes);
 app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت
