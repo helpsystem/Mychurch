@@ -50,6 +50,7 @@ import PrayerRequestsPage from './pages/PrayerRequestsPage';
 import DailyDevotionalPage from './pages/DailyDevotionalPage';
 import NotificationCenterPage from './pages/NotificationCenterPage';
 import DailyMessagesPage from './pages/DailyMessagesPage';
+import TailwindDemoPage from './pages/TailwindDemoPage';
 import CriticalResourceLoader, { criticalResources } from './components/Performance/CriticalResourceLoader';
 import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
@@ -128,6 +129,7 @@ function App() {
             <Route path="connect" element={<ConnectPage />} />
             <Route path="testimonials" element={<TestimonialsPage />} />
             <Route path="live" element={<LivePage />} />
+            <Route path="tailwind-demo" element={<TailwindDemoPage />} />
             
             <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="letters/:id" element={<ProtectedRoute><LetterViewerPage /></ProtectedRoute>} />
