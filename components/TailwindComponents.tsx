@@ -128,22 +128,23 @@ export const Alert = ({ type = 'info', children, icon }: any) => {
   );
 };
 
-// 5. Loading Spinner
+// 5. Loading Spinner (Cross/Plus)
 export const Spinner = ({ size = 'md' }: any) => {
   const sizes: any = {
-    sm: 'w-6 h-6 border-2',
-    md: 'w-10 h-10 border-4',
-    lg: 'w-16 h-16 border-4',
+    sm: 'w-8 h-8',
+    md: 'w-12 h-12',
+    lg: 'w-16 h-16',
   };
   
   return (
-    <div className={`
-      ${sizes[size]}
-      border-blue-200 dark:border-gray-600
-      border-t-blue-600 dark:border-t-blue-400
-      rounded-full
-      animate-spin
-    `} />
+    <div className={`relative ${sizes[size]} animate-spin`}>
+      {/* Vertical bar */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 via-purple-500 to-blue-400 rounded-full" />
+      {/* Horizontal bar */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 h-1 w-full bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 rounded-full" />
+      {/* Center glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg" />
+    </div>
   );
 };
 
