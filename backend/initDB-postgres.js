@@ -158,10 +158,23 @@ const queries = [
     book_number INTEGER UNIQUE NOT NULL,
     name_en VARCHAR(255) NOT NULL,
     name_fa VARCHAR(255) NOT NULL,
-    abbreviation VARCHAR(10) UNIQUE NOT NULL,
+    abbreviation VARCHAR(20) UNIQUE NOT NULL,
     testament VARCHAR(10) CHECK (testament IN ('old', 'new')) NOT NULL,
     chapters_count INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS bible_chapters (
+    id SERIAL PRIMARY KEY,
+    chapter_id VARCHAR(50) UNIQUE NOT NULL,
+    book_id INTEGER REFERENCES bible_books(id),
+    chapter_number INTEGER NOT NULL,
+    title_en VARCHAR(255),
+    title_fa VARCHAR(255),
+    summary_en TEXT,
+    summary_fa TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(book_id, chapter_number)
   );`,
 
   `CREATE TABLE IF NOT EXISTS bible_verses (
@@ -173,6 +186,16 @@ const queries = [
     text_fa TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(book_id, chapter, verse)
+  );`,
+
+  `CREATE TABLE IF NOT EXISTS church_letters (
+    id SERIAL PRIMARY KEY,
+    title JSONB NOT NULL,
+    content JSONB NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    imageUrl VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`
 ];
 

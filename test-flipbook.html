@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست FlipBook</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 تست FlipBook Bible Reader</h1>
+        
+        <div id="results"></div>
+        
+        <button onclick="testAPI()">تست API</button>
+        <button onclick="testBooks()">تست فهرست کتاب‌ها</button>
+        <button onclick="testGenesis()">تست پیدایش فصل 1</button>
+        <button onclick="clearResults()">پاک کردن</button>
+    </div>
+
+    <script>
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            resultsDiv.appendChild(div);
+        }
+
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+
+        async function testAPI() {
+            addResult('📡 در حال تست اتصال به API...', 'info');
+            
+            try {
+                const response = await fetch('/api/bible/books');
+                const data = await response.json();
+                
+                if (data.success) {
+                    addResult(`✅ API کار می‌کند! تعداد کتاب‌ها: ${data.books.length}`, 'success');
+                } else {
+                    addResult('❌ API پاسخ نادرست داد', 'error');
+                }
+            } catch (error) {
+                addResult(`❌ خطا در اتصال به API: ${error.message}`, 'error');
+            }
+        }
+
+        async function testBooks() {
+            addResult('📚 در حال دریافت فهرست کتاب‌ها...', 'info');
+            
+            try {
+                const response = await fetch('/api/bible/books');
+                const data = await response.json();
+                
+                if (data.success && data.books.length > 0) {
+                    const booksList = data.books.slice(0, 5).map(b => 
+                        `${b.name.fa} (${b.name.en}) - ${b.chapters} فصل`
+                    ).join('<br>');
+                    addResult(`✅ فهرست کتاب‌ها:<br>${booksList}<br>...و ${data.books.length - 5} کتاب دیگر`, 'success');
+                } else {
+                    addResult('❌ هیچ کتابی پیدا نشد', 'error');
+                }
+            } catch (error) {
+                addResult(`❌ خطا: ${error.message}`, 'error');
+            }
+        }
+
+        async function testGenesis() {
+            addResult('📖 در حال دریافت پیدایش فصل 1...', 'info');
+            
+            try {
+                const response = await fetch('/api/bible/content/genesis/1');
+                const data = await response.json();
+                
+                console.log('Genesis 1 Response:', data);
+                
+                if (data.success) {
+                    const versesFA = data.verses.fa || [];
+                    const versesEN = data.verses.en || [];
+                    
+                    addResult(
+                        `✅ پیدایش فصل 1 دریافت شد!<br>` +
+                        `📊 تعداد آیات فارسی: ${versesFA.length}<br>` +
+                        `📊 تعداد آیات انگلیسی: ${versesEN.length}<br>` +
+                        `<br><strong>آیه اول (فارسی):</strong><br>${versesFA[0] || 'خالی'}<br>` +
+                        `<br><strong>آیه اول (انگلیسی):</strong><br>${versesEN[0] || 'خالی'}`,
+                        'success'
+                    );
+                    
+                    // نمایش ساختار کامل
+                    addResult(
+                        `<strong>ساختار کامل JSON:</strong><pre>${JSON.stringify(data, null, 2)}</pre>`,
+                        'info'
+                    );
+                } else {
+                    addResult('❌ دریافت محتوا ناموفق بود', 'error');
+                }
+            } catch (error) {
+                addResult(`❌ خطا: ${error.message}`, 'error');
+            }
+        }
+
+        // اجرای خودکار تست در بارگذاری صفحه
+        window.addEventListener('load', () => {
+            addResult('🚀 صفحه تست آماده است', 'success');
+            testAPI();
+        });
+    </script>
+</body>
+</html>

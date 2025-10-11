@@ -71,34 +71,25 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     const book = bookResult.rows[0];
     const chapterNum = parseInt(chapter);
     
-    // Get chapter info
-    const chapterQuery = `
-      SELECT id, verses_count
-      FROM bible_chapters 
-      WHERE book_id = $1 AND chapter_number = $2
-    `;
-    const chapterResult = await pool.query(chapterQuery, [book.id, chapterNum]);
-    
-    if (chapterResult.rows.length === 0) {
-      return res.status(404).json({ 
-        success: false, 
-        message: 'Chapter not found' 
-      });
-    }
-    
-    const chapterInfo = chapterResult.rows[0];
-    
-    // Get verses
+    // Get verses directly from bible_verses table
     const versesQuery = `
       SELECT 
-        verse_number,
+        verse as verse_number,
         text_en,
         text_fa
       FROM bible_verses 
-      WHERE chapter_id = $1 
-      ORDER BY verse_number
+      WHERE book_id = $1 AND chapter = $2
+      ORDER BY verse
     `;
-    const versesResult = await pool.query(versesQuery, [chapterInfo.id]);
+    const versesResult = await pool.query(versesQuery, [book.id, chapterNum]);
+    
+    // Check if chapter exists
+    if (versesResult.rows.length === 0) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Chapter not found or no verses available' 
+      });
+    }
     
     // Transform verses for frontend format
     const verses = {
