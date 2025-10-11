@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import useBibleTTS from '../hooks/useBibleTTS';
 import { api } from '../lib/api';
+import BibleAudioPlayer from './BibleAudioPlayer';
 import './FlipBookBibleReader.css';
 
 interface BibleVerse {
@@ -422,6 +423,17 @@ const FlipBookBibleReader = () => {
 
         {booksError && <div className="error-message">{booksError}</div>}
       </div>
+
+      {/* Bible.com Style Audio Player */}
+      {selectedBookKey && currentBook && (
+        <BibleAudioPlayer
+          book={selectedBookKey}
+          chapter={selectedChapter}
+          bookName={currentBook.name}
+          language={lang}
+          onChapterChange={navigateChapter}
+        />
+      )}
 
       {/* Settings Panel */}
       {showSettings && (
