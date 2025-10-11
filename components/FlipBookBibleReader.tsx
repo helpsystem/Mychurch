@@ -86,7 +86,13 @@ const FlipBookBibleReader = () => {
 
   // Word-by-word reading effect
   const speakVerseWithWordHighlight = async (verseText: string, verseNumber: number, language: 'fa' | 'en') => {
-    if (!('speechSynthesis' in window)) return;
+    if (!('speechSynthesis' in window)) {
+      alert(language === 'fa' ? 'مرورگر شما از قابلیت روخوانی پشتیبانی نمی‌کند' : 'Your browser does not support text-to-speech');
+      return;
+    }
+    
+    // Stop any current speech
+    window.speechSynthesis.cancel();
     
     const words = verseText.split(/(\s+)/);
     const utterance = new SpeechSynthesisUtterance(verseText);
@@ -114,9 +120,33 @@ const FlipBookBibleReader = () => {
       utterance.onend = () => {
         setCurrentReadingWord(null);
       };
+      
+      utterance.onerror = (event) => {
+        console.error('Speech error:', event);
+        setCurrentReadingWord(null);
+      };
     };
     
     window.speechSynthesis.speak(utterance);
+  };
+
+  // Play entire chapter
+  const handlePlayChapter = () => {
+    if (!verses || verses.length === 0) {
+      alert(lang === 'fa' ? 'هیچ آیه‌ای برای خواندن وجود ندارد' : 'No verses to read');
+      return;
+    }
+    
+    const versesToRead = verses
+      .filter(v => v.text[readingLang] && v.text[readingLang].trim().length > 0)
+      .map(v => ({ text: v.text[readingLang], number: v.verse }));
+    
+    if (versesToRead.length === 0) {
+      alert(lang === 'fa' ? 'متن آیات در این زبان موجود نیست' : 'Verse text not available in this language');
+      return;
+    }
+    
+    speakChapter(versesToRead, readingLang);
   };
 
   // Highlight management
@@ -432,7 +462,7 @@ const FlipBookBibleReader = () => {
               {readingLang === 'fa' ? 'فارسی' : 'English'}
             </button>
             {!isPlaying ? (
-              <button onClick={() => speakChapter(verses.map(v => ({ text: v.text[readingLang], number: v.verse })), readingLang)} className="play">
+              <button onClick={handlePlayChapter} className="play">
                 <Play className="icon" /> {lang === 'fa' ? 'خواندن فصل' : 'Read Chapter'}
               </button>
             ) : (
@@ -445,7 +475,7 @@ const FlipBookBibleReader = () => {
             </button>
           </div>
           <div className="current-book">
-            {currentBook?.name[lang]} - {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
+            {currentBook?.name?.[lang] || selectedBookKey} - {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
           </div>
         </div>
       )}
@@ -509,7 +539,7 @@ const FlipBookBibleReader = () => {
                   <div className="cover-content">
                     <BookOpen className="cover-icon" />
                     <h2>{lang === 'fa' ? 'کتاب مقدس' : 'Holy Bible'}</h2>
-                    <h3>{currentBook?.name[lang]}</h3>
+                    <h3>{currentBook?.name?.[lang] || selectedBookKey || (lang === 'fa' ? 'انتخاب نشده' : 'Not Selected')}</h3>
                     <p>{lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}</p>
                     <div className="ornament"></div>
                   </div>
@@ -521,7 +551,7 @@ const FlipBookBibleReader = () => {
                     <div className="page-header">
                       <span className="page-number">{currentPage}</span>
                       <span className="chapter-info">
-                        {currentBook?.name[lang]} {selectedChapter}
+                        {currentBook?.name?.[lang] || selectedBookKey} {selectedChapter}
                       </span>
                     </div>
                     
