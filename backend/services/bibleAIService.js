@@ -4,14 +4,35 @@
  */
 
 const https = require('https');
-const { Pool } = require('pg');
+const { pool } = require('../db-postgres'); // Use shared pool
 require('dotenv').config();
 
-// Database connection
-const pool = new Pool({
-  connectionString: process.env.DIRECT_URL || process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
+// Test database connection on startup
+async function testConnection() {
+  try {
+    await pool.query('SELECT 1');
+    console.log('✅ Bible AI Service: Database connection OK');
+    return true;
+  } catch (error) {
+    console.error('❌ Bible AI Service: Database connection failed:', error.message);
+    return false;
+  }
+}
+
+// Test connection immediately
+testConnection();
+
+/**
+ * Execute query with timeout
+ */
+async function executeWithTimeout(queryFunc, timeoutMs = 5000) {
+  return Promise.race([
+    queryFunc(),
+    new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Query timeout')), timeoutMs)
+    )
+  ]);
+}
 
 /**
  * Search verses by keyword
@@ -21,26 +42,28 @@ async function searchVerses(query, language = 'fa', limit = 5) {
     const textField = language === 'fa' ? 'text_fa' : 'text_en';
     const nameField = language === 'fa' ? 'name_fa' : 'name_en';
     
-    const result = await pool.query(`
-      SELECT 
-        b.${nameField} as book_name,
-        b.code as book_code,
-        c.chapter_number,
-        v.verse_number,
-        v.${textField} as text
-      FROM bible_verses v
-      JOIN bible_chapters c ON v.chapter_id = c.id
-      JOIN bible_books b ON c.book_id = b.id
-      WHERE LOWER(v.${textField}) LIKE LOWER($1)
-        AND v.${textField} NOT LIKE 'آیه%'
-        AND v.${textField} NOT LIKE 'Verse%'
-      ORDER BY b.id, c.chapter_number, v.verse_number
-      LIMIT $2
-    `, [`%${query}%`, limit]);
+    const result = await executeWithTimeout(async () => {
+      return await pool.query(`
+        SELECT 
+          b.${nameField} as book_name,
+          b.code as book_code,
+          c.chapter_number,
+          v.verse_number,
+          v.${textField} as text
+        FROM bible_verses v
+        JOIN bible_chapters c ON v.chapter_id = c.id
+        JOIN bible_books b ON c.book_id = b.id
+        WHERE LOWER(v.${textField}) LIKE LOWER($1)
+          AND v.${textField} NOT LIKE 'آیه%'
+          AND v.${textField} NOT LIKE 'Verse%'
+        ORDER BY b.id, c.chapter_number, v.verse_number
+        LIMIT $2
+      `, [`%${query}%`, limit]);
+    });
     
     return result.rows;
   } catch (error) {
-    console.error('Search error:', error);
+    console.error('❌ Search error:', error.message);
     return [];
   }
 }

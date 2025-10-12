@@ -63,6 +63,7 @@ const FlipBookBibleReader = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [readingLang, setReadingLang] = useState<'fa' | 'en'>('fa');
   const [isFlipping, setIsFlipping] = useState(false);
+  const [isBilingualMode, setIsBilingualMode] = useState(false);
   
   // New features
   const [highlightColor, setHighlightColor] = useState<string>('#ffeb3b');
@@ -73,7 +74,7 @@ const FlipBookBibleReader = () => {
   const [showSettings, setShowSettings] = useState(false);
   
   const bookRef = useRef<HTMLDivElement>(null);
-  const versesPerPage = 10;
+  const versesPerPage = isBilingualMode ? 7 : 10;
   
   const {
     isPlaying,
@@ -419,6 +420,19 @@ const FlipBookBibleReader = () => {
               <option value="en">English</option>
             </select>
           </div>
+
+          {/* Bilingual Mode Toggle */}
+          <div className="control-group">
+            <label>{lang === 'fa' ? 'حالت نمایش' : 'Display Mode'}</label>
+            <button 
+              className={`bilingual-toggle ${isBilingualMode ? 'active' : ''}`}
+              onClick={() => setIsBilingualMode(!isBilingualMode)}
+              title={lang === 'fa' ? 'نمایش دو زبانه (فارسی و انگلیسی)' : 'Bilingual Display (Persian & English)'}
+            >
+              <Globe className="icon" />
+              {isBilingualMode ? (lang === 'fa' ? 'تک زبانه' : 'Single') : (lang === 'fa' ? 'دوزبانه' : 'Bilingual')}
+            </button>
+          </div>
         </div>
 
         {booksError && <div className="error-message">{booksError}</div>}
@@ -560,17 +574,80 @@ const FlipBookBibleReader = () => {
                 // Content Pages
                 <div className="page content-page" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                   <div className="page-inner">
-                    <div className="page-header">
-                      <span className="page-number">{currentPage}</span>
-                      <span className="chapter-info">
-                        {currentBook?.name?.[lang] || selectedBookKey} {selectedChapter}
-                      </span>
-                    </div>
-                    
-                    <div className="verses-container">
-                      {console.log('🔍 Rendering page', currentPage, 'with', pages[currentPage - 1]?.length, 'verses')}
-                      {pages[currentPage - 1]?.length > 0 ? (
-                        pages[currentPage - 1].map((verse, idx) => {
+                    {isBilingualMode ? (
+                      // ===== BILINGUAL MODE: Two Columns Side by Side =====
+                      <div className="bilingual-container">
+                        {/* Persian Column (Right Side) */}
+                        <div className="bilingual-column persian-column" dir="rtl">
+                          <div className="page-header">
+                            <span className="page-number">{currentPage}</span>
+                            <span className="chapter-info">
+                              {currentBook?.name?.fa || selectedBookKey} {selectedChapter}
+                            </span>
+                          </div>
+                          
+                          <div className="verses-container">
+                            {pages[currentPage - 1]?.map((verse) => {
+                              const verseIndex = verses.findIndex(v => v.verse === verse.verse && v.chapter === verse.chapter);
+                              const isReading = currentVerse?.number === verse.verse;
+                              
+                              return (
+                                <div 
+                                  key={`fa-${verse.verse}`} 
+                                  className={`verse ${isReading ? 'reading' : ''} ${verse.bookmarked ? 'bookmarked' : ''} ${verse.highlight ? `highlight-${verse.highlight}` : ''}`}
+                                >
+                                  <span className="verse-number">{verse.verse}</span>
+                                  <p className="verse-text">{verse.text.fa}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Divider Line */}
+                        <div className="bilingual-divider"></div>
+
+                        {/* English Column (Left Side) */}
+                        <div className="bilingual-column english-column" dir="ltr">
+                          <div className="page-header">
+                            <span className="chapter-info">
+                              {currentBook?.name?.en || selectedBookKey} {selectedChapter}
+                            </span>
+                            <span className="page-number">{currentPage}</span>
+                          </div>
+                          
+                          <div className="verses-container">
+                            {pages[currentPage - 1]?.map((verse) => {
+                              const verseIndex = verses.findIndex(v => v.verse === verse.verse && v.chapter === verse.chapter);
+                              const isReading = currentVerse?.number === verse.verse;
+                              
+                              return (
+                                <div 
+                                  key={`en-${verse.verse}`} 
+                                  className={`verse ${isReading ? 'reading' : ''} ${verse.bookmarked ? 'bookmarked' : ''} ${verse.highlight ? `highlight-${verse.highlight}` : ''}`}
+                                >
+                                  <span className="verse-number">{verse.verse}</span>
+                                  <p className="verse-text">{verse.text.en}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // ===== SINGLE LANGUAGE MODE (Original) =====
+                      <>
+                        <div className="page-header">
+                          <span className="page-number">{currentPage}</span>
+                          <span className="chapter-info">
+                            {currentBook?.name?.[lang] || selectedBookKey} {selectedChapter}
+                          </span>
+                        </div>
+                        
+                        <div className="verses-container">
+                          {console.log('🔍 Rendering page', currentPage, 'with', pages[currentPage - 1]?.length, 'verses')}
+                          {pages[currentPage - 1]?.length > 0 ? (
+                            pages[currentPage - 1].map((verse, idx) => {
                           const verseIndex = verses.findIndex(v => v.verse === verse.verse && v.chapter === verse.chapter);
                           const isReading = currentVerse?.number === verse.verse;
                           const hasNote = verse.note && verse.note.length > 0;
@@ -689,6 +766,30 @@ const FlipBookBibleReader = () => {
                     <div className="page-footer">
                       <span>{lang === 'fa' ? `صفحه ${currentPage} از ${totalPages}` : `Page ${currentPage} of ${totalPages}`}</span>
                     </div>
+                  </>
+                )}
+
+                {/* Next Chapter Button - Show on last page */}
+                {currentPage === totalPages - 1 && selectedChapter < maxChapters && (
+                      <div className="next-chapter-btn-container">
+                        <button 
+                          className="next-chapter-btn"
+                          onClick={() => navigateChapter('next')}
+                        >
+                          {lang === 'fa' ? (
+                            <>
+                              <span>فصل بعد ({selectedChapter + 1})</span>
+                              <ChevronLeft className="icon" />
+                            </>
+                          ) : (
+                            <>
+                              <span>Next Chapter ({selectedChapter + 1})</span>
+                              <ChevronRight className="icon" />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

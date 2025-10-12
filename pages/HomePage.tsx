@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
-import { ArrowUpRight, Quote } from 'lucide-react';
+import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import { getRandomImage } from '../lib/theme';
 import WeeklySchedule from '../components/WeeklySchedule';
@@ -14,6 +14,7 @@ import { useAuth } from '../hooks/useAuth';
 import ImageSlider from '../components/ImageSlider';
 import SEOHead from '../components/SEO/SEOHead';
 import { getPageSEOConfig } from '../lib/seoConfig';
+import './HomePage.css';
 
 const ParticleCanvas: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -171,19 +172,24 @@ const LeadersSection: React.FC = () => {
 const Stats: React.FC = () => {
     const { t } = useLanguage();
     const stats = [
-      { id: "stats-1", title: t('statsMembers'), value: "150+" },
-      { id: "stats-2", title: t('statsEvents'), value: "10+" },
-      { id: "stats-3", title: t('statsSermons'), value: "500+" },
+      { id: "stats-1", title: t('statsMembers'), value: "150+", icon: Users },
+      { id: "stats-2", title: t('statsEvents'), value: "10+", icon: Calendar },
+      { id: "stats-3", title: t('statsSermons'), value: "500+", icon: Book },
     ];
     return (
       <section className="flex-row flex-wrap sm:mb-20 mb-6 flex justify-center items-center">
-        {stats.map((stat, index) => (
-          <div key={stat.id} className={`flex-1 flex justify-start items-center flex-row m-3`}>
-            <h4 className="font-semibold xs:text-[40px] text-[30px] xs:leading-[53px] leading-[43px] text-white">{stat.value}</h4>
-            <p className="font-normal xs:text-[20px] text-[15px] xs:leading-[26px] leading-[21px] text-gradient uppercase ml-3 rtl:mr-3 rtl:ml-0">{stat.title}</p>
-            {index !== stats.length - 1 && <div className="hidden md:block h-8 w-px bg-white/20 mx-6"></div>}
-          </div>
-        ))}
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <div key={stat.id} className={`flex-1 flex justify-start items-center flex-col m-3 glass-card hover:scale-105 transition-all duration-300`}>
+              <div className="w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-secondary to-blue-400 flex items-center justify-center pulse-animation">
+                <Icon className="w-8 h-8 text-black" />
+              </div>
+              <h4 className="font-semibold xs:text-[40px] text-[30px] xs:leading-[53px] leading-[43px] text-white counter">{stat.value}</h4>
+              <p className="font-normal xs:text-[20px] text-[15px] xs:leading-[26px] leading-[21px] text-gradient uppercase text-center">{stat.title}</p>
+            </div>
+          );
+        })}
       </section>
     );
 };
@@ -200,6 +206,26 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     // Set a beautiful default image instead of random
     setAboutImage('/images/jesus-cross-sunset.jpg');
+    
+    // Reveal on scroll animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -284,6 +310,43 @@ const HomePage: React.FC = () => {
       {/* Content Sections */}
       <div className="flex justify-center items-start sm:px-16 px-6">
           <div className="xl:max-w-[1280px] w-full">
+              {/* Quick Access Cards */}
+              <section className="sm:py-16 py-6 reveal-on-scroll">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <Link to="/bible-reader" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                      <Book className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-2">{lang === 'fa' ? 'کتاب مقدس' : 'Holy Bible'}</h3>
+                    <p className="text-dimWhite text-sm">{lang === 'fa' ? 'خواندن و مطالعه کلام خدا' : 'Read and study God\'s Word'}</p>
+                  </Link>
+
+                  <Link to="/sermons" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                      <MessageCircle className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-2">{lang === 'fa' ? 'موعظه‌ها' : 'Sermons'}</h3>
+                    <p className="text-dimWhite text-sm">{lang === 'fa' ? 'گوش دادن به موعظه‌های هفتگی' : 'Listen to weekly messages'}</p>
+                  </Link>
+
+                  <Link to="/events" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                      <Calendar className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-2">{lang === 'fa' ? 'رویدادها' : 'Events'}</h3>
+                    <p className="text-dimWhite text-sm">{lang === 'fa' ? 'برنامه‌های کلیسا و رویدادها' : 'Church programs and events'}</p>
+                  </Link>
+
+                  <Link to="/prayer-requests" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                      <Heart className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-2">{lang === 'fa' ? 'درخواست دعا' : 'Prayer Requests'}</h3>
+                    <p className="text-dimWhite text-sm">{lang === 'fa' ? 'درخواست دعا و شفاعت' : 'Share prayer requests'}</p>
+                  </Link>
+                </div>
+              </section>
+
               <div className="reveal-on-scroll delay-3"><Stats /></div>
               <div className="reveal-on-scroll delay-4"><WeeklySchedule /></div>
 
@@ -318,22 +381,33 @@ const HomePage: React.FC = () => {
               {/* Gallery Section */}
               <section className="sm:py-16 py-6 reveal-on-scroll delay-6">
                 <div className="text-center mb-12">
-                    <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-4">{lang === 'fa' ? 'گالری تصاویر کلیسا' : 'Church Gallery'}</h2>
+                    <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-4 heading-glow">{lang === 'fa' ? 'گالری تصاویر کلیسا' : 'Church Gallery'}</h2>
                     <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[600px] mx-auto">{lang === 'fa' ? 'نگاهی به فضاهای زیبا و لحظات مقدس کلیسای ما' : 'A glimpse into the beautiful spaces and sacred moments of our church community'}</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
                         <img src="/images/Prayer_circle_hands_together_feb88f83.png" alt="Prayer Circle" className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
+                          <Sparkles className="w-12 h-12 text-white" />
+                        </div>
                     </div>
-                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
                         <img src="/images/Bible_study_peaceful_setting_6bb44b27.png" alt="Bible Study" className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
+                          <Sparkles className="w-12 h-12 text-white" />
+                        </div>
                     </div>
-                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
                         <img src="/images/Children_Sunday_school_class_ade575b6.png" alt="Sunday School" className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
+                          <Sparkles className="w-12 h-12 text-white" />
+                        </div>
                     </div>
                 </div>
                 <div className="text-center">
-                    <Button styles="" text={lang === 'fa' ? 'مشاهده گالری کامل' : 'View Full Gallery'} to="/gallery"/>
+                    <Link to="/gallery" className="neon-button inline-block">
+                      <span>{lang === 'fa' ? 'مشاهده گالری کامل' : 'View Full Gallery'}</span>
+                    </Link>
                 </div>
               </section>
 
@@ -394,14 +468,21 @@ const HomePage: React.FC = () => {
               <LeadersSection />
 
               {/* CTA Section */}
-              <section className="flex justify-center items-center sm:my-16 my-6 sm:px-16 px-6 sm:py-12 py-4 sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow reveal-on-scroll">
-                    <div className="flex-1 flex flex-col">
-                        <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">{t('ctaTitle')}</h2>
-                        <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[470px] mt-5">{t('ctaParagraph')}</p>
+              <section className="sm:my-16 my-6 sm:px-16 px-6 sm:py-12 py-4 reveal-on-scroll">
+                <div className="glass-card p-12 rounded-2xl text-center border border-white/20 hover:border-white/40 transition-all duration-500 cta-glow-effect">
+                    <Heart className="w-16 h-16 mx-auto mb-6 text-pink-400 pulse-animation" />
+                    <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-6 gradient-text">{t('ctaTitle')}</h2>
+                    <p className="font-normal text-white text-[18px] leading-[30.8px] max-w-[700px] mx-auto mb-8">{t('ctaParagraph')}</p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <Link to="/ai-helper" className="neon-button">
+                          <span>{t('ctaButton')}</span>
+                        </Link>
+                        <Link to="/contact" className="glass-card px-8 py-4 rounded-full border-2 border-white/50 text-white hover:border-white hover:bg-white/10 transition-all duration-300 inline-flex items-center gap-2 hover:scale-105">
+                          <MessageCircle className="w-5 h-5" />
+                          <span className="font-medium">{lang === 'fa' ? 'تماس با ما' : 'Contact Us'}</span>
+                        </Link>
                     </div>
-                    <div className="flex justify-center items-center sm:ml-10 ml-0 sm:mt-0 mt-10 rtl:sm:mr-10 rtl:sm:ml-0">
-                       <Button text={t('ctaButton')} to="/ai-helper" />
-                    </div>
+                </div>
               </section>
           </div>
         </div>
