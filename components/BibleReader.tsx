@@ -648,14 +648,14 @@ const BibleReader = () => {
                                 </div>
                               )}
                               
-                              <div className="flex items-start space-x-3" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                                <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 bg-blue-600 text-white rounded-full text-sm font-bold shadow-sm">
+                              <div className="flex items-start space-x-3 space-x-reverse" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                                <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-full text-sm font-bold shadow-md">
                                   {verse.verse}
                                 </span>
                                 <div className="flex-1">
-                                  <p className={`text-gray-800 leading-relaxed ${
-                                    currentVerse?.number === verse.verse ? 'font-medium text-yellow-900' : ''
-                                  }`} style={{fontSize: '15px', lineHeight: '1.8'}}>
+                                  <p className={`bible-verse-text verse-text text-gray-900 ${
+                                    currentVerse?.number === verse.verse ? 'font-semibold text-yellow-900 bg-yellow-50 rounded-lg p-2' : ''
+                                  }`}>
                                     {verse.text?.[lang] || 'Loading...'}
                                   </p>
                                   
