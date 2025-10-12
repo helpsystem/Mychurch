@@ -1,4 +1,27 @@
-/* Bible Reader Styles */
+/* Bible Reader Styles - Standard View با فونت خوانا */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* فونت فارسی خوانا برای متن‌های فارسی */
+[dir="rtl"] .verse-text,
+[dir="rtl"] .bible-verse-text {
+  font-family: 'Amiri', 'Noto Serif', 'Tahoma', serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  line-height: 2.2 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* فونت انگلیسی خوانا */
+[dir="ltr"] .verse-text,
+[dir="ltr"] .bible-verse-text {
+  font-family: 'Noto Serif', 'Georgia', serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 400 !important;
+  line-height: 2 !important;
+  letter-spacing: 0.01em !important;
+}
 
 .bible-book {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);

@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "backend": "cd backend && npm run dev",
+    "dev:all": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run dev\"",
+    "dev:full": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"bgBlue.bold,bgMagenta.bold\" \"npm run backend\" \"npm run dev\"",
     "build": "vite build",
     "build:analyze": "vite build --mode production && npx vite-bundle-analyzer dist",
     "build:prod": "NODE_ENV=production vite build",
