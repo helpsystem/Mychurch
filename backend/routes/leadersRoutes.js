@@ -1,7 +1,19 @@
 const express = require('express');
-const { pool, parseJSON } = require('../db-postgres');
+const { pool } = require('../db-postgres');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
+
+// Helper function to parse JSON fields safely
+const parseJSON = (field, defaultValue = {}) => {
+  if (!field) return defaultValue;
+  if (typeof field === 'object') return field;
+  try {
+    return JSON.parse(field);
+  } catch (e) {
+    console.error('JSON parse error:', e);
+    return defaultValue;
+  }
+};
 
 // GET /api/leaders - دریافت همه رهبران
 router.get('/', async (req, res) => {
@@ -9,11 +21,11 @@ router.get('/', async (req, res) => {
     const result = await pool.query('SELECT * FROM leaders ORDER BY created_at DESC');
     const leaders = result.rows.map(leader => ({
       id: leader.id,
-      name: parseJSON(leader.name, {}),
+      name: { fa: leader.name, en: leader.name }, // name is VARCHAR, return same for both languages
       title: parseJSON(leader.title, {}),
       imageUrl: leader.imageurl,
-      bio: parseJSON(leader.bio, {}),
-      whatsappNumber: leader.whatsappnumber
+      bio: { fa: '', en: '' }, // No bio column in database
+      whatsappNumber: null // No whatsappNumber column in database
     }));
     res.json(leaders);
   } catch (error) {

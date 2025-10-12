@@ -128,41 +128,90 @@ const FeedbackCard: React.FC<{ content: string; name: string; title: string; img
 const LeaderCardHome: React.FC<{ leader: Leader }> = ({ leader }) => {
     const { lang, t } = useLanguage();
 
-    const shortBio = leader.bio[lang].length > 100 
+    const shortBio = leader.bio[lang]?.length > 100 
         ? leader.bio[lang].substring(0, 100) + '...' 
         : leader.bio[lang];
 
+    const imageUrl = leader.imageUrl || DEFAULT_AVATAR_URL;
+    const leaderName = leader.name?.[lang] || leader.name || 'Unknown';
+    const leaderTitle = leader.title?.[lang] || leader.title || '';
+
     return (
-        <div className="flex flex-col p-6 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 feature-card interactive-card-glow">
-            <div className="w-full h-60 mb-4 rounded-[10px] overflow-hidden image-container">
-                 <img src={leader.imageUrl} alt="" className="image-background" aria-hidden="true" />
-                 <img src={leader.imageUrl} alt={leader.name[lang]} className="image-foreground" />
+        <div className="flex flex-col p-6 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 feature-card interactive-card-glow hover:scale-105 transition-all duration-300">
+            <div className="w-full h-60 mb-4 rounded-[10px] overflow-hidden image-container relative group">
+                <img src={imageUrl} alt="" className="image-background" aria-hidden="true" />
+                <img src={imageUrl} alt={leaderName} className="image-foreground" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h4 className="font-semibold text-white text-[20px] leading-[32px]">{leader.name[lang]}</h4>
-            <p className="font-normal text-dimWhite text-[16px] leading-[24px] mb-4">{leader.title[lang]}</p>
-            <p className="font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow">{shortBio}</p>
-            <Link to="/leaders" className="text-secondary hover:text-white font-semibold mt-auto">{t('viewProfile')}</Link>
+            <h4 className="font-semibold text-white text-[20px] leading-[32px] mb-1">{leaderName}</h4>
+            <p className="font-normal text-secondary text-[16px] leading-[24px] mb-4">{leaderTitle}</p>
+            <p className="font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow">{shortBio || t('noDescription')}</p>
+            <Link to="/leaders" className="text-secondary hover:text-white font-semibold mt-auto inline-flex items-center gap-2 group">
+                {t('viewProfile')}
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
         </div>
     );
 };
 
 const LeadersSection: React.FC = () => {
-  const { t } = useLanguage();
-  const { content } = useContent();
-  const leaders = content.leaders.slice(0, 3); // Show max 3 on homepage
+  const { t, lang } = useLanguage();
+  const { content, loading } = useContent();
+  const leaders = content.leaders?.slice(0, 3) || []; // Show max 3 on homepage
+
+  if (loading) {
+    return (
+      <section className="sm:py-16 py-6 flex justify-center items-center flex-col relative reveal-on-scroll">
+        <div className="w-full flex justify-center items-center">
+          <div className="animate-pulse text-dimWhite text-lg">
+            {lang === 'fa' ? '🔄 در حال بارگذاری رهبران...' : '🔄 Loading leaders...'}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (leaders.length === 0) {
+    return (
+      <section className="sm:py-16 py-6 flex justify-center items-center flex-col relative reveal-on-scroll">
+        <div className="w-full flex flex-col items-center justify-center p-8 glass-card rounded-[20px]">
+          <Users className="w-16 h-16 text-dimWhite mb-4" />
+          <p className="text-dimWhite text-lg text-center">
+            {lang === 'fa' ? 'اطلاعات رهبران در حال حاضر در دسترس نیست' : 'Leader information is currently unavailable'}
+          </p>
+          <Link to="/leaders" className="mt-4 px-6 py-3 bg-gradient-to-r from-secondary to-blue-400 text-white rounded-full font-semibold hover:scale-105 transition-all">
+            {lang === 'fa' ? 'مشاهده صفحه رهبران' : 'View Leaders Page'}
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="sm:py-16 py-6 flex justify-center items-center flex-col relative reveal-on-scroll">
       <div className="w-full flex justify-between items-center md:flex-row flex-col sm:mb-16 mb-6 relative z-[1]">
-        <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">{t('meetOurLeadersHomeTitle')}</h2>
+        <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full heading-glow">
+          {t('meetOurLeadersHomeTitle')}
+        </h2>
         <div className="w-full md:mt-0 mt-6">
-            <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] text-left max-w-[450px]">{t('meetOurLeadersHomeParagraph')}</p>
+            <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] text-left max-w-[450px]">
+              {t('meetOurLeadersHomeParagraph')}
+            </p>
         </div>
       </div>
-      <div className="flex flex-wrap sm:justify-start justify-center w-full relative z-[1]">
+      <div className="flex flex-wrap sm:justify-start justify-center w-full relative z-[1] gap-4">
         {leaders.map(leader => (
           <LeaderCardHome key={leader.id} leader={leader} />
         ))}
+      </div>
+      <div className="w-full flex justify-center mt-8">
+        <Link 
+          to="/leaders" 
+          className="px-8 py-4 bg-gradient-to-r from-secondary to-blue-400 text-white rounded-full font-semibold hover:scale-105 transition-all inline-flex items-center gap-2 shadow-lg hover:shadow-secondary/50"
+        >
+          {lang === 'fa' ? '👥 مشاهده همه رهبران' : '👥 View All Leaders'}
+          <ArrowUpRight className="w-5 h-5" />
+        </Link>
       </div>
     </section>
   );
