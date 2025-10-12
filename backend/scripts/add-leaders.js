@@ -4,12 +4,12 @@ const leaders = [
   {
     name: 'Rev. Javad Pishghadamian',
     title: { fa: 'کشیش ارشد', en: 'Senior Pastor' },
-    imageUrl: 'https://i.pravatar.cc/400?u=javad'
+    imageUrl: '/images/javad-leader.jpg'
   },
   {
     name: 'Nazi Rasti',
     title: { fa: 'رهبر مطالعه کتاب مقدس بانوان', en: "Women's Bible Study Leader" },
-    imageUrl: 'https://i.pravatar.cc/400?u=nazi'
+    imageUrl: '/images/nazi-leader.jpg'
   }
 ];
 
