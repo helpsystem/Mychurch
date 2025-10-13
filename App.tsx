@@ -137,11 +137,11 @@ function App() {
             <Route path="letters/:id" element={<ProtectedRoute><LetterViewerPage /></ProtectedRoute>} />
             
             <Route path="p/:slug" element={<CustomPageRenderer />} />
+            <Route path="wordproject-bible" element={<WordprojectBibleReader />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>
           
-          <Route path="/wordproject-bible" element={<WordprojectBibleReader />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="verify-email" element={<VerifyEmailPage />} />
