@@ -362,6 +362,18 @@ const BibleReader = () => {
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
           {lang === 'fa' ? 'کتاب مقدس - نمای استاندارد' : 'Holy Bible - Standard View'}
         </h1>
+        
+        {/* دکمه انتخاب کتاب */}
+        {!showTreeNav && (
+          <button
+            onClick={() => setShowTreeNav(true)}
+            className="mb-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-105 flex items-center gap-2 mx-auto"
+          >
+            <BookOpen className="h-5 w-5" />
+            {lang === 'fa' ? 'انتخاب کتاب و فصل' : 'Select Book & Chapter'}
+          </button>
+        )}
+        
         {currentBook && selectedBookKey && (
           <p className="text-lg text-blue-600 font-semibold">
             {currentBook.testament === 'old' 
@@ -384,10 +396,10 @@ const BibleReader = () => {
 
       {/* Main Content Area with Sidebar */}
       <div className="flex gap-6 relative">
-        {/* Toggle Button for Mobile */}
+        {/* Toggle Button - Always Visible */}
         <button
           onClick={() => setShowTreeNav(!showTreeNav)}
-          className="lg:hidden fixed top-20 left-4 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+          className="fixed top-20 left-4 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
           title={showTreeNav ? (lang === 'fa' ? 'بستن منو' : 'Close menu') : (lang === 'fa' ? 'باز کردن منو' : 'Open menu')}
         >
           <Menu className="h-5 w-5" />
@@ -477,6 +489,7 @@ const BibleReader = () => {
                                     setSelectedBookKey(book.key);
                                     setSelectedChapter(chapter);
                                     setCurrentPage(0);
+                                    setShowTreeNav(false); // بستن Tree Navigation بعد از انتخاب فصل
                                   }}
                                   className={`px-2 py-1 text-xs rounded hover:bg-blue-500 hover:text-white transition-colors ${
                                     selectedBookKey === book.key && selectedChapter === chapter
@@ -543,6 +556,7 @@ const BibleReader = () => {
                                     setSelectedBookKey(book.key);
                                     setSelectedChapter(chapter);
                                     setCurrentPage(0);
+                                    setShowTreeNav(false); // بستن Tree Navigation بعد از انتخاب فصل
                                   }}
                                   className={`px-2 py-1 text-xs rounded hover:bg-blue-500 hover:text-white transition-colors ${
                                     selectedBookKey === book.key && selectedChapter === chapter
