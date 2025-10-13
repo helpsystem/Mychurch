@@ -49,6 +49,9 @@ const queries = [
     category VARCHAR(50) DEFAULT 'worship',
     tags JSONB DEFAULT '[]',
     copyright VARCHAR(500),
+    presentation_file_url VARCHAR(500),
+    pdf_file_url VARCHAR(500),
+    sheet_music_url VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 

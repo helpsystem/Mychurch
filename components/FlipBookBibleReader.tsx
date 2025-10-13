@@ -333,6 +333,18 @@ const FlipBookBibleReader = () => {
         <h1 className="flipbook-title">
           {lang === 'fa' ? 'کتاب مقدس' : 'Holy Bible'}
         </h1>
+        {currentBook && selectedBookKey && (
+          <p className="flipbook-current-reading">
+            {currentBook.testament === 'old' 
+              ? (lang === 'fa' ? 'عهد عتیق' : 'Old Testament')
+              : (lang === 'fa' ? 'عهد جدید' : 'New Testament')
+            } 
+            {' - '}
+            {currentBook.name[lang]}
+            {' - '}
+            {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
+          </p>
+        )}
         <p className="flipbook-subtitle">
           {lang === 'fa' 
             ? 'تجربه مطالعه کتاب مقدس به شکل کتاب واقعی با افکت برگ زدن' 
@@ -575,14 +587,14 @@ const FlipBookBibleReader = () => {
                 <div className="page content-page" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                   <div className="page-inner">
                     {isBilingualMode ? (
-                      // ===== BILINGUAL MODE: Two Columns Side by Side =====
-                      <div className="bilingual-container">
-                        {/* Persian Column (Right Side) */}
-                        <div className="bilingual-column persian-column" dir="rtl">
+                      // ===== BILINGUAL MODE: Persian RIGHT, English LEFT (Always) =====
+                      <div className="bilingual-container" style={{ direction: 'ltr' }}>
+                        {/* Persian Column (RIGHT in LTR layout) */}
+                        <div className="bilingual-column persian-column" dir="rtl" style={{ order: 2 }}>
                           <div className="page-header">
                             <span className="page-number">{currentPage}</span>
                             <span className="chapter-info">
-                              {currentBook?.name?.fa || selectedBookKey} {selectedChapter}
+                              {currentBook?.testament === 'old' ? 'عهد عتیق' : 'عهد جدید'} - {currentBook?.name?.fa || selectedBookKey} {selectedChapter}
                             </span>
                           </div>
                           
@@ -607,11 +619,11 @@ const FlipBookBibleReader = () => {
                         {/* Divider Line */}
                         <div className="bilingual-divider"></div>
 
-                        {/* English Column (Left Side) */}
-                        <div className="bilingual-column english-column" dir="ltr">
+                        {/* English Column (LEFT in LTR layout) */}
+                        <div className="bilingual-column english-column" dir="ltr" style={{ order: 1 }}>
                           <div className="page-header">
                             <span className="chapter-info">
-                              {currentBook?.name?.en || selectedBookKey} {selectedChapter}
+                              {currentBook?.testament === 'old' ? 'Old Testament' : 'New Testament'} - {currentBook?.name?.en || selectedBookKey} {selectedChapter}
                             </span>
                             <span className="page-number">{currentPage}</span>
                           </div>
@@ -640,6 +652,11 @@ const FlipBookBibleReader = () => {
                         <div className="page-header">
                           <span className="page-number">{currentPage}</span>
                           <span className="chapter-info">
+                            {currentBook?.testament === 'old' 
+                              ? (lang === 'fa' ? 'عهد عتیق' : 'Old Testament')
+                              : (lang === 'fa' ? 'عهد جدید' : 'New Testament')
+                            }
+                            {' - '}
                             {currentBook?.name?.[lang] || selectedBookKey} {selectedChapter}
                           </span>
                         </div>

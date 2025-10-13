@@ -146,6 +146,9 @@ export interface WorshipSong {
   lyrics?: Record<Language, string>;
   audioUrl?: string;
   videoUrl?: string;
+  presentationFileUrl?: string;
+  pdfFileUrl?: string;
+  sheetMusicUrl?: string;
 }
 
 export interface Leader {
