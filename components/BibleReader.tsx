@@ -62,7 +62,7 @@ const BibleReader = () => {
   // Tree Navigation State
   const [showTreeNav, setShowTreeNav] = useState(true);
   const [expandedTestament, setExpandedTestament] = useState<'old' | 'new' | null>('old');
-  const [expandedBook, setExpandedBook] = useState<string | null>(null);
+  const [expandedBook, setExpandedBook] = useState<string | null>('GEN'); // پیش‌فرض: پیدایش باز است
   const [bookSearchTerm, setBookSearchTerm] = useState('');
   
   const bookRef = useRef(null);
@@ -891,7 +891,11 @@ const BibleReader = () => {
                                     {/* TTS */}
                                     {isSupported && verse.text?.[readingLang] && (
                                       <button
-                                        onClick={() => speakVerse(verse.text[readingLang], verse.verse, readingLang)}
+                                        onClick={() => {
+                                          const textToSpeak = verse.text?.[readingLang] || '';
+                                          console.log('🎙️ TTS Click:', { verseNum: verse.verse, lang: readingLang, text: textToSpeak.substring(0, 50) });
+                                          speakVerse(textToSpeak, verse.verse, readingLang);
+                                        }}
                                         className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors flex items-center"
                                         title={lang === 'fa' ? 'خواندن' : 'Read'}
                                       >
