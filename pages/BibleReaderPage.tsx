@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BibleReader from '../components/BibleReader';
-import FlipBookBibleReader from '../components/FlipBookBibleReader';
+// import FlipBookBibleReader from '../components/FlipBookBibleReader'; // Temporarily disabled
 import ModernBibleReader from '../components/ModernBibleReader';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -33,8 +33,9 @@ const BibleReaderPage = () => {
             fontSize: '1rem'
           }}
         >
-          � {lang === 'fa' ? 'نمای استاندارد' : 'Standard View'}
+          📖 {lang === 'fa' ? 'نمای استاندارد' : 'Standard View'}
         </button>
+        {/* 
         <button
           onClick={() => setViewMode('flipbook')}
           style={{
@@ -49,13 +50,14 @@ const BibleReaderPage = () => {
             fontSize: '1rem'
           }}
         >
-          � {lang === 'fa' ? 'نمای کتاب (3D)' : 'Book View (3D)'}
+          📚 {lang === 'fa' ? 'نمای کتاب (3D)' : 'Book View (3D)'}
         </button>
+        */}
       </div>
 
       {/* Render Selected View */}
       {viewMode === 'modern' ? <ModernBibleReader /> : 
-       viewMode === 'flipbook' ? <FlipBookBibleReader /> : 
+       // viewMode === 'flipbook' ? <FlipBookBibleReader /> : 
        <BibleReader />}
     </div>
   );
