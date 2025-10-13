@@ -25,21 +25,54 @@ export const useBibleTTS = () => {
       let selectedVoice = null;
 
       if (language === 'fa') {
-        // Find Persian/Farsi voice
+        // Enhanced Persian voice detection
         selectedVoice = voices.find(voice => 
           voice.lang.includes('fa') || 
+          voice.lang.includes('fa-IR') ||
           voice.name.toLowerCase().includes('persian') || 
-          voice.name.toLowerCase().includes('farsi')
+          voice.name.toLowerCase().includes('farsi') ||
+          voice.name.includes('زهرا') || // Google Persian voice
+          voice.name.includes('Samira') || // Microsoft Persian voice
+          voice.name.toLowerCase().includes('iran')
         );
         
-        // Fallback to any available voice if no Persian found
+        // Fallback: Try Arabic voices (phonetically similar)
         if (!selectedVoice) {
-          selectedVoice = voices.find(voice => voice.lang.includes('en')) || voices[0];
+          selectedVoice = voices.find(voice => 
+            voice.lang.includes('ar') || 
+            voice.name.toLowerCase().includes('arabic')
+          );
+        }
+        
+        // Last resort: Use any available voice
+        if (!selectedVoice) {
+          selectedVoice = voices[0];
+          console.warn('⚠️ No Persian or Arabic voice found. Using default voice.');
         }
       } else {
-        // Find English voice
-        selectedVoice = voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+        // Enhanced English voice detection
+        selectedVoice = voices.find(voice => 
+          voice.lang.startsWith('en-US') || 
+          voice.lang.startsWith('en-GB')
+        );
+        
+        // Fallback to any English voice
+        if (!selectedVoice) {
+          selectedVoice = voices.find(voice => voice.lang.startsWith('en'));
+        }
+        
+        // Last resort
+        if (!selectedVoice) {
+          selectedVoice = voices[0];
+        }
       }
+
+      console.log('🎙️ TTS Voice Selected:', {
+        language,
+        voiceName: selectedVoice?.name,
+        voiceLang: selectedVoice?.lang,
+        totalVoicesAvailable: voices.length
+      });
 
       const utterance = new SpeechSynthesisUtterance(verseText);
       

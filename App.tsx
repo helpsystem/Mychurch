@@ -48,6 +48,7 @@ import AnnouncementsPage from './pages/AnnouncementsPage';
 import CalendarPage from './pages/CalendarPage';
 import PrayerRequestsPage from './pages/PrayerRequestsPage';
 import DailyDevotionalPage from './pages/DailyDevotionalPage';
+import WordprojectBibleReader from './components/WordprojectBibleReader';
 import NotificationCenterPage from './pages/NotificationCenterPage';
 import DailyMessagesPage from './pages/DailyMessagesPage';
 import TailwindDemoPage from './pages/TailwindDemoPage';
@@ -140,6 +141,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
           
+          <Route path="/wordproject-bible" element={<WordprojectBibleReader />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="verify-email" element={<VerifyEmailPage />} />

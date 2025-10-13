@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { BookOpen, ChevronLeft, ChevronRight, Search, Play, Pause, Square, Globe, Highlighter, BookmarkPlus, Bookmark, StickyNote, X, Save } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Search, Play, Pause, Square, Globe, Highlighter, BookmarkPlus, Bookmark, StickyNote, X, Save, ChevronDown, ChevronUp, Menu } from 'lucide-react';
 import useBibleTTS from '../hooks/useBibleTTS';
 import { api } from '../lib/api';
 import HTMLFlipBook from 'react-pageflip';
@@ -58,6 +58,12 @@ const BibleReader = () => {
   const [currentNote, setCurrentNote] = useState('');
   const [highlightColor, setHighlightColor] = useState<string | null>(null);
   const [showBookmarks, setShowBookmarks] = useState(false);
+  
+  // Tree Navigation State
+  const [showTreeNav, setShowTreeNav] = useState(true);
+  const [expandedTestament, setExpandedTestament] = useState<'old' | 'new' | null>('old');
+  const [expandedBook, setExpandedBook] = useState<string | null>(null);
+  const [bookSearchTerm, setBookSearchTerm] = useState('');
   
   const bookRef = useRef(null);
   const versesPerPage = 8; // تعداد آیات در هر صفحه
@@ -354,9 +360,21 @@ const BibleReader = () => {
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fa' ? 'کتاب مقدس' : 'Holy Bible'}
+          {lang === 'fa' ? 'کتاب مقدس - نمای استاندارد' : 'Holy Bible - Standard View'}
         </h1>
-        <p className="text-lg text-gray-600">
+        {currentBook && selectedBookKey && (
+          <p className="text-lg text-blue-600 font-semibold">
+            {currentBook.testament === 'old' 
+              ? (lang === 'fa' ? 'عهد عتیق' : 'Old Testament')
+              : (lang === 'fa' ? 'عهد جدید' : 'New Testament')
+            } 
+            {' - '}
+            {currentBook.name[lang]}
+            {' - '}
+            {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
+          </p>
+        )}
+        <p className="text-lg text-gray-600 mt-2">
           {lang === 'fa' 
             ? 'تجربه مطالعه کتاب مقدس به شکل کتاب واقعی' 
             : 'Experience the Bible like a real book'
@@ -364,6 +382,192 @@ const BibleReader = () => {
         </p>
       </div>
 
+      {/* Main Content Area with Sidebar */}
+      <div className="flex gap-6 relative">
+        {/* Toggle Button for Mobile */}
+        <button
+          onClick={() => setShowTreeNav(!showTreeNav)}
+          className="lg:hidden fixed top-20 left-4 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+          title={showTreeNav ? (lang === 'fa' ? 'بستن منو' : 'Close menu') : (lang === 'fa' ? 'باز کردن منو' : 'Open menu')}
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+
+        {/* Tree Navigation Sidebar */}
+        {showTreeNav && (
+          <div className="w-80 bg-white rounded-lg shadow-lg p-4 sticky top-4 self-start max-h-[calc(100vh-120px)] overflow-y-auto" style={{ minWidth: '320px' }}>
+            <div className="flex items-center justify-between mb-4 border-b pb-3">
+              <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-blue-600" />
+                {lang === 'fa' ? 'فهرست کتاب‌ها' : 'Books Index'}
+              </h2>
+              <button
+                onClick={() => setShowTreeNav(false)}
+                className="lg:hidden p-1 hover:bg-gray-100 rounded"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Filter Books Input */}
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder={lang === 'fa' ? 'Filter Books...' : 'Filter Books...'}
+                value={bookSearchTerm}
+                onChange={(e) => setBookSearchTerm(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+              />
+            </div>
+
+            {booksLoading ? (
+              <div className="text-center py-8 text-gray-500">
+                {lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}
+              </div>
+            ) : booksError ? (
+              <div className="text-center py-8 text-red-500 text-sm">
+                {booksError}
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {/* Old Testament Section */}
+                <div className="border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => setExpandedTestament(expandedTestament === 'old' ? null : 'old')}
+                    className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-amber-50 to-amber-100 hover:from-amber-100 hover:to-amber-200 transition-colors"
+                  >
+                    <span className="font-bold text-amber-900 flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      {lang === 'fa' ? 'عهد عتیق' : 'Old Testament'}
+                      <span className="text-xs bg-amber-200 px-2 py-0.5 rounded-full">{testamentGroups.old.length}</span>
+                    </span>
+                    {expandedTestament === 'old' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                  </button>
+                  
+                  {expandedTestament === 'old' && (
+                    <div className="bg-white">
+                      {testamentGroups.old
+                        .filter(book => 
+                          bookSearchTerm === '' || 
+                          book.name.fa.includes(bookSearchTerm) || 
+                          book.name.en.toLowerCase().includes(bookSearchTerm.toLowerCase())
+                        )
+                        .map(book => (
+                        <div key={book.key} className="border-t border-gray-100">
+                          <button
+                            onClick={() => setExpandedBook(expandedBook === book.key ? null : book.key)}
+                            className={`w-full flex items-center justify-between p-2.5 hover:bg-gray-50 transition-colors ${selectedBookKey === book.key ? 'bg-blue-50 border-l-4 border-blue-600' : ''}`}
+                          >
+                            <span className="text-sm font-medium text-gray-700 text-left">
+                              {book.name[lang]}
+                            </span>
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs text-gray-500">{book.chapters}</span>
+                              {expandedBook === book.key ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+                            </div>
+                          </button>
+                          
+                          {/* Chapters List */}
+                          {expandedBook === book.key && (
+                            <div className="bg-gray-50 px-3 py-2 grid grid-cols-8 gap-1">
+                              {Array.from({ length: book.chapters }, (_, i) => i + 1).map(chapter => (
+                                <button
+                                  key={chapter}
+                                  onClick={() => {
+                                    setSelectedBookKey(book.key);
+                                    setSelectedChapter(chapter);
+                                    setCurrentPage(0);
+                                  }}
+                                  className={`px-2 py-1 text-xs rounded hover:bg-blue-500 hover:text-white transition-colors ${
+                                    selectedBookKey === book.key && selectedChapter === chapter
+                                      ? 'bg-blue-600 text-white font-bold'
+                                      : 'bg-white text-gray-700'
+                                  }`}
+                                  title={lang === 'fa' ? `فصل ${chapter}` : `Chapter ${chapter}`}
+                                >
+                                  {chapter}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* New Testament Section */}
+                <div className="border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => setExpandedTestament(expandedTestament === 'new' ? null : 'new')}
+                    className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-colors"
+                  >
+                    <span className="font-bold text-blue-900 flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      {lang === 'fa' ? 'عهد جدید' : 'New Testament'}
+                      <span className="text-xs bg-blue-200 px-2 py-0.5 rounded-full">{testamentGroups.new.length}</span>
+                    </span>
+                    {expandedTestament === 'new' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                  </button>
+                  
+                  {expandedTestament === 'new' && (
+                    <div className="bg-white">
+                      {testamentGroups.new
+                        .filter(book => 
+                          bookSearchTerm === '' || 
+                          book.name.fa.includes(bookSearchTerm) || 
+                          book.name.en.toLowerCase().includes(bookSearchTerm.toLowerCase())
+                        )
+                        .map(book => (
+                        <div key={book.key} className="border-t border-gray-100">
+                          <button
+                            onClick={() => setExpandedBook(expandedBook === book.key ? null : book.key)}
+                            className={`w-full flex items-center justify-between p-2.5 hover:bg-gray-50 transition-colors ${selectedBookKey === book.key ? 'bg-blue-50 border-l-4 border-blue-600' : ''}`}
+                          >
+                            <span className="text-sm font-medium text-gray-700 text-left">
+                              {book.name[lang]}
+                            </span>
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs text-gray-500">{book.chapters}</span>
+                              {expandedBook === book.key ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+                            </div>
+                          </button>
+                          
+                          {/* Chapters List */}
+                          {expandedBook === book.key && (
+                            <div className="bg-gray-50 px-3 py-2 grid grid-cols-8 gap-1">
+                              {Array.from({ length: book.chapters }, (_, i) => i + 1).map(chapter => (
+                                <button
+                                  key={chapter}
+                                  onClick={() => {
+                                    setSelectedBookKey(book.key);
+                                    setSelectedChapter(chapter);
+                                    setCurrentPage(0);
+                                  }}
+                                  className={`px-2 py-1 text-xs rounded hover:bg-blue-500 hover:text-white transition-colors ${
+                                    selectedBookKey === book.key && selectedChapter === chapter
+                                      ? 'bg-blue-600 text-white font-bold'
+                                      : 'bg-white text-gray-700'
+                                  }`}
+                                  title={lang === 'fa' ? `فصل ${chapter}` : `Chapter ${chapter}`}
+                                >
+                                  {chapter}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Main Content Area */}
+        <div className="flex-1">
       {/* Controls */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
@@ -483,6 +687,7 @@ const BibleReader = () => {
           </div>
         )}
       </div>
+      {/* End of Controls */}
 
       {/* TTS Controls Bar */}
       {isSupported && verses.length > 0 && (
@@ -916,6 +1121,8 @@ const BibleReader = () => {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 };

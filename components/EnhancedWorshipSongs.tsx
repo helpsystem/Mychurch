@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
-import { Music, Search, Filter, Play, ExternalLink, List, Grid } from 'lucide-react';
+import { Music, Search, Filter, Play, ExternalLink, List, Grid, Download, FileText, Presentation, Music2 } from 'lucide-react';
 import UniversalMediaPlayer from './UniversalMediaPlayer';
 import EnhancedMediaPlayer from './EnhancedMediaPlayer';
 import { WorshipSong } from '../types';
@@ -154,6 +154,47 @@ const EnhancedWorshipSongs: React.FC = () => {
           )}
         </div>
 
+        {/* Download Files Section */}
+        {((song as any).presentationFileUrl || (song as any).pdfFileUrl || (song as any).sheetMusicUrl) && (
+          <div className="mt-3 pt-3 border-t border-white/10">
+            <p className="text-xs text-dimWhite mb-2">{lang === 'fa' ? 'فایل‌های قابل دانلود:' : 'Downloadable Files:'}</p>
+            <div className="flex gap-2 flex-wrap">
+              {(song as any).presentationFileUrl && (
+                <a
+                  href={`http://localhost:3001${(song as any).presentationFileUrl}`}
+                  download
+                  className="flex items-center gap-1 px-3 py-1.5 bg-orange-600 hover:bg-orange-700 rounded-lg transition-colors text-xs"
+                >
+                  <Presentation size={14} />
+                  <span>PowerPoint</span>
+                </a>
+              )}
+              
+              {(song as any).pdfFileUrl && (
+                <a
+                  href={`http://localhost:3001${(song as any).pdfFileUrl}`}
+                  download
+                  className="flex items-center gap-1 px-3 py-1.5 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors text-xs"
+                >
+                  <FileText size={14} />
+                  <span>PDF</span>
+                </a>
+              )}
+              
+              {(song as any).sheetMusicUrl && (
+                <a
+                  href={`http://localhost:3001${(song as any).sheetMusicUrl}`}
+                  download
+                  className="flex items-center gap-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 rounded-lg transition-colors text-xs"
+                >
+                  <Music2 size={14} />
+                  <span>{lang === 'fa' ? 'نت موسیقی' : 'Sheet Music'}</span>
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Lyrics Preview */}
         {song.lyrics && song.lyrics[lang] && (
           <div className="mt-3 p-3 bg-white/5 rounded-lg">
@@ -205,6 +246,47 @@ const EnhancedWorshipSongs: React.FC = () => {
           >
             <ExternalLink size={16} />
           </button>
+        )}
+        
+        {/* Download Files Dropdown */}
+        {((song as any).presentationFileUrl || (song as any).pdfFileUrl || (song as any).sheetMusicUrl) && (
+          <div className="relative group">
+            <button className="p-2 bg-green-600 hover:bg-green-700 rounded-full transition-colors">
+              <Download size={16} />
+            </button>
+            <div className="absolute left-0 top-full mt-2 bg-black-gradient border border-white/10 rounded-lg shadow-lg hidden group-hover:block z-10 min-w-[150px]">
+              {(song as any).presentationFileUrl && (
+                <a
+                  href={`http://localhost:3001${(song as any).presentationFileUrl}`}
+                  download
+                  className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 text-sm whitespace-nowrap"
+                >
+                  <Presentation size={14} />
+                  <span>PowerPoint</span>
+                </a>
+              )}
+              {(song as any).pdfFileUrl && (
+                <a
+                  href={`http://localhost:3001${(song as any).pdfFileUrl}`}
+                  download
+                  className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 text-sm whitespace-nowrap"
+                >
+                  <FileText size={14} />
+                  <span>PDF</span>
+                </a>
+              )}
+              {(song as any).sheetMusicUrl && (
+                <a
+                  href={`http://localhost:3001${(song as any).sheetMusicUrl}`}
+                  download
+                  className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 text-sm whitespace-nowrap"
+                >
+                  <Music2 size={14} />
+                  <span>{lang === 'fa' ? 'نت' : 'Sheet'}</span>
+                </a>
+              )}
+            </div>
+          </div>
         )}
       </div>
     </div>

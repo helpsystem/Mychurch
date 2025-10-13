@@ -44,6 +44,17 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.flipbook-current-reading {
+  font-size: 1.4rem;
+  color: #1e3a8a;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 8px;
+  display: inline-block;
+}
+
 .flipbook-subtitle {
   font-size: 1.2rem;
   color: #475569;
