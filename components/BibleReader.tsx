@@ -40,6 +40,10 @@ interface BibleChapterResponse {
 
 const BibleReader = () => {
   const { lang } = useLanguage();
+  
+  // Debug log
+  console.log('🔵 BibleReader Component Loaded - Version with Menu Button');
+  
   const [books, setBooks] = useState<ApiBibleBook[]>([]);
   const [booksLoading, setBooksLoading] = useState(true);
   const [booksError, setBooksError] = useState<string | null>(null);
@@ -64,6 +68,8 @@ const BibleReader = () => {
   const [expandedTestament, setExpandedTestament] = useState<'old' | 'new' | null>('old');
   const [expandedBook, setExpandedBook] = useState<string | null>('GEN'); // پیش‌فرض: پیدایش باز است
   const [bookSearchTerm, setBookSearchTerm] = useState('');
+  
+  console.log('🔵 showTreeNav:', showTreeNav, 'expandedBook:', expandedBook);
   
   const bookRef = useRef(null);
   const versesPerPage = 8; // تعداد آیات در هر صفحه
