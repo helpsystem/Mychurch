@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db-postgres');
+const { pool } = require('../db-postgres');
 
 // ✅ دریافت لیست کتاب‌ها
 router.get('/books', async (req, res) => {
