@@ -18,6 +18,7 @@ import PrayerPage from './pages/PrayerPage';
 import EventsPage from './pages/EventsPage';
 import ContactPage from './pages/ContactPage';
 import AiHelperPage from './pages/AiHelperPage';
+import AlHayatGPTExamplesPage from './pages/AlHayatGPTExamplesPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PresentationPage from './pages/PresentationPage';
 import LoginPage from './pages/LoginPage';
@@ -42,6 +43,10 @@ import LivePage from './pages/LivePage';
 import LetterViewerPage from './pages/LetterViewerPage';
 import AudioBiblePage from './pages/AudioBiblePage';
 import BibleReaderPage from './pages/BibleReaderPage';
+import UnifiedBibleReader from './components/UnifiedBibleReader';
+import TestComponent from './components/TestComponent';
+import MinimalBible from './components/MinimalBible';
+import SimpleBibleReader from './components/SimpleBibleReader';
 import WorshipSongsPage from './pages/WorshipSongsPage';
 import WorshipPresentationPage from './pages/WorshipPresentationPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
@@ -109,7 +114,11 @@ function App() {
             <Route path="leaders" element={<LeadersPage />} />
             <Route path="sermons" element={<SermonsPage />} />
             <Route path="worship" element={<WorshipPage />} />
-            <Route path="bible" element={<BibleReaderPage />} />
+            <Route path="bible" element={<SimpleBibleReader />} />
+            <Route path="bible-unified" element={<UnifiedBibleReader />} />
+            <Route path="bible-minimal" element={<MinimalBible />} />
+            <Route path="bible-test" element={<TestComponent />} />
+            <Route path="bible-old" element={<BibleReaderPage />} />
             <Route path="audio-bible" element={<AudioBiblePage />} />
             <Route path="bible-reader" element={<BibleReaderPage />} />
             <Route path="worship-songs" element={<WorshipSongsPage />} />
@@ -125,6 +134,7 @@ function App() {
             <Route path="announcements" element={<AnnouncementsPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="ai-helper" element={<AiHelperPage />} />
+            <Route path="ai-examples" element={<AlHayatGPTExamplesPage />} />
             <Route path="gallery" element={<GalleryPage />} />
             <Route path="help-center" element={<HelpCenterPage />} />
             <Route path="new-here" element={<NewHerePage />} />

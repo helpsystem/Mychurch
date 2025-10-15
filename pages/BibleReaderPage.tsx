@@ -6,7 +6,7 @@ import { useLanguage } from '../hooks/useLanguage';
 
 const BibleReaderPage = () => {
   const { lang } = useLanguage();
-  const [viewMode, setViewMode] = useState<'modern' | 'flipbook' | 'standard'>('modern');
+  const [viewMode, setViewMode] = useState<'modern' | 'flipbook' | 'standard'>('standard');
 
   return (
     <div>

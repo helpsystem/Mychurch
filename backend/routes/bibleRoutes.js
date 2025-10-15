@@ -56,6 +56,8 @@ router.get('/translations', async (req, res) => {
 // GET /api/bible/books - Get all Bible books
 router.get('/books', async (req, res) => {
   try {
+    console.log('📚 Fetching Bible books...');
+    
     const query = `
       SELECT 
         id,
@@ -68,6 +70,8 @@ router.get('/books', async (req, res) => {
       ORDER BY id
     `;
     const result = await pool.query(query);
+    
+    console.log('📊 Found', result.rows.length, 'books');
     
     // Transform data for frontend format
     const books = result.rows.map(book => ({
@@ -82,7 +86,8 @@ router.get('/books', async (req, res) => {
 
     res.json({
       success: true,
-      books: books
+      books: books,
+      total: books.length
     });
   } catch (error) {
     console.error('❌ Error fetching Bible books:', error);

@@ -36,14 +36,29 @@ interface BibleChapterResponse {
     en: string[];
     fa: string[];
   };
+  translation?: {
+    code: string;
+    name: { en: string; fa: string };
+  };
+}
+
+interface Translation {
+  id: number;
+  code: string;
+  name: { en: string; fa: string };
+  description: { en: string; fa: string };
+  language: string;
+  isDefault: boolean;
+  sortOrder: number;
+}
+
+interface TranslationsResponse {
+  success: boolean;
+  translations: Translation[];
 }
 
 const BibleReader = () => {
   const { lang } = useLanguage();
-  
-  // Debug log
-  console.log('🔵 BibleReader Component Loaded - Version with Menu Button');
-  
   const [books, setBooks] = useState<ApiBibleBook[]>([]);
   const [booksLoading, setBooksLoading] = useState(true);
   const [booksError, setBooksError] = useState<string | null>(null);
@@ -69,7 +84,11 @@ const BibleReader = () => {
   const [expandedBook, setExpandedBook] = useState<string | null>('GEN'); // پیش‌فرض: پیدایش باز است
   const [bookSearchTerm, setBookSearchTerm] = useState('');
   
-  console.log('🔵 showTreeNav:', showTreeNav, 'expandedBook:', expandedBook);
+  // Translation State
+  const [availableTranslations, setAvailableTranslations] = useState<Translation[]>([]);
+  const [selectedTranslation, setSelectedTranslation] = useState<string>(''); // خالی تا کاربر انتخاب کند
+  const [translationsLoading, setTranslationsLoading] = useState(true);
+  const [translationSelected, setTranslationSelected] = useState(false); // آیا ترجمه انتخاب شده
   
   const bookRef = useRef(null);
   const versesPerPage = 8; // تعداد آیات در هر صفحه
@@ -77,12 +96,11 @@ const BibleReader = () => {
   const {
     isPlaying,
     currentVerse,
-    speakVerse,
-    speakChapter,
-    pauseSpeech,
-    resumeSpeech,
-    stopSpeech,
-    isSupported
+    playVerse,
+    playChapter,
+    pauseAudio,
+    resumeAudio,
+    stopAudio
   } = useBibleTTS();
 
   const testamentGroups = useMemo(() => {
@@ -99,14 +117,57 @@ const BibleReader = () => {
   const currentBook = allBooks.find(book => book.key === selectedBookKey);
   const maxChapters = currentBook?.chapters || 1;
 
+  // Load translations
   useEffect(() => {
+    let isMounted = true;
+
+    const loadTranslations = async () => {
+      setTranslationsLoading(true);
+      try {
+        const response = await api.get<TranslationsResponse>('/api/bible/translations');
+        if (response?.success && isMounted) {
+          setAvailableTranslations(response.translations);
+          // ترجمه را خودکار انتخاب نکن، کاربر خودش انتخاب کند
+        }
+      } catch (err) {
+        console.error('Failed to load translations:', err);
+      } finally {
+        if (isMounted) {
+          setTranslationsLoading(false);
+        }
+      }
+    };
+
+    loadTranslations();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Handle translation selection
+  const handleTranslationChange = (translationCode: string) => {
+    setSelectedTranslation(translationCode);
+    if (translationCode && !translationSelected) {
+      setTranslationSelected(true);
+    }
+    // Reset selected book and chapter when translation changes
+    setSelectedBookKey(null);
+    setSelectedChapter(1);
+    setVerses([]);
+  };
+
+  // Load books only after translation is selected
+  useEffect(() => {
+    if (!translationSelected || !selectedTranslation) return; // فقط بعد از انتخاب ترجمه کتاب‌ها لود شوند
+
     let isMounted = true;
 
     const loadBooks = async () => {
       setBooksLoading(true);
       setBooksError(null);
       try {
-        const response = await api.get<BibleBooksResponse>('/api/bible/books');
+        const response = await api.get<BibleBooksResponse>(`/api/bible/books?translation=${selectedTranslation}`);
         if (!response?.success) {
           throw new Error(lang === 'fa' ? 'بارگذاری فهرست کتاب‌ها ناموفق بود.' : 'Failed to load Bible books.');
         }
@@ -114,7 +175,10 @@ const BibleReader = () => {
         if (isMounted) {
           const fetchedBooks = Array.isArray(response.books) ? response.books : [];
           setBooks(fetchedBooks);
-          setSelectedBookKey(prev => prev ?? fetchedBooks[0]?.key ?? null);
+          // کتاب را فقط اگر قبلاً انتخاب نشده باشد، انتخاب کن
+          if (!selectedBookKey && fetchedBooks.length > 0) {
+            setSelectedBookKey(fetchedBooks[0].key);
+          }
         }
       } catch (err) {
         if (isMounted) {
@@ -134,7 +198,7 @@ const BibleReader = () => {
     return () => {
       isMounted = false;
     };
-  }, [lang]);
+  }, [translationSelected, selectedTranslation, lang]);
 
   useEffect(() => {
     if (!selectedBookKey) {
@@ -148,7 +212,8 @@ const BibleReader = () => {
       setError(null);
 
       try {
-        const response = await api.get<BibleChapterResponse>(`/api/bible/content/${selectedBookKey}/${selectedChapter}`);
+        const apiUrl = `/api/bible/content/${selectedBookKey}/${selectedChapter}${selectedTranslation ? `?translation=${selectedTranslation}` : ''}`;
+        const response = await api.get<BibleChapterResponse>(apiUrl);
 
         if (!response?.success) {
           throw new Error(lang === 'fa' ? 'بارگذاری آیات با خطا مواجه شد.' : 'Failed to load chapter content.');
@@ -197,7 +262,7 @@ const BibleReader = () => {
     return () => {
       isMounted = false;
     };
-  }, [selectedBookKey, selectedChapter, lang]);
+  }, [selectedBookKey, selectedChapter, selectedTranslation, lang]);
 
   useEffect(() => {
     if (lang === 'fa' || lang === 'en') {
@@ -427,26 +492,72 @@ const BibleReader = () => {
               </button>
             </div>
 
-            {/* Filter Books Input */}
+            {/* Translation Selector */}
             <div className="mb-4">
-              <input
-                type="text"
-                placeholder={lang === 'fa' ? 'Filter Books...' : 'Filter Books...'}
-                value={bookSearchTerm}
-                onChange={(e) => setBookSearchTerm(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
-              />
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                <Globe className="inline h-4 w-4 mr-1" />
+                {lang === 'fa' ? 'انتخاب ترجمه (گام اول)' : 'Select Translation (Step 1)'}
+              </label>
+              <select
+                value={selectedTranslation}
+                onChange={(e) => handleTranslationChange(e.target.value)}
+                disabled={translationsLoading}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm bg-white disabled:opacity-50"
+              >
+                <option value="" disabled>
+                  {translationsLoading 
+                    ? (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...')
+                    : (lang === 'fa' ? 'ابتدا ترجمه‌ای انتخاب کنید' : 'Please select a translation first')
+                  }
+                </option>
+                {!translationsLoading && availableTranslations.map(translation => (
+                  <option key={translation.code} value={translation.code}>
+                    {lang === 'fa' ? translation.name.fa : translation.name.en}
+                    {translation.isDefault ? ` (${lang === 'fa' ? 'پیش‌فرض' : 'Default'})` : ''}
+                  </option>
+                ))}
+              </select>
             </div>
 
-            {booksLoading ? (
-              <div className="text-center py-8 text-gray-500">
-                {lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}
+            {/* Show translation selection reminder if no translation selected */}
+            {!translationSelected && (
+              <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-center">
+                <p className="text-sm text-yellow-700">
+                  {lang === 'fa' 
+                    ? '⬆️ ابتدا ترجمه‌ای انتخاب کنید تا فهرست کتاب‌ها نمایش داده شود'
+                    : '⬆️ Please select a translation first to see the list of books'
+                  }
+                </p>
               </div>
-            ) : booksError ? (
-              <div className="text-center py-8 text-red-500 text-sm">
-                {booksError}
+            )}
+
+            {/* Filter Books Input - only show if translation selected */}
+            {translationSelected && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {lang === 'fa' ? 'جستجو در کتاب‌ها (گام دوم)' : 'Search Books (Step 2)'}
+                </label>
+                <input
+                  type="text"
+                  placeholder={lang === 'fa' ? 'جستجو کتاب...' : 'Search books...'}
+                  value={bookSearchTerm}
+                  onChange={(e) => setBookSearchTerm(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+                />
               </div>
-            ) : (
+            )}
+
+            {/* Books List - only show if translation is selected */}
+            {translationSelected && (
+              booksLoading ? (
+                <div className="text-center py-8 text-gray-500">
+                  {lang === 'fa' ? 'در حال بارگذاری کتاب‌ها...' : 'Loading books...'}
+                </div>
+              ) : booksError ? (
+                <div className="text-center py-8 text-red-500 text-sm">
+                  {booksError}
+                </div>
+              ) : (
               <div className="space-y-2">
                 {/* Old Testament Section */}
                 <div className="border rounded-lg overflow-hidden">
@@ -582,19 +693,48 @@ const BibleReader = () => {
                   )}
                 </div>
               </div>
-            )}
+            ))}
           </div>
         )}
 
         {/* Main Content Area */}
         <div className="flex-1">
+          {/* Progress Indicator */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 mb-6 border border-blue-200">
+            <h3 className="text-sm font-medium text-blue-900 mb-2">
+              {lang === 'fa' ? '🔥 مراحل مطالعه کتاب مقدس' : '🔥 Bible Study Steps'}
+            </h3>
+            <div className="flex items-center gap-4">
+              <div className={`flex items-center gap-1 px-2 py-1 rounded text-xs ${
+                selectedTranslation ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+              }`}>
+                <span>{selectedTranslation ? '✅' : '1️⃣'}</span>
+                <span>{lang === 'fa' ? 'ترجمه انتخاب شد' : 'Translation Selected'}</span>
+              </div>
+              <span className="text-gray-300">→</span>
+              <div className={`flex items-center gap-1 px-2 py-1 rounded text-xs ${
+                selectedBookKey ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+              }`}>
+                <span>{selectedBookKey ? '✅' : '2️⃣'}</span>
+                <span>{lang === 'fa' ? 'کتاب انتخاب شد' : 'Book Selected'}</span>
+              </div>
+              <span className="text-gray-300">→</span>
+              <div className={`flex items-center gap-1 px-2 py-1 rounded text-xs ${
+                selectedBookKey && selectedChapter > 0 ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+              }`}>
+                <span>{selectedBookKey && selectedChapter > 0 ? '✅' : '3️⃣'}</span>
+                <span>{lang === 'fa' ? 'فصل انتخاب شد' : 'Chapter Selected'}</span>
+              </div>
+            </div>
+          </div>
+
       {/* Controls */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
           {/* Book Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {lang === 'fa' ? 'کتاب' : 'Book'}
+              {lang === 'fa' ? 'کتاب (گام دوم)' : 'Book (Step 2)'}
             </label>
             <select
               value={selectedBookKey ?? ''}
@@ -604,37 +744,43 @@ const BibleReader = () => {
                 setSelectedChapter(1);
                 setCurrentPage(0);
               }}
-              disabled={booksLoading || !!booksError || books.length === 0}
+              disabled={!translationSelected || booksLoading || !!booksError || books.length === 0}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-60"
             >
               <option value="" disabled>
-                {booksLoading
-                  ? (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...')
-                  : lang === 'fa'
-                    ? 'یک کتاب انتخاب کنید'
-                    : 'Select a book'}
+                {!translationSelected
+                  ? (lang === 'fa' ? 'ابتدا ترجمه انتخاب کنید' : 'Select translation first')
+                  : booksLoading
+                    ? (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...')
+                    : lang === 'fa'
+                      ? 'یک کتاب انتخاب کنید'
+                      : 'Select a book'}
               </option>
-              <optgroup label={lang === 'fa' ? 'عهد عتیق' : 'Old Testament'}>
-                {testamentGroups.old.map(book => (
-                  <option key={book.key} value={book.key}>
-                    {book.name[lang]}
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label={lang === 'fa' ? 'عهد جدید' : 'New Testament'}>
-                {testamentGroups.new.map(book => (
-                  <option key={book.key} value={book.key}>
-                    {book.name[lang]}
-                  </option>
-                ))}
-              </optgroup>
+              {translationSelected && (
+                <>
+                  <optgroup label={lang === 'fa' ? 'عهد عتیق' : 'Old Testament'}>
+                    {testamentGroups.old.map(book => (
+                      <option key={book.key} value={book.key}>
+                        {book.name[lang]}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label={lang === 'fa' ? 'عهد جدید' : 'New Testament'}>
+                    {testamentGroups.new.map(book => (
+                      <option key={book.key} value={book.key}>
+                        {book.name[lang]}
+                      </option>
+                    ))}
+                  </optgroup>
+                </>
+              )}
             </select>
           </div>
 
           {/* Chapter Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {lang === 'fa' ? 'فصل' : 'Chapter'}
+              {lang === 'fa' ? 'فصل (گام سوم)' : 'Chapter (Step 3)'}
             </label>
             <div className="flex items-center space-x-2">
               <button
@@ -710,7 +856,7 @@ const BibleReader = () => {
       {/* End of Controls */}
 
       {/* TTS Controls Bar */}
-      {isSupported && verses.length > 0 && (
+      {verses.length > 0 && (
         <div className="bg-white rounded-lg shadow-md p-4 mb-6">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center space-x-4">
@@ -731,7 +877,7 @@ const BibleReader = () => {
                   <button
                     onClick={() => {
                       const chapterText = verses.map(v => v.text[readingLang]).join(' ');
-                      speakChapter(verses.map(v => ({ text: v.text[readingLang], number: v.verse })), readingLang);
+                      playChapter(verses.map(v => v.text[readingLang]));
                     }}
                     className="p-2 rounded-lg bg-green-100 text-green-600 hover:bg-green-200 transition-colors"
                     title={lang === 'fa' ? 'خواندن کل فصل' : 'Read Entire Chapter'}
@@ -740,7 +886,7 @@ const BibleReader = () => {
                   </button>
                 ) : (
                   <button
-                    onClick={pauseSpeech}
+                    onClick={pauseAudio}
                     className="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition-colors"
                     title={lang === 'fa' ? 'مکث' : 'Pause'}
                   >
@@ -749,7 +895,7 @@ const BibleReader = () => {
                 )}
                 
                 <button
-                  onClick={stopSpeech}
+                  onClick={stopAudio}
                   className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors"
                   title={lang === 'fa' ? 'توقف' : 'Stop'}
                 >
@@ -776,6 +922,14 @@ const BibleReader = () => {
             
             <div className="text-sm text-gray-500">
               {currentBook?.name[lang]} {lang === 'fa' ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`}
+              {selectedTranslation && (
+                <span className="mx-2">•</span>
+              )}
+              {selectedTranslation && (
+                <span className="text-blue-600">
+                  {availableTranslations.find(t => t.code === selectedTranslation)?.name[lang] || selectedTranslation}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -863,7 +1017,7 @@ const BibleReader = () => {
                               className={`verse-container group relative rounded-lg p-3 transition-all ${
                                 highlightClass ? `${highlightClass} border-l-4` : 'hover:bg-gray-50'
                               } ${
-                                currentVerse?.number === verse.verse ? 'ring-2 ring-yellow-400' : ''
+                                currentVerse === verse.verse ? 'ring-2 ring-yellow-400' : ''
                               }`}
                             >
                               {/* نشانک */}
@@ -879,7 +1033,7 @@ const BibleReader = () => {
                                 </span>
                                 <div className="flex-1">
                                   <p className={`bible-verse-text verse-text text-gray-900 ${
-                                    currentVerse?.number === verse.verse ? 'font-semibold text-yellow-900 bg-yellow-50 rounded-lg p-2' : ''
+                                    currentVerse === verse.verse ? 'font-semibold text-yellow-900 bg-yellow-50 rounded-lg p-2' : ''
                                   }`}>
                                     {verse.text?.[lang] || 'Loading...'}
                                   </p>
@@ -895,12 +1049,12 @@ const BibleReader = () => {
                                   {/* دکمه‌های عملیات - نمایش در hover */}
                                   <div className="mt-2 flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                     {/* TTS */}
-                                    {isSupported && verse.text?.[readingLang] && (
+                                    {verse.text?.[readingLang] && (
                                       <button
                                         onClick={() => {
                                           const textToSpeak = verse.text?.[readingLang] || '';
                                           console.log('🎙️ TTS Click:', { verseNum: verse.verse, lang: readingLang, text: textToSpeak.substring(0, 50) });
-                                          speakVerse(textToSpeak, verse.verse, readingLang);
+                                          playVerse(textToSpeak, verse.verse);
                                         }}
                                         className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors flex items-center"
                                         title={lang === 'fa' ? 'خواندن' : 'Read'}

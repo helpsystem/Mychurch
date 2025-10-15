@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: rgba(0, 255, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 سیستم فعال است</h1>
+        <p>اگر این صفحه را می‌بینید، Vite Server کار می‌کند!</p>
+        
+        <div class="status">
+            ✅ HTML و CSS بارگذاری شده
+        </div>
+        
+        <div class="status">
+            ✅ Static files در دسترس هستند
+        </div>
+        
+        <div class="status">
+            📍 URL: <span id="currentUrl"></span>
+        </div>
+        
+        <script>
+            document.getElementById('currentUrl').textContent = window.location.href;
+            console.log('✅ JavaScript کار می‌کند');
+            console.log('🌐 Location:', window.location.href);
+        </script>
+    </div>
+</body>
+</html>
