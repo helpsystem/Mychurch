@@ -1,0 +1,6707 @@
+{
+  "version": {
+    "id": 107,
+    "abbreviation": "NET",
+    "local_abbreviation": "NET",
+    "title": "New English Translation",
+    "local_title": "New English Translation",
+    "language": {
+      "iso_639_1": "en",
+      "iso_639_3": "eng",
+      "name": "English",
+      "local_name": "English",
+      "text_direction": "ltr",
+      "language_tag": "eng",
+      "secondary_language_tags": null
+    },
+    "audio": false,
+    "copyright_short": {
+      "html": "<p>1996 - 2007 by Biblical Studies Press, LLC</p>",
+      "text": "1996 - 2007 by Biblical Studies Press, LLC"
+    },
+    "copyright_long": {
+      "html": "<p>The NET Bible is a completely new translation of the Bible with 60,932 translators’ notes! It was completed by more than 25 scholars – experts in the original biblical languages - who worked directly from the best currently available Hebrew, Aramaic, and Greek texts. Turn the pages and see the breadth of the translators’ notes, documenting their decisions and choices as they worked. The translators’ notes make the original languages far more accessible, allowing you to look over the translator's shoulder at the very process of translation. This level of documentation is a first for a Bible translation, making transparent the textual basis and the rationale for key renderings (including major interpretive options and alternative translations). This unparalleled level of detail helps connect people to the Bible in the original languages in a way never before possible without years of study of Hebrew, Aramaic, and Greek. It unlocks the riches of the Bible’s truth from entirely new perspectives.</p> <p>To learn more about the NET Bible download the <a href=\"http://ext.youversion.com/pdf/net.pdf\">Copyright and About PDF: http://ext.youversion.com/pdf/net.pdf</a>.</p>",
+      "text": "The NET Bible is a completely new translation of the Bible with 60,932 translators’ notes! It was completed by more than 25 scholars – experts in the original biblical languages - who worked directly from the best currently available Hebrew, Aramaic, and Greek texts. Turn the pages and see the breadth of the translators’ notes, documenting their decisions and choices as they worked. The translators’ notes make the original languages far more accessible, allowing you to look over the translator's shoulder at the very process of translation. This level of documentation is a first for a Bible translation, making transparent the textual basis and the rationale for key renderings (including major interpretive options and alternative translations). This unparalleled level of detail helps connect people to the Bible in the original languages in a way never before possible without years of study of Hebrew, Aramaic, and Greek. It unlocks the riches of the Bible’s truth from entirely new perspectives. To learn more about the NET Bible download the Copyright and About PDF: http://ext.youversion.com/pdf/net.pdf."
+    },
+    "publisher": {
+      "id": 130,
+      "name": "Biblical Studies Press",
+      "local_name": null,
+      "url": "http://www.bible.org",
+      "description": null
+    }
+  },
+  "books": [
+    {
+      "usfm": "GEN",
+      "title": "Genesis",
+      "title_long": "Genesis",
+      "abbreviation": "Genesis",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "GEN.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.40",
+          "number": "40",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.41",
+          "number": "41",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.42",
+          "number": "42",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.43",
+          "number": "43",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.44",
+          "number": "44",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.45",
+          "number": "45",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.46",
+          "number": "46",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.47",
+          "number": "47",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.48",
+          "number": "48",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.49",
+          "number": "49",
+          "canonical": true
+        },
+        {
+          "usfm": "GEN.50",
+          "number": "50",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "EXO",
+      "title": "Exodus",
+      "title_long": "Exodus",
+      "abbreviation": "Exodus",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "EXO.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "EXO.40",
+          "number": "40",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "LEV",
+      "title": "Leviticus",
+      "title_long": "Leviticus",
+      "abbreviation": "Leviticus",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "LEV.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "LEV.27",
+          "number": "27",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "NUM",
+      "title": "Numbers",
+      "title_long": "Numbers",
+      "abbreviation": "Numbers",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "NUM.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "NUM.36",
+          "number": "36",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "DEU",
+      "title": "Deuteronomy",
+      "title_long": "Deuteronomy",
+      "abbreviation": "Deuteronomy",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "DEU.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "DEU.34",
+          "number": "34",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JOS",
+      "title": "Joshua",
+      "title_long": "Joshua",
+      "abbreviation": "Joshua",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JOS.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "JOS.24",
+          "number": "24",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JDG",
+      "title": "Judges",
+      "title_long": "Judges",
+      "abbreviation": "Judges",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JDG.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "JDG.21",
+          "number": "21",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "RUT",
+      "title": "Ruth",
+      "title_long": "Ruth",
+      "abbreviation": "Ruth",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "RUT.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "RUT.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "RUT.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "RUT.4",
+          "number": "4",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1SA",
+      "title": "1 Samuel",
+      "title_long": "1 Samuel",
+      "abbreviation": "1 Samuel",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1SA.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "1SA.31",
+          "number": "31",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2SA",
+      "title": "2 Samuel",
+      "title_long": "2 Samuel",
+      "abbreviation": "2 Samuel",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2SA.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "2SA.24",
+          "number": "24",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1KI",
+      "title": "1 Kings",
+      "title_long": "1 Kings",
+      "abbreviation": "1 Kings",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1KI.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "1KI.22",
+          "number": "22",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2KI",
+      "title": "2 Kings",
+      "title_long": "2 Kings",
+      "abbreviation": "2 Kings",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2KI.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "2KI.25",
+          "number": "25",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1CH",
+      "title": "1 Chronicles",
+      "title_long": "1 Chronicles",
+      "abbreviation": "1 Chronicles",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1CH.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "1CH.29",
+          "number": "29",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2CH",
+      "title": "2 Chronicles",
+      "title_long": "2 Chronicles",
+      "abbreviation": "2 Chronicles",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2CH.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "2CH.36",
+          "number": "36",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "EZR",
+      "title": "Ezra",
+      "title_long": "Ezra",
+      "abbreviation": "Ezra",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "EZR.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "EZR.10",
+          "number": "10",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "NEH",
+      "title": "Nehemiah",
+      "title_long": "Nehemiah",
+      "abbreviation": "Nehemiah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "NEH.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "NEH.13",
+          "number": "13",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "EST",
+      "title": "Esther",
+      "title_long": "Esther",
+      "abbreviation": "Esther",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "EST.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "EST.10",
+          "number": "10",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JOB",
+      "title": "Job",
+      "title_long": "Job",
+      "abbreviation": "Job",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JOB.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.40",
+          "number": "40",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.41",
+          "number": "41",
+          "canonical": true
+        },
+        {
+          "usfm": "JOB.42",
+          "number": "42",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "PSA",
+      "title": "Psalms",
+      "title_long": "Psalms",
+      "abbreviation": "Psalms",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "PSA.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.40",
+          "number": "40",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.41",
+          "number": "41",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.42",
+          "number": "42",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.43",
+          "number": "43",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.44",
+          "number": "44",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.45",
+          "number": "45",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.46",
+          "number": "46",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.47",
+          "number": "47",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.48",
+          "number": "48",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.49",
+          "number": "49",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.50",
+          "number": "50",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.51",
+          "number": "51",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.52",
+          "number": "52",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.53",
+          "number": "53",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.54",
+          "number": "54",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.55",
+          "number": "55",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.56",
+          "number": "56",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.57",
+          "number": "57",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.58",
+          "number": "58",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.59",
+          "number": "59",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.60",
+          "number": "60",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.61",
+          "number": "61",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.62",
+          "number": "62",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.63",
+          "number": "63",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.64",
+          "number": "64",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.65",
+          "number": "65",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.66",
+          "number": "66",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.67",
+          "number": "67",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.68",
+          "number": "68",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.69",
+          "number": "69",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.70",
+          "number": "70",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.71",
+          "number": "71",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.72",
+          "number": "72",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.73",
+          "number": "73",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.74",
+          "number": "74",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.75",
+          "number": "75",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.76",
+          "number": "76",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.77",
+          "number": "77",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.78",
+          "number": "78",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.79",
+          "number": "79",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.80",
+          "number": "80",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.81",
+          "number": "81",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.82",
+          "number": "82",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.83",
+          "number": "83",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.84",
+          "number": "84",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.85",
+          "number": "85",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.86",
+          "number": "86",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.87",
+          "number": "87",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.88",
+          "number": "88",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.89",
+          "number": "89",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.90",
+          "number": "90",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.91",
+          "number": "91",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.92",
+          "number": "92",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.93",
+          "number": "93",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.94",
+          "number": "94",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.95",
+          "number": "95",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.96",
+          "number": "96",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.97",
+          "number": "97",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.98",
+          "number": "98",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.99",
+          "number": "99",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.100",
+          "number": "100",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.101",
+          "number": "101",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.102",
+          "number": "102",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.103",
+          "number": "103",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.104",
+          "number": "104",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.105",
+          "number": "105",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.106",
+          "number": "106",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.107",
+          "number": "107",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.108",
+          "number": "108",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.109",
+          "number": "109",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.110",
+          "number": "110",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.111",
+          "number": "111",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.112",
+          "number": "112",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.113",
+          "number": "113",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.114",
+          "number": "114",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.115",
+          "number": "115",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.116",
+          "number": "116",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.117",
+          "number": "117",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.118",
+          "number": "118",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.119",
+          "number": "119",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.120",
+          "number": "120",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.121",
+          "number": "121",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.122",
+          "number": "122",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.123",
+          "number": "123",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.124",
+          "number": "124",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.125",
+          "number": "125",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.126",
+          "number": "126",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.127",
+          "number": "127",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.128",
+          "number": "128",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.129",
+          "number": "129",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.130",
+          "number": "130",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.131",
+          "number": "131",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.132",
+          "number": "132",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.133",
+          "number": "133",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.134",
+          "number": "134",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.135",
+          "number": "135",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.136",
+          "number": "136",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.137",
+          "number": "137",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.138",
+          "number": "138",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.139",
+          "number": "139",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.140",
+          "number": "140",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.141",
+          "number": "141",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.142",
+          "number": "142",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.143",
+          "number": "143",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.144",
+          "number": "144",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.145",
+          "number": "145",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.146",
+          "number": "146",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.147",
+          "number": "147",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.148",
+          "number": "148",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.149",
+          "number": "149",
+          "canonical": true
+        },
+        {
+          "usfm": "PSA.150",
+          "number": "150",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "PRO",
+      "title": "Proverbs",
+      "title_long": "Proverbs",
+      "abbreviation": "Proverbs",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "PRO.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "PRO.31",
+          "number": "31",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "ECC",
+      "title": "Ecclesiastes",
+      "title_long": "Ecclesiastes",
+      "abbreviation": "Ecclesiastes",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "ECC.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "ECC.12",
+          "number": "12",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "SNG",
+      "title": "Song of Solomon",
+      "title_long": "Song of Solomon",
+      "abbreviation": "Song of Solomon",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "SNG.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "SNG.8",
+          "number": "8",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "ISA",
+      "title": "Isaiah",
+      "title_long": "Isaiah",
+      "abbreviation": "Isaiah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "ISA.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.40",
+          "number": "40",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.41",
+          "number": "41",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.42",
+          "number": "42",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.43",
+          "number": "43",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.44",
+          "number": "44",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.45",
+          "number": "45",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.46",
+          "number": "46",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.47",
+          "number": "47",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.48",
+          "number": "48",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.49",
+          "number": "49",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.50",
+          "number": "50",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.51",
+          "number": "51",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.52",
+          "number": "52",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.53",
+          "number": "53",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.54",
+          "number": "54",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.55",
+          "number": "55",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.56",
+          "number": "56",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.57",
+          "number": "57",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.58",
+          "number": "58",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.59",
+          "number": "59",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.60",
+          "number": "60",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.61",
+          "number": "61",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.62",
+          "number": "62",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.63",
+          "number": "63",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.64",
+          "number": "64",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.65",
+          "number": "65",
+          "canonical": true
+        },
+        {
+          "usfm": "ISA.66",
+          "number": "66",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JER",
+      "title": "Jeremiah",
+      "title_long": "Jeremiah",
+      "abbreviation": "Jeremiah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JER.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.40",
+          "number": "40",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.41",
+          "number": "41",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.42",
+          "number": "42",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.43",
+          "number": "43",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.44",
+          "number": "44",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.45",
+          "number": "45",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.46",
+          "number": "46",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.47",
+          "number": "47",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.48",
+          "number": "48",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.49",
+          "number": "49",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.50",
+          "number": "50",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.51",
+          "number": "51",
+          "canonical": true
+        },
+        {
+          "usfm": "JER.52",
+          "number": "52",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "LAM",
+      "title": "Lamentations",
+      "title_long": "Lamentations",
+      "abbreviation": "Lamentations",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "LAM.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "LAM.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "LAM.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "LAM.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "LAM.5",
+          "number": "5",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "EZK",
+      "title": "Ezekiel",
+      "title_long": "Ezekiel",
+      "abbreviation": "Ezekiel",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "EZK.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.28",
+          "number": "28",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.29",
+          "number": "29",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.30",
+          "number": "30",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.31",
+          "number": "31",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.32",
+          "number": "32",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.33",
+          "number": "33",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.34",
+          "number": "34",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.35",
+          "number": "35",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.36",
+          "number": "36",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.37",
+          "number": "37",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.38",
+          "number": "38",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.39",
+          "number": "39",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.40",
+          "number": "40",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.41",
+          "number": "41",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.42",
+          "number": "42",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.43",
+          "number": "43",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.44",
+          "number": "44",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.45",
+          "number": "45",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.46",
+          "number": "46",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.47",
+          "number": "47",
+          "canonical": true
+        },
+        {
+          "usfm": "EZK.48",
+          "number": "48",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "DAN",
+      "title": "Daniel",
+      "title_long": "Daniel",
+      "abbreviation": "Daniel",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "DAN.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "DAN.12",
+          "number": "12",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "HOS",
+      "title": "Hosea",
+      "title_long": "Hosea",
+      "abbreviation": "Hosea",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "HOS.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "HOS.14",
+          "number": "14",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JOL",
+      "title": "Joel",
+      "title_long": "Joel",
+      "abbreviation": "Joel",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JOL.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JOL.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JOL.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "AMO",
+      "title": "Amos",
+      "title_long": "Amos",
+      "abbreviation": "Amos",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "AMO.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "AMO.9",
+          "number": "9",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "OBA",
+      "title": "Obadiah",
+      "title_long": "Obadiah",
+      "abbreviation": "Obadiah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "OBA.1",
+          "number": "1",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JON",
+      "title": "Jonah",
+      "title_long": "Jonah",
+      "abbreviation": "Jonah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JON.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JON.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JON.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JON.4",
+          "number": "4",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "MIC",
+      "title": "Micah",
+      "title_long": "Micah",
+      "abbreviation": "Micah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "MIC.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "MIC.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "MIC.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "MIC.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "MIC.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "MIC.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "MIC.7",
+          "number": "7",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "NAM",
+      "title": "Nahum",
+      "title_long": "Nahum",
+      "abbreviation": "Nahum",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "NAM.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "NAM.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "NAM.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "HAB",
+      "title": "Habakkuk",
+      "title_long": "Habakkuk",
+      "abbreviation": "Habakkuk",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "HAB.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "HAB.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "HAB.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "ZEP",
+      "title": "Zephaniah",
+      "title_long": "Zephaniah",
+      "abbreviation": "Zephaniah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "ZEP.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEP.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEP.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "HAG",
+      "title": "Haggai",
+      "title_long": "Haggai",
+      "abbreviation": "Haggai",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "HAG.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "HAG.2",
+          "number": "2",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "ZEC",
+      "title": "Zechariah",
+      "title_long": "Zechariah",
+      "abbreviation": "Zechariah",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "ZEC.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "ZEC.14",
+          "number": "14",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "MAL",
+      "title": "Malachi",
+      "title_long": "Malachi",
+      "abbreviation": "Malachi",
+      "canon": "ot",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "MAL.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "MAL.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "MAL.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "MAL.4",
+          "number": "4",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "MAT",
+      "title": "Matthew",
+      "title_long": "Matthew",
+      "abbreviation": "Matthew",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "MAT.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "MAT.28",
+          "number": "28",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "MRK",
+      "title": "Mark",
+      "title_long": "Mark",
+      "abbreviation": "Mark",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "MRK.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "MRK.16",
+          "number": "16",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "LUK",
+      "title": "Luke",
+      "title_long": "Luke",
+      "abbreviation": "Luke",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "LUK.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "LUK.24",
+          "number": "24",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JHN",
+      "title": "John",
+      "title_long": "John",
+      "abbreviation": "John",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JHN.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "JHN.21",
+          "number": "21",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "ACT",
+      "title": "Acts",
+      "title_long": "Acts",
+      "abbreviation": "Acts",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "ACT.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.22",
+          "number": "22",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.23",
+          "number": "23",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.24",
+          "number": "24",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.25",
+          "number": "25",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.26",
+          "number": "26",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.27",
+          "number": "27",
+          "canonical": true
+        },
+        {
+          "usfm": "ACT.28",
+          "number": "28",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "ROM",
+      "title": "Romans",
+      "title_long": "Romans",
+      "abbreviation": "Romans",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "ROM.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "ROM.16",
+          "number": "16",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1CO",
+      "title": "1 Corinthians",
+      "title_long": "1 Corinthians",
+      "abbreviation": "1 Corinthians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1CO.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "1CO.16",
+          "number": "16",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2CO",
+      "title": "2 Corinthians",
+      "title_long": "2 Corinthians",
+      "abbreviation": "2 Corinthians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2CO.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "2CO.13",
+          "number": "13",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "GAL",
+      "title": "Galatians",
+      "title_long": "Galatians",
+      "abbreviation": "Galatians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "GAL.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "GAL.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "GAL.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "GAL.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "GAL.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "GAL.6",
+          "number": "6",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "EPH",
+      "title": "Ephesians",
+      "title_long": "Ephesians",
+      "abbreviation": "Ephesians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "EPH.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "EPH.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "EPH.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "EPH.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "EPH.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "EPH.6",
+          "number": "6",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "PHP",
+      "title": "Philippians",
+      "title_long": "Philippians",
+      "abbreviation": "Philippians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "PHP.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "PHP.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "PHP.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "PHP.4",
+          "number": "4",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "COL",
+      "title": "Colossians",
+      "title_long": "Colossians",
+      "abbreviation": "Colossians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "COL.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "COL.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "COL.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "COL.4",
+          "number": "4",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1TH",
+      "title": "1 Thessalonians",
+      "title_long": "1 Thessalonians",
+      "abbreviation": "1 Thessalonians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1TH.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1TH.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1TH.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1TH.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1TH.5",
+          "number": "5",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2TH",
+      "title": "2 Thessalonians",
+      "title_long": "2 Thessalonians",
+      "abbreviation": "2 Thessalonians",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2TH.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2TH.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2TH.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1TI",
+      "title": "1 Timothy",
+      "title_long": "1 Timothy",
+      "abbreviation": "1 Timothy",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1TI.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1TI.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1TI.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1TI.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1TI.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "1TI.6",
+          "number": "6",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2TI",
+      "title": "2 Timothy",
+      "title_long": "2 Timothy",
+      "abbreviation": "2 Timothy",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2TI.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2TI.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2TI.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "2TI.4",
+          "number": "4",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "TIT",
+      "title": "Titus",
+      "title_long": "Titus",
+      "abbreviation": "Titus",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "TIT.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "TIT.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "TIT.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "PHM",
+      "title": "Philemon",
+      "title_long": "Philemon",
+      "abbreviation": "Philemon",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "PHM.1",
+          "number": "1",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "HEB",
+      "title": "Hebrews",
+      "title_long": "Hebrews",
+      "abbreviation": "Hebrews",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "HEB.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "HEB.13",
+          "number": "13",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JAS",
+      "title": "James",
+      "title_long": "James",
+      "abbreviation": "James",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JAS.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "JAS.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "JAS.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "JAS.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "JAS.5",
+          "number": "5",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1PE",
+      "title": "1 Peter",
+      "title_long": "1 Peter",
+      "abbreviation": "1 Peter",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1PE.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1PE.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1PE.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1PE.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1PE.5",
+          "number": "5",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2PE",
+      "title": "2 Peter",
+      "title_long": "2 Peter",
+      "abbreviation": "2 Peter",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2PE.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "2PE.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "2PE.3",
+          "number": "3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "1JN",
+      "title": "1 John",
+      "title_long": "1 John",
+      "abbreviation": "1 John",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "1JN.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "1JN.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "1JN.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "1JN.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "1JN.5",
+          "number": "5",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "2JN",
+      "title": "2 John",
+      "title_long": "2 John",
+      "abbreviation": "2 John",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "2JN.1",
+          "number": "1",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "3JN",
+      "title": "3 John",
+      "title_long": "3 John",
+      "abbreviation": "3 John",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "3JN.1",
+          "number": "1",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "JUD",
+      "title": "Jude",
+      "title_long": "Jude",
+      "abbreviation": "Jude",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "JUD.1",
+          "number": "1",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "usfm": "REV",
+      "title": "Revelation",
+      "title_long": "Revelation",
+      "abbreviation": "Revelation",
+      "canon": "nt",
+      "audio": false,
+      "text": true,
+      "chapters": [
+        {
+          "usfm": "REV.1",
+          "number": "1",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.2",
+          "number": "2",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.3",
+          "number": "3",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.4",
+          "number": "4",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.5",
+          "number": "5",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.6",
+          "number": "6",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.7",
+          "number": "7",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.8",
+          "number": "8",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.9",
+          "number": "9",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.10",
+          "number": "10",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.11",
+          "number": "11",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.12",
+          "number": "12",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.13",
+          "number": "13",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.14",
+          "number": "14",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.15",
+          "number": "15",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.16",
+          "number": "16",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.17",
+          "number": "17",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.18",
+          "number": "18",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.19",
+          "number": "19",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.20",
+          "number": "20",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.21",
+          "number": "21",
+          "canonical": true
+        },
+        {
+          "usfm": "REV.22",
+          "number": "22",
+          "canonical": true
+        }
+      ]
+    }
+  ]
+}

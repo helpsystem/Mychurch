@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Hayat GPT - HTML Integration Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .example-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .example-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .widget-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .widget-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        /* Widget styling options */
+        .fullscreen-widget {
+            width: 100%;
+            height: 70vh;
+            min-height: 600px;
+        }
+        
+        .compact-widget {
+            width: 400px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        
+        .styled-widget {
+            width: 500px;
+            height: 700px;
+            margin: 0 auto;
+        }
+        
+        .mobile-widget {
+            width: 320px;
+            height: 480px;
+            margin: 0 auto;
+        }
+        
+        .code-block {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .tab-button:hover {
+            background: #764ba2;
+            color: white;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #10b981;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .compact-widget,
+            .styled-widget {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .mobile-widget {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🙏 Al Hayat GPT Integration</h1>
+            <p>Christian AI Assistant - HTML Integration Examples</p>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Connected & Ready</span>
+            </div>
+        </div>
+
+        <!-- Example Cards -->
+        <div class="examples-grid">
+            <div class="example-card">
+                <h3>📱 Full Screen Widget</h3>
+                <p>Perfect for dedicated chat pages that cover the entire viewport.</p>
+                <div class="code-block">
+                    <pre><code>&lt;div id="fullscreen-widget" style="width: 100%; height: 100vh;"&gt;&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <h3>🎨 Custom Styled Widget</h3>
+                <p>Beautifully styled widget with custom dimensions and styling.</p>
+                <div class="code-block">
+                    <pre><code>AlHayatGPT.createWidget({
+  containerId: 'styled-widget',
+  style: {
+    borderRadius: '20px',
+    boxShadow: '0 15px 40px rgba(0,0,0,0.15)'
+  }
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <h3>📲 Mobile Friendly</h3>
+                <p>Compact widget optimized for mobile devices and smaller screens.</p>
+                <div class="code-block">
+                    <pre><code>width: '320px'
+height: '480px'
+borderRadius: '10px'</code></pre>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <h3>⚡ Easy Integration</h3>
+                <p>Simple HTML and JavaScript setup - works on any website!</p>
+                <div class="code-block">
+                    <pre><code>&lt;script src="https://www.alhayatgpt.com/sdk.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget Display Area -->
+        <div class="widget-container">
+            <h2>Live Demo Widget</h2>
+            
+            <!-- Tab Buttons -->
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showWidget('fullscreen')">Full Screen</button>
+                <button class="tab-button" onclick="showWidget('styled')">Custom Styled</button>
+                <button class="tab-button" onclick="showWidget('compact')">Compact</button>
+                <button class="tab-button" onclick="showWidget('mobile')">Mobile</button>
+            </div>
+
+            <!-- Widget Containers -->
+            <div id="fullscreen-widget-container" class="fullscreen-widget"></div>
+            <div id="styled-widget-container" class="styled-widget" style="display: none;"></div>
+            <div id="compact-widget-container" class="compact-widget" style="display: none;"></div>
+            <div id="mobile-widget-container" class="mobile-widget" style="display: none;"></div>
+        </div>
+
+        <!-- Integration Code -->
+        <div class="widget-container">
+            <h2>Complete Integration Code</h2>
+            <div class="code-block">
+                <pre><code>&lt;!-- 1. Add Container Element --&gt;
+&lt;div id="alhayat-gpt-widget" style="width: 100%; height: 100vh;"&gt;&lt;/div&gt;
+
+&lt;!-- 2. Add SDK Scripts (before closing &lt;/body&gt; tag) --&gt;
+&lt;script src="https://www.alhayatgpt.com/sdk.js" defer&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.addEventListener('AlHayatGPTSDKReady', () =&gt; {
+        AlHayatGPT.createWidget({
+            containerId: 'alhayat-gpt-widget'
+        });
+    });
+&lt;/script&gt;
+
+&lt;!-- Optional: Custom Styling --&gt;
+&lt;script&gt;
+    // For custom styled widget
+    AlHayatGPT.createWidget({
+        containerId: 'alhayat-gpt-widget',
+        width: '400px',
+        height: '600px',
+        style: {
+            borderRadius: '15px',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+            border: '2px solid #e0e0e0'
+        }
+    });
+&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Al Hayat GPT SDK -->
+    <script src="https://www.alhayatgpt.com/sdk.js" defer></script>
+    <script>
+        let currentWidget = 'fullscreen';
+        let widgetInstances = {};
+
+        // Tab switching function
+        function showWidget(type) {
+            // Hide all containers
+            const containers = ['fullscreen', 'styled', 'compact', 'mobile'];
+            containers.forEach(container => {
+                const element = document.getElementById(`${container}-widget-container`);
+                if (element) {
+                    element.style.display = 'none';
+                }
+            });
+
+            // Show selected container
+            const selectedContainer = document.getElementById(`${type}-widget-container`);
+            if (selectedContainer) {
+                selectedContainer.style.display = 'block';
+            }
+
+            // Update active tab
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+
+            currentWidget = type;
+            
+            // Initialize widget for this container
+            if (window.AlHayatGPT && !widgetInstances[type]) {
+                initializeWidget(type);
+            }
+        }
+
+        // Initialize widgets
+        function initializeWidget(type) {
+            const containerId = `${type}-widget-container`;
+            
+            try {
+                switch (type) {
+                    case 'fullscreen':
+                        window.AlHayatGPT.createWidget({
+                            containerId: containerId
+                        });
+                        break;
+                        
+                    case 'styled':
+                        window.AlHayatGPT.createWidget({
+                            containerId: containerId,
+                            style: {
+                                borderRadius: '20px',
+                                boxShadow: '0 15px 40px rgba(0,0,0,0.15)',
+                                border: '2px solid #f0f0f0'
+                            }
+                        });
+                        break;
+                        
+                    case 'compact':
+                        window.AlHayatGPT.createWidget({
+                            containerId: containerId,
+                            width: '400px',
+                            height: '600px',
+                            style: {
+                                borderRadius: '15px',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                                border: '2px solid #e0e0e0'
+                            }
+                        });
+                        break;
+                        
+                    case 'mobile':
+                        window.AlHayatGPT.createWidget({
+                            containerId: containerId,
+                            width: '320px',
+                            height: '480px',
+                            style: {
+                                borderRadius: '10px',
+                                boxShadow: '0 5px 20px rgba(0,0,0,0.1)'
+                            }
+                        });
+                        break;
+                }
+                
+                widgetInstances[type] = true;
+            } catch (error) {
+                console.error(`Error initializing ${type} widget:`, error);
+            }
+        }
+
+        // Initialize when SDK is ready
+        window.addEventListener('AlHayatGPTSDKReady', () => {
+            console.log('Al Hayat GPT SDK is ready!');
+            
+            // Initialize the default widget
+            initializeWidget(currentWidget);
+        });
+
+        // Fallback initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if SDK is already loaded
+            if (window.AlHayatGPT) {
+                initializeWidget(currentWidget);
+            }
+        });
+    </script>
+</body>
+</html>
