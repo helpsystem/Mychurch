@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node dev-server.js",
-    "test": "node test-api-complete.js"
+    "test": "node test-api-complete.js",
+    "test:remote": "node test-remote-access.js",
+    "pm2:start": "pm2 start server.js --name church-backend",
+    "pm2:stop": "pm2 stop church-backend",
+    "pm2:restart": "pm2 restart church-backend",
+    "pm2:logs": "pm2 logs church-backend"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

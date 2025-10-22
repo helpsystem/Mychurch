@@ -49,12 +49,19 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 const PORT = process.env.PORT || 3001;
+const HOST = process.env.HOST || '0.0.0.0';
 
 // ---------- CORS ----------
+// خواندن origins از .env
+const envOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+  : [];
+
 const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:5173', // Vite dev server
   'https://localhost:3001',
+  ...envOrigins,
   // Custom domain(s)
   'https://samanabyar.online',
   'https://www.samanabyar.online',
@@ -277,8 +284,9 @@ const initializeDatabaseAsync = async () => {
 // شروع سرور
 const startServer = () => {
   // سرور را اول شروع کن
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
+  app.listen(PORT, HOST, () => {
+    console.log(`✅ Church API Backend running on http://${HOST}:${PORT}`);
+    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log('API endpoints available:');
     console.log('  🔐 /api/auth/* - Authentication routes');
     console.log('  👥 /api/users/* - User management');
