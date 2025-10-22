@@ -20,7 +20,12 @@
     "type-check": "tsc --noEmit",
     "lint": "echo 'Linting not configured yet'",
     "sitemap:generate": "node scripts/generate-sitemap.js",
-    "optimize:images": "node scripts/optimize-images.js"
+    "optimize:images": "node scripts/optimize-images.js",
+    "deploy": "node deploy-to-host.cjs",
+    "deploy:ftp": "node deploy-ftp.cjs",
+    "host:update": "powershell -ExecutionPolicy Bypass -File host-update.ps1",
+    "host:restart": "node restart-server.cjs",
+    "test:ssh": "node test-ssh.cjs"
   },
   "dependencies": {
     "@google/genai": "^1.9.0",
@@ -46,6 +51,7 @@
     "rimraf": "^6.0.1",
     "serve": "^14.2.1",
     "sqlite3": "^5.1.7",
+    "ssh2": "^1.17.0",
     "twilio": "^5.9.0",
     "zod": "^4.1.8"
   },
