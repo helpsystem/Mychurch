@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyChurch - Debug</title>
+    <style>
+      body {
+        background-color: #00040F;
+        color: white;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      .debug-info {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      .success { color: #00F6FF; }
+      .error { color: #ff6b6b; }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="debug-info">
+        <h1>🔍 Debug Mode</h1>
+        <p>Check console for errors...</p>
+        <p class="success" id="status">Loading React App...</p>
+      </div>
+    </div>
+    
+    <script type="module">
+      console.log('✅ Script loaded');
+      
+      try {
+        console.log('Attempting to import React...');
+        import('react').then(() => {
+          console.log('✅ React imported successfully');
+          document.getElementById('status').innerHTML = '✅ React imported successfully';
+          
+          // Now try to load the actual app
+          import('./index.tsx').then(() => {
+            console.log('✅ App loaded successfully');
+          }).catch(err => {
+            console.error('❌ Error loading app:', err);
+            document.getElementById('status').innerHTML = '❌ Error loading app: ' + err.message;
+            document.getElementById('status').className = 'error';
+          });
+        }).catch(err => {
+          console.error('❌ Error importing React:', err);
+          document.getElementById('status').innerHTML = '❌ Error importing React: ' + err.message;
+          document.getElementById('status').className = 'error';
+        });
+      } catch (err) {
+        console.error('❌ Script error:', err);
+        document.getElementById('status').innerHTML = '❌ Script error: ' + err.message;
+        document.getElementById('status').className = 'error';
+      }
+    </script>
+  </body>
+</html>

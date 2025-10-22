@@ -37,6 +37,17 @@ const aiChatRoutes = require('./routes/aiChatRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
 
 const app = express();
+
+// ---------- DEV CSP HEADER ----------
+if (process.env.NODE_ENV !== 'production') {
+  app.use((req, res, next) => {
+    res.setHeader(
+      'Content-Security-Policy',
+      "default-src 'self' http://localhost:3001 http://localhost:5173 https: ws: wss: data:; connect-src 'self' http://localhost:3001 http://localhost:5173 https: ws: wss: data:;"
+    );
+    next();
+  });
+}
 const PORT = process.env.PORT || 3001;
 
 // ---------- CORS ----------

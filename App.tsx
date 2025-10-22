@@ -62,6 +62,9 @@ import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
 import AnalyticsSetup from './components/Analytics/AnalyticsSetup';
 import BibleAIChatWidget from './components/BibleAIChatWidget';
+import BibleTTSPage from './pages/BibleTTSPage';
+import BibleAdminUpload from './pages/BibleAdminUpload';
+import PersianBibleTTSPage from './pages/PersianBibleTTSPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -114,12 +117,15 @@ function App() {
             <Route path="leaders" element={<LeadersPage />} />
             <Route path="sermons" element={<SermonsPage />} />
             <Route path="worship" element={<WorshipPage />} />
-            <Route path="bible" element={<SimpleBibleReader />} />
-            <Route path="bible-unified" element={<UnifiedBibleReader />} />
+            <Route path="bible" element={<UnifiedBibleReader />} />
+            <Route path="bible-simple" element={<SimpleBibleReader />} />
             <Route path="bible-minimal" element={<MinimalBible />} />
             <Route path="bible-test" element={<TestComponent />} />
             <Route path="bible-old" element={<BibleReaderPage />} />
             <Route path="audio-bible" element={<AudioBiblePage />} />
+            <Route path="bible/tts/:bookCode/:chapter" element={<BibleTTSPage />} />
+            <Route path="bible-fa/tts/:bookCode/:chapter" element={<PersianBibleTTSPage />} />
+            <Route path="bible/admin/upload" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><BibleAdminUpload /></ProtectedRoute>} />
             <Route path="bible-reader" element={<BibleReaderPage />} />
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="worship-presentation" element={<WorshipPresentationPage />} />

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export type Language = 'en' | 'fa';
+export type Language = 'en' | 'fa' | 'es';
 
 export interface AdminMessage {
   id: string;

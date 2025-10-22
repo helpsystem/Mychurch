@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible TTS Reader - Standalone Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .controls {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .settings {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slider {
+            width: 120px;
+        }
+
+        select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            font-size: 0.9em;
+            background: white;
+            cursor: pointer;
+        }
+
+        .verse {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .verse.active {
+            border-color: #667eea;
+            background: #eef2ff;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .verse-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        .verse.active .verse-number {
+            background: #5568d3;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .verse-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #2d3748;
+        }
+
+        .word {
+            display: inline-block;
+            padding: 2px 4px;
+            margin: 0 2px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .word:hover {
+            background: #f7fafc;
+        }
+
+        .word.highlight {
+            background: #ffd700;
+            color: #000;
+            font-weight: bold;
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s;
+            border-radius: 10px;
+        }
+
+        .bilingual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .column h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .rtl .verse-number {
+            margin-left: 10px;
+            margin-right: 0;
+        }
+
+        .status {
+            text-align: center;
+            color: #718096;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            .bilingual {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+
+        .info-box {
+            background: #e6fffa;
+            border: 2px solid #81e6d9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #234e52;
+        }
+
+        .info-box strong {
+            color: #0f766e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Bible TTS Reader</h1>
+        <p class="subtitle">Experience the Bible with synchronized word-by-word highlighting</p>
+
+        <div class="info-box">
+            <strong>🎯 Demo Mode:</strong> This is a standalone demonstration showing Genesis 1:1-5 with full TTS capabilities. 
+            <br><strong>Best in:</strong> Chrome or Edge browsers
+        </div>
+
+        <div class="status" id="status">Ready to Read • Verse 1 of 5</div>
+
+        <div class="controls">
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-secondary" id="prevBtn" disabled>
+                    ⏮️ Previous
+                </button>
+                <button class="btn btn-primary" id="playBtn">
+                    ▶️ Play
+                </button>
+                <button class="btn btn-secondary" id="nextBtn">
+                    Next ⏭️
+                </button>
+            </div>
+
+            <div class="settings">
+                <label>Volume:</label>
+                <input type="range" class="slider" id="volumeSlider" min="0" max="100" value="100">
+                
+                <label>Speed:</label>
+                <select id="speedSelect">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1.0x</option>
+                    <option value="1.25">1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2.0x</option>
+                </select>
+
+                <select id="langSelect">
+                    <option value="en">English</option>
+                    <option value="bilingual" selected>Bilingual</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="versesContainer"></div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progressBar" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Bible verses (Genesis 1:1-5)
+        const verses = [
+            {
+                id: 1,
+                number: 1,
+                en: "In the beginning God created the heaven and the earth.",
+                fa: "در ابتدا خدا آسمان و زمین را آفرید."
+            },
+            {
+                id: 2,
+                number: 2,
+                en: "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.",
+                fa: "و زمین بی‌شکل و خالی بود و تاریکی بر روی عمق ها بود و روح خدا بر روی آب ها حرکت می‌کرد."
+            },
+            {
+                id: 3,
+                number: 3,
+                en: "And God said, Let there be light: and there was light.",
+                fa: "و خدا گفت: نور باشد و نور شد."
+            },
+            {
+                id: 4,
+                number: 4,
+                en: "And God saw the light, that it was good: and God divided the light from the darkness.",
+                fa: "و خدا نور را دید که نیکو است و خدا نور را از تاریکی جدا کرد."
+            },
+            {
+                id: 5,
+                number: 5,
+                en: "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.",
+                fa: "و خدا نور را روز نامید و تاریکی را شب نامید و شام و صبح، روز اول بود."
+            }
+        ];
+
+        // State
+        let currentVerseIndex = 0;
+        let currentWordIndex = -1;
+        let isPlaying = false;
+        let utterance = null;
+
+        // DOM elements
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const speedSelect = document.getElementById('speedSelect');
+        const langSelect = document.getElementById('langSelect');
+        const versesContainer = document.getElementById('versesContainer');
+        const progressBar = document.getElementById('progressBar');
+        const status = document.getElementById('status');
+
+        // Initialize
+        renderVerses();
+        updateButtons();
+
+        // Event listeners
+        playBtn.addEventListener('click', togglePlayPause);
+        prevBtn.addEventListener('click', previousVerse);
+        nextBtn.addEventListener('click', nextVerse);
+        langSelect.addEventListener('change', renderVerses);
+
+        function renderVerses() {
+            const mode = langSelect.value;
+            
+            if (mode === 'bilingual') {
+                versesContainer.innerHTML = `
+                    <div class="bilingual">
+                        <div class="column">
+                            <h2>English</h2>
+                            ${verses.map((v, i) => renderVerse(v, i, 'en')).join('')}
+                        </div>
+                        <div class="column rtl">
+                            <h2>فارسی</h2>
+                            ${verses.map((v, i) => renderVerse(v, i, 'fa')).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                versesContainer.innerHTML = verses.map((v, i) => renderVerse(v, i, mode)).join('');
+            }
+        }
+
+        function renderVerse(verse, index, lang) {
+            const text = verse[lang];
+            const words = text.match(/[\w\u0600-\u06FF]+|[^\w\s\u0600-\u06FF]/g) || [];
+            const isActive = index === currentVerseIndex;
+            
+            const wordsHtml = words.map((word, wordIdx) => {
+                const isHighlight = isActive && wordIdx === currentWordIndex && langSelect.value !== 'bilingual';
+                return `<span class="word ${isHighlight ? 'highlight' : ''}" data-verse="${index}" data-word="${wordIdx}">${word} </span>`;
+            }).join('');
+
+            return `
+                <div class="verse ${isActive ? 'active' : ''}" data-verse="${index}">
+                    <span class="verse-number">${verse.number}</span>
+                    <span class="verse-text">${wordsHtml}</span>
+                </div>
+            `;
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                window.speechSynthesis.pause();
+                isPlaying = false;
+                playBtn.innerHTML = '▶️ Play';
+                status.textContent = 'Paused';
+            } else {
+                if (window.speechSynthesis.paused) {
+                    window.speechSynthesis.resume();
+                } else {
+                    speakVerse(currentVerseIndex);
+                }
+                isPlaying = true;
+                playBtn.innerHTML = '⏸️ Pause';
+                status.textContent = 'Playing...';
+            }
+        }
+
+        function speakVerse(index) {
+            const verse = verses[index];
+            const lang = langSelect.value === 'en' ? 'en' : 'en'; // Always speak English for demo
+            const text = verse[lang];
+            
+            window.speechSynthesis.cancel();
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = parseFloat(speedSelect.value);
+            utterance.volume = volumeSlider.value / 100;
+
+            let words = text.match(/[\w\u0600-\u06FF]+|[^\w\s\u0600-\u06FF]/g) || [];
+            let wordIndex = 0;
+
+            utterance.onboundary = (event) => {
+                if (event.name === 'word') {
+                    currentWordIndex = wordIndex++;
+                    renderVerses();
+                    updateProgress();
+                    
+                    // Scroll to current verse
+                    const activeVerse = document.querySelector('.verse.active');
+                    if (activeVerse) {
+                        activeVerse.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            };
+
+            utterance.onend = () => {
+                currentWordIndex = -1;
+                if (index < verses.length - 1) {
+                    currentVerseIndex++;
+                    updateButtons();
+                    updateProgress();
+                    renderVerses();
+                    speakVerse(currentVerseIndex);
+                } else {
+                    isPlaying = false;
+                    playBtn.innerHTML = '▶️ Play';
+                    currentVerseIndex = 0;
+                    status.textContent = 'Finished!';
+                    updateButtons();
+                    renderVerses();
+                }
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function previousVerse() {
+            window.speechSynthesis.cancel();
+            currentVerseIndex = Math.max(0, currentVerseIndex - 1);
+            currentWordIndex = -1;
+            updateButtons();
+            updateProgress();
+            renderVerses();
+            if (isPlaying) {
+                speakVerse(currentVerseIndex);
+            }
+        }
+
+        function nextVerse() {
+            window.speechSynthesis.cancel();
+            currentVerseIndex = Math.min(verses.length - 1, currentVerseIndex + 1);
+            currentWordIndex = -1;
+            updateButtons();
+            updateProgress();
+            renderVerses();
+            if (isPlaying) {
+                speakVerse(currentVerseIndex);
+            }
+        }
+
+        function updateButtons() {
+            prevBtn.disabled = currentVerseIndex === 0;
+            nextBtn.disabled = currentVerseIndex === verses.length - 1;
+            status.textContent = `${isPlaying ? 'Playing' : 'Ready'} • Verse ${currentVerseIndex + 1} of ${verses.length}`;
+        }
+
+        function updateProgress() {
+            const progress = ((currentVerseIndex + 1) / verses.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+    </script>
+</body>
+</html>

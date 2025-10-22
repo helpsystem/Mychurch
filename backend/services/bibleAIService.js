@@ -14,13 +14,13 @@ async function testConnection() {
     console.log('✅ Bible AI Service: Database connection OK');
     return true;
   } catch (error) {
-    console.error('❌ Bible AI Service: Database connection failed:', error.message);
+    console.error('⚠️  Bible AI Service: Database connection failed (continuing):', error.message);
     return false;
   }
 }
 
-// Test connection immediately
-testConnection();
+// Skip connection test for now (Supabase timeout)
+// testConnection();
 
 /**
  * Execute query with timeout

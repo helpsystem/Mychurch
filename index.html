@@ -36,7 +36,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-fill-color: transparent;
+  /* text-fill-color removed (non-standard property) */
       }
       .bg-blue-gradient {
         background: linear-gradient(157.81deg, #DEF9FA -43.27%, #BEF3F5 -21.24%, #9DEDF0 12.19%, #7DE7EB 29.82%, #5CE1E6 51.94%, #33BBCF 90.29%);
@@ -143,7 +143,7 @@
       }
       .page-content {
         flex-grow: 1;
-        overflow-y: auto;
+        overflow: hidden; /* no scrolling inside pages */
         -ms-overflow-style: none;
         scrollbar-width: none;
       }

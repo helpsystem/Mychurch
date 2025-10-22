@@ -5,9 +5,17 @@ require('dotenv').config();
 const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl) {
-  console.error('❌ DATABASE_URL not found in environment variables');
-  console.log('💡 Please set DATABASE_URL to your Supabase connection string');
-  process.exit(1);
+  console.warn('⚠️  DATABASE_URL not found in environment variables');
+  console.warn('💡 Please set DATABASE_URL to your Supabase connection string');
+  console.warn('⚠️  Database operations will fail until DATABASE_URL is configured');
+  
+  // Export a placeholder pool that will fail gracefully
+  module.exports = {
+    pool: null,
+    query: () => Promise.reject(new Error('Database not configured: DATABASE_URL is missing')),
+    connectWithRetry: () => Promise.resolve(false)
+  };
+  return;
 }
 
 console.log('🔗 Connecting to Supabase PostgreSQL...');
@@ -24,8 +32,8 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-// Test connection with retry logic for scale-to-zero databases
-const connectWithRetry = async (maxRetries = 5) => {
+// Test connection with retry logic for scale-to-zero databases (TIMEOUT REDUCED)
+const connectWithRetry = async (maxRetries = 2) => {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       const client = await pool.connect();
@@ -36,14 +44,14 @@ const connectWithRetry = async (maxRetries = 5) => {
       const isEndpointDisabled = err.message && err.message.includes('endpoint has been disabled');
       
       if (isEndpointDisabled && attempt < maxRetries) {
-        const waitTime = Math.pow(2, attempt - 1) * 2000; // Exponential backoff: 2s, 4s, 8s, 16s
+        const waitTime = 1000; // 1s quick retry
         console.log(`🔄 Database endpoint waking up... Attempt ${attempt}/${maxRetries} - Waiting ${waitTime/1000}s`);
         await new Promise(resolve => setTimeout(resolve, waitTime));
         continue;
       }
       
       if (attempt === maxRetries) {
-        console.error('❌ Failed to connect to PostgreSQL after', maxRetries, 'attempts:', err.message);
+        console.error('⚠️  Failed to connect to PostgreSQL after', maxRetries, 'attempts:', err.message);
         return false;
       }
     }
@@ -53,9 +61,13 @@ const connectWithRetry = async (maxRetries = 5) => {
 // Initialize connection with retry
 connectWithRetry().then(success => {
   if (!success) {
-    console.log('⚠️ Database connection failed - continuing without database...');
+    console.log('⚠️  Database connection failed - continuing without database (Supabase timeout)...');
   }
 });
+
+// Export flag for skipping DB checks
+let dbReady = false;
+connectWithRetry().then(ok => { dbReady = ok; });
 
 // Helper function to parse user JSON fields
 const parseUser = (user) => {

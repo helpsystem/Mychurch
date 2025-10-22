@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست صدای فارسی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .info-box {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .voice-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+        }
+
+        .voice-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f7fafc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .voice-item:hover {
+            background: #e2e8f0;
+            transform: translateX(-5px);
+        }
+
+        .voice-item.persian {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: 'Vazirmatn', sans-serif;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .test-text {
+            font-size: 1.4em;
+            text-align: center;
+            padding: 20px;
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            margin: 20px 0;
+            line-height: 2;
+            color: #92400e;
+        }
+
+        .status {
+            text-align: center;
+            padding: 15px;
+            background: #dbeafe;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            font-family: 'Vazirmatn', sans-serif;
+            border: 2px solid #cbd5e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 تست صدای فارسی TTS</h1>
+
+        <div class="test-text" id="testText">
+            در ابتدا خدا آسمان و زمین را آفرید
+        </div>
+
+        <button onclick="testTTS()">🔊 پخش صدا</button>
+        <button onclick="stopTTS()">⏹️ توقف</button>
+
+        <div class="status" id="status">
+            آماده برای تست
+        </div>
+
+        <div class="info-box">
+            <h3>📋 صداهای موجود:</h3>
+            <select id="voiceSelect" onchange="updateSelectedVoice()">
+                <option value="">در حال بارگذاری...</option>
+            </select>
+            <div id="voiceCount" style="margin-top: 10px; color: #667eea; font-weight: 600;"></div>
+        </div>
+
+        <div class="info-box">
+            <h3>🔍 جزئیات صداها:</h3>
+            <div class="voice-list" id="voiceList">
+                در حال بارگذاری صداها...
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 راهنما:</h3>
+            <ul style="padding-right: 20px; line-height: 2;">
+                <li>اگر صدای فارسی/عربی یافت شد، رنگ سبز خواهد بود ✅</li>
+                <li>می‌توانید هر صدا را از لیست کشویی انتخاب کنید</li>
+                <li>روی دکمه "پخش صدا" کلیک کنید</li>
+                <li>اگر صدای فارسی وجود نداشت، از صدای پیش‌فرض استفاده می‌شود</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let voices = [];
+        let selectedVoice = null;
+        let utterance = null;
+
+        // Load voices
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            console.log('Loaded voices:', voices.length);
+            
+            if (voices.length > 0) {
+                displayVoices();
+                
+                // Try to find Persian/Arabic voice
+                const persianVoice = voices.find(v => 
+                    v.lang.startsWith('fa') || 
+                    v.lang.startsWith('ar') ||
+                    v.name.toLowerCase().includes('persian') ||
+                    v.name.toLowerCase().includes('farsi')
+                );
+                
+                selectedVoice = persianVoice || voices[0];
+                console.log('Selected voice:', selectedVoice.name, selectedVoice.lang);
+            }
+        }
+
+        function displayVoices() {
+            const voiceSelect = document.getElementById('voiceSelect');
+            const voiceList = document.getElementById('voiceList');
+            const voiceCount = document.getElementById('voiceCount');
+            
+            // Count Persian/Arabic voices
+            const persianVoices = voices.filter(v => 
+                v.lang.startsWith('fa') || 
+                v.lang.startsWith('ar') ||
+                v.name.toLowerCase().includes('persian') ||
+                v.name.toLowerCase().includes('farsi')
+            );
+            
+            voiceCount.innerHTML = `
+                تعداد کل صداها: <strong>${voices.length}</strong><br>
+                صداهای فارسی/عربی: <strong>${persianVoices.length}</strong> ${persianVoices.length > 0 ? '✅' : '❌'}
+            `;
+            
+            // Populate select dropdown
+            voiceSelect.innerHTML = voices.map((voice, index) => {
+                const isPersian = voice.lang.startsWith('fa') || voice.lang.startsWith('ar');
+                const label = `${voice.name} (${voice.lang}) ${isPersian ? '✅' : ''}`;
+                return `<option value="${index}">${label}</option>`;
+            }).join('');
+            
+            // Set selected voice
+            if (selectedVoice) {
+                const selectedIndex = voices.findIndex(v => v.name === selectedVoice.name);
+                voiceSelect.value = selectedIndex;
+            }
+            
+            // Display detailed list
+            voiceList.innerHTML = voices.map((voice, index) => {
+                const isPersian = voice.lang.startsWith('fa') || 
+                                 voice.lang.startsWith('ar') ||
+                                 voice.name.toLowerCase().includes('persian') ||
+                                 voice.name.toLowerCase().includes('farsi');
+                
+                return `
+                    <div class="voice-item ${isPersian ? 'persian' : ''}" onclick="selectVoice(${index})">
+                        <strong>${voice.name}</strong><br>
+                        زبان: ${voice.lang} ${isPersian ? '✅ فارسی/عربی' : ''}<br>
+                        محلی: ${voice.localService ? 'بله' : 'خیر'} | 
+                        پیش‌فرض: ${voice.default ? 'بله' : 'خیر'}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateSelectedVoice() {
+            const voiceSelect = document.getElementById('voiceSelect');
+            const index = parseInt(voiceSelect.value);
+            selectedVoice = voices[index];
+            console.log('Voice changed to:', selectedVoice.name);
+        }
+
+        function selectVoice(index) {
+            selectedVoice = voices[index];
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.value = index;
+            console.log('Voice selected:', selectedVoice.name);
+            
+            // Test immediately
+            testTTS();
+        }
+
+        function testTTS() {
+            const status = document.getElementById('status');
+            const text = document.getElementById('testText').textContent;
+            
+            // Stop any ongoing speech
+            window.speechSynthesis.cancel();
+            
+            // Create utterance
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'fa-IR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+            
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+            
+            utterance.onstart = () => {
+                status.textContent = '🎵 در حال پخش صدا...';
+                status.style.background = '#d1fae5';
+                status.style.color = '#065f46';
+                console.log('Speech started');
+            };
+            
+            utterance.onend = () => {
+                status.textContent = '✅ پخش تمام شد';
+                status.style.background = '#dbeafe';
+                status.style.color = '#1e40af';
+                console.log('Speech ended');
+            };
+            
+            utterance.onerror = (event) => {
+                status.textContent = '❌ خطا: ' + event.error;
+                status.style.background = '#fee2e2';
+                status.style.color = '#991b1b';
+                console.error('Speech error:', event);
+            };
+            
+            // Log info
+            console.log('Speaking:', {
+                text: text,
+                voice: selectedVoice?.name || 'default',
+                lang: utterance.lang,
+                rate: utterance.rate,
+                volume: utterance.volume
+            });
+            
+            // Speak!
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function stopTTS() {
+            window.speechSynthesis.cancel();
+            const status = document.getElementById('status');
+            status.textContent = '⏹️ متوقف شد';
+            status.style.background = '#fee2e2';
+            status.style.color = '#991b1b';
+        }
+
+        // Initialize
+        loadVoices();
+        
+        // Chrome needs this event
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    </script>
+</body>
+</html>

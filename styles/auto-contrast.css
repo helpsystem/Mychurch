@@ -1,0 +1,312 @@
+/**
+ * Auto Contrast CSS
+ * Provides CSS custom properties for automatic contrast adjustment
+ * Based on WCAG 2.1 Level AA guidelines
+ */
+
+:root {
+  /* Default contrast colors */
+  --text-on-light: #1a1a1a;
+  --text-on-dark: #ffffff;
+  --text-emphasis: #000000;
+  
+  /* Contrast ratios (WCAG AA = 4.5:1, AAA = 7:1) */
+  --min-contrast-ratio: 4.5;
+  
+  /* Automatic contrast backgrounds */
+  --bg-contrast-light: rgba(255, 255, 255, 0.95);
+  --bg-contrast-dark: rgba(0, 0, 0, 0.85);
+}
+
+/* Force high contrast on all text elements */
+body,
+body * {
+  /* Ensure text is always readable */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Automatic contrast for common elements */
+[data-auto-contrast="true"],
+.auto-contrast {
+  color: var(--text-on-light) !important;
+  background-color: var(--bg-contrast-light);
+}
+
+/* Dark backgrounds need light text */
+.bg-dark,
+.bg-primary,
+.bg-secondary,
+[style*="background: rgb(0"],
+[style*="background: rgba(0"],
+[style*="background-color: rgb(0"],
+[style*="background-color: rgba(0"],
+[class*="bg-gray-8"],
+[class*="bg-gray-9"],
+[class*="bg-black"] {
+  color: var(--text-on-dark) !important;
+}
+
+/* Light backgrounds need dark text */
+.bg-light,
+.bg-white,
+[style*="background: rgb(255"],
+[style*="background: rgba(255, 255, 255"],
+[style*="background-color: rgb(255"],
+[style*="background-color: rgba(255, 255, 255"],
+[class*="bg-gray-1"],
+[class*="bg-gray-2"],
+[class*="bg-white"] {
+  color: var(--text-on-light) !important;
+}
+
+/* Ensure all headings have high contrast */
+h1, h2, h3, h4, h5, h6,
+.heading,
+[class*="title"],
+[class*="heading"] {
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Links should always be distinguishable */
+a,
+a:visited {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  text-decoration-thickness: 3px;
+  filter: brightness(1.2);
+}
+
+/* Buttons need clear contrast */
+button,
+.btn,
+[role="button"],
+[type="button"],
+[type="submit"],
+input[type="button"] {
+  font-weight: 600 !important;
+  border: 2px solid currentColor;
+  position: relative;
+  overflow: hidden;
+}
+
+button:not(:disabled):hover,
+.btn:not(:disabled):hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form elements need clear borders */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  border: 2px solid rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: var(--text-on-light) !important;
+  padding: 0.75rem !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: currentColor !important;
+  outline: 3px solid rgba(0, 0, 0, 0.1);
+  outline-offset: 2px;
+}
+
+/* Cards and panels */
+.card,
+.panel,
+[class*="card-"],
+[class*="panel-"] {
+  background-color: var(--bg-contrast-light) !important;
+  color: var(--text-on-light) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure code blocks are readable */
+code,
+pre,
+kbd,
+samp {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: var(--text-on-light) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+pre {
+  padding: 1rem !important;
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent !important;
+  border: none;
+  padding: 0;
+}
+
+/* Tables need clear borders */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  padding: 0.75rem !important;
+  text-align: start;
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  font-weight: 600 !important;
+}
+
+/* Focus indicators for accessibility */
+*:focus-visible {
+  outline: 3px solid currentColor !important;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Ensure SVG icons inherit text color */
+svg,
+svg * {
+  fill: currentColor;
+  color: inherit;
+}
+
+/* Ensure images don't interfere with text contrast */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Badges and labels */
+.badge,
+.label,
+.tag,
+[class*="badge-"],
+[class*="label-"],
+[class*="tag-"] {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 2px solid currentColor;
+}
+
+/* Alerts and notifications */
+.alert,
+.notification,
+[role="alert"],
+[class*="alert-"] {
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid currentColor;
+  font-weight: 500;
+}
+
+/* Tooltips */
+[title],
+.tooltip {
+  position: relative;
+}
+
+/* Modals and dialogs */
+.modal,
+.dialog,
+[role="dialog"] {
+  background-color: var(--bg-contrast-light) !important;
+  color: var(--text-on-light) !important;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown menus */
+.dropdown,
+.menu,
+[role="menu"] {
+  background-color: var(--bg-contrast-light) !important;
+  color: var(--text-on-light) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Navigation items */
+nav a,
+.nav-link,
+[class*="nav-"] a {
+  font-weight: 500;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid currentColor;
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* HR dividers */
+hr {
+  border: none;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+/* Print styles for better contrast */
+@media print {
+  body,
+  body * {
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --min-contrast-ratio: 7;
+    --text-on-light: #000000;
+    --text-on-dark: #ffffff;
+  }
+  
+  * {
+    font-weight: 500 !important;
+  }
+  
+  button,
+  a {
+    font-weight: 700 !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
