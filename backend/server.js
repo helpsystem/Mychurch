@@ -36,6 +36,7 @@ const aiRoutes = require('./routes/aiRoutes');
 const aiChatRoutes = require('./routes/aiChatRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
 const ttsRoutes = require('./routes/tts');
+const bibleUnifiedRoutes = require('./routes/bibleUnifiedMock');
 
 const app = express();
 
@@ -190,6 +191,7 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/wordproject', wordprojectRoutes);
 app.use('/api/tts', ttsRoutes);
+app.use('/api/bible-unified', bibleUnifiedRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت
@@ -305,8 +307,8 @@ const startServer = () => {
     console.log('  📮 /api/notifications/* - Multi-channel notifications');
     console.log('  ❤️ /api/health - Health check');
     
-    // مقداردهی اولیه دیتابیس در پس‌زمینه
-    initializeDatabaseAsync();
+    // مقداردهی اولیه دیتابیس غیرفعال شد برای جلوگیری از مشکلات اتصال
+    // initializeDatabaseAsync();
   });
 };
 

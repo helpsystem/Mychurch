@@ -67,6 +67,7 @@ import BibleTTSPage from './pages/BibleTTSPage';
 import BibleAdminUpload from './pages/BibleAdminUpload';
 import PersianBibleTTSPage from './pages/PersianBibleTTSPage';
 import BibleFlipbook3DPage from './pages/BibleFlipbook3DPage';
+import BibleViewer from './pages/BibleViewer';
 
 function App() {
   const { lang } = useLanguage();
@@ -130,6 +131,7 @@ function App() {
             <Route path="bible/admin/upload" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><BibleAdminUpload /></ProtectedRoute>} />
             <Route path="bible-reader" element={<BibleReaderPage />} />
             <Route path="bible-flipbook/:bookCode/:chapter" element={<BibleFlipbook3DPage />} />
+            <Route path="bible-viewer" element={<BibleViewer />} />
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="worship-presentation" element={<WorshipPresentationPage />} />
             <Route path="daily-devotional" element={<DailyDevotionalPage />} />

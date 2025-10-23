@@ -12,8 +12,8 @@ export default defineConfig(({ mode }) => {
         allowedHosts: true,
         proxy: {
           '/api': {
-            // Backend dev-server.js runs on port 3001
-            target: 'http://localhost:3001',
+            // Simple Bible API runs on port 3006
+            target: 'http://localhost:3006',
             changeOrigin: true,
             secure: false
           }
