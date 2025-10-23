@@ -337,8 +337,7 @@ const BibleViewer: React.FC = () => {
     'min-h-screen',
     'transition-all',
     'duration-300',
-    displayMode === 'presentation' ? 'bg-black' : 'bg-gradient-to-br from-amber-50 via-stone-50 to-amber-100',
-    displayMode === 'mirror' ? 'transform scale-x-[-1]' : ''
+    displayMode === 'presentation' ? 'bg-black' : 'bg-gradient-to-br from-amber-50 via-stone-50 to-amber-100'
   ].filter(Boolean).join(' ');
 
   return (
@@ -349,23 +348,20 @@ const BibleViewer: React.FC = () => {
           mode={mode}
           language={language}
           displayMode={displayMode}
-          currentBook={currentBookInfo}
-          currentChapter={currentChapter}
-          books={books}
           isPlaying={tts.isPlaying}
-          isFullscreen={isFullscreen}
-          showSearch={showSearch}
-          searchResults={searchResults}
-          onModeChange={setMode}
-          onLanguageChange={setLanguage}
+          isLoading={isLoading}
+          currentBook={currentBook}
+          currentChapter={currentChapter}
+          onModeToggle={() => setMode(mode === 'simple' ? 'flipbook' : 'simple')}
+          onLanguageToggle={() => setLanguage(language === 'en' ? 'fa' : 'en')}
           onDisplayModeChange={setDisplayMode}
-          onGoToReference={handleGoToReference}
           onSearch={handleSearch}
-          onToggleSearch={() => setShowSearch(!showSearch)}
           onPlayPause={tts.togglePlayPause}
-          onNext={nextChapter}
-          onPrevious={previousChapter}
-          onToggleFullscreen={toggleFullscreen}
+          onPreviousChapter={previousChapter}
+          onNextChapter={nextChapter}
+          onFullscreen={toggleFullscreen}
+          isFullscreen={isFullscreen}
+          bookName={currentBookInfo?.names[language]}
         />
       )}
 
