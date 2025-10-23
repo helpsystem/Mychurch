@@ -47,6 +47,7 @@ interface BibleFlipbookUnifiedProps {
   displayMode: DisplayMode;
   tts: TTSState;
   onPageChange?: (pageNumber: number) => void;
+  bilingualMode?: boolean; // true = show both languages, false = single language
 }
 
 const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
@@ -54,7 +55,8 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
   language,
   displayMode,
   tts,
-  onPageChange
+  onPageChange,
+  bilingualMode = true // Default to bilingual
 }) => {
   const flipbookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -100,17 +102,25 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
 
   /**
    * Create pages from verses
-   * Each spread contains: Left page (English) + Right page (Persian)
+   * Bilingual: Left page (English) + Right page (Persian)  
+   * Monolingual: Single language pages
    */
   const versesPerPage = displayMode === 'presentation' ? 3 : 8;
   const pages: Verse[][] = [];
   
-  // Create page pairs (English left, Persian right with same verses)
-  for (let i = 0; i < chapter.verses.length; i += versesPerPage) {
-    const pageVerses = chapter.verses.slice(i, i + versesPerPage);
-    // Push same verses twice: once for English (left), once for Persian (right)
-    pages.push(pageVerses); // English page
-    pages.push(pageVerses); // Persian page (same content, different language)
+  if (bilingualMode) {
+    // Bilingual mode: Create page pairs (English left, Persian right with same verses)
+    for (let i = 0; i < chapter.verses.length; i += versesPerPage) {
+      const pageVerses = chapter.verses.slice(i, i + versesPerPage);
+      pages.push(pageVerses); // English page (left)
+      pages.push(pageVerses); // Persian page (right)
+    }
+  } else {
+    // Monolingual mode: Only selected language
+    for (let i = 0; i < chapter.verses.length; i += versesPerPage) {
+      const pageVerses = chapter.verses.slice(i, i + versesPerPage);
+      pages.push(pageVerses); // Single language page
+    }
   }
 
   /**
@@ -180,7 +190,10 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
    * Render single page
    */
   const renderPage = (pageVerses: Verse[], pageIndex: number, side: 'left' | 'right') => {
-    const lang = side === 'left' ? 'en' : 'fa';
+    // Determine language based on mode
+    const lang = bilingualMode 
+      ? (side === 'left' ? 'en' : 'fa')  // Bilingual: left=EN, right=FA
+      : language;  // Monolingual: use selected language
     const isRTL = lang === 'fa';
 
     return (
@@ -216,7 +229,7 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
               {chapter.book.names[lang]} {chapter.chapterNumber}
             </h2>
             <p className="text-xs text-slate-500 mt-2 font-medium">
-              {lang === 'fa' ? 'صفحه' : 'Page'} {Math.floor(pageIndex / 2) + 1}
+              {lang === 'fa' ? 'صفحه' : 'Page'} {bilingualMode ? Math.floor(pageIndex / 2) + 1 : pageIndex + 1}
             </p>
           </header>
 
@@ -369,12 +382,16 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
 
           {/* Content Pages */}
           {pages.map((pageVerses, pageIndex) => {
-            // Determine if this is an even page (left side - English) or odd page (right side - Persian)
-            const isLeftPage = pageIndex % 2 === 0;
-            const lang = isLeftPage ? 'en' : 'fa';
-            const side = isLeftPage ? 'left' : 'right';
-            
-            return renderPage(pageVerses, pageIndex, side);
+            if (bilingualMode) {
+              // Bilingual: Even pages = English (left), Odd pages = Persian (right)
+              const isLeftPage = pageIndex % 2 === 0;
+              const side = isLeftPage ? 'left' : 'right';
+              return renderPage(pageVerses, pageIndex, side);
+            } else {
+              // Monolingual: All pages in selected language
+              const side = language === 'fa' ? 'right' : 'left';
+              return renderPage(pageVerses, pageIndex, side);
+            }
           })}
 
           {/* Back Cover - Clean and Elegant */}

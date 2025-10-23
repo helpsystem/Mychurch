@@ -17,6 +17,7 @@ import BibleToolbar from '../components/BibleToolbar';
 import BibleSimple from '../components/BibleSimple';
 import BibleFlipbookUnified from '../components/BibleFlipbookUnified';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { loadBibleBooks, loadBibleChapter, preloadNextChapter } from '../services/bibleDataService';
 
 interface Verse {
   number: number;
@@ -82,6 +83,7 @@ const BibleViewer: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [bilingualMode, setBilingualMode] = useState(true); // Toggle bilingual/monolingual
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,13 +105,12 @@ const BibleViewer: React.FC = () => {
   }, [currentBook, currentChapter]);
 
   /**
-   * Fetch books list (from local JSON file - standalone mode)
+   * Fetch books list using bibleDataService
    */
   const fetchBooks = async () => {
     try {
-      const response = await fetch('/bible-data-complete.json');
-      const data = await response.json();
-      setBooks(data.books);
+      const booksData = await loadBibleBooks();
+      setBooks(booksData);
     } catch (err) {
       console.error('Error loading Bible data:', err);
       setError(err instanceof Error ? err.message : 'Failed to load Bible data');
@@ -117,57 +118,20 @@ const BibleViewer: React.FC = () => {
   };
 
   /**
-   * Fetch chapter data (from local JSON file - standalone mode)
+   * Fetch chapter data using bibleDataService
    */
   const fetchChapter = async (book: string, chapter: number) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetch('/bible-data-complete.json');
-      const data = await response.json();
+      const chapterData = await loadBibleChapter(book, chapter);
+      setChapterData(chapterData);
       
-      // Find book info
-      const bookInfo = data.books.find((b: any) => b.code === book);
-      if (!bookInfo) {
-        throw new Error(`Book ${book} not found`);
-      }
-
-      // Get verses for this chapter (using sample data for now)
-      const verses = data.sampleVerses[book]?.[chapter] || [];
-      
-      // If no verses available, generate placeholder
-      if (verses.length === 0) {
-        const placeholderVerses = Array.from({ length: 10 }, (_, i) => ({
-          number: i + 1,
-          text: {
-            en: `${bookInfo.names.en} ${chapter}:${i + 1} - Content not yet loaded`,
-            fa: `${bookInfo.names.fa} ${chapter}:${i + 1} - محتوا هنوز بارگذاری نشده`
-          },
-          id: `${book}-${chapter}-${i + 1}`
-        }));
-        
-        setChapterData({
-          book: {
-            code: book,
-            number: bookInfo.number,
-            names: bookInfo.names
-          },
-          chapterNumber: chapter,
-          verseCount: placeholderVerses.length,
-          verses: placeholderVerses
-        });
-      } else {
-        setChapterData({
-          book: {
-            code: book,
-            number: bookInfo.number,
-            names: bookInfo.names
-          },
-          chapterNumber: chapter,
-          verseCount: verses.length,
-          verses
-        });
+      // Preload next chapter in background
+      const currentBookInfo = books.find(b => b.code === book);
+      if (currentBookInfo) {
+        preloadNextChapter(book, chapter, currentBookInfo.chapterCount);
       }
     } catch (err) {
       console.error('Error fetching chapter:', err);
@@ -284,6 +248,10 @@ const BibleViewer: React.FC = () => {
         case 'l':
           // Toggle language
           setLanguage(language === 'en' ? 'fa' : 'en');
+          break;
+        case 'b':
+          // Toggle bilingual/monolingual mode
+          setBilingualMode(!bilingualMode);
           break;
         case 'p':
           // Toggle presentation mode
@@ -415,6 +383,7 @@ const BibleViewer: React.FC = () => {
                 language={language}
                 displayMode={displayMode}
                 tts={tts}
+                bilingualMode={bilingualMode}
                 onPageChange={(pageNumber) => {
                   // Handle page change if needed
                   console.log('Page changed:', pageNumber);
@@ -470,9 +439,26 @@ const BibleViewer: React.FC = () => {
                 : 'bg-blue-700 hover:bg-blue-600 text-white'
               }
             `}
-            title={language === 'en' ? 'فارسی (L)' : 'English (L)'}
+            title={language === 'en' ? 'Switch to Persian (L)' : 'Switch to English (L)'}
           >
-            {language === 'en' ? '🇮🇷 فارسی' : '🇬🇧 English'}
+            {language === 'en' ? 'EN' : 'FA'}
+          </button>
+
+          {/* Bilingual Mode Toggle */}
+          <button
+            onClick={() => setBilingualMode(!bilingualMode)}
+            className={`
+              px-4 py-2 rounded-xl font-semibold transition-all duration-200
+              ${displayMode === 'presentation'
+                ? 'bg-amber-600 hover:bg-amber-500 text-black'
+                : bilingualMode
+                  ? 'bg-green-700 hover:bg-green-600 text-white'
+                  : 'bg-gray-700 hover:bg-gray-600 text-white'
+              }
+            `}
+            title={bilingualMode ? 'Switch to Single Language (B)' : 'Switch to Dual Language (B)'}
+          >
+            {bilingualMode ? '🌐 Dual' : '🔤 Single'}
           </button>
 
           {/* Navigation Controls */}
