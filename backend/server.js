@@ -37,6 +37,7 @@ const aiChatRoutes = require('./routes/aiChatRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
 const ttsRoutes = require('./routes/tts');
 const bibleUnifiedRoutes = require('./routes/bibleUnifiedMock');
+const songsRoutes = require('./routes/songs');
 
 const app = express();
 
@@ -192,6 +193,7 @@ app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/wordproject', wordprojectRoutes);
 app.use('/api/tts', ttsRoutes);
 app.use('/api/bible-unified', bibleUnifiedRoutes);
+app.use('/api/songs', songsRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت
