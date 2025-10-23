@@ -1,0 +1,16 @@
+{
+  "name": "kalameh-extractor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Extract worship songs from Kalameh HTML archive",
+  "main": "extract_songs_node.js",
+  "scripts": {
+    "extract": "node extract_songs_node.js",
+    "upload": "node upload_assets.js"
+  },
+  "dependencies": {
+    "jsdom": "^24.0.0",
+    "ssh2-sftp-client": "^10.0.3",
+    "dotenv": "^16.4.5"
+  }
+}

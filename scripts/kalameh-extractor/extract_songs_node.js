@@ -3,9 +3,13 @@
  * Quick extraction without Python dependency
  */
 
-const fs = require('fs');
-const path = require('path');
-const { JSDOM } = require('jsdom');
+import fs from 'fs';
+import path from 'path';
+import { JSDOM } from 'jsdom';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const BASE_DIR = 'D:\\Windows.old\\Users\\Sami\\Desktop\\Iran Church DC\\My Web Sites\\Bible\\www.kalameh.com';
 const SONG_FOLDER = path.join(BASE_DIR, 'song');
@@ -233,8 +237,7 @@ async function main() {
   console.log(`📂 Check exports in: ${EXPORT_DIR}\n`);
 }
 
-if (require.main === module) {
-  main().catch(console.error);
-}
+// Run if called directly
+main().catch(console.error);
 
-module.exports = { scanSongFiles, exportToJSON };
+export { scanSongFiles, exportToJSON };
