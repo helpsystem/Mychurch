@@ -6,6 +6,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Search, Music, Video, FileText, Film, Maximize2, Minimize2 } from 'lucide-react';
+import SongCard from '../components/SongCard';
 
 interface SongItem {
   id: string;
@@ -51,10 +52,10 @@ export default function WorshipSongsArchive() {
   // Load data
   useEffect(() => {
     setLoading(true);
-    fetch('/api/songs')
+    fetch('/api/songs?limit=500')
       .then(r => r.json())
       .then(result => {
-        if (result.success) {
+        if (result.success && Array.isArray(result.songs)) {
           // Convert flat array to letter-grouped format
           const grouped: Record<string, SongItem[]> = {};
           result.songs.forEach((song: SongItem) => {
@@ -64,10 +65,14 @@ export default function WorshipSongsArchive() {
           });
           
           setData({
-            total_songs: result.total,
+            total_songs: result.total || result.songs.length,
             letters: Object.keys(grouped).length,
             data: grouped
           });
+        } else {
+          // Handle error or empty response
+          console.error('Invalid response format:', result);
+          setData({ total_songs: 0, letters: 0, data: {} });
         }
       })
       .catch(err => {
@@ -86,13 +91,15 @@ export default function WorshipSongsArchive() {
     if (searchQuery) {
       // Search across all letters
       Object.values(data.data).forEach(letterSongs => {
-        songs.push(...letterSongs);
+        if (Array.isArray(letterSongs)) {
+          songs.push(...letterSongs);
+        }
       });
       
       const query = searchQuery.toLowerCase();
       songs = songs.filter(s => 
-        s.title_fa.includes(searchQuery) ||
-        s.title_en.toLowerCase().includes(query) ||
+        s.title_fa?.includes(searchQuery) ||
+        s.title_en?.toLowerCase().includes(query) ||
         s.composer?.toLowerCase().includes(query) ||
         s.artist?.toLowerCase().includes(query)
       );
@@ -301,6 +308,3 @@ export default function WorshipSongsArchive() {
     </div>
   );
 }
-
-// SongCard Component will be in a separate file
-import SongCard from '../components/SongCard';
