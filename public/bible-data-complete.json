@@ -1,0 +1,722 @@
+{
+  "books": [
+    {
+      "code": "GEN",
+      "number": 1,
+      "testament": "OT",
+      "names": {
+        "en": "Genesis",
+        "fa": "پیدایش"
+      },
+      "chapterCount": 50
+    },
+    {
+      "code": "EXO",
+      "number": 2,
+      "testament": "OT",
+      "names": {
+        "en": "Exodus",
+        "fa": "خروج"
+      },
+      "chapterCount": 40
+    },
+    {
+      "code": "LEV",
+      "number": 3,
+      "testament": "OT",
+      "names": {
+        "en": "Leviticus",
+        "fa": "لاویان"
+      },
+      "chapterCount": 27
+    },
+    {
+      "code": "NUM",
+      "number": 4,
+      "testament": "OT",
+      "names": {
+        "en": "Numbers",
+        "fa": "اعداد"
+      },
+      "chapterCount": 36
+    },
+    {
+      "code": "DEU",
+      "number": 5,
+      "testament": "OT",
+      "names": {
+        "en": "Deuteronomy",
+        "fa": "تثنیه"
+      },
+      "chapterCount": 34
+    },
+    {
+      "code": "JOS",
+      "number": 6,
+      "testament": "OT",
+      "names": {
+        "en": "Joshua",
+        "fa": "یوشع"
+      },
+      "chapterCount": 24
+    },
+    {
+      "code": "JDG",
+      "number": 7,
+      "testament": "OT",
+      "names": {
+        "en": "Judges",
+        "fa": "داوران"
+      },
+      "chapterCount": 21
+    },
+    {
+      "code": "RUT",
+      "number": 8,
+      "testament": "OT",
+      "names": {
+        "en": "Ruth",
+        "fa": "روت"
+      },
+      "chapterCount": 4
+    },
+    {
+      "code": "1SA",
+      "number": 9,
+      "testament": "OT",
+      "names": {
+        "en": "1 Samuel",
+        "fa": "اول سموئیل"
+      },
+      "chapterCount": 31
+    },
+    {
+      "code": "2SA",
+      "number": 10,
+      "testament": "OT",
+      "names": {
+        "en": "2 Samuel",
+        "fa": "دوم سموئیل"
+      },
+      "chapterCount": 24
+    },
+    {
+      "code": "1KI",
+      "number": 11,
+      "testament": "OT",
+      "names": {
+        "en": "1 Kings",
+        "fa": "اول پادشاهان"
+      },
+      "chapterCount": 22
+    },
+    {
+      "code": "2KI",
+      "number": 12,
+      "testament": "OT",
+      "names": {
+        "en": "2 Kings",
+        "fa": "دوم پادشاهان"
+      },
+      "chapterCount": 25
+    },
+    {
+      "code": "1CH",
+      "number": 13,
+      "testament": "OT",
+      "names": {
+        "en": "1 Chronicles",
+        "fa": "اول تواریخ"
+      },
+      "chapterCount": 29
+    },
+    {
+      "code": "2CH",
+      "number": 14,
+      "testament": "OT",
+      "names": {
+        "en": "2 Chronicles",
+        "fa": "دوم تواریخ"
+      },
+      "chapterCount": 36
+    },
+    {
+      "code": "EZR",
+      "number": 15,
+      "testament": "OT",
+      "names": {
+        "en": "Ezra",
+        "fa": "عزرا"
+      },
+      "chapterCount": 10
+    },
+    {
+      "code": "NEH",
+      "number": 16,
+      "testament": "OT",
+      "names": {
+        "en": "Nehemiah",
+        "fa": "نحمیا"
+      },
+      "chapterCount": 13
+    },
+    {
+      "code": "EST",
+      "number": 17,
+      "testament": "OT",
+      "names": {
+        "en": "Esther",
+        "fa": "استر"
+      },
+      "chapterCount": 10
+    },
+    {
+      "code": "JOB",
+      "number": 18,
+      "testament": "OT",
+      "names": {
+        "en": "Job",
+        "fa": "ایوب"
+      },
+      "chapterCount": 42
+    },
+    {
+      "code": "PSA",
+      "number": 19,
+      "testament": "OT",
+      "names": {
+        "en": "Psalms",
+        "fa": "مزامیر"
+      },
+      "chapterCount": 150
+    },
+    {
+      "code": "PRO",
+      "number": 20,
+      "testament": "OT",
+      "names": {
+        "en": "Proverbs",
+        "fa": "امثال"
+      },
+      "chapterCount": 31
+    },
+    {
+      "code": "ECC",
+      "number": 21,
+      "testament": "OT",
+      "names": {
+        "en": "Ecclesiastes",
+        "fa": "جامعه"
+      },
+      "chapterCount": 12
+    },
+    {
+      "code": "SNG",
+      "number": 22,
+      "testament": "OT",
+      "names": {
+        "en": "Song of Solomon",
+        "fa": "غزل غزلها"
+      },
+      "chapterCount": 8
+    },
+    {
+      "code": "ISA",
+      "number": 23,
+      "testament": "OT",
+      "names": {
+        "en": "Isaiah",
+        "fa": "اشعیا"
+      },
+      "chapterCount": 66
+    },
+    {
+      "code": "JER",
+      "number": 24,
+      "testament": "OT",
+      "names": {
+        "en": "Jeremiah",
+        "fa": "ارمیا"
+      },
+      "chapterCount": 52
+    },
+    {
+      "code": "LAM",
+      "number": 25,
+      "testament": "OT",
+      "names": {
+        "en": "Lamentations",
+        "fa": "مراثی ارمیا"
+      },
+      "chapterCount": 5
+    },
+    {
+      "code": "EZK",
+      "number": 26,
+      "testament": "OT",
+      "names": {
+        "en": "Ezekiel",
+        "fa": "حزقیال"
+      },
+      "chapterCount": 48
+    },
+    {
+      "code": "DAN",
+      "number": 27,
+      "testament": "OT",
+      "names": {
+        "en": "Daniel",
+        "fa": "دانیال"
+      },
+      "chapterCount": 12
+    },
+    {
+      "code": "HOS",
+      "number": 28,
+      "testament": "OT",
+      "names": {
+        "en": "Hosea",
+        "fa": "هوشع"
+      },
+      "chapterCount": 14
+    },
+    {
+      "code": "JOL",
+      "number": 29,
+      "testament": "OT",
+      "names": {
+        "en": "Joel",
+        "fa": "یوئیل"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "AMO",
+      "number": 30,
+      "testament": "OT",
+      "names": {
+        "en": "Amos",
+        "fa": "عاموس"
+      },
+      "chapterCount": 9
+    },
+    {
+      "code": "OBA",
+      "number": 31,
+      "testament": "OT",
+      "names": {
+        "en": "Obadiah",
+        "fa": "عوبدیا"
+      },
+      "chapterCount": 1
+    },
+    {
+      "code": "JON",
+      "number": 32,
+      "testament": "OT",
+      "names": {
+        "en": "Jonah",
+        "fa": "یونس"
+      },
+      "chapterCount": 4
+    },
+    {
+      "code": "MIC",
+      "number": 33,
+      "testament": "OT",
+      "names": {
+        "en": "Micah",
+        "fa": "میکاه"
+      },
+      "chapterCount": 7
+    },
+    {
+      "code": "NAM",
+      "number": 34,
+      "testament": "OT",
+      "names": {
+        "en": "Nahum",
+        "fa": "ناحوم"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "HAB",
+      "number": 35,
+      "testament": "OT",
+      "names": {
+        "en": "Habakkuk",
+        "fa": "حبقوق"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "ZEP",
+      "number": 36,
+      "testament": "OT",
+      "names": {
+        "en": "Zephaniah",
+        "fa": "صفنیا"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "HAG",
+      "number": 37,
+      "testament": "OT",
+      "names": {
+        "en": "Haggai",
+        "fa": "حجی"
+      },
+      "chapterCount": 2
+    },
+    {
+      "code": "ZEC",
+      "number": 38,
+      "testament": "OT",
+      "names": {
+        "en": "Zechariah",
+        "fa": "زکریا"
+      },
+      "chapterCount": 14
+    },
+    {
+      "code": "MAL",
+      "number": 39,
+      "testament": "OT",
+      "names": {
+        "en": "Malachi",
+        "fa": "ملاکی"
+      },
+      "chapterCount": 4
+    },
+    {
+      "code": "MAT",
+      "number": 40,
+      "testament": "NT",
+      "names": {
+        "en": "Matthew",
+        "fa": "متی"
+      },
+      "chapterCount": 28
+    },
+    {
+      "code": "MRK",
+      "number": 41,
+      "testament": "NT",
+      "names": {
+        "en": "Mark",
+        "fa": "مرقس"
+      },
+      "chapterCount": 16
+    },
+    {
+      "code": "LUK",
+      "number": 42,
+      "testament": "NT",
+      "names": {
+        "en": "Luke",
+        "fa": "لوقا"
+      },
+      "chapterCount": 24
+    },
+    {
+      "code": "JHN",
+      "number": 43,
+      "testament": "NT",
+      "names": {
+        "en": "John",
+        "fa": "یوحنا"
+      },
+      "chapterCount": 21
+    },
+    {
+      "code": "ACT",
+      "number": 44,
+      "testament": "NT",
+      "names": {
+        "en": "Acts",
+        "fa": "اعمال رسولان"
+      },
+      "chapterCount": 28
+    },
+    {
+      "code": "ROM",
+      "number": 45,
+      "testament": "NT",
+      "names": {
+        "en": "Romans",
+        "fa": "رومیان"
+      },
+      "chapterCount": 16
+    },
+    {
+      "code": "1CO",
+      "number": 46,
+      "testament": "NT",
+      "names": {
+        "en": "1 Corinthians",
+        "fa": "اول قرنتیان"
+      },
+      "chapterCount": 16
+    },
+    {
+      "code": "2CO",
+      "number": 47,
+      "testament": "NT",
+      "names": {
+        "en": "2 Corinthians",
+        "fa": "دوم قرنتیان"
+      },
+      "chapterCount": 13
+    },
+    {
+      "code": "GAL",
+      "number": 48,
+      "testament": "NT",
+      "names": {
+        "en": "Galatians",
+        "fa": "غلاطیان"
+      },
+      "chapterCount": 6
+    },
+    {
+      "code": "EPH",
+      "number": 49,
+      "testament": "NT",
+      "names": {
+        "en": "Ephesians",
+        "fa": "افسسیان"
+      },
+      "chapterCount": 6
+    },
+    {
+      "code": "PHP",
+      "number": 50,
+      "testament": "NT",
+      "names": {
+        "en": "Philippians",
+        "fa": "فیلیپیان"
+      },
+      "chapterCount": 4
+    },
+    {
+      "code": "COL",
+      "number": 51,
+      "testament": "NT",
+      "names": {
+        "en": "Colossians",
+        "fa": "کولسیان"
+      },
+      "chapterCount": 4
+    },
+    {
+      "code": "1TH",
+      "number": 52,
+      "testament": "NT",
+      "names": {
+        "en": "1 Thessalonians",
+        "fa": "اول تسالونیکیان"
+      },
+      "chapterCount": 5
+    },
+    {
+      "code": "2TH",
+      "number": 53,
+      "testament": "NT",
+      "names": {
+        "en": "2 Thessalonians",
+        "fa": "دوم تسالونیکیان"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "1TI",
+      "number": 54,
+      "testament": "NT",
+      "names": {
+        "en": "1 Timothy",
+        "fa": "اول تیموتائوس"
+      },
+      "chapterCount": 6
+    },
+    {
+      "code": "2TI",
+      "number": 55,
+      "testament": "NT",
+      "names": {
+        "en": "2 Timothy",
+        "fa": "دوم تیموتائوس"
+      },
+      "chapterCount": 4
+    },
+    {
+      "code": "TIT",
+      "number": 56,
+      "testament": "NT",
+      "names": {
+        "en": "Titus",
+        "fa": "تیطس"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "PHM",
+      "number": 57,
+      "testament": "NT",
+      "names": {
+        "en": "Philemon",
+        "fa": "فلیمون"
+      },
+      "chapterCount": 1
+    },
+    {
+      "code": "HEB",
+      "number": 58,
+      "testament": "NT",
+      "names": {
+        "en": "Hebrews",
+        "fa": "عبرانیان"
+      },
+      "chapterCount": 13
+    },
+    {
+      "code": "JAS",
+      "number": 59,
+      "testament": "NT",
+      "names": {
+        "en": "James",
+        "fa": "یعقوب"
+      },
+      "chapterCount": 5
+    },
+    {
+      "code": "1PE",
+      "number": 60,
+      "testament": "NT",
+      "names": {
+        "en": "1 Peter",
+        "fa": "اول پطرس"
+      },
+      "chapterCount": 5
+    },
+    {
+      "code": "2PE",
+      "number": 61,
+      "testament": "NT",
+      "names": {
+        "en": "2 Peter",
+        "fa": "دوم پطرس"
+      },
+      "chapterCount": 3
+    },
+    {
+      "code": "1JN",
+      "number": 62,
+      "testament": "NT",
+      "names": {
+        "en": "1 John",
+        "fa": "اول یوحنا"
+      },
+      "chapterCount": 5
+    },
+    {
+      "code": "2JN",
+      "number": 63,
+      "testament": "NT",
+      "names": {
+        "en": "2 John",
+        "fa": "دوم یوحنا"
+      },
+      "chapterCount": 1
+    },
+    {
+      "code": "3JN",
+      "number": 64,
+      "testament": "NT",
+      "names": {
+        "en": "3 John",
+        "fa": "سوم یوحنا"
+      },
+      "chapterCount": 1
+    },
+    {
+      "code": "JUD",
+      "number": 65,
+      "testament": "NT",
+      "names": {
+        "en": "Jude",
+        "fa": "یهودا"
+      },
+      "chapterCount": 1
+    },
+    {
+      "code": "REV",
+      "number": 66,
+      "testament": "NT",
+      "names": {
+        "en": "Revelation",
+        "fa": "مکاشفه"
+      },
+      "chapterCount": 22
+    }
+  ],
+  "sampleVerses": {
+    "GEN": {
+      "1": [
+        {
+          "number": 1,
+          "text": {
+            "en": "In the beginning God created the heaven and the earth.",
+            "fa": "در ابتدا خدا آسمان‌ها و زمین را آفرید."
+          },
+          "id": "GEN-1-1"
+        },
+        {
+          "number": 2,
+          "text": {
+            "en": "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.",
+            "fa": "و زمین بی‌شکل و خالی بود و تاریکی بر روی ژرفنا بود و روح خدا بر روی آبها در حرکت بود."
+          },
+          "id": "GEN-1-2"
+        },
+        {
+          "number": 3,
+          "text": {
+            "en": "And God said, Let there be light: and there was light.",
+            "fa": "و خدا گفت: نور بشود، و نور شد."
+          },
+          "id": "GEN-1-3"
+        },
+        {
+          "number": 4,
+          "text": {
+            "en": "And God saw the light, that it was good: and God divided the light from the darkness.",
+            "fa": "و خدا نور را دید که نیکو بود و خدا نور را از تاریکی جدا کرد."
+          },
+          "id": "GEN-1-4"
+        },
+        {
+          "number": 5,
+          "text": {
+            "en": "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.",
+            "fa": "و خدا نور را روز نامید و تاریکی را شب نامید. و شام و صبح، روز اول بود."
+          },
+          "id": "GEN-1-5"
+        }
+      ]
+    },
+    "JHN": {
+      "3": [
+        {
+          "number": 16,
+          "text": {
+            "en": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
+            "fa": "زیرا خدا جهان را چنان محبت نمود که پسر یگانه خود را داد تا هر که بر او ایمان آورد هلاک نشود بلکه حیات جاودانی یابد."
+          },
+          "id": "JHN-3-16"
+        }
+      ]
+    }
+  }
+}

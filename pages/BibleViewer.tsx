@@ -103,51 +103,72 @@ const BibleViewer: React.FC = () => {
   }, [currentBook, currentChapter]);
 
   /**
-   * Fetch books list (using mock data for now)
+   * Fetch books list (from local JSON file - standalone mode)
    */
   const fetchBooks = async () => {
     try {
-      // Mock data - replace with API call when backend is stable
-      const mockBooks = [
-        { code: 'GEN', number: 1, testament: 'OT', names: { en: 'Genesis', fa: 'پیدایش' }, chapterCount: 50 },
-        { code: 'EXO', number: 2, testament: 'OT', names: { en: 'Exodus', fa: 'خروج' }, chapterCount: 40 },
-        { code: 'MAT', number: 40, testament: 'NT', names: { en: 'Matthew', fa: 'متی' }, chapterCount: 28 },
-        { code: 'JHN', number: 43, testament: 'NT', names: { en: 'John', fa: 'یوحنا' }, chapterCount: 21 }
-      ];
-      setBooks(mockBooks);
+      const response = await fetch('/bible-data-complete.json');
+      const data = await response.json();
+      setBooks(data.books);
     } catch (err) {
-      console.error('Error fetching books:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load books');
+      console.error('Error loading Bible data:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load Bible data');
     }
   };
 
   /**
-   * Fetch chapter data (using mock data for now)
+   * Fetch chapter data (from local JSON file - standalone mode)
    */
   const fetchChapter = async (book: string, chapter: number) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      // Mock verses - replace with API call when backend is stable
-      const mockVerses = [
-        { number: 1, text: { en: 'In the beginning God created the heaven and the earth.', fa: 'در ابتدا خدا آسمان‌ها و زمین را آفرید.' }, id: 'GEN-1-1' },
-        { number: 2, text: { en: 'And the earth was without form, and void; and darkness was upon the face of the deep.', fa: 'و زمین بی‌شکل و خالی بود و تاریکی بر روی ژرفنا بود.' }, id: 'GEN-1-2' },
-        { number: 3, text: { en: 'And God said, Let there be light: and there was light.', fa: 'و خدا گفت: نور بشود، و نور شد.' }, id: 'GEN-1-3' },
-        { number: 4, text: { en: 'And God saw the light, that it was good: and God divided the light from the darkness.', fa: 'و خدا نور را دید که نیکو بود و خدا نور را از تاریکی جدا کرد.' }, id: 'GEN-1-4' },
-        { number: 5, text: { en: 'And God called the light Day, and the darkness he called Night.', fa: 'و خدا نور را روز نامید و تاریکی را شب نامید.' }, id: 'GEN-1-5' }
-      ];
+      const response = await fetch('/bible-data-complete.json');
+      const data = await response.json();
+      
+      // Find book info
+      const bookInfo = data.books.find((b: any) => b.code === book);
+      if (!bookInfo) {
+        throw new Error(`Book ${book} not found`);
+      }
 
-      setChapterData({
-        book: {
-          code: book,
-          number: 1,
-          names: { en: 'Genesis', fa: 'پیدایش' }
-        },
-        chapterNumber: chapter,
-        verseCount: mockVerses.length,
-        verses: mockVerses
-      });
+      // Get verses for this chapter (using sample data for now)
+      const verses = data.sampleVerses[book]?.[chapter] || [];
+      
+      // If no verses available, generate placeholder
+      if (verses.length === 0) {
+        const placeholderVerses = Array.from({ length: 10 }, (_, i) => ({
+          number: i + 1,
+          text: {
+            en: `${bookInfo.names.en} ${chapter}:${i + 1} - Content not yet loaded`,
+            fa: `${bookInfo.names.fa} ${chapter}:${i + 1} - محتوا هنوز بارگذاری نشده`
+          },
+          id: `${book}-${chapter}-${i + 1}`
+        }));
+        
+        setChapterData({
+          book: {
+            code: book,
+            number: bookInfo.number,
+            names: bookInfo.names
+          },
+          chapterNumber: chapter,
+          verseCount: placeholderVerses.length,
+          verses: placeholderVerses
+        });
+      } else {
+        setChapterData({
+          book: {
+            code: book,
+            number: bookInfo.number,
+            names: bookInfo.names
+          },
+          chapterNumber: chapter,
+          verseCount: verses.length,
+          verses
+        });
+      }
     } catch (err) {
       console.error('Error fetching chapter:', err);
       setError(err instanceof Error ? err.message : 'Failed to load chapter');

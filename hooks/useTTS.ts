@@ -1,8 +1,8 @@
 /**
- * Enhanced Bible TTS Hook
+ * Simplified Bible TTS Hook - Standalone Mode
  * 
- * Integrates with Google Cloud TTS for word-level highlighting
- * Supports both Persian (fa-IR-Wavenet-D) and English (en-US-Neural2-F)
+ * Uses browser's built-in Web Speech API (no backend required)
+ * Supports Persian and English text-to-speech
  */
 
 import { useState, useEffect, useCallback, useRef } from 'react';
@@ -10,7 +10,7 @@ import type { Language } from './useBibleMode';
 
 interface WordTiming {
   word: string;
-  startTime: number; // milliseconds
+  startTime: number;
   endTime: number;
   duration: number;
   index: number;
@@ -23,7 +23,7 @@ interface VerseTTSData {
     fa: string;
   };
   audio: {
-    en?: string; // URL or base64
+    en?: string;
     fa?: string;
   };
   timings: {
@@ -34,21 +34,19 @@ interface VerseTTSData {
 
 interface UseTTSOptions {
   autoPreload?: boolean;
-  preloadCount?: number; // Number of verses to preload ahead
+  preloadCount?: number;
   cacheAudio?: boolean;
 }
 
 interface UseTTSReturn {
-  // State
   isPlaying: boolean;
   isLoading: boolean;
   currentVerse: number | null;
   currentWordIndex: number;
   currentLanguage: Language | null;
   error: string | null;
-  audioProgress: number; // 0-100
+  audioProgress: number;
   
-  // Actions
   playVerse: (verseNumber: number, language: Language, verseData: VerseTTSData) => Promise<void>;
   playChapter: (verses: VerseTTSData[], language: Language) => Promise<void>;
   pause: () => void;
@@ -58,20 +56,12 @@ interface UseTTSReturn {
   setVolume: (volume: number) => void;
   seek: (seconds: number) => void;
   
-  // Helpers
   preloadVerses: (verses: VerseTTSData[], language: Language) => Promise<void>;
   getCurrentWord: () => string | null;
   getTimings: (verseNumber: number, language: Language) => WordTiming[] | null;
 }
 
 export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
-  const {
-    autoPreload = true,
-    preloadCount = 3,
-    cacheAudio = true
-  } = options;
-
-  // State
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentVerse, setCurrentVerse] = useState<number | null>(null);
@@ -80,151 +70,89 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
   const [error, setError] = useState<string | null>(null);
   const [audioProgress, setAudioProgress] = useState(0);
   const [volume, setVolumeState] = useState(1.0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Refs
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const currentTimingsRef = useRef<WordTiming[]>([]);
-  const animationFrameRef = useRef<number>();
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const versesQueueRef = useRef<{ verse: VerseTTSData; language: Language }[]>([]);
-  const audioCache = useRef<Map<string, string>>(new Map());
 
   /**
-   * Update word highlight based on current playback time
+   * Check if browser supports Web Speech API
    */
-  const updateWordHighlight = useCallback(() => {
-    if (!audioRef.current || !currentTimingsRef.current.length) return;
-
-    const currentTime = audioRef.current.currentTime * 1000; // Convert to milliseconds
-    const timings = currentTimingsRef.current;
-
-    // Find current word based on timing
-    const wordIndex = timings.findIndex((timing, index) => {
-      const nextTiming = timings[index + 1];
-      return currentTime >= timing.startTime && 
-             (!nextTiming || currentTime < nextTiming.startTime);
-    });
-
-    if (wordIndex !== -1 && wordIndex !== currentWordIndex) {
-      setCurrentWordIndex(wordIndex);
+  const checkSpeechSupport = useCallback(() => {
+    if (!('speechSynthesis' in window)) {
+      setError('Text-to-Speech not supported in this browser');
+      return false;
     }
-
-    // Update progress
-    if (audioRef.current.duration) {
-      setAudioProgress((audioRef.current.currentTime / audioRef.current.duration) * 100);
-    }
-
-    // Continue animation loop
-    if (isPlaying) {
-      animationFrameRef.current = requestAnimationFrame(updateWordHighlight);
-    }
-  }, [currentWordIndex, isPlaying]);
+    return true;
+  }, []);
 
   /**
-   * Generate audio URL from TTS API or cache
+   * Get appropriate voice for language
    */
-  const getAudioURL = useCallback(async (
-    text: string,
-    language: Language,
-    verseNumber: number
-  ): Promise<{ url: string; timings: WordTiming[] }> => {
-    const cacheKey = `${language}-${verseNumber}`;
-
-    // Check cache
-    if (cacheAudio && audioCache.current.has(cacheKey)) {
-      const cached = audioCache.current.get(cacheKey)!;
-      // TODO: Return cached timings as well
-      return { url: cached, timings: [] };
-    }
-
-    // Call TTS API
-    try {
-      const response = await fetch('/api/tts/synthesize-verse', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text,
-          language,
-          verseNumber
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`TTS API error: ${response.statusText}`);
-      }
-
-      const data = await response.json();
+  const getVoice = useCallback((language: Language): SpeechSynthesisVoice | null => {
+    const voices = window.speechSynthesis.getVoices();
+    
+    if (language === 'fa') {
+      // Try to find Persian voice
+      const persianVoice = voices.find(v => v.lang.startsWith('fa'));
+      if (persianVoice) return persianVoice;
       
-      // Create audio URL from base64 or URL
-      const audioURL = data.audioContent.startsWith('data:') || data.audioContent.startsWith('http')
-        ? data.audioContent
-        : `data:audio/mp3;base64,${data.audioContent}`;
-
-      // Extract word timings
-      const timings: WordTiming[] = data.wordTimings || [];
-
-      // Cache the URL
-      if (cacheAudio) {
-        audioCache.current.set(cacheKey, audioURL);
-      }
-
-      return { url: audioURL, timings };
-    } catch (err) {
-      console.error('TTS generation failed:', err);
-      throw err;
+      // Fallback to any available voice
+      return voices[0] || null;
+    } else {
+      // English voice
+      const englishVoice = voices.find(v => v.lang.startsWith('en-US')) ||
+                          voices.find(v => v.lang.startsWith('en'));
+      return englishVoice || voices[0] || null;
     }
-  }, [cacheAudio]);
+  }, []);
 
   /**
-   * Play single verse with highlighting
+   * Play single verse using Web Speech API
    */
   const playVerse = useCallback(async (
     verseNumber: number,
     language: Language,
     verseData: VerseTTSData
   ) => {
+    if (!checkSpeechSupport()) return;
+
     setIsLoading(true);
     setError(null);
 
     try {
-      // Stop current audio
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
+      // Stop any current speech
+      window.speechSynthesis.cancel();
 
-      // Get audio URL and timings
       const text = verseData.text[language];
-      const { url, timings } = verseData.audio[language] && verseData.timings[language]
-        ? { url: verseData.audio[language]!, timings: verseData.timings[language]! }
-        : await getAudioURL(text, language, verseNumber);
+      const utterance = new SpeechSynthesisUtterance(text);
+      
+      // Configure utterance
+      utterance.volume = volume;
+      utterance.rate = 0.9; // Slightly slower for better comprehension
+      utterance.pitch = 1.0;
+      
+      // Set voice
+      const voice = getVoice(language);
+      if (voice) {
+        utterance.voice = voice;
+      }
+      utterance.lang = language === 'fa' ? 'fa-IR' : 'en-US';
 
-      // Create audio element
-      const audio = new Audio(url);
-      audio.volume = volume;
-      audioRef.current = audio;
-      currentTimingsRef.current = timings;
-
-      // Set up event listeners
-      audio.onplay = () => {
+      // Event handlers
+      utterance.onstart = () => {
         setIsPlaying(true);
+        setIsPaused(false);
         setCurrentVerse(verseNumber);
         setCurrentLanguage(language);
-        setCurrentWordIndex(-1);
-        
-        // Start animation loop for word highlighting
-        animationFrameRef.current = requestAnimationFrame(updateWordHighlight);
+        setIsLoading(false);
       };
 
-      audio.onpause = () => {
+      utterance.onend = () => {
         setIsPlaying(false);
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-        }
-      };
-
-      audio.onended = () => {
-        setIsPlaying(false);
+        setIsPaused(false);
         setCurrentWordIndex(-1);
+        setAudioProgress(100);
         
         // Auto-play next verse if in queue
         if (versesQueueRef.current.length > 0) {
@@ -235,21 +163,43 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
         }
       };
 
-      audio.onerror = (e) => {
-        console.error('Audio playback error:', e);
-        setError('Audio playback failed');
+      utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event);
+        setError('Speech playback failed');
         setIsPlaying(false);
+        setIsLoading(false);
       };
 
-      // Start playback
-      await audio.play();
-      setIsLoading(false);
+      utterance.onpause = () => {
+        setIsPaused(true);
+      };
+
+      utterance.onresume = () => {
+        setIsPaused(false);
+      };
+
+      // Boundary events for word highlighting (limited support)
+      utterance.onboundary = (event) => {
+        if (event.name === 'word') {
+          setCurrentWordIndex(prev => prev + 1);
+          
+          // Estimate progress
+          const textLength = text.length;
+          const charIndex = event.charIndex || 0;
+          const progress = (charIndex / textLength) * 100;
+          setAudioProgress(Math.min(progress, 95)); // Cap at 95% until end
+        }
+      };
+
+      utteranceRef.current = utterance;
+      window.speechSynthesis.speak(utterance);
+      
     } catch (err) {
       console.error('Error playing verse:', err);
       setError(err instanceof Error ? err.message : 'Playback failed');
       setIsLoading(false);
     }
-  }, [getAudioURL, updateWordHighlight, volume]);
+  }, [checkSpeechSupport, getVoice, volume]);
 
   /**
    * Play entire chapter
@@ -265,20 +215,15 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
 
     // Play first verse
     await playVerse(verses[0].verseNumber, language, verses[0]);
-
-    // Preload next verses if enabled
-    if (autoPreload) {
-      const toPreload = verses.slice(1, Math.min(verses.length, preloadCount + 1));
-      preloadVerses(toPreload, language).catch(console.error);
-    }
-  }, [playVerse, autoPreload, preloadCount]);
+  }, [playVerse]);
 
   /**
    * Pause playback
    */
   const pause = useCallback(() => {
-    if (audioRef.current && !audioRef.current.paused) {
-      audioRef.current.pause();
+    if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+      window.speechSynthesis.pause();
+      setIsPaused(true);
     }
   }, []);
 
@@ -286,8 +231,9 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
    * Resume playback
    */
   const resume = useCallback(() => {
-    if (audioRef.current && audioRef.current.paused) {
-      audioRef.current.play().catch(console.error);
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      setIsPaused(false);
     }
   }, []);
 
@@ -295,33 +241,27 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
    * Stop playback completely
    */
   const stop = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      audioRef.current = null;
-    }
+    window.speechSynthesis.cancel();
+    utteranceRef.current = null;
     
     setIsPlaying(false);
+    setIsPaused(false);
     setCurrentVerse(null);
     setCurrentWordIndex(-1);
     setAudioProgress(0);
     versesQueueRef.current = [];
-    
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
-    }
   }, []);
 
   /**
    * Toggle play/pause
    */
   const togglePlayPause = useCallback(() => {
-    if (isPlaying) {
-      pause();
-    } else {
+    if (isPaused) {
       resume();
+    } else if (isPlaying) {
+      pause();
     }
-  }, [isPlaying, pause, resume]);
+  }, [isPlaying, isPaused, pause, resume]);
 
   /**
    * Set volume (0.0 - 1.0)
@@ -330,75 +270,67 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
     const clampedVolume = Math.max(0, Math.min(1, newVolume));
     setVolumeState(clampedVolume);
     
-    if (audioRef.current) {
-      audioRef.current.volume = clampedVolume;
+    if (utteranceRef.current) {
+      utteranceRef.current.volume = clampedVolume;
     }
   }, []);
 
   /**
-   * Seek to specific time in seconds
+   * Seek not supported in Web Speech API
    */
   const seek = useCallback((seconds: number) => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = seconds;
-    }
+    console.warn('Seek not supported in Web Speech API');
   }, []);
 
   /**
-   * Preload audio for multiple verses
+   * Preload not needed for Web Speech API
    */
   const preloadVerses = useCallback(async (
     verses: VerseTTSData[],
     language: Language
   ) => {
-    const promises = verses.map(verse => 
-      getAudioURL(verse.text[language], language, verse.verseNumber)
-        .catch(err => {
-          console.warn(`Failed to preload verse ${verse.verseNumber}:`, err);
-          return null;
-        })
-    );
-
-    await Promise.allSettled(promises);
-  }, [getAudioURL]);
+    // Web Speech API doesn't require preloading
+    return Promise.resolve();
+  }, []);
 
   /**
-   * Get current highlighted word
+   * Get current word (limited in Web Speech API)
    */
   const getCurrentWord = useCallback((): string | null => {
-    if (currentWordIndex === -1 || !currentTimingsRef.current.length) {
-      return null;
-    }
-    
-    const timing = currentTimingsRef.current[currentWordIndex];
-    return timing ? timing.word : null;
-  }, [currentWordIndex]);
+    return null; // Word-level timing not available in basic Web Speech API
+  }, []);
 
   /**
-   * Get timings for a specific verse
+   * Get timings (not available in Web Speech API)
    */
   const getTimings = useCallback((
     verseNumber: number,
     language: Language
   ): WordTiming[] | null => {
-    // This would need to fetch from cache or API
-    // For now, return current timings if they match
-    if (verseNumber === currentVerse && language === currentLanguage) {
-      return currentTimingsRef.current;
-    }
     return null;
-  }, [currentVerse, currentLanguage]);
+  }, []);
+
+  // Load voices on mount
+  useEffect(() => {
+    if ('speechSynthesis' in window) {
+      // Load voices (some browsers require this)
+      window.speechSynthesis.getVoices();
+      
+      // Listen for voices changed event
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+  }, []);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       stop();
-      audioCache.current.clear();
     };
   }, [stop]);
 
   return {
-    // State
     isPlaying,
     isLoading,
     currentVerse,
@@ -407,7 +339,6 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
     error,
     audioProgress,
     
-    // Actions
     playVerse,
     playChapter,
     pause,
@@ -417,7 +348,6 @@ export function useTTS(options: UseTTSOptions = {}): UseTTSReturn {
     setVolume,
     seek,
     
-    // Helpers
     preloadVerses,
     getCurrentWord,
     getTimings
