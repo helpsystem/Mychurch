@@ -23,7 +23,7 @@ const config = {
   username: process.env.SSH_USER,
   password: process.env.SSH_pass,
   localExportDir: path.join(__dirname, 'export'),
-  remoteBaseDir: '/root/public_html/worship-songs'
+  remoteBaseDir: '/var/www/html/worship-songs'
 };
 
 console.log('================================================================================');
@@ -44,6 +44,7 @@ if (!config.host || !config.password) {
 
 // Check local files
 const files = [
+  'index.html',
   'songs_index.json',
   'songs_flat.json',
   'songs_export.csv',
