@@ -69,6 +69,7 @@ import PersianBibleTTSPage from './pages/PersianBibleTTSPage';
 import BibleFlipbook3DPage from './pages/BibleFlipbook3DPage';
 import BibleViewer from './pages/BibleViewer';
 import SongsPage from './pages/SongsPage';
+import WorshipSongsArchive from './pages/WorshipSongsArchive';
 
 function App() {
   const { lang } = useLanguage();
@@ -134,6 +135,7 @@ function App() {
             <Route path="bible-flipbook/:bookCode/:chapter" element={<BibleFlipbook3DPage />} />
             <Route path="bible-viewer" element={<BibleViewer />} />
             <Route path="songs" element={<SongsPage />} />
+            <Route path="worship-songs" element={<WorshipSongsArchive />} />
             <Route path="worship-songs" element={<WorshipSongsPage />} />
             <Route path="worship-presentation" element={<WorshipPresentationPage />} />
             <Route path="daily-devotional" element={<DailyDevotionalPage />} />
