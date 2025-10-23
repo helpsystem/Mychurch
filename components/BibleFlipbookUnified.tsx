@@ -74,14 +74,18 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
   }, []);
 
   /**
-   * Create pages from verses (split into groups)
-   * Presentation mode: 2 verses per page for larger text
+   * Create pages from verses
+   * Each spread contains: Left page (English) + Right page (Persian)
    */
   const versesPerPage = displayMode === 'presentation' ? 2 : 5;
   const pages: Verse[][] = [];
   
+  // Create page pairs (English left, Persian right with same verses)
   for (let i = 0; i < chapter.verses.length; i += versesPerPage) {
-    pages.push(chapter.verses.slice(i, i + versesPerPage));
+    const pageVerses = chapter.verses.slice(i, i + versesPerPage);
+    // Push same verses twice: once for English (left), once for Persian (right)
+    pages.push(pageVerses); // English page
+    pages.push(pageVerses); // Persian page (same content, different language)
   }
 
   /**
@@ -255,13 +259,15 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
             </div>
           </div>
 
-          {/* Content Pages (English on left, Persian on right) */}
-          {pages.map((pageVerses, pageIndex) => (
-            <React.Fragment key={`spread-${pageIndex}`}>
-              {renderPage(pageVerses, pageIndex * 2, 'left')}
-              {renderPage(pageVerses, pageIndex * 2 + 1, 'right')}
-            </React.Fragment>
-          ))}
+          {/* Content Pages */}
+          {pages.map((pageVerses, pageIndex) => {
+            // Determine if this is an even page (left side - English) or odd page (right side - Persian)
+            const isLeftPage = pageIndex % 2 === 0;
+            const lang = isLeftPage ? 'en' : 'fa';
+            const side = isLeftPage ? 'left' : 'right';
+            
+            return renderPage(pageVerses, pageIndex, side);
+          })}
 
           {/* Back Cover */}
           <div className="page back-cover" data-density="hard">
@@ -288,11 +294,11 @@ const BibleFlipbookUnified: React.FC<BibleFlipbookUnifiedProps> = ({
             ←
           </button>
           <span className="px-4 py-2 text-gray-600 font-semibold">
-            {currentPage} / {pages.length * 2 + 2}
+            {Math.floor(currentPage / 2)} / {Math.floor(pages.length / 2)}
           </span>
           <button
             onClick={goToNextPage}
-            disabled={currentPage >= pages.length * 2 + 1}
+            disabled={currentPage >= pages.length + 1}
             className="px-4 py-2 text-gray-700 hover:text-amber-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-bold"
             title="Next Page"
           >
