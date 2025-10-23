@@ -57,6 +57,7 @@ import WordprojectBibleReader from './components/WordprojectBibleReader';
 import NotificationCenterPage from './pages/NotificationCenterPage';
 import DailyMessagesPage from './pages/DailyMessagesPage';
 import TailwindDemoPage from './pages/TailwindDemoPage';
+import TTSUsageDashboard from './pages/TTSUsageDashboard';
 import CriticalResourceLoader, { criticalResources } from './components/Performance/CriticalResourceLoader';
 import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
@@ -150,6 +151,7 @@ function App() {
             <Route path="testimonials" element={<TestimonialsPage />} />
             <Route path="live" element={<LivePage />} />
             <Route path="tailwind-demo" element={<TailwindDemoPage />} />
+            <Route path="admin/tts-usage" element={<TTSUsageDashboard />} />
             
             <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="letters/:id" element={<ProtectedRoute><LetterViewerPage /></ProtectedRoute>} />

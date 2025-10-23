@@ -1,0 +1,33 @@
+{
+  "bookCode": "GEN",
+  "bookNameEn": "Genesis",
+  "bookNameFa": "پیدایش",
+  "chapter": 1,
+  "verses": [
+    {
+      "verseNumber": 1,
+      "textEn": "In the beginning God created the heaven and the earth.",
+      "textFa": "در ابتدا خدا آسمان و زمین را آفرید."
+    },
+    {
+      "verseNumber": 2,
+      "textEn": "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.",
+      "textFa": "و زمین، بی‌شکل و خالی بود و تاریکی بر روی لجّه‌ها بود و روح خدا بر سطح آبها در حرکت بود."
+    },
+    {
+      "verseNumber": 3,
+      "textEn": "And God said, Let there be light: and there was light.",
+      "textFa": "و خدا گفت: «روشنایی بشود.» پس روشنایی شد."
+    },
+    {
+      "verseNumber": 4,
+      "textEn": "And God saw the light, that it was good: and God divided the light from the darkness.",
+      "textFa": "و خدا روشنایی را دید که نیکوست، و خدا در میان روشنایی و تاریکی جدایی انداخت."
+    },
+    {
+      "verseNumber": 5,
+      "textEn": "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.",
+      "textFa": "و خدا روشنایی را روز نامید و تاریکی را شب نامید، و شام و صبح بود، روز اوّل."
+    }
+  ]
+}

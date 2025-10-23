@@ -35,6 +35,7 @@ const dailyMessagesRoutes = require('./routes/dailyMessagesRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const aiChatRoutes = require('./routes/aiChatRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
+const ttsRoutes = require('./routes/tts');
 
 const app = express();
 
@@ -49,19 +50,12 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 const PORT = process.env.PORT || 3001;
-const HOST = process.env.HOST || '0.0.0.0';
 
 // ---------- CORS ----------
-// خواندن origins از .env
-const envOrigins = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
-  : [];
-
 const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:5173', // Vite dev server
   'https://localhost:3001',
-  ...envOrigins,
   // Custom domain(s)
   'https://samanabyar.online',
   'https://www.samanabyar.online',
@@ -195,6 +189,7 @@ app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/wordproject', wordprojectRoutes);
+app.use('/api/tts', ttsRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت
@@ -284,9 +279,8 @@ const initializeDatabaseAsync = async () => {
 // شروع سرور
 const startServer = () => {
   // سرور را اول شروع کن
-  app.listen(PORT, HOST, () => {
-    console.log(`✅ Church API Backend running on http://${HOST}:${PORT}`);
-    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
     console.log('API endpoints available:');
     console.log('  🔐 /api/auth/* - Authentication routes');
     console.log('  👥 /api/users/* - User management');
