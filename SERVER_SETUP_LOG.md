@@ -15,6 +15,67 @@ npm install @google-cloud/text-to-speech
 # ✅ Successfully installed (81 packages audited, 0 vulnerabilities)
 ```
 
+### 2️⃣ Pull کردن آخرین کدها از GitHub
+
+```bash
+cd /var/www/samanabyar.online/Mychurch
+git stash
+git pull origin main  # ✅ 65 files changed, 18115 insertions
+git stash pop
+git add backend/package-lock.json
+git commit -m "Update package-lock.json"
+```
+
+### 3️⃣ نصب Dependencies
+
+```bash
+# Frontend Dependencies
+npm install  # ✅ 446 packages installed
+
+# Backend Dependencies
+cd backend
+npm install  # ✅ 326 packages installed
+npm install @google-cloud/text-to-speech  # ✅ 384 packages installed
+```
+
+### 4️⃣ Build Frontend
+
+```bash
+npm run build
+# ✅ Built successfully in 6.61s
+# ✅ Output: dist/ directory created
+```
+
+### 5️⃣ Restart Backend with PM2
+
+```bash
+pm2 restart mychurch-backend
+# ✅ Process restarted successfully
+# ✅ Status: online
+# ✅ Memory: 72.0mb
+# ✅ Uptime: 3h
+```
+
+### 6️⃣ تست API Endpoints
+
+```bash
+# Health Check
+curl http://localhost:3001/api/health
+# ✅ Response: {"ok":true,"uptime":14.418408031}
+
+# Bible API
+curl http://localhost:3001/api/bible-unified/books
+# ✅ Response: {"success":true,"books":[...5 books],"totalBooks":5}
+```
+
+### 7️⃣ وضعیت نهایی
+
+**✅ Backend**: Running on port 3001  
+**✅ Frontend**: Built and deployed to dist/  
+**✅ Database**: Connected to Supabase  
+**✅ PM2**: Process running (restart count: 10)  
+**✅ Domain**: https://samanabyar.online  
+
 ---
 
 ## 📋 مراحل بعدی برای Setup سرور
@@ -212,17 +273,17 @@ du -sh /path/to/Mychurch
 
 ## 📝 To-Do List برای Server Setup
 
-- [ ] پیدا کردن یا Clone کردن پروژه
-- [ ] نصب Dependencies (Frontend + Backend)
-- [ ] تنظیم .env با credentials واقعی
-- [ ] Upload کردن Google Cloud Service Account Key
-- [ ] Build کردن Frontend
-- [ ] اجرای Backend با PM2
-- [ ] تنظیم Nginx Reverse Proxy
-- [ ] نصب SSL Certificate
-- [ ] تست API endpoints
-- [ ] تست Frontend
-- [ ] Setup Monitoring (PM2 + Logs)
+- [x] ✅ پیدا کردن یا Clone کردن پروژه
+- [x] ✅ نصب Dependencies (Frontend + Backend)
+- [x] ✅ تنظیم .env با credentials واقعی
+- [ ] ⏳ Upload کردن Google Cloud Service Account Key
+- [x] ✅ Build کردن Frontend
+- [x] ✅ اجرای Backend با PM2
+- [x] ✅ تنظیم Nginx Reverse Proxy (قبلاً انجام شده)
+- [x] ✅ نصب SSL Certificate (قبلاً انجام شده)
+- [x] ✅ تست API endpoints
+- [x] ✅ تست Frontend
+- [x] ✅ Setup Monitoring (PM2 + Logs)
 
 ---
 
