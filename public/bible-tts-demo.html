@@ -186,6 +186,9 @@
             margin-bottom: 20px;
             transition: all 0.3s;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
         .verse:hover {
@@ -200,22 +203,67 @@
             transform: scale(1.02);
         }
 
-        .verse-number {
-            display: inline-block;
+        .verse-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .verse-play-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            width: 40px;
-            height: 40px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .verse-play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.5);
+        }
+
+        .verse-play-btn:active {
+            transform: scale(0.95);
+        }
+
+        .verse-play-btn.playing {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            animation: pulse 1.5s infinite;
+        }
+
+        .verse-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .verse-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            color: #4a5568;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             text-align: center;
-            line-height: 40px;
             font-weight: bold;
-            margin-left: 15px;
-            font-size: 1.1em;
-            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+            font-size: 1.2em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border: 3px solid white;
         }
 
         .verse.active .verse-number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
             animation: pulse 1.5s infinite;
         }
 
@@ -322,6 +370,27 @@
 
             .settings-row {
                 grid-template-columns: 1fr;
+            }
+
+            .verse {
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .verse-play-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+            }
+
+            .verse-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+            }
+
+            .verse-text {
+                font-size: 1.2em;
             }
         }
 
@@ -480,6 +549,7 @@
             versesContainer.innerHTML = verses.map((v, i) => {
                 const words = v.text.split(/\s+/);
                 const isActive = i === currentVerseIndex;
+                const isCurrentlyPlaying = isActive && isPlaying;
                 
                 const wordsHtml = words.map((word, wordIdx) => {
                     const isHighlight = isActive && wordIdx === currentWordIndex;
@@ -487,9 +557,18 @@
                 }).join('');
 
                 return `
-                    <div class="verse ${isActive ? 'active' : ''}" data-verse="${i}" onclick="jumpToVerse(${i})">
-                        <span class="verse-number">${v.number}</span>
-                        <span class="verse-text">${wordsHtml}</span>
+                    <div class="verse ${isActive ? 'active' : ''}" data-verse="${i}">
+                        <div class="verse-controls">
+                            <button class="verse-play-btn ${isCurrentlyPlaying ? 'playing' : ''}" 
+                                    onclick="toggleVersePlay(${i})"
+                                    title="${isCurrentlyPlaying ? 'توقف' : 'پخش این آیه'}">
+                                ${isCurrentlyPlaying ? '⏸️' : '▶️'}
+                            </button>
+                            <span class="verse-number">${v.number}</span>
+                        </div>
+                        <div class="verse-content">
+                            <span class="verse-text">${wordsHtml}</span>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -624,6 +703,22 @@
         function updateProgress() {
             const progress = ((currentVerseIndex + 1) / verses.length) * 100;
             progressBar.style.width = progress + '%';
+        }
+
+        function toggleVersePlay(index) {
+            if (currentVerseIndex === index && isPlaying) {
+                // If clicking on currently playing verse, stop it
+                stopReading();
+            } else {
+                // Start playing this verse
+                stopReading();
+                currentVerseIndex = index;
+                currentWordIndex = -1;
+                updateButtons();
+                updateProgress();
+                renderVerses();
+                startReading();
+            }
         }
     </script>
 </body>
