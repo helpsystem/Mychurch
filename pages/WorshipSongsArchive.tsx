@@ -52,10 +52,13 @@ export default function WorshipSongsArchive() {
   // Load data
   useEffect(() => {
     setLoading(true);
+    console.log('🎵 Loading worship songs...');
     fetch('/api/songs?limit=500')
       .then(r => r.json())
       .then(result => {
+        console.log('📊 API Response:', result);
         if (result.success && Array.isArray(result.songs)) {
+          console.log(`✅ Got ${result.songs.length} songs`);
           // Convert flat array to letter-grouped format
           const grouped: Record<string, SongItem[]> = {};
           result.songs.forEach((song: SongItem) => {
@@ -64,6 +67,7 @@ export default function WorshipSongsArchive() {
             grouped[letter].push(song);
           });
           
+          console.log(`📚 Grouped into ${Object.keys(grouped).length} letters`);
           setData({
             total_songs: result.total || result.songs.length,
             letters: Object.keys(grouped).length,
@@ -71,15 +75,18 @@ export default function WorshipSongsArchive() {
           });
         } else {
           // Handle error or empty response
-          console.error('Invalid response format:', result);
+          console.error('❌ Invalid response format:', result);
           setData({ total_songs: 0, letters: 0, data: {} });
         }
       })
       .catch(err => {
-        console.error('Failed to load songs:', err);
+        console.error('❌ Failed to load songs:', err);
         setData({ total_songs: 0, letters: 0, data: {} });
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        console.log('✅ Loading complete');
+      });
   }, []);
 
   // Filter songs
