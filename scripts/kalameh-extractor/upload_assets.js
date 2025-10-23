@@ -1,9 +1,11 @@
 /**
  * Worship Songs Asset Uploader
  * Uploads extracted songs data and audio files to remote server via SFTP
+ * 
+ * Uses SSH credentials from root .env file
  */
 
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import Client from 'ssh2-sftp-client';
 import path from 'path';
 import fs from 'fs';
@@ -12,20 +14,27 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load .env from project root (2 levels up)
+const envPath = path.resolve(__dirname, '../../.env');
+dotenv.config({ path: envPath });
+
+console.log(`\n📋 Loading configuration from: ${envPath}`);
+
 // Configuration from environment
 const config = {
-  host: process.env.SERVER_HOST || 'localhost',
-  port: parseInt(process.env.SERVER_PORT) || 22,
-  username: process.env.SERVER_USER || 'root',
-  password: process.env.SERVER_PASS,
+  // Use SSH credentials from main .env
+  host: process.env.SSH_HOST || process.env.SERVER_HOST || 'localhost',
+  port: parseInt(process.env.SSH_PORT || process.env.SERVER_PORT) || 22,
+  username: process.env.SSH_USER || process.env.SERVER_USER || 'root',
+  password: process.env.SSH_pass || process.env.SERVER_PASS,
   privateKey: process.env.SERVER_KEY ? fs.readFileSync(process.env.SERVER_KEY) : undefined,
   
   localExportDir: process.env.LOCAL_EXPORT_DIR || path.join(__dirname, 'export'),
-  remoteBaseDir: process.env.REMOTE_BASE_DIR || '/var/www/html/assets/worship',
+  remoteBaseDir: process.env.REMOTE_BASE_DIR || '/root/public_html/worship-songs',
   
   uploadAudio: process.env.UPLOAD_AUDIO === 'true',
   audioSourceDir: process.env.AUDIO_SOURCE_DIR || '',
-  remoteAudioDir: process.env.REMOTE_AUDIO_DIR || '/var/www/html/assets/worship/audio'
+  remoteAudioDir: process.env.REMOTE_AUDIO_DIR || '/root/public_html/worship-songs/audio'
 };
 
 const sftp = new Client();
@@ -151,16 +160,29 @@ async function uploadAudioFiles(client) {
  * Main upload function
  */
 async function main() {
-  console.log('=' .repeat(60));
+  console.log('=' .repeat(80));
   console.log('🚀 Worship Songs Asset Uploader');
-  console.log('='.repeat(60));
+  console.log('='.repeat(80));
   console.log('\n📋 Configuration:');
-  console.log(`   Host: ${config.host}:${config.port}`);
-  console.log(`   User: ${config.username}`);
-  console.log(`   Auth: ${config.password ? 'Password' : 'SSH Key'}`);
-  console.log(`   Local: ${config.localExportDir}`);
-  console.log(`   Remote: ${config.remoteBaseDir}`);
-  console.log(`   Upload Audio: ${config.uploadAudio}`);
+  console.log(`   🌐 Host: ${config.host}:${config.port}`);
+  console.log(`   👤 User: ${config.username}`);
+  console.log(`   🔑 Auth: ${config.password ? '✓ Password' : '✓ SSH Key'}`);
+  console.log(`   📂 Local Export: ${config.localExportDir}`);
+  console.log(`   📁 Remote Base: ${config.remoteBaseDir}`);
+  console.log(`   🎵 Upload Audio: ${config.uploadAudio ? '✓ Yes' : '✗ No'}`);
+  
+  // Validate credentials
+  if (!config.host || config.host === 'localhost') {
+    console.error('\n❌ Error: SSH_HOST not configured in .env file');
+    console.error('   Please check your .env file in project root');
+    process.exit(1);
+  }
+  
+  if (!config.password && !config.privateKey) {
+    console.error('\n❌ Error: No authentication method configured');
+    console.error('   Please set SSH_pass or SERVER_KEY in .env file');
+    process.exit(1);
+  }
   
   try {
     // Connect to SFTP server
@@ -173,7 +195,7 @@ async function main() {
       privateKey: config.privateKey,
       readyTimeout: 30000
     });
-    console.log('✅ Connected successfully');
+    console.log('✅ Connected successfully to ' + config.host);
     
     // Upload export files
     await uploadExportFiles(sftp);
@@ -182,11 +204,17 @@ async function main() {
     await uploadAudioFiles(sftp);
     
     console.log('\n✅ Upload complete!');
-    console.log('='.repeat(60) + '\n');
+    console.log('🌐 Files should be accessible at: http://' + process.env.DOMAIN + '/worship-songs/');
+    console.log('='.repeat(80) + '\n');
     
   } catch (error) {
     console.error('\n❌ Upload failed:', error.message);
-    console.error(error.stack);
+    if (error.message.includes('connect')) {
+      console.error('   Check your SSH credentials and server address');
+      console.error('   Host: ' + config.host);
+      console.error('   Port: ' + config.port);
+    }
+    console.error('\n' + error.stack);
     process.exit(1);
   } finally {
     await sftp.end();
