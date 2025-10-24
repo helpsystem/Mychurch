@@ -31,6 +31,8 @@ function loadMockData() {
 }
 
 // Try Supabase if available, otherwise use mock
+// TEMPORARILY DISABLED: Supabase JS client causing crashes
+/*
 const { createClient } = require('@supabase/supabase-js');
 let supabase = null;
 
@@ -40,6 +42,8 @@ if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_KEY) {
     process.env.SUPABASE_SERVICE_KEY
   );
 }
+*/
+let supabase = null; // Force mock mode
 
 /**
  * GET /api/songs

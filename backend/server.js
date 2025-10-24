@@ -5,43 +5,18 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const ftp = require('basic-ftp');
-const { initializeDatabase } = require('./initDB-postgres');
+// TEMPORARILY DISABLED: Debugging crash issue
+// const { initializeDatabase } = require('./initDB-postgres');
 
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-const profileRoutes = require('./routes/profileRoutes');
-const invitationRoutes = require('./routes/invitationRoutes');
-const bibleRoutes = require('./routes/bibleRoutes');
-const bibleInteractionRoutes = require('./routes/bibleInteractionRoutes');
-const leadersRoutes = require('./routes/leadersRoutes');
-const sermonsRoutes = require('./routes/sermonsRoutes');
-const eventsRoutes = require('./routes/eventsRoutes');
-const worshipRoutes = require('./routes/worshipRoutes');
-const scheduleRoutes = require('./routes/scheduleRoutes');
-const galleriesRoutes = require('./routes/galleriesRoutes');
-const prayerRoutes = require('./routes/prayerRoutes');
-const testimonialsRoutes = require('./routes/testimonialsRoutes');
-const lettersRoutes = require('./routes/lettersRoutes');
-const announcementsRoutes = require('./routes/announcementsRoutes');
-const translationRoutes = require('./routes/translationRoutes');
-const analyticsRoutes = require('./routes/analyticsRoutes');
-const messageHistoryRoutes = require('./routes/messageHistoryRoutes');
-const pagesRoutes = require('./routes/pagesRoutes');
-const settingsRoutes = require('./routes/settingsRoutes');
-const filesRoutes = require('./routes/filesRoutes');
-const presentationRoutes = require('./routes/presentationRoutes');
-const dailyContentRoutes = require('./routes/dailyContentRoutes');
-const dailyMessagesRoutes = require('./routes/dailyMessagesRoutes');
-const aiRoutes = require('./routes/aiRoutes');
-const aiChatRoutes = require('./routes/aiChatRoutes');
-const wordprojectRoutes = require('./routes/wordproject');
-const ttsRoutes = require('./routes/tts');
-const bibleUnifiedRoutes = require('./routes/bibleUnifiedMock');
-const songsRoutes = require('./routes/songs');
+// ---------- Route Imports ----------
+// TEMPORARILY DISABLED: All routes commented to debug crash
+// const songsRoutes = require('./routes/songs');
 
 const app = express();
 
 // ---------- DEV CSP HEADER ----------
+// Temporarily disabled to debug crash
+/*
 if (process.env.NODE_ENV !== 'production') {
   app.use((req, res, next) => {
     res.setHeader(
@@ -51,6 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
     next();
   });
 }
+*/
 const PORT = process.env.PORT || 3001;
 
 // ---------- CORS ----------
@@ -163,38 +139,43 @@ async function deleteFromFTP(fileName, folder) {
 }
 
 // ---------- Routes ----------
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/profile', profileRoutes);
-app.use('/api/invitations', invitationRoutes);
-app.use('/api/bible', bibleRoutes);
-app.use('/api/bible', bibleInteractionRoutes);
-app.use('/api/leaders', leadersRoutes);
-app.use('/api/sermons', sermonsRoutes);
-app.use('/api/events', eventsRoutes);
-app.use('/api/worship-songs', worshipRoutes);
-app.use('/api/schedule-events', scheduleRoutes);
-app.use('/api/galleries', galleriesRoutes);
-app.use('/api/prayer-requests', prayerRoutes);
-app.use('/api/testimonials', testimonialsRoutes);
-app.use('/api/letters', lettersRoutes);
-app.use('/api/announcements', announcementsRoutes);
-app.use('/api/translate', translationRoutes);
-app.use('/api/analytics', analyticsRoutes);
-app.use('/api/messages', messageHistoryRoutes);
-app.use('/api/pages', pagesRoutes);
-app.use('/api/settings', settingsRoutes);
-app.use('/api/files', filesRoutes);
-app.use('/api/presentations', presentationRoutes);
-app.use('/api/daily-content', dailyContentRoutes);
-app.use('/api/daily-messages', dailyMessagesRoutes);
-app.use('/api/ai', aiRoutes);
-app.use('/api/ai-chat', aiChatRoutes);
-app.use('/api/wordproject', wordprojectRoutes);
-app.use('/api/tts', ttsRoutes);
-app.use('/api/bible-unified', bibleUnifiedRoutes);
-app.use('/api/songs', songsRoutes);
-app.use('/api/notifications', require('./routes/notificationRoutes'));
+// TEMPORARILY DISABLED: All routes commented to debug crash
+// app.use('/api/songs', songsRoutes);
+
+// Direct inline songs route for testing
+const fs = require('fs');
+const songsIndexPath = path.join(__dirname, '../scripts/kalameh-extractor/export/songs_index.json');
+app.get('/api/songs', (req, res) => {
+  try {
+    if (!fs.existsSync(songsIndexPath)) {
+      return res.status(404).json({ success: false, error: 'Songs data not found' });
+    }
+    
+    const data = JSON.parse(fs.readFileSync(songsIndexPath, 'utf-8'));
+    const allSongs = [];
+    Object.values(data.data).forEach(letterSongs => {
+      allSongs.push(...letterSongs);
+    });
+    
+    const limit = parseInt(req.query.limit || 100);
+    const offset = parseInt(req.query.offset || 0);
+    const songs = allSongs.slice(offset, offset + limit);
+    
+    res.json({
+      success: true,
+      songs,
+      total: allSongs.length,
+      limit,
+      offset,
+      source: 'mock-inline'
+    });
+  } catch (error) {
+    console.error('Error in inline songs route:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+// app.use('/api/songs', songsRoutes);
+// app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {

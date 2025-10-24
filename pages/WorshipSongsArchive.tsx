@@ -7,28 +7,33 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Search, Music, Video, FileText, Film, Maximize2, Minimize2 } from 'lucide-react';
 import SongCard from '../components/SongCard';
+import songsData from '../src/data/songs_index.json';
 
 interface SongItem {
-  id: string;
+  id: string | number;
   slug: string;
   title_fa: string;
-  title_en: string;
-  composer: string;
-  artist: string;
+  title_en?: string;
+  composer?: string;
+  artist?: string;
   letter: string;
-  chord_base: string;
-  chord_mode: string;
-  chord_view: string;
-  ppt: string;
-  video: string;
-  lyric_audio_link: string;
-  audio_download: string;
-  audio_stream: string;
-  mp3_local: string;
-  duration_sec: number;
-  lyrics_fa: string;
-  lyrics_en: string;
-  source_html: string;
+  chord_base?: string;
+  chord_mode?: string;
+  chord_view?: string;
+  ppt?: string;
+  video?: string;
+  lyric_audio_link?: string;
+  audio_download?: string;
+  audio_stream?: string;
+  mp3_local?: string;
+  duration_sec?: number;
+  lyrics_fa?: string;
+  lyrics_en?: string;
+  lyrics?: string;
+  audio?: string;
+  chord?: string;
+  file_path?: string;
+  source_html?: string;
 }
 
 interface IndexData {
@@ -47,50 +52,23 @@ export default function WorshipSongsArchive() {
   const [presentationMode, setPresentationMode] = useState(false);
   const [audioSpeed, setAudioSpeed] = useState(1.0);
   const [playingId, setPlayingId] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  // Load data
+  // Load data directly from imported JSON
   useEffect(() => {
-    setLoading(true);
-    console.log('🎵 Loading worship songs...');
+    console.log('📊 Loading songs from imported data...');
+    console.log('📝 Data keys:', Object.keys(songsData.data || {}));
+    console.log('🔤 First letter key:', Object.keys(songsData.data || {})[0]);
+    console.log('📚 Total songs:', songsData.total_songs);
     
-    // Load from public folder (served by Vite)
-    fetch('/songs_index.json')
-      .then(r => {
-        console.log('📡 Response status:', r.status);
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then(result => {
-        console.log('📊 Songs data loaded:', result);
-        console.log('📝 Data keys:', Object.keys(result.data || {}));
-        console.log('🔤 First letter key:', Object.keys(result.data || {})[0]);
-        console.log('📚 Songs in first letter:', result.data?.[Object.keys(result.data || {})[0]]?.length);
-        
-        if (result && result.data) {
-          console.log(`✅ Got ${result.total_songs} songs in ${result.letters} letters`);
-          setData(result);
-          
-          // Set first available letter as selected
-          const firstLetter = Object.keys(result.data)[0];
-          if (firstLetter) {
-            setSelectedLetter(firstLetter);
-            console.log('✅ Selected first letter:', firstLetter);
-          }
-        } else {
-          console.error('❌ Invalid data format:', result);
-          setData({ total_songs: 0, letters: 0, data: {} });
-        }
-      })
-      .catch(err => {
-        console.error('❌ Failed to load songs:', err);
-        alert('خطا در بارگذاری سرودها: ' + err.message);
-        setData({ total_songs: 0, letters: 0, data: {} });
-      })
-      .finally(() => {
-        setLoading(false);
-        console.log('✅ Loading complete');
-      });
+    setData(songsData as IndexData);
+    
+    // Set first available letter as selected
+    const firstLetter = Object.keys(songsData.data)[0];
+    if (firstLetter) {
+      setSelectedLetter(firstLetter);
+      console.log('✅ Selected first letter:', firstLetter);
+    }
   }, []);
 
   // Filter songs
@@ -127,7 +105,7 @@ export default function WorshipSongsArchive() {
     }
     
     // Remove duplicates
-    const seen = new Set<string>();
+    const seen = new Set<string | number>();
     const filtered = songs.filter(s => {
       if (seen.has(s.id)) return false;
       seen.add(s.id);
