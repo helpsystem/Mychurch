@@ -52,35 +52,26 @@ export default function WorshipSongsArchive() {
   // Load data
   useEffect(() => {
     setLoading(true);
-    console.log('🎵 Loading worship songs...');
-    fetch('/api/songs?limit=500')
-      .then(r => r.json())
+    console.log('🎵 Loading worship songs from archive...');
+    
+    // Load directly from uploaded files
+    fetch('https://samanabyar.online/worship-songs/songs_index.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then(result => {
-        console.log('📊 API Response:', result);
-        if (result.success && Array.isArray(result.songs)) {
-          console.log(`✅ Got ${result.songs.length} songs`);
-          // Convert flat array to letter-grouped format
-          const grouped: Record<string, SongItem[]> = {};
-          result.songs.forEach((song: SongItem) => {
-            const letter = song.letter || '#';
-            if (!grouped[letter]) grouped[letter] = [];
-            grouped[letter].push(song);
-          });
-          
-          console.log(`📚 Grouped into ${Object.keys(grouped).length} letters`);
-          setData({
-            total_songs: result.total || result.songs.length,
-            letters: Object.keys(grouped).length,
-            data: grouped
-          });
+        console.log('📊 Archive data loaded:', result);
+        if (result && result.data) {
+          console.log(`✅ Got ${result.total_songs} songs in ${result.letters} letters`);
+          setData(result);
         } else {
-          // Handle error or empty response
-          console.error('❌ Invalid response format:', result);
+          console.error('❌ Invalid archive format:', result);
           setData({ total_songs: 0, letters: 0, data: {} });
         }
       })
       .catch(err => {
-        console.error('❌ Failed to load songs:', err);
+        console.error('❌ Failed to load songs archive:', err);
         setData({ total_songs: 0, letters: 0, data: {} });
       })
       .finally(() => {
