@@ -63,9 +63,20 @@ export default function WorshipSongsArchive() {
       })
       .then(result => {
         console.log('📊 Songs data loaded:', result);
+        console.log('📝 Data keys:', Object.keys(result.data || {}));
+        console.log('🔤 First letter key:', Object.keys(result.data || {})[0]);
+        console.log('📚 Songs in first letter:', result.data?.[Object.keys(result.data || {})[0]]?.length);
+        
         if (result && result.data) {
           console.log(`✅ Got ${result.total_songs} songs in ${result.letters} letters`);
           setData(result);
+          
+          // Set first available letter as selected
+          const firstLetter = Object.keys(result.data)[0];
+          if (firstLetter) {
+            setSelectedLetter(firstLetter);
+            console.log('✅ Selected first letter:', firstLetter);
+          }
         } else {
           console.error('❌ Invalid data format:', result);
           setData({ total_songs: 0, letters: 0, data: {} });
@@ -84,7 +95,13 @@ export default function WorshipSongsArchive() {
 
   // Filter songs
   const filteredSongs = useMemo(() => {
-    if (!data) return [];
+    if (!data) {
+      console.log('⚠️ No data available');
+      return [];
+    }
+    
+    console.log('🔍 Filtering - Selected letter:', selectedLetter);
+    console.log('🔍 Available letters:', Object.keys(data.data));
     
     let songs: SongItem[] = [];
     
@@ -106,15 +123,19 @@ export default function WorshipSongsArchive() {
     } else {
       // Show songs for selected letter
       songs = data.data[selectedLetter] || [];
+      console.log(`📚 Songs for "${selectedLetter}":`, songs.length);
     }
     
     // Remove duplicates
     const seen = new Set<string>();
-    return songs.filter(s => {
+    const filtered = songs.filter(s => {
       if (seen.has(s.id)) return false;
       seen.add(s.id);
       return true;
     });
+    
+    console.log('✅ Filtered songs:', filtered.length);
+    return filtered;
   }, [data, selectedLetter, searchQuery]);
 
   // Keyboard shortcuts
