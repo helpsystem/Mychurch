@@ -29,7 +29,7 @@ const pool = new Pool({
   // Connection pool settings for Supabase
   max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 10000, // Increased from 2000 to 10000ms
 });
 
 // Test connection with retry logic for scale-to-zero databases (TIMEOUT REDUCED)
@@ -59,15 +59,13 @@ const connectWithRetry = async (maxRetries = 2) => {
 };
 
 // Initialize connection with retry
+let dbReady = false;
 connectWithRetry().then(success => {
+  dbReady = success;
   if (!success) {
     console.log('⚠️  Database connection failed - continuing without database (Supabase timeout)...');
   }
 });
-
-// Export flag for skipping DB checks
-let dbReady = false;
-connectWithRetry().then(ok => { dbReady = ok; });
 
 // Helper function to parse user JSON fields
 const parseUser = (user) => {
