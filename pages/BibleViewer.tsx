@@ -17,7 +17,6 @@ import BibleToolbar from '../components/BibleToolbar';
 import BibleSimple from '../components/BibleSimple';
 import BibleFlipbookUnified from '../components/BibleFlipbookUnified';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { loadBibleBooks, loadBibleChapter, preloadNextChapter } from '../services/bibleDataService';
 
 interface Verse {
   number: number;
@@ -83,7 +82,6 @@ const BibleViewer: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [bilingualMode, setBilingualMode] = useState(true); // Toggle bilingual/monolingual
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -105,34 +103,51 @@ const BibleViewer: React.FC = () => {
   }, [currentBook, currentChapter]);
 
   /**
-   * Fetch books list using bibleDataService
+   * Fetch books list (using mock data for now)
    */
   const fetchBooks = async () => {
     try {
-      const booksData = await loadBibleBooks();
-      setBooks(booksData);
+      // Mock data - replace with API call when backend is stable
+      const mockBooks = [
+        { code: 'GEN', number: 1, testament: 'OT', names: { en: 'Genesis', fa: 'پیدایش' }, chapterCount: 50 },
+        { code: 'EXO', number: 2, testament: 'OT', names: { en: 'Exodus', fa: 'خروج' }, chapterCount: 40 },
+        { code: 'MAT', number: 40, testament: 'NT', names: { en: 'Matthew', fa: 'متی' }, chapterCount: 28 },
+        { code: 'JHN', number: 43, testament: 'NT', names: { en: 'John', fa: 'یوحنا' }, chapterCount: 21 }
+      ];
+      setBooks(mockBooks);
     } catch (err) {
-      console.error('Error loading Bible data:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load Bible data');
+      console.error('Error fetching books:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load books');
     }
   };
 
   /**
-   * Fetch chapter data using bibleDataService
+   * Fetch chapter data (using mock data for now)
    */
   const fetchChapter = async (book: string, chapter: number) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const chapterData = await loadBibleChapter(book, chapter);
-      setChapterData(chapterData);
-      
-      // Preload next chapter in background
-      const currentBookInfo = books.find(b => b.code === book);
-      if (currentBookInfo) {
-        preloadNextChapter(book, chapter, currentBookInfo.chapterCount);
-      }
+      // Mock verses - replace with API call when backend is stable
+      const mockVerses = [
+        { number: 1, text: { en: 'In the beginning God created the heaven and the earth.', fa: 'در ابتدا خدا آسمان‌ها و زمین را آفرید.' }, id: 'GEN-1-1' },
+        { number: 2, text: { en: 'And the earth was without form, and void; and darkness was upon the face of the deep.', fa: 'و زمین بی‌شکل و خالی بود و تاریکی بر روی ژرفنا بود.' }, id: 'GEN-1-2' },
+        { number: 3, text: { en: 'And God said, Let there be light: and there was light.', fa: 'و خدا گفت: نور بشود، و نور شد.' }, id: 'GEN-1-3' },
+        { number: 4, text: { en: 'And God saw the light, that it was good: and God divided the light from the darkness.', fa: 'و خدا نور را دید که نیکو بود و خدا نور را از تاریکی جدا کرد.' }, id: 'GEN-1-4' },
+        { number: 5, text: { en: 'And God called the light Day, and the darkness he called Night.', fa: 'و خدا نور را روز نامید و تاریکی را شب نامید.' }, id: 'GEN-1-5' }
+      ];
+
+      setChapterData({
+        book: {
+          code: book,
+          number: 1,
+          names: { en: 'Genesis', fa: 'پیدایش' }
+        },
+        chapterNumber: chapter,
+        verseCount: mockVerses.length,
+        verses: mockVerses
+      });
     } catch (err) {
       console.error('Error fetching chapter:', err);
       setError(err instanceof Error ? err.message : 'Failed to load chapter');
@@ -249,10 +264,6 @@ const BibleViewer: React.FC = () => {
           // Toggle language
           setLanguage(language === 'en' ? 'fa' : 'en');
           break;
-        case 'b':
-          // Toggle bilingual/monolingual mode
-          setBilingualMode(!bilingualMode);
-          break;
         case 'p':
           // Toggle presentation mode
           setDisplayMode(displayMode === 'presentation' ? 'normal' : 'presentation');
@@ -326,7 +337,8 @@ const BibleViewer: React.FC = () => {
     'min-h-screen',
     'transition-all',
     'duration-300',
-    displayMode === 'presentation' ? 'bg-black' : 'bg-gradient-to-br from-amber-50 via-stone-50 to-amber-100'
+    displayMode === 'presentation' ? 'bg-black' : 'bg-gradient-to-br from-amber-50 via-stone-50 to-amber-100',
+    displayMode === 'mirror' ? 'transform scale-x-[-1]' : ''
   ].filter(Boolean).join(' ');
 
   return (
@@ -337,20 +349,23 @@ const BibleViewer: React.FC = () => {
           mode={mode}
           language={language}
           displayMode={displayMode}
-          isPlaying={tts.isPlaying}
-          isLoading={isLoading}
-          currentBook={currentBook}
+          currentBook={currentBookInfo}
           currentChapter={currentChapter}
-          onModeToggle={() => setMode(mode === 'simple' ? 'flipbook' : 'simple')}
-          onLanguageToggle={() => setLanguage(language === 'en' ? 'fa' : 'en')}
-          onDisplayModeChange={setDisplayMode}
-          onSearch={handleSearch}
-          onPlayPause={tts.togglePlayPause}
-          onPreviousChapter={previousChapter}
-          onNextChapter={nextChapter}
-          onFullscreen={toggleFullscreen}
+          books={books}
+          isPlaying={tts.isPlaying}
           isFullscreen={isFullscreen}
-          bookName={currentBookInfo?.names[language]}
+          showSearch={showSearch}
+          searchResults={searchResults}
+          onModeChange={setMode}
+          onLanguageChange={setLanguage}
+          onDisplayModeChange={setDisplayMode}
+          onGoToReference={handleGoToReference}
+          onSearch={handleSearch}
+          onToggleSearch={() => setShowSearch(!showSearch)}
+          onPlayPause={tts.togglePlayPause}
+          onNext={nextChapter}
+          onPrevious={previousChapter}
+          onToggleFullscreen={toggleFullscreen}
         />
       )}
 
@@ -383,7 +398,6 @@ const BibleViewer: React.FC = () => {
                 language={language}
                 displayMode={displayMode}
                 tts={tts}
-                bilingualMode={bilingualMode}
                 onPageChange={(pageNumber) => {
                   // Handle page change if needed
                   console.log('Page changed:', pageNumber);
@@ -439,26 +453,9 @@ const BibleViewer: React.FC = () => {
                 : 'bg-blue-700 hover:bg-blue-600 text-white'
               }
             `}
-            title={language === 'en' ? 'Switch to Persian (L)' : 'Switch to English (L)'}
+            title={language === 'en' ? 'فارسی (L)' : 'English (L)'}
           >
-            {language === 'en' ? 'EN' : 'FA'}
-          </button>
-
-          {/* Bilingual Mode Toggle */}
-          <button
-            onClick={() => setBilingualMode(!bilingualMode)}
-            className={`
-              px-4 py-2 rounded-xl font-semibold transition-all duration-200
-              ${displayMode === 'presentation'
-                ? 'bg-amber-600 hover:bg-amber-500 text-black'
-                : bilingualMode
-                  ? 'bg-green-700 hover:bg-green-600 text-white'
-                  : 'bg-gray-700 hover:bg-gray-600 text-white'
-              }
-            `}
-            title={bilingualMode ? 'Switch to Single Language (B)' : 'Switch to Dual Language (B)'}
-          >
-            {bilingualMode ? '🌐 Dual' : '🔤 Single'}
+            {language === 'en' ? '🇮🇷 فارسی' : '🇬🇧 English'}
           </button>
 
           {/* Navigation Controls */}

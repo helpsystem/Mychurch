@@ -29,27 +29,8 @@ const pool = new Pool({
   // Connection pool settings for Supabase
   max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 10000, // Increased from 2000 to 10000ms
+  connectionTimeoutMillis: 2000,
 });
-
-// Add pool event listeners for debugging
-pool.on('connect', (client) => {
-  console.log('🔵 New client connected to pool');
-});
-
-pool.on('acquire', (client) => {
-  console.log('🟢 Client acquired from pool');
-});
-
-pool.on('remove', (client) => {
-  console.log('🔴 Client removed from pool');
-});
-
-pool.on('error', (err, client) => {
-  console.error('❌ Unexpected pool error:', err);
-  console.error('Stack:', err.stack);
-});
-
 
 // Test connection with retry logic for scale-to-zero databases (TIMEOUT REDUCED)
 const connectWithRetry = async (maxRetries = 2) => {
@@ -78,22 +59,15 @@ const connectWithRetry = async (maxRetries = 2) => {
 };
 
 // Initialize connection with retry
-// DISABLED: Moved to lazy initialization on first query
+connectWithRetry().then(success => {
+  if (!success) {
+    console.log('⚠️  Database connection failed - continuing without database (Supabase timeout)...');
+  }
+});
+
+// Export flag for skipping DB checks
 let dbReady = false;
-/*
-connectWithRetry()
-  .then(success => {
-    dbReady = success;
-    if (!success) {
-      console.log('⚠️  Database connection failed - continuing without database (Supabase timeout)...');
-    }
-  })
-  .catch(error => {
-    console.error('❌ Database connection error:', error);
-    dbReady = false;
-  });
-*/
-console.log('📊 Database pool created, connection will be established on first query');
+connectWithRetry().then(ok => { dbReady = ok; });
 
 // Helper function to parse user JSON fields
 const parseUser = (user) => {
