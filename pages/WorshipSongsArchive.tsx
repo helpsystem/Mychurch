@@ -52,26 +52,28 @@ export default function WorshipSongsArchive() {
   // Load data
   useEffect(() => {
     setLoading(true);
-    console.log('🎵 Loading worship songs from archive...');
+    console.log('🎵 Loading worship songs...');
     
-    // Load directly from uploaded files
-    fetch('https://samanabyar.online/worship-songs/songs_index.json')
+    // Load from public folder (served by Vite)
+    fetch('/songs_index.json')
       .then(r => {
+        console.log('📡 Response status:', r.status);
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();
       })
       .then(result => {
-        console.log('📊 Archive data loaded:', result);
+        console.log('📊 Songs data loaded:', result);
         if (result && result.data) {
           console.log(`✅ Got ${result.total_songs} songs in ${result.letters} letters`);
           setData(result);
         } else {
-          console.error('❌ Invalid archive format:', result);
+          console.error('❌ Invalid data format:', result);
           setData({ total_songs: 0, letters: 0, data: {} });
         }
       })
       .catch(err => {
-        console.error('❌ Failed to load songs archive:', err);
+        console.error('❌ Failed to load songs:', err);
+        alert('خطا در بارگذاری سرودها: ' + err.message);
         setData({ total_songs: 0, letters: 0, data: {} });
       })
       .finally(() => {
