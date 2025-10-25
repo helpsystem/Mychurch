@@ -26,6 +26,7 @@ import SignupPage from './pages/SignupPage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+import AdminWorshipManagementPage from './pages/AdminWorshipManagementPage';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConfigureBackendPage from './pages/ConfigureBackendPage';
@@ -48,6 +49,7 @@ import TestComponent from './components/TestComponent';
 import MinimalBible from './components/MinimalBible';
 import SimpleBibleReader from './components/SimpleBibleReader';
 import WorshipSongsPage from './pages/WorshipSongsPage';
+import WorshipSongViewerPage from './pages/WorshipSongViewerPage';
 import WorshipPresentationPage from './pages/WorshipPresentationPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
 import CalendarPage from './pages/CalendarPage';
@@ -112,6 +114,7 @@ function App() {
               <Route path="leaders" element={<LeadersPage />} />
               <Route path="sermons" element={<SermonsPage />} />
               <Route path="worship" element={<WorshipPage />} />
+              <Route path="worship/:id" element={<WorshipSongViewerPage />} />
               <Route path="bible" element={<UnifiedBibleReader />} />
               <Route path="bible-simple" element={<SimpleBibleReader />} />
               <Route path="bible-minimal" element={<MinimalBible />} />
@@ -162,6 +165,14 @@ function App() {
               element={
                 <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
                   <AdminDashboardPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/worship-management"
+              element={
+                <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                  <AdminWorshipManagementPage />
                 </ProtectedRoute>
               }
             />

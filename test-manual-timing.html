@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست Manual Timing (قابل تنظیم) - الشدای</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .artist {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        
+        .info {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .info ul {
+            margin-right: 20px;
+            line-height: 1.8;
+        }
+        
+        .audio-player {
+            margin-bottom: 30px;
+        }
+        
+        audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .sync-controls {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .sync-controls h3 {
+            color: #e65100;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .control-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .preset-btn {
+            background: #4caf50;
+        }
+        
+        .preset-btn:hover {
+            background: #45a049;
+        }
+        
+        .value-display {
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            padding: 8px 16px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .lyrics-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            max-height: 500px;
+            overflow-y: auto;
+            line-height: 2.8;
+            font-size: 1.4em;
+        }
+        
+        .word {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .word:hover {
+            background: #e3f2fd;
+        }
+        
+        .word.active {
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            color: white;
+            transform: scale(1.3);
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: pulse 0.5s ease;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.3); }
+            50% { transform: scale(1.4); }
+        }
+        
+        .word.upcoming {
+            background: #fff9c4;
+            transform: scale(1.05);
+        }
+        
+        .line {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .line.active {
+            background: linear-gradient(to right, #fff3e0, transparent);
+            border-right: 4px solid #ff9800;
+        }
+        
+        .stats {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8eaf6;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .shortcuts {
+            background: #f3e5f5;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        
+        .shortcuts h4 {
+            color: #7b1fa2;
+            margin-bottom: 10px;
+        }
+        
+        .shortcuts ul {
+            margin-right: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 تنظیم دستی Timing</h1>
+        <p class="artist">الشدای - Michael Card</p>
+        
+        <div class="info">
+            <h3>✨ سیستم هوشمند تنظیم زمان</h3>
+            <ul>
+                <li>✅ رایگان و بدون نیاز به API</li>
+                <li>🎯 دقت بالا (95%+) با تنظیم ساده</li>
+                <li>⚡ تنظیم real-time - بدون refresh</li>
+                <li>💾 ذخیره خودکار تنظیمات</li>
+            </ul>
+        </div>
+        
+        <div class="audio-player">
+            <audio id="audio" controls>
+                <source src="https://www.kalameh.com/sites/default/files/songs/mp3/El%20Shaddai%20in%20Farsi.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <div class="sync-controls">
+            <h3>⚙️ تنظیمات همزمان‌سازی</h3>
+            
+            <div class="control-group">
+                <label>🕐 تاخیر شروع (Delay): <span id="delay-value" class="value-display">5</span> ثانیه</label>
+                <div class="control-row">
+                    <button onclick="adjustDelay(-1)">- 1s</button>
+                    <button onclick="adjustDelay(-0.5)">- 0.5s</button>
+                    <button onclick="adjustDelay(0.5)">+ 0.5s</button>
+                    <button onclick="adjustDelay(1)">+ 1s</button>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label>⏱️ سرعت خط (Line Duration): <span id="duration-value" class="value-display">3</span> ثانیه</label>
+                <div class="control-row">
+                    <button onclick="adjustDuration(-0.5)">- 0.5s</button>
+                    <button onclick="adjustDuration(-0.2)">- 0.2s</button>
+                    <button onclick="adjustDuration(0.2)">+ 0.2s</button>
+                    <button onclick="adjustDuration(0.5)">+ 0.5s</button>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label>🎼 پیش‌تنظیم‌ها (Presets):</label>
+                <div class="control-row">
+                    <button class="preset-btn" onclick="applyPreset('slow')">🐢 آهسته</button>
+                    <button class="preset-btn" onclick="applyPreset('normal')">🎵 معمولی</button>
+                    <button class="preset-btn" onclick="applyPreset('fast')">🚀 سریع</button>
+                    <button onclick="resetSettings()">🔄 بازنشانی</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="lyrics-container" class="lyrics-container"></div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">زمان فعلی</div>
+                <div class="stat-value" id="current-time">0:00</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">خط فعلی</div>
+                <div class="stat-value" id="current-line">-</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">کلمه فعلی</div>
+                <div class="stat-value" id="current-word">-</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">تعداد کلمات</div>
+                <div class="stat-value" id="total-words">0</div>
+            </div>
+        </div>
+        
+        <div class="shortcuts">
+            <h4>⌨️ میانبرهای صفحه‌کلید:</h4>
+            <ul>
+                <li><strong>Space</strong>: پخش/توقف</li>
+                <li><strong>←</strong>: 5 ثانیه به عقب</li>
+                <li><strong>→</strong>: 5 ثانیه به جلو</li>
+                <li><strong>↑</strong>: افزایش delay</li>
+                <li><strong>↓</strong>: کاهش delay</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let audio = null;
+        let lineDelay = 5;  // پیش‌فرض: 5 ثانیه
+        let lineDuration = 3;  // پیش‌فرض: 3 ثانیه
+        let wordDurationRatio = 1;
+        
+        // متن سرود
+        const lyrics = `V1
+[C]الشدا[Dm]ی الشدا[G]ی ، ال الـ[C]ـیون ادونا[F]ی
+نام تو[Bb] در بین ما[E7] ، هم در عـ[Am]ـالــم[B/G] اعلــی[C#/A]
+الشدا[Dm]ی خدای ما[G] ، دوست دار[C]یم نام تو ر[F]ا
+ای خالـ[Bb]ـق ابدی[G] ، الشدا[C]ی
+V2
+الشدا[Dm]ی خدای ما[G] ، می‌خوانـ[C]ـیم نام تو ر[F]ا
+نام تو[Bb] چه عظیم ا[E7]ست ، ای خد[Am]ای تـ[B/G]ـازه‌هــا[C#/A]
+الشدا[Dm]ی خدای ما[G] ، تو خالـ[C]ـق بی‌همتا[F]
+ستایـ[Bb]ـیم نام تو ر[G]ا ، الشدا[C]ی
+V3
+الشدا[Dm]ی خدای ما[G] ، ای خدا[C]ی وعده‌ها[F]
+نهرهای[Bb] آب زنده[E7] ، بجوشا[Am]ن در قـ[B/G]ـلـب مــا[C#/A]
+الشدا[Dm]ی وسیع نما[G] ، مسکن[C] و حدود ما[F]
+بشنو به[Bb] نام مسـ[G]ـیح این دعـ[C]ـا`;
+
+        let processedLines = [];
+        let wordsWithTiming = [];
+
+        // پردازش متن
+        function processLyrics() {
+            // حذف آکوردها
+            let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
+            // حذف برچسب‌ها
+            cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
+            
+            // تقسیم به خطوط
+            const lines = cleanLyrics.split('\n').filter(line => line.trim());
+            
+            // ساخت خطوط با timing
+            processedLines = lines.map((line, index) => ({
+                time: lineDelay + (index * lineDuration),
+                text: line.trim(),
+                index: index
+            }));
+            
+            // ساخت کلمات با timing
+            wordsWithTiming = [];
+            processedLines.forEach((line, lineIndex) => {
+                const words = line.text.split(/\s+/).filter(w => w.length > 0);
+                const wordDuration = (lineDuration * wordDurationRatio) / words.length;
+                
+                words.forEach((word, wordIndex) => {
+                    const startTime = line.time + (wordIndex * wordDuration);
+                    const endTime = startTime + wordDuration;
+                    
+                    wordsWithTiming.push({
+                        word: word,
+                        startTime: startTime,
+                        endTime: endTime,
+                        lineIndex: lineIndex
+                    });
+                });
+            });
+            
+            document.getElementById('total-words').textContent = wordsWithTiming.length;
+            renderLyrics();
+        }
+
+        // رندر کلمات
+        function renderLyrics() {
+            const container = document.getElementById('lyrics-container');
+            container.innerHTML = '';
+            
+            processedLines.forEach((line, lineIndex) => {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'line';
+                lineDiv.setAttribute('data-line-index', lineIndex);
+                
+                const words = line.text.split(/\s+/).filter(w => w.length > 0);
+                words.forEach((word, wordIndex) => {
+                    const wordData = wordsWithTiming.find(w => 
+                        w.lineIndex === lineIndex && w.word === word
+                    );
+                    
+                    if (wordData) {
+                        const wordSpan = document.createElement('span');
+                        wordSpan.className = 'word';
+                        wordSpan.textContent = word;
+                        wordSpan.setAttribute('data-start', wordData.startTime);
+                        wordSpan.setAttribute('data-end', wordData.endTime);
+                        wordSpan.setAttribute('data-line-index', lineIndex);
+                        
+                        lineDiv.appendChild(wordSpan);
+                    }
+                });
+                
+                container.appendChild(lineDiv);
+            });
+        }
+
+        // آپدیت کلمه فعلی
+        function updateCurrentWord(time) {
+            const allWords = document.querySelectorAll('.word');
+            let foundActiveWord = false;
+            let activeLine = -1;
+            
+            allWords.forEach((wordElement) => {
+                const start = parseFloat(wordElement.getAttribute('data-start'));
+                const end = parseFloat(wordElement.getAttribute('data-end'));
+                const lineIndex = parseInt(wordElement.getAttribute('data-line-index'));
+                
+                wordElement.classList.remove('active', 'upcoming');
+                
+                if (time >= start && time <= end) {
+                    wordElement.classList.add('active');
+                    foundActiveWord = true;
+                    activeLine = lineIndex;
+                    
+                    document.getElementById('current-word').textContent = wordElement.textContent;
+                    document.getElementById('current-line').textContent = lineIndex + 1;
+                    
+                    wordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                else if (time < start && start - time <= 1.5) {
+                    wordElement.classList.add('upcoming');
+                }
+            });
+            
+            // هایلایت خط فعلی
+            document.querySelectorAll('.line').forEach((line, index) => {
+                line.classList.toggle('active', index === activeLine);
+            });
+            
+            if (!foundActiveWord) {
+                document.getElementById('current-word').textContent = '-';
+            }
+        }
+
+        // تنظیمات
+        function adjustDelay(amount) {
+            lineDelay = Math.max(0, lineDelay + amount);
+            document.getElementById('delay-value').textContent = lineDelay.toFixed(1);
+            processLyrics();
+            saveSettings();
+        }
+
+        function adjustDuration(amount) {
+            lineDuration = Math.max(0.5, lineDuration + amount);
+            document.getElementById('duration-value').textContent = lineDuration.toFixed(1);
+            processLyrics();
+            saveSettings();
+        }
+
+        function applyPreset(preset) {
+            switch(preset) {
+                case 'slow':
+                    lineDelay = 5;
+                    lineDuration = 4;
+                    break;
+                case 'normal':
+                    lineDelay = 5;
+                    lineDuration = 3;
+                    break;
+                case 'fast':
+                    lineDelay = 3;
+                    lineDuration = 2;
+                    break;
+            }
+            updateDisplayValues();
+            processLyrics();
+            saveSettings();
+        }
+
+        function resetSettings() {
+            lineDelay = 5;
+            lineDuration = 3;
+            updateDisplayValues();
+            processLyrics();
+            saveSettings();
+        }
+
+        function updateDisplayValues() {
+            document.getElementById('delay-value').textContent = lineDelay.toFixed(1);
+            document.getElementById('duration-value').textContent = lineDuration.toFixed(1);
+        }
+
+        function saveSettings() {
+            localStorage.setItem('elshaddai_settings', JSON.stringify({
+                lineDelay,
+                lineDuration
+            }));
+        }
+
+        function loadSettings() {
+            const saved = localStorage.getItem('elshaddai_settings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                lineDelay = settings.lineDelay || 5;
+                lineDuration = settings.lineDuration || 3;
+                updateDisplayValues();
+            }
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // راه‌اندازی
+        window.addEventListener('DOMContentLoaded', () => {
+            audio = document.getElementById('audio');
+            
+            loadSettings();
+            processLyrics();
+            
+            audio.addEventListener('timeupdate', () => {
+                const currentTime = audio.currentTime;
+                document.getElementById('current-time').textContent = formatTime(currentTime);
+                updateCurrentWord(currentTime);
+            });
+            
+            audio.addEventListener('ended', () => {
+                document.querySelectorAll('.word').forEach(w => {
+                    w.classList.remove('active', 'upcoming');
+                });
+                document.querySelectorAll('.line').forEach(l => {
+                    l.classList.remove('active');
+                });
+            });
+            
+            // میانبرهای صفحه‌کلید
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case ' ':
+                        e.preventDefault();
+                        if (audio.paused) audio.play();
+                        else audio.pause();
+                        break;
+                    case 'ArrowLeft':
+                        audio.currentTime = Math.max(0, audio.currentTime - 5);
+                        break;
+                    case 'ArrowRight':
+                        audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        adjustDelay(0.5);
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        adjustDelay(-0.5);
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

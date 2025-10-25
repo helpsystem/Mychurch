@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ضبط Timing دستی - الشدای</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        
+        .artist {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        
+        .mode-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .mode-btn {
+            padding: 15px 30px;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            background: white;
+            color: #667eea;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .mode-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .recording-mode .mode-btn:nth-child(1).active {
+            background: #dc3545;
+            border-color: #dc3545;
+        }
+        
+        .info {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info.recording {
+            background: #ffebee;
+            border-color: #dc3545;
+        }
+        
+        .info h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+        
+        .info.recording h3 {
+            color: #dc3545;
+        }
+        
+        .info ul {
+            margin-right: 20px;
+            line-height: 1.8;
+        }
+        
+        .audio-player {
+            margin-bottom: 30px;
+        }
+        
+        audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .danger-btn {
+            background: #dc3545;
+        }
+        
+        .danger-btn:hover {
+            background: #c82333;
+        }
+        
+        .success-btn {
+            background: #28a745;
+        }
+        
+        .success-btn:hover {
+            background: #218838;
+        }
+        
+        .warning-btn {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .warning-btn:hover {
+            background: #f57c00;
+        }
+        
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+        
+        .lyrics-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            max-height: 600px;
+            overflow-y: auto;
+            line-height: 2.8;
+            font-size: 1.4em;
+        }
+        
+        .word {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .word:hover {
+            background: #e3f2fd;
+            transform: scale(1.05);
+        }
+        
+        .recording-mode .word {
+            cursor: pointer;
+        }
+        
+        .recording-mode .word:hover {
+            background: #ffebee;
+            border-color: #dc3545;
+            transform: scale(1.1);
+        }
+        
+        .word.recorded {
+            background: #c8e6c9;
+            border-color: #4caf50;
+            font-weight: bold;
+            cursor: default;
+        }
+        
+        .word.recorded:hover {
+            background: #c8e6c9;
+            border-color: #4caf50;
+            transform: none;
+        }
+        
+        .word.active {
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            color: white;
+            transform: scale(1.3);
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: pulse 0.5s ease;
+        }
+        
+        .word.next-to-record {
+            background: #fff9c4;
+            border: 3px dashed #ffc107;
+            animation: blink 1s infinite;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer !important;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+        }
+        
+        .word.next-to-record:hover {
+            background: #fff59d !important;
+            border-color: #ff9800 !important;
+            transform: scale(1.15) !important;
+        }
+        
+        .word.next-to-record::before {
+            content: '👉 ';
+        }
+        
+        .word.next-to-record::after {
+            content: ' 👈';
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.3); }
+            50% { transform: scale(1.4); }
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        .line {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .sidebar h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .stats {
+            background: #e8eaf6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .stat:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .stat-value {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .recorded-list {
+            margin-top: 20px;
+        }
+        
+        .recorded-item {
+            background: white;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .recorded-item .word-text {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .recorded-item .time-text {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .recorded-item button {
+            padding: 4px 8px;
+            font-size: 0.8em;
+            background: #dc3545;
+        }
+        
+        .export-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 10px;
+        }
+        
+        .export-section h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .json-output {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            direction: ltr;
+            text-align: left;
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 30px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            height: 100%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .shortcuts {
+            background: #f3e5f5;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        
+        .shortcuts h4 {
+            color: #7b1fa2;
+            margin-bottom: 10px;
+        }
+        
+        .shortcuts ul {
+            margin-right: 20px;
+            line-height: 1.6;
+        }
+        
+        .space-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .space-indicator.show {
+            opacity: 1;
+        }
+        
+        .space-indicator.beat-warning {
+            background: linear-gradient(135deg, #ff9800, #f44336);
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+        
+        .keyboard-ready {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #4caf50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .context-menu {
+            position: fixed;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            padding: 5px 0;
+            z-index: 2000;
+            min-width: 200px;
+            display: none;
+        }
+        
+        .context-menu.show {
+            display: block;
+        }
+        
+        .context-menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .context-menu-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .context-menu-item .icon {
+            font-size: 1.2em;
+        }
+        
+        .context-menu-divider {
+            height: 1px;
+            background: #ddd;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="keyboard-ready">⌨️ صفحه‌کلید آماده</div>
+    
+    <div class="container">
+        <h1>🎙️ ضبط Timing دستی</h1>
+        <p class="artist">الشدای - Michael Card</p>
+        
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="setMode('record')">🔴 حالت ضبط</button>
+            <button class="mode-btn" onclick="setMode('playback')">▶️ حالت پخش</button>
+        </div>
+        
+        <div class="info recording">
+            <h3 id="info-title">📝 دستورالعمل ضبط:</h3>
+            <ul id="info-content">
+                <li>🎵 موزیک رو پلی کنید</li>
+                <li>👆 دقیقاً وقتی خواننده هر کلمه رو می‌خونه، روی اون کلمه کلیک کنید</li>
+                <li>⚡ کلمه بعدی خودکار هایلایت میشه (زرد)</li>
+                <li>✅ کلمات ضبط شده سبز رنگ میشن</li>
+                <li>💾 در پایان فایل JSON رو ذخیره کنید</li>
+            </ul>
+        </div>
+        
+        <div class="audio-player">
+            <audio id="audio" controls>
+                <source src="https://www.kalameh.com/sites/default/files/songs/mp3/El%20Shaddai%20in%20Farsi.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress" style="width: 0%">0%</div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="skipBack()">⏮ -5s</button>
+            <button onclick="skipForward()">⏭ +5s</button>
+            <button onclick="togglePlayPause()">⏯ پلی/پاز</button>
+            <button onclick="jumpToRepeatSection()" id="jump-repeat-btn" style="display:none;">⏩ پرش به بخش تکراری</button>
+            <button class="success-btn" onclick="repeatLastWord()">🔁 تکرار کلمه</button>
+            <button class="success-btn" onclick="repeatSection()">🔁📄 تکرار بخش</button>
+            <button class="warning-btn" onclick="findWordsAtCurrentTime()" title="کلید میانبر: A">🎵 اضافه از این زمان (A)</button>
+            <button class="danger-btn" onclick="undoLast()">↶ برگشت</button>
+            <button class="danger-btn" onclick="resetRecording()">🔄 شروع مجدد</button>
+            <button class="success-btn" onclick="exportJSON()" id="export-btn" disabled>💾 دریافت JSON</button>
+        </div>
+        
+        <div class="layout">
+            <div id="lyrics-container" class="lyrics-container"></div>
+            
+            <div class="sidebar">
+                <h3>📊 آمار ضبط</h3>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-label">زمان فعلی:</span>
+                        <span class="stat-value" id="current-time">0:00</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">کلمات ضبط شده:</span>
+                        <span class="stat-value" id="recorded-count">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">کل کلمات:</span>
+                        <span class="stat-value" id="total-words">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">پیشرفت:</span>
+                        <span class="stat-value" id="progress-percent">0%</span>
+                    </div>
+                </div>
+                
+                <div class="recorded-list" id="recorded-list">
+                    <h4 style="color: #4caf50; margin-bottom: 10px;">✅ کلمات ضبط شده:</h4>
+                    <div id="recorded-items"></div>
+                </div>
+                
+                <div class="export-section" id="export-section" style="display: none;">
+                    <h4>📦 خروجی JSON:</h4>
+                    <div class="json-output" id="json-output"></div>
+                    <button class="success-btn" style="width: 100%; margin-top: 10px;" onclick="copyJSON()">📋 کپی JSON</button>
+                    <button class="success-btn" style="width: 100%; margin-top: 10px;" onclick="downloadJSON()">⬇️ دانلود فایل</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shortcuts">
+            <h4>⌨️ میانبرهای صفحه‌کلید:</h4>
+            <ul>
+                <li><strong>Space</strong>: ⭐ ثبت کلمه بعدی</li>
+                <li><strong>R</strong>: 🔁 تکرار یک کلمه</li>
+                <li><strong>S</strong>: 🔁📄 تکرار یک بخش کامل (مثلاً 4 پاراگراف)</li>
+                <li><strong>J</strong>: ⏩ پرش به بخش تکراری (بدون دیدن همه)</li>
+                <li><strong>P</strong>: پلی/پاز موزیک</li>
+                <li><strong>← / →</strong>: جابجایی 5 ثانیه</li>
+                <li><strong>Ctrl+Z</strong>: برگشت</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let audio = null;
+        let currentMode = 'record';
+        let recordedTimings = [];
+        let currentWordIndex = 0;
+        let allWords = [];
+        let selectedWordIndex = null; // برای context menu
+        
+        const lyrics = `V1
+[C]الشدا[Dm]ی الشدا[G]ی ، ال الـ[C]ـیون ادونا[F]ی
+نام تو[Bb] در بین ما[E7] ، هم در عـ[Am]ـالــم[B/G] اعلــی[C#/A]
+الشدا[Dm]ی خدای ما[G] ، دوست دار[C]یم نام تو ر[F]ا
+ای خالـ[Bb]ـق ابدی[G] ، الشدا[C]ی
+V2
+الشدا[Dm]ی خدای ما[G] ، می‌خوانـ[C]ـیم نام تو ر[F]ا
+نام تو[Bb] چه عظیم ا[E7]ست ، ای خد[Am]ای تـ[B/G]ـازه‌هــا[C#/A]
+الشدا[Dm]ی خدای ما[G] ، تو خالـ[C]ـق بی‌همتا[F]
+ستایـ[Bb]ـیم نام تو ر[G]ا ، الشدا[C]ی
+V3
+الشدا[Dm]ی خدای ما[G] ، ای خدا[C]ی وعده‌ها[F]
+نهرهای[Bb] آب زنده[E7] ، بجوشا[Am]ن در قـ[B/G]ـلـب مــا[C#/A]
+الشدا[Dm]ی وسیع نما[G] ، مسکن[C] و حدود ما[F]
+بشنو به[Bb] نام مسـ[G]ـیح این دعـ[C]ـا`;
+
+        // پردازش متن
+        function processLyrics() {
+            let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
+            cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
+            
+            const lines = cleanLyrics.split('\n').filter(line => line.trim());
+            
+            allWords = [];
+            lines.forEach((line, lineIndex) => {
+                const words = line.trim().split(/\s+/).filter(w => w.length > 0);
+                words.forEach((word, wordIndex) => {
+                    allWords.push({
+                        word: word,
+                        lineIndex: lineIndex,
+                        wordIndex: wordIndex,
+                        globalIndex: allWords.length
+                    });
+                });
+            });
+            
+            document.getElementById('total-words').textContent = allWords.length;
+            renderLyrics();
+        }
+
+        // رندر کلمات
+        function renderLyrics() {
+            const container = document.getElementById('lyrics-container');
+            container.innerHTML = '';
+            
+            // پیدا کردن کلمات اصلی (غیر repeat)
+            const mainWords = allWords.filter(w => !w.isRepeatSection);
+            
+            // اگر allWords خالی است، از lyrics بسازش
+            if (allWords.length === 0) {
+                let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
+                cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
+                const lines = cleanLyrics.split('\n').filter(line => line.trim());
+                
+                let globalIndex = 0;
+                lines.forEach((line) => {
+                    const words = line.trim().split(/\s+/).filter(w => w.length > 0);
+                    words.forEach((word) => {
+                        allWords.push({
+                            word: word,
+                            globalIndex: globalIndex,
+                            isRepeatSection: false
+                        });
+                        globalIndex++;
+                    });
+                });
+            }
+            
+            // رندر کلمات اصلی
+            const mainWordsToRender = allWords.filter(w => !w.isRepeatSection);
+            let currentLineDiv = document.createElement('div');
+            currentLineDiv.className = 'line';
+            
+            mainWordsToRender.forEach((wordData, idx) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'word';
+                wordSpan.textContent = wordData.word;
+                wordSpan.setAttribute('data-index', wordData.globalIndex);
+                
+                // استفاده از closure برای نگه داشتن index
+                (function(idx) {
+                    wordSpan.addEventListener('click', function() {
+                        console.log('کلیک روی کلمه:', wordData.word, 'index:', idx, 'current:', currentWordIndex);
+                        recordWord(idx);
+                    });
+                    
+                    // راست کلیک برای context menu
+                    wordSpan.addEventListener('contextmenu', function(e) {
+                        e.preventDefault();
+                        selectedWordIndex = idx;
+                        showContextMenu(e.clientX, e.clientY, wordData.word);
+                    });
+                })(wordData.globalIndex);
+                
+                currentLineDiv.appendChild(wordSpan);
+                
+                // هر 8-10 کلمه یک خط جدید (تقریبی)
+                if ((idx + 1) % 8 === 0) {
+                    container.appendChild(currentLineDiv);
+                    currentLineDiv = document.createElement('div');
+                    currentLineDiv.className = 'line';
+                }
+            });
+            
+            if (currentLineDiv.children.length > 0) {
+                container.appendChild(currentLineDiv);
+            }
+            
+            // رندر بخش‌های repeat شده
+            const repeatWords = allWords.filter(w => w.isRepeatSection);
+            if (repeatWords.length > 0) {
+                // افزودن جداکننده با شمارنده
+                const separator = document.createElement('div');
+                separator.style.cssText = 'margin: 30px 0; padding: 15px; background: #fff3e0; border: 2px dashed #ff9800; border-radius: 10px; text-align: center; font-weight: bold; color: #e65100;';
+                separator.innerHTML = `🔁 بخش تکراری (Repeat Section) - ${repeatWords.length} کلمه 🔁`;
+                container.appendChild(separator);
+                
+                // گروه‌بندی کلمات repeat به خطوط
+                let repeatLineDiv = document.createElement('div');
+                repeatLineDiv.className = 'line';
+                repeatLineDiv.style.background = '#fff9c4';
+                repeatLineDiv.style.border = '2px solid #ffc107';
+                
+                repeatWords.forEach((wordData, repeatIndex) => {
+                    const wordSpan = document.createElement('span');
+                    wordSpan.className = 'word';
+                    // حذف شماره - فقط کلمه را نمایش بده
+                    wordSpan.textContent = wordData.word;
+                    wordSpan.setAttribute('data-index', wordData.globalIndex);
+                    
+                    (function(idx) {
+                        wordSpan.addEventListener('click', function() {
+                            console.log('کلیک روی کلمه repeat:', wordData.word, 'index:', idx);
+                            recordWord(idx);
+                        });
+                        
+                        // راست کلیک برای context menu
+                        wordSpan.addEventListener('contextmenu', function(e) {
+                            e.preventDefault();
+                            selectedWordIndex = idx;
+                            showContextMenu(e.clientX, e.clientY, wordData.word);
+                        });
+                    })(wordData.globalIndex);
+                    
+                    repeatLineDiv.appendChild(wordSpan);
+                    
+                    // هر 10 کلمه یک خط جدید
+                    if ((repeatIndex + 1) % 10 === 0 && repeatIndex < repeatWords.length - 1) {
+                        container.appendChild(repeatLineDiv);
+                        repeatLineDiv = document.createElement('div');
+                        repeatLineDiv.className = 'line';
+                        repeatLineDiv.style.background = '#fff9c4';
+                        repeatLineDiv.style.border = '2px solid #ffc107';
+                    }
+                });
+                
+                // اضافه کردن آخرین خط (اگر کلمه دارد)
+                if (repeatLineDiv.children.length > 0) {
+                    container.appendChild(repeatLineDiv);
+                }
+            }
+            
+            updateWordStyles();
+        }
+
+        // ضبط کلمه
+        function recordWord(index) {
+            console.log('recordWord called:', {
+                index: index,
+                currentWordIndex: currentWordIndex,
+                mode: currentMode,
+                audioTime: audio.currentTime
+            });
+            
+            if (currentMode !== 'record') {
+                console.log('❌ حالت record نیست');
+                alert('لطفاً ابتدا به حالت ضبط بروید!');
+                return;
+            }
+            
+            // ✅ حذف محدودیت - اجازه کلیک روی هر کلمه
+            // if (index !== currentWordIndex) {
+            //     console.log('❌ index مطابقت ندارد');
+            //     alert(`لطفاً روی کلمه "${allWords[currentWordIndex].word}" کلیک کنید`);
+            //     return;
+            // }
+            
+            const currentTime = audio.currentTime;
+            const wordData = allWords[index];
+            
+            // 🎵 تشخیص خودکار Beat بعدی (اگر فاصله زمانی > 3 ثانیه)
+            let isBeatChange = false;
+            let timeDiff = 0;
+            
+            if (recordedTimings.length > 0) {
+                const lastTiming = recordedTimings[recordedTimings.length - 1];
+                timeDiff = currentTime - lastTiming.start;
+                
+                if (timeDiff > 3.0) {
+                    isBeatChange = true;
+                    console.log('🎵 فاصله زیاد تشخیص داده شد (' + timeDiff.toFixed(2) + 's) - احتمالاً Beat بعدی');
+                }
+            }
+            
+            console.log('✅ ضبط کلمه:', wordData.word, 'در زمان:', currentTime);
+            
+            // نمایش indicator
+            if (isBeatChange) {
+                showSpaceIndicator(true, `🎵 Beat بعدی! (${timeDiff.toFixed(1)}s)`);
+            } else {
+                showSpaceIndicator(false, '✅ ضبط شد!');
+            }
+            
+            recordedTimings.push({
+                word: wordData.word,
+                start: parseFloat(currentTime.toFixed(2)),
+                end: null, // محاسبه در انتها
+                index: index
+            });
+            
+            // ✅ به جای استفاده از currentWordIndex، از index پاس شده استفاده کنیم
+            currentWordIndex = index + 1;
+            
+            updateStats();
+            updateWordStyles();
+            updateRecordedList();
+            
+            // صدای تیک (optional)
+            const beep = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBStzy/LVgzsKHGix6+mtWRQMUrDn77FdGAg+mtv0xnciBDJ+zPLTfjMIHGix6+mtWRQMUrDn77FdGAg+mtv0xnciBDJ+zPLTfjMI');
+            beep.play().catch(e => console.log('Beep failed'));
+            
+            // اگر همه کلمات ضبط شد
+            if (currentWordIndex >= allWords.length) {
+                finishRecording();
+            }
+        }
+        
+        // نمایش Space Indicator
+        function showSpaceIndicator(isBeatWarning = false, message = '✅ ضبط شد!') {
+            const indicator = document.getElementById('space-indicator');
+            if (!indicator) return;
+            
+            // تنظیم متن و استایل
+            indicator.textContent = message;
+            
+            if (isBeatWarning) {
+                indicator.classList.add('beat-warning');
+            } else {
+                indicator.classList.remove('beat-warning');
+            }
+            
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+                indicator.classList.remove('beat-warning');
+                indicator.textContent = '✅ ضبط شد!';
+            }, 800);
+        }
+        
+        // تکرار آخرین کلمه (برای موارد Repeat)
+        function repeatLastWord() {
+            if (currentMode !== 'record') {
+                alert('لطفاً به حالت ضبط بروید!');
+                return;
+            }
+            
+            if (recordedTimings.length === 0) {
+                alert('هنوز هیچ کلمه‌ای ضبط نشده!');
+                return;
+            }
+            
+            const currentTime = audio.currentTime;
+            const lastRecorded = recordedTimings[recordedTimings.length - 1];
+            
+            console.log('🔁 تکرار کلمه:', lastRecorded.word, 'در زمان:', currentTime);
+            
+            // نمایش indicator
+            showSpaceIndicator();
+            
+            recordedTimings.push({
+                word: lastRecorded.word,
+                start: parseFloat(currentTime.toFixed(2)),
+                end: null,
+                index: lastRecorded.index,
+                isRepeat: true
+            });
+            
+            updateStats();
+            updateRecordedList();
+            
+            // صدای تیک
+            const beep = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBStzy/LVgzsKHGix6+mtWRQMUrDn77FdGAg+mtv0xnciBDJ+zPLTfjMIHGix6+mtWRQMUrDn77FdGAg+mtv0xnciBDJ+zPLTfjMI');
+            beep.play().catch(e => console.log('Beep failed'));
+        }
+        
+        // تکرار بخش کامل (مثلاً 4 خط آخر)
+        function repeatSection() {
+            if (currentMode !== 'record') {
+                alert('لطفاً به حالت ضبط بروید!');
+                return;
+            }
+            
+            if (recordedTimings.length === 0) {
+                alert('هنوز هیچ کلمه‌ای ضبط نشده!');
+                return;
+            }
+            
+            // پرسیدن چند کلمه آخر رو تکرار کنه
+            const count = prompt('چند کلمه آخر رو می‌خواید تکرار کنید؟\n(مثلاً برای 4 خط، حدود 20-30 کلمه)', '20');
+            
+            if (!count || isNaN(count)) return;
+            
+            const numWords = parseInt(count);
+            const wordsToRepeat = recordedTimings.slice(-numWords);
+            
+            if (wordsToRepeat.length === 0) {
+                alert('کلمه‌ای برای تکرار وجود ندارد!');
+                return;
+            }
+            
+            const confirmed = confirm(`آیا مطمئنید می‌خواهید ${wordsToRepeat.length} کلمه آخر رو تکرار کنید؟\n\nاولین کلمه: "${wordsToRepeat[0].word}"\nآخرین کلمه: "${wordsToRepeat[wordsToRepeat.length-1].word}"`);
+            
+            if (!confirmed) return;
+            
+            // ذخیره موقعیت فعلی
+            const sectionStartIndex = currentWordIndex;
+            
+            console.log(`🔁📄 تکرار ${wordsToRepeat.length} کلمه از بخش قبلی`);
+            
+            // اضافه کردن کلمات به لیست برای ضبط
+            wordsToRepeat.forEach(wordData => {
+                allWords.push({
+                    word: wordData.word,
+                    lineIndex: -1, // مشخص کننده repeat
+                    wordIndex: -1,
+                    globalIndex: allWords.length,
+                    isRepeatSection: true,
+                    originalIndex: wordData.index
+                });
+            });
+            
+            // آپدیت تعداد کل
+            document.getElementById('total-words').textContent = allWords.length;
+            
+            // رندر مجدد
+            renderLyrics();
+            
+            // نمایش دکمه پرش
+            document.getElementById('jump-repeat-btn').style.display = 'inline-block';
+            
+            alert(`✅ ${wordsToRepeat.length} کلمه اضافه شد!\n\nحالا می‌تونید با Space ضبط کنید.\n\nیا از دکمه "⏩ پرش به بخش تکراری" برای پرش استفاده کنید.`);
+        }
+        
+        // پرش به بخش تکراری
+        function jumpToRepeatSection() {
+            // پیدا کردن اولین کلمه از بخش تکراری
+            const firstRepeatIndex = allWords.findIndex(w => w.isRepeatSection);
+            
+            if (firstRepeatIndex === -1) {
+                alert('هنوز بخش تکراری اضافه نشده!');
+                return;
+            }
+            
+            // پیدا کردن timing آن کلمه در recordedTimings
+            const firstRepeatWord = allWords[firstRepeatIndex];
+            
+            // اگر این کلمه قبلاً ضبط شده، به زمان آن برو
+            const recordedRepeat = recordedTimings.find(t => 
+                t.index === firstRepeatIndex || 
+                (t.isRepeat && t.word === firstRepeatWord.word)
+            );
+            
+            if (recordedRepeat) {
+                audio.currentTime = recordedRepeat.start;
+                currentWordIndex = firstRepeatIndex;
+                updateWordStyles();
+                alert(`⏩ رفتید به بخش تکراری!\n\nکلمه: "${firstRepeatWord.word}"\nزمان: ${formatTime(recordedRepeat.start)}`);
+            } else {
+                // اگر هنوز ضبط نشده، فقط به اون کلمه در لیست برو
+                currentWordIndex = firstRepeatIndex;
+                updateWordStyles();
+                alert(`⏩ رفتید به بخش تکراری!\n\nکلمه بعدی برای ضبط: "${firstRepeatWord.word}"`);
+            }
+        }
+
+        // برگشت آخرین
+        function undoLast() {
+            if (recordedTimings.length === 0) return;
+            
+            recordedTimings.pop();
+            currentWordIndex--;
+            updateStats();
+            updateWordStyles();
+            updateRecordedList();
+            
+            document.getElementById('export-section').style.display = 'none';
+            document.getElementById('export-btn').disabled = true;
+        }
+
+        // شروع مجدد
+        function resetRecording() {
+            if (!confirm('آیا مطمئنید می‌خواهید همه ضبط‌ها حذف شوند؟')) return;
+            
+            recordedTimings = [];
+            currentWordIndex = 0;
+            audio.currentTime = 0;
+            audio.pause();
+            
+            updateStats();
+            updateWordStyles();
+            updateRecordedList();
+            
+            document.getElementById('export-section').style.display = 'none';
+            document.getElementById('export-btn').disabled = true;
+        }
+
+        // آپدیت استایل کلمات
+        function updateWordStyles() {
+            const wordElements = document.querySelectorAll('.word');
+            
+            wordElements.forEach((wordElement) => {
+                const wordIndex = parseInt(wordElement.getAttribute('data-index'));
+                
+                wordElement.classList.remove('recorded', 'next-to-record', 'active');
+                
+                // چک کنیم آیا این کلمه ضبط شده
+                const isRecorded = recordedTimings.some(t => t.index === wordIndex);
+                
+                if (isRecorded) {
+                    wordElement.classList.add('recorded');
+                    
+                    // اگر کلمه repeat است، آیکون اضافه کن
+                    const timing = recordedTimings.find(t => t.index === wordIndex);
+                    if (timing && timing.isRepeat && !wordElement.textContent.includes('🔁')) {
+                        wordElement.textContent = '🔁 ' + wordElement.textContent;
+                    }
+                } else if (wordIndex === currentWordIndex) {
+                    wordElement.classList.add('next-to-record');
+                    
+                    // Auto-scroll به کلمه بعدی
+                    wordElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center',
+                        inline: 'center'
+                    });
+                }
+            });
+        }
+
+        // آپدیت آمار
+        function updateStats() {
+            document.getElementById('recorded-count').textContent = recordedTimings.length;
+            const progress = Math.round((recordedTimings.length / allWords.length) * 100);
+            document.getElementById('progress-percent').textContent = progress + '%';
+            document.getElementById('progress').style.width = progress + '%';
+            document.getElementById('progress').textContent = progress + '%';
+        }
+
+        // آپدیت لیست ضبط شده
+        function updateRecordedList() {
+            const container = document.getElementById('recorded-items');
+            container.innerHTML = '';
+            
+            recordedTimings.slice(-10).reverse().forEach((item, reverseIndex) => {
+                const actualIndex = recordedTimings.length - 1 - reverseIndex;
+                const div = document.createElement('div');
+                div.className = 'recorded-item';
+                const repeatIcon = item.isRepeat ? '🔁 ' : '';
+                div.innerHTML = `
+                    <div>
+                        <div class="word-text">${repeatIcon}${item.word}</div>
+                        <div class="time-text">${formatTime(item.start)}</div>
+                    </div>
+                    <button onclick="removeRecording(${actualIndex})">❌</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // حذف یک ضبط
+        function removeRecording(index) {
+            recordedTimings.splice(index, 1);
+            currentWordIndex = recordedTimings.length;
+            updateStats();
+            updateWordStyles();
+            updateRecordedList();
+        }
+
+        // اتمام ضبط
+        function finishRecording() {
+            // محاسبه end time برای هر کلمه
+            for (let i = 0; i < recordedTimings.length; i++) {
+                if (i < recordedTimings.length - 1) {
+                    recordedTimings[i].end = recordedTimings[i + 1].start;
+                } else {
+                    // آخرین کلمه: 2 ثانیه بعد
+                    recordedTimings[i].end = parseFloat((recordedTimings[i].start + 2).toFixed(2));
+                }
+            }
+            
+            alert('🎉 تبریک! همه کلمات ضبط شدند!\n\nحالا می‌تونید فایل JSON رو دانلود کنید.');
+            document.getElementById('export-btn').disabled = false;
+            showExport();
+        }
+
+        // نمایش JSON
+        function showExport() {
+            const output = generateJSON();
+            document.getElementById('json-output').textContent = JSON.stringify(output, null, 2);
+            document.getElementById('export-section').style.display = 'block';
+        }
+
+        // تولید JSON
+        function generateJSON() {
+            // گروه‌بندی به خطوط
+            const lines = [];
+            let currentLine = {
+                line: '',
+                start: null,
+                end: null,
+                words: []
+            };
+            
+            let lastLineIndex = -1;
+            recordedTimings.forEach((timing, index) => {
+                const wordData = allWords[timing.index];
+                
+                if (wordData.lineIndex !== lastLineIndex) {
+                    if (currentLine.words.length > 0) {
+                        currentLine.line = currentLine.words.map(w => w.word).join(' ');
+                        currentLine.end = currentLine.words[currentLine.words.length - 1].end;
+                        lines.push(currentLine);
+                    }
+                    currentLine = {
+                        line: '',
+                        start: timing.start,
+                        end: null,
+                        words: []
+                    };
+                    lastLineIndex = wordData.lineIndex;
+                }
+                
+                currentLine.words.push(timing);
+            });
+            
+            if (currentLine.words.length > 0) {
+                currentLine.line = currentLine.words.map(w => w.word).join(' ');
+                currentLine.end = currentLine.words[currentLine.words.length - 1].end;
+                lines.push(currentLine);
+            }
+            
+            return {
+                metadata: {
+                    title: "الشدای",
+                    artist: "Michael Card",
+                    audioUrl: "https://www.kalameh.com/sites/default/files/songs/mp3/El%20Shaddai%20in%20Farsi.mp3",
+                    totalDuration: lines.length > 0 ? lines[lines.length - 1].end : 0,
+                    wordCount: recordedTimings.length,
+                    lineCount: lines.length,
+                    recordedAt: new Date().toISOString(),
+                    recordingMethod: "manual"
+                },
+                words: recordedTimings,
+                lines: lines
+            };
+        }
+
+        // دریافت JSON
+        function exportJSON() {
+            showExport();
+        }
+
+        // کپی JSON
+        function copyJSON() {
+            const output = generateJSON();
+            const text = JSON.stringify(output, null, 2);
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ JSON با موفقیت کپی شد!');
+            });
+        }
+
+        // دانلود JSON
+        function downloadJSON() {
+            const output = generateJSON();
+            const text = JSON.stringify(output, null, 2);
+            const blob = new Blob([text], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'song_1_timing_manual.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // تغییر حالت
+        function setMode(mode) {
+            currentMode = mode;
+            
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const info = document.querySelector('.info');
+            const infoTitle = document.getElementById('info-title');
+            const infoContent = document.getElementById('info-content');
+            
+            if (mode === 'record') {
+                info.classList.add('recording');
+                infoTitle.textContent = '📝 دستورالعمل ضبط:';
+                infoContent.innerHTML = `
+                    <li>🎵 موزیک رو پلی کنید (دکمه P)</li>
+                    <li>⌨️ <strong>Space</strong>: وقتی خواننده کلمه رو می‌خونه</li>
+                    <li>🔁 <strong>R</strong>: تکرار یک کلمه (مثلاً Chorus)</li>
+                    <li>🔁📄 <strong>S</strong>: تکرار یک بخش کامل (مثلاً 4 پاراگراف آخر)</li>
+                    <li>⏩ <strong>J</strong>: پرش به بخش تکراری</li>
+                    <li>🎵 <strong>A</strong>: اضافه کردن کلمات در زمان فعلی</li>
+                    <li>📋 <strong>راست کلیک</strong> روی کلمه برای کپی به انتها</li>
+                    <li>📋 <strong>C</strong>: کپی کلمه انتخاب شده به انتها</li>
+                    <li>👆 یا روی کلمه زرد کلیک کنید</li>
+                    <li>📜 متن خودکار اسکرول میشه</li>
+                    <li>✅ کلمات ضبط شده سبز، تکراری‌ها 🔁 دارن</li>
+                    <li>↶ <strong>Ctrl+Z</strong>: برگشت</li>
+                `;
+            } else {
+                info.classList.remove('recording');
+                infoTitle.textContent = '▶️ حالت پخش:';
+                infoContent.innerHTML = `
+                    <li>🎵 موزیک رو پلی کنید و کلمات ضبط شده رو ببینید</li>
+                    <li>✨ کلمات خودکار با صدای خواننده هایلایت میشن</li>
+                    <li>🔄 برای ویرایش به حالت ضبط برگردید</li>
+                `;
+            }
+        }
+
+        // حالت پخش
+        function updatePlayback(time) {
+            if (currentMode !== 'playback') return;
+            
+            const wordElements = document.querySelectorAll('.word');
+            let foundActive = false;
+            
+            recordedTimings.forEach((timing, index) => {
+                const wordElement = wordElements[timing.index];
+                if (!wordElement) return;
+                
+                wordElement.classList.remove('active');
+                
+                if (time >= timing.start && time <= timing.end) {
+                    wordElement.classList.add('active');
+                    foundActive = true;
+                    wordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        }
+
+        // کنترل‌ها
+        function skipBack() {
+            audio.currentTime = Math.max(0, audio.currentTime - 5);
+        }
+
+        function skipForward() {
+            audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+        }
+
+        function togglePlayPause() {
+            if (audio.paused) audio.play();
+            else audio.pause();
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // راه‌اندازی
+        window.addEventListener('DOMContentLoaded', () => {
+            audio = document.getElementById('audio');
+            
+            processLyrics();
+            
+            audio.addEventListener('timeupdate', () => {
+                const currentTime = audio.currentTime;
+                document.getElementById('current-time').textContent = formatTime(currentTime);
+                
+                if (currentMode === 'playback') {
+                    updatePlayback(currentTime);
+                }
+            });
+            
+            // میانبرها - اضافه کردن به window به جای document
+            window.addEventListener('keydown', (e) => {
+                // اجازه به input/textarea برای تایپ عادی
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                
+                console.log('Key pressed:', e.key, 'Mode:', currentMode);
+                
+                switch(e.key) {
+                    case ' ':
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Space pressed! Current word index:', currentWordIndex);
+                        if (currentMode === 'record') {
+                            recordWord(currentWordIndex);
+                        } else {
+                            togglePlayPause();
+                        }
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        skipBack();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        skipForward();
+                        break;
+                    case 'z':
+                    case 'Z':
+                        if (e.ctrlKey) {
+                            e.preventDefault();
+                            undoLast();
+                        }
+                        break;
+                    case 'p':
+                    case 'P':
+                        e.preventDefault();
+                        togglePlayPause();
+                        break;
+                    case 'r':
+                    case 'R':
+                        e.preventDefault();
+                        repeatLastWord();
+                        break;
+                    case 's':
+                    case 'S':
+                        e.preventDefault();
+                        console.log('S pressed - calling repeatSection');
+                        repeatSection();
+                        break;
+                    case 'j':
+                    case 'J':
+                        e.preventDefault();
+                        jumpToRepeatSection();
+                        break;
+                    case 'c':
+                    case 'C':
+                        e.preventDefault();
+                        // اگر کلمه‌ای انتخاب شده، آن را کپی کن
+                        if (selectedWordIndex !== null) {
+                            copyWordToEnd();
+                        } else {
+                            console.log('⚠️ هیچ کلمه‌ای انتخاب نشده - ابتدا روی یک کلمه راست کلیک کنید');
+                        }
+                        break;
+                    case 'a':
+                    case 'A':
+                        e.preventDefault();
+                        // اضافه کردن کلمات در زمان فعلی
+                        findWordsAtCurrentTime();
+                        break;
+                }
+            }, true); // استفاده از capture phase
+            
+            // اطمینان از focus روی body
+            document.body.setAttribute('tabindex', '0');
+            document.body.focus();
+            
+            // کلیک روی هر جای صفحه → focus
+            document.body.addEventListener('click', (e) => {
+                document.body.focus();
+                
+                // بستن context menu اگر کلیک خارج از menu بود
+                const contextMenu = document.getElementById('context-menu');
+                if (contextMenu && !contextMenu.contains(e.target)) {
+                    contextMenu.classList.remove('show');
+                }
+            });
+            
+            // نمایش وضعیت focus
+            document.body.addEventListener('focus', () => {
+                console.log('Body focused - keyboard ready!');
+            });
+            
+            document.body.addEventListener('blur', () => {
+                console.log('Body lost focus - click anywhere to refocus');
+            });
+        });
+
+        // ===============================
+        // توابع Context Menu
+        // ===============================
+        
+        function showContextMenu(x, y, word) {
+            if (currentMode === 'playback') {
+                console.log('⚠️ Context menu فقط در حالت record فعال است');
+                return;
+            }
+            
+            const menu = document.getElementById('context-menu');
+            menu.style.left = x + 'px';
+            menu.style.top = y + 'px';
+            menu.classList.add('show');
+            console.log('📋 Context menu باز شد برای:', word);
+        }
+        
+        function copyWordToEnd() {
+            if (selectedWordIndex === null) return;
+            
+            const wordData = allWords.find(w => w.globalIndex === selectedWordIndex);
+            if (!wordData) {
+                console.log('⚠️ کلمه پیدا نشد');
+                return;
+            }
+            
+            // ایجاد کپی از کلمه
+            const newWord = {
+                word: wordData.word,
+                globalIndex: allWords.length,
+                isRepeatSection: true,
+                copiedFrom: selectedWordIndex
+            };
+            
+            allWords.push(newWord);
+            console.log('✅ کلمه به انتها کپی شد:', wordData.word);
+            
+            renderLyrics();
+            closeContextMenu();
+        }
+        
+        function copyMultipleToEnd() {
+            if (selectedWordIndex === null) return;
+            
+            const count = prompt('چند کلمه از این نقطه کپی شود؟', '3');
+            if (!count) return;
+            
+            const numWords = parseInt(count);
+            if (isNaN(numWords) || numWords < 1) {
+                alert('لطفاً یک عدد معتبر وارد کنید');
+                return;
+            }
+            
+            // پیدا کردن کلمه انتخاب شده
+            const selectedWord = allWords.find(w => w.globalIndex === selectedWordIndex);
+            if (!selectedWord) {
+                alert('❌ کلمه پیدا نشد!');
+                return;
+            }
+            
+            // فقط کلمات اصلی (غیر repeat)
+            const mainWords = allWords.filter(w => !w.isRepeatSection);
+            
+            console.log('📊 اطلاعات کپی:');
+            console.log('- کلمه انتخاب شده:', selectedWord.word, 'با index:', selectedWordIndex);
+            console.log('- تعداد کلمات اصلی:', mainWords.length);
+            console.log('- تعداد درخواستی:', numWords);
+            
+            // پیدا کردن موقعیت در لیست اصلی
+            const startIdx = mainWords.findIndex(w => w.globalIndex === selectedWordIndex);
+            if (startIdx === -1) {
+                alert('❌ کلمه در لیست اصلی پیدا نشد!');
+                return;
+            }
+            
+            console.log('- موقعیت در لیست اصلی:', startIdx);
+            console.log('- کلمات باقی‌مانده از این نقطه:', mainWords.length - startIdx);
+            
+            // کپی کردن کلمات از لیست اصلی
+            let copiedCount = 0;
+            const copiedWords = [];
+            for (let i = 0; i < numWords && (startIdx + i) < mainWords.length; i++) {
+                const wordData = mainWords[startIdx + i];
+                const newWord = {
+                    word: wordData.word,
+                    globalIndex: allWords.length,
+                    isRepeatSection: true,
+                    copiedFrom: wordData.globalIndex
+                };
+                allWords.push(newWord);
+                copiedWords.push(wordData.word);
+                copiedCount++;
+            }
+            
+            console.log('✅ کلمات کپی شده:', copiedWords.join(', '));
+            console.log(`✅ ${copiedCount} کلمه به انتها کپی شد`);
+            
+            // نمایش پیغام موفقیت
+            showSpaceIndicator(false, `✅ ${copiedCount} کلمه اضافه شد!`);
+            
+            renderLyrics();
+            closeContextMenu();
+        }
+        
+        function jumpToWord() {
+            if (selectedWordIndex === null) return;
+            
+            currentWordIndex = selectedWordIndex;
+            console.log('⏩ پرش به کلمه با index:', selectedWordIndex);
+            
+            // اگر این کلمه قبلاً ضبط شده، به زمان آن برو
+            const timing = recordedTimings.find(t => t.index === selectedWordIndex);
+            if (timing && audio.currentTime !== undefined) {
+                audio.currentTime = timing.start;
+                console.log('🕐 زمان صوت تنظیم شد به:', timing.start);
+            }
+            
+            updateWordStyles();
+            closeContextMenu();
+        }
+        
+        function closeContextMenu() {
+            const menu = document.getElementById('context-menu');
+            menu.classList.remove('show');
+            selectedWordIndex = null;
+        }
+        
+        // ===============================
+        // پیدا کردن و اضافه کردن کلمات در زمان فعلی
+        // ===============================
+        
+        function findWordsAtCurrentTime() {
+            if (!audio || currentMode !== 'record') return;
+            
+            const currentTime = audio.currentTime;
+            const timeWindow = 2.0; // 2 ثانیه قبل و بعد
+            
+            // پیدا کردن کلماتی که در این بازه زمانی ضبط شده‌اند
+            const wordsInRange = recordedTimings.filter(t => {
+                return Math.abs(t.start - currentTime) <= timeWindow;
+            });
+            
+            if (wordsInRange.length === 0) {
+                alert('❌ هیچ کلمه‌ای در این زمان پیدا نشد!\n\nزمان فعلی: ' + currentTime.toFixed(2) + 's\nبه جایی که کلمات هستند برگردید.');
+                return;
+            }
+            
+            // نمایش لیست کلمات
+            const wordsList = wordsInRange.map((t, i) => 
+                `${i + 1}. ${t.word} (${t.start.toFixed(2)}s)`
+            ).join('\n');
+            
+            const choice = prompt(
+                `🎵 کلمات در این زمان:\n\n${wordsList}\n\n` +
+                `چند کلمه به انتها اضافه شود؟\n` +
+                `(یا "همه" برای اضافه کردن همه)`,
+                wordsInRange.length.toString()
+            );
+            
+            if (!choice) return;
+            
+            let numToAdd;
+            if (choice.toLowerCase() === 'همه' || choice.toLowerCase() === 'all') {
+                numToAdd = wordsInRange.length;
+            } else {
+                numToAdd = parseInt(choice);
+                if (isNaN(numToAdd) || numToAdd < 1) {
+                    alert('لطفاً یک عدد معتبر وارد کنید');
+                    return;
+                }
+                numToAdd = Math.min(numToAdd, wordsInRange.length);
+            }
+            
+            // اضافه کردن کلمات به انتها
+            for (let i = 0; i < numToAdd; i++) {
+                const timing = wordsInRange[i];
+                const originalWord = allWords.find(w => w.globalIndex === timing.index);
+                
+                if (originalWord) {
+                    const newWord = {
+                        word: originalWord.word,
+                        globalIndex: allWords.length,
+                        isRepeatSection: true,
+                        copiedFrom: timing.index,
+                        originalTime: timing.start
+                    };
+                    allWords.push(newWord);
+                }
+            }
+            
+            console.log(`✅ ${numToAdd} کلمه به انتها اضافه شد`);
+            renderLyrics();
+            
+            // پیام موفقیت
+            showSpaceIndicator(false, `✅ ${numToAdd} کلمه اضافه شد!`);
+        }
+    </script>
+    
+    <div class="space-indicator" id="space-indicator">✅ ضبط شد!</div>
+    
+    <!-- Context Menu -->
+    <div class="context-menu" id="context-menu">
+        <div class="context-menu-item" onclick="copyWordToEnd()">
+            <span class="icon">📋</span>
+            <span>کپی به انتها (C)</span>
+        </div>
+        <div class="context-menu-item" onclick="copyMultipleToEnd()">
+            <span class="icon">📄</span>
+            <span>کپی چند کلمه به انتها</span>
+        </div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" onclick="jumpToWord()">
+            <span class="icon">⏩</span>
+            <span>پرش به این کلمه</span>
+        </div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" onclick="closeContextMenu()">
+            <span class="icon">❌</span>
+            <span>بستن</span>
+        </div>
+    </div>
+</body>
+</html>

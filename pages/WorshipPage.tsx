@@ -5,8 +5,6 @@ import { useContent } from '../hooks/useContent';
 import { Youtube, FileText, FileMusic } from 'lucide-react';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
-import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
-import ChordLyricsDisplay from '../components/ChordLyricsDisplay';
 import { getRandomImage } from '../lib/theme';
 
 // 🔹 کارت نمایش سرود
@@ -136,39 +134,18 @@ const WorshipPage: React.FC = () => {
               <h1 className="text-5xl font-bold mb-4">{songs[selectedSongIndex].title?.[lang]}</h1>
               <p className="text-2xl text-gray-400 mb-8">{songs[selectedSongIndex].artist}</p>
 
-              {songs[selectedSongIndex].audioUrl ? (
-                <>
-                  <LocalAudioPlayerWithSyncedLyrics
-                    audioUrl={songs[selectedSongIndex].audioUrl}
-                    lyrics={songs[selectedSongIndex].lyrics?.[lang]}
-                    lang={lang}
-                    title={songs[selectedSongIndex].title?.[lang]}
-                    artist={songs[selectedSongIndex].artist}
-                  />
-                  {songs[selectedSongIndex].youtubeId && (
-                    <div className="mt-4">
-                      <a
-                        href={`https://www.youtube.com/watch?v=${songs[selectedSongIndex].youtubeId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold"
-                      >
-                        🎥 {lang === 'fa' ? 'مشاهده ویدیو' : 'Watch Video'}
-                      </a>
-                    </div>
-                  )}
-                </>
-              ) : songs[selectedSongIndex].youtubeId ? (
-                <div className="text-center">
-                  <a
-                    href={`https://www.youtube.com/watch?v=${songs[selectedSongIndex].youtubeId}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold"
-                  >
-                    🎥 {lang === 'fa' ? 'مشاهده در یوتیوب' : 'Watch on YouTube'}
-                  </a>
-                </div>
+              {songs[selectedSongIndex].youtubeId ? (
+                <YouTubePlayerWithLyrics
+                  youtubeId={songs[selectedSongIndex].youtubeId}
+                  text={songs[selectedSongIndex].lyrics?.[lang]}
+                  lang={lang}
+                />
+              ) : songs[selectedSongIndex].audioUrl ? (
+                <AudioPlayerWithLyrics
+                  src={songs[selectedSongIndex].audioUrl}
+                  text={songs[selectedSongIndex].lyrics?.[lang]}
+                  lang={lang}
+                />
               ) : (
                 <p className="text-gray-400 text-lg">{t('noMedia')}</p>
               )}
@@ -201,18 +178,19 @@ const WorshipPage: React.FC = () => {
           {/* Popup Modal for Song Details */}
           {activeSong && (
             <div 
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/80 z-50 overflow-y-auto"
               onClick={(e) => {
                 if (e.target === e.currentTarget) setActiveSong(null);
               }}
             >
-              <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto">
-                <button
-                  onClick={() => setActiveSong(null)}
-                  className="absolute top-4 right-4 bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10 flex items-center justify-center"
-                >
-                  ✕
-                </button>
+              <div className="min-h-screen flex items-start justify-center p-4 py-8">
+                <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto">
+                  <button
+                    onClick={() => setActiveSong(null)}
+                    className="sticky top-0 right-0 float-right bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10 mb-2"
+                  >
+                    ✕
+                  </button>
 
                 <h2 className="text-3xl font-bold mb-2 text-center">{activeSong.title?.[lang]}</h2>
                 <p className="text-gray-400 text-center mb-2">{activeSong.artist}</p>
@@ -230,70 +208,18 @@ const WorshipPage: React.FC = () => {
 
                 {/* پخش ویدیو یا صدا */}
                 <div className="mb-6">
-                  {/* اولویت با پلیر صوتی + متن هایلایت شده */}
-                  {activeSong.audioUrl ? (
-                    <>
-                      <LocalAudioPlayerWithSyncedLyrics
-                        audioUrl={activeSong.audioUrl}
-                        lyrics={activeSong.lyrics?.[lang]}
-                        chords={(activeSong as any)?.chords}
-                        notation={activeSong.notation}
-                        lang={lang}
-                        title={activeSong.title?.[lang]}
-                        artist={activeSong.artist}
-                        showChords={false}
-                      />
-                      {/* لینک یوتیوب اگر موجود باشد */}
-                      {activeSong.youtubeId && (
-                        <div className="mt-4 text-center">
-                          <a
-                            href={`https://www.youtube.com/watch?v=${activeSong.youtubeId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold"
-                          >
-                            🎥 {lang === 'fa' ? 'مشاهده ویدیو در یوتیوب' : 'Watch on YouTube'}
-                          </a>
-                        </div>
-                      )}
-                      {/* نمایش آکوردها و نوت‌ها زیر پلیر */}
-                      <div className="mt-6">
-                        <ChordLyricsDisplay
-                          lyrics={activeSong.lyrics?.[lang]}
-                          chords={(activeSong as any)?.chords}
-                          notation={activeSong.notation}
-                          lang={lang}
-                          showChords={true}
-                        />
-                      </div>
-                    </>
-                  ) : activeSong.youtubeId ? (
-                    <>
-                      {/* فقط اگر MP3 نداشته باشد، یوتیوب نمایش بده */}
-                      <div className="bg-black/40 rounded-lg p-4 border border-gray-700">
-                        <div className="text-center mb-4">
-                          <p className="text-gray-400 mb-4">{lang === 'fa' ? 'فایل صوتی موجود نیست، مشاهده در یوتیوب:' : 'No audio file, watch on YouTube:'}</p>
-                          <a
-                            href={`https://www.youtube.com/watch?v=${activeSong.youtubeId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold"
-                          >
-                            🎥 {lang === 'fa' ? 'مشاهده در یوتیوب' : 'Watch on YouTube'}
-                          </a>
-                        </div>
-                      </div>
-                      {/* نمایش آکوردها و متن */}
-                      <div className="mt-6">
-                        <ChordLyricsDisplay
-                          lyrics={activeSong.lyrics?.[lang]}
-                          chords={(activeSong as any)?.chords}
-                          notation={activeSong.notation}
-                          lang={lang}
-                          showChords={true}
-                        />
-                      </div>
-                    </>
+                  {activeSong.youtubeId ? (
+                    <YouTubePlayerWithLyrics
+                      youtubeId={activeSong.youtubeId}
+                      text={activeSong.lyrics?.[lang]}
+                      lang={lang}
+                    />
+                  ) : activeSong.audioUrl ? (
+                    <AudioPlayerWithLyrics
+                      src={activeSong.audioUrl}
+                      text={activeSong.lyrics?.[lang]}
+                      lang={lang}
+                    />
                   ) : (
                     <p className="text-center text-gray-500">{t('noMedia')}</p>
                   )}
@@ -343,17 +269,29 @@ const WorshipPage: React.FC = () => {
                   )}
                 </div>
 
-                {/* شعر - فقط اگر آکورد و نوت جدا نباشند */}
-                {!((activeSong as any)?.chords || activeSong.notation) && activeSong.lyrics?.[lang] && (
-                  <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
-                    <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'متن سرود' : 'Lyrics'}</h3>
+                {/* شعر - همیشه نمایش بده */}
+                <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
+                  <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'متن سرود' : 'Lyrics'}</h3>
+                  {activeSong.lyrics?.[lang] ? (
                     <pre className="whitespace-pre-wrap text-gray-200 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                       {activeSong.lyrics[lang]}
                     </pre>
-                  </div>
-                )}
+                  ) : (
+                    <p className="text-center text-gray-400">{lang === 'fa' ? 'متن موجود نیست' : 'No lyrics provided'}</p>
+                  )}
+                </div>
 
-                {/* نوت موسیقی - حذف شد چون در ChordLyricsDisplay نمایش داده می‌شود */}
+                {/* نوت موسیقی - همیشه نمایش بده */}
+                <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
+                  <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'نوت موسیقی' : 'Notation'}</h3>
+                  {activeSong.notation ? (
+                    <pre className="whitespace-pre-wrap text-gray-200 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                      {activeSong.notation}
+                    </pre>
+                  ) : (
+                    <p className="text-center text-gray-400">{lang === 'fa' ? 'نوت موجود نیست' : 'No notation'}</p>
+                  )}
+                </div>
 
                 {/* توضیحات - همیشه نمایش بده */}
                 <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
@@ -384,6 +322,7 @@ const WorshipPage: React.FC = () => {
                     <p className="text-center text-gray-400">{lang === 'fa' ? 'فایلی موجود نیست' : 'No attachments'}</p>
                   )}
                 </div>
+              </div>
               </div>
             </div>
           )}

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست Whisper Timing - الشدای</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .artist {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        
+        .audio-player {
+            margin-bottom: 30px;
+        }
+        
+        audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .lyrics-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            line-height: 2.5;
+            font-size: 1.3em;
+        }
+        
+        .word {
+            display: inline-block;
+            margin: 0 4px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .word.active {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            transform: scale(1.2);
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .word.upcoming {
+            background: #e3f2fd;
+        }
+        
+        .line {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .line.active {
+            background: #fff3e0;
+        }
+        
+        .stats {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8eaf6;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .info {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 تست Whisper Timing</h1>
+        <p class="artist">الشدای - Michael Card</p>
+        
+        <div class="info">
+            ℹ️ این تست از timing خودکار Whisper API استفاده می‌کنه
+        </div>
+        
+        <div class="audio-player">
+            <audio id="audio" controls>
+                <source src="https://www.kalameh.com/sites/default/files/songs/mp3/El%20Shaddai%20in%20Farsi.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <div class="controls">
+            <button onclick="skipBack()">⏮ -5 ثانیه</button>
+            <button onclick="skipForward()">⏭ +5 ثانیه</button>
+            <button onclick="resetAudio()">🔄 شروع مجدد</button>
+        </div>
+        
+        <div id="lyrics-container" class="lyrics-container">
+            <div class="loading">در حال بارگذاری...</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">زمان فعلی</div>
+                <div class="stat-value" id="current-time">0:00</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">کلمه فعلی</div>
+                <div class="stat-value" id="current-word">-</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">تعداد کلمات</div>
+                <div class="stat-value" id="total-words">0</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">تعداد خطوط</div>
+                <div class="stat-value" id="total-lines">0</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timingData = null;
+        let audio = null;
+        let currentWordIndex = -1;
+        let currentLineIndex = -1;
+
+        // بارگذاری timing data
+        async function loadTimingData() {
+            try {
+                const response = await fetch('public/worship/data/timings/song_1_timing.json');
+                if (!response.ok) {
+                    throw new Error('فایل timing یافت نشد');
+                }
+                timingData = await response.json();
+                
+                console.log('Timing data loaded:', timingData);
+                
+                // نمایش آمار
+                document.getElementById('total-words').textContent = timingData.metadata.wordCount;
+                document.getElementById('total-lines').textContent = timingData.metadata.lineCount;
+                
+                // رندر کلمات
+                renderLyrics();
+            } catch (error) {
+                console.error('خطا در بارگذاری timing data:', error);
+                document.getElementById('lyrics-container').innerHTML = `
+                    <div class="error">
+                        ❌ خطا در بارگذاری فایل timing:<br>
+                        ${error.message}<br><br>
+                        لطفاً مطمئن شوید که فایل timing تولید شده است.
+                    </div>
+                `;
+            }
+        }
+
+        // رندر کلمات و خطوط
+        function renderLyrics() {
+            if (!timingData) return;
+            
+            const container = document.getElementById('lyrics-container');
+            container.innerHTML = '';
+            
+            timingData.lines.forEach((line, lineIndex) => {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'line';
+                lineDiv.setAttribute('data-line-index', lineIndex);
+                
+                line.words.forEach((wordData, wordIndexInLine) => {
+                    const wordSpan = document.createElement('span');
+                    wordSpan.className = 'word';
+                    wordSpan.textContent = wordData.word;
+                    wordSpan.setAttribute('data-start', wordData.start);
+                    wordSpan.setAttribute('data-end', wordData.end);
+                    wordSpan.setAttribute('data-line-index', lineIndex);
+                    
+                    lineDiv.appendChild(wordSpan);
+                });
+                
+                container.appendChild(lineDiv);
+            });
+        }
+
+        // آپدیت کلمه فعلی
+        function updateCurrentWord(time) {
+            if (!timingData) return;
+            
+            const allWords = document.querySelectorAll('.word');
+            let foundActiveWord = false;
+            
+            allWords.forEach((wordElement) => {
+                const start = parseFloat(wordElement.getAttribute('data-start'));
+                const end = parseFloat(wordElement.getAttribute('data-end'));
+                const lineIndex = parseInt(wordElement.getAttribute('data-line-index'));
+                
+                // حذف کلاس‌های قبلی
+                wordElement.classList.remove('active', 'upcoming');
+                
+                // کلمه فعلی
+                if (time >= start && time <= end) {
+                    wordElement.classList.add('active');
+                    foundActiveWord = true;
+                    
+                    // آپدیت آمار
+                    document.getElementById('current-word').textContent = wordElement.textContent;
+                    
+                    // اسکرول به کلمه فعلی
+                    wordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // هایلایت خط فعلی
+                    document.querySelectorAll('.line').forEach(line => {
+                        line.classList.remove('active');
+                    });
+                    const activeLine = document.querySelector(`[data-line-index="${lineIndex}"]`);
+                    if (activeLine) {
+                        activeLine.classList.add('active');
+                    }
+                }
+                // کلمه‌های آینده (در 2 ثانیه آینده)
+                else if (time < start && start - time <= 2) {
+                    wordElement.classList.add('upcoming');
+                }
+            });
+            
+            if (!foundActiveWord) {
+                document.getElementById('current-word').textContent = '-';
+            }
+        }
+
+        // فرمت زمان
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // کنترل‌های پخش
+        function skipBack() {
+            if (audio) {
+                audio.currentTime = Math.max(0, audio.currentTime - 5);
+            }
+        }
+
+        function skipForward() {
+            if (audio) {
+                audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+            }
+        }
+
+        function resetAudio() {
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }
+
+        // راه‌اندازی
+        window.addEventListener('DOMContentLoaded', async () => {
+            audio = document.getElementById('audio');
+            
+            // بارگذاری timing data
+            await loadTimingData();
+            
+            // رویداد timeupdate
+            audio.addEventListener('timeupdate', () => {
+                const currentTime = audio.currentTime;
+                document.getElementById('current-time').textContent = formatTime(currentTime);
+                updateCurrentWord(currentTime);
+            });
+            
+            // رویداد ended
+            audio.addEventListener('ended', () => {
+                document.querySelectorAll('.word').forEach(w => {
+                    w.classList.remove('active', 'upcoming');
+                });
+                document.querySelectorAll('.line').forEach(l => {
+                    l.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

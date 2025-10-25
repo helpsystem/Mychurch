@@ -6,6 +6,13 @@ interface LyricLine {
   text: string;
 }
 
+interface WordWithTime {
+  word: string;
+  startTime: number;
+  endTime: number;
+  lineIndex: number;
+}
+
 interface Props {
   audioUrl: string;
   lyrics?: string; // متن کامل آهنگ (فقط متن، بدون آکورد)
@@ -16,6 +23,9 @@ interface Props {
   title?: string;
   artist?: string;
   showChords?: boolean; // نمایش آکوردها
+  lineDelay?: number; // تاخیر اول موزیک قبل از شروع خواندن (ثانیه)
+  lineDuration?: number; // مدت زمان هر خط (ثانیه) - پیش‌فرض: 3
+  wordDurationRatio?: number; // نسبت سرعت کلمات (0.5 = نصف سرعت، 2 = دو برابر) - پیش‌فرض: 1
 }
 
 const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
@@ -27,7 +37,10 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   lang = 'fa',
   title,
   artist,
-  showChords = false
+  showChords = false,
+  lineDelay = 0,
+  lineDuration = 3,
+  wordDurationRatio = 1
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const lyricsContainerRef = useRef<HTMLDivElement>(null);
@@ -38,6 +51,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [currentLyricIndex, setCurrentLyricIndex] = useState(-1);
+  const [currentWordIndex, setCurrentWordIndex] = useState(-1);
+  const [syncAdjustment, setSyncAdjustment] = useState(0); // تنظیم تاخیر (+ یا -)
+  const [showSyncControls, setShowSyncControls] = useState(false);
 
   // پردازش متن و تبدیل به خطوط با زمان‌بندی تقریبی
   const processedLyrics: LyricLine[] = React.useMemo(() => {
@@ -45,7 +61,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       return lyricLines;
     }
     
-    if (!lyrics) return [];
+    if (!lyrics) {
+      return [];
+    }
     
     // حذف آکوردهای درون‌خطی مثل [Em], [G], [F], [C#/A]
     let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
@@ -68,12 +86,38 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       return true; // همه خطوط دیگر را نگه دار
     });
     
-    // زمان‌بندی تقریبی (فرض: هر خط 3 ثانیه)
+    // زمان‌بندی تقریبی (با lineDelay و lineDuration قابل تنظیم)
     return cleanedLines.map((line, index) => ({
-      time: index * 3,
+      time: lineDelay + (index * lineDuration) + syncAdjustment,
       text: line.trim()
     }));
-  }, [lyrics, lyricLines]);
+  }, [lyrics, lyricLines, lineDelay, lineDuration, syncAdjustment]);
+
+  // تبدیل خطوط به کلمات با زمان‌بندی
+  const wordsWithTiming: WordWithTime[] = React.useMemo(() => {
+    const allWords: WordWithTime[] = [];
+    
+    processedLyrics.forEach((line, lineIndex) => {
+      const words = line.text.split(/\s+/).filter(w => w.trim().length > 0);
+      const lineStartTime = line.time;
+      const actualLineDuration = lineDuration; // مدت زمان خط
+      const wordDuration = words.length > 0 ? (actualLineDuration / words.length) * wordDurationRatio : 0.4;
+      
+      words.forEach((word, wordIndex) => {
+        const startTime = lineStartTime + (wordIndex * wordDuration);
+        const endTime = startTime + wordDuration;
+        
+        allWords.push({
+          word: word.trim(),
+          startTime,
+          endTime,
+          lineIndex
+        });
+      });
+    });
+    
+    return allWords;
+  }, [processedLyrics, lineDuration, wordDurationRatio]);
 
   // به‌روزرسانی زمان فعلی
   useEffect(() => {
@@ -124,6 +168,24 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       }
     }
   }, [currentTime, processedLyrics, currentLyricIndex]);
+
+  // تشخیص کلمه فعلی بر اساس زمان
+  useEffect(() => {
+    if (wordsWithTiming.length === 0) return;
+
+    // پیدا کردن کلمه‌ای که زمان فعلی در بازه‌ی آن قرار دارد
+    let activeWordIndex = -1;
+    for (let i = 0; i < wordsWithTiming.length; i++) {
+      if (currentTime >= wordsWithTiming[i].startTime && currentTime < wordsWithTiming[i].endTime) {
+        activeWordIndex = i;
+        break;
+      }
+    }
+
+    if (activeWordIndex !== currentWordIndex) {
+      setCurrentWordIndex(activeWordIndex);
+    }
+  }, [currentTime, wordsWithTiming, currentWordIndex]);
 
   // کنترل پخش/توقف
   const togglePlay = () => {
@@ -202,7 +264,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Lyrics Display with Sync - Centered */}
+      {/* Lyrics Display with Word-by-Word Sync - Centered */}
       {processedLyrics.length > 0 && (
         <div 
           ref={lyricsContainerRef}
@@ -210,35 +272,103 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
           dir={lang === 'fa' ? 'rtl' : 'ltr'}
         >
           <div className="w-full text-center space-y-4">
-            {processedLyrics.map((line, index) => (
-              <p
-                key={index}
-                className={`text-2xl leading-relaxed transition-all duration-500 cursor-pointer ${
-                  index === currentLyricIndex
-                    ? 'text-yellow-400 font-bold scale-110 drop-shadow-[0_0_12px_rgba(250,204,21,0.9)] animate-pulse'
-                    : index < currentLyricIndex
-                    ? 'text-gray-600 opacity-50'
-                    : 'text-gray-300 opacity-70'
-                }`}
-                style={{
-                  transform: index === currentLyricIndex ? 'scale(1.1)' : 'scale(1)',
-                  transition: 'all 0.5s ease-in-out'
-                }}
-                onClick={() => {
-                  if (audioRef.current) {
-                    audioRef.current.currentTime = line.time;
-                  }
-                }}
-              >
-                {line.text}
-              </p>
-            ))}
+            {processedLyrics.map((line, lineIndex) => {
+              const lineWords = line.text.split(/\s+/).filter(w => w.trim().length > 0);
+              
+              return (
+                <p
+                  key={lineIndex}
+                  className={`text-2xl leading-relaxed transition-all duration-300 cursor-pointer ${
+                    lineIndex < currentLyricIndex
+                      ? 'text-gray-600 opacity-50'
+                      : lineIndex > currentLyricIndex
+                      ? 'text-gray-300 opacity-70'
+                      : 'text-gray-200'
+                  }`}
+                  onClick={() => {
+                    if (audioRef.current) {
+                      audioRef.current.currentTime = line.time;
+                    }
+                  }}
+                >
+                  {lineWords.map((word, wordIndex) => {
+                    // پیدا کردن index این کلمه در لیست کامل کلمات
+                    const globalWordIndex = wordsWithTiming.findIndex(
+                      w => w.lineIndex === lineIndex && w.word === word
+                    );
+                    
+                    const isActiveWord = globalWordIndex === currentWordIndex;
+                    const isInActiveLine = lineIndex === currentLyricIndex;
+                    
+                    return (
+                      <span
+                        key={`${lineIndex}-${wordIndex}`}
+                        className={`inline-block mx-1 transition-all duration-200 ${
+                          isActiveWord && isInActiveLine
+                            ? 'text-yellow-400 font-bold scale-125 drop-shadow-[0_0_15px_rgba(250,204,21,1)] animate-pulse'
+                            : isInActiveLine
+                            ? 'text-white'
+                            : ''
+                        }`}
+                        style={{
+                          transform: isActiveWord && isInActiveLine ? 'scale(1.25)' : 'scale(1)',
+                          transition: 'all 0.2s ease-in-out'
+                        }}
+                      >
+                        {word}
+                      </span>
+                    );
+                  })}
+                </p>
+              );
+            })}
           </div>
         </div>
       )}
 
       {/* Controls */}
       <div className="p-6 bg-gradient-to-t from-gray-900 to-gray-800">
+        {/* Sync Adjustment Controls */}
+        <div className="mb-4">
+          <button
+            onClick={() => setShowSyncControls(!showSyncControls)}
+            className="text-xs text-gray-400 hover:text-white transition-colors flex items-center gap-2 mb-2"
+          >
+            ⚙️ {showSyncControls ? 'پنهان کردن' : 'تنظیم هماهنگی متن'}
+          </button>
+          
+          {showSyncControls && (
+            <div className="bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-700">
+              <div className="flex items-center justify-between gap-4 mb-3">
+                <span className="text-sm text-gray-300">تاخیر متن:</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setSyncAdjustment(prev => prev - 0.5)}
+                    className="px-3 py-1 bg-red-600 hover:bg-red-500 rounded text-sm"
+                  >
+                    ← زودتر
+                  </button>
+                  <span className="text-white font-mono min-w-[60px] text-center">
+                    {syncAdjustment > 0 ? '+' : ''}{syncAdjustment.toFixed(1)}s
+                  </span>
+                  <button
+                    onClick={() => setSyncAdjustment(prev => prev + 0.5)}
+                    className="px-3 py-1 bg-green-600 hover:bg-green-500 rounded text-sm"
+                  >
+                    دیرتر →
+                  </button>
+                </div>
+              </div>
+              <button
+                onClick={() => setSyncAdjustment(0)}
+                className="w-full px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm text-gray-300"
+              >
+                بازنشانی
+              </button>
+            </div>
+          )}
+        </div>
+
         {/* Progress Bar */}
         <div className="mb-4">
           <input

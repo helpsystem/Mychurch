@@ -17,7 +17,7 @@ export const login = async (loginData: { email: string; password: string; }): Pr
 };
 
 export const adminLogin = async (loginData: { email: string; password: string; }): Promise<{user: User, token: string}> => {
-  return api.post('/api/auth/login', loginData);
+  return api.post('/api/auth/admin-login', loginData);
 };
 
 export const logout = () => {
