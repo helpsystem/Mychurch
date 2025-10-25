@@ -8,20 +8,26 @@ interface LyricLine {
 
 interface Props {
   audioUrl: string;
-  lyrics?: string; // متن کامل آهنگ
+  lyrics?: string; // متن کامل آهنگ (فقط متن، بدون آکورد)
+  chords?: string; // آکوردها جداگانه
+  notation?: string; // نوت‌های موسیقی جداگانه
   lyricLines?: LyricLine[]; // اگر زمان‌بندی دقیق دارید
   lang?: string;
   title?: string;
   artist?: string;
+  showChords?: boolean; // نمایش آکوردها
 }
 
 const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   audioUrl,
   lyrics,
+  chords,
+  notation,
   lyricLines,
   lang = 'fa',
   title,
-  artist
+  artist,
+  showChords = false
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const lyricsContainerRef = useRef<HTMLDivElement>(null);
@@ -41,11 +47,27 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     
     if (!lyrics) return [];
     
+    // حذف آکوردها از متن اگر درون متن باشند
+    let cleanLyrics = lyrics;
+    
+    // تشخیص و حذف خطوط آکورد (خطوطی که فقط شامل حروف انگلیسی، #, b, m هستند)
+    const lines = lyrics.split('\n');
+    const cleanedLines = lines.filter(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return true; // خطوط خالی را نگه دار
+      
+      // اگر خط فقط آکورد است (حروف انگلیسی + # و b و m)
+      const isChordLine = /^[A-G#bm\/\s\d]+$/.test(trimmed) && trimmed.length < 80;
+      return !isChordLine; // خطوط آکورد را حذف کن
+    });
+    
+    cleanLyrics = cleanedLines.join('\n');
+    
     // تقسیم متن به خطوط
-    const lines = lyrics.split('\n').filter(line => line.trim());
+    const finalLines = cleanLyrics.split('\n').filter(line => line.trim());
     
     // زمان‌بندی تقریبی (فرض: هر خط 4 ثانیه)
-    return lines.map((line, index) => ({
+    return finalLines.map((line, index) => ({
       time: index * 4,
       text: line.trim()
     }));

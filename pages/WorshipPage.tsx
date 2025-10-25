@@ -6,6 +6,7 @@ import { Youtube, FileText, FileMusic } from 'lucide-react';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
 import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
+import ChordLyricsDisplay from '../components/ChordLyricsDisplay';
 import { getRandomImage } from '../lib/theme';
 
 // 🔹 کارت نمایش سرود
@@ -212,19 +213,47 @@ const WorshipPage: React.FC = () => {
                 {/* پخش ویدیو یا صدا */}
                 <div className="mb-6">
                   {activeSong.youtubeId ? (
-                    <YouTubePlayerWithLyrics
-                      youtubeId={activeSong.youtubeId}
-                      text={activeSong.lyrics?.[lang]}
-                      lang={lang}
-                    />
+                    <>
+                      <YouTubePlayerWithLyrics
+                        youtubeId={activeSong.youtubeId}
+                        text={activeSong.lyrics?.[lang]}
+                        lang={lang}
+                      />
+                      {/* نمایش آکوردها و نوت‌ها زیر ویدیو */}
+                      <div className="mt-6">
+                        <ChordLyricsDisplay
+                          lyrics={activeSong.lyrics?.[lang]}
+                          chords={(activeSong as any)?.chords}
+                          notation={activeSong.notation}
+                          lang={lang}
+                          showChords={true}
+                        />
+                      </div>
+                    </>
                   ) : activeSong.audioUrl ? (
-                    <LocalAudioPlayerWithSyncedLyrics
-                      audioUrl={activeSong.audioUrl}
-                      lyrics={activeSong.lyrics?.[lang]}
-                      lang={lang}
-                      title={activeSong.title?.[lang]}
-                      artist={activeSong.artist}
-                    />
+                    <>
+                      <LocalAudioPlayerWithSyncedLyrics
+                        audioUrl={activeSong.audioUrl}
+                        lyrics={activeSong.lyrics?.[lang]}
+                        chords={(activeSong as any)?.chords}
+                        notation={activeSong.notation}
+                        lang={lang}
+                        title={activeSong.title?.[lang]}
+                        artist={activeSong.artist}
+                        showChords={false}
+                      />
+                      {/* نمایش آکوردها و نوت‌ها زیر پلیر */}
+                      {((activeSong as any)?.chords || activeSong.notation) && (
+                        <div className="mt-6">
+                          <ChordLyricsDisplay
+                            chords={(activeSong as any)?.chords}
+                            notation={activeSong.notation}
+                            lang={lang}
+                            showChords={true}
+                          />
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <p className="text-center text-gray-500">{t('noMedia')}</p>
                   )}
@@ -274,29 +303,17 @@ const WorshipPage: React.FC = () => {
                   )}
                 </div>
 
-                {/* شعر - همیشه نمایش بده */}
-                <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
-                  <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'متن سرود' : 'Lyrics'}</h3>
-                  {activeSong.lyrics?.[lang] ? (
+                {/* شعر - فقط اگر آکورد و نوت جدا نباشند */}
+                {!((activeSong as any)?.chords || activeSong.notation) && activeSong.lyrics?.[lang] && (
+                  <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
+                    <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'متن سرود' : 'Lyrics'}</h3>
                     <pre className="whitespace-pre-wrap text-gray-200 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
                       {activeSong.lyrics[lang]}
                     </pre>
-                  ) : (
-                    <p className="text-center text-gray-400">{lang === 'fa' ? 'متن موجود نیست' : 'No lyrics provided'}</p>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                {/* نوت موسیقی - همیشه نمایش بده */}
-                <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
-                  <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'نوت موسیقی' : 'Notation'}</h3>
-                  {activeSong.notation ? (
-                    <pre className="whitespace-pre-wrap text-gray-200 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                      {activeSong.notation}
-                    </pre>
-                  ) : (
-                    <p className="text-center text-gray-400">{lang === 'fa' ? 'نوت موجود نیست' : 'No notation'}</p>
-                  )}
-                </div>
+                {/* نوت موسیقی - حذف شد چون در ChordLyricsDisplay نمایش داده می‌شود */}
 
                 {/* توضیحات - همیشه نمایش بده */}
                 <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
