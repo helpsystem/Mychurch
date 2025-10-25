@@ -47,11 +47,11 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     
     if (!lyrics) return [];
     
-    // حذف آکوردها از متن اگر درون متن باشند
-    let cleanLyrics = lyrics;
+    // حذف آکوردهای درون‌خطی مثل [Em], [G], [F]
+    let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?\/?\w*)\]/g, '');
     
-    // تشخیص و حذف خطوط آکورد (خطوطی که فقط شامل حروف انگلیسی، #, b, m هستند)
-    const lines = lyrics.split('\n');
+    // حذف خطوط آکورد (خطوطی که فقط شامل حروف انگلیسی، #, b, m هستند)
+    const lines = cleanLyrics.split('\n');
     const cleanedLines = lines.filter(line => {
       const trimmed = line.trim();
       if (!trimmed) return true; // خطوط خالی را نگه دار
