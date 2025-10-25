@@ -177,12 +177,17 @@ const WorshipPage: React.FC = () => {
 
           {/* Popup Modal for Song Details */}
           {activeSong && (
-            <div className="fixed inset-0 bg-black/80 z-50 overflow-y-auto">
-              <div className="min-h-screen flex items-start justify-center p-6 pt-10">
-                <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative my-8">
+            <div 
+              className="fixed inset-0 bg-black/80 z-50 overflow-y-auto"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) setActiveSong(null);
+              }}
+            >
+              <div className="min-h-screen flex items-start justify-center p-4 py-8">
+                <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto">
                   <button
                     onClick={() => setActiveSong(null)}
-                    className="absolute top-3 right-3 bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10"
+                    className="sticky top-0 right-0 float-right bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10 mb-2"
                   >
                     ✕
                   </button>
