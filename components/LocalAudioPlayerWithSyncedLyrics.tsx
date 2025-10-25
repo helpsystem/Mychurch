@@ -47,27 +47,29 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     
     if (!lyrics) return [];
     
-    // حذف آکوردهای درون‌خطی مثل [Em], [G], [F]
-    let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?\/?\w*)\]/g, '');
+    // حذف آکوردهای درون‌خطی مثل [Em], [G], [F], [C#/A]
+    let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
     
-    // حذف خطوط آکورد (خطوطی که فقط شامل حروف انگلیسی، #, b, m هستند)
-    const lines = cleanLyrics.split('\n');
-    const cleanedLines = lines.filter(line => {
-      const trimmed = line.trim();
-      if (!trimmed) return true; // خطوط خالی را نگه دار
-      
-      // اگر خط فقط آکورد است (حروف انگلیسی + # و b و m)
-      const isChordLine = /^[A-G#bm\/\s\d]+$/.test(trimmed) && trimmed.length < 80;
-      return !isChordLine; // خطوط آکورد را حذف کن
-    });
-    
-    cleanLyrics = cleanedLines.join('\n');
+    // حذف برچسب‌های V1, V2, Chorus و ...
+    cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
     
     // تقسیم متن به خطوط
-    const finalLines = cleanLyrics.split('\n').filter(line => line.trim());
+    const lines = cleanLyrics.split('\n');
+    
+    // فیلتر خطوط خالی و خطوط فقط آکورد
+    const cleanedLines = lines.filter(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return false; // خطوط خالی را حذف کن
+      
+      // اگر خط فقط شامل حروف انگلیسی، #, b, m, /, فاصله و اعداد است (بدون متن فارسی/انگلیسی)
+      const isChordOnlyLine = /^[A-G#bm\/\s\d\[\]]+$/.test(trimmed);
+      if (isChordOnlyLine) return false;
+      
+      return true; // همه خطوط دیگر را نگه دار
+    });
     
     // زمان‌بندی تقریبی (فرض: هر خط 3 ثانیه)
-    return finalLines.map((line, index) => ({
+    return cleanedLines.map((line, index) => ({
       time: index * 3,
       text: line.trim()
     }));

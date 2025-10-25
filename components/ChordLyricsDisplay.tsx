@@ -15,11 +15,11 @@ const ChordLyricsDisplay: React.FC<Props> = ({
   lang = 'fa',
   showChords = true
 }) => {
-  // استخراج آکوردهای درون‌خطی از متن (مثل [Em], [G], [F])
+  // استخراج آکوردهای درون‌خطی از متن (مثل [Em], [G], [F], [C#/A])
   const extractInlineChords = (text: string): { cleanLyrics: string; extractedChords: string } => {
     if (!text) return { cleanLyrics: '', extractedChords: '' };
     
-    const chordPattern = /\[([A-G][#b]?m?\d?\/?\w*)\]/g;
+    const chordPattern = /\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g;
     const chords: string[] = [];
     let cleanText = text;
     
@@ -33,6 +33,22 @@ const ChordLyricsDisplay: React.FC<Props> = ({
     
     // حذف آکوردها از متن
     cleanText = text.replace(chordPattern, '');
+    
+    // حذف برچسب‌های V1, V2, Chorus و ...
+    cleanText = cleanText.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
+    
+    // حذف خطوط فقط آکورد
+    const lines = cleanText.split('\n');
+    const filteredLines = lines.filter(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return true; // خطوط خالی را نگه دار
+      
+      // اگر خط فقط شامل آکورد است
+      const isChordOnlyLine = /^[A-G#bm\/\s\d\[\]]+$/.test(trimmed);
+      return !isChordOnlyLine;
+    });
+    
+    cleanText = filteredLines.join('\n');
     
     return {
       cleanLyrics: cleanText,
