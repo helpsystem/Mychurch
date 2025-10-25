@@ -1,0 +1,30 @@
+{
+  "songId": 1,
+  "title": "El Shaddai",
+  "language": "fa",
+  "duration": 245,
+  "timepoints": [
+    { "time": 0.0, "word": "" },
+    { "time": 12.5, "word": "الشدای" },
+    { "time": 14.2, "word": "الشدای" },
+    { "time": 16.8, "word": "خدای" },
+    { "time": 18.1, "word": "کوهستان" },
+    { "time": 19.5, "word": "ها" },
+    { "time": 21.3, "word": "از" },
+    { "time": 22.1, "word": "نسلی" },
+    { "time": 23.4, "word": "به" },
+    { "time": 24.0, "word": "نسل" },
+    { "time": 24.8, "word": "دیگر" },
+    { "time": 26.5, "word": "همان" },
+    { "time": 27.8, "word": "هستی" },
+    { "time": 28.9, "word": "تو" },
+    { "time": 30.5, "word": "با" },
+    { "time": 31.2, "word": "قدرت" },
+    { "time": 32.6, "word": "نامت" }
+  ],
+  "metadata": {
+    "createdBy": "Manual",
+    "createdAt": "2025-01-24",
+    "notes": "Sample timepoints for El Shaddai chorus section"
+  }
+}

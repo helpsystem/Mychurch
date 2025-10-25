@@ -36,7 +36,7 @@ conn.on('ready', () => {
   // تست یک دستور ساده
   console.log('📋 اجرای دستور تست: pwd && whoami\n');
   
-  conn.exec('pwd && whoami && node --version 2>/dev/null || echo "Node not found" && npm --version 2>/dev/null || echo "npm not found" && pm2 --version 2>/dev/null || echo "PM2 not found" && ls -la /home/samanabyar/public_html/ 2>/dev/null || echo "Directory not found"', (err, stream) => {
+  conn.exec('pwd && whoami && node --version 2>/dev/null || echo "Node not found" && pm2 --version 2>/dev/null || echo "PM2 not found"', (err, stream) => {
     if (err) {
       console.log('❌ خطا در اجرای دستور:', err.message);
       conn.end();

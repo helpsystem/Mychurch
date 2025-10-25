@@ -149,6 +149,7 @@ export interface WorshipSong {
   presentationFileUrl?: string;
   pdfFileUrl?: string;
   sheetMusicUrl?: string;
+  timepoints?: Array<{ time: number; word: string }>;
 }
 
 export interface Leader {

@@ -45,33 +45,24 @@ const deployCommands = [
   // رفتن به پوشه پروژه
   `cd ${projectPath}`,
   
-  // پشتیبان از تغییرات محلی
+  // پشتیبان از شاخه فعلی
   `git stash || true`,
   
-  // دریافت آخرین تغییرات از GitHub
+  // دریافت آخرین تغییرات
   `git fetch origin`,
   `git reset --hard origin/main`,
   `git pull origin main`,
   
-  // نصب dependencies اصلی
-  `npm install`,
-  
-  // Build کردن frontend
-  `npm run build`,
-  
-  // نصب dependencies backend
+  // نصب dependencies جدید
   `cd ${projectPath}/backend`,
   `npm install --production`,
   
   // ریستارت PM2
-  `pm2 restart mychurch-backend || pm2 start server.js --name mychurch-backend`,
-  `pm2 save`,
+  `pm2 restart church-backend || pm2 start server.js --name church-backend`,
   
   // نمایش وضعیت
   `pm2 list`,
-  `echo ""`,
-  `echo "✅ Deployment completed successfully!"`,
-  `echo "🌐 Site: https://samanabyar.online"`
+  `pm2 logs church-backend --lines 10 --nostream`
 ];
 
 async function executeSSHCommands(conn) {

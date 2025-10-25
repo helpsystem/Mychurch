@@ -35,6 +35,7 @@ import LettersManager from '../components/admin/LettersManager';
 import AnnouncementsManager from '../components/admin/AnnouncementsManager';
 import { AnalyticsDashboard } from '../components/admin/AnalyticsDashboard';
 import MessageHistory from '../components/admin/MessageHistory';
+import SongsManager from '../components/admin/SongsManager';
 
 
 const AdminDashboardPage: React.FC = () => {
@@ -113,6 +114,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'dashboard', label: t('dashboard'), icon: <LayoutDashboard/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'pages', label: t('pages'), icon: <FileText/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'content', label: t('footerLinkContent'), icon: <Settings/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
+            { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'letters', label: t('navLetters'), icon: <Mail/>, roles: ['SUPER_ADMIN'] },
             { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
@@ -145,6 +147,7 @@ const AdminDashboardPage: React.FC = () => {
             case 'dashboard': return <DashboardView />;
             case 'pages': return <PagesView />;
             case 'content': return <ContentManager />;
+            case 'songs': return <SongsManager />;
             case 'testimonials': return <TestimonialsManager />;
             case 'letters': return <LettersManager />;
             case 'announcements': return <AnnouncementsManager />;

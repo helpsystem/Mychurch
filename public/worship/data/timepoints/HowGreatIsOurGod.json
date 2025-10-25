@@ -1,0 +1,36 @@
+{
+  "songId": 3,
+  "title": "How Great Is Our God",
+  "language": "fa",
+  "duration": 272,
+  "timepoints": [
+    { "time": 0.0, "word": "" },
+    { "time": 45.2, "word": "چه" },
+    { "time": 46.0, "word": "عظیم" },
+    { "time": 47.2, "word": "است" },
+    { "time": 48.1, "word": "خدای" },
+    { "time": 49.0, "word": "من" },
+    { "time": 50.5, "word": "بسرایید" },
+    { "time": 52.1, "word": "چه" },
+    { "time": 52.8, "word": "عظیم" },
+    { "time": 54.0, "word": "است" },
+    { "time": 54.9, "word": "خدای" },
+    { "time": 55.8, "word": "من" },
+    { "time": 57.5, "word": "و" },
+    { "time": 58.0, "word": "همه" },
+    { "time": 59.2, "word": "خواهند" },
+    { "time": 60.5, "word": "دید" },
+    { "time": 62.0, "word": "چقدر" },
+    { "time": 63.1, "word": "عظیم" },
+    { "time": 64.5, "word": "چقدر" },
+    { "time": 65.6, "word": "عظیم" },
+    { "time": 67.0, "word": "است" },
+    { "time": 68.2, "word": "خدای" },
+    { "time": 69.5, "word": "من" }
+  ],
+  "metadata": {
+    "createdBy": "Manual",
+    "createdAt": "2025-01-24",
+    "notes": "Sample timepoints for chorus section"
+  }
+}

@@ -1,0 +1,25 @@
+# Worship Files - Git Ignore
+
+# Audio files (usually large)
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.aac
+
+# Video files (very large)
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.webm
+
+# PowerPoint files (can be large)
+*.pptx
+*.ppt
+
+# Keep only small JSON and text files
+!*.json
+!*.txt
+!*.md
+!.gitkeep

@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "slug": "el-shaddai",
+    "title": {
+      "fa": "الشدای",
+      "en": "El Shaddai",
+      "es": "El Shaddai"
+    },
+    "artist": "Michael Card",
+    "youtubeId": "jMLhjqlVj5U",
+    "audioUrl": "/worship/audio/El_Shaddai.mp3",
+    "videoUrl": "https://www.youtube.com/embed/jMLhjqlVj5U",
+    "presentationFileUrl": "/worship/pptx/El_Shaddai.pptx",
+    "lyrics": {
+      "fa": "الشدای، الشدای\nخدای قادر مطلق\nالشدای، الشدای\nارکانا (پنهان است)\nآدونای (خداوند است)",
+      "en": "El Shaddai, El Shaddai\nEl Elyon na Adonai\nAge to age You're still the same\nBy the power of the name\nEl Shaddai, El Shaddai\nErkamka na Adonai\nWe will praise and lift You high\nEl Shaddai",
+      "es": "El Shaddai, El Shaddai\nEl Elyon na Adonai\nEdad tras edad sigues siendo el mismo\nPor el poder del nombre\nEl Shaddai, El Shaddai\nErkamka na Adonai\nTe alabaremos y te levantaremos en alto\nEl Shaddai"
+    },
+    "timepoints": [
+      { "time": 0.0, "word": "El" },
+      { "time": 0.5, "word": "Shaddai," },
+      { "time": 1.2, "word": "El" },
+      { "time": 1.7, "word": "Shaddai" },
+      { "time": 2.5, "word": "El" },
+      { "time": 3.0, "word": "Elyon" },
+      { "time": 3.5, "word": "na" },
+      { "time": 3.8, "word": "Adonai" }
+    ],
+    "tags": ["worship", "praise", "classic"],
+    "metadata": {
+      "composer": "Michael Card",
+      "year": 1982,
+      "album": "Legacy",
+      "duration": "4:32",
+      "language": "en"
+    }
+  },
+  {
+    "id": 2,
+    "slug": "pishkesh-be-khoda",
+    "title": {
+      "fa": "پیشکش به خدا",
+      "en": "Gift to God",
+      "es": "Regalo a Dios"
+    },
+    "artist": "سامان جلیلی",
+    "youtubeId": "SAMPLE_VIDEO_ID",
+    "audioUrl": "/worship/audio/Pishkesh_Be_Khoda.mp3",
+    "videoUrl": "https://www.youtube.com/embed/SAMPLE_VIDEO_ID",
+    "presentationFileUrl": "/worship/pptx/Pishkesh_Be_Khoda.pptx",
+    "lyrics": {
+      "fa": "پیشکش به خدا\nزندگی من\nپیشکش به خدا\nهر چه دارم\nپیشکش به خدا\nعشق و ایمان\nپیشکش به خدا\nتمام هستی من",
+      "en": "Gift to God\nMy life\nGift to God\nAll I have\nGift to God\nLove and faith\nGift to God\nAll my being",
+      "es": "Regalo a Dios\nMi vida\nRegalo a Dios\nTodo lo que tengo\nRegalo a Dios\nAmor y fe\nRegalo a Dios\nTodo mi ser"
+    },
+    "tags": ["persian", "worship", "dedication"],
+    "metadata": {
+      "composer": "سامان جلیلی",
+      "year": 2018,
+      "duration": "3:45",
+      "language": "fa"
+    }
+  },
+  {
+    "id": 3,
+    "slug": "how-great-is-our-god",
+    "title": {
+      "fa": "خدای ما چقدر عظیم است",
+      "en": "How Great Is Our God",
+      "es": "Cuán Grande Es Nuestro Dios"
+    },
+    "artist": "Chris Tomlin",
+    "youtubeId": "KBD18rsVJHk",
+    "audioUrl": "/worship/audio/How_Great_Is_Our_God.mp3",
+    "videoUrl": "https://www.youtube.com/embed/KBD18rsVJHk",
+    "presentationFileUrl": "/worship/pptx/How_Great_Is_Our_God.pptx",
+    "lyrics": {
+      "fa": "خدای ما چقدر عظیم است\nبخوان با من\nخدای ما چقدر عظیم است\nو همگان خواهند دید\nچقدر عظیم\nچقدر عظیم است خدای ما",
+      "en": "How great is our God\nSing with me\nHow great is our God\nAnd all will see\nHow great\nHow great is our God",
+      "es": "Cuán grande es nuestro Dios\nCanta conmigo\nCuán grande es nuestro Dios\nY todos verán\nCuán grande\nCuán grande es nuestro Dios"
+    },
+    "timepoints": [
+      { "time": 0.0, "word": "How" },
+      { "time": 0.4, "word": "great" },
+      { "time": 0.8, "word": "is" },
+      { "time": 1.1, "word": "our" },
+      { "time": 1.4, "word": "God" },
+      { "time": 2.0, "word": "Sing" },
+      { "time": 2.3, "word": "with" },
+      { "time": 2.6, "word": "me" }
+    ],
+    "tags": ["worship", "praise", "contemporary"],
+    "metadata": {
+      "composer": "Chris Tomlin",
+      "year": 2004,
+      "album": "Arriving",
+      "duration": "4:45",
+      "language": "en"
+    }
+  }
+]

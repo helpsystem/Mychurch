@@ -80,6 +80,19 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             setLoading(true);
             let apiWarningLogged = false;
             
+            // Try to load worship songs from JSON file first
+            let worshipSongsFromJSON = worshipSongsData;
+            try {
+                const response = await fetch('/worship/data/worship_songs.json');
+                if (response.ok) {
+                    const jsonData = await response.json();
+                    worshipSongsFromJSON = jsonData;
+                    console.log('✅ Loaded worship songs from JSON file:', jsonData.length, 'songs');
+                }
+            } catch (error) {
+                console.warn('⚠️ Could not load worship songs from JSON, using mock data:', error);
+            }
+            
             // Auto-configure API base URL if not set
             try {
                 const currentUrl = getApiBaseUrl();
@@ -99,7 +112,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                 { key: 'leaders', path: '/api/leaders', mockData: leadersData },
                 { key: 'sermons', path: '/api/sermons', mockData: sermonsData },
                 { key: 'events', path: '/api/events', mockData: eventsData },
-                { key: 'worshipSongs', path: '/api/worship-songs', mockData: worshipSongsData },
+                { key: 'worshipSongs', path: '/api/worship-songs', mockData: worshipSongsFromJSON },
                 { key: 'scheduleEvents', path: '/api/schedule-events', mockData: scheduleData },
                 { key: 'galleries', path: '/api/galleries', mockData: galleriesData },
                 { key: 'prayerRequests', path: '/api/prayer-requests', mockData: prayerRequestsData },
