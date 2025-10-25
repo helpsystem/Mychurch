@@ -56,6 +56,18 @@ const WorshipPage: React.FC = () => {
   const [selectedSongIndex, setSelectedSongIndex] = useState(0);
   const [activeSong, setActiveSong] = useState<WorshipSong | null>(null);
 
+  // Lock body scroll when modal is open
+  React.useEffect(() => {
+    if (activeSong) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeSong]);
+
   return (
     <div className="sm:px-16 px-6 sm:py-12 py-4">
       {/* Presentation Mode Toggle Button */}
@@ -165,14 +177,15 @@ const WorshipPage: React.FC = () => {
 
           {/* Popup Modal for Song Details */}
           {activeSong && (
-            <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-6">
-              <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full overflow-y-auto relative">
-                <button
-                  onClick={() => setActiveSong(null)}
-                  className="absolute top-3 right-3 bg-gray-800 text-white rounded-full w-10 h-10"
-                >
-                  ✕
-                </button>
+            <div className="fixed inset-0 bg-black/80 z-50 overflow-y-auto">
+              <div className="min-h-screen flex items-start justify-center p-6 pt-10">
+                <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative my-8">
+                  <button
+                    onClick={() => setActiveSong(null)}
+                    className="absolute top-3 right-3 bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10"
+                  >
+                    ✕
+                  </button>
 
                 <h2 className="text-3xl font-bold mb-2 text-center">{activeSong.title?.[lang]}</h2>
                 <p className="text-gray-400 text-center mb-2">{activeSong.artist}</p>
@@ -304,6 +317,7 @@ const WorshipPage: React.FC = () => {
                     <p className="text-center text-gray-400">{lang === 'fa' ? 'فایلی موجود نیست' : 'No attachments'}</p>
                   )}
                 </div>
+              </div>
               </div>
             </div>
           )}

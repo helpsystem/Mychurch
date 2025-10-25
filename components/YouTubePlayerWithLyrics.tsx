@@ -69,14 +69,39 @@ const YouTubePlayerWithLyrics: React.FC<Props> = ({ youtubeId, lyrics = [], text
   }, [youtubeId]);
 
   const words = (text || '').split(/\s+/);
+  const [loadError, setLoadError] = useState(false);
+
+  // Detect if iframe fails to load after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (containerRef.current && !containerRef.current.querySelector('iframe')) {
+        setLoadError(true);
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [youtubeId]);
 
   return (
     <div className="bg-black p-4 rounded-lg border border-gray-700">
       <div className={hideVideo ? 'sr-only' : ''}>
         <div
           ref={containerRef}
-          className="w-full aspect-video rounded-lg overflow-hidden bg-black"
-        />
+          className="w-full aspect-video rounded-lg overflow-hidden bg-black flex items-center justify-center"
+        >
+          {loadError && (
+            <div className="text-center p-8">
+              <p className="text-gray-400 mb-4">ویدیو در این مرورگر قابل نمایش نیست</p>
+              <a
+                href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold"
+              >
+                🎥 مشاهده در یوتیوب
+              </a>
+            </div>
+          )}
+        </div>
       </div>
 
       {!!text && (
