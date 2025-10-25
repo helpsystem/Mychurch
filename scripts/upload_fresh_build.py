@@ -61,15 +61,17 @@ sftp.close()
 
 # Verify worship folder
 print("\n4. Verifying worship folder...")
-stdin, stdout, stderr = ssh.exec_command(f"test -L {REMOTE_DIST}/worship && echo 'SYMLINK EXISTS' || test -d {REMOTE_DIST}/worship && echo 'DIR EXISTS' || echo 'NOT FOUND'")
+stdin, stdout, stderr = ssh.exec_command(f"test -d {REMOTE_DIST}/worship && echo 'DIR EXISTS' || echo 'NOT FOUND'")
 result = stdout.read().decode('utf-8').strip()
 print(f"   {result}")
 
 if result == 'NOT FOUND':
-    print("\n5. Creating worship symlink...")
-    stdin, stdout, stderr = ssh.exec_command(f"ln -s /var/www/mychurch-frontend/dist/worship {REMOTE_DIST}/worship")
-    stdout.read()
-    print("   ✅ Symlink created")
+    print("\n   ⚠️ Worship folder missing! This should have been copied during build.")
+else:
+    # Check if worship_songs.json exists
+    stdin, stdout, stderr = ssh.exec_command(f"test -f {REMOTE_DIST}/worship/data/worship_songs.json && echo 'JSON EXISTS' || echo 'JSON MISSING'")
+    json_result = stdout.read().decode('utf-8').strip()
+    print(f"   {json_result}")
 
 # Check index.html timestamp
 print("\n6. Checking deployment timestamp...")
