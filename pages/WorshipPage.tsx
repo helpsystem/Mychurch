@@ -5,6 +5,7 @@ import { useContent } from '../hooks/useContent';
 import { Youtube, FileText, FileMusic } from 'lucide-react';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
+import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
 import { getRandomImage } from '../lib/theme';
 
 // 🔹 کارت نمایش سرود
@@ -141,10 +142,12 @@ const WorshipPage: React.FC = () => {
                   lang={lang}
                 />
               ) : songs[selectedSongIndex].audioUrl ? (
-                <AudioPlayerWithLyrics
-                  src={songs[selectedSongIndex].audioUrl}
-                  text={songs[selectedSongIndex].lyrics?.[lang]}
+                <LocalAudioPlayerWithSyncedLyrics
+                  audioUrl={songs[selectedSongIndex].audioUrl}
+                  lyrics={songs[selectedSongIndex].lyrics?.[lang]}
                   lang={lang}
+                  title={songs[selectedSongIndex].title?.[lang]}
+                  artist={songs[selectedSongIndex].artist}
                 />
               ) : (
                 <p className="text-gray-400 text-lg">{t('noMedia')}</p>
@@ -215,10 +218,12 @@ const WorshipPage: React.FC = () => {
                       lang={lang}
                     />
                   ) : activeSong.audioUrl ? (
-                    <AudioPlayerWithLyrics
-                      src={activeSong.audioUrl}
-                      text={activeSong.lyrics?.[lang]}
+                    <LocalAudioPlayerWithSyncedLyrics
+                      audioUrl={activeSong.audioUrl}
+                      lyrics={activeSong.lyrics?.[lang]}
                       lang={lang}
+                      title={activeSong.title?.[lang]}
+                      artist={activeSong.artist}
                     />
                   ) : (
                     <p className="text-center text-gray-500">{t('noMedia')}</p>
