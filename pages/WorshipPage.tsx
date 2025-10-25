@@ -201,19 +201,18 @@ const WorshipPage: React.FC = () => {
           {/* Popup Modal for Song Details */}
           {activeSong && (
             <div 
-              className="fixed inset-0 bg-black/80 z-50 overflow-y-auto"
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
               onClick={(e) => {
                 if (e.target === e.currentTarget) setActiveSong(null);
               }}
             >
-              <div className="min-h-screen flex items-start justify-center p-4 py-8">
-                <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto">
-                  <button
-                    onClick={() => setActiveSong(null)}
-                    className="sticky top-0 right-0 float-right bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10 mb-2"
-                  >
-                    ✕
-                  </button>
+              <div className="bg-gray-900 rounded-2xl p-6 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto">
+                <button
+                  onClick={() => setActiveSong(null)}
+                  className="absolute top-4 right-4 bg-gray-800 text-white rounded-full w-10 h-10 hover:bg-gray-700 z-10 flex items-center justify-center"
+                >
+                  ✕
+                </button>
 
                 <h2 className="text-3xl font-bold mb-2 text-center">{activeSong.title?.[lang]}</h2>
                 <p className="text-gray-400 text-center mb-2">{activeSong.artist}</p>
@@ -385,7 +384,6 @@ const WorshipPage: React.FC = () => {
                     <p className="text-center text-gray-400">{lang === 'fa' ? 'فایلی موجود نیست' : 'No attachments'}</p>
                   )}
                 </div>
-              </div>
               </div>
             </div>
           )}
