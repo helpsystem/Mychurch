@@ -66,9 +66,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     // تقسیم متن به خطوط
     const finalLines = cleanLyrics.split('\n').filter(line => line.trim());
     
-    // زمان‌بندی تقریبی (فرض: هر خط 4 ثانیه)
+    // زمان‌بندی تقریبی (فرض: هر خط 3 ثانیه)
     return finalLines.map((line, index) => ({
-      time: index * 4,
+      time: index * 3,
       text: line.trim()
     }));
   }, [lyrics, lyricLines]);
@@ -200,32 +200,38 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Lyrics Display with Sync */}
+      {/* Lyrics Display with Sync - Centered */}
       {processedLyrics.length > 0 && (
         <div 
           ref={lyricsContainerRef}
-          className="h-64 overflow-y-auto p-6 bg-black/40 backdrop-blur-sm scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
+          className="min-h-[300px] max-h-[400px] overflow-y-auto p-8 bg-black/40 backdrop-blur-sm scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent flex items-center justify-center"
           dir={lang === 'fa' ? 'rtl' : 'ltr'}
         >
-          {processedLyrics.map((line, index) => (
-            <p
-              key={index}
-              className={`text-lg leading-relaxed mb-3 transition-all duration-300 cursor-pointer hover:scale-105 ${
-                index === currentLyricIndex
-                  ? 'text-yellow-400 font-bold scale-110 drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]'
-                  : index < currentLyricIndex
-                  ? 'text-gray-500'
-                  : 'text-gray-300'
-              }`}
-              onClick={() => {
-                if (audioRef.current) {
-                  audioRef.current.currentTime = line.time;
-                }
-              }}
-            >
-              {line.text}
-            </p>
-          ))}
+          <div className="w-full text-center space-y-4">
+            {processedLyrics.map((line, index) => (
+              <p
+                key={index}
+                className={`text-2xl leading-relaxed transition-all duration-500 cursor-pointer ${
+                  index === currentLyricIndex
+                    ? 'text-yellow-400 font-bold scale-110 drop-shadow-[0_0_12px_rgba(250,204,21,0.9)] animate-pulse'
+                    : index < currentLyricIndex
+                    ? 'text-gray-600 opacity-50'
+                    : 'text-gray-300 opacity-70'
+                }`}
+                style={{
+                  transform: index === currentLyricIndex ? 'scale(1.1)' : 'scale(1)',
+                  transition: 'all 0.5s ease-in-out'
+                }}
+                onClick={() => {
+                  if (audioRef.current) {
+                    audioRef.current.currentTime = line.time;
+                  }
+                }}
+              >
+                {line.text}
+              </p>
+            ))}
+          </div>
         </div>
       )}
 
