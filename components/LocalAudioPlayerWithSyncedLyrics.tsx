@@ -4,6 +4,7 @@ import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-rea
 interface LyricLine {
   time: number; // زمان شروع خط (به ثانیه)
   text: string;
+  words?: Array<{word: string; start: number; end: number}>; // کلمات با timing دقیق
 }
 
 interface WordWithTime {
@@ -18,7 +19,7 @@ interface Props {
   lyrics?: string; // متن کامل آهنگ (فقط متن، بدون آکورد)
   chords?: string; // آکوردها جداگانه
   notation?: string; // نوت‌های موسیقی جداگانه
-  lyricLines?: LyricLine[]; // اگر زمان‌بندی دقیق دارید
+  lyricLines?: LyricLine[]; // اگر زمان‌بندی دقیق دارید (با یا بدون words)
   lang?: string;
   title?: string;
   artist?: string;
@@ -58,6 +59,11 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   // پردازش متن و تبدیل به خطوط با زمان‌بندی تقریبی
   const processedLyrics: LyricLine[] = React.useMemo(() => {
     if (lyricLines && lyricLines.length > 0) {
+      console.log('🎵 Using precise timing with lyricLines:', {
+        lineCount: lyricLines.length,
+        firstLine: lyricLines[0],
+        hasWords: lyricLines[0]?.words?.length || 0
+      });
       return lyricLines;
     }
     
@@ -97,24 +103,55 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   const wordsWithTiming: WordWithTime[] = React.useMemo(() => {
     const allWords: WordWithTime[] = [];
     
-    processedLyrics.forEach((line, lineIndex) => {
-      const words = line.text.split(/\s+/).filter(w => w.trim().length > 0);
-      const lineStartTime = line.time;
-      const actualLineDuration = lineDuration; // مدت زمان خط
-      const wordDuration = words.length > 0 ? (actualLineDuration / words.length) * wordDurationRatio : 0.4;
-      
-      words.forEach((word, wordIndex) => {
-        const startTime = lineStartTime + (wordIndex * wordDuration);
-        const endTime = startTime + wordDuration;
+    // اگر lyricLines شامل words با timing دقیق بود، از آن استفاده کن
+    const hasWordTiming = processedLyrics.some(line => line.words && line.words.length > 0);
+    
+    console.log('🔍 Word timing check:', {
+      hasWordTiming,
+      processedLyricsCount: processedLyrics.length,
+      firstLineWords: processedLyrics[0]?.words?.length || 0
+    });
+    
+    if (hasWordTiming) {
+      console.log('✅ Using PRECISE word timing from JSON file');
+      // استفاده از timing دقیق از فایل
+      processedLyrics.forEach((line, lineIndex) => {
+        if (line.words && line.words.length > 0) {
+          line.words.forEach(wordData => {
+            allWords.push({
+              word: wordData.word,
+              startTime: wordData.start,
+              endTime: wordData.end,
+              lineIndex
+            });
+          });
+        }
+      });
+      console.log('📊 Total words loaded:', allWords.length);
+      console.log('📝 First word:', allWords[0]);
+      console.log('📝 Last word:', allWords[allWords.length - 1]);
+    } else {
+      console.log('⚠️ Using CALCULATED timing (no precise timing available)');
+      // محاسبه تقریبی timing برای کلمات
+      processedLyrics.forEach((line, lineIndex) => {
+        const words = line.text.split(/\s+/).filter(w => w.trim().length > 0);
+        const lineStartTime = line.time;
+        const actualLineDuration = lineDuration; // مدت زمان خط
+        const wordDuration = words.length > 0 ? (actualLineDuration / words.length) * wordDurationRatio : 0.4;
         
-        allWords.push({
-          word: word.trim(),
-          startTime,
-          endTime,
-          lineIndex
+        words.forEach((word, wordIndex) => {
+          const startTime = lineStartTime + (wordIndex * wordDuration);
+          const endTime = startTime + wordDuration;
+          
+          allWords.push({
+            word: word.trim(),
+            startTime,
+            endTime,
+            lineIndex
+          });
         });
       });
-    });
+    }
     
     return allWords;
   }, [processedLyrics, lineDuration, wordDurationRatio]);
@@ -127,15 +164,22 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
     const handleEnded = () => setIsPlaying(false);
+    const handleSeeked = () => {
+      // وقتی کاربر seek میکند (جلو/عقب میبرد)، فوراً زمان را به‌روزرسانی کن
+      setCurrentTime(audio.currentTime);
+      console.log('⏩ Seeked to:', audio.currentTime.toFixed(2));
+    };
 
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('loadedmetadata', updateDuration);
     audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('seeked', handleSeeked);
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateDuration);
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('seeked', handleSeeked);
     };
   }, []);
 
@@ -158,7 +202,8 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       
       // اسکرول خودکار به خط فعلی
       if (lyricsContainerRef.current && activeIndex >= 0) {
-        const activeElement = lyricsContainerRef.current.children[activeIndex] as HTMLElement;
+        const container = lyricsContainerRef.current;
+        const activeElement = container.querySelector(`p:nth-child(${activeIndex + 1})`) as HTMLElement;
         if (activeElement) {
           activeElement.scrollIntoView({
             behavior: 'smooth',
@@ -171,7 +216,10 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
 
   // تشخیص کلمه فعلی بر اساس زمان
   useEffect(() => {
-    if (wordsWithTiming.length === 0) return;
+    if (wordsWithTiming.length === 0) {
+      console.log('⚠️ No words with timing available');
+      return;
+    }
 
     // پیدا کردن کلمه‌ای که زمان فعلی در بازه‌ی آن قرار دارد
     let activeWordIndex = -1;
@@ -183,6 +231,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     }
 
     if (activeWordIndex !== currentWordIndex) {
+      if (activeWordIndex >= 0) {
+        console.log('🎯 Active word INDEX:', activeWordIndex, '→', wordsWithTiming[activeWordIndex].word, 'at', currentTime.toFixed(2));
+      }
       setCurrentWordIndex(activeWordIndex);
     }
   }, [currentTime, wordsWithTiming, currentWordIndex]);
@@ -273,7 +324,11 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         >
           <div className="w-full text-center space-y-4">
             {processedLyrics.map((line, lineIndex) => {
-              const lineWords = line.text.split(/\s+/).filter(w => w.trim().length > 0);
+              // اگر این خط words دقیق دارد، از آن استفاده کن
+              const hasWordTiming = line.words && line.words.length > 0;
+              const lineWords = hasWordTiming
+                ? line.words.map(w => w.word)
+                : line.text.split(/\s+/).filter(w => w.trim().length > 0);
               
               return (
                 <p
@@ -287,15 +342,41 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                   }`}
                   onClick={() => {
                     if (audioRef.current) {
+                      console.log('🎯 Seeking to line', lineIndex, 'at time:', line.time.toFixed(2));
                       audioRef.current.currentTime = line.time;
+                      setCurrentTime(line.time);
                     }
                   }}
                 >
                   {lineWords.map((word, wordIndex) => {
                     // پیدا کردن index این کلمه در لیست کامل کلمات
-                    const globalWordIndex = wordsWithTiming.findIndex(
-                      w => w.lineIndex === lineIndex && w.word === word
-                    );
+                    let globalWordIndex = -1;
+                    
+                    if (hasWordTiming) {
+                      // اگر timing دقیق داریم - پیدا کردن با lineIndex و wordIndex
+                      const wordData = line.words[wordIndex];
+                      if (wordData) {
+                        // شمارش کلمات قبل از این خط
+                        let wordsBeforeLine = 0;
+                        for (let i = 0; i < lineIndex; i++) {
+                          if (processedLyrics[i].words && processedLyrics[i].words.length > 0) {
+                            wordsBeforeLine += processedLyrics[i].words.length;
+                          }
+                        }
+                        // index نهایی = کلمات قبلی + index در خط فعلی
+                        globalWordIndex = wordsBeforeLine + wordIndex;
+                        
+                        // فقط یکبار log کن در اولین کلمه
+                        if (lineIndex === 0 && wordIndex === 0) {
+                          console.log(`🔍 First word mapping: "${word}" at line ${lineIndex}, word ${wordIndex} → global index: ${globalWordIndex}`);
+                        }
+                      }
+                    } else {
+                      // fallback به روش قبلی
+                      globalWordIndex = wordsWithTiming.findIndex(
+                        w => w.lineIndex === lineIndex && w.word === word
+                      );
+                    }
                     
                     const isActiveWord = globalWordIndex === currentWordIndex;
                     const isInActiveLine = lineIndex === currentLyricIndex;
