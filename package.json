@@ -20,12 +20,7 @@
     "type-check": "tsc --noEmit",
     "lint": "echo 'Linting not configured yet'",
     "sitemap:generate": "node scripts/generate-sitemap.js",
-    "optimize:images": "node scripts/optimize-images.js",
-    "deploy": "node deploy-to-host.cjs",
-    "deploy:ftp": "node deploy-ftp.cjs",
-    "host:update": "powershell -ExecutionPolicy Bypass -File host-update.ps1",
-    "host:restart": "node restart-server.cjs",
-    "test:ssh": "node test-ssh.cjs"
+    "optimize:images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@google/genai": "^1.9.0",
@@ -37,7 +32,6 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "howler": "^2.2.4",
     "jquery": "^3.7.1",
     "jquery-easing": "^0.0.1",
     "lucide-react": "^0.525.0",
@@ -52,8 +46,6 @@
     "rimraf": "^6.0.1",
     "serve": "^14.2.1",
     "sqlite3": "^5.1.7",
-    "ssh2": "^1.17.0",
-    "styled-components": "^6.1.19",
     "twilio": "^5.9.0",
     "zod": "^4.1.8"
   },

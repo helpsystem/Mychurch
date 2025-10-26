@@ -7,21 +7,19 @@
     "start": "node server.js",
     "dev": "node dev-server.js",
     "test": "node test-api-complete.js",
-    "test:remote": "node test-remote-access.js",
-    "pm2:start": "pm2 start server.js --name church-backend",
-    "pm2:stop": "pm2 stop church-backend",
-    "pm2:restart": "pm2 restart church-backend",
-    "pm2:logs": "pm2 logs church-backend"
+    "tts-watcher": "node services/audioFileWatcher.js",
+    "tts-test": "node services/ttsManager.js",
+    "sync-audio": "node ../scripts/sync_audio_to_server.js"
   },
   "dependencies": {
-    "@google-cloud/text-to-speech": "^6.4.0",
+    "@google-cloud/text-to-speech": "^5.5.0",
     "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.75.0",
     "axios": "^0.27.2",
+    "chokidar": "^4.0.0",
+    "ssh2-sftp-client": "^11.0.0",
     "basic-ftp": "^5.0.5",
     "bcryptjs": "^2.4.3",
-    "cheerio": "^1.1.2",
-    "chokidar": "^4.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -31,7 +29,6 @@
     "mysql2": "^3.14.2",
     "node-fetch": "^2.7.0",
     "pg": "^8.16.3",
-    "sqlite3": "^5.1.7",
-    "ssh2-sftp-client": "^12.0.1"
+    "sqlite3": "^5.1.7"
   }
 }
