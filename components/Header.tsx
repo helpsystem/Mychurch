@@ -125,10 +125,9 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
             { to: '/calendar', title: lang === 'fa' ? 'تقویم رویدادها' : 'Calendar', icon: <Bookmark size={16}/> },
         ],
         resources: [
-            { to: '/bible', title: t('navBible'), icon: <BookOpen size={16}/> },
+            { to: '/bible-presentation-sample', title: lang === 'fa' ? 'کتاب مقدس' : 'Bible Reader', icon: <BookOpen size={16}/> },
+            { to: '/bible-audio-tts', title: lang === 'fa' ? 'کتاب مقدس صوتی' : 'Audio Bible', icon: <Volume2 size={16}/> },
             { to: '/daily-devotional', title: lang === 'fa' ? 'تعبدات روزانه' : 'Daily Devotional', icon: <BookOpen size={16}/> },
-            { to: '/audio-bible', title: lang === 'fa' ? 'کتاب مقدس صوتی' : 'Audio Bible', icon: <Volume2 size={16}/> },
-            { to: '/wordproject-bible', title: lang === 'fa' ? 'کتاب مقدس وردپروجکت' : 'Wordproject Bible', icon: <BookOpen size={16}/> },
             { to: '/worship', title: lang === 'fa' ? 'سرودهای پرستشی' : 'Worship Songs', icon: <Music size={16}/> },
             { title: t('verseForToday'), icon: <Bookmark size={16} />, action: onOpenVerseModal },
             { to: '/connect', title: t('navConnectVR'), icon: <Gamepad2 size={16}/> },

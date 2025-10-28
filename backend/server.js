@@ -49,6 +49,24 @@ try {
   console.error('   Stack:', error.stack);
 }
 
+// Try to load Gemini TTS routes
+let geminiTTSRoutes;
+try {
+  geminiTTSRoutes = require('./routes/geminiTTS');
+  console.log('✅ Gemini TTS routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load Gemini TTS routes:', error.message);
+}
+
+// Load Gemini Audio Cache routes for Bible chapters
+let geminiAudioCacheRoutes;
+try {
+  geminiAudioCacheRoutes = require('./routes/geminiAudioCache');
+  console.log('✅ Gemini Audio Cache routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load Gemini Audio Cache routes:', error.message);
+}
+
 const bibleUnifiedRoutes = require('./routes/bibleUnifiedMock');
 const dailyImagesRoutes = require('./routes/dailyImagesRoutes');
 const imageGenerationService = require('./services/imageGenerationService');
@@ -211,6 +229,14 @@ app.use('/api/wordproject', wordprojectRoutes);
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
   console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');
+}
+if (geminiTTSRoutes) {
+  app.use('/api/tts/gemini', geminiTTSRoutes);
+  console.log('✅ Gemini TTS routes registered at /api/tts/gemini');
+}
+if (geminiAudioCacheRoutes) {
+  app.use('/api/bible-audio', geminiAudioCacheRoutes);
+  console.log('✅ Gemini Audio Cache routes registered at /api/bible-audio');
 }
 app.use('/api/tts', ttsRoutes);
 app.use('/api/bible-unified', bibleUnifiedRoutes);

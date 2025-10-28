@@ -26,7 +26,7 @@
     "bible:prepare": "npm run bible:index && npm run bible:align"
   },
   "dependencies": {
-    "@google/genai": "^1.9.0",
+    "@google/genai": "^1.27.0",
     "@supabase/supabase-js": "^2.58.0",
     "adm-zip": "^0.5.16",
     "axios": "^1.13.0",

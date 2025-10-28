@@ -49,6 +49,8 @@ import TestComponent from './components/TestComponent';
 import MinimalBible from './components/MinimalBible';
 import SimpleBibleReader from './components/SimpleBibleReader';
 import WorshipSongsPage from './pages/WorshipSongsPage';
+import BibleTTSPage from './pages/BibleTTSPage';
+import BibleWithTTS from './pages/BibleWithTTS';
 import BilingualPresentationDemo from './pages/BilingualPresentationDemo';
 import BilingualPresentationSample from './pages/BilingualPresentationSample';
 import BibleAudioPlayer from './pages/BibleAudioPlayer';
@@ -70,7 +72,6 @@ import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
 import AnalyticsSetup from './components/Analytics/AnalyticsSetup';
 import BibleAIChatWidget from './components/BibleAIChatWidget';
-import BibleTTSPage from './pages/BibleTTSPage';
 import BibleAdminUpload from './pages/BibleAdminUpload';
 import PersianBibleTTSPage from './pages/PersianBibleTTSPage';
 import BibleFlipbook3DPage from './pages/BibleFlipbook3DPage';
@@ -120,23 +121,8 @@ function App() {
               <Route path="sermons" element={<SermonsPage />} />
               <Route path="worship" element={<WorshipPage />} />
               <Route path="worship/:id" element={<WorshipSongViewerPage />} />
-              <Route path="bible" element={<UnifiedBibleReader />} />
-              <Route path="bible-simple" element={<SimpleBibleReader />} />
-              <Route path="bible-minimal" element={<MinimalBible />} />
-              <Route path="bible-test" element={<TestComponent />} />
-              <Route path="bible-presentation" element={<BilingualPresentationDemo />} />
               <Route path="bible-presentation-sample" element={<BilingualPresentationSample />} />
-              <Route path="bible-audio-player" element={<BibleAudioPlayer />} />
-              <Route path="tts-demo" element={<TTSDemo />} />
-              <Route path="tts-hf" element={<HuggingFaceTTSDemo />} />
-              <Route path="bible-old" element={<BibleReaderPage />} />
-              <Route path="audio-bible" element={<AudioBiblePage />} />
-              <Route path="bible/tts/:bookCode/:chapter" element={<BibleTTSPage />} />
-              <Route path="bible-fa/tts/:bookCode/:chapter" element={<PersianBibleTTSPage />} />
-              <Route path="bible/admin/upload" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><BibleAdminUpload /></ProtectedRoute>} />
-              <Route path="bible-reader" element={<BibleReaderPage />} />
-              <Route path="bible-flipbook/:bookCode/:chapter" element={<BibleFlipbook3DPage />} />
-              <Route path="bible-viewer" element={<BibleViewer />} />
+              <Route path="bible-audio-tts" element={<BibleWithTTS />} />
               <Route path="worship-songs" element={<WorshipSongsPage />} />
               <Route path="worship-presentation" element={<WorshipPresentationPage />} />
               <Route path="daily-devotional" element={<DailyDevotionalPage />} />
@@ -162,7 +148,6 @@ function App() {
               <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
               <Route path="letters/:id" element={<ProtectedRoute><LetterViewerPage /></ProtectedRoute>} />
               <Route path="p/:slug" element={<CustomPageRenderer />} />
-              <Route path="wordproject-bible" element={<WordprojectBibleReader />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
 

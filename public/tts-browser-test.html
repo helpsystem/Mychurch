@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست TTS فارسی - Web Speech API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-right: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-box ul {
+            margin-right: 20px;
+            color: #555;
+        }
+
+        .info-box li {
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-play:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-stop {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-stop:hover:not(:disabled) {
+            background: #ff5252;
+        }
+
+        .btn-pause {
+            background: #ffa726;
+            color: white;
+        }
+
+        .btn-pause:hover:not(:disabled) {
+            background: #ff9800;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .status.playing {
+            background: #e8f5e9;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+            display: block;
+        }
+
+        .samples {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .samples h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .sample-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: right;
+            transition: all 0.3s;
+        }
+
+        .sample-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 تست TTS فارسی</h1>
+        <div class="subtitle">Web Speech API - کاملاً رایگان و بدون نیاز به API</div>
+
+        <div class="info-box">
+            <h3>✨ ویژگی‌ها:</h3>
+            <ul>
+                <li>✅ کاملاً رایگان و بدون هزینه</li>
+                <li>🚀 بدون نیاز به سرور یا API key</li>
+                <li>🎯 پشتیبانی از زبان فارسی</li>
+                <li>⚡ سرعت بالا (اجرا در مرورگر)</li>
+                <li>🔊 تنظیمات سرعت، پیچ و حجم صدا</li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label>متن فارسی:</label>
+            <textarea id="textInput" placeholder="متن فارسی خود را اینجا بنویسید...">سلام، این یک تست صدای فارسی است. خداوند شما را برکت دهد.</textarea>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>صدا:</label>
+                <select id="voiceSelect">
+                    <option value="">در حال بارگذاری...</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>سرعت: <span id="rateValue">1.0</span></label>
+                <input type="range" id="rateInput" min="0.5" max="2" step="0.1" value="1" 
+                       style="width: 100%; margin-top: 5px;">
+            </div>
+
+            <div class="control-group">
+                <label>پیچ صدا: <span id="pitchValue">1.0</span></label>
+                <input type="range" id="pitchInput" min="0" max="2" step="0.1" value="1" 
+                       style="width: 100%; margin-top: 5px;">
+            </div>
+
+            <div class="control-group">
+                <label>حجم: <span id="volumeValue">1.0</span></label>
+                <input type="range" id="volumeInput" min="0" max="1" step="0.1" value="1" 
+                       style="width: 100%; margin-top: 5px;">
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-play" id="playBtn" onclick="speak()">▶️ پخش</button>
+            <button class="btn-pause" id="pauseBtn" onclick="pauseResume()" disabled>⏸️ توقف موقت</button>
+            <button class="btn-stop" id="stopBtn" onclick="stop()" disabled>⏹️ متوقف کردن</button>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="samples">
+            <h3>📝 نمونه متن‌ها:</h3>
+            <button class="sample-btn" onclick="setSample(0)">
+                خداوند شبان من است و احتیاجی ندارم
+            </button>
+            <button class="sample-btn" onclick="setSample(1)">
+                در ابتدا خدا آسمان‌ها و زمین را آفرید
+            </button>
+            <button class="sample-btn" onclick="setSample(2)">
+                زیرا خدا جهان را چنان محبت نمود که پسر یگانه خود را بخشید
+            </button>
+            <button class="sample-btn" onclick="setSample(3)">
+                محبت صبور و مهربان است، محبت حسد نمی‌برد
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const synth = window.speechSynthesis;
+        let utterance;
+        let voices = [];
+        let isPaused = false;
+
+        const samples = [
+            'خداوند شبان من است و احتیاجی ندارم',
+            'در ابتدا خدا آسمان‌ها و زمین را آفرید',
+            'زیرا خدا جهان را چنان محبت نمود که پسر یگانه خود را بخشید',
+            'محبت صبور و مهربان است، محبت حسد نمی‌برد'
+        ];
+
+        // Load voices
+        function loadVoices() {
+            voices = synth.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+
+            // Filter Persian voices or all available voices
+            const persianVoices = voices.filter(voice => 
+                voice.lang.includes('fa') || 
+                voice.lang.includes('Persian') ||
+                voice.name.includes('Persian')
+            );
+
+            const voicesToShow = persianVoices.length > 0 ? persianVoices : voices;
+
+            if (voicesToShow.length === 0) {
+                voiceSelect.innerHTML = '<option value="">هیچ صدایی موجود نیست</option>';
+                return;
+            }
+
+            voicesToShow.forEach((voice, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                if (voice.lang.includes('fa')) {
+                    option.selected = true;
+                }
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        // Load voices on page load
+        loadVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        // Update range values
+        document.getElementById('rateInput').addEventListener('input', (e) => {
+            document.getElementById('rateValue').textContent = e.target.value;
+        });
+
+        document.getElementById('pitchInput').addEventListener('input', (e) => {
+            document.getElementById('pitchValue').textContent = e.target.value;
+        });
+
+        document.getElementById('volumeInput').addEventListener('input', (e) => {
+            document.getElementById('volumeValue').textContent = e.target.value;
+        });
+
+        function speak() {
+            const text = document.getElementById('textInput').value.trim();
+            if (!text) {
+                showStatus('لطفاً متنی وارد کنید', 'error');
+                return;
+            }
+
+            // Stop any ongoing speech
+            synth.cancel();
+
+            utterance = new SpeechSynthesisUtterance(text);
+
+            // Set voice
+            const voiceSelect = document.getElementById('voiceSelect');
+            const selectedVoiceIndex = voiceSelect.value;
+            if (selectedVoiceIndex && voices[selectedVoiceIndex]) {
+                utterance.voice = voices[selectedVoiceIndex];
+            }
+
+            // Set parameters
+            utterance.rate = parseFloat(document.getElementById('rateInput').value);
+            utterance.pitch = parseFloat(document.getElementById('pitchInput').value);
+            utterance.volume = parseFloat(document.getElementById('volumeInput').value);
+            utterance.lang = 'fa-IR';
+
+            // Event handlers
+            utterance.onstart = () => {
+                showStatus('🎤 در حال پخش...', 'playing');
+                document.getElementById('playBtn').disabled = true;
+                document.getElementById('pauseBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = false;
+                isPaused = false;
+            };
+
+            utterance.onend = () => {
+                showStatus('✅ پخش تمام شد', 'playing');
+                setTimeout(() => hideStatus(), 2000);
+                document.getElementById('playBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = true;
+            };
+
+            utterance.onerror = (event) => {
+                showStatus(`❌ خطا: ${event.error}`, 'error');
+                document.getElementById('playBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = true;
+            };
+
+            // Speak
+            synth.speak(utterance);
+        }
+
+        function pauseResume() {
+            if (isPaused) {
+                synth.resume();
+                document.getElementById('pauseBtn').textContent = '⏸️ توقف موقت';
+                showStatus('🎤 در حال پخش...', 'playing');
+                isPaused = false;
+            } else {
+                synth.pause();
+                document.getElementById('pauseBtn').textContent = '▶️ ادامه';
+                showStatus('⏸️ متوقف شده', 'playing');
+                isPaused = true;
+            }
+        }
+
+        function stop() {
+            synth.cancel();
+            showStatus('⏹️ متوقف شد', 'playing');
+            setTimeout(() => hideStatus(), 2000);
+            document.getElementById('playBtn').disabled = false;
+            document.getElementById('pauseBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = true;
+            isPaused = false;
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        function hideStatus() {
+            document.getElementById('status').style.display = 'none';
+        }
+
+        function setSample(index) {
+            document.getElementById('textInput').value = samples[index];
+        }
+
+        // Check browser support
+        if (!('speechSynthesis' in window)) {
+            showStatus('❌ مرورگر شما از Web Speech API پشتیبانی نمی‌کند', 'error');
+            document.getElementById('playBtn').disabled = true;
+        }
+    </script>
+</body>
+</html>

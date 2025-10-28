@@ -159,6 +159,10 @@
             background: #6c757d;
         }
         
+        .btn-test {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        }
+        
         .status {
             padding: 15px;
             border-radius: 10px;
@@ -218,7 +222,7 @@
 <body>
     <div class="container">
         <h1>🎤 تست TTS فارسی</h1>
-        <p class="subtitle">Hugging Face API - مدل‌های Kamtera</p>
+        <p class="subtitle">Google Gemini AI Studio - رایگان و بدون هزینه! 🎉</p>
         
         <!-- Voice Selector -->
         <div class="voice-selector">
@@ -231,8 +235,8 @@
         </div>
         
         <!-- Text Input -->
-        <textarea id="textInput" placeholder="متن فارسی خود را اینجا وارد کنید..." maxlength="1000">سلام! این یک تست صدای فارسی با کیفیت بالا است.</textarea>
-        <div class="char-count"><span id="charCount">54</span> / 1000</div>
+        <textarea id="textInput" placeholder="متن فارسی خود را اینجا وارد کنید..." maxlength="5000">سلام! این یک تست صدای فارسی با کیفیت بالا است.</textarea>
+        <div class="char-count"><span id="charCount">54</span> / 5000</div>
         
         <!-- Sample Texts -->
         <div class="samples">
@@ -249,6 +253,11 @@
             <button class="btn btn-secondary" id="stopBtn" onclick="stop()" disabled>⏹️ توقف</button>
         </div>
         
+        <!-- Test API Health Button -->
+        <button class="btn btn-test" onclick="testAPIHealth()" style="width: 100%; margin-bottom: 20px;">
+            🔍 تست سلامت API
+        </button>
+        
         <!-- Status -->
         <div id="status" class="status hidden"></div>
         
@@ -256,10 +265,12 @@
         <div class="info">
             <h3>ℹ️ نکات مهم:</h3>
             <ul>
-                <li>اولین بار ممکن است 20-30 ثانیه طول بکشد</li>
-                <li>بعد از اولین بار، سریع است (Cache)</li>
-                <li>حداکثر 1000 کاراکتر</li>
-                <li>کیفیت بسیار عالی ⭐⭐⭐⭐⭐</li>
+                <li>✨ کاملاً رایگان - هیچ هزینه‌ای ندارد</li>
+                <li>🚀 سرعت بالا - پاسخ فوری</li>
+                <li>💾 Cache هوشمند - بار دوم سریع‌تر</li>
+                <li>🎯 حداکثر ۵۰۰۰ کاراکتر</li>
+                <li>⚡ ۱۰ درخواست در دقیقه</li>
+                <li>⭐ کیفیت عالی Google</li>
             </ul>
         </div>
     </div>
@@ -285,7 +296,14 @@
             document.querySelectorAll('.voice-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            // Find the button that was clicked
+            const buttons = document.querySelectorAll('.voice-btn');
+            buttons.forEach(btn => {
+                if ((voice === 'female' && btn.textContent.includes('زن')) ||
+                    (voice === 'male' && btn.textContent.includes('مرد'))) {
+                    btn.classList.add('active');
+                }
+            });
         }
         
         function setSampleText(index) {
@@ -313,8 +331,8 @@
                 return;
             }
             
-            if (text.length > 1000) {
-                showStatus('❌ متن بیش از حد طولانی است', 'error');
+            if (text.length > 5000) {
+                showStatus('❌ متن بیش از حد طولانی است (حداکثر ۵۰۰۰ کاراکتر)', 'error');
                 return;
             }
             
@@ -328,10 +346,10 @@
             document.getElementById('speakBtn').disabled = true;
             document.getElementById('stopBtn').disabled = true;
             
-            showStatus('⏳ در حال تولید صدا... (اولین بار کمی طول می‌کشد)', 'loading');
+            showStatus('⏳ در حال تولید صدا با Google Gemini...', 'loading');
             
             try {
-                const response = await fetch('/api/tts/huggingface/synthesize', {
+                const response = await fetch('/api/tts/gemini/synthesize', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -341,6 +359,11 @@
                         voice: currentVoice
                     })
                 });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
                 
                 const data = await response.json();
                 
@@ -382,12 +405,14 @@
                 console.error('TTS Error:', error);
                 
                 let errorMessage = '❌ خطا: ';
-                if (error.message.includes('Model is loading')) {
+                if (error.message.includes('Model') && error.message.includes('loading')) {
                     errorMessage += 'مدل در حال بارگذاری است. 20 ثانیه صبر کنید و دوباره امتحان کنید.';
                 } else if (error.message.includes('Network') || error.message.includes('Failed to fetch')) {
-                    errorMessage += 'خطای شبکه. Backend را چک کنید: http://localhost:3001/api/tts/huggingface/health';
-                } else if (error.message.includes('Not Found') || (error.response && error.response.status === 404)) {
-                    errorMessage += 'API پیدا نشد. Backend را restart کنید.';
+                    errorMessage += 'خطای شبکه. اطمینان حاصل کنید که Backend در حال اجرا است: http://localhost:3001';
+                } else if (error.message.includes('404') || error.message.includes('Not Found')) {
+                    errorMessage += 'API پیدا نشد. مطمئن شوید که backend/routes/ttsRoutes.js وجود دارد و در server.js registered است.';
+                } else if (error.message.includes('500')) {
+                    errorMessage += 'خطای سرور. لاگ‌های backend را چک کنید.';
                 } else {
                     errorMessage += error.message;
                 }
@@ -409,6 +434,25 @@
             document.getElementById('speakBtn').disabled = false;
             document.getElementById('stopBtn').disabled = true;
             setTimeout(hideStatus, 2000);
+        }
+        
+        async function testAPIHealth() {
+            showStatus('⏳ در حال تست API...', 'loading');
+            
+            try {
+                const response = await fetch('/api/tts/gemini/health');
+                const data = await response.json();
+                
+                if (data.status === 'operational') {
+                    const msg = `✅ API سالم است! ${data.provider} - ${data.cost} | ${data.rateLimit.remaining} درخواست باقی مانده`;
+                    showStatus(msg, 'success');
+                } else {
+                    showStatus('⚠️ API مشکل دارد: ' + JSON.stringify(data), 'error');
+                }
+            } catch (error) {
+                showStatus('❌ نمی‌توان به API متصل شد. Backend در حال اجرا نیست!', 'error');
+                console.error('Health check error:', error);
+            }
         }
     </script>
 </body>
