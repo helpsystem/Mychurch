@@ -23,7 +23,7 @@ const AboutPage: React.FC = () => {
   const [missionImage, setMissionImage] = useState('');
   
   // Get SEO configuration for about page
-  const seoConfig = getPageSEOConfig('about', lang);
+  const seoConfig = getPageSEOConfig('about', lang === 'fa' ? 'fa' : 'en');
 
   useEffect(() => {
     setStoryImage(getRandomImage());

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 تست فایل صوتی افسسیان</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+        }
+        .audio-test {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .file-info {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        code {
+            background: #333;
+            color: #0f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 تست فایل‌های صوتی افسسیان</h1>
+        
+        <div class="info status">
+            📂 مسیر فایل‌ها: <code>/audio/bible/farsi/EPH/</code>
+        </div>
+
+        <div id="results"></div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="testAllChapters()">🔄 تست مجدد همه فصل‌ها</button>
+            <button onclick="testAPI()">🌐 تست API</button>
+        </div>
+    </div>
+
+    <script>
+        const chapters = [1, 2, 3, 4, 5, 6];
+        
+        async function testChapter(chapterNum) {
+            const url = `/audio/bible/farsi/EPH/${chapterNum}.mp3`;
+            
+            return new Promise((resolve) => {
+                const audio = new Audio(url);
+                
+                const timeout = setTimeout(() => {
+                    resolve({
+                        chapter: chapterNum,
+                        success: false,
+                        error: 'Timeout (5s)',
+                        url: url
+                    });
+                }, 5000);
+                
+                audio.addEventListener('loadedmetadata', () => {
+                    clearTimeout(timeout);
+                    resolve({
+                        chapter: chapterNum,
+                        success: true,
+                        duration: audio.duration.toFixed(2),
+                        url: url
+                    });
+                });
+                
+                audio.addEventListener('error', (e) => {
+                    clearTimeout(timeout);
+                    resolve({
+                        chapter: chapterNum,
+                        success: false,
+                        error: audio.error.message || 'خطای بارگذاری',
+                        url: url
+                    });
+                });
+                
+                audio.load();
+            });
+        }
+
+        async function testAllChapters() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="info status">⏳ در حال تست...</div>';
+            
+            const results = [];
+            for (const chapter of chapters) {
+                const result = await testChapter(chapter);
+                results.push(result);
+                
+                // نمایش نتیجه
+                const statusClass = result.success ? 'success' : 'error';
+                const icon = result.success ? '✅' : '❌';
+                const details = result.success 
+                    ? `مدت: ${result.duration} ثانیه`
+                    : `خطا: ${result.error}`;
+                
+                resultsDiv.innerHTML += `
+                    <div class="audio-test">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3>${icon} فصل ${chapter}</h3>
+                            <span style="color: #666;">${details}</span>
+                        </div>
+                        <div class="file-info">
+                            <code>${result.url}</code>
+                        </div>
+                        ${result.success ? `
+                            <audio controls>
+                                <source src="${result.url}" type="audio/mpeg">
+                                مرورگر شما پخش صدا را پشتیبانی نمی‌کند
+                            </audio>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            
+            // خلاصه نهایی
+            const successCount = results.filter(r => r.success).length;
+            const failCount = results.filter(r => !r.success).length;
+            
+            const summaryClass = successCount === 6 ? 'success' : (successCount > 0 ? 'info' : 'error');
+            resultsDiv.innerHTML = `
+                <div class="${summaryClass} status">
+                    📊 نتیجه: ${successCount} موفق / ${failCount} ناموفق از ${chapters.length} فصل
+                </div>
+            ` + resultsDiv.innerHTML;
+        }
+
+        async function testAPI() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="info status">⏳ در حال تست API...</div>';
+            
+            try {
+                const response = await fetch('/api/bible-audio/chapter/EPH/1?lang=fa');
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultsDiv.innerHTML = `
+                        <div class="success status">
+                            ✅ API کار می‌کند!
+                        </div>
+                        <div class="file-info">
+                            <strong>URL از API:</strong><br>
+                            <code>${data.audio.url}</code>
+                        </div>
+                        <div class="audio-test">
+                            <h3>▶️ پخش از API</h3>
+                            <audio controls autoplay>
+                                <source src="${data.audio.url}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <div class="error status">
+                            ❌ API خطا برگرداند: ${data.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="error status">
+                        ❌ خطا در دسترسی به API: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // تست خودکار هنگام بارگذاری صفحه
+        window.addEventListener('load', testAllChapters);
+    </script>
+</body>
+</html>

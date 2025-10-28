@@ -99,6 +99,78 @@ const WorshipPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [timingData, setTimingData] = useState<TimingData | null>(null);
   const [loadingTiming, setLoadingTiming] = useState(false);
+  const [activeLetterFilter, setActiveLetterFilter] = useState<string | null>(null);
+
+  // 🔤 سورت کردن سرودها بر اساس حروف الفبا
+  const sortedSongs = React.useMemo(() => {
+    return [...songs].sort((a, b) => {
+      const titleA = (a.title?.[lang] || a.title?.fa || a.title?.en || '').trim();
+      const titleB = (b.title?.[lang] || b.title?.fa || b.title?.en || '').trim();
+      return titleA.localeCompare(titleB, lang === 'fa' ? 'fa' : 'en');
+    });
+  }, [songs, lang]);
+
+  // 🔤 استخراج حروف اول سرودها
+  const availableLetters = React.useMemo(() => {
+    const letters = new Set<string>();
+    sortedSongs.forEach(song => {
+      const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
+      if (title) {
+        letters.add(title[0].toUpperCase());
+      }
+    });
+    return Array.from(letters).sort((a, b) => a.localeCompare(b, lang === 'fa' ? 'fa' : 'en'));
+  }, [sortedSongs, lang]);
+
+  // 🔤 فیلتر کردن سرودها بر اساس حرف انتخاب شده
+  const filteredSongs = React.useMemo(() => {
+    if (!activeLetterFilter) return sortedSongs;
+    return sortedSongs.filter(song => {
+      const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
+      return title[0]?.toUpperCase() === activeLetterFilter;
+    });
+  }, [sortedSongs, activeLetterFilter, lang]);
+
+  // 🔤 گروه‌بندی سرودها بر اساس حرف اول (برای نمایش با header)
+  const groupedSongs = React.useMemo(() => {
+    const groups: { [key: string]: WorshipSong[] } = {};
+    const songsToGroup = activeLetterFilter ? filteredSongs : sortedSongs;
+    
+    songsToGroup.forEach(song => {
+      const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
+      const firstLetter = title[0]?.toUpperCase() || '#';
+      if (!groups[firstLetter]) {
+        groups[firstLetter] = [];
+      }
+      groups[firstLetter].push(song);
+    });
+    
+    return groups;
+  }, [sortedSongs, filteredSongs, activeLetterFilter, lang]);
+
+  // 🆕 جدیدترین سرودها (4-5 تای آخر) برای بخش #
+  const recentSongs = React.useMemo(() => {
+    return sortedSongs.slice(-5); // 5 تای آخر
+  }, [sortedSongs]);
+
+  // 🔤 اسکرول به اولین سرود با حرف مشخص
+  const scrollToLetter = (letter: string) => {
+    if (activeLetterFilter === letter) {
+      // اگر دوباره روی همان حرف کلیک شد، فیلتر را پاک کن
+      setActiveLetterFilter(null);
+    } else {
+      // فیلتر روی حرف جدید
+      setActiveLetterFilter(letter);
+      
+      // اسکرول به بخش آن حرف
+      setTimeout(() => {
+        const letterSection = document.getElementById(`letter-${letter}`);
+        if (letterSection) {
+          letterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  };
 
   // Debug log
   React.useEffect(() => {
@@ -169,6 +241,9 @@ const WorshipPage: React.FC = () => {
 
   // تابع برای باز کردن در صفحه دوم (پروژکتور)
   const openOnSecondScreen = (song: WorshipSong) => {
+    // بارگذاری timing data برای پرژکتور
+    const timingPath = `/worship/data/timings/song_${song.id}_timing.json`;
+    
     // ساخت HTML کامل برای صفحه دوم
     const html = `
 <!DOCTYPE html>
@@ -178,52 +253,169 @@ const WorshipPage: React.FC = () => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${song.title?.fa || song.title?.en} - Projector</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Vazirmatn', 'B Nazanin', 'Scheherazade New', 'Arial', sans-serif;
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
         .header {
-            background: rgba(0,0,0,0.5);
-            padding: 20px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.3), rgba(236,72,153,0.2));
+            backdrop-filter: blur(15px);
+            padding: 40px 60px;
             text-align: center;
-            border-bottom: 3px solid #ffd700;
+            border-bottom: 4px solid rgba(168,85,247,0.5);
+            box-shadow: 0 8px 32px rgba(168,85,247,0.4), 0 0 60px rgba(168,85,247,0.2);
         }
-        h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .artist { font-size: 1.8rem; color: #ffd700; }
+        h1 { 
+            font-size: 5.5rem; 
+            margin-bottom: 0;
+            font-weight: 900;
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-shadow: 0 0 60px rgba(255,255,255,0.8), 
+                         0 0 90px rgba(255,255,255,0.5),
+                         0 4px 20px rgba(0,0,0,1),
+                         0 8px 40px rgba(0,0,0,0.8);
+            font-family: 'Vazirmatn', 'B Nazanin', 'Scheherazade New', 'Arial', sans-serif;
+        }
+        .artist { 
+            font-size: 2rem; 
+            color: #a855f7; 
+            text-shadow: 0 0 20px rgba(168,85,247,0.6);
+        }
         .content {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
-            overflow-y: auto;
+            padding: 60px;
+            overflow: hidden;
         }
         .lyrics {
-            font-size: 2.5rem;
-            line-height: 2;
+            font-size: 4.8rem;
+            line-height: 2.6;
             text-align: center;
-            white-space: pre-wrap;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
-            max-width: 90%;
+            text-shadow: 4px 4px 16px rgba(0,0,0,1);
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 450px;
+            gap: 50px;
+            padding: 0 80px;
         }
+        
+        .line {
+            display: none;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            transform: scale(0.8) translateY(50px);
+            width: 100%;
+        }
+        
+        /* خط قبلی - کوچکتر و کمرنگ‌تر */
+        .line.previous {
+            display: block;
+            opacity: 0.4;
+            transform: scale(0.85) translateY(-20px);
+            font-size: 0.85em;
+            color: #9ca3af;
+        }
+        
+        /* خط فعلی - بزرگ و واضح */
+        .line.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        /* خط بعدی - کوچکتر و کمرنگ‌تر */
+        .line.next {
+            display: block;
+            opacity: 0.35;
+            transform: scale(0.8) translateY(20px);
+            font-size: 0.75em;
+            color: #6b7280;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        
         .word {
             display: inline-block;
-            margin: 0 8px;
-            transition: all 0.3s ease;
+            margin: 0 32px;
+            padding: 14px 10px;
+            transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #f1f5f9;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+        .line.active .word {
+            color: #ffffff;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3),
+                         3px 3px 10px rgba(0,0,0,0.9);
+        }
+        .line.previous .word,
+        .line.next .word {
+            margin: 0 24px;
+            letter-spacing: 2px;
         }
         .word.active {
-            color: #ffd700;
-            transform: scale(1.3);
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(255,215,0,0.8);
+            color: #fde047 !important;
+            transform: scale(2.2) translateY(-25px);
+            font-weight: 900 !important;
+            text-shadow: 0 0 70px rgba(253,224,71,1), 
+                         0 0 140px rgba(253,224,71,0.95),
+                         0 0 210px rgba(253,224,71,0.8),
+                         5px 5px 25px rgba(0,0,0,1);
+            animation: glow 0.9s ease-in-out infinite;
+            filter: brightness(1.5) contrast(1.3);
+            letter-spacing: 4px;
+        }
+        @keyframes glow {
+            0%, 100% { 
+                text-shadow: 0 0 70px rgba(253,224,71,1), 
+                            0 0 140px rgba(253,224,71,0.95),
+                            0 0 210px rgba(253,224,71,0.8),
+                            5px 5px 25px rgba(0,0,0,1);
+                filter: brightness(1.5) contrast(1.3);
+            }
+            50% { 
+                text-shadow: 0 0 90px rgba(253,224,71,1), 
+                            0 0 170px rgba(253,224,71,1),
+                            0 0 250px rgba(253,224,71,0.9),
+                            5px 5px 30px rgba(0,0,0,1);
+                filter: brightness(1.6) contrast(1.4);
+            }
         }
         audio { display: none; }
+        .timing-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(168,85,247,0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 <body>
@@ -231,31 +423,150 @@ const WorshipPage: React.FC = () => {
         <h1>${song.title?.fa || song.title?.en}</h1>
         <p class="artist">${song.artist || ''}</p>
     </div>
+    <div class="timing-indicator" id="timing-status">⏳ Loading timing...</div>
     <div class="content">
         <div class="lyrics" id="lyrics"></div>
     </div>
-    ${song.audioUrl ? `<audio id="audio" src="${song.audioUrl}" controls></audio>` : ''}
+    ${song.audioUrl ? `<audio id="audio" src="${song.audioUrl}"></audio>` : ''}
     <script>
-        const lyricsText = ${JSON.stringify(filterLyrics(song.lyrics?.fa || song.lyrics?.en || ''))};
-        const lyricsDiv = document.getElementById('lyrics');
         const audio = document.getElementById('audio');
+        const lyricsDiv = document.getElementById('lyrics');
+        const timingStatus = document.getElementById('timing-status');
         
-        // نمایش متن
-        if (lyricsText) {
-            const words = lyricsText.split(/\\s+/);
-            lyricsDiv.innerHTML = words.map((word, i) => 
-                \`<span class="word" data-index="\${i}">\${word}</span>\`
-            ).join(' ');
+        let timingData = null;
+        let currentWordIndex = -1;
+        let currentLineIndex = -1;
+        
+        // بارگذاری timing data
+        fetch('${timingPath}')
+            .then(res => res.ok ? res.json() : null)
+            .then(data => {
+                if (data && data.lines) {
+                    timingData = data;
+                    timingStatus.innerHTML = '✅ Timing دقیق فعال';
+                    setTimeout(() => timingStatus.style.display = 'none', 3000);
+                    renderLyricsWithTiming();
+                } else {
+                    timingStatus.innerHTML = '⚠️ No timing data';
+                    setTimeout(() => timingStatus.style.display = 'none', 2000);
+                    renderLyricsSimple();
+                }
+            })
+            .catch(() => {
+                timingStatus.innerHTML = '❌ Timing load failed';
+                setTimeout(() => timingStatus.style.display = 'none', 2000);
+                renderLyricsSimple();
+            });
+        
+        // رندر با timing دقیق
+        function renderLyricsWithTiming() {
+            if (!timingData || !timingData.lines) return;
+            
+            lyricsDiv.innerHTML = timingData.lines.map((line, lineIdx) => {
+                const wordsHtml = line.words.map((wordData, wordIdx) => 
+                    \`<span class="word" data-line="\${lineIdx}" data-word="\${wordIdx}" data-start="\${wordData.start}" data-end="\${wordData.end}">\${wordData.word}</span>\`
+                ).join(' ');
+                return \`<div class="line" data-line="\${lineIdx}">\${wordsHtml}</div>\`;
+            }).join('');
+            
+            console.log('✅ Rendered', timingData.lines.length, 'lines with', timingData.metadata.wordCount, 'words');
         }
         
-        // Auto-play صدا اگر موجود بود
+        // رندر ساده بدون timing
+        function renderLyricsSimple() {
+            const lyricsText = ${JSON.stringify(filterLyrics(song.lyrics?.fa || song.lyrics?.en || ''))};
+            if (lyricsText) {
+                const words = lyricsText.split(/\\s+/);
+                lyricsDiv.innerHTML = words.map((word, i) => 
+                    \`<span class="word" data-index="\${i}">\${word}</span>\`
+                ).join(' ');
+            }
+        }
+        
+        // به‌روزرسانی هایلایت
+        function updateHighlight() {
+            if (!audio || !timingData) return;
+            
+            const currentTime = audio.currentTime;
+            
+            // پیدا کردن خط فعلی
+            let activeLine = -1;
+            for (let i = 0; i < timingData.lines.length; i++) {
+                if (currentTime >= timingData.lines[i].start) {
+                    activeLine = i;
+                } else break;
+            }
+            
+            // به‌روزرسانی نمایش 3 خط: قبلی، فعلی، بعدی
+            if (activeLine !== currentLineIndex) {
+                document.querySelectorAll('.line').forEach((el, idx) => {
+                    el.classList.remove('previous', 'active', 'next');
+                    
+                    if (idx === activeLine - 1) {
+                        el.classList.add('previous'); // خط قبلی
+                    } else if (idx === activeLine) {
+                        el.classList.add('active'); // خط فعلی
+                    } else if (idx === activeLine + 1) {
+                        el.classList.add('next'); // خط بعدی
+                    }
+                });
+                currentLineIndex = activeLine;
+                
+                console.log(\`📍 Active line: \${activeLine}\`);
+            }
+            
+            // پیدا کردن کلمه فعلی - فقط در خط فعلی
+            // ابتدا همه کلمات را غیرفعال کن
+            document.querySelectorAll('.word.active').forEach(w => w.classList.remove('active'));
+            
+            const activeLi = document.querySelector('.line.active');
+            if (activeLi) {
+                const words = activeLi.querySelectorAll('.word[data-start]');
+                
+                words.forEach((wordEl, idx) => {
+                    const start = parseFloat(wordEl.getAttribute('data-start'));
+                    const end = parseFloat(wordEl.getAttribute('data-end'));
+                    const isActive = currentTime >= start && currentTime < end;
+                    
+                    if (isActive && idx !== currentWordIndex) {
+                        console.log(\`🎯 Active word: "\${wordEl.textContent}" at \${currentTime.toFixed(2)}s\`);
+                        currentWordIndex = idx;
+                    }
+                    
+                    if (isActive) {
+                        wordEl.classList.add('active');
+                    }
+                });
+            }
+        }
+        
+        // رویدادهای audio
         if (audio) {
-            setTimeout(() => audio.play(), 1000);
+            audio.addEventListener('timeupdate', updateHighlight);
+            audio.addEventListener('seeked', updateHighlight);
+            
+            // Auto-play
+            setTimeout(() => {
+                audio.play().catch(err => {
+                    console.log('Auto-play blocked:', err);
+                    timingStatus.innerHTML = '▶️ Click to play';
+                    timingStatus.style.display = 'block';
+                    document.body.addEventListener('click', () => {
+                        audio.play();
+                        timingStatus.style.display = 'none';
+                    }, { once: true });
+                });
+            }, 500);
         }
         
         // کلید ESC برای بستن
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') window.close();
+            // فاصله برای play/pause
+            if (e.key === ' ' && audio) {
+                e.preventDefault();
+                audio.paused ? audio.play() : audio.pause();
+            }
         });
     </script>
 </body>
@@ -474,24 +785,206 @@ const WorshipPage: React.FC = () => {
       ) : (
         /* Normal Mode View */
         <>
-          <div className="text-center mb-12 pt-8">
+          <div className="text-center mb-8 pt-8">
             <h1 className="font-bold text-4xl md:text-5xl mb-4 text-white drop-shadow-2xl">{t('worshipTitle')}</h1>
-            <p className="text-gray-300 text-lg">{t('worshipDescription')}</p>
+            <p className="text-gray-300 text-lg mb-6">{t('worshipDescription')}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12">
-            {isLoading
-              ? Array.from({ length: 8 }).map((_, i) => <LoadingSkeleton key={i} />)
-              : songs.length === 0
-              ? (
-                  <div className="col-span-full text-center py-20">
-                    <div className="text-6xl mb-4">🎵</div>
-                    <h2 className="text-2xl font-bold mb-2 text-white">{lang === 'fa' ? 'هنوز سرودی اضافه نشده است' : 'No songs yet'}</h2>
-                    <p className="text-gray-400">{lang === 'fa' ? 'لطفاً صبر کنید یا با مدیر تماس بگیرید' : 'Please wait or contact admin'}</p>
+
+          {/* Horizontal Alphabet Navigator - بالای صفحه */}
+          {availableLetters.length > 0 && (
+            <div className="sticky top-0 z-50 bg-gradient-to-b from-gray-900 via-purple-900/95 to-transparent backdrop-blur-lg py-4 px-4 mb-8 border-b-2 border-purple-500/30 shadow-xl">
+              <div className="max-w-7xl mx-auto">
+                {/* عنوان */}
+                <div className="text-center text-xs font-bold text-gray-400 mb-3 tracking-widest">
+                  {lang === 'fa' ? '🔤 فهرست الفبایی سرودها' : '🔤 ALPHABETICAL INDEX'}
+                </div>
+                
+                {/* لیست حروف */}
+                <div className="flex flex-wrap justify-center items-center gap-2">
+                  {/* دکمه # برای جدیدترین */}
+                  <button
+                    onClick={() => scrollToLetter('#')}
+                    className={`
+                      relative px-4 py-2 rounded-xl font-black text-sm transition-all duration-200
+                      ${activeLetterFilter === '#'
+                        ? 'bg-gradient-to-br from-yellow-500 to-orange-600 text-white scale-110 shadow-lg shadow-yellow-500/60 ring-2 ring-white/30' 
+                        : 'bg-gradient-to-br from-yellow-600/20 to-orange-600/20 text-yellow-400 hover:from-yellow-500/50 hover:to-orange-500/50 hover:text-white hover:scale-105 hover:shadow-md border border-yellow-500/30'
+                      }
+                    `}
+                    title={lang === 'fa' ? 'جدیدترین سرودها' : 'Recent Songs'}
+                  >
+                    <span className="block"># {lang === 'fa' ? 'جدید' : 'NEW'}</span>
+                    {recentSongs.length > 0 && activeLetterFilter !== '#' && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                        {recentSongs.length}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* خط جداکننده */}
+                  <div className="w-px h-8 bg-purple-500/30"></div>
+                  
+                  {/* حروف الفبا */}
+                  {availableLetters.map((letter) => {
+                    const count = groupedSongs[letter]?.length || 0;
+                    const isActive = activeLetterFilter === letter;
+                    
+                    return (
+                      <button
+                        key={letter}
+                        onClick={() => scrollToLetter(letter)}
+                        className={`
+                          relative px-3 py-2 rounded-xl font-black text-sm transition-all duration-200
+                          ${isActive
+                            ? 'bg-gradient-to-br from-purple-500 to-pink-600 text-white scale-110 shadow-lg shadow-purple-500/60 ring-2 ring-white/30' 
+                            : 'bg-white/10 text-gray-300 hover:bg-gradient-to-br hover:from-purple-500/70 hover:to-pink-500/70 hover:text-white hover:scale-105 hover:shadow-md border border-purple-500/20'
+                          }
+                        `}
+                        title={`${letter} (${count} ${lang === 'fa' ? 'سرود' : 'songs'})`}
+                      >
+                        <span className="block">{letter}</span>
+                        {count > 0 && !isActive && (
+                          <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                            {count}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                  
+                  {/* دکمه نمایش همه */}
+                  {activeLetterFilter && (
+                    <>
+                      <div className="w-px h-8 bg-purple-500/30"></div>
+                      <button
+                        onClick={() => setActiveLetterFilter(null)}
+                        className="px-4 py-2 rounded-xl font-bold text-xs bg-gradient-to-br from-red-500 to-red-700 text-white hover:from-red-600 hover:to-red-800 transition-all shadow-md animate-pulse"
+                        title={lang === 'fa' ? 'نمایش همه' : 'Show All'}
+                      >
+                        ✕ {lang === 'fa' ? 'همه' : 'ALL'}
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+            
+            {/* نمایش فیلتر فعال */}
+            {activeLetterFilter && (
+              <div className="mb-8 flex items-center justify-center gap-2">
+                <span className="text-gray-400">{lang === 'fa' ? 'فیلتر:' : 'Filter:'}</span>
+                <span className="bg-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl">
+                  {activeLetterFilter === '#' 
+                    ? (lang === 'fa' ? '# جدیدترین‌ها' : '# Recent') 
+                    : activeLetterFilter
+                  }
+                </span>
+                <button
+                  onClick={() => setActiveLetterFilter(null)}
+                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm"
+                >
+                  ✕ {lang === 'fa' ? 'حذف فیلتر' : 'Clear'}
+                </button>
+              </div>
+            )}
+
+          <div id="songs-container" className="pb-12">
+            {isLoading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {Array.from({ length: 8 }).map((_, i) => <LoadingSkeleton key={i} />)}
+              </div>
+            ) : Object.keys(groupedSongs).length === 0 && recentSongs.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="text-6xl mb-4">🎵</div>
+                <h2 className="text-2xl font-bold mb-2 text-white">
+                  {activeLetterFilter 
+                    ? (lang === 'fa' ? `سرودی با حرف "${activeLetterFilter}" یافت نشد` : `No songs starting with "${activeLetterFilter}"`)
+                    : (lang === 'fa' ? 'هنوز سرودی اضافه نشده است' : 'No songs yet')
+                  }
+                </h2>
+                <p className="text-gray-400">
+                  {activeLetterFilter 
+                    ? (lang === 'fa' ? 'حرف دیگری را انتخاب کنید' : 'Try another letter')
+                    : (lang === 'fa' ? 'لطفاً صبر کنید یا با مدیر تماس بگیرید' : 'Please wait or contact admin')
+                  }
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* بخش جدیدترین سرودها - # */}
+                {!activeLetterFilter || activeLetterFilter === '#' ? (
+                  <div className="mb-12" id="letter-#">
+                    {/* Header */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500 text-white w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-black shadow-2xl shadow-orange-500/50 animate-pulse">
+                        #
+                      </div>
+                      <div className="flex-1">
+                        <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 mb-1">
+                          {lang === 'fa' ? '🆕 جدیدترین سرودها' : '🆕 Recent Songs'}
+                        </h2>
+                        <p className="text-gray-400 text-sm">
+                          {lang === 'fa' ? 'آخرین سرودهای اضافه شده' : 'Latest additions to our collection'}
+                        </p>
+                      </div>
+                      <div className="h-1 flex-1 bg-gradient-to-r from-orange-500/50 to-transparent rounded-full"></div>
+                      <span className="text-orange-400 text-sm font-semibold bg-orange-500/20 px-4 py-2 rounded-full border border-orange-500/30">
+                        {recentSongs.length} {lang === 'fa' ? 'سرود' : 'songs'}
+                      </span>
+                    </div>
+                    
+                    {/* Songs Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                      {recentSongs.map((song, i) => (
+                        <div key={song.id || i} className="relative">
+                          <WorshipSongCard song={song} onClick={() => setActiveSong(song)} />
+                          {/* NEW Badge */}
+                          <div className="absolute -top-2 -right-2 bg-gradient-to-br from-red-500 to-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-bounce">
+                            🆕 {lang === 'fa' ? 'جدید' : 'NEW'}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* خط جداکننده */}
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
+                      <span className="text-gray-500 text-sm font-semibold">
+                        {lang === 'fa' ? '📚 تمام سرودها' : '📚 All Songs'}
+                      </span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
+                    </div>
                   </div>
-                )
-              : songs.map((song, i) => (
-                  <WorshipSongCard key={song.id || i} song={song} onClick={() => setActiveSong(song)} />
-                ))}
+                ) : null}
+
+                {/* بقیه گروه‌ها */}
+                {Object.keys(groupedSongs)
+                  .sort((a, b) => a.localeCompare(b, lang === 'fa' ? 'fa' : 'en'))
+                  .filter(letter => !activeLetterFilter || activeLetterFilter === letter)
+                  .map(letter => (
+                    <div key={letter} className="mb-12" id={`letter-${letter}`}>
+                      {/* Letter Header */}
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shadow-lg">
+                          {letter}
+                        </div>
+                        <div className="flex-1 h-1 bg-gradient-to-r from-purple-500/50 to-transparent rounded-full"></div>
+                        <span className="text-gray-400 text-sm font-semibold">
+                          {groupedSongs[letter].length} {lang === 'fa' ? 'سرود' : 'songs'}
+                        </span>
+                      </div>
+                      
+                      {/* Songs Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {groupedSongs[letter].map((song, i) => (
+                          <WorshipSongCard key={song.id || i} song={song} onClick={() => setActiveSong(song)} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+              </>
+            )}
           </div>
 
           {/* Popup Modal for Song Details */}

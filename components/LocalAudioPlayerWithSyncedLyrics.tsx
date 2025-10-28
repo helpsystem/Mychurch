@@ -109,7 +109,13 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     console.log('🔍 Word timing check:', {
       hasWordTiming,
       processedLyricsCount: processedLyrics.length,
-      firstLineWords: processedLyrics[0]?.words?.length || 0
+      firstLineWords: processedLyrics[0]?.words?.length || 0,
+      allLines: processedLyrics.map((l, i) => ({
+        index: i,
+        time: l.time,
+        text: l.text?.substring(0, 30),
+        wordCount: l.words?.length || 0
+      }))
     });
     
     if (hasWordTiming) {
@@ -128,8 +134,8 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         }
       });
       console.log('📊 Total words loaded:', allWords.length);
-      console.log('📝 First word:', allWords[0]);
-      console.log('📝 Last word:', allWords[allWords.length - 1]);
+      console.log('📝 First 5 words:', allWords.slice(0, 5));
+      console.log('📝 Last 5 words:', allWords.slice(-5));
     } else {
       console.log('⚠️ Using CALCULATED timing (no precise timing available)');
       // محاسبه تقریبی timing برای کلمات
@@ -232,7 +238,10 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
 
     if (activeWordIndex !== currentWordIndex) {
       if (activeWordIndex >= 0) {
-        console.log('🎯 Active word INDEX:', activeWordIndex, '→', wordsWithTiming[activeWordIndex].word, 'at', currentTime.toFixed(2));
+        const activeWord = wordsWithTiming[activeWordIndex];
+        console.log(`🎯 Active word INDEX: ${activeWordIndex} → "${activeWord.word}" at time ${currentTime.toFixed(2)}s (line ${activeWord.lineIndex})`);
+      } else {
+        console.log(`⏸️ No active word at time ${currentTime.toFixed(2)}s`);
       }
       setCurrentWordIndex(activeWordIndex);
     }
@@ -303,15 +312,30 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl overflow-hidden border border-gray-800">
+    <div className="w-full max-w-4xl mx-auto bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-purple-500/30">
       {/* Audio Element */}
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
 
-      {/* Header */}
+      {/* Header - طراحی مدرن و زیبا */}
       {(title || artist) && (
-        <div className="bg-gradient-to-r from-purple-900/50 to-blue-900/50 p-6 text-center border-b border-gray-800">
-          {title && <h3 className="text-2xl font-bold text-white mb-1">{title}</h3>}
-          {artist && <p className="text-gray-300 text-sm">{artist}</p>}
+        <div className="relative bg-gradient-to-r from-purple-600/40 via-blue-600/40 to-purple-600/40 backdrop-blur-xl p-8 text-center border-b border-purple-500/30 overflow-hidden">
+          {/* افکت نور پس‌زمینه */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent animate-pulse"></div>
+          
+          <div className="relative z-10">
+            {title && (
+              <h3 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                {title}
+              </h3>
+            )}
+            {artist && (
+              <p className="text-gray-200 text-lg font-medium flex items-center justify-center gap-2">
+                <span className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+                {artist}
+                <span className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+              </p>
+            )}
+          </div>
         </div>
       )}
 
@@ -319,10 +343,10 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       {processedLyrics.length > 0 && (
         <div 
           ref={lyricsContainerRef}
-          className="min-h-[300px] max-h-[400px] overflow-y-auto p-8 bg-black/40 backdrop-blur-sm scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent flex items-center justify-center"
+          className="min-h-[400px] max-h-[600px] overflow-y-auto p-10 bg-gradient-to-b from-black/60 via-purple-900/10 to-black/60 backdrop-blur-md scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent flex items-start justify-center"
           dir={lang === 'fa' ? 'rtl' : 'ltr'}
         >
-          <div className="w-full text-center space-y-4">
+          <div className="w-full text-center space-y-6 py-8">
             {processedLyrics.map((line, lineIndex) => {
               // اگر این خط words دقیق دارد، از آن استفاده کن
               const hasWordTiming = line.words && line.words.length > 0;
@@ -333,12 +357,12 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
               return (
                 <p
                   key={lineIndex}
-                  className={`text-2xl leading-relaxed transition-all duration-300 cursor-pointer ${
+                  className={`text-3xl leading-relaxed transition-all duration-500 cursor-pointer font-medium ${
                     lineIndex < currentLyricIndex
-                      ? 'text-gray-600 opacity-50'
+                      ? 'text-gray-600 opacity-40 scale-95'
                       : lineIndex > currentLyricIndex
-                      ? 'text-gray-300 opacity-70'
-                      : 'text-gray-200'
+                      ? 'text-gray-400 opacity-60 scale-95'
+                      : 'text-gray-100 scale-100'
                   }`}
                   onClick={() => {
                     if (audioRef.current) {
@@ -354,7 +378,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                     
                     if (hasWordTiming) {
                       // اگر timing دقیق داریم - پیدا کردن با lineIndex و wordIndex
-                      const wordData = line.words[wordIndex];
+                      const wordData = line.words?.[wordIndex];
                       if (wordData) {
                         // شمارش کلمات قبل از این خط
                         let wordsBeforeLine = 0;
@@ -366,9 +390,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                         // index نهایی = کلمات قبلی + index در خط فعلی
                         globalWordIndex = wordsBeforeLine + wordIndex;
                         
-                        // فقط یکبار log کن در اولین کلمه
-                        if (lineIndex === 0 && wordIndex === 0) {
-                          console.log(`🔍 First word mapping: "${word}" at line ${lineIndex}, word ${wordIndex} → global index: ${globalWordIndex}`);
+                        // Debug: لاگ برای چند کلمه اول
+                        if (lineIndex === 0 && wordIndex < 2) {
+                          console.log(`🔍 Word mapping [L${lineIndex}W${wordIndex}]: "${word}" → global index: ${globalWordIndex}, currentWordIndex: ${currentWordIndex}`);
                         }
                       }
                     } else {
@@ -378,22 +402,28 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                       );
                     }
                     
-                    const isActiveWord = globalWordIndex === currentWordIndex;
+                    const isActiveWord = globalWordIndex === currentWordIndex && globalWordIndex >= 0;
                     const isInActiveLine = lineIndex === currentLyricIndex;
+                    
+                    // Debug هایلایت
+                    if (isActiveWord && isInActiveLine && lineIndex === 0 && wordIndex === 0) {
+                      console.log(`✨ HIGHLIGHTING: "${word}" (global: ${globalWordIndex}, current: ${currentWordIndex})`);
+                    }
                     
                     return (
                       <span
                         key={`${lineIndex}-${wordIndex}`}
-                        className={`inline-block mx-1 transition-all duration-200 ${
+                        className={`inline-block mx-1.5 transition-all duration-300 ${
                           isActiveWord && isInActiveLine
-                            ? 'text-yellow-400 font-bold scale-125 drop-shadow-[0_0_15px_rgba(250,204,21,1)] animate-pulse'
+                            ? 'text-yellow-300 font-extrabold scale-150 drop-shadow-[0_0_25px_rgba(253,224,71,1)] animate-pulse'
                             : isInActiveLine
-                            ? 'text-white'
+                            ? 'text-white font-semibold'
                             : ''
                         }`}
                         style={{
-                          transform: isActiveWord && isInActiveLine ? 'scale(1.25)' : 'scale(1)',
-                          transition: 'all 0.2s ease-in-out'
+                          transform: isActiveWord && isInActiveLine ? 'scale(1.5) translateY(-4px)' : 'scale(1)',
+                          transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                          textShadow: isActiveWord && isInActiveLine ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.6)' : 'none'
                         }}
                       >
                         {word}
@@ -407,34 +437,34 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Controls */}
-      <div className="p-6 bg-gradient-to-t from-gray-900 to-gray-800">
+      {/* Controls - طراحی مدرن */}
+      <div className="p-8 bg-gradient-to-t from-slate-900 via-purple-900/20 to-transparent backdrop-blur-xl border-t border-purple-500/30">
         {/* Sync Adjustment Controls */}
         <div className="mb-4">
           <button
             onClick={() => setShowSyncControls(!showSyncControls)}
-            className="text-xs text-gray-400 hover:text-white transition-colors flex items-center gap-2 mb-2"
+            className="text-xs text-gray-400 hover:text-purple-300 transition-colors flex items-center gap-2 mb-2"
           >
             ⚙️ {showSyncControls ? 'پنهان کردن' : 'تنظیم هماهنگی متن'}
           </button>
           
           {showSyncControls && (
-            <div className="bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-700">
+            <div className="bg-purple-900/20 backdrop-blur-md rounded-xl p-4 mb-4 border border-purple-500/30 shadow-lg shadow-purple-500/10">
               <div className="flex items-center justify-between gap-4 mb-3">
                 <span className="text-sm text-gray-300">تاخیر متن:</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setSyncAdjustment(prev => prev - 0.5)}
-                    className="px-3 py-1 bg-red-600 hover:bg-red-500 rounded text-sm"
+                    className="px-3 py-1.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 rounded-lg text-sm font-medium shadow-lg shadow-red-500/30 transition-all"
                   >
                     ← زودتر
                   </button>
-                  <span className="text-white font-mono min-w-[60px] text-center">
+                  <span className="text-white font-mono min-w-[70px] text-center bg-slate-800/50 px-3 py-1 rounded-lg">
                     {syncAdjustment > 0 ? '+' : ''}{syncAdjustment.toFixed(1)}s
                   </span>
                   <button
                     onClick={() => setSyncAdjustment(prev => prev + 0.5)}
-                    className="px-3 py-1 bg-green-600 hover:bg-green-500 rounded text-sm"
+                    className="px-3 py-1.5 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 rounded-lg text-sm font-medium shadow-lg shadow-green-500/30 transition-all"
                   >
                     دیرتر →
                   </button>
@@ -442,7 +472,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
               </div>
               <button
                 onClick={() => setSyncAdjustment(0)}
-                className="w-full px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm text-gray-300"
+                className="w-full px-3 py-1.5 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 rounded-lg text-sm text-gray-200 font-medium transition-all"
               >
                 بازنشانی
               </button>
@@ -450,66 +480,74 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
           )}
         </div>
 
-        {/* Progress Bar */}
-        <div className="mb-4">
+        {/* Progress Bar - طراحی گلو */}
+        <div className="mb-6">
           <input
             type="range"
             min="0"
             max={duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+            className="w-full h-3 rounded-full appearance-none cursor-pointer"
             style={{
-              background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / duration) * 100}%, #374151 ${(currentTime / duration) * 100}%, #374151 100%)`
+              background: `linear-gradient(to right, 
+                #a855f7 0%, 
+                #ec4899 ${(currentTime / duration) * 100}%, 
+                #334155 ${(currentTime / duration) * 100}%, 
+                #334155 100%)`,
+              boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)'
             }}
           />
-          <div className="flex justify-between text-sm text-gray-400 mt-1">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
+          <div className="flex justify-between text-sm text-gray-400 mt-2 font-mono">
+            <span className="bg-slate-800/50 px-2 py-0.5 rounded">{formatTime(currentTime)}</span>
+            <span className="bg-slate-800/50 px-2 py-0.5 rounded">{formatTime(duration)}</span>
           </div>
         </div>
 
-        {/* Play Controls */}
-        <div className="flex items-center justify-center gap-4 mb-4">
+        {/* Play Controls - دکمه‌های بزرگتر و زیباتر */}
+        <div className="flex items-center justify-center gap-6 mb-6">
           <button
             onClick={() => skip(-10)}
-            className="p-3 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
-            title="10s قبل"
+            className="p-4 rounded-full bg-gradient-to-br from-slate-700 to-slate-600 hover:from-purple-600 hover:to-purple-500 transition-all transform hover:scale-110 shadow-lg hover:shadow-purple-500/50"
+            title="10 ثانیه قبل"
           >
-            <SkipBack size={20} className="text-white" />
+            <SkipBack size={24} className="text-white" />
           </button>
 
           <button
             onClick={togglePlay}
-            className="p-4 rounded-full bg-blue-600 hover:bg-blue-500 transition-all transform hover:scale-110 shadow-lg shadow-blue-500/50"
+            className="p-6 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-purple-600 hover:from-purple-500 hover:via-pink-400 hover:to-purple-500 transition-all transform hover:scale-110 shadow-2xl shadow-purple-500/60 relative overflow-hidden group"
             title={isPlaying ? 'توقف' : 'پخش'}
           >
+            {/* افکت نور در هاور */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            
             {isPlaying ? (
-              <Pause size={28} className="text-white" />
+              <Pause size={32} className="text-white relative z-10" />
             ) : (
-              <Play size={28} className="text-white" />
+              <Play size={32} className="text-white relative z-10" />
             )}
           </button>
 
           <button
             onClick={() => skip(10)}
-            className="p-3 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
-            title="10s بعد"
+            className="p-4 rounded-full bg-gradient-to-br from-slate-700 to-slate-600 hover:from-purple-600 hover:to-purple-500 transition-all transform hover:scale-110 shadow-lg hover:shadow-purple-500/50"
+            title="10 ثانیه بعد"
           >
-            <SkipForward size={20} className="text-white" />
+            <SkipForward size={24} className="text-white" />
           </button>
         </div>
 
-        {/* Volume Control */}
-        <div className="flex items-center gap-3">
+        {/* Volume Control - طراحی بهتر */}
+        <div className="flex items-center gap-4 bg-slate-800/30 rounded-xl p-3 backdrop-blur-sm border border-slate-700/50">
           <button
             onClick={toggleMute}
-            className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-lg hover:bg-purple-600/30 transition-all"
           >
             {isMuted ? (
-              <VolumeX size={20} className="text-gray-400" />
+              <VolumeX size={22} className="text-gray-400" />
             ) : (
-              <Volume2 size={20} className="text-gray-400" />
+              <Volume2 size={22} className="text-purple-400" />
             )}
           </button>
           <input
@@ -519,7 +557,14 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
             step="0.01"
             value={isMuted ? 0 : volume}
             onChange={handleVolumeChange}
-            className="flex-1 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+            className="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, 
+                #a855f7 0%, 
+                #a855f7 ${(isMuted ? 0 : volume) * 100}%, 
+                #475569 ${(isMuted ? 0 : volume) * 100}%, 
+                #475569 100%)`
+            }}
           />
         </div>
       </div>

@@ -52,6 +52,10 @@ const queries = [
     presentation_file_url VARCHAR(500),
     pdf_file_url VARCHAR(500),
     sheet_music_url VARCHAR(500),
+    chords TEXT,
+    notation TEXT,
+    notes TEXT,
+    attachments JSONB DEFAULT '[]',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 

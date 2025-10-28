@@ -87,4 +87,16 @@ const parseUser = (user) => {
   return user;
 };
 
-module.exports = { pool, parseUser };
+// Helper function to safely parse JSON fields
+const parseJSON = (value, defaultValue = {}) => {
+  if (!value) return defaultValue;
+  if (typeof value === 'object') return value;
+  try {
+    return JSON.parse(value);
+  } catch (e) {
+    console.error('Failed to parse JSON:', e);
+    return defaultValue;
+  }
+};
+
+module.exports = { pool, parseUser, parseJSON };

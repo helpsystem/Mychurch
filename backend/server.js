@@ -13,10 +13,12 @@ const profileRoutes = require('./routes/profileRoutes');
 const invitationRoutes = require('./routes/invitationRoutes');
 const bibleRoutes = require('./routes/bibleRoutes');
 const bibleInteractionRoutes = require('./routes/bibleInteractionRoutes');
+const bibleAudioRoutes = require('./routes/bibleAudioRoutes');
 const leadersRoutes = require('./routes/leadersRoutes');
 const sermonsRoutes = require('./routes/sermonsRoutes');
 const eventsRoutes = require('./routes/eventsRoutes');
 const worshipRoutes = require('./routes/worshipRoutes');
+const songsRoutes = require('./routes/songs');
 const scheduleRoutes = require('./routes/scheduleRoutes');
 const galleriesRoutes = require('./routes/galleriesRoutes');
 const prayerRoutes = require('./routes/prayerRoutes');
@@ -36,7 +38,20 @@ const aiRoutes = require('./routes/aiRoutes');
 const aiChatRoutes = require('./routes/aiChatRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
 const ttsRoutes = require('./routes/tts');
+
+// Try to load Hugging Face TTS routes
+let huggingfaceTTSRoutes;
+try {
+  huggingfaceTTSRoutes = require('./routes/huggingfaceTTS');
+  console.log('✅ Hugging Face TTS routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load Hugging Face TTS routes:', error.message);
+  console.error('   Stack:', error.stack);
+}
+
 const bibleUnifiedRoutes = require('./routes/bibleUnifiedMock');
+const dailyImagesRoutes = require('./routes/dailyImagesRoutes');
+const imageGenerationService = require('./services/imageGenerationService');
 
 const app = express();
 
@@ -168,10 +183,12 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/invitations', invitationRoutes);
 app.use('/api/bible', bibleRoutes);
 app.use('/api/bible', bibleInteractionRoutes);
+app.use('/api/bible-audio', bibleAudioRoutes);
 app.use('/api/leaders', leadersRoutes);
 app.use('/api/sermons', sermonsRoutes);
 app.use('/api/events', eventsRoutes);
 app.use('/api/worship-songs', worshipRoutes);
+app.use('/api/songs', songsRoutes);
 app.use('/api/schedule-events', scheduleRoutes);
 app.use('/api/galleries', galleriesRoutes);
 app.use('/api/prayer-requests', prayerRoutes);
@@ -182,6 +199,7 @@ app.use('/api/translate', translationRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/messages', messageHistoryRoutes);
 app.use('/api/pages', pagesRoutes);
+app.use('/api/daily-images', dailyImagesRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);
@@ -190,6 +208,10 @@ app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/wordproject', wordprojectRoutes);
+if (huggingfaceTTSRoutes) {
+  app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
+  console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');
+}
 app.use('/api/tts', ttsRoutes);
 app.use('/api/bible-unified', bibleUnifiedRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
@@ -279,7 +301,15 @@ const initializeDatabaseAsync = async () => {
 };
 
 // شروع سرور
-const startServer = () => {
+const startServer = async () => {
+  // Initialize Image Generation Service
+  try {
+    await imageGenerationService.initialize();
+    console.log('🎨 Image Generation Service ready');
+  } catch (error) {
+    console.error('⚠️ Image Generation Service initialization failed:', error.message);
+  }
+  
   // سرور را اول شروع کن
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
@@ -304,7 +334,8 @@ const startServer = () => {
     console.log('  ⚙️ /api/settings/* - Site settings');
     console.log('  📁 /api/files/* - File management');
     console.log('  📖✨ /api/daily-content/* - Daily scripture content');
-    console.log('  📮 /api/notifications/* - Multi-channel notifications');
+    console.log('  �️ /api/daily-images/* - Daily AI-generated images');
+    console.log('  �📮 /api/notifications/* - Multi-channel notifications');
     console.log('  ❤️ /api/health - Health check');
     
     // مقداردهی اولیه دیتابیس غیرفعال شد برای جلوگیری از مشکلات اتصال

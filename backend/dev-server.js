@@ -18,6 +18,18 @@ const eventsRoutes = require('./routes/eventsRoutes');
 const worshipRoutes = require('./routes/worshipRoutes');
 const prayerRoutes = require('./routes/prayerRoutes');
 const imageRoutes = require('./routes/imageRoutes');
+const wordprojectRoutes = require('./routes/wordproject');
+const ttsRoutes = require('./routes/tts');
+
+// Try to load Hugging Face TTS routes
+let huggingfaceTTSRoutes;
+try {
+  huggingfaceTTSRoutes = require('./routes/huggingfaceTTS');
+  console.log('✅ Hugging Face TTS routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load Hugging Face TTS routes:', error.message);
+  console.error('   Stack:', error.stack);
+}
 
 // Import services
 const imageService = require('./services/imageGenerationService');
@@ -69,6 +81,12 @@ app.use('/api/events', eventsRoutes);
 app.use('/api/worship-songs', worshipRoutes);
 app.use('/api/prayer-requests', prayerRoutes);
 app.use('/api/images', imageRoutes);
+app.use('/api/wordproject', wordprojectRoutes);
+if (huggingfaceTTSRoutes) {
+  app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
+  console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');
+}
+app.use('/api/tts', ttsRoutes);
 
 // Root
 app.get('/', (req, res) => {

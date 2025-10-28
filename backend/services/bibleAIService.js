@@ -7,6 +7,10 @@ const https = require('https');
 const { pool } = require('../db-postgres'); // Use shared pool
 require('dotenv').config();
 
+// Gemini API configuration
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
 // Test database connection on startup
 async function testConnection() {
   try {
@@ -174,108 +178,149 @@ async function getCrossReferences(keywords, language = 'fa', limit = 3) {
 }
 
 /**
+ * Call Gemini API for AI-powered responses
+ */
+async function callGeminiAPI(prompt, language = 'fa') {
+  return new Promise((resolve, reject) => {
+    if (!GEMINI_API_KEY) {
+      console.warn('⚠️ GEMINI_API_KEY not configured, using fallback responses');
+      resolve(null);
+      return;
+    }
+
+    const requestData = JSON.stringify({
+      contents: [{
+        parts: [{
+          text: prompt
+        }]
+      }],
+      generationConfig: {
+        temperature: 0.7,
+        topK: 40,
+        topP: 0.95,
+        maxOutputTokens: 1024,
+      }
+    });
+
+    const url = new URL(GEMINI_API_URL + `?key=${GEMINI_API_KEY}`);
+    
+    const options = {
+      hostname: url.hostname,
+      path: url.pathname + url.search,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(requestData)
+      },
+      timeout: 15000
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      
+      res.on('end', () => {
+        try {
+          const response = JSON.parse(data);
+          
+          if (response.candidates && response.candidates[0]?.content?.parts?.[0]?.text) {
+            resolve(response.candidates[0].content.parts[0].text);
+          } else if (response.error) {
+            console.error('Gemini API Error:', response.error);
+            resolve(null);
+          } else {
+            console.warn('Unexpected Gemini response format');
+            resolve(null);
+          }
+        } catch (error) {
+          console.error('Failed to parse Gemini response:', error);
+          resolve(null);
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('Gemini API request failed:', error.message);
+      resolve(null);
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      console.error('Gemini API request timeout');
+      resolve(null);
+    });
+
+    req.write(requestData);
+    req.end();
+  });
+}
+
+/**
  * Generate AI response using simple pattern matching
  * (Can be upgraded to use OpenAI GPT later)
  */
 async function generateAIResponse(userQuestion, language = 'fa') {
   const question = userQuestion.toLowerCase();
   
-  // Pattern matching for common questions
-  const patterns = {
-    peace: {
-      keywords: ['peace', 'صلح', 'آرامش', 'سکون'],
-      verses: [
-        { ref: 'JHN 14:27', fa: 'یوحنا', en: 'John' },
-        { ref: 'PHP 4:7', fa: 'فیلیپیان', en: 'Philippians' },
-        { ref: 'ISA 26:3', fa: 'اشعیا', en: 'Isaiah' }
-      ]
-    },
-    love: {
-      keywords: ['love', 'محبت', 'عشق'],
-      verses: [
-        { ref: 'JHN 3:16', fa: 'یوحنا', en: 'John' },
-        { ref: '1CO 13:4', fa: '۱ قرنتیان', en: '1 Corinthians' },
-        { ref: 'ROM 8:38', fa: 'رومیان', en: 'Romans' }
-      ]
-    },
-    hope: {
-      keywords: ['hope', 'امید', 'رجاء'],
-      verses: [
-        { ref: 'JER 29:11', fa: 'ارمیا', en: 'Jeremiah' },
-        { ref: 'ROM 15:13', fa: 'رومیان', en: 'Romans' },
-        { ref: 'PSA 42:11', fa: 'مزامیر', en: 'Psalms' }
-      ]
-    },
-    strength: {
-      keywords: ['strength', 'قوت', 'نیرو', 'توان'],
-      verses: [
-        { ref: 'PHP 4:13', fa: 'فیلیپیان', en: 'Philippians' },
-        { ref: 'ISA 40:31', fa: 'اشعیا', en: 'Isaiah' },
-        { ref: 'PSA 46:1', fa: 'مزامیر', en: 'Psalms' }
-      ]
-    }
-  };
+  // Step 1: Search for relevant verses
+  const words = question.split(/\s+/).filter(w => w.length > 3);
+  const searchKeywords = words.slice(0, 3).join(' ') || 'خدا';
+  const verses = await searchVerses(searchKeywords, language, 5);
   
-  // Find matching pattern
-  let matchedPattern = null;
-  for (const [key, pattern] of Object.entries(patterns)) {
-    if (pattern.keywords.some(kw => question.includes(kw))) {
-      matchedPattern = pattern;
-      break;
-    }
+  // Step 2: Build context from verses
+  let versesContext = '';
+  if (verses.length > 0) {
+    versesContext = language === 'fa' 
+      ? '\n\nآیات مرتبط از کتاب مقدس:\n\n'
+      : '\n\nRelevant Bible verses:\n\n';
+    
+    verses.forEach((v, i) => {
+      versesContext += `${i + 1}. ${v.book_name} ${v.chapter_number}:${v.verse_number}\n"${v.text}"\n\n`;
+    });
   }
   
-  if (!matchedPattern) {
-    // Default: search for keywords in the question
-    const words = question.split(/\s+/).filter(w => w.length > 3);
-    const verses = await searchVerses(words[0] || 'خدا', language, 3);
-    
-    return {
-      answer: language === 'fa' 
-        ? 'بر اساس سوال شما، این آیات ممکن است مفید باشند:'
-        : 'Based on your question, these verses might be helpful:',
-      verses: verses.map(v => ({
-        reference: `${v.book_name} ${v.chapter_number}:${v.verse_number}`,
-        text: v.text,
-        book_code: v.book_code,
-        chapter: v.chapter_number,
-        verse: v.verse_number
-      })),
-      suggestion: language === 'fa'
-        ? 'برای پاسخ بهتر، سوال خود را واضح‌تر بیان کنید.'
-        : 'For better results, please be more specific with your question.'
-    };
+  // Step 3: Create prompt for Gemini
+  const prompt = language === 'fa'
+    ? `شما یک راهنمای معنوی مسیحی هستید که بر اساس کتاب مقدس پاسخ می‌دهید.
+
+سوال کاربر: "${userQuestion}"
+${versesContext}
+
+لطفاً:
+1. با توجه به آیات بالا، پاسخی روشن و دلسوزانه به سوال بدهید
+2. تفسیر مختصری از آیات ارائه کنید
+3. راهنمایی عملی برای زندگی روزمره بدهید
+4. با محبت مسیحی و احترام پاسخ دهید
+
+پاسخ شما (حداکثر 300 کلمه):`
+    : `You are a Christian spiritual guide who answers based on the Bible.
+
+User's question: "${userQuestion}"
+${versesContext}
+
+Please:
+1. Provide a clear and compassionate answer based on the verses above
+2. Offer brief interpretation of the verses
+3. Give practical guidance for daily life
+4. Respond with Christian love and respect
+
+Your response (max 300 words):`;
+  
+  // Step 4: Try to get AI response from Gemini
+  let aiAnswer = await callGeminiAPI(prompt, language);
+  
+  // Step 5: Fallback if Gemini fails
+  if (!aiAnswer) {
+    aiAnswer = language === 'fa'
+      ? `بر اساس کتاب مقدس، در پاسخ به سوال شما:\n\nخداوند در کلام خود راهنمایی‌های عمیقی در این زمینه ارائه می‌دهد. آیات بالا نشان می‌دهند که خداوند همیشه با ما است و ما را در هر شرایطی یاری می‌کند.\n\nتوصیه می‌شود این آیات را با دقت مطالعه کنید و در دعا با خداوند درباره آنها صحبت کنید. او پاسخ شما را خواهد داد.`
+      : `Based on the Bible, in response to your question:\n\nThe Lord provides deep guidance in His Word on this matter. The verses above show that God is always with us and helps us in every situation.\n\nI recommend studying these verses carefully and talking to the Lord about them in prayer. He will answer you.`;
   }
-  
-  // Get verses for matched pattern
-  const versePromises = matchedPattern.verses.map(async (v) => {
-    const [bookCode, ref] = v.ref.split(' ');
-    const [chapter, verse] = ref.split(':');
-    
-    const result = await pool.query(`
-      SELECT 
-        b.name_${language} as book_name,
-        b.code as book_code,
-        c.chapter_number,
-        v.verse_number,
-        v.text_${language} as text
-      FROM bible_verses v
-      JOIN bible_chapters c ON v.chapter_id = c.id
-      JOIN bible_books b ON c.book_id = b.id
-      WHERE b.code = $1
-        AND c.chapter_number = $2
-        AND v.verse_number = $3
-    `, [bookCode, parseInt(chapter), parseInt(verse)]);
-    
-    return result.rows[0];
-  });
-  
-  const verses = (await Promise.all(versePromises)).filter(v => v);
   
   return {
-    answer: language === 'fa'
-      ? 'کتاب مقدس در مورد این موضوع می‌فرماید:'
-      : 'The Bible says about this topic:',
+    answer: aiAnswer,
     verses: verses.map(v => ({
       reference: `${v.book_name} ${v.chapter_number}:${v.verse_number}`,
       text: v.text,
@@ -283,9 +328,8 @@ async function generateAIResponse(userQuestion, language = 'fa') {
       chapter: v.chapter_number,
       verse: v.verse_number
     })),
-    suggestion: language === 'fa'
-      ? 'برای مطالعه بیشتر، این آیات را با یکدیگر مقایسه کنید.'
-      : 'For further study, compare these verses together.'
+    hasAI: !!GEMINI_API_KEY,
+    source: aiAnswer ? 'gemini' : 'fallback'
   };
 }
 

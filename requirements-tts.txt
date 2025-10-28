@@ -1,0 +1,16 @@
+# Persian TTS Server Dependencies
+# نصب: pip install -r requirements-tts.txt
+
+# TTS Engine
+TTS>=0.22.0
+
+# Web Server
+flask>=3.0.0
+flask-cors>=4.0.0
+gunicorn>=21.2.0
+
+# Audio Processing
+pydub>=0.25.1
+
+# Utilities
+requests>=2.31.0

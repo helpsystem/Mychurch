@@ -245,13 +245,13 @@ router.get('/books', async (req, res) => {
     const query = `
       SELECT 
         id,
-        code,
-        name_en,
-        name_fa,
+        book_iso as code,
+        book_name as name_en,
+        book_name_fa as name_fa,
         testament,
-        chapters_count
+        50 as chapters_count
       FROM bible_books 
-      ORDER BY id
+      ORDER BY book_number
     `;
     const result = await pool.query(query);
     
@@ -305,12 +305,12 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     
     // Find book by code, English name, or Farsi name (case-insensitive)
     const bookQuery = `
-      SELECT id, name_en, name_fa, code
+      SELECT id, book_name as name_en, book_name_fa as name_fa, book_iso as code
       FROM bible_books 
-      WHERE LOWER(code) = LOWER($1) 
-         OR LOWER(name_en) = LOWER($1)
-         OR LOWER(name_fa) = LOWER($1)
-         OR LOWER($1) = LOWER(REPLACE(name_en, ' ', ''))
+      WHERE LOWER(book_iso) = LOWER($1) 
+         OR LOWER(book_name) = LOWER($1)
+         OR LOWER(book_name_fa) = LOWER($1)
+         OR LOWER($1) = LOWER(REPLACE(book_name, ' ', ''))
     `;
     const bookResult = await pool.query(bookQuery, [bookKey]);
     
@@ -324,24 +324,12 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     const book = bookResult.rows[0];
     const chapterNum = parseInt(chapter);
     
-    // Get chapter ID
-    const chapterQuery = `
-      SELECT id FROM bible_chapters 
-      WHERE book_id = $1 AND chapter_number = $2
-    `;
-    const chapterResult = await pool.query(chapterQuery, [book.id, chapterNum]);
-    
-    if (chapterResult.rows.length === 0) {
-      return res.status(404).json({ 
-        success: false, 
-        message: 'Chapter not found' 
-      });
-    }
-    
-    const chapterId = chapterResult.rows[0].id;
+    // Get verses directly from bible_verses using chapter_id = chapter number
+    // (This is a temporary mapping - ideally chapter_id should link to a chapters table)
+    const chapterId = chapterNum;
     
     // Get translation info or use default
-    let translationId = null;
+    let translationId = 1; // Default to mojdeh (translation_id = 1)
     let selectedTranslation = null;
     
     if (translation) {

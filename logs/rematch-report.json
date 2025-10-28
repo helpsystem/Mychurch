@@ -1,0 +1,3290 @@
+{
+  "date": "2025-10-26T16:12:27.625Z",
+  "stats": {
+    "perfect": 61,
+    "high": 84,
+    "medium": 46,
+    "low": 128,
+    "veryLow": 45,
+    "changed": 166,
+    "unchanged": 198
+  },
+  "matches": [
+    {
+      "id": 1,
+      "titleFA": "الشدای",
+      "titleEN": "Elshaddai",
+      "oldFile": "El Shaddai in Farsi.mp3",
+      "newFile": "El Shaddai in Farsi.mp3",
+      "score": "85.6",
+      "changed": false
+    },
+    {
+      "id": 2,
+      "titleFA": "تو را عاشقانه دوستت دارم",
+      "titleEN": "نیلوفر",
+      "oldFile": "Tora asheghane dustat daram.mp3",
+      "newFile": "Tora asheghane dustat daram.mp3",
+      "score": "52.5",
+      "changed": false
+    },
+    {
+      "id": 3,
+      "titleFA": "بخوان نام عیسی را",
+      "titleEN": "مجید دستوری",
+      "oldFile": "Bekhan name Isa ra.mp3",
+      "newFile": "Bekhan name Isa ra.mp3",
+      "score": "51.3",
+      "changed": false
+    },
+    {
+      "id": 4,
+      "titleFA": "خداوند شبان جانم است",
+      "titleEN": "رضا وطن‌پرست",
+      "oldFile": "خداوند شبان من است.mp3",
+      "newFile": "شبان جانم.mp3",
+      "score": "84.7",
+      "changed": true
+    },
+    {
+      "id": 5,
+      "titleFA": "من از آن توام ابا",
+      "titleEN": "سینا مسیحا",
+      "oldFile": "من از آن توام ابا.mp3",
+      "newFile": "من از آن توام ابا.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 6,
+      "titleFA": "جهانم بی تو دگر معنا ندارد",
+      "titleEN": "آراد طفلان",
+      "oldFile": "Jahanam bi to degar mana nadarad.mp3",
+      "newFile": "Jahanam bi to degar mana nadarad.mp3",
+      "score": "54.4",
+      "changed": false
+    },
+    {
+      "id": 7,
+      "titleFA": "تماشایی‌ترین تصویر دنیا",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "تماشایی‌ترین تصویر دنیا.mp3",
+      "newFile": "تماشایی‌ترین تصویر دنیا.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 8,
+      "titleFA": "به دیدار و لمسی تازه",
+      "titleEN": "أنا محتاج لمسة روحك",
+      "oldFile": "به دیدار و لمسی تازه.mp3",
+      "newFile": "به دیدار و لمسی تازه.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 9,
+      "titleFA": "عیسی تو را می‌پرستم",
+      "titleEN": "دریا",
+      "oldFile": "عیسی تورا میپرستم .mp3",
+      "newFile": "عیسی تورا میپرستم .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 10,
+      "titleFA": "کلمه جسم گردید",
+      "titleEN": "سینا مسیحا",
+      "oldFile": "کلمه جسم گردید.mp3",
+      "newFile": "کلمه جسم گردید.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 11,
+      "titleFA": "جشنی عظیم برپاست",
+      "titleEN": "ساموئیل بهرامی فرد",
+      "oldFile": "جشنی عظیم برپاست.mp3",
+      "newFile": "جشنی عظیم برپاست.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 12,
+      "titleFA": "ای عیسی نزدم بیا",
+      "titleEN": "کشیش ادوارد هوسپیان",
+      "oldFile": "ای عیسی نزدم بیا .mp3",
+      "newFile": "ای عیسی نزدم بیا .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 13,
+      "titleFA": "عظیمی عجیبی",
+      "titleEN": "دریا",
+      "oldFile": "عظیمی .mp3",
+      "newFile": "عظیمی .mp3",
+      "score": "85.0",
+      "changed": false
+    },
+    {
+      "id": 14,
+      "titleFA": "منجی من معبود من",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "منجی من .mp3",
+      "newFile": "منجی من .mp3",
+      "score": "84.6",
+      "changed": false
+    },
+    {
+      "id": 15,
+      "titleFA": "چشمان قلبم را بگشا",
+      "titleEN": "Open the eyes of my heart Lord",
+      "oldFile": "چشمان قلبم را بگشا.mp3",
+      "newFile": "چشمان قلبم را بگشا.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 16,
+      "titleFA": "دل طاهر در من بیافرین",
+      "titleEN": "",
+      "oldFile": "دل  طاهر در من .mp3",
+      "newFile": "دل  طاهر در من .mp3",
+      "score": "85.9",
+      "changed": false
+    },
+    {
+      "id": 17,
+      "titleFA": "گرمای آغوش تو",
+      "titleEN": "",
+      "oldFile": "گرمای آغوش تو.mp3",
+      "newFile": "گرمای آغوش تو.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 18,
+      "titleFA": "عشقی تازه در قلبم",
+      "titleEN": "رامین چنگیزی",
+      "oldFile": "Eshghi tazedfec.mp3",
+      "newFile": "Eshghi tazedfec.mp3",
+      "score": "30.0",
+      "changed": false
+    },
+    {
+      "id": 19,
+      "titleFA": "تو آگاهی خداوند",
+      "titleEN": "",
+      "oldFile": "to Agahi khodavand.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 20,
+      "titleFA": "شبان جانم",
+      "titleEN": "Shepherd of my soul",
+      "oldFile": "شبان جانم.mp3",
+      "newFile": "شبان جانم.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 21,
+      "titleFA": "این محبت حقیقی است",
+      "titleEN": "Real Love",
+      "oldFile": "این محبت حقیقی است.mp3",
+      "newFile": "این محبت حقیقی است.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 22,
+      "titleFA": "امیدت را از دست نده",
+      "titleEN": "شراره-دریا",
+      "oldFile": "امیدت را از دست نده.mp3",
+      "newFile": "امیدت را از دست نده.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 23,
+      "titleFA": "اکنون در تو آزادم ( چه نیکوست در تو دارم نجات )",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "اکنون در تو آزادم.mp3",
+      "newFile": "اکنون در تو آزادم.mp3",
+      "score": "26.8",
+      "changed": false
+    },
+    {
+      "id": 24,
+      "titleFA": "ای روح خدا ( می خواهیم هر روزه از تو ما پر شویم )",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "%d8%a7%db%8c%20%d8%b1%d9%88%d8%ad%20%d8%ae%d8%af%d8%a7.mp3",
+      "newFile": "ای روح خدا.mp3",
+      "score": "82.4",
+      "changed": true
+    },
+    {
+      "id": 25,
+      "titleFA": "ایمانی نو روحی نو",
+      "titleEN": "دریا",
+      "oldFile": "Imani no.mp3",
+      "newFile": "ایمان.mp3",
+      "score": "83.6",
+      "changed": true
+    },
+    {
+      "id": 26,
+      "titleFA": "ایمانم را مدد کن",
+      "titleEN": "دریا",
+      "oldFile": "ایمانم را مدد کن.mp3",
+      "newFile": "ایمانم را مدد کن.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 27,
+      "titleFA": "ای ستمدیده و طوفان زده",
+      "titleEN": "آزاده تقی پور",
+      "oldFile": "ای ستم دیده و طوفان زده.mp3",
+      "newFile": "ای ستم دیده و طوفان زده.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 28,
+      "titleFA": "اگه دلت شکسته تنها شدی یا خسته ( پشت در قلب توست )",
+      "titleEN": "داریوش",
+      "oldFile": "%d9%be%d8%b4%d8%aa%20%d8%af%d8%b1%20%d9%82%d9%84%d8%a8%20%d8%aa%d9%88%d8%b3%d8%aa.mp3",
+      "newFile": "پشت در قلب توست.mp3",
+      "score": "83.3",
+      "changed": true
+    },
+    {
+      "id": 29,
+      "titleFA": "ابا ای پدر آسمانی ( پدر شکرت گویان نزد تو آیم )",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "%d8%a7%d8%a8%d8%a7%20%d8%a7%db%8c%20%d9%be%d8%af%d8%b1%20%d8%a7%d9%93%d8%b3%d9%85%d8%a7%d9%86%db%8c.mp3",
+      "newFile": "ابا ای پدر آسمانی.mp3",
+      "score": "26.8",
+      "changed": true
+    },
+    {
+      "id": 30,
+      "titleFA": "ای برادر و خواهرم",
+      "titleEN": "",
+      "oldFile": "Ey baradar o ey khahar.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 31,
+      "titleFA": "اکنون آزادم نما ( ای خالق این جهان )",
+      "titleEN": "علیرضا سیدیان",
+      "oldFile": "Aknoon%20azadam%20nama.mp3",
+      "newFile": "Ab ra sharab .mp3",
+      "score": "29.2",
+      "changed": true
+    },
+    {
+      "id": 32,
+      "titleFA": "از این دنیای مغموم و فانی",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "Az%20in%20donyaye.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "38.9",
+      "changed": true
+    },
+    {
+      "id": 33,
+      "titleFA": "ای فرزندان نور",
+      "titleEN": "سرود عربی",
+      "oldFile": "ای فرزندان نور.mp3",
+      "newFile": "ای فرزندان نور.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 34,
+      "titleFA": "ای جان من خداوند را متبارک خوان تا ابد",
+      "titleEN": "یلدا میرشکار - رضا وطن‌پرست",
+      "oldFile": "Ey%20jane%20man%20khodavand%20ra.mp3",
+      "newFile": "این صدای بارانیست.mp3",
+      "score": "26.7",
+      "changed": true
+    },
+    {
+      "id": 35,
+      "titleFA": "ای تو ما را پدر ای ابا ( دعا برای ایران )",
+      "titleEN": "کاوه رفیعی",
+      "oldFile": "Doa%20baraye%20Iran.mp3",
+      "newFile": "183 Tora miparastam Namat barafrazam.mp3",
+      "score": "28.4",
+      "changed": true
+    },
+    {
+      "id": 36,
+      "titleFA": "ای پدر ما در آسمان ( دعای ربانی )",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "Ey%20pedare%20ma%20dar%20aseman.mp3",
+      "newFile": "Khoda nikust .mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 37,
+      "titleFA": "این صدای بارانیست",
+      "titleEN": "پیمان مجتهدی",
+      "oldFile": "این صدای بارانیست.mp3",
+      "newFile": "این صدای بارانیست.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 38,
+      "titleFA": "ایمان داری که خدایی هست ( ایمان دارم می پذیرم )",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "227 Iman dari ke khodayee hast .mp3",
+      "newFile": "ایمان.mp3",
+      "score": "81.4",
+      "changed": true
+    },
+    {
+      "id": 39,
+      "titleFA": "خدای ما تشنه ی توییم",
+      "titleEN": "God of ages",
+      "oldFile": "206 Khodaye ma teshneye toyeem.mp3",
+      "newFile": "206 Khodaye ma teshneye toyeem.mp3",
+      "score": "35.0",
+      "changed": false
+    },
+    {
+      "id": 40,
+      "titleFA": "نترسم",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "نترسم.mp3",
+      "newFile": "نترسم.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 41,
+      "titleFA": "روح قدوس خدا",
+      "titleEN": "let the weight of your glory",
+      "oldFile": "روح قدوس خدا .mp3",
+      "newFile": "روح قدوس خدا .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 42,
+      "titleFA": "عیسی تویی آرامش جانم ( سرایم دوستت دارم )",
+      "titleEN": "شروین عبدالهی",
+      "oldFile": "عیسی تویی آرامش جانم .mp3",
+      "newFile": "عیسی تویی آرامش جانم .mp3",
+      "score": "36.1",
+      "changed": false
+    },
+    {
+      "id": 43,
+      "titleFA": "فرشتگان گرداگرد تخت",
+      "titleEN": "Holy is our king",
+      "oldFile": "Fereshtegan gerdagerde takht.mp3",
+      "newFile": "Fereshtegan gerdagerde takht.mp3",
+      "score": "51.2",
+      "changed": false
+    },
+    {
+      "id": 44,
+      "titleFA": "جوانه ( می نهم به پایت عیسی )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Javane.mp3",
+      "newFile": "Jashni azim barpast.mp3",
+      "score": "28.0",
+      "changed": true
+    },
+    {
+      "id": 45,
+      "titleFA": "نزد تو خم شویم",
+      "titleEN": "We bow low",
+      "oldFile": "199 Nazde to kham shavim.mp3",
+      "newFile": "199 Nazde to kham shavim.mp3",
+      "score": "42.0",
+      "changed": false
+    },
+    {
+      "id": 46,
+      "titleFA": "حتی اگر افتاده باشم",
+      "titleEN": "نیلوفر",
+      "oldFile": "حتی اگر افتاده باشم .mp3",
+      "newFile": "حتی اگر افتاده باشم .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 47,
+      "titleFA": "ده مرا تعمیدی نو",
+      "titleEN": "سرود عربی",
+      "oldFile": "199 Deh mara tamidi no.mp3",
+      "newFile": "Deh mara tamidi no.mp3",
+      "score": "60.7",
+      "changed": true
+    },
+    {
+      "id": 48,
+      "titleFA": "به صحن قدست ( ای معبود من محبوب من )",
+      "titleEN": "I enter to holy of holies",
+      "oldFile": "195%20Be%20sahne%20ghodsat%20vared%20shavam.mp3",
+      "newFile": "بازایستیم و دانیم .mp3",
+      "score": "25.2",
+      "changed": true
+    },
+    {
+      "id": 49,
+      "titleFA": "ای تو پیدا و همه پنهان من",
+      "titleEN": "مرتضی باقری",
+      "oldFile": "194 Ey to peyda o hame penhane man.mp3",
+      "newFile": "194 Ey to peyda o hame penhane man.mp3",
+      "score": "38.9",
+      "changed": false
+    },
+    {
+      "id": 50,
+      "titleFA": "دشمنانم چه بسیار هستند",
+      "titleEN": "Thou art a shield for me",
+      "oldFile": "دشمنانم چه بسیار هستند.mp3",
+      "newFile": "دشمنانم چه بسیار هستند.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 51,
+      "titleFA": "در قصرهای او داخل شو",
+      "titleEN": "",
+      "oldFile": "192 Dar ghasrhaye ou dakhel sho.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 52,
+      "titleFA": "باران شفا ریزد",
+      "titleEN": "Healing Rain is falling down",
+      "oldFile": "191 Barane shafa rizad.mp3",
+      "newFile": "191 Barane shafa rizad.mp3",
+      "score": "47.9",
+      "changed": false
+    },
+    {
+      "id": 53,
+      "titleFA": "باهم گردآییم ( سراییم او خداوند است )",
+      "titleEN": "",
+      "oldFile": "پیروزیم با نام خداوند.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 54,
+      "titleFA": "در آن شب مقدس و فروزان ( تمجید کنید سرودها بسرایید )",
+      "titleEN": "Palacide Cappeau",
+      "oldFile": "Dar%20an%20shabe%20moghadas%20o%20foruzan_0.mp3",
+      "newFile": "Jalale namat.mp3",
+      "score": "28.0",
+      "changed": true
+    },
+    {
+      "id": 55,
+      "titleFA": "عظیم است نام تو عیسی",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "191 Azim ast name to isa .mp3",
+      "newFile": "نام تو .mp3",
+      "score": "83.1",
+      "changed": true
+    },
+    {
+      "id": 56,
+      "titleFA": "تو اینجایی در میان ما",
+      "titleEN": "Way maker",
+      "oldFile": "To injai dar miyane ma .mp3",
+      "newFile": "To injai dar miyane ma .mp3",
+      "score": "50.6",
+      "changed": false
+    },
+    {
+      "id": 57,
+      "titleFA": "ولی من زندست",
+      "titleEN": "نیلوفر",
+      "oldFile": "ولی من زندست.mp3",
+      "newFile": "ولی من زندست.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 58,
+      "titleFA": "وقتی غم این زندگی پریشانم کند",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "185 Vaghti ghame in zendegi.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "38.9",
+      "changed": true
+    },
+    {
+      "id": 59,
+      "titleFA": "وقتی دل شکسته ام گفتی تو را پرستم",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "وقتی دلشکسته ام.mp3",
+      "newFile": "وقتی دلشکسته ام.mp3",
+      "score": "85.0",
+      "changed": false
+    },
+    {
+      "id": 60,
+      "titleFA": "وقتی دل شکسته گرانبار و خسته ( مسیحا مسیحا )",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "185 Vaghti del shekaste geranbaro .mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "38.9",
+      "changed": true
+    },
+    {
+      "id": 61,
+      "titleFA": "وقتی بین سکوت و کلام",
+      "titleEN": "فراز دولتخواه",
+      "oldFile": "182 Vaghti beyne sokuto kalam.mp3",
+      "newFile": "182 Vaghti beyne sokuto kalam.mp3",
+      "score": "39.2",
+      "changed": false
+    },
+    {
+      "id": 62,
+      "titleFA": "تو را می پرستم نامت برافرازم",
+      "titleEN": "",
+      "oldFile": "183 Tora miparastam Namat barafrazam.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 63,
+      "titleFA": "تو تاک هستی ما شاخه های تو",
+      "titleEN": "You are the vine and we are the branches",
+      "oldFile": "تو تاک هستی.mp3",
+      "newFile": "تو تاک هستی.mp3",
+      "score": "84.5",
+      "changed": false
+    },
+    {
+      "id": 64,
+      "titleFA": "تو قدوسی برمی‌افرازیم نام قدوست",
+      "titleEN": "",
+      "oldFile": "179 To ghodusi barmiafrazim.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 65,
+      "titleFA": "تو بی‌همتایی",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "تو بی همتایی.mp3",
+      "newFile": "تو بی همتایی.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 66,
+      "titleFA": "تو به یادم هستی ( در آزمایشها و تنگی )",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "177%20To%20be%20yadam%20hasti.mp3",
+      "newFile": "Khoda nikust .mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 67,
+      "titleFA": "تسبیح و حمدت گوییم ای خداوند",
+      "titleEN": "سرود عربی",
+      "oldFile": "176 Tasbiho hamdat guyim ey khodavand.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "43.8",
+      "changed": true
+    },
+    {
+      "id": 68,
+      "titleFA": "تقدیم نمایم قلبم را",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "177 Taghdim namayam ghalbam ra.mp3",
+      "newFile": "تقدیم نمایم.mp3",
+      "score": "86.3",
+      "changed": true
+    },
+    {
+      "id": 69,
+      "titleFA": "وقتی خداوند ما را آزاد کرد ( پس در میان قومها )",
+      "titleEN": "سرود عبری",
+      "oldFile": "176 Vaghti khodavand mara azad kard .mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "43.8",
+      "changed": true
+    },
+    {
+      "id": 70,
+      "titleFA": "سخن بگو از عمق‌های ( بریز بریز آتش آسمانی )",
+      "titleEN": "زنده یاد کشیش ورویر آوانسیان",
+      "oldFile": "Sokhan%20begoo.mp3",
+      "newFile": "shadi konid jahanian .mp3",
+      "score": "26.3",
+      "changed": true
+    },
+    {
+      "id": 71,
+      "titleFA": "شکر و سپاس از آن توست تا به ابد",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "172 Shokro sepas az ane tost.mp3",
+      "newFile": "172 Shokro sepas az ane tost9e55.mp3",
+      "score": "36.3",
+      "changed": true
+    },
+    {
+      "id": 72,
+      "titleFA": "شکر بر نام عیسی",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "170 Shokr bar name Isa.mp3",
+      "newFile": "170 Shokr bar name Isa.mp3",
+      "score": "42.8",
+      "changed": false
+    },
+    {
+      "id": 73,
+      "titleFA": "شاه شاهان تویی کلام زنده",
+      "titleEN": "You are the mighty king",
+      "oldFile": "169 Shahe shahan toyee kalame zende.mp3",
+      "newFile": "169 Shahe shahan toyee kalame zende.mp3",
+      "score": "44.3",
+      "changed": false
+    },
+    {
+      "id": 74,
+      "titleFA": "خداوند عیسی عدالت ما ( شبان اعظم گله )",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "خداوند ناله هایم را شنیدی.mp3",
+      "newFile": "Khoda nikust .mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 75,
+      "titleFA": "ستایش ( پر شکوهی پر جلالی )",
+      "titleEN": "Worthy",
+      "oldFile": "%d8%b3%d8%aa%d8%a7%db%8c%d8%b4%20.mp3",
+      "newFile": "ستایش .mp3",
+      "score": "82.6",
+      "changed": true
+    },
+    {
+      "id": 76,
+      "titleFA": "چون روی قدوست را بینم ( ستایمت )",
+      "titleEN": "When I look into your holiness",
+      "oldFile": "Chon ruhash dar man.mp3",
+      "newFile": "161 Ey ruholghodos mara lams nama.mp3",
+      "score": "27.5",
+      "changed": true
+    },
+    {
+      "id": 77,
+      "titleFA": "سردار لشکر آسمان",
+      "titleEN": "شراره-دریا",
+      "oldFile": "سردار لشکر آسمان.mp3",
+      "newFile": "سردار لشکر آسمان.mp3",
+      "score": "65.3",
+      "changed": false
+    },
+    {
+      "id": 78,
+      "titleFA": "سرایم حمد گویم ( خداوندا تو را از خود )",
+      "titleEN": "I will sing",
+      "oldFile": "سرایم حمد گویم .mp3",
+      "newFile": "سرایم حمد گویم .mp3",
+      "score": "84.3",
+      "changed": false
+    },
+    {
+      "id": 79,
+      "titleFA": "ای روح القدس مرا لمس نما",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "161 Ey ruholghodos mara lams nama.mp3",
+      "newFile": "ای روح القدس ای روح خدا.mp3",
+      "score": "40.5",
+      "changed": true
+    },
+    {
+      "id": 80,
+      "titleFA": "روح القدس به ما قوت عطا فرما",
+      "titleEN": "سرود کُره‌ای",
+      "oldFile": "روح القدس آشکار ساز.mp3",
+      "newFile": "روح القدس آشکار ساز.mp3",
+      "score": "35.0",
+      "changed": false
+    },
+    {
+      "id": 81,
+      "titleFA": "روح القدس تو برترین یار منی",
+      "titleEN": "سپیده",
+      "oldFile": "روح القدس بهترین دوست من _1.mp3",
+      "newFile": "روح القدس بهترین دوست من _1.mp3",
+      "score": "44.5",
+      "changed": false
+    },
+    {
+      "id": 82,
+      "titleFA": "روح او در ماست",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "156 Rouhe ou dar mast.mp3",
+      "newFile": "156 Rouhe ou dar mast.mp3",
+      "score": "41.2",
+      "changed": false
+    },
+    {
+      "id": 83,
+      "titleFA": "روغن شفا",
+      "titleEN": "نیلوفر",
+      "oldFile": "روغن شفا.mp3",
+      "newFile": "روغن شفا.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 84,
+      "titleFA": "پسر خدا تو شایسته ای",
+      "titleEN": "",
+      "oldFile": "154 Pesare khoda to shayesteia299.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 85,
+      "titleFA": "پدر سرمدی پادشاه جلال",
+      "titleEN": "Adonai",
+      "oldFile": "پدر سرمدی پادشاه جلال.mp3",
+      "newFile": "پدر سرمدی پادشاه جلال.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 86,
+      "titleFA": "می‌آیم فروتن به نزدت پادشاه ( پادشاه پادشاه )",
+      "titleEN": "Majesty",
+      "oldFile": "Miayam forootan be nazdat padeshah می آیم فروتن به نزدت پادشاه.mp3",
+      "newFile": "Maljaye man toyi.mp3",
+      "score": "30.0",
+      "changed": true
+    },
+    {
+      "id": 87,
+      "titleFA": "امیدی در طوفانها ( نه با سری افراشته )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "امیدی در طوفانها.mp3",
+      "newFile": "امیدی در طوفانها.mp3",
+      "score": "85.0",
+      "changed": false
+    },
+    {
+      "id": 88,
+      "titleFA": "نیازم بر توست ای مسیح",
+      "titleEN": "دریا",
+      "oldFile": "220 Negaham be to ast isa .mp3",
+      "newFile": "نیازم.mp3",
+      "score": "82.9",
+      "changed": true
+    },
+    {
+      "id": 89,
+      "titleFA": "خواندی مرا به روی آبها ( اقیانوس )",
+      "titleEN": "Oceans",
+      "oldFile": "خواندی مرا به روی آبها.mp3",
+      "newFile": "خواندی مرا به روی آبها.mp3",
+      "score": "47.6",
+      "changed": false
+    },
+    {
+      "id": 90,
+      "titleFA": "نگاهم به توست هلاک نخواهم شد",
+      "titleEN": "God i look to you",
+      "oldFile": "149 Negaham be tost halak nakhahm shod.mp3",
+      "newFile": "149 Negaham be tost halak nakhahm shod.mp3",
+      "score": "48.1",
+      "changed": false
+    },
+    {
+      "id": 91,
+      "titleFA": "نام توست سلاحم",
+      "titleEN": "نیلوفر",
+      "oldFile": "نام توست سلاحم.mp3",
+      "newFile": "نام توست سلاحم.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 92,
+      "titleFA": "نام عیساست ملجای ما",
+      "titleEN": "Name of Jesus",
+      "oldFile": "145 Name isast maljaye ma.mp3",
+      "newFile": "145 Name isast maljaye ma.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 93,
+      "titleFA": "این زمان ملاقات با توست ( بیشتر و بیشتر )",
+      "titleEN": "ملودی یقنظر",
+      "oldFile": "144 In zamane molaghat ba tost .mp3",
+      "newFile": "144 In zamane molaghat ba tost .mp3",
+      "score": "25.7",
+      "changed": false
+    },
+    {
+      "id": 94,
+      "titleFA": "محبت خداوندم بس عظیم است و شیرین",
+      "titleEN": "",
+      "oldFile": "143%20Mohabate%20khodavandam%20bas%20azim%20.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 95,
+      "titleFA": "محبت خدا در صلیب عیسی",
+      "titleEN": "سرود عربی",
+      "oldFile": "142 Mohabate khoda dar salibe isa.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "43.8",
+      "changed": true
+    },
+    {
+      "id": 96,
+      "titleFA": "می شکافم",
+      "titleEN": "نیلوفر",
+      "oldFile": "143 Mishekafam .mp3",
+      "newFile": "Mishekafam .mp3",
+      "score": "56.0",
+      "changed": true
+    },
+    {
+      "id": 97,
+      "titleFA": "به حضورت آمده‌ام",
+      "titleEN": "دانیال کابلی",
+      "oldFile": "به حضورت آییم.mp3",
+      "newFile": "به حضورت آییم.mp3",
+      "score": "48.5",
+      "changed": false
+    },
+    {
+      "id": 98,
+      "titleFA": "به روی زانوانم در حضورت",
+      "titleEN": "فراز دولتخواه",
+      "oldFile": "6%20Beruye%20zanovanam%20.mp3",
+      "newFile": "49 Azim ast khoda .mp3",
+      "score": "30.0",
+      "changed": true
+    },
+    {
+      "id": 99,
+      "titleFA": "تقدیمت کنم تسلیمت کنم ( هرچه دارم از ته دل )",
+      "titleEN": "I surrender all",
+      "oldFile": "تقدیمت کنم تسلیمت کنم.mp3",
+      "newFile": "تقدیمت کنم تسلیمت کنم.mp3",
+      "score": "85.6",
+      "changed": false
+    },
+    {
+      "id": 100,
+      "titleFA": "آسمان گوید جلال و شکوه عیسی ( تا ابد تو هستی )",
+      "titleEN": "All heaven declares",
+      "oldFile": "آسمان گوید جلال و شکوه عیسی.mp3",
+      "newFile": "آسمان گوید جلال و شکوه عیسی.mp3",
+      "score": "44.5",
+      "changed": false
+    },
+    {
+      "id": 101,
+      "titleFA": "قدوس قدوس قدوس ( سزاوار )",
+      "titleEN": "",
+      "oldFile": "Ruholghodos ashkar saza9d0.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 102,
+      "titleFA": "قوت و جلال حمد و سپاس",
+      "titleEN": "",
+      "oldFile": "246 Ghovato jalal .mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 103,
+      "titleFA": "حضور نوازشگرت ( تشنه ام تشنه ی )",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "245%20Hozure%20navazeshgarat%20.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "38.9",
+      "changed": true
+    },
+    {
+      "id": 104,
+      "titleFA": "چشمانم را بر می افرازم ( از آسمان بریز )",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "244%20Cheshmanam%20ra%20%20%20%20.mp3",
+      "newFile": "Cheshmanam bogsha + Isaa namat che zibast.mp3",
+      "score": "26.8",
+      "changed": true
+    },
+    {
+      "id": 105,
+      "titleFA": "خواهم هر روز با تو راه روم ( سلطان قلبم تویی عیسی )",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "243%20Soltane%20ghalbam%20%20%20%20.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "38.9",
+      "changed": true
+    },
+    {
+      "id": 106,
+      "titleFA": "پیروزی هست آزادی هست",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "242 Piruzi hast    b8af.mp3",
+      "newFile": "Khoda nikust .mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 107,
+      "titleFA": "پدر جان محبت تو ( حمد بر نام قدوست باد )",
+      "titleEN": "سرود آلمانی",
+      "oldFile": "پدر جان محبت تو.mp3",
+      "newFile": "پدر جان محبت تو.mp3",
+      "score": "84.3",
+      "changed": false
+    },
+    {
+      "id": 108,
+      "titleFA": "محتاجم من محتاج تو",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "239 Mohtajam man    .mp3",
+      "newFile": "تاج .mp3",
+      "score": "82.0",
+      "changed": true
+    },
+    {
+      "id": 109,
+      "titleFA": "می پرستمت ای منجی آسمانی",
+      "titleEN": "کاوه رفیعی",
+      "oldFile": "238 Miparastamat ey monji a5f9.mp3",
+      "newFile": "238 Miparastamat ey monji a5f9.mp3",
+      "score": "29.6",
+      "changed": false
+    },
+    {
+      "id": 110,
+      "titleFA": "ملجای من تویی",
+      "titleEN": "You are my hiding place",
+      "oldFile": "236 Maljaye man toyi .mp3",
+      "newFile": "Maljaye man toyi.mp3",
+      "score": "45.0",
+      "changed": true
+    },
+    {
+      "id": 111,
+      "titleFA": "خداوند راهی بهرم مهیا سازد",
+      "titleEN": "God will make a Way",
+      "oldFile": "235%20Khodavand%20rahi%20.mp3",
+      "newFile": "خداوند شبان من است.mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 112,
+      "titleFA": "کلامی گو که بخشد زندگی",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "%da%a9%d9%84%d8%a7%d9%85%db%8c%20%da%af%d9%88.mp3",
+      "newFile": "کلامی گو.mp3",
+      "score": "83.9",
+      "changed": true
+    },
+    {
+      "id": 113,
+      "titleFA": "جلال بر نامت تو قدوس و پاکی ( می آیم تا در حضور تو )",
+      "titleEN": "یونا ثابت",
+      "oldFile": "جلال بر نامت تو قدوس و پاکی.mp3",
+      "newFile": "جلال بر نامت تو قدوس و پاکی.mp3",
+      "score": "85.8",
+      "changed": false
+    },
+    {
+      "id": 114,
+      "titleFA": "بازایستیم و دانیم",
+      "titleEN": "پیمان-نیلوفر-دنی",
+      "oldFile": "بازایستیم و دانیم .mp3",
+      "newFile": "بازایستیم و دانیم .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 115,
+      "titleFA": "عیسی نامت چه زیباست",
+      "titleEN": "Jesus name above all names",
+      "oldFile": "229 Isa namat che zibast .mp3",
+      "newFile": "229 Isa namat che zibast .mp3",
+      "score": "49.0",
+      "changed": false
+    },
+    {
+      "id": 116,
+      "titleFA": "عیسی مسیح شاه شاهان ( شکر بر نام عیسی )",
+      "titleEN": "ژيلبرت هوسپیان",
+      "oldFile": "228 Isa masih shahe shahan  .mp3",
+      "newFile": "عیسی مسیح چشمه حیات.mp3",
+      "score": "27.5",
+      "changed": true
+    },
+    {
+      "id": 117,
+      "titleFA": "ای روح القدس ای روح خدا",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "ای روح القدس ای روح خدا.mp3",
+      "newFile": "ای روح القدس ای روح خدا.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 118,
+      "titleFA": "دیوانه عشق تو",
+      "titleEN": "اوژنی سرکیسیان",
+      "oldFile": "دیوانه ی عشق تو.mp3",
+      "newFile": "دیوانه ی عشق تو.mp3",
+      "score": "64.2",
+      "changed": false
+    },
+    {
+      "id": 119,
+      "titleFA": "نام او عیساست",
+      "titleEN": "His name is Jesus",
+      "oldFile": "211 Name ou mahib ast .mp3",
+      "newFile": "His name is Jesus.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 120,
+      "titleFA": "عجیب است چه عجیب است ( دوستت دارم عیسی )",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "عجیب است چه عجیب است.mp3",
+      "newFile": "عجیب است چه عجیب است.mp3",
+      "score": "85.5",
+      "changed": false
+    },
+    {
+      "id": 121,
+      "titleFA": "خداوند پاکم نما ( برائت )",
+      "titleEN": "یلدا میرشکار ، محمدرضا پوطی",
+      "oldFile": "خداوند پاکم نما (برائت).mp3",
+      "newFile": "خداوند پاکم نما (برائت).mp3",
+      "score": "62.6",
+      "changed": false
+    },
+    {
+      "id": 122,
+      "titleFA": "تمام شد ( ای عیسی با مرگت )",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "تمام شد مسیح برخاست.mp3",
+      "newFile": "تمام شد مسیح برخاست.mp3",
+      "score": "35.0",
+      "changed": false
+    },
+    {
+      "id": 123,
+      "titleFA": "فیض عظیم مسیحا",
+      "titleEN": "Amazing Grace",
+      "oldFile": "39 Feyze azime masiha (niloofar).mp3",
+      "newFile": "49 Azim ast khoda .mp3",
+      "score": "30.0",
+      "changed": true
+    },
+    {
+      "id": 124,
+      "titleFA": "زنگها فریاد کنید ( صبح روز قیام است )",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "زنگها فریاد کنید (صبح روز قیام است).mp3",
+      "newFile": "زنگها فریاد کنید (صبح روز قیام است).mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 125,
+      "titleFA": "ندایی در بیابان ( پادشاه جلال بر تو )",
+      "titleEN": "سعید میریعقوبی",
+      "oldFile": "ندایی در بیایان (پادشاه جلال بر تو).mp3",
+      "newFile": "ندایی در بیایان (پادشاه جلال بر تو).mp3",
+      "score": "67.4",
+      "changed": false
+    },
+    {
+      "id": 126,
+      "titleFA": "به حضورت آییم نزدت زانو زنیم",
+      "titleEN": "روزبه-نیلوفر-دریا",
+      "oldFile": "%d8%a8%d9%87%20%d8%ad%d8%b6%d9%88%d8%b1%d8%aa%20%d8%a7%d9%93%db%8c%db%8c%d9%85.mp3",
+      "newFile": "به حضورت آییم.mp3",
+      "score": "33.5",
+      "changed": true
+    },
+    {
+      "id": 127,
+      "titleFA": "تو در ما زنده ای",
+      "titleEN": "Alive",
+      "oldFile": "تو در ما زنده ای.mp3",
+      "newFile": "تو در ما زنده ای.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 128,
+      "titleFA": "هیچ چیز",
+      "titleEN": "روزبه-نیلوفر-دریا",
+      "oldFile": "هیچ چیز.mp3",
+      "newFile": "هیچ چیز.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 129,
+      "titleFA": "چقدر عجیب است",
+      "titleEN": "روزبه-نیلوفر-دریا",
+      "oldFile": "چقدر عجیب است.mp3",
+      "newFile": "چقدر عجیب است.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 130,
+      "titleFA": "فقط عیسی",
+      "titleEN": "روزبه-نیلوفر-دریا",
+      "oldFile": "فقط عیسی Only One.mp3",
+      "newFile": "فقط عیسی Only One.mp3",
+      "score": "85.0",
+      "changed": false
+    },
+    {
+      "id": 131,
+      "titleFA": "مژده عیسی به دنیا آمد",
+      "titleEN": "ا.امینی",
+      "oldFile": "مژده عیسی به دنیا آمد.mp3",
+      "newFile": "مژده عیسی به دنیا آمد.mp3",
+      "score": "66.1",
+      "changed": false
+    },
+    {
+      "id": 132,
+      "titleFA": "تولد یافت نور جهان",
+      "titleEN": "آنت یدگاریان",
+      "oldFile": "تولد یافت نور جهان.mp3",
+      "newFile": "تولد یافت نور جهان.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 133,
+      "titleFA": "آمد مسیح اندر جهان",
+      "titleEN": "گ.نوراللـه",
+      "oldFile": "آمد مسیح اندر جهان.mp3",
+      "newFile": "آمد مسیح اندر جهان.mp3",
+      "score": "65.6",
+      "changed": false
+    },
+    {
+      "id": 134,
+      "titleFA": "در آخوری پست ( تولد بیاب )",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "در آخوری پست (تولد بیاب در قلبهای ما).mp3",
+      "newFile": "در آخوری پست (تولد بیاب در قلبهای ما).mp3",
+      "score": "43.4",
+      "changed": false
+    },
+    {
+      "id": 135,
+      "titleFA": "ناخدایم تویی ( مرا در آغوشت بگیر )",
+      "titleEN": "هما",
+      "oldFile": "ناخدایم تویی.mp3",
+      "newFile": "ناخدایم تویی.mp3",
+      "score": "84.4",
+      "changed": false
+    },
+    {
+      "id": 136,
+      "titleFA": "چون بر او می نگرم با اشک و آه",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "Chon%20bar%20ou%20minegaram.mp3",
+      "newFile": "Khoda nikust .mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 137,
+      "titleFA": "چشمانم بگشا",
+      "titleEN": "Open our eyes lord we want to see Jesus",
+      "oldFile": "244 Cheshmanam ra    .mp3",
+      "newFile": "چشمان قلبم را بگشا.mp3",
+      "score": "46.7",
+      "changed": true
+    },
+    {
+      "id": 138,
+      "titleFA": "چون روح تو از اعلی",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "chon ruhe to az ala.mp3",
+      "newFile": "chon ruhe to az ala.mp3",
+      "score": "51.3",
+      "changed": false
+    },
+    {
+      "id": 139,
+      "titleFA": "چون روحش در من کار کند",
+      "titleEN": "When the spirit of the Lord",
+      "oldFile": "92 Chon ruhash dar man kar konad .mp3",
+      "newFile": "92 Chon ruhash dar man kar konad .mp3",
+      "score": "48.5",
+      "changed": false
+    },
+    {
+      "id": 140,
+      "titleFA": "چون دائم سرود حمد خوانیم",
+      "titleEN": "",
+      "oldFile": "88 Chon daem sorude hamd khanim.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 141,
+      "titleFA": "چنانکه آهو برای نهرهای آب شدت اشتیاق دارد",
+      "titleEN": "سرود اسپانیایی",
+      "oldFile": "87%20Chenanke%20ahoo.mp3",
+      "newFile": "خداوند نیکویی.mp3",
+      "score": "26.9",
+      "changed": true
+    },
+    {
+      "id": 142,
+      "titleFA": "چه مهیب است کارهای تو",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "چه مهیب است کارهای تو.mp3",
+      "newFile": "چه مهیب است کارهای تو.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 143,
+      "titleFA": "چنان محو تو بنشستم",
+      "titleEN": "فراز دولتخواه",
+      "oldFile": "چنان محو تو بنشستم .mp3",
+      "newFile": "چنان محو تو بنشستم .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 144,
+      "titleFA": "چون ریزد باران روح تو",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "12 Chon rizad barane ruhe to .mp3",
+      "newFile": "چون ریزد.mp3",
+      "score": "84.1",
+      "changed": true
+    },
+    {
+      "id": 145,
+      "titleFA": "چون بنگرم بر صلیبت",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "11 Chon bengaram bar salibat_NEW.mp3",
+      "newFile": "11 Chon bengaram bar salibat_NEW.mp3",
+      "score": "41.5",
+      "changed": false
+    },
+    {
+      "id": 146,
+      "titleFA": "چون بر چهره‌ات مینگرم ( در نزد تخت تو زانو زنیم پادشاه )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Chon%20bar%20chehreat%20minegaram.mp3",
+      "newFile": "پیروزیم با نام خداوند.mp3",
+      "score": "27.2",
+      "changed": true
+    },
+    {
+      "id": 147,
+      "titleFA": "نبرد ما با جسم و خون نیست",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "نبرد ما با جسم و خون .mp3",
+      "newFile": "نبرد ما با جسم و خون .mp3",
+      "score": "87.9",
+      "changed": false
+    },
+    {
+      "id": 148,
+      "titleFA": "نام بی مانند عیسی",
+      "titleEN": "What a beautiful name",
+      "oldFile": "Name bimanande isa.mp3",
+      "newFile": "Name bimanande isa.mp3",
+      "score": "52.5",
+      "changed": false
+    },
+    {
+      "id": 149,
+      "titleFA": "نگاهم به تو است عیسی",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "220 Negaham be to ast isa 843a.mp3",
+      "newFile": "220 Negaham be to ast isa .mp3",
+      "score": "42.0",
+      "changed": true
+    },
+    {
+      "id": 150,
+      "titleFA": "نام تو ( تا زنده ایم ستاییم تو را )",
+      "titleEN": "پیمان مجتهدی",
+      "oldFile": "182 To tak hasti.mp3",
+      "newFile": "نام تو .mp3",
+      "score": "82.1",
+      "changed": true
+    },
+    {
+      "id": 151,
+      "titleFA": "نام او مهیب است ( خدای ما مهیب است )",
+      "titleEN": "Awesome God",
+      "oldFile": "211 Name ou mahib ast dc24.mp3",
+      "newFile": "Tanha omid baraye ma masihast.mp3",
+      "score": "30.8",
+      "changed": true
+    },
+    {
+      "id": 152,
+      "titleFA": "نه مرگ و نه زندگی",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "212 Na marg o na zendegi.mp3",
+      "newFile": "Na margo na zendegi.mp3",
+      "score": "48.1",
+      "changed": true
+    },
+    {
+      "id": 153,
+      "titleFA": "نام مسیح پرجلال است",
+      "titleEN": "سرود اسپانیایی",
+      "oldFile": "209 Name masih por jalal ast.mp3",
+      "newFile": "209 Name masih por jalal ast.mp3",
+      "score": "48.7",
+      "changed": false
+    },
+    {
+      "id": 154,
+      "titleFA": "نام عیسی قدرتیست بی‌همتا",
+      "titleEN": "There is power in the name of Jesus",
+      "oldFile": "93 Dar name isa ghodratist bihamta.mp3",
+      "newFile": "93 Dar name isa ghodratist bihamta.mp3",
+      "score": "45.9",
+      "changed": false
+    },
+    {
+      "id": 155,
+      "titleFA": "نیکوییت را لمس کردم ( تو نیکویی )",
+      "titleEN": "",
+      "oldFile": "Nikuiyat ra lams kardam.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 156,
+      "titleFA": "نهر پرستش",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "27 Nahre parastesh .mp3",
+      "newFile": "nahre parastesh .mp3",
+      "score": "45.0",
+      "changed": true
+    },
+    {
+      "id": 157,
+      "titleFA": "داور من عیسی ( قدوس قدوس هللویاه آزادم کرده عیسی )",
+      "titleEN": "I'm going free",
+      "oldFile": "59%20Davare%20man%20isa%20bakhshide%20jormam%20ra%20.mp3",
+      "newFile": "Imani no380e.mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 158,
+      "titleFA": "مرا مبهوت ساز",
+      "titleEN": "شهاب زاهدمهاجرانی",
+      "oldFile": "Mara mabhoot saz .mp3",
+      "newFile": "Mara mabhoot saz .mp3",
+      "score": "55.0",
+      "changed": false
+    },
+    {
+      "id": 159,
+      "titleFA": "روح القدس آشکار ساز ( بریزد آتشت )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Ruholghodos ashkar saz.mp3",
+      "newFile": "روح القدس آشکار ساز.mp3",
+      "score": "86.4",
+      "changed": true
+    },
+    {
+      "id": 160,
+      "titleFA": "کادوش ( قدوس )",
+      "titleEN": "Kadosh",
+      "oldFile": "Kadosh.mp3",
+      "newFile": "Kadosh.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 161,
+      "titleFA": "در تو می‌مانم",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "53 Dar to mimanam_0.mp3",
+      "newFile": "Dar to mimanam.mp3",
+      "score": "58.3",
+      "changed": true
+    },
+    {
+      "id": 162,
+      "titleFA": "جلال بر تو باد",
+      "titleEN": "I exalt thee",
+      "oldFile": "52 Jalal bar to bad _3.mp3",
+      "newFile": "Jalal bar to bad.mp3",
+      "score": "59.2",
+      "changed": true
+    },
+    {
+      "id": 163,
+      "titleFA": "عظیم و حیرت زاست",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "51 Azimo heyratzast .mp3",
+      "newFile": "51 Azimo heyratzast .mp3",
+      "score": "49.4",
+      "changed": false
+    },
+    {
+      "id": 164,
+      "titleFA": "تو را می‌پرستم با تمامی قلب ( چون تو خداوندی )",
+      "titleEN": "نیلوفر",
+      "oldFile": "50%20Tora%20miparastam%20_0.mp3",
+      "newFile": "پیروزیم با نام خداوند.mp3",
+      "score": "27.6",
+      "changed": true
+    },
+    {
+      "id": 165,
+      "titleFA": "عظیم است خدا",
+      "titleEN": "How great is our God",
+      "oldFile": "49 Azim ast khoda .mp3",
+      "newFile": "49 Azim ast khoda .mp3",
+      "score": "55.0",
+      "changed": false
+    },
+    {
+      "id": 166,
+      "titleFA": "قدوس مرا لمس نما",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "قدوس مرا لمس نما_1.mp3",
+      "newFile": "قدوس مرا لمس نما_1.mp3",
+      "score": "89.3",
+      "changed": false
+    },
+    {
+      "id": 167,
+      "titleFA": "تو حامی من",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "47 To hamiye man .mp3",
+      "newFile": "47 To hamiye man .mp3",
+      "score": "43.1",
+      "changed": false
+    },
+    {
+      "id": 168,
+      "titleFA": "عیسی را دوست دارم او مرا خوانده است",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "عیسی را دوست دارم_0.mp3",
+      "newFile": "عیسی را دوست دارم_0.mp3",
+      "score": "35.0",
+      "changed": false
+    },
+    {
+      "id": 169,
+      "titleFA": "مسیح عیسی شالوم قلب ما",
+      "titleEN": "Shalom Aleichem",
+      "oldFile": "44%20Shalome%20ghalbe%20ma%20.mp3",
+      "newFile": "44 Shalome ghalbe ma .mp3",
+      "score": "32.9",
+      "changed": true
+    },
+    {
+      "id": 170,
+      "titleFA": "شادی کنید ای فرزندان",
+      "titleEN": "Rejoice Rejoice",
+      "oldFile": "43 Shadi konid ey farzandan .mp3",
+      "newFile": "43 Shadi konid ey farzandan .mp3",
+      "score": "48.7",
+      "changed": false
+    },
+    {
+      "id": 171,
+      "titleFA": "پرچم‌های پیروزی ( امروز روز پیروزیست )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "42%20Parchamhaye%20piroozi.mp3",
+      "newFile": "پیروزیم با نام خداوند.mp3",
+      "score": "27.2",
+      "changed": true
+    },
+    {
+      "id": 172,
+      "titleFA": "این است سرود قلبم",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "41 In ast soroode ghalbam .mp3",
+      "newFile": "41 In ast soroode ghalbam .mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 173,
+      "titleFA": "بر زخمهای او بنگر ( از زخمهایش شفا یافتی )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "40%20Az%20zakhmhayash%20shafa%20yafti%20.mp3",
+      "newFile": "پیروزیم با نام خداوند.mp3",
+      "score": "27.2",
+      "changed": true
+    },
+    {
+      "id": 174,
+      "titleFA": "تصویر عشق تو",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "38 Tasvire eshghe to .mp3",
+      "newFile": "38 Tasvire eshghe to .mp3",
+      "score": "41.2",
+      "changed": false
+    },
+    {
+      "id": 175,
+      "titleFA": "تنها امید جانم عیسی ( در مصیبت ها و در سختی )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Tanha%20omide%20janam.mp3",
+      "newFile": "Tanha omid baraye ma masihast.mp3",
+      "score": "28.4",
+      "changed": true
+    },
+    {
+      "id": 176,
+      "titleFA": "خداوندم مثل آهو تشنه هستم",
+      "titleEN": "نینوس ایتالیایی",
+      "oldFile": "خداوندم مثل آهو تشنه هستم.mp3",
+      "newFile": "خداوندم مثل آهو تشنه هستم.mp3",
+      "score": "66.8",
+      "changed": false
+    },
+    {
+      "id": 177,
+      "titleFA": "یهوه رافا ( جلالت ملموس است در میان ما )",
+      "titleEN": "Yahweh Se Manifestará",
+      "oldFile": "125 Khoda maljao ghovate man.mp3",
+      "newFile": "Yahweh Se Manifestara   .mp3",
+      "score": "89.5",
+      "changed": true
+    },
+    {
+      "id": 178,
+      "titleFA": "با مهرت سویم آمدی ( می خوانم شکر بهرت )",
+      "titleEN": "",
+      "oldFile": "237%20Mikhanam%20shokr%20%20%20%20.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 179,
+      "titleFA": "هرآنچه که تو می خواهی",
+      "titleEN": "سرود افغان",
+      "oldFile": "Haranche ke to mikhahi.mp3",
+      "newFile": "Haranche ke to mikhahi.mp3",
+      "score": "55.3",
+      "changed": false
+    },
+    {
+      "id": 180,
+      "titleFA": "جلال بر نامت ای صیاد دلهای پریشان",
+      "titleEN": "صبا احمدزادگان",
+      "oldFile": "164%20Sayade%20delhaye%20parishan_1.mp3",
+      "newFile": "ابا ای پدر آسمانی.mp3",
+      "score": "32.7",
+      "changed": true
+    },
+    {
+      "id": 181,
+      "titleFA": "تو مرا می شناسی",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "تو مرا می شناسی.mp3",
+      "newFile": "تو مرا می شناسی.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 182,
+      "titleFA": "شاه بودی تو انسان شدی",
+      "titleEN": "گلسا نوروزی",
+      "oldFile": "Shah budi to ensan shodi.mp3",
+      "newFile": "Shah budi to ensan shodi.mp3",
+      "score": "59.5",
+      "changed": false
+    },
+    {
+      "id": 183,
+      "titleFA": "تو را می خواهم بیشتر بشناسم",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "Tora mikhaham bishtar beshnasam.mp3",
+      "newFile": "Tora mikhaham bishtar beshnasam.mp3",
+      "score": "57.5",
+      "changed": false
+    },
+    {
+      "id": 184,
+      "titleFA": "تا زنده ام تو را خواهم ستود",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "Ta%20zendeam.mp3",
+      "newFile": "149 Negaham be tost halak nakhahm shod.mp3",
+      "score": "30.6",
+      "changed": true
+    },
+    {
+      "id": 185,
+      "titleFA": "خدای تازه‌ها",
+      "titleEN": "دریا",
+      "oldFile": "خدای تازه ها.mp3",
+      "newFile": "خدای تازه ها.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 186,
+      "titleFA": "به آن روزی ایمان داریم که ایران آزاد شود",
+      "titleEN": "شمعون - ژیلبرت هوسپیان",
+      "oldFile": "%d8%a7%db%8c%d8%b1%d8%a7%d9%86%20%d9%85%d9%86.mp3",
+      "newFile": "ایمان.mp3",
+      "score": "81.6",
+      "changed": true
+    },
+    {
+      "id": 187,
+      "titleFA": "عیسی را دوست دارم چون او مرا دوست داشت",
+      "titleEN": "Oh how I love Jesus",
+      "oldFile": "عیسی را دوست دارم_1.mp3",
+      "newFile": "عیسی را دوست دارم_0.mp3",
+      "score": "32.7",
+      "changed": true
+    },
+    {
+      "id": 188,
+      "titleFA": "دوستت دارم عیسی ( سرود بخوانید )",
+      "titleEN": "",
+      "oldFile": "Dustat daram isa   Sorud bekhanid دوستت دارم عیسی   سرود بخوانید.mp3",
+      "newFile": "Dustat daram isa   Sorud bekhanid دوستت دارم عیسی   سرود بخوانید.mp3",
+      "score": "84.7",
+      "changed": false
+    },
+    {
+      "id": 189,
+      "titleFA": "برخیزیم بنا کنیم",
+      "titleEN": "نیلوفر-اوژنی سرکیسیان",
+      "oldFile": "برخیزیم بنا کنیم.mp3",
+      "newFile": "برخیزیم بنا کنیم.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 190,
+      "titleFA": "عیسی تویی نان و هم چشمه حیات",
+      "titleEN": "سرود عربی",
+      "oldFile": "عیسی تویی نان و هم چشمه حیات.mp3",
+      "newFile": "عیسی تویی نان و هم چشمه حیات.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 191,
+      "titleFA": "برخیز وقت پرستش اوست",
+      "titleEN": "Come now is the time to worship",
+      "oldFile": "221%20Barkhiz%20.mp3",
+      "newFile": "Ruholghodos ashkar saz.mp3",
+      "score": "24.5",
+      "changed": true
+    },
+    {
+      "id": 192,
+      "titleFA": "بگذار قلبم معبد روح تو باشد",
+      "titleEN": "زنده یاد بیتا آرمان",
+      "oldFile": "219%20Bogzar%20ghalbam%20.mp3",
+      "newFile": "بگذار در بر گیرد وجودت.mp3",
+      "score": "28.6",
+      "changed": true
+    },
+    {
+      "id": 193,
+      "titleFA": "بشنو دعای قومت",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "بشنو دعای قومت.mp3",
+      "newFile": "بشنو دعای قومت.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 194,
+      "titleFA": "برافرازیم نام تو را",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "4 Barafrazim name tora.mp3",
+      "newFile": "نام تو .mp3",
+      "score": "83.1",
+      "changed": true
+    },
+    {
+      "id": 195,
+      "titleFA": "با لمسش آزادم",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "با لمسش آزادم .mp3",
+      "newFile": "با لمسش آزادم .mp3",
+      "score": "64.2",
+      "changed": false
+    },
+    {
+      "id": 196,
+      "titleFA": "بیایید خداوند را بسراییم ( حمد و جلال بر نام خداوند )",
+      "titleEN": "زنده یاد کشیش رافی شاهوردیان",
+      "oldFile": "Biyaid%20khodavand%20ra%20besarayim.mp3",
+      "newFile": "ندایی در بیایان (پادشاه جلال بر تو).mp3",
+      "score": "24.5",
+      "changed": true
+    },
+    {
+      "id": 197,
+      "titleFA": "بگذار در بر گیرد وجودت ( عیسی ای عیسی )",
+      "titleEN": "",
+      "oldFile": "بگذار در بر گیرد وجودت.mp3",
+      "newFile": "بگذار در بر گیرد وجودت.mp3",
+      "score": "86.4",
+      "changed": false
+    },
+    {
+      "id": 198,
+      "titleFA": "بین بر صلیب عیسی را",
+      "titleEN": "Jesus keep me near the cross",
+      "oldFile": "83 Bin bar salib isa ra_1.mp3",
+      "newFile": "86 Bin bar salib isa ra .mp3",
+      "score": "46.7",
+      "changed": true
+    },
+    {
+      "id": 199,
+      "titleFA": "به جای غم‌ها",
+      "titleEN": "I'm trading my sorrows",
+      "oldFile": "81 Bejaye gham'ha.mp3",
+      "newFile": "81 Bejaye gham'ha.mp3",
+      "score": "40.0",
+      "changed": false
+    },
+    {
+      "id": 200,
+      "titleFA": "بچشید و ببینید که خداوند نیکوست",
+      "titleEN": "Sing out",
+      "oldFile": "80%20Becheshid%20va%20bebinid.mp3",
+      "newFile": "خداوند نیکویی.mp3",
+      "score": "26.9",
+      "changed": true
+    },
+    {
+      "id": 201,
+      "titleFA": "به من هر روزه می‌گویی",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "به من هر روزه می گویی.mp3",
+      "newFile": "به من هر روزه می گویی.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 202,
+      "titleFA": "برافرازم هللویاه",
+      "titleEN": "I raise a Hallelujah",
+      "oldFile": "79 Barafrazam halelujah.mp3",
+      "newFile": "Barafrazam halelujah.mp3",
+      "score": "47.9",
+      "changed": true
+    },
+    {
+      "id": 203,
+      "titleFA": "با طلوع تو در صبحی تازه",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "77 Ba toloue to dar sobhi taze.mp3",
+      "newFile": "77 Ba toloue to dar sobhi taze.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 204,
+      "titleFA": "با تمام وجود خود",
+      "titleEN": "With everything",
+      "oldFile": "78 Ba tamame vojude khod .mp3",
+      "newFile": "Ba tamame vojude khod.mp3",
+      "score": "50.6",
+      "changed": true
+    },
+    {
+      "id": 205,
+      "titleFA": "با شادی نامش را سراییم",
+      "titleEN": "",
+      "oldFile": "Ba shadi namash ra sarayim .mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 206,
+      "titleFA": "تو را می خواهم از آن توام - بریزد بگشا درهای آسمان",
+      "titleEN": "My soul longs for you-Let it rain",
+      "oldFile": "Tora mikhaham-Berizad6a69.mp3",
+      "newFile": "Tora mikhaham bishtar beshnasam.mp3",
+      "score": "31.3",
+      "changed": true
+    },
+    {
+      "id": 207,
+      "titleFA": "از جان و دل خواهم تو را",
+      "titleEN": "زنده یاد اسقف ح.ب.دهقانی تفتی",
+      "oldFile": "74 Az jano del khaham tora.mp3",
+      "newFile": "Az jano del khaham tora.mp3",
+      "score": "58.9",
+      "changed": true
+    },
+    {
+      "id": 208,
+      "titleFA": "اندر این جهان مملو از گناه",
+      "titleEN": "سرود عربی",
+      "oldFile": "Andar in jahane mamlo az gonah .mp3",
+      "newFile": "Andar in jahane mamlo az gonah .mp3",
+      "score": "53.2",
+      "changed": false
+    },
+    {
+      "id": 209,
+      "titleFA": "عمیقتر",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Amightar .mp3",
+      "newFile": "عمیق‌تر.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 210,
+      "titleFA": "آبی روان ساز",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "71 Abi ravan saz  .mp3",
+      "newFile": "71 Abi ravan saz  .mp3",
+      "score": "48.5",
+      "changed": false
+    },
+    {
+      "id": 211,
+      "titleFA": "ابا من از آن تو هستم",
+      "titleEN": "شهاب زاهدمهاجرانی",
+      "oldFile": "70 Aba man az ane to hastam .mp3",
+      "newFile": "Aba man az ane to hastam .mp3",
+      "score": "55.3",
+      "changed": true
+    },
+    {
+      "id": 212,
+      "titleFA": "تسلیمم من ( می آیم روی زانوهایم )",
+      "titleEN": "I surrender",
+      "oldFile": "%d8%aa%d8%b3%d9%84%db%8c%d9%85%d9%85%20%d9%85%d9%86.mp3",
+      "newFile": "تسلیمم من.mp3",
+      "score": "83.3",
+      "changed": true
+    },
+    {
+      "id": 213,
+      "titleFA": "تا ابد او نیکوست",
+      "titleEN": "His love endures forever",
+      "oldFile": "68 Ta abad ou nikoost .mp3",
+      "newFile": "Ta abad ou nikoost .mp3",
+      "score": "51.3",
+      "changed": true
+    },
+    {
+      "id": 214,
+      "titleFA": "خدا نیکوست با شادی سراییم",
+      "titleEN": "God is good",
+      "oldFile": "Khoda%20nikust%20.mp3",
+      "newFile": "Biyaid khodavand ra besarayim.mp3",
+      "score": "26.9",
+      "changed": true
+    },
+    {
+      "id": 215,
+      "titleFA": "شکر شکر عیسی",
+      "titleEN": "یوئیل یوحنا",
+      "oldFile": "Shokr Shokr Isaa.mp3",
+      "newFile": "Shokr Shokr Isaa.mp3",
+      "score": "45.0",
+      "changed": false
+    },
+    {
+      "id": 216,
+      "titleFA": "می‌دانم دوستم داری",
+      "titleEN": "شهاب زاهدمهاجرانی",
+      "oldFile": "Midanam dustam dari .mp3",
+      "newFile": "Midanam dustam dari .mp3",
+      "score": "57.6",
+      "changed": false
+    },
+    {
+      "id": 217,
+      "titleFA": "شوق روی تو",
+      "titleEN": "فراز دولتخواه",
+      "oldFile": "Shoghe ruye to.mp3",
+      "newFile": "Shoghe ruye to.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 218,
+      "titleFA": "تو برای من تختت را رها کردی",
+      "titleEN": "پیمان مجتهدی - سعید میریعقوبی",
+      "oldFile": "To%20baraye%20man.mp3",
+      "newFile": "to Agahi khodavand.mp3",
+      "score": "23.3",
+      "changed": true
+    },
+    {
+      "id": 219,
+      "titleFA": "تنها امید برای ما مسیحاست",
+      "titleEN": "",
+      "oldFile": "Tanha omid baraye ma masihast.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 220,
+      "titleFA": "تقدیم نمایم خود را ( ضعیف گوید قوی هستم )",
+      "titleEN": "Give thanks",
+      "oldFile": "تقدیم نمایم خود را با حمد .mp3",
+      "newFile": "تقدیم نمایم.mp3",
+      "score": "83.3",
+      "changed": true
+    },
+    {
+      "id": 221,
+      "titleFA": "تا که نفس دارم تو را حمد می گویم ( چگونه شکرت کنم )",
+      "titleEN": "سرود افغان",
+      "oldFile": "Ta%20ke%20nafas%20daram_0.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "31.1",
+      "changed": true
+    },
+    {
+      "id": 222,
+      "titleFA": "تو طرد شدی تا بخشیده شوم",
+      "titleEN": "You are my king (amazing love)",
+      "oldFile": "تو طرد شدی To tard shodi.mp3",
+      "newFile": "تو طرد شدی To tard shodi.mp3",
+      "score": "29.5",
+      "changed": false
+    },
+    {
+      "id": 223,
+      "titleFA": "تشنه ی مسح توام روح القدس",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "تشنه مسح توام .mp3",
+      "newFile": "تشنه مسح توام .mp3",
+      "score": "38.5",
+      "changed": false
+    },
+    {
+      "id": 224,
+      "titleFA": "تاج ( امید من بر شاهیست که )",
+      "titleEN": "روزبه-پیمان-دریا-آرش-شروین-نیلوفر",
+      "oldFile": "%d8%aa%d8%a7%d8%ac%20.mp3",
+      "newFile": "تاج .mp3",
+      "score": "81.6",
+      "changed": true
+    },
+    {
+      "id": 225,
+      "titleFA": "پیروزیم با نام خداوند ( ستایید نامش را )",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "33 Piroozim dar name Isaa .mp3",
+      "newFile": "پیروزیم با نام خداوند.mp3",
+      "score": "86.0",
+      "changed": true
+    },
+    {
+      "id": 226,
+      "titleFA": "روی تو را می‌طلبیم ( برکات از سما )",
+      "titleEN": "نیلوفر",
+      "oldFile": "35 Rooye tora mitalabimb4c3.mp3",
+      "newFile": "50 Tora miparastam .mp3",
+      "score": "29.2",
+      "changed": true
+    },
+    {
+      "id": 227,
+      "titleFA": "تکمیل کرد او / پیروزیم در نام عیسی",
+      "titleEN": "",
+      "oldFile": "تکمیل کرد او .mp3",
+      "newFile": "تکمیل کرد او .mp3",
+      "score": "83.8",
+      "changed": false
+    },
+    {
+      "id": 228,
+      "titleFA": "پدر من به تو محتاجم",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "پدر من به تو محتاجم.mp3",
+      "newFile": "پدر من به تو محتاجم.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 229,
+      "titleFA": "پدر آسمانی جلال باد ( تا ابدالاباد )",
+      "titleEN": "اوژنی سرکیسیان",
+      "oldFile": "31%20Pedare%20asemani%20.mp3",
+      "newFile": "ابا ای پدر آسمانی.mp3",
+      "score": "28.0",
+      "changed": true
+    },
+    {
+      "id": 230,
+      "titleFA": "پدر دوستم داشتی ( من گناهکار بودم )",
+      "titleEN": "Beni sevdin Rab",
+      "oldFile": "30 Pedar doostam dashti.mp3",
+      "newFile": "Beshnavid in mojde ra .mp3",
+      "score": "27.2",
+      "changed": true
+    },
+    {
+      "id": 231,
+      "titleFA": "او کیست ( خار و مضروب )",
+      "titleEN": "فراز دولتخواه",
+      "oldFile": "29%20Ou%20kist.mp3",
+      "newFile": "49 Azim ast khoda .mp3",
+      "score": "30.0",
+      "changed": true
+    },
+    {
+      "id": 232,
+      "titleFA": "وقتی غریب و بی پناهی",
+      "titleEN": "بهرام امیری",
+      "oldFile": "28 Vaghti gharibobipanahi  .mp3",
+      "newFile": "28 Vaghti gharibobipanahi  .mp3",
+      "score": "51.7",
+      "changed": false
+    },
+    {
+      "id": 233,
+      "titleFA": "مشتاقیم ( لمس کن ای روح خدا )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "مشتاقیم .mp3",
+      "newFile": "ای روح خدا.mp3",
+      "score": "84.0",
+      "changed": true
+    },
+    {
+      "id": 234,
+      "titleFA": "می‌ستایمت پدر",
+      "titleEN": "صبا احمدزادگان",
+      "oldFile": "25 Misetayamat Pedar .mp3",
+      "newFile": "25 Misetayamat Pedar .mp3",
+      "score": "38.9",
+      "changed": false
+    },
+    {
+      "id": 235,
+      "titleFA": "مثل باران بهاری",
+      "titleEN": "رویا",
+      "oldFile": "23 Mesle barane bahari .mp3",
+      "newFile": "خواندی مرا به روی آبها.mp3",
+      "score": "82.1",
+      "changed": true
+    },
+    {
+      "id": 236,
+      "titleFA": "کارهایت ای خدا",
+      "titleEN": "Great and Wonderful",
+      "oldFile": "کارهایت ای خدا .mp3",
+      "newFile": "کارهایت ای خدا .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 237,
+      "titleFA": "حضور تو همچون نسیم",
+      "titleEN": "موسی رسایی",
+      "oldFile": "20 Hozure to hamchon nasim .mp3",
+      "newFile": "20 Hozure to hamchon nasim .mp3",
+      "score": "47.7",
+      "changed": false
+    },
+    {
+      "id": 238,
+      "titleFA": "هزاران علت ( متبارک خواند تار و پود من )",
+      "titleEN": "Bless the Lord oh my soul",
+      "oldFile": "19%20Hezaran%20Ellat%20.mp3",
+      "newFile": "Beshno doayam.mp3",
+      "score": "28.0",
+      "changed": true
+    },
+    {
+      "id": 239,
+      "titleFA": "هللویاه خداوند من زنده است",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "18 Halelujah khodavande man3c5d.mp3",
+      "newFile": "خداوند شبان من است.mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 240,
+      "titleFA": "ها هللویاه خداوند سلطنت می کند",
+      "titleEN": "Agnus Dei",
+      "oldFile": "ها هللویاه سلطنت می‌کند.mp3",
+      "newFile": "ها هللویاه سلطنت می‌کند.mp3",
+      "score": "53.2",
+      "changed": false
+    },
+    {
+      "id": 241,
+      "titleFA": "گر طوفان آید",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Gar tufan ayad.mp3",
+      "newFile": "Gar tufan ayad.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 242,
+      "titleFA": "اعلام کنم - چون زنده است",
+      "titleEN": "My redeemer lives-Because he lives",
+      "oldFile": "15 E'lam konam-Chon zende ast.mp3",
+      "newFile": "15 Elam konam-chon zendeh ast.mp3",
+      "score": "49.6",
+      "changed": true
+    },
+    {
+      "id": 243,
+      "titleFA": "دولوروسا",
+      "titleEN": "نیلوفر",
+      "oldFile": "14 Dolorosa .mp3",
+      "newFile": "14 Dolorosa .mp3",
+      "score": "78.0",
+      "changed": false
+    },
+    {
+      "id": 244,
+      "titleFA": "خدای دلگرمی",
+      "titleEN": "پیمان-نیلوفر-دنی",
+      "oldFile": "خدای دلگرمی.mp3",
+      "newFile": "خدای دلگرمی.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 245,
+      "titleFA": "خداوند ناله هایم را شنیدی",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "235 Khodavand rahi .mp3",
+      "newFile": "خداوند ناله هایم را شنیدی.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 246,
+      "titleFA": "خدا را جلال دهیم نامش را برافرازیم",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "116 Jalal daham namat ra 9aea.mp3",
+      "newFile": "Ba shadi namash ra sarayim .mp3",
+      "score": "32.5",
+      "changed": true
+    },
+    {
+      "id": 247,
+      "titleFA": "خداوند از راه فیضش",
+      "titleEN": "سرود عربی",
+      "oldFile": "Khodavand az rahe feyzash.mp3",
+      "newFile": "Khodavand az rahe feyzash.mp3",
+      "score": "47.7",
+      "changed": false
+    },
+    {
+      "id": 248,
+      "titleFA": "خداوند نیکویی رحمتت تا به ابد است",
+      "titleEN": "You are good",
+      "oldFile": "خداوند نیکویی.mp3",
+      "newFile": "خداوند نیکویی.mp3",
+      "score": "84.4",
+      "changed": false
+    },
+    {
+      "id": 249,
+      "titleFA": "خدایا چون با حیرت خیره شوم ( آنگه ز جان و دل می سرایم )",
+      "titleEN": "How great thou art",
+      "oldFile": "Khodaya%20chon%20ba%20heyrat.mp3",
+      "newFile": "20 Hozure to hamchon nasim .mp3",
+      "score": "25.5",
+      "changed": true
+    },
+    {
+      "id": 250,
+      "titleFA": "خدای عظیم بهر ما خاکیان",
+      "titleEN": "زنده یاد کشیش هایک هوسپیان",
+      "oldFile": "khodaye azim bahre ma63de.mp3",
+      "newFile": "خدای عشق و بی همتا و پاک .mp3",
+      "score": "33.2",
+      "changed": true
+    },
+    {
+      "id": 251,
+      "titleFA": "خدای عشق و بی همتا و پاک",
+      "titleEN": "کوروش روحانی",
+      "oldFile": "خدای عشق و بی همتا و پاک .mp3",
+      "newFile": "خدای عشق و بی همتا و پاک .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 252,
+      "titleFA": "خداوند شبان من است",
+      "titleEN": "آزاده",
+      "oldFile": "Khodavand shabane janam ast.mp3",
+      "newFile": "خداوند شبان من است.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 253,
+      "titleFA": "خدای پدر آمده‌ایم",
+      "titleEN": "",
+      "oldFile": "خدای تازه ها_0.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 254,
+      "titleFA": "خدای پدر ای از جان بهتر",
+      "titleEN": "صبا احمدزادگان",
+      "oldFile": "131 Khodaye pedar ey az jan behtar .mp3",
+      "newFile": "131 Khodaye pedar ey az jan behtar .mp3",
+      "score": "40.0",
+      "changed": false
+    },
+    {
+      "id": 255,
+      "titleFA": "درون مرا تو شستشو کن",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "Darune mara to shostoshu kon.mp3",
+      "newFile": "Darune mara to shostoshu kon.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 256,
+      "titleFA": "در انتظار روی تو",
+      "titleEN": "زنده یاد بیتا آرمان",
+      "oldFile": "46 Dar entezare rooye to .mp3",
+      "newFile": "46 Dar entezare rooye to .mp3",
+      "score": "38.5",
+      "changed": false
+    },
+    {
+      "id": 257,
+      "titleFA": "دیگر اسیر ترسهایم نیستم ( فرزند خدا هستم )",
+      "titleEN": "I'm no longer slave",
+      "oldFile": "%20%d9%81%d8%b1%d8%b2%d9%86%d8%af%20%d8%ae%d8%af%d8%a7%20%d9%87%d8%b3%d8%aa%d9%85.mp3",
+      "newFile": "فرزند خدا هستم.mp3",
+      "score": "83.8",
+      "changed": true
+    },
+    {
+      "id": 258,
+      "titleFA": "دستها را برافرازید ( خوانیم خدای قدوس )",
+      "titleEN": "مینا-ژیلبرت هوسپیان",
+      "oldFile": "دستها را برافرازید.mp3",
+      "newFile": "دستها را برافرازید.mp3",
+      "score": "85.3",
+      "changed": false
+    },
+    {
+      "id": 259,
+      "titleFA": "دستانم را نزدت برافرازم ( خداوند ای جان پناه من )",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "100 Dastanam ra nazdat barafrazam .mp3",
+      "newFile": "باران نور و شبنمی .mp3",
+      "score": "25.0",
+      "changed": true
+    },
+    {
+      "id": 260,
+      "titleFA": "در توست زندگیم در توست قوت من",
+      "titleEN": "My life is in you lord",
+      "oldFile": "223 Pedar dustat daram پدر دوستت دارم.mp3",
+      "newFile": "فرزند خدا هستم.mp3",
+      "score": "24.3",
+      "changed": true
+    },
+    {
+      "id": 261,
+      "titleFA": "در تو پایکوبی کنم ( چون تو ای مسیح پرجلال هستی )",
+      "titleEN": "",
+      "oldFile": "95%20Dar%20to%20paykubi%20konam.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 262,
+      "titleFA": "در هر فصل زندگی تو با منی",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "97 Dar har fasle zendegi to ba mani .mp3",
+      "newFile": "97 Dar har fasle zendegi to ba mani .mp3",
+      "score": "47.5",
+      "changed": false
+    },
+    {
+      "id": 263,
+      "titleFA": "در موکب ظفر مسیح ( ای مسیح قوت ما ز توست )",
+      "titleEN": "سرود پاکستانی",
+      "oldFile": "92%20Dar%20mokabe%20zafare%20masih%20(1)%20-%20Copy.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "35.0",
+      "changed": true
+    },
+    {
+      "id": 264,
+      "titleFA": "در حضورت در آتش روحت",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "91 Dar hozurat dar atashe ruhat .mp3",
+      "newFile": "91 Dar hozurat dar atashe ruhat .mp3",
+      "score": "40.4",
+      "changed": false
+    },
+    {
+      "id": 265,
+      "titleFA": "تنها نیستم همیشه تو با منی",
+      "titleEN": "حسین گرایی نژاد",
+      "oldFile": "9 Tanha nistam hamishe to ba mani .mp3",
+      "newFile": "9 Tanha nistam hamishe to ba mani .mp3",
+      "score": "54.4",
+      "changed": false
+    },
+    {
+      "id": 266,
+      "titleFA": "خالق آسمان",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "121 Khaleghe aseman  (2).mp3",
+      "newFile": "123 Khaleghe aseman .mp3",
+      "score": "45.3",
+      "changed": true
+    },
+    {
+      "id": 267,
+      "titleFA": "کلیسا کلیسا",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "120 Kelisa Kelisa.mp3",
+      "newFile": "120 Kelisa Kelisa.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 268,
+      "titleFA": "کسی نیست بجز تو خداوند در آسمان",
+      "titleEN": "",
+      "oldFile": "119 Kasi nist bejoz to55ed.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 269,
+      "titleFA": "جان من در دست توست",
+      "titleEN": "سرود عربی",
+      "oldFile": "118 Jane man dar daste tost.mp3",
+      "newFile": "قلب من دست توست.mp3",
+      "score": "45.0",
+      "changed": true
+    },
+    {
+      "id": 270,
+      "titleFA": "جلالت می دهیم",
+      "titleEN": "You deserve the glory",
+      "oldFile": "117 Jalalat midahim.mp3",
+      "newFile": "117 Jalalat midahim.mp3",
+      "score": "45.3",
+      "changed": false
+    },
+    {
+      "id": 271,
+      "titleFA": "جلال دهم نامت را عیسی",
+      "titleEN": "I sing praises to your name",
+      "oldFile": "116 Jalal daham namat ra .mp3",
+      "newFile": "116 Jalal daham namat ra 9aea.mp3",
+      "score": "37.9",
+      "changed": true
+    },
+    {
+      "id": 272,
+      "titleFA": "جلال بر نام او آیید او را پرستیم",
+      "titleEN": "He is exalted",
+      "oldFile": "Jashni azim barpast.mp3",
+      "newFile": "جلال بر نامت تو قدوس و پاکی.mp3",
+      "score": "36.4",
+      "changed": true
+    },
+    {
+      "id": 273,
+      "titleFA": "اینک تویی نجات من",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "114 Inak toyee nejate man.mp3",
+      "newFile": "114 Inak toyee nejate man.mp3",
+      "score": "36.7",
+      "changed": false
+    },
+    {
+      "id": 274,
+      "titleFA": "این تاج از آن توست ( حرمت و جلال بر تو )",
+      "titleEN": "This crown belongs to you",
+      "oldFile": "115 in taj az ane tost .mp3",
+      "newFile": "تاج .mp3",
+      "score": "81.1",
+      "changed": true
+    },
+    {
+      "id": 275,
+      "titleFA": "این روزها روزهای ایلیاست",
+      "titleEN": "Days of Elijah",
+      "oldFile": "112 In ruz'ha ruz'haye iliyast.mp3",
+      "newFile": "112 In ruz'ha ruz'haye iliyast.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 276,
+      "titleFA": "این قلمروی جلال توست",
+      "titleEN": "In the presence of angles",
+      "oldFile": "111 In ghalamroye jalale tost .mp3",
+      "newFile": "111 In ghalamroye jalale tost .mp3",
+      "score": "44.8",
+      "changed": false
+    },
+    {
+      "id": 277,
+      "titleFA": "این است فریاد شیر سبط یهودا",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "این است فریاد شیر سبط یهودا.mp3",
+      "newFile": "این است فریاد شیر سبط یهودا.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 278,
+      "titleFA": "هیچ نامی نیست",
+      "titleEN": "There's no other name-Bethel Music",
+      "oldFile": "112 Hich nami nist .mp3",
+      "newFile": "هیچ نامی نیست.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 279,
+      "titleFA": "یهوه یهوه",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "24%20Yahova%20Yahova.mp3",
+      "newFile": "Imani no.mp3",
+      "score": "26.3",
+      "changed": true
+    },
+    {
+      "id": 280,
+      "titleFA": "حاضر است خداوند",
+      "titleEN": "In his time",
+      "oldFile": "108 Hazer ast khodavand.mp3",
+      "newFile": "108 Hazer ast khodavand.mp3",
+      "score": "45.5",
+      "changed": false
+    },
+    {
+      "id": 281,
+      "titleFA": "هللویاه هللویاه",
+      "titleEN": "مارلین درکاچ",
+      "oldFile": "106 Hallelujah-Hallelujah .mp3",
+      "newFile": "ها هللویاه سلطنت می‌کند.mp3",
+      "score": "33.2",
+      "changed": true
+    },
+    {
+      "id": 282,
+      "titleFA": "هللویاه تو قدوسی دوستت دارم",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "105 Hallelujah To ghodusi Dustat daram.mp3",
+      "newFile": "105 Hallelujah To ghodusi Dustat daram.mp3",
+      "score": "42.4",
+      "changed": false
+    },
+    {
+      "id": 283,
+      "titleFA": "قدوس قدوس همراه با ملائک",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "104 Ghodus Ghodus (Hamrah ba malaek) .mp3",
+      "newFile": "104 Ghodus Ghodus (Hamrah ba malaek) .mp3",
+      "score": "45.9",
+      "changed": false
+    },
+    {
+      "id": 284,
+      "titleFA": "عیسی مسیح چشمه حیات",
+      "titleEN": "سرود ترکی",
+      "oldFile": "عیسی مسیح چشمه حیات.mp3",
+      "newFile": "عیسی مسیح چشمه حیات.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 285,
+      "titleFA": "عیسی به دنیا آمده",
+      "titleEN": "نرگس",
+      "oldFile": "Isa be donya amadeh.mp3",
+      "newFile": "مژده عیسی به دنیا آمد.mp3",
+      "score": "46.7",
+      "changed": true
+    },
+    {
+      "id": 286,
+      "titleFA": "عشق تو نجاتم داد",
+      "titleEN": "Love came down",
+      "oldFile": "102 Eshghe to nejatam dad .mp3",
+      "newFile": "Eshghe to nejatam dad.mp3",
+      "score": "54.4",
+      "changed": true
+    },
+    {
+      "id": 287,
+      "titleFA": "به چشمان تو که می نگرم من",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "به چشمان تو که می نگرم.mp3",
+      "newFile": "به چشمان تو که می نگرم.mp3",
+      "score": "88.9",
+      "changed": false
+    },
+    {
+      "id": 288,
+      "titleFA": "برکت ( خداوند تو را برکت دهد )",
+      "titleEN": "Kari Jobe-Cody Carnes-Elevation worship",
+      "oldFile": "در پی خدا بودم اجابتم کرد .mp3",
+      "newFile": "126 Khodavand to ra misetayim.mp3",
+      "score": "28.0",
+      "changed": true
+    },
+    {
+      "id": 289,
+      "titleFA": "بر وعده هایت",
+      "titleEN": "پیمان-نیلوفر-دنی",
+      "oldFile": "Bar vadehayat.mp3",
+      "newFile": "Bar vadehayat.mp3",
+      "score": "40.8",
+      "changed": false
+    },
+    {
+      "id": 290,
+      "titleFA": "بیایید باهم یکنفس یکصدا",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "بیایید باهم.mp3",
+      "newFile": "بیایید باهم.mp3",
+      "score": "85.0",
+      "changed": false
+    },
+    {
+      "id": 291,
+      "titleFA": "بشنو دعایم",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "Beshno doayam.mp3",
+      "newFile": "بشنو دعای قومت.mp3",
+      "score": "52.5",
+      "changed": true
+    },
+    {
+      "id": 292,
+      "titleFA": "با عشقش او با من است",
+      "titleEN": "آرش بهزاد زاده",
+      "oldFile": "Ba eshghash u ba man ast .mp3",
+      "newFile": "Ba eshghash u ba man ast .mp3",
+      "score": "51.6",
+      "changed": false
+    },
+    {
+      "id": 293,
+      "titleFA": "با من باش ( ای مالک جانم ای شاه و سلطانم )",
+      "titleEN": "O the deep deep love of Jesus",
+      "oldFile": "%d8%a8%d8%a7%20%d9%85%d9%86%20%d8%a8%d8%a7%d8%b4%20.mp3",
+      "newFile": "با من باش .mp3",
+      "score": "82.4",
+      "changed": true
+    },
+    {
+      "id": 294,
+      "titleFA": "باران آخر می خواهیم",
+      "titleEN": "داوود طوماس",
+      "oldFile": "باران آخر می خواهیم .mp3",
+      "newFile": "باران آخر می خواهیم .mp3",
+      "score": "65.9",
+      "changed": false
+    },
+    {
+      "id": 295,
+      "titleFA": "بهاران چه زیباست عیسی",
+      "titleEN": "زنده یاد کشیش ورویر آوانسیان",
+      "oldFile": "آه چه زیباست.mp3",
+      "newFile": "آه چه زیباست.mp3",
+      "score": "35.0",
+      "changed": false
+    },
+    {
+      "id": 296,
+      "titleFA": "بشنوید این مژده را",
+      "titleEN": "Hark the herald angels sing",
+      "oldFile": "beshnavid in mojdeh ra.mp3",
+      "newFile": "beshnavid in mojdeh ra.mp3",
+      "score": "44.2",
+      "changed": false
+    },
+    {
+      "id": 297,
+      "titleFA": "باران نور و شبنمی",
+      "titleEN": "کاوه رفیعی",
+      "oldFile": "باران نور و شبنمی .mp3",
+      "newFile": "باران نور و شبنمی .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 298,
+      "titleFA": "برتر از شاهان",
+      "titleEN": "Above all powers",
+      "oldFile": "224 Bartar az shahan .mp3",
+      "newFile": "224 Bartar az shahan .mp3",
+      "score": "49.4",
+      "changed": false
+    },
+    {
+      "id": 299,
+      "titleFA": "بر نامت جلال ( پدر دوستت داریم )",
+      "titleEN": "Glorify thy name",
+      "oldFile": "بر نامت جلال پدر دوستت دارم.mp3",
+      "newFile": "بر نامت جلال پدر دوستت دارم.mp3",
+      "score": "67.0",
+      "changed": false
+    },
+    {
+      "id": 300,
+      "titleFA": "یار من خدای من",
+      "titleEN": "سرود افغان",
+      "oldFile": "یار من خدای من .mp3",
+      "newFile": "یار من خدای من .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 301,
+      "titleFA": "قلب من دست توست",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "قلب من دست توست.mp3",
+      "newFile": "قلب من دست توست.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 302,
+      "titleFA": "شفا و آزادی",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "شفا و آزادی.mp3",
+      "newFile": "شفا و آزادی.mp3",
+      "score": "63.0",
+      "changed": false
+    },
+    {
+      "id": 303,
+      "titleFA": "وقتی که غمگین بودم",
+      "titleEN": "",
+      "oldFile": "وقتی که غمگین بودم.mp3",
+      "newFile": "وقتی که غمگین بودم.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 304,
+      "titleFA": "سخن بگو ای خداوند چون با ایمان نزدت آیم",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "سخن بگو ای خداوند .mp3",
+      "newFile": "سخن بگو ای خداوند .mp3",
+      "score": "84.5",
+      "changed": false
+    },
+    {
+      "id": 305,
+      "titleFA": "روح القدس تازه کن روحم با لمس خود",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "روح القدس تازه کن روحم .mp3",
+      "newFile": "روح القدس تازه کن روحم .mp3",
+      "score": "86.9",
+      "changed": false
+    },
+    {
+      "id": 306,
+      "titleFA": "فصل نو ( فصل سبز بودن تو )",
+      "titleEN": "کوروش روحانی",
+      "oldFile": "%d9%81%d8%b5%d9%84%20%d9%86%d9%88.mp3",
+      "newFile": "فصل نو.mp3",
+      "score": "82.9",
+      "changed": true
+    },
+    {
+      "id": 307,
+      "titleFA": "قطره قطره باران روح القدس",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "قطره قطره.mp3",
+      "newFile": "قطره قطره.mp3",
+      "score": "83.8",
+      "changed": false
+    },
+    {
+      "id": 308,
+      "titleFA": "سر فرود آورم",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "Sar forud avaram.mp3",
+      "newFile": "Sar forud avaram.mp3",
+      "score": "40.0",
+      "changed": false
+    },
+    {
+      "id": 309,
+      "titleFA": "جلال نامت آرزویم ( قلبم تقدیمت کنم جان و وجودم را )",
+      "titleEN": "Lord i give you my heart (this is my desire)",
+      "oldFile": "Jalale%20namat.mp3",
+      "newFile": "Jahanam bi to degar mana nadarad.mp3",
+      "score": "20.3",
+      "changed": true
+    },
+    {
+      "id": 310,
+      "titleFA": "قادر متعال ( برخیز بسرا و نامش برافراز )",
+      "titleEN": "سرود ارمنی",
+      "oldFile": "103 Ghadere mota'al Barkhiz besara .mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "38.9",
+      "changed": true
+    },
+    {
+      "id": 311,
+      "titleFA": "ای محبوبم چه زیبا هستی",
+      "titleEN": "",
+      "oldFile": "101 Ey mahbubam che ziba hasti.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 312,
+      "titleFA": "ای فروغ جاودان",
+      "titleEN": "سرود عربی",
+      "oldFile": "100 Ey forughe javedan.mp3",
+      "newFile": "سرود برکت .mp3",
+      "score": "43.8",
+      "changed": true
+    },
+    {
+      "id": 313,
+      "titleFA": "پر نما قلبم را ( می پرستمت با تمام جان )",
+      "titleEN": "More love more power",
+      "oldFile": "پر نما قلبم را.mp3",
+      "newFile": "پر نما قلبم را.mp3",
+      "score": "83.9",
+      "changed": false
+    },
+    {
+      "id": 314,
+      "titleFA": "اعتماد بر عیسی نیکوست",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "225%20Etemad%20bar%20isa%20.mp3",
+      "newFile": "68 Ta abad ou nikoost .mp3",
+      "score": "35.0",
+      "changed": true
+    },
+    {
+      "id": 315,
+      "titleFA": "ای عیسی منجیم خداوند بی همتا",
+      "titleEN": "Shout to the Lord",
+      "oldFile": "216%20Ey%20Isa%20monjiyam.mp3",
+      "newFile": "ای عیسی نزدم بیا .mp3",
+      "score": "33.5",
+      "changed": true
+    },
+    {
+      "id": 316,
+      "titleFA": "صاحب غم ها",
+      "titleEN": "سام خسروی",
+      "oldFile": "Sahebe ghamha.mp3",
+      "newFile": "Sahebe ghamha.mp3",
+      "score": "52.5",
+      "changed": false
+    },
+    {
+      "id": 317,
+      "titleFA": "کلامت زنده و زرین و زیبا",
+      "titleEN": "دکتر مژده شیروانیان",
+      "oldFile": "کلامت زنده و زرین و زیباست.mp3",
+      "newFile": "کلامت زنده و زرین و زیباست.mp3",
+      "score": "89.0",
+      "changed": false
+    },
+    {
+      "id": 318,
+      "titleFA": "کلام تو برای پاهایم چراغ است",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "کلام تو برای پاهایم_1.mp3",
+      "newFile": "کلام تو برای پاهایم_1.mp3",
+      "score": "48.7",
+      "changed": false
+    },
+    {
+      "id": 319,
+      "titleFA": "روح القدس بهترین دوست من",
+      "titleEN": "نیلوفر",
+      "oldFile": "روح القدس بیا.mp3",
+      "newFile": "روح القدس بهترین دوست من _1.mp3",
+      "score": "89.5",
+      "changed": true
+    },
+    {
+      "id": 320,
+      "titleFA": "یشوعا",
+      "titleEN": "Yeshua",
+      "oldFile": "یشوعا .mp3",
+      "newFile": "یشوعا .mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 321,
+      "titleFA": "گرچه انجیر شکوفه نیاورد",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "Garche%20Anjir.mp3",
+      "newFile": "Khoda nikust .mp3",
+      "score": "31.8",
+      "changed": true
+    },
+    {
+      "id": 322,
+      "titleFA": "کیست مانند او / زمین و آسمان پر از رحمت خداوند",
+      "titleEN": "Who is like the Lord",
+      "oldFile": "Kist%20manande%20ou%20.mp3",
+      "newFile": "پیروزیم با نام خداوند.mp3",
+      "score": "28.0",
+      "changed": true
+    },
+    {
+      "id": 323,
+      "titleFA": "زیبا شد",
+      "titleEN": "سوگل نوایی",
+      "oldFile": "Ziba shod.mp3",
+      "newFile": "Ziba shod.mp3",
+      "score": "61.3",
+      "changed": false
+    },
+    {
+      "id": 324,
+      "titleFA": "مژده بادا که نو شد",
+      "titleEN": "زنده یاد اسقف ح.ب.دهقانی تفتی",
+      "oldFile": "Mojde bada ke no shod.mp3",
+      "newFile": "Mojde bada ke no shod.mp3",
+      "score": "49.4",
+      "changed": false
+    },
+    {
+      "id": 325,
+      "titleFA": "شکر بهر صلیبت",
+      "titleEN": "Darlene Zchech",
+      "oldFile": "Shokr bahre salibat.mp3",
+      "newFile": "Shokr bahre salibat.mp3",
+      "score": "49.4",
+      "changed": false
+    },
+    {
+      "id": 326,
+      "titleFA": "شبی آرام و مقدس",
+      "titleEN": "Silent Night",
+      "oldFile": "Silent%20night.mp3",
+      "newFile": "Silent night.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 327,
+      "titleFA": "کلمه جاودانی",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "kalameye javedani .mp3",
+      "newFile": "kalameye javedani .mp3",
+      "score": "39.4",
+      "changed": false
+    },
+    {
+      "id": 328,
+      "titleFA": "کریسمس سفید ( کاش امسال باشد در کریسمس )",
+      "titleEN": "White Christmas",
+      "oldFile": "Christmase%20sefid.mp3",
+      "newFile": "Shahed hastam.mp3",
+      "score": "30.0",
+      "changed": true
+    },
+    {
+      "id": 329,
+      "titleFA": "شادی کنید جهانیان",
+      "titleEN": "Joy to the World",
+      "oldFile": "shadi konid jahanian .mp3",
+      "newFile": "shadi konid jahanian .mp3",
+      "score": "62.2",
+      "changed": false
+    },
+    {
+      "id": 330,
+      "titleFA": "مریم تو آیا می اندیشیدی",
+      "titleEN": "Marry did you know",
+      "oldFile": "مرا احیا می کنی.mp3",
+      "newFile": "مرا احیا می کنی.mp3",
+      "score": "29.5",
+      "changed": false
+    },
+    {
+      "id": 331,
+      "titleFA": "آیید او را پرستیم ( گرد آیید ایمانداران )",
+      "titleEN": "O come all ye faithful",
+      "oldFile": "Ayid%20ou%20ra%20parastim.mp3",
+      "newFile": "ایمان.mp3",
+      "score": "81.6",
+      "changed": true
+    },
+    {
+      "id": 332,
+      "titleFA": "فرشتگان آسمانی ( آیید او را باهم پرستیم )",
+      "titleEN": "Angels we have heard on high",
+      "oldFile": "fereshtegane%20asemani.mp3",
+      "newFile": "97 Dastanam ra nazdat barafrazam.mp3",
+      "score": "24.8",
+      "changed": true
+    },
+    {
+      "id": 333,
+      "titleFA": "یوغ سنگین",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "یوغ سنگین.mp3",
+      "newFile": "یوغ سنگین.mp3",
+      "score": "100.0",
+      "changed": false
+    },
+    {
+      "id": 334,
+      "titleFA": "منجیم عیسی ای شاه جلال",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "251%20Monjiyam%20isa.mp3",
+      "newFile": "پدر سرمدی پادشاه جلال.mp3",
+      "score": "35.0",
+      "changed": true
+    },
+    {
+      "id": 335,
+      "titleFA": "آرامی دلهایی",
+      "titleEN": "میلاد رسایی",
+      "oldFile": "آرامی دلهایی .mp3",
+      "newFile": "آرامی دلهایی .mp3",
+      "score": "64.2",
+      "changed": false
+    },
+    {
+      "id": 336,
+      "titleFA": "می‌بینم من افتادن شیطان را",
+      "titleEN": "Glory to be Jesus",
+      "oldFile": "140 Mibinam man oftadane sheytan ra.mp3",
+      "newFile": "140 Mibinam man oftadane sheytan ra.mp3",
+      "score": "46.7",
+      "changed": false
+    },
+    {
+      "id": 337,
+      "titleFA": "مثل باران مثل باران بریز روحت از آسمان",
+      "titleEN": "شراره",
+      "oldFile": "مثل باران مثل باران.mp3",
+      "newFile": "مثل باران مثل باران.mp3",
+      "score": "85.2",
+      "changed": false
+    },
+    {
+      "id": 338,
+      "titleFA": "مهر تو عجیب است",
+      "titleEN": "Your Love is amazing",
+      "oldFile": "138 Mehre to ajib ast.mp3",
+      "newFile": "138 Mehre to ajib ast.mp3",
+      "score": "49.4",
+      "changed": false
+    },
+    {
+      "id": 339,
+      "titleFA": "مرا ملاقات کن ( در پی قدمهای تو )",
+      "titleEN": "روزبه نجارنژاد",
+      "oldFile": "139 Mara molaghat kon.mp3",
+      "newFile": "چه مهیب است کارهای تو.mp3",
+      "score": "27.4",
+      "changed": true
+    },
+    {
+      "id": 340,
+      "titleFA": "مرا می‌پذیری تو",
+      "titleEN": "نیلوفر",
+      "oldFile": "136 Mara mipaziri to.mp3",
+      "newFile": "136 Mara mipaziri to.mp3",
+      "score": "49.4",
+      "changed": false
+    },
+    {
+      "id": 341,
+      "titleFA": "مرا احیا می‌کنی",
+      "titleEN": "شهاب زاهدمهاجرانی",
+      "oldFile": "137 Mara ehya mikoni .mp3",
+      "newFile": "مرا احیا می کنی.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 342,
+      "titleFA": "کیست که ما را از محبت مسیح جدا سازد",
+      "titleEN": "",
+      "oldFile": "132 Kist ke mara az mohabate masihe043.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 343,
+      "titleFA": "خدای من صخره‌ی من",
+      "titleEN": "کشیش کامیل نوایی",
+      "oldFile": "132 Khodaye man sakhreye man.mp3",
+      "newFile": "Khodaye man sakhreye man.mp3",
+      "score": "40.0",
+      "changed": true
+    },
+    {
+      "id": 344,
+      "titleFA": "خداوند ما فاتح است",
+      "titleEN": "For the Lord is marching on",
+      "oldFile": "131 Khodavande ma fateh ast .mp3",
+      "newFile": "131 Khodavande ma fateh ast .mp3",
+      "score": "45.7",
+      "changed": false
+    },
+    {
+      "id": 345,
+      "titleFA": "خداوند ای معبود من ( خداوند پاک )",
+      "titleEN": "زنده یاد کشیش هایک هوسپیان",
+      "oldFile": "130 Khodavand ey maboode man  .mp3",
+      "newFile": "خداوند شبان من است.mp3",
+      "score": "29.2",
+      "changed": true
+    },
+    {
+      "id": 346,
+      "titleFA": "خداوندا تو آگاهی",
+      "titleEN": "زنده یاد اسقف ح.ب.دهقانی تفتی",
+      "oldFile": "129 Khodavanda to agahi .mp3",
+      "newFile": "129 Khodavanda to agahi .mp3",
+      "score": "49.0",
+      "changed": false
+    },
+    {
+      "id": 347,
+      "titleFA": "خداوند تو را می‌ستاییم",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "126 Khodavand to ra misetayim.mp3",
+      "newFile": "126 Khodavand to ra misetayim.mp3",
+      "score": "47.6",
+      "changed": false
+    },
+    {
+      "id": 348,
+      "titleFA": "خداوند پناه و قوت ماست",
+      "titleEN": "God is our refuge and strength",
+      "oldFile": "125 Khodavand panah o ghovate mast .mp3",
+      "newFile": "125 Khodavand panah o ghovate mast .mp3",
+      "score": "45.9",
+      "changed": false
+    },
+    {
+      "id": 349,
+      "titleFA": "خدا پادشاه ما",
+      "titleEN": "Gott und König",
+      "oldFile": "126 Khoda padshahe ma .mp3",
+      "newFile": "126 Khoda padshahe ma .mp3",
+      "score": "50.6",
+      "changed": false
+    },
+    {
+      "id": 350,
+      "titleFA": "خدا ملجا و قوت من است",
+      "titleEN": "سرود انگلیسی",
+      "oldFile": "Khoda malja o ghovate mana562.mp3",
+      "newFile": "Khoda malja o ghovate mana562.mp3",
+      "score": "44.8",
+      "changed": false
+    },
+    {
+      "id": 351,
+      "titleFA": "منجی شایسته ای",
+      "titleEN": "",
+      "oldFile": "Monji shayesteyi.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 352,
+      "titleFA": "ما همه متحدیم در مسیح یک هستیم",
+      "titleEN": "By our love",
+      "oldFile": "Vaghti del shekaste.mp3",
+      "newFile": "Vaghti del shekaste.mp3",
+      "score": "29.2",
+      "changed": false
+    },
+    {
+      "id": 353,
+      "titleFA": "منجیم شفیعم مرا برخیزانیدی",
+      "titleEN": "",
+      "oldFile": "218%20Monjiyam%20shafiam%20.mp3",
+      "newFile": "1 Aramiye delhaayee.mp3",
+      "score": "80.0",
+      "changed": true
+    },
+    {
+      "id": 354,
+      "titleFA": "وقتی فوجهای ظلمت / نه به قوت نه به قدرت",
+      "titleEN": "The battle belongs to the Lord",
+      "oldFile": "وقتی فوجهای ظلمت.mp3",
+      "newFile": "وقتی فوجهای ظلمت.mp3",
+      "score": "84.8",
+      "changed": false
+    },
+    {
+      "id": 355,
+      "titleFA": "شاهد هستم",
+      "titleEN": "ژیلبرت هوسپیان",
+      "oldFile": "Shahed hastam.mp3",
+      "newFile": "Shahed hastam.mp3",
+      "score": "52.5",
+      "changed": false
+    },
+    {
+      "id": 356,
+      "titleFA": "پاک شدم با خون عیسی ( ای نهر پربها طاهر کردی مرا )",
+      "titleEN": "Drenched in love",
+      "oldFile": "Pak shodam ba khoone Isaad723.mp3",
+      "newFile": "Pak shodam ba khoone Isaad723.mp3",
+      "score": "25.3",
+      "changed": false
+    },
+    {
+      "id": 357,
+      "titleFA": "آغوشت محبتیست",
+      "titleEN": "آراد طفلان",
+      "oldFile": "آغوشت محبتی‌ست.mp3",
+      "newFile": "آغوشت محبتی‌ست.mp3",
+      "score": "64.6",
+      "changed": false
+    },
+    {
+      "id": 358,
+      "titleFA": "آه چه زیباست که شوند جمع",
+      "titleEN": "زنده یاد کشیش رافی شاهوردیان",
+      "oldFile": "49 Azim ast khoda 7748.mp3",
+      "newFile": "آه چه زیباست.mp3",
+      "score": "33.2",
+      "changed": true
+    },
+    {
+      "id": 359,
+      "titleFA": "کیست امید من (ای مقدسین ای قوم خدا)",
+      "titleEN": "زنده یاد کشیش ورویر آوانسیان",
+      "oldFile": "کیست امید من تاج فخر من.mp3",
+      "newFile": "ای روح القدس ای روح خدا.mp3",
+      "score": "32.3",
+      "changed": true
+    },
+    {
+      "id": 360,
+      "titleFA": "آب را شراب کرده ای ( خدا عظیمتر )",
+      "titleEN": "Our God (water you turned into wine)",
+      "oldFile": "222 Ab ra sharab .mp3",
+      "newFile": "باران آخر می خواهیم .mp3",
+      "score": "27.4",
+      "changed": true
+    },
+    {
+      "id": 361,
+      "titleFA": "روح القدس بیا",
+      "titleEN": "وحید نوروزی",
+      "oldFile": "60 Ruholghodos biya .mp3",
+      "newFile": "روح القدس بیا.mp3",
+      "score": "100.0",
+      "changed": true
+    },
+    {
+      "id": 362,
+      "titleFA": "پناهگاهم ماوایم ( هللویاه )",
+      "titleEN": "دریا-وحید نوروزی",
+      "oldFile": "پناهگاهم مأوایم.mp3",
+      "newFile": "پناهگاهم مأوایم.mp3",
+      "score": "43.3",
+      "changed": false
+    },
+    {
+      "id": 363,
+      "titleFA": "شادی کنان سرودخوانان",
+      "titleEN": "رویا",
+      "oldFile": "213 Shadi konan .mp3",
+      "newFile": "خواندی مرا به روی آبها.mp3",
+      "score": "82.1",
+      "changed": true
+    },
+    {
+      "id": 364,
+      "titleFA": "آزادی در نام توست",
+      "titleEN": "Isn't the name of Jesus",
+      "oldFile": "212 Azadi dar name tost.mp3",
+      "newFile": "نام تو .mp3",
+      "score": "83.6",
+      "changed": true
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+﻿≡ƒôé Reading kalameh.com files...
+
+
+≡ƒöì Searching for .MP3 files...
+   Γ£à 50 Tora miparastam _02057.mp3 (3.20 MB)
+   Γ£à Tora miparastam namat barafrazam65c5.mp3 (6.52 MB)
+   Γ£à 20 Hozure to hamchon nasim 657f.mp3 (8.09 MB)
+   Γ£à Darune mara to shostoshu kon03d9.mp3 (6.94 MB)
+   Γ£à Be mohabate khodavanddd6f.mp3 (3.90 MB)
+   ... and 240 more files
+
+   ≡ƒôè .MP3 Summary:
+      Found: 245
+      Copied: 245
+      Failed: 0
+
+≡ƒöì Searching for .PPTX files...
+
+   ≡ƒôè .PPTX Summary:
+      Found: 0
+      Copied: 0
+      Failed: 0
+
+≡ƒöì Searching for .PDF files...
+   Γ£à Amightar kami amightar01a3.pdf (0.41 MB)
+   Γ£à Be man har rooze migooi1dfb.pdf (0.35 MB)
+   Γ£à download0a7d.pdf (0.31 MB)
+   Γ£à downloadb818.pdf (0.26 MB)
+   Γ£à download163e.pdf (0.35 MB)
+   ... and 38 more files
+
+   ≡ƒôè .PDF Summary:
+      Found: 43
+      Copied: 43
+      Failed: 0
+
+
+≡ƒôè ==================== FINAL SUMMARY ====================
+   ≡ƒÄ╡ MP3 Files:
+      Found: 245
+      Copied: 245
+      Failed: 0
+
+   ≡ƒôæ PPTX Files:
+      Found: 0
+      Copied: 0
+      Failed: 0
+
+   ≡ƒôä PDF Files:
+      Found: 43
+      Copied: 43
+      Failed: 0
+
+   Γ£à Total files copied: 288
+
+≡ƒô¥ Next steps:
+   1. Check files in:
+      - public/worship/audio/kalameh/
+      - public/worship/pptx/kalameh/
+      - public/worship/pdf/kalameh/
+   2. Create a mapping script to match files with songs
+   3. Update worship_songs.json with file paths
+========================================================
+

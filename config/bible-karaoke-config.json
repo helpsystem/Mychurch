@@ -1,0 +1,22 @@
+{
+  "paths": {
+    "wordprojectBase": "D:/https___www.wordproject.org_bibles_audio_01_english_index.htm/www.wordproject.org/bibles",
+    "farsiAudio": "D:/https___www.wordproject.org_bibles_audio_01_english_index.htm/www.wordproject.org/bibles/audio/20_farsi",
+    "farsiText": "D:/https___www.wordproject.org_bibles_audio_01_english_index.htm/www.wordproject.org/bibles/fa",
+    "englishText": "D:/https___www.wordproject.org_bibles_audio_01_english_index.htm/www.wordproject.org/bibles/kj",
+    "outputDataDir": "public/bible-karaoke",
+    "outputChaptersDir": "public/bible-karaoke/chapters",
+    "publicAudioRoot": "/audio/bible",
+    "publicTextRoot": "/text/bible"
+  },
+  "audioFormats": [".mp3", ".m4a", ".wav"],
+  "htmlFormats": [".html", ".htm", ".xhtml"],
+  "textFormats": [".txt"],
+  "settings": {
+    "versesPerPage": 10,
+    "autoGenerateTiming": true,
+    "defaultPlaybackRate": 1.0,
+    "enableWordHighlight": true,
+    "enableVerseSync": true
+  }
+}

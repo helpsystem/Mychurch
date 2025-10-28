@@ -9,15 +9,33 @@ const router = express.Router();
 // تنظیمات Multer برای آپلود فایل
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, '../public/worship-files');
+    // تشخیص نوع فایل و انتخاب پوشه مناسب
+    let folder = 'other';
+    if (file.mimetype.startsWith('audio/')) {
+      folder = 'audio';
+    } else if (file.mimetype.includes('powerpoint') || file.mimetype.includes('presentation')) {
+      folder = 'pptx';
+    } else if (file.mimetype === 'application/pdf') {
+      folder = 'pdf';
+    } else if (file.mimetype.startsWith('image/')) {
+      folder = 'images';
+    } else if (file.mimetype.startsWith('video/')) {
+      folder = 'videos';
+    }
+    
+    const uploadPath = path.join(__dirname, '../../public/worship', folder);
     if (!fs.existsSync(uploadPath)) {
       fs.mkdirSync(uploadPath, { recursive: true });
     }
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
+    // استفاده از نام اصلی فایل (با encoding مناسب برای فارسی)
+    const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
+    const uniqueSuffix = Date.now();
+    const ext = path.extname(originalName);
+    const baseName = path.basename(originalName, ext);
+    cb(null, `${baseName}_${uniqueSuffix}${ext}`);
   }
 });
 
@@ -63,9 +81,14 @@ router.get('/', async (req, res) => {
       copyright: song.copyright,
       presentationFileUrl: song.presentation_file_url,
       pdfFileUrl: song.pdf_file_url,
-      sheetMusicUrl: song.sheet_music_url
+      sheetMusicUrl: song.sheet_music_url,
+      chords: song.chords,
+      notation: song.notation,
+      notes: song.notes,
+      attachments: parseJSON(song.attachments, [])
     }));
-    res.json({ songs: worshipSongs });
+    // برگرداندن آرایه مستقیم (نه object با کلید songs) تا با سایر endpoints یکسان باشد
+    res.json(worshipSongs);
   } catch (error) {
     console.error('Fetch Worship Songs Error:', error);
     res.status(500).json({ message: 'Internal server error.' });
@@ -201,20 +224,35 @@ router.delete('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN'), async (r
   }
 });
 
-// POST /api/worship-songs/upload-file - آپلود فایل (PowerPoint, PDF, نت موسیقی)
-router.post('/upload-file', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), upload.single('file'), async (req, res) => {
+// POST /api/worship-songs/upload-file - آپلود فایل (PowerPoint, PDF, نت موسیقی، MP3)
+router.post('/upload-file', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'), upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'هیچ فایلی آپلود نشده است' });
     }
 
-    const fileUrl = `/worship-files/${req.file.filename}`;
+    // تعیین مسیر نسبی بر اساس نوع فایل
+    let folder = 'other';
+    if (req.file.mimetype.startsWith('audio/')) {
+      folder = 'audio';
+    } else if (req.file.mimetype.includes('powerpoint') || req.file.mimetype.includes('presentation')) {
+      folder = 'pptx';
+    } else if (req.file.mimetype === 'application/pdf') {
+      folder = 'pdf';
+    } else if (req.file.mimetype.startsWith('image/')) {
+      folder = 'images';
+    } else if (req.file.mimetype.startsWith('video/')) {
+      folder = 'videos';
+    }
+
+    const fileUrl = `/worship/${folder}/${req.file.filename}`;
     
     res.json({
       success: true,
       fileUrl: fileUrl,
       filename: req.file.originalname,
-      size: req.file.size
+      size: req.file.size,
+      type: req.file.mimetype
     });
   } catch (error) {
     console.error('Upload File Error:', error);

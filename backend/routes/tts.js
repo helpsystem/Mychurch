@@ -272,4 +272,64 @@ router.get('/test', async (req, res) => {
   }
 });
 
+/**
+ * POST /api/tts/persian-coqui
+ * Generate Persian TTS using Coqui TTS Server
+ * 
+ * این endpoint از مدل Coqui TTS فارسی استفاده می‌کند
+ * مدل: https://github.com/karim23657/Persian-tts-coqui
+ */
+router.post('/persian-coqui', async (req, res) => {
+  try {
+    const { text, voice = 'male', format = 'mp3' } = req.body;
+
+    if (!text || text.trim().length === 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'متن الزامی است'
+      });
+    }
+
+    // استفاده از سرویس Python TTS
+    const { getTTSClient } = require('../services/persianTTSClient');
+    const ttsClient = getTTSClient();
+    
+    // بررسی دسترسی به سرویس
+    const health = await ttsClient.checkHealth();
+    
+    if (!health) {
+      return res.json({
+        success: false,
+        fallbackToClient: true,
+        message: 'سرویس TTS در دسترس نیست. از TTS مرورگر استفاده می‌شود.',
+        instructions: {
+          start_server: 'python scripts/tts_server.py',
+          install: 'pip install -r requirements-tts.txt',
+          github: 'https://github.com/karim23657/Persian-tts-coqui'
+        }
+      });
+    }
+
+    // تولید صدا
+    const result = await ttsClient.synthesize(text, { voice, format });
+    
+    if (result.success) {
+      // ارسال فایل صوتی
+      res.setHeader('Content-Type', `audio/${format}`);
+      res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache 1 day
+      res.send(result.audioBuffer);
+    } else {
+      res.json(result);
+    }
+
+  } catch (err) {
+    console.error('Persian Coqui TTS failed:', err);
+    res.status(500).json({
+      success: false,
+      fallbackToClient: true,
+      error: err.message
+    });
+  }
+});
+
 module.exports = router;

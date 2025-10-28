@@ -12,6 +12,7 @@ import ScrambledText from '../components/ScrambledText';
 import { DEFAULT_AVATAR_URL } from '../lib/constants';
 import { useAuth } from '../hooks/useAuth';
 import ImageSlider from '../components/ImageSlider';
+import AIImageSlider from '../components/AIImageSlider';
 import SEOHead from '../components/SEO/SEOHead';
 import { getPageSEOConfig } from '../lib/seoConfig';
 import './HomePage.css';
@@ -143,9 +144,9 @@ const LeaderCardHome: React.FC<{ leader: Leader }> = ({ leader }) => {
                 <img src={imageUrl} alt={leaderName} className="image-foreground" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h4 className="font-semibold text-white text-[20px] leading-[32px] mb-1">{leaderName}</h4>
-            <p className="font-normal text-secondary text-[16px] leading-[24px] mb-4">{leaderTitle}</p>
-            <p className="font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow">{shortBio || t('noDescription')}</p>
+            <h4 className={`font-semibold text-white text-[20px] leading-[32px] mb-1 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leaderName}</h4>
+            <p className={`font-normal text-secondary text-[16px] leading-[24px] mb-4 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leaderTitle}</p>
+            <p className={`font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{shortBio || t('noDescription')}</p>
             <Link to="/leaders" className="text-secondary hover:text-white font-semibold mt-auto inline-flex items-center gap-2 group">
                 {t('viewProfile')}
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -194,7 +195,7 @@ const LeadersSection: React.FC = () => {
           {t('meetOurLeadersHomeTitle')}
         </h2>
         <div className="w-full md:mt-0 mt-6">
-            <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] text-left max-w-[450px]">
+            <p className={`font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[450px] ${lang === 'fa' ? 'text-right' : 'text-left'}`}>
               {t('meetOurLeadersHomeParagraph')}
             </p>
         </div>
@@ -249,7 +250,7 @@ const HomePage: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
   
   // Get SEO configuration for home page
-  const seoConfig = getPageSEOConfig('home', lang);
+  const seoConfig = getPageSEOConfig('home', lang === 'fa' ? 'fa' : 'en');
   const [aboutImage, setAboutImage] = useState('/images/jesus-cross-sunset.jpg');
 
   useEffect(() => {
@@ -321,16 +322,12 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10`}>
-                    <ImageSlider 
-                        images={[
-                            '/images/Church_interior_worship_space_70ed9ac2.png',
-                            '/images/Church_community_gathering_a97f90e1.png',
-                            '/images/Modern_church_building_exterior_83da6dba.png',
-                            '/images/Persian_Christian_choir_singing_bfe3adf8.png'
-                        ]}
-                        autoplay={true}
-                        autoplayInterval={4000}
-                        className="w-full max-w-[600px] relative z-[5]"
+                    {/* اسلایدر حرفه‌ای تصاویر کلیسا با آیات کتاب مقدس */}
+                    <AIImageSlider 
+                        autoPlayInterval={6000}
+                        showNavigationButtons={true}
+                        showIndicators={true}
+                        className="w-full max-w-[650px] relative z-[5]"
                     />
                     <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />
                     <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient" />
@@ -441,13 +438,13 @@ const HomePage: React.FC = () => {
                         </div>
                     </div>
                     <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
-                        <img src="/images/Bible_study_peaceful_setting_6bb44b27.png" alt="Bible Study" className="w-full h-full object-cover" />
+                        <img src="/church-photos/photo1.jpg" alt="Worship Area" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
                           <Sparkles className="w-12 h-12 text-white" />
                         </div>
                     </div>
                     <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
-                        <img src="/images/Children_Sunday_school_class_ade575b6.png" alt="Sunday School" className="w-full h-full object-cover" />
+                        <img src="/church-photos/photo3.jpg" alt="Church Interior" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
                           <Sparkles className="w-12 h-12 text-white" />
                         </div>
@@ -503,7 +500,7 @@ const HomePage: React.FC = () => {
                 <div className="w-full flex justify-between items-center md:flex-row flex-col sm:mb-16 mb-6 relative z-[1]">
                     <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">{t('testimonialsTitle')}</h2>
                     <div className="w-full md:mt-0 mt-6">
-                        <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] text-left max-w-[450px]">{t('testimonialsParagraph')}</p>
+                        <p className={`font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[450px] ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{t('testimonialsParagraph')}</p>
                     </div>
                 </div>
                 <div className="flex flex-wrap sm:justify-start justify-center w-full feedback-container relative z-[1]">

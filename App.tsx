@@ -49,6 +49,11 @@ import TestComponent from './components/TestComponent';
 import MinimalBible from './components/MinimalBible';
 import SimpleBibleReader from './components/SimpleBibleReader';
 import WorshipSongsPage from './pages/WorshipSongsPage';
+import BilingualPresentationDemo from './pages/BilingualPresentationDemo';
+import BilingualPresentationSample from './pages/BilingualPresentationSample';
+import BibleAudioPlayer from './pages/BibleAudioPlayer';
+import TTSDemo from './pages/TTSDemo';
+import HuggingFaceTTSDemo from './pages/HuggingFaceTTSDemo';
 import WorshipSongViewerPage from './pages/WorshipSongViewerPage';
 import WorshipPresentationPage from './pages/WorshipPresentationPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
@@ -119,6 +124,11 @@ function App() {
               <Route path="bible-simple" element={<SimpleBibleReader />} />
               <Route path="bible-minimal" element={<MinimalBible />} />
               <Route path="bible-test" element={<TestComponent />} />
+              <Route path="bible-presentation" element={<BilingualPresentationDemo />} />
+              <Route path="bible-presentation-sample" element={<BilingualPresentationSample />} />
+              <Route path="bible-audio-player" element={<BibleAudioPlayer />} />
+              <Route path="tts-demo" element={<TTSDemo />} />
+              <Route path="tts-hf" element={<HuggingFaceTTSDemo />} />
               <Route path="bible-old" element={<BibleReaderPage />} />
               <Route path="audio-bible" element={<AudioBiblePage />} />
               <Route path="bible/tts/:bookCode/:chapter" element={<BibleTTSPage />} />

@@ -25,7 +25,7 @@ const LeaderCard: React.FC<{ leader: Leader }> = ({ leader }) => {
           <h3 className="text-2xl font-semibold text-white">{leader.name[lang]}</h3>
           <p className="text-dimWhite mt-1">{leader.title[lang]}</p>
           <div className="flex-grow my-4 flex justify-between items-start gap-4">
-            <p className="text-dimWhite text-left flex-grow">{leader.bio[lang]}</p>
+            <p className={`text-dimWhite flex-grow ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leader.bio[lang]}</p>
             {leader.whatsappNumber && (
               <a 
                 href={getWhatsAppUrl(leader.whatsappNumber)} 
