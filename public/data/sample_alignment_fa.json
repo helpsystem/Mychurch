@@ -1,0 +1,59 @@
+{
+  "verses": [
+    {
+      "verse": 15,
+      "words": [
+        { "word": "از", "start": 0.00, "end": 0.20, "index": 0 },
+        { "word": "آن", "start": 0.25, "end": 0.45, "index": 1 },
+        { "word": "جهت", "start": 0.50, "end": 0.80, "index": 2 },
+        { "word": "که", "start": 0.85, "end": 1.05, "index": 3 },
+        { "word": "چون", "start": 1.10, "end": 1.40, "index": 4 },
+        { "word": "خبر", "start": 1.45, "end": 1.75, "index": 5 },
+        { "word": "ایمان", "start": 1.80, "end": 2.20, "index": 6 },
+        { "word": "شما", "start": 2.25, "end": 2.50, "index": 7 },
+        { "word": "را", "start": 2.55, "end": 2.70, "index": 8 },
+        { "word": "به", "start": 2.75, "end": 2.90, "index": 9 },
+        { "word": "خداوند", "start": 2.95, "end": 3.45, "index": 10 },
+        { "word": "عیسی", "start": 3.50, "end": 3.90, "index": 11 },
+        { "word": "و", "start": 3.95, "end": 4.10, "index": 12 },
+        { "word": "محبت", "start": 4.15, "end": 4.55, "index": 13 },
+        { "word": "شما", "start": 4.60, "end": 4.85, "index": 14 },
+        { "word": "را", "start": 4.90, "end": 5.05, "index": 15 },
+        { "word": "به", "start": 5.10, "end": 5.25, "index": 16 },
+        { "word": "همه", "start": 5.30, "end": 5.60, "index": 17 },
+        { "word": "مقدسین", "start": 5.65, "end": 6.15, "index": 18 },
+        { "word": "شنیدم،", "start": 6.20, "end": 6.70, "index": 19 }
+      ],
+      "totalDuration": 6.70
+    },
+    {
+      "verse": 16,
+      "words": [
+        { "word": "از", "start": 7.20, "end": 7.40, "index": 20 },
+        { "word": "شکرگزاری", "start": 7.45, "end": 8.10, "index": 21 },
+        { "word": "برای", "start": 8.15, "end": 8.45, "index": 22 },
+        { "word": "شما", "start": 8.50, "end": 8.75, "index": 23 },
+        { "word": "خسته", "start": 8.80, "end": 9.20, "index": 24 },
+        { "word": "نمی‌شوم", "start": 9.25, "end": 9.75, "index": 25 },
+        { "word": "و", "start": 9.80, "end": 9.95, "index": 26 },
+        { "word": "در", "start": 10.00, "end": 10.20, "index": 27 },
+        { "word": "دعاهای", "start": 10.25, "end": 10.75, "index": 28 },
+        { "word": "خود", "start": 10.80, "end": 11.10, "index": 29 },
+        { "word": "همیشه", "start": 11.15, "end": 11.60, "index": 30 },
+        { "word": "شما", "start": 11.65, "end": 11.90, "index": 31 },
+        { "word": "را", "start": 11.95, "end": 12.10, "index": 32 },
+        { "word": "یاد", "start": 12.15, "end": 12.40, "index": 33 },
+        { "word": "می‌کنم.", "start": 12.45, "end": 12.90, "index": 34 }
+      ],
+      "totalDuration": 12.90
+    }
+  ],
+  "language": "fa",
+  "metadata": {
+    "book": "افسسیان",
+    "chapter": 1,
+    "totalVerses": 2,
+    "method": "synthetic",
+    "generatedAt": "2025-01-09T12:00:00Z"
+  }
+}

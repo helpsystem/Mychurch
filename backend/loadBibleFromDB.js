@@ -85,21 +85,49 @@ class BibleDatabaseLoader {
   // Load bilingual verses (English + Persian)
   async loadBilingualChapter(bookCode, chapter) {
     try {
-      // Load verses from bible_verses with both text_en and text_fa
-      // Using translation_id = 1 (mojdeh) which has the most complete data
+      console.log(`[DEBUG] Loading ${bookCode} Chapter ${chapter}...`);
+      
+      // IMPROVED: Try English (trans 8) + Persian (trans 2), with fallback
+      // Translation 8 = English (NET)
+      // Translation 2 = Persian (qadim - most complete)
+      // Translation 9 = English fallback
+      // Translation 1 = Persian fallback
+      
       const query = `
         SELECT 
-          verse_number,
-          text_en as en,
-          text_fa as fa,
-          chapter_id
-        FROM bible_verses
-        WHERE chapter_id = $1 
-          AND translation_id = 1
-        ORDER BY verse_number;
+          COALESCE(en.verse_number, fa.verse_number, en2.verse_number, fa2.verse_number) as verse_number,
+          COALESCE(en.text_en, en.text_fa, en2.text_en, en2.text_fa, fa.text_fa, fa2.text_fa, '') as en,
+          COALESCE(fa.text_fa, fa.text_en, fa2.text_fa, fa2.text_en, '') as fa,
+          COALESCE(en.chapter_id, fa.chapter_id, en2.chapter_id, fa2.chapter_id) as chapter_id
+        FROM (
+          SELECT bv.verse_number, bv.text_en, bv.text_fa, bv.chapter_id
+          FROM bible_verses bv
+          INNER JOIN bible_chapters bc ON bv.chapter_id = bc.id
+          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 8
+        ) en
+        FULL OUTER JOIN (
+          SELECT bv.verse_number, bv.text_fa, bv.text_en, bv.chapter_id
+          FROM bible_verses bv
+          INNER JOIN bible_chapters bc ON bv.chapter_id = bc.id
+          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 2
+        ) fa ON en.verse_number = fa.verse_number
+        FULL OUTER JOIN (
+          SELECT bv.verse_number, bv.text_en, bv.text_fa, bv.chapter_id
+          FROM bible_verses bv
+          INNER JOIN bible_chapters bc ON bv.chapter_id = bc.id
+          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 9
+        ) en2 ON COALESCE(en.verse_number, fa.verse_number) = en2.verse_number
+        FULL OUTER JOIN (
+          SELECT bv.verse_number, bv.text_fa, bv.text_en, bv.chapter_id
+          FROM bible_verses bv
+          INNER JOIN bible_chapters bc ON bv.chapter_id = bc.id
+          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 1
+        ) fa2 ON COALESCE(en.verse_number, fa.verse_number, en2.verse_number) = fa2.verse_number
+        ORDER BY COALESCE(en.verse_number, fa.verse_number, en2.verse_number, fa2.verse_number);
       `;
 
-      const result = await pool.query(query, [chapter]);
+      const result = await pool.query(query, [bookCode, chapter]);
+      console.log(`[DEBUG] Query returned ${result.rows.length} rows`);
 
       const bilingualVerses = result.rows.map(row => ({
         verse_number: row.verse_number,
@@ -109,10 +137,10 @@ class BibleDatabaseLoader {
         fa: row.fa || ''
       }));
 
-      console.log(`✓ Loaded ${bilingualVerses.length} bilingual verses for ${bookCode} ${chapter}`);
+      console.log(`✓ Loaded ${bilingualVerses.length} bilingual verses for ${bookCode} ${chapter} (EN: trans 8/9, FA: trans 2/1 fallback)`);
       return bilingualVerses;
     } catch (error) {
-      console.error(`Error loading bilingual chapter:`, error);
+      console.error(`Error loading bilingual chapter ${bookCode} ${chapter}:`, error);
       throw error;
     }
   }
@@ -178,7 +206,28 @@ async function runTests() {
       console.log('Verse 1 (FA):', gen1[0].fa?.substring(0, 60) + '...');
     }
 
-    console.log('\n✓ All tests passed successfully!');
+    // NEW: Test John 3
+    console.log('\nLoading John Chapter 3 (Bilingual)...');
+    const john3 = await loader.loadBilingualChapter('JHN', 3);
+    console.log(`Found ${john3.length} verses (expected: 36)`);
+    
+    if (john3.length > 0) {
+      console.log('John 3:2 (EN):', john3[0]?.en?.substring(0, 80) || 'EMPTY');
+      console.log('John 3:2 (FA):', john3[0]?.fa?.substring(0, 80) || 'EMPTY');
+      
+      // Try to find verse 16
+      const v16 = john3.find(v => v.verse_number === 16);
+      if (v16) {
+        console.log('\nJohn 3:16 (EN):', v16.en?.substring(0, 80) || 'EMPTY');
+        console.log('John 3:16 (FA):', v16.fa?.substring(0, 80) || 'EMPTY');
+      } else {
+        console.log('\n❌ Verse 16 not found! Available verses:', john3.map(v => v.verse_number).join(', '));
+      }
+    } else {
+      console.log('❌ John 3 verses NOT FOUND!');
+    }
+
+    console.log('\n✓ All tests completed!');
   } catch (error) {
     console.error('\n✗ Test failed:', error);
   } finally {

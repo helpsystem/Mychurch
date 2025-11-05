@@ -1,0 +1,58 @@
+{
+  "verses": [
+    {
+      "verse": 15,
+      "words": [
+        { "word": "For", "start": 0.00, "end": 0.25, "index": 0 },
+        { "word": "this", "start": 0.26, "end": 0.45, "index": 1 },
+        { "word": "reason,", "start": 0.46, "end": 0.85, "index": 2 },
+        { "word": "ever", "start": 0.90, "end": 1.15, "index": 3 },
+        { "word": "since", "start": 1.16, "end": 1.45, "index": 4 },
+        { "word": "I", "start": 1.50, "end": 1.65, "index": 5 },
+        { "word": "heard", "start": 1.66, "end": 1.95, "index": 6 },
+        { "word": "about", "start": 2.00, "end": 2.35, "index": 7 },
+        { "word": "your", "start": 2.40, "end": 2.65, "index": 8 },
+        { "word": "faith", "start": 2.70, "end": 3.05, "index": 9 },
+        { "word": "in", "start": 3.10, "end": 3.25, "index": 10 },
+        { "word": "the", "start": 3.26, "end": 3.40, "index": 11 },
+        { "word": "Lord", "start": 3.45, "end": 3.75, "index": 12 },
+        { "word": "Jesus", "start": 3.80, "end": 4.20, "index": 13 },
+        { "word": "and", "start": 4.25, "end": 4.45, "index": 14 },
+        { "word": "your", "start": 4.50, "end": 4.75, "index": 15 },
+        { "word": "love", "start": 4.80, "end": 5.10, "index": 16 },
+        { "word": "for", "start": 5.15, "end": 5.35, "index": 17 },
+        { "word": "all", "start": 5.40, "end": 5.65, "index": 18 },
+        { "word": "God's", "start": 5.70, "end": 6.05, "index": 19 },
+        { "word": "people,", "start": 6.10, "end": 6.55, "index": 20 }
+      ],
+      "totalDuration": 6.55
+    },
+    {
+      "verse": 16,
+      "words": [
+        { "word": "I", "start": 7.00, "end": 7.15, "index": 21 },
+        { "word": "have", "start": 7.20, "end": 7.40, "index": 22 },
+        { "word": "not", "start": 7.45, "end": 7.65, "index": 23 },
+        { "word": "stopped", "start": 7.70, "end": 8.10, "index": 24 },
+        { "word": "giving", "start": 8.15, "end": 8.50, "index": 25 },
+        { "word": "thanks", "start": 8.55, "end": 8.95, "index": 26 },
+        { "word": "for", "start": 9.00, "end": 9.20, "index": 27 },
+        { "word": "you,", "start": 9.25, "end": 9.50, "index": 28 },
+        { "word": "remembering", "start": 9.55, "end": 10.20, "index": 29 },
+        { "word": "you", "start": 10.25, "end": 10.45, "index": 30 },
+        { "word": "in", "start": 10.50, "end": 10.65, "index": 31 },
+        { "word": "my", "start": 10.70, "end": 10.90, "index": 32 },
+        { "word": "prayers.", "start": 10.95, "end": 11.45, "index": 33 }
+      ],
+      "totalDuration": 11.45
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "book": "Ephesians",
+    "chapter": 1,
+    "totalVerses": 2,
+    "method": "whisper",
+    "generatedAt": "2025-01-09T12:00:00Z"
+  }
+}

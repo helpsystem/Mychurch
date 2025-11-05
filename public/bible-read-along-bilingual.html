@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روخوانی کتاب مقدس - دو زبانه</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .control-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="range"] {
+            width: 70%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        #speedValue {
+            display: inline-block;
+            min-width: 30px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .btn-load {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .btn-pause {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .progress-container {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            transition: width 0.1s;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .info-banner strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Bilingual Display */
+        .verses-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .verse-column {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .verse-column h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+
+        .verse-column.persian {
+            direction: rtl;
+        }
+
+        .verse-column.english {
+            direction: ltr;
+        }
+
+        .verse-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .verse-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .word {
+            display: inline;
+            padding: 2px 4px;
+            margin: 0 2px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .word.active {
+            background: #ffd700;
+            color: #000;
+            font-weight: 700;
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+        }
+
+        .word.completed {
+            background: #e9d5ff;
+            color: #7c3aed;
+        }
+
+        .word.upcoming {
+            color: #6b7280;
+        }
+
+        /* Scrollbar styling */
+        .verse-column::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .verse-column::-webkit-scrollbar-track {
+            background: #e5e7eb;
+            border-radius: 10px;
+        }
+
+        .verse-column::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 10px;
+        }
+
+        .verse-column::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        .status {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #856404;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .verses-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📖 روخوانی کتاب مقدس - دو زبانه</h1>
+            <p>Bible Read-Along - Bilingual (Persian & English)</p>
+        </div>
+
+        <div class="content">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="bookSelect">📚 انتخاب کتاب / Select Book:</label>
+                        <select id="bookSelect">
+                            <option value="">در حال بارگذاری...</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="chapterInput">📖 شماره فصل / Chapter Number:</label>
+                        <input type="number" id="chapterInput" min="1" value="1">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="translationSelect">🌍 ترجمه / Translation:</label>
+                        <select id="translationSelect">
+                            <option value="">در حال بارگذاری...</option>
+                        </select>
+                        <div style="font-size: 0.85rem; color: #666; margin-top: 5px;">
+                            🎵 = دارای فایل صوتی روخوانی | متن فقط = بدون صدا
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="speedSlider">⚡ سرعت روخوانی / Read-Along Speed (کلمه/ثانیه):</label>
+                    <input type="range" id="speedSlider" min="1" max="5" step="0.1" value="1.6">
+                    <span id="speedValue">1.6</span> words/sec
+                    <div style="font-size: 0.85rem; color: #666; margin-top: 5px;">
+                        💡 بهترین سرعت: 1.5 تا 1.7 کلمه در ثانیه
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-load" onclick="loadChapter()">🔄 بارگذاری فصل</button>
+                    <button class="btn-play" id="playBtn" onclick="playAudio()" disabled>▶️ پخش</button>
+                    <button class="btn-pause" id="pauseBtn" onclick="pauseAudio()" disabled>⏸️ توقف</button>
+                    <button class="btn-stop" onclick="stopAudio()" disabled>⏹️ ایست</button>
+                </div>
+            </div>
+
+            <div class="info-banner">
+                <strong>📌 اطلاعات / Information:</strong><br>
+                ✅ پخش صوت فارسی با هایلایت همزمان کلمات<br>
+                🎵 <strong>30 کتاب</strong> دارای فایل صوتی (عهد جدید کامل + Genesis, Exodus, Psalms)<br>
+                📚 سایر کتاب‌ها: فقط متن (بدون صدا)<br>
+                🟡 کلمه فعال: زرد | 🟣 خوانده شده: بنفش
+            </div>
+
+            <div class="audio-player" id="audioPlayer" style="display: none;">
+                <div>
+                    <strong id="currentBook">کتاب</strong> - 
+                    <strong>فصل <span id="currentChapter">0</span></strong> - 
+                    <span id="verseCount">0 آیه</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalDuration">0:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter Information Display -->
+            <div id="chapterInfo" style="display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 15px; color: white; margin: 20px 0; text-align: center;">
+                <h2 style="margin: 0 0 10px 0; font-size: 1.8em;" id="chapterTitle">عنوان فصل</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <div style="font-size: 0.9em; opacity: 0.9;">📖 تعداد آیات / Verses</div>
+                        <div style="font-size: 1.5em; font-weight: bold;" id="infoVerseCount">0</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <div style="font-size: 0.9em; opacity: 0.9;">📚 عهد / Testament</div>
+                        <div style="font-size: 1.2em; font-weight: bold;" id="infoTestament">-</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <div style="font-size: 0.9em; opacity: 0.9;">🎵 ترجمه / Translation</div>
+                        <div style="font-size: 1.1em; font-weight: bold;" id="infoTranslation">-</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <div style="font-size: 0.9em; opacity: 0.9;">🔊 صدا / Audio</div>
+                        <div style="font-size: 1.2em; font-weight: bold;" id="infoAudio">-</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <div style="font-size: 0.9em; opacity: 0.9;">📝 کلمات فارسی / Persian Words</div>
+                        <div style="font-size: 1.5em; font-weight: bold;" id="infoPersianWords">0</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <div style="font-size: 0.9em; opacity: 0.9;">📝 متن انگلیسی / English Text</div>
+                        <div style="font-size: 1.2em; font-weight: bold;" id="infoEnglishStatus">❌</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bilingual Verses Display -->
+            <div class="verses-container" id="versesContainer" style="display: none;">
+                <div class="verse-column persian" id="persianColumn">
+                    <h3>🇮🇷 متن فارسی</h3>
+                    <div id="persianVerses"></div>
+                </div>
+                <div class="verse-column english" id="englishColumn">
+                    <h3>🇬🇧 English Text</h3>
+                    <div id="englishVerses"></div>
+                </div>
+            </div>
+
+            <div class="status" id="status">
+                🔄 در حال بارگذاری داده‌های کتاب مقدس...
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioElement" style="display: none;"></audio>
+
+    <script>
+        // Books with available audio (from Edge TTS generation)
+        const BOOKS_WITH_AUDIO = [
+            // Old Testament
+            'GEN', 'EXO', 'PSA',
+            // New Testament
+            'MAT', 'MRK', 'LUK', 'JHN', 'ACT', 'ROM', '1CO', '2CO', 
+            'GAL', 'EPH', 'PHP', 'COL', '1TH', '2TH', '1TI', '2TI', 
+            'TIT', 'PHM', 'HEB', 'JAS', '1PE', '2PE', '1JN', '2JN', 
+            '3JN', 'JUD', 'REV'
+        ];
+        
+        let bibleData = null;
+        let currentAudio = null;
+        let wordsPerSecond = 1.6;
+        let allWordsPersian = [];
+        let allWordsEnglish = [];
+        let currentChapterData = null;
+        let animationFrameId = null;
+        let currentVerseIndex = 0;
+
+        // Load Bible data from API
+        async function loadBibleData() {
+            try {
+                console.log('🔄 Loading books from API...');
+                const response = await fetch('http://localhost:3001/api/bible/books');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('📦 Books loaded:', data.books?.length || 0);
+                
+                bibleData = {
+                    books: data.books || []
+                };
+                
+                populateBookSelect();
+                populateTranslationSelect();
+                console.log('✅ Bible data loaded successfully!');
+                document.getElementById('status').textContent = '✅ آماده - یک کتاب و فصل انتخاب کنید';
+            } catch (error) {
+                console.error('❌ Error loading Bible data:', error);
+                document.getElementById('status').textContent = '❌ خطا: ' + error.message + ' - آیا backend در حال اجرا است؟';
+            }
+        }
+
+        // Populate book select dropdown
+        function populateBookSelect() {
+            console.log('🔄 Populating book select...');
+            const select = document.getElementById('bookSelect');
+            
+            if (!select) {
+                console.error('❌ bookSelect element not found!');
+                return;
+            }
+            
+            select.innerHTML = '<option value="">-- انتخاب کنید / Select Book --</option>';
+
+            if (!bibleData || !bibleData.books) {
+                console.error('❌ bibleData or books is missing!');
+                select.innerHTML = '<option value="">خطا: داده موجود نیست</option>';
+                return;
+            }
+
+            console.log('📚 Found', bibleData.books.length, 'books');
+
+            // Old Testament
+            const otGroup = document.createElement('optgroup');
+            otGroup.label = '📖 عهد عتیق / Old Testament';
+            
+            bibleData.books
+                .filter(book => book.testament === 'OT')
+                .forEach(book => {
+                    const hasAudio = BOOKS_WITH_AUDIO.includes(book.key) ? ' 🎵' : '';
+                    const option = document.createElement('option');
+                    option.value = book.key;
+                    option.textContent = `${book.name.fa} / ${book.name.en}${hasAudio}`;
+                    otGroup.appendChild(option);
+                });
+            
+            // New Testament  
+            const ntGroup = document.createElement('optgroup');
+            ntGroup.label = '✝️ عهد جدید / New Testament';
+            
+            bibleData.books
+                .filter(book => book.testament === 'NT')
+                .forEach(book => {
+                    const hasAudio = BOOKS_WITH_AUDIO.includes(book.key) ? ' 🎵' : '';
+                    const option = document.createElement('option');
+                    option.value = book.key;
+                    option.textContent = `${book.name.fa} / ${book.name.en}${hasAudio}`;
+                    ntGroup.appendChild(option);
+                });
+            
+            select.appendChild(otGroup);
+            select.appendChild(ntGroup);
+            
+            console.log('✅ Book select populated');
+        }
+
+        // Populate translation select dropdown (simplified - just Persian & English)
+        function populateTranslationSelect() {
+            console.log('🔄 Populating translation select...');
+            const select = document.getElementById('translationSelect');
+            
+            if (!select) {
+                console.error('❌ translationSelect element not found!');
+                return;
+            }
+
+            select.innerHTML = `
+                <option value="mojdeh">هزارۀ نو (مژده) - فارسی 🎵</option>
+                <option value="qadim">ترجمۀ قدیم - فارسی</option>
+                <option value="nmv">New Millennium Version - English 🎵</option>
+            `;
+            
+            console.log('✅ Translation select populated');
+        }
+
+        // Update speed value display
+        document.getElementById('speedSlider').addEventListener('input', (e) => {
+            wordsPerSecond = parseFloat(e.target.value);
+            document.getElementById('speedValue').textContent = wordsPerSecond.toFixed(1);
+        });
+
+        // Load chapter from API
+        async function loadChapter() {
+            const bookCode = document.getElementById('bookSelect').value;
+            const chapter = parseInt(document.getElementById('chapterInput').value);
+            const selectedTranslation = document.getElementById('translationSelect').value;
+
+            if (!bookCode) {
+                alert('لطفاً یک کتاب انتخاب کنید');
+                return;
+            }
+
+            if (!chapter || chapter < 1) {
+                alert('لطفاً شماره فصل معتبر وارد کنید');
+                return;
+            }
+
+            document.getElementById('status').textContent = '🔄 در حال بارگذاری...';
+
+            try {
+                // Fetch chapter data from API
+                console.log(`🔄 Loading ${bookCode} chapter ${chapter} from API...`);
+                const response = await fetch(`http://localhost:3001/api/bible/content/${bookCode}/${chapter}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('� Chapter data loaded:', data);
+
+                // Get book info
+                const bookInfo = bibleData.books.find(b => b.key === bookCode);
+                if (!bookInfo) {
+                    throw new Error('Book info not found');
+                }
+
+                // Parse verses
+                const verses = [];
+                const versesPersian = data.verses?.fa || [];
+                const versesEnglish = data.verses?.en || [];
+                
+                // Determine verse count (use the longer array)
+                const verseCount = Math.max(versesPersian.length, versesEnglish.length);
+
+                console.log('📊 Found', verseCount, 'verses');
+                console.log('📝 Persian verses:', versesPersian.length);
+                console.log('� English verses:', versesEnglish.length);
+
+                for (let i = 0; i < verseCount; i++) {
+                    verses.push({
+                        verse: i + 1, // Verse numbers start from 1
+                        text_fa: versesPersian[i] || '',
+                        text_en: versesEnglish[i] || ''
+                    });
+                }
+
+                currentChapterData = {
+                    bookCode,
+                    chapter,
+                    verses: verses,
+                    bookInfo: bookInfo,
+                    translation: selectedTranslation
+                };
+
+                // Display verses
+                displayBilingualVerses();
+
+                // Check if audio is available
+                const hasAudio = BOOKS_WITH_AUDIO.includes(bookCode);
+                
+                // Update chapter info
+                const testament = bookInfo.testament === 'OT' ? 'عهد عتیق / OT' : 'عهد جدید / NT';
+                const translationName = selectedTranslation === 'mojdeh' ? 'هزارۀ نو (مژده)' : 
+                                       selectedTranslation === 'qadim' ? 'ترجمۀ قدیم' :
+                                       'New Millennium Version';
+                
+                document.getElementById('chapterTitle').textContent = 
+                    `${bookInfo.name.fa} ${chapter} / ${bookInfo.name.en} ${chapter}`;
+                document.getElementById('infoVerseCount').textContent = verses.length;
+                document.getElementById('infoTestament').textContent = testament;
+                document.getElementById('infoTranslation').textContent = translationName;
+                document.getElementById('infoAudio').textContent = hasAudio ? '✅ Available' : '❌ N/A';
+                document.getElementById('infoPersianWords').textContent = allWordsPersian.length;
+                
+                // Check if English text is actually available (not just empty arrays)
+                const hasEnglishText = verses.some(v => v.text_en && v.text_en.trim().length > 0);
+                document.getElementById('infoEnglishStatus').textContent = hasEnglishText ? '✅ Yes' : '❌ No';
+                
+                document.getElementById('chapterInfo').style.display = 'block';
+
+                // Setup audio if available
+                if (hasAudio) {
+                    const audioUrl = `/audio/bible/edge-tts/${bookCode}/${chapter}/1.mp3`;
+                    setupAudio(audioUrl);
+                    document.getElementById('status').textContent = `✅ فصل بارگذاری شد - آماده پخش`;
+                } else {
+                    document.getElementById('status').innerHTML = 
+                        '⚠️ این کتاب فایل صوتی ندارد<br>' +
+                        '<small style="color:#666">کتاب‌های دارای صوت 🎵: عهد جدید کامل + Genesis, Exodus, Psalms</small>';
+                    document.getElementById('audioPlayer').style.display = 'none';
+                }
+
+                // Update header
+                document.getElementById('currentBook').textContent = `${bookInfo.name.fa} - ${translationName}`;
+                document.getElementById('currentChapter').textContent = chapter;
+                document.getElementById('verseCount').textContent = `${verses.length} آیه`;
+
+                console.log('✅ Chapter loaded successfully!');
+            } catch (error) {
+                console.error('❌ Error loading chapter:', error);
+                document.getElementById('status').textContent = '❌ خطا: ' + error.message;
+            }
+        }
+
+        // Display bilingual verses
+        function displayBilingualVerses() {
+            const persianContainer = document.getElementById('persianVerses');
+            const englishContainer = document.getElementById('englishVerses');
+            
+            persianContainer.innerHTML = '';
+            englishContainer.innerHTML = '';
+            allWordsPersian = [];
+            allWordsEnglish = [];
+
+            let wordIndexPersian = 0;
+            let wordIndexEnglish = 0;
+
+            currentChapterData.verses.forEach(verse => {
+                // Persian verse
+                const persianDiv = document.createElement('div');
+                persianDiv.className = 'verse-item';
+                persianDiv.innerHTML = `<span class="verse-number">${verse.verse}</span>`;
+                
+                const persianWords = (verse.text_fa || '').split(/\s+/).filter(w => w.length > 0);
+                persianWords.forEach(word => {
+                    const span = document.createElement('span');
+                    span.className = 'word upcoming';
+                    span.textContent = word + ' ';
+                    span.dataset.index = wordIndexPersian;
+                    persianDiv.appendChild(span);
+                    allWordsPersian.push({ element: span, index: wordIndexPersian });
+                    wordIndexPersian++;
+                });
+                persianContainer.appendChild(persianDiv);
+
+                // English verse
+                const englishDiv = document.createElement('div');
+                englishDiv.className = 'verse-item';
+                englishDiv.innerHTML = `<span class="verse-number">${verse.verse}</span>`;
+                
+                if (verse.text_en && verse.text_en.trim().length > 0) {
+                    // English text available
+                    const englishWords = verse.text_en.split(/\s+/).filter(w => w.length > 0);
+                    englishWords.forEach(word => {
+                        const span = document.createElement('span');
+                        span.className = 'word upcoming';
+                        span.textContent = word + ' ';
+                        span.dataset.index = wordIndexEnglish;
+                        englishDiv.appendChild(span);
+                        allWordsEnglish.push({ element: span, index: wordIndexEnglish });
+                        wordIndexEnglish++;
+                    });
+                } else {
+                    // No English text - show placeholder
+                    const placeholder = document.createElement('span');
+                    placeholder.style.color = '#999';
+                    placeholder.style.fontStyle = 'italic';
+                    placeholder.textContent = '(English translation not available yet)';
+                    englishDiv.appendChild(placeholder);
+                }
+                englishContainer.appendChild(englishDiv);
+            });
+
+            document.getElementById('versesContainer').style.display = 'grid';
+            console.log(`✅ Displayed ${allWordsPersian.length} Persian words, ${allWordsEnglish.length} English words`);
+        }
+
+        // Setup audio
+        function setupAudio(initialAudioUrl) {
+            const audioElement = document.getElementById('audioElement');
+            currentAudio = audioElement;
+
+            document.getElementById('audioPlayer').style.display = 'block';
+            document.getElementById('playBtn').disabled = false;
+            document.getElementById('pauseBtn').disabled = false;
+
+            // Remove old listeners to avoid duplicates
+            const newAudioElement = audioElement.cloneNode(true);
+            audioElement.parentNode.replaceChild(newAudioElement, audioElement);
+            currentAudio = newAudioElement;
+
+            // Audio event listeners
+            newAudioElement.addEventListener('timeupdate', updateProgress);
+            
+            newAudioElement.addEventListener('loadedmetadata', () => {
+                const duration = newAudioElement.duration;
+                document.getElementById('totalDuration').textContent = formatTime(duration);
+            });
+
+            newAudioElement.addEventListener('ended', () => {
+                // Auto-play next verse
+                if (currentChapterData && currentVerseIndex < currentChapterData.verses.length - 1) {
+                    currentVerseIndex++;
+                    playVerseAudio(currentVerseIndex);
+                } else {
+                    // Chapter finished
+                    stopAudio();
+                    alert('✅ پخش فصل تمام شد! Chapter completed!');
+                }
+            });
+
+            newAudioElement.addEventListener('error', (e) => {
+                console.error('Audio error:', e);
+                const errorDetails = {
+                    error: e.target.error,
+                    errorCode: e.target.error?.code,
+                    errorMessage: e.target.error?.message,
+                    src: e.target.src
+                };
+                console.error('Error details:', errorDetails);
+                
+                let errorMsg = 'خطا در بارگذاری فایل صوتی';
+                if (e.target.error) {
+                    switch (e.target.error.code) {
+                        case 1: errorMsg += ' - MEDIA_ERR_ABORTED (کاربر لغو کرد)'; break;
+                        case 2: errorMsg += ' - MEDIA_ERR_NETWORK (خطای شبکه)'; break;
+                        case 3: errorMsg += ' - MEDIA_ERR_DECODE (فایل خراب است)'; break;
+                        case 4: errorMsg += ' - MEDIA_ERR_SRC_NOT_SUPPORTED (فرمت پشتیبانی نمی‌شود)'; break;
+                    }
+                }
+                alert(errorMsg + '\nمسیر: ' + newAudioElement.src);
+            });
+
+            console.log('🎵 Audio setup complete');
+        }
+
+        // Play verse audio
+        function playVerseAudio(verseIndex) {
+            if (!currentChapterData) {
+                console.error('No chapter data loaded');
+                return;
+            }
+            
+            const verse = currentChapterData.verses[verseIndex];
+            if (!verse) {
+                console.error('Verse not found:', verseIndex);
+                return;
+            }
+            
+            const audioUrl = `/audio/bible/edge-tts/${currentChapterData.bookCode}/${currentChapterData.chapter}/${verse.verse}.mp3`;
+            console.log('🎵 Playing verse', verse.verse, ':', audioUrl);
+            console.log('📁 Full URL:', window.location.origin + audioUrl);
+            
+            if (!currentAudio) {
+                currentAudio = document.getElementById('audioElement');
+            }
+            
+            currentAudio.src = audioUrl;
+            
+            // Log when audio can play
+            currentAudio.addEventListener('canplay', () => {
+                console.log('✅ Audio ready to play');
+            }, { once: true });
+            
+            currentAudio.play()
+                .then(() => {
+                    console.log('✅ Audio playing');
+                    currentVerseIndex = verseIndex;
+                    startHighlighting();
+                })
+                .catch(err => {
+                    console.error('Error playing audio:', err);
+                    alert('خطا در پخش صوت آیه ' + verse.verse + '\nمسیر: ' + audioUrl);
+                });
+        }
+
+        // Play audio
+        function playAudio() {
+            if (currentAudio && currentAudio.src) {
+                currentAudio.play();
+                startHighlighting();
+            } else if (currentChapterData) {
+                playVerseAudio(0); // Start from first verse
+            }
+        }
+
+        // Pause audio
+        function pauseAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                stopHighlighting();
+            }
+        }
+
+        // Stop audio
+        function stopAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                stopHighlighting();
+                resetHighlights();
+                currentVerseIndex = 0;
+            }
+        }
+
+        // Start highlighting
+        function startHighlighting() {
+            function highlight() {
+                if (!currentAudio || currentAudio.paused) return;
+
+                const currentTime = currentAudio.currentTime;
+                const currentWordIndex = Math.floor(currentTime * wordsPerSecond);
+
+                // Update Persian words
+                allWordsPersian.forEach(({ element, index }) => {
+                    element.classList.remove('active', 'completed', 'upcoming');
+                    if (index === currentWordIndex) {
+                        element.classList.add('active');
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else if (index < currentWordIndex) {
+                        element.classList.add('completed');
+                    } else {
+                        element.classList.add('upcoming');
+                    }
+                });
+
+                // Update English words (same timing)
+                allWordsEnglish.forEach(({ element, index }) => {
+                    element.classList.remove('active', 'completed', 'upcoming');
+                    if (index === currentWordIndex) {
+                        element.classList.add('active');
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else if (index < currentWordIndex) {
+                        element.classList.add('completed');
+                    } else {
+                        element.classList.add('upcoming');
+                    }
+                });
+
+                animationFrameId = requestAnimationFrame(highlight);
+            }
+            highlight();
+        }
+
+        // Stop highlighting
+        function stopHighlighting() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
+
+        // Reset highlights
+        function resetHighlights() {
+            allWordsPersian.forEach(({ element }) => {
+                element.classList.remove('active', 'completed');
+                element.classList.add('upcoming');
+            });
+            allWordsEnglish.forEach(({ element }) => {
+                element.classList.remove('active', 'completed');
+                element.classList.add('upcoming');
+            });
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            if (!currentAudio) return;
+
+            const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('currentTime').textContent = formatTime(currentAudio.currentTime);
+        }
+
+        // Seek audio
+        function seekAudio(event) {
+            if (!currentAudio) return;
+
+            const progressBar = document.getElementById('progressBar');
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const percent = clickX / rect.width;
+            currentAudio.currentTime = percent * currentAudio.duration;
+        }
+
+        // Format time
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Initialize
+        loadBibleData();
+    </script>
+</body>
+</html>

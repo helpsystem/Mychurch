@@ -157,7 +157,8 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                         const books: BibleBook[] = data.books.map((book: any) => ({
                             key: book.key,
                             name: book.name,
-                            chapters: book.chapters
+                            chapters: book.chapters,
+                            testament: book.testament  // ✅ Keep testament field from backend
                         }));
                         
                         // Initialize empty content structure - will be loaded on demand

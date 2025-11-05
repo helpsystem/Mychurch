@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست روخوانی کتاب مقدس</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="range"] {
+            width: 70%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        #speedValue {
+            display: inline-block;
+            min-width: 30px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .btn-load {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .btn-pause {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .progress-container {
+            margin-top: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: height 0.3s;
+        }
+
+        .progress-bar:hover {
+            height: 16px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffffff 0%, #f5f5f5 100%);
+            width: 0%;
+            transition: width 0.1s;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .verses-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+            max-height: 500px;
+            overflow-y: auto;
+            line-height: 2.2;
+            font-size: 1.3rem;
+        }
+
+        .verse {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .verse-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .word {
+            display: inline;
+            padding: 2px 4px;
+            margin: 0 2px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .word.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .word.completed {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-box strong {
+            color: #1976d2;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            border-radius: 10px;
+            color: #c62828;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 10px;
+            color: #2e7d32;
+            margin: 20px 0;
+        }
+
+        /* Floating control button */
+        .floating-control {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: none;
+        }
+
+        .floating-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .floating-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 10px 50px rgba(102, 126, 234, 0.8); }
+        }
+
+        /* Scrollbar styling */
+        .verses-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .verses-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .verses-container::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .verses-container::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 تست روخوانی کتاب مقدس</h1>
+            <p>پخش صوت با هماهنگی متن - Bible Read-Along Test</p>
+        </div>
+
+        <div class="content">
+            <!-- Controls -->
+            <div class="controls">
+                <div class="control-group">
+                    <label>📖 انتخاب کتاب:</label>
+                    <select id="bookSelect">
+                        <option value="">-- یک کتاب انتخاب کنید --</option>
+                        <optgroup label="📚 عهد عتیق">
+                            <option value="GEN">پیدایش (Genesis)</option>
+                            <option value="EXO">خروج (Exodus)</option>
+                            <option value="LEV">لاویان (Leviticus)</option>
+                            <option value="NUM">اعداد (Numbers)</option>
+                            <option value="DEU">تثنیه (Deuteronomy)</option>
+                            <option value="JOS">یوشع (Joshua)</option>
+                            <option value="JDG">داوران (Judges)</option>
+                            <option value="RUT">روت (Ruth)</option>
+                            <option value="1SA">اول سموئیل (1 Samuel)</option>
+                            <option value="2SA">دوم سموئیل (2 Samuel)</option>
+                            <option value="1KI">اول پادشاهان (1 Kings)</option>
+                            <option value="2KI">دوم پادشاهان (2 Kings)</option>
+                            <option value="1CH">اول تواریخ (1 Chronicles)</option>
+                            <option value="2CH">دوم تواریخ (2 Chronicles)</option>
+                            <option value="EZR">عزرا (Ezra)</option>
+                            <option value="NEH">نحمیا (Nehemiah)</option>
+                            <option value="EST">استر (Esther)</option>
+                            <option value="JOB">ایوب (Job)</option>
+                            <option value="PSA">🎵 مزامیر (Psalms) - دارای صوت</option>
+                            <option value="PRO">🎵 امثال (Proverbs) - دارای صوت</option>
+                            <option value="ECC">جامعه (Ecclesiastes)</option>
+                            <option value="SNG">غزل غزلها (Song of Songs)</option>
+                            <option value="ISA">اشعیا (Isaiah)</option>
+                            <option value="JER">ارمیا (Jeremiah)</option>
+                            <option value="LAM">مراثی ارمیا (Lamentations)</option>
+                            <option value="EZK">حزقیال (Ezekiel)</option>
+                            <option value="DAN">دانیال (Daniel)</option>
+                            <option value="HOS">هوشع (Hosea)</option>
+                            <option value="JOL">یوئیل (Joel)</option>
+                            <option value="AMO">عاموس (Amos)</option>
+                            <option value="OBA">عوبدیا (Obadiah)</option>
+                            <option value="JON">یونس (Jonah)</option>
+                            <option value="MIC">میکاه (Micah)</option>
+                            <option value="NAM">ناحوم (Nahum)</option>
+                            <option value="HAB">حبقوق (Habakkuk)</option>
+                            <option value="ZEP">صفنیا (Zephaniah)</option>
+                            <option value="HAG">حجی (Haggai)</option>
+                            <option value="ZEC">زکریا (Zechariah)</option>
+                            <option value="MAL">ملاکی (Malachi)</option>
+                        </optgroup>
+                        <optgroup label="✝️ عهد جدید (همه دارای صوت)">
+                            <option value="MAT">🎵 متی (Matthew)</option>
+                            <option value="MRK">🎵 مرقس (Mark)</option>
+                            <option value="LUK">🎵 لوقا (Luke)</option>
+                            <option value="JHN">🎵 یوحنا (John)</option>
+                            <option value="ACT">🎵 اعمال رسولان (Acts)</option>
+                            <option value="ROM">🎵 رومیان (Romans)</option>
+                            <option value="1CO">🎵 اول قرنتیان (1 Corinthians)</option>
+                            <option value="2CO">🎵 دوم قرنتیان (2 Corinthians)</option>
+                            <option value="GAL">🎵 غلاطیان (Galatians)</option>
+                            <option value="EPH">🎵 افسسیان (Ephesians)</option>
+                            <option value="PHP">🎵 فیلیپیان (Philippians)</option>
+                            <option value="COL">🎵 کولسیان (Colossians)</option>
+                            <option value="1TH">🎵 اول تسالونیکیان (1 Thessalonians)</option>
+                            <option value="2TH">🎵 دوم تسالونیکیان (2 Thessalonians)</option>
+                            <option value="1TI">🎵 اول تیموتائوس (1 Timothy)</option>
+                            <option value="2TI">🎵 دوم تیموتائوس (2 Timothy)</option>
+                            <option value="TIT">🎵 تیطس (Titus)</option>
+                            <option value="PHM">🎵 فلیمون (Philemon)</option>
+                            <option value="HEB">🎵 عبرانیان (Hebrews)</option>
+                            <option value="JAS">🎵 یعقوب (James)</option>
+                            <option value="1PE">🎵 اول پطرس (1 Peter)</option>
+                            <option value="2PE">🎵 دوم پطرس (2 Peter)</option>
+                            <option value="1JN">🎵 اول یوحنا (1 John)</option>
+                            <option value="2JN">🎵 دوم یوحنا (2 John)</option>
+                            <option value="3JN">🎵 سوم یوحنا (3 John)</option>
+                            <option value="JUD">🎵 یهودا (Jude)</option>
+                            <option value="REV">🎵 مکاشفه (Revelation)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>📄 شماره فصل:</label>
+                    <input type="number" id="chapterInput" min="1" max="150" value="1" placeholder="مثلاً 1">
+                </div>
+
+                <div class="control-group">
+                    <label>⚡ سرعت هایلایت (کلمه در ثانیه):</label>
+                    <input type="range" id="speedInput" min="1" max="5" step="0.1" value="1.6">
+                    <span id="speedValue">1.6</span> کلمه/ثانیه
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-load" onclick="loadChapter()">📥 بارگذاری فصل</button>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div id="infoBox" class="info-box" style="display: block;">
+                <strong>ℹ️ راهنمای استفاده:</strong>
+                <ul style="margin: 10px 0 0 20px; text-align: right; line-height: 1.8;">
+                    <li>✅ <strong>بهترین سرعت:</strong> 1.5 تا 1.7 کلمه در ثانیه</li>
+                    <li>🎙️ در ابتدای هر فصل، گوینده توضیحات مقدماتی می‌دهد (چند ثانیه)</li>
+                    <li>⚡ اگر هایلایت با صدا همخوانی ندارد، اسلایدر سرعت را تنظیم کنید</li>
+                    <li>🎵 فقط کتاب‌های دارای نماد 🎵 صوت دارند (29 کتاب)</li>
+                </ul>
+            </div>
+
+            <!-- Audio Player (Hidden - Auto-play mode) -->
+            <div id="audioPlayerContainer" style="display: none;">
+                <div class="audio-player">
+                    <!-- Hidden audio element - plays automatically when loaded -->
+                    <audio id="audioPlayer" style="display: none;" autoplay></audio>
+                    
+                    <!-- Minimal controls - only progress bar -->
+                    <div class="progress-container">
+                        <div class="progress-bar" onclick="seekAudio(event)">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span>
+                            <span id="duration">00:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Optional: Add small control buttons (uncomment if needed) -->
+                    <!-- 
+                    <div class="button-group" style="margin-top: 10px;">
+                        <button class="btn-pause" onclick="pauseAudio()" style="flex: 0.5;">⏸️</button>
+                        <button class="btn-play" onclick="playAudio()" style="flex: 0.5;">▶️</button>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <!-- Verses Display -->
+            <div id="versesContainer" class="verses-container" style="display: none;">
+                <!-- Verses will be inserted here -->
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>در حال بارگذاری...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Play/Pause Button -->
+    <button id="floatingControl" class="floating-control" onclick="togglePlayPause()">
+        ⏸️
+    </button>
+
+    <script>
+        let currentAudio = null;
+        let timingData = null;
+        let currentWordIndex = 0;
+        let animationFrame = null;
+        let wordsPerSecond = 1.6; // Default speed (optimal for Persian audio)
+
+        // Update speed display
+        document.addEventListener('DOMContentLoaded', () => {
+            const speedInput = document.getElementById('speedInput');
+            const speedValue = document.getElementById('speedValue');
+            
+            if (speedInput && speedValue) {
+                speedInput.addEventListener('input', (e) => {
+                    wordsPerSecond = parseFloat(e.target.value);
+                    speedValue.textContent = wordsPerSecond.toFixed(1);
+                    console.log('⚡ Speed changed to:', wordsPerSecond, 'words/sec');
+                });
+            }
+        });
+
+        // Sample timing data structure (will be loaded from JSON)
+        // This would match the format from your timing files
+        const sampleTimingData = {
+            "metadata": {
+                "title": "یوحنا 1",
+                "totalDuration": 245.6,
+                "wordCount": 324
+            },
+            "words": [
+                {"word": "در", "start": 0.42, "end": 0.75},
+                {"word": "آغاز", "start": 0.80, "end": 1.20},
+                {"word": "کلام", "start": 1.25, "end": 1.75}
+                // ... more words
+            ],
+            "verses": [
+                {"number": 1, "startTime": 0.0, "endTime": 15.5},
+                {"number": 2, "startTime": 15.6, "endTime": 28.3}
+                // ... more verses
+            ]
+        };
+
+        async function loadChapter() {
+            const book = document.getElementById('bookSelect').value;
+            const chapter = document.getElementById('chapterInput').value;
+
+            if (!book || !chapter) {
+                showError('لطفاً کتاب و فصل را انتخاب کنید.');
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                // Load Bible text (add cache-bust parameter)
+                const cacheBust = new Date().getTime();
+                const response = await fetch(`/bible_data.json?v=${cacheBust}`);
+                if (!response.ok) throw new Error('Failed to load Bible data');
+                
+                const data = await response.json();
+                
+                console.log('📖 Bible data loaded successfully');
+                console.log('📊 Versions available:', Object.keys(data.bible_text || {}));
+                
+                // Get verses for this chapter
+                const verses = data.bible_text?.['118']?.[book]?.[chapter]?.fa;
+                
+                if (!verses) {
+                    throw new Error('این فصل در دیتابیس یافت نشد.');
+                }
+
+                // Get audio info
+                let audioInfo = data.audio_files?.['118']?.[book]?.[chapter];
+                
+                console.log('🔍 Audio info for', book, chapter, ':', audioInfo);
+                
+                if (!audioInfo) {
+                    console.warn('⚠️ No audio_files found for this chapter');
+                } else {
+                    console.log('✅ Audio files found:', audioInfo.length);
+                }
+                
+                displayChapterInfo(book, chapter, Object.keys(verses).length);
+                displayVerses(verses);
+                
+                if (audioInfo && audioInfo.length > 0) {
+                    // Prefer Persian audio (second entry if available, usually has "ترجمۀ" in title)
+                    const persianAudio = audioInfo.find(a => a.title?.includes('ترجمۀ') || a.title?.includes('هزارۀ'));
+                    const selectedAudio = persianAudio || audioInfo[0];
+                    
+                    console.log('🎵 Available audio:');
+                    audioInfo.forEach((a, i) => console.log(`  ${i+1}. ${a.title}`));
+                    console.log('✅ Selected audio:', selectedAudio.title);
+                    
+                    setupAudioPlayer(selectedAudio);
+                    
+                    // Try to load timing data
+                    const hasTimingData = await loadTimingData(book, chapter);
+                    
+                    if (hasTimingData) {
+                        showSuccess('✅ فصل بارگذاری شد! پخش خودکار شروع می‌شود...<br>🎙️ <em>توجه: گوینده در ابتدا توضیحات مقدماتی می‌دهد</em>');
+                    } else {
+                        showSuccess('✅ فصل بارگذاری شد! پخش خودکار شروع می‌شود...<br>🎙️ <em>توجه: گوینده در ابتدا توضیحات مقدماتی می‌دهد</em>');
+                    }
+                } else {
+                    console.error('❌ No audio info found for', book, chapter);
+                    console.log('🔍 Checking audio_files structure:');
+                    console.log('  - Version 118:', !!data.audio_files?.['118']);
+                    console.log('  - Book', book, ':', !!data.audio_files?.['118']?.[book]);
+                    console.log('  - Available chapters:', Object.keys(data.audio_files?.['118']?.[book] || {}));
+                    
+                    showWarning(`⚠️ این کتاب فایل صوتی ندارد!<br><br>
+                        💡 <strong>کتاب‌های دارای صوت:</strong><br>
+                        • همه کتاب‌های عهد جدید (27 کتاب) 🎵<br>
+                        • مزامیر (Psalms) 🎵<br>
+                        • امثال (Proverbs) 🎵<br><br>
+                        لطفاً یکی از کتاب‌های بالا را انتخاب کنید.`);
+                }
+
+                // Try to load timing data if available (fallback if audio not found)
+                if (!audioInfo || audioInfo.length === 0) {
+                    await loadTimingData(book, chapter);
+                }
+
+                showLoading(false);
+            } catch (error) {
+                console.error('Error:', error);
+                showError('خطا در بارگذاری: ' + error.message);
+                showLoading(false);
+            }
+        }
+
+        async function loadTimingData(book, chapter) {
+            try {
+                const response = await fetch(`/bible-timings/bible_${book}_${chapter}_timing.json`);
+                if (response.ok) {
+                    timingData = await response.json();
+                    console.log('✅ Timing data loaded:', timingData.metadata);
+                    return true;
+                }
+            } catch (error) {
+                console.log('⚠️ No timing data available, using fallback');
+            }
+            return false;
+        }
+
+        function displayChapterInfo(book, chapter, verseCount) {
+            const infoBox = document.getElementById('infoBox');
+            const chapterInfo = document.getElementById('chapterInfo');
+            
+            chapterInfo.innerHTML = `
+                <p>📖 کتاب: <strong>${book}</strong></p>
+                <p>📄 فصل: <strong>${chapter}</strong></p>
+                <p>📝 تعداد آیات: <strong>${verseCount}</strong></p>
+            `;
+            
+            infoBox.style.display = 'block';
+        }
+
+        function displayVerses(verses) {
+            const container = document.getElementById('versesContainer');
+            container.innerHTML = '';
+            
+            Object.entries(verses).forEach(([verseNum, verseText]) => {
+                const verseDiv = document.createElement('div');
+                verseDiv.className = 'verse';
+                verseDiv.id = `verse-${verseNum}`;
+                
+                // Split text into words and wrap each word
+                const words = verseText.split(' ');
+                const wrappedWords = words.map((word, index) => 
+                    `<span class="word" data-verse="${verseNum}" data-word-index="${index}">${word}</span>`
+                ).join(' ');
+                
+                verseDiv.innerHTML = `
+                    <span class="verse-number">${verseNum}</span>
+                    ${wrappedWords}
+                `;
+                
+                container.appendChild(verseDiv);
+            });
+            
+            container.style.display = 'block';
+        }
+
+        function setupAudioPlayer(audioInfo) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const audioContainer = document.getElementById('audioPlayerContainer');
+            const floatingBtn = document.getElementById('floatingControl');
+            
+            // Prefer MP3 download URL (check both formats)
+            let audioUrl = audioInfo.download_urls?.format_mp3_32k || 
+                          audioInfo.download_urls?.mp3_32k || 
+                          audioInfo.download_urls?.format_hls ||
+                          audioInfo.stream_urls?.hls;
+            
+            // Add https: if URL starts with //
+            if (audioUrl && audioUrl.startsWith('//')) {
+                audioUrl = 'https:' + audioUrl;
+            }
+            
+            if (audioUrl) {
+                console.log('🎵 Audio URL:', audioUrl);
+                audioPlayer.src = audioUrl;
+                audioContainer.style.display = 'block';
+                floatingBtn.style.display = 'block';
+                floatingBtn.classList.add('playing');
+                
+                // Setup time update listener
+                audioPlayer.addEventListener('timeupdate', updateProgress);
+                audioPlayer.addEventListener('loadedmetadata', updateDuration);
+                audioPlayer.addEventListener('timeupdate', highlightCurrentWord);
+                
+                // Handle errors
+                audioPlayer.addEventListener('error', (e) => {
+                    console.error('❌ Audio error:', e);
+                    showError('خطا در بارگذاری فایل صوتی. لطفاً دوباره تلاش کنید.');
+                    floatingBtn.style.display = 'none';
+                });
+                
+                // Update floating button on play/pause
+                audioPlayer.addEventListener('play', () => {
+                    floatingBtn.textContent = '⏸️';
+                    floatingBtn.classList.add('playing');
+                });
+                audioPlayer.addEventListener('pause', () => {
+                    floatingBtn.textContent = '▶️';
+                    floatingBtn.classList.remove('playing');
+                });
+                audioPlayer.addEventListener('ended', () => {
+                    floatingBtn.textContent = '▶️';
+                    floatingBtn.classList.remove('playing');
+                    clearHighlights();
+                    showSuccess('✅ پخش تمام شد! می‌توانید دوباره پخش کنید یا فصل دیگری انتخاب کنید.');
+                });
+            } else {
+                console.error('❌ No valid audio URL found');
+                showWarning('⚠️ فایل صوتی یافت نشد.');
+            }
+        }
+
+        function playAudio() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const floatingBtn = document.getElementById('floatingControl');
+            audioPlayer.play();
+            floatingBtn.textContent = '⏸️';
+            floatingBtn.classList.add('playing');
+        }
+
+        function pauseAudio() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const floatingBtn = document.getElementById('floatingControl');
+            audioPlayer.pause();
+            floatingBtn.textContent = '▶️';
+            floatingBtn.classList.remove('playing');
+        }
+
+        function stopAudio() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const floatingBtn = document.getElementById('floatingControl');
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+            floatingBtn.textContent = '▶️';
+            floatingBtn.classList.remove('playing');
+            clearHighlights();
+        }
+
+        function togglePlayPause() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            if (audioPlayer.paused) {
+                playAudio();
+            } else {
+                pauseAudio();
+            }
+        }
+
+        function seekAudio(event) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const progressBar = event.currentTarget;
+            const clickX = event.offsetX;
+            const width = progressBar.offsetWidth;
+            const percentage = clickX / width;
+            
+            audioPlayer.currentTime = audioPlayer.duration * percentage;
+        }
+
+        function updateProgress() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const progressFill = document.getElementById('progressFill');
+            const currentTime = document.getElementById('currentTime');
+            
+            const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressFill.style.width = percentage + '%';
+            
+            currentTime.textContent = formatTime(audioPlayer.currentTime);
+        }
+
+        function updateDuration() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const duration = document.getElementById('duration');
+            
+            duration.textContent = formatTime(audioPlayer.duration);
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function highlightCurrentWord() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const currentTime = audioPlayer.currentTime;
+            
+            if (timingData && timingData.words) {
+                // Use actual timing data
+                const allWords = document.querySelectorAll('.word');
+                
+                timingData.words.forEach((wordTiming, index) => {
+                    const wordElement = allWords[index];
+                    if (!wordElement) return;
+                    
+                    if (currentTime >= wordTiming.start && currentTime < wordTiming.end) {
+                        // Current word
+                        wordElement.classList.add('active');
+                        wordElement.classList.remove('completed');
+                        
+                        // Scroll into view smoothly
+                        wordElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center',
+                            inline: 'nearest'
+                        });
+                    } else if (currentTime >= wordTiming.end) {
+                        // Completed word
+                        wordElement.classList.add('completed');
+                        wordElement.classList.remove('active');
+                    } else {
+                        // Upcoming word
+                        wordElement.classList.remove('active', 'completed');
+                    }
+                });
+            } else {
+                // Fallback: Use slider speed value
+                const allWords = document.querySelectorAll('.word');
+                const currentWordIndex = Math.floor(currentTime * wordsPerSecond);
+                
+                allWords.forEach((word, index) => {
+                    if (index === currentWordIndex) {
+                        word.classList.add('active');
+                        word.classList.remove('completed');
+                        word.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else if (index < currentWordIndex) {
+                        word.classList.add('completed');
+                        word.classList.remove('active');
+                    } else {
+                        word.classList.remove('active', 'completed');
+                    }
+                });
+            }
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.word').forEach(word => {
+                word.classList.remove('active', 'completed');
+            });
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingIndicator').style.display = show ? 'block' : 'none';
+        }
+
+        function showError(message) {
+            const infoBox = document.getElementById('infoBox');
+            infoBox.className = 'error';
+            infoBox.innerHTML = `<strong>❌ خطا:</strong> ${message}`;
+            infoBox.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const infoBox = document.getElementById('infoBox');
+            infoBox.className = 'success';
+            infoBox.innerHTML = message;
+            infoBox.style.display = 'block';
+        }
+
+        function showWarning(message) {
+            const infoBox = document.getElementById('infoBox');
+            infoBox.className = 'info-box';
+            infoBox.style.background = '#fff3cd';
+            infoBox.style.borderLeftColor = '#ffc107';
+            infoBox.innerHTML = message;
+            infoBox.style.display = 'block';
+        }
+
+        // Initialize
+        console.log('📖 Bible Read-Along Test Page Loaded');
+        console.log('🎵 Ready to test audio synchronization');
+    </script>
+</body>
+</html>

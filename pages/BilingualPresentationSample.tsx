@@ -69,7 +69,14 @@ const sampleData: BiblePayload = {
 };
 
 const BilingualPresentationSample: React.FC = () => {
-  return <BilingualBiblePresentation data={sampleData} autoStart={false} />;
+  return (
+    <BilingualBiblePresentation 
+      data={sampleData} 
+      autoStart={false}
+      bookCode="EPH"
+      enableAudio={true}
+    />
+  );
 };
 
 export default BilingualPresentationSample;

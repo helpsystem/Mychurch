@@ -1,0 +1,3395 @@
+{
+  "verses": [
+    {
+      "verse": 1,
+      "words": [
+        {
+          "word": "And",
+          "start": 0.0,
+          "end": 0.32,
+          "index": 0
+        },
+        {
+          "word": "thou",
+          "start": 0.32,
+          "end": 0.72,
+          "index": 1
+        },
+        {
+          "word": "shalt",
+          "start": 0.72,
+          "end": 1.2,
+          "index": 2
+        },
+        {
+          "word": "make",
+          "start": 1.2,
+          "end": 1.52,
+          "index": 3
+        },
+        {
+          "word": "an",
+          "start": 1.52,
+          "end": 1.92,
+          "index": 4
+        },
+        {
+          "word": "altar",
+          "start": 1.92,
+          "end": 2.4,
+          "index": 5
+        },
+        {
+          "word": "of",
+          "start": 2.4,
+          "end": 2.72,
+          "index": 6
+        },
+        {
+          "word": "shittim",
+          "start": 2.72,
+          "end": 3.12,
+          "index": 7
+        },
+        {
+          "word": "wood,",
+          "start": 3.12,
+          "end": 3.6,
+          "index": 8
+        },
+        {
+          "word": "five",
+          "start": 3.6,
+          "end": 3.92,
+          "index": 9
+        },
+        {
+          "word": "cubits",
+          "start": 3.92,
+          "end": 4.32,
+          "index": 10
+        },
+        {
+          "word": "long,",
+          "start": 4.32,
+          "end": 4.8,
+          "index": 11
+        },
+        {
+          "word": "and",
+          "start": 4.8,
+          "end": 5.12,
+          "index": 12
+        },
+        {
+          "word": "five",
+          "start": 5.12,
+          "end": 5.52,
+          "index": 13
+        },
+        {
+          "word": "cubits",
+          "start": 5.52,
+          "end": 6.0,
+          "index": 14
+        },
+        {
+          "word": "broad;",
+          "start": 6.0,
+          "end": 6.32,
+          "index": 15
+        },
+        {
+          "word": "the",
+          "start": 6.32,
+          "end": 6.72,
+          "index": 16
+        },
+        {
+          "word": "altar",
+          "start": 6.72,
+          "end": 7.2,
+          "index": 17
+        },
+        {
+          "word": "shall",
+          "start": 7.2,
+          "end": 7.52,
+          "index": 18
+        },
+        {
+          "word": "be",
+          "start": 7.52,
+          "end": 7.92,
+          "index": 19
+        },
+        {
+          "word": "foursquare:",
+          "start": 7.92,
+          "end": 8.4,
+          "index": 20
+        },
+        {
+          "word": "and",
+          "start": 8.4,
+          "end": 8.72,
+          "index": 21
+        },
+        {
+          "word": "the",
+          "start": 8.72,
+          "end": 9.12,
+          "index": 22
+        },
+        {
+          "word": "height",
+          "start": 9.12,
+          "end": 9.6,
+          "index": 23
+        },
+        {
+          "word": "thereof",
+          "start": 9.6,
+          "end": 9.92,
+          "index": 24
+        },
+        {
+          "word": "shall",
+          "start": 9.92,
+          "end": 10.32,
+          "index": 25
+        },
+        {
+          "word": "be",
+          "start": 10.32,
+          "end": 10.8,
+          "index": 26
+        },
+        {
+          "word": "three",
+          "start": 10.8,
+          "end": 11.12,
+          "index": 27
+        },
+        {
+          "word": "cubits.",
+          "start": 11.12,
+          "end": 11.52,
+          "index": 28
+        },
+        {
+          "word": "And",
+          "start": 11.52,
+          "end": 12.0,
+          "index": 29
+        },
+        {
+          "word": "thou",
+          "start": 12.0,
+          "end": 12.32,
+          "index": 30
+        },
+        {
+          "word": "shalt",
+          "start": 12.32,
+          "end": 12.72,
+          "index": 31
+        },
+        {
+          "word": "make",
+          "start": 12.72,
+          "end": 13.2,
+          "index": 32
+        },
+        {
+          "word": "the",
+          "start": 13.2,
+          "end": 13.52,
+          "index": 33
+        },
+        {
+          "word": "horns",
+          "start": 13.52,
+          "end": 13.92,
+          "index": 34
+        },
+        {
+          "word": "of",
+          "start": 13.92,
+          "end": 14.4,
+          "index": 35
+        },
+        {
+          "word": "it",
+          "start": 14.4,
+          "end": 14.72,
+          "index": 36
+        },
+        {
+          "word": "upon",
+          "start": 14.72,
+          "end": 15.12,
+          "index": 37
+        },
+        {
+          "word": "the",
+          "start": 15.12,
+          "end": 15.6,
+          "index": 38
+        },
+        {
+          "word": "four",
+          "start": 15.6,
+          "end": 15.92,
+          "index": 39
+        },
+        {
+          "word": "corners",
+          "start": 15.92,
+          "end": 16.32,
+          "index": 40
+        },
+        {
+          "word": "thereof:",
+          "start": 16.32,
+          "end": 16.8,
+          "index": 41
+        },
+        {
+          "word": "his",
+          "start": 16.8,
+          "end": 17.12,
+          "index": 42
+        },
+        {
+          "word": "horns",
+          "start": 17.12,
+          "end": 17.52,
+          "index": 43
+        },
+        {
+          "word": "shall",
+          "start": 17.52,
+          "end": 18.0,
+          "index": 44
+        },
+        {
+          "word": "be",
+          "start": 18.0,
+          "end": 18.32,
+          "index": 45
+        },
+        {
+          "word": "of",
+          "start": 18.32,
+          "end": 18.72,
+          "index": 46
+        },
+        {
+          "word": "the",
+          "start": 18.72,
+          "end": 19.2,
+          "index": 47
+        },
+        {
+          "word": "same:",
+          "start": 19.2,
+          "end": 19.52,
+          "index": 48
+        },
+        {
+          "word": "and",
+          "start": 19.52,
+          "end": 19.92,
+          "index": 49
+        },
+        {
+          "word": "thou",
+          "start": 19.92,
+          "end": 20.4,
+          "index": 50
+        },
+        {
+          "word": "shalt",
+          "start": 20.4,
+          "end": 20.72,
+          "index": 51
+        },
+        {
+          "word": "overlay",
+          "start": 20.72,
+          "end": 21.12,
+          "index": 52
+        },
+        {
+          "word": "it",
+          "start": 21.12,
+          "end": 21.6,
+          "index": 53
+        },
+        {
+          "word": "with",
+          "start": 21.6,
+          "end": 21.92,
+          "index": 54
+        },
+        {
+          "word": "brass.",
+          "start": 21.92,
+          "end": 22.32,
+          "index": 55
+        },
+        {
+          "word": "And",
+          "start": 22.32,
+          "end": 22.8,
+          "index": 56
+        },
+        {
+          "word": "thou",
+          "start": 22.8,
+          "end": 23.12,
+          "index": 57
+        },
+        {
+          "word": "shalt",
+          "start": 23.12,
+          "end": 23.52,
+          "index": 58
+        },
+        {
+          "word": "make",
+          "start": 23.52,
+          "end": 24.0,
+          "index": 59
+        },
+        {
+          "word": "his",
+          "start": 24.0,
+          "end": 24.32,
+          "index": 60
+        },
+        {
+          "word": "pans",
+          "start": 24.32,
+          "end": 24.72,
+          "index": 61
+        },
+        {
+          "word": "to",
+          "start": 24.72,
+          "end": 25.2,
+          "index": 62
+        },
+        {
+          "word": "receive",
+          "start": 25.2,
+          "end": 25.52,
+          "index": 63
+        },
+        {
+          "word": "his",
+          "start": 25.52,
+          "end": 25.92,
+          "index": 64
+        },
+        {
+          "word": "ashes,",
+          "start": 25.92,
+          "end": 26.4,
+          "index": 65
+        },
+        {
+          "word": "and",
+          "start": 26.4,
+          "end": 26.72,
+          "index": 66
+        },
+        {
+          "word": "his",
+          "start": 26.72,
+          "end": 27.12,
+          "index": 67
+        },
+        {
+          "word": "shovels,",
+          "start": 27.12,
+          "end": 27.6,
+          "index": 68
+        },
+        {
+          "word": "and",
+          "start": 27.6,
+          "end": 27.92,
+          "index": 69
+        },
+        {
+          "word": "his",
+          "start": 27.92,
+          "end": 28.32,
+          "index": 70
+        },
+        {
+          "word": "basons,",
+          "start": 28.32,
+          "end": 28.8,
+          "index": 71
+        },
+        {
+          "word": "and",
+          "start": 28.8,
+          "end": 29.12,
+          "index": 72
+        },
+        {
+          "word": "his",
+          "start": 29.12,
+          "end": 29.52,
+          "index": 73
+        },
+        {
+          "word": "fleshhooks,",
+          "start": 29.52,
+          "end": 30.0,
+          "index": 74
+        },
+        {
+          "word": "and",
+          "start": 30.0,
+          "end": 30.32,
+          "index": 75
+        },
+        {
+          "word": "his",
+          "start": 30.32,
+          "end": 30.72,
+          "index": 76
+        },
+        {
+          "word": "firepans:",
+          "start": 30.72,
+          "end": 31.2,
+          "index": 77
+        },
+        {
+          "word": "all",
+          "start": 31.2,
+          "end": 31.52,
+          "index": 78
+        },
+        {
+          "word": "the",
+          "start": 31.52,
+          "end": 31.92,
+          "index": 79
+        },
+        {
+          "word": "vessels",
+          "start": 31.92,
+          "end": 32.4,
+          "index": 80
+        },
+        {
+          "word": "thereof",
+          "start": 32.4,
+          "end": 32.72,
+          "index": 81
+        },
+        {
+          "word": "thou",
+          "start": 32.72,
+          "end": 33.12,
+          "index": 82
+        },
+        {
+          "word": "shalt",
+          "start": 33.12,
+          "end": 33.6,
+          "index": 83
+        },
+        {
+          "word": "make",
+          "start": 33.6,
+          "end": 33.92,
+          "index": 84
+        },
+        {
+          "word": "of",
+          "start": 33.92,
+          "end": 34.32,
+          "index": 85
+        },
+        {
+          "word": "brass.",
+          "start": 34.32,
+          "end": 34.8,
+          "index": 86
+        },
+        {
+          "word": "And",
+          "start": 34.8,
+          "end": 35.12,
+          "index": 87
+        },
+        {
+          "word": "thou",
+          "start": 35.12,
+          "end": 35.52,
+          "index": 88
+        },
+        {
+          "word": "shalt",
+          "start": 35.52,
+          "end": 36.0,
+          "index": 89
+        },
+        {
+          "word": "make",
+          "start": 36.0,
+          "end": 36.32,
+          "index": 90
+        },
+        {
+          "word": "for",
+          "start": 36.32,
+          "end": 36.72,
+          "index": 91
+        },
+        {
+          "word": "it",
+          "start": 36.72,
+          "end": 37.2,
+          "index": 92
+        },
+        {
+          "word": "a",
+          "start": 37.2,
+          "end": 37.52,
+          "index": 93
+        },
+        {
+          "word": "grate",
+          "start": 37.52,
+          "end": 37.92,
+          "index": 94
+        },
+        {
+          "word": "of",
+          "start": 37.92,
+          "end": 38.4,
+          "index": 95
+        },
+        {
+          "word": "network",
+          "start": 38.4,
+          "end": 38.72,
+          "index": 96
+        },
+        {
+          "word": "of",
+          "start": 38.72,
+          "end": 39.12,
+          "index": 97
+        },
+        {
+          "word": "brass;",
+          "start": 39.12,
+          "end": 39.6,
+          "index": 98
+        },
+        {
+          "word": "and",
+          "start": 39.6,
+          "end": 39.92,
+          "index": 99
+        },
+        {
+          "word": "upon",
+          "start": 39.92,
+          "end": 40.32,
+          "index": 100
+        },
+        {
+          "word": "the",
+          "start": 40.32,
+          "end": 40.8,
+          "index": 101
+        },
+        {
+          "word": "net",
+          "start": 40.8,
+          "end": 41.12,
+          "index": 102
+        },
+        {
+          "word": "shalt",
+          "start": 41.12,
+          "end": 41.52,
+          "index": 103
+        },
+        {
+          "word": "thou",
+          "start": 41.52,
+          "end": 42.0,
+          "index": 104
+        },
+        {
+          "word": "make",
+          "start": 42.0,
+          "end": 42.32,
+          "index": 105
+        },
+        {
+          "word": "four",
+          "start": 42.32,
+          "end": 42.72,
+          "index": 106
+        },
+        {
+          "word": "brasen",
+          "start": 42.72,
+          "end": 43.2,
+          "index": 107
+        },
+        {
+          "word": "rings",
+          "start": 43.2,
+          "end": 43.52,
+          "index": 108
+        },
+        {
+          "word": "in",
+          "start": 43.52,
+          "end": 43.92,
+          "index": 109
+        },
+        {
+          "word": "the",
+          "start": 43.92,
+          "end": 44.4,
+          "index": 110
+        },
+        {
+          "word": "four",
+          "start": 44.4,
+          "end": 44.72,
+          "index": 111
+        },
+        {
+          "word": "corners",
+          "start": 44.72,
+          "end": 45.12,
+          "index": 112
+        },
+        {
+          "word": "thereof.",
+          "start": 45.12,
+          "end": 45.6,
+          "index": 113
+        },
+        {
+          "word": "And",
+          "start": 45.6,
+          "end": 45.92,
+          "index": 114
+        },
+        {
+          "word": "thou",
+          "start": 45.92,
+          "end": 46.32,
+          "index": 115
+        },
+        {
+          "word": "shalt",
+          "start": 46.32,
+          "end": 46.8,
+          "index": 116
+        },
+        {
+          "word": "put",
+          "start": 46.8,
+          "end": 47.12,
+          "index": 117
+        },
+        {
+          "word": "it",
+          "start": 47.12,
+          "end": 47.52,
+          "index": 118
+        },
+        {
+          "word": "under",
+          "start": 47.52,
+          "end": 48.0,
+          "index": 119
+        },
+        {
+          "word": "the",
+          "start": 48.0,
+          "end": 48.32,
+          "index": 120
+        },
+        {
+          "word": "compass",
+          "start": 48.32,
+          "end": 48.72,
+          "index": 121
+        },
+        {
+          "word": "of",
+          "start": 48.72,
+          "end": 49.2,
+          "index": 122
+        },
+        {
+          "word": "the",
+          "start": 49.2,
+          "end": 49.52,
+          "index": 123
+        },
+        {
+          "word": "altar",
+          "start": 49.52,
+          "end": 49.92,
+          "index": 124
+        },
+        {
+          "word": "beneath,",
+          "start": 49.92,
+          "end": 50.4,
+          "index": 125
+        },
+        {
+          "word": "that",
+          "start": 50.4,
+          "end": 50.72,
+          "index": 126
+        },
+        {
+          "word": "the",
+          "start": 50.72,
+          "end": 51.12,
+          "index": 127
+        },
+        {
+          "word": "net",
+          "start": 51.12,
+          "end": 51.6,
+          "index": 128
+        },
+        {
+          "word": "may",
+          "start": 51.6,
+          "end": 51.92,
+          "index": 129
+        },
+        {
+          "word": "be",
+          "start": 51.92,
+          "end": 52.32,
+          "index": 130
+        },
+        {
+          "word": "even",
+          "start": 52.32,
+          "end": 52.8,
+          "index": 131
+        },
+        {
+          "word": "to",
+          "start": 52.8,
+          "end": 53.12,
+          "index": 132
+        },
+        {
+          "word": "the",
+          "start": 53.12,
+          "end": 53.52,
+          "index": 133
+        },
+        {
+          "word": "midst",
+          "start": 53.52,
+          "end": 54.0,
+          "index": 134
+        },
+        {
+          "word": "of",
+          "start": 54.0,
+          "end": 54.32,
+          "index": 135
+        },
+        {
+          "word": "the",
+          "start": 54.32,
+          "end": 54.72,
+          "index": 136
+        },
+        {
+          "word": "altar.",
+          "start": 54.72,
+          "end": 55.2,
+          "index": 137
+        },
+        {
+          "word": "And",
+          "start": 55.2,
+          "end": 55.52,
+          "index": 138
+        },
+        {
+          "word": "thou",
+          "start": 55.52,
+          "end": 55.92,
+          "index": 139
+        },
+        {
+          "word": "shalt",
+          "start": 55.92,
+          "end": 56.4,
+          "index": 140
+        },
+        {
+          "word": "make",
+          "start": 56.4,
+          "end": 56.72,
+          "index": 141
+        },
+        {
+          "word": "staves",
+          "start": 56.72,
+          "end": 57.12,
+          "index": 142
+        },
+        {
+          "word": "for",
+          "start": 57.12,
+          "end": 57.6,
+          "index": 143
+        },
+        {
+          "word": "the",
+          "start": 57.6,
+          "end": 57.92,
+          "index": 144
+        },
+        {
+          "word": "altar,",
+          "start": 57.92,
+          "end": 58.32,
+          "index": 145
+        },
+        {
+          "word": "staves",
+          "start": 58.32,
+          "end": 58.8,
+          "index": 146
+        },
+        {
+          "word": "of",
+          "start": 58.8,
+          "end": 59.12,
+          "index": 147
+        },
+        {
+          "word": "shittim",
+          "start": 59.12,
+          "end": 59.52,
+          "index": 148
+        },
+        {
+          "word": "wood,",
+          "start": 59.52,
+          "end": 60.0,
+          "index": 149
+        },
+        {
+          "word": "and",
+          "start": 60.0,
+          "end": 60.32,
+          "index": 150
+        },
+        {
+          "word": "overlay",
+          "start": 60.32,
+          "end": 60.72,
+          "index": 151
+        },
+        {
+          "word": "them",
+          "start": 60.72,
+          "end": 61.2,
+          "index": 152
+        },
+        {
+          "word": "with",
+          "start": 61.2,
+          "end": 61.52,
+          "index": 153
+        },
+        {
+          "word": "brass.",
+          "start": 61.52,
+          "end": 61.92,
+          "index": 154
+        },
+        {
+          "word": "And",
+          "start": 61.92,
+          "end": 62.4,
+          "index": 155
+        },
+        {
+          "word": "the",
+          "start": 62.4,
+          "end": 62.72,
+          "index": 156
+        },
+        {
+          "word": "staves",
+          "start": 62.72,
+          "end": 63.12,
+          "index": 157
+        },
+        {
+          "word": "shall",
+          "start": 63.12,
+          "end": 63.6,
+          "index": 158
+        },
+        {
+          "word": "be",
+          "start": 63.6,
+          "end": 63.92,
+          "index": 159
+        },
+        {
+          "word": "put",
+          "start": 63.92,
+          "end": 64.32,
+          "index": 160
+        },
+        {
+          "word": "into",
+          "start": 64.32,
+          "end": 64.8,
+          "index": 161
+        },
+        {
+          "word": "the",
+          "start": 64.8,
+          "end": 65.12,
+          "index": 162
+        },
+        {
+          "word": "rings,",
+          "start": 65.12,
+          "end": 65.52,
+          "index": 163
+        },
+        {
+          "word": "and",
+          "start": 65.52,
+          "end": 66.0,
+          "index": 164
+        },
+        {
+          "word": "the",
+          "start": 66.0,
+          "end": 66.32,
+          "index": 165
+        },
+        {
+          "word": "staves",
+          "start": 66.32,
+          "end": 66.72,
+          "index": 166
+        },
+        {
+          "word": "shall",
+          "start": 66.72,
+          "end": 67.2,
+          "index": 167
+        },
+        {
+          "word": "be",
+          "start": 67.2,
+          "end": 67.52,
+          "index": 168
+        },
+        {
+          "word": "upon",
+          "start": 67.52,
+          "end": 67.92,
+          "index": 169
+        },
+        {
+          "word": "the",
+          "start": 67.92,
+          "end": 68.4,
+          "index": 170
+        },
+        {
+          "word": "two",
+          "start": 68.4,
+          "end": 68.72,
+          "index": 171
+        },
+        {
+          "word": "sides",
+          "start": 68.72,
+          "end": 69.12,
+          "index": 172
+        },
+        {
+          "word": "of",
+          "start": 69.12,
+          "end": 69.6,
+          "index": 173
+        },
+        {
+          "word": "the",
+          "start": 69.6,
+          "end": 69.92,
+          "index": 174
+        },
+        {
+          "word": "altar,",
+          "start": 69.92,
+          "end": 70.32,
+          "index": 175
+        },
+        {
+          "word": "to",
+          "start": 70.32,
+          "end": 70.8,
+          "index": 176
+        },
+        {
+          "word": "bear",
+          "start": 70.8,
+          "end": 71.12,
+          "index": 177
+        },
+        {
+          "word": "it.",
+          "start": 71.12,
+          "end": 71.52,
+          "index": 178
+        },
+        {
+          "word": "Hollow",
+          "start": 71.52,
+          "end": 72.0,
+          "index": 179
+        },
+        {
+          "word": "with",
+          "start": 72.0,
+          "end": 72.32,
+          "index": 180
+        },
+        {
+          "word": "boards",
+          "start": 72.32,
+          "end": 72.72,
+          "index": 181
+        },
+        {
+          "word": "shalt",
+          "start": 72.72,
+          "end": 73.2,
+          "index": 182
+        },
+        {
+          "word": "thou",
+          "start": 73.2,
+          "end": 73.52,
+          "index": 183
+        },
+        {
+          "word": "make",
+          "start": 73.52,
+          "end": 73.92,
+          "index": 184
+        },
+        {
+          "word": "it:",
+          "start": 73.92,
+          "end": 74.4,
+          "index": 185
+        },
+        {
+          "word": "as",
+          "start": 74.4,
+          "end": 74.72,
+          "index": 186
+        },
+        {
+          "word": "it",
+          "start": 74.72,
+          "end": 75.12,
+          "index": 187
+        },
+        {
+          "word": "was",
+          "start": 75.12,
+          "end": 75.6,
+          "index": 188
+        },
+        {
+          "word": "shewed",
+          "start": 75.6,
+          "end": 75.92,
+          "index": 189
+        },
+        {
+          "word": "thee",
+          "start": 75.92,
+          "end": 76.32,
+          "index": 190
+        },
+        {
+          "word": "in",
+          "start": 76.32,
+          "end": 76.8,
+          "index": 191
+        },
+        {
+          "word": "the",
+          "start": 76.8,
+          "end": 77.12,
+          "index": 192
+        },
+        {
+          "word": "mount,",
+          "start": 77.12,
+          "end": 77.52,
+          "index": 193
+        },
+        {
+          "word": "so",
+          "start": 77.52,
+          "end": 78.0,
+          "index": 194
+        },
+        {
+          "word": "shall",
+          "start": 78.0,
+          "end": 78.32,
+          "index": 195
+        },
+        {
+          "word": "they",
+          "start": 78.32,
+          "end": 78.72,
+          "index": 196
+        },
+        {
+          "word": "make",
+          "start": 78.72,
+          "end": 79.2,
+          "index": 197
+        },
+        {
+          "word": "it.",
+          "start": 79.2,
+          "end": 79.52,
+          "index": 198
+        },
+        {
+          "word": "¶",
+          "start": 79.52,
+          "end": 79.92,
+          "index": 199
+        },
+        {
+          "word": "And",
+          "start": 79.92,
+          "end": 80.4,
+          "index": 200
+        },
+        {
+          "word": "thou",
+          "start": 80.4,
+          "end": 80.72,
+          "index": 201
+        },
+        {
+          "word": "shalt",
+          "start": 80.72,
+          "end": 81.12,
+          "index": 202
+        },
+        {
+          "word": "make",
+          "start": 81.12,
+          "end": 81.6,
+          "index": 203
+        },
+        {
+          "word": "the",
+          "start": 81.6,
+          "end": 81.92,
+          "index": 204
+        },
+        {
+          "word": "court",
+          "start": 81.92,
+          "end": 82.32,
+          "index": 205
+        },
+        {
+          "word": "of",
+          "start": 82.32,
+          "end": 82.8,
+          "index": 206
+        },
+        {
+          "word": "the",
+          "start": 82.8,
+          "end": 83.12,
+          "index": 207
+        },
+        {
+          "word": "tabernacle:",
+          "start": 83.12,
+          "end": 83.52,
+          "index": 208
+        },
+        {
+          "word": "for",
+          "start": 83.52,
+          "end": 84.0,
+          "index": 209
+        },
+        {
+          "word": "the",
+          "start": 84.0,
+          "end": 84.32,
+          "index": 210
+        },
+        {
+          "word": "south",
+          "start": 84.32,
+          "end": 84.72,
+          "index": 211
+        },
+        {
+          "word": "side",
+          "start": 84.72,
+          "end": 85.2,
+          "index": 212
+        },
+        {
+          "word": "southward",
+          "start": 85.2,
+          "end": 85.52,
+          "index": 213
+        },
+        {
+          "word": "there",
+          "start": 85.52,
+          "end": 85.92,
+          "index": 214
+        },
+        {
+          "word": "shall",
+          "start": 85.92,
+          "end": 86.4,
+          "index": 215
+        },
+        {
+          "word": "be",
+          "start": 86.4,
+          "end": 86.72,
+          "index": 216
+        },
+        {
+          "word": "hangings",
+          "start": 86.72,
+          "end": 87.12,
+          "index": 217
+        },
+        {
+          "word": "for",
+          "start": 87.12,
+          "end": 87.6,
+          "index": 218
+        },
+        {
+          "word": "the",
+          "start": 87.6,
+          "end": 87.92,
+          "index": 219
+        },
+        {
+          "word": "court",
+          "start": 87.92,
+          "end": 88.32,
+          "index": 220
+        },
+        {
+          "word": "of",
+          "start": 88.32,
+          "end": 88.8,
+          "index": 221
+        },
+        {
+          "word": "fine",
+          "start": 88.8,
+          "end": 89.12,
+          "index": 222
+        },
+        {
+          "word": "twined",
+          "start": 89.12,
+          "end": 89.52,
+          "index": 223
+        },
+        {
+          "word": "linen",
+          "start": 89.52,
+          "end": 90.0,
+          "index": 224
+        },
+        {
+          "word": "of",
+          "start": 90.0,
+          "end": 90.32,
+          "index": 225
+        },
+        {
+          "word": "an",
+          "start": 90.32,
+          "end": 90.72,
+          "index": 226
+        },
+        {
+          "word": "hundred",
+          "start": 90.72,
+          "end": 91.2,
+          "index": 227
+        },
+        {
+          "word": "cubits",
+          "start": 91.2,
+          "end": 91.52,
+          "index": 228
+        },
+        {
+          "word": "long",
+          "start": 91.52,
+          "end": 91.92,
+          "index": 229
+        },
+        {
+          "word": "for",
+          "start": 91.92,
+          "end": 92.4,
+          "index": 230
+        },
+        {
+          "word": "one",
+          "start": 92.4,
+          "end": 92.72,
+          "index": 231
+        },
+        {
+          "word": "side:",
+          "start": 92.72,
+          "end": 93.12,
+          "index": 232
+        },
+        {
+          "word": "And",
+          "start": 93.12,
+          "end": 93.6,
+          "index": 233
+        },
+        {
+          "word": "the",
+          "start": 93.6,
+          "end": 93.92,
+          "index": 234
+        },
+        {
+          "word": "twenty",
+          "start": 93.92,
+          "end": 94.32,
+          "index": 235
+        },
+        {
+          "word": "pillars",
+          "start": 94.32,
+          "end": 94.8,
+          "index": 236
+        },
+        {
+          "word": "thereof",
+          "start": 94.8,
+          "end": 95.12,
+          "index": 237
+        },
+        {
+          "word": "and",
+          "start": 95.12,
+          "end": 95.52,
+          "index": 238
+        },
+        {
+          "word": "their",
+          "start": 95.52,
+          "end": 96.0,
+          "index": 239
+        },
+        {
+          "word": "twenty",
+          "start": 96.0,
+          "end": 96.32,
+          "index": 240
+        },
+        {
+          "word": "sockets",
+          "start": 96.32,
+          "end": 96.72,
+          "index": 241
+        },
+        {
+          "word": "shall",
+          "start": 96.72,
+          "end": 97.2,
+          "index": 242
+        },
+        {
+          "word": "be",
+          "start": 97.2,
+          "end": 97.52,
+          "index": 243
+        },
+        {
+          "word": "of",
+          "start": 97.52,
+          "end": 97.92,
+          "index": 244
+        },
+        {
+          "word": "brass;",
+          "start": 97.92,
+          "end": 98.4,
+          "index": 245
+        },
+        {
+          "word": "the",
+          "start": 98.4,
+          "end": 98.72,
+          "index": 246
+        },
+        {
+          "word": "hooks",
+          "start": 98.72,
+          "end": 99.12,
+          "index": 247
+        },
+        {
+          "word": "of",
+          "start": 99.12,
+          "end": 99.6,
+          "index": 248
+        },
+        {
+          "word": "the",
+          "start": 99.6,
+          "end": 99.92,
+          "index": 249
+        },
+        {
+          "word": "pillars",
+          "start": 99.92,
+          "end": 100.32,
+          "index": 250
+        },
+        {
+          "word": "and",
+          "start": 100.32,
+          "end": 100.8,
+          "index": 251
+        },
+        {
+          "word": "their",
+          "start": 100.8,
+          "end": 101.12,
+          "index": 252
+        },
+        {
+          "word": "fillets",
+          "start": 101.12,
+          "end": 101.52,
+          "index": 253
+        },
+        {
+          "word": "shall",
+          "start": 101.52,
+          "end": 102.0,
+          "index": 254
+        },
+        {
+          "word": "be",
+          "start": 102.0,
+          "end": 102.32,
+          "index": 255
+        },
+        {
+          "word": "of",
+          "start": 102.32,
+          "end": 102.72,
+          "index": 256
+        },
+        {
+          "word": "silver.",
+          "start": 102.72,
+          "end": 103.2,
+          "index": 257
+        },
+        {
+          "word": "And",
+          "start": 103.2,
+          "end": 103.52,
+          "index": 258
+        },
+        {
+          "word": "likewise",
+          "start": 103.52,
+          "end": 103.92,
+          "index": 259
+        },
+        {
+          "word": "for",
+          "start": 103.92,
+          "end": 104.4,
+          "index": 260
+        },
+        {
+          "word": "the",
+          "start": 104.4,
+          "end": 104.72,
+          "index": 261
+        },
+        {
+          "word": "north",
+          "start": 104.72,
+          "end": 105.12,
+          "index": 262
+        },
+        {
+          "word": "side",
+          "start": 105.12,
+          "end": 105.6,
+          "index": 263
+        },
+        {
+          "word": "in",
+          "start": 105.6,
+          "end": 105.92,
+          "index": 264
+        },
+        {
+          "word": "length",
+          "start": 105.92,
+          "end": 106.32,
+          "index": 265
+        },
+        {
+          "word": "there",
+          "start": 106.32,
+          "end": 106.8,
+          "index": 266
+        },
+        {
+          "word": "shall",
+          "start": 106.8,
+          "end": 107.12,
+          "index": 267
+        },
+        {
+          "word": "be",
+          "start": 107.12,
+          "end": 107.52,
+          "index": 268
+        },
+        {
+          "word": "hangings",
+          "start": 107.52,
+          "end": 108.0,
+          "index": 269
+        },
+        {
+          "word": "of",
+          "start": 108.0,
+          "end": 108.32,
+          "index": 270
+        },
+        {
+          "word": "an",
+          "start": 108.32,
+          "end": 108.72,
+          "index": 271
+        },
+        {
+          "word": "hundred",
+          "start": 108.72,
+          "end": 109.2,
+          "index": 272
+        },
+        {
+          "word": "cubits",
+          "start": 109.2,
+          "end": 109.52,
+          "index": 273
+        },
+        {
+          "word": "long,",
+          "start": 109.52,
+          "end": 109.92,
+          "index": 274
+        },
+        {
+          "word": "and",
+          "start": 109.92,
+          "end": 110.4,
+          "index": 275
+        },
+        {
+          "word": "his",
+          "start": 110.4,
+          "end": 110.72,
+          "index": 276
+        },
+        {
+          "word": "twenty",
+          "start": 110.72,
+          "end": 111.12,
+          "index": 277
+        },
+        {
+          "word": "pillars",
+          "start": 111.12,
+          "end": 111.6,
+          "index": 278
+        },
+        {
+          "word": "and",
+          "start": 111.6,
+          "end": 111.92,
+          "index": 279
+        },
+        {
+          "word": "their",
+          "start": 111.92,
+          "end": 112.32,
+          "index": 280
+        },
+        {
+          "word": "twenty",
+          "start": 112.32,
+          "end": 112.8,
+          "index": 281
+        },
+        {
+          "word": "sockets",
+          "start": 112.8,
+          "end": 113.12,
+          "index": 282
+        },
+        {
+          "word": "of",
+          "start": 113.12,
+          "end": 113.52,
+          "index": 283
+        },
+        {
+          "word": "brass;",
+          "start": 113.52,
+          "end": 114.0,
+          "index": 284
+        },
+        {
+          "word": "the",
+          "start": 114.0,
+          "end": 114.32,
+          "index": 285
+        },
+        {
+          "word": "hooks",
+          "start": 114.32,
+          "end": 114.72,
+          "index": 286
+        },
+        {
+          "word": "of",
+          "start": 114.72,
+          "end": 115.2,
+          "index": 287
+        },
+        {
+          "word": "the",
+          "start": 115.2,
+          "end": 115.52,
+          "index": 288
+        },
+        {
+          "word": "pillars",
+          "start": 115.52,
+          "end": 115.92,
+          "index": 289
+        },
+        {
+          "word": "and",
+          "start": 115.92,
+          "end": 116.4,
+          "index": 290
+        },
+        {
+          "word": "their",
+          "start": 116.4,
+          "end": 116.72,
+          "index": 291
+        },
+        {
+          "word": "fillets",
+          "start": 116.72,
+          "end": 117.12,
+          "index": 292
+        },
+        {
+          "word": "of",
+          "start": 117.12,
+          "end": 117.6,
+          "index": 293
+        },
+        {
+          "word": "silver.",
+          "start": 117.6,
+          "end": 117.92,
+          "index": 294
+        },
+        {
+          "word": "¶",
+          "start": 117.92,
+          "end": 118.32,
+          "index": 295
+        },
+        {
+          "word": "And",
+          "start": 118.32,
+          "end": 118.8,
+          "index": 296
+        },
+        {
+          "word": "for",
+          "start": 118.8,
+          "end": 119.12,
+          "index": 297
+        },
+        {
+          "word": "the",
+          "start": 119.12,
+          "end": 119.52,
+          "index": 298
+        },
+        {
+          "word": "breadth",
+          "start": 119.52,
+          "end": 120.0,
+          "index": 299
+        },
+        {
+          "word": "of",
+          "start": 120.0,
+          "end": 120.32,
+          "index": 300
+        },
+        {
+          "word": "the",
+          "start": 120.32,
+          "end": 120.72,
+          "index": 301
+        },
+        {
+          "word": "court",
+          "start": 120.72,
+          "end": 121.2,
+          "index": 302
+        },
+        {
+          "word": "on",
+          "start": 121.2,
+          "end": 121.52,
+          "index": 303
+        },
+        {
+          "word": "the",
+          "start": 121.52,
+          "end": 121.92,
+          "index": 304
+        },
+        {
+          "word": "west",
+          "start": 121.92,
+          "end": 122.4,
+          "index": 305
+        },
+        {
+          "word": "side",
+          "start": 122.4,
+          "end": 122.72,
+          "index": 306
+        },
+        {
+          "word": "shall",
+          "start": 122.72,
+          "end": 123.12,
+          "index": 307
+        },
+        {
+          "word": "be",
+          "start": 123.12,
+          "end": 123.6,
+          "index": 308
+        },
+        {
+          "word": "hangings",
+          "start": 123.6,
+          "end": 123.92,
+          "index": 309
+        },
+        {
+          "word": "of",
+          "start": 123.92,
+          "end": 124.32,
+          "index": 310
+        },
+        {
+          "word": "fifty",
+          "start": 124.32,
+          "end": 124.8,
+          "index": 311
+        },
+        {
+          "word": "cubits:",
+          "start": 124.8,
+          "end": 125.12,
+          "index": 312
+        },
+        {
+          "word": "their",
+          "start": 125.12,
+          "end": 125.52,
+          "index": 313
+        },
+        {
+          "word": "pillars",
+          "start": 125.52,
+          "end": 126.0,
+          "index": 314
+        },
+        {
+          "word": "ten,",
+          "start": 126.0,
+          "end": 126.32,
+          "index": 315
+        },
+        {
+          "word": "and",
+          "start": 126.32,
+          "end": 126.72,
+          "index": 316
+        },
+        {
+          "word": "their",
+          "start": 126.72,
+          "end": 127.2,
+          "index": 317
+        },
+        {
+          "word": "sockets",
+          "start": 127.2,
+          "end": 127.52,
+          "index": 318
+        },
+        {
+          "word": "ten.",
+          "start": 127.52,
+          "end": 127.92,
+          "index": 319
+        },
+        {
+          "word": "And",
+          "start": 127.92,
+          "end": 128.4,
+          "index": 320
+        },
+        {
+          "word": "the",
+          "start": 128.4,
+          "end": 128.72,
+          "index": 321
+        },
+        {
+          "word": "breadth",
+          "start": 128.72,
+          "end": 129.12,
+          "index": 322
+        },
+        {
+          "word": "of",
+          "start": 129.12,
+          "end": 129.6,
+          "index": 323
+        },
+        {
+          "word": "the",
+          "start": 129.6,
+          "end": 129.92,
+          "index": 324
+        },
+        {
+          "word": "court",
+          "start": 129.92,
+          "end": 130.32,
+          "index": 325
+        },
+        {
+          "word": "on",
+          "start": 130.32,
+          "end": 130.8,
+          "index": 326
+        },
+        {
+          "word": "the",
+          "start": 130.8,
+          "end": 131.12,
+          "index": 327
+        },
+        {
+          "word": "east",
+          "start": 131.12,
+          "end": 131.52,
+          "index": 328
+        },
+        {
+          "word": "side",
+          "start": 131.52,
+          "end": 132.0,
+          "index": 329
+        },
+        {
+          "word": "eastward",
+          "start": 132.0,
+          "end": 132.32,
+          "index": 330
+        },
+        {
+          "word": "shall",
+          "start": 132.32,
+          "end": 132.72,
+          "index": 331
+        },
+        {
+          "word": "be",
+          "start": 132.72,
+          "end": 133.2,
+          "index": 332
+        },
+        {
+          "word": "fifty",
+          "start": 133.2,
+          "end": 133.52,
+          "index": 333
+        },
+        {
+          "word": "cubits.",
+          "start": 133.52,
+          "end": 133.92,
+          "index": 334
+        },
+        {
+          "word": "The",
+          "start": 133.92,
+          "end": 134.4,
+          "index": 335
+        },
+        {
+          "word": "hangings",
+          "start": 134.4,
+          "end": 134.72,
+          "index": 336
+        },
+        {
+          "word": "of",
+          "start": 134.72,
+          "end": 135.12,
+          "index": 337
+        },
+        {
+          "word": "one",
+          "start": 135.12,
+          "end": 135.6,
+          "index": 338
+        },
+        {
+          "word": "side",
+          "start": 135.6,
+          "end": 135.92,
+          "index": 339
+        },
+        {
+          "word": "of",
+          "start": 135.92,
+          "end": 136.32,
+          "index": 340
+        },
+        {
+          "word": "the",
+          "start": 136.32,
+          "end": 136.8,
+          "index": 341
+        },
+        {
+          "word": "gate",
+          "start": 136.8,
+          "end": 137.12,
+          "index": 342
+        },
+        {
+          "word": "shall",
+          "start": 137.12,
+          "end": 137.52,
+          "index": 343
+        },
+        {
+          "word": "be",
+          "start": 137.52,
+          "end": 138.0,
+          "index": 344
+        },
+        {
+          "word": "fifteen",
+          "start": 138.0,
+          "end": 138.32,
+          "index": 345
+        },
+        {
+          "word": "cubits:",
+          "start": 138.32,
+          "end": 138.72,
+          "index": 346
+        },
+        {
+          "word": "their",
+          "start": 138.72,
+          "end": 139.2,
+          "index": 347
+        },
+        {
+          "word": "pillars",
+          "start": 139.2,
+          "end": 139.52,
+          "index": 348
+        },
+        {
+          "word": "three,",
+          "start": 139.52,
+          "end": 139.92,
+          "index": 349
+        },
+        {
+          "word": "and",
+          "start": 139.92,
+          "end": 140.4,
+          "index": 350
+        },
+        {
+          "word": "their",
+          "start": 140.4,
+          "end": 140.72,
+          "index": 351
+        },
+        {
+          "word": "sockets",
+          "start": 140.72,
+          "end": 141.12,
+          "index": 352
+        },
+        {
+          "word": "three.",
+          "start": 141.12,
+          "end": 141.6,
+          "index": 353
+        },
+        {
+          "word": "And",
+          "start": 141.6,
+          "end": 141.92,
+          "index": 354
+        },
+        {
+          "word": "on",
+          "start": 141.92,
+          "end": 142.32,
+          "index": 355
+        },
+        {
+          "word": "the",
+          "start": 142.32,
+          "end": 142.8,
+          "index": 356
+        },
+        {
+          "word": "other",
+          "start": 142.8,
+          "end": 143.12,
+          "index": 357
+        },
+        {
+          "word": "side",
+          "start": 143.12,
+          "end": 143.52,
+          "index": 358
+        },
+        {
+          "word": "shall",
+          "start": 143.52,
+          "end": 144.0,
+          "index": 359
+        },
+        {
+          "word": "be",
+          "start": 144.0,
+          "end": 144.32,
+          "index": 360
+        },
+        {
+          "word": "hangings",
+          "start": 144.32,
+          "end": 144.72,
+          "index": 361
+        },
+        {
+          "word": "fifteen",
+          "start": 144.72,
+          "end": 145.2,
+          "index": 362
+        },
+        {
+          "word": "cubits:",
+          "start": 145.2,
+          "end": 145.52,
+          "index": 363
+        },
+        {
+          "word": "their",
+          "start": 145.52,
+          "end": 145.92,
+          "index": 364
+        },
+        {
+          "word": "pillars",
+          "start": 145.92,
+          "end": 146.4,
+          "index": 365
+        },
+        {
+          "word": "three,",
+          "start": 146.4,
+          "end": 146.72,
+          "index": 366
+        },
+        {
+          "word": "and",
+          "start": 146.72,
+          "end": 147.12,
+          "index": 367
+        },
+        {
+          "word": "their",
+          "start": 147.12,
+          "end": 147.6,
+          "index": 368
+        },
+        {
+          "word": "sockets",
+          "start": 147.6,
+          "end": 147.92,
+          "index": 369
+        },
+        {
+          "word": "three.",
+          "start": 147.92,
+          "end": 148.32,
+          "index": 370
+        },
+        {
+          "word": "¶",
+          "start": 148.32,
+          "end": 148.8,
+          "index": 371
+        },
+        {
+          "word": "And",
+          "start": 148.8,
+          "end": 149.12,
+          "index": 372
+        },
+        {
+          "word": "for",
+          "start": 149.12,
+          "end": 149.52,
+          "index": 373
+        },
+        {
+          "word": "the",
+          "start": 149.52,
+          "end": 150.0,
+          "index": 374
+        },
+        {
+          "word": "gate",
+          "start": 150.0,
+          "end": 150.32,
+          "index": 375
+        },
+        {
+          "word": "of",
+          "start": 150.32,
+          "end": 150.72,
+          "index": 376
+        },
+        {
+          "word": "the",
+          "start": 150.72,
+          "end": 151.2,
+          "index": 377
+        },
+        {
+          "word": "court",
+          "start": 151.2,
+          "end": 151.52,
+          "index": 378
+        },
+        {
+          "word": "shall",
+          "start": 151.52,
+          "end": 151.92,
+          "index": 379
+        },
+        {
+          "word": "be",
+          "start": 151.92,
+          "end": 152.4,
+          "index": 380
+        },
+        {
+          "word": "an",
+          "start": 152.4,
+          "end": 152.72,
+          "index": 381
+        },
+        {
+          "word": "hanging",
+          "start": 152.72,
+          "end": 153.12,
+          "index": 382
+        },
+        {
+          "word": "of",
+          "start": 153.12,
+          "end": 153.6,
+          "index": 383
+        },
+        {
+          "word": "twenty",
+          "start": 153.6,
+          "end": 153.92,
+          "index": 384
+        },
+        {
+          "word": "cubits,",
+          "start": 153.92,
+          "end": 154.32,
+          "index": 385
+        },
+        {
+          "word": "of",
+          "start": 154.32,
+          "end": 154.8,
+          "index": 386
+        },
+        {
+          "word": "blue,",
+          "start": 154.8,
+          "end": 155.12,
+          "index": 387
+        },
+        {
+          "word": "and",
+          "start": 155.12,
+          "end": 155.52,
+          "index": 388
+        },
+        {
+          "word": "purple,",
+          "start": 155.52,
+          "end": 156.0,
+          "index": 389
+        },
+        {
+          "word": "and",
+          "start": 156.0,
+          "end": 156.32,
+          "index": 390
+        },
+        {
+          "word": "scarlet,",
+          "start": 156.32,
+          "end": 156.72,
+          "index": 391
+        },
+        {
+          "word": "and",
+          "start": 156.72,
+          "end": 157.2,
+          "index": 392
+        },
+        {
+          "word": "fine",
+          "start": 157.2,
+          "end": 157.52,
+          "index": 393
+        },
+        {
+          "word": "twined",
+          "start": 157.52,
+          "end": 157.92,
+          "index": 394
+        },
+        {
+          "word": "linen,",
+          "start": 157.92,
+          "end": 158.4,
+          "index": 395
+        },
+        {
+          "word": "wrought",
+          "start": 158.4,
+          "end": 158.72,
+          "index": 396
+        },
+        {
+          "word": "with",
+          "start": 158.72,
+          "end": 159.12,
+          "index": 397
+        },
+        {
+          "word": "needlework:",
+          "start": 159.12,
+          "end": 159.6,
+          "index": 398
+        },
+        {
+          "word": "and",
+          "start": 159.6,
+          "end": 159.92,
+          "index": 399
+        },
+        {
+          "word": "their",
+          "start": 159.92,
+          "end": 160.32,
+          "index": 400
+        },
+        {
+          "word": "pillars",
+          "start": 160.32,
+          "end": 160.8,
+          "index": 401
+        },
+        {
+          "word": "shall",
+          "start": 160.8,
+          "end": 161.12,
+          "index": 402
+        },
+        {
+          "word": "be",
+          "start": 161.12,
+          "end": 161.52,
+          "index": 403
+        },
+        {
+          "word": "four,",
+          "start": 161.52,
+          "end": 162.0,
+          "index": 404
+        },
+        {
+          "word": "and",
+          "start": 162.0,
+          "end": 162.32,
+          "index": 405
+        },
+        {
+          "word": "their",
+          "start": 162.32,
+          "end": 162.72,
+          "index": 406
+        },
+        {
+          "word": "sockets",
+          "start": 162.72,
+          "end": 163.2,
+          "index": 407
+        },
+        {
+          "word": "four.",
+          "start": 163.2,
+          "end": 163.52,
+          "index": 408
+        },
+        {
+          "word": "All",
+          "start": 163.52,
+          "end": 163.92,
+          "index": 409
+        },
+        {
+          "word": "the",
+          "start": 163.92,
+          "end": 164.4,
+          "index": 410
+        },
+        {
+          "word": "pillars",
+          "start": 164.4,
+          "end": 164.72,
+          "index": 411
+        },
+        {
+          "word": "round",
+          "start": 164.72,
+          "end": 165.12,
+          "index": 412
+        },
+        {
+          "word": "about",
+          "start": 165.12,
+          "end": 165.6,
+          "index": 413
+        },
+        {
+          "word": "the",
+          "start": 165.6,
+          "end": 165.92,
+          "index": 414
+        },
+        {
+          "word": "court",
+          "start": 165.92,
+          "end": 166.32,
+          "index": 415
+        },
+        {
+          "word": "shall",
+          "start": 166.32,
+          "end": 166.8,
+          "index": 416
+        },
+        {
+          "word": "be",
+          "start": 166.8,
+          "end": 167.12,
+          "index": 417
+        },
+        {
+          "word": "filleted",
+          "start": 167.12,
+          "end": 167.52,
+          "index": 418
+        },
+        {
+          "word": "with",
+          "start": 167.52,
+          "end": 168.0,
+          "index": 419
+        },
+        {
+          "word": "silver;",
+          "start": 168.0,
+          "end": 168.32,
+          "index": 420
+        },
+        {
+          "word": "their",
+          "start": 168.32,
+          "end": 168.72,
+          "index": 421
+        },
+        {
+          "word": "hooks",
+          "start": 168.72,
+          "end": 169.2,
+          "index": 422
+        },
+        {
+          "word": "shall",
+          "start": 169.2,
+          "end": 169.52,
+          "index": 423
+        },
+        {
+          "word": "be",
+          "start": 169.52,
+          "end": 169.92,
+          "index": 424
+        },
+        {
+          "word": "of",
+          "start": 169.92,
+          "end": 170.4,
+          "index": 425
+        },
+        {
+          "word": "silver,",
+          "start": 170.4,
+          "end": 170.72,
+          "index": 426
+        },
+        {
+          "word": "and",
+          "start": 170.72,
+          "end": 171.12,
+          "index": 427
+        },
+        {
+          "word": "their",
+          "start": 171.12,
+          "end": 171.6,
+          "index": 428
+        },
+        {
+          "word": "sockets",
+          "start": 171.6,
+          "end": 171.92,
+          "index": 429
+        },
+        {
+          "word": "of",
+          "start": 171.92,
+          "end": 172.32,
+          "index": 430
+        },
+        {
+          "word": "brass.",
+          "start": 172.32,
+          "end": 172.8,
+          "index": 431
+        },
+        {
+          "word": "¶",
+          "start": 172.8,
+          "end": 173.12,
+          "index": 432
+        },
+        {
+          "word": "The",
+          "start": 173.12,
+          "end": 173.52,
+          "index": 433
+        },
+        {
+          "word": "length",
+          "start": 173.52,
+          "end": 174.0,
+          "index": 434
+        },
+        {
+          "word": "of",
+          "start": 174.0,
+          "end": 174.32,
+          "index": 435
+        },
+        {
+          "word": "the",
+          "start": 174.32,
+          "end": 174.72,
+          "index": 436
+        },
+        {
+          "word": "court",
+          "start": 174.72,
+          "end": 175.2,
+          "index": 437
+        },
+        {
+          "word": "shall",
+          "start": 175.2,
+          "end": 175.52,
+          "index": 438
+        },
+        {
+          "word": "be",
+          "start": 175.52,
+          "end": 175.92,
+          "index": 439
+        },
+        {
+          "word": "an",
+          "start": 175.92,
+          "end": 176.4,
+          "index": 440
+        },
+        {
+          "word": "hundred",
+          "start": 176.4,
+          "end": 176.72,
+          "index": 441
+        },
+        {
+          "word": "cubits,",
+          "start": 176.72,
+          "end": 177.12,
+          "index": 442
+        },
+        {
+          "word": "and",
+          "start": 177.12,
+          "end": 177.6,
+          "index": 443
+        },
+        {
+          "word": "the",
+          "start": 177.6,
+          "end": 177.92,
+          "index": 444
+        },
+        {
+          "word": "breadth",
+          "start": 177.92,
+          "end": 178.32,
+          "index": 445
+        },
+        {
+          "word": "fifty",
+          "start": 178.32,
+          "end": 178.8,
+          "index": 446
+        },
+        {
+          "word": "every",
+          "start": 178.8,
+          "end": 179.12,
+          "index": 447
+        },
+        {
+          "word": "where,",
+          "start": 179.12,
+          "end": 179.52,
+          "index": 448
+        },
+        {
+          "word": "and",
+          "start": 179.52,
+          "end": 180.0,
+          "index": 449
+        },
+        {
+          "word": "the",
+          "start": 180.0,
+          "end": 180.32,
+          "index": 450
+        },
+        {
+          "word": "height",
+          "start": 180.32,
+          "end": 180.72,
+          "index": 451
+        },
+        {
+          "word": "five",
+          "start": 180.72,
+          "end": 181.2,
+          "index": 452
+        },
+        {
+          "word": "cubits",
+          "start": 181.2,
+          "end": 181.52,
+          "index": 453
+        },
+        {
+          "word": "of",
+          "start": 181.52,
+          "end": 181.92,
+          "index": 454
+        },
+        {
+          "word": "fine",
+          "start": 181.92,
+          "end": 182.4,
+          "index": 455
+        },
+        {
+          "word": "twined",
+          "start": 182.4,
+          "end": 182.72,
+          "index": 456
+        },
+        {
+          "word": "linen,",
+          "start": 182.72,
+          "end": 183.12,
+          "index": 457
+        },
+        {
+          "word": "and",
+          "start": 183.12,
+          "end": 183.6,
+          "index": 458
+        },
+        {
+          "word": "their",
+          "start": 183.6,
+          "end": 183.92,
+          "index": 459
+        },
+        {
+          "word": "sockets",
+          "start": 183.92,
+          "end": 184.32,
+          "index": 460
+        },
+        {
+          "word": "of",
+          "start": 184.32,
+          "end": 184.8,
+          "index": 461
+        },
+        {
+          "word": "brass.",
+          "start": 184.8,
+          "end": 185.12,
+          "index": 462
+        },
+        {
+          "word": "All",
+          "start": 185.12,
+          "end": 185.52,
+          "index": 463
+        },
+        {
+          "word": "the",
+          "start": 185.52,
+          "end": 186.0,
+          "index": 464
+        },
+        {
+          "word": "vessels",
+          "start": 186.0,
+          "end": 186.32,
+          "index": 465
+        },
+        {
+          "word": "of",
+          "start": 186.32,
+          "end": 186.72,
+          "index": 466
+        },
+        {
+          "word": "the",
+          "start": 186.72,
+          "end": 187.2,
+          "index": 467
+        },
+        {
+          "word": "tabernacle",
+          "start": 187.2,
+          "end": 187.52,
+          "index": 468
+        },
+        {
+          "word": "in",
+          "start": 187.52,
+          "end": 187.92,
+          "index": 469
+        },
+        {
+          "word": "all",
+          "start": 187.92,
+          "end": 188.4,
+          "index": 470
+        },
+        {
+          "word": "the",
+          "start": 188.4,
+          "end": 188.72,
+          "index": 471
+        },
+        {
+          "word": "service",
+          "start": 188.72,
+          "end": 189.12,
+          "index": 472
+        },
+        {
+          "word": "thereof,",
+          "start": 189.12,
+          "end": 189.6,
+          "index": 473
+        },
+        {
+          "word": "and",
+          "start": 189.6,
+          "end": 189.92,
+          "index": 474
+        },
+        {
+          "word": "all",
+          "start": 189.92,
+          "end": 190.32,
+          "index": 475
+        },
+        {
+          "word": "the",
+          "start": 190.32,
+          "end": 190.8,
+          "index": 476
+        },
+        {
+          "word": "pins",
+          "start": 190.8,
+          "end": 191.12,
+          "index": 477
+        },
+        {
+          "word": "thereof,",
+          "start": 191.12,
+          "end": 191.52,
+          "index": 478
+        },
+        {
+          "word": "and",
+          "start": 191.52,
+          "end": 192.0,
+          "index": 479
+        },
+        {
+          "word": "all",
+          "start": 192.0,
+          "end": 192.32,
+          "index": 480
+        },
+        {
+          "word": "the",
+          "start": 192.32,
+          "end": 192.72,
+          "index": 481
+        },
+        {
+          "word": "pins",
+          "start": 192.72,
+          "end": 193.2,
+          "index": 482
+        },
+        {
+          "word": "of",
+          "start": 193.2,
+          "end": 193.52,
+          "index": 483
+        },
+        {
+          "word": "the",
+          "start": 193.52,
+          "end": 193.92,
+          "index": 484
+        },
+        {
+          "word": "court,",
+          "start": 193.92,
+          "end": 194.4,
+          "index": 485
+        },
+        {
+          "word": "shall",
+          "start": 194.4,
+          "end": 194.72,
+          "index": 486
+        },
+        {
+          "word": "be",
+          "start": 194.72,
+          "end": 195.12,
+          "index": 487
+        },
+        {
+          "word": "of",
+          "start": 195.12,
+          "end": 195.6,
+          "index": 488
+        },
+        {
+          "word": "brass.",
+          "start": 195.6,
+          "end": 195.92,
+          "index": 489
+        },
+        {
+          "word": "¶",
+          "start": 195.92,
+          "end": 196.32,
+          "index": 490
+        },
+        {
+          "word": "And",
+          "start": 196.32,
+          "end": 196.8,
+          "index": 491
+        },
+        {
+          "word": "thou",
+          "start": 196.8,
+          "end": 197.12,
+          "index": 492
+        },
+        {
+          "word": "shalt",
+          "start": 197.12,
+          "end": 197.52,
+          "index": 493
+        },
+        {
+          "word": "command",
+          "start": 197.52,
+          "end": 198.0,
+          "index": 494
+        },
+        {
+          "word": "the",
+          "start": 198.0,
+          "end": 198.32,
+          "index": 495
+        },
+        {
+          "word": "children",
+          "start": 198.32,
+          "end": 198.72,
+          "index": 496
+        },
+        {
+          "word": "of",
+          "start": 198.72,
+          "end": 199.2,
+          "index": 497
+        },
+        {
+          "word": "Israel,",
+          "start": 199.2,
+          "end": 199.52,
+          "index": 498
+        },
+        {
+          "word": "that",
+          "start": 199.52,
+          "end": 199.92,
+          "index": 499
+        },
+        {
+          "word": "they",
+          "start": 199.92,
+          "end": 200.4,
+          "index": 500
+        },
+        {
+          "word": "bring",
+          "start": 200.4,
+          "end": 200.72,
+          "index": 501
+        },
+        {
+          "word": "thee",
+          "start": 200.72,
+          "end": 201.12,
+          "index": 502
+        },
+        {
+          "word": "pure",
+          "start": 201.12,
+          "end": 201.6,
+          "index": 503
+        },
+        {
+          "word": "oil",
+          "start": 201.6,
+          "end": 201.92,
+          "index": 504
+        },
+        {
+          "word": "olive",
+          "start": 201.92,
+          "end": 202.32,
+          "index": 505
+        },
+        {
+          "word": "beaten",
+          "start": 202.32,
+          "end": 202.8,
+          "index": 506
+        },
+        {
+          "word": "for",
+          "start": 202.8,
+          "end": 203.12,
+          "index": 507
+        },
+        {
+          "word": "the",
+          "start": 203.12,
+          "end": 203.52,
+          "index": 508
+        },
+        {
+          "word": "light,",
+          "start": 203.52,
+          "end": 204.0,
+          "index": 509
+        },
+        {
+          "word": "to",
+          "start": 204.0,
+          "end": 204.32,
+          "index": 510
+        },
+        {
+          "word": "cause",
+          "start": 204.32,
+          "end": 204.72,
+          "index": 511
+        },
+        {
+          "word": "the",
+          "start": 204.72,
+          "end": 205.2,
+          "index": 512
+        },
+        {
+          "word": "lamp",
+          "start": 205.2,
+          "end": 205.52,
+          "index": 513
+        },
+        {
+          "word": "to",
+          "start": 205.52,
+          "end": 205.92,
+          "index": 514
+        },
+        {
+          "word": "burn",
+          "start": 205.92,
+          "end": 206.4,
+          "index": 515
+        },
+        {
+          "word": "always.",
+          "start": 206.4,
+          "end": 206.72,
+          "index": 516
+        },
+        {
+          "word": "In",
+          "start": 206.72,
+          "end": 207.12,
+          "index": 517
+        },
+        {
+          "word": "the",
+          "start": 207.12,
+          "end": 207.6,
+          "index": 518
+        },
+        {
+          "word": "tabernacle",
+          "start": 207.6,
+          "end": 207.92,
+          "index": 519
+        },
+        {
+          "word": "of",
+          "start": 207.92,
+          "end": 208.32,
+          "index": 520
+        },
+        {
+          "word": "the",
+          "start": 208.32,
+          "end": 208.8,
+          "index": 521
+        },
+        {
+          "word": "congregation",
+          "start": 208.8,
+          "end": 209.12,
+          "index": 522
+        },
+        {
+          "word": "without",
+          "start": 209.12,
+          "end": 209.52,
+          "index": 523
+        },
+        {
+          "word": "the",
+          "start": 209.52,
+          "end": 210.0,
+          "index": 524
+        },
+        {
+          "word": "vail,",
+          "start": 210.0,
+          "end": 210.32,
+          "index": 525
+        },
+        {
+          "word": "which",
+          "start": 210.32,
+          "end": 210.72,
+          "index": 526
+        },
+        {
+          "word": "is",
+          "start": 210.72,
+          "end": 211.2,
+          "index": 527
+        },
+        {
+          "word": "before",
+          "start": 211.2,
+          "end": 211.52,
+          "index": 528
+        },
+        {
+          "word": "the",
+          "start": 211.52,
+          "end": 211.92,
+          "index": 529
+        },
+        {
+          "word": "testimony,",
+          "start": 211.92,
+          "end": 212.4,
+          "index": 530
+        },
+        {
+          "word": "Aaron",
+          "start": 212.4,
+          "end": 212.72,
+          "index": 531
+        },
+        {
+          "word": "and",
+          "start": 212.72,
+          "end": 213.12,
+          "index": 532
+        },
+        {
+          "word": "his",
+          "start": 213.12,
+          "end": 213.6,
+          "index": 533
+        },
+        {
+          "word": "sons",
+          "start": 213.6,
+          "end": 213.92,
+          "index": 534
+        },
+        {
+          "word": "shall",
+          "start": 213.92,
+          "end": 214.32,
+          "index": 535
+        },
+        {
+          "word": "order",
+          "start": 214.32,
+          "end": 214.8,
+          "index": 536
+        },
+        {
+          "word": "it",
+          "start": 214.8,
+          "end": 215.12,
+          "index": 537
+        },
+        {
+          "word": "from",
+          "start": 215.12,
+          "end": 215.52,
+          "index": 538
+        },
+        {
+          "word": "evening",
+          "start": 215.52,
+          "end": 216.0,
+          "index": 539
+        },
+        {
+          "word": "to",
+          "start": 216.0,
+          "end": 216.32,
+          "index": 540
+        },
+        {
+          "word": "morning",
+          "start": 216.32,
+          "end": 216.72,
+          "index": 541
+        },
+        {
+          "word": "before",
+          "start": 216.72,
+          "end": 217.2,
+          "index": 542
+        },
+        {
+          "word": "the",
+          "start": 217.2,
+          "end": 217.52,
+          "index": 543
+        },
+        {
+          "word": "LORD:",
+          "start": 217.52,
+          "end": 217.92,
+          "index": 544
+        },
+        {
+          "word": "it",
+          "start": 217.92,
+          "end": 218.4,
+          "index": 545
+        },
+        {
+          "word": "shall",
+          "start": 218.4,
+          "end": 218.72,
+          "index": 546
+        },
+        {
+          "word": "be",
+          "start": 218.72,
+          "end": 219.12,
+          "index": 547
+        },
+        {
+          "word": "a",
+          "start": 219.12,
+          "end": 219.6,
+          "index": 548
+        },
+        {
+          "word": "statute",
+          "start": 219.6,
+          "end": 219.92,
+          "index": 549
+        },
+        {
+          "word": "for",
+          "start": 219.92,
+          "end": 220.32,
+          "index": 550
+        },
+        {
+          "word": "ever",
+          "start": 220.32,
+          "end": 220.8,
+          "index": 551
+        },
+        {
+          "word": "unto",
+          "start": 220.8,
+          "end": 221.12,
+          "index": 552
+        },
+        {
+          "word": "their",
+          "start": 221.12,
+          "end": 221.52,
+          "index": 553
+        },
+        {
+          "word": "generations",
+          "start": 221.52,
+          "end": 222.0,
+          "index": 554
+        },
+        {
+          "word": "on",
+          "start": 222.0,
+          "end": 222.32,
+          "index": 555
+        },
+        {
+          "word": "the",
+          "start": 222.32,
+          "end": 222.72,
+          "index": 556
+        },
+        {
+          "word": "behalf",
+          "start": 222.72,
+          "end": 223.2,
+          "index": 557
+        },
+        {
+          "word": "of",
+          "start": 223.2,
+          "end": 223.52,
+          "index": 558
+        },
+        {
+          "word": "the",
+          "start": 223.52,
+          "end": 223.92,
+          "index": 559
+        },
+        {
+          "word": "children",
+          "start": 223.92,
+          "end": 224.4,
+          "index": 560
+        },
+        {
+          "word": "of",
+          "start": 224.4,
+          "end": 224.72,
+          "index": 561
+        },
+        {
+          "word": "Israel.",
+          "start": 224.72,
+          "end": 225.12,
+          "index": 562
+        }
+      ],
+      "totalDuration": 225.12
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "book": "EXO",
+    "chapter": 33,
+    "method": "synthetic",
+    "generatedAt": "2025-11-03T07:06:08.434743"
+  }
+}

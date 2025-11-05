@@ -130,8 +130,9 @@ const ImageStudioPage: React.FC = () => {
                         </div>
                     )}
                     {generatedImages.map((img, index) => (
-                        <div key={index} className="relative group aspect-square bg-primary rounded-lg">
-                            <img src={img} alt={`Generated art ${index + 1}`} className="w-full h-full object-cover rounded-lg"/>
+                        <div key={index} className="relative group aspect-square bg-primary rounded-lg overflow-hidden">
+                            <img src={img} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-40" aria-hidden="true" />
+                            <img src={img} alt={`Generated art ${index + 1}`} className="relative w-full h-full object-cover rounded-lg"/>
                             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center">
                                 <button onClick={() => handleDownload(img)} className="p-2 bg-white/80 text-black rounded-full hover:bg-white">
                                     <Download size={24}/>

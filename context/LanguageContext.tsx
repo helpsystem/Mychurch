@@ -1,5 +1,5 @@
 
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { Language, LanguageContextType } from '../types';
 import { getTranslation } from '../lib/i18n';
 
@@ -17,4 +17,13 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       {children}
     </LanguageContext.Provider>
   );
+};
+
+// Custom hook to use the Language context
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
 };

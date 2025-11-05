@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تست API کتاب مقدس</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .book-list {
+            margin-top: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            background: #16213e;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .book-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #0f3460;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            background: #4ade80;
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #22c55e;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 تست API کتاب مقدس</h1>
+    <button onclick="testAPI()">دریافت کتاب‌های مقدس</button>
+    
+    <div id="status" style="margin-top: 20px; font-size: 18px;"></div>
+    <div id="results" class="book-list"></div>
+
+    <script>
+        async function testAPI() {
+            const statusDiv = document.getElementById('status');
+            const resultsDiv = document.getElementById('results');
+            
+            statusDiv.innerHTML = '⏳ در حال بارگذاری...';
+            resultsDiv.innerHTML = '';
+            
+            try {
+                console.log('🚀 Fetching from: http://localhost:3001/api/bible/books');
+                const response = await fetch('http://localhost:3001/api/bible/books');
+                console.log('📡 Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('📦 Received data:', data);
+                
+                if (data.success && data.books) {
+                    statusDiv.innerHTML = `<span class="success">✅ موفق! ${data.books.length} کتاب دریافت شد</span>`;
+                    
+                    resultsDiv.innerHTML = data.books.map((book, index) => `
+                        <div class="book-item">
+                            <div>
+                                <strong>${index + 1}. ${book.name.fa || book.name.en}</strong>
+                                <div style="font-size: 12px; color: #94a3b8;">
+                                    کد: ${book.key} | فصل‌ها: ${book.chapters} | عهد: ${book.testament === 'OT' ? 'عهد عتیق' : 'عهد جدید'}
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                ${book.name.en}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    statusDiv.innerHTML = '<span class="error">❌ خطا: ساختار داده نامعتبر</span>';
+                    resultsDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                console.error('❌ Error:', error);
+                statusDiv.innerHTML = `<span class="error">❌ خطا: ${error.message}</span>`;
+                resultsDiv.innerHTML = `<pre style="color: #f87171;">${error.stack}</pre>`;
+            }
+        }
+        
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            setTimeout(testAPI, 500);
+        });
+    </script>
+</body>
+</html>

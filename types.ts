@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export type Language = 'en' | 'fa' | 'es';
+export type Language = 'en' | 'fa';
 
 export interface AdminMessage {
   id: string;
@@ -204,6 +204,7 @@ export interface BibleBook {
   key: string;
   name: Record<Language, string>;
   chapters: number;
+  testament?: 'OT' | 'NT';  // ✅ Testament field for filtering
 }
 
 export interface TimedWord {

@@ -15,7 +15,10 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
                 {testimonial.text[lang]}
             </p>
             <div className="flex flex-row items-center mt-4">
-                <img src={DEFAULT_AVATAR_URL} alt={testimonial.authorName} className="w-12 h-12 rounded-full" />
+                <div className="w-12 h-12 rounded-full overflow-hidden relative flex-shrink-0">
+                    <img src={DEFAULT_AVATAR_URL} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-50" aria-hidden="true" />
+                    <img src={DEFAULT_AVATAR_URL} alt={testimonial.authorName} className="relative w-full h-full object-cover" />
+                </div>
                 <div className="flex flex-col ml-4 rtl:mr-4 rtl:ml-0">
                     <h4 className="font-semibold text-white">{testimonial.isAnonymous ? 'Anonymous' : testimonial.authorName}</h4>
                 </div>

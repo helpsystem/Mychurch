@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
-import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail, Zap } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import DatabaseUpdateManager from '../components/DatabaseUpdateManager';
 import { Link, useNavigate } from 'react-router-dom';
@@ -133,6 +133,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'users', label: t('user'), icon: <Users/>, roles: ['SUPER_ADMIN'] },
             { id: 'communications', label: t('communications'), icon: <Send/>, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'notifications', label: t('pushNotifications'), icon: <MessageCircle/>, roles: ['SUPER_ADMIN'] },
+            { id: 'automations', label: lang === 'fa' ? 'اتوماسیون n8n' : 'n8n Automations', icon: <Zap/>, roles: ['SUPER_ADMIN'], externalLink: '/admin/automations' },
             { id: 'settings', label: t('siteSettings'), icon: <SlidersHorizontal/>, roles: ['SUPER_ADMIN'] },
             { id: 'storage', label: t('storage'), icon: <HardDrive/>, roles: ['SUPER_ADMIN'] },
             { id: 'database', label: t('dbUpdatesTitle'), icon: <DatabaseZap/>, roles: ['SUPER_ADMIN'] },
@@ -176,6 +177,18 @@ const AdminDashboardPage: React.FC = () => {
          const inactiveClasses = 'text-dimWhite hover:bg-gray-800 hover:text-white';
          
          if (item.externalLink) {
+             // Check if it's an internal route (starts with /)
+             if (item.externalLink.startsWith('/admin/')) {
+                 return (
+                     <li key={item.id}>
+                        <Link to={item.externalLink} className={`${commonClasses} ${inactiveClasses}`}>
+                            {item.icon}
+                            <span>{item.label}</span>
+                        </Link>
+                    </li>
+                 );
+             }
+             // External link
              return (
                  <li key={item.id}>
                     <a href={item.externalLink} target="_blank" rel="noopener noreferrer" className={`${commonClasses} ${inactiveClasses}`}>
@@ -206,8 +219,11 @@ const AdminDashboardPage: React.FC = () => {
                 />
             )}
             <aside id="admin-sidebar" className="w-64 bg-black-gradient flex flex-col p-4 border-r border-gray-800">
-                <div className="flex items-center gap-3 mb-8 px-2">
-                    <img src={content.settings.logoUrl} alt="Logo" className="w-10 h-10"/>
+                <div className="flex items-center px-4 py-3 border-b border-gray-700 mb-8">
+                    <div className="w-10 h-10 rounded-full overflow-hidden relative mr-3">
+                        <img src={content.settings.logoUrl} alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-50" aria-hidden="true" />
+                        <img src={content.settings.logoUrl} alt="Logo" className="relative w-full h-full object-contain"/>
+                    </div>
                     <span className="text-white font-bold text-lg">{t('adminPanel')}</span>
                 </div>
                 <nav className="flex-grow overflow-y-auto pr-2">

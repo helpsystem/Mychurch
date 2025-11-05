@@ -1,0 +1,5375 @@
+{
+  "verses": [
+    {
+      "verse": 1,
+      "words": [
+        {
+          "word": "And",
+          "start": 0.0,
+          "end": 0.32,
+          "index": 0
+        },
+        {
+          "word": "there",
+          "start": 0.32,
+          "end": 0.72,
+          "index": 1
+        },
+        {
+          "word": "was",
+          "start": 0.72,
+          "end": 1.2,
+          "index": 2
+        },
+        {
+          "word": "a",
+          "start": 1.2,
+          "end": 1.52,
+          "index": 3
+        },
+        {
+          "word": "famine",
+          "start": 1.52,
+          "end": 1.92,
+          "index": 4
+        },
+        {
+          "word": "in",
+          "start": 1.92,
+          "end": 2.4,
+          "index": 5
+        },
+        {
+          "word": "the",
+          "start": 2.4,
+          "end": 2.72,
+          "index": 6
+        },
+        {
+          "word": "land,",
+          "start": 2.72,
+          "end": 3.12,
+          "index": 7
+        },
+        {
+          "word": "beside",
+          "start": 3.12,
+          "end": 3.6,
+          "index": 8
+        },
+        {
+          "word": "the",
+          "start": 3.6,
+          "end": 3.92,
+          "index": 9
+        },
+        {
+          "word": "first",
+          "start": 3.92,
+          "end": 4.32,
+          "index": 10
+        },
+        {
+          "word": "famine",
+          "start": 4.32,
+          "end": 4.8,
+          "index": 11
+        },
+        {
+          "word": "that",
+          "start": 4.8,
+          "end": 5.12,
+          "index": 12
+        },
+        {
+          "word": "was",
+          "start": 5.12,
+          "end": 5.52,
+          "index": 13
+        },
+        {
+          "word": "in",
+          "start": 5.52,
+          "end": 6.0,
+          "index": 14
+        },
+        {
+          "word": "the",
+          "start": 6.0,
+          "end": 6.32,
+          "index": 15
+        },
+        {
+          "word": "days",
+          "start": 6.32,
+          "end": 6.72,
+          "index": 16
+        },
+        {
+          "word": "of",
+          "start": 6.72,
+          "end": 7.2,
+          "index": 17
+        },
+        {
+          "word": "Abraham.",
+          "start": 7.2,
+          "end": 7.52,
+          "index": 18
+        },
+        {
+          "word": "And",
+          "start": 7.52,
+          "end": 7.92,
+          "index": 19
+        },
+        {
+          "word": "Isaac",
+          "start": 7.92,
+          "end": 8.4,
+          "index": 20
+        },
+        {
+          "word": "went",
+          "start": 8.4,
+          "end": 8.72,
+          "index": 21
+        },
+        {
+          "word": "unto",
+          "start": 8.72,
+          "end": 9.12,
+          "index": 22
+        },
+        {
+          "word": "Abimelech",
+          "start": 9.12,
+          "end": 9.6,
+          "index": 23
+        },
+        {
+          "word": "king",
+          "start": 9.6,
+          "end": 9.92,
+          "index": 24
+        },
+        {
+          "word": "of",
+          "start": 9.92,
+          "end": 10.32,
+          "index": 25
+        },
+        {
+          "word": "the",
+          "start": 10.32,
+          "end": 10.8,
+          "index": 26
+        },
+        {
+          "word": "Philistines",
+          "start": 10.8,
+          "end": 11.12,
+          "index": 27
+        },
+        {
+          "word": "unto",
+          "start": 11.12,
+          "end": 11.52,
+          "index": 28
+        },
+        {
+          "word": "Gerar.",
+          "start": 11.52,
+          "end": 12.0,
+          "index": 29
+        },
+        {
+          "word": "And",
+          "start": 12.0,
+          "end": 12.32,
+          "index": 30
+        },
+        {
+          "word": "the",
+          "start": 12.32,
+          "end": 12.72,
+          "index": 31
+        },
+        {
+          "word": "LORD",
+          "start": 12.72,
+          "end": 13.2,
+          "index": 32
+        },
+        {
+          "word": "appeared",
+          "start": 13.2,
+          "end": 13.52,
+          "index": 33
+        },
+        {
+          "word": "unto",
+          "start": 13.52,
+          "end": 13.92,
+          "index": 34
+        },
+        {
+          "word": "him,",
+          "start": 13.92,
+          "end": 14.4,
+          "index": 35
+        },
+        {
+          "word": "and",
+          "start": 14.4,
+          "end": 14.72,
+          "index": 36
+        },
+        {
+          "word": "said,",
+          "start": 14.72,
+          "end": 15.12,
+          "index": 37
+        },
+        {
+          "word": "Go",
+          "start": 15.12,
+          "end": 15.6,
+          "index": 38
+        },
+        {
+          "word": "not",
+          "start": 15.6,
+          "end": 15.92,
+          "index": 39
+        },
+        {
+          "word": "down",
+          "start": 15.92,
+          "end": 16.32,
+          "index": 40
+        },
+        {
+          "word": "into",
+          "start": 16.32,
+          "end": 16.8,
+          "index": 41
+        },
+        {
+          "word": "Egypt;",
+          "start": 16.8,
+          "end": 17.12,
+          "index": 42
+        },
+        {
+          "word": "dwell",
+          "start": 17.12,
+          "end": 17.52,
+          "index": 43
+        },
+        {
+          "word": "in",
+          "start": 17.52,
+          "end": 18.0,
+          "index": 44
+        },
+        {
+          "word": "the",
+          "start": 18.0,
+          "end": 18.32,
+          "index": 45
+        },
+        {
+          "word": "land",
+          "start": 18.32,
+          "end": 18.72,
+          "index": 46
+        },
+        {
+          "word": "which",
+          "start": 18.72,
+          "end": 19.2,
+          "index": 47
+        },
+        {
+          "word": "I",
+          "start": 19.2,
+          "end": 19.52,
+          "index": 48
+        },
+        {
+          "word": "shall",
+          "start": 19.52,
+          "end": 19.92,
+          "index": 49
+        },
+        {
+          "word": "tell",
+          "start": 19.92,
+          "end": 20.4,
+          "index": 50
+        },
+        {
+          "word": "thee",
+          "start": 20.4,
+          "end": 20.72,
+          "index": 51
+        },
+        {
+          "word": "of:",
+          "start": 20.72,
+          "end": 21.12,
+          "index": 52
+        },
+        {
+          "word": "Sojourn",
+          "start": 21.12,
+          "end": 21.6,
+          "index": 53
+        },
+        {
+          "word": "in",
+          "start": 21.6,
+          "end": 21.92,
+          "index": 54
+        },
+        {
+          "word": "this",
+          "start": 21.92,
+          "end": 22.32,
+          "index": 55
+        },
+        {
+          "word": "land,",
+          "start": 22.32,
+          "end": 22.8,
+          "index": 56
+        },
+        {
+          "word": "and",
+          "start": 22.8,
+          "end": 23.12,
+          "index": 57
+        },
+        {
+          "word": "I",
+          "start": 23.12,
+          "end": 23.52,
+          "index": 58
+        },
+        {
+          "word": "will",
+          "start": 23.52,
+          "end": 24.0,
+          "index": 59
+        },
+        {
+          "word": "be",
+          "start": 24.0,
+          "end": 24.32,
+          "index": 60
+        },
+        {
+          "word": "with",
+          "start": 24.32,
+          "end": 24.72,
+          "index": 61
+        },
+        {
+          "word": "thee,",
+          "start": 24.72,
+          "end": 25.2,
+          "index": 62
+        },
+        {
+          "word": "and",
+          "start": 25.2,
+          "end": 25.52,
+          "index": 63
+        },
+        {
+          "word": "will",
+          "start": 25.52,
+          "end": 25.92,
+          "index": 64
+        },
+        {
+          "word": "bless",
+          "start": 25.92,
+          "end": 26.4,
+          "index": 65
+        },
+        {
+          "word": "thee;",
+          "start": 26.4,
+          "end": 26.72,
+          "index": 66
+        },
+        {
+          "word": "for",
+          "start": 26.72,
+          "end": 27.12,
+          "index": 67
+        },
+        {
+          "word": "unto",
+          "start": 27.12,
+          "end": 27.6,
+          "index": 68
+        },
+        {
+          "word": "thee,",
+          "start": 27.6,
+          "end": 27.92,
+          "index": 69
+        },
+        {
+          "word": "and",
+          "start": 27.92,
+          "end": 28.32,
+          "index": 70
+        },
+        {
+          "word": "unto",
+          "start": 28.32,
+          "end": 28.8,
+          "index": 71
+        },
+        {
+          "word": "thy",
+          "start": 28.8,
+          "end": 29.12,
+          "index": 72
+        },
+        {
+          "word": "seed,",
+          "start": 29.12,
+          "end": 29.52,
+          "index": 73
+        },
+        {
+          "word": "I",
+          "start": 29.52,
+          "end": 30.0,
+          "index": 74
+        },
+        {
+          "word": "will",
+          "start": 30.0,
+          "end": 30.32,
+          "index": 75
+        },
+        {
+          "word": "give",
+          "start": 30.32,
+          "end": 30.72,
+          "index": 76
+        },
+        {
+          "word": "all",
+          "start": 30.72,
+          "end": 31.2,
+          "index": 77
+        },
+        {
+          "word": "these",
+          "start": 31.2,
+          "end": 31.52,
+          "index": 78
+        },
+        {
+          "word": "countries,",
+          "start": 31.52,
+          "end": 31.92,
+          "index": 79
+        },
+        {
+          "word": "and",
+          "start": 31.92,
+          "end": 32.4,
+          "index": 80
+        },
+        {
+          "word": "I",
+          "start": 32.4,
+          "end": 32.72,
+          "index": 81
+        },
+        {
+          "word": "will",
+          "start": 32.72,
+          "end": 33.12,
+          "index": 82
+        },
+        {
+          "word": "perform",
+          "start": 33.12,
+          "end": 33.6,
+          "index": 83
+        },
+        {
+          "word": "the",
+          "start": 33.6,
+          "end": 33.92,
+          "index": 84
+        },
+        {
+          "word": "oath",
+          "start": 33.92,
+          "end": 34.32,
+          "index": 85
+        },
+        {
+          "word": "which",
+          "start": 34.32,
+          "end": 34.8,
+          "index": 86
+        },
+        {
+          "word": "I",
+          "start": 34.8,
+          "end": 35.12,
+          "index": 87
+        },
+        {
+          "word": "sware",
+          "start": 35.12,
+          "end": 35.52,
+          "index": 88
+        },
+        {
+          "word": "unto",
+          "start": 35.52,
+          "end": 36.0,
+          "index": 89
+        },
+        {
+          "word": "Abraham",
+          "start": 36.0,
+          "end": 36.32,
+          "index": 90
+        },
+        {
+          "word": "thy",
+          "start": 36.32,
+          "end": 36.72,
+          "index": 91
+        },
+        {
+          "word": "father;",
+          "start": 36.72,
+          "end": 37.2,
+          "index": 92
+        },
+        {
+          "word": "And",
+          "start": 37.2,
+          "end": 37.52,
+          "index": 93
+        },
+        {
+          "word": "I",
+          "start": 37.52,
+          "end": 37.92,
+          "index": 94
+        },
+        {
+          "word": "will",
+          "start": 37.92,
+          "end": 38.4,
+          "index": 95
+        },
+        {
+          "word": "make",
+          "start": 38.4,
+          "end": 38.72,
+          "index": 96
+        },
+        {
+          "word": "thy",
+          "start": 38.72,
+          "end": 39.12,
+          "index": 97
+        },
+        {
+          "word": "seed",
+          "start": 39.12,
+          "end": 39.6,
+          "index": 98
+        },
+        {
+          "word": "to",
+          "start": 39.6,
+          "end": 39.92,
+          "index": 99
+        },
+        {
+          "word": "multiply",
+          "start": 39.92,
+          "end": 40.32,
+          "index": 100
+        },
+        {
+          "word": "as",
+          "start": 40.32,
+          "end": 40.8,
+          "index": 101
+        },
+        {
+          "word": "the",
+          "start": 40.8,
+          "end": 41.12,
+          "index": 102
+        },
+        {
+          "word": "stars",
+          "start": 41.12,
+          "end": 41.52,
+          "index": 103
+        },
+        {
+          "word": "of",
+          "start": 41.52,
+          "end": 42.0,
+          "index": 104
+        },
+        {
+          "word": "heaven,",
+          "start": 42.0,
+          "end": 42.32,
+          "index": 105
+        },
+        {
+          "word": "and",
+          "start": 42.32,
+          "end": 42.72,
+          "index": 106
+        },
+        {
+          "word": "will",
+          "start": 42.72,
+          "end": 43.2,
+          "index": 107
+        },
+        {
+          "word": "give",
+          "start": 43.2,
+          "end": 43.52,
+          "index": 108
+        },
+        {
+          "word": "unto",
+          "start": 43.52,
+          "end": 43.92,
+          "index": 109
+        },
+        {
+          "word": "thy",
+          "start": 43.92,
+          "end": 44.4,
+          "index": 110
+        },
+        {
+          "word": "seed",
+          "start": 44.4,
+          "end": 44.72,
+          "index": 111
+        },
+        {
+          "word": "all",
+          "start": 44.72,
+          "end": 45.12,
+          "index": 112
+        },
+        {
+          "word": "these",
+          "start": 45.12,
+          "end": 45.6,
+          "index": 113
+        },
+        {
+          "word": "countries;",
+          "start": 45.6,
+          "end": 45.92,
+          "index": 114
+        },
+        {
+          "word": "and",
+          "start": 45.92,
+          "end": 46.32,
+          "index": 115
+        },
+        {
+          "word": "in",
+          "start": 46.32,
+          "end": 46.8,
+          "index": 116
+        },
+        {
+          "word": "thy",
+          "start": 46.8,
+          "end": 47.12,
+          "index": 117
+        },
+        {
+          "word": "seed",
+          "start": 47.12,
+          "end": 47.52,
+          "index": 118
+        },
+        {
+          "word": "shall",
+          "start": 47.52,
+          "end": 48.0,
+          "index": 119
+        },
+        {
+          "word": "all",
+          "start": 48.0,
+          "end": 48.32,
+          "index": 120
+        },
+        {
+          "word": "the",
+          "start": 48.32,
+          "end": 48.72,
+          "index": 121
+        },
+        {
+          "word": "nations",
+          "start": 48.72,
+          "end": 49.2,
+          "index": 122
+        },
+        {
+          "word": "of",
+          "start": 49.2,
+          "end": 49.52,
+          "index": 123
+        },
+        {
+          "word": "the",
+          "start": 49.52,
+          "end": 49.92,
+          "index": 124
+        },
+        {
+          "word": "earth",
+          "start": 49.92,
+          "end": 50.4,
+          "index": 125
+        },
+        {
+          "word": "be",
+          "start": 50.4,
+          "end": 50.72,
+          "index": 126
+        },
+        {
+          "word": "blessed;",
+          "start": 50.72,
+          "end": 51.12,
+          "index": 127
+        },
+        {
+          "word": "Because",
+          "start": 51.12,
+          "end": 51.6,
+          "index": 128
+        },
+        {
+          "word": "that",
+          "start": 51.6,
+          "end": 51.92,
+          "index": 129
+        },
+        {
+          "word": "Abraham",
+          "start": 51.92,
+          "end": 52.32,
+          "index": 130
+        },
+        {
+          "word": "obeyed",
+          "start": 52.32,
+          "end": 52.8,
+          "index": 131
+        },
+        {
+          "word": "my",
+          "start": 52.8,
+          "end": 53.12,
+          "index": 132
+        },
+        {
+          "word": "voice,",
+          "start": 53.12,
+          "end": 53.52,
+          "index": 133
+        },
+        {
+          "word": "and",
+          "start": 53.52,
+          "end": 54.0,
+          "index": 134
+        },
+        {
+          "word": "kept",
+          "start": 54.0,
+          "end": 54.32,
+          "index": 135
+        },
+        {
+          "word": "my",
+          "start": 54.32,
+          "end": 54.72,
+          "index": 136
+        },
+        {
+          "word": "charge,",
+          "start": 54.72,
+          "end": 55.2,
+          "index": 137
+        },
+        {
+          "word": "my",
+          "start": 55.2,
+          "end": 55.52,
+          "index": 138
+        },
+        {
+          "word": "commandments,",
+          "start": 55.52,
+          "end": 55.92,
+          "index": 139
+        },
+        {
+          "word": "my",
+          "start": 55.92,
+          "end": 56.4,
+          "index": 140
+        },
+        {
+          "word": "statutes,",
+          "start": 56.4,
+          "end": 56.72,
+          "index": 141
+        },
+        {
+          "word": "and",
+          "start": 56.72,
+          "end": 57.12,
+          "index": 142
+        },
+        {
+          "word": "my",
+          "start": 57.12,
+          "end": 57.6,
+          "index": 143
+        },
+        {
+          "word": "laws.",
+          "start": 57.6,
+          "end": 57.92,
+          "index": 144
+        },
+        {
+          "word": "¶",
+          "start": 57.92,
+          "end": 58.32,
+          "index": 145
+        },
+        {
+          "word": "And",
+          "start": 58.32,
+          "end": 58.8,
+          "index": 146
+        },
+        {
+          "word": "Isaac",
+          "start": 58.8,
+          "end": 59.12,
+          "index": 147
+        },
+        {
+          "word": "dwelt",
+          "start": 59.12,
+          "end": 59.52,
+          "index": 148
+        },
+        {
+          "word": "in",
+          "start": 59.52,
+          "end": 60.0,
+          "index": 149
+        },
+        {
+          "word": "Gerar:",
+          "start": 60.0,
+          "end": 60.32,
+          "index": 150
+        },
+        {
+          "word": "And",
+          "start": 60.32,
+          "end": 60.72,
+          "index": 151
+        },
+        {
+          "word": "the",
+          "start": 60.72,
+          "end": 61.2,
+          "index": 152
+        },
+        {
+          "word": "men",
+          "start": 61.2,
+          "end": 61.52,
+          "index": 153
+        },
+        {
+          "word": "of",
+          "start": 61.52,
+          "end": 61.92,
+          "index": 154
+        },
+        {
+          "word": "the",
+          "start": 61.92,
+          "end": 62.4,
+          "index": 155
+        },
+        {
+          "word": "place",
+          "start": 62.4,
+          "end": 62.72,
+          "index": 156
+        },
+        {
+          "word": "asked",
+          "start": 62.72,
+          "end": 63.12,
+          "index": 157
+        },
+        {
+          "word": "him",
+          "start": 63.12,
+          "end": 63.6,
+          "index": 158
+        },
+        {
+          "word": "of",
+          "start": 63.6,
+          "end": 63.92,
+          "index": 159
+        },
+        {
+          "word": "his",
+          "start": 63.92,
+          "end": 64.32,
+          "index": 160
+        },
+        {
+          "word": "wife;",
+          "start": 64.32,
+          "end": 64.8,
+          "index": 161
+        },
+        {
+          "word": "and",
+          "start": 64.8,
+          "end": 65.12,
+          "index": 162
+        },
+        {
+          "word": "he",
+          "start": 65.12,
+          "end": 65.52,
+          "index": 163
+        },
+        {
+          "word": "said,",
+          "start": 65.52,
+          "end": 66.0,
+          "index": 164
+        },
+        {
+          "word": "She",
+          "start": 66.0,
+          "end": 66.32,
+          "index": 165
+        },
+        {
+          "word": "is",
+          "start": 66.32,
+          "end": 66.72,
+          "index": 166
+        },
+        {
+          "word": "my",
+          "start": 66.72,
+          "end": 67.2,
+          "index": 167
+        },
+        {
+          "word": "sister:",
+          "start": 67.2,
+          "end": 67.52,
+          "index": 168
+        },
+        {
+          "word": "for",
+          "start": 67.52,
+          "end": 67.92,
+          "index": 169
+        },
+        {
+          "word": "he",
+          "start": 67.92,
+          "end": 68.4,
+          "index": 170
+        },
+        {
+          "word": "feared",
+          "start": 68.4,
+          "end": 68.72,
+          "index": 171
+        },
+        {
+          "word": "to",
+          "start": 68.72,
+          "end": 69.12,
+          "index": 172
+        },
+        {
+          "word": "say,",
+          "start": 69.12,
+          "end": 69.6,
+          "index": 173
+        },
+        {
+          "word": "She",
+          "start": 69.6,
+          "end": 69.92,
+          "index": 174
+        },
+        {
+          "word": "is",
+          "start": 69.92,
+          "end": 70.32,
+          "index": 175
+        },
+        {
+          "word": "my",
+          "start": 70.32,
+          "end": 70.8,
+          "index": 176
+        },
+        {
+          "word": "wife;",
+          "start": 70.8,
+          "end": 71.12,
+          "index": 177
+        },
+        {
+          "word": "lest,",
+          "start": 71.12,
+          "end": 71.52,
+          "index": 178
+        },
+        {
+          "word": "said",
+          "start": 71.52,
+          "end": 72.0,
+          "index": 179
+        },
+        {
+          "word": "he,",
+          "start": 72.0,
+          "end": 72.32,
+          "index": 180
+        },
+        {
+          "word": "the",
+          "start": 72.32,
+          "end": 72.72,
+          "index": 181
+        },
+        {
+          "word": "men",
+          "start": 72.72,
+          "end": 73.2,
+          "index": 182
+        },
+        {
+          "word": "of",
+          "start": 73.2,
+          "end": 73.52,
+          "index": 183
+        },
+        {
+          "word": "the",
+          "start": 73.52,
+          "end": 73.92,
+          "index": 184
+        },
+        {
+          "word": "place",
+          "start": 73.92,
+          "end": 74.4,
+          "index": 185
+        },
+        {
+          "word": "should",
+          "start": 74.4,
+          "end": 74.72,
+          "index": 186
+        },
+        {
+          "word": "kill",
+          "start": 74.72,
+          "end": 75.12,
+          "index": 187
+        },
+        {
+          "word": "me",
+          "start": 75.12,
+          "end": 75.6,
+          "index": 188
+        },
+        {
+          "word": "for",
+          "start": 75.6,
+          "end": 75.92,
+          "index": 189
+        },
+        {
+          "word": "Rebekah;",
+          "start": 75.92,
+          "end": 76.32,
+          "index": 190
+        },
+        {
+          "word": "because",
+          "start": 76.32,
+          "end": 76.8,
+          "index": 191
+        },
+        {
+          "word": "she",
+          "start": 76.8,
+          "end": 77.12,
+          "index": 192
+        },
+        {
+          "word": "was",
+          "start": 77.12,
+          "end": 77.52,
+          "index": 193
+        },
+        {
+          "word": "fair",
+          "start": 77.52,
+          "end": 78.0,
+          "index": 194
+        },
+        {
+          "word": "to",
+          "start": 78.0,
+          "end": 78.32,
+          "index": 195
+        },
+        {
+          "word": "look",
+          "start": 78.32,
+          "end": 78.72,
+          "index": 196
+        },
+        {
+          "word": "upon.",
+          "start": 78.72,
+          "end": 79.2,
+          "index": 197
+        },
+        {
+          "word": "And",
+          "start": 79.2,
+          "end": 79.52,
+          "index": 198
+        },
+        {
+          "word": "it",
+          "start": 79.52,
+          "end": 79.92,
+          "index": 199
+        },
+        {
+          "word": "came",
+          "start": 79.92,
+          "end": 80.4,
+          "index": 200
+        },
+        {
+          "word": "to",
+          "start": 80.4,
+          "end": 80.72,
+          "index": 201
+        },
+        {
+          "word": "pass,",
+          "start": 80.72,
+          "end": 81.12,
+          "index": 202
+        },
+        {
+          "word": "when",
+          "start": 81.12,
+          "end": 81.6,
+          "index": 203
+        },
+        {
+          "word": "he",
+          "start": 81.6,
+          "end": 81.92,
+          "index": 204
+        },
+        {
+          "word": "had",
+          "start": 81.92,
+          "end": 82.32,
+          "index": 205
+        },
+        {
+          "word": "been",
+          "start": 82.32,
+          "end": 82.8,
+          "index": 206
+        },
+        {
+          "word": "there",
+          "start": 82.8,
+          "end": 83.12,
+          "index": 207
+        },
+        {
+          "word": "a",
+          "start": 83.12,
+          "end": 83.52,
+          "index": 208
+        },
+        {
+          "word": "long",
+          "start": 83.52,
+          "end": 84.0,
+          "index": 209
+        },
+        {
+          "word": "time,",
+          "start": 84.0,
+          "end": 84.32,
+          "index": 210
+        },
+        {
+          "word": "that",
+          "start": 84.32,
+          "end": 84.72,
+          "index": 211
+        },
+        {
+          "word": "Abimelech",
+          "start": 84.72,
+          "end": 85.2,
+          "index": 212
+        },
+        {
+          "word": "king",
+          "start": 85.2,
+          "end": 85.52,
+          "index": 213
+        },
+        {
+          "word": "of",
+          "start": 85.52,
+          "end": 85.92,
+          "index": 214
+        },
+        {
+          "word": "the",
+          "start": 85.92,
+          "end": 86.4,
+          "index": 215
+        },
+        {
+          "word": "Philistines",
+          "start": 86.4,
+          "end": 86.72,
+          "index": 216
+        },
+        {
+          "word": "looked",
+          "start": 86.72,
+          "end": 87.12,
+          "index": 217
+        },
+        {
+          "word": "out",
+          "start": 87.12,
+          "end": 87.6,
+          "index": 218
+        },
+        {
+          "word": "at",
+          "start": 87.6,
+          "end": 87.92,
+          "index": 219
+        },
+        {
+          "word": "a",
+          "start": 87.92,
+          "end": 88.32,
+          "index": 220
+        },
+        {
+          "word": "window,",
+          "start": 88.32,
+          "end": 88.8,
+          "index": 221
+        },
+        {
+          "word": "and",
+          "start": 88.8,
+          "end": 89.12,
+          "index": 222
+        },
+        {
+          "word": "saw,",
+          "start": 89.12,
+          "end": 89.52,
+          "index": 223
+        },
+        {
+          "word": "and,",
+          "start": 89.52,
+          "end": 90.0,
+          "index": 224
+        },
+        {
+          "word": "behold,",
+          "start": 90.0,
+          "end": 90.32,
+          "index": 225
+        },
+        {
+          "word": "Isaac",
+          "start": 90.32,
+          "end": 90.72,
+          "index": 226
+        },
+        {
+          "word": "was",
+          "start": 90.72,
+          "end": 91.2,
+          "index": 227
+        },
+        {
+          "word": "sporting",
+          "start": 91.2,
+          "end": 91.52,
+          "index": 228
+        },
+        {
+          "word": "with",
+          "start": 91.52,
+          "end": 91.92,
+          "index": 229
+        },
+        {
+          "word": "Rebekah",
+          "start": 91.92,
+          "end": 92.4,
+          "index": 230
+        },
+        {
+          "word": "his",
+          "start": 92.4,
+          "end": 92.72,
+          "index": 231
+        },
+        {
+          "word": "wife.",
+          "start": 92.72,
+          "end": 93.12,
+          "index": 232
+        },
+        {
+          "word": "And",
+          "start": 93.12,
+          "end": 93.6,
+          "index": 233
+        },
+        {
+          "word": "Abimelech",
+          "start": 93.6,
+          "end": 93.92,
+          "index": 234
+        },
+        {
+          "word": "called",
+          "start": 93.92,
+          "end": 94.32,
+          "index": 235
+        },
+        {
+          "word": "Isaac,",
+          "start": 94.32,
+          "end": 94.8,
+          "index": 236
+        },
+        {
+          "word": "and",
+          "start": 94.8,
+          "end": 95.12,
+          "index": 237
+        },
+        {
+          "word": "said,",
+          "start": 95.12,
+          "end": 95.52,
+          "index": 238
+        },
+        {
+          "word": "Behold,",
+          "start": 95.52,
+          "end": 96.0,
+          "index": 239
+        },
+        {
+          "word": "of",
+          "start": 96.0,
+          "end": 96.32,
+          "index": 240
+        },
+        {
+          "word": "a",
+          "start": 96.32,
+          "end": 96.72,
+          "index": 241
+        },
+        {
+          "word": "surety",
+          "start": 96.72,
+          "end": 97.2,
+          "index": 242
+        },
+        {
+          "word": "she",
+          "start": 97.2,
+          "end": 97.52,
+          "index": 243
+        },
+        {
+          "word": "is",
+          "start": 97.52,
+          "end": 97.92,
+          "index": 244
+        },
+        {
+          "word": "thy",
+          "start": 97.92,
+          "end": 98.4,
+          "index": 245
+        },
+        {
+          "word": "wife:",
+          "start": 98.4,
+          "end": 98.72,
+          "index": 246
+        },
+        {
+          "word": "and",
+          "start": 98.72,
+          "end": 99.12,
+          "index": 247
+        },
+        {
+          "word": "how",
+          "start": 99.12,
+          "end": 99.6,
+          "index": 248
+        },
+        {
+          "word": "saidst",
+          "start": 99.6,
+          "end": 99.92,
+          "index": 249
+        },
+        {
+          "word": "thou,",
+          "start": 99.92,
+          "end": 100.32,
+          "index": 250
+        },
+        {
+          "word": "She",
+          "start": 100.32,
+          "end": 100.8,
+          "index": 251
+        },
+        {
+          "word": "is",
+          "start": 100.8,
+          "end": 101.12,
+          "index": 252
+        },
+        {
+          "word": "my",
+          "start": 101.12,
+          "end": 101.52,
+          "index": 253
+        },
+        {
+          "word": "sister?",
+          "start": 101.52,
+          "end": 102.0,
+          "index": 254
+        },
+        {
+          "word": "And",
+          "start": 102.0,
+          "end": 102.32,
+          "index": 255
+        },
+        {
+          "word": "Isaac",
+          "start": 102.32,
+          "end": 102.72,
+          "index": 256
+        },
+        {
+          "word": "said",
+          "start": 102.72,
+          "end": 103.2,
+          "index": 257
+        },
+        {
+          "word": "unto",
+          "start": 103.2,
+          "end": 103.52,
+          "index": 258
+        },
+        {
+          "word": "him,",
+          "start": 103.52,
+          "end": 103.92,
+          "index": 259
+        },
+        {
+          "word": "Because",
+          "start": 103.92,
+          "end": 104.4,
+          "index": 260
+        },
+        {
+          "word": "I",
+          "start": 104.4,
+          "end": 104.72,
+          "index": 261
+        },
+        {
+          "word": "said,",
+          "start": 104.72,
+          "end": 105.12,
+          "index": 262
+        },
+        {
+          "word": "Lest",
+          "start": 105.12,
+          "end": 105.6,
+          "index": 263
+        },
+        {
+          "word": "I",
+          "start": 105.6,
+          "end": 105.92,
+          "index": 264
+        },
+        {
+          "word": "die",
+          "start": 105.92,
+          "end": 106.32,
+          "index": 265
+        },
+        {
+          "word": "for",
+          "start": 106.32,
+          "end": 106.8,
+          "index": 266
+        },
+        {
+          "word": "her.",
+          "start": 106.8,
+          "end": 107.12,
+          "index": 267
+        },
+        {
+          "word": "And",
+          "start": 107.12,
+          "end": 107.52,
+          "index": 268
+        },
+        {
+          "word": "Abimelech",
+          "start": 107.52,
+          "end": 108.0,
+          "index": 269
+        },
+        {
+          "word": "said,",
+          "start": 108.0,
+          "end": 108.32,
+          "index": 270
+        },
+        {
+          "word": "What",
+          "start": 108.32,
+          "end": 108.72,
+          "index": 271
+        },
+        {
+          "word": "is",
+          "start": 108.72,
+          "end": 109.2,
+          "index": 272
+        },
+        {
+          "word": "this",
+          "start": 109.2,
+          "end": 109.52,
+          "index": 273
+        },
+        {
+          "word": "thou",
+          "start": 109.52,
+          "end": 109.92,
+          "index": 274
+        },
+        {
+          "word": "hast",
+          "start": 109.92,
+          "end": 110.4,
+          "index": 275
+        },
+        {
+          "word": "done",
+          "start": 110.4,
+          "end": 110.72,
+          "index": 276
+        },
+        {
+          "word": "unto",
+          "start": 110.72,
+          "end": 111.12,
+          "index": 277
+        },
+        {
+          "word": "us?",
+          "start": 111.12,
+          "end": 111.6,
+          "index": 278
+        },
+        {
+          "word": "one",
+          "start": 111.6,
+          "end": 111.92,
+          "index": 279
+        },
+        {
+          "word": "of",
+          "start": 111.92,
+          "end": 112.32,
+          "index": 280
+        },
+        {
+          "word": "the",
+          "start": 112.32,
+          "end": 112.8,
+          "index": 281
+        },
+        {
+          "word": "people",
+          "start": 112.8,
+          "end": 113.12,
+          "index": 282
+        },
+        {
+          "word": "might",
+          "start": 113.12,
+          "end": 113.52,
+          "index": 283
+        },
+        {
+          "word": "lightly",
+          "start": 113.52,
+          "end": 114.0,
+          "index": 284
+        },
+        {
+          "word": "have",
+          "start": 114.0,
+          "end": 114.32,
+          "index": 285
+        },
+        {
+          "word": "lien",
+          "start": 114.32,
+          "end": 114.72,
+          "index": 286
+        },
+        {
+          "word": "with",
+          "start": 114.72,
+          "end": 115.2,
+          "index": 287
+        },
+        {
+          "word": "thy",
+          "start": 115.2,
+          "end": 115.52,
+          "index": 288
+        },
+        {
+          "word": "wife,",
+          "start": 115.52,
+          "end": 115.92,
+          "index": 289
+        },
+        {
+          "word": "and",
+          "start": 115.92,
+          "end": 116.4,
+          "index": 290
+        },
+        {
+          "word": "thou",
+          "start": 116.4,
+          "end": 116.72,
+          "index": 291
+        },
+        {
+          "word": "shouldest",
+          "start": 116.72,
+          "end": 117.12,
+          "index": 292
+        },
+        {
+          "word": "have",
+          "start": 117.12,
+          "end": 117.6,
+          "index": 293
+        },
+        {
+          "word": "brought",
+          "start": 117.6,
+          "end": 117.92,
+          "index": 294
+        },
+        {
+          "word": "guiltiness",
+          "start": 117.92,
+          "end": 118.32,
+          "index": 295
+        },
+        {
+          "word": "upon",
+          "start": 118.32,
+          "end": 118.8,
+          "index": 296
+        },
+        {
+          "word": "us.",
+          "start": 118.8,
+          "end": 119.12,
+          "index": 297
+        },
+        {
+          "word": "And",
+          "start": 119.12,
+          "end": 119.52,
+          "index": 298
+        },
+        {
+          "word": "Abimelech",
+          "start": 119.52,
+          "end": 120.0,
+          "index": 299
+        },
+        {
+          "word": "charged",
+          "start": 120.0,
+          "end": 120.32,
+          "index": 300
+        },
+        {
+          "word": "all",
+          "start": 120.32,
+          "end": 120.72,
+          "index": 301
+        },
+        {
+          "word": "his",
+          "start": 120.72,
+          "end": 121.2,
+          "index": 302
+        },
+        {
+          "word": "people,",
+          "start": 121.2,
+          "end": 121.52,
+          "index": 303
+        },
+        {
+          "word": "saying,",
+          "start": 121.52,
+          "end": 121.92,
+          "index": 304
+        },
+        {
+          "word": "He",
+          "start": 121.92,
+          "end": 122.4,
+          "index": 305
+        },
+        {
+          "word": "that",
+          "start": 122.4,
+          "end": 122.72,
+          "index": 306
+        },
+        {
+          "word": "toucheth",
+          "start": 122.72,
+          "end": 123.12,
+          "index": 307
+        },
+        {
+          "word": "this",
+          "start": 123.12,
+          "end": 123.6,
+          "index": 308
+        },
+        {
+          "word": "man",
+          "start": 123.6,
+          "end": 123.92,
+          "index": 309
+        },
+        {
+          "word": "or",
+          "start": 123.92,
+          "end": 124.32,
+          "index": 310
+        },
+        {
+          "word": "his",
+          "start": 124.32,
+          "end": 124.8,
+          "index": 311
+        },
+        {
+          "word": "wife",
+          "start": 124.8,
+          "end": 125.12,
+          "index": 312
+        },
+        {
+          "word": "shall",
+          "start": 125.12,
+          "end": 125.52,
+          "index": 313
+        },
+        {
+          "word": "surely",
+          "start": 125.52,
+          "end": 126.0,
+          "index": 314
+        },
+        {
+          "word": "be",
+          "start": 126.0,
+          "end": 126.32,
+          "index": 315
+        },
+        {
+          "word": "put",
+          "start": 126.32,
+          "end": 126.72,
+          "index": 316
+        },
+        {
+          "word": "to",
+          "start": 126.72,
+          "end": 127.2,
+          "index": 317
+        },
+        {
+          "word": "death.",
+          "start": 127.2,
+          "end": 127.52,
+          "index": 318
+        },
+        {
+          "word": "Then",
+          "start": 127.52,
+          "end": 127.92,
+          "index": 319
+        },
+        {
+          "word": "Isaac",
+          "start": 127.92,
+          "end": 128.4,
+          "index": 320
+        },
+        {
+          "word": "sowed",
+          "start": 128.4,
+          "end": 128.72,
+          "index": 321
+        },
+        {
+          "word": "in",
+          "start": 128.72,
+          "end": 129.12,
+          "index": 322
+        },
+        {
+          "word": "that",
+          "start": 129.12,
+          "end": 129.6,
+          "index": 323
+        },
+        {
+          "word": "land,",
+          "start": 129.6,
+          "end": 129.92,
+          "index": 324
+        },
+        {
+          "word": "and",
+          "start": 129.92,
+          "end": 130.32,
+          "index": 325
+        },
+        {
+          "word": "received",
+          "start": 130.32,
+          "end": 130.8,
+          "index": 326
+        },
+        {
+          "word": "in",
+          "start": 130.8,
+          "end": 131.12,
+          "index": 327
+        },
+        {
+          "word": "the",
+          "start": 131.12,
+          "end": 131.52,
+          "index": 328
+        },
+        {
+          "word": "same",
+          "start": 131.52,
+          "end": 132.0,
+          "index": 329
+        },
+        {
+          "word": "year",
+          "start": 132.0,
+          "end": 132.32,
+          "index": 330
+        },
+        {
+          "word": "an",
+          "start": 132.32,
+          "end": 132.72,
+          "index": 331
+        },
+        {
+          "word": "hundredfold:",
+          "start": 132.72,
+          "end": 133.2,
+          "index": 332
+        },
+        {
+          "word": "and",
+          "start": 133.2,
+          "end": 133.52,
+          "index": 333
+        },
+        {
+          "word": "the",
+          "start": 133.52,
+          "end": 133.92,
+          "index": 334
+        },
+        {
+          "word": "LORD",
+          "start": 133.92,
+          "end": 134.4,
+          "index": 335
+        },
+        {
+          "word": "blessed",
+          "start": 134.4,
+          "end": 134.72,
+          "index": 336
+        },
+        {
+          "word": "him.",
+          "start": 134.72,
+          "end": 135.12,
+          "index": 337
+        },
+        {
+          "word": "And",
+          "start": 135.12,
+          "end": 135.6,
+          "index": 338
+        },
+        {
+          "word": "the",
+          "start": 135.6,
+          "end": 135.92,
+          "index": 339
+        },
+        {
+          "word": "man",
+          "start": 135.92,
+          "end": 136.32,
+          "index": 340
+        },
+        {
+          "word": "waxed",
+          "start": 136.32,
+          "end": 136.8,
+          "index": 341
+        },
+        {
+          "word": "great,",
+          "start": 136.8,
+          "end": 137.12,
+          "index": 342
+        },
+        {
+          "word": "and",
+          "start": 137.12,
+          "end": 137.52,
+          "index": 343
+        },
+        {
+          "word": "went",
+          "start": 137.52,
+          "end": 138.0,
+          "index": 344
+        },
+        {
+          "word": "forward,",
+          "start": 138.0,
+          "end": 138.32,
+          "index": 345
+        },
+        {
+          "word": "and",
+          "start": 138.32,
+          "end": 138.72,
+          "index": 346
+        },
+        {
+          "word": "grew",
+          "start": 138.72,
+          "end": 139.2,
+          "index": 347
+        },
+        {
+          "word": "until",
+          "start": 139.2,
+          "end": 139.52,
+          "index": 348
+        },
+        {
+          "word": "he",
+          "start": 139.52,
+          "end": 139.92,
+          "index": 349
+        },
+        {
+          "word": "became",
+          "start": 139.92,
+          "end": 140.4,
+          "index": 350
+        },
+        {
+          "word": "very",
+          "start": 140.4,
+          "end": 140.72,
+          "index": 351
+        },
+        {
+          "word": "great:",
+          "start": 140.72,
+          "end": 141.12,
+          "index": 352
+        },
+        {
+          "word": "For",
+          "start": 141.12,
+          "end": 141.6,
+          "index": 353
+        },
+        {
+          "word": "he",
+          "start": 141.6,
+          "end": 141.92,
+          "index": 354
+        },
+        {
+          "word": "had",
+          "start": 141.92,
+          "end": 142.32,
+          "index": 355
+        },
+        {
+          "word": "possession",
+          "start": 142.32,
+          "end": 142.8,
+          "index": 356
+        },
+        {
+          "word": "of",
+          "start": 142.8,
+          "end": 143.12,
+          "index": 357
+        },
+        {
+          "word": "flocks,",
+          "start": 143.12,
+          "end": 143.52,
+          "index": 358
+        },
+        {
+          "word": "and",
+          "start": 143.52,
+          "end": 144.0,
+          "index": 359
+        },
+        {
+          "word": "possession",
+          "start": 144.0,
+          "end": 144.32,
+          "index": 360
+        },
+        {
+          "word": "of",
+          "start": 144.32,
+          "end": 144.72,
+          "index": 361
+        },
+        {
+          "word": "herds,",
+          "start": 144.72,
+          "end": 145.2,
+          "index": 362
+        },
+        {
+          "word": "and",
+          "start": 145.2,
+          "end": 145.52,
+          "index": 363
+        },
+        {
+          "word": "great",
+          "start": 145.52,
+          "end": 145.92,
+          "index": 364
+        },
+        {
+          "word": "store",
+          "start": 145.92,
+          "end": 146.4,
+          "index": 365
+        },
+        {
+          "word": "of",
+          "start": 146.4,
+          "end": 146.72,
+          "index": 366
+        },
+        {
+          "word": "servants:",
+          "start": 146.72,
+          "end": 147.12,
+          "index": 367
+        },
+        {
+          "word": "and",
+          "start": 147.12,
+          "end": 147.6,
+          "index": 368
+        },
+        {
+          "word": "the",
+          "start": 147.6,
+          "end": 147.92,
+          "index": 369
+        },
+        {
+          "word": "Philistines",
+          "start": 147.92,
+          "end": 148.32,
+          "index": 370
+        },
+        {
+          "word": "envied",
+          "start": 148.32,
+          "end": 148.8,
+          "index": 371
+        },
+        {
+          "word": "him.",
+          "start": 148.8,
+          "end": 149.12,
+          "index": 372
+        },
+        {
+          "word": "For",
+          "start": 149.12,
+          "end": 149.52,
+          "index": 373
+        },
+        {
+          "word": "all",
+          "start": 149.52,
+          "end": 150.0,
+          "index": 374
+        },
+        {
+          "word": "the",
+          "start": 150.0,
+          "end": 150.32,
+          "index": 375
+        },
+        {
+          "word": "wells",
+          "start": 150.32,
+          "end": 150.72,
+          "index": 376
+        },
+        {
+          "word": "which",
+          "start": 150.72,
+          "end": 151.2,
+          "index": 377
+        },
+        {
+          "word": "his",
+          "start": 151.2,
+          "end": 151.52,
+          "index": 378
+        },
+        {
+          "word": "father’s",
+          "start": 151.52,
+          "end": 151.92,
+          "index": 379
+        },
+        {
+          "word": "servants",
+          "start": 151.92,
+          "end": 152.4,
+          "index": 380
+        },
+        {
+          "word": "had",
+          "start": 152.4,
+          "end": 152.72,
+          "index": 381
+        },
+        {
+          "word": "digged",
+          "start": 152.72,
+          "end": 153.12,
+          "index": 382
+        },
+        {
+          "word": "in",
+          "start": 153.12,
+          "end": 153.6,
+          "index": 383
+        },
+        {
+          "word": "the",
+          "start": 153.6,
+          "end": 153.92,
+          "index": 384
+        },
+        {
+          "word": "days",
+          "start": 153.92,
+          "end": 154.32,
+          "index": 385
+        },
+        {
+          "word": "of",
+          "start": 154.32,
+          "end": 154.8,
+          "index": 386
+        },
+        {
+          "word": "Abraham",
+          "start": 154.8,
+          "end": 155.12,
+          "index": 387
+        },
+        {
+          "word": "his",
+          "start": 155.12,
+          "end": 155.52,
+          "index": 388
+        },
+        {
+          "word": "father,",
+          "start": 155.52,
+          "end": 156.0,
+          "index": 389
+        },
+        {
+          "word": "the",
+          "start": 156.0,
+          "end": 156.32,
+          "index": 390
+        },
+        {
+          "word": "Philistines",
+          "start": 156.32,
+          "end": 156.72,
+          "index": 391
+        },
+        {
+          "word": "had",
+          "start": 156.72,
+          "end": 157.2,
+          "index": 392
+        },
+        {
+          "word": "stopped",
+          "start": 157.2,
+          "end": 157.52,
+          "index": 393
+        },
+        {
+          "word": "them,",
+          "start": 157.52,
+          "end": 157.92,
+          "index": 394
+        },
+        {
+          "word": "and",
+          "start": 157.92,
+          "end": 158.4,
+          "index": 395
+        },
+        {
+          "word": "filled",
+          "start": 158.4,
+          "end": 158.72,
+          "index": 396
+        },
+        {
+          "word": "them",
+          "start": 158.72,
+          "end": 159.12,
+          "index": 397
+        },
+        {
+          "word": "with",
+          "start": 159.12,
+          "end": 159.6,
+          "index": 398
+        },
+        {
+          "word": "earth.",
+          "start": 159.6,
+          "end": 159.92,
+          "index": 399
+        },
+        {
+          "word": "And",
+          "start": 159.92,
+          "end": 160.32,
+          "index": 400
+        },
+        {
+          "word": "Abimelech",
+          "start": 160.32,
+          "end": 160.8,
+          "index": 401
+        },
+        {
+          "word": "said",
+          "start": 160.8,
+          "end": 161.12,
+          "index": 402
+        },
+        {
+          "word": "unto",
+          "start": 161.12,
+          "end": 161.52,
+          "index": 403
+        },
+        {
+          "word": "Isaac,",
+          "start": 161.52,
+          "end": 162.0,
+          "index": 404
+        },
+        {
+          "word": "Go",
+          "start": 162.0,
+          "end": 162.32,
+          "index": 405
+        },
+        {
+          "word": "from",
+          "start": 162.32,
+          "end": 162.72,
+          "index": 406
+        },
+        {
+          "word": "us;",
+          "start": 162.72,
+          "end": 163.2,
+          "index": 407
+        },
+        {
+          "word": "for",
+          "start": 163.2,
+          "end": 163.52,
+          "index": 408
+        },
+        {
+          "word": "thou",
+          "start": 163.52,
+          "end": 163.92,
+          "index": 409
+        },
+        {
+          "word": "art",
+          "start": 163.92,
+          "end": 164.4,
+          "index": 410
+        },
+        {
+          "word": "much",
+          "start": 164.4,
+          "end": 164.72,
+          "index": 411
+        },
+        {
+          "word": "mightier",
+          "start": 164.72,
+          "end": 165.12,
+          "index": 412
+        },
+        {
+          "word": "than",
+          "start": 165.12,
+          "end": 165.6,
+          "index": 413
+        },
+        {
+          "word": "we.",
+          "start": 165.6,
+          "end": 165.92,
+          "index": 414
+        },
+        {
+          "word": "¶",
+          "start": 165.92,
+          "end": 166.32,
+          "index": 415
+        },
+        {
+          "word": "And",
+          "start": 166.32,
+          "end": 166.8,
+          "index": 416
+        },
+        {
+          "word": "Isaac",
+          "start": 166.8,
+          "end": 167.12,
+          "index": 417
+        },
+        {
+          "word": "departed",
+          "start": 167.12,
+          "end": 167.52,
+          "index": 418
+        },
+        {
+          "word": "thence,",
+          "start": 167.52,
+          "end": 168.0,
+          "index": 419
+        },
+        {
+          "word": "and",
+          "start": 168.0,
+          "end": 168.32,
+          "index": 420
+        },
+        {
+          "word": "pitched",
+          "start": 168.32,
+          "end": 168.72,
+          "index": 421
+        },
+        {
+          "word": "his",
+          "start": 168.72,
+          "end": 169.2,
+          "index": 422
+        },
+        {
+          "word": "tent",
+          "start": 169.2,
+          "end": 169.52,
+          "index": 423
+        },
+        {
+          "word": "in",
+          "start": 169.52,
+          "end": 169.92,
+          "index": 424
+        },
+        {
+          "word": "the",
+          "start": 169.92,
+          "end": 170.4,
+          "index": 425
+        },
+        {
+          "word": "valley",
+          "start": 170.4,
+          "end": 170.72,
+          "index": 426
+        },
+        {
+          "word": "of",
+          "start": 170.72,
+          "end": 171.12,
+          "index": 427
+        },
+        {
+          "word": "Gerar,",
+          "start": 171.12,
+          "end": 171.6,
+          "index": 428
+        },
+        {
+          "word": "and",
+          "start": 171.6,
+          "end": 171.92,
+          "index": 429
+        },
+        {
+          "word": "dwelt",
+          "start": 171.92,
+          "end": 172.32,
+          "index": 430
+        },
+        {
+          "word": "there.",
+          "start": 172.32,
+          "end": 172.8,
+          "index": 431
+        },
+        {
+          "word": "And",
+          "start": 172.8,
+          "end": 173.12,
+          "index": 432
+        },
+        {
+          "word": "Isaac",
+          "start": 173.12,
+          "end": 173.52,
+          "index": 433
+        },
+        {
+          "word": "digged",
+          "start": 173.52,
+          "end": 174.0,
+          "index": 434
+        },
+        {
+          "word": "again",
+          "start": 174.0,
+          "end": 174.32,
+          "index": 435
+        },
+        {
+          "word": "the",
+          "start": 174.32,
+          "end": 174.72,
+          "index": 436
+        },
+        {
+          "word": "wells",
+          "start": 174.72,
+          "end": 175.2,
+          "index": 437
+        },
+        {
+          "word": "of",
+          "start": 175.2,
+          "end": 175.52,
+          "index": 438
+        },
+        {
+          "word": "water,",
+          "start": 175.52,
+          "end": 175.92,
+          "index": 439
+        },
+        {
+          "word": "which",
+          "start": 175.92,
+          "end": 176.4,
+          "index": 440
+        },
+        {
+          "word": "they",
+          "start": 176.4,
+          "end": 176.72,
+          "index": 441
+        },
+        {
+          "word": "had",
+          "start": 176.72,
+          "end": 177.12,
+          "index": 442
+        },
+        {
+          "word": "digged",
+          "start": 177.12,
+          "end": 177.6,
+          "index": 443
+        },
+        {
+          "word": "in",
+          "start": 177.6,
+          "end": 177.92,
+          "index": 444
+        },
+        {
+          "word": "the",
+          "start": 177.92,
+          "end": 178.32,
+          "index": 445
+        },
+        {
+          "word": "days",
+          "start": 178.32,
+          "end": 178.8,
+          "index": 446
+        },
+        {
+          "word": "of",
+          "start": 178.8,
+          "end": 179.12,
+          "index": 447
+        },
+        {
+          "word": "Abraham",
+          "start": 179.12,
+          "end": 179.52,
+          "index": 448
+        },
+        {
+          "word": "his",
+          "start": 179.52,
+          "end": 180.0,
+          "index": 449
+        },
+        {
+          "word": "father;",
+          "start": 180.0,
+          "end": 180.32,
+          "index": 450
+        },
+        {
+          "word": "for",
+          "start": 180.32,
+          "end": 180.72,
+          "index": 451
+        },
+        {
+          "word": "the",
+          "start": 180.72,
+          "end": 181.2,
+          "index": 452
+        },
+        {
+          "word": "Philistines",
+          "start": 181.2,
+          "end": 181.52,
+          "index": 453
+        },
+        {
+          "word": "had",
+          "start": 181.52,
+          "end": 181.92,
+          "index": 454
+        },
+        {
+          "word": "stopped",
+          "start": 181.92,
+          "end": 182.4,
+          "index": 455
+        },
+        {
+          "word": "them",
+          "start": 182.4,
+          "end": 182.72,
+          "index": 456
+        },
+        {
+          "word": "after",
+          "start": 182.72,
+          "end": 183.12,
+          "index": 457
+        },
+        {
+          "word": "the",
+          "start": 183.12,
+          "end": 183.6,
+          "index": 458
+        },
+        {
+          "word": "death",
+          "start": 183.6,
+          "end": 183.92,
+          "index": 459
+        },
+        {
+          "word": "of",
+          "start": 183.92,
+          "end": 184.32,
+          "index": 460
+        },
+        {
+          "word": "Abraham:",
+          "start": 184.32,
+          "end": 184.8,
+          "index": 461
+        },
+        {
+          "word": "and",
+          "start": 184.8,
+          "end": 185.12,
+          "index": 462
+        },
+        {
+          "word": "he",
+          "start": 185.12,
+          "end": 185.52,
+          "index": 463
+        },
+        {
+          "word": "called",
+          "start": 185.52,
+          "end": 186.0,
+          "index": 464
+        },
+        {
+          "word": "their",
+          "start": 186.0,
+          "end": 186.32,
+          "index": 465
+        },
+        {
+          "word": "names",
+          "start": 186.32,
+          "end": 186.72,
+          "index": 466
+        },
+        {
+          "word": "after",
+          "start": 186.72,
+          "end": 187.2,
+          "index": 467
+        },
+        {
+          "word": "the",
+          "start": 187.2,
+          "end": 187.52,
+          "index": 468
+        },
+        {
+          "word": "names",
+          "start": 187.52,
+          "end": 187.92,
+          "index": 469
+        },
+        {
+          "word": "by",
+          "start": 187.92,
+          "end": 188.4,
+          "index": 470
+        },
+        {
+          "word": "which",
+          "start": 188.4,
+          "end": 188.72,
+          "index": 471
+        },
+        {
+          "word": "his",
+          "start": 188.72,
+          "end": 189.12,
+          "index": 472
+        },
+        {
+          "word": "father",
+          "start": 189.12,
+          "end": 189.6,
+          "index": 473
+        },
+        {
+          "word": "had",
+          "start": 189.6,
+          "end": 189.92,
+          "index": 474
+        },
+        {
+          "word": "called",
+          "start": 189.92,
+          "end": 190.32,
+          "index": 475
+        },
+        {
+          "word": "them.",
+          "start": 190.32,
+          "end": 190.8,
+          "index": 476
+        },
+        {
+          "word": "And",
+          "start": 190.8,
+          "end": 191.12,
+          "index": 477
+        },
+        {
+          "word": "Isaac’s",
+          "start": 191.12,
+          "end": 191.52,
+          "index": 478
+        },
+        {
+          "word": "servants",
+          "start": 191.52,
+          "end": 192.0,
+          "index": 479
+        },
+        {
+          "word": "digged",
+          "start": 192.0,
+          "end": 192.32,
+          "index": 480
+        },
+        {
+          "word": "in",
+          "start": 192.32,
+          "end": 192.72,
+          "index": 481
+        },
+        {
+          "word": "the",
+          "start": 192.72,
+          "end": 193.2,
+          "index": 482
+        },
+        {
+          "word": "valley,",
+          "start": 193.2,
+          "end": 193.52,
+          "index": 483
+        },
+        {
+          "word": "and",
+          "start": 193.52,
+          "end": 193.92,
+          "index": 484
+        },
+        {
+          "word": "found",
+          "start": 193.92,
+          "end": 194.4,
+          "index": 485
+        },
+        {
+          "word": "there",
+          "start": 194.4,
+          "end": 194.72,
+          "index": 486
+        },
+        {
+          "word": "a",
+          "start": 194.72,
+          "end": 195.12,
+          "index": 487
+        },
+        {
+          "word": "well",
+          "start": 195.12,
+          "end": 195.6,
+          "index": 488
+        },
+        {
+          "word": "of",
+          "start": 195.6,
+          "end": 195.92,
+          "index": 489
+        },
+        {
+          "word": "springing",
+          "start": 195.92,
+          "end": 196.32,
+          "index": 490
+        },
+        {
+          "word": "water.",
+          "start": 196.32,
+          "end": 196.8,
+          "index": 491
+        },
+        {
+          "word": "And",
+          "start": 196.8,
+          "end": 197.12,
+          "index": 492
+        },
+        {
+          "word": "the",
+          "start": 197.12,
+          "end": 197.52,
+          "index": 493
+        },
+        {
+          "word": "herdmen",
+          "start": 197.52,
+          "end": 198.0,
+          "index": 494
+        },
+        {
+          "word": "of",
+          "start": 198.0,
+          "end": 198.32,
+          "index": 495
+        },
+        {
+          "word": "Gerar",
+          "start": 198.32,
+          "end": 198.72,
+          "index": 496
+        },
+        {
+          "word": "did",
+          "start": 198.72,
+          "end": 199.2,
+          "index": 497
+        },
+        {
+          "word": "strive",
+          "start": 199.2,
+          "end": 199.52,
+          "index": 498
+        },
+        {
+          "word": "with",
+          "start": 199.52,
+          "end": 199.92,
+          "index": 499
+        },
+        {
+          "word": "Isaac’s",
+          "start": 199.92,
+          "end": 200.4,
+          "index": 500
+        },
+        {
+          "word": "herdmen,",
+          "start": 200.4,
+          "end": 200.72,
+          "index": 501
+        },
+        {
+          "word": "saying,",
+          "start": 200.72,
+          "end": 201.12,
+          "index": 502
+        },
+        {
+          "word": "The",
+          "start": 201.12,
+          "end": 201.6,
+          "index": 503
+        },
+        {
+          "word": "water",
+          "start": 201.6,
+          "end": 201.92,
+          "index": 504
+        },
+        {
+          "word": "is",
+          "start": 201.92,
+          "end": 202.32,
+          "index": 505
+        },
+        {
+          "word": "ours:",
+          "start": 202.32,
+          "end": 202.8,
+          "index": 506
+        },
+        {
+          "word": "and",
+          "start": 202.8,
+          "end": 203.12,
+          "index": 507
+        },
+        {
+          "word": "he",
+          "start": 203.12,
+          "end": 203.52,
+          "index": 508
+        },
+        {
+          "word": "called",
+          "start": 203.52,
+          "end": 204.0,
+          "index": 509
+        },
+        {
+          "word": "the",
+          "start": 204.0,
+          "end": 204.32,
+          "index": 510
+        },
+        {
+          "word": "name",
+          "start": 204.32,
+          "end": 204.72,
+          "index": 511
+        },
+        {
+          "word": "of",
+          "start": 204.72,
+          "end": 205.2,
+          "index": 512
+        },
+        {
+          "word": "the",
+          "start": 205.2,
+          "end": 205.52,
+          "index": 513
+        },
+        {
+          "word": "well",
+          "start": 205.52,
+          "end": 205.92,
+          "index": 514
+        },
+        {
+          "word": "Esek;",
+          "start": 205.92,
+          "end": 206.4,
+          "index": 515
+        },
+        {
+          "word": "because",
+          "start": 206.4,
+          "end": 206.72,
+          "index": 516
+        },
+        {
+          "word": "they",
+          "start": 206.72,
+          "end": 207.12,
+          "index": 517
+        },
+        {
+          "word": "strove",
+          "start": 207.12,
+          "end": 207.6,
+          "index": 518
+        },
+        {
+          "word": "with",
+          "start": 207.6,
+          "end": 207.92,
+          "index": 519
+        },
+        {
+          "word": "him.",
+          "start": 207.92,
+          "end": 208.32,
+          "index": 520
+        },
+        {
+          "word": "And",
+          "start": 208.32,
+          "end": 208.8,
+          "index": 521
+        },
+        {
+          "word": "they",
+          "start": 208.8,
+          "end": 209.12,
+          "index": 522
+        },
+        {
+          "word": "digged",
+          "start": 209.12,
+          "end": 209.52,
+          "index": 523
+        },
+        {
+          "word": "another",
+          "start": 209.52,
+          "end": 210.0,
+          "index": 524
+        },
+        {
+          "word": "well,",
+          "start": 210.0,
+          "end": 210.32,
+          "index": 525
+        },
+        {
+          "word": "and",
+          "start": 210.32,
+          "end": 210.72,
+          "index": 526
+        },
+        {
+          "word": "strove",
+          "start": 210.72,
+          "end": 211.2,
+          "index": 527
+        },
+        {
+          "word": "for",
+          "start": 211.2,
+          "end": 211.52,
+          "index": 528
+        },
+        {
+          "word": "that",
+          "start": 211.52,
+          "end": 211.92,
+          "index": 529
+        },
+        {
+          "word": "also:",
+          "start": 211.92,
+          "end": 212.4,
+          "index": 530
+        },
+        {
+          "word": "and",
+          "start": 212.4,
+          "end": 212.72,
+          "index": 531
+        },
+        {
+          "word": "he",
+          "start": 212.72,
+          "end": 213.12,
+          "index": 532
+        },
+        {
+          "word": "called",
+          "start": 213.12,
+          "end": 213.6,
+          "index": 533
+        },
+        {
+          "word": "the",
+          "start": 213.6,
+          "end": 213.92,
+          "index": 534
+        },
+        {
+          "word": "name",
+          "start": 213.92,
+          "end": 214.32,
+          "index": 535
+        },
+        {
+          "word": "of",
+          "start": 214.32,
+          "end": 214.8,
+          "index": 536
+        },
+        {
+          "word": "it",
+          "start": 214.8,
+          "end": 215.12,
+          "index": 537
+        },
+        {
+          "word": "Sitnah.",
+          "start": 215.12,
+          "end": 215.52,
+          "index": 538
+        },
+        {
+          "word": "And",
+          "start": 215.52,
+          "end": 216.0,
+          "index": 539
+        },
+        {
+          "word": "he",
+          "start": 216.0,
+          "end": 216.32,
+          "index": 540
+        },
+        {
+          "word": "removed",
+          "start": 216.32,
+          "end": 216.72,
+          "index": 541
+        },
+        {
+          "word": "from",
+          "start": 216.72,
+          "end": 217.2,
+          "index": 542
+        },
+        {
+          "word": "thence,",
+          "start": 217.2,
+          "end": 217.52,
+          "index": 543
+        },
+        {
+          "word": "and",
+          "start": 217.52,
+          "end": 217.92,
+          "index": 544
+        },
+        {
+          "word": "digged",
+          "start": 217.92,
+          "end": 218.4,
+          "index": 545
+        },
+        {
+          "word": "another",
+          "start": 218.4,
+          "end": 218.72,
+          "index": 546
+        },
+        {
+          "word": "well;",
+          "start": 218.72,
+          "end": 219.12,
+          "index": 547
+        },
+        {
+          "word": "and",
+          "start": 219.12,
+          "end": 219.6,
+          "index": 548
+        },
+        {
+          "word": "for",
+          "start": 219.6,
+          "end": 219.92,
+          "index": 549
+        },
+        {
+          "word": "that",
+          "start": 219.92,
+          "end": 220.32,
+          "index": 550
+        },
+        {
+          "word": "they",
+          "start": 220.32,
+          "end": 220.8,
+          "index": 551
+        },
+        {
+          "word": "strove",
+          "start": 220.8,
+          "end": 221.12,
+          "index": 552
+        },
+        {
+          "word": "not:",
+          "start": 221.12,
+          "end": 221.52,
+          "index": 553
+        },
+        {
+          "word": "and",
+          "start": 221.52,
+          "end": 222.0,
+          "index": 554
+        },
+        {
+          "word": "he",
+          "start": 222.0,
+          "end": 222.32,
+          "index": 555
+        },
+        {
+          "word": "called",
+          "start": 222.32,
+          "end": 222.72,
+          "index": 556
+        },
+        {
+          "word": "the",
+          "start": 222.72,
+          "end": 223.2,
+          "index": 557
+        },
+        {
+          "word": "name",
+          "start": 223.2,
+          "end": 223.52,
+          "index": 558
+        },
+        {
+          "word": "of",
+          "start": 223.52,
+          "end": 223.92,
+          "index": 559
+        },
+        {
+          "word": "it",
+          "start": 223.92,
+          "end": 224.4,
+          "index": 560
+        },
+        {
+          "word": "Rehoboth;",
+          "start": 224.4,
+          "end": 224.72,
+          "index": 561
+        },
+        {
+          "word": "and",
+          "start": 224.72,
+          "end": 225.12,
+          "index": 562
+        },
+        {
+          "word": "he",
+          "start": 225.12,
+          "end": 225.6,
+          "index": 563
+        },
+        {
+          "word": "said,",
+          "start": 225.6,
+          "end": 225.92,
+          "index": 564
+        },
+        {
+          "word": "For",
+          "start": 225.92,
+          "end": 226.32,
+          "index": 565
+        },
+        {
+          "word": "now",
+          "start": 226.32,
+          "end": 226.8,
+          "index": 566
+        },
+        {
+          "word": "the",
+          "start": 226.8,
+          "end": 227.12,
+          "index": 567
+        },
+        {
+          "word": "LORD",
+          "start": 227.12,
+          "end": 227.52,
+          "index": 568
+        },
+        {
+          "word": "hath",
+          "start": 227.52,
+          "end": 228.0,
+          "index": 569
+        },
+        {
+          "word": "made",
+          "start": 228.0,
+          "end": 228.32,
+          "index": 570
+        },
+        {
+          "word": "room",
+          "start": 228.32,
+          "end": 228.72,
+          "index": 571
+        },
+        {
+          "word": "for",
+          "start": 228.72,
+          "end": 229.2,
+          "index": 572
+        },
+        {
+          "word": "us,",
+          "start": 229.2,
+          "end": 229.52,
+          "index": 573
+        },
+        {
+          "word": "and",
+          "start": 229.52,
+          "end": 229.92,
+          "index": 574
+        },
+        {
+          "word": "we",
+          "start": 229.92,
+          "end": 230.4,
+          "index": 575
+        },
+        {
+          "word": "shall",
+          "start": 230.4,
+          "end": 230.72,
+          "index": 576
+        },
+        {
+          "word": "be",
+          "start": 230.72,
+          "end": 231.12,
+          "index": 577
+        },
+        {
+          "word": "fruitful",
+          "start": 231.12,
+          "end": 231.6,
+          "index": 578
+        },
+        {
+          "word": "in",
+          "start": 231.6,
+          "end": 231.92,
+          "index": 579
+        },
+        {
+          "word": "the",
+          "start": 231.92,
+          "end": 232.32,
+          "index": 580
+        },
+        {
+          "word": "land.",
+          "start": 232.32,
+          "end": 232.8,
+          "index": 581
+        },
+        {
+          "word": "And",
+          "start": 232.8,
+          "end": 233.12,
+          "index": 582
+        },
+        {
+          "word": "he",
+          "start": 233.12,
+          "end": 233.52,
+          "index": 583
+        },
+        {
+          "word": "went",
+          "start": 233.52,
+          "end": 234.0,
+          "index": 584
+        },
+        {
+          "word": "up",
+          "start": 234.0,
+          "end": 234.32,
+          "index": 585
+        },
+        {
+          "word": "from",
+          "start": 234.32,
+          "end": 234.72,
+          "index": 586
+        },
+        {
+          "word": "thence",
+          "start": 234.72,
+          "end": 235.2,
+          "index": 587
+        },
+        {
+          "word": "to",
+          "start": 235.2,
+          "end": 235.52,
+          "index": 588
+        },
+        {
+          "word": "Beer-sheba.",
+          "start": 235.52,
+          "end": 235.92,
+          "index": 589
+        },
+        {
+          "word": "And",
+          "start": 235.92,
+          "end": 236.4,
+          "index": 590
+        },
+        {
+          "word": "the",
+          "start": 236.4,
+          "end": 236.72,
+          "index": 591
+        },
+        {
+          "word": "LORD",
+          "start": 236.72,
+          "end": 237.12,
+          "index": 592
+        },
+        {
+          "word": "appeared",
+          "start": 237.12,
+          "end": 237.6,
+          "index": 593
+        },
+        {
+          "word": "unto",
+          "start": 237.6,
+          "end": 237.92,
+          "index": 594
+        },
+        {
+          "word": "him",
+          "start": 237.92,
+          "end": 238.32,
+          "index": 595
+        },
+        {
+          "word": "the",
+          "start": 238.32,
+          "end": 238.8,
+          "index": 596
+        },
+        {
+          "word": "same",
+          "start": 238.8,
+          "end": 239.12,
+          "index": 597
+        },
+        {
+          "word": "night,",
+          "start": 239.12,
+          "end": 239.52,
+          "index": 598
+        },
+        {
+          "word": "and",
+          "start": 239.52,
+          "end": 240.0,
+          "index": 599
+        },
+        {
+          "word": "said,",
+          "start": 240.0,
+          "end": 240.32,
+          "index": 600
+        },
+        {
+          "word": "I",
+          "start": 240.32,
+          "end": 240.72,
+          "index": 601
+        },
+        {
+          "word": "am",
+          "start": 240.72,
+          "end": 241.2,
+          "index": 602
+        },
+        {
+          "word": "the",
+          "start": 241.2,
+          "end": 241.52,
+          "index": 603
+        },
+        {
+          "word": "God",
+          "start": 241.52,
+          "end": 241.92,
+          "index": 604
+        },
+        {
+          "word": "of",
+          "start": 241.92,
+          "end": 242.4,
+          "index": 605
+        },
+        {
+          "word": "Abraham",
+          "start": 242.4,
+          "end": 242.72,
+          "index": 606
+        },
+        {
+          "word": "thy",
+          "start": 242.72,
+          "end": 243.12,
+          "index": 607
+        },
+        {
+          "word": "father:",
+          "start": 243.12,
+          "end": 243.6,
+          "index": 608
+        },
+        {
+          "word": "fear",
+          "start": 243.6,
+          "end": 243.92,
+          "index": 609
+        },
+        {
+          "word": "not,",
+          "start": 243.92,
+          "end": 244.32,
+          "index": 610
+        },
+        {
+          "word": "for",
+          "start": 244.32,
+          "end": 244.8,
+          "index": 611
+        },
+        {
+          "word": "I",
+          "start": 244.8,
+          "end": 245.12,
+          "index": 612
+        },
+        {
+          "word": "am",
+          "start": 245.12,
+          "end": 245.52,
+          "index": 613
+        },
+        {
+          "word": "with",
+          "start": 245.52,
+          "end": 246.0,
+          "index": 614
+        },
+        {
+          "word": "thee,",
+          "start": 246.0,
+          "end": 246.32,
+          "index": 615
+        },
+        {
+          "word": "and",
+          "start": 246.32,
+          "end": 246.72,
+          "index": 616
+        },
+        {
+          "word": "will",
+          "start": 246.72,
+          "end": 247.2,
+          "index": 617
+        },
+        {
+          "word": "bless",
+          "start": 247.2,
+          "end": 247.52,
+          "index": 618
+        },
+        {
+          "word": "thee,",
+          "start": 247.52,
+          "end": 247.92,
+          "index": 619
+        },
+        {
+          "word": "and",
+          "start": 247.92,
+          "end": 248.4,
+          "index": 620
+        },
+        {
+          "word": "multiply",
+          "start": 248.4,
+          "end": 248.72,
+          "index": 621
+        },
+        {
+          "word": "thy",
+          "start": 248.72,
+          "end": 249.12,
+          "index": 622
+        },
+        {
+          "word": "seed",
+          "start": 249.12,
+          "end": 249.6,
+          "index": 623
+        },
+        {
+          "word": "for",
+          "start": 249.6,
+          "end": 249.92,
+          "index": 624
+        },
+        {
+          "word": "my",
+          "start": 249.92,
+          "end": 250.32,
+          "index": 625
+        },
+        {
+          "word": "servant",
+          "start": 250.32,
+          "end": 250.8,
+          "index": 626
+        },
+        {
+          "word": "Abraham’s",
+          "start": 250.8,
+          "end": 251.12,
+          "index": 627
+        },
+        {
+          "word": "sake.",
+          "start": 251.12,
+          "end": 251.52,
+          "index": 628
+        },
+        {
+          "word": "And",
+          "start": 251.52,
+          "end": 252.0,
+          "index": 629
+        },
+        {
+          "word": "he",
+          "start": 252.0,
+          "end": 252.32,
+          "index": 630
+        },
+        {
+          "word": "builded",
+          "start": 252.32,
+          "end": 252.72,
+          "index": 631
+        },
+        {
+          "word": "an",
+          "start": 252.72,
+          "end": 253.2,
+          "index": 632
+        },
+        {
+          "word": "altar",
+          "start": 253.2,
+          "end": 253.52,
+          "index": 633
+        },
+        {
+          "word": "there,",
+          "start": 253.52,
+          "end": 253.92,
+          "index": 634
+        },
+        {
+          "word": "and",
+          "start": 253.92,
+          "end": 254.4,
+          "index": 635
+        },
+        {
+          "word": "called",
+          "start": 254.4,
+          "end": 254.72,
+          "index": 636
+        },
+        {
+          "word": "upon",
+          "start": 254.72,
+          "end": 255.12,
+          "index": 637
+        },
+        {
+          "word": "the",
+          "start": 255.12,
+          "end": 255.6,
+          "index": 638
+        },
+        {
+          "word": "name",
+          "start": 255.6,
+          "end": 255.92,
+          "index": 639
+        },
+        {
+          "word": "of",
+          "start": 255.92,
+          "end": 256.32,
+          "index": 640
+        },
+        {
+          "word": "the",
+          "start": 256.32,
+          "end": 256.8,
+          "index": 641
+        },
+        {
+          "word": "LORD,",
+          "start": 256.8,
+          "end": 257.12,
+          "index": 642
+        },
+        {
+          "word": "and",
+          "start": 257.12,
+          "end": 257.52,
+          "index": 643
+        },
+        {
+          "word": "pitched",
+          "start": 257.52,
+          "end": 258.0,
+          "index": 644
+        },
+        {
+          "word": "his",
+          "start": 258.0,
+          "end": 258.32,
+          "index": 645
+        },
+        {
+          "word": "tent",
+          "start": 258.32,
+          "end": 258.72,
+          "index": 646
+        },
+        {
+          "word": "there:",
+          "start": 258.72,
+          "end": 259.2,
+          "index": 647
+        },
+        {
+          "word": "and",
+          "start": 259.2,
+          "end": 259.52,
+          "index": 648
+        },
+        {
+          "word": "there",
+          "start": 259.52,
+          "end": 259.92,
+          "index": 649
+        },
+        {
+          "word": "Isaac’s",
+          "start": 259.92,
+          "end": 260.4,
+          "index": 650
+        },
+        {
+          "word": "servants",
+          "start": 260.4,
+          "end": 260.72,
+          "index": 651
+        },
+        {
+          "word": "digged",
+          "start": 260.72,
+          "end": 261.12,
+          "index": 652
+        },
+        {
+          "word": "a",
+          "start": 261.12,
+          "end": 261.6,
+          "index": 653
+        },
+        {
+          "word": "well.",
+          "start": 261.6,
+          "end": 261.92,
+          "index": 654
+        },
+        {
+          "word": "¶",
+          "start": 261.92,
+          "end": 262.32,
+          "index": 655
+        },
+        {
+          "word": "Then",
+          "start": 262.32,
+          "end": 262.8,
+          "index": 656
+        },
+        {
+          "word": "Abimelech",
+          "start": 262.8,
+          "end": 263.12,
+          "index": 657
+        },
+        {
+          "word": "went",
+          "start": 263.12,
+          "end": 263.52,
+          "index": 658
+        },
+        {
+          "word": "to",
+          "start": 263.52,
+          "end": 264.0,
+          "index": 659
+        },
+        {
+          "word": "him",
+          "start": 264.0,
+          "end": 264.32,
+          "index": 660
+        },
+        {
+          "word": "from",
+          "start": 264.32,
+          "end": 264.72,
+          "index": 661
+        },
+        {
+          "word": "Gerar,",
+          "start": 264.72,
+          "end": 265.2,
+          "index": 662
+        },
+        {
+          "word": "and",
+          "start": 265.2,
+          "end": 265.52,
+          "index": 663
+        },
+        {
+          "word": "Ahuzzath",
+          "start": 265.52,
+          "end": 265.92,
+          "index": 664
+        },
+        {
+          "word": "one",
+          "start": 265.92,
+          "end": 266.4,
+          "index": 665
+        },
+        {
+          "word": "of",
+          "start": 266.4,
+          "end": 266.72,
+          "index": 666
+        },
+        {
+          "word": "his",
+          "start": 266.72,
+          "end": 267.12,
+          "index": 667
+        },
+        {
+          "word": "friends,",
+          "start": 267.12,
+          "end": 267.6,
+          "index": 668
+        },
+        {
+          "word": "and",
+          "start": 267.6,
+          "end": 267.92,
+          "index": 669
+        },
+        {
+          "word": "Phichol",
+          "start": 267.92,
+          "end": 268.32,
+          "index": 670
+        },
+        {
+          "word": "the",
+          "start": 268.32,
+          "end": 268.8,
+          "index": 671
+        },
+        {
+          "word": "chief",
+          "start": 268.8,
+          "end": 269.12,
+          "index": 672
+        },
+        {
+          "word": "captain",
+          "start": 269.12,
+          "end": 269.52,
+          "index": 673
+        },
+        {
+          "word": "of",
+          "start": 269.52,
+          "end": 270.0,
+          "index": 674
+        },
+        {
+          "word": "his",
+          "start": 270.0,
+          "end": 270.32,
+          "index": 675
+        },
+        {
+          "word": "army.",
+          "start": 270.32,
+          "end": 270.72,
+          "index": 676
+        },
+        {
+          "word": "And",
+          "start": 270.72,
+          "end": 271.2,
+          "index": 677
+        },
+        {
+          "word": "Isaac",
+          "start": 271.2,
+          "end": 271.52,
+          "index": 678
+        },
+        {
+          "word": "said",
+          "start": 271.52,
+          "end": 271.92,
+          "index": 679
+        },
+        {
+          "word": "unto",
+          "start": 271.92,
+          "end": 272.4,
+          "index": 680
+        },
+        {
+          "word": "them,",
+          "start": 272.4,
+          "end": 272.72,
+          "index": 681
+        },
+        {
+          "word": "Wherefore",
+          "start": 272.72,
+          "end": 273.12,
+          "index": 682
+        },
+        {
+          "word": "come",
+          "start": 273.12,
+          "end": 273.6,
+          "index": 683
+        },
+        {
+          "word": "ye",
+          "start": 273.6,
+          "end": 273.92,
+          "index": 684
+        },
+        {
+          "word": "to",
+          "start": 273.92,
+          "end": 274.32,
+          "index": 685
+        },
+        {
+          "word": "me,",
+          "start": 274.32,
+          "end": 274.8,
+          "index": 686
+        },
+        {
+          "word": "seeing",
+          "start": 274.8,
+          "end": 275.12,
+          "index": 687
+        },
+        {
+          "word": "ye",
+          "start": 275.12,
+          "end": 275.52,
+          "index": 688
+        },
+        {
+          "word": "hate",
+          "start": 275.52,
+          "end": 276.0,
+          "index": 689
+        },
+        {
+          "word": "me,",
+          "start": 276.0,
+          "end": 276.32,
+          "index": 690
+        },
+        {
+          "word": "and",
+          "start": 276.32,
+          "end": 276.72,
+          "index": 691
+        },
+        {
+          "word": "have",
+          "start": 276.72,
+          "end": 277.2,
+          "index": 692
+        },
+        {
+          "word": "sent",
+          "start": 277.2,
+          "end": 277.52,
+          "index": 693
+        },
+        {
+          "word": "me",
+          "start": 277.52,
+          "end": 277.92,
+          "index": 694
+        },
+        {
+          "word": "away",
+          "start": 277.92,
+          "end": 278.4,
+          "index": 695
+        },
+        {
+          "word": "from",
+          "start": 278.4,
+          "end": 278.72,
+          "index": 696
+        },
+        {
+          "word": "you?",
+          "start": 278.72,
+          "end": 279.12,
+          "index": 697
+        },
+        {
+          "word": "And",
+          "start": 279.12,
+          "end": 279.6,
+          "index": 698
+        },
+        {
+          "word": "they",
+          "start": 279.6,
+          "end": 279.92,
+          "index": 699
+        },
+        {
+          "word": "said,",
+          "start": 279.92,
+          "end": 280.32,
+          "index": 700
+        },
+        {
+          "word": "We",
+          "start": 280.32,
+          "end": 280.8,
+          "index": 701
+        },
+        {
+          "word": "saw",
+          "start": 280.8,
+          "end": 281.12,
+          "index": 702
+        },
+        {
+          "word": "certainly",
+          "start": 281.12,
+          "end": 281.52,
+          "index": 703
+        },
+        {
+          "word": "that",
+          "start": 281.52,
+          "end": 282.0,
+          "index": 704
+        },
+        {
+          "word": "the",
+          "start": 282.0,
+          "end": 282.32,
+          "index": 705
+        },
+        {
+          "word": "LORD",
+          "start": 282.32,
+          "end": 282.72,
+          "index": 706
+        },
+        {
+          "word": "was",
+          "start": 282.72,
+          "end": 283.2,
+          "index": 707
+        },
+        {
+          "word": "with",
+          "start": 283.2,
+          "end": 283.52,
+          "index": 708
+        },
+        {
+          "word": "thee:",
+          "start": 283.52,
+          "end": 283.92,
+          "index": 709
+        },
+        {
+          "word": "and",
+          "start": 283.92,
+          "end": 284.4,
+          "index": 710
+        },
+        {
+          "word": "we",
+          "start": 284.4,
+          "end": 284.72,
+          "index": 711
+        },
+        {
+          "word": "said,",
+          "start": 284.72,
+          "end": 285.12,
+          "index": 712
+        },
+        {
+          "word": "Let",
+          "start": 285.12,
+          "end": 285.6,
+          "index": 713
+        },
+        {
+          "word": "there",
+          "start": 285.6,
+          "end": 285.92,
+          "index": 714
+        },
+        {
+          "word": "be",
+          "start": 285.92,
+          "end": 286.32,
+          "index": 715
+        },
+        {
+          "word": "now",
+          "start": 286.32,
+          "end": 286.8,
+          "index": 716
+        },
+        {
+          "word": "an",
+          "start": 286.8,
+          "end": 287.12,
+          "index": 717
+        },
+        {
+          "word": "oath",
+          "start": 287.12,
+          "end": 287.52,
+          "index": 718
+        },
+        {
+          "word": "betwixt",
+          "start": 287.52,
+          "end": 288.0,
+          "index": 719
+        },
+        {
+          "word": "us,",
+          "start": 288.0,
+          "end": 288.32,
+          "index": 720
+        },
+        {
+          "word": "even",
+          "start": 288.32,
+          "end": 288.72,
+          "index": 721
+        },
+        {
+          "word": "betwixt",
+          "start": 288.72,
+          "end": 289.2,
+          "index": 722
+        },
+        {
+          "word": "us",
+          "start": 289.2,
+          "end": 289.52,
+          "index": 723
+        },
+        {
+          "word": "and",
+          "start": 289.52,
+          "end": 289.92,
+          "index": 724
+        },
+        {
+          "word": "thee,",
+          "start": 289.92,
+          "end": 290.4,
+          "index": 725
+        },
+        {
+          "word": "and",
+          "start": 290.4,
+          "end": 290.72,
+          "index": 726
+        },
+        {
+          "word": "let",
+          "start": 290.72,
+          "end": 291.12,
+          "index": 727
+        },
+        {
+          "word": "us",
+          "start": 291.12,
+          "end": 291.6,
+          "index": 728
+        },
+        {
+          "word": "make",
+          "start": 291.6,
+          "end": 291.92,
+          "index": 729
+        },
+        {
+          "word": "a",
+          "start": 291.92,
+          "end": 292.32,
+          "index": 730
+        },
+        {
+          "word": "covenant",
+          "start": 292.32,
+          "end": 292.8,
+          "index": 731
+        },
+        {
+          "word": "with",
+          "start": 292.8,
+          "end": 293.12,
+          "index": 732
+        },
+        {
+          "word": "thee;",
+          "start": 293.12,
+          "end": 293.52,
+          "index": 733
+        },
+        {
+          "word": "That",
+          "start": 293.52,
+          "end": 294.0,
+          "index": 734
+        },
+        {
+          "word": "thou",
+          "start": 294.0,
+          "end": 294.32,
+          "index": 735
+        },
+        {
+          "word": "wilt",
+          "start": 294.32,
+          "end": 294.72,
+          "index": 736
+        },
+        {
+          "word": "do",
+          "start": 294.72,
+          "end": 295.2,
+          "index": 737
+        },
+        {
+          "word": "us",
+          "start": 295.2,
+          "end": 295.52,
+          "index": 738
+        },
+        {
+          "word": "no",
+          "start": 295.52,
+          "end": 295.92,
+          "index": 739
+        },
+        {
+          "word": "hurt,",
+          "start": 295.92,
+          "end": 296.4,
+          "index": 740
+        },
+        {
+          "word": "as",
+          "start": 296.4,
+          "end": 296.72,
+          "index": 741
+        },
+        {
+          "word": "we",
+          "start": 296.72,
+          "end": 297.12,
+          "index": 742
+        },
+        {
+          "word": "have",
+          "start": 297.12,
+          "end": 297.6,
+          "index": 743
+        },
+        {
+          "word": "not",
+          "start": 297.6,
+          "end": 297.92,
+          "index": 744
+        },
+        {
+          "word": "touched",
+          "start": 297.92,
+          "end": 298.32,
+          "index": 745
+        },
+        {
+          "word": "thee,",
+          "start": 298.32,
+          "end": 298.8,
+          "index": 746
+        },
+        {
+          "word": "and",
+          "start": 298.8,
+          "end": 299.12,
+          "index": 747
+        },
+        {
+          "word": "as",
+          "start": 299.12,
+          "end": 299.52,
+          "index": 748
+        },
+        {
+          "word": "we",
+          "start": 299.52,
+          "end": 300.0,
+          "index": 749
+        },
+        {
+          "word": "have",
+          "start": 300.0,
+          "end": 300.32,
+          "index": 750
+        },
+        {
+          "word": "done",
+          "start": 300.32,
+          "end": 300.72,
+          "index": 751
+        },
+        {
+          "word": "unto",
+          "start": 300.72,
+          "end": 301.2,
+          "index": 752
+        },
+        {
+          "word": "thee",
+          "start": 301.2,
+          "end": 301.52,
+          "index": 753
+        },
+        {
+          "word": "nothing",
+          "start": 301.52,
+          "end": 301.92,
+          "index": 754
+        },
+        {
+          "word": "but",
+          "start": 301.92,
+          "end": 302.4,
+          "index": 755
+        },
+        {
+          "word": "good,",
+          "start": 302.4,
+          "end": 302.72,
+          "index": 756
+        },
+        {
+          "word": "and",
+          "start": 302.72,
+          "end": 303.12,
+          "index": 757
+        },
+        {
+          "word": "have",
+          "start": 303.12,
+          "end": 303.6,
+          "index": 758
+        },
+        {
+          "word": "sent",
+          "start": 303.6,
+          "end": 303.92,
+          "index": 759
+        },
+        {
+          "word": "thee",
+          "start": 303.92,
+          "end": 304.32,
+          "index": 760
+        },
+        {
+          "word": "away",
+          "start": 304.32,
+          "end": 304.8,
+          "index": 761
+        },
+        {
+          "word": "in",
+          "start": 304.8,
+          "end": 305.12,
+          "index": 762
+        },
+        {
+          "word": "peace:",
+          "start": 305.12,
+          "end": 305.52,
+          "index": 763
+        },
+        {
+          "word": "thou",
+          "start": 305.52,
+          "end": 306.0,
+          "index": 764
+        },
+        {
+          "word": "art",
+          "start": 306.0,
+          "end": 306.32,
+          "index": 765
+        },
+        {
+          "word": "now",
+          "start": 306.32,
+          "end": 306.72,
+          "index": 766
+        },
+        {
+          "word": "the",
+          "start": 306.72,
+          "end": 307.2,
+          "index": 767
+        },
+        {
+          "word": "blessed",
+          "start": 307.2,
+          "end": 307.52,
+          "index": 768
+        },
+        {
+          "word": "of",
+          "start": 307.52,
+          "end": 307.92,
+          "index": 769
+        },
+        {
+          "word": "the",
+          "start": 307.92,
+          "end": 308.4,
+          "index": 770
+        },
+        {
+          "word": "LORD.",
+          "start": 308.4,
+          "end": 308.72,
+          "index": 771
+        },
+        {
+          "word": "And",
+          "start": 308.72,
+          "end": 309.12,
+          "index": 772
+        },
+        {
+          "word": "he",
+          "start": 309.12,
+          "end": 309.6,
+          "index": 773
+        },
+        {
+          "word": "made",
+          "start": 309.6,
+          "end": 309.92,
+          "index": 774
+        },
+        {
+          "word": "them",
+          "start": 309.92,
+          "end": 310.32,
+          "index": 775
+        },
+        {
+          "word": "a",
+          "start": 310.32,
+          "end": 310.8,
+          "index": 776
+        },
+        {
+          "word": "feast,",
+          "start": 310.8,
+          "end": 311.12,
+          "index": 777
+        },
+        {
+          "word": "and",
+          "start": 311.12,
+          "end": 311.52,
+          "index": 778
+        },
+        {
+          "word": "they",
+          "start": 311.52,
+          "end": 312.0,
+          "index": 779
+        },
+        {
+          "word": "did",
+          "start": 312.0,
+          "end": 312.32,
+          "index": 780
+        },
+        {
+          "word": "eat",
+          "start": 312.32,
+          "end": 312.72,
+          "index": 781
+        },
+        {
+          "word": "and",
+          "start": 312.72,
+          "end": 313.2,
+          "index": 782
+        },
+        {
+          "word": "drink.",
+          "start": 313.2,
+          "end": 313.52,
+          "index": 783
+        },
+        {
+          "word": "And",
+          "start": 313.52,
+          "end": 313.92,
+          "index": 784
+        },
+        {
+          "word": "they",
+          "start": 313.92,
+          "end": 314.4,
+          "index": 785
+        },
+        {
+          "word": "rose",
+          "start": 314.4,
+          "end": 314.72,
+          "index": 786
+        },
+        {
+          "word": "up",
+          "start": 314.72,
+          "end": 315.12,
+          "index": 787
+        },
+        {
+          "word": "betimes",
+          "start": 315.12,
+          "end": 315.6,
+          "index": 788
+        },
+        {
+          "word": "in",
+          "start": 315.6,
+          "end": 315.92,
+          "index": 789
+        },
+        {
+          "word": "the",
+          "start": 315.92,
+          "end": 316.32,
+          "index": 790
+        },
+        {
+          "word": "morning,",
+          "start": 316.32,
+          "end": 316.8,
+          "index": 791
+        },
+        {
+          "word": "and",
+          "start": 316.8,
+          "end": 317.12,
+          "index": 792
+        },
+        {
+          "word": "sware",
+          "start": 317.12,
+          "end": 317.52,
+          "index": 793
+        },
+        {
+          "word": "one",
+          "start": 317.52,
+          "end": 318.0,
+          "index": 794
+        },
+        {
+          "word": "to",
+          "start": 318.0,
+          "end": 318.32,
+          "index": 795
+        },
+        {
+          "word": "another:",
+          "start": 318.32,
+          "end": 318.72,
+          "index": 796
+        },
+        {
+          "word": "and",
+          "start": 318.72,
+          "end": 319.2,
+          "index": 797
+        },
+        {
+          "word": "Isaac",
+          "start": 319.2,
+          "end": 319.52,
+          "index": 798
+        },
+        {
+          "word": "sent",
+          "start": 319.52,
+          "end": 319.92,
+          "index": 799
+        },
+        {
+          "word": "them",
+          "start": 319.92,
+          "end": 320.4,
+          "index": 800
+        },
+        {
+          "word": "away,",
+          "start": 320.4,
+          "end": 320.72,
+          "index": 801
+        },
+        {
+          "word": "and",
+          "start": 320.72,
+          "end": 321.12,
+          "index": 802
+        },
+        {
+          "word": "they",
+          "start": 321.12,
+          "end": 321.6,
+          "index": 803
+        },
+        {
+          "word": "departed",
+          "start": 321.6,
+          "end": 321.92,
+          "index": 804
+        },
+        {
+          "word": "from",
+          "start": 321.92,
+          "end": 322.32,
+          "index": 805
+        },
+        {
+          "word": "him",
+          "start": 322.32,
+          "end": 322.8,
+          "index": 806
+        },
+        {
+          "word": "in",
+          "start": 322.8,
+          "end": 323.12,
+          "index": 807
+        },
+        {
+          "word": "peace.",
+          "start": 323.12,
+          "end": 323.52,
+          "index": 808
+        },
+        {
+          "word": "And",
+          "start": 323.52,
+          "end": 324.0,
+          "index": 809
+        },
+        {
+          "word": "it",
+          "start": 324.0,
+          "end": 324.32,
+          "index": 810
+        },
+        {
+          "word": "came",
+          "start": 324.32,
+          "end": 324.72,
+          "index": 811
+        },
+        {
+          "word": "to",
+          "start": 324.72,
+          "end": 325.2,
+          "index": 812
+        },
+        {
+          "word": "pass",
+          "start": 325.2,
+          "end": 325.52,
+          "index": 813
+        },
+        {
+          "word": "the",
+          "start": 325.52,
+          "end": 325.92,
+          "index": 814
+        },
+        {
+          "word": "same",
+          "start": 325.92,
+          "end": 326.4,
+          "index": 815
+        },
+        {
+          "word": "day,",
+          "start": 326.4,
+          "end": 326.72,
+          "index": 816
+        },
+        {
+          "word": "that",
+          "start": 326.72,
+          "end": 327.12,
+          "index": 817
+        },
+        {
+          "word": "Isaac’s",
+          "start": 327.12,
+          "end": 327.6,
+          "index": 818
+        },
+        {
+          "word": "servants",
+          "start": 327.6,
+          "end": 327.92,
+          "index": 819
+        },
+        {
+          "word": "came,",
+          "start": 327.92,
+          "end": 328.32,
+          "index": 820
+        },
+        {
+          "word": "and",
+          "start": 328.32,
+          "end": 328.8,
+          "index": 821
+        },
+        {
+          "word": "told",
+          "start": 328.8,
+          "end": 329.12,
+          "index": 822
+        },
+        {
+          "word": "him",
+          "start": 329.12,
+          "end": 329.52,
+          "index": 823
+        },
+        {
+          "word": "concerning",
+          "start": 329.52,
+          "end": 330.0,
+          "index": 824
+        },
+        {
+          "word": "the",
+          "start": 330.0,
+          "end": 330.32,
+          "index": 825
+        },
+        {
+          "word": "well",
+          "start": 330.32,
+          "end": 330.72,
+          "index": 826
+        },
+        {
+          "word": "which",
+          "start": 330.72,
+          "end": 331.2,
+          "index": 827
+        },
+        {
+          "word": "they",
+          "start": 331.2,
+          "end": 331.52,
+          "index": 828
+        },
+        {
+          "word": "had",
+          "start": 331.52,
+          "end": 331.92,
+          "index": 829
+        },
+        {
+          "word": "digged,",
+          "start": 331.92,
+          "end": 332.4,
+          "index": 830
+        },
+        {
+          "word": "and",
+          "start": 332.4,
+          "end": 332.72,
+          "index": 831
+        },
+        {
+          "word": "said",
+          "start": 332.72,
+          "end": 333.12,
+          "index": 832
+        },
+        {
+          "word": "unto",
+          "start": 333.12,
+          "end": 333.6,
+          "index": 833
+        },
+        {
+          "word": "him,",
+          "start": 333.6,
+          "end": 333.92,
+          "index": 834
+        },
+        {
+          "word": "We",
+          "start": 333.92,
+          "end": 334.32,
+          "index": 835
+        },
+        {
+          "word": "have",
+          "start": 334.32,
+          "end": 334.8,
+          "index": 836
+        },
+        {
+          "word": "found",
+          "start": 334.8,
+          "end": 335.12,
+          "index": 837
+        },
+        {
+          "word": "water.",
+          "start": 335.12,
+          "end": 335.52,
+          "index": 838
+        },
+        {
+          "word": "And",
+          "start": 335.52,
+          "end": 336.0,
+          "index": 839
+        },
+        {
+          "word": "he",
+          "start": 336.0,
+          "end": 336.32,
+          "index": 840
+        },
+        {
+          "word": "called",
+          "start": 336.32,
+          "end": 336.72,
+          "index": 841
+        },
+        {
+          "word": "it",
+          "start": 336.72,
+          "end": 337.2,
+          "index": 842
+        },
+        {
+          "word": "Shebah:",
+          "start": 337.2,
+          "end": 337.52,
+          "index": 843
+        },
+        {
+          "word": "therefore",
+          "start": 337.52,
+          "end": 337.92,
+          "index": 844
+        },
+        {
+          "word": "the",
+          "start": 337.92,
+          "end": 338.4,
+          "index": 845
+        },
+        {
+          "word": "name",
+          "start": 338.4,
+          "end": 338.72,
+          "index": 846
+        },
+        {
+          "word": "of",
+          "start": 338.72,
+          "end": 339.12,
+          "index": 847
+        },
+        {
+          "word": "the",
+          "start": 339.12,
+          "end": 339.6,
+          "index": 848
+        },
+        {
+          "word": "city",
+          "start": 339.6,
+          "end": 339.92,
+          "index": 849
+        },
+        {
+          "word": "is",
+          "start": 339.92,
+          "end": 340.32,
+          "index": 850
+        },
+        {
+          "word": "Beer-sheba",
+          "start": 340.32,
+          "end": 340.8,
+          "index": 851
+        },
+        {
+          "word": "unto",
+          "start": 340.8,
+          "end": 341.12,
+          "index": 852
+        },
+        {
+          "word": "this",
+          "start": 341.12,
+          "end": 341.52,
+          "index": 853
+        },
+        {
+          "word": "day.",
+          "start": 341.52,
+          "end": 342.0,
+          "index": 854
+        },
+        {
+          "word": "¶",
+          "start": 342.0,
+          "end": 342.32,
+          "index": 855
+        },
+        {
+          "word": "And",
+          "start": 342.32,
+          "end": 342.72,
+          "index": 856
+        },
+        {
+          "word": "Esau",
+          "start": 342.72,
+          "end": 343.2,
+          "index": 857
+        },
+        {
+          "word": "was",
+          "start": 343.2,
+          "end": 343.52,
+          "index": 858
+        },
+        {
+          "word": "forty",
+          "start": 343.52,
+          "end": 343.92,
+          "index": 859
+        },
+        {
+          "word": "years",
+          "start": 343.92,
+          "end": 344.4,
+          "index": 860
+        },
+        {
+          "word": "old",
+          "start": 344.4,
+          "end": 344.72,
+          "index": 861
+        },
+        {
+          "word": "when",
+          "start": 344.72,
+          "end": 345.12,
+          "index": 862
+        },
+        {
+          "word": "he",
+          "start": 345.12,
+          "end": 345.6,
+          "index": 863
+        },
+        {
+          "word": "took",
+          "start": 345.6,
+          "end": 345.92,
+          "index": 864
+        },
+        {
+          "word": "to",
+          "start": 345.92,
+          "end": 346.32,
+          "index": 865
+        },
+        {
+          "word": "wife",
+          "start": 346.32,
+          "end": 346.8,
+          "index": 866
+        },
+        {
+          "word": "Judith",
+          "start": 346.8,
+          "end": 347.12,
+          "index": 867
+        },
+        {
+          "word": "the",
+          "start": 347.12,
+          "end": 347.52,
+          "index": 868
+        },
+        {
+          "word": "daughter",
+          "start": 347.52,
+          "end": 348.0,
+          "index": 869
+        },
+        {
+          "word": "of",
+          "start": 348.0,
+          "end": 348.32,
+          "index": 870
+        },
+        {
+          "word": "Beeri",
+          "start": 348.32,
+          "end": 348.72,
+          "index": 871
+        },
+        {
+          "word": "the",
+          "start": 348.72,
+          "end": 349.2,
+          "index": 872
+        },
+        {
+          "word": "Hittite,",
+          "start": 349.2,
+          "end": 349.52,
+          "index": 873
+        },
+        {
+          "word": "and",
+          "start": 349.52,
+          "end": 349.92,
+          "index": 874
+        },
+        {
+          "word": "Bashemath",
+          "start": 349.92,
+          "end": 350.4,
+          "index": 875
+        },
+        {
+          "word": "the",
+          "start": 350.4,
+          "end": 350.72,
+          "index": 876
+        },
+        {
+          "word": "daughter",
+          "start": 350.72,
+          "end": 351.12,
+          "index": 877
+        },
+        {
+          "word": "of",
+          "start": 351.12,
+          "end": 351.6,
+          "index": 878
+        },
+        {
+          "word": "Elon",
+          "start": 351.6,
+          "end": 351.92,
+          "index": 879
+        },
+        {
+          "word": "the",
+          "start": 351.92,
+          "end": 352.32,
+          "index": 880
+        },
+        {
+          "word": "Hittite:",
+          "start": 352.32,
+          "end": 352.8,
+          "index": 881
+        },
+        {
+          "word": "Which",
+          "start": 352.8,
+          "end": 353.12,
+          "index": 882
+        },
+        {
+          "word": "were",
+          "start": 353.12,
+          "end": 353.52,
+          "index": 883
+        },
+        {
+          "word": "a",
+          "start": 353.52,
+          "end": 354.0,
+          "index": 884
+        },
+        {
+          "word": "grief",
+          "start": 354.0,
+          "end": 354.32,
+          "index": 885
+        },
+        {
+          "word": "of",
+          "start": 354.32,
+          "end": 354.72,
+          "index": 886
+        },
+        {
+          "word": "mind",
+          "start": 354.72,
+          "end": 355.2,
+          "index": 887
+        },
+        {
+          "word": "unto",
+          "start": 355.2,
+          "end": 355.52,
+          "index": 888
+        },
+        {
+          "word": "Isaac",
+          "start": 355.52,
+          "end": 355.92,
+          "index": 889
+        },
+        {
+          "word": "and",
+          "start": 355.92,
+          "end": 356.4,
+          "index": 890
+        },
+        {
+          "word": "to",
+          "start": 356.4,
+          "end": 356.72,
+          "index": 891
+        },
+        {
+          "word": "Rebekah.",
+          "start": 356.72,
+          "end": 357.12,
+          "index": 892
+        }
+      ],
+      "totalDuration": 357.12
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "book": "GEN",
+    "chapter": 32,
+    "method": "synthetic",
+    "generatedAt": "2025-11-03T06:44:50.325760"
+  }
+}

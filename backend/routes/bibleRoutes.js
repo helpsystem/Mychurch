@@ -1,5 +1,6 @@
 const express = require('express');
 const { pool } = require('../db-postgres');
+const supabaseClient = require('../supabase-client');
 const router = express.Router();
 
 // Mock data generator for when database is unavailable
@@ -230,7 +231,32 @@ router.get('/translations', async (req, res) => {
 // GET /api/bible/books - Get all Bible books
 router.get('/books', async (req, res) => {
   try {
-    console.log('📚 Fetching Bible books...');
+    // Try Supabase Client first (uses HTTPS, bypasses port 5432 block)
+    if (supabaseClient) {
+      try {
+        const books = await supabaseClient.getBibleBooks();
+        
+        // Transform to frontend format
+        const formattedBooks = books.map(book => ({
+          key: book.book_iso,
+          name: {
+            en: book.book_name,
+            fa: book.book_name_fa
+          },
+          chapters: 50, // Default, will be calculated properly later
+          testament: book.testament
+        }));
+        
+        console.log('✅ Bible books fetched via Supabase Client (HTTPS)');
+        return res.json({
+          success: true,
+          books: formattedBooks,
+          total: formattedBooks.length
+        });
+      } catch (supabaseError) {
+        console.error('⚠️  Supabase Client error:', supabaseError.message);
+      }
+    }
     
     // Check if database is available
     if (!pool || typeof pool.query !== 'function') {
@@ -255,18 +281,24 @@ router.get('/books', async (req, res) => {
     `;
     const result = await pool.query(query);
     
-    console.log('📊 Found', result.rows.length, 'books');
+    // Old Testament books (39 books)
+    const OT_BOOKS = ['GEN', 'EXO', 'LEV', 'NUM', 'DEU', 'JOS', 'JDG', 'RUT', '1SA', '2SA', '1KI', '2KI', '1CH', '2CH', 'EZR', 'NEH', 'EST', 'JOB', 'PSA', 'PRO', 'ECC', 'SNG', 'ISA', 'JER', 'LAM', 'EZK', 'DAN', 'HOS', 'JOL', 'AMO', 'OBA', 'JON', 'MIC', 'NAM', 'HAB', 'ZEP', 'HAG', 'ZEC', 'MAL'];
     
     // Transform data for frontend format
-    const books = result.rows.map(book => ({
-      key: book.code,
-      name: {
-        en: book.name_en,
-        fa: book.name_fa
-      },
-      chapters: book.chapters_count,
-      testament: book.testament
-    }));
+    const books = result.rows.map(book => {
+      // Determine testament based on book code if not provided
+      const testament = book.testament || (OT_BOOKS.includes(book.code) ? 'OT' : 'NT');
+      
+      return {
+        key: book.code,
+        name: {
+          en: book.name_en,
+          fa: book.name_fa
+        },
+        chapters: book.chapters_count,
+        testament: testament
+      };
+    });
 
     res.json({
       success: true,
@@ -290,6 +322,100 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     const { bookKey, chapter } = req.params;
     const { translation } = req.query; // Optional translation parameter
     
+    // Try Supabase Client first (uses HTTPS, bypasses port 5432 block)
+    if (supabaseClient) {
+      try {
+        console.log(`📖 Fetching verses via Supabase Client: ${bookKey} chapter ${chapter}`);
+        
+        // Get book info first
+        const books = await supabaseClient.getBibleBooks();
+        const book = books.find(b => 
+          b.book_iso.toLowerCase() === bookKey.toLowerCase() ||
+          b.book_name.toLowerCase() === bookKey.toLowerCase() ||
+          b.book_name_fa === bookKey
+        );
+        
+        if (!book) {
+          return res.status(404).json({ 
+            success: false, 
+            message: 'Bible book not found' 
+          });
+        }
+        
+        // FIXED: Try multiple translations with fallback strategy
+        // Translation priority: 8 (English NET) → 2 (Persian qadim) → 1 (Persian mojdeh)
+        let verses = [];
+        let translationUsed = null;
+        
+        // Try translation 8 (English) + translation 2 (Persian) first
+        try {
+          const [trans8Verses, trans2Verses] = await Promise.all([
+            supabaseClient.getVerses(book.book_iso, parseInt(chapter), 8).catch(() => []),
+            supabaseClient.getVerses(book.book_iso, parseInt(chapter), 2).catch(() => [])
+          ]);
+          
+          if (trans8Verses.length > 0 || trans2Verses.length > 0) {
+            // Merge both translations
+            const maxVerses = Math.max(trans8Verses.length, trans2Verses.length);
+            for (let i = 0; i < maxVerses; i++) {
+              verses.push({
+                verse_number: (trans8Verses[i]?.verse_number || trans2Verses[i]?.verse_number || i + 1),
+                text_en: trans8Verses[i]?.text_en || trans8Verses[i]?.text_fa || trans2Verses[i]?.text_fa || '',
+                text_fa: trans2Verses[i]?.text_fa || trans2Verses[i]?.text_en || ''
+              });
+            }
+            translationUsed = trans8Verses.length > 0 ? 'NET + qadim' : 'qadim only';
+          }
+        } catch (err) {
+          console.log('⚠️ Translation 8/2 failed, trying fallback...');
+        }
+        
+        // Fallback to translation 1 if nothing found
+        if (verses.length === 0) {
+          verses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), 1);
+          translationUsed = 'mojdeh (fallback)';
+        }
+        
+        // Transform to frontend format
+        const versesFormatted = {
+          en: [],
+          fa: []
+        };
+        
+        for (const verse of verses) {
+          const index = verse.verse_number - 1;
+          versesFormatted.fa[index] = verse.text_fa || '';
+          versesFormatted.en[index] = verse.text_en || '';
+        }
+        
+        console.log(`✅ Bible verses fetched via Supabase Client (HTTPS) - ${verses.length} verses (${translationUsed})`);
+        
+        // ⚠️ Currently text_en contains Persian text, same as text_fa
+        // TODO: Import actual English translation
+        
+        return res.json({
+          success: true,
+          book: {
+            key: book.book_iso,
+            name: {
+              en: book.book_name,
+              fa: book.book_name_fa
+            }
+          },
+          chapter: parseInt(chapter),
+          verses: versesFormatted,
+          translation: { 
+            code: 'mojdeh', 
+            name: { en: 'Mojdeh Persian Bible', fa: 'مژده فارسی' } 
+          },
+          note: 'Currently only Persian translation is available. text_en field contains Persian text.'
+        });
+      } catch (supabaseError) {
+        console.error('⚠️  Supabase Client error:', supabaseError.message);
+        // Fall through to try pool connection
+      }
+    }
+    
     // Check if database is available
     if (!pool || typeof pool.query !== 'function') {
       console.log('⚠️  Using mock Bible verses (no database)');
@@ -299,7 +425,8 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
         book: { key: bookKey, name: { en: bookKey, fa: bookKey } },
         chapter: parseInt(chapter),
         verses: mockVerses,
-        translation: { code: 'qadim', name: { en: 'Persian Old Version', fa: 'ترجمه قدیم فارسی' } }
+        translation: { code: 'qadim', name: { en: 'Persian Old Version', fa: 'ترجمه قدیم فارسی' } },
+        usingMockData: true
       });
     }
     
@@ -324,10 +451,7 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
       
       const book = bookResult.rows[0];
       const chapterNum = parseInt(chapter);
-    
-    // Get verses directly from bible_verses using chapter_id = chapter number
-    // (This is a temporary mapping - ideally chapter_id should link to a chapters table)
-    const chapterId = chapterNum;
+      const bookId = book.id;
     
     // Get translation info or use default
     let translationId = 1; // Default to mojdeh (translation_id = 1)
@@ -373,10 +497,10 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
         verse_number,
         text_fa
       FROM bible_verses 
-      WHERE chapter_id = $1 AND translation_id = $2
+      WHERE book_id = $1 AND chapter_number = $2 AND translation_id = $3
       ORDER BY verse_number
     `;
-    const persianVerses = await pool.query(persianVersesQuery, [chapterId, translationId]);
+    const persianVerses = await pool.query(persianVersesQuery, [bookId, chapterNum, translationId]);
     
     // Get English verses (from English translation - KJV)
     const englishTranslationQuery = `
@@ -395,10 +519,10 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           verse_number,
           text_en
         FROM bible_verses 
-        WHERE chapter_id = $1 AND translation_id = $2
+        WHERE book_id = $1 AND chapter_number = $2 AND translation_id = $3
         ORDER BY verse_number
       `;
-      englishVerses = await pool.query(englishVersesQuery, [chapterId, englishTransId]);
+      englishVerses = await pool.query(englishVersesQuery, [bookId, chapterNum, englishTransId]);
     }
     
     // If no translation-specific verses, try fallback
@@ -409,10 +533,10 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           text_en,
           text_fa
         FROM bible_verses 
-        WHERE chapter_id = $1
+        WHERE book_id = $1 AND chapter_number = $2
         ORDER BY verse_number
       `;
-      versesResult = await pool.query(versesQuery, [chapterId]);
+      versesResult = await pool.query(versesQuery, [bookId, chapterNum]);
       
       if (versesResult.rows.length === 0) {
         return res.status(404).json({ 

@@ -419,21 +419,25 @@ export const scheduleData: ScheduleEvent[] = [
 export const galleriesData: Gallery[] = [
   {
     id: 1,
-    title: { en: 'Church Picnic 2024', fa: 'پیک‌نیک کلیسا ۲۰۲۴' },
-    description: { en: 'A wonderful day of fellowship and fun at the park.', fa: 'یک روز فوق‌العاده برای مشارکت و سرگرمی در پارک.' },
+    title: { en: 'Church Interior', fa: 'فضای داخلی کلیسا' },
+    description: { en: 'Beautiful sanctuary space with stained glass windows and worship area.', fa: 'فضای زیبای محراب با پنجره‌های شیشه رنگی و محل پرستش.' },
     images: [
-      { id: 101, url: getRandomImage(), caption: { en: 'Group photo', fa: 'عکس دسته‌جمعی' } },
-      { id: 102, url: getRandomImage(), caption: { en: 'Serving food', fa: 'سرو غذا' } },
-      { id: 103, url: getRandomImage(), caption: { en: 'Kids playing', fa: 'بازی بچه‌ها' } },
+      { id: 101, url: '/church-photos/church-interior-1.jpg', caption: { en: 'Main sanctuary view', fa: 'نمای اصلی محراب' } },
+      { id: 102, url: '/church-photos/church-interior-2.jpg', caption: { en: 'Stained glass window', fa: 'پنجره شیشه رنگی' } },
+      { id: 103, url: '/church-photos/church-interior-3.jpg', caption: { en: 'Worship area', fa: 'محل پرستش' } },
+      { id: 104, url: '/church-photos/church-interior-4.jpg', caption: { en: 'Altar and cross', fa: 'محراب و صلیب' } },
+      { id: 105, url: '/church-photos/church-interior-5.jpg', caption: { en: 'Pulpit view', fa: 'نمای منبر' } },
+      { id: 106, url: '/church-photos/church-interior-6.jpg', caption: { en: 'Sanctuary seating', fa: 'صندلی‌های محراب' } },
     ]
   },
   {
     id: 2,
-    title: { en: 'Christmas Service', fa: 'مراسم کریسمس' },
-    description: { en: 'Celebrating the birth of our Savior.', fa: 'جشن تولد نجات‌دهنده ما.' },
+    title: { en: 'Worship Services', fa: 'مراسم پرستش' },
+    description: { en: 'Our weekly worship services and special gatherings.', fa: 'مراسم پرستش هفتگی و گردهمایی‌های ویژه ما.' },
     images: [
-       { id: 201, url: getRandomImage(), caption: { en: 'Candlelight worship', fa: 'پرستش با شمع' } },
-       { id: 202, url: getRandomImage(), caption: { en: 'The choir singing', fa: 'گروه سرود در حال خواندن' } },
+       { id: 201, url: '/church-photos/church-interior-1.jpg', caption: { en: 'Sunday worship', fa: 'پرستش یکشنبه' } },
+       { id: 202, url: '/church-photos/church-interior-3.jpg', caption: { en: 'Prayer time', fa: 'زمان دعا' } },
+       { id: 203, url: '/church-photos/church-interior-5.jpg', caption: { en: 'Sermon delivery', fa: 'ارائه موعظه' } },
     ]
   }
 ];

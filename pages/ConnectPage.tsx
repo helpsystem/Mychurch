@@ -84,7 +84,10 @@ const ConnectPage: React.FC = () => {
                 {/* Left Column */}
                 <div className="lg:col-span-2 space-y-6">
                     {/* Welcome Card */}
-                    <div className="relative rounded-2xl overflow-hidden h-64 flex items-end p-6 bg-cover bg-center" style={{ backgroundImage: `url(${VR_BG})` }}>
+                    <div className="relative rounded-2xl overflow-hidden h-64 flex items-end p-6">
+                        <img src={VR_BG} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-40" aria-hidden="true" />
+                        <img src={VR_BG} alt="Virtual Reality" className="absolute inset-0 w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                         <div className="relative z-10 text-white">
                             <h2 className="text-3xl font-bold">{t('vrWelcomeTitle')}</h2>
@@ -98,7 +101,10 @@ const ConnectPage: React.FC = () => {
                     {/* Controller Card */}
                     <GlassmorphicCard className="p-6">
                         <h3 className="font-semibold text-xl text-white">{t('vrControllerTitle')}</h3>
-                        <div className="relative mt-4 h-56 rounded-xl bg-cover bg-center" style={{ backgroundImage: `url(${CONTROLLER_BG})` }}>
+                        <div className="relative mt-4 h-56 rounded-xl overflow-hidden">
+                            <img src={CONTROLLER_BG} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-40" aria-hidden="true" />
+                            <img src={CONTROLLER_BG} alt="VR Controller" className="absolute inset-0 w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                             <div className="absolute inset-0 bg-black/50 rounded-xl" />
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
                                 <Gamepad2 size={64} className="opacity-50" />
@@ -125,7 +131,10 @@ const ConnectPage: React.FC = () => {
                                 return (
                                 <div key={player.email} className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <img src={player.profileData.imageUrl || DEFAULT_AVATAR_URL} alt={player.profileData.name} className="w-10 h-10 rounded-full object-cover"/>
+                                        <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0">
+                                            <img src={player.profileData.imageUrl || DEFAULT_AVATAR_URL} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-50" aria-hidden="true" />
+                                            <img src={player.profileData.imageUrl || DEFAULT_AVATAR_URL} alt={player.profileData.name} className="relative w-full h-full object-cover"/>
+                                        </div>
                                         <div>
                                             <p className="font-semibold text-white">{player.profileData.name}</p>
                                             <p className={`text-xs ${Math.random() > 0.5 ? 'text-green-400' : 'text-gray-500'}`}>

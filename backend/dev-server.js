@@ -11,6 +11,7 @@ const path = require('path');
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const bibleRoutes = require('./routes/bibleRoutes');
+const bibleJsonRoutes = require('./routes/bible-json'); // JSON fallback
 const aiChatRoutes = require('./routes/aiChatRoutes');
 const leadersRoutes = require('./routes/leadersRoutes');
 const sermonsRoutes = require('./routes/sermonsRoutes');
@@ -20,6 +21,8 @@ const prayerRoutes = require('./routes/prayerRoutes');
 const imageRoutes = require('./routes/imageRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
 const ttsRoutes = require('./routes/tts');
+const audioRoutes = require('./routes/audioRoutes'); // Smart Audio Source Resolver
+const downloadRoutes = require('./routes/downloadRoutes'); // WordProject Downloader
 
 // Try to load Hugging Face TTS routes
 let huggingfaceTTSRoutes;
@@ -28,6 +31,17 @@ try {
   console.log('✅ Hugging Face TTS routes loaded successfully');
 } catch (error) {
   console.error('❌ Failed to load Hugging Face TTS routes:', error.message);
+  console.error('   Stack:', error.stack);
+}
+
+// Try to load Gemini Audio Cache routes
+let geminiAudioCacheRoutes;
+try {
+  console.log('🔄 Loading Gemini Audio Cache routes...');
+  geminiAudioCacheRoutes = require('./routes/geminiAudioCache');
+  console.log('✅ Gemini Audio Cache routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load Gemini Audio Cache routes:', error.message);
   console.error('   Stack:', error.stack);
 }
 
@@ -74,6 +88,7 @@ app.get('/api/health', (req, res) => {
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/bible', bibleRoutes);
+app.use('/api/bible-json', bibleJsonRoutes); // JSON fallback API
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/leaders', leadersRoutes);
 app.use('/api/sermons', sermonsRoutes);
@@ -86,7 +101,15 @@ if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
   console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');
 }
+if (geminiAudioCacheRoutes) {
+  app.use('/api/bible-audio', geminiAudioCacheRoutes);
+  console.log('✅ Gemini Audio Cache routes registered at /api/bible-audio');
+}
 app.use('/api/tts', ttsRoutes);
+app.use('/api/audio', audioRoutes); // Smart Audio Source Resolver
+app.use('/api/downloads', downloadRoutes); // WordProject Downloader
+console.log('✅ Smart Audio Source Resolver registered at /api/audio');
+console.log('✅ WordProject Downloader registered at /api/downloads');
 
 // Root
 app.get('/', (req, res) => {

@@ -18,6 +18,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion";
 import { Maximize2, Play, Pause, SkipBack, SkipForward, Volume2, Book, Type, RefreshCw } from "lucide-react";
 import { speakPersian, findBestPersianVoice, isPersianTTSAvailable } from "../lib/persianTTS";
+import ReadAlongView from "./ReadAlongView"; // ✨ NEW: Karaoke-style read-along
+import PresentationAudioPlayer from "./PresentationAudioPlayer"; // 🎵 NEW: Smart Audio Player
 
 // ---------- Types ----------
 export type Verse = {
@@ -36,6 +38,7 @@ export type Chapter = {
 export type BiblePayload = {
   book_en: string;     // e.g., "Ephesians"
   book_fa: string;     // e.g., "افسسیان"
+  translation_name?: { en: string; fa: string }; // e.g., { en: "Mojdeh", fa: "مژده" }
   chapters: Chapter[];
 };
 
@@ -118,9 +121,30 @@ interface Props {
   data: BiblePayload;
   startChapter?: number; // 1-based
   autoStart?: boolean;
+  bookCode?: string; // 🎵 NEW: Book code for audio (e.g., 'EPH', 'MAT')
+  enableAudio?: boolean; // 🎵 NEW: Enable audio player
 }
 
-const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, autoStart = false }) => {
+const BilingualBiblePresentation: React.FC<Props> = ({ 
+  data, 
+  startChapter = 1, 
+  autoStart = false,
+  bookCode,
+  enableAudio = false
+}) => {
+  // 🐛 DEBUG: Log received data IN DETAIL
+  console.log('📚 BilingualBiblePresentation received data:', {
+    book_en: data.book_en,
+    book_fa: data.book_fa,
+    chapters: data.chapters.length,
+    firstChapter: data.chapters[0]?.chapterNumber,
+    firstVerseCount: data.chapters[0]?.verses.length,
+    firstVerseFa: data.chapters[0]?.verses[0]?.text_fa?.substring(0, 50) + '...'
+  });
+  
+  // 🔍 DEBUG: Log FULL first verse object
+  console.log('🔍 FULL First verse object:', data.chapters[0]?.verses[0]);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [chapterIdx, setChapterIdx] = useState(Math.max(0, startChapter - 1));
   const [verseIdx, setVerseIdx] = useState(0);
@@ -128,11 +152,34 @@ const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, a
   const [autoAdvance, setAutoAdvance] = useState(true);
   const [fontScale, setFontScale] = useState(1.1);
   const [readingMode, setReadingMode] = useState<"both" | "en" | "fa">("fa"); // Audio reading mode
-  const [displayMode, setDisplayMode] = useState<"both" | "en" | "fa">("both"); // Display mode
+  const [readAlongMode, setReadAlongMode] = useState(false); // ✨ NEW: Karaoke-style word-by-word mode
+  const [audioUrl, setAudioUrl] = useState<string | null>(null); // ✨ NEW: Current chapter audio URL
+  const [wordsPerSecond, setWordsPerSecond] = useState(1.6); // ✨ NEW: Highlight speed
+  const [currentWordIndex, setCurrentWordIndex] = useState(0); // ✨ NEW: Current highlighted word
+  
+  // ✅ Check if text_en and text_fa are identical (both Persian)
+  const hasEnglishTranslation = useMemo(() => {
+    // Check first few verses to see if EN is different from FA
+    const sample = data.chapters[0]?.verses.slice(0, 5) || [];
+    const allSame = sample.every(v => v.text_en === v.text_fa);
+    return !allSame; // true if they're different (has English), false if same (no English)
+  }, [data]);
+  
+  const [displayMode, setDisplayMode] = useState<"both" | "en" | "fa">(
+    hasEnglishTranslation ? "both" : "fa" // ✅ Auto-set to FA only if no English
+  );
   const [showVoiceInfo, setShowVoiceInfo] = useState(false);
 
   const chapter = data.chapters[chapterIdx];
   const verse = chapter?.verses[verseIdx];
+  
+  // 🐛 DEBUG: Log current verse being displayed
+  console.log('📖 Current verse:', {
+    chapterIdx,
+    verseIdx,
+    verseNumber: verse?.verseNumber,
+    text_fa: verse?.text_fa?.substring(0, 50) + '...'
+  });
 
   const enPaneRef = useRef<HTMLDivElement>(null);
   const faPaneRef = useRef<HTMLDivElement>(null);
@@ -202,6 +249,58 @@ const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, a
     }
   };
 
+  // ✨ NEW: Load chapter audio from bible_data.json
+  const loadChapterAudio = async () => {
+    try {
+      const cacheBust = new Date().getTime();
+      const response = await fetch(`/bible_data.json?v=${cacheBust}`);
+      if (!response.ok) throw new Error('Failed to load Bible data');
+      
+      const bibleData = await response.json();
+      
+      // Get audio for current chapter
+      const bookCode = Object.keys(bibleData.bible_text?.['118'] || {}).find(
+        key => bibleData.bible_text['118'][key]?.[chapter.chapterNumber]
+      );
+      
+      if (!bookCode) {
+        console.warn('❌ Could not find book code');
+        return;
+      }
+      
+      const audioInfo = bibleData.audio_files?.['118']?.[bookCode]?.[chapter.chapterNumber];
+      
+      if (!audioInfo || audioInfo.length === 0) {
+        console.warn('⚠️ No audio available for this chapter');
+        setAudioUrl(null);
+        return;
+      }
+      
+      // Prefer Persian audio
+      const persianAudio = audioInfo.find((a: any) => 
+        a.title?.includes('ترجمۀ') || a.title?.includes('هزارۀ')
+      );
+      const selectedAudio = persianAudio || audioInfo[0];
+      
+      const url = selectedAudio.download_urls?.format_mp3_32k || selectedAudio.download_urls?.format_hls;
+      if (url) {
+        const fullUrl = url.startsWith('//') ? `https:${url}` : url;
+        setAudioUrl(fullUrl);
+        console.log('✅ Audio loaded:', selectedAudio.title, fullUrl);
+      }
+    } catch (error) {
+      console.error('❌ Error loading audio:', error);
+      setAudioUrl(null);
+    }
+  };
+
+  // ✨ Load audio when chapter changes in read-along mode
+  useEffect(() => {
+    if (readAlongMode) {
+      loadChapterAudio();
+    }
+  }, [chapterIdx, readAlongMode]);
+
   // Scroll current verse into center in both panes
   useEffect(() => {
     const enEl = enPaneRef.current?.querySelector(`#v_en_${verse?.verseNumber}`) as HTMLElement | null;
@@ -266,8 +365,15 @@ const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, a
 
   return (
     <div ref={containerRef} className="w-screen h-screen bg-neutral-900 text-neutral-50">
+      {/* ⚠️ Warning banner if no English translation - now at top-12 to avoid blocking back button */}
+      {!hasEnglishTranslation && (
+        <div className="fixed z-40 top-12 left-1/2 -translate-x-1/2 bg-amber-600/95 text-white text-center px-4 py-1.5 text-xs rounded-lg backdrop-blur shadow-md max-w-md" dir="rtl">
+          ⚠️ فقط ترجمه فارسی موجود است
+        </div>
+      )}
+      
       {/* Controls */}
-      <div className="fixed z-50 left-1/2 -translate-x-1/2 top-3 flex items-center gap-2 rounded-2xl bg-neutral-800/80 px-3 py-2 backdrop-blur shadow-lg">
+      <div className={`fixed z-50 left-1/2 -translate-x-1/2 top-3 flex items-center gap-2 rounded-2xl bg-neutral-800/80 px-3 py-2 backdrop-blur shadow-lg`}>
         <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => setPlaying((p)=>!p)}>
           {playing ? <Pause className="w-5 h-5"/> : <Play className="w-5 h-5"/>}
         </button>
@@ -284,26 +390,45 @@ const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, a
         <div className="flex items-center gap-1 text-xs">
           <Book className="w-4 h-4"/>
           <select className="bg-neutral-700 rounded px-2 py-0.5" value={displayMode} onChange={(e)=>setDisplayMode(e.target.value as any)}>
-            <option value="both">هر دو زبان</option>
+            {hasEnglishTranslation && <option value="both">هر دو زبان</option>}
             <option value="fa">فقط فارسی</option>
-            <option value="en">فقط انگلیسی</option>
+            {hasEnglishTranslation && <option value="en">فقط انگلیسی</option>}
           </select>
         </div>
         <div className="flex items-center gap-1 text-xs">
           <Volume2 className="w-4 h-4"/>
           <select className="bg-neutral-700 rounded px-2 py-0.5" value={readingMode} onChange={(e)=>setReadingMode(e.target.value as any)}>
             <option value="fa">خواندن فارسی</option>
-            <option value="both">خواندن هر دو</option>
-            <option value="en">خواندن انگلیسی</option>
+            {hasEnglishTranslation && <option value="both">خواندن هر دو</option>}
+            {hasEnglishTranslation && <option value="en">خواندن انگلیسی</option>}
           </select>
-          <button 
-            className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-700" 
-            onClick={testSpeak}
-            title="تست صدا">
-            🔊
-          </button>
         </div>
+        <button
+          className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-700" 
+          onClick={testSpeak}
+          title="Test Voice">
+          🔊
+        </button>
+        {/* ✨ NEW: Read-Along Mode Toggle */}
+        <button
+          className={`px-3 py-1 rounded-xl font-semibold text-xs ${readAlongMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-neutral-700 hover:bg-neutral-600'}`}
+          onClick={() => setReadAlongMode(!readAlongMode)}
+          title="حالت روخوانی کلمه به کلمه">
+          {readAlongMode ? '🎤 روخوانی' : '📖 معمولی'}
+        </button>
       </div>
+
+      {/* 🎵 Audio Player - Positioned below controls */}
+      {enableAudio && bookCode && (
+        <div className="fixed z-50 left-1/2 -translate-x-1/2 top-16">
+          <PresentationAudioPlayer
+            bookCode={bookCode}
+            chapter={chapter.chapterNumber}
+            compact={true}
+            autoPlay={false}
+          />
+        </div>
+      )}
 
       {/* Page */}
       <AnimatePresence mode="wait">
@@ -320,19 +445,37 @@ const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, a
             {(displayMode === 'fa' || displayMode === 'both') && (
               <div className={`px-4 py-3 ${headerColors.fa} text-white font-semibold text-xl flex items-center justify-between`} dir="rtl">
                 <span className="text-right">{data.book_fa} {chapter.chapterNumber}</span>
-                <span className="text-sm opacity-80">فارسی</span>
+                <span className="text-sm opacity-80">
+                  فارسی {data.translation_name?.fa && `(${data.translation_name.fa})`}
+                </span>
               </div>
             )}
             {(displayMode === 'en' || displayMode === 'both') && (
               <div className={`px-4 py-3 ${headerColors.en} text-white font-semibold text-xl flex items-center justify-between`} dir="ltr"> 
                 <span className="flex items-center gap-2"><Book className="w-5 h-5"/> {data.book_en} {chapter.chapterNumber}</span>
-                <span className="text-sm opacity-80">English</span>
+                <span className="text-sm opacity-80">
+                  English {data.translation_name?.en && `(${data.translation_name.en})`}
+                </span>
               </div>
             )}
           </div>
 
-          {/* Two panes */}
-          <div className={`flex-1 grid grid-cols-1 ${displayMode === 'both' ? 'md:grid-cols-2' : ''} gap-0 overflow-hidden`}>
+          {/* ✨ Conditional rendering: Read-Along Mode or Normal Mode */}
+          {readAlongMode ? (
+            /* Read-Along View - Karaoke style */
+            <ReadAlongView
+              chapter={chapter}
+              audioUrl={audioUrl}
+              wordsPerSecond={wordsPerSecond}
+              onWordsPerSecondChange={setWordsPerSecond}
+              fontScale={fontScale}
+              bookName={data.book_fa}
+              playing={playing}
+              onPlayPause={() => setPlaying(p => !p)}
+            />
+          ) : (
+            /* Normal Two-Pane View */
+            <div className={`flex-1 grid grid-cols-1 ${displayMode === 'both' ? 'md:grid-cols-2' : ''} gap-0 overflow-hidden`}>
             {/* Persian pane - RIGHT SIDE */}
             {(displayMode === 'fa' || displayMode === 'both') && (
               <div ref={faPaneRef} className="h-full overflow-y-auto bg-neutral-100 text-neutral-900 p-6" dir="rtl">
@@ -359,6 +502,7 @@ const BilingualBiblePresentation: React.FC<Props> = ({ data, startChapter = 1, a
               </div>
             )}
           </div>
+          )}
         </motion.div>
       </AnimatePresence>
 

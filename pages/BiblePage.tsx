@@ -6,7 +6,6 @@ import { ChevronDown, Search, X, Book, BookOpen, MonitorPlay } from 'lucide-reac
 import Spinner from '../components/Spinner';
 import HTMLFlipBook from 'react-pageflip';
 import { useAuth } from '../hooks/useAuth';
-import { OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '../lib/bibleData';
 
 const VERSES_PER_PAGE = 10; // Adjust this number to control how much text appears on each page
 
@@ -57,14 +56,9 @@ const Page = React.forwardRef<HTMLDivElement, { children: React.ReactNode, numbe
     );
 });
 
-const PageCover = React.forwardRef<HTMLDivElement, { children: React.ReactNode, isBackCover?: boolean, bgImage?: string }>((props, ref) => {
-    const style = props.bgImage ? {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${props.bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    } : {};
+const PageCover = React.forwardRef<HTMLDivElement, { children: React.ReactNode, isBackCover?: boolean }>((props, ref) => {
     return (
-        <div className={`page page--cover ${props.isBackCover ? 'page--cover-back' : ''}`} ref={ref} style={style}>
+        <div className={`page page--cover ${props.isBackCover ? 'page--cover-back' : ''}`} ref={ref}>
             <div className="page-content">{props.children}</div>
         </div>
     );
@@ -72,9 +66,10 @@ const PageCover = React.forwardRef<HTMLDivElement, { children: React.ReactNode, 
 
 const BiblePage: React.FC = () => {
   const { t, lang } = useLanguage();
-  const { content: fullContent } = useContent();
+  const { content: fullContent, loading: contentLoading } = useContent();
   const { user } = useAuth();
-  const { bibleBooks, bibleContent } = fullContent;
+  const { bibleBooks = [], bibleContent = {} } = fullContent || {};
+  
   const [selectedBook, setSelectedBook] = useState<string>(bibleBooks[0]?.key || '');
   const [selectedChapter, setSelectedChapter] = useState<number>(1);
   const [selectedTestament, setSelectedTestament] = useState<'OT' | 'NT' | 'ALL'>('ALL');
@@ -100,11 +95,8 @@ const BiblePage: React.FC = () => {
   const filteredBooks = selectedTestament === 'ALL' 
     ? bibleBooks 
     : bibleBooks.filter((book: any) => {
-        if (selectedTestament === 'OT') {
-          return book.testament === 'OT' || OLD_TESTAMENT_BOOKS.includes(book.key);
-        } else {
-          return book.testament === 'NT' || NEW_TESTAMENT_BOOKS.includes(book.key);
-        }
+        // Use testament field directly (backend now sets it automatically)
+        return book.testament === selectedTestament;
       });
 
   useEffect(() => {
@@ -228,6 +220,7 @@ const BiblePage: React.FC = () => {
   const loadChapterContent = useCallback(async () => {
     // Check if content is already loaded
     const bookData = bibleContent[selectedBook];
+    
     if (bookData && bookData[selectedChapter]) {
       setContent({
           en: bookData[selectedChapter].en || [],
@@ -244,7 +237,8 @@ const BiblePage: React.FC = () => {
         if (data.success && data.verses) {
           const chapterContent = {
             en: data.verses.en || [],
-            fa: data.verses.fa || []
+            fa: data.verses.fa || [],
+            es: data.verses.es || []
           };
           
           setContent(chapterContent);
@@ -313,7 +307,7 @@ const BiblePage: React.FC = () => {
   const renderBookPages = () => {
       if (!content.en.length) return [];
 
-      const pages: JSX.Element[] = [];
+      const pages: React.ReactElement[] = [];
       const totalVerses = content.en.length;
       let verseCounter = 0;
 
@@ -321,7 +315,7 @@ const BiblePage: React.FC = () => {
 
       while(verseCounter < totalVerses) {
           // English page
-          const enPageContent: JSX.Element[] = [];
+          const enPageContent: React.ReactElement[] = [];
           let enPageVerseCount = 0;
           while(verseCounter + enPageVerseCount < totalVerses && enPageVerseCount < VERSES_PER_PAGE) {
               const verseIndex = verseCounter + enPageVerseCount;
@@ -345,7 +339,7 @@ const BiblePage: React.FC = () => {
           pages.push(<Page number={(pages.length / 2) + 2} key={`en-page-${pages.length}`}>{enPageContent}</Page>);
 
           // Farsi page
-          const faPageContent: JSX.Element[] = [];
+          const faPageContent: React.ReactElement[] = [];
           let faPageVerseCount = 0;
           while(verseCounter + faPageVerseCount < totalVerses && faPageVerseCount < VERSES_PER_PAGE) {
               const verseIndex = verseCounter + faPageVerseCount;
@@ -384,6 +378,80 @@ const BiblePage: React.FC = () => {
         <p className="font-normal text-dimWhite text-lg max-w-3xl mx-auto">{t('bibleDescription')}</p>
       </div>
 
+      {/* Quick Navigation Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {/* Audio Bible Card */}
+        <a
+          href="/#/bible/audio"
+          className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
+        >
+          <div className="flex items-center gap-4 mb-3">
+            <div className="p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m-2.828-5.657a9 9 0 0012.728 0" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white">
+              {lang === 'fa' ? '🎧 کتاب مقدس صوتی' : '🎧 Audio Bible'}
+            </h3>
+          </div>
+          <p className="text-blue-100 text-sm">
+            {lang === 'fa'
+              ? 'گوش دهید به کلام خدا به زبان فارسی و انگلیسی. 66 کتاب کامل با صدای عالی.'
+              : 'Listen to the Word of God in Persian and English. All 66 books with high-quality audio.'
+            }
+          </p>
+          <div className="flex items-center gap-2 mt-4 text-white font-medium">
+            <span>{lang === 'fa' ? 'شروع گوش دادن' : 'Start Listening'}</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
+        </a>
+
+        {/* Interactive Reader Card */}
+        <a
+          href="/#/bible/reader"
+          className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
+        >
+          <div className="flex items-center gap-4 mb-3">
+            <div className="p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors">
+              <BookOpen className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-2xl font-bold text-white">
+              {lang === 'fa' ? '📖 کتاب مقدس تعاملی' : '📖 Interactive Bible'}
+            </h3>
+          </div>
+          <p className="text-purple-100 text-sm">
+            {lang === 'fa'
+              ? 'مطالعه دوزبانه با حالت نمایش و ارائه. مناسب برای مطالعه شخصی و نمایش روی پروژکتور.'
+              : 'Bilingual reading with presentation mode. Perfect for personal study and projector display.'
+            }
+          </p>
+          <div className="flex items-center gap-2 mt-4 text-white font-medium">
+            <span>{lang === 'fa' ? 'شروع مطالعه' : 'Start Reading'}</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      {contentLoading && bibleBooks.length === 0 && (
+        <div className="flex justify-center items-center py-12">
+          <Spinner size="12" />
+          <span className="ml-4 text-dimWhite">در حال بارگذاری کتاب‌ها...</span>
+        </div>
+      )}
+
+      {!contentLoading && bibleBooks.length === 0 && (
+        <div className="bg-black-gradient p-8 rounded-[20px] text-center">
+          <p className="text-red-400 text-lg">خطا در بارگذاری کتاب‌های مقدس. لطفاً صفحه را رفرش کنید.</p>
+        </div>
+      )}
+
+      {bibleBooks.length > 0 && (
+      <>
       <div className="bg-black-gradient p-4 rounded-[20px] box-shadow sticky top-[88px] z-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 items-center">
           <div className="relative">
@@ -395,13 +463,7 @@ const BiblePage: React.FC = () => {
                 // Reset book to first available in new testament
                 const availableBooks = newTestament === 'ALL' 
                   ? bibleBooks 
-                  : bibleBooks.filter((book: any) => {
-                      if (newTestament === 'OT') {
-                        return book.testament === 'OT' || OLD_TESTAMENT_BOOKS.includes(book.key);
-                      } else {
-                        return book.testament === 'NT' || NEW_TESTAMENT_BOOKS.includes(book.key);
-                      }
-                    });
+                  : bibleBooks.filter((book: any) => book.testament === newTestament);
                 if (availableBooks.length > 0) {
                   setSelectedBook(availableBooks[0].key);
                   setSelectedChapter(1);
@@ -417,13 +479,21 @@ const BiblePage: React.FC = () => {
           </div>
           <div className="relative">
             <select value={selectedBook} onChange={handleBookChange} className={`${inputClass} pr-10 rtl:pl-10 rtl:pr-4`}>
-              {filteredBooks.map(book => <option key={book.key} value={book.key}>{book.name[lang]}</option>)}
+              {filteredBooks && filteredBooks.length > 0 ? (
+                filteredBooks.map(book => (
+                  <option key={book.key} value={book.key}>
+                    {book.name?.[lang] || book.name?.en || book.key}
+                  </option>
+                ))
+              ) : (
+                <option value="">{lang === 'fa' ? 'هیچ کتابی یافت نشد' : 'No books found'}</option>
+              )}
             </select>
             <ChevronDown className="absolute top-1/2 -translate-y-1/2 right-3 rtl:left-3 rtl:right-auto text-gray-400 pointer-events-none" />
           </div>
           <div className="relative">
              <select value={selectedChapter} onChange={handleChapterChange} disabled={!currentBook} className={`${inputClass} pr-10 rtl:pl-10 rtl:pr-4`}>
-                {currentBook && bibleContent[currentBook.key] && Object.keys(bibleContent[currentBook.key] || {}).map(chap => (
+                {currentBook && Array.from({ length: currentBook.chapters || 1 }, (_, i) => i + 1).map(chap => (
                   <option key={chap} value={chap}>{t('chapter')} {chap}</option>
                 ))}
               </select>
@@ -533,7 +603,12 @@ const BiblePage: React.FC = () => {
                 onChangeState={() => {}}
                 onInit={() => {}}
             >
-                <PageCover bgImage="https://upload.wikimedia.org/wikipedia/commons/2/23/Carl_Bloch_-_The_Crucifixion_-_Google_Art_Project.jpg">
+                <PageCover>
+                    <div className="relative w-full h-full">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Carl_Bloch_-_The_Crucifixion_-_Google_Art_Project.jpg" alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-30" aria-hidden="true" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Carl_Bloch_-_The_Crucifixion_-_Google_Art_Project.jpg" alt="The Crucifixion" className="absolute inset-0 w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+                    </div>
                     <div className="flex flex-col justify-around items-center h-full text-center">
                         <BookOpen size={64} className="text-white/50" />
                         <div>
@@ -559,6 +634,8 @@ const BiblePage: React.FC = () => {
           </div>
         )}
       </div>
+      </>
+      )}
     </div>
   );
 };

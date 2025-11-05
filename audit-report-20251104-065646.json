@@ -1,0 +1,483 @@
+﻿{
+    "recommendations":  [
+                            "[OK] All routes use HashRouter for universal hosting compatibility",
+                            "[OK] Protected routes implement role-based access control",
+                            "[TODO] Test bilingual support (FA/EN toggle) on all pages",
+                            "[TODO] Verify responsive design on mobile/tablet/desktop",
+                            "[TODO] Check RTL/LTR layout switching for Persian mode",
+                            "[IMPROVE] Consider adding loading states for API-dependent pages",
+                            "[IMPROVE] Implement analytics tracking for user behavior",
+                            "[SECURE] Ensure all admin pages require authentication"
+                        ],
+    "baseUrl":  "http://localhost:5173/#",
+    "timestamp":  "2025-11-04 06:56:35",
+    "totalPages":  48,
+    "apiEndpoints":  [
+                         {
+                             "path":  "/api/bible/content/GEN/1",
+                             "description":  "Bible Content",
+                             "status":  "OK",
+                             "statusCode":  200
+                         },
+                         {
+                             "path":  "/api/worship-songs",
+                             "error":  "The remote server returned an error: (500) Internal Server Error.",
+                             "description":  "Worship Songs",
+                             "status":  "FAILED"
+                         },
+                         {
+                             "path":  "/api/events",
+                             "error":  "The remote server returned an error: (500) Internal Server Error.",
+                             "description":  "Events",
+                             "status":  "FAILED"
+                         },
+                         {
+                             "path":  "/api/sermons",
+                             "error":  "The remote server returned an error: (500) Internal Server Error.",
+                             "description":  "Sermons",
+                             "status":  "FAILED"
+                         },
+                         {
+                             "path":  "/api/prayer-requests",
+                             "error":  "The remote server returned an error: (500) Internal Server Error.",
+                             "description":  "Prayer Requests",
+                             "status":  "FAILED"
+                         }
+                     ],
+    "brokenPages":  0,
+    "pages":  [
+                  {
+                      "status":  "OK",
+                      "path":  "/",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Main",
+                      "title":  "Home",
+                      "url":  "http://localhost:5173/#/"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/about",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Main",
+                      "title":  "About",
+                      "url":  "http://localhost:5173/#/about"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/leaders",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Main",
+                      "title":  "Leaders",
+                      "url":  "http://localhost:5173/#/leaders"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/contact",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Main",
+                      "title":  "Contact",
+                      "url":  "http://localhost:5173/#/contact"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/sermons",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Ministries",
+                      "title":  "Sermons",
+                      "url":  "http://localhost:5173/#/sermons"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/worship",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Ministries",
+                      "title":  "Worship",
+                      "url":  "http://localhost:5173/#/worship"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/events",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Ministries",
+                      "title":  "Events",
+                      "url":  "http://localhost:5173/#/events"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/calendar",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Ministries",
+                      "title":  "Calendar",
+                      "url":  "http://localhost:5173/#/calendar"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/announcements",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Ministries",
+                      "title":  "Announcements",
+                      "url":  "http://localhost:5173/#/announcements"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible Main",
+                      "url":  "http://localhost:5173/#/bible"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible/audio",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Audio Bible",
+                      "url":  "http://localhost:5173/#/bible/audio"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible/audio-sync-demo",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Audio Sync Demo",
+                      "url":  "http://localhost:5173/#/bible/audio-sync-demo"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible/audio-test",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Audio Test Page",
+                      "url":  "http://localhost:5173/#/bible/audio-test"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible/audio-youversion",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "YouVersion Audio Test",
+                      "url":  "http://localhost:5173/#/bible/audio-youversion"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible/reader",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bilingual Bible Reader",
+                      "url":  "http://localhost:5173/#/bible/reader"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible-study",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible Study",
+                      "url":  "http://localhost:5173/#/bible-study"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible-karaoke",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible Karaoke",
+                      "url":  "http://localhost:5173/#/bible-karaoke"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible-reader",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible Reader Alt",
+                      "url":  "http://localhost:5173/#/bible-reader"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible-presentation-sample",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible Presentation Sample",
+                      "url":  "http://localhost:5173/#/bible-presentation-sample"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible-presentation",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible Presentation Dynamic",
+                      "url":  "http://localhost:5173/#/bible-presentation"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/bible-audio-tts",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Bible",
+                      "title":  "Bible with TTS",
+                      "url":  "http://localhost:5173/#/bible-audio-tts"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/worship-songs",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Worship",
+                      "title":  "Worship Songs List",
+                      "url":  "http://localhost:5173/#/worship-songs"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/worship-presentation",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Worship",
+                      "title":  "Worship Presentation",
+                      "url":  "http://localhost:5173/#/worship-presentation"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/prayer",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Prayer",
+                      "title":  "Prayer",
+                      "url":  "http://localhost:5173/#/prayer"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/prayer-requests",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Prayer",
+                      "title":  "Prayer Requests",
+                      "url":  "http://localhost:5173/#/prayer-requests"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/daily-devotional",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Prayer",
+                      "title":  "Daily Devotional",
+                      "url":  "http://localhost:5173/#/daily-devotional"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/giving",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "Giving",
+                      "url":  "http://localhost:5173/#/giving"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/gallery",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "Gallery",
+                      "url":  "http://localhost:5173/#/gallery"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/help-center",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "Help Center",
+                      "url":  "http://localhost:5173/#/help-center"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/new-here",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "New Here",
+                      "url":  "http://localhost:5173/#/new-here"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/connect",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "Connect",
+                      "url":  "http://localhost:5173/#/connect"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/testimonials",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "Testimonials",
+                      "url":  "http://localhost:5173/#/testimonials"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/live",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Community",
+                      "title":  "Live Stream",
+                      "url":  "http://localhost:5173/#/live"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/ai-helper",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "AI",
+                      "title":  "AI Helper (Al Hayat GPT)",
+                      "url":  "http://localhost:5173/#/ai-helper"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/ai-examples",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "AI",
+                      "title":  "AI Examples",
+                      "url":  "http://localhost:5173/#/ai-examples"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/login",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Auth",
+                      "title":  "Login",
+                      "url":  "http://localhost:5173/#/login"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/signup",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Auth",
+                      "title":  "Signup",
+                      "url":  "http://localhost:5173/#/signup"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/verify-email",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Auth",
+                      "title":  "Verify Email",
+                      "url":  "http://localhost:5173/#/verify-email"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/admin/login",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Auth",
+                      "title":  "Admin Login",
+                      "url":  "http://localhost:5173/#/admin/login"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/profile",
+                      "statusCode":  200,
+                      "protected":  true,
+                      "category":  "User",
+                      "title":  "Profile",
+                      "url":  "http://localhost:5173/#/profile"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/notification-center",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "User",
+                      "title":  "Notification Center",
+                      "url":  "http://localhost:5173/#/notification-center"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/daily-messages",
+                      "statusCode":  200,
+                      "protected":  true,
+                      "category":  "User",
+                      "title":  "Daily Messages",
+                      "url":  "http://localhost:5173/#/daily-messages"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/admin",
+                      "statusCode":  200,
+                      "protected":  true,
+                      "category":  "Admin",
+                      "title":  "Admin Dashboard",
+                      "url":  "http://localhost:5173/#/admin"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/admin/worship-management",
+                      "statusCode":  200,
+                      "protected":  true,
+                      "category":  "Admin",
+                      "title":  "Worship Management",
+                      "url":  "http://localhost:5173/#/admin/worship-management"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/admin/configure-backend",
+                      "statusCode":  200,
+                      "protected":  true,
+                      "category":  "Admin",
+                      "title":  "Configure Backend",
+                      "url":  "http://localhost:5173/#/admin/configure-backend"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/admin/tts-usage",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Admin",
+                      "title":  "TTS Usage Dashboard",
+                      "url":  "http://localhost:5173/#/admin/tts-usage"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/presentation",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Special",
+                      "title":  "Presentation Mode",
+                      "url":  "http://localhost:5173/#/presentation"
+                  },
+                  {
+                      "status":  "OK",
+                      "path":  "/tailwind-demo",
+                      "statusCode":  200,
+                      "protected":  false,
+                      "category":  "Dev",
+                      "title":  "Tailwind Demo",
+                      "url":  "http://localhost:5173/#/tailwind-demo"
+                  }
+              ],
+    "functionalPages":  48
+}

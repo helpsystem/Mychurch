@@ -8,7 +8,6 @@ import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
 import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
 import ChordLyricsDisplay from '../components/ChordLyricsDisplay';
-import { getRandomImage } from '../lib/theme';
 
 // 🔹 تایپ برای فایل timing
 interface TimingWord {
@@ -46,7 +45,7 @@ const ModalPortal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void }> = ({ song, onClick }) => {
   const { lang } = useLanguage();
   const hasYoutube = !!song.youtubeId;
-  const thumbnailUrl = hasYoutube ? `https://img.youtube.com/vi/${song.youtubeId}/hqdefault.jpg` : getRandomImage();
+  const thumbnailUrl = hasYoutube ? `https://img.youtube.com/vi/${song.youtubeId}/hqdefault.jpg` : '/images/Prayer_circle_hands_together_feb88f83.png';
 
   const handleClick = () => {
     console.log('🎵 Card Clicked:', song.title?.[lang]);
@@ -63,8 +62,9 @@ const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void }> = (
         if (e.key === 'Enter' || e.key === ' ') handleClick();
       }}
     >
-      <div className="relative">
-        <img src={thumbnailUrl} alt={song.title?.[lang] || 'Song'} className="w-full h-48 object-cover" />
+      <div className="relative overflow-hidden">
+        <img src={thumbnailUrl} alt="" className="absolute inset-0 w-full h-48 object-cover blur-sm scale-110 opacity-50" aria-hidden="true" />
+        <img src={thumbnailUrl} alt={song.title?.[lang] || 'Song'} className="relative w-full h-48 object-cover" />
         {hasYoutube && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition">
             <Youtube size={64} className="text-white drop-shadow-lg" />

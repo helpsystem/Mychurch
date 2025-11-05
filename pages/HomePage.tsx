@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
-import { getRandomImage } from '../lib/theme';
+
 import WeeklySchedule from '../components/WeeklySchedule';
 import { Leader } from '../types';
 import ScrambledText from '../components/ScrambledText';
@@ -97,7 +97,10 @@ const Button: React.FC<{ styles?: string; text: string; to?: string }> = ({ styl
 const FeatureCard: React.FC<{ icon: string; title: string; content: string; index: number }> = ({ icon, title, content, index }) => (
   <div className={`flex flex-row p-6 rounded-[20px] ${index !== 2 ? "mb-6" : "mb-0"} feature-card`}>
     <div className="w-[64px] h-[64px] rounded-full flex justify-center items-center bg-dimBlue">
-      <img src={icon} alt="icon" className="w-[50%] h-[50%] object-contain" />
+      <div className="relative w-[50%] h-[50%]">
+        <img src={icon} alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-50" aria-hidden="true" />
+        <img src={icon} alt="icon" className="relative w-full h-full object-contain" />
+      </div>
     </div>
     <div className="flex-1 flex flex-col ml-3 rtl:mr-3 rtl:ml-0">
       <h4 className="font-semibold text-white text-[18px] leading-[23px] mb-1">
@@ -116,8 +119,11 @@ const FeedbackCard: React.FC<{ content: string; name: string; title: string; img
     <p className="font-normal text-[18px] leading-[32px] text-white my-10">
       {content}
     </p>
-    <div className="flex flex-row">
-      <img src={img} alt={name} className="w-[48px] h-[48px] rounded-full" />
+    <div className="flex flex-row items-center">
+      <div className="w-[48px] h-[48px] rounded-full overflow-hidden relative">
+        <img src={img} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-50" aria-hidden="true" />
+        <img src={img} alt={name} className="relative w-full h-full object-cover" />
+      </div>
       <div className="flex flex-col ml-4 rtl:mr-4 rtl:ml-0">
         <h4 className="font-semibold text-[20px] leading-[32px] text-white">{name}</h4>
         <p className="font-normal text-[16px] leading-[24px] text-dimWhite">{title}</p>
@@ -251,12 +257,8 @@ const HomePage: React.FC = () => {
   
   // Get SEO configuration for home page
   const seoConfig = getPageSEOConfig('home', lang === 'fa' ? 'fa' : 'en');
-  const [aboutImage, setAboutImage] = useState('/images/jesus-cross-sunset.jpg');
 
   useEffect(() => {
-    // Set a beautiful default image instead of random
-    setAboutImage('/images/jesus-cross-sunset.jpg');
-    
     // Reveal on scroll animation
     const observerOptions = {
       threshold: 0.1,
@@ -431,22 +433,64 @@ const HomePage: React.FC = () => {
                     <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[600px] mx-auto">{lang === 'fa' ? 'نگاهی به فضاهای زیبا و لحظات مقدس کلیسای ما' : 'A glimpse into the beautiful spaces and sacred moments of our church community'}</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
-                        <img src="/images/Prayer_circle_hands_together_feb88f83.png" alt="Prayer Circle" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
-                          <Sparkles className="w-12 h-12 text-white" />
+                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer relative group">
+                        <img 
+                            src="/church-photos/church-interior-1.jpg" 
+                            alt="" 
+                            className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" 
+                            aria-hidden="true"
+                        />
+                        <img 
+                            src="/church-photos/church-interior-1.jpg" 
+                            alt="Church Interior" 
+                            className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                          <Sparkles className="w-12 h-12 text-white animate-pulse" />
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                          <p className="font-semibold text-lg">{lang === 'fa' ? 'فضای داخلی کلیسا' : 'Church Interior'}</p>
                         </div>
                     </div>
-                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
-                        <img src="/church-photos/photo1.jpg" alt="Worship Area" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
-                          <Sparkles className="w-12 h-12 text-white" />
+                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer relative group">
+                        <img 
+                            src="/church-photos/church-interior-3.jpg" 
+                            alt="" 
+                            className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" 
+                            aria-hidden="true"
+                        />
+                        <img 
+                            src="/church-photos/church-interior-3.jpg" 
+                            alt="Worship Area" 
+                            className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                          <Sparkles className="w-12 h-12 text-white animate-pulse" />
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                          <p className="font-semibold text-lg">{lang === 'fa' ? 'محل پرستش' : 'Worship Area'}</p>
                         </div>
                     </div>
-                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer">
-                        <img src="/church-photos/photo3.jpg" alt="Church Interior" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
-                          <Sparkles className="w-12 h-12 text-white" />
+                    <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer relative group">
+                        <img 
+                            src="/church-photos/church-interior-5.jpg" 
+                            alt="" 
+                            className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" 
+                            aria-hidden="true"
+                        />
+                        <img 
+                            src="/church-photos/church-interior-5.jpg" 
+                            alt="Pulpit View" 
+                            className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                          <Sparkles className="w-12 h-12 text-white animate-pulse" />
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                          <p className="font-semibold text-lg">{lang === 'fa' ? 'نمای منبر' : 'Pulpit View'}</p>
                         </div>
                     </div>
                 </div>
@@ -460,16 +504,13 @@ const HomePage: React.FC = () => {
               {/* About Section */}
               <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll delay-7">
                 <div className="flex-1 flex justify-center items-center md:mr-10 mr-0 md:mt-0 mt-10 relative rtl:md:ml-10 rtl:md:mr-0">
-                    <div className="w-full h-80 image-container rounded-xl">
-                        <img src={aboutImage} alt="" className="image-background" aria-hidden="true" />
-                        <img src={aboutImage} alt="community" className="image-foreground" />
-                        <button 
-                            onClick={() => setAboutImage(getRandomImage())}
-                            className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-full text-sm transition-all duration-300 opacity-75 hover:opacity-100"
-                            title={lang === 'fa' ? 'تغییر تصویر' : 'Change Image'}
-                        >
-                            🔄
-                        </button>
+                    <div className="w-full h-80 rounded-xl overflow-hidden">
+                        <AIImageSlider 
+                            autoPlayInterval={8000}
+                            showNavigationButtons={true}
+                            showIndicators={true}
+                            className="w-full h-full"
+                        />
                     </div>
                 </div>
                 <div className="flex-1 flex justify-center items-start flex-col">
@@ -484,13 +525,26 @@ const HomePage: React.FC = () => {
                  <div className="flex-1 flex justify-center items-start flex-col">
                     <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">{t('sermonsHomeTitle')}</h2>
                     <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[470px] mt-5">{t('sermonsHomeParagraph')}</p>
-                     <div className="flex flex-row flex-wrap sm:mt-10 mt-6">
-                        <Link to="/sermons"><img src="https://i.ibb.co/kM0G5xX/apple.png" alt="apple_store" className="w-[128px] h-[42px] object-contain mr-5 cursor-pointer rtl:ml-5 rtl:mr-0"/></Link>
-                        <Link to="/sermons"><img src="https://i.ibb.co/2SYxL06/google.png" alt="google_play" className="w-[128px] h-[42px] object-contain cursor-pointer" /></Link>
+                     <div className="flex flex-row flex-wrap sm:mt-10 mt-6 gap-4">
+                        <Link to="/sermons" className="transform hover:scale-105 transition-transform duration-300">
+                            <div className="relative w-[128px] h-[42px]">
+                                <img src="https://i.ibb.co/kM0G5xX/apple.png" alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-50" aria-hidden="true" />
+                                <img src="https://i.ibb.co/kM0G5xX/apple.png" alt="Download on App Store" className="relative w-full h-full object-contain" />
+                            </div>
+                        </Link>
+                        <Link to="/sermons" className="transform hover:scale-105 transition-transform duration-300">
+                            <div className="relative w-[128px] h-[42px]">
+                                <img src="https://i.ibb.co/2SYxL06/google.png" alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-50" aria-hidden="true" />
+                                <img src="https://i.ibb.co/2SYxL06/google.png" alt="Get it on Google Play" className="relative w-full h-full object-contain" />
+                            </div>
+                        </Link>
                     </div>
                 </div>
                  <div className="flex-1 flex justify-center items-center md:ml-10 ml-0 md:mt-0 mt-10 relative rtl:md:mr-10 rtl:md:ml-0">
-                    <img src="https://i.ibb.co/B4g4sP3/card.png" alt="card" className="w-[100%] h-[100%] relative z-[5]"/>
+                    <div className="relative w-full h-full">
+                        <img src="https://i.ibb.co/B4g4sP3/card.png" alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-30" aria-hidden="true" />
+                        <img src="https://i.ibb.co/B4g4sP3/card.png" alt="Sermons App Preview" className="relative w-full h-full object-contain z-[5] hover:scale-105 transition-transform duration-500"/>
+                    </div>
                 </div>
               </section>
               

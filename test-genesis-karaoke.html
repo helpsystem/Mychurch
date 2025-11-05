@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 تست کارائوکه کتاب پیدایش</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .control-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .control-btn:active {
+            transform: translateY(0);
+        }
+        
+        .play-chapter {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+        
+        .audio-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        audio {
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .verse-display {
+            background: #fff;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 200px;
+        }
+        
+        .verse-reference {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .verse-text-fa {
+            font-size: 2em;
+            line-height: 2;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .verse-text-en {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #666;
+            text-align: left;
+            direction: ltr;
+            font-family: Georgia, serif;
+            padding: 15px;
+            border-right: 4px solid #667eea;
+            background: #fafafa;
+        }
+        
+        .verse-playing {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%) !important;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+        
+        .chapter-progress {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 30px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .chapter-progress-bar {
+            background: linear-gradient(90deg, #4caf50 0%, #45a049 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .status-box {
+            background: #e3f2fd;
+            border-right: 5px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .error {
+            background: #ffebee;
+            border-right: 5px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .keyboard-shortcuts {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        
+        .shortcut {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin: 0 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 تست کارائوکه کتاب پیدایش</h1>
+        <p class="subtitle">Genesis Audio Karaoke Test - Edge TTS</p>
+        
+        <div class="status-box">
+            <strong>✅ 50 فصل پیدایش آماده است!</strong> • 1,532 آیه • ~66 MB صوت
+        </div>
+        
+        <div class="card">
+            <div class="form-group">
+                <label for="chapterSelect">🔢 انتخاب فصل (Chapter):</label>
+                <select id="chapterSelect"></select>
+            </div>
+            
+            <div class="form-group">
+                <label for="verseSelect">📖 انتخاب آیه (Verse):</label>
+                <select id="verseSelect"></select>
+            </div>
+            
+            <div class="audio-controls">
+                <button id="playBtn" class="control-btn">▶️ پخش</button>
+                <button id="prevBtn" class="control-btn">⏮️ قبلی</button>
+                <button id="nextBtn" class="control-btn">بعدی ⏭️</button>
+                <button id="playChapterBtn" class="play-chapter">📖 پخش کل فصل</button>
+                <button id="stopChapterBtn" class="control-btn" style="display:none; background:#f44336;">⏹️ توقف</button>
+            </div>
+            
+            <audio id="audioPlayer" controls></audio>
+            
+            <div id="chapterProgress" class="chapter-progress" style="display:none;">
+                <div id="chapterProgressBar" class="chapter-progress-bar">0%</div>
+            </div>
+            
+            <div id="verseDisplay" class="verse-display" style="display:none;">
+                <div id="verseReference" class="verse-reference"></div>
+                <div id="verseTextFa" class="verse-text-fa"></div>
+                <div id="verseTextEn" class="verse-text-en"></div>
+            </div>
+            
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>در حال بارگذاری...</p>
+            </div>
+            
+            <div id="error" class="error"></div>
+        </div>
+        
+        <div class="keyboard-shortcuts">
+            <strong>⌨️ کلیدهای میانبر:</strong>
+            <span class="shortcut">Space</span> پخش/توقف
+            <span class="shortcut">→</span> آیه بعدی
+            <span class="shortcut">←</span> آیه قبلی
+            <span class="shortcut">Enter</span> پخش کل فصل
+        </div>
+    </div>
+    
+    <script>
+        // Genesis chapter data
+        const genesisData = {
+            1: 31, 2: 25, 3: 24, 4: 26, 5: 32, 6: 22, 7: 24, 8: 22, 9: 29, 10: 32,
+            11: 32, 12: 20, 13: 18, 14: 24, 15: 21, 16: 16, 17: 27, 18: 33, 19: 38, 20: 18,
+            21: 34, 22: 24, 23: 20, 24: 67, 25: 34, 26: 35, 27: 46, 28: 22, 29: 35, 30: 43,
+            31: 55, 32: 32, 33: 20, 34: 31, 35: 29, 36: 43, 37: 36, 38: 30, 39: 23, 40: 23,
+            41: 57, 42: 38, 43: 34, 44: 34, 45: 28, 46: 34, 47: 31, 48: 22, 49: 33, 50: 26
+        };
+        
+        // Bible text data (sample - load full data from API)
+        const bibleText = {};
+        
+        let currentChapter = 1;
+        let currentVerse = 1;
+        let isPlayingChapter = false;
+        let chapterPlayInterval = null;
+        
+        const chapterSelect = document.getElementById('chapterSelect');
+        const verseSelect = document.getElementById('verseSelect');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const verseDisplay = document.getElementById('verseDisplay');
+        const verseReference = document.getElementById('verseReference');
+        const verseTextFa = document.getElementById('verseTextFa');
+        const verseTextEn = document.getElementById('verseTextEn');
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const playChapterBtn = document.getElementById('playChapterBtn');
+        const stopChapterBtn = document.getElementById('stopChapterBtn');
+        const chapterProgress = document.getElementById('chapterProgress');
+        const chapterProgressBar = document.getElementById('chapterProgressBar');
+        const errorDiv = document.getElementById('error');
+        const loadingDiv = document.getElementById('loading');
+        
+        // Initialize
+        function init() {
+            populateChapterSelect();
+            populateVerseSelect();
+            setupEventListeners();
+            loadVerse();
+        }
+        
+        function populateChapterSelect() {
+            for (let i = 1; i <= 50; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `فصل ${i} (${genesisData[i]} آیه)`;
+                chapterSelect.appendChild(option);
+            }
+        }
+        
+        function populateVerseSelect() {
+            verseSelect.innerHTML = '';
+            const verseCount = genesisData[currentChapter];
+            for (let i = 1; i <= verseCount; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `آیه ${i}`;
+                if (i === currentVerse) option.selected = true;
+                verseSelect.appendChild(option);
+            }
+        }
+        
+        function setupEventListeners() {
+            chapterSelect.addEventListener('change', () => {
+                currentChapter = parseInt(chapterSelect.value);
+                currentVerse = 1;
+                populateVerseSelect();
+                loadVerse();
+            });
+            
+            verseSelect.addEventListener('change', () => {
+                currentVerse = parseInt(verseSelect.value);
+                loadVerse();
+            });
+            
+            playBtn.addEventListener('click', () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                } else {
+                    audioPlayer.pause();
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentVerse > 1) {
+                    currentVerse--;
+                } else if (currentChapter > 1) {
+                    currentChapter--;
+                    currentVerse = genesisData[currentChapter];
+                    chapterSelect.value = currentChapter;
+                }
+                populateVerseSelect();
+                loadVerse();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentVerse < genesisData[currentChapter]) {
+                    currentVerse++;
+                } else if (currentChapter < 50) {
+                    currentChapter++;
+                    currentVerse = 1;
+                    chapterSelect.value = currentChapter;
+                }
+                populateVerseSelect();
+                loadVerse();
+            });
+            
+            playChapterBtn.addEventListener('click', playFullChapter);
+            stopChapterBtn.addEventListener('click', stopChapterPlay);
+            
+            audioPlayer.addEventListener('play', () => {
+                playBtn.textContent = '⏸️ توقف';
+                verseTextFa.classList.add('verse-playing');
+            });
+            
+            audioPlayer.addEventListener('pause', () => {
+                playBtn.textContent = '▶️ پخش';
+                verseTextFa.classList.remove('verse-playing');
+            });
+            
+            audioPlayer.addEventListener('ended', () => {
+                verseTextFa.classList.remove('verse-playing');
+                if (isPlayingChapter) {
+                    playNextVerseInChapter();
+                }
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'SELECT') return;
+                
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    playBtn.click();
+                } else if (e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
+                    e.preventDefault();
+                    if (e.code === 'ArrowRight') {
+                        nextBtn.click();
+                    } else {
+                        prevBtn.click();
+                    }
+                } else if (e.code === 'Enter') {
+                    e.preventDefault();
+                    if (!isPlayingChapter) {
+                        playChapterBtn.click();
+                    } else {
+                        stopChapterBtn.click();
+                    }
+                }
+            });
+        }
+        
+        async function loadVerse() {
+            try {
+                errorDiv.style.display = 'none';
+                loadingDiv.style.display = 'block';
+                verseDisplay.style.display = 'none';
+                
+                // Correct path - relative to HTML file location
+                const audioUrl = `../public/audio/bible/edge-tts/GEN/${currentChapter}/${currentVerse}.mp3`;
+                
+                // Load audio
+                audioPlayer.src = audioUrl;
+                
+                // Update reference
+                verseReference.textContent = `پیدایش ${currentChapter}:${currentVerse}`;
+                
+                // Fetch verse text from API (try backend first, fallback to sample text)
+                try {
+                    const response = await fetch(`http://localhost:3001/api/bible/content/GEN/${currentChapter}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const faText = data.verses.fa[currentVerse - 1] || 'متن فارسی در دسترس نیست';
+                        const enText = data.verses.en[currentVerse - 1] || 'English text not available';
+                        
+                        verseTextFa.textContent = faText;
+                        verseTextEn.textContent = enText;
+                    } else {
+                        throw new Error('API not available');
+                    }
+                } catch (apiError) {
+                    // Fallback to sample text if API fails
+                    console.log('API unavailable, using sample text');
+                    verseTextFa.textContent = `آیه ${currentVerse} از فصل ${currentChapter} کتاب پیدایش`;
+                    verseTextEn.textContent = `Genesis ${currentChapter}:${currentVerse}`;
+                }
+                
+                loadingDiv.style.display = 'none';
+                verseDisplay.style.display = 'block';
+                
+                // Update select elements
+                chapterSelect.value = currentChapter;
+                verseSelect.value = currentVerse;
+                
+            } catch (error) {
+                console.error('Error loading verse:', error);
+                loadingDiv.style.display = 'none';
+                errorDiv.textContent = `خطا در بارگذاری: ${error.message}`;
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        function playFullChapter() {
+            isPlayingChapter = true;
+            currentVerse = 1;
+            
+            playChapterBtn.style.display = 'none';
+            stopChapterBtn.style.display = 'inline-block';
+            chapterProgress.style.display = 'block';
+            
+            updateChapterProgress();
+            loadVerse();
+            
+            // Auto-play first verse
+            setTimeout(() => audioPlayer.play(), 500);
+        }
+        
+        function stopChapterPlay() {
+            isPlayingChapter = false;
+            audioPlayer.pause();
+            
+            playChapterBtn.style.display = 'inline-block';
+            stopChapterBtn.style.display = 'none';
+            chapterProgress.style.display = 'none';
+        }
+        
+        function playNextVerseInChapter() {
+            const totalVerses = genesisData[currentChapter];
+            
+            if (currentVerse < totalVerses) {
+                currentVerse++;
+                updateChapterProgress();
+                loadVerse();
+                setTimeout(() => audioPlayer.play(), 500);
+            } else {
+                // Chapter completed
+                isPlayingChapter = false;
+                playChapterBtn.style.display = 'inline-block';
+                stopChapterBtn.style.display = 'none';
+                
+                alert(`✅ فصل ${currentChapter} با موفقیت پخش شد!\n${totalVerses} آیه کامل شد.`);
+                
+                // Ask to continue to next chapter
+                if (currentChapter < 50 && confirm('آیا می‌خواهید فصل بعدی را پخش کنید؟')) {
+                    currentChapter++;
+                    chapterSelect.value = currentChapter;
+                    playFullChapter();
+                }
+            }
+        }
+        
+        function updateChapterProgress() {
+            const totalVerses = genesisData[currentChapter];
+            const progress = (currentVerse / totalVerses) * 100;
+            
+            chapterProgressBar.style.width = progress + '%';
+            chapterProgressBar.textContent = `${currentVerse} / ${totalVerses} (${Math.round(progress)}%)`;
+        }
+        
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

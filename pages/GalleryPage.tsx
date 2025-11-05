@@ -25,7 +25,8 @@ const GalleryPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {gallery.images.map(image => (
               <div key={image.id} className="group relative overflow-hidden rounded-lg aspect-square bg-black-gradient">
-                <img src={image.url} alt={image.caption[lang]} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                <img src={image.url} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" aria-hidden="true" />
+                <img src={image.url} alt={image.caption[lang]} className="relative w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-0 left-0 p-4 w-full">
                   <p className="text-white font-semibold transform-gpu translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">{image.caption[lang]}</p>

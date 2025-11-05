@@ -19,15 +19,17 @@ interface ChurchImage {
   title: { fa: string; en: string };
   verse: { fa: string; en: string };
   reference: { fa: string; en: string };
+  imagePath: string;
 }
 
-// تصاویر کلیسا با آیات مرتبط
+// تصاویر کلیسا با آیات مرتبط - استفاده از تصاویر واقعی کلیسا
 const CHURCH_IMAGES: ChurchImage[] = [
   {
     id: 1,
+    imagePath: '/church-photos/church-interior-1.jpg', // تصویر داخلی کلیسا با پنجره شیشه‌ای رنگی
     title: {
-      fa: 'محل پرستش',
-      en: 'Place of Worship',
+      fa: 'محل پرستش مقدس',
+      en: 'Sacred Worship Space',
     },
     verse: {
       fa: 'زیرا جایی که دو یا سه نفر به نام من جمع شوند، من در میان ایشان هستم.',
@@ -40,6 +42,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 2,
+    imagePath: '/church-photos/church-interior-2.jpg', // نمای جانبی با نور طبیعی
     title: {
       fa: 'نور الهی',
       en: 'Divine Light',
@@ -55,6 +58,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 3,
+    imagePath: '/church-photos/church-interior-3.jpg', // نمای مرکزی با محراب
     title: {
       fa: 'خانه دعا',
       en: 'House of Prayer',
@@ -70,6 +74,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 4,
+    imagePath: '/church-photos/church-interior-4.jpg', // نمای بالا با سقف
     title: {
       fa: 'صلیب نجات',
       en: 'Cross of Salvation',
@@ -85,6 +90,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 5,
+    imagePath: '/church-photos/church-interior-5.jpg', // نمای منبر
     title: {
       fa: 'پرستش و ستایش',
       en: 'Worship and Praise',
@@ -100,9 +106,10 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 6,
+    imagePath: '/church-photos/church-interior-6.jpg', // نمای کامل
     title: {
-      fa: 'نمای کلیسا',
-      en: 'Church View',
+      fa: 'جامعه ایمان',
+      en: 'Community of Faith',
     },
     verse: {
       fa: 'من نیز می‌گویم که تو پطرس هستی و بر این صخره کلیسای خود را بنا خواهم کرد.',
@@ -153,7 +160,7 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
     imagesToLoad.forEach((index) => {
       if (!loadedImages.has(index)) {
         const img = new Image();
-        img.src = `/church-photos/photo${CHURCH_IMAGES[index].id}.jpg`;
+        img.src = CHURCH_IMAGES[index].imagePath;
         img.onload = () => {
           setLoadedImages((prev) => new Set([...prev, index]));
         };
@@ -199,7 +206,7 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
           style={{ pointerEvents: index === currentIndex ? 'auto' : 'none' }}
         >
           <img
-            src={`/church-photos/photo${image.id}.jpg`}
+            src={image.imagePath}
             alt={image.title[lang]}
             className="w-full h-full object-cover"
             loading={index === 0 ? 'eager' : 'lazy'}

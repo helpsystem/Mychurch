@@ -10,8 +10,13 @@ const path = require('path');
 const crypto = require('crypto');
 const { GoogleGenAI, Modality } = require("@google/genai");
 
-// API Configuration
-const GEMINI_API_KEY = 'AIzaSyCTzZgnzvWcxd6KirJbc2sbaryFr14TrKg';
+// API Configuration - Load from environment variables
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCTzZgnzvWcxd6KirJbc2sbaryFr14TrKg';
+
+if (!process.env.GEMINI_API_KEY) {
+  console.warn('⚠️ GEMINI_API_KEY not found in .env, using hardcoded key (not recommended for production)');
+}
+
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 // Cache directory for Bible chapters

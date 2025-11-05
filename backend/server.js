@@ -17,6 +17,8 @@ const bibleAudioRoutes = require('./routes/bibleAudioRoutes');
 const leadersRoutes = require('./routes/leadersRoutes');
 const sermonsRoutes = require('./routes/sermonsRoutes');
 const eventsRoutes = require('./routes/eventsRoutes');
+const eventRecorderRoutes = require('./routes/eventRecorder');
+const worshipAudioRoutes = require('./routes/worshipAudioRoutes');
 const worshipRoutes = require('./routes/worshipRoutes');
 const songsRoutes = require('./routes/songs');
 const scheduleRoutes = require('./routes/scheduleRoutes');
@@ -37,6 +39,9 @@ const dailyMessagesRoutes = require('./routes/dailyMessagesRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const aiChatRoutes = require('./routes/aiChatRoutes');
 const wordprojectRoutes = require('./routes/wordproject');
+const wordprojectAudioRoutes = require('./routes/wordprojectAudioRoutes');
+const audioRoutes = require('./routes/audioRoutes');
+const downloadRoutes = require('./routes/downloadRoutes');
 const ttsRoutes = require('./routes/tts');
 
 // Try to load Hugging Face TTS routes
@@ -61,13 +66,17 @@ try {
 // Load Gemini Audio Cache routes for Bible chapters
 let geminiAudioCacheRoutes;
 try {
+  console.log('🔄 Loading Gemini Audio Cache routes...');
   geminiAudioCacheRoutes = require('./routes/geminiAudioCache');
   console.log('✅ Gemini Audio Cache routes loaded successfully');
+  console.log('📦 Module type:', typeof geminiAudioCacheRoutes);
 } catch (error) {
   console.error('❌ Failed to load Gemini Audio Cache routes:', error.message);
+  console.error('❌ Full error:', error);
 }
 
 const bibleUnifiedRoutes = require('./routes/bibleUnifiedMock');
+const bibleJsonRoutes = require('./routes/bible-json'); // JSON fallback for Bible data
 const dailyImagesRoutes = require('./routes/dailyImagesRoutes');
 const imageGenerationService = require('./services/imageGenerationService');
 
@@ -201,10 +210,13 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/invitations', invitationRoutes);
 app.use('/api/bible', bibleRoutes);
 app.use('/api/bible', bibleInteractionRoutes);
+app.use('/api/bible-json', bibleJsonRoutes); // JSON fallback route
 app.use('/api/bible-audio', bibleAudioRoutes);
 app.use('/api/leaders', leadersRoutes);
 app.use('/api/sermons', sermonsRoutes);
 app.use('/api/events', eventsRoutes);
+app.use('/api/events', eventRecorderRoutes); // For /record-session and /recorded-sessions
+app.use('/api/worship-audio', worshipAudioRoutes); // For worship songs AI suite
 app.use('/api/worship-songs', worshipRoutes);
 app.use('/api/songs', songsRoutes);
 app.use('/api/schedule-events', scheduleRoutes);
@@ -226,6 +238,9 @@ app.use('/api/daily-messages', dailyMessagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/wordproject', wordprojectRoutes);
+app.use('/api/wordproject-audio', wordprojectAudioRoutes);
+app.use('/api/audio', audioRoutes); // Smart audio source resolver
+app.use('/api/downloads', downloadRoutes); // WordProject downloader
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
   console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');

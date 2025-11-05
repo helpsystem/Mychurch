@@ -58,7 +58,9 @@ const AdminLoginPage: React.FC = () => {
   return (
     <main className="relative min-h-screen">
       <StandaloneHeader />
-      <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: `url(${LOGIN_BG})`}}>
+      <div className="absolute inset-0">
+        <img src={LOGIN_BG} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-40" aria-hidden="true" />
+        <img src={LOGIN_BG} alt="Admin login background" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/50" />
       </div>
       <section className="relative flex items-center justify-center min-h-screen p-4">

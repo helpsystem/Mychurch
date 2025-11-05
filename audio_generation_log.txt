@@ -1,0 +1,1675 @@
+[2025-11-03 06:34:37] 
+============================================================
+[2025-11-03 06:34:37] 🚀 Starting Automatic Bible Audio Generator
+[2025-11-03 06:34:37] ============================================================
+[2025-11-03 06:34:37] Output: public/audio/bible/auto-generated
+[2025-11-03 06:34:37] Alignments: public/data/alignments
+[2025-11-03 06:34:37] Whisper: ❌ Disabled
+[2025-11-03 06:34:37] ============================================================
+
+[2025-11-03 06:34:37] 
+============================================================
+[2025-11-03 06:34:37] 📖 Processing GEN Chapter 1
+[2025-11-03 06:34:37] ============================================================
+[2025-11-03 06:34:38] 🎵 Generating GEN_1_en.mp3...
+[2025-11-03 06:34:43] ✅ Audio saved: GEN_1_en.mp3
+[2025-11-03 06:34:43] 📊 Using synthetic alignment for GEN_1_en.mp3...
+[2025-11-03 06:34:43] ✅ Alignment saved: GEN_1_en_alignment.json
+[2025-11-03 06:34:44] 🎵 Generating GEN_1_fa.mp3...
+[2025-11-03 06:34:58] ✅ Audio saved: GEN_1_fa.mp3
+[2025-11-03 06:34:58] 📊 Using synthetic alignment for GEN_1_fa.mp3...
+[2025-11-03 06:34:58] ✅ Alignment saved: GEN_1_fa_alignment.json
+[2025-11-03 06:34:58] ✅ Completed GEN 1
+[2025-11-03 06:34:59] 
+============================================================
+[2025-11-03 06:34:59] 📖 Processing GEN Chapter 2
+[2025-11-03 06:34:59] ============================================================
+[2025-11-03 06:35:00] 🎵 Generating GEN_2_en.mp3...
+[2025-11-03 06:35:03] ✅ Audio saved: GEN_2_en.mp3
+[2025-11-03 06:35:03] 📊 Using synthetic alignment for GEN_2_en.mp3...
+[2025-11-03 06:35:03] ✅ Alignment saved: GEN_2_en_alignment.json
+[2025-11-03 06:35:03] 🎵 Generating GEN_2_fa.mp3...
+[2025-11-03 06:35:13] ✅ Audio saved: GEN_2_fa.mp3
+[2025-11-03 06:35:13] 📊 Using synthetic alignment for GEN_2_fa.mp3...
+[2025-11-03 06:35:13] ✅ Alignment saved: GEN_2_fa_alignment.json
+[2025-11-03 06:35:13] ✅ Completed GEN 2
+[2025-11-03 06:35:14] 
+============================================================
+[2025-11-03 06:35:14] 📖 Processing GEN Chapter 3
+[2025-11-03 06:35:14] ============================================================
+[2025-11-03 06:35:15] 🎵 Generating GEN_3_en.mp3...
+[2025-11-03 06:35:18] ✅ Audio saved: GEN_3_en.mp3
+[2025-11-03 06:35:18] 📊 Using synthetic alignment for GEN_3_en.mp3...
+[2025-11-03 06:35:18] ✅ Alignment saved: GEN_3_en_alignment.json
+[2025-11-03 06:35:18] 🎵 Generating GEN_3_fa.mp3...
+[2025-11-03 06:35:26] ✅ Audio saved: GEN_3_fa.mp3
+[2025-11-03 06:35:26] 📊 Using synthetic alignment for GEN_3_fa.mp3...
+[2025-11-03 06:35:26] ✅ Alignment saved: GEN_3_fa_alignment.json
+[2025-11-03 06:35:26] ✅ Completed GEN 3
+[2025-11-03 06:35:27] 
+============================================================
+[2025-11-03 06:35:27] 📖 Processing GEN Chapter 4
+[2025-11-03 06:35:27] ============================================================
+[2025-11-03 06:35:28] 🎵 Generating GEN_4_en.mp3...
+[2025-11-03 06:35:32] ✅ Audio saved: GEN_4_en.mp3
+[2025-11-03 06:35:32] 📊 Using synthetic alignment for GEN_4_en.mp3...
+[2025-11-03 06:35:32] ✅ Alignment saved: GEN_4_en_alignment.json
+[2025-11-03 06:35:32] 🎵 Generating GEN_4_fa.mp3...
+[2025-11-03 06:35:46] ✅ Audio saved: GEN_4_fa.mp3
+[2025-11-03 06:35:46] 📊 Using synthetic alignment for GEN_4_fa.mp3...
+[2025-11-03 06:35:46] ✅ Alignment saved: GEN_4_fa_alignment.json
+[2025-11-03 06:35:46] ✅ Completed GEN 4
+[2025-11-03 06:35:47] 
+============================================================
+[2025-11-03 06:35:47] 📖 Processing GEN Chapter 5
+[2025-11-03 06:35:47] ============================================================
+[2025-11-03 06:35:48] 🎵 Generating GEN_5_en.mp3...
+[2025-11-03 06:35:51] ✅ Audio saved: GEN_5_en.mp3
+[2025-11-03 06:35:51] 📊 Using synthetic alignment for GEN_5_en.mp3...
+[2025-11-03 06:35:51] ✅ Alignment saved: GEN_5_en_alignment.json
+[2025-11-03 06:35:51] 🎵 Generating GEN_5_fa.mp3...
+[2025-11-03 06:36:06] ✅ Audio saved: GEN_5_fa.mp3
+[2025-11-03 06:36:06] 📊 Using synthetic alignment for GEN_5_fa.mp3...
+[2025-11-03 06:36:06] ✅ Alignment saved: GEN_5_fa_alignment.json
+[2025-11-03 06:36:06] ✅ Completed GEN 5
+[2025-11-03 06:36:07] 
+============================================================
+[2025-11-03 06:36:07] 📖 Processing GEN Chapter 6
+[2025-11-03 06:36:07] ============================================================
+[2025-11-03 06:36:08] 🎵 Generating GEN_6_en.mp3...
+[2025-11-03 06:36:16] ✅ Audio saved: GEN_6_en.mp3
+[2025-11-03 06:36:16] 📊 Using synthetic alignment for GEN_6_en.mp3...
+[2025-11-03 06:36:16] ✅ Alignment saved: GEN_6_en_alignment.json
+[2025-11-03 06:36:16] 🎵 Generating GEN_6_fa.mp3...
+[2025-11-03 06:36:33] ✅ Audio saved: GEN_6_fa.mp3
+[2025-11-03 06:36:33] 📊 Using synthetic alignment for GEN_6_fa.mp3...
+[2025-11-03 06:36:33] ✅ Alignment saved: GEN_6_fa_alignment.json
+[2025-11-03 06:36:33] ✅ Completed GEN 6
+[2025-11-03 06:36:34] 
+============================================================
+[2025-11-03 06:36:34] 📖 Processing GEN Chapter 7
+[2025-11-03 06:36:34] ============================================================
+[2025-11-03 06:36:35] 🎵 Generating GEN_7_en.mp3...
+[2025-11-03 06:36:38] ✅ Audio saved: GEN_7_en.mp3
+[2025-11-03 06:36:38] 📊 Using synthetic alignment for GEN_7_en.mp3...
+[2025-11-03 06:36:38] ✅ Alignment saved: GEN_7_en_alignment.json
+[2025-11-03 06:36:38] 🎵 Generating GEN_7_fa.mp3...
+[2025-11-03 06:36:52] ✅ Audio saved: GEN_7_fa.mp3
+[2025-11-03 06:36:52] 📊 Using synthetic alignment for GEN_7_fa.mp3...
+[2025-11-03 06:36:52] ✅ Alignment saved: GEN_7_fa_alignment.json
+[2025-11-03 06:36:52] ✅ Completed GEN 7
+[2025-11-03 06:36:53] 
+============================================================
+[2025-11-03 06:36:53] 📖 Processing GEN Chapter 8
+[2025-11-03 06:36:53] ============================================================
+[2025-11-03 06:36:54] 🎵 Generating GEN_8_en.mp3...
+[2025-11-03 06:36:56] ✅ Audio saved: GEN_8_en.mp3
+[2025-11-03 06:36:56] 📊 Using synthetic alignment for GEN_8_en.mp3...
+[2025-11-03 06:36:56] ✅ Alignment saved: GEN_8_en_alignment.json
+[2025-11-03 06:36:57] 🎵 Generating GEN_8_fa.mp3...
+[2025-11-03 06:37:10] ✅ Audio saved: GEN_8_fa.mp3
+[2025-11-03 06:37:10] 📊 Using synthetic alignment for GEN_8_fa.mp3...
+[2025-11-03 06:37:10] ✅ Alignment saved: GEN_8_fa_alignment.json
+[2025-11-03 06:37:10] ✅ Completed GEN 8
+[2025-11-03 06:37:11] 
+============================================================
+[2025-11-03 06:37:11] 📖 Processing GEN Chapter 9
+[2025-11-03 06:37:11] ============================================================
+[2025-11-03 06:37:12] 🎵 Generating GEN_9_en.mp3...
+[2025-11-03 06:37:15] ✅ Audio saved: GEN_9_en.mp3
+[2025-11-03 06:37:15] 📊 Using synthetic alignment for GEN_9_en.mp3...
+[2025-11-03 06:37:15] ✅ Alignment saved: GEN_9_en_alignment.json
+[2025-11-03 06:37:15] 🎵 Generating GEN_9_fa.mp3...
+[2025-11-03 06:37:28] ✅ Audio saved: GEN_9_fa.mp3
+[2025-11-03 06:37:28] 📊 Using synthetic alignment for GEN_9_fa.mp3...
+[2025-11-03 06:37:28] ✅ Alignment saved: GEN_9_fa_alignment.json
+[2025-11-03 06:37:28] ✅ Completed GEN 9
+[2025-11-03 06:37:29] 
+============================================================
+[2025-11-03 06:37:29] 📖 Processing GEN Chapter 10
+[2025-11-03 06:37:29] ============================================================
+[2025-11-03 06:37:30] 🎵 Generating GEN_10_en.mp3...
+[2025-11-03 06:37:34] ✅ Audio saved: GEN_10_en.mp3
+[2025-11-03 06:37:34] 📊 Using synthetic alignment for GEN_10_en.mp3...
+[2025-11-03 06:37:34] ✅ Alignment saved: GEN_10_en_alignment.json
+[2025-11-03 06:37:34] 🎵 Generating GEN_10_fa.mp3...
+[2025-11-03 06:37:49] ✅ Audio saved: GEN_10_fa.mp3
+[2025-11-03 06:37:49] 📊 Using synthetic alignment for GEN_10_fa.mp3...
+[2025-11-03 06:37:49] ✅ Alignment saved: GEN_10_fa_alignment.json
+[2025-11-03 06:37:49] ✅ Completed GEN 10
+[2025-11-03 06:37:50] 
+============================================================
+[2025-11-03 06:37:50] 📖 Processing GEN Chapter 11
+[2025-11-03 06:37:50] ============================================================
+[2025-11-03 06:37:51] 🎵 Generating GEN_11_en.mp3...
+[2025-11-03 06:37:53] ✅ Audio saved: GEN_11_en.mp3
+[2025-11-03 06:37:53] 📊 Using synthetic alignment for GEN_11_en.mp3...
+[2025-11-03 06:37:53] ✅ Alignment saved: GEN_11_en_alignment.json
+[2025-11-03 06:37:53] 🎵 Generating GEN_11_fa.mp3...
+[2025-11-03 06:38:05] ✅ Audio saved: GEN_11_fa.mp3
+[2025-11-03 06:38:05] 📊 Using synthetic alignment for GEN_11_fa.mp3...
+[2025-11-03 06:38:05] ✅ Alignment saved: GEN_11_fa_alignment.json
+[2025-11-03 06:38:05] ✅ Completed GEN 11
+[2025-11-03 06:38:06] 
+============================================================
+[2025-11-03 06:38:06] 📖 Processing GEN Chapter 12
+[2025-11-03 06:38:06] ============================================================
+[2025-11-03 06:38:06] 🎵 Generating GEN_12_en.mp3...
+[2025-11-03 06:38:09] ✅ Audio saved: GEN_12_en.mp3
+[2025-11-03 06:38:09] 📊 Using synthetic alignment for GEN_12_en.mp3...
+[2025-11-03 06:38:09] ✅ Alignment saved: GEN_12_en_alignment.json
+[2025-11-03 06:38:09] 🎵 Generating GEN_12_fa.mp3...
+[2025-11-03 06:38:22] ✅ Audio saved: GEN_12_fa.mp3
+[2025-11-03 06:38:22] 📊 Using synthetic alignment for GEN_12_fa.mp3...
+[2025-11-03 06:38:22] ✅ Alignment saved: GEN_12_fa_alignment.json
+[2025-11-03 06:38:22] ✅ Completed GEN 12
+[2025-11-03 06:38:23] 
+============================================================
+[2025-11-03 06:38:23] 📖 Processing GEN Chapter 13
+[2025-11-03 06:38:23] ============================================================
+[2025-11-03 06:38:24] 🎵 Generating GEN_13_en.mp3...
+[2025-11-03 06:38:26] ✅ Audio saved: GEN_13_en.mp3
+[2025-11-03 06:38:26] 📊 Using synthetic alignment for GEN_13_en.mp3...
+[2025-11-03 06:38:26] ✅ Alignment saved: GEN_13_en_alignment.json
+[2025-11-03 06:38:27] 🎵 Generating GEN_13_fa.mp3...
+[2025-11-03 06:38:42] ✅ Audio saved: GEN_13_fa.mp3
+[2025-11-03 06:38:42] 📊 Using synthetic alignment for GEN_13_fa.mp3...
+[2025-11-03 06:38:42] ✅ Alignment saved: GEN_13_fa_alignment.json
+[2025-11-03 06:38:42] ✅ Completed GEN 13
+[2025-11-03 06:38:43] 
+============================================================
+[2025-11-03 06:38:43] 📖 Processing GEN Chapter 14
+[2025-11-03 06:38:43] ============================================================
+[2025-11-03 06:38:43] 🎵 Generating GEN_14_en.mp3...
+[2025-11-03 06:38:47] ✅ Audio saved: GEN_14_en.mp3
+[2025-11-03 06:38:47] 📊 Using synthetic alignment for GEN_14_en.mp3...
+[2025-11-03 06:38:47] ✅ Alignment saved: GEN_14_en_alignment.json
+[2025-11-03 06:38:47] 🎵 Generating GEN_14_fa.mp3...
+[2025-11-03 06:38:57] ✅ Audio saved: GEN_14_fa.mp3
+[2025-11-03 06:38:57] 📊 Using synthetic alignment for GEN_14_fa.mp3...
+[2025-11-03 06:38:57] ✅ Alignment saved: GEN_14_fa_alignment.json
+[2025-11-03 06:38:57] ✅ Completed GEN 14
+[2025-11-03 06:38:58] 
+============================================================
+[2025-11-03 06:38:58] 📖 Processing GEN Chapter 15
+[2025-11-03 06:38:58] ============================================================
+[2025-11-03 06:38:59] 🎵 Generating GEN_15_en.mp3...
+[2025-11-03 06:39:02] ✅ Audio saved: GEN_15_en.mp3
+[2025-11-03 06:39:02] 📊 Using synthetic alignment for GEN_15_en.mp3...
+[2025-11-03 06:39:02] ✅ Alignment saved: GEN_15_en_alignment.json
+[2025-11-03 06:39:02] 🎵 Generating GEN_15_fa.mp3...
+[2025-11-03 06:39:10] ✅ Audio saved: GEN_15_fa.mp3
+[2025-11-03 06:39:10] 📊 Using synthetic alignment for GEN_15_fa.mp3...
+[2025-11-03 06:39:10] ✅ Alignment saved: GEN_15_fa_alignment.json
+[2025-11-03 06:39:10] ✅ Completed GEN 15
+[2025-11-03 06:39:11] 
+============================================================
+[2025-11-03 06:39:11] 📖 Processing GEN Chapter 16
+[2025-11-03 06:39:11] ============================================================
+[2025-11-03 06:39:12] 🎵 Generating GEN_16_en.mp3...
+[2025-11-03 06:39:17] ✅ Audio saved: GEN_16_en.mp3
+[2025-11-03 06:39:17] 📊 Using synthetic alignment for GEN_16_en.mp3...
+[2025-11-03 06:39:17] ✅ Alignment saved: GEN_16_en_alignment.json
+[2025-11-03 06:39:18] 🎵 Generating GEN_16_fa.mp3...
+[2025-11-03 06:39:26] ✅ Audio saved: GEN_16_fa.mp3
+[2025-11-03 06:39:26] 📊 Using synthetic alignment for GEN_16_fa.mp3...
+[2025-11-03 06:39:26] ✅ Alignment saved: GEN_16_fa_alignment.json
+[2025-11-03 06:39:26] ✅ Completed GEN 16
+[2025-11-03 06:39:27] 
+============================================================
+[2025-11-03 06:39:27] 📖 Processing GEN Chapter 17
+[2025-11-03 06:39:27] ============================================================
+[2025-11-03 06:39:28] 🎵 Generating GEN_17_en.mp3...
+[2025-11-03 06:39:32] ✅ Audio saved: GEN_17_en.mp3
+[2025-11-03 06:39:32] 📊 Using synthetic alignment for GEN_17_en.mp3...
+[2025-11-03 06:39:32] ✅ Alignment saved: GEN_17_en_alignment.json
+[2025-11-03 06:39:32] 🎵 Generating GEN_17_fa.mp3...
+[2025-11-03 06:39:42] ✅ Audio saved: GEN_17_fa.mp3
+[2025-11-03 06:39:42] 📊 Using synthetic alignment for GEN_17_fa.mp3...
+[2025-11-03 06:39:42] ✅ Alignment saved: GEN_17_fa_alignment.json
+[2025-11-03 06:39:42] ✅ Completed GEN 17
+[2025-11-03 06:39:43] 
+============================================================
+[2025-11-03 06:39:43] 📖 Processing GEN Chapter 18
+[2025-11-03 06:39:43] ============================================================
+[2025-11-03 06:39:43] 🎵 Generating GEN_18_en.mp3...
+[2025-11-03 06:39:47] ✅ Audio saved: GEN_18_en.mp3
+[2025-11-03 06:39:47] 📊 Using synthetic alignment for GEN_18_en.mp3...
+[2025-11-03 06:39:47] ✅ Alignment saved: GEN_18_en_alignment.json
+[2025-11-03 06:39:47] 🎵 Generating GEN_18_fa.mp3...
+[2025-11-03 06:39:58] ✅ Audio saved: GEN_18_fa.mp3
+[2025-11-03 06:39:58] 📊 Using synthetic alignment for GEN_18_fa.mp3...
+[2025-11-03 06:39:58] ✅ Alignment saved: GEN_18_fa_alignment.json
+[2025-11-03 06:39:58] ✅ Completed GEN 18
+[2025-11-03 06:39:59] 
+============================================================
+[2025-11-03 06:39:59] 📖 Processing GEN Chapter 19
+[2025-11-03 06:39:59] ============================================================
+[2025-11-03 06:39:59] 🎵 Generating GEN_19_en.mp3...
+[2025-11-03 06:40:02] ✅ Audio saved: GEN_19_en.mp3
+[2025-11-03 06:40:02] 📊 Using synthetic alignment for GEN_19_en.mp3...
+[2025-11-03 06:40:02] ✅ Alignment saved: GEN_19_en_alignment.json
+[2025-11-03 06:40:02] 🎵 Generating GEN_19_fa.mp3...
+[2025-11-03 06:40:27] ✅ Audio saved: GEN_19_fa.mp3
+[2025-11-03 06:40:27] 📊 Using synthetic alignment for GEN_19_fa.mp3...
+[2025-11-03 06:40:27] ✅ Alignment saved: GEN_19_fa_alignment.json
+[2025-11-03 06:40:27] ✅ Completed GEN 19
+[2025-11-03 06:40:28] 
+============================================================
+[2025-11-03 06:40:28] 📖 Processing GEN Chapter 20
+[2025-11-03 06:40:28] ============================================================
+[2025-11-03 06:40:29] 🎵 Generating GEN_20_en.mp3...
+[2025-11-03 06:40:32] ✅ Audio saved: GEN_20_en.mp3
+[2025-11-03 06:40:32] 📊 Using synthetic alignment for GEN_20_en.mp3...
+[2025-11-03 06:40:32] ✅ Alignment saved: GEN_20_en_alignment.json
+[2025-11-03 06:40:32] 🎵 Generating GEN_20_fa.mp3...
+[2025-11-03 06:40:40] ✅ Audio saved: GEN_20_fa.mp3
+[2025-11-03 06:40:40] 📊 Using synthetic alignment for GEN_20_fa.mp3...
+[2025-11-03 06:40:40] ✅ Alignment saved: GEN_20_fa_alignment.json
+[2025-11-03 06:40:40] ✅ Completed GEN 20
+[2025-11-03 06:40:41] 
+============================================================
+[2025-11-03 06:40:41] 📖 Processing GEN Chapter 21
+[2025-11-03 06:40:41] ============================================================
+[2025-11-03 06:40:42] 🎵 Generating GEN_21_en.mp3...
+[2025-11-03 06:40:44] ✅ Audio saved: GEN_21_en.mp3
+[2025-11-03 06:40:44] 📊 Using synthetic alignment for GEN_21_en.mp3...
+[2025-11-03 06:40:44] ✅ Alignment saved: GEN_21_en_alignment.json
+[2025-11-03 06:40:45] 🎵 Generating GEN_21_fa.mp3...
+[2025-11-03 06:40:57] ✅ Audio saved: GEN_21_fa.mp3
+[2025-11-03 06:40:57] 📊 Using synthetic alignment for GEN_21_fa.mp3...
+[2025-11-03 06:40:57] ✅ Alignment saved: GEN_21_fa_alignment.json
+[2025-11-03 06:40:57] ✅ Completed GEN 21
+[2025-11-03 06:40:58] 
+============================================================
+[2025-11-03 06:40:58] 📖 Processing GEN Chapter 22
+[2025-11-03 06:40:58] ============================================================
+[2025-11-03 06:40:59] 🎵 Generating GEN_22_en.mp3...
+[2025-11-03 06:41:02] ✅ Audio saved: GEN_22_en.mp3
+[2025-11-03 06:41:02] 📊 Using synthetic alignment for GEN_22_en.mp3...
+[2025-11-03 06:41:02] ✅ Alignment saved: GEN_22_en_alignment.json
+[2025-11-03 06:41:03] 🎵 Generating GEN_22_fa.mp3...
+[2025-11-03 06:41:11] ✅ Audio saved: GEN_22_fa.mp3
+[2025-11-03 06:41:11] 📊 Using synthetic alignment for GEN_22_fa.mp3...
+[2025-11-03 06:41:11] ✅ Alignment saved: GEN_22_fa_alignment.json
+[2025-11-03 06:41:11] ✅ Completed GEN 22
+[2025-11-03 06:41:12] 
+============================================================
+[2025-11-03 06:41:12] 📖 Processing GEN Chapter 23
+[2025-11-03 06:41:12] ============================================================
+[2025-11-03 06:41:12] 🎵 Generating GEN_23_en.mp3...
+[2025-11-03 06:41:16] ✅ Audio saved: GEN_23_en.mp3
+[2025-11-03 06:41:16] 📊 Using synthetic alignment for GEN_23_en.mp3...
+[2025-11-03 06:41:16] ✅ Alignment saved: GEN_23_en_alignment.json
+[2025-11-03 06:41:16] 🎵 Generating GEN_23_fa.mp3...
+[2025-11-03 06:41:24] ✅ Audio saved: GEN_23_fa.mp3
+[2025-11-03 06:41:24] 📊 Using synthetic alignment for GEN_23_fa.mp3...
+[2025-11-03 06:41:24] ✅ Alignment saved: GEN_23_fa_alignment.json
+[2025-11-03 06:41:24] ✅ Completed GEN 23
+[2025-11-03 06:41:25] 
+============================================================
+[2025-11-03 06:41:25] 📖 Processing GEN Chapter 24
+[2025-11-03 06:41:25] ============================================================
+[2025-11-03 06:41:26] 🎵 Generating GEN_24_en.mp3...
+[2025-11-03 06:41:30] ✅ Audio saved: GEN_24_en.mp3
+[2025-11-03 06:41:30] 📊 Using synthetic alignment for GEN_24_en.mp3...
+[2025-11-03 06:41:30] ✅ Alignment saved: GEN_24_en_alignment.json
+[2025-11-03 06:41:31] 🎵 Generating GEN_24_fa.mp3...
+[2025-11-03 06:41:45] ✅ Audio saved: GEN_24_fa.mp3
+[2025-11-03 06:41:45] 📊 Using synthetic alignment for GEN_24_fa.mp3...
+[2025-11-03 06:41:45] ✅ Alignment saved: GEN_24_fa_alignment.json
+[2025-11-03 06:41:45] ✅ Completed GEN 24
+[2025-11-03 06:41:46] 
+============================================================
+[2025-11-03 06:41:46] 📖 Processing GEN Chapter 25
+[2025-11-03 06:41:46] ============================================================
+[2025-11-03 06:41:47] 🎵 Generating GEN_25_en.mp3...
+[2025-11-03 06:41:53] ✅ Audio saved: GEN_25_en.mp3
+[2025-11-03 06:41:53] 📊 Using synthetic alignment for GEN_25_en.mp3...
+[2025-11-03 06:41:53] ✅ Alignment saved: GEN_25_en_alignment.json
+[2025-11-03 06:41:54] 🎵 Generating GEN_25_fa.mp3...
+[2025-11-03 06:42:11] ✅ Audio saved: GEN_25_fa.mp3
+[2025-11-03 06:42:11] 📊 Using synthetic alignment for GEN_25_fa.mp3...
+[2025-11-03 06:42:11] ✅ Alignment saved: GEN_25_fa_alignment.json
+[2025-11-03 06:42:11] ✅ Completed GEN 25
+[2025-11-03 06:42:12] 
+============================================================
+[2025-11-03 06:42:12] 📖 Processing GEN Chapter 26
+[2025-11-03 06:42:12] ============================================================
+[2025-11-03 06:42:12] 🎵 Generating GEN_26_en.mp3...
+[2025-11-03 06:42:23] ✅ Audio saved: GEN_26_en.mp3
+[2025-11-03 06:42:23] 📊 Using synthetic alignment for GEN_26_en.mp3...
+[2025-11-03 06:42:23] ✅ Alignment saved: GEN_26_en_alignment.json
+[2025-11-03 06:42:23] 🎵 Generating GEN_26_fa.mp3...
+[2025-11-03 06:42:43] ✅ Audio saved: GEN_26_fa.mp3
+[2025-11-03 06:42:43] 📊 Using synthetic alignment for GEN_26_fa.mp3...
+[2025-11-03 06:42:43] ✅ Alignment saved: GEN_26_fa_alignment.json
+[2025-11-03 06:42:43] ✅ Completed GEN 26
+[2025-11-03 06:42:44] 
+============================================================
+[2025-11-03 06:42:44] 📖 Processing GEN Chapter 27
+[2025-11-03 06:42:44] ============================================================
+[2025-11-03 06:42:45] 🎵 Generating GEN_27_en.mp3...
+[2025-11-03 06:42:48] ✅ Audio saved: GEN_27_en.mp3
+[2025-11-03 06:42:48] 📊 Using synthetic alignment for GEN_27_en.mp3...
+[2025-11-03 06:42:48] ✅ Alignment saved: GEN_27_en_alignment.json
+[2025-11-03 06:42:48] 🎵 Generating GEN_27_fa.mp3...
+[2025-11-03 06:42:57] ✅ Audio saved: GEN_27_fa.mp3
+[2025-11-03 06:42:57] 📊 Using synthetic alignment for GEN_27_fa.mp3...
+[2025-11-03 06:42:57] ✅ Alignment saved: GEN_27_fa_alignment.json
+[2025-11-03 06:42:57] ✅ Completed GEN 27
+[2025-11-03 06:42:58] 
+============================================================
+[2025-11-03 06:42:58] 📖 Processing GEN Chapter 28
+[2025-11-03 06:42:58] ============================================================
+[2025-11-03 06:42:58] 🎵 Generating GEN_28_en.mp3...
+[2025-11-03 06:43:02] ✅ Audio saved: GEN_28_en.mp3
+[2025-11-03 06:43:02] 📊 Using synthetic alignment for GEN_28_en.mp3...
+[2025-11-03 06:43:02] ✅ Alignment saved: GEN_28_en_alignment.json
+[2025-11-03 06:43:02] 🎵 Generating GEN_28_fa.mp3...
+[2025-11-03 06:43:17] ✅ Audio saved: GEN_28_fa.mp3
+[2025-11-03 06:43:17] 📊 Using synthetic alignment for GEN_28_fa.mp3...
+[2025-11-03 06:43:17] ✅ Alignment saved: GEN_28_fa_alignment.json
+[2025-11-03 06:43:17] ✅ Completed GEN 28
+[2025-11-03 06:43:18] 
+============================================================
+[2025-11-03 06:43:18] 📖 Processing GEN Chapter 29
+[2025-11-03 06:43:18] ============================================================
+[2025-11-03 06:43:19] 🎵 Generating GEN_29_en.mp3...
+[2025-11-03 06:43:22] ✅ Audio saved: GEN_29_en.mp3
+[2025-11-03 06:43:22] 📊 Using synthetic alignment for GEN_29_en.mp3...
+[2025-11-03 06:43:22] ✅ Alignment saved: GEN_29_en_alignment.json
+[2025-11-03 06:43:22] 🎵 Generating GEN_29_fa.mp3...
+[2025-11-03 06:43:37] ✅ Audio saved: GEN_29_fa.mp3
+[2025-11-03 06:43:37] 📊 Using synthetic alignment for GEN_29_fa.mp3...
+[2025-11-03 06:43:37] ✅ Alignment saved: GEN_29_fa_alignment.json
+[2025-11-03 06:43:37] ✅ Completed GEN 29
+[2025-11-03 06:43:38] 
+============================================================
+[2025-11-03 06:43:38] 📖 Processing GEN Chapter 30
+[2025-11-03 06:43:38] ============================================================
+[2025-11-03 06:43:39] 🎵 Generating GEN_30_en.mp3...
+[2025-11-03 06:43:49] ✅ Audio saved: GEN_30_en.mp3
+[2025-11-03 06:43:49] 📊 Using synthetic alignment for GEN_30_en.mp3...
+[2025-11-03 06:43:49] ✅ Alignment saved: GEN_30_en_alignment.json
+[2025-11-03 06:43:49] 🎵 Generating GEN_30_fa.mp3...
+[2025-11-03 06:44:20] ✅ Audio saved: GEN_30_fa.mp3
+[2025-11-03 06:44:20] 📊 Using synthetic alignment for GEN_30_fa.mp3...
+[2025-11-03 06:44:20] ✅ Alignment saved: GEN_30_fa_alignment.json
+[2025-11-03 06:44:20] ✅ Completed GEN 30
+[2025-11-03 06:44:21] 
+============================================================
+[2025-11-03 06:44:21] 📖 Processing GEN Chapter 31
+[2025-11-03 06:44:21] ============================================================
+[2025-11-03 06:44:21] 🎵 Generating GEN_31_en.mp3...
+[2025-11-03 06:44:26] ✅ Audio saved: GEN_31_en.mp3
+[2025-11-03 06:44:26] 📊 Using synthetic alignment for GEN_31_en.mp3...
+[2025-11-03 06:44:26] ✅ Alignment saved: GEN_31_en_alignment.json
+[2025-11-03 06:44:27] 🎵 Generating GEN_31_fa.mp3...
+[2025-11-03 06:44:41] ✅ Audio saved: GEN_31_fa.mp3
+[2025-11-03 06:44:41] 📊 Using synthetic alignment for GEN_31_fa.mp3...
+[2025-11-03 06:44:41] ✅ Alignment saved: GEN_31_fa_alignment.json
+[2025-11-03 06:44:41] ✅ Completed GEN 31
+[2025-11-03 06:44:42] 
+============================================================
+[2025-11-03 06:44:42] 📖 Processing GEN Chapter 32
+[2025-11-03 06:44:42] ============================================================
+[2025-11-03 06:44:43] 🎵 Generating GEN_32_en.mp3...
+[2025-11-03 06:44:50] ✅ Audio saved: GEN_32_en.mp3
+[2025-11-03 06:44:50] 📊 Using synthetic alignment for GEN_32_en.mp3...
+[2025-11-03 06:44:50] ✅ Alignment saved: GEN_32_en_alignment.json
+[2025-11-03 06:44:50] 🎵 Generating GEN_32_fa.mp3...
+[2025-11-03 06:45:06] ✅ Audio saved: GEN_32_fa.mp3
+[2025-11-03 06:45:06] 📊 Using synthetic alignment for GEN_32_fa.mp3...
+[2025-11-03 06:45:06] ✅ Alignment saved: GEN_32_fa_alignment.json
+[2025-11-03 06:45:06] ✅ Completed GEN 32
+[2025-11-03 06:45:07] 
+============================================================
+[2025-11-03 06:45:07] 📖 Processing GEN Chapter 33
+[2025-11-03 06:45:07] ============================================================
+[2025-11-03 06:45:08] 🎵 Generating GEN_33_en.mp3...
+[2025-11-03 06:45:14] ✅ Audio saved: GEN_33_en.mp3
+[2025-11-03 06:45:14] 📊 Using synthetic alignment for GEN_33_en.mp3...
+[2025-11-03 06:45:14] ✅ Alignment saved: GEN_33_en_alignment.json
+[2025-11-03 06:45:15] 🎵 Generating GEN_33_fa.mp3...
+[2025-11-03 06:45:33] ✅ Audio saved: GEN_33_fa.mp3
+[2025-11-03 06:45:33] 📊 Using synthetic alignment for GEN_33_fa.mp3...
+[2025-11-03 06:45:33] ✅ Alignment saved: GEN_33_fa_alignment.json
+[2025-11-03 06:45:33] ✅ Completed GEN 33
+[2025-11-03 06:45:34] 
+============================================================
+[2025-11-03 06:45:34] 📖 Processing GEN Chapter 34
+[2025-11-03 06:45:34] ============================================================
+[2025-11-03 06:45:35] 🎵 Generating GEN_34_en.mp3...
+[2025-11-03 06:45:38] ✅ Audio saved: GEN_34_en.mp3
+[2025-11-03 06:45:38] 📊 Using synthetic alignment for GEN_34_en.mp3...
+[2025-11-03 06:45:38] ✅ Alignment saved: GEN_34_en_alignment.json
+[2025-11-03 06:45:38] 🎵 Generating GEN_34_fa.mp3...
+[2025-11-03 06:45:51] ✅ Audio saved: GEN_34_fa.mp3
+[2025-11-03 06:45:51] 📊 Using synthetic alignment for GEN_34_fa.mp3...
+[2025-11-03 06:45:51] ✅ Alignment saved: GEN_34_fa_alignment.json
+[2025-11-03 06:45:51] ✅ Completed GEN 34
+[2025-11-03 06:45:52] 
+============================================================
+[2025-11-03 06:45:52] 📖 Processing GEN Chapter 35
+[2025-11-03 06:45:52] ============================================================
+[2025-11-03 06:45:52] 🎵 Generating GEN_35_en.mp3...
+[2025-11-03 06:45:58] ✅ Audio saved: GEN_35_en.mp3
+[2025-11-03 06:45:58] 📊 Using synthetic alignment for GEN_35_en.mp3...
+[2025-11-03 06:45:58] ✅ Alignment saved: GEN_35_en_alignment.json
+[2025-11-03 06:45:58] 🎵 Generating GEN_35_fa.mp3...
+[2025-11-03 06:46:13] ✅ Audio saved: GEN_35_fa.mp3
+[2025-11-03 06:46:13] 📊 Using synthetic alignment for GEN_35_fa.mp3...
+[2025-11-03 06:46:13] ✅ Alignment saved: GEN_35_fa_alignment.json
+[2025-11-03 06:46:13] ✅ Completed GEN 35
+[2025-11-03 06:46:14] 
+============================================================
+[2025-11-03 06:46:14] 📖 Processing GEN Chapter 36
+[2025-11-03 06:46:14] ============================================================
+[2025-11-03 06:46:14] 🎵 Generating GEN_36_en.mp3...
+[2025-11-03 06:46:20] ✅ Audio saved: GEN_36_en.mp3
+[2025-11-03 06:46:20] 📊 Using synthetic alignment for GEN_36_en.mp3...
+[2025-11-03 06:46:20] ✅ Alignment saved: GEN_36_en_alignment.json
+[2025-11-03 06:46:21] 🎵 Generating GEN_36_fa.mp3...
+[2025-11-03 06:46:40] ✅ Audio saved: GEN_36_fa.mp3
+[2025-11-03 06:46:40] 📊 Using synthetic alignment for GEN_36_fa.mp3...
+[2025-11-03 06:46:40] ✅ Alignment saved: GEN_36_fa_alignment.json
+[2025-11-03 06:46:40] ✅ Completed GEN 36
+[2025-11-03 06:46:41] 
+============================================================
+[2025-11-03 06:46:41] 📖 Processing GEN Chapter 37
+[2025-11-03 06:46:41] ============================================================
+[2025-11-03 06:46:41] 🎵 Generating GEN_37_en.mp3...
+[2025-11-03 06:46:48] ✅ Audio saved: GEN_37_en.mp3
+[2025-11-03 06:46:48] 📊 Using synthetic alignment for GEN_37_en.mp3...
+[2025-11-03 06:46:48] ✅ Alignment saved: GEN_37_en_alignment.json
+[2025-11-03 06:46:48] 🎵 Generating GEN_37_fa.mp3...
+[2025-11-03 06:47:16] ✅ Audio saved: GEN_37_fa.mp3
+[2025-11-03 06:47:16] 📊 Using synthetic alignment for GEN_37_fa.mp3...
+[2025-11-03 06:47:16] ✅ Alignment saved: GEN_37_fa_alignment.json
+[2025-11-03 06:47:16] ✅ Completed GEN 37
+[2025-11-03 06:47:17] 
+============================================================
+[2025-11-03 06:47:17] 📖 Processing GEN Chapter 38
+[2025-11-03 06:47:17] ============================================================
+[2025-11-03 06:47:17] 🎵 Generating GEN_38_en.mp3...
+[2025-11-03 06:47:24] ✅ Audio saved: GEN_38_en.mp3
+[2025-11-03 06:47:24] 📊 Using synthetic alignment for GEN_38_en.mp3...
+[2025-11-03 06:47:24] ✅ Alignment saved: GEN_38_en_alignment.json
+[2025-11-03 06:47:24] 🎵 Generating GEN_38_fa.mp3...
+[2025-11-03 06:47:39] ✅ Audio saved: GEN_38_fa.mp3
+[2025-11-03 06:47:39] 📊 Using synthetic alignment for GEN_38_fa.mp3...
+[2025-11-03 06:47:39] ✅ Alignment saved: GEN_38_fa_alignment.json
+[2025-11-03 06:47:39] ✅ Completed GEN 38
+[2025-11-03 06:47:40] 
+============================================================
+[2025-11-03 06:47:40] 📖 Processing GEN Chapter 39
+[2025-11-03 06:47:40] ============================================================
+[2025-11-03 06:47:40] 🎵 Generating GEN_39_en.mp3...
+[2025-11-03 06:47:44] ✅ Audio saved: GEN_39_en.mp3
+[2025-11-03 06:47:44] 📊 Using synthetic alignment for GEN_39_en.mp3...
+[2025-11-03 06:47:44] ✅ Alignment saved: GEN_39_en_alignment.json
+[2025-11-03 06:47:44] 🎵 Generating GEN_39_fa.mp3...
+[2025-11-03 06:47:53] ✅ Audio saved: GEN_39_fa.mp3
+[2025-11-03 06:47:53] 📊 Using synthetic alignment for GEN_39_fa.mp3...
+[2025-11-03 06:47:53] ✅ Alignment saved: GEN_39_fa_alignment.json
+[2025-11-03 06:47:53] ✅ Completed GEN 39
+[2025-11-03 06:47:54] 
+============================================================
+[2025-11-03 06:47:54] 📖 Processing GEN Chapter 40
+[2025-11-03 06:47:54] ============================================================
+[2025-11-03 06:47:55] 🎵 Generating GEN_40_en.mp3...
+[2025-11-03 06:47:58] ✅ Audio saved: GEN_40_en.mp3
+[2025-11-03 06:47:58] 📊 Using synthetic alignment for GEN_40_en.mp3...
+[2025-11-03 06:47:58] ✅ Alignment saved: GEN_40_en_alignment.json
+[2025-11-03 06:47:59] 🎵 Generating GEN_40_fa.mp3...
+[2025-11-03 06:48:11] ✅ Audio saved: GEN_40_fa.mp3
+[2025-11-03 06:48:11] 📊 Using synthetic alignment for GEN_40_fa.mp3...
+[2025-11-03 06:48:11] ✅ Alignment saved: GEN_40_fa_alignment.json
+[2025-11-03 06:48:11] ✅ Completed GEN 40
+[2025-11-03 06:48:12] 
+============================================================
+[2025-11-03 06:48:12] 📖 Processing GEN Chapter 41
+[2025-11-03 06:48:12] ============================================================
+[2025-11-03 06:48:12] 🎵 Generating GEN_41_en.mp3...
+[2025-11-03 06:48:18] ✅ Audio saved: GEN_41_en.mp3
+[2025-11-03 06:48:18] 📊 Using synthetic alignment for GEN_41_en.mp3...
+[2025-11-03 06:48:18] ✅ Alignment saved: GEN_41_en_alignment.json
+[2025-11-03 06:48:18] 🎵 Generating GEN_41_fa.mp3...
+[2025-11-03 06:48:36] ✅ Audio saved: GEN_41_fa.mp3
+[2025-11-03 06:48:36] 📊 Using synthetic alignment for GEN_41_fa.mp3...
+[2025-11-03 06:48:36] ✅ Alignment saved: GEN_41_fa_alignment.json
+[2025-11-03 06:48:36] ✅ Completed GEN 41
+[2025-11-03 06:48:38] 
+============================================================
+[2025-11-03 06:48:38] 📖 Processing GEN Chapter 42
+[2025-11-03 06:48:38] ============================================================
+[2025-11-03 06:48:38] 🎵 Generating GEN_42_en.mp3...
+[2025-11-03 06:48:44] ✅ Audio saved: GEN_42_en.mp3
+[2025-11-03 06:48:44] 📊 Using synthetic alignment for GEN_42_en.mp3...
+[2025-11-03 06:48:44] ✅ Alignment saved: GEN_42_en_alignment.json
+[2025-11-03 06:48:45] 🎵 Generating GEN_42_fa.mp3...
+[2025-11-03 06:49:04] ✅ Audio saved: GEN_42_fa.mp3
+[2025-11-03 06:49:04] 📊 Using synthetic alignment for GEN_42_fa.mp3...
+[2025-11-03 06:49:04] ✅ Alignment saved: GEN_42_fa_alignment.json
+[2025-11-03 06:49:04] ✅ Completed GEN 42
+[2025-11-03 06:49:05] 
+============================================================
+[2025-11-03 06:49:05] 📖 Processing GEN Chapter 43
+[2025-11-03 06:49:05] ============================================================
+[2025-11-03 06:49:05] 🎵 Generating GEN_43_en.mp3...
+[2025-11-03 06:50:00] ✅ Audio saved: GEN_43_en.mp3
+[2025-11-03 06:50:00] 📊 Using synthetic alignment for GEN_43_en.mp3...
+[2025-11-03 06:50:00] ✅ Alignment saved: GEN_43_en_alignment.json
+[2025-11-03 06:50:01] 🎵 Generating GEN_43_fa.mp3...
+[2025-11-03 06:50:14] ✅ Audio saved: GEN_43_fa.mp3
+[2025-11-03 06:50:14] 📊 Using synthetic alignment for GEN_43_fa.mp3...
+[2025-11-03 06:50:14] ✅ Alignment saved: GEN_43_fa_alignment.json
+[2025-11-03 06:50:14] ✅ Completed GEN 43
+[2025-11-03 06:50:15] 
+============================================================
+[2025-11-03 06:50:15] 📖 Processing GEN Chapter 44
+[2025-11-03 06:50:15] ============================================================
+[2025-11-03 06:50:16] 🎵 Generating GEN_44_en.mp3...
+[2025-11-03 06:50:20] ✅ Audio saved: GEN_44_en.mp3
+[2025-11-03 06:50:20] 📊 Using synthetic alignment for GEN_44_en.mp3...
+[2025-11-03 06:50:20] ✅ Alignment saved: GEN_44_en_alignment.json
+[2025-11-03 06:50:20] 🎵 Generating GEN_44_fa.mp3...
+[2025-11-03 06:50:32] ✅ Audio saved: GEN_44_fa.mp3
+[2025-11-03 06:50:32] 📊 Using synthetic alignment for GEN_44_fa.mp3...
+[2025-11-03 06:50:32] ✅ Alignment saved: GEN_44_fa_alignment.json
+[2025-11-03 06:50:32] ✅ Completed GEN 44
+[2025-11-03 06:50:33] 
+============================================================
+[2025-11-03 06:50:33] 📖 Processing GEN Chapter 45
+[2025-11-03 06:50:33] ============================================================
+[2025-11-03 06:50:34] 🎵 Generating GEN_45_en.mp3...
+[2025-11-03 06:50:37] ✅ Audio saved: GEN_45_en.mp3
+[2025-11-03 06:50:37] 📊 Using synthetic alignment for GEN_45_en.mp3...
+[2025-11-03 06:50:37] ✅ Alignment saved: GEN_45_en_alignment.json
+[2025-11-03 06:50:38] 🎵 Generating GEN_45_fa.mp3...
+[2025-11-03 06:50:47] ✅ Audio saved: GEN_45_fa.mp3
+[2025-11-03 06:50:47] 📊 Using synthetic alignment for GEN_45_fa.mp3...
+[2025-11-03 06:50:47] ✅ Alignment saved: GEN_45_fa_alignment.json
+[2025-11-03 06:50:47] ✅ Completed GEN 45
+[2025-11-03 06:50:48] 
+============================================================
+[2025-11-03 06:50:48] 📖 Processing GEN Chapter 46
+[2025-11-03 06:50:48] ============================================================
+[2025-11-03 06:50:49] 🎵 Generating GEN_46_en.mp3...
+[2025-11-03 06:50:54] ✅ Audio saved: GEN_46_en.mp3
+[2025-11-03 06:50:54] 📊 Using synthetic alignment for GEN_46_en.mp3...
+[2025-11-03 06:50:54] ✅ Alignment saved: GEN_46_en_alignment.json
+[2025-11-03 06:50:54] 🎵 Generating GEN_46_fa.mp3...
+[2025-11-03 06:51:21] ✅ Audio saved: GEN_46_fa.mp3
+[2025-11-03 06:51:21] 📊 Using synthetic alignment for GEN_46_fa.mp3...
+[2025-11-03 06:51:21] ✅ Alignment saved: GEN_46_fa_alignment.json
+[2025-11-03 06:51:21] ✅ Completed GEN 46
+[2025-11-03 06:51:22] 
+============================================================
+[2025-11-03 06:51:22] 📖 Processing GEN Chapter 47
+[2025-11-03 06:51:22] ============================================================
+[2025-11-03 06:51:23] 🎵 Generating GEN_47_en.mp3...
+[2025-11-03 06:51:27] ✅ Audio saved: GEN_47_en.mp3
+[2025-11-03 06:51:27] 📊 Using synthetic alignment for GEN_47_en.mp3...
+[2025-11-03 06:51:27] ✅ Alignment saved: GEN_47_en_alignment.json
+[2025-11-03 06:51:28] 🎵 Generating GEN_47_fa.mp3...
+[2025-11-03 06:51:47] ✅ Audio saved: GEN_47_fa.mp3
+[2025-11-03 06:51:47] 📊 Using synthetic alignment for GEN_47_fa.mp3...
+[2025-11-03 06:51:47] ✅ Alignment saved: GEN_47_fa_alignment.json
+[2025-11-03 06:51:47] ✅ Completed GEN 47
+[2025-11-03 06:51:48] 
+============================================================
+[2025-11-03 06:51:48] 📖 Processing GEN Chapter 48
+[2025-11-03 06:51:48] ============================================================
+[2025-11-03 06:51:49] 🎵 Generating GEN_48_en.mp3...
+[2025-11-03 06:51:55] ✅ Audio saved: GEN_48_en.mp3
+[2025-11-03 06:51:55] 📊 Using synthetic alignment for GEN_48_en.mp3...
+[2025-11-03 06:51:55] ✅ Alignment saved: GEN_48_en_alignment.json
+[2025-11-03 06:51:56] 🎵 Generating GEN_48_fa.mp3...
+[2025-11-03 06:52:13] ✅ Audio saved: GEN_48_fa.mp3
+[2025-11-03 06:52:13] 📊 Using synthetic alignment for GEN_48_fa.mp3...
+[2025-11-03 06:52:13] ✅ Alignment saved: GEN_48_fa_alignment.json
+[2025-11-03 06:52:13] ✅ Completed GEN 48
+[2025-11-03 06:52:14] 
+============================================================
+[2025-11-03 06:52:14] 📖 Processing GEN Chapter 49
+[2025-11-03 06:52:14] ============================================================
+[2025-11-03 06:52:15] 🎵 Generating GEN_49_en.mp3...
+[2025-11-03 06:52:19] ✅ Audio saved: GEN_49_en.mp3
+[2025-11-03 06:52:19] 📊 Using synthetic alignment for GEN_49_en.mp3...
+[2025-11-03 06:52:19] ✅ Alignment saved: GEN_49_en_alignment.json
+[2025-11-03 06:52:20] 🎵 Generating GEN_49_fa.mp3...
+[2025-11-03 06:52:50] ✅ Audio saved: GEN_49_fa.mp3
+[2025-11-03 06:52:50] 📊 Using synthetic alignment for GEN_49_fa.mp3...
+[2025-11-03 06:52:50] ✅ Alignment saved: GEN_49_fa_alignment.json
+[2025-11-03 06:52:50] ✅ Completed GEN 49
+[2025-11-03 06:52:51] 
+============================================================
+[2025-11-03 06:52:51] 📖 Processing GEN Chapter 50
+[2025-11-03 06:52:51] ============================================================
+[2025-11-03 06:52:52] 🎵 Generating GEN_50_en.mp3...
+[2025-11-03 06:52:57] ✅ Audio saved: GEN_50_en.mp3
+[2025-11-03 06:52:57] 📊 Using synthetic alignment for GEN_50_en.mp3...
+[2025-11-03 06:52:57] ✅ Alignment saved: GEN_50_en_alignment.json
+[2025-11-03 06:52:58] 🎵 Generating GEN_50_fa.mp3...
+[2025-11-03 06:53:12] ✅ Audio saved: GEN_50_fa.mp3
+[2025-11-03 06:53:12] 📊 Using synthetic alignment for GEN_50_fa.mp3...
+[2025-11-03 06:53:12] ✅ Alignment saved: GEN_50_fa_alignment.json
+[2025-11-03 06:53:12] ✅ Completed GEN 50
+[2025-11-03 06:53:13] 
+============================================================
+[2025-11-03 06:53:13] 📖 Processing EXO Chapter 1
+[2025-11-03 06:53:13] ============================================================
+[2025-11-03 06:53:14] 🎵 Generating EXO_1_en.mp3...
+[2025-11-03 06:53:16] ✅ Audio saved: EXO_1_en.mp3
+[2025-11-03 06:53:16] 📊 Using synthetic alignment for EXO_1_en.mp3...
+[2025-11-03 06:53:16] ✅ Alignment saved: EXO_1_en_alignment.json
+[2025-11-03 06:53:17] 🎵 Generating EXO_1_fa.mp3...
+[2025-11-03 06:53:27] ✅ Audio saved: EXO_1_fa.mp3
+[2025-11-03 06:53:27] 📊 Using synthetic alignment for EXO_1_fa.mp3...
+[2025-11-03 06:53:27] ✅ Alignment saved: EXO_1_fa_alignment.json
+[2025-11-03 06:53:27] ✅ Completed EXO 1
+[2025-11-03 06:53:28] 
+============================================================
+[2025-11-03 06:53:28] 📖 Processing EXO Chapter 2
+[2025-11-03 06:53:28] ============================================================
+[2025-11-03 06:53:28] 🎵 Generating EXO_2_en.mp3...
+[2025-11-03 06:53:53] ✅ Audio saved: EXO_2_en.mp3
+[2025-11-03 06:53:53] 📊 Using synthetic alignment for EXO_2_en.mp3...
+[2025-11-03 06:53:53] ✅ Alignment saved: EXO_2_en_alignment.json
+[2025-11-03 06:53:53] 🎵 Generating EXO_2_fa.mp3...
+[2025-11-03 06:54:21] ✅ Audio saved: EXO_2_fa.mp3
+[2025-11-03 06:54:21] 📊 Using synthetic alignment for EXO_2_fa.mp3...
+[2025-11-03 06:54:21] ✅ Alignment saved: EXO_2_fa_alignment.json
+[2025-11-03 06:54:21] ✅ Completed EXO 2
+[2025-11-03 06:54:22] 
+============================================================
+[2025-11-03 06:54:22] 📖 Processing EXO Chapter 3
+[2025-11-03 06:54:22] ============================================================
+[2025-11-03 06:54:23] 🎵 Generating EXO_3_en.mp3...
+[2025-11-03 06:54:27] ✅ Audio saved: EXO_3_en.mp3
+[2025-11-03 06:54:27] 📊 Using synthetic alignment for EXO_3_en.mp3...
+[2025-11-03 06:54:27] ✅ Alignment saved: EXO_3_en_alignment.json
+[2025-11-03 06:54:28] 🎵 Generating EXO_3_fa.mp3...
+[2025-11-03 06:54:44] ✅ Audio saved: EXO_3_fa.mp3
+[2025-11-03 06:54:44] 📊 Using synthetic alignment for EXO_3_fa.mp3...
+[2025-11-03 06:54:44] ✅ Alignment saved: EXO_3_fa_alignment.json
+[2025-11-03 06:54:44] ✅ Completed EXO 3
+[2025-11-03 06:54:45] 
+============================================================
+[2025-11-03 06:54:45] 📖 Processing EXO Chapter 4
+[2025-11-03 06:54:45] ============================================================
+[2025-11-03 06:54:45] 🎵 Generating EXO_4_en.mp3...
+[2025-11-03 06:54:51] ✅ Audio saved: EXO_4_en.mp3
+[2025-11-03 06:54:51] 📊 Using synthetic alignment for EXO_4_en.mp3...
+[2025-11-03 06:54:51] ✅ Alignment saved: EXO_4_en_alignment.json
+[2025-11-03 06:54:51] 🎵 Generating EXO_4_fa.mp3...
+[2025-11-03 06:55:10] ✅ Audio saved: EXO_4_fa.mp3
+[2025-11-03 06:55:10] 📊 Using synthetic alignment for EXO_4_fa.mp3...
+[2025-11-03 06:55:10] ✅ Alignment saved: EXO_4_fa_alignment.json
+[2025-11-03 06:55:10] ✅ Completed EXO 4
+[2025-11-03 06:55:11] 
+============================================================
+[2025-11-03 06:55:11] 📖 Processing EXO Chapter 5
+[2025-11-03 06:55:11] ============================================================
+[2025-11-03 06:55:12] 🎵 Generating EXO_5_en.mp3...
+[2025-11-03 06:55:17] ✅ Audio saved: EXO_5_en.mp3
+[2025-11-03 06:55:17] 📊 Using synthetic alignment for EXO_5_en.mp3...
+[2025-11-03 06:55:17] ✅ Alignment saved: EXO_5_en_alignment.json
+[2025-11-03 06:55:17] 🎵 Generating EXO_5_fa.mp3...
+[2025-11-03 06:55:36] ✅ Audio saved: EXO_5_fa.mp3
+[2025-11-03 06:55:36] 📊 Using synthetic alignment for EXO_5_fa.mp3...
+[2025-11-03 06:55:36] ✅ Alignment saved: EXO_5_fa_alignment.json
+[2025-11-03 06:55:36] ✅ Completed EXO 5
+[2025-11-03 06:55:37] 
+============================================================
+[2025-11-03 06:55:37] 📖 Processing EXO Chapter 6
+[2025-11-03 06:55:37] ============================================================
+[2025-11-03 06:55:37] 🎵 Generating EXO_6_en.mp3...
+[2025-11-03 06:55:41] ✅ Audio saved: EXO_6_en.mp3
+[2025-11-03 06:55:41] 📊 Using synthetic alignment for EXO_6_en.mp3...
+[2025-11-03 06:55:41] ✅ Alignment saved: EXO_6_en_alignment.json
+[2025-11-03 06:55:41] 🎵 Generating EXO_6_fa.mp3...
+[2025-11-03 06:55:53] ✅ Audio saved: EXO_6_fa.mp3
+[2025-11-03 06:55:53] 📊 Using synthetic alignment for EXO_6_fa.mp3...
+[2025-11-03 06:55:53] ✅ Alignment saved: EXO_6_fa_alignment.json
+[2025-11-03 06:55:53] ✅ Completed EXO 6
+[2025-11-03 06:55:54] 
+============================================================
+[2025-11-03 06:55:54] 📖 Processing EXO Chapter 7
+[2025-11-03 06:55:54] ============================================================
+[2025-11-03 06:55:54] 🎵 Generating EXO_7_en.mp3...
+[2025-11-03 06:55:58] ✅ Audio saved: EXO_7_en.mp3
+[2025-11-03 06:55:58] 📊 Using synthetic alignment for EXO_7_en.mp3...
+[2025-11-03 06:55:58] ✅ Alignment saved: EXO_7_en_alignment.json
+[2025-11-03 06:55:59] 🎵 Generating EXO_7_fa.mp3...
+[2025-11-03 06:56:19] ✅ Audio saved: EXO_7_fa.mp3
+[2025-11-03 06:56:19] 📊 Using synthetic alignment for EXO_7_fa.mp3...
+[2025-11-03 06:56:19] ✅ Alignment saved: EXO_7_fa_alignment.json
+[2025-11-03 06:56:19] ✅ Completed EXO 7
+[2025-11-03 06:56:20] 
+============================================================
+[2025-11-03 06:56:20] 📖 Processing EXO Chapter 8
+[2025-11-03 06:56:20] ============================================================
+[2025-11-03 06:56:20] 🎵 Generating EXO_8_en.mp3...
+[2025-11-03 06:56:26] ✅ Audio saved: EXO_8_en.mp3
+[2025-11-03 06:56:26] 📊 Using synthetic alignment for EXO_8_en.mp3...
+[2025-11-03 06:56:26] ✅ Alignment saved: EXO_8_en_alignment.json
+[2025-11-03 06:56:27] 🎵 Generating EXO_8_fa.mp3...
+[2025-11-03 06:56:45] ✅ Audio saved: EXO_8_fa.mp3
+[2025-11-03 06:56:45] 📊 Using synthetic alignment for EXO_8_fa.mp3...
+[2025-11-03 06:56:45] ✅ Alignment saved: EXO_8_fa_alignment.json
+[2025-11-03 06:56:45] ✅ Completed EXO 8
+[2025-11-03 06:56:46] 
+============================================================
+[2025-11-03 06:56:46] 📖 Processing EXO Chapter 9
+[2025-11-03 06:56:46] ============================================================
+[2025-11-03 06:56:47] 🎵 Generating EXO_9_en.mp3...
+[2025-11-03 06:56:51] ✅ Audio saved: EXO_9_en.mp3
+[2025-11-03 06:56:51] 📊 Using synthetic alignment for EXO_9_en.mp3...
+[2025-11-03 06:56:51] ✅ Alignment saved: EXO_9_en_alignment.json
+[2025-11-03 06:56:52] 🎵 Generating EXO_9_fa.mp3...
+[2025-11-03 06:57:08] ✅ Audio saved: EXO_9_fa.mp3
+[2025-11-03 06:57:08] 📊 Using synthetic alignment for EXO_9_fa.mp3...
+[2025-11-03 06:57:08] ✅ Alignment saved: EXO_9_fa_alignment.json
+[2025-11-03 06:57:08] ✅ Completed EXO 9
+[2025-11-03 06:57:09] 
+============================================================
+[2025-11-03 06:57:09] 📖 Processing EXO Chapter 10
+[2025-11-03 06:57:09] ============================================================
+[2025-11-03 06:57:10] 🎵 Generating EXO_10_en.mp3...
+[2025-11-03 06:57:12] ✅ Audio saved: EXO_10_en.mp3
+[2025-11-03 06:57:12] 📊 Using synthetic alignment for EXO_10_en.mp3...
+[2025-11-03 06:57:12] ✅ Alignment saved: EXO_10_en_alignment.json
+[2025-11-03 06:57:13] 🎵 Generating EXO_10_fa.mp3...
+[2025-11-03 06:57:32] ✅ Audio saved: EXO_10_fa.mp3
+[2025-11-03 06:57:32] 📊 Using synthetic alignment for EXO_10_fa.mp3...
+[2025-11-03 06:57:33] ✅ Alignment saved: EXO_10_fa_alignment.json
+[2025-11-03 06:57:33] ✅ Completed EXO 10
+[2025-11-03 06:57:34] 
+============================================================
+[2025-11-03 06:57:34] 📖 Processing EXO Chapter 11
+[2025-11-03 06:57:34] ============================================================
+[2025-11-03 06:57:34] 🎵 Generating EXO_11_en.mp3...
+[2025-11-03 06:57:37] ✅ Audio saved: EXO_11_en.mp3
+[2025-11-03 06:57:37] 📊 Using synthetic alignment for EXO_11_en.mp3...
+[2025-11-03 06:57:37] ✅ Alignment saved: EXO_11_en_alignment.json
+[2025-11-03 06:57:37] 🎵 Generating EXO_11_fa.mp3...
+[2025-11-03 06:57:51] ✅ Audio saved: EXO_11_fa.mp3
+[2025-11-03 06:57:51] 📊 Using synthetic alignment for EXO_11_fa.mp3...
+[2025-11-03 06:57:51] ✅ Alignment saved: EXO_11_fa_alignment.json
+[2025-11-03 06:57:51] ✅ Completed EXO 11
+[2025-11-03 06:57:52] 
+============================================================
+[2025-11-03 06:57:52] 📖 Processing EXO Chapter 12
+[2025-11-03 06:57:52] ============================================================
+[2025-11-03 06:57:52] 🎵 Generating EXO_12_en.mp3...
+[2025-11-03 06:58:38] ✅ Audio saved: EXO_12_en.mp3
+[2025-11-03 06:58:38] 📊 Using synthetic alignment for EXO_12_en.mp3...
+[2025-11-03 06:58:38] ✅ Alignment saved: EXO_12_en_alignment.json
+[2025-11-03 06:58:38] 🎵 Generating EXO_12_fa.mp3...
+[2025-11-03 06:58:54] ✅ Audio saved: EXO_12_fa.mp3
+[2025-11-03 06:58:54] 📊 Using synthetic alignment for EXO_12_fa.mp3...
+[2025-11-03 06:58:54] ✅ Alignment saved: EXO_12_fa_alignment.json
+[2025-11-03 06:58:54] ✅ Completed EXO 12
+[2025-11-03 06:58:55] 
+============================================================
+[2025-11-03 06:58:55] 📖 Processing EXO Chapter 13
+[2025-11-03 06:58:55] ============================================================
+[2025-11-03 06:58:55] 🎵 Generating EXO_13_en.mp3...
+[2025-11-03 06:58:59] ✅ Audio saved: EXO_13_en.mp3
+[2025-11-03 06:58:59] 📊 Using synthetic alignment for EXO_13_en.mp3...
+[2025-11-03 06:58:59] ✅ Alignment saved: EXO_13_en_alignment.json
+[2025-11-03 06:58:59] 🎵 Generating EXO_13_fa.mp3...
+[2025-11-03 06:59:11] ✅ Audio saved: EXO_13_fa.mp3
+[2025-11-03 06:59:11] 📊 Using synthetic alignment for EXO_13_fa.mp3...
+[2025-11-03 06:59:11] ✅ Alignment saved: EXO_13_fa_alignment.json
+[2025-11-03 06:59:11] ✅ Completed EXO 13
+[2025-11-03 06:59:12] 
+============================================================
+[2025-11-03 06:59:12] 📖 Processing EXO Chapter 14
+[2025-11-03 06:59:12] ============================================================
+[2025-11-03 06:59:12] 🎵 Generating EXO_14_en.mp3...
+[2025-11-03 06:59:15] ✅ Audio saved: EXO_14_en.mp3
+[2025-11-03 06:59:15] 📊 Using synthetic alignment for EXO_14_en.mp3...
+[2025-11-03 06:59:15] ✅ Alignment saved: EXO_14_en_alignment.json
+[2025-11-03 06:59:15] 🎵 Generating EXO_14_fa.mp3...
+[2025-11-03 06:59:32] ✅ Audio saved: EXO_14_fa.mp3
+[2025-11-03 06:59:32] 📊 Using synthetic alignment for EXO_14_fa.mp3...
+[2025-11-03 06:59:32] ✅ Alignment saved: EXO_14_fa_alignment.json
+[2025-11-03 06:59:32] ✅ Completed EXO 14
+[2025-11-03 06:59:33] 
+============================================================
+[2025-11-03 06:59:33] 📖 Processing EXO Chapter 15
+[2025-11-03 06:59:33] ============================================================
+[2025-11-03 06:59:34] 🎵 Generating EXO_15_en.mp3...
+[2025-11-03 06:59:43] ✅ Audio saved: EXO_15_en.mp3
+[2025-11-03 06:59:43] 📊 Using synthetic alignment for EXO_15_en.mp3...
+[2025-11-03 06:59:43] ✅ Alignment saved: EXO_15_en_alignment.json
+[2025-11-03 06:59:43] 🎵 Generating EXO_15_fa.mp3...
+[2025-11-03 06:59:56] ✅ Audio saved: EXO_15_fa.mp3
+[2025-11-03 06:59:56] 📊 Using synthetic alignment for EXO_15_fa.mp3...
+[2025-11-03 06:59:56] ✅ Alignment saved: EXO_15_fa_alignment.json
+[2025-11-03 06:59:56] ✅ Completed EXO 15
+[2025-11-03 06:59:57] 
+============================================================
+[2025-11-03 06:59:57] 📖 Processing EXO Chapter 16
+[2025-11-03 06:59:57] ============================================================
+[2025-11-03 06:59:58] 🎵 Generating EXO_16_en.mp3...
+[2025-11-03 07:00:05] ✅ Audio saved: EXO_16_en.mp3
+[2025-11-03 07:00:05] 📊 Using synthetic alignment for EXO_16_en.mp3...
+[2025-11-03 07:00:05] ✅ Alignment saved: EXO_16_en_alignment.json
+[2025-11-03 07:00:05] 🎵 Generating EXO_16_fa.mp3...
+[2025-11-03 07:00:23] ✅ Audio saved: EXO_16_fa.mp3
+[2025-11-03 07:00:23] 📊 Using synthetic alignment for EXO_16_fa.mp3...
+[2025-11-03 07:00:23] ✅ Alignment saved: EXO_16_fa_alignment.json
+[2025-11-03 07:00:23] ✅ Completed EXO 16
+[2025-11-03 07:00:24] 
+============================================================
+[2025-11-03 07:00:24] 📖 Processing EXO Chapter 17
+[2025-11-03 07:00:24] ============================================================
+[2025-11-03 07:00:24] 🎵 Generating EXO_17_en.mp3...
+[2025-11-03 07:00:30] ✅ Audio saved: EXO_17_en.mp3
+[2025-11-03 07:00:30] 📊 Using synthetic alignment for EXO_17_en.mp3...
+[2025-11-03 07:00:30] ✅ Alignment saved: EXO_17_en_alignment.json
+[2025-11-03 07:00:30] 🎵 Generating EXO_17_fa.mp3...
+[2025-11-03 07:00:53] ✅ Audio saved: EXO_17_fa.mp3
+[2025-11-03 07:00:53] 📊 Using synthetic alignment for EXO_17_fa.mp3...
+[2025-11-03 07:00:53] ✅ Alignment saved: EXO_17_fa_alignment.json
+[2025-11-03 07:00:53] ✅ Completed EXO 17
+[2025-11-03 07:00:54] 
+============================================================
+[2025-11-03 07:00:54] 📖 Processing EXO Chapter 18
+[2025-11-03 07:00:54] ============================================================
+[2025-11-03 07:00:55] 🎵 Generating EXO_18_en.mp3...
+[2025-11-03 07:00:59] ✅ Audio saved: EXO_18_en.mp3
+[2025-11-03 07:00:59] 📊 Using synthetic alignment for EXO_18_en.mp3...
+[2025-11-03 07:00:59] ✅ Alignment saved: EXO_18_en_alignment.json
+[2025-11-03 07:01:00] 🎵 Generating EXO_18_fa.mp3...
+[2025-11-03 07:01:15] ✅ Audio saved: EXO_18_fa.mp3
+[2025-11-03 07:01:15] 📊 Using synthetic alignment for EXO_18_fa.mp3...
+[2025-11-03 07:01:15] ✅ Alignment saved: EXO_18_fa_alignment.json
+[2025-11-03 07:01:15] ✅ Completed EXO 18
+[2025-11-03 07:01:16] 
+============================================================
+[2025-11-03 07:01:16] 📖 Processing EXO Chapter 19
+[2025-11-03 07:01:16] ============================================================
+[2025-11-03 07:01:16] 🎵 Generating EXO_19_en.mp3...
+[2025-11-03 07:01:18] ✅ Audio saved: EXO_19_en.mp3
+[2025-11-03 07:01:18] 📊 Using synthetic alignment for EXO_19_en.mp3...
+[2025-11-03 07:01:18] ✅ Alignment saved: EXO_19_en_alignment.json
+[2025-11-03 07:01:19] 🎵 Generating EXO_19_fa.mp3...
+[2025-11-03 07:01:25] ✅ Audio saved: EXO_19_fa.mp3
+[2025-11-03 07:01:25] 📊 Using synthetic alignment for EXO_19_fa.mp3...
+[2025-11-03 07:01:25] ✅ Alignment saved: EXO_19_fa_alignment.json
+[2025-11-03 07:01:25] ✅ Completed EXO 19
+[2025-11-03 07:01:26] 
+============================================================
+[2025-11-03 07:01:26] 📖 Processing EXO Chapter 20
+[2025-11-03 07:01:26] ============================================================
+[2025-11-03 07:01:27] 🎵 Generating EXO_20_en.mp3...
+[2025-11-03 07:01:29] ✅ Audio saved: EXO_20_en.mp3
+[2025-11-03 07:01:29] 📊 Using synthetic alignment for EXO_20_en.mp3...
+[2025-11-03 07:01:29] ✅ Alignment saved: EXO_20_en_alignment.json
+[2025-11-03 07:01:30] 🎵 Generating EXO_20_fa.mp3...
+[2025-11-03 07:01:44] ✅ Audio saved: EXO_20_fa.mp3
+[2025-11-03 07:01:44] 📊 Using synthetic alignment for EXO_20_fa.mp3...
+[2025-11-03 07:01:44] ✅ Alignment saved: EXO_20_fa_alignment.json
+[2025-11-03 07:01:44] ✅ Completed EXO 20
+[2025-11-03 07:01:45] 
+============================================================
+[2025-11-03 07:01:45] 📖 Processing EXO Chapter 21
+[2025-11-03 07:01:45] ============================================================
+[2025-11-03 07:01:45] 🎵 Generating EXO_21_en.mp3...
+[2025-11-03 07:01:52] ✅ Audio saved: EXO_21_en.mp3
+[2025-11-03 07:01:52] 📊 Using synthetic alignment for EXO_21_en.mp3...
+[2025-11-03 07:01:52] ✅ Alignment saved: EXO_21_en_alignment.json
+[2025-11-03 07:01:52] 🎵 Generating EXO_21_fa.mp3...
+[2025-11-03 07:02:16] ✅ Audio saved: EXO_21_fa.mp3
+[2025-11-03 07:02:16] 📊 Using synthetic alignment for EXO_21_fa.mp3...
+[2025-11-03 07:02:16] ✅ Alignment saved: EXO_21_fa_alignment.json
+[2025-11-03 07:02:16] ✅ Completed EXO 21
+[2025-11-03 07:02:17] 
+============================================================
+[2025-11-03 07:02:17] 📖 Processing EXO Chapter 22
+[2025-11-03 07:02:17] ============================================================
+[2025-11-03 07:02:17] 🎵 Generating EXO_22_en.mp3...
+[2025-11-03 07:02:20] ✅ Audio saved: EXO_22_en.mp3
+[2025-11-03 07:02:20] 📊 Using synthetic alignment for EXO_22_en.mp3...
+[2025-11-03 07:02:20] ✅ Alignment saved: EXO_22_en_alignment.json
+[2025-11-03 07:02:20] 🎵 Generating EXO_22_fa.mp3...
+[2025-11-03 07:02:34] ✅ Audio saved: EXO_22_fa.mp3
+[2025-11-03 07:02:34] 📊 Using synthetic alignment for EXO_22_fa.mp3...
+[2025-11-03 07:02:34] ✅ Alignment saved: EXO_22_fa_alignment.json
+[2025-11-03 07:02:34] ✅ Completed EXO 22
+[2025-11-03 07:02:35] 
+============================================================
+[2025-11-03 07:02:35] 📖 Processing EXO Chapter 23
+[2025-11-03 07:02:35] ============================================================
+[2025-11-03 07:02:36] 🎵 Generating EXO_23_en.mp3...
+[2025-11-03 07:02:41] ✅ Audio saved: EXO_23_en.mp3
+[2025-11-03 07:02:41] 📊 Using synthetic alignment for EXO_23_en.mp3...
+[2025-11-03 07:02:41] ✅ Alignment saved: EXO_23_en_alignment.json
+[2025-11-03 07:02:42] 🎵 Generating EXO_23_fa.mp3...
+[2025-11-03 07:03:01] ✅ Audio saved: EXO_23_fa.mp3
+[2025-11-03 07:03:01] 📊 Using synthetic alignment for EXO_23_fa.mp3...
+[2025-11-03 07:03:01] ✅ Alignment saved: EXO_23_fa_alignment.json
+[2025-11-03 07:03:01] ✅ Completed EXO 23
+[2025-11-03 07:03:02] 
+============================================================
+[2025-11-03 07:03:02] 📖 Processing EXO Chapter 24
+[2025-11-03 07:03:02] ============================================================
+[2025-11-03 07:03:02] 🎵 Generating EXO_24_en.mp3...
+[2025-11-03 07:03:05] ✅ Audio saved: EXO_24_en.mp3
+[2025-11-03 07:03:05] 📊 Using synthetic alignment for EXO_24_en.mp3...
+[2025-11-03 07:03:05] ✅ Alignment saved: EXO_24_en_alignment.json
+[2025-11-03 07:03:05] 🎵 Generating EXO_24_fa.mp3...
+[2025-11-03 07:03:16] ✅ Audio saved: EXO_24_fa.mp3
+[2025-11-03 07:03:16] 📊 Using synthetic alignment for EXO_24_fa.mp3...
+[2025-11-03 07:03:16] ✅ Alignment saved: EXO_24_fa_alignment.json
+[2025-11-03 07:03:16] ✅ Completed EXO 24
+[2025-11-03 07:03:17] 
+============================================================
+[2025-11-03 07:03:17] 📖 Processing EXO Chapter 25
+[2025-11-03 07:03:17] ============================================================
+[2025-11-03 07:03:17] 🎵 Generating EXO_25_en.mp3...
+[2025-11-03 07:03:21] ✅ Audio saved: EXO_25_en.mp3
+[2025-11-03 07:03:21] 📊 Using synthetic alignment for EXO_25_en.mp3...
+[2025-11-03 07:03:21] ✅ Alignment saved: EXO_25_en_alignment.json
+[2025-11-03 07:03:21] 🎵 Generating EXO_25_fa.mp3...
+[2025-11-03 07:03:36] ✅ Audio saved: EXO_25_fa.mp3
+[2025-11-03 07:03:36] 📊 Using synthetic alignment for EXO_25_fa.mp3...
+[2025-11-03 07:03:36] ✅ Alignment saved: EXO_25_fa_alignment.json
+[2025-11-03 07:03:36] ✅ Completed EXO 25
+[2025-11-03 07:03:37] 
+============================================================
+[2025-11-03 07:03:37] 📖 Processing EXO Chapter 26
+[2025-11-03 07:03:37] ============================================================
+[2025-11-03 07:03:38] 🎵 Generating EXO_26_en.mp3...
+[2025-11-03 07:03:42] ✅ Audio saved: EXO_26_en.mp3
+[2025-11-03 07:03:42] 📊 Using synthetic alignment for EXO_26_en.mp3...
+[2025-11-03 07:03:42] ✅ Alignment saved: EXO_26_en_alignment.json
+[2025-11-03 07:03:42] 🎵 Generating EXO_26_fa.mp3...
+[2025-11-03 07:03:57] ✅ Audio saved: EXO_26_fa.mp3
+[2025-11-03 07:03:57] 📊 Using synthetic alignment for EXO_26_fa.mp3...
+[2025-11-03 07:03:57] ✅ Alignment saved: EXO_26_fa_alignment.json
+[2025-11-03 07:03:57] ✅ Completed EXO 26
+[2025-11-03 07:03:58] 
+============================================================
+[2025-11-03 07:03:58] 📖 Processing EXO Chapter 27
+[2025-11-03 07:03:58] ============================================================
+[2025-11-03 07:03:58] 🎵 Generating EXO_27_en.mp3...
+[2025-11-03 07:04:02] ✅ Audio saved: EXO_27_en.mp3
+[2025-11-03 07:04:02] 📊 Using synthetic alignment for EXO_27_en.mp3...
+[2025-11-03 07:04:02] ✅ Alignment saved: EXO_27_en_alignment.json
+[2025-11-03 07:04:02] 🎵 Generating EXO_27_fa.mp3...
+[2025-11-03 07:04:13] ✅ Audio saved: EXO_27_fa.mp3
+[2025-11-03 07:04:13] 📊 Using synthetic alignment for EXO_27_fa.mp3...
+[2025-11-03 07:04:13] ✅ Alignment saved: EXO_27_fa_alignment.json
+[2025-11-03 07:04:13] ✅ Completed EXO 27
+[2025-11-03 07:04:14] 
+============================================================
+[2025-11-03 07:04:14] 📖 Processing EXO Chapter 28
+[2025-11-03 07:04:14] ============================================================
+[2025-11-03 07:04:14] 🎵 Generating EXO_28_en.mp3...
+[2025-11-03 07:04:20] ✅ Audio saved: EXO_28_en.mp3
+[2025-11-03 07:04:20] 📊 Using synthetic alignment for EXO_28_en.mp3...
+[2025-11-03 07:04:20] ✅ Alignment saved: EXO_28_en_alignment.json
+[2025-11-03 07:04:20] 🎵 Generating EXO_28_fa.mp3...
+[2025-11-03 07:04:40] ✅ Audio saved: EXO_28_fa.mp3
+[2025-11-03 07:04:40] 📊 Using synthetic alignment for EXO_28_fa.mp3...
+[2025-11-03 07:04:40] ✅ Alignment saved: EXO_28_fa_alignment.json
+[2025-11-03 07:04:40] ✅ Completed EXO 28
+[2025-11-03 07:04:41] 
+============================================================
+[2025-11-03 07:04:41] 📖 Processing EXO Chapter 29
+[2025-11-03 07:04:41] ============================================================
+[2025-11-03 07:04:42] 🎵 Generating EXO_29_en.mp3...
+[2025-11-03 07:04:46] ✅ Audio saved: EXO_29_en.mp3
+[2025-11-03 07:04:46] 📊 Using synthetic alignment for EXO_29_en.mp3...
+[2025-11-03 07:04:46] ✅ Alignment saved: EXO_29_en_alignment.json
+[2025-11-03 07:04:46] 🎵 Generating EXO_29_fa.mp3...
+[2025-11-03 07:05:02] ✅ Audio saved: EXO_29_fa.mp3
+[2025-11-03 07:05:02] 📊 Using synthetic alignment for EXO_29_fa.mp3...
+[2025-11-03 07:05:02] ✅ Alignment saved: EXO_29_fa_alignment.json
+[2025-11-03 07:05:02] ✅ Completed EXO 29
+[2025-11-03 07:05:03] 
+============================================================
+[2025-11-03 07:05:03] 📖 Processing EXO Chapter 30
+[2025-11-03 07:05:03] ============================================================
+[2025-11-03 07:05:04] 🎵 Generating EXO_30_en.mp3...
+[2025-11-03 07:05:06] ✅ Audio saved: EXO_30_en.mp3
+[2025-11-03 07:05:06] 📊 Using synthetic alignment for EXO_30_en.mp3...
+[2025-11-03 07:05:06] ✅ Alignment saved: EXO_30_en_alignment.json
+[2025-11-03 07:05:06] 🎵 Generating EXO_30_fa.mp3...
+[2025-11-03 07:05:16] ✅ Audio saved: EXO_30_fa.mp3
+[2025-11-03 07:05:16] 📊 Using synthetic alignment for EXO_30_fa.mp3...
+[2025-11-03 07:05:16] ✅ Alignment saved: EXO_30_fa_alignment.json
+[2025-11-03 07:05:16] ✅ Completed EXO 30
+[2025-11-03 07:05:17] 
+============================================================
+[2025-11-03 07:05:17] 📖 Processing EXO Chapter 31
+[2025-11-03 07:05:17] ============================================================
+[2025-11-03 07:05:18] 🎵 Generating EXO_31_en.mp3...
+[2025-11-03 07:05:24] ✅ Audio saved: EXO_31_en.mp3
+[2025-11-03 07:05:24] 📊 Using synthetic alignment for EXO_31_en.mp3...
+[2025-11-03 07:05:24] ✅ Alignment saved: EXO_31_en_alignment.json
+[2025-11-03 07:05:25] 🎵 Generating EXO_31_fa.mp3...
+[2025-11-03 07:05:40] ✅ Audio saved: EXO_31_fa.mp3
+[2025-11-03 07:05:40] 📊 Using synthetic alignment for EXO_31_fa.mp3...
+[2025-11-03 07:05:40] ✅ Alignment saved: EXO_31_fa_alignment.json
+[2025-11-03 07:05:40] ✅ Completed EXO 31
+[2025-11-03 07:05:41] 
+============================================================
+[2025-11-03 07:05:41] 📖 Processing EXO Chapter 32
+[2025-11-03 07:05:41] ============================================================
+[2025-11-03 07:05:41] 🎵 Generating EXO_32_en.mp3...
+[2025-11-03 07:05:46] ✅ Audio saved: EXO_32_en.mp3
+[2025-11-03 07:05:46] 📊 Using synthetic alignment for EXO_32_en.mp3...
+[2025-11-03 07:05:46] ✅ Alignment saved: EXO_32_en_alignment.json
+[2025-11-03 07:05:46] 🎵 Generating EXO_32_fa.mp3...
+[2025-11-03 07:06:04] ✅ Audio saved: EXO_32_fa.mp3
+[2025-11-03 07:06:04] 📊 Using synthetic alignment for EXO_32_fa.mp3...
+[2025-11-03 07:06:04] ✅ Alignment saved: EXO_32_fa_alignment.json
+[2025-11-03 07:06:04] ✅ Completed EXO 32
+[2025-11-03 07:06:05] 
+============================================================
+[2025-11-03 07:06:05] 📖 Processing EXO Chapter 33
+[2025-11-03 07:06:05] ============================================================
+[2025-11-03 07:06:05] 🎵 Generating EXO_33_en.mp3...
+[2025-11-03 07:06:08] ✅ Audio saved: EXO_33_en.mp3
+[2025-11-03 07:06:08] 📊 Using synthetic alignment for EXO_33_en.mp3...
+[2025-11-03 07:06:08] ✅ Alignment saved: EXO_33_en_alignment.json
+[2025-11-03 07:06:08] 🎵 Generating EXO_33_fa.mp3...
+[2025-11-03 07:06:18] ✅ Audio saved: EXO_33_fa.mp3
+[2025-11-03 07:06:18] 📊 Using synthetic alignment for EXO_33_fa.mp3...
+[2025-11-03 07:06:18] ✅ Alignment saved: EXO_33_fa_alignment.json
+[2025-11-03 07:06:18] ✅ Completed EXO 33
+[2025-11-03 07:06:19] 
+============================================================
+[2025-11-03 07:06:19] 📖 Processing EXO Chapter 34
+[2025-11-03 07:06:19] ============================================================
+[2025-11-03 07:06:20] 🎵 Generating EXO_34_en.mp3...
+[2025-11-03 07:06:25] ✅ Audio saved: EXO_34_en.mp3
+[2025-11-03 07:06:25] 📊 Using synthetic alignment for EXO_34_en.mp3...
+[2025-11-03 07:06:25] ✅ Alignment saved: EXO_34_en_alignment.json
+[2025-11-03 07:06:26] 🎵 Generating EXO_34_fa.mp3...
+[2025-11-03 07:06:46] ✅ Audio saved: EXO_34_fa.mp3
+[2025-11-03 07:06:46] 📊 Using synthetic alignment for EXO_34_fa.mp3...
+[2025-11-03 07:06:46] ✅ Alignment saved: EXO_34_fa_alignment.json
+[2025-11-03 07:06:46] ✅ Completed EXO 34
+[2025-11-03 07:06:47] 
+============================================================
+[2025-11-03 07:06:47] 📖 Processing EXO Chapter 35
+[2025-11-03 07:06:47] ============================================================
+[2025-11-03 07:06:48] 🎵 Generating EXO_35_en.mp3...
+[2025-11-03 07:06:54] ✅ Audio saved: EXO_35_en.mp3
+[2025-11-03 07:06:54] 📊 Using synthetic alignment for EXO_35_en.mp3...
+[2025-11-03 07:06:54] ✅ Alignment saved: EXO_35_en_alignment.json
+[2025-11-03 07:06:55] 🎵 Generating EXO_35_fa.mp3...
+[2025-11-03 07:07:17] ✅ Audio saved: EXO_35_fa.mp3
+[2025-11-03 07:07:17] 📊 Using synthetic alignment for EXO_35_fa.mp3...
+[2025-11-03 07:07:17] ✅ Alignment saved: EXO_35_fa_alignment.json
+[2025-11-03 07:07:17] ✅ Completed EXO 35
+[2025-11-03 07:07:18] 
+============================================================
+[2025-11-03 07:07:18] 📖 Processing EXO Chapter 36
+[2025-11-03 07:07:18] ============================================================
+[2025-11-03 07:07:19] 🎵 Generating EXO_36_en.mp3...
+[2025-11-03 07:07:31] ✅ Audio saved: EXO_36_en.mp3
+[2025-11-03 07:07:31] 📊 Using synthetic alignment for EXO_36_en.mp3...
+[2025-11-03 07:07:31] ✅ Alignment saved: EXO_36_en_alignment.json
+[2025-11-03 07:07:32] 🎵 Generating EXO_36_fa.mp3...
+[2025-11-03 07:07:48] ✅ Audio saved: EXO_36_fa.mp3
+[2025-11-03 07:07:48] 📊 Using synthetic alignment for EXO_36_fa.mp3...
+[2025-11-03 07:07:48] ✅ Alignment saved: EXO_36_fa_alignment.json
+[2025-11-03 07:07:48] ✅ Completed EXO 36
+[2025-11-03 07:07:49] 
+============================================================
+[2025-11-03 07:07:49] 📖 Processing EXO Chapter 37
+[2025-11-03 07:07:49] ============================================================
+[2025-11-03 07:07:49] 🎵 Generating EXO_37_en.mp3...
+[2025-11-03 07:07:52] ✅ Audio saved: EXO_37_en.mp3
+[2025-11-03 07:07:52] 📊 Using synthetic alignment for EXO_37_en.mp3...
+[2025-11-03 07:07:52] ✅ Alignment saved: EXO_37_en_alignment.json
+[2025-11-03 07:07:53] 🎵 Generating EXO_37_fa.mp3...
+[2025-11-03 07:08:01] ✅ Audio saved: EXO_37_fa.mp3
+[2025-11-03 07:08:01] 📊 Using synthetic alignment for EXO_37_fa.mp3...
+[2025-11-03 07:08:01] ✅ Alignment saved: EXO_37_fa_alignment.json
+[2025-11-03 07:08:01] ✅ Completed EXO 37
+[2025-11-03 07:08:02] 
+============================================================
+[2025-11-03 07:08:02] 📖 Processing EXO Chapter 38
+[2025-11-03 07:08:02] ============================================================
+[2025-11-03 07:08:03] 🎵 Generating EXO_38_en.mp3...
+[2025-11-03 07:08:08] ✅ Audio saved: EXO_38_en.mp3
+[2025-11-03 07:08:08] 📊 Using synthetic alignment for EXO_38_en.mp3...
+[2025-11-03 07:08:08] ✅ Alignment saved: EXO_38_en_alignment.json
+[2025-11-03 07:08:08] 🎵 Generating EXO_38_fa.mp3...
+[2025-11-03 07:08:26] ✅ Audio saved: EXO_38_fa.mp3
+[2025-11-03 07:08:26] 📊 Using synthetic alignment for EXO_38_fa.mp3...
+[2025-11-03 07:08:26] ✅ Alignment saved: EXO_38_fa_alignment.json
+[2025-11-03 07:08:26] ✅ Completed EXO 38
+[2025-11-03 07:08:27] 
+============================================================
+[2025-11-03 07:08:27] 📖 Processing EXO Chapter 39
+[2025-11-03 07:08:27] ============================================================
+[2025-11-03 07:08:27] 🎵 Generating EXO_39_en.mp3...
+[2025-11-03 07:08:30] ✅ Audio saved: EXO_39_en.mp3
+[2025-11-03 07:08:30] 📊 Using synthetic alignment for EXO_39_en.mp3...
+[2025-11-03 07:08:30] ✅ Alignment saved: EXO_39_en_alignment.json
+[2025-11-03 07:08:31] 🎵 Generating EXO_39_fa.mp3...
+[2025-11-03 07:08:44] ✅ Audio saved: EXO_39_fa.mp3
+[2025-11-03 07:08:44] 📊 Using synthetic alignment for EXO_39_fa.mp3...
+[2025-11-03 07:08:44] ✅ Alignment saved: EXO_39_fa_alignment.json
+[2025-11-03 07:08:44] ✅ Completed EXO 39
+[2025-11-03 07:08:45] 
+============================================================
+[2025-11-03 07:08:45] 📖 Processing EXO Chapter 40
+[2025-11-03 07:08:45] ============================================================
+[2025-11-03 07:08:45] 🎵 Generating EXO_40_en.mp3...
+[2025-11-03 07:08:50] ✅ Audio saved: EXO_40_en.mp3
+[2025-11-03 07:08:50] 📊 Using synthetic alignment for EXO_40_en.mp3...
+[2025-11-03 07:08:50] ✅ Alignment saved: EXO_40_en_alignment.json
+[2025-11-03 07:08:50] 🎵 Generating EXO_40_fa.mp3...
+[2025-11-03 07:09:03] ✅ Audio saved: EXO_40_fa.mp3
+[2025-11-03 07:09:03] 📊 Using synthetic alignment for EXO_40_fa.mp3...
+[2025-11-03 07:09:03] ✅ Alignment saved: EXO_40_fa_alignment.json
+[2025-11-03 07:09:03] ✅ Completed EXO 40
+[2025-11-03 07:09:04] 
+============================================================
+[2025-11-03 07:09:04] 📖 Processing LEV Chapter 1
+[2025-11-03 07:09:04] ============================================================
+[2025-11-03 07:09:05] ❌ No verses found for LEV 1
+[2025-11-03 07:09:06] 
+============================================================
+[2025-11-03 07:09:06] 📖 Processing LEV Chapter 2
+[2025-11-03 07:09:06] ============================================================
+[2025-11-03 07:09:07] ❌ No verses found for LEV 2
+[2025-11-03 07:09:08] 
+============================================================
+[2025-11-03 07:09:08] 📖 Processing LEV Chapter 3
+[2025-11-03 07:09:08] ============================================================
+[2025-11-03 07:09:08] ❌ No verses found for LEV 3
+[2025-11-03 07:09:09] 
+============================================================
+[2025-11-03 07:09:09] 📖 Processing LEV Chapter 4
+[2025-11-03 07:09:09] ============================================================
+[2025-11-03 07:09:10] ❌ No verses found for LEV 4
+[2025-11-03 07:09:11] 
+============================================================
+[2025-11-03 07:09:11] 📖 Processing LEV Chapter 5
+[2025-11-03 07:09:11] ============================================================
+[2025-11-03 07:09:11] ❌ No verses found for LEV 5
+[2025-11-03 07:09:12] 
+============================================================
+[2025-11-03 07:09:12] 📖 Processing LEV Chapter 6
+[2025-11-03 07:09:12] ============================================================
+[2025-11-03 07:09:13] ❌ No verses found for LEV 6
+[2025-11-03 07:09:14] 
+============================================================
+[2025-11-03 07:09:14] 📖 Processing LEV Chapter 7
+[2025-11-03 07:09:14] ============================================================
+[2025-11-03 07:09:14] ❌ No verses found for LEV 7
+[2025-11-03 07:09:15] 
+============================================================
+[2025-11-03 07:09:15] 📖 Processing LEV Chapter 8
+[2025-11-03 07:09:15] ============================================================
+[2025-11-03 07:09:16] ❌ No verses found for LEV 8
+[2025-11-03 07:09:17] 
+============================================================
+[2025-11-03 07:09:17] 📖 Processing LEV Chapter 9
+[2025-11-03 07:09:17] ============================================================
+[2025-11-03 07:09:17] ❌ No verses found for LEV 9
+[2025-11-03 07:09:18] 
+============================================================
+[2025-11-03 07:09:18] 📖 Processing LEV Chapter 10
+[2025-11-03 07:09:18] ============================================================
+[2025-11-03 07:09:19] ❌ No verses found for LEV 10
+[2025-11-03 07:09:20] 
+============================================================
+[2025-11-03 07:09:20] 📖 Processing LEV Chapter 11
+[2025-11-03 07:09:20] ============================================================
+[2025-11-03 07:09:21] ❌ No verses found for LEV 11
+[2025-11-03 07:09:22] 
+============================================================
+[2025-11-03 07:09:22] 📖 Processing LEV Chapter 12
+[2025-11-03 07:09:22] ============================================================
+[2025-11-03 07:09:22] ❌ No verses found for LEV 12
+[2025-11-03 07:09:23] 
+============================================================
+[2025-11-03 07:09:23] 📖 Processing LEV Chapter 13
+[2025-11-03 07:09:23] ============================================================
+[2025-11-03 07:09:24] ❌ No verses found for LEV 13
+[2025-11-03 07:09:25] 
+============================================================
+[2025-11-03 07:09:25] 📖 Processing LEV Chapter 14
+[2025-11-03 07:09:25] ============================================================
+[2025-11-03 07:09:25] ❌ No verses found for LEV 14
+[2025-11-03 07:09:26] 
+============================================================
+[2025-11-03 07:09:26] 📖 Processing LEV Chapter 15
+[2025-11-03 07:09:26] ============================================================
+[2025-11-03 07:09:27] ❌ No verses found for LEV 15
+[2025-11-03 07:09:28] 
+============================================================
+[2025-11-03 07:09:28] 📖 Processing LEV Chapter 16
+[2025-11-03 07:09:28] ============================================================
+[2025-11-03 07:09:28] ❌ No verses found for LEV 16
+[2025-11-03 07:09:29] 
+============================================================
+[2025-11-03 07:09:29] 📖 Processing LEV Chapter 17
+[2025-11-03 07:09:29] ============================================================
+[2025-11-03 07:09:30] ❌ No verses found for LEV 17
+[2025-11-03 07:09:31] 
+============================================================
+[2025-11-03 07:09:31] 📖 Processing LEV Chapter 18
+[2025-11-03 07:09:31] ============================================================
+[2025-11-03 07:09:32] ❌ No verses found for LEV 18
+[2025-11-03 07:09:33] 
+============================================================
+[2025-11-03 07:09:33] 📖 Processing LEV Chapter 19
+[2025-11-03 07:09:33] ============================================================
+[2025-11-03 07:09:33] ❌ No verses found for LEV 19
+[2025-11-03 07:09:34] 
+============================================================
+[2025-11-03 07:09:34] 📖 Processing LEV Chapter 20
+[2025-11-03 07:09:34] ============================================================
+[2025-11-03 07:09:35] ❌ No verses found for LEV 20
+[2025-11-03 07:09:36] 
+============================================================
+[2025-11-03 07:09:36] 📖 Processing LEV Chapter 21
+[2025-11-03 07:09:36] ============================================================
+[2025-11-03 07:09:36] ❌ No verses found for LEV 21
+[2025-11-03 07:09:37] 
+============================================================
+[2025-11-03 07:09:37] 📖 Processing LEV Chapter 22
+[2025-11-03 07:09:37] ============================================================
+[2025-11-03 07:09:38] ❌ No verses found for LEV 22
+[2025-11-03 07:09:39] 
+============================================================
+[2025-11-03 07:09:39] 📖 Processing LEV Chapter 23
+[2025-11-03 07:09:39] ============================================================
+[2025-11-03 07:09:39] ❌ No verses found for LEV 23
+[2025-11-03 07:09:40] 
+============================================================
+[2025-11-03 07:09:40] 📖 Processing LEV Chapter 24
+[2025-11-03 07:09:40] ============================================================
+[2025-11-03 07:09:41] ❌ No verses found for LEV 24
+[2025-11-03 07:09:42] 
+============================================================
+[2025-11-03 07:09:42] 📖 Processing LEV Chapter 25
+[2025-11-03 07:09:42] ============================================================
+[2025-11-03 07:09:43] ❌ No verses found for LEV 25
+[2025-11-03 07:09:44] 
+============================================================
+[2025-11-03 07:09:44] 📖 Processing LEV Chapter 26
+[2025-11-03 07:09:44] ============================================================
+[2025-11-03 07:09:44] ❌ No verses found for LEV 26
+[2025-11-03 07:09:45] 
+============================================================
+[2025-11-03 07:09:45] 📖 Processing LEV Chapter 27
+[2025-11-03 07:09:45] ============================================================
+[2025-11-03 07:09:46] ❌ No verses found for LEV 27
+[2025-11-03 07:09:47] 
+============================================================
+[2025-11-03 07:09:47] 📖 Processing NUM Chapter 1
+[2025-11-03 07:09:47] ============================================================
+[2025-11-03 07:09:48] ❌ No verses found for NUM 1
+[2025-11-03 07:09:49] 
+============================================================
+[2025-11-03 07:09:49] 📖 Processing NUM Chapter 2
+[2025-11-03 07:09:49] ============================================================
+[2025-11-03 07:09:49] ❌ No verses found for NUM 2
+[2025-11-03 07:09:50] 
+============================================================
+[2025-11-03 07:09:50] 📖 Processing NUM Chapter 3
+[2025-11-03 07:09:50] ============================================================
+[2025-11-03 07:09:51] ❌ No verses found for NUM 3
+[2025-11-03 07:09:52] 
+============================================================
+[2025-11-03 07:09:52] 📖 Processing NUM Chapter 4
+[2025-11-03 07:09:52] ============================================================
+[2025-11-03 07:09:52] ❌ No verses found for NUM 4
+[2025-11-03 07:09:53] 
+============================================================
+[2025-11-03 07:09:53] 📖 Processing NUM Chapter 5
+[2025-11-03 07:09:53] ============================================================
+[2025-11-03 07:09:54] ❌ No verses found for NUM 5
+[2025-11-03 07:09:55] 
+============================================================
+[2025-11-03 07:09:55] 📖 Processing NUM Chapter 6
+[2025-11-03 07:09:55] ============================================================
+[2025-11-03 07:09:55] ❌ No verses found for NUM 6
+[2025-11-03 07:09:56] 
+============================================================
+[2025-11-03 07:09:56] 📖 Processing NUM Chapter 7
+[2025-11-03 07:09:56] ============================================================
+[2025-11-03 07:09:57] ❌ No verses found for NUM 7
+[2025-11-03 07:09:58] 
+============================================================
+[2025-11-03 07:09:58] 📖 Processing NUM Chapter 8
+[2025-11-03 07:09:58] ============================================================
+[2025-11-03 07:09:58] ❌ No verses found for NUM 8
+[2025-11-03 07:09:59] 
+============================================================
+[2025-11-03 07:09:59] 📖 Processing NUM Chapter 9
+[2025-11-03 07:09:59] ============================================================
+[2025-11-03 07:10:00] ❌ No verses found for NUM 9
+[2025-11-03 07:10:01] 
+============================================================
+[2025-11-03 07:10:01] 📖 Processing NUM Chapter 10
+[2025-11-03 07:10:01] ============================================================
+[2025-11-03 07:10:02] ❌ No verses found for NUM 10
+[2025-11-03 07:10:03] 
+============================================================
+[2025-11-03 07:10:03] 📖 Processing NUM Chapter 11
+[2025-11-03 07:10:03] ============================================================
+[2025-11-03 07:10:03] ❌ No verses found for NUM 11
+[2025-11-03 07:10:04] 
+============================================================
+[2025-11-03 07:10:04] 📖 Processing NUM Chapter 12
+[2025-11-03 07:10:04] ============================================================
+[2025-11-03 07:10:05] ❌ No verses found for NUM 12
+[2025-11-03 07:10:06] 
+============================================================
+[2025-11-03 07:10:06] 📖 Processing NUM Chapter 13
+[2025-11-03 07:10:06] ============================================================
+[2025-11-03 07:10:06] ❌ No verses found for NUM 13
+[2025-11-03 07:10:07] 
+============================================================
+[2025-11-03 07:10:07] 📖 Processing NUM Chapter 14
+[2025-11-03 07:10:07] ============================================================
+[2025-11-03 07:10:08] ❌ No verses found for NUM 14
+[2025-11-03 07:10:09] 
+============================================================
+[2025-11-03 07:10:09] 📖 Processing NUM Chapter 15
+[2025-11-03 07:10:09] ============================================================
+[2025-11-03 07:10:09] ❌ No verses found for NUM 15
+[2025-11-03 07:10:11] 
+============================================================
+[2025-11-03 07:10:11] 📖 Processing NUM Chapter 16
+[2025-11-03 07:10:11] ============================================================
+[2025-11-03 07:10:11] ❌ No verses found for NUM 16
+[2025-11-03 07:10:12] 
+============================================================
+[2025-11-03 07:10:12] 📖 Processing NUM Chapter 17
+[2025-11-03 07:10:12] ============================================================
+[2025-11-03 07:10:12] ❌ No verses found for NUM 17
+[2025-11-03 07:10:14] 
+============================================================
+[2025-11-03 07:10:14] 📖 Processing NUM Chapter 18
+[2025-11-03 07:10:14] ============================================================
+[2025-11-03 07:10:14] ❌ No verses found for NUM 18
+[2025-11-03 07:10:15] 
+============================================================
+[2025-11-03 07:10:15] 📖 Processing NUM Chapter 19
+[2025-11-03 07:10:15] ============================================================
+[2025-11-03 07:10:16] ❌ No verses found for NUM 19
+[2025-11-03 07:10:17] 
+============================================================
+[2025-11-03 07:10:17] 📖 Processing NUM Chapter 20
+[2025-11-03 07:10:17] ============================================================
+[2025-11-03 07:10:17] ❌ No verses found for NUM 20
+[2025-11-03 07:10:18] 
+============================================================
+[2025-11-03 07:10:18] 📖 Processing NUM Chapter 21
+[2025-11-03 07:10:18] ============================================================
+[2025-11-03 07:10:19] ❌ No verses found for NUM 21
+[2025-11-03 07:10:20] 
+============================================================
+[2025-11-03 07:10:20] 📖 Processing NUM Chapter 22
+[2025-11-03 07:10:20] ============================================================
+[2025-11-03 07:10:21] ❌ No verses found for NUM 22
+[2025-11-03 07:10:22] 
+============================================================
+[2025-11-03 07:10:22] 📖 Processing NUM Chapter 23
+[2025-11-03 07:10:22] ============================================================
+[2025-11-03 07:10:22] ❌ No verses found for NUM 23
+[2025-11-03 07:10:23] 
+============================================================
+[2025-11-03 07:10:23] 📖 Processing NUM Chapter 24
+[2025-11-03 07:10:23] ============================================================
+[2025-11-03 07:10:24] ❌ No verses found for NUM 24
+[2025-11-03 07:10:25] 
+============================================================
+[2025-11-03 07:10:25] 📖 Processing NUM Chapter 25
+[2025-11-03 07:10:25] ============================================================
+[2025-11-03 07:10:25] ❌ No verses found for NUM 25
+[2025-11-03 07:10:26] 
+============================================================
+[2025-11-03 07:10:26] 📖 Processing NUM Chapter 26
+[2025-11-03 07:10:26] ============================================================
+[2025-11-03 07:10:27] ❌ No verses found for NUM 26
+[2025-11-03 07:10:28] 
+============================================================
+[2025-11-03 07:10:28] 📖 Processing NUM Chapter 27
+[2025-11-03 07:10:28] ============================================================
+[2025-11-03 07:10:28] ❌ No verses found for NUM 27
+[2025-11-03 07:10:29] 
+============================================================
+[2025-11-03 07:10:29] 📖 Processing NUM Chapter 28
+[2025-11-03 07:10:29] ============================================================
+[2025-11-03 07:10:30] ❌ No verses found for NUM 28
+[2025-11-03 07:10:31] 
+============================================================
+[2025-11-03 07:10:31] 📖 Processing NUM Chapter 29
+[2025-11-03 07:10:31] ============================================================
+[2025-11-03 07:10:32] ❌ No verses found for NUM 29
+[2025-11-03 07:10:33] 
+============================================================
+[2025-11-03 07:10:33] 📖 Processing NUM Chapter 30
+[2025-11-03 07:10:33] ============================================================
+[2025-11-03 07:10:33] ❌ No verses found for NUM 30
+[2025-11-03 07:10:34] 
+============================================================
+[2025-11-03 07:10:34] 📖 Processing NUM Chapter 31
+[2025-11-03 07:10:34] ============================================================
+[2025-11-03 07:10:35] ❌ No verses found for NUM 31
+[2025-11-03 07:10:36] 
+============================================================
+[2025-11-03 07:10:36] 📖 Processing NUM Chapter 32
+[2025-11-03 07:10:36] ============================================================
+[2025-11-03 07:10:36] ❌ No verses found for NUM 32
+[2025-11-03 07:10:37] 
+============================================================
+[2025-11-03 07:10:37] 📖 Processing NUM Chapter 33
+[2025-11-03 07:10:37] ============================================================
+[2025-11-03 07:10:38] ❌ No verses found for NUM 33
+[2025-11-03 07:10:39] 
+============================================================
+[2025-11-03 07:10:39] 📖 Processing NUM Chapter 34
+[2025-11-03 07:10:39] ============================================================
+[2025-11-03 07:10:40] ❌ No verses found for NUM 34
+[2025-11-03 07:10:41] 
+============================================================
+[2025-11-03 07:10:41] 📖 Processing NUM Chapter 35
+[2025-11-03 07:10:41] ============================================================
+[2025-11-03 07:10:42] ❌ No verses found for NUM 35
+[2025-11-03 07:10:43] 
+============================================================
+[2025-11-03 07:10:43] 📖 Processing NUM Chapter 36
+[2025-11-03 07:10:43] ============================================================
+[2025-11-03 07:10:43] ❌ No verses found for NUM 36
+[2025-11-03 07:10:44] 
+============================================================
+[2025-11-03 07:10:44] 📖 Processing DEU Chapter 1
+[2025-11-03 07:10:44] ============================================================
+[2025-11-03 07:10:45] ❌ No verses found for DEU 1
+[2025-11-03 07:10:46] 
+============================================================
+[2025-11-03 07:10:46] 📖 Processing DEU Chapter 2
+[2025-11-03 07:10:46] ============================================================
+[2025-11-03 07:10:47] ❌ No verses found for DEU 2
+[2025-11-03 07:10:48] 
+============================================================
+[2025-11-03 07:10:48] 📖 Processing DEU Chapter 3
+[2025-11-03 07:10:48] ============================================================
+[2025-11-03 07:10:49] ❌ No verses found for DEU 3
+[2025-11-03 07:10:50] 
+============================================================
+[2025-11-03 07:10:50] 📖 Processing DEU Chapter 4
+[2025-11-03 07:10:50] ============================================================
+[2025-11-03 07:10:50] ❌ No verses found for DEU 4
+[2025-11-03 07:10:51] 
+============================================================
+[2025-11-03 07:10:51] 📖 Processing DEU Chapter 5
+[2025-11-03 07:10:51] ============================================================
+[2025-11-03 07:10:52] ❌ No verses found for DEU 5
+[2025-11-03 07:10:53] 
+============================================================
+[2025-11-03 07:10:53] 📖 Processing DEU Chapter 6
+[2025-11-03 07:10:53] ============================================================
+[2025-11-03 07:10:53] ❌ No verses found for DEU 6
+[2025-11-03 07:10:54] 
+============================================================
+[2025-11-03 07:10:54] 📖 Processing DEU Chapter 7
+[2025-11-03 07:10:54] ============================================================
+[2025-11-03 07:10:55] ❌ No verses found for DEU 7
+[2025-11-03 07:10:56] 
+============================================================
+[2025-11-03 07:10:56] 📖 Processing DEU Chapter 8
+[2025-11-03 07:10:56] ============================================================
+[2025-11-03 07:10:56] ❌ No verses found for DEU 8
+[2025-11-03 07:10:57] 
+============================================================
+[2025-11-03 07:10:57] 📖 Processing DEU Chapter 9
+[2025-11-03 07:10:57] ============================================================
+[2025-11-03 07:10:58] ❌ No verses found for DEU 9
+[2025-11-03 07:10:59] 
+============================================================
+[2025-11-03 07:10:59] 📖 Processing DEU Chapter 10
+[2025-11-03 07:10:59] ============================================================
+[2025-11-03 07:11:00] ❌ No verses found for DEU 10
+[2025-11-03 07:11:01] 
+============================================================
+[2025-11-03 07:11:01] 📖 Processing DEU Chapter 11
+[2025-11-03 07:11:01] ============================================================
+[2025-11-03 07:11:01] ❌ No verses found for DEU 11
+[2025-11-03 07:11:02] 
+============================================================
+[2025-11-03 07:11:02] 📖 Processing DEU Chapter 12
+[2025-11-03 07:11:02] ============================================================
+[2025-11-03 07:11:03] ❌ No verses found for DEU 12
+[2025-11-03 07:11:04] 
+============================================================
+[2025-11-03 07:11:04] 📖 Processing DEU Chapter 13
+[2025-11-03 07:11:04] ============================================================
+[2025-11-03 07:11:04] ❌ No verses found for DEU 13
+[2025-11-03 07:11:05] 
+============================================================
+[2025-11-03 07:11:05] 📖 Processing DEU Chapter 14
+[2025-11-03 07:11:05] ============================================================
+[2025-11-03 07:11:06] ❌ No verses found for DEU 14
+[2025-11-03 07:11:07] 
+============================================================
+[2025-11-03 07:11:07] 📖 Processing DEU Chapter 15
+[2025-11-03 07:11:07] ============================================================
+[2025-11-03 07:11:07] ❌ No verses found for DEU 15
+[2025-11-03 07:11:08] 
+============================================================
+[2025-11-03 07:11:08] 📖 Processing DEU Chapter 16
+[2025-11-03 07:11:08] ============================================================
+[2025-11-03 07:11:09] ❌ No verses found for DEU 16
+[2025-11-03 07:11:10] 
+============================================================
+[2025-11-03 07:11:10] 📖 Processing DEU Chapter 17
+[2025-11-03 07:11:10] ============================================================
+[2025-11-03 07:11:11] ❌ No verses found for DEU 17
+[2025-11-03 07:11:12] 
+============================================================
+[2025-11-03 07:11:12] 📖 Processing DEU Chapter 18
+[2025-11-03 07:11:12] ============================================================
+[2025-11-03 07:11:12] ❌ No verses found for DEU 18
+[2025-11-03 07:11:13] 
+============================================================
+[2025-11-03 07:11:13] 📖 Processing DEU Chapter 19
+[2025-11-03 07:11:13] ============================================================
+[2025-11-03 07:11:14] ❌ No verses found for DEU 19
+[2025-11-03 07:11:15] 
+============================================================
+[2025-11-03 07:11:15] 📖 Processing DEU Chapter 20
+[2025-11-03 07:11:15] ============================================================
+[2025-11-03 07:11:15] ❌ No verses found for DEU 20
+[2025-11-03 07:11:16] 
+============================================================
+[2025-11-03 07:11:16] 📖 Processing DEU Chapter 21
+[2025-11-03 07:11:16] ============================================================
+[2025-11-03 07:11:17] ❌ No verses found for DEU 21
+[2025-11-03 07:11:18] 
+============================================================
+[2025-11-03 07:11:18] 📖 Processing DEU Chapter 22
+[2025-11-03 07:11:18] ============================================================
+[2025-11-03 07:11:18] ❌ No verses found for DEU 22
+[2025-11-03 07:11:19] 
+============================================================
+[2025-11-03 07:11:19] 📖 Processing DEU Chapter 23
+[2025-11-03 07:11:19] ============================================================
+[2025-11-03 07:11:20] ❌ No verses found for DEU 23
+[2025-11-03 07:11:21] 
+============================================================
+[2025-11-03 07:11:21] 📖 Processing DEU Chapter 24
+[2025-11-03 07:11:21] ============================================================
+[2025-11-03 07:11:22] ❌ No verses found for DEU 24
+[2025-11-03 07:11:23] 
+============================================================
+[2025-11-03 07:11:23] 📖 Processing DEU Chapter 25
+[2025-11-03 07:11:23] ============================================================
+[2025-11-03 07:11:23] ❌ No verses found for DEU 25
+[2025-11-03 07:11:24] 
+============================================================
+[2025-11-03 07:11:24] 📖 Processing DEU Chapter 26
+[2025-11-03 07:11:24] ============================================================
+[2025-11-03 07:11:25] ❌ No verses found for DEU 26
+[2025-11-03 07:11:26] 
+============================================================
+[2025-11-03 07:11:26] 📖 Processing DEU Chapter 27
+[2025-11-03 07:11:26] ============================================================
+[2025-11-03 07:11:26] ❌ No verses found for DEU 27
+[2025-11-03 07:11:27] 
+============================================================
+[2025-11-03 07:11:27] 📖 Processing DEU Chapter 28
+[2025-11-03 07:11:27] ============================================================
+[2025-11-03 07:11:28] ❌ No verses found for DEU 28
+[2025-11-03 07:11:29] 
+============================================================
+[2025-11-03 07:11:29] 📖 Processing DEU Chapter 29
+[2025-11-03 07:11:29] ============================================================
+[2025-11-03 07:11:30] ❌ No verses found for DEU 29
+[2025-11-03 07:11:31] 
+============================================================
+[2025-11-03 07:11:31] 📖 Processing DEU Chapter 30
+[2025-11-03 07:11:31] ============================================================
+[2025-11-03 07:11:31] ❌ No verses found for DEU 30
+[2025-11-03 07:11:32] 
+============================================================
+[2025-11-03 07:11:32] 📖 Processing DEU Chapter 31
+[2025-11-03 07:11:32] ============================================================
+[2025-11-03 07:11:33] ❌ No verses found for DEU 31
+[2025-11-03 07:11:34] 
+============================================================
+[2025-11-03 07:11:34] 📖 Processing DEU Chapter 32
+[2025-11-03 07:11:34] ============================================================
+[2025-11-03 07:11:35] ❌ No verses found for DEU 32
+[2025-11-03 07:11:36] 
+============================================================
+[2025-11-03 07:11:36] 📖 Processing DEU Chapter 33
+[2025-11-03 07:11:36] ============================================================
+[2025-11-03 07:11:36] ❌ No verses found for DEU 33
+[2025-11-03 07:11:37] 
+============================================================
+[2025-11-03 07:11:37] 📖 Processing DEU Chapter 34
+[2025-11-03 07:11:37] ============================================================
+[2025-11-03 07:11:38] ❌ No verses found for DEU 34
+[2025-11-03 07:11:39] 
+============================================================
+[2025-11-03 07:11:39] 🎉 Generation Complete!
+[2025-11-03 07:11:39] ============================================================
+[2025-11-03 07:11:39] Total Chapters: 187
+[2025-11-03 07:11:39] Successful: 90
+[2025-11-03 07:11:39] Failed: 97
+[2025-11-03 07:11:39] Output Directory: public/audio/bible/auto-generated
+[2025-11-03 07:11:39] Alignment Directory: public/data/alignments
+[2025-11-03 07:11:39] ============================================================
+

@@ -125,7 +125,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
             { to: '/calendar', title: lang === 'fa' ? 'تقویم رویدادها' : 'Calendar', icon: <Bookmark size={16}/> },
         ],
         resources: [
-            { to: '/bible-presentation-sample', title: lang === 'fa' ? 'کتاب مقدس' : 'Bible Reader', icon: <BookOpen size={16}/> },
+            { to: '/bible-karaoke', title: lang === 'fa' ? 'کتاب مقدس' : 'Bible Reader', icon: <BookOpen size={16}/> },
             { to: '/bible-audio-tts', title: lang === 'fa' ? 'کتاب مقدس صوتی' : 'Audio Bible', icon: <Volume2 size={16}/> },
             { to: '/daily-devotional', title: lang === 'fa' ? 'تعبدات روزانه' : 'Daily Devotional', icon: <BookOpen size={16}/> },
             { to: '/worship', title: lang === 'fa' ? 'سرودهای پرستشی' : 'Worship Songs', icon: <Music size={16}/> },

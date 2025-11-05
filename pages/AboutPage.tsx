@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { BookOpen, Target, ShieldCheck, HeartHandshake } from 'lucide-react';
-import { getRandomImage } from '../lib/theme';
+import AIImageSlider from '../components/AIImageSlider';
 import SEOHead from '../components/SEO/SEOHead';
 import { getPageSEOConfig } from '../lib/seoConfig';
 
@@ -19,15 +19,30 @@ const BeliefCard: React.FC<{ icon: React.ReactNode; title: string; text: string 
 
 const AboutPage: React.FC = () => {
   const { t, lang } = useLanguage();
-  const [storyImage, setStoryImage] = useState('');
-  const [missionImage, setMissionImage] = useState('');
   
   // Get SEO configuration for about page
   const seoConfig = getPageSEOConfig('about', lang === 'fa' ? 'fa' : 'en');
 
   useEffect(() => {
-    setStoryImage(getRandomImage());
-    setMissionImage(getRandomImage());
+    // Reveal on scroll animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const beliefs = [
@@ -54,18 +69,26 @@ const AboutPage: React.FC = () => {
           <p className="font-normal text-dimWhite leading-relaxed">{t('ourStoryText')}</p>
         </div>
         <div className="flex-1">
-          <div className="w-full h-80 image-container rounded-xl shadow-lg">
-              <img src={storyImage} alt="" className="image-background" aria-hidden="true" />
-              <img src={storyImage} alt="Church community" className="image-foreground" />
+          <div className="w-full h-80 rounded-xl shadow-lg overflow-hidden">
+              <AIImageSlider 
+                autoPlayInterval={7000}
+                showNavigationButtons={true}
+                showIndicators={true}
+                className="w-full h-full"
+              />
           </div>
         </div>
       </div>
 
       <div className="flex md:flex-row flex-col gap-12 items-center mb-16 reveal-on-scroll">
         <div className="flex-1">
-          <div className="w-full h-80 image-container rounded-xl shadow-lg">
-              <img src={missionImage} alt="" className="image-background" aria-hidden="true" />
-              <img src={missionImage} alt="Church mission" className="image-foreground" />
+          <div className="w-full h-80 rounded-xl shadow-lg overflow-hidden">
+              <AIImageSlider 
+                autoPlayInterval={8000}
+                showNavigationButtons={true}
+                showIndicators={true}
+                className="w-full h-full"
+              />
           </div>
         </div>
         <div className="flex-1 space-y-4">

@@ -49,10 +49,14 @@ import TestComponent from './components/TestComponent';
 import MinimalBible from './components/MinimalBible';
 import SimpleBibleReader from './components/SimpleBibleReader';
 import WorshipSongsPage from './pages/WorshipSongsPage';
+import BilingualBibleReader from './pages/BilingualBibleReader';
+import BibleKaraokeReader from './pages/BibleKaraokeReader';
+import BibleStudyPage from './pages/BibleStudyPage';
 import BibleTTSPage from './pages/BibleTTSPage';
 import BibleWithTTS from './pages/BibleWithTTS';
 import BilingualPresentationDemo from './pages/BilingualPresentationDemo';
 import BilingualPresentationSample from './pages/BilingualPresentationSample';
+import BilingualPresentationDynamic from './pages/BilingualPresentationDynamic';
 import BibleAudioPlayer from './pages/BibleAudioPlayer';
 import TTSDemo from './pages/TTSDemo';
 import HuggingFaceTTSDemo from './pages/HuggingFaceTTSDemo';
@@ -76,6 +80,18 @@ import BibleAdminUpload from './pages/BibleAdminUpload';
 import PersianBibleTTSPage from './pages/PersianBibleTTSPage';
 import BibleFlipbook3DPage from './pages/BibleFlipbook3DPage';
 import BibleViewer from './pages/BibleViewer';
+import BibleAudioSyncDemoPage from './pages/BibleAudioSyncDemoPage';
+import BibleAudioTestPage from './pages/BibleAudioTestPage';
+import BibleAudioYouVersionTestPage from './pages/BibleAudioYouVersionTestPage';
+import BibleAudioSyncPage from './pages/BibleAudioSyncPage';
+import BibleVoiceChatPage from './pages/BibleVoiceChatPage';
+import BiblePresentationCreatorPage from './pages/BiblePresentationCreatorPage';
+import ChurchEventRecorderPage from './pages/ChurchEventRecorderPage';
+import BibleTextOnlyPage from './pages/BibleTextOnlyPage';
+import BibleAudioSuitePage from './pages/BibleAudioSuitePage';
+import WorshipAudioSuitePage from './pages/WorshipAudioSuitePage';
+import AdminN8NAutomationPage from './pages/AdminN8NAutomationPage';
+import AdminAudioDashboardPage from './pages/AdminAudioDashboardPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -121,8 +137,24 @@ function App() {
               <Route path="sermons" element={<SermonsPage />} />
               <Route path="worship" element={<WorshipPage />} />
               <Route path="worship/:id" element={<WorshipSongViewerPage />} />
+              <Route path="bible" element={<BiblePage />} />
+              <Route path="bible/audio" element={<AudioBiblePage />} />
+              <Route path="bible/text-only" element={<BibleTextOnlyPage />} />
+              <Route path="bible/audio-suite" element={<BibleAudioSuitePage />} />
+              <Route path="bible/audio-sync-demo" element={<BibleAudioSyncDemoPage />} />
+              <Route path="bible/audio-test" element={<BibleAudioTestPage />} />
+              <Route path="bible/audio-youversion" element={<BibleAudioYouVersionTestPage />} />
+              <Route path="bible/audio-sync" element={<BibleAudioSyncPage />} />
+              <Route path="bible/voice-chat" element={<BibleVoiceChatPage />} />
+              <Route path="bible/presentation-creator" element={<BiblePresentationCreatorPage />} />
+              <Route path="bible/reader" element={<BilingualBibleReader />} />
+              <Route path="bible-study" element={<BibleStudyPage />} />
+              <Route path="bible-karaoke" element={<BibleKaraokeReader />} />
+              <Route path="bible-reader" element={<BilingualBibleReader />} />
               <Route path="bible-presentation-sample" element={<BilingualPresentationSample />} />
+              <Route path="bible-presentation" element={<BilingualPresentationDynamic />} />
               <Route path="bible-audio-tts" element={<BibleWithTTS />} />
+              <Route path="worship/audio-suite" element={<WorshipAudioSuitePage />} />
               <Route path="worship-songs" element={<WorshipSongsPage />} />
               <Route path="worship-presentation" element={<WorshipPresentationPage />} />
               <Route path="daily-devotional" element={<DailyDevotionalPage />} />
@@ -131,6 +163,7 @@ function App() {
               <Route path="giving" element={<GivingPage />} />
               <Route path="prayer" element={<PrayerPage />} />
               <Route path="prayer-requests" element={<PrayerRequestsPage />} />
+              <Route path="events/recorder" element={<ChurchEventRecorderPage />} />
               <Route path="events" element={<EventsPage />} />
               <Route path="calendar" element={<CalendarPage />} />
               <Route path="announcements" element={<AnnouncementsPage />} />
@@ -144,8 +177,9 @@ function App() {
               <Route path="testimonials" element={<TestimonialsPage />} />
               <Route path="live" element={<LivePage />} />
               <Route path="tailwind-demo" element={<TailwindDemoPage />} />
-              <Route path="admin/tts-usage" element={<TTSUsageDashboard />} />
-              <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+            <Route path="admin/tts-usage" element={<TTSUsageDashboard />} />
+            <Route path="admin/audio-manager" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><AdminAudioDashboardPage /></ProtectedRoute>} />
+            <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
               <Route path="letters/:id" element={<ProtectedRoute><LetterViewerPage /></ProtectedRoute>} />
               <Route path="p/:slug" element={<CustomPageRenderer />} />
               <Route path="*" element={<NotFoundPage />} />
@@ -176,6 +210,14 @@ function App() {
               element={
                 <ProtectedRoute roles={['SUPER_ADMIN']}>
                   <ConfigureBackendPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/automations"
+              element={
+                <ProtectedRoute roles={['SUPER_ADMIN']}>
+                  <AdminN8NAutomationPage />
                 </ProtectedRoute>
               }
             />

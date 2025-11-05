@@ -38,10 +38,26 @@ const sshConfig = {
   readyTimeout: 30000
 };
 
-const projectPath = process.env.SSH_PROJECT_PATH || '/home/samanabyar/public_html/Mychurch';
+const projectPath = process.env.SSH_PROJECT_PATH || '/home/samanabyar/Mychurch';
 
-// لیست دستورات برای اجرا روی سرور
-const deployCommands = [
+// دستور کامل deployment
+const deployCommand = `
+cd ${projectPath} && \\
+git stash && \\
+git pull origin main && \\
+npm install && \\
+cd backend && npm install && cd .. && \\
+npm run build && \\
+psql "postgresql://postgres.wxzhzsqicgwfxffxayhy:SamyarBB1989@aws-1-us-east-2.pooler.supabase.com:5432/postgres" -f backend/scripts/fix-bible-book-names.sql && \\
+pm2 restart mychurch-backend && \\
+sudo systemctl restart nginx && \\
+echo "✅ سایت با موفقیت آپدیت شد!" && \\
+sleep 3 && \\
+pm2 logs mychurch-backend --lines 15
+`.trim();
+
+// لیست دستورات قدیمی را نگه می‌داریم برای fallback
+const deployCommandsOld = [
   // رفتن به پوشه پروژه
   `cd ${projectPath}`,
   
@@ -67,11 +83,9 @@ const deployCommands = [
 
 async function executeSSHCommands(conn) {
   return new Promise((resolve, reject) => {
-    const allCommands = deployCommands.join(' && ');
+    log.info('اجرای دستور deployment کامل...');
     
-    log.info('اجرای دستورات deployment...');
-    
-    conn.exec(allCommands, (err, stream) => {
+    conn.exec(deployCommand, (err, stream) => {
       if (err) {
         reject(err);
         return;
