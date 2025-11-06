@@ -23,7 +23,19 @@
     "optimize:images": "node scripts/optimize-images.js",
     "bible:index": "node scripts/bible-timing/build-index.mjs",
     "bible:align": "node scripts/bible-timing/auto-align.mjs",
-    "bible:prepare": "npm run bible:index && npm run bible:align"
+    "bible:prepare": "npm run bible:index && npm run bible:align",
+    "sync": "node sync-to-server.js --sync",
+    "sync:watch": "node sync-to-server.js --watch",
+    "sync:file": "node sync-to-server.js --file",
+    "test": "node test-api.js",
+    "test:local": "VITE_API_URL=http://localhost:3001 node test-api.js",
+    "setup": "node setup-local.js",
+    "setup:local": "./setup-local.sh",
+    "setup:windows": "setup-local.bat",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:restart": "docker-compose restart"
   },
   "dependencies": {
     "@google/genai": "^1.28.0",

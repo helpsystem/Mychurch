@@ -13,9 +13,9 @@ export default defineConfig(({ mode }) => {
         proxy: {
           '/api': {
             // Church API Backend runs on port 3001
-            target: 'http://localhost:3001',
+            target: env.VITE_API_URL || 'http://localhost:3001',
             changeOrigin: true,
-            secure: false
+            secure: isProduction
           }
         }
       },

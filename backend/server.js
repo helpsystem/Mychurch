@@ -147,10 +147,28 @@ const DEFAULT_FOLDER = (process.env.UPLOADS_DIR || 'uploads').replace(/\\/g, '/'
 const storage = multer.memoryStorage();
 const upload = multer({
   storage,
-  limits: { fileSize: 8 * 1024 * 1024 }, // 8MB
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB
   fileFilter: (req, file, cb) => {
-    const ok = ['image/jpeg','image/png','image/webp','image/gif','image/svg+xml'].includes(file.mimetype);
-    if (!ok) return cb(new Error('Only image files are allowed.'));
+    const allowedTypes = [
+      'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml',
+      'audio/mpeg', 'audio/wav', 'audio/mp3', 'audio/ogg',
+      'application/pdf', 'application/doc', 'application/docx',
+      'video/mp4', 'video/webm'
+    ];
+    
+    const ok = allowedTypes.includes(file.mimetype);
+    if (!ok) {
+      return cb(new Error(`Invalid file type: ${file.mimetype}. Allowed types: ${allowedTypes.join(', ')}`));
+    }
+    
+    // Additional security check for file extension
+    const fileExtension = path.extname(file.originalname).toLowerCase();
+    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.mp3', '.wav', '.mp4', '.pdf', '.doc', '.docx'];
+    
+    if (!allowedExtensions.includes(fileExtension)) {
+      return cb(new Error(`Invalid file extension: ${fileExtension}. Allowed extensions: ${allowedExtensions.join(', ')}`));
+    }
+    
     cb(null, true);
   }
 });
@@ -379,8 +397,8 @@ const startServer = async () => {
     console.log('  �📮 /api/notifications/* - Multi-channel notifications');
     console.log('  ❤️ /api/health - Health check');
     
-    // مقداردهی اولیه دیتابیس غیرفعال شد برای جلوگیری از مشکلات اتصال
-    // initializeDatabaseAsync();
+    // فعال‌سازی مقداردهی اولیه دیتابیس با timeout
+    initializeDatabaseAsync();
   });
 };
 

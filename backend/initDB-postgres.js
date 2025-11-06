@@ -218,16 +218,17 @@ const initializeDatabase = async () => {
     
     console.log('✅ تمامی جداول با موفقیت در PostgreSQL ساخته شدند');
     
-    // ایجاد کاربر admin پیش‌فرض
-    const adminCheck = await client.query('SELECT * FROM users WHERE email = $1', ['help.system@ymail.com']);
+    // ایجاد کاربر admin امن
+    const adminCheck = await client.query('SELECT * FROM users WHERE email = $1', ['admin@mychurch.com']);
     if (adminCheck.rows.length === 0) {
       const bcrypt = require('bcrypt');
-      const hashedPassword = await bcrypt.hash('admin123', 10);
+      const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'MyChurchSecureAdmin2024!', 10);
       await client.query(
         'INSERT INTO users (email, password, role, permissions) VALUES ($1, $2, $3, $4)',
-        ['help.system@ymail.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['all'])]
+        ['admin@mychurch.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['all'])]
       );
-      console.log('✅ کاربر admin پیش‌فرض ایجاد شد (help.system@ymail.com / admin123)');
+      console.log('✅ کاربر admin امن ایجاد شد (admin@mychurch.com / MyChurchSecureAdmin2024!)');
+      console.log('⚠️  لطفاً پس از اولین ورود، رمز عبور را تغییر دهید!');
     }
     
   } catch (err) {
