@@ -5,7 +5,7 @@
  * این اسکریپت به صورت خودکار سایت را به سرور A2 Hosting منتقل می‌کند
  */
 
-require('dotenv').config({ path: './.env' });
+require('dotenv').config({ path: './backend/.env' });
 const { Client } = require('ssh2');
 const fs = require('fs');
 const path = require('path');
