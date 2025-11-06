@@ -3,16 +3,17 @@ const path = require('path');
 const fs = require('fs');
 
 // FTP Configuration for samanabyar.online
+require('dotenv').config({ path: './backend/.env' });
 const config = {
-  host: '66.198.240.7',
-  user: 'samanaon',
-  password: 'LplLYSUJzufaOv2s',
-  port: 21,
-  secure: false
+  host: process.env.FTP_HOST || 'samanabyar.online',
+  user: process.env.FTP_USER || 'root',
+  password: process.env.FTP_PASS,
+  port: parseInt(process.env.FTP_PORT || '21'),
+  secure: process.env.FTP_SECURE === 'true'
 };
 
 const localDir = path.join(__dirname, 'dist');
-const remoteDir = '/public_html/Mychurch';
+const remoteDir = process.env.FTP_BASE_DIR || '/public_html/Mychurch';
 
 async function deploy() {
   const client = new ftp.Client();
