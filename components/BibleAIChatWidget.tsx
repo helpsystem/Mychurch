@@ -32,10 +32,20 @@ const BibleAIChatWidget: React.FC = () => {
   const [dailyVerse, setDailyVerse] = useState<DailyVerse | null>(null);
   const [language, setLanguage] = useState<'fa' | 'en'>('fa');
   const [darkMode, setDarkMode] = useState(false);
+  const [lastRequestTime, setLastRequestTime] = useState(0);
+  const [requestQueue, setRequestQueue] = useState<Array<() => Promise<any>>>([]);
+  const [isProcessingQueue, setIsProcessingQueue] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3001';
+  
+  // Rate limiting configuration
+  const RATE_LIMIT = {
+    minRequestInterval: 1000, // 1 second between requests
+    maxRetries: 3,
+    retryDelay: 2000, // 2 seconds for retry
+  };
 
   // Cache keys
   const CACHE_KEYS = {
@@ -73,21 +83,34 @@ const BibleAIChatWidget: React.FC = () => {
     }
   };
 
-  // Load daily verse on mount
+  // Load daily verse on mount with debouncing
   useEffect(() => {
-    fetchDailyVerse();
+    const loadInitialData = async () => {
+      try {
+        // Load dark mode preference first
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode) {
+          setDarkMode(savedDarkMode === 'true');
+        }
+        
+        // Load chat history from localStorage
+        const savedHistory = getFromCache(CACHE_KEYS.chatHistory);
+        if (savedHistory && Array.isArray(savedHistory)) {
+          setMessages(savedHistory);
+        }
+        
+        // Debounce daily verse fetch
+        const timer = setTimeout(() => {
+          fetchDailyVerse();
+        }, 500);
+        
+        return () => clearTimeout(timer);
+      } catch (error) {
+        console.error('Error loading initial data:', error);
+      }
+    };
     
-    // Load chat history from localStorage
-    const savedHistory = getFromCache(CACHE_KEYS.chatHistory);
-    if (savedHistory && Array.isArray(savedHistory)) {
-      setMessages(savedHistory);
-    }
-    
-    // Load dark mode preference
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode) {
-      setDarkMode(savedDarkMode === 'true');
-    }
+    loadInitialData();
   }, [language]);
 
   // Auto-scroll to bottom when messages change
@@ -125,19 +148,54 @@ const BibleAIChatWidget: React.FC = () => {
         return;
       }
 
-      // Fetch from API
-      const response = await axios.get(`${API_URL}/api/ai-chat/daily-verse`, {
-        params: { language },
-        timeout: 5000
-      });
+      // Rate limiting check
+      const now = Date.now();
+      const timeSinceLastRequest = now - lastRequestTime;
       
-      setDailyVerse(response.data);
+      if (timeSinceLastRequest < RATE_LIMIT.minRequestInterval) {
+        // Wait before making the request
+        await new Promise(resolve =>
+          setTimeout(resolve, RATE_LIMIT.minRequestInterval - timeSinceLastRequest)
+        );
+      }
+
+      // Fetch from API with retry mechanism
+      let response;
+      let retryCount = 0;
       
-      // Save to cache
-      saveToCache(cacheKey, response.data);
-      console.log('✅ Daily verse cached');
+      while (retryCount < RATE_LIMIT.maxRetries) {
+        try {
+          response = await axios.get(`${API_URL}/api/ai-chat/daily-verse`, {
+            params: { language },
+            timeout: 5000
+          });
+          
+          setDailyVerse(response.data);
+          
+          // Save to cache
+          saveToCache(cacheKey, response.data);
+          console.log('✅ Daily verse cached');
+          
+          setLastRequestTime(Date.now());
+          break;
+          
+        } catch (error: any) {
+          retryCount++;
+          console.error(`❌ Failed to fetch daily verse (attempt ${retryCount}):`, error);
+          
+          if (retryCount >= RATE_LIMIT.maxRetries) {
+            throw error;
+          }
+          
+          // Wait before retry
+          await new Promise(resolve =>
+            setTimeout(resolve, RATE_LIMIT.retryDelay)
+          );
+        }
+      }
+      
     } catch (error: any) {
-      console.error('❌ Failed to fetch daily verse:', error);
+      console.error('❌ Failed to fetch daily verse after all retries:', error);
       // Don't show error to user for daily verse - just log it
     }
   };
@@ -157,55 +215,96 @@ const BibleAIChatWidget: React.FC = () => {
     setInputText('');
     setIsLoading(true);
 
-    try {
-      const response = await axios.post(`${API_URL}/api/ai-chat/ask`, {
-        question: currentQuestion,
-        language
-      }, {
-        timeout: 10000 // 10 second timeout
-      });
+    // Add to request queue instead of making immediate request
+    const request = async () => {
+      try {
+        // Rate limiting check
+        const now = Date.now();
+        const timeSinceLastRequest = now - lastRequestTime;
+        
+        if (timeSinceLastRequest < RATE_LIMIT.minRequestInterval) {
+          // Wait before making the request
+          await new Promise(resolve =>
+            setTimeout(resolve, RATE_LIMIT.minRequestInterval - timeSinceLastRequest)
+          );
+        }
 
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        type: 'ai',
-        text: response.data.answer,
-        verses: response.data.verses,
-        timestamp: new Date()
-      };
+        let response;
+        let retryCount = 0;
+        
+        // Retry mechanism
+        while (retryCount < RATE_LIMIT.maxRetries) {
+          try {
+            response = await axios.post(`${API_URL}/api/ai-chat/ask`, {
+              question: currentQuestion,
+              language
+            }, {
+              timeout: 10000 // 10 second timeout
+            });
+            
+            setLastRequestTime(Date.now());
+            break;
+            
+          } catch (error: any) {
+            retryCount++;
+            console.error(`❌ AI Chat Error (attempt ${retryCount}):`, error);
+            
+            if (retryCount >= RATE_LIMIT.maxRetries) {
+              throw error;
+            }
+            
+            // Exponential backoff for retries
+            await new Promise(resolve =>
+              setTimeout(resolve, RATE_LIMIT.retryDelay * Math.pow(2, retryCount - 1))
+            );
+          }
+        }
 
-      setMessages(prev => [...prev, aiMessage]);
-    } catch (error: any) {
-      console.error('❌ AI Chat Error:', error);
-      
-      let errorText = '';
-      if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
-        errorText = language === 'fa' 
-          ? '❌ خطا در اتصال به سرور. لطفاً مطمئن شوید سرور در حال اجراست.'
-          : '❌ Connection error. Please make sure the server is running.';
-      } else if (error.code === 'ECONNABORTED') {
-        errorText = language === 'fa' 
-          ? '⏱️ زمان درخواست به پایان رسید. لطفاً دوباره تلاش کنید.'
-          : '⏱️ Request timeout. Please try again.';
-      } else if (error.response) {
-        errorText = language === 'fa'
-          ? `❌ خطای سرور (${error.response.status}): ${error.response.data?.message || 'خطای ناشناخته'}`
-          : `❌ Server error (${error.response.status}): ${error.response.data?.message || 'Unknown error'}`;
-      } else {
-        errorText = language === 'fa' 
-          ? `❌ خطا: ${error.message}`
-          : `❌ Error: ${error.message}`;
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: 'ai',
+          text: response.data.answer,
+          verses: response.data.verses,
+          timestamp: new Date()
+        };
+
+        setMessages(prev => [...prev, aiMessage]);
+        
+      } catch (error: any) {
+        console.error('❌ AI Chat Error after all retries:', error);
+        
+        let errorText = '';
+        if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
+          errorText = language === 'fa'
+            ? '❌ خطا در اتصال به سرور. لطفاً مطمئن شوید سرور در حال اجراست.'
+            : '❌ Connection error. Please make sure the server is running.';
+        } else if (error.code === 'ECONNABORTED') {
+          errorText = language === 'fa'
+            ? '⏱️ زمان درخواست به پایان رسید. لطفاً دوباره تلاش کنید.'
+            : '⏱️ Request timeout. Please try again.';
+        } else if (error.response) {
+          errorText = language === 'fa'
+            ? `❌ خطای سرور (${error.response.status}): ${error.response.data?.message || 'خطای ناشناخته'}`
+            : `❌ Server error (${error.response.status}): ${error.response.data?.message || 'Unknown error'}`;
+        } else {
+          errorText = language === 'fa'
+            ? `❌ خطا: ${error.message}`
+            : `❌ Error: ${error.message}`;
+        }
+        
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: 'ai',
+          text: errorText,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, errorMessage]);
       }
-      
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        type: 'ai',
-        text: errorText,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
+    };
+
+    // Add to queue
+    setRequestQueue(prev => [...prev, request]);
+    processRequestQueue();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -217,7 +316,12 @@ const BibleAIChatWidget: React.FC = () => {
 
   const handleQuickQuestion = (question: string) => {
     setInputText(question);
-    setTimeout(() => handleSendMessage(), 100);
+    // Debounce quick questions to prevent rapid fire
+    setTimeout(() => {
+      if (inputText === question) {
+        handleSendMessage();
+      }
+    }, 300);
   };
 
   const handleVerseClick = (bookCode: string, chapter: number, verse: number) => {
@@ -548,6 +652,38 @@ const BibleAIChatWidget: React.FC = () => {
       )}
     </>
   );
+
+  // Process request queue with rate limiting
+  const processRequestQueue = async () => {
+    if (isProcessingQueue || requestQueue.length === 0) return;
+    
+    setIsProcessingQueue(true);
+    
+    try {
+      while (requestQueue.length > 0) {
+        const request = requestQueue[0];
+        setRequestQueue(prev => prev.slice(1));
+        
+        await request();
+        
+        // Add delay between queued requests
+        await new Promise(resolve =>
+          setTimeout(resolve, RATE_LIMIT.minRequestInterval)
+        );
+      }
+    } catch (error) {
+      console.error('Error processing request queue:', error);
+    } finally {
+      setIsProcessingQueue(false);
+    }
+  };
+
+  // Process queue when it changes
+  useEffect(() => {
+    if (requestQueue.length > 0 && !isProcessingQueue) {
+      processRequestQueue();
+    }
+  }, [requestQueue, isProcessingQueue]);
 };
 
 export default BibleAIChatWidget;

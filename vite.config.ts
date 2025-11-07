@@ -1,11 +1,23 @@
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     const isProduction = mode === 'production';
     
     return {
+      plugins: [
+        react({
+          // Use automatic JSX runtime (production safe)
+          jsxRuntime: 'automatic',
+          // Babel options for production
+          babel: {
+            plugins: isProduction ? [] : []
+          }
+        })
+      ],
+      
       server: {
         host: '0.0.0.0',
         port: 5173,
