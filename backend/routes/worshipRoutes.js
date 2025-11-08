@@ -85,7 +85,10 @@ router.get('/', async (req, res) => {
       chords: song.chords,
       notation: song.notation,
       notes: song.notes,
-      attachments: parseJSON(song.attachments, [])
+      attachments: parseJSON(song.attachments, []),
+      timingData: parseJSON(song.timing_data, null),
+      timingUpdatedAt: song.timing_updated_at,
+      hasTiming: !!song.timing_data
     }));
     // برگرداندن آرایه مستقیم (نه object با کلید songs) تا با سایر endpoints یکسان باشد
     res.json(worshipSongs);

@@ -44,6 +44,7 @@ const audioRoutes = require('./routes/audioRoutes');
 const downloadRoutes = require('./routes/downloadRoutes');
 const ttsRoutes = require('./routes/tts');
 const geminiAudioTimingRoutes = require('./routes/geminiAudioTiming');
+const audioSyncRoutes = require('./routes/audioSyncRoutes');
 
 // Try to load Hugging Face TTS routes
 let huggingfaceTTSRoutes;
@@ -261,6 +262,7 @@ app.use('/api/wordproject', wordprojectRoutes);
 app.use('/api/wordproject-audio', wordprojectAudioRoutes);
 app.use('/api/audio', audioRoutes); // Smart audio source resolver
 app.use('/api/downloads', downloadRoutes); // WordProject downloader
+app.use('/api/audio-sync', audioSyncRoutes); // Admin audio synchronization
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
   console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');

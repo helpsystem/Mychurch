@@ -95,6 +95,7 @@ import AdminAudioDashboardPage from './pages/AdminAudioDashboardPage';
 import WorshipSyncTestPage from './pages/WorshipSyncTestPage';
 import BibleSyncTestPage from './pages/BibleSyncTestPage';
 import PresentationCreatorPage from './pages/PresentationCreatorPage';
+import AdminSyncManagementPage from './pages/AdminSyncManagementPage';
 
 function App() {
   const { lang } = useLanguage();
@@ -163,6 +164,11 @@ function App() {
               <Route path="worship-presentation" element={<WorshipPresentationPage />} />
               <Route path="bible/sync-test" element={<BibleSyncTestPage />} />
               <Route path="presentation-creator" element={<PresentationCreatorPage />} />
+              <Route path="admin/sync-management" element={
+                <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
+                  <AdminSyncManagementPage />
+                </ProtectedRoute>
+              } />
               <Route path="daily-devotional" element={<DailyDevotionalPage />} />
               <Route path="daily-messages" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><DailyMessagesPage /></ProtectedRoute>} />
               <Route path="notification-center" element={<NotificationCenterPage />} />
