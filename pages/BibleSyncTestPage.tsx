@@ -3,7 +3,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import BibleAudioSync from '../src/components/BibleAudioSync';
 import { BookOpen, Sparkles } from 'lucide-react';
 
-// نمونه داده برای تست
+// نمونه داده برای تست - داده‌های واقعی از کتاب مقدس
 const testBibleData = {
   fa: {
     bookName: 'پیدایش',
@@ -14,20 +14,32 @@ const testBibleData = {
       { verse: 3, text: 'و خدا گفت: روشنایی بشود و روشنایی شد.' },
       { verse: 4, text: 'و خدا روشنایی را دید که نیکو است و خدا در میان روشنایی و تاریکی جدایی انداخت.' },
       { verse: 5, text: 'و خدا روشنایی را روز نامید و تاریکی را شب نامید و شام بود و صبح بود روز اول.' },
+      { verse: 6, text: 'و خدا گفت: فلکی در میان آب‌ها بشود و میان آب و آب جدایی اندازد.' },
+      { verse: 7, text: 'پس خدا فلک را ساخت و میان آبی که زیر فلک بود و آبی که بالای فلک بود جدایی انداخت و چنین شد.' },
+      { verse: 8, text: 'و خدا فلک را آسمان نامید و شام بود و صبح بود روز دوم.' },
+      { verse: 9, text: 'و خدا گفت: آب‌هایی که زیر آسمان است در یک‌جا جمع شود تا خشکی ظاهر گردد و چنین شد.' },
+      { verse: 10, text: 'و خدا خشکی را زمین نامید و اجتماع آب‌ها را دریاها خواند و خدا دید که نیکو است.' },
     ],
-    audioUrl: 'https://samanabyar.online/audio/bible/fa/Genesis_1.mp3'
+    // فایل صوتی فارسی پیدایش فصل 1
+    audioUrl: 'https://samanabyar.online/audio/bible/auto-generated/GEN_1_fa.mp3'
   },
   en: {
-    bookName: 'Exodus',
+    bookName: 'Genesis',
     chapter: 1,
     verses: [
-      { verse: 1, text: 'Now these are the names of the children of Israel, which came into Egypt; every man and his household came with Jacob.' },
-      { verse: 2, text: 'Reuben, Simeon, Levi, and Judah,' },
-      { verse: 3, text: 'Issachar, Zebulun, and Benjamin,' },
-      { verse: 4, text: 'Dan, and Naphtali, Gad, and Asher.' },
-      { verse: 5, text: 'And all the souls that came out of the loins of Jacob were seventy souls: for Joseph was in Egypt already.' },
+      { verse: 1, text: 'In the beginning God created the heaven and the earth.' },
+      { verse: 2, text: 'And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.' },
+      { verse: 3, text: 'And God said, Let there be light: and there was light.' },
+      { verse: 4, text: 'And God saw the light, that it was good: and God divided the light from the darkness.' },
+      { verse: 5, text: 'And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.' },
+      { verse: 6, text: 'And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.' },
+      { verse: 7, text: 'And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so.' },
+      { verse: 8, text: 'And God called the firmament Heaven. And the evening and the morning were the second day.' },
+      { verse: 9, text: 'And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so.' },
+      { verse: 10, text: 'And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.' },
     ],
-    audioUrl: 'https://samanabyar.online/audio/bible/auto-generated/EXO_1_en.mp3'
+    // فایل صوتی انگلیسی پیدایش فصل 1
+    audioUrl: 'https://samanabyar.online/audio/bible/auto-generated/GEN_1_en.mp3'
   }
 };
 
@@ -80,7 +92,7 @@ const BibleSyncTestPage: React.FC = () => {
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
             >
-              🇺🇸 English (Exodus 1)
+              🇺🇸 English (Genesis 1)
             </button>
           </div>
         </div>

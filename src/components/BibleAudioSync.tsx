@@ -1,6 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { GoogleGenAI, Type } from '@google/genai';
-import { useLanguage } from '@/hooks/useLanguage';
 
 interface WordSegment {
   word: string;
@@ -41,7 +40,6 @@ export const BibleAudioSync: React.FC<BibleAudioSyncProps> = ({
   language,
   onTimingGenerated
 }) => {
-  const { lang } = useLanguage();
   const [verseSegments, setVerseSegments] = useState<VerseSegment[]>([]);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
@@ -153,7 +151,7 @@ Output structured JSON with verse segments.`;
     } catch (e) {
       console.error('Bible timing generation error:', e);
       const errorMessage = e instanceof Error ? e.message : 'Unknown error';
-      setError(`${lang === 'fa' ? 'خطا در تولید تایمینگ' : 'Timing generation failed'}: ${errorMessage}`);
+      setError(`${language === 'fa' ? 'خطا در تولید تایمینگ' : 'Timing generation failed'}: ${errorMessage}`);
     } finally {
       setIsProcessing(false);
     }
@@ -205,10 +203,10 @@ Output structured JSON with verse segments.`;
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600/30 to-cyan-600/30 backdrop-blur-md p-6 border-b border-white/10">
         <h2 className="text-2xl font-bold text-white mb-2" dir={language === 'fa' ? 'rtl' : 'ltr'}>
-          {bookName} {lang === 'fa' ? 'فصل' : 'Chapter'} {chapter}
+          {bookName} {language === 'fa' ? 'فصل' : 'Chapter'} {chapter}
         </h2>
         <p className="text-gray-300 text-sm">
-          {lang === 'fa' ? '📖 خواندن با همخوانی متن' : '📖 Synchronized Reading'}
+          {language === 'fa' ? '📖 خواندن با همخوانی متن' : '📖 Synchronized Reading'}
         </p>
       </div>
 
@@ -234,7 +232,7 @@ Output structured JSON with verse segments.`;
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
             <p className="text-xl">
-              {lang === 'fa' ? 'در حال تولید تایمینگ با Gemini AI...' : 'Generating timing with Gemini AI...'}
+              {language === 'fa' ? 'در حال تولید تایمینگ با Gemini AI...' : 'Generating timing with Gemini AI...'}
             </p>
           </div>
         )}
@@ -247,7 +245,7 @@ Output structured JSON with verse segments.`;
                 onClick={generateBibleTiming}
                 className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white transition-colors"
               >
-                {lang === 'fa' ? 'تلاش مجدد' : 'Try Again'}
+                {language === 'fa' ? 'تلاش مجدد' : 'Try Again'}
               </button>
             </div>
           </div>
@@ -325,7 +323,7 @@ Output structured JSON with verse segments.`;
             onClick={generateBibleTiming}
             className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 rounded-lg text-white font-semibold transition-all transform hover:scale-105 shadow-lg"
           >
-            {lang === 'fa' ? '🎤 فعال‌سازی خواندن همزمان' : '🎤 Enable Synchronized Reading'}
+            {language === 'fa' ? '🎤 فعال‌سازی خواندن همزمان' : '🎤 Enable Synchronized Reading'}
           </button>
         </div>
       )}
