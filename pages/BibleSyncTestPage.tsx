@@ -20,8 +20,8 @@ const testBibleData = {
       { verse: 9, text: 'و خدا گفت: آب‌هایی که زیر آسمان است در یک‌جا جمع شود تا خشکی ظاهر گردد و چنین شد.' },
       { verse: 10, text: 'و خدا خشکی را زمین نامید و اجتماع آب‌ها را دریاها خواند و خدا دید که نیکو است.' },
     ],
-    // فایل صوتی فارسی پیدایش فصل 1
-    audioUrl: 'https://samanabyar.online/audio/bible/auto-generated/GEN_1_fa.mp3'
+    // فایل صوتی فارسی پیدایش فصل 1 - WordProject Real Narration
+    audioUrl: 'http://audio1.wordfree.net/bibles/app/audio/20/1/1.mp3'
   },
   en: {
     bookName: 'Genesis',
@@ -38,8 +38,8 @@ const testBibleData = {
       { verse: 9, text: 'And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so.' },
       { verse: 10, text: 'And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.' },
     ],
-    // فایل صوتی انگلیسی پیدایش فصل 1
-    audioUrl: 'https://samanabyar.online/audio/bible/auto-generated/GEN_1_en.mp3'
+    // فایل صوتی انگلیسی پیدایش فصل 1 - WordProject Real Narration
+    audioUrl: 'http://kjv.wordfree.net/bibles/app/audio/1/1/1.mp3'
   }
 };
 
