@@ -43,6 +43,7 @@ const wordprojectAudioRoutes = require('./routes/wordprojectAudioRoutes');
 const audioRoutes = require('./routes/audioRoutes');
 const downloadRoutes = require('./routes/downloadRoutes');
 const ttsRoutes = require('./routes/tts');
+const geminiAudioTimingRoutes = require('./routes/geminiAudioTiming');
 
 // Try to load Hugging Face TTS routes
 let huggingfaceTTSRoutes;
@@ -237,6 +238,7 @@ app.use('/api/events', eventRecorderRoutes); // For /record-session and /recorde
 app.use('/api/worship-audio', worshipAudioRoutes); // For worship songs AI suite
 app.use('/api/worship-songs', worshipRoutes);
 app.use('/api/songs', songsRoutes);
+app.use('/api/gemini-timing', geminiAudioTimingRoutes); // For Bible audio timing generation
 app.use('/api/schedule-events', scheduleRoutes);
 app.use('/api/galleries', galleriesRoutes);
 app.use('/api/prayer-requests', prayerRoutes);

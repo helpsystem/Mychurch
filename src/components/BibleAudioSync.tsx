@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { GoogleGenAI, Type } from '@google/genai';
+// import { GoogleGenAI, Type } from '@google/genai'; // No longer needed - using backend API
 
 interface WordSegment {
   word: string;
@@ -54,6 +54,36 @@ export const BibleAudioSync: React.FC<BibleAudioSyncProps> = ({
     setError('');
 
     try {
+      // Use backend API instead of direct Gemini call
+      const response = await fetch('/api/gemini-timing/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          audioUrl,
+          bookName,
+          chapter,
+          verses,
+          language
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate timing');
+      }
+
+      const result = await response.json();
+      
+      if (!result.success || !result.data) {
+        throw new Error('Invalid response from timing service');
+      }
+
+      const timingData: BibleTranscriptionResponse = result.data;
+
+      // OLD CODE - Direct Gemini call (commented out for reference)
+      /*
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
       if (!apiKey) {
         throw new Error("GEMINI_API_KEY not configured");
@@ -75,25 +105,7 @@ export const BibleAudioSync: React.FC<BibleAudioSyncProps> = ({
 
       const versesText = verses.map(v => `${v.verse}. ${v.text}`).join('\n');
 
-      const prompt = `You are an expert Bible audio transcription tool.
-
-This is ${bookName} Chapter ${chapter} in ${language === 'fa' ? 'Persian (Farsi)' : 'English'}.
-
-The verses are:
-${versesText}
-
-Your task:
-1. Listen to the audio carefully - it contains someone reading these Bible verses
-2. For EACH verse, identify:
-   - verse_number: The verse number (1, 2, 3, etc.)
-   - text: The exact verse text
-   - start_time: When this verse reading begins (in seconds)
-   - end_time: When this verse reading ends (in seconds)
-   - word_segments: Word-level timestamps for each word in the verse
-
-3. Generate precise word-level timestamps for highlighting each word as it's spoken
-
-Output structured JSON with verse segments.`;
+      const prompt = `...`;
 
       const result = await ai.models.generateContent({
         model: 'gemini-2.0-flash-exp',
@@ -144,6 +156,17 @@ Output structured JSON with verse segments.`;
         setVerseSegments(parsedResponse.verses);
         if (onTimingGenerated) {
           onTimingGenerated(parsedResponse.verses);
+        }
+      } else {
+        throw new Error("Failed to generate valid verse segments");
+      }
+      */
+
+      // Process the timing data from backend
+      if (timingData && timingData.verses) {
+        setVerseSegments(timingData.verses);
+        if (onTimingGenerated) {
+          onTimingGenerated(timingData.verses);
         }
       } else {
         throw new Error("Failed to generate valid verse segments");

@@ -21,7 +21,7 @@ const testBibleData = {
       { verse: 10, text: 'و خدا خشکی را زمین نامید و اجتماع آب‌ها را دریاها خواند و خدا دید که نیکو است.' },
     ],
     // فایل صوتی فارسی پیدایش فصل 1 - WordProject Real Narration
-    audioUrl: 'http://audio1.wordfree.net/bibles/app/audio/20/1/1.mp3'
+    audioUrl: 'https://audio1.wordfree.net/bibles/app/audio/20/1/1.mp3'
   },
   en: {
     bookName: 'Genesis',
@@ -39,7 +39,7 @@ const testBibleData = {
       { verse: 10, text: 'And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.' },
     ],
     // فایل صوتی انگلیسی پیدایش فصل 1 - WordProject Real Narration
-    audioUrl: 'http://kjv.wordfree.net/bibles/app/audio/1/1/1.mp3'
+    audioUrl: 'https://kjv.wordfree.net/bibles/app/audio/1/1/1.mp3'
   }
 };
 
