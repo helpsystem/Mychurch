@@ -45,40 +45,33 @@ router.post('/generate', async (req, res) => {
 
     const versesText = verses.map(v => `${v.verse}. ${v.text}`).join('\n');
 
-    const prompt = `You are an expert Bible audio transcription tool.
+    const prompt = `Listen to this Bible audio and generate precise word-level timestamps.
 
-This is ${bookName || 'Bible'} Chapter ${chapter || '1'} in ${language === 'fa' ? 'Persian (Farsi)' : 'English'}.
+Book: ${bookName || 'Bible'} Chapter ${chapter || '1'}
+Language: ${language === 'fa' ? 'Persian (Farsi)' : 'English'}
 
-The verses are:
+Verses:
 ${versesText}
 
-Your task:
-1. Listen to the audio carefully - it contains someone reading these Bible verses
-2. For EACH verse, identify:
-   - verse_number: The verse number (1, 2, 3, etc.)
-   - text: The exact verse text
-   - start_time: When this verse reading begins (in seconds)
-   - end_time: When this verse reading ends (in seconds)
-   - word_segments: Word-level timestamps for each word in the verse
+Generate JSON with this EXACT structure. IMPORTANT: No trailing commas!
 
-3. Generate precise word-level timestamps for highlighting each word as it's spoken
-
-Return ONLY valid JSON in this exact format (no markdown, no code blocks):
 {
   "chapter": ${chapter || 1},
   "verses": [
     {
       "verse_number": 1,
-      "text": "verse text here",
+      "text": "exact verse text from audio",
       "start_time": 0.5,
       "end_time": 5.2,
       "word_segments": [
         {"word": "first", "start_time": 0.5, "end_time": 0.8},
-        {"word": "word", "start_time": 0.9, "end_time": 1.2}
+        {"word": "second", "start_time": 0.9, "end_time": 1.2}
       ]
     }
   ]
-}`;
+}
+
+Return ONLY the JSON object. No markdown, no explanations, no trailing commas.`;
 
     console.log('🤖 Sending to Gemini AI...');
 
@@ -100,8 +93,18 @@ Return ONLY valid JSON in this exact format (no markdown, no code blocks):
     // Clean up response - remove markdown code blocks if present
     text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
 
+    // Remove trailing commas before closing brackets/braces (common JSON error)
+    text = text.replace(/,(\s*[}\]])/g, '$1');
+
     // Parse JSON
-    const timingData = JSON.parse(text);
+    let timingData;
+    try {
+      timingData = JSON.parse(text);
+    } catch (parseError) {
+      console.error('❌ JSON Parse Error:', parseError.message);
+      console.error('📄 Cleaned text:', text.substring(0, 500));
+      throw new Error(`Invalid JSON response from Gemini: ${parseError.message}`);
+    }
 
     console.log(`✅ Generated timing for ${timingData.verses?.length || 0} verses`);
 
@@ -112,11 +115,53 @@ Return ONLY valid JSON in this exact format (no markdown, no code blocks):
 
   } catch (error) {
     console.error('❌ Error generating timing:', error);
-    res.status(500).json({ 
-      error: error.message || 'Failed to generate timing',
-      details: error.stack
+    
+    // Fallback: Generate simple estimated timing
+    console.log('⚠️  Gemini failed, using fallback timing estimation');
+    const { verses, chapter } = req.body;
+    
+    const fallbackTiming = generateFallbackTiming(verses, chapter);
+    
+    return res.json({
+      success: true,
+      data: fallbackTiming,
+      warning: 'Using estimated timing (Gemini failed)'
     });
   }
 });
+
+/**
+ * Generate simple fallback timing when Gemini fails
+ * Estimates ~5 seconds per verse with word-level splits
+ */
+function generateFallbackTiming(verses, chapter) {
+  const SECONDS_PER_VERSE = 5;
+  
+  const verseSegments = verses.map((verse, index) => {
+    const startTime = index * SECONDS_PER_VERSE;
+    const endTime = (index + 1) * SECONDS_PER_VERSE;
+    const words = verse.text.split(/\s+/);
+    const secondsPerWord = SECONDS_PER_VERSE / words.length;
+    
+    const wordSegments = words.map((word, wordIndex) => ({
+      word: word,
+      start_time: startTime + (wordIndex * secondsPerWord),
+      end_time: startTime + ((wordIndex + 1) * secondsPerWord)
+    }));
+    
+    return {
+      verse_number: verse.verse,
+      text: verse.text,
+      start_time: startTime,
+      end_time: endTime,
+      word_segments: wordSegments
+    };
+  });
+  
+  return {
+    chapter: chapter || 1,
+    verses: verseSegments
+  };
+}
 
 module.exports = router;
