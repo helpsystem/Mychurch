@@ -15,7 +15,7 @@ import {
   Play,
   Pause
 } from 'lucide-react';
-import axios from 'axios';
+import api from '../lib/axios';
 
 interface WorshipSong {
   id: number;
@@ -85,15 +85,32 @@ const AdminSyncManagementPage: React.FC = () => {
 
   const loadWorshipSongs = async () => {
     try {
-      const response = await axios.get('/api/worship-songs');
+      const response = await api.get('/api/worship-songs');
+      
+      // Check if response is valid JSON
+      if (!response.data || typeof response.data === 'string') {
+        console.error('Invalid response from API:', response.data);
+        setError(lang === 'fa' ? 'خطا در دریافت اطلاعات سرودها' : 'Error loading worship songs');
+        return;
+      }
+
       const songs = response.data.map((song: any) => ({
         ...song,
         hasTiming: song.hasTiming || false,
         lastSynced: song.timingUpdatedAt || null
       }));
       setWorshipSongs(songs);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error loading worship songs:', err);
+      
+      // Better error handling
+      if (err.response?.status === 401) {
+        setError(lang === 'fa' ? 'لطفاً ابتدا وارد شوید' : 'Please login first');
+      } else if (err.response?.status === 403) {
+        setError(lang === 'fa' ? 'دسترسی غیرمجاز' : 'Access denied');
+      } else {
+        setError(lang === 'fa' ? 'خطا در بارگذاری سرودها' : 'Error loading songs');
+      }
     }
   };
 
@@ -161,7 +178,7 @@ const AdminSyncManagementPage: React.FC = () => {
       formData.append('worshipSongId', songId.toString());
 
       // Process with backend
-      const response = await axios.post('/api/audio-sync/process-worship', formData, {
+      const response = await api.post('/api/audio-sync/process-worship', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
@@ -226,11 +243,11 @@ const AdminSyncManagementPage: React.FC = () => {
 
     try {
       // Get verses from database
-      const versesResponse = await axios.get(`/api/bible/verses`, {
+      const versesResponse = await api.get(`/api/bible/verses`, {
         params: { book, chapter, translation }
       });
 
-      const response = await axios.post('/api/audio-sync/process-bible', {
+      const response = await api.post('/api/audio-sync/process-bible', {
         audioUrl: bibleChapter.audioUrl,
         bookName: bibleChapter.bookName.en,
         bookCode: book,
@@ -300,7 +317,7 @@ const AdminSyncManagementPage: React.FC = () => {
       formData.append('titleEn', uploadMetadata.titleEn);
 
       // Upload and optionally process
-      const uploadResponse = await axios.post('/api/worship-songs/upload', formData);
+      const uploadResponse = await api.post('/api/worship-songs/upload', formData);
       
       if (uploadMetadata.autoProcess) {
         await handleProcessWorshipSong(uploadResponse.data.id);
