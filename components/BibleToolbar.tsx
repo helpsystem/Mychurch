@@ -236,9 +236,30 @@ const BibleToolbar: React.FC<BibleToolbarProps> = ({
           </div>
         )}
 
+        {/* Mobile Menu Overlay */}
+        {showMobileMenu && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            onClick={() => setShowMobileMenu(false)}
+          />
+        )}
+
         {/* Mobile Menu */}
         {showMobileMenu && (
-          <div className="lg:hidden pb-4 space-y-2">
+          <div className="lg:hidden pb-4 space-y-2 relative z-50">
+            {/* Close Button */}
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-white font-semibold">
+                {language === 'en' ? 'Menu' : 'منو'}
+              </span>
+              <button
+                onClick={() => setShowMobileMenu(false)}
+                className="px-3 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-bold"
+              >
+                ✕ {language === 'en' ? 'Close' : 'بستن'}
+              </button>
+            </div>
+            
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => { onLanguageToggle(); setShowMobileMenu(false); }}

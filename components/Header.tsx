@@ -149,13 +149,25 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
     };
     
     const renderMobileMenu = () => (
-      <div className={`fixed inset-0 bg-primary z-50 p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : (lang === 'fa' ? 'translate-x-full' : '-translate-x-full') }`}>
+      <>
+        {/* Overlay - کلیک روی این backdrop منو رو می‌بنده */}
+        {isMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={closeMenu}
+          />
+        )}
+        
+        {/* Mobile Menu Sidebar */}
+        <div className={`fixed inset-0 bg-primary z-50 p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : (lang === 'fa' ? 'translate-x-full' : '-translate-x-full') }`}>
             <div className="flex justify-between items-center mb-8">
                 <Link to="/" onClick={closeMenu} className="flex items-center gap-3">
                     <img src={content.settings.logoUrl} alt="Church Logo" className="w-10 h-10" />
                     <span className="text-white text-lg font-semibold">{t('churchTitle')}</span>
                 </Link>
-                <button onClick={closeMenu}><X size={28} className="text-white"/></button>
+                <button onClick={closeMenu} className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+                    <X size={28} className="text-white"/>
+                </button>
             </div>
             
             <nav className="flex-grow space-y-4">
@@ -233,6 +245,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
                 </div>
             </div>
         </div>
+      </>
     );
     
     return (
