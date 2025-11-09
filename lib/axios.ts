@@ -4,18 +4,15 @@ import axios from 'axios';
 // Determine if we're in development
 const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-// In production, backend serves from same origin on port 3001
-// Frontend is on port 5000 (or 80/443), backend on 3001
-// So we need to specify the full URL in production too
+// In production, nginx proxies /api/* to backend on localhost:3001
+// So we just use relative paths which will go through nginx
 const getBaseURL = () => {
   if (isDevelopment) {
     return 'http://localhost:3001';
   }
   
-  // Production: backend runs on port 3001
-  const protocol = window.location.protocol;
-  const hostname = window.location.hostname;
-  return `${protocol}//${hostname}:3001`;
+  // Production: use empty string so /api/* goes through nginx proxy
+  return '';
 };
 
 // Create axios instance with default config
