@@ -45,6 +45,8 @@ interface ProcessingStatus {
 }
 
 const AdminSyncManagementPage: React.FC = () => {
+  console.log('✅ AdminSyncManagementPage component loaded!');
+  
   const { lang, t } = useLanguage();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<'worship' | 'bible'>('worship');
@@ -75,6 +77,16 @@ const AdminSyncManagementPage: React.FC = () => {
 
   // Check if user is admin
   const isAdmin = user?.role === 'SUPER_ADMIN' || user?.role === 'MANAGER';
+
+  // Debug logging
+  useEffect(() => {
+    console.log('🔍 AdminSyncManagementPage Debug:', {
+      user,
+      isAdmin,
+      activeTab,
+      loading: isLoading
+    });
+  }, [user, isAdmin, activeTab, isLoading]);
 
   useEffect(() => {
     if (isAdmin) {
