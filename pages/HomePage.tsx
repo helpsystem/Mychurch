@@ -135,9 +135,15 @@ const FeedbackCard: React.FC<{ content: string; name: string; title: string; img
 const LeaderCardHome: React.FC<{ leader: Leader }> = ({ leader }) => {
     const { lang, t } = useLanguage();
 
-    const shortBio = leader.bio[lang]?.length > 100 
+    // Extra safety checks
+    if (!leader) {
+        console.warn('LeaderCardHome: leader is undefined');
+        return null;
+    }
+
+    const shortBio = leader.bio?.[lang]?.length > 100 
         ? leader.bio[lang].substring(0, 100) + '...' 
-        : leader.bio[lang];
+        : (leader.bio?.[lang] || '');
 
     const imageUrl = leader.imageUrl || DEFAULT_AVATAR_URL;
     const leaderName = leader.name?.[lang] || leader.name || 'Unknown';
