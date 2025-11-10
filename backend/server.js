@@ -45,6 +45,7 @@ const downloadRoutes = require('./routes/downloadRoutes');
 const ttsRoutes = require('./routes/tts');
 const geminiAudioTimingRoutes = require('./routes/geminiAudioTiming');
 const audioSyncRoutes = require('./routes/audioSyncRoutes');
+const hidriveRoutes = require('./routes/hidriveRoutes');
 
 // Try to load Hugging Face TTS routes
 let huggingfaceTTSRoutes;
@@ -263,6 +264,7 @@ app.use('/api/wordproject-audio', wordprojectAudioRoutes);
 app.use('/api/audio', audioRoutes); // Smart audio source resolver
 app.use('/api/downloads', downloadRoutes); // WordProject downloader
 app.use('/api/audio-sync', audioSyncRoutes); // Admin audio synchronization
+app.use('/api/hidrive', hidriveRoutes); // IONOS HiDrive storage management
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
   console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');
@@ -371,6 +373,15 @@ const startServer = async () => {
     console.log('🎨 Image Generation Service ready');
   } catch (error) {
     console.error('⚠️ Image Generation Service initialization failed:', error.message);
+  }
+
+  // Start Background Sync Worker
+  try {
+    const syncWorker = require('./services/syncWorker');
+    syncWorker.start();
+    console.log('🚀 Background Sync Worker started');
+  } catch (error) {
+    console.error('⚠️ Failed to start Background Sync Worker:', error.message);
   }
   
   // سرور را اول شروع کن

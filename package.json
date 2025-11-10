@@ -41,7 +41,7 @@
     "@google/genai": "^1.29.0",
     "@supabase/supabase-js": "^2.76.1",
     "adm-zip": "^0.5.16",
-    "axios": "^1.13.0",
+    "axios": "^1.13.2",
     "basic-ftp": "^5.0.5",
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.3",
@@ -71,6 +71,7 @@
     "serve": "^14.2.1",
     "sqlite3": "^5.1.7",
     "ssh2": "^1.17.0",
+    "ssh2-sftp-client": "^11.0.0",
     "twilio": "^5.9.0",
     "zod": "^4.1.8"
   },
