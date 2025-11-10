@@ -441,13 +441,13 @@ const HomePage: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                     <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer relative group">
                         <img 
-                            src="/church-photos/church-interior-1.jpg" 
+                            src="/images/Church_interior_worship_space_70ed9ac2.png" 
                             alt="" 
                             className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" 
                             aria-hidden="true"
                         />
                         <img 
-                            src="/church-photos/church-interior-1.jpg" 
+                            src="/images/Church_interior_worship_space_70ed9ac2.png" 
                             alt="Church Interior" 
                             className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                         />
@@ -461,13 +461,13 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer relative group">
                         <img 
-                            src="/church-photos/church-interior-3.jpg" 
+                            src="/images/Church_community_gathering_a97f90e1.png" 
                             alt="" 
                             className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" 
                             aria-hidden="true"
                         />
                         <img 
-                            src="/church-photos/church-interior-3.jpg" 
+                            src="/images/Church_community_gathering_a97f90e1.png" 
                             alt="Worship Area" 
                             className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                         />
@@ -481,13 +481,13 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="gallery-item aspect-video bg-gray-900 rounded-xl overflow-hidden cursor-pointer relative group">
                         <img 
-                            src="/church-photos/church-interior-5.jpg" 
+                            src="/images/Persian_Christian_choir_singing_bfe3adf8.png" 
                             alt="" 
                             className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-50" 
                             aria-hidden="true"
                         />
                         <img 
-                            src="/church-photos/church-interior-5.jpg" 
+                            src="/images/Persian_Christian_choir_singing_bfe3adf8.png" 
                             alt="Pulpit View" 
                             className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                         />

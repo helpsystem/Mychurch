@@ -38,7 +38,10 @@ const BibleAIChatWidget: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3001';
+  // In production, use empty string so /api/* goes through nginx proxy
+  // In development, use localhost:3001
+  const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const API_URL = isDevelopment ? 'http://localhost:3001' : '';
   
   // Rate limiting configuration
   const RATE_LIMIT = {

@@ -26,7 +26,7 @@ interface ChurchImage {
 const CHURCH_IMAGES: ChurchImage[] = [
   {
     id: 1,
-    imagePath: '/church-photos/church-interior-1.jpg', // تصویر داخلی کلیسا با پنجره شیشه‌ای رنگی
+    imagePath: '/images/Church_interior_worship_space_70ed9ac2.png', // تصویر داخلی کلیسا با پنجره شیشه‌ای رنگی
     title: {
       fa: 'محل پرستش مقدس',
       en: 'Sacred Worship Space',
@@ -42,7 +42,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 2,
-    imagePath: '/church-photos/church-interior-2.jpg', // نمای جانبی با نور طبیعی
+    imagePath: '/images/Modern_church_building_exterior_83da6dba.png', // نمای جانبی با نور طبیعی
     title: {
       fa: 'نور الهی',
       en: 'Divine Light',
@@ -58,7 +58,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 3,
-    imagePath: '/church-photos/church-interior-3.jpg', // نمای مرکزی با محراب
+    imagePath: '/images/Church_community_gathering_a97f90e1.png', // نمای مرکزی با محراب
     title: {
       fa: 'خانه دعا',
       en: 'House of Prayer',
@@ -74,7 +74,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 4,
-    imagePath: '/church-photos/church-interior-4.jpg', // نمای بالا با سقف
+    imagePath: '/images/Prayer_circle_hands_together_feb88f83.png', // نمای بالا با سقف
     title: {
       fa: 'صلیب نجات',
       en: 'Cross of Salvation',
@@ -90,7 +90,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 5,
-    imagePath: '/church-photos/church-interior-5.jpg', // نمای منبر
+    imagePath: '/images/Persian_Christian_choir_singing_bfe3adf8.png', // نمای منبر
     title: {
       fa: 'پرستش و ستایش',
       en: 'Worship and Praise',
@@ -106,7 +106,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 6,
-    imagePath: '/church-photos/church-interior-6.jpg', // نمای کامل
+    imagePath: '/images/Bible_study_peaceful_setting_6bb44b27.png', // نمای کامل
     title: {
       fa: 'جامعه ایمان',
       en: 'Community of Faith',

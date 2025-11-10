@@ -422,12 +422,12 @@ export const galleriesData: Gallery[] = [
     title: { en: 'Church Interior', fa: 'فضای داخلی کلیسا' },
     description: { en: 'Beautiful sanctuary space with stained glass windows and worship area.', fa: 'فضای زیبای محراب با پنجره‌های شیشه رنگی و محل پرستش.' },
     images: [
-      { id: 101, url: '/church-photos/church-interior-1.jpg', caption: { en: 'Main sanctuary view', fa: 'نمای اصلی محراب' } },
-      { id: 102, url: '/church-photos/church-interior-2.jpg', caption: { en: 'Stained glass window', fa: 'پنجره شیشه رنگی' } },
-      { id: 103, url: '/church-photos/church-interior-3.jpg', caption: { en: 'Worship area', fa: 'محل پرستش' } },
-      { id: 104, url: '/church-photos/church-interior-4.jpg', caption: { en: 'Altar and cross', fa: 'محراب و صلیب' } },
-      { id: 105, url: '/church-photos/church-interior-5.jpg', caption: { en: 'Pulpit view', fa: 'نمای منبر' } },
-      { id: 106, url: '/church-photos/church-interior-6.jpg', caption: { en: 'Sanctuary seating', fa: 'صندلی‌های محراب' } },
+      { id: 101, url: '/images/Church_interior_worship_space_70ed9ac2.png', caption: { en: 'Main sanctuary view', fa: 'نمای اصلی محراب' } },
+      { id: 102, url: '/images/Modern_church_building_exterior_83da6dba.png', caption: { en: 'Church building', fa: 'ساختمان کلیسا' } },
+      { id: 103, url: '/images/Church_community_gathering_a97f90e1.png', caption: { en: 'Worship area', fa: 'محل پرستش' } },
+      { id: 104, url: '/images/Prayer_circle_hands_together_feb88f83.png', caption: { en: 'Prayer circle', fa: 'حلقه دعا' } },
+      { id: 105, url: '/images/Persian_Christian_choir_singing_bfe3adf8.png', caption: { en: 'Choir singing', fa: 'گروه سرود' } },
+      { id: 106, url: '/images/Bible_study_peaceful_setting_6bb44b27.png', caption: { en: 'Bible study', fa: 'مطالعه کتاب مقدس' } },
     ]
   },
   {
@@ -435,9 +435,9 @@ export const galleriesData: Gallery[] = [
     title: { en: 'Worship Services', fa: 'مراسم پرستش' },
     description: { en: 'Our weekly worship services and special gatherings.', fa: 'مراسم پرستش هفتگی و گردهمایی‌های ویژه ما.' },
     images: [
-       { id: 201, url: '/church-photos/church-interior-1.jpg', caption: { en: 'Sunday worship', fa: 'پرستش یکشنبه' } },
-       { id: 202, url: '/church-photos/church-interior-3.jpg', caption: { en: 'Prayer time', fa: 'زمان دعا' } },
-       { id: 203, url: '/church-photos/church-interior-5.jpg', caption: { en: 'Sermon delivery', fa: 'ارائه موعظه' } },
+       { id: 201, url: '/images/Church_interior_worship_space_70ed9ac2.png', caption: { en: 'Sunday worship', fa: 'پرستش یکشنبه' } },
+       { id: 202, url: '/images/Church_community_gathering_a97f90e1.png', caption: { en: 'Prayer time', fa: 'زمان دعا' } },
+       { id: 203, url: '/images/Persian_Christian_choir_singing_bfe3adf8.png', caption: { en: 'Sermon delivery', fa: 'ارائه موعظه' } },
     ]
   }
 ];
