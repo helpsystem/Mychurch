@@ -267,8 +267,69 @@ router.post('/check-exists', authenticateToken, async (req, res) => {
 });
 
 /**
+ * GET /api/hidrive/stream/*
+ * Stream any file from HiDrive by full path
+ * Example: /api/hidrive/stream/worship/audio/kalameh/song.mp3
+ * Public access (no auth required)
+ */
+router.get('/stream/*', async (req, res) => {
+  try {
+    // Get the full path after /stream/
+    const filePath = req.params[0]; // e.g., "worship/audio/kalameh/song.mp3"
+    
+    if (!filePath) {
+      return res.status(400).json({
+        success: false,
+        error: 'File path is required'
+      });
+    }
+
+    console.log(`🔄 Streaming file from HiDrive: ${filePath}`);
+
+    // Set content type based on extension
+    const ext = path.extname(filePath).toLowerCase();
+    const contentTypes = {
+      '.mp3': 'audio/mpeg',
+      '.m4a': 'audio/mp4',
+      '.wav': 'audio/wav',
+      '.ogg': 'audio/ogg',
+      '.mp4': 'video/mp4',
+      '.webm': 'video/webm',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.png': 'image/png',
+      '.webp': 'image/webp',
+      '.pdf': 'application/pdf',
+      '.txt': 'text/plain'
+    };
+
+    const contentType = contentTypes[ext] || 'application/octet-stream';
+    res.setHeader('Content-Type', contentType);
+    res.setHeader('Accept-Ranges', 'bytes');
+    res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+
+    // Get file stream from HiDrive using full path
+    // ssh2-sftp-client returns a readable stream wrapped in a promise
+    await hidriveStorage.streamToResponse(filePath, res);
+
+    console.log(`✅ Successfully streamed: ${filePath}`);
+    
+  } catch (error) {
+    console.error('❌ Error streaming file from HiDrive:', error);
+    if (!res.headersSent) {
+      res.status(404).json({
+        success: false,
+        error: 'File not found',
+        message: error.message,
+        path: req.params[0]
+      });
+    }
+  }
+});
+
+/**
  * GET /api/hidrive/proxy/:category/:filename
- * Proxy/stream a file from HiDrive
+ * Proxy/stream a file from HiDrive (legacy endpoint)
  * Public access (no auth required)
  */
 router.get('/proxy/:category/:filename', async (req, res) => {
