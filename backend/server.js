@@ -132,6 +132,9 @@ app.use(express.json());
 // Serve built frontend files from dist directory
 app.use(express.static(path.join(__dirname, '../dist')));
 
+// Serve worship audio and timing files
+app.use('/worship', express.static(path.join(__dirname, '../public/worship')));
+
 // ---------- FTP CONFIG ----------
 const ftpConfig = {
   host: process.env.FTP_HOST,
