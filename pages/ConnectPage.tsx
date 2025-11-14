@@ -132,11 +132,11 @@ const ConnectPage: React.FC = () => {
                                 <div key={player.email} className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0">
-                                            <img src={player.profileData.imageUrl || DEFAULT_AVATAR_URL} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-50" aria-hidden="true" />
-                                            <img src={player.profileData.imageUrl || DEFAULT_AVATAR_URL} alt={player.profileData.name} className="relative w-full h-full object-cover"/>
+                                            <img src={player.profileData?.imageUrl || DEFAULT_AVATAR_URL} alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-50" aria-hidden="true" />
+                                            <img src={player.profileData?.imageUrl || DEFAULT_AVATAR_URL} alt={player.profileData?.name || player.email} className="relative w-full h-full object-cover"/>
                                         </div>
                                         <div>
-                                            <p className="font-semibold text-white">{player.profileData.name}</p>
+                                            <p className="font-semibold text-white">{player.profileData?.name || player.email}</p>
                                             <p className={`text-xs ${Math.random() > 0.5 ? 'text-green-400' : 'text-gray-500'}`}>
                                                 {Math.random() > 0.5 ? t('vrPlayerStatusOnline') : t('vrPlayerStatusOffline')}
                                             </p>

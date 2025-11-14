@@ -18,8 +18,8 @@ const LeaderCard: React.FC<{ leader: Leader }> = ({ leader }) => {
     <div className="bg-black-gradient rounded-[20px] box-shadow overflow-hidden text-center transition-all duration-300 hover:-translate-y-1 p-1 interactive-card interactive-card-glow">
       <div className="bg-primary rounded-[18px] h-full flex flex-col">
         <div className="w-full h-72 image-container rounded-t-[18px]">
-          <img src={leader.imageUrl} alt="" className="image-background" aria-hidden="true" />
-          <img src={leader.imageUrl} alt={leader.name[lang]} className="image-foreground" />
+          <img src={leader.imageUrl || '/images/church-logo.png'} alt="" className="image-background" aria-hidden="true" />
+          <img src={leader.imageUrl || '/images/church-logo.png'} alt={leader.name?.[lang] || leader.name} className="image-foreground" />
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-2xl font-semibold text-white">{leader.name[lang]}</h3>
@@ -58,9 +58,13 @@ const LeadersPage: React.FC = () => {
         <p className="font-normal text-dimWhite text-lg max-w-2xl mx-auto">{t('welcomeMessage')}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {leadersData.map(leader => (
-          <LeaderCard key={leader.id} leader={leader} />
-        ))}
+        {Array.isArray(leadersData) && leadersData.length > 0 ? (
+          leadersData.map(leader => (
+            <LeaderCard key={leader.id} leader={leader} />
+          ))
+        ) : (
+          <p className="text-dimWhite col-span-full text-center">No leaders available.</p>
+        )}
       </div>
     </div>
   );

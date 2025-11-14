@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .loading {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Admin Panel Test</h1>
+        
+        <div class="test-item">
+            <h3>Test Results:</h3>
+            <div id="test-results">
+                <div class="loading">Running tests...</div>
+            </div>
+        </div>
+
+        <div class="test-item">
+            <h3>Quick Actions:</h3>
+            <button class="button" onclick="testBackendHealth()">Test Backend Health</button>
+            <button class="button" onclick="testWorshipSongsAPI()">Test Worship Songs API</button>
+            <button class="button" onclick="testAudioSyncAPI()">Test Audio Sync API</button>
+            <button class="button" onclick="clearResults()">Clear Results</button>
+        </div>
+
+        <div class="test-item">
+            <h3>Test Log:</h3>
+            <div id="test-log" class="log"></div>
+        </div>
+
+        <div class="test-item">
+            <h3>Admin Panel Access:</h3>
+            <p><strong>URL:</strong> <a href="https://samanabyar.online/#/admin/sync-management" target="_blank">https://samanabyar.online/#/admin/sync-management</a></p>
+            <p><strong>Email:</strong> help.system@ymail.com</p>
+            <p><strong>Password:</strong> Samyar@1989</p>
+            <p><strong>Instructions:</strong></p>
+            <ol>
+                <li>Click the link above to open the Admin Panel</li>
+                <li>Login with the credentials above</li>
+                <li>Clear cache with Ctrl+Shift+R</li>
+                <li>Select a song and click the process button</li>
+                <li>Monitor the progress and check for success</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://samanabyar.online';
+        const testResults = document.getElementById('test-results');
+        const testLog = document.getElementById('test-log');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `<strong>[${timestamp}]</strong> ${message}`;
+            logEntry.style.marginBottom = '5px';
+            logEntry.style.padding = '5px';
+            logEntry.style.borderRadius = '3px';
+            
+            switch(type) {
+                case 'success':
+                    logEntry.style.backgroundColor = '#d4edda';
+                    logEntry.style.color = '#155724';
+                    break;
+                case 'error':
+                    logEntry.style.backgroundColor = '#f8d7da';
+                    logEntry.style.color = '#721c24';
+                    break;
+                case 'warning':
+                    logEntry.style.backgroundColor = '#fff3cd';
+                    logEntry.style.color = '#856404';
+                    break;
+                default:
+                    logEntry.style.backgroundColor = '#f8f9fa';
+                    logEntry.style.color = '#333';
+            }
+            
+            testLog.appendChild(logEntry);
+            testLog.scrollTop = testLog.scrollHeight;
+        }
+
+        function updateTestResults(results) {
+            testResults.innerHTML = '';
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.className = `test-item ${result.status}`;
+                div.innerHTML = `
+                    <strong>${result.name}:</strong> ${result.message}
+                    ${result.details ? `<br><small>${result.details}</small>` : ''}
+                `;
+                testResults.appendChild(div);
+            });
+        }
+
+        async function testBackendHealth() {
+            log('Testing backend health...', 'info');
+            try {
+                const response = await fetch(`${BASE_URL}/api/health`);
+                const data = await response.json();
+                if (data.ok) {
+                    log('✅ Backend is running', 'success');
+                    return { name: 'Backend Health', status: 'success', message: 'Running', details: `Uptime: ${Math.floor(data.uptime / 60)} minutes` };
+                } else {
+                    log('❌ Backend health check failed', 'error');
+                    return { name: 'Backend Health', status: 'error', message: 'Failed', details: data.message };
+                }
+            } catch (error) {
+                log(`❌ Backend health check failed: ${error.message}`, 'error');
+                return { name: 'Backend Health', status: 'error', message: 'Failed', details: error.message };
+            }
+        }
+
+        async function testWorshipSongsAPI() {
+            log('Testing worship songs API...', 'info');
+            try {
+                const response = await fetch(`${BASE_URL}/api/worship-songs`);
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    log(`✅ Worship songs API working (${data.length} songs found)`, 'success');
+                    const songsWithoutTiming = data.filter(song => !song.hasTiming);
+                    log(`📊 Songs needing processing: ${songsWithoutTiming.length}/${data.length}`, 'info');
+                    return { 
+                        name: 'Worship Songs API', 
+                        status: 'success', 
+                        message: `${data.length} songs found`, 
+                        details: `${songsWithoutTiming.length} need processing`
+                    };
+                } else {
+                    log('❌ Worship songs API returned invalid data', 'error');
+                    return { name: 'Worship Songs API', status: 'error', message: 'Invalid data', details: typeof data };
+                }
+            } catch (error) {
+                log(`❌ Worship songs API failed: ${error.message}`, 'error');
+                return { name: 'Worship Songs API', status: 'error', message: 'Failed', details: error.message };
+            }
+        }
+
+        async function testAudioSyncAPI() {
+            log('Testing audio sync API...', 'info');
+            try {
+                const response = await fetch(`${BASE_URL}/api/audio-sync/health`);
+                const data = await response.json();
+                if (data.ok) {
+                    log('✅ Audio sync API is working', 'success');
+                    return { name: 'Audio Sync API', status: 'success', message: 'Working', details: data.message };
+                } else {
+                    log('❌ Audio sync API health check failed', 'error');
+                    return { name: 'Audio Sync API', status: 'error', message: 'Failed', details: data.message };
+                }
+            } catch (error) {
+                log(`❌ Audio sync API failed: ${error.message}`, 'error');
+                return { name: 'Audio Sync API', status: 'error', message: 'Failed', details: error.message };
+            }
+        }
+
+        async function runAllTests() {
+            log('Starting all tests...', 'info');
+            const results = [];
+            
+            results.push(await testBackendHealth());
+            results.push(await testWorshipSongsAPI());
+            results.push(await testAudioSyncAPI());
+            
+            updateTestResults(results);
+            
+            const allPassed = results.every(r => r.status === 'success');
+            if (allPassed) {
+                log('🎉 All tests passed! Admin Panel is ready for testing.', 'success');
+            } else {
+                log('⚠️ Some tests failed. Please check the results above.', 'warning');
+            }
+        }
+
+        function clearResults() {
+            testResults.innerHTML = '<div class="loading">Running tests...</div>';
+            testLog.innerHTML = '';
+        }
+
+        // Run tests when page loads
+        window.addEventListener('load', runAllTests);
+    </script>
+</body>
+</html>

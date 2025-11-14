@@ -398,16 +398,28 @@ const TestimonialsWall: React.FC<TestimonialsWallProps> = ({
                 {/* Header */}
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
+                    {!testimonial.isAnonymous && (
+                      <img 
+                        src={`/images/avatar-christian-${['male-1', 'female-1', 'elder'][Math.floor(Math.random() * 3)]}.jpg`}
+                        alt={testimonial.name || 'User'}
+                        className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = '/images/church-logo-hq.png';
+                        }}
+                      />
+                    )}
+                    {testimonial.isAnonymous && (
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
+                        <Lock className="w-6 h-6 text-white" />
+                      </div>
+                    )}
                     <span className="text-xl">{getTypeIcon(testimonial.type)}</span>
                     <span className="text-lg">{getCategoryIcon(testimonial.category)}</span>
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-medium text-gray-900">
                           {testimonial.isAnonymous ? (
-                            <span className="flex items-center gap-1">
-                              <Lock className="w-4 h-4" />
-                              {lang === 'fa' ? 'ناشناس' : 'Anonymous'}
-                            </span>
+                            lang === 'fa' ? 'ناشناس' : 'Anonymous'
                           ) : (
                             testimonial.name
                           )}

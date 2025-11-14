@@ -4,15 +4,14 @@ import axios from 'axios';
 // Determine if we're in development
 const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-// In production, nginx proxies /api/* to backend on localhost:3001
-// So we just use relative paths which will go through nginx
+// In production, use full URL to avoid HTTP/2 issues with nginx proxy
 const getBaseURL = () => {
   if (isDevelopment) {
     return 'http://localhost:3001';
   }
   
-  // Production: use empty string so /api/* goes through nginx proxy
-  return '';
+  // Production: use full URL to avoid HTTP/2 protocol issues
+  return 'https://samanabyar.online';
 };
 
 // Create axios instance with default config
@@ -20,8 +19,11 @@ const api = axios.create({
   baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   },
   withCredentials: true, // Important for cookies/auth
+  // Add timeout to prevent hanging requests
+  timeout: 30000,
 });
 
 // Request interceptor to add auth token
@@ -49,10 +51,18 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Handle authentication errors
     if (error.response?.status === 401) {
-      // Unauthorized - redirect to login
-      console.warn('Unauthorized access - redirecting to login');
-      // You can add redirect logic here if needed
+      console.warn('Unauthorized access - please login again');
+      // Clear stored token
+      localStorage.removeItem('token');
+      // You can add redirect to login page here if needed
+      window.location.href = '/#/login';
+    }
+    
+    // Handle HTTP/2 protocol errors by logging them
+    if (error.code === 'ERR_NETWORK' && error.message.includes('HTTP/2')) {
+      console.warn('HTTP/2 protocol error detected - this may be a proxy issue');
     }
     
     // Log error for debugging
@@ -61,6 +71,7 @@ api.interceptors.response.use(
       method: error.config?.method,
       status: error.response?.status,
       data: error.response?.data,
+      message: error.message,
     });
     
     return Promise.reject(error);

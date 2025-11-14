@@ -66,7 +66,7 @@ const initialContent: ContentData = {
     files: [
         { id: '1', name: 'church-building.jpg', path: 'general/church-building.jpg', url: 'https://images.unsplash.com/photo-1537526949396-93c4a433f380?q=80&w=2070&auto=format&fit=crop', size: 1200000, type: 'image/jpeg' },
         { id: '2', name: 'prayer-hands.jpg', path: 'general/prayer-hands.jpg', url: 'https://images.unsplash.com/photo-1600033190885-b1a9c1c79a5e?q=80&w=1964&auto=format&fit=crop', size: 850000, type: 'image/jpeg' },
-        { id: '3', name: 'pastor-javad.png', path: 'leaders/pastor-javad.png', url: 'https://i.imgur.com/gA0939q.png', size: 500000, type: 'image/png' },
+        { id: '3', name: 'pastor-javad.png', path: 'leaders/pastor-javad.png', url: '/images/pastor-javad-real.jpg', size: 500000, type: 'image/png' },
         { id: '4', name: 'sermon-background.jpg', path: 'sermons/backgrounds/sermon-background.jpg', url: 'https://images.unsplash.com/photo-1508361001413-7a9dca2c302d?q=80&w=2070&auto=format&fit=crop', size: 1500000, type: 'image/jpeg' },
     ],
 };

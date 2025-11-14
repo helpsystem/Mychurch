@@ -622,7 +622,7 @@ const BiblePage: React.FC = () => {
                 {renderBookPages()}
 
                 <PageCover isBackCover={true}>
-                     <img src="https://i.imgur.com/gA0939q.png" alt="Church Logo" className="w-24 h-24" />
+                     <img src="/images/church-logo-hq.png" alt="Church Logo" className="w-24 h-24" />
                 </PageCover>
             </HTMLFlipBook>
             {!hasInteracted && <PageTurnHint />}

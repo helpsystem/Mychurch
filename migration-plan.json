@@ -1,0 +1,26 @@
+﻿[
+    {
+        "Name":  "sermon-audio",
+        "LocalPath":  "public/audio",
+        "RemotePath":  "/users/adminchurch/mychurch/sermons/audio",
+        "FileCount":  374,
+        "SizeMB":  250.07,
+        "RsyncCommand":  "rsync -avz --progress public/audio/ adminchurch@rsync.hidrive.ionos.com:/users/adminchurch/mychurch/sermons/audio/"
+    },
+    {
+        "Name":  "worship-audio",
+        "LocalPath":  "public/worship/audio/kalameh",
+        "RemotePath":  "/users/adminchurch/mychurch/worship/audio",
+        "FileCount":  814,
+        "SizeMB":  5561.41,
+        "RsyncCommand":  "rsync -avz --progress public/worship/audio/kalameh/ adminchurch@rsync.hidrive.ionos.com:/users/adminchurch/mychurch/worship/audio/"
+    },
+    {
+        "Name":  "event-images",
+        "LocalPath":  "public/images",
+        "RemotePath":  "/users/adminchurch/mychurch/events/images",
+        "FileCount":  22,
+        "SizeMB":  18.3,
+        "RsyncCommand":  "rsync -avz --progress public/images/ adminchurch@rsync.hidrive.ionos.com:/users/adminchurch/mychurch/events/images/"
+    }
+]

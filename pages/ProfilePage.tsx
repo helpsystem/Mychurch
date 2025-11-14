@@ -153,10 +153,10 @@ const ProfilePage: React.FC = () => {
   
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-      name: user?.profileData.name || '',
-      gender: user?.profileData.gender || 'neutral',
-      whatsappNumber: user?.profileData.whatsappNumber || '',
-      signature: user?.profileData.signature || { en: '', fa: '' },
+      name: user?.profileData?.name || '',
+      gender: user?.profileData?.gender || 'neutral',
+      whatsappNumber: user?.profileData?.whatsappNumber || '',
+      signature: user?.profileData?.signature || { en: '', fa: '' },
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -225,7 +225,7 @@ const ProfilePage: React.FC = () => {
   const handleEditToggle = () => {
     if (isEditing) {
         // Reset form if canceling
-        setFormData({ name: user.profileData.name, gender: user.profileData.gender || 'neutral', whatsappNumber: user.profileData.whatsappNumber || '', signature: user.profileData.signature || { en: '', fa: '' } });
+    setFormData({ name: user.profileData?.name || '', gender: user.profileData?.gender || 'neutral', whatsappNumber: user.profileData?.whatsappNumber || '', signature: user.profileData?.signature || { en: '', fa: '' } });
         setImageFile(null);
         setImagePreview(null);
     }
@@ -313,7 +313,7 @@ const ProfilePage: React.FC = () => {
         <div className="bg-black-gradient p-8 rounded-[20px] shadow-lg text-center border border-gray-800">
           <div className="w-32 h-32 mx-auto image-container rounded-full relative group">
               <img src={profileImageUrl} alt="" className="image-background" aria-hidden="true" />
-              <img src={profileImageUrl} alt={user.profileData.name} className="image-foreground rounded-full" />
+              <img src={profileImageUrl} alt={user.profileData?.name || user.email} className="image-foreground rounded-full" />
               {isEditing && (
                   <>
                       <label htmlFor="profile-pic-upload" className="absolute inset-0 bg-black/60 flex items-center justify-center text-white cursor-pointer rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
@@ -332,7 +332,7 @@ const ProfilePage: React.FC = () => {
                   className="mt-4 text-3xl font-bold text-white bg-transparent border-b-2 border-gray-600 focus:border-secondary focus:outline-none text-center"
               />
           ) : (
-              <h1 className="mt-4 text-3xl font-bold text-white">{user.profileData.name || user.email}</h1>
+              <h1 className="mt-4 text-3xl font-bold text-white">{user.profileData?.name || user.email}</h1>
           )}
           
           <div className="mt-6 text-start space-y-4">

@@ -174,19 +174,51 @@ const AdminSyncManagementPage: React.FC = () => {
       id: songId,
       status: 'processing',
       progress: 0,
-      message: lang === 'fa' ? 'در حال پردازش...' : 'Processing...'
+      message: lang === 'fa' ? 'در حال دریافت اطلاعات...' : 'Fetching details...'
     }));
 
     try {
+      // اول باید اطلاعات کامل سرود (با lyrics) رو بگیریم
+      const songDetailsResponse = await api.get(`/api/worship-songs/${songId}`);
+      const fullSongData = songDetailsResponse.data;
+      
+      if (!fullSongData.audioUrl) {
+        throw new Error(lang === 'fa' ? 'فایل صوتی یافت نشد' : 'Audio file not found');
+      }
+      
+      // تبدیل URL نسبی به URL کامل
+      const audioUrl = fullSongData.audioUrl.startsWith('http') 
+        ? fullSongData.audioUrl 
+        : `${window.location.origin}${fullSongData.audioUrl}`;
+      
       // Fetch audio file
-      const audioResponse = await fetch(song.audioUrl);
+      setProcessing(prev => new Map(prev).set(key, {
+        type: 'worship',
+        id: songId,
+        status: 'processing',
+        progress: 10,
+        message: lang === 'fa' ? 'در حال دانلود فایل صوتی...' : 'Downloading audio...'
+      }));
+
+      const audioResponse = await fetch(audioUrl);
+      if (!audioResponse.ok) {
+        throw new Error(`Failed to fetch audio: ${audioResponse.status} ${audioResponse.statusText}`);
+      }
       const audioBlob = await audioResponse.blob();
+      
+      // بررسی وجود lyrics
+      const lyricsEn = fullSongData.lyrics?.en || '';
+      const lyricsFa = fullSongData.lyrics?.fa || '';
+      
+      if (!lyricsEn && !lyricsFa) {
+        throw new Error(lang === 'fa' ? 'متن سرود یافت نشد' : 'Lyrics not found');
+      }
       
       // Create FormData
       const formData = new FormData();
       formData.append('audio', audioBlob, 'audio.mp3');
-      formData.append('finglishText', song.lyrics.en);
-      formData.append('persianText', song.lyrics.fa);
+      formData.append('finglishText', lyricsEn || lyricsFa); // اگر انگلیسی نیست، فارسی رو بفرست
+      formData.append('persianText', lyricsFa);
       formData.append('worshipSongId', songId.toString());
 
       // Process with backend
@@ -617,7 +649,7 @@ const AdminSyncManagementPage: React.FC = () => {
                           </td>
                           <td className="px-4 py-3">
                             <div className="font-semibold">
-                              {lang === 'fa' ? song.title.fa : song.title.en}
+                              {lang === 'fa' ? song.title?.fa || song.title : song.title?.en || song.title}
                             </div>
                           </td>
                           <td className="px-4 py-3 text-center">

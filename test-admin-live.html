@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Admin Panel Live Testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 5px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+        }
+        .result {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+        .result pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status-online {
+            background: #38ef7d;
+            color: white;
+        }
+        .status-offline {
+            background: #f45c43;
+            color: white;
+        }
+        .status-loading {
+            background: #ffd93d;
+            color: #333;
+        }
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .quick-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+        .quick-link:hover {
+            transform: scale(1.05);
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .info-box h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        .credentials {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .credentials code {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Admin Panel Live Testing</h1>
+        <p class="subtitle">تست زنده سیستم همگام‌سازی صوتی</p>
+
+        <div class="credentials">
+            <h3>🔐 اطلاعات ورود:</h3>
+            <p>📧 Email: <code>help.system@ymail.com</code></p>
+            <p>🔑 Password: <code>Samyar@1989</code></p>
+        </div>
+
+        <!-- Backend Health Check -->
+        <div class="test-section">
+            <h2>1️⃣ بررسی وضعیت Backend <span id="backend-status" class="status status-loading">در حال بررسی...</span></h2>
+            <button class="btn" onclick="checkBackendHealth()">🔍 چک کن</button>
+            <div id="backend-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Worship Songs API -->
+        <div class="test-section">
+            <h2>2️⃣ لیست سرودها (Worship Songs API)</h2>
+            <button class="btn" onclick="fetchWorshipSongs()">📋 دریافت سرودها</button>
+            <button class="btn btn-success" onclick="fetchSongsWithoutTiming()">🎵 سرودهای بدون Timing</button>
+            <div id="songs-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test Single Processing -->
+        <div class="test-section">
+            <h2>3️⃣ تست پردازش تکی (Single Song Processing)</h2>
+            <p style="margin-bottom: 10px; color: #666;">⚠️ این تست به Gemini API نیاز دارد و ممکن است 1-2 دقیقه طول بکشد</p>
+            <input type="number" id="song-id-input" placeholder="شماره سرود (مثلاً 1)" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd; margin: 5px; width: 200px;">
+            <button class="btn btn-success" onclick="processSingleSong()">🚀 پردازش کن</button>
+            <div id="process-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Admin Panel Access -->
+        <div class="test-section">
+            <h2>4️⃣ دسترسی به Admin Panel</h2>
+            <div class="info-box">
+                <h3>📍 آدرس Admin Panel:</h3>
+                <p><a href="https://samanabyar.online/#/admin/sync-management" target="_blank" style="color: #2196f3; font-weight: bold;">https://samanabyar.online/#/admin/sync-management</a></p>
+                <p style="margin-top: 10px;">⚠️ توجه: قبل از ورود، حتماً <strong>Ctrl+Shift+R</strong> بزنید تا cache پاک شود!</p>
+            </div>
+            <div class="quick-links">
+                <a href="https://samanabyar.online/#/admin/sync-management" target="_blank" class="quick-link">
+                    🎛️ باز کردن Admin Panel
+                </a>
+                <a href="https://samanabyar.online/#/login" target="_blank" class="quick-link">
+                    🔐 صفحه ورود
+                </a>
+                <a href="https://samanabyar.online/" target="_blank" class="quick-link">
+                    🏠 صفحه اصلی سایت
+                </a>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="info-box">
+            <h3>📝 دستورالعمل تست:</h3>
+            <ol style="margin-right: 20px; line-height: 1.8;">
+                <li>ابتدا وضعیت Backend را چک کنید</li>
+                <li>لیست سرودها را دریافت کنید</li>
+                <li>یک سرود را برای تست انتخاب کرده و پردازش کنید</li>
+                <li>وارد Admin Panel شوید و نتایج را بررسی کنید</li>
+                <li>اگر همه چیز موفق بود، می‌توانید batch processing را شروع کنید</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Check Backend Health
+        async function checkBackendHealth() {
+            const statusEl = document.getElementById('backend-status');
+            const resultEl = document.getElementById('backend-result');
+            
+            statusEl.className = 'status status-loading';
+            statusEl.textContent = 'در حال بررسی...';
+            resultEl.style.display = 'none';
+
+            try {
+                const response = await fetch('https://samanabyar.online/api/health');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    statusEl.className = 'status status-online';
+                    statusEl.textContent = '✅ آنلاین';
+                    
+                    const uptimeMinutes = Math.floor(data.uptime / 60);
+                    resultEl.innerHTML = `<pre>${JSON.stringify({
+                        status: 'OK',
+                        uptime: `${uptimeMinutes} دقیقه`,
+                        timestamp: new Date(data.ts).toLocaleString('fa-IR')
+                    }, null, 2)}</pre>`;
+                    resultEl.style.display = 'block';
+                } else {
+                    throw new Error('Backend responded with error');
+                }
+            } catch (error) {
+                statusEl.className = 'status status-offline';
+                statusEl.textContent = '❌ آفلاین';
+                resultEl.innerHTML = `<pre style="color: red;">خطا: ${error.message}</pre>`;
+                resultEl.style.display = 'block';
+            }
+        }
+
+        // Fetch Worship Songs
+        async function fetchWorshipSongs() {
+            const resultEl = document.getElementById('songs-result');
+            resultEl.innerHTML = '<pre>⏳ در حال دریافت...</pre>';
+            resultEl.style.display = 'block';
+
+            try {
+                const response = await fetch('https://samanabyar.online/api/worship-songs');
+                const songs = await response.json();
+                
+                if (response.ok) {
+                    const summary = {
+                        total: songs.length,
+                        withTiming: songs.filter(s => s.has_timing).length,
+                        withoutTiming: songs.filter(s => !s.has_timing).length,
+                        firstThree: songs.slice(0, 3).map(s => ({
+                            id: s.id,
+                            title: s.title?.fa || s.title,
+                            has_timing: s.has_timing || false
+                        }))
+                    };
+                    
+                    resultEl.innerHTML = `<pre>${JSON.stringify(summary, null, 2)}</pre>`;
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                resultEl.innerHTML = `<pre style="color: red;">❌ خطا: ${error.message}</pre>`;
+            }
+        }
+
+        // Fetch Songs Without Timing
+        async function fetchSongsWithoutTiming() {
+            const resultEl = document.getElementById('songs-result');
+            resultEl.innerHTML = '<pre>⏳ در حال دریافت سرودهای بدون timing...</pre>';
+            resultEl.style.display = 'block';
+
+            try {
+                const response = await fetch('https://samanabyar.online/api/worship-songs');
+                const songs = await response.json();
+                
+                const songsWithoutTiming = songs
+                    .filter(s => !s.has_timing)
+                    .slice(0, 10)
+                    .map(s => ({
+                        id: s.id,
+                        title: s.title?.fa || s.title,
+                        audioUrl: s.audioUrl || 'ندارد'
+                    }));
+                
+                resultEl.innerHTML = `<pre>📊 تعداد کل سرودها: ${songs.length}
+🎵 سرودهای با timing: ${songs.filter(s => s.has_timing).length}
+⏳ سرودهای بدون timing: ${songs.filter(s => !s.has_timing).length}
+
+10 سرود اول بدون timing:
+${JSON.stringify(songsWithoutTiming, null, 2)}</pre>`;
+            } catch (error) {
+                resultEl.innerHTML = `<pre style="color: red;">❌ خطا: ${error.message}</pre>`;
+            }
+        }
+
+        // Process Single Song
+        async function processSingleSong() {
+            const songId = document.getElementById('song-id-input').value;
+            const resultEl = document.getElementById('process-result');
+            
+            if (!songId) {
+                alert('لطفاً شماره سرود را وارد کنید!');
+                return;
+            }
+
+            resultEl.innerHTML = '<pre>⏳ در حال پردازش... (این کار ممکن است 1-2 دقیقه طول بکشد)</pre>';
+            resultEl.style.display = 'block';
+
+            try {
+                const response = await fetch('https://samanabyar.online/api/audio-sync/process-worship', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ songId: parseInt(songId) })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultEl.innerHTML = `<pre style="color: green;">✅ موفقیت‌آمیز!
+
+نتیجه:
+${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultEl.innerHTML = `<pre style="color: red;">❌ خطا: ${data.error || 'Unknown error'}
+
+جزئیات:
+${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultEl.innerHTML = `<pre style="color: red;">❌ خطا در ارتباط با سرور:
+${error.message}</pre>`;
+            }
+        }
+
+        // Auto-check backend health on load
+        window.addEventListener('load', () => {
+            checkBackendHealth();
+        });
+    </script>
+</body>
+</html>

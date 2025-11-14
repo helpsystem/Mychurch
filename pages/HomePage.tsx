@@ -564,9 +564,9 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
                 <div className="flex flex-wrap sm:justify-start justify-center w-full feedback-container relative z-[1]">
-                    <FeedbackCard delay={1} content={t('testimonial1Text')} name={t('testimonial1Name')} title={t('testimonial1Role')} img={DEFAULT_AVATAR_URL}/>
-                    <FeedbackCard delay={2} content={t('testimonial2Text')} name={t('testimonial2Name')} title={t('testimonial2Role')} img={DEFAULT_AVATAR_URL}/>
-                    <FeedbackCard delay={3} content={t('testimonial3Text')} name={t('testimonial3Name')} title={t('testimonial3Role')} img={DEFAULT_AVATAR_URL}/>
+                    <FeedbackCard delay={1} content={t('testimonial1Text')} name={t('testimonial1Name')} title={t('testimonial1Role')} img="/images/avatar-christian-male-1.jpg"/>
+                    <FeedbackCard delay={2} content={t('testimonial2Text')} name={t('testimonial2Name')} title={t('testimonial2Role')} img="/images/avatar-christian-female-1.jpg"/>
+                    <FeedbackCard delay={3} content={t('testimonial3Text')} name={t('testimonial3Name')} title={t('testimonial3Role')} img="/images/avatar-christian-elder.jpg"/>
                 </div>
               </section>
 

@@ -9,8 +9,8 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   return (
     <div className="bg-black-gradient rounded-[20px] box-shadow overflow-hidden flex flex-col md:flex-row interactive-card interactive-card-glow">
       <div className="w-full md:w-1/3 h-56 md:h-auto image-container">
-        <img src={event.imageUrl} alt="" className="image-background" aria-hidden="true" />
-        <img src={event.imageUrl} alt={event.title[lang]} className="image-foreground" />
+        <img src={event.imageUrl || '/images/church-logo.png'} alt="" className="image-background" aria-hidden="true" />
+        <img src={event.imageUrl || '/images/church-logo.png'} alt={event.title?.[lang] || event.title} className="image-foreground" />
       </div>
       <div className="p-6 flex flex-col flex-grow">
         <h3 className="font-semibold text-2xl text-white">{event.title[lang]}</h3>
@@ -26,7 +26,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
 const EventsPage: React.FC = () => {
   const { t } = useLanguage();
   const { content } = useContent();
-  const eventsData = content.events;
+  const eventsData = content.events || [];
   return (
     <div className="space-y-8 sm:px-16 px-6 sm:py-12 py-4">
       <div className="text-center mb-12 reveal-on-scroll">
@@ -34,11 +34,15 @@ const EventsPage: React.FC = () => {
         <p className="font-normal text-dimWhite text-lg max-w-3xl mx-auto">{t('eventsDescription')}</p>
       </div>
       <div className="max-w-5xl mx-auto space-y-8">
-        {eventsData.map((event, index) => (
-          <div key={event.id} className="reveal-on-scroll" style={{transitionDelay: `${index * 150}ms`}}>
-            <EventCard event={event} />
-          </div>
-        ))}
+        {Array.isArray(eventsData) && eventsData.length > 0 ? (
+          eventsData.map((event, index) => (
+            <div key={event.id} className="reveal-on-scroll" style={{transitionDelay: `${index * 150}ms`}}>
+              <EventCard event={event} />
+            </div>
+          ))
+        ) : (
+          <p className="text-dimWhite text-center">No events available.</p>
+        )}
       </div>
     </div>
   );

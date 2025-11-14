@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const { pool, parseJSON } = require('../db-postgres');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
+const { convertToProxyURL } = require('../middleware/urlConverter');
 const router = express.Router();
 
 // تنظیمات Multer برای آپلود فایل
@@ -67,30 +68,43 @@ const upload = multer({
 // GET /api/worship-songs - دریافت همه آهنگ‌های پرستشی
 router.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM worship_songs ORDER BY created_at DESC');
+    // بهینه‌سازی: فقط فیلدهای لازم را SELECT کن (نه lyrics که خیلی بزرگ است)
+    const result = await pool.query(`
+      SELECT 
+        id, title, artist, youtubeid, audiourl, videourl, 
+        category, tags, copyright, 
+        presentation_file_url, pdf_file_url, sheet_music_url,
+        chords, notation, notes, attachments,
+        timing_data IS NOT NULL as has_timing,
+        timing_updated_at,
+        created_at
+      FROM worship_songs 
+      ORDER BY created_at DESC
+    `);
+    
     const worshipSongs = result.rows.map(song => ({
       id: song.id,
       title: parseJSON(song.title, {}),
       artist: song.artist,
       youtubeId: song.youtubeid,
-      lyrics: parseJSON(song.lyrics, {}),
-      audioUrl: song.audiourl,
+      audioUrl: convertToProxyURL(song.audiourl), // Convert to proxy URL
       videoUrl: song.videourl,
       category: song.category || 'worship',
       tags: parseJSON(song.tags, []),
       copyright: song.copyright,
-      presentationFileUrl: song.presentation_file_url,
-      pdfFileUrl: song.pdf_file_url,
-      sheetMusicUrl: song.sheet_music_url,
+      presentationFileUrl: convertToProxyURL(song.presentation_file_url),
+      pdfFileUrl: convertToProxyURL(song.pdf_file_url),
+      sheetMusicUrl: convertToProxyURL(song.sheet_music_url),
       chords: song.chords,
       notation: song.notation,
       notes: song.notes,
       attachments: parseJSON(song.attachments, []),
-      timingData: parseJSON(song.timing_data, null),
-      timingUpdatedAt: song.timing_updated_at,
-      hasTiming: !!song.timing_data
+      hasTiming: song.has_timing,
+      timingUpdatedAt: song.timing_updated_at
+      // lyrics و timingData رو حذف کردیم چون خیلی بزرگ هستند
+      // برای دریافت این دو از GET /api/worship-songs/:id استفاده می‌شود
     }));
-    // برگرداندن آرایه مستقیم (نه object با کلید songs) تا با سایر endpoints یکسان باشد
+    
     res.json(worshipSongs);
   } catch (error) {
     console.error('Fetch Worship Songs Error:', error);
@@ -98,18 +112,60 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/worship-songs/:id - دریافت یک آهنگ با جزئیات کامل (شامل lyrics و timing)
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM worship_songs WHERE id = $1', [id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Worship song not found' });
+    }
+    
+    const song = result.rows[0];
+    res.json({
+      id: song.id,
+      title: parseJSON(song.title, {}),
+      artist: song.artist,
+      youtubeId: song.youtubeid,
+      lyrics: parseJSON(song.lyrics, {}),
+      audioUrl: convertToProxyURL(song.audiourl), // Convert to proxy URL
+      videoUrl: song.videourl,
+      category: song.category || 'worship',
+      tags: parseJSON(song.tags, []),
+      copyright: song.copyright,
+      presentationFileUrl: convertToProxyURL(song.presentation_file_url),
+      pdfFileUrl: convertToProxyURL(song.pdf_file_url),
+      sheetMusicUrl: convertToProxyURL(song.sheet_music_url),
+      chords: song.chords,
+      notation: song.notation,
+      notes: song.notes,
+      attachments: parseJSON(song.attachments, []),
+      timingData: parseJSON(song.timing_data, null),
+      timingUpdatedAt: song.timing_updated_at,
+      hasTiming: !!song.timing_data,
+      structure: parseJSON(song.structure, null),
+      createdAt: song.created_at
+    });
+  } catch (error) {
+    console.error('Fetch Worship Song by ID Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 // POST /api/worship-songs - ایجاد آهنگ پرستشی جدید
 router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
-  const { title, artist, youtubeId, lyrics, audioUrl, videoUrl, presentationFileUrl, pdfFileUrl, sheetMusicUrl } = req.body;
+  const { title, artist, youtubeId, lyrics, audioUrl, videoUrl, presentationFileUrl, pdfFileUrl, sheetMusicUrl, autoSync } = req.body;
   
   if (!title || !artist || !youtubeId) {
     return res.status(400).json({ message: 'Title, artist, and youtubeId are required.' });
   }
 
   try {
+    // Insert worship song
     const result = await pool.query(
-      `INSERT INTO worship_songs (title, artist, youtubeId, lyrics, audioUrl, videoUrl, presentation_file_url, pdf_file_url, sheet_music_url) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+      `INSERT INTO worship_songs (title, artist, youtubeId, lyrics, audioUrl, videoUrl, presentation_file_url, pdf_file_url, sheet_music_url, auto_sync_enabled, processing_status) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
       [
         JSON.stringify(title),
         artist,
@@ -119,11 +175,35 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
         videoUrl || null,
         presentationFileUrl || null,
         pdfFileUrl || null,
-        sheetMusicUrl || null
+        sheetMusicUrl || null,
+        autoSync !== false, // Default true
+        'not_processed'
       ]
     );
 
     const newSong = result.rows[0];
+
+    // 🚀 AUTO-SYNC: Queue for background processing if audio and lyrics exist
+    if (newSong.audiourl && (lyrics?.fa || lyrics?.en) && autoSync !== false) {
+      try {
+        await pool.query(`
+          INSERT INTO sync_jobs (job_type, entity_id, priority, created_by)
+          VALUES ('worship_song', $1, 5, $2)
+        `, [newSong.id, req.user.id]);
+
+        await pool.query(`
+          UPDATE worship_songs 
+          SET processing_status = 'queued'
+          WHERE id = $1
+        `, [newSong.id]);
+
+        console.log(`✅ Queued worship song ${newSong.id} for auto-sync`);
+      } catch (queueError) {
+        console.error('Failed to queue song for sync:', queueError);
+        // Don't fail the request, just log the error
+      }
+    }
+
     res.status(201).json({
       id: newSong.id,
       title: parseJSON(newSong.title, {}),
@@ -134,7 +214,9 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
       videoUrl: newSong.videourl,
       presentationFileUrl: newSong.presentation_file_url,
       pdfFileUrl: newSong.pdf_file_url,
-      sheetMusicUrl: newSong.sheet_music_url
+      sheetMusicUrl: newSong.sheet_music_url,
+      processingStatus: newSong.processing_status,
+      autoSyncEnabled: newSong.auto_sync_enabled
     });
   } catch (error) {
     console.error('Create Worship Song Error:', error);
@@ -284,6 +366,112 @@ router.delete('/delete-file', authenticateToken, authorizeRoles('SUPER_ADMIN', '
   } catch (error) {
     console.error('Delete File Error:', error);
     res.status(500).json({ message: 'خطا در حذف فایل', error: error.message });
+  }
+});
+
+// POST /api/worship-songs/:id/resync - Manual re-sync trigger for admins
+router.post('/:id/resync', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { priority } = req.body; // Optional: 1-10, default 5
+
+    // Check if song exists
+    const songResult = await pool.query('SELECT * FROM worship_songs WHERE id = $1', [id]);
+    
+    if (songResult.rows.length === 0) {
+      return res.status(404).json({ message: 'Worship song not found' });
+    }
+
+    const song = songResult.rows[0];
+
+    if (!song.audiourl) {
+      return res.status(400).json({ message: 'No audio URL found for this song' });
+    }
+
+    // Check if already queued or processing
+    const existingJob = await pool.query(`
+      SELECT * FROM sync_jobs 
+      WHERE job_type = 'worship_song' 
+      AND entity_id = $1 
+      AND status IN ('pending', 'processing')
+      LIMIT 1
+    `, [id]);
+
+    if (existingJob.rows.length > 0) {
+      return res.status(409).json({ 
+        message: 'Song is already queued or processing',
+        job: existingJob.rows[0]
+      });
+    }
+
+    // Queue for processing with higher priority (manual = priority 1)
+    await pool.query(`
+      INSERT INTO sync_jobs (job_type, entity_id, priority, created_by)
+      VALUES ('worship_song', $1, $2, $3)
+    `, [id, priority || 1, req.user.id]);
+
+    await pool.query(`
+      UPDATE worship_songs 
+      SET processing_status = 'queued'
+      WHERE id = $1
+    `, [id]);
+
+    console.log(`🔄 Manual re-sync queued for worship song ${id} by user ${req.user.email}`);
+
+    res.json({
+      success: true,
+      message: 'Song queued for re-sync',
+      songId: id,
+      processingStatus: 'queued'
+    });
+
+  } catch (error) {
+    console.error('Re-sync Error:', error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+});
+
+// GET /api/worship-songs/:id/sync-status - Get sync job status
+router.get('/:id/sync-status', authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Get latest job for this song
+    const jobResult = await pool.query(`
+      SELECT * FROM sync_jobs 
+      WHERE job_type = 'worship_song' 
+      AND entity_id = $1 
+      ORDER BY created_at DESC 
+      LIMIT 1
+    `, [id]);
+
+    if (jobResult.rows.length === 0) {
+      return res.json({ 
+        hasJob: false,
+        message: 'No sync job found for this song'
+      });
+    }
+
+    const job = jobResult.rows[0];
+
+    res.json({
+      hasJob: true,
+      job: {
+        id: job.id,
+        status: job.status,
+        attempts: job.attempts,
+        maxAttempts: job.max_attempts,
+        errorMessage: job.error_message,
+        result: job.result,
+        createdAt: job.created_at,
+        startedAt: job.started_at,
+        completedAt: job.completed_at
+      }
+    });
+
+  } catch (error) {
+    console.error('Get Sync Status Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
