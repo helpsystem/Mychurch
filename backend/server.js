@@ -21,6 +21,9 @@ const eventRecorderRoutes = require('./routes/eventRecorder');
 const worshipAudioRoutes = require('./routes/worshipAudioRoutes');
 const worshipRoutes = require('./routes/worshipRoutes');
 const songsRoutes = require('./routes/songs');
+const timingRoutes = require('./routes/timingRoutes');
+const bibleTimingRoutes = require('./routes/bibleTimingRoutes');
+const audioSyncAdvancedRoutes = require('./routes/audioSyncAdvancedRoutes');
 const scheduleRoutes = require('./routes/scheduleRoutes');
 const galleriesRoutes = require('./routes/galleriesRoutes');
 const prayerRoutes = require('./routes/prayerRoutes');
@@ -243,6 +246,9 @@ app.use('/api/events', eventRecorderRoutes); // For /record-session and /recorde
 app.use('/api/worship-audio', worshipAudioRoutes); // For worship songs AI suite
 app.use('/api/worship-songs', worshipRoutes);
 app.use('/api/songs', songsRoutes);
+app.use('/api/timing', timingRoutes); // For timing file generation (worship songs)
+app.use('/api/bible-timing', bibleTimingRoutes); // For Bible chapter timing generation
+app.use('/api/audio-sync-advanced', audioSyncAdvancedRoutes); // Advanced AI timing with Gemini
 app.use('/api/gemini-timing', geminiAudioTimingRoutes); // For Bible audio timing generation
 app.use('/api/schedule-events', scheduleRoutes);
 app.use('/api/galleries', galleriesRoutes);

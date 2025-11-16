@@ -84,6 +84,7 @@ import BibleAudioSyncDemoPage from './pages/BibleAudioSyncDemoPage';
 import BibleAudioTestPage from './pages/BibleAudioTestPage';
 import BibleAudioYouVersionTestPage from './pages/BibleAudioYouVersionTestPage';
 import BibleAudioSyncPage from './pages/BibleAudioSyncPage';
+import BibleAudioSyncTestPage from './pages/BibleAudioSyncTestPage';
 import BibleVoiceChatPage from './pages/BibleVoiceChatPage';
 import BiblePresentationCreatorPage from './pages/BiblePresentationCreatorPage';
 import ChurchEventRecorderPage from './pages/ChurchEventRecorderPage';
@@ -149,6 +150,7 @@ function App() {
               <Route path="bible/audio-test" element={<BibleAudioTestPage />} />
               <Route path="bible/audio-youversion" element={<BibleAudioYouVersionTestPage />} />
               <Route path="bible/audio-sync" element={<BibleAudioSyncPage />} />
+              <Route path="bible/audio-sync-test" element={<BibleAudioSyncTestPage />} />
               <Route path="bible/voice-chat" element={<BibleVoiceChatPage />} />
               <Route path="bible/presentation-creator" element={<BiblePresentationCreatorPage />} />
               <Route path="bible/reader" element={<BilingualBibleReader />} />
