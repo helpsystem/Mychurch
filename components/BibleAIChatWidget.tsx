@@ -86,6 +86,31 @@ const BibleAIChatWidget: React.FC = () => {
     }
   };
 
+  // Process request queue with rate limiting
+  const processRequestQueue = async () => {
+    if (isProcessingQueue || requestQueue.length === 0) return;
+    
+    setIsProcessingQueue(true);
+    
+    try {
+      while (requestQueue.length > 0) {
+        const request = requestQueue[0];
+        setRequestQueue(prev => prev.slice(1));
+        
+        await request();
+        
+        // Add delay between queued requests
+        await new Promise(resolve =>
+          setTimeout(resolve, RATE_LIMIT.minRequestInterval)
+        );
+      }
+    } catch (error) {
+      console.error('Error processing request queue:', error);
+    } finally {
+      setIsProcessingQueue(false);
+    }
+  };
+
   // Load daily verse on mount with debouncing
   useEffect(() => {
     const loadInitialData = async () => {
@@ -114,6 +139,7 @@ const BibleAIChatWidget: React.FC = () => {
     };
     
     loadInitialData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
 
   // Auto-scroll to bottom when messages change
@@ -134,6 +160,14 @@ const BibleAIChatWidget: React.FC = () => {
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  // Process queue when it changes
+  useEffect(() => {
+    if (requestQueue.length > 0 && !isProcessingQueue) {
+      processRequestQueue();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestQueue, isProcessingQueue]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -655,38 +689,6 @@ const BibleAIChatWidget: React.FC = () => {
       )}
     </>
   );
-
-  // Process request queue with rate limiting
-  const processRequestQueue = async () => {
-    if (isProcessingQueue || requestQueue.length === 0) return;
-    
-    setIsProcessingQueue(true);
-    
-    try {
-      while (requestQueue.length > 0) {
-        const request = requestQueue[0];
-        setRequestQueue(prev => prev.slice(1));
-        
-        await request();
-        
-        // Add delay between queued requests
-        await new Promise(resolve =>
-          setTimeout(resolve, RATE_LIMIT.minRequestInterval)
-        );
-      }
-    } catch (error) {
-      console.error('Error processing request queue:', error);
-    } finally {
-      setIsProcessingQueue(false);
-    }
-  };
-
-  // Process queue when it changes
-  useEffect(() => {
-    if (requestQueue.length > 0 && !isProcessingQueue) {
-      processRequestQueue();
-    }
-  }, [requestQueue, isProcessingQueue]);
 };
 
 export default BibleAIChatWidget;
