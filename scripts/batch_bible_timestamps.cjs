@@ -94,7 +94,7 @@ const TEST_CHAPTERS = 3;
 
 // ==================== API KEY MANAGEMENT ====================
 
-// Multiple API keys for quota rotation (8 keys configured)
+// Multiple API keys for quota rotation (9 keys configured)
 const API_KEYS = [
     process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.API_KEY,
     process.env.GEMINI_API_KEY_2,
@@ -104,6 +104,7 @@ const API_KEYS = [
     process.env.GEMINI_API_KEY_6,
     process.env.GEMINI_API_KEY_7,
     process.env.GEMINI_API_KEY_8,
+    process.env.GEMINI_API_KEY_9,
 ].filter(Boolean); // Remove undefined/null keys
 
 let currentKeyIndex = 0;
