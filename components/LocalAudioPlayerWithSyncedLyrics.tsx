@@ -4,7 +4,7 @@ import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-rea
 interface LyricLine {
   time: number; // زمان شروع خط (به ثانیه)
   text: string;
-  words?: Array<{word: string; start: number; end: number}>; // کلمات با timing دقیق
+  words?: Array<{ word: string; start: number; end: number }>; // کلمات با timing دقیق
 }
 
 interface WordWithTime {
@@ -26,7 +26,7 @@ interface Props {
   showChords?: boolean; // نمایش آکوردها
   lineDelay?: number; // تاخیر اول موزیک قبل از شروع خواندن (ثانیه)
   lineDuration?: number; // مدت زمان هر خط (ثانیه) - پیش‌فرض: 3
-  wordDurationRatio?: number; // نسبت سرعت کلمات (0.5 = نصف سرعت، 2 = دو برابر) - پیش‌فرض: 1
+  songId?: number | string; // شناسه آهنگ برای کش کردن
 }
 
 const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
@@ -34,18 +34,22 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   lyrics,
   chords,
   notation,
-  lyricLines,
+  lyricLines: propLyricLines,
   lang = 'fa',
   title,
   artist,
   showChords = false,
   lineDelay = 0,
   lineDuration = 3,
-  wordDurationRatio = 1
+  wordDurationRatio = 1,
+  songId
 }) => {
+  // Backend قبلاً URL را تبدیل کرده است، پس مستقیم استفاده می‌کنیم
+  const processedAudioUrl = audioUrl || '';
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const lyricsContainerRef = useRef<HTMLDivElement>(null);
-  
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -53,59 +57,119 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   const [isMuted, setIsMuted] = useState(false);
   const [currentLyricIndex, setCurrentLyricIndex] = useState(-1);
   const [currentWordIndex, setCurrentWordIndex] = useState(-1);
-  const [syncAdjustment, setSyncAdjustment] = useState(0); // تنظیم تاخیر (+ یا -)
+  const [syncAdjustment, setSyncAdjustment] = useState(0);
   const [showSyncControls, setShowSyncControls] = useState(false);
+  const [fetchedLyricLines, setFetchedLyricLines] = useState<LyricLine[] | null>(null);
+
+  // Caching Logic: Fetch timing from localStorage or Server
+  useEffect(() => {
+    if (!songId) return;
+
+    const loadTiming = async () => {
+      const cacheKey = `timing_cache_${songId}`;
+      const cachedData = localStorage.getItem(cacheKey);
+
+      if (cachedData) {
+        try {
+          const parsed = JSON.parse(cachedData);
+          console.log('⚡ Loaded timing from cache for song:', songId);
+          // تبدیل فرمت ذخیره شده به فرمت LyricLine اگر لازم است
+          // فرض بر این است که فرمت ذخیره شده سازگار است (lines array)
+          if (parsed.lines) {
+            // Map JSON format to LyricLine format
+            const mappedLines = parsed.lines.map((l: any) => ({
+              time: l.start,
+              text: l.text,
+              words: l.words
+            }));
+            setFetchedLyricLines(mappedLines);
+            return;
+          }
+        } catch (e) {
+          console.error('Error parsing cached timing:', e);
+          localStorage.removeItem(cacheKey);
+        }
+      }
+
+      // If not in cache or invalid, fetch from server
+      try {
+        console.log('🌐 Fetching timing from server for song:', songId);
+        const response = await fetch(`/worship/data/timings/song_${songId}_timing.json`);
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem(cacheKey, JSON.stringify(data)); // Cache raw JSON
+
+          if (data.lines) {
+            const mappedLines = data.lines.map((l: any) => ({
+              time: l.start,
+              text: l.text,
+              words: l.words
+            }));
+            setFetchedLyricLines(mappedLines);
+          }
+        } else {
+          console.log('⚠️ No timing file found for song:', songId);
+        }
+      } catch (error) {
+        console.error('❌ Error fetching timing:', error);
+      }
+    };
+
+    loadTiming();
+  }, [songId]);
 
   // پردازش متن و تبدیل به خطوط با زمان‌بندی تقریبی
   const processedLyrics: LyricLine[] = React.useMemo(() => {
-    if (lyricLines && lyricLines.length > 0) {
-      console.log('🎵 Using precise timing with lyricLines:', {
-        lineCount: lyricLines.length,
-        firstLine: lyricLines[0],
-        hasWords: lyricLines[0]?.words?.length || 0
-      });
-      return lyricLines;
+    // 1. اولویت با داده‌های دقیق کش شده یا فچ شده
+    if (fetchedLyricLines && fetchedLyricLines.length > 0) {
+      return fetchedLyricLines;
     }
-    
+
+    // 2. اولویت دوم با props ورودی (اگر دقیق باشد)
+    if (propLyricLines && propLyricLines.length > 0) {
+      console.log('🎵 Using precise timing from props');
+      return propLyricLines;
+    }
+
     if (!lyrics) {
       return [];
     }
-    
+
     // حذف آکوردهای درون‌خطی مثل [Em], [G], [F], [C#/A]
     let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
-    
+
     // حذف برچسب‌های V1, V2, Chorus و ...
     cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
-    
+
     // تقسیم متن به خطوط
     const lines = cleanLyrics.split('\n');
-    
+
     // فیلتر خطوط خالی و خطوط فقط آکورد
     const cleanedLines = lines.filter(line => {
       const trimmed = line.trim();
       if (!trimmed) return false; // خطوط خالی را حذف کن
-      
+
       // اگر خط فقط شامل حروف انگلیسی، #, b, m, /, فاصله و اعداد است (بدون متن فارسی/انگلیسی)
       const isChordOnlyLine = /^[A-G#bm\/\s\d\[\]]+$/.test(trimmed);
       if (isChordOnlyLine) return false;
-      
+
       return true; // همه خطوط دیگر را نگه دار
     });
-    
+
     // زمان‌بندی تقریبی (با lineDelay و lineDuration قابل تنظیم)
     return cleanedLines.map((line, index) => ({
       time: lineDelay + (index * lineDuration) + syncAdjustment,
       text: line.trim()
     }));
-  }, [lyrics, lyricLines, lineDelay, lineDuration, syncAdjustment]);
+  }, [lyrics, propLyricLines, fetchedLyricLines, lineDelay, lineDuration, syncAdjustment]);
 
   // تبدیل خطوط به کلمات با زمان‌بندی
   const wordsWithTiming: WordWithTime[] = React.useMemo(() => {
     const allWords: WordWithTime[] = [];
-    
+
     // اگر lyricLines شامل words با timing دقیق بود، از آن استفاده کن
     const hasWordTiming = processedLyrics.some(line => line.words && line.words.length > 0);
-    
+
     console.log('🔍 Word timing check:', {
       hasWordTiming,
       processedLyricsCount: processedLyrics.length,
@@ -117,7 +181,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         wordCount: l.words?.length || 0
       }))
     });
-    
+
     if (hasWordTiming) {
       console.log('✅ Using PRECISE word timing from JSON file');
       // استفاده از timing دقیق از فایل
@@ -144,11 +208,11 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         const lineStartTime = line.time;
         const actualLineDuration = lineDuration; // مدت زمان خط
         const wordDuration = words.length > 0 ? (actualLineDuration / words.length) * wordDurationRatio : 0.4;
-        
+
         words.forEach((word, wordIndex) => {
           const startTime = lineStartTime + (wordIndex * wordDuration);
           const endTime = startTime + wordDuration;
-          
+
           allWords.push({
             word: word.trim(),
             startTime,
@@ -158,7 +222,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         });
       });
     }
-    
+
     return allWords;
   }, [processedLyrics, lineDuration, wordDurationRatio]);
 
@@ -205,7 +269,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
 
     if (activeIndex !== currentLyricIndex) {
       setCurrentLyricIndex(activeIndex);
-      
+
       // اسکرول خودکار به خط فعلی
       if (lyricsContainerRef.current && activeIndex >= 0) {
         const container = lyricsContainerRef.current;
@@ -314,14 +378,14 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   return (
     <div className="w-full max-w-4xl mx-auto bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-purple-500/30">
       {/* Audio Element */}
-      <audio ref={audioRef} src={audioUrl} preload="metadata" />
+      <audio ref={audioRef} src={processedAudioUrl} preload="metadata" />
 
       {/* Header - طراحی مدرن و زیبا */}
       {(title || artist) && (
         <div className="relative bg-gradient-to-r from-purple-600/40 via-blue-600/40 to-purple-600/40 backdrop-blur-xl p-8 text-center border-b border-purple-500/30 overflow-hidden">
           {/* افکت نور پس‌زمینه */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent animate-pulse"></div>
-          
+
           <div className="relative z-10">
             {title && (
               <h3 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]">
@@ -341,7 +405,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
 
       {/* Lyrics Display with Word-by-Word Sync - Centered */}
       {processedLyrics.length > 0 && (
-        <div 
+        <div
           ref={lyricsContainerRef}
           className="min-h-[400px] max-h-[600px] overflow-y-auto p-10 bg-gradient-to-b from-black/60 via-purple-900/10 to-black/60 backdrop-blur-md scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent flex items-start justify-center"
           dir={lang === 'fa' ? 'rtl' : 'ltr'}
@@ -353,17 +417,16 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
               const lineWords = hasWordTiming
                 ? line.words.map(w => w.word)
                 : line.text.split(/\s+/).filter(w => w.trim().length > 0);
-              
+
               return (
                 <p
                   key={lineIndex}
-                  className={`text-3xl leading-relaxed transition-all duration-500 cursor-pointer font-medium ${
-                    lineIndex < currentLyricIndex
-                      ? 'text-gray-600 opacity-40 scale-95'
-                      : lineIndex > currentLyricIndex
+                  className={`text-3xl leading-relaxed transition-all duration-500 cursor-pointer font-medium ${lineIndex < currentLyricIndex
+                    ? 'text-gray-600 opacity-40 scale-95'
+                    : lineIndex > currentLyricIndex
                       ? 'text-gray-400 opacity-60 scale-95'
                       : 'text-gray-100 scale-100'
-                  }`}
+                    }`}
                   onClick={() => {
                     if (audioRef.current) {
                       console.log('🎯 Seeking to line', lineIndex, 'at time:', line.time.toFixed(2));
@@ -375,7 +438,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                   {lineWords.map((word, wordIndex) => {
                     // پیدا کردن index این کلمه در لیست کامل کلمات
                     let globalWordIndex = -1;
-                    
+
                     if (hasWordTiming) {
                       // اگر timing دقیق داریم - پیدا کردن با lineIndex و wordIndex
                       const wordData = line.words?.[wordIndex];
@@ -389,7 +452,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                         }
                         // index نهایی = کلمات قبلی + index در خط فعلی
                         globalWordIndex = wordsBeforeLine + wordIndex;
-                        
+
                         // Debug: لاگ برای چند کلمه اول
                         if (lineIndex === 0 && wordIndex < 2) {
                           console.log(`🔍 Word mapping [L${lineIndex}W${wordIndex}]: "${word}" → global index: ${globalWordIndex}, currentWordIndex: ${currentWordIndex}`);
@@ -401,25 +464,24 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                         w => w.lineIndex === lineIndex && w.word === word
                       );
                     }
-                    
+
                     const isActiveWord = globalWordIndex === currentWordIndex && globalWordIndex >= 0;
                     const isInActiveLine = lineIndex === currentLyricIndex;
-                    
+
                     // Debug هایلایت
                     if (isActiveWord && isInActiveLine && lineIndex === 0 && wordIndex === 0) {
                       console.log(`✨ HIGHLIGHTING: "${word}" (global: ${globalWordIndex}, current: ${currentWordIndex})`);
                     }
-                    
+
                     return (
                       <span
                         key={`${lineIndex}-${wordIndex}`}
-                        className={`inline-block mx-1.5 transition-all duration-300 ${
-                          isActiveWord && isInActiveLine
-                            ? 'text-yellow-300 font-extrabold scale-150 drop-shadow-[0_0_25px_rgba(253,224,71,1)] animate-pulse'
-                            : isInActiveLine
+                        className={`inline-block mx-1.5 transition-all duration-300 ${isActiveWord && isInActiveLine
+                          ? 'text-yellow-300 font-extrabold scale-150 drop-shadow-[0_0_25px_rgba(253,224,71,1)] animate-pulse'
+                          : isInActiveLine
                             ? 'text-white font-semibold'
                             : ''
-                        }`}
+                          }`}
                         style={{
                           transform: isActiveWord && isInActiveLine ? 'scale(1.5) translateY(-4px)' : 'scale(1)',
                           transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -447,7 +509,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
           >
             ⚙️ {showSyncControls ? 'پنهان کردن' : 'تنظیم هماهنگی متن'}
           </button>
-          
+
           {showSyncControls && (
             <div className="bg-purple-900/20 backdrop-blur-md rounded-xl p-4 mb-4 border border-purple-500/30 shadow-lg shadow-purple-500/10">
               <div className="flex items-center justify-between gap-4 mb-3">
@@ -521,7 +583,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
           >
             {/* افکت نور در هاور */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            
+
             {isPlaying ? (
               <Pause size={32} className="text-white relative z-10" />
             ) : (

@@ -1,4 +1,3 @@
-
 export const CHURCH_ADDRESS = "10613 Georgia Ave, Silver Spring, MD 20902";
 export const CHURCH_PHONE = "+1 (301) 649-7086";
 export const MEETING_TIME_EN = "Sundays at 1:00 PM EST";
@@ -16,3 +15,8 @@ export const MANAGEABLE_PAGES = ['Home', 'About', 'Leaders', 'Sermons', 'Worship
 // Profile Avatars & Church Logo
 export const DEFAULT_AVATAR_URL = '/images/church-logo-hq.png';
 export const CHURCH_LOGO_URL = '/images/church-logo-hq.png';
+
+// Storage & Media
+export const HIDRIVE_PUBLIC_URL = "/api/hidrive/stream";
+export const BIBLE_AUDIO_BASE_URL = `${HIDRIVE_PUBLIC_URL}/bible/audio`;
+export const BIBLE_TIMING_BASE_URL = `${HIDRIVE_PUBLIC_URL}/bible/timings`;

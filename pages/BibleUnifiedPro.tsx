@@ -1,0 +1,367 @@
+import React, { useState, useEffect, useRef } from 'react';
+import {
+    Book, Monitor, Mic2, Settings, ChevronLeft, ChevronRight,
+    Menu, X, Volume2, Maximize2, Type, Sun, Moon, Search
+} from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import BilingualBiblePresentation, { BiblePayload } from '@/components/BilingualBiblePresentation';
+import BibleKaraokeMode from '@/components/BibleKaraokeMode';
+import BibleStudyMode from '@/components/BibleStudyMode';
+import Bible3DMode from '@/components/Bible3DMode';
+import { BookOpen, Globe, Layout, Languages } from 'lucide-react';
+
+// Interfaces
+interface BibleBook {
+    key: string;
+    name: { en: string; fa: string };
+    chapters: number;
+    testament: 'OT' | 'NT';
+}
+
+import { BIBLE_AUDIO_BASE_URL } from '@/lib/constants';
+
+// USFM Code Mapping (01 -> GEN)
+const BOOK_CODE_MAP: { [key: string]: string } = {
+    '01': 'GEN', '02': 'EXO', '03': 'LEV', '04': 'NUM', '05': 'DEU',
+    '06': 'JOS', '07': 'JDG', '08': 'RUT', '09': '1SA', '10': '2SA',
+    '11': '1KI', '12': '2KI', '13': '1CH', '14': '2CH', '15': 'EZR',
+    '16': 'NEH', '17': 'EST', '18': 'JOB', '19': 'PSA', '20': 'PRO',
+    '21': 'ECC', '22': 'SNG', '23': 'ISA', '24': 'JER', '25': 'LAM',
+    '26': 'EZK', '27': 'DAN', '28': 'HOS', '29': 'JOL', '30': 'AMO',
+    '31': 'OBA', '32': 'JON', '33': 'MIC', '34': 'NAM', '35': 'HAB',
+    '36': 'ZEP', '37': 'HAG', '38': 'ZEC', '39': 'MAL',
+    '40': 'MAT', '41': 'MRK', '42': 'LUK', '43': 'JHN', '44': 'ACT',
+    '45': 'ROM', '46': '1CO', '47': '2CO', '48': 'GAL', '49': 'EPH',
+    '50': 'PHP', '51': 'COL', '52': '1TH', '53': '2TH', '54': '1TI',
+    '55': '2TI', '56': 'TIT', '57': 'PHM', '58': 'HEB', '59': 'JAS',
+    '60': '1PE', '61': '2PE', '62': '1JN', '63': '2JN', '64': '3JN',
+    '65': 'JUD', '66': 'REV'
+};
+
+const BibleUnifiedPro: React.FC = () => {
+    const { lang } = useLanguage();
+
+    // UI State
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [mode, setMode] = useState<'study' | 'presentation' | 'karaoke' | 'book3d'>('presentation');
+    const [viewMode, setViewMode] = useState<'dual' | 'fa' | 'en'>('dual');
+    const [translation, setTranslation] = useState('mojdeh'); // mojdeh, nmv, tpv
+    const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+    // Bible Data State
+    const [books, setBooks] = useState<BibleBook[]>([]);
+    const [selectedBook, setSelectedBook] = useState('01'); // Genesis
+    const [selectedChapter, setSelectedChapter] = useState(1);
+    const [presentationData, setPresentationData] = useState<BiblePayload | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    // Audio State
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    // Fetch Books on Mount
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await fetch('/api/bible-json/books');
+                const data = await response.json();
+                if (data.success && data.books) {
+                    const transformedBooks: BibleBook[] = data.books.map((b: any) => ({
+                        key: b.code, // e.g. "01"
+                        name: { en: b.name_en, fa: b.name_fa },
+                        chapters: b.chapters || 50,
+                        testament: b.testament || 'OT'
+                    }));
+                    setBooks(transformedBooks);
+                    if (transformedBooks.length > 0) setSelectedBook(transformedBooks[0].key);
+                }
+            } catch (err) {
+                console.error("Failed to fetch books", err);
+            }
+        };
+        fetchBooks();
+    }, []);
+
+    // Fetch Chapter Content when selection changes
+    useEffect(() => {
+        const fetchChapter = async () => {
+            setLoading(true);
+            try {
+                const usfmCode = BOOK_CODE_MAP[selectedBook] || 'GEN';
+
+                // Use LOCAL downloaded files (TPV, NMV, or MOJDEH)
+                const translationCode = translation.toUpperCase() === 'MOJDEH' ? 'MOJDEH' :
+                    translation.toUpperCase() === 'NMV' ? 'NMV' : 'TPV';
+
+                const response = await fetch(`/api/bible-local/content/${translationCode}/${usfmCode}/${selectedChapter}`);
+                const data = await response.json();
+
+                if (data.success && data.verses) {
+                    // Audio URL is included in response
+                    const audioUrlFa = data.audioUrl; // From local files
+                    const audioUrlEn = `${BIBLE_AUDIO_BASE_URL}/en/${usfmCode}/${selectedChapter}.mp3`;
+
+                    const payload: BiblePayload = {
+                        book: selectedBook,
+                        bookName: books.find(b => b.key === selectedBook)?.name.fa || 'Genesis',
+                        chapters: [{
+                            chapterNumber: selectedChapter,
+                            verses: data.verses.map((v: any) => ({
+                                verseNumber: v.verse || 1,
+                                text_en: v.text_en || '',
+                                text_fa: v.text || '',
+                                audio_en: audioUrlEn,
+                                audio_fa: audioUrlFa
+                            }))
+                        }]
+                    };
+
+                    setPresentationData(payload);
+                }
+            } catch (error) {
+                console.error("Failed to load chapter", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchChapter();
+    }, [selectedBook, selectedChapter, translation, books]);
+
+
+    return (
+        <div className={`h-screen w-screen overflow-hidden flex flex-col ${theme === 'dark' ? 'bg-neutral-900 text-white' : 'bg-white text-gray-900'}`}>
+
+            {/* ------------------------------------------------------------ */}
+            {/* 1. TOP BAR (Navigation & Quick Tools) */}
+            {/* ------------------------------------------------------------ */}
+            <header className="h-14 border-b border-white/10 flex items-center justify-between px-4 bg-neutral-900/90 backdrop-blur-md z-50 shadow-sm relative">
+                <div className="flex items-center gap-4">
+                    <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <Menu size={20} className="text-gray-300" />
+                    </button>
+                    <h1 className="font-bold text-lg flex items-center gap-2 select-none">
+                        <span className="text-purple-400">Bible</span>
+                        <span className="opacity-70 text-sm font-light tracking-wider">UNIFIED PRO</span>
+                    </h1>
+                </div>
+
+                {/* Mode Switcher */}
+                <div className="flex bg-black/40 p-1 rounded-xl border border-white/5">
+                    <button
+                        onClick={() => setMode('study')}
+                        className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${mode === 'study' ? 'bg-purple-600 shadow-lg text-white' : 'hover:bg-white/5 opacity-60 hover:opacity-100'}`}
+                    >
+                        <Book size={16} />
+                        <span className="hidden md:inline">Study</span>
+                    </button>
+                    <button
+                        onClick={() => setMode('presentation')}
+                        className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${mode === 'presentation' ? 'bg-blue-600 shadow-lg text-white' : 'hover:bg-white/5 opacity-60 hover:opacity-100'}`}
+                    >
+                        <Monitor size={16} />
+                        <span className="hidden md:inline">Presentation</span>
+                    </button>
+                    <button
+                        onClick={() => setMode('book3d')}
+                        className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${mode === 'book3d' ? 'bg-amber-600 shadow-lg text-white' : 'hover:bg-white/5 opacity-60 hover:opacity-100'}`}
+                    >
+                        <BookOpen size={16} />
+                        <span className="hidden md:inline">3D Book</span>
+                    </button>
+                    <button
+                        onClick={() => setMode('karaoke')}
+                        className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${mode === 'karaoke' ? 'bg-pink-600 shadow-lg text-white' : 'hover:bg-white/5 opacity-60 hover:opacity-100'}`}
+                    >
+                        <Mic2 size={16} />
+                        <span className="hidden md:inline">Karaoke</span>
+                    </button>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    {/* View Mode Toggles */}
+                    {/* View Mode Toggles removed as per user request (moved to internal controls or redundant) */}
+                    {/* The user specifically asked to remove "these" pointing to top left, which likely refers to these specific toggles if they were visible there, or just general cleanup. 
+                        However, the user wants "Reading mode: English, Farsi" but "Both languages must be removed" from the *Reading Mode* (Audio), not necessarily the view mode. 
+                        BUT, looking at the screenshot, the top-left has "En | Fa". 
+                        The code I see has "View Mode Toggles" in the header. 
+                        "1- هذه باید حذف بشن" (These must be removed).
+                        I will comment them out for now to be safe.
+                    */}
+
+                    <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                        <Settings size={20} />
+                    </button>
+                </div>
+            </header>
+
+            {/* ------------------------------------------------------------ */}
+            {/* 2. MAIN WORKSPACE */}
+            {/* ------------------------------------------------------------ */}
+            <div className="flex-1 flex overflow-hidden relative">
+
+                {/* SIDEBAR (Collapsible) */}
+                <aside
+                    className={`
+                        ${sidebarOpen ? 'w-80 translate-x-0' : 'w-0 -translate-x-full opacity-0 pointer-events-none'} 
+                        bg-neutral-900 border-r border-white/10
+                        transition-all duration-300 ease-in-out flex flex-col z-40
+                    `}
+                >
+                    <div className="p-4 border-b border-white/10 space-y-3">
+                        {/* Translation Selector */}
+                        <div className="bg-white/5 rounded-lg border border-white/10 p-2 flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-gray-400 text-xs">
+                                <Globe size={14} />
+                                <span>Translation</span>
+                            </div>
+                            <select
+                                value={translation}
+                                onChange={(e) => setTranslation(e.target.value)}
+                                className="bg-transparent text-sm text-purple-300 font-bold focus:outline-none text-right"
+                            >
+                                <option value="mojdeh">Mojdeh (مژده)</option>
+                                <option value="nmv">NMV (هزاره نو)</option>
+                                <option value="tpv">TPV (قدیم)</option>
+                            </select>
+                        </div>
+
+                        <div className="relative">
+                            <Search className="absolute left-3 top-2.5 text-gray-500" size={16} />
+                            <input
+                                type="text"
+                                placeholder={lang === 'fa' ? 'جستجو در کتاب‌ها...' : 'Search books...'}
+                                className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all text-gray-200 placeholder-gray-500"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                        {books.map(book => (
+                            <button
+                                key={book.key}
+                                onClick={() => {
+                                    setSelectedBook(book.key);
+                                    setSelectedChapter(1);
+                                }}
+                                className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between group transition-all ${selectedBook === book.key ? 'bg-purple-600/20 text-purple-300 border border-purple-500/30' : 'hover:bg-white/5 text-gray-400 hover:text-gray-200'}`}
+                            >
+                                <span className={lang === 'fa' ? 'font-bold' : ''}>{lang === 'fa' ? book.name.fa : book.name.en}</span>
+                                <span className="text-xs opacity-30 font-mono group-hover:opacity-100 transition-opacity">{book.chapters} ch</span>
+                            </button>
+                        ))}
+                    </div>
+                </aside>
+
+                {/* STAGE (Active Mode Content) */}
+                <main className="flex-1 overflow-hidden relative bg-black">
+                    {loading ? (
+                        <div className="w-full h-full flex items-center justify-center">
+                            <div className="animate-spin w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full"></div>
+                        </div>
+                    ) : (
+                        <>
+                            {/* PRESENTATION MODE */}
+                            {mode === 'presentation' && presentationData && (
+                                <div className="w-full h-full">
+                                    <BilingualBiblePresentation
+                                        data={presentationData}
+                                        autoStart={true}
+                                        enableAudio={true}
+                                        viewMode={viewMode}
+                                        key={`${selectedBook}-${selectedChapter}`}
+                                    />
+                                </div>
+                            )}
+
+                            {/* KARAOKE MODE */}
+                            {mode === 'karaoke' && (
+                                <div className="w-full h-full bg-white overflow-hidden">
+                                    <BibleKaraokeMode
+                                        initialBook={selectedBook}
+                                        initialChapter={selectedChapter}
+                                        key={`${selectedBook}-${selectedChapter}`}
+                                    />
+                                </div>
+                            )}
+
+                            {/* 3D BOOK MODE */}
+                            {mode === 'book3d' && presentationData && (
+                                <div className="w-full h-full bg-gray-900 overflow-hidden">
+                                    <Bible3DMode data={presentationData} viewMode={viewMode} />
+                                </div>
+                            )}
+
+                            {/* STUDY MODE */}
+                            {mode === 'study' && presentationData && (
+                                <div className="w-full h-full bg-white relative">
+                                    <BibleStudyMode data={presentationData} viewMode={viewMode} />
+                                </div>
+                            )}
+
+                            {mode === 'study' && !presentationData && (
+                                <div className="w-full h-full flex items-center justify-center">
+                                    {loading ? 'Loading...' : 'Select a chapter'}
+                                </div>
+                            )}
+                        </>
+                    )}
+                </main>
+
+            </div>
+
+            {/* ------------------------------------------------------------ */}
+            {/* 3. DOCK (Floating Audio Controls) */}
+            {/* ------------------------------------------------------------ */}
+            <div className={`absolute bottom-16 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${sidebarOpen ? 'translate-y-0' : 'translate-y-0'}`}>
+                <div className="bg-neutral-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-2 px-6 shadow-2xl flex items-center gap-6 ring-1 ring-white/5">
+
+                    {/* Chapter Nav */}
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
+                            disabled={selectedChapter <= 1}
+                            className="p-2 hover:bg-white/10 rounded-full transition-colors disabled:opacity-30 text-gray-300"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+
+                        <div className="flex flex-col items-center min-w-[3rem]">
+                            <span className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Chapter</span>
+                            <span className="font-mono text-xl font-bold text-white leading-none">{selectedChapter}</span>
+                        </div>
+
+                        <button
+                            onClick={() => setSelectedChapter(c => c + 1)}
+                            className="p-2 hover:bg-white/10 rounded-full transition-colors text-gray-300"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
+
+                    <div className="h-10 w-px bg-white/10 mx-2"></div>
+
+                    {/* Playback */}
+                    <button
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-95 border-4 ${isPlaying ? 'bg-purple-600 border-neutral-900 text-white' : 'bg-white border-neutral-900 text-black'}`}
+                    >
+                        {isPlaying ? <div className="w-4 h-4 bg-white rounded-sm" /> : <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-black border-b-[8px] border-b-transparent ml-1" />}
+                    </button>
+
+                    <div className="h-10 w-px bg-white/10 mx-2"></div>
+
+                    {/* Tools */}
+                    <div className="flex items-center gap-2">
+                        <button className="px-3 py-1.5 hover:bg-white/10 rounded-lg text-xs font-mono text-gray-400 hover:text-white transition-colors border border-transparent hover:border-white/10">
+                            1.0x
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    );
+};
+
+export default BibleUnifiedPro;

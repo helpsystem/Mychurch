@@ -1,49 +1,50 @@
 import { getAuthToken } from './tokenManager';
 import { BibleBook, BibleImportData, ContentData } from '../types';
+import { MOCK_TRANSLATIONS, MOCK_BOOKS, MOCK_CONTENT } from './bibleMockData';
 
 class ApiNotConfiguredError extends Error {
-    constructor(message: string) {
-        super(message);
-        this.name = "ApiNotConfiguredError";
-    }
+  constructor(message: string) {
+    super(message);
+    this.name = "ApiNotConfiguredError";
+  }
 }
 
 const LOCAL_STORAGE_API_KEY = 'iccdc-api-base-url';
 
 // Exported for use in the settings page
 export const getApiBaseUrl = (): string => {
-    // For localhost development, always use Vite proxy
-    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-        return '';
+  // For localhost development, always use Vite proxy
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    return '';
+  }
+
+  // For Replit environment, construct backend URL
+  if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
+    const domain = window.location.hostname.replace('-00-', '-01-');
+    return `https://${domain}`;
+  }
+
+  // Check localStorage for custom API URL
+  if (typeof window !== 'undefined') {
+    const storedUrl = localStorage.getItem(LOCAL_STORAGE_API_KEY);
+    if (storedUrl !== null) {
+      return storedUrl.replace(/\/+$/, '');
     }
-    
-    // For Replit environment, construct backend URL
-    if (typeof window !== 'undefined' && window.location.hostname.includes('.replit.dev')) {
-        const domain = window.location.hostname.replace('-00-', '-01-');
-        return `https://${domain}`;
-    }
-    
-    // Check localStorage for custom API URL
-    if (typeof window !== 'undefined') {
-        const storedUrl = localStorage.getItem(LOCAL_STORAGE_API_KEY);
-        if (storedUrl !== null) {
-            return storedUrl.replace(/\/+$/, '');
-        }
-    }
-    
-    // Fallback to environment variable
-    if (typeof process !== 'undefined' && process.env.VITE_API_BASE) {
-        return process.env.VITE_API_BASE;
-    }
-    
-    return ''; 
+  }
+
+  // Fallback to environment variable
+  if (typeof process !== 'undefined' && process.env.VITE_API_BASE) {
+    return process.env.VITE_API_BASE;
+  }
+
+  return '';
 };
 
 // Exported for use in the settings page
 export const setApiBaseUrl = (url: string) => {
-    if (typeof window !== 'undefined') {
-        localStorage.setItem(LOCAL_STORAGE_API_KEY, url);
-    }
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(LOCAL_STORAGE_API_KEY, url);
+  }
 };
 
 
@@ -56,13 +57,61 @@ export const setApiBaseUrl = (url: string) => {
  * @returns The JSON response from the API.
  */
 async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryParams?: Record<string, string>): Promise<T> {
+  // Mock API Interception for Bible Data
+  if (endpoint.startsWith('/api/bible')) {
+    console.log('Intercepting Bible API call:', endpoint);
+
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (endpoint === '/api/bible/translations') {
+      return { translations: MOCK_TRANSLATIONS, success: true } as unknown as T;
+    }
+
+    if (endpoint === '/api/bible/books') {
+      return { books: MOCK_BOOKS, success: true } as unknown as T;
+    }
+
+    // Match /api/bible/content/:book/:chapter
+    const contentMatch = endpoint.match(/\/api\/bible\/content\/([^\/]+)\/(\d+)/);
+    if (contentMatch) {
+      const bookKey = contentMatch[1];
+      const chapter = parseInt(contentMatch[2]);
+
+      const bookContent = MOCK_CONTENT[bookKey];
+      const chapterContent = bookContent ? bookContent[chapter] : null;
+
+      if (chapterContent) {
+        return {
+          success: true,
+          book: { key: bookKey, name: { en: bookKey, fa: bookKey } }, // Simplified name
+          chapter: chapter,
+          verses: chapterContent,
+          translation: { code: 'TPV', name: { en: 'Persian Old Version', fa: 'ترجمه قدیم فارسی' } }
+        } as unknown as T;
+      } else {
+        // Return generic content if specific chapter not found in mock
+        return {
+          success: true,
+          book: { key: bookKey, name: { en: bookKey, fa: bookKey } },
+          chapter: chapter,
+          verses: {
+            fa: Array(5).fill(`آیه نمونه برای ${bookKey} فصل ${chapter} - متن آزمایشی`),
+            en: Array(5).fill(`Sample verse for ${bookKey} Chapter ${chapter} - Test content`)
+          },
+          translation: { code: 'TPV', name: { en: 'Persian Old Version', fa: 'ترجمه قدیم فارسی' } }
+        } as unknown as T;
+      }
+    }
+  }
+
   const API_BASE_URL = getApiBaseUrl();
   console.log('🌐 Using API URL:', API_BASE_URL);
 
   const token = getAuthToken();
-  
+
   const headers = new Headers(options.headers || {});
-  
+
   if (!headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json');
   }
@@ -72,12 +121,12 @@ async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryPar
   }
 
   let url = `${API_BASE_URL}${endpoint}`;
-    if (queryParams) {
-        const params = new URLSearchParams(queryParams);
-        if (params.toString()) {
-            url += `?${params.toString()}`;
-        }
+  if (queryParams) {
+    const params = new URLSearchParams(queryParams);
+    if (params.toString()) {
+      url += `?${params.toString()}`;
     }
+  }
 
   const config: RequestInit = {
     ...options,
@@ -88,20 +137,20 @@ async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryPar
     const response = await fetch(url, config);
 
     if (!response.ok) {
-        // Default error message
-        let errorMessage = `Request failed with status: ${response.status}`;
-        
-        // Try to parse a more specific error message from the JSON body
-        try {
-            const errorData = await response.json();
-            if (errorData && typeof errorData.message === 'string') {
-                errorMessage = errorData.message;
-            }
-        } catch (e) {
-            // Could not parse JSON, use the default message.
+      // Default error message
+      let errorMessage = `Request failed with status: ${response.status}`;
+
+      // Try to parse a more specific error message from the JSON body
+      try {
+        const errorData = await response.json();
+        if (errorData && typeof errorData.message === 'string') {
+          errorMessage = errorData.message;
         }
-        
-        throw new Error(errorMessage);
+      } catch (e) {
+        // Could not parse JSON, use the default message.
+      }
+
+      throw new Error(errorMessage);
     }
 
     if (response.status === 204) {
@@ -112,7 +161,7 @@ async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryPar
   } catch (error) {
     console.error(`API Fetch Error:`, error);
     if (error instanceof Error) {
-        throw error;
+      throw error;
     }
     throw new Error('An unknown network error occurred.');
   }
@@ -120,7 +169,7 @@ async function apiFetch<T>(endpoint: string, options: RequestInit = {}, queryPar
 
 async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST' | 'PUT' = 'POST'): Promise<T> {
   const API_BASE_URL = getApiBaseUrl();
-  
+
   // Auto-configure API in development if not set
   if (typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null) {
     if (window.location.hostname.includes('.replit.dev')) {
@@ -130,18 +179,18 @@ async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST'
       localStorage.setItem(LOCAL_STORAGE_API_KEY, '/api');
     }
   }
-  
+
   const isApiUnconfigured = typeof window !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_API_KEY) === null;
-  
+
   if (isApiUnconfigured) {
     throw new ApiNotConfiguredError("API not configured. Using mock data.");
   }
-  
+
   const token = getAuthToken();
-  
+
   const headers = new Headers();
   // Let the browser set the Content-Type header for FormData, it will include the boundary.
-  
+
   if (token) {
     headers.set('Authorization', `Bearer ${token}`);
   }
@@ -156,16 +205,16 @@ async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST'
     });
 
     if (!response.ok) {
-        let errorMessage = `Request failed with status: ${response.status}`;
-        try {
-            const errorData = await response.json();
-            if (errorData && typeof errorData.message === 'string') {
-                errorMessage = errorData.message;
-            }
-        } catch (e) {
-            // Could not parse JSON, use the default message.
+      let errorMessage = `Request failed with status: ${response.status}`;
+      try {
+        const errorData = await response.json();
+        if (errorData && typeof errorData.message === 'string') {
+          errorMessage = errorData.message;
         }
-        throw new Error(errorMessage);
+      } catch (e) {
+        // Could not parse JSON, use the default message.
+      }
+      throw new Error(errorMessage);
     }
 
     if (response.status === 204) {
@@ -176,7 +225,7 @@ async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST'
   } catch (error) {
     console.error(`API Upload Error:`, error);
     if (error instanceof Error) {
-        throw error;
+      throw error;
     }
     throw new Error('An unknown network error occurred.');
   }
@@ -185,8 +234,8 @@ async function apiUpload<T>(endpoint: string, formData: FormData, method: 'POST'
 export const api = {
   get: <T>(endpoint: string, queryParams?: Record<string, string>, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'GET' }, queryParams),
-  
-  post: <T>(endpoint:string, body: any, options?: RequestInit) =>
+
+  post: <T>(endpoint: string, body: any, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'POST', body: JSON.stringify(body) }),
 
   put: <T>(endpoint: string, body: any, options?: RequestInit) =>
@@ -194,12 +243,12 @@ export const api = {
 
   delete: <T>(endpoint: string, queryParams?: Record<string, string>, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'DELETE' }, queryParams),
-  
+
   patch: <T>(endpoint: string, body: any, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'PATCH', body: JSON.stringify(body) }),
-  
+
   upload: <T>(endpoint: string, formData: FormData) => apiUpload<T>(endpoint, formData, 'POST'),
-  
+
   replace: <T>(endpoint: string, formData: FormData) => apiUpload<T>(endpoint, formData, 'PUT'),
 
   importBibleChapter: (data: BibleImportData): Promise<{ books: BibleBook[], content: ContentData['bibleContent'] }> =>
@@ -211,7 +260,7 @@ export const api = {
     return api.get<any[]>('/api/prayer-requests', queryParams);
   },
 
-  createPrayerRequest: (data: any) => 
+  createPrayerRequest: (data: any) =>
     api.post<any>('/api/prayer-requests', data),
 
   updatePrayerRequest: (id: number, data: any) =>

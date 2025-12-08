@@ -320,12 +320,21 @@ router.get('/books', async (req, res) => {
 router.get('/content/:bookKey/:chapter', async (req, res) => {
   try {
     const { bookKey, chapter } = req.params;
-    const { translation } = req.query; // Optional translation parameter
+    const { faTranslation = 'qadim' } = req.query; // Persian translation: qadim | mojdeh | tafsiri
+    
+    // Map Persian translation names to translation IDs
+    const translationMap = {
+      'qadim': 2,    // ترجمه قدیم
+      'mojdeh': 1,   // مژده
+      'tafsiri': 3   // تفسیری (OT only)
+    };
+    
+    const persianTransId = translationMap[faTranslation] || 2; // Default to qadim
     
     // Try Supabase Client first (uses HTTPS, bypasses port 5432 block)
     if (supabaseClient) {
       try {
-        console.log(`📖 Fetching verses via Supabase Client: ${bookKey} chapter ${chapter}`);
+        console.log(`📖 Fetching verses via Supabase Client: ${bookKey} chapter ${chapter} (FA: ${faTranslation})`);
         
         // Get book info first
         const books = await supabaseClient.getBibleBooks();
@@ -342,38 +351,56 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           });
         }
         
-        // FIXED: Try multiple translations with fallback strategy
-        // Translation priority: 8 (English NET) → 2 (Persian qadim) → 1 (Persian mojdeh)
+        // Fetch English (NET - translation 8) + Selected Persian translation
         let verses = [];
         let translationUsed = null;
         
-        // Try translation 8 (English) + translation 2 (Persian) first
         try {
-          const [trans8Verses, trans2Verses] = await Promise.all([
-            supabaseClient.getVerses(book.book_iso, parseInt(chapter), 8).catch(() => []),
-            supabaseClient.getVerses(book.book_iso, parseInt(chapter), 2).catch(() => [])
+          const [trans8Verses, transFaVerses] = await Promise.all([
+            supabaseClient.getVerses(book.book_iso, parseInt(chapter), 8).catch(() => []),      // English NET
+            supabaseClient.getVerses(book.book_iso, parseInt(chapter), persianTransId).catch(() => [])  // Persian selected
           ]);
           
-          if (trans8Verses.length > 0 || trans2Verses.length > 0) {
+          if (trans8Verses.length > 0 || transFaVerses.length > 0) {
             // Merge both translations
+            const maxVerses = Math.max(trans8Verses.length, transFaVerses.length);
+            for (let i = 0; i < maxVerses; i++) {
+              verses.push({
+                verse_number: (trans8Verses[i]?.verse_number || transFaVerses[i]?.verse_number || i + 1),
+                text_en: trans8Verses[i]?.text_en || trans8Verses[i]?.text_fa || '',
+                text_fa: transFaVerses[i]?.text_fa || transFaVerses[i]?.text_en || ''
+              });
+            }
+            translationUsed = `NET + ${faTranslation}`;
+          }
+        } catch (err) {
+          console.log(`⚠️ Translation 8/${persianTransId} failed, trying fallback...`);
+        }
+        
+        // Fallback: try qadim if selected translation failed
+        if (verses.length === 0 && faTranslation !== 'qadim') {
+          try {
+            const [trans8Verses, trans2Verses] = await Promise.all([
+              supabaseClient.getVerses(book.book_iso, parseInt(chapter), 8).catch(() => []),
+              supabaseClient.getVerses(book.book_iso, parseInt(chapter), 2).catch(() => [])
+            ]);
+            
             const maxVerses = Math.max(trans8Verses.length, trans2Verses.length);
             for (let i = 0; i < maxVerses; i++) {
               verses.push({
                 verse_number: (trans8Verses[i]?.verse_number || trans2Verses[i]?.verse_number || i + 1),
-                text_en: trans8Verses[i]?.text_en || trans8Verses[i]?.text_fa || trans2Verses[i]?.text_fa || '',
-                text_fa: trans2Verses[i]?.text_fa || trans2Verses[i]?.text_en || ''
+                text_en: trans8Verses[i]?.text_en || '',
+                text_fa: trans2Verses[i]?.text_fa || ''
               });
             }
-            translationUsed = trans8Verses.length > 0 ? 'NET + qadim' : 'qadim only';
-          }
-        } catch (err) {
-          console.log('⚠️ Translation 8/2 failed, trying fallback...');
+            translationUsed = 'NET + qadim (fallback)';
+          } catch {}
         }
         
-        // Fallback to translation 1 if nothing found
+        // Final fallback: mojdeh
         if (verses.length === 0) {
           verses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), 1);
-          translationUsed = 'mojdeh (fallback)';
+          translationUsed = 'mojdeh (final fallback)';
         }
         
         // Transform to frontend format
@@ -390,8 +417,12 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
         
         console.log(`✅ Bible verses fetched via Supabase Client (HTTPS) - ${verses.length} verses (${translationUsed})`);
         
-        // ⚠️ Currently text_en contains Persian text, same as text_fa
-        // TODO: Import actual English translation
+        // Translation metadata
+        const translationNames = {
+          'qadim': { en: 'Persian Old Version', fa: 'ترجمه قدیم فارسی' },
+          'mojdeh': { en: 'Good News Persian', fa: 'مژده فارسی' },
+          'tafsiri': { en: 'Persian Explanatory', fa: 'تفسیری فارسی' }
+        };
         
         return res.json({
           success: true,
@@ -404,11 +435,11 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           },
           chapter: parseInt(chapter),
           verses: versesFormatted,
-          translation: { 
-            code: 'mojdeh', 
-            name: { en: 'Mojdeh Persian Bible', fa: 'مژده فارسی' } 
+          translations: {
+            en: { code: 'NET', name: { en: 'New English Translation', fa: 'ترجمه نوین انگلیسی' } },
+            fa: { code: faTranslation, name: translationNames[faTranslation] || translationNames['qadim'] }
           },
-          note: 'Currently only Persian translation is available. text_en field contains Persian text.'
+          translationUsed: translationUsed
         });
       } catch (supabaseError) {
         console.error('⚠️  Supabase Client error:', supabaseError.message);

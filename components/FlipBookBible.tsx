@@ -168,16 +168,27 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
     }
 
     if (isBilingual) {
-      const realPage = Math.floor(pageIndex / 2);
-      const startIndex = realPage * versesPerPage;
+      // In bilingual mode, we want:
+      // Page 0 (Right): Persian Verses 1-N
+      // Page 1 (Left): English Verses 1-N (Same verses as Page 0)
+      // Page 2 (Right): Persian Verses N+1-M
+      // Page 3 (Left): English Verses N+1-M
+
+      const pairIndex = Math.floor(pageIndex / 2);
+      const startIndex = pairIndex * versesPerPage;
       const endIndex = Math.min(startIndex + versesPerPage, verses.length);
-      const isEnglishPage = pageIndex % 2 === 0;
-      const target: VerseLanguage = isEnglishPage ? 'en' : 'fa';
+
+      // Determine language for this page
+      // If book is RTL (Persian main):
+      // Even pages (0, 2, 4...) are RIGHT side -> Persian
+      // Odd pages (1, 3, 5...) are LEFT side -> English
+      const isRightPage = pageIndex % 2 === 0;
+      const targetLang: VerseLanguage = isRightPage ? 'fa' : 'en';
 
       return verses.slice(startIndex, endIndex).map(verse => ({
         number: verse.number,
-        text: getVerseText(verse, target),
-        language: target
+        text: getVerseText(verse, targetLang),
+        language: targetLang
       }));
     }
 
@@ -217,7 +228,7 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
   };
 
   const renderVerse = (verse: PageVerse, index: number) => {
-    const isFirstOnPage = index === 0 && currentPage === 0;
+    const isFirstOnPage = index === 0;
     const isCurrentVerse = currentVerse === verse.number;
     const isEnglish = verse.language === 'en';
 
@@ -228,10 +239,10 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
         style={{ marginBottom: '1rem', lineHeight: '1.8' }}
       >
         <div className={`verse-single ${isEnglish ? 'verse-english' : 'verse-persian'}`} dir={isEnglish ? 'ltr' : 'rtl'}>
-          <span className="verse-number" style={{ fontWeight: 600, marginInlineEnd: '0.5rem' }}>
+          <span className="verse-number" style={{ fontWeight: 600, marginInlineEnd: '0.5rem', color: '#8B4513' }}>
             {verse.number}
           </span>
-          <span className="verse-text" style={{ display: 'inline' }}>
+          <span className="verse-text" style={{ display: 'inline', color: '#333' }}>
             {verse.text}
           </span>
         </div>
@@ -240,7 +251,7 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
   };
 
   const renderPageContent = (pageVerses: PageVerse[]) => (
-    <div className="verses">
+    <div className="verses" style={{ padding: '1rem 0.5rem', height: '100%', overflowY: 'auto' }}>
       {pageVerses.map((verse, idx) => renderVerse(verse, idx))}
     </div>
   );
@@ -248,17 +259,23 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
   const renderFlipBookPages = () => {
     const pages: React.ReactNode[] = [];
 
+    // Cover Page
     pages.push(
       <PageCover key="cover">
-        <div className="flex flex-col justify-around items-center h-full text-center">
-          <BookOpen className="text-white/50" size={64} />
+        <div className="flex flex-col justify-around items-center h-full text-center p-8 border-4 border-double border-[#8B4513] m-4 rounded-lg bg-[#fdfbf7]">
+          <BookOpen className="text-[#8B4513]" size={64} />
           <div>
-            <h2 className="text-4xl font-bold">{isRtl ? 'کتاب مقدس' : 'Holy Bible'}</h2>
-            <p className="text-sm text-dimWhite mt-2" dir={isRtl ? 'rtl' : 'ltr'}>
+            <h2 className="text-4xl font-bold text-[#8B4513] mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+              {isRtl ? 'کتاب مقدس' : 'Holy Bible'}
+            </h2>
+            <p className="text-lg text-[#5d4037]" dir={isRtl ? 'rtl' : 'ltr'}>
               {bookTitle
                 ? `${bookTitle} ${isRtl ? `- فصل ${selectedChapter}` : `- Chapter ${selectedChapter}`}`
                 : (isRtl ? `فصل ${selectedChapter}` : `Chapter ${selectedChapter}`)}
             </p>
+          </div>
+          <div className="text-sm text-[#8B4513]/60 mt-8">
+            {isRtl ? 'برای شروع ورق بزنید' : 'Flip to start reading'}
           </div>
         </div>
       </PageCover>
@@ -273,11 +290,12 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
       );
     }
 
+    // Back Cover
     pages.push(
       <PageCover key="back-cover" isBackCover>
-        <div className="flex flex-col justify-center items-center h-full text-center">
-          <img src="/images/church-logo-hq.png" alt="Church Logo" className="w-20 h-20 mb-4" />
-          <div className="mb-2 text-dimWhite">{isRtl ? 'پایان فصل' : 'End of chapter'}</div>
+        <div className="flex flex-col justify-center items-center h-full text-center p-8 border-4 border-double border-[#8B4513] m-4 rounded-lg bg-[#fdfbf7]">
+          <img src="/images/church-logo-hq.png" alt="Church Logo" className="w-24 h-24 mb-6 opacity-80" />
+          <div className="mb-2 text-[#8B4513] text-xl font-serif">{isRtl ? 'پایان فصل' : 'End of chapter'}</div>
         </div>
       </PageCover>
     );
@@ -385,11 +403,12 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
         )}
       </div>
 
-      <div className="flipbook-controls">
+      <div className="flipbook-controls" dir="ltr">
         <button
           onClick={onPrevChapter}
           disabled={selectedChapter <= 1}
           className="flip-button"
+          title={isRtl ? 'فصل قبلی' : 'Previous chapter'}
         >
           <ArrowLeft className="w-4 h-4" />
           {isRtl ? 'فصل قبلی' : 'Previous chapter'}
@@ -399,12 +418,13 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
           onClick={prevPage}
           disabled={showPlain || showCover}
           className="flip-button"
+          title={isRtl ? 'صفحه قبل' : 'Previous page'}
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronLeft className="w-4 h-4" />
           {isRtl ? 'صفحه قبل' : 'Previous page'}
         </button>
 
-        <div className="flip-button" style={{ background: 'rgba(139, 69, 19, 0.1)', color: '#8B4513' }}>
+        <div className="flip-button page-indicator">
           {showPlain ? (isRtl ? 'نمایش ساده' : 'Plain view') : pageIndicator}
         </div>
 
@@ -412,15 +432,17 @@ const FlipBookBible: React.FC<FlipBookBibleProps> = ({
           onClick={nextPage}
           disabled={showPlain || (!showCover && currentPage >= totalPages - 1)}
           className="flip-button"
+          title={isRtl ? 'صفحه بعد' : 'Next page'}
         >
           {isRtl ? 'صفحه بعد' : 'Next page'}
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronRight className="w-4 h-4" />
         </button>
 
         <button
           onClick={onNextChapter}
           disabled={selectedChapter >= maxChapters}
           className="flip-button"
+          title={isRtl ? 'فصل بعدی' : 'Next chapter'}
         >
           {isRtl ? 'فصل بعدی' : 'Next chapter'}
           <ArrowRight className="w-4 h-4" />

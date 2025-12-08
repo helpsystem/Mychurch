@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { useLanguage } from './hooks/useLanguage';
@@ -27,6 +23,7 @@ import VerifyEmailPage from './pages/VerifyEmailPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminWorshipManagementPage from './pages/AdminWorshipManagementPage';
+import WorshipSongsHealthDashboard from './pages/admin/WorshipSongsHealthDashboard';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConfigureBackendPage from './pages/ConfigureBackendPage';
@@ -44,13 +41,16 @@ import LivePage from './pages/LivePage';
 import LetterViewerPage from './pages/LetterViewerPage';
 import AudioBiblePage from './pages/AudioBiblePage';
 import BibleReaderPage from './pages/BibleReaderPage';
+import BibleUnifiedPage from './pages/BibleUnifiedPage';
 import UnifiedBibleReader from './components/UnifiedBibleReader';
+import BibleUnifiedPro from './pages/BibleUnifiedPro';
 import TestComponent from './components/TestComponent';
 import MinimalBible from './components/MinimalBible';
 import SimpleBibleReader from './components/SimpleBibleReader';
 import WorshipSongsPage from './pages/WorshipSongsPage';
 import BilingualBibleReader from './pages/BilingualBibleReader';
 import BibleKaraokeReader from './pages/BibleKaraokeReader';
+import BibleKaraokeMode from './components/BibleKaraokeMode';
 import BibleStudyPage from './pages/BibleStudyPage';
 import BibleTTSPage from './pages/BibleTTSPage';
 import BibleWithTTS from './pages/BibleWithTTS';
@@ -102,10 +102,13 @@ function App() {
   const { lang } = useLanguage();
   const [showLoading, setShowLoading] = useState(true);
   const [showVerseModal, setShowVerseModal] = useState(false);
-  
+
   // Using HashRouter to support URLs like https://domain/#/route across all hosts
 
   useEffect(() => {
+    const handleOpenVerseModal = () => setShowVerseModal(true);
+    window.addEventListener('openVerseModal', handleOpenVerseModal);
+
     // Simulate content loading and reduce to 2.5 seconds
     const timer = setTimeout(() => {
       setShowLoading(false);
@@ -113,11 +116,14 @@ function App() {
       const verseTimer = setTimeout(() => {
         setShowVerseModal(true);
       }, 500); // Small delay to let the main content render first
-      
+
       return () => clearTimeout(verseTimer);
     }, 2500); // Optimized loading time
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('openVerseModal', handleOpenVerseModal);
+    };
   }, []);
 
   if (showLoading) {
@@ -142,10 +148,17 @@ function App() {
               <Route path="sermons" element={<SermonsPage />} />
               <Route path="worship" element={<WorshipPage />} />
               <Route path="worship/:id" element={<WorshipSongViewerPage />} />
-              <Route path="bible" element={<BiblePage />} />
+              <Route path="bible" element={<BibleUnifiedPro />} />
               <Route path="bible/audio" element={<AudioBiblePage />} />
               <Route path="bible/text-only" element={<BibleTextOnlyPage />} />
-              <Route path="bible/audio-suite" element={<BibleAudioSuitePage />} />
+              <Route
+                path="bible/audio-suite"
+                element={
+                  <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                    <BibleAudioSuitePage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="bible/audio-sync-demo" element={<BibleAudioSyncDemoPage />} />
               <Route path="bible/audio-test" element={<BibleAudioTestPage />} />
               <Route path="bible/audio-youversion" element={<BibleAudioYouVersionTestPage />} />
@@ -155,7 +168,7 @@ function App() {
               <Route path="bible/presentation-creator" element={<BiblePresentationCreatorPage />} />
               <Route path="bible/reader" element={<BilingualBibleReader />} />
               <Route path="bible-study" element={<BibleStudyPage />} />
-              <Route path="bible-karaoke" element={<BibleKaraokeReader />} />
+              <Route path="bible-karaoke" element={<BibleKaraokeMode />} />
               <Route path="bible-reader" element={<BilingualBibleReader />} />
               <Route path="bible-presentation-sample" element={<BilingualPresentationSample />} />
               <Route path="bible-presentation" element={<BilingualPresentationDynamic />} />
@@ -191,9 +204,10 @@ function App() {
               <Route path="testimonials" element={<TestimonialsPage />} />
               <Route path="live" element={<LivePage />} />
               <Route path="tailwind-demo" element={<TailwindDemoPage />} />
-            <Route path="admin/tts-usage" element={<TTSUsageDashboard />} />
-            <Route path="admin/audio-manager" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><AdminAudioDashboardPage /></ProtectedRoute>} />
-            <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+              <Route path="admin/tts-usage" element={<TTSUsageDashboard />} />
+              <Route path="admin/audio-manager" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><AdminAudioDashboardPage /></ProtectedRoute>} />
+              <Route path="admin/worship-health" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}><WorshipSongsHealthDashboard /></ProtectedRoute>} />
+              <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
               <Route path="letters/:id" element={<ProtectedRoute><LetterViewerPage /></ProtectedRoute>} />
               <Route path="p/:slug" element={<CustomPageRenderer />} />
               <Route path="*" element={<NotFoundPage />} />
@@ -235,6 +249,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Test route outside Layout */}
+            <Route path="bible-karaoke-test" element={<BibleKaraokeReader />} />
 
             <Route path="presentation" element={<PresentationPage />} />
           </Routes>

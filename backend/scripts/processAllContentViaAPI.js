@@ -4,17 +4,26 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: '../.env' }); // Load env vars from backend/.env
 
 const BASE_URL = 'http://localhost:3001';
-const ADMIN_EMAIL = 'admin@mychurch.com';
-const ADMIN_PASSWORD = 'MyChurchSecureAdmin2024!';
+
+// Get credentials from environment variables
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@mychurch.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+if (!ADMIN_PASSWORD) {
+  console.error('❌ Error: ADMIN_PASSWORD is not set in environment variables.');
+  console.error('Please add ADMIN_PASSWORD to your .env file.');
+  process.exit(1);
+}
 
 let authToken = null;
 
 // Login and get token
 async function login() {
   console.log('🔐 ورود به سیستم...');
-  
+
   try {
     const response = await fetch(`${BASE_URL}/api/auth/login`, {
       method: 'POST',
@@ -26,7 +35,7 @@ async function login() {
     });
 
     const data = await response.json();
-    
+
     if (data.token) {
       authToken = data.token;
       console.log('✅ ورود موفق\n');
@@ -44,10 +53,10 @@ async function login() {
 // Get all worship songs
 async function getAllWorshipSongs() {
   console.log('📥 دریافت لیست سرودها...');
-  
+
   try {
     const response = await fetch(`${BASE_URL}/api/worship-songs`, {
-      headers: { 
+      headers: {
         'Authorization': `Bearer ${authToken}`
       }
     });
@@ -89,7 +98,7 @@ async function processWorshipSong(song) {
 
   try {
     console.log(`   📥 دانلود صوتی...`);
-    
+
     // Download audio
     const audioResponse = await fetch(song.audioUrl);
     if (!audioResponse.ok) {
@@ -110,7 +119,7 @@ async function processWorshipSong(song) {
     // Create FormData
     const FormData = require('form-data');
     const formData = new FormData();
-    
+
     formData.append('audio', Buffer.from(audioBuffer), {
       filename: 'audio.mp3',
       contentType: 'audio/mpeg'
@@ -163,7 +172,7 @@ async function main() {
 
   // Get all songs
   const songs = await getAllWorshipSongs();
-  
+
   if (songs.length === 0) {
     console.log('\n⚠️  هیچ سرودی یافت نشد\n');
     return;
@@ -185,12 +194,12 @@ async function main() {
 
   for (let i = 0; i < songsToProcess.length; i++) {
     const song = songsToProcess[i];
-    
+
     console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
     console.log(`[${i + 1}/${songsToProcess.length}]`);
-    
+
     const result = await processWorshipSong(song);
-    
+
     if (result.skipped) {
       skippedCount++;
     } else if (result.success) {

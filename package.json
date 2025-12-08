@@ -38,7 +38,7 @@
     "docker:restart": "docker-compose restart"
   },
   "dependencies": {
-    "@google/genai": "^1.29.0",
+    "@google/genai": "^1.29.1",
     "@supabase/supabase-js": "^2.76.1",
     "adm-zip": "^0.5.16",
     "axios": "^1.13.2",
@@ -59,8 +59,10 @@
     "lucide-react": "^0.525.0",
     "multer": "^2.0.2",
     "music-metadata": "^7.14.0",
+    "node-fetch": "^3.3.2",
     "pg": "^8.16.3",
     "pptxgenjs": "^3.12.0",
+    "puppeteer": "^24.32.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",

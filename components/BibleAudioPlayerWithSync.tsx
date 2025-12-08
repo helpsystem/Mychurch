@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, Settings } from 'lucide-react';
+import { migrateUrl, getBibleTimingUrl } from '@/lib/storage';
 
 interface TimingWord {
   word: string;

@@ -80,14 +80,56 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             setLoading(true);
             let apiWarningLogged = false;
             
+            // Helper function to convert URLs to HiDrive streaming proxy
+            const convertToProxyURL = (url: string): string => {
+                if (!url) return url;
+                
+                // Already a proxy URL
+                if (url.startsWith('/api/hidrive/stream/')) {
+                    return url;
+                }
+                
+                // Full WebDAV URL
+                if (url.startsWith('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/')) {
+                    const path = url.replace('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/', '');
+                    return `/api/hidrive/stream/${path}`;
+                }
+                
+                // Local path - convert to proxy
+                if (url.startsWith('/worship/') || url.startsWith('/sermons/') || url.startsWith('/events/') || url.startsWith('/bible/')) {
+                    const path = url.startsWith('/') ? url.substring(1) : url;
+                    return `/api/hidrive/stream/${path}`;
+                }
+                
+                return url;
+            };
+            
             // Try to load worship songs from JSON file first
             let worshipSongsFromJSON = worshipSongsData;
             try {
                 const response = await fetch('/worship/data/worship_songs.json');
                 if (response.ok) {
                     const jsonData = await response.json();
-                    worshipSongsFromJSON = jsonData;
+                    // Convert audioUrl for each song to use HiDrive streaming proxy
+                    worshipSongsFromJSON = jsonData.map((song: any) => {
+                        const convertedUrl = convertToProxyURL(song.audioUrl);
+                        // Debug: Log first few songs to verify conversion
+                        if (song.id <= 3) {
+                            console.log(`🎵 Song ${song.id} (${song.title?.fa}):`, {
+                                original: song.audioUrl,
+                                converted: convertedUrl
+                            });
+                        }
+                        return {
+                            ...song,
+                            audioUrl: convertedUrl,
+                            presentationFileUrl: song.presentationFileUrl ? convertToProxyURL(song.presentationFileUrl) : undefined,
+                            pdfFileUrl: song.pdfFileUrl ? convertToProxyURL(song.pdfFileUrl) : undefined,
+                            sheetMusicUrl: song.sheetMusicUrl ? convertToProxyURL(song.sheetMusicUrl) : undefined
+                        };
+                    });
                     console.log('✅ Loaded worship songs from JSON file:', jsonData.length, 'songs');
+                    console.log('✅ Converted audioUrl to proxy format for streaming');
                 }
             } catch (error) {
                 console.warn('⚠️ Could not load worship songs from JSON, using mock data:', error);

@@ -2,9 +2,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
-import { ChevronDown, Search, X, Book, BookOpen, MonitorPlay } from 'lucide-react';
+import { ChevronDown, Search, X, Book, BookOpen, MonitorPlay, ZoomIn, ZoomOut } from 'lucide-react';
 import Spinner from '../components/Spinner';
-import HTMLFlipBook from 'react-pageflip';
+// import HTMLFlipBook from 'react-pageflip'; // Removed - using two-column layout
 import { useAuth } from '../hooks/useAuth';
 
 const VERSES_PER_PAGE = 10; // Adjust this number to control how much text appears on each page
@@ -46,23 +46,8 @@ const LatinCrossIcon: React.FC<{ className?: string, size?: number }> = ({ class
     </svg>
 );
 
-// Moved Page and PageCover outside the component to prevent re-creation on every render.
-const Page = React.forwardRef<HTMLDivElement, { children: React.ReactNode, number?: number, className?: string, style?: React.CSSProperties }>((props, ref) => {
-    return (
-        <div className={`page ${props.className || ''}`} ref={ref} style={props.style}>
-            <div className="page-content">{props.children}</div>
-            {props.number && <div className="page-footer">{props.number}</div>}
-        </div>
-    );
-});
-
-const PageCover = React.forwardRef<HTMLDivElement, { children: React.ReactNode, isBackCover?: boolean }>((props, ref) => {
-    return (
-        <div className={`page page--cover ${props.isBackCover ? 'page--cover-back' : ''}`} ref={ref}>
-            <div className="page-content">{props.children}</div>
-        </div>
-    );
-});
+// NOTE: Page and PageCover components removed - no longer using FlipBook
+// Switched to two-column side-by-side layout with Farsi (right) and English (left)
 
 const BiblePage: React.FC = () => {
   const { t, lang } = useLanguage();
@@ -79,6 +64,12 @@ const BiblePage: React.FC = () => {
   const [searchResults, setSearchResults] = useState<{ bookKey: string; book: string; chapter: number; verse: number; text: string }[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  
+  // Zoom state for new two-column layout
+  const [zoom, setZoom] = useState<number>(100); // Percentage (50-200%)
+  
+  // Persian translation selector
+  const [persianTranslation, setPersianTranslation] = useState<string>('qadim'); // qadim | mojdeh | tafsiri
   
   const [presentationWindow, setPresentationWindow] = useState<Window | null>(null);
   const [broadcastChannel, setBroadcastChannel] = useState<BroadcastChannel | null>(null);
@@ -218,6 +209,11 @@ const BiblePage: React.FC = () => {
   };
 
   const loadChapterContent = useCallback(async () => {
+    // Don't load if no book is selected
+    if (!selectedBook || !selectedChapter) {
+      return;
+    }
+    
     // Check if content is already loaded
     const bookData = bibleContent[selectedBook];
     
@@ -229,9 +225,9 @@ const BiblePage: React.FC = () => {
       setStartVerse(1);
       setEndVerse(bookData[selectedChapter].en?.length || 1);
     } else {
-      // Load content from API
+      // Load content from API with selected Persian translation
       try {
-        const response = await fetch(`/api/bible/content/${selectedBook}/${selectedChapter}`);
+        const response = await fetch(`/api/bible/content/${selectedBook}/${selectedChapter}?faTranslation=${persianTranslation}`);
         const data = await response.json();
         
         if (data.success && data.verses) {
@@ -263,7 +259,7 @@ const BiblePage: React.FC = () => {
       }
     }
     setHasInteracted(false); // Reset interaction state on chapter change
-  }, [selectedBook, selectedChapter, bibleContent]);
+  }, [selectedBook, selectedChapter, persianTranslation, bibleContent]);
 
   useEffect(() => {
     if (bibleBooks.length > 0 && !selectedBook) {
@@ -298,74 +294,7 @@ const BiblePage: React.FC = () => {
     setSearchTerm(''); // This will clear debounced term and results
   };
 
-  const PageTurnHint = () => (
-      <div className="page-turn-hint-container" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-          <div className="hand-icon"></div>
-      </div>
-  );
-
-  const renderBookPages = () => {
-      if (!content.en.length) return [];
-
-      const pages: React.ReactElement[] = [];
-      const totalVerses = content.en.length;
-      let verseCounter = 0;
-
-      const isPresentationActive = isAdmin && presentationWindow && !presentationWindow.closed;
-
-      while(verseCounter < totalVerses) {
-          // English page
-          const enPageContent: React.ReactElement[] = [];
-          let enPageVerseCount = 0;
-          while(verseCounter + enPageVerseCount < totalVerses && enPageVerseCount < VERSES_PER_PAGE) {
-              const verseIndex = verseCounter + enPageVerseCount;
-              enPageContent.push(
-                  <p key={`en-${verseIndex}`} className="mb-3 leading-relaxed relative group">
-                      <span className="text-secondary/80 font-bold text-xs mr-2" dir="ltr">{verseIndex + 1}</span>
-                      {content.en[verseIndex]}
-                      {isPresentationActive && (
-                        <button 
-                            onClick={() => presentVerse(verseIndex + 1)}
-                            className="absolute -top-1 -right-1 rtl:-left-1 rtl:-right-auto p-1 bg-primary/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                            title="Present this verse"
-                        >
-                            <MonitorPlay size={16} className="text-secondary" />
-                        </button>
-                      )}
-                  </p>
-              );
-              enPageVerseCount++;
-          }
-          pages.push(<Page number={(pages.length / 2) + 2} key={`en-page-${pages.length}`}>{enPageContent}</Page>);
-
-          // Farsi page
-          const faPageContent: React.ReactElement[] = [];
-          let faPageVerseCount = 0;
-          while(verseCounter + faPageVerseCount < totalVerses && faPageVerseCount < VERSES_PER_PAGE) {
-              const verseIndex = verseCounter + faPageVerseCount;
-              faPageContent.push(
-                   <p key={`fa-${verseIndex}`} className="mb-3 text-right leading-relaxed relative group" dir="rtl">
-                      <span className="text-secondary/80 font-bold text-xs ml-2" dir="ltr">{verseIndex + 1}</span>
-                      {content.fa[verseIndex]}
-                       {isPresentationActive && (
-                        <button 
-                            onClick={() => presentVerse(verseIndex + 1)}
-                            className="absolute -top-1 -left-1 rtl:-right-1 rtl:-left-auto p-1 bg-primary/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                            title="Present this verse"
-                        >
-                            <MonitorPlay size={16} className="text-secondary" />
-                        </button>
-                      )}
-                  </p>
-              );
-              faPageVerseCount++;
-          }
-          pages.push(<Page number={(pages.length / 2) + 2} key={`fa-page-${pages.length}`}>{faPageContent}</Page>);
-          
-          verseCounter += VERSES_PER_PAGE;
-      }
-      return pages;
-  };
+  // PageTurnHint and renderBookPages removed - using two-column layout instead
 
   
   const inputClass = "w-full p-3 border-0 rounded-lg appearance-none bg-primary text-white focus:outline-none focus:ring-2 focus:ring-secondary";
@@ -453,7 +382,7 @@ const BiblePage: React.FC = () => {
       {bibleBooks.length > 0 && (
       <>
       <div className="bg-black-gradient p-4 rounded-[20px] box-shadow sticky top-[88px] z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 items-center">
           <div className="relative">
             <select 
               value={selectedTestament} 
@@ -497,6 +426,19 @@ const BiblePage: React.FC = () => {
                   <option key={chap} value={chap}>{t('chapter')} {chap}</option>
                 ))}
               </select>
+            <ChevronDown className="absolute top-1/2 -translate-y-1/2 right-3 rtl:left-3 rtl:right-auto text-gray-400 pointer-events-none" />
+          </div>
+          <div className="relative">
+            <select 
+              value={persianTranslation} 
+              onChange={(e) => setPersianTranslation(e.target.value)}
+              className={`${inputClass} pr-10 rtl:pl-10 rtl:pr-4`}
+              title={lang === 'fa' ? 'ترجمه فارسی' : 'Persian Translation'}
+            >
+              <option value="qadim">{lang === 'fa' ? '📖 قدیم' : '📖 Qadim'}</option>
+              <option value="mojdeh">{lang === 'fa' ? '✨ مژده' : '✨ Mojdeh'}</option>
+              <option value="tafsiri">{lang === 'fa' ? '📚 تفسیری' : '📚 Tafsiri'}</option>
+            </select>
             <ChevronDown className="absolute top-1/2 -translate-y-1/2 right-3 rtl:left-3 rtl:right-auto text-gray-400 pointer-events-none" />
           </div>
           <div className="relative col-span-1 lg:col-span-2">
@@ -573,60 +515,99 @@ const BiblePage: React.FC = () => {
                 <p>{t('noResultsFound')}</p>
             </div>
         ) : content.en.length > 0 ? (
-          <>
-            <HTMLFlipBook 
-                width={550} 
-                height={733}
-                size="stretch"
-                minWidth={315}
-                maxWidth={1000}
-                minHeight={420}
-                maxHeight={1333}
-                maxShadowOpacity={0.5}
-                showCover={true}
-                mobileScrollSupport={true}
-                className="flip-book"
-                style={{}}
-                startPage={0}
-                drawShadow={true}
-                flippingTime={1000}
-                usePortrait={true}
-                startZIndex={0}
-                autoSize={true}
-                clickEventForward={true}
-                useMouseEvents={true}
-                swipeDistance={3}
-                showPageCorners={true}
-                disableFlipByClick={false}
-                onFlip={() => setHasInteracted(true)}
-                onChangeOrientation={() => {}}
-                onChangeState={() => {}}
-                onInit={() => {}}
-            >
-                <PageCover>
-                    <div className="relative w-full h-full">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Carl_Bloch_-_The_Crucifixion_-_Google_Art_Project.jpg" alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-30" aria-hidden="true" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Carl_Bloch_-_The_Crucifixion_-_Google_Art_Project.jpg" alt="The Crucifixion" className="absolute inset-0 w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-                    </div>
-                    <div className="flex flex-col justify-around items-center h-full text-center">
-                        <BookOpen size={64} className="text-white/50" />
-                        <div>
-                            <h2 className="text-5xl font-bold">{currentBook?.name[lang]}</h2>
-                            <p className="text-3xl mt-2 bible-chapter-ref">{t('chapter')} {selectedChapter}</p>
-                        </div>
-                        <LatinCrossIcon size={120} className="text-yellow-400" />
-                    </div>
-                </PageCover>
-                
-                {renderBookPages()}
+          <div className="h-full flex flex-col">
+            {/* Zoom Controls */}
+            <div className="flex items-center justify-center gap-4 mb-4 bg-primary/50 p-3 rounded-lg border border-gray-700">
+              <button
+                onClick={() => setZoom(Math.max(50, zoom - 10))}
+                disabled={zoom <= 50}
+                className="p-2 bg-secondary text-primary rounded-lg hover:bg-secondary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Zoom Out"
+              >
+                <ZoomOut size={20} />
+              </button>
+              
+              <div className="flex items-center gap-2 min-w-[100px] justify-center">
+                <span className="text-white font-semibold">{zoom}%</span>
+              </div>
+              
+              <button
+                onClick={() => setZoom(Math.min(200, zoom + 10))}
+                disabled={zoom >= 200}
+                className="p-2 bg-secondary text-primary rounded-lg hover:bg-secondary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Zoom In"
+              >
+                <ZoomIn size={20} />
+              </button>
+              
+              <button
+                onClick={() => setZoom(100)}
+                className="px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors border border-gray-700"
+              >
+                {t('reset')}
+              </button>
+            </div>
 
-                <PageCover isBackCover={true}>
-                     <img src="/images/church-logo-hq.png" alt="Church Logo" className="w-24 h-24" />
-                </PageCover>
-            </HTMLFlipBook>
-            {!hasInteracted && <PageTurnHint />}
-          </>
+            {/* Two-Column Layout: Farsi (Right) | English (Left) */}
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden">
+              {/* English Column - LEFT */}
+              <div 
+                className="bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg p-4 md:p-6 overflow-y-auto border border-gray-700"
+                style={{ fontSize: `${16 * (zoom / 100)}px` }}
+              >
+                <div className="flex items-center gap-2 mb-4 sticky top-0 bg-primary/90 backdrop-blur-sm p-2 rounded-lg z-10">
+                  <BookOpen size={24} className="text-secondary" />
+                  <h3 className="text-xl font-bold text-white">
+                    {currentBook?.name.en || 'English'}
+                  </h3>
+                  <span className="text-secondary">Chapter {selectedChapter}</span>
+                </div>
+                
+                <div className="space-y-3">
+                  {content.en.map((verse, index) => (
+                    <p 
+                      key={index} 
+                      className="text-dimWhite leading-relaxed hover:bg-primary/20 p-2 rounded transition-colors"
+                    >
+                      <span className="inline-block min-w-[30px] text-secondary font-bold mr-2">
+                        {index + 1}
+                      </span>
+                      <span className="text-white">{verse}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Farsi Column - RIGHT */}
+              <div 
+                className="bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg p-4 md:p-6 overflow-y-auto border border-gray-700"
+                dir="rtl"
+                style={{ fontSize: `${16 * (zoom / 100)}px` }}
+              >
+                <div className="flex items-center gap-2 mb-4 sticky top-0 bg-primary/90 backdrop-blur-sm p-2 rounded-lg z-10">
+                  <BookOpen size={24} className="text-secondary" />
+                  <h3 className="text-xl font-bold text-white">
+                    {currentBook?.name.fa || 'فارسی'}
+                  </h3>
+                  <span className="text-secondary">فصل {selectedChapter}</span>
+                </div>
+                
+                <div className="space-y-3">
+                  {content.fa.map((verse, index) => (
+                    <p 
+                      key={index} 
+                      className="text-dimWhite leading-relaxed hover:bg-primary/20 p-2 rounded transition-colors"
+                    >
+                      <span className="inline-block min-w-[30px] text-secondary font-bold ml-2">
+                        {index + 1}
+                      </span>
+                      <span className="text-white">{verse}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="text-center py-10 text-gray-500">
             <Book size={48} className="mx-auto mb-4" />

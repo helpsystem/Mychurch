@@ -74,7 +74,7 @@ const speak = async (text: string, lang: string): Promise<void> => {
 
       // English speech (original code)
       const utterance = new SpeechSynthesisUtterance(text);
-      
+
       const setVoice = () => {
         const voices = window.speechSynthesis.getVoices();
         const englishVoice = voices.find(v => v.lang.startsWith('en'));
@@ -93,12 +93,12 @@ const speak = async (text: string, lang: string): Promise<void> => {
       utterance.rate = 0.9;
       utterance.pitch = 1.0;
       utterance.volume = 1.0;
-      
+
       utterance.onend = () => {
         console.log('Speech ended');
         resolve();
       };
-      
+
       utterance.onerror = (event) => {
         console.error('Speech error:', event);
         resolve();
@@ -108,7 +108,7 @@ const speak = async (text: string, lang: string): Promise<void> => {
       setTimeout(() => {
         window.speechSynthesis.speak(utterance);
       }, 100);
-      
+
     } catch (error) {
       console.error('Speak error:', error);
       resolve();
@@ -123,14 +123,16 @@ interface Props {
   autoStart?: boolean;
   bookCode?: string; // 🎵 NEW: Book code for audio (e.g., 'EPH', 'MAT')
   enableAudio?: boolean; // 🎵 NEW: Enable audio player
+  viewMode?: 'dual' | 'fa' | 'en'; // ✨ NEW: External view control
 }
 
-const BilingualBiblePresentation: React.FC<Props> = ({ 
-  data, 
-  startChapter = 1, 
+const BilingualBiblePresentation: React.FC<Props> = ({
+  data,
+  startChapter = 1,
   autoStart = false,
   bookCode,
-  enableAudio = false
+  enableAudio = false,
+  viewMode = 'dual' // Default to dual
 }) => {
   // 🐛 DEBUG: Log received data IN DETAIL
   console.log('📚 BilingualBiblePresentation received data:', {
@@ -141,22 +143,25 @@ const BilingualBiblePresentation: React.FC<Props> = ({
     firstVerseCount: data.chapters[0]?.verses.length,
     firstVerseFa: data.chapters[0]?.verses[0]?.text_fa?.substring(0, 50) + '...'
   });
-  
+
   // 🔍 DEBUG: Log FULL first verse object
   console.log('🔍 FULL First verse object:', data.chapters[0]?.verses[0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [chapterIdx, setChapterIdx] = useState(Math.max(0, startChapter - 1));
   const [verseIdx, setVerseIdx] = useState(0);
-  const [playing, setPlaying] = useState(autoStart);
+  const [playing, setPlaying] = useState(false); // Changed from autoStart to false - explicit control
   const [autoAdvance, setAutoAdvance] = useState(true);
   const [fontScale, setFontScale] = useState(1.1);
   const [readingMode, setReadingMode] = useState<"both" | "en" | "fa">("fa"); // Audio reading mode
   const [readAlongMode, setReadAlongMode] = useState(false); // ✨ NEW: Karaoke-style word-by-word mode
   const [audioUrl, setAudioUrl] = useState<string | null>(null); // ✨ NEW: Current chapter audio URL
   const [wordsPerSecond, setWordsPerSecond] = useState(1.6); // ✨ NEW: Highlight speed
-  const [currentWordIndex, setCurrentWordIndex] = useState(0); // ✨ NEW: Current highlighted word
-  
+  const [currentAudioTime, setCurrentAudioTime] = useState(0); // ✨ Track audio playback time
+  const sharedAudioRef = useRef<HTMLAudioElement | null>(null); // ✨ Shared audio reference
+
+  const [highlightColor, setHighlightColor] = useState('#fde047'); // ✨ NEW: Custom highlight color (yellow-300 default)
+
   // ✅ Check if text_en and text_fa are identical (both Persian)
   const hasEnglishTranslation = useMemo(() => {
     // Check first few verses to see if EN is different from FA
@@ -164,15 +169,20 @@ const BilingualBiblePresentation: React.FC<Props> = ({
     const allSame = sample.every(v => v.text_en === v.text_fa);
     return !allSame; // true if they're different (has English), false if same (no English)
   }, [data]);
-  
+
   const [displayMode, setDisplayMode] = useState<"both" | "en" | "fa">(
-    hasEnglishTranslation ? "both" : "fa" // ✅ Auto-set to FA only if no English
+    viewMode === 'dual' ? 'both' : viewMode // Initialize based on prop
   );
+
+  // ✨ Sync internal displayMode when viewMode prop changes
+  useEffect(() => {
+    setDisplayMode(viewMode === 'dual' ? 'both' : viewMode);
+  }, [viewMode]);
   const [showVoiceInfo, setShowVoiceInfo] = useState(false);
 
   const chapter = data.chapters[chapterIdx];
   const verse = chapter?.verses[verseIdx];
-  
+
   // 🐛 DEBUG: Log current verse being displayed
   console.log('📖 Current verse:', {
     chapterIdx,
@@ -238,7 +248,7 @@ const BilingualBiblePresentation: React.FC<Props> = ({
   const testSpeak = async () => {
     const voices = getAvailableVoices();
     console.log('📢 Available voices:', voices);
-    
+
     if (readingMode === 'fa' || readingMode === 'both') {
       console.log('Testing Persian speech...');
       await speak('سلام. این یک تست صدای فارسی است.', 'fa-IR');
@@ -249,39 +259,53 @@ const BilingualBiblePresentation: React.FC<Props> = ({
     }
   };
 
+  // ✨ Unified play/pause/stop handler
+  const togglePlayPause = useCallback(() => {
+    setPlaying(prev => !prev);
+  }, []);
+
+  const stopAudio = useCallback(() => {
+    setPlaying(false);
+    setCurrentAudioTime(0);
+    if (sharedAudioRef.current) {
+      sharedAudioRef.current.pause();
+      sharedAudioRef.current.currentTime = 0;
+    }
+  }, []);
+
   // ✨ NEW: Load chapter audio from bible_data.json
   const loadChapterAudio = async () => {
     try {
       const cacheBust = new Date().getTime();
       const response = await fetch(`/bible_data.json?v=${cacheBust}`);
       if (!response.ok) throw new Error('Failed to load Bible data');
-      
+
       const bibleData = await response.json();
-      
+
       // Get audio for current chapter
       const bookCode = Object.keys(bibleData.bible_text?.['118'] || {}).find(
         key => bibleData.bible_text['118'][key]?.[chapter.chapterNumber]
       );
-      
+
       if (!bookCode) {
         console.warn('❌ Could not find book code');
         return;
       }
-      
+
       const audioInfo = bibleData.audio_files?.['118']?.[bookCode]?.[chapter.chapterNumber];
-      
+
       if (!audioInfo || audioInfo.length === 0) {
         console.warn('⚠️ No audio available for this chapter');
         setAudioUrl(null);
         return;
       }
-      
+
       // Prefer Persian audio
-      const persianAudio = audioInfo.find((a: any) => 
+      const persianAudio = audioInfo.find((a: any) =>
         a.title?.includes('ترجمۀ') || a.title?.includes('هزارۀ')
       );
       const selectedAudio = persianAudio || audioInfo[0];
-      
+
       const url = selectedAudio.download_urls?.format_mp3_32k || selectedAudio.download_urls?.format_hls;
       if (url) {
         const fullUrl = url.startsWith('//') ? `https:${url}` : url;
@@ -346,11 +370,13 @@ const BilingualBiblePresentation: React.FC<Props> = ({
 
       if (readingMode === "fa" || readingMode === "both") {
         if (v.audio_fa) await tryAudio(v.audio_fa);
-        else await speak(`${v.verseNumber}. ${v.text_fa}`, "fa-IR");
+        // Remove number from text for better TTS language detection
+        else await speak(v.text_fa, "fa-IR");
       }
       if (!cancelled && (readingMode === "en" || readingMode === "both")) {
         if (v.audio_en) await tryAudio(v.audio_en);
-        else await speak(`${v.verseNumber}. ${v.text_en}`, "en-US");
+        // Remove number from text for better TTS language detection
+        else await speak(v.text_en, "en-US");
       }
 
       if (!cancelled && autoAdvance) nextVerse();
@@ -371,40 +397,51 @@ const BilingualBiblePresentation: React.FC<Props> = ({
           ⚠️ فقط ترجمه فارسی موجود است
         </div>
       )}
-      
+
       {/* Controls */}
       <div className={`fixed z-50 left-1/2 -translate-x-1/2 top-3 flex items-center gap-2 rounded-2xl bg-neutral-800/80 px-3 py-2 backdrop-blur shadow-lg`}>
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => setPlaying((p)=>!p)}>
-          {playing ? <Pause className="w-5 h-5"/> : <Play className="w-5 h-5"/>}
+        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => setPlaying((p) => !p)}>
+          {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
         </button>
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={prevVerse}><SkipBack className="w-5 h-5"/></button>
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={nextVerse}><SkipForward className="w-5 h-5"/></button>
-        <button className={`px-3 py-1 rounded-xl ${autoAdvance?"bg-emerald-600":"bg-neutral-700 hover:bg-neutral-600"}`} onClick={()=>setAutoAdvance(a=>!a)} title="Auto advance"><RefreshCw className="w-5 h-5"/></button>
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={()=>requestFullscreen(containerRef.current)}><Maximize2 className="w-5 h-5"/></button>
+        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={prevVerse}><SkipBack className="w-5 h-5" /></button>
+        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={nextVerse}><SkipForward className="w-5 h-5" /></button>
+        <button className={`px-3 py-1 rounded-xl ${autoAdvance ? "bg-emerald-600" : "bg-neutral-700 hover:bg-neutral-600"}`} onClick={() => setAutoAdvance(a => !a)} title="Auto advance"><RefreshCw className="w-5 h-5" /></button>
+        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => requestFullscreen(containerRef.current)}><Maximize2 className="w-5 h-5" /></button>
         <div className="mx-2 text-sm opacity-90">Ch {chapter.chapterNumber} • V {verse?.verseNumber ?? 1}</div>
         <div className="flex items-center gap-1 text-xs">
-          <Type className="w-4 h-4"/>
-          <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={()=>setFontScale(s=>Math.max(0.8, s-0.05))}>A-</button>
-          <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={()=>setFontScale(s=>Math.min(1.8, s+0.05))}>A+</button>
+          <Type className="w-4 h-4" />
+          <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={() => setFontScale(s => Math.max(0.8, s - 0.05))}>A-</button>
+          <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={() => setFontScale(s => Math.min(1.8, s + 0.05))}>A+</button>
         </div>
         <div className="flex items-center gap-1 text-xs">
-          <Book className="w-4 h-4"/>
-          <select className="bg-neutral-700 rounded px-2 py-0.5" value={displayMode} onChange={(e)=>setDisplayMode(e.target.value as any)}>
+          <Book className="w-4 h-4" />
+          <select className="bg-neutral-700 rounded px-2 py-0.5" value={displayMode} onChange={(e) => setDisplayMode(e.target.value as any)}>
             {hasEnglishTranslation && <option value="both">هر دو زبان</option>}
             <option value="fa">فقط فارسی</option>
             {hasEnglishTranslation && <option value="en">فقط انگلیسی</option>}
           </select>
         </div>
         <div className="flex items-center gap-1 text-xs">
-          <Volume2 className="w-4 h-4"/>
-          <select className="bg-neutral-700 rounded px-2 py-0.5" value={readingMode} onChange={(e)=>setReadingMode(e.target.value as any)}>
+          <Volume2 className="w-4 h-4" />
+          <select className="bg-neutral-700 rounded px-2 py-0.5" value={readingMode} onChange={(e) => setReadingMode(e.target.value as any)}>
             <option value="fa">خواندن فارسی</option>
-            {hasEnglishTranslation && <option value="both">خواندن هر دو</option>}
             {hasEnglishTranslation && <option value="en">خواندن انگلیسی</option>}
           </select>
+
+          {/* ✨ NEW: Color Picker for Highlight */}
+          <div className="flex items-center gap-1 ml-2 border-l border-white/20 pl-2">
+            <span className="text-[10px] opacity-70">Highlight:</span>
+            <input
+              type="color"
+              value={highlightColor}
+              onChange={(e) => setHighlightColor(e.target.value)}
+              className="w-5 h-5 rounded cursor-pointer border-none bg-transparent p-0"
+              title="رنگ هایلایت"
+            />
+          </div>
         </div>
         <button
-          className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-700" 
+          className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-700"
           onClick={testSpeak}
           title="Test Voice">
           🔊
@@ -451,8 +488,8 @@ const BilingualBiblePresentation: React.FC<Props> = ({
               </div>
             )}
             {(displayMode === 'en' || displayMode === 'both') && (
-              <div className={`px-4 py-3 ${headerColors.en} text-white font-semibold text-xl flex items-center justify-between`} dir="ltr"> 
-                <span className="flex items-center gap-2"><Book className="w-5 h-5"/> {data.book_en} {chapter.chapterNumber}</span>
+              <div className={`px-4 py-3 ${headerColors.en} text-white font-semibold text-xl flex items-center justify-between`} dir="ltr">
+                <span className="flex items-center gap-2"><Book className="w-5 h-5" /> {data.book_en} {chapter.chapterNumber}</span>
                 <span className="text-sm opacity-80">
                   English {data.translation_name?.en && `(${data.translation_name.en})`}
                 </span>
@@ -471,43 +508,47 @@ const BilingualBiblePresentation: React.FC<Props> = ({
               fontScale={fontScale}
               bookName={data.book_fa}
               playing={playing}
-              onPlayPause={() => setPlaying(p => !p)}
+              onPlayPause={togglePlayPause}
+              onStop={stopAudio}
+              viewMode={displayMode} // ✨ Pass view mode
+              highlightColor={highlightColor} // ✨ Pass custom color
+              audioRef={sharedAudioRef} // ✨ Pass shared audio ref
             />
           ) : (
             /* Normal Two-Pane View */
             <div className={`flex-1 grid grid-cols-1 ${displayMode === 'both' ? 'md:grid-cols-2' : ''} gap-0 overflow-hidden`}>
-            {/* Persian pane - RIGHT SIDE */}
-            {(displayMode === 'fa' || displayMode === 'both') && (
-              <div ref={faPaneRef} className="h-full overflow-y-auto bg-neutral-100 text-neutral-900 p-6" dir="rtl">
-                {chapter.verses.map((v) => (
-                  <div key={`fa-${v.verseNumber}`} id={`v_fa_${v.verseNumber}`} className={`transition-colors rounded-xl px-4 py-2 mb-2 ${v.verseNumber===verse?.verseNumber?"bg-yellow-200": "bg-white"}`}
-                    style={{ fontSize: `${fontScale}rem`, lineHeight: 2 }}>
-                    <span className="text-lime-700 font-bold ml-2 text-2xl align-top">{v.verseNumber}</span>
-                    <span className="align-middle" style={{ fontFamily: '"B Homa", ui-sans-serif, system-ui' }}>{v.text_fa}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+              {/* Persian pane - RIGHT SIDE */}
+              {(displayMode === 'fa' || displayMode === 'both') && (
+                <div ref={faPaneRef} className="h-full overflow-y-auto bg-neutral-100 text-neutral-900 p-6" dir="rtl">
+                  {chapter.verses.map((v) => (
+                    <div key={`fa-${v.verseNumber}`} id={`v_fa_${v.verseNumber}`} className={`transition-colors rounded-xl px-4 py-2 mb-2 ${v.verseNumber === verse?.verseNumber ? "bg-yellow-200" : "bg-white"}`}
+                      style={{ fontSize: `${fontScale}rem`, lineHeight: 2 }}>
+                      <span className="text-lime-700 font-bold ml-2 text-2xl align-top">{v.verseNumber}</span>
+                      <span className="align-middle" style={{ fontFamily: '"B Homa", ui-sans-serif, system-ui' }}>{v.text_fa}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
-            {/* English pane - LEFT SIDE */}
-            {(displayMode === 'en' || displayMode === 'both') && (
-              <div ref={enPaneRef} className="h-full overflow-y-auto bg-neutral-50 text-neutral-900 p-6" dir="ltr">
-                {chapter.verses.map((v) => (
-                  <div key={`en-${v.verseNumber}`} id={`v_en_${v.verseNumber}`} className={`transition-colors rounded-xl px-4 py-2 mb-2 ${v.verseNumber===verse?.verseNumber?"bg-yellow-200": "bg-white"}`}
-                    style={{ fontSize: `${fontScale}rem`, lineHeight: 1.8 }}>
-                    <span className="text-sky-700 font-bold mr-2 text-2xl align-top">{v.verseNumber}</span>
-                    <span className="align-middle">{v.text_en}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+              {/* English pane - LEFT SIDE */}
+              {(displayMode === 'en' || displayMode === 'both') && (
+                <div ref={enPaneRef} className="h-full overflow-y-auto bg-neutral-50 text-neutral-900 p-6" dir="ltr">
+                  {chapter.verses.map((v) => (
+                    <div key={`en-${v.verseNumber}`} id={`v_en_${v.verseNumber}`} className={`transition-colors rounded-xl px-4 py-2 mb-2 ${v.verseNumber === verse?.verseNumber ? "bg-yellow-200" : "bg-white"}`}
+                      style={{ fontSize: `${fontScale}rem`, lineHeight: 1.8 }}>
+                      <span className="text-sky-700 font-bold mr-2 text-2xl align-top">{v.verseNumber}</span>
+                      <span className="align-middle">{v.text_en}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           )}
         </motion.div>
       </AnimatePresence>
 
       {/* Hidden audio element for per-verse files */}
-      <audio ref={audioRef} className="hidden"/>
+      <audio ref={audioRef} className="hidden" />
 
       {/* Footer tips */}
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 text-neutral-800 bg-white/90 backdrop-blur px-4 py-2 rounded-lg text-xs opacity-80 shadow-lg z-50">

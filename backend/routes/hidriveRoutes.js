@@ -7,9 +7,17 @@ const express = require('express');
 const router = express.Router();
 const hidriveStorage = require('../services/hidriveStorage');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
-const { pool } = require('../db-postgres');
 const multer = require('multer');
 const path = require('path');
+
+// Try to load pool, but don't fail if unavailable
+let pool;
+try {
+  pool = require('../db-postgres').pool;
+} catch (error) {
+  console.warn('⚠️  Pool not available in hidriveRoutes:', error.message);
+  pool = null;
+}
 
 // Configure multer for file uploads (memory storage)
 const upload = multer({
@@ -46,8 +54,8 @@ router.get('/stats', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER')
  * Upload a file to HiDrive
  * Auth: SUPER_ADMIN, MANAGER, WORSHIP_LEADER
  */
-router.post('/upload', 
-  authenticateToken, 
+router.post('/upload',
+  authenticateToken,
   authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'),
   upload.single('file'),
   async (req, res) => {
@@ -60,7 +68,7 @@ router.post('/upload',
       }
 
       const { category, filename } = req.body;
-      
+
       if (!category) {
         return res.status(400).json({
           success: false,
@@ -150,7 +158,7 @@ router.post('/migrate-worship-songs', authenticateToken, authorizeRoles('SUPER_A
     for (const song of songs) {
       try {
         console.log(`Migrating song ${song.id}: ${song.title?.fa || song.title?.en || 'Untitled'}`);
-        
+
         // Migrate file
         const newUrl = await hidriveStorage.migrateLocalFile(song.audiourl, 'worship-audio');
 
@@ -267,6 +275,30 @@ router.post('/check-exists', authenticateToken, async (req, res) => {
 });
 
 /**
+ * GET /api/hidrive/test
+ * Test HiDrive connection
+ */
+router.get('/test', async (req, res) => {
+  try {
+    await hidriveStorage.connect();
+    res.json({
+      success: true,
+      message: 'HiDrive connected successfully',
+      config: {
+        host: process.env.HIDRIVE_HOST,
+        user: process.env.HIDRIVE_USER,
+        basePath: process.env.HIDRIVE_BASE_PATH
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
  * GET /api/hidrive/stream/*
  * Stream any file from HiDrive by full path
  * Example: /api/hidrive/stream/worship/audio/kalameh/song.mp3
@@ -276,7 +308,7 @@ router.get('/stream/*', async (req, res) => {
   try {
     // Get the full path after /stream/
     const filePath = req.params[0]; // e.g., "worship/audio/kalameh/song.mp3"
-    
+
     if (!filePath) {
       return res.status(400).json({
         success: false,
@@ -310,10 +342,10 @@ router.get('/stream/*', async (req, res) => {
 
     // Get file stream from HiDrive using full path
     // ssh2-sftp-client returns a readable stream wrapped in a promise
-    await hidriveStorage.streamToResponse(filePath, res);
+    await hidriveStorage.streamToResponse(filePath, res, req.headers.range);
 
     console.log(`✅ Successfully streamed: ${filePath}`);
-    
+
   } catch (error) {
     console.error('❌ Error streaming file from HiDrive:', error);
     if (!res.headersSent) {
@@ -352,7 +384,8 @@ router.get('/proxy/:category/:filename', async (req, res) => {
       '.jpeg': 'image/jpeg',
       '.png': 'image/png',
       '.webp': 'image/webp',
-      '.pdf': 'application/pdf'
+      '.pdf': 'application/pdf',
+      '.json': 'application/json'
     };
 
     const contentType = contentTypes[ext] || 'application/octet-stream';
@@ -390,24 +423,24 @@ router.post('/batch-migrate', authenticateToken, authorizeRoles('SUPER_ADMIN'), 
 
     // Build query
     let query = `SELECT id, ${column} FROM ${table} WHERE ${column} IS NOT NULL`;
-    
+
     // Only migrate local URLs (not http/https)
     query += ` AND ${column} NOT LIKE 'http%' AND ${column} NOT LIKE 'https%'`;
-    
+
     if (filter) {
       query += ` AND ${filter}`;
     }
 
     const result = await pool.query(query);
     const rows = result.rows;
-    
+
     const migrationResults = [];
     let successCount = 0;
     let failCount = 0;
 
     for (const row of rows) {
       const oldUrl = row[column];
-      
+
       try {
         // Migrate file
         const newUrl = await hidriveStorage.migrateLocalFile(oldUrl, category);

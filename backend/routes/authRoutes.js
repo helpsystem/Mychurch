@@ -25,18 +25,18 @@ const validateCaptcha = (token) => {
     // Decode the base64 token
     const decoded = atob(token);
     const [equation, timestamp] = decoded.split(':');
-    
+
     // Check if token is not too old (5 minutes max)
     const tokenTime = parseInt(timestamp);
     const now = Date.now();
     if (now - tokenTime > 5 * 60 * 1000) {
       return { valid: false, reason: 'Token expired' };
     }
-    
+
     // Parse the equation
     const [left, answer] = equation.split('=');
     const [num1, operator, num2] = left.match(/(\d+)([+\-])(\d+)/).slice(1);
-    
+
     // Calculate expected answer
     let expectedAnswer;
     if (operator === '+') {
@@ -46,7 +46,7 @@ const validateCaptcha = (token) => {
     } else {
       return { valid: false, reason: 'Invalid operator' };
     }
-    
+
     // Verify answer
     if (parseInt(answer) === expectedAnswer) {
       return { valid: true };
@@ -69,78 +69,78 @@ const checkHoneypot = (honeypotValue) => {
 // -------------------- SIGNUP --------------------
 router.post('/signup', signupRateLimit, async (req, res) => {
   const { name, email, password, captchaToken, website } = req.body;
-  
+
   // Basic field validation
   if (!name || !email || !password) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Name, email, and password are required.',
       field: 'required_fields'
     });
   }
-  
+
   // Honeypot check
   if (!checkHoneypot(website)) {
     console.log(`Honeypot triggered for IP: ${req.ip}, value: ${website}`);
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Suspicious activity detected. Please contact support if this continues.',
       field: 'security'
     });
   }
-  
+
   // CAPTCHA validation
   if (!captchaToken) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Please complete the security verification.',
       field: 'captcha'
     });
   }
-  
+
   const captchaResult = validateCaptcha(captchaToken);
   if (!captchaResult.valid) {
     console.log(`CAPTCHA failed for IP: ${req.ip}, reason: ${captchaResult.reason}`);
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Security verification failed. Please try again.',
       field: 'captcha',
       reason: captchaResult.reason
     });
   }
-  
+
   // Enhanced email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Please enter a valid email address.',
       field: 'email'
     });
   }
-  
+
   // Enhanced name validation (no excessive special characters)
   const nameRegex = /^[a-zA-Z\u0600-\u06FF\s'-]{2,50}$/;
   if (!nameRegex.test(name.trim())) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Please enter a valid name (2-50 characters, letters only).',
       field: 'name'
     });
   }
-  
+
   // Password strength validation
   if (password.length < 6) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Password must be at least 6 characters long.',
       field: 'password'
     });
   }
-  
+
   try {
     const result = await pool.query('SELECT email FROM users WHERE email = $1', [email.toLowerCase()]);
     const existingUsers = result.rows;
     if (existingUsers.length > 0) {
-      return res.status(409).json({ 
+      return res.status(409).json({
         message: 'Email already in use.',
         field: 'email'
       });
     }
-    
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const profileData = JSON.stringify({
       name: name.trim(),
@@ -156,19 +156,19 @@ router.post('/signup', signupRateLimit, async (req, res) => {
 
     // Reset rate limit on successful signup
     resetRateLimit(req, 'signup');
-    
+
     const token = generateToken({ email: email.toLowerCase(), role: 'USER', profileData: { name: name.trim() } });
-    res.status(201).json({ 
-      token, 
-      user: { 
-        email: email.toLowerCase(), 
-        role: 'USER', 
-        profileData: { name: name.trim() } 
-      } 
+    res.status(201).json({
+      token,
+      user: {
+        email: email.toLowerCase(),
+        role: 'USER',
+        profileData: { name: name.trim() }
+      }
     });
   } catch (error) {
     console.error('Signup Error:', error);
-    res.status(500).json({ 
+    res.status(500).json({
       message: 'Internal server error during signup.',
       field: 'server'
     });
@@ -192,10 +192,10 @@ router.post('/login', loginRateLimit, async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
     user = parseUser(user);
-    
+
     // Reset rate limit on successful login
     resetRateLimit(req, 'login');
-    
+
     const token = generateToken(user);
     delete user.password;
     res.json({ token, user });

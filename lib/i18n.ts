@@ -237,6 +237,7 @@ const translations: Record<string, Record<Language, string>> = {
   stopReading: { en: 'Stop Reading', fa: 'توقف خواندن' },
   speechError: { en: 'Could not generate audio. Please try again.', fa: 'تولید صدا ممکن نبود. لطفاً دوباره امتحان کنید.' },
   chapter: { en: 'Chapter', fa: 'فصل' },
+  reset: { en: 'Reset', fa: 'بازنشانی' },
   present: { en: 'Present', fa: 'ارائه' },
   stopPresentation: { en: 'Stop Presentation', fa: 'توقف ارائه' },
   presentationMode: { en: 'Presentation Mode', fa: 'حالت ارائه' },

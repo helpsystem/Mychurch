@@ -161,7 +161,7 @@ const EnhancedWorshipSongs: React.FC = () => {
             <div className="flex gap-2 flex-wrap">
               {(song as any).presentationFileUrl && (
                 <a
-                  href={`http://localhost:3001${(song as any).presentationFileUrl}`}
+                  href={(song as any).presentationFileUrl}
                   download
                   className="flex items-center gap-1 px-3 py-1.5 bg-orange-600 hover:bg-orange-700 rounded-lg transition-colors text-xs"
                 >
@@ -172,7 +172,7 @@ const EnhancedWorshipSongs: React.FC = () => {
               
               {(song as any).pdfFileUrl && (
                 <a
-                  href={`http://localhost:3001${(song as any).pdfFileUrl}`}
+                  href={(song as any).pdfFileUrl}
                   download
                   className="flex items-center gap-1 px-3 py-1.5 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors text-xs"
                 >
@@ -183,7 +183,7 @@ const EnhancedWorshipSongs: React.FC = () => {
               
               {(song as any).sheetMusicUrl && (
                 <a
-                  href={`http://localhost:3001${(song as any).sheetMusicUrl}`}
+                  href={(song as any).sheetMusicUrl}
                   download
                   className="flex items-center gap-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 rounded-lg transition-colors text-xs"
                 >
@@ -257,7 +257,7 @@ const EnhancedWorshipSongs: React.FC = () => {
             <div className="absolute left-0 top-full mt-2 bg-black-gradient border border-white/10 rounded-lg shadow-lg hidden group-hover:block z-10 min-w-[150px]">
               {(song as any).presentationFileUrl && (
                 <a
-                  href={`http://localhost:3001${(song as any).presentationFileUrl}`}
+                  href={(song as any).presentationFileUrl}
                   download
                   className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 text-sm whitespace-nowrap"
                 >
@@ -267,7 +267,7 @@ const EnhancedWorshipSongs: React.FC = () => {
               )}
               {(song as any).pdfFileUrl && (
                 <a
-                  href={`http://localhost:3001${(song as any).pdfFileUrl}`}
+                  href={(song as any).pdfFileUrl}
                   download
                   className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 text-sm whitespace-nowrap"
                 >
@@ -277,7 +277,7 @@ const EnhancedWorshipSongs: React.FC = () => {
               )}
               {(song as any).sheetMusicUrl && (
                 <a
-                  href={`http://localhost:3001${(song as any).sheetMusicUrl}`}
+                  href={(song as any).sheetMusicUrl}
                   download
                   className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 text-sm whitespace-nowrap"
                 >

@@ -115,6 +115,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'pages', label: t('pages'), icon: <FileText/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'content', label: t('footerLinkContent'), icon: <Settings/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
+            { id: 'worship-health', label: lang === 'fa' ? '📊 وضعیت سرودها' : '📊 Songs Health', icon: <BarChart2/>, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'], externalLink: '/#/admin/worship-health' },
             { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare/>, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'letters', label: t('navLetters'), icon: <Mail/>, roles: ['SUPER_ADMIN'] },
             { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle/>, roles: ['SUPER_ADMIN', 'MANAGER'] },

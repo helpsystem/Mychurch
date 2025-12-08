@@ -4,6 +4,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Chapter } from "./BilingualBiblePresentation";
+import { Play, Pause } from "lucide-react";
 
 interface ReadAlongViewProps {
   chapter: Chapter;
@@ -14,6 +15,10 @@ interface ReadAlongViewProps {
   bookName: string;
   playing: boolean;
   onPlayPause: () => void;
+  onStop: () => void; // ✨ NEW: Stop handler
+  viewMode: 'both' | 'fa' | 'en'; // ✨ NEW
+  highlightColor: string; // ✨ NEW
+  audioRef: React.RefObject<HTMLAudioElement>; // ✨ NEW: Shared audio ref
 }
 
 const ReadAlongView: React.FC<ReadAlongViewProps> = ({
@@ -25,8 +30,12 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
   bookName,
   playing,
   onPlayPause,
+  onStop,
+  viewMode,
+  highlightColor,
+  audioRef // Use shared audio ref
 }) => {
-  const audioPlayerRef = useRef<HTMLAudioElement>(null);
+  // Remove local audioPlayerRef - use shared one
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [allWords, setAllWords] = useState<Array<{ word: string; verseNumber: number; wordIndex: number }>>([]);
@@ -35,20 +44,20 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
   useEffect(() => {
     const words: Array<{ word: string; verseNumber: number; wordIndex: number }> = [];
     let wordIndex = 0;
-    
+
     chapter.verses.forEach((verse) => {
       const verseWords = verse.text_fa.split(/\s+/).filter(w => w.length > 0);
       verseWords.forEach((word) => {
         words.push({ word, verseNumber: verse.verseNumber, wordIndex: wordIndex++ });
       });
     });
-    
+
     setAllWords(words);
   }, [chapter]);
 
   // Setup audio player
   useEffect(() => {
-    const audio = audioPlayerRef.current;
+    const audio = audioRef.current; // Use shared ref
     if (!audio || !audioUrl) return;
 
     audio.src = audioUrl;
@@ -66,20 +75,20 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
       audio.removeEventListener('durationchange', handleDurationChange);
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
-  }, [audioUrl]);
+  }, [audioUrl, audioRef]);
 
   // Auto-play when audio URL changes
   useEffect(() => {
-    if (audioUrl && playing && audioPlayerRef.current) {
-      audioPlayerRef.current.play().catch((err) => {
+    if (audioUrl && playing && audioRef.current) {
+      audioRef.current.play().catch((err) => {
         console.error('Auto-play failed:', err);
       });
     }
-  }, [audioUrl, playing]);
+  }, [audioUrl, playing, audioRef]);
 
   // Play/Pause control
   useEffect(() => {
-    const audio = audioPlayerRef.current;
+    const audio = audioRef.current;
     if (!audio) return;
 
     if (playing) {
@@ -87,13 +96,17 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
     } else {
       audio.pause();
     }
-  }, [playing]);
+  }, [playing, audioRef]);
 
   // Calculate current word index based on time and speed
+  // NOTE: This is a simplified linear approximation. Real karaoke needs precise timestamps.
   const currentWordIndex = Math.floor(currentTime * wordsPerSecond);
 
   // Scroll current word into view
   useEffect(() => {
+    // Only scroll if we are tracking words (Fa mode)
+    // If in En mode, we might want to scroll verses instead? 
+    // For now, this logic applies primarily to Farsi since our karaoke engine is Fa-based.
     const currentWordEl = document.getElementById(`word-${currentWordIndex}`);
     if (currentWordEl) {
       currentWordEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -110,14 +123,14 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
 
   // Seek handler
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioPlayerRef.current;
+    const audio = audioRef.current;
     if (!audio || !duration) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = x / rect.width;
     audio.currentTime = percentage * duration;
-  };
+  };;
 
   if (!audioUrl) {
     return (
@@ -129,8 +142,8 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
             این فصل فایل صوتی ندارد. لطفاً یکی از کتاب‌های زیر را انتخاب کنید:
           </p>
           <p className="text-sm text-neutral-500 mt-4">
-            • همه کتاب‌های عهد جدید (27 کتاب)<br/>
-            • مزامیر (Psalms)<br/>
+            • همه کتاب‌های عهد جدید (27 کتاب)<br />
+            • مزامیر (Psalms)<br />
             • امثال (Proverbs)
           </p>
         </div>
@@ -138,20 +151,25 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
     );
   }
 
+  // Determine grid columns based on viewMode
+  const gridClass = viewMode === 'both' ? 'grid md:grid-cols-2 gap-8' : 'grid grid-cols-1 max-w-4xl mx-auto';
+
   return (
     <div className="h-full flex flex-col bg-gradient-to-br from-purple-50 to-pink-50" dir="rtl">
-      {/* Audio Player (hidden) */}
-      <audio ref={audioPlayerRef} className="hidden" />
+      {/* Shared Audio Player (hidden) - controlled by parent */}
+      <audio ref={audioRef} className="hidden" />
 
       {/* Header with controls */}
-      <div className="bg-white/90 backdrop-blur shadow-md px-6 py-4 flex items-center justify-between">
+      <div className="bg-white/90 backdrop-blur shadow-md px-6 py-4 flex items-center justify-between z-10">
         <div className="flex items-center gap-4">
           <div className="text-lg font-bold text-purple-700">{bookName} - فصل {chapter.chapterNumber}</div>
-          <div className="text-sm text-neutral-600">
-            {allWords.length} کلمه
-          </div>
+          {(viewMode === 'fa' || viewMode === 'both') && (
+            <div className="text-sm text-neutral-600">
+              {allWords.length} کلمه
+            </div>
+          )}
         </div>
-        
+
         <div className="flex items-center gap-3">
           <label className="text-sm text-neutral-700">سرعت:</label>
           <input
@@ -166,57 +184,81 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
           <span className="text-sm font-mono bg-purple-100 px-2 py-1 rounded">
             {wordsPerSecond.toFixed(1)}
           </span>
-          <span className="text-xs text-neutral-500">کلمه/ثانیه</span>
+          <span className="text-xs text-neutral-500">ک/ث</span>
         </div>
       </div>
 
-      {/* Info banner */}
-      <div className="bg-purple-100 text-purple-800 text-center py-2 text-sm">
-        <span className="font-semibold">💡 نکته:</span> سرعت بهینه برای فارسی: 1.5 تا 1.7 کلمه در ثانیه
-      </div>
-
-      {/* Verses with word-by-word highlighting */}
+      {/* Verses Container */}
       <div className="flex-1 overflow-y-auto p-8">
-        {chapter.verses.map((verse) => {
-          const verseWords = verse.text_fa.split(/\s+/).filter(w => w.length > 0);
-          const startWordIndex = allWords.findIndex(w => w.verseNumber === verse.verseNumber);
+        <div className={gridClass}>
 
-          return (
-            <div key={verse.verseNumber} className="mb-6 bg-white rounded-2xl p-6 shadow-sm">
-              <span className="inline-block text-purple-600 font-bold text-3xl ml-3 align-top">
-                {verse.verseNumber}
-              </span>
-              <div className="inline" style={{ fontSize: `${fontScale * 1.2}rem`, lineHeight: 2 }}>
-                {verseWords.map((word, idx) => {
-                  const globalWordIndex = startWordIndex + idx;
-                  const isActive = globalWordIndex === currentWordIndex;
-                  const isCompleted = globalWordIndex < currentWordIndex;
+          {/* LEFT COLUMN: ENGLISH (only if 'both' or 'en') */}
+          {(viewMode === 'both' || viewMode === 'en') && (
+            <div className="space-y-6" dir="ltr">
+              {chapter.verses.map((verse) => {
+                // Estimate active verse based on word index? 
+                // Since we track Farsi words, we need to map Farsi Word Index -> Verse Index
+                const verseWords = verse.text_fa.split(/\s+/).filter(w => w.length > 0);
+                const startWordIndex = allWords.findIndex(w => w.verseNumber === verse.verseNumber);
+                const endWordIndex = startWordIndex + verseWords.length;
+                const isVerseActive = currentWordIndex >= startWordIndex && currentWordIndex < endWordIndex;
 
-                  return (
-                    <span
-                      key={idx}
-                      id={`word-${globalWordIndex}`}
-                      className={`inline-block mx-1 px-2 py-1 rounded-lg transition-all duration-300 ${
-                        isActive
-                          ? 'bg-yellow-300 text-black font-bold scale-110 shadow-lg'
-                          : isCompleted
-                          ? 'bg-purple-100 text-purple-800'
-                          : 'text-neutral-700'
-                      }`}
-                      style={{ fontFamily: '"B Homa", ui-sans-serif, system-ui' }}
-                    >
-                      {word}
+                return (
+                  <div key={`en-${verse.verseNumber}`}
+                    className={`p-6 rounded-2xl transition-all duration-500 ${isVerseActive ? 'bg-white shadow-lg scale-105 border-l-4' : 'bg-white/40 opacity-80'}`}
+                    style={{ borderColor: isVerseActive ? highlightColor : 'transparent' }}
+                  >
+                    <span className="text-sky-600 font-bold text-xl mr-3">{verse.verseNumber}</span>
+                    <span className="text-lg text-neutral-800 leading-relaxed font-serif">
+                      {verse.text_en}
                     </span>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
+          )}
+
+          {/* RIGHT COLUMN: FARSI (only if 'both' or 'fa') */}
+          {(viewMode === 'both' || viewMode === 'fa') && (
+            <div className="space-y-6">
+              {chapter.verses.map((verse) => {
+                const verseWords = verse.text_fa.split(/\s+/).filter(w => w.length > 0);
+                const startWordIndex = allWords.findIndex(w => w.verseNumber === verse.verseNumber);
+                const endWordIndex = startWordIndex + verseWords.length;
+                const isVerseActive = currentWordIndex >= startWordIndex && currentWordIndex < endWordIndex;
+
+                return (
+                  <div key={`fa-${verse.verseNumber}`}
+                    className={`p-6 rounded-2xl transition-all duration-500 ${isVerseActive ? 'bg-white shadow-lg scale-105 border-r-4' : 'bg-white/40 opacity-80'}`}
+                    style={{ borderColor: isVerseActive ? highlightColor : 'transparent' }}
+                  >
+                    <span className="text-purple-600 font-bold text-xl ml-3">{verse.verseNumber}</span>
+                    <span className="text-lg text-neutral-800 leading-relaxed font-serif">
+                      {verseWords.map((word, idx) => {
+                        const wordGlobalIndex = startWordIndex + idx;
+                        const isWordActive = wordGlobalIndex === currentWordIndex;
+                        return (
+                          <span
+                            key={`word-${wordGlobalIndex}`}
+                            id={`word-${wordGlobalIndex}`}
+                            className={`transition-all duration-300 ${isWordActive ? 'font-extrabold text-purple-800 scale-105' : ''}`}
+                            style={{ backgroundColor: isWordActive ? highlightColor + '40' : 'transparent' }}
+                          >
+                            {word}{' '}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Bottom audio controls */}
-      <div className="bg-white/95 backdrop-blur border-t border-neutral-200 px-6 py-4">
+      <div className="bg-white/95 backdrop-blur border-t border-neutral-200 px-6 py-4 z-50">
         {/* Progress bar */}
         <div
           className="w-full h-3 bg-neutral-200 rounded-full cursor-pointer mb-3 overflow-hidden"
@@ -242,15 +284,12 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
           </button>
 
           <div className="text-sm text-neutral-500">
-            کلمه {currentWordIndex + 1} از {allWords.length}
+            {viewMode !== 'en' && `کلمه ${currentWordIndex + 1} از ${allWords.length}`}
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-// Import Play and Pause icons
-import { Play, Pause } from "lucide-react";
 
 export default ReadAlongView;

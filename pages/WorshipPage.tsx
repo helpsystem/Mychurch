@@ -7,6 +7,7 @@ import { Youtube, FileText, FileMusic } from 'lucide-react';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
 import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
+import UniversalAudioPlayer from '../components/UniversalAudioPlayer';
 import ChordLyricsDisplay from '../components/ChordLyricsDisplay';
 
 // 🔹 تایپ برای فایل timing
@@ -730,28 +731,17 @@ const WorshipPage: React.FC = () => {
 
               {songs[selectedSongIndex].audioUrl ? (
                 <>
-                  <LocalAudioPlayerWithSyncedLyrics
+                  <UniversalAudioPlayer
                     audioUrl={songs[selectedSongIndex].audioUrl}
                     lyrics={filterLyrics(songs[selectedSongIndex].lyrics?.fa || songs[selectedSongIndex].lyrics?.en || '')}
-                    lyricLines={timingData?.lines.map(line => ({
-                      time: line.start,
-                      text: line.line,
-                      words: line.words
-                    }))}
+                    timingPath={`/worship/data/timings/song_${songs[selectedSongIndex].id}_timing.json`}
                     lang={lang}
                     title={songs[selectedSongIndex].title?.[lang]}
                     artist={songs[selectedSongIndex].artist}
+                    autoLoadTiming={true}
+                    enableManualSync={true}
+                    showTimingControls={true}
                   />
-                  {loadingTiming && (
-                    <div className="mt-2 text-sm text-yellow-400">
-                      ⏳ {lang === 'fa' ? 'در حال بارگذاری timing...' : 'Loading timing...'}
-                    </div>
-                  )}
-                  {timingData && (
-                    <div className="mt-2 text-sm text-green-400">
-                      ✅ {lang === 'fa' ? 'Timing دقیق فعال است' : 'Precise timing enabled'}
-                    </div>
-                  )}
                   {songs[selectedSongIndex].youtubeId && (
                     <div className="mt-4">
                       <a
@@ -1006,6 +996,46 @@ const WorshipPage: React.FC = () => {
                 >
                   {/* دکمه‌های بالای راست */}
                   <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+                    {/* دکمه Generate Timing */}
+                    <button
+                      onClick={async () => {
+                        try {
+                          const btn = document.activeElement as HTMLButtonElement;
+                          btn.disabled = true;
+                          btn.innerHTML = '⏳';
+                          
+                          const response = await fetch(`/api/timing/generate/${activeSong.id}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              lyrics: activeSong.lyrics?.fa || activeSong.lyrics?.en || '',
+                              title: activeSong.title?.fa || activeSong.title?.en || '',
+                              artist: activeSong.artist || '',
+                              duration: 180
+                            })
+                          });
+                          
+                          const data = await response.json();
+                          
+                          if (data.success) {
+                            alert(lang === 'fa' ? '✅ Timing ساخته شد! صفحه رفرش میشه...' : '✅ Timing generated! Refreshing...');
+                            window.location.reload();
+                          } else {
+                            alert(`❌ Error: ${data.error}`);
+                            btn.disabled = false;
+                            btn.innerHTML = '🎵';
+                          }
+                        } catch (error) {
+                          console.error('Error generating timing:', error);
+                          alert('❌ Failed to generate timing');
+                        }
+                      }}
+                      className="bg-green-600 hover:bg-green-700 text-white rounded-full w-12 h-12 hover:scale-110 transition-transform flex items-center justify-center text-2xl font-bold shadow-lg"
+                      title={lang === 'fa' ? 'ساخت Timing خودکار' : 'Generate Auto Timing'}
+                    >
+                      🎵
+                    </button>
+                    
                     {/* دکمه فرستادن به صفحه دوم */}
                     <button
                       onClick={() => {
@@ -1049,26 +1079,17 @@ const WorshipPage: React.FC = () => {
                   {/* اولویت با پلیر صوتی + متن هایلایت شده */}
                   {activeSong.audioUrl ? (
                     <>
-                      <LocalAudioPlayerWithSyncedLyrics
+                      <UniversalAudioPlayer
                         audioUrl={activeSong.audioUrl}
                         lyrics={filterLyrics(activeSong.lyrics?.fa || activeSong.lyrics?.en || '')}
-                        lyricLines={timingData?.lines.map(line => ({
-                          time: line.start,
-                          text: line.line,
-                          words: line.words
-                        }))}
-                        chords={(activeSong as any)?.chords}
-                        notation={activeSong.notation}
+                        timingPath={`/worship/data/timings/song_${activeSong.id}_timing.json`}
                         lang={lang}
                         title={activeSong.title?.[lang]}
                         artist={activeSong.artist}
-                        showChords={false}
+                        autoLoadTiming={true}
+                        enableManualSync={true}
+                        showTimingControls={true}
                       />
-                      {timingData && (
-                        <div className="mt-2 text-sm text-green-400 text-center">
-                          ✅ {lang === 'fa' ? 'Timing دقیق فعال است' : 'Precise timing enabled'}
-                        </div>
-                      )}
                       {/* لینک یوتیوب اگر موجود باشد */}
                       {activeSong.youtubeId && (
                         <div className="mt-4 text-center">

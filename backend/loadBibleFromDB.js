@@ -29,10 +29,10 @@ class BibleDatabaseLoader {
         FROM bible_books 
         ORDER BY book_number;
       `;
-      
+
       const result = await pool.query(query);
       this.books = result.rows;
-      
+
       console.log(`✓ Loaded ${this.books.length} Bible books`);
       return this.books;
     } catch (error) {
@@ -70,10 +70,10 @@ class BibleDatabaseLoader {
           AND bv.translation_id = $2
         ORDER BY bv.verse_number;
       `;
-      
+
       // For now, we'll use chapter_id directly as chapter number (needs refinement)
       const result = await pool.query(chapterQuery, [chapter, translationId]);
-      
+
       console.log(`✓ Loaded ${result.rows.length} verses for ${bookCode} Chapter ${chapter} (${translation})`);
       return result.rows;
     } catch (error) {
@@ -86,13 +86,13 @@ class BibleDatabaseLoader {
   async loadBilingualChapter(bookCode, chapter) {
     try {
       console.log(`[DEBUG] Loading ${bookCode} Chapter ${chapter}...`);
-      
-      // IMPROVED: Try English (trans 8) + Persian (trans 2), with fallback
+
+      // IMPROVED: Prioritize Mojdeh (ID 1) for Persian as it is standard Iranian Farsi
       // Translation 8 = English (NET)
-      // Translation 2 = Persian (qadim - most complete)
+      // Translation 1 = Persian (Mojdeh - Modern Iranian)
       // Translation 9 = English fallback
-      // Translation 1 = Persian fallback
-      
+      // Translation 2 = Persian fallback (Qadim - Old Version)
+
       const query = `
         SELECT 
           COALESCE(en.verse_number, fa.verse_number, en2.verse_number, fa2.verse_number) as verse_number,
@@ -109,7 +109,7 @@ class BibleDatabaseLoader {
           SELECT bv.verse_number, bv.text_fa, bv.text_en, bv.chapter_id
           FROM bible_verses bv
           INNER JOIN bible_chapters bc ON bv.chapter_id = bc.id
-          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 2
+          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 1
         ) fa ON en.verse_number = fa.verse_number
         FULL OUTER JOIN (
           SELECT bv.verse_number, bv.text_en, bv.text_fa, bv.chapter_id
@@ -121,7 +121,7 @@ class BibleDatabaseLoader {
           SELECT bv.verse_number, bv.text_fa, bv.text_en, bv.chapter_id
           FROM bible_verses bv
           INNER JOIN bible_chapters bc ON bv.chapter_id = bc.id
-          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 1
+          WHERE bc.book_iso = $1 AND bc.chapter_number = $2 AND bv.translation_id = 2
         ) fa2 ON COALESCE(en.verse_number, fa.verse_number, en2.verse_number) = fa2.verse_number
         ORDER BY COALESCE(en.verse_number, fa.verse_number, en2.verse_number, fa2.verse_number);
       `;
@@ -137,7 +137,7 @@ class BibleDatabaseLoader {
         fa: row.fa || ''
       }));
 
-      console.log(`✓ Loaded ${bilingualVerses.length} bilingual verses for ${bookCode} ${chapter} (EN: trans 8/9, FA: trans 2/1 fallback)`);
+      console.log(`✓ Loaded ${bilingualVerses.length} bilingual verses for ${bookCode} ${chapter} (EN: trans 8/9, FA: trans 1/2 fallback)`);
       return bilingualVerses;
     } catch (error) {
       console.error(`Error loading bilingual chapter ${bookCode} ${chapter}:`, error);
@@ -184,7 +184,7 @@ class BibleDatabaseLoader {
 // Example usage and tests
 async function runTests() {
   console.log('\n=== Bible Database Loader Test (Updated) ===\n');
-  
+
   const loader = new BibleDatabaseLoader();
 
   try {
@@ -199,7 +199,7 @@ async function runTests() {
     // Test loading a chapter (Genesis 1 in bilingual)
     console.log('\nLoading Genesis Chapter 1 (Bilingual from bible_verses)...');
     const gen1 = await loader.loadBilingualChapter('GEN', 1);
-    
+
     if (gen1.length > 0) {
       console.log('\nSample verses:');
       console.log('Verse 1 (EN):', gen1[0].en?.substring(0, 60) + '...');
@@ -210,11 +210,11 @@ async function runTests() {
     console.log('\nLoading John Chapter 3 (Bilingual)...');
     const john3 = await loader.loadBilingualChapter('JHN', 3);
     console.log(`Found ${john3.length} verses (expected: 36)`);
-    
+
     if (john3.length > 0) {
       console.log('John 3:2 (EN):', john3[0]?.en?.substring(0, 80) || 'EMPTY');
       console.log('John 3:2 (FA):', john3[0]?.fa?.substring(0, 80) || 'EMPTY');
-      
+
       // Try to find verse 16
       const v16 = john3.find(v => v.verse_number === 16);
       if (v16) {

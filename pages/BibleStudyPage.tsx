@@ -27,8 +27,8 @@ interface BibleContent {
   };
   chapter: number;
   verses: {
-    fa: string[];  
-    en: string[];  
+    fa: string[];
+    en: string[];
   };
   translation: string;
   note?: string;
@@ -50,7 +50,7 @@ const BOOKS_WITH_AUDIO = ['GEN']; // Will expand as more books are generated
 const BibleStudyPage: React.FC = () => {
   const { lang } = useLanguage();
   const audioRef = useRef<HTMLAudioElement>(null);
-  
+
   // State
   const [books, setBooks] = useState<BibleBook[]>([]);
   const [selectedBook, setSelectedBook] = useState<string>('GEN');
@@ -62,7 +62,7 @@ const BibleStudyPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [showTranslations, setShowTranslations] = useState<boolean>(false);
-  
+
   // Audio state
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playingVerse, setPlayingVerse] = useState<number | null>(null);
@@ -95,26 +95,28 @@ const BibleStudyPage: React.FC = () => {
   const loadContent = async () => {
     setLoading(true);
     setError('');
-    
+
     try {
       const response = await axios.get(`/api/bible/content/${selectedBook}/${selectedChapter}`);
       setContent(response.data);
       setLoading(false);
     } catch (err) {
       console.error('Error loading content:', err);
-      setError(lang === 'fa' ? 'خطا در بارگذاری محتوا' : 'Error loading content');
-      setLoading(false);
     }
   };
 
   const getAudioUrl = (book: string, chapter: number, verse: number) => {
-    return `/public/audio/bible/edge-tts/${book}/${chapter}/${verse}.mp3`;
+    // ❌ EDGE-TTS DISABLED
+    // return `/public/audio/bible/edge-tts/${book}/${chapter}/${verse}.mp3`;
+    return null;
   };
 
   const playVerse = (verseNum: number) => {
     if (!audioRef.current) return;
-    
+
     const audioUrl = getAudioUrl(selectedBook, selectedChapter, verseNum);
+    if (!audioUrl) return; // Don't play if no URL (TTS disabled)
+
     audioRef.current.src = audioUrl;
     audioRef.current.play()
       .then(() => {
@@ -138,7 +140,7 @@ const BibleStudyPage: React.FC = () => {
 
   const handleAudioEnded = () => {
     setIsPlaying(false);
-    
+
     if (autoPlayChapter && content) {
       if (selectedVerse < content.verses.fa.length) {
         setTimeout(() => {
@@ -169,25 +171,25 @@ const BibleStudyPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
-        
+
         {/* Header */}
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-6 shadow-2xl">
           <h1 className="text-4xl font-bold text-white text-center mb-2">
             {lang === 'fa' ? '📖 مطالعه کتاب مقدس' : '📖 Bible Study'}
           </h1>
           <p className="text-white/80 text-center">
-            {lang === 'fa' 
-              ? 'خواندن، گوش دادن و مطالعه کلام خدا' 
+            {lang === 'fa'
+              ? 'خواندن، گوش دادن و مطالعه کلام خدا'
               : 'Read, Listen and Study the Word of God'}
           </p>
         </div>
 
         {/* Controls */}
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-6 shadow-2xl">
-          
+
           {/* Book, Chapter, Verse Selection */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            
+
             {/* Book */}
             <div>
               <label className="block text-white font-semibold mb-2">
@@ -264,7 +266,7 @@ const BibleStudyPage: React.FC = () => {
             <span>{showTranslations ? '▲' : '▼'}</span>
             <span>{lang === 'fa' ? 'انتخاب ترجمه' : 'Select Translation'}</span>
           </button>
-          
+
           {showTranslations && (
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -310,7 +312,7 @@ const BibleStudyPage: React.FC = () => {
                 >
                   ▶️ {lang === 'fa' ? 'پخش آیه' : 'Play Verse'}
                 </button>
-                
+
                 <button
                   onClick={playFullChapter}
                   disabled={autoPlayChapter}
@@ -318,7 +320,7 @@ const BibleStudyPage: React.FC = () => {
                 >
                   📖 {lang === 'fa' ? 'پخش کل فصل' : 'Play Chapter'}
                 </button>
-                
+
                 <button
                   onClick={() => {
                     setAutoPlayChapter(false);
@@ -338,7 +340,7 @@ const BibleStudyPage: React.FC = () => {
                     <span>{selectedVerse} / {content.verses.fa.length}</span>
                   </div>
                   <div className="bg-white/20 rounded-full h-3 overflow-hidden">
-                    <div 
+                    <div
                       className="bg-green-500 h-full transition-all"
                       style={{ width: `${(selectedVerse / content.verses.fa.length) * 100}%` }}
                     />
@@ -368,14 +370,14 @@ const BibleStudyPage: React.FC = () => {
             {/* Book Title */}
             <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-6 text-center mb-6">
               <h2 className="text-3xl font-bold text-white">
-                {lang === 'fa' ? content.book.name.fa : content.book.name.en} - 
+                {lang === 'fa' ? content.book.name.fa : content.book.name.en} -
                 {lang === 'fa' ? ` فصل ${content.chapter}` : ` Chapter ${content.chapter}`}
               </h2>
             </div>
 
             {/* Bilingual Content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              
+
               {/* Persian */}
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8" dir="rtl">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/30">
@@ -384,26 +386,24 @@ const BibleStudyPage: React.FC = () => {
                     {TRANSLATIONS_FA.find(t => t.key === selectedTranslationFa)?.name}
                   </span>
                 </div>
-                
+
                 <div className="space-y-3">
                   {content.verses.fa.map((verse, i) => {
                     const verseNum = i + 1;
                     const isCurrentlyPlaying = playingVerse === verseNum;
                     const isSelected = selectedVerse === verseNum;
-                    
+
                     return (
                       <div
                         key={i}
                         onClick={() => audioAvailable && playVerse(verseNum)}
-                        className={`p-4 rounded-lg transition-all ${
-                          audioAvailable ? 'cursor-pointer' : ''
-                        } ${
-                          isCurrentlyPlaying
+                        className={`p-4 rounded-lg transition-all ${audioAvailable ? 'cursor-pointer' : ''
+                          } ${isCurrentlyPlaying
                             ? 'bg-yellow-300/40 border-2 border-yellow-400 shadow-xl animate-pulse'
                             : isSelected
-                            ? 'bg-purple-300/30 border-2 border-purple-400'
-                            : 'bg-white/5 hover:bg-white/10 border-2 border-transparent'
-                        }`}
+                              ? 'bg-purple-300/30 border-2 border-purple-400'
+                              : 'bg-white/5 hover:bg-white/10 border-2 border-transparent'
+                          }`}
                       >
                         <div className="flex items-start gap-3">
                           <span className={`font-bold text-xl ${isCurrentlyPlaying ? 'text-yellow-300' : 'text-purple-300'}`}>
@@ -425,26 +425,24 @@ const BibleStudyPage: React.FC = () => {
                     {TRANSLATIONS_EN.find(t => t.key === selectedTranslationEn)?.name}
                   </span>
                 </div>
-                
+
                 <div className="space-y-3">
                   {content.verses.en.map((verse, i) => {
                     const verseNum = i + 1;
                     const isCurrentlyPlaying = playingVerse === verseNum;
                     const isSelected = selectedVerse === verseNum;
-                    
+
                     return (
                       <div
                         key={i}
                         onClick={() => audioAvailable && playVerse(verseNum)}
-                        className={`p-4 rounded-lg transition-all ${
-                          audioAvailable ? 'cursor-pointer' : ''
-                        } ${
-                          isCurrentlyPlaying
+                        className={`p-4 rounded-lg transition-all ${audioAvailable ? 'cursor-pointer' : ''
+                          } ${isCurrentlyPlaying
                             ? 'bg-yellow-300/40 border-2 border-yellow-400 shadow-xl animate-pulse'
                             : isSelected
-                            ? 'bg-purple-300/30 border-2 border-purple-400'
-                            : 'bg-white/5 hover:bg-white/10 border-2 border-transparent'
-                        }`}
+                              ? 'bg-purple-300/30 border-2 border-purple-400'
+                              : 'bg-white/5 hover:bg-white/10 border-2 border-transparent'
+                          }`}
                       >
                         <div className="flex items-start gap-3">
                           <span className={`font-bold text-xl ${isCurrentlyPlaying ? 'text-yellow-300' : 'text-purple-300'}`}>
@@ -474,7 +472,7 @@ const BibleStudyPage: React.FC = () => {
               >
                 ⏮️ {lang === 'fa' ? 'فصل قبلی' : 'Previous'}
               </button>
-              
+
               <button
                 onClick={() => {
                   if (selectedChapter < (currentBook?.chapters || 50)) {

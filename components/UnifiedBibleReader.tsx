@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { 
-  BookOpen, 
-  ChevronLeft, 
-  ChevronRight, 
-  Play, 
-  Pause, 
+import {
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
   Square,
   Volume2,
   ZoomIn,
@@ -16,13 +16,17 @@ import {
   Book
 } from 'lucide-react';
 import { api } from '../lib/api';
+import { BIBLE_AUDIO_BASE_URL, BIBLE_TIMING_BASE_URL } from '../lib/constants';
 import FlipBookBible from './FlipBookBible';
+import BibleKaraokeView from './BibleKaraokeView';
+import { Mic2 } from 'lucide-react';
 
 interface BibleBook {
   key: string;
   name: { en: string; fa: string };
   chapters: number;
   testament: 'OT' | 'NT';
+  hasAudio?: boolean;
 }
 
 interface BibleVerse {
@@ -38,11 +42,13 @@ interface Translation {
   language: string;
   isDefault: boolean;
   sortOrder: number;
+  hasAudio?: boolean;
 }
 
 const UnifiedBibleReader: React.FC = () => {
   const { lang, setLang } = useLanguage();
-  
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+
   // Persian book names mapping
   const persianBookNames: { [key: string]: string } = {
     'GEN': 'پیدایش', 'EXO': 'خروج', 'LEV': 'لاویان', 'NUM': 'اعداد', 'DEU': 'تثنیه',
@@ -60,7 +66,7 @@ const UnifiedBibleReader: React.FC = () => {
     'PHM': 'فلیمون', 'HEB': 'عبرانیان', 'JAS': 'یعقوب', '1PE': 'اول پطرس', '2PE': 'دوم پطرس',
     '1JN': 'اول یوحنا', '2JN': 'دوم یوحنا', '3JN': 'سوم یوحنا', 'JUD': 'یهودا', 'REV': 'مکاشفه'
   };
-  
+
   // Core State
   const [translations, setTranslations] = useState<Translation[]>([]);
   const [selectedTranslation, setSelectedTranslation] = useState<string>('');
@@ -77,7 +83,8 @@ const UnifiedBibleReader: React.FC = () => {
   // Settings
   const [fontSize, setFontSize] = useState(18);
   const [isBilingual, setIsBilingual] = useState(false);
-  
+  const [viewMode, setViewMode] = useState<'book' | 'karaoke'>('book');
+
   // Audio
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVerse, setCurrentVerse] = useState<number | null>(null);
@@ -162,7 +169,7 @@ const UnifiedBibleReader: React.FC = () => {
     try {
       setIsLoading(true);
       setError(null);
-      
+
       const data = await api.get<{
         success: boolean;
         book?: { key: string; name: { en: string; fa: string } };
@@ -171,18 +178,18 @@ const UnifiedBibleReader: React.FC = () => {
         translation?: { code: string; name: { en: string; fa: string } };
         message?: string;
       }>(`/api/bible/content/${selectedBookKey}/${selectedChapter}`);
-      
+
       console.log('✅ Verses loaded:', data);
-      
+
       if (data.success && data.verses) {
         const faList: string[] = Array.isArray(data.verses.fa) ? data.verses.fa : [];
         const enList: string[] = Array.isArray(data.verses.en) ? data.verses.en : [];
         const maxLen = Math.max(faList.length, enList.length);
-        
+
         // Debug: Check if en and fa are swapped or same
         console.log('📊 Sample verse 1 - FA:', faList[0]?.substring(0, 50));
         console.log('📊 Sample verse 1 - EN:', enList[0]?.substring(0, 50));
-        
+
         const formattedVerses: BibleVerse[] = Array.from({ length: maxLen }, (_, i) => ({
           number: i + 1,
           text: {
@@ -190,14 +197,14 @@ const UnifiedBibleReader: React.FC = () => {
             en: enList[i] || ''
           }
         }));
-        
+
         console.log(`✅ Loaded ${formattedVerses.length} verses`);
         setVerses(formattedVerses);
         setStep('reading');
       } else {
         throw new Error(data.message || 'Invalid API response for verses');
       }
-      
+
     } catch (err: any) {
       const errorMessage = `خطا در بارگذاری آیات: ${err.message}`;
       setError(errorMessage);
@@ -230,106 +237,72 @@ const UnifiedBibleReader: React.FC = () => {
     console.log('📄 فصل انتخاب شد:', chapter);
   };
 
-  // Audio functions - Read aloud based on site language
+  // Audio functions - Play from HiDrive
   const speakChapter = () => {
-    if (!('speechSynthesis' in window)) {
-      console.warn('⚠️ Speech synthesis not supported in this browser');
-      return;
-    }
-    
     if (isPlaying) {
-      console.log('🛑 Stopping speech...');
-      window.speechSynthesis.cancel();
+      console.log('🛑 Stopping audio...');
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
       setIsPlaying(false);
       setCurrentVerse(null);
       return;
     }
-    
-    if (!verses || verses.length === 0) {
-      console.warn('⚠️ No verses to read');
-      return;
+
+    // Construct Audio URL
+    // Assumption: Audio files are stored as: BASE_URL/lang/BookKey/Chapter.mp3
+    // Example: .../bible/audio/en/GEN/1.mp3
+    // You may need to adjust this mapping based on your actual file structure on HiDrive
+    const audioUrl = `${BIBLE_AUDIO_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.mp3`;
+
+    console.log('▶️ Playing audio from:', audioUrl);
+
+    if (!audioRef.current) {
+      audioRef.current = new Audio(audioUrl);
+    } else {
+      audioRef.current.src = audioUrl;
     }
-    
-    console.log('▶️ Starting speech...');
-    
-    // Speak verse by verse for better highlighting
-    let index = 0;
-    let shouldStop = false; // Flag to prevent continuing after stop
-    
-    const speakNext = () => {
-      // Check if we should stop
-      if (shouldStop || index >= verses.length) {
-        setIsPlaying(false);
-        setCurrentVerse(null);
-        console.log('✅ Speech completed or stopped');
-        return;
-      }
-      
-      const v = verses[index];
-      setCurrentVerse(v.number);
-      
-      // Get text based on site language (not bilingual toggle)
-      const text = lang === 'fa' ? (v.text.fa || v.text.en) : (v.text.en || v.text.fa);
-      
-      if (!text || text.trim() === '') {
-        console.warn(`⚠️ Empty text for verse ${v.number}`);
-        index += 1;
-        speakNext();
-        return;
-      }
-      
-      console.log(`🔊 Reading verse ${v.number}: ${text.substring(0, 50)}...`);
-      
-      const u = new SpeechSynthesisUtterance(`آیه ${v.number}. ${text}`);
-      u.lang = lang === 'fa' ? 'fa-IR' : 'en-US';
-      u.rate = 0.9;
-      u.pitch = 1.0;
-      u.volume = 1.0;
-      
-      u.onend = () => {
-        if (!shouldStop) {
-          index += 1;
-          speakNext();
-        }
-      };
-      
-      u.onerror = (e) => {
-        // Only continue if error is not 'canceled' or 'interrupted'
-        if (e.error !== 'canceled' && e.error !== 'interrupted') {
-          console.error('❌ Speech error:', e.error);
-          if (!shouldStop) {
-            index += 1;
-            speakNext();
-          }
-        } else {
-          console.log('🛑 Speech canceled');
-          shouldStop = true;
-        }
-      };
-      
-      window.speechSynthesis.speak(u);
+
+    audioRef.current.play().then(() => {
+      setIsPlaying(true);
+    }).catch(err => {
+      console.error("Error playing audio:", err);
+      // Fallback to TTS if audio file fails?
+      // For now, just log error.
+      alert(lang === 'fa' ? 'فایل صوتی یافت نشد.' : 'Audio file not found.');
+      setIsPlaying(false);
+    });
+
+    audioRef.current.onended = () => {
+      setIsPlaying(false);
+      setCurrentVerse(null);
     };
-    
-    setIsPlaying(true);
-    speakNext();
-    
-    // Set up a cleanup function to stop speech when component unmounts or stops
-    return () => {
-      shouldStop = true;
-      window.speechSynthesis.cancel();
-    };
+
+    // Optional: Update current verse based on time (requires timing data)
+    // For now, we just play the chapter audio.
   };
 
-  // Navigation
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+
+  // Navigation & Helpers
   const currentBook = books.find(b => b.key === selectedBookKey);
+  const currentTranslation = translations.find(t => t.code === selectedTranslation);
   const maxChapters = currentBook?.chapters || 1;
-  
+  const hasAudio = Boolean(currentBook?.hasAudio && currentTranslation?.hasAudio);
+
   const goToNextChapter = () => {
     if (selectedChapter < maxChapters) {
       handleChapterChange(selectedChapter + 1);
     }
   };
-  
+
   const goToPrevChapter = () => {
     if (selectedChapter > 1) {
       handleChapterChange(selectedChapter - 1);
@@ -360,7 +333,7 @@ const UnifiedBibleReader: React.FC = () => {
           <div className="text-red-500 text-6xl mb-4">⚠️</div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">خطا در بارگذاری</h2>
           <p className="text-gray-600 mb-4">{error}</p>
-          <button 
+          <button
             onClick={resetToTranslations}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
@@ -390,8 +363,8 @@ const UnifiedBibleReader: React.FC = () => {
           </div>
           <div className="mt-8 flex justify-center space-x-1">
             <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-            <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+            <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
           </div>
         </div>
       </div>
@@ -399,12 +372,13 @@ const UnifiedBibleReader: React.FC = () => {
   }
 
   // Debug log
-  console.log('🔄 UnifiedBibleReader render:', { 
-    step, 
+  console.log('🔄 UnifiedBibleReader render:', {
+    step,
     selectedTranslation,
-    books: books.length, 
-    error, 
-    isLoading 
+    books: books.length,
+    error,
+    isLoading,
+    hasAudio
   });
 
   // Simple fallback for testing
@@ -418,7 +392,7 @@ const UnifiedBibleReader: React.FC = () => {
               <div>
                 <h3 className="text-lg font-medium text-red-800 mb-2">خطا در بارگذاری</h3>
                 <p className="text-red-700">{error}</p>
-                <button 
+                <button
                   onClick={() => window.location.reload()}
                   className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors"
                 >
@@ -456,7 +430,7 @@ const UnifiedBibleReader: React.FC = () => {
             {/* Modern Controls */}
             <div className="flex items-center gap-4">
               {/* Read Aloud Button */}
-              {step === 'reading' && verses.length > 0 && (
+              {step === 'reading' && verses.length > 0 && hasAudio && (
                 <button
                   onClick={speakChapter}
                   className={`
@@ -499,8 +473,8 @@ const UnifiedBibleReader: React.FC = () => {
                 onClick={() => setIsBilingual(!isBilingual)}
                 className={`
                   p-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border-2
-                  ${isBilingual 
-                    ? 'bg-gradient-to-r from-green-100 to-emerald-100 border-green-300 text-green-700 hover:from-green-200 hover:to-emerald-200' 
+                  ${isBilingual
+                    ? 'bg-gradient-to-r from-green-100 to-emerald-100 border-green-300 text-green-700 hover:from-green-200 hover:to-emerald-200'
                     : 'bg-gradient-to-r from-gray-100 to-gray-200 border-gray-300 text-gray-600 hover:from-gray-200 hover:to-gray-300'}
                 `}
                 title="نمایش دو زبانه"
@@ -512,6 +486,27 @@ const UnifiedBibleReader: React.FC = () => {
                   </span>
                 </div>
               </button>
+              {/* Karaoke Mode Toggle */}
+              {step === 'reading' && hasAudio && (
+                <button
+                  onClick={() => setViewMode(viewMode === 'book' ? 'karaoke' : 'book')}
+                  className={`
+                    p-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border-2
+                    ${viewMode === 'karaoke'
+                      ? 'bg-gradient-to-r from-purple-100 to-fuchsia-100 border-purple-300 text-purple-700 hover:from-purple-200 hover:to-fuchsia-200'
+                      : 'bg-gradient-to-r from-gray-100 to-gray-200 border-gray-300 text-gray-600 hover:from-gray-200 hover:to-gray-300'}
+                  `}
+                  title="حالت کارائوکه"
+                >
+                  <div className="flex items-center gap-2">
+                    <Mic2 className="w-5 h-5" />
+                    <span className="text-sm font-medium">
+                      {viewMode === 'karaoke' ? 'کارائوکه' : 'کتاب'}
+                    </span>
+                  </div>
+                </button>
+              )}
+              {/* Translation Quick Selector */}
               {/* Translation Quick Selector */}
               {translations.length > 0 && (
                 <div className="flex items-center gap-2 bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 rounded-xl p-2">
@@ -532,7 +527,7 @@ const UnifiedBibleReader: React.FC = () => {
           </div>
           {/* Modern Breadcrumb Navigation */}
           <div className="flex items-center gap-3 mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
-            <button 
+            <button
               onClick={resetToTranslations}
               className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-blue-50 text-blue-700 hover:text-blue-800 rounded-lg border border-blue-200 hover:border-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
             >
@@ -542,7 +537,7 @@ const UnifiedBibleReader: React.FC = () => {
             {selectedTranslation && (
               <>
                 <ChevronLeft className="w-5 h-5 text-blue-400" />
-                <button 
+                <button
                   onClick={backToBooks}
                   className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-blue-50 text-blue-700 hover:text-blue-800 rounded-lg border border-blue-200 hover:border-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
@@ -563,39 +558,113 @@ const UnifiedBibleReader: React.FC = () => {
               </>
             )}
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      < div className="max-w-6xl mx-auto px-4 py-6" >
         {/* Step 0: Translation Selection */}
+        {/* Step 0: Professional Translation Selection */}
         {step === 'translations' && (
-          <div className="space-y-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-100 p-8">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent mb-3">
-                  انتخاب ترجمه
-                </h2>
-                <p className="text-gray-600 text-lg">
-                  لطفاً ترجمه مورد نظر را انتخاب کنید
-                </p>
+          <div className="space-y-12 animate-fadeIn">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent mb-4 drop-shadow-sm">
+                {lang === 'fa' ? 'انتخاب ترجمه' : 'Select Translation'}
+              </h2>
+              <p className="text-gray-600 text-xl font-light">
+                {lang === 'fa' ? 'لطفاً نسخه مورد نظر خود را انتخاب کنید' : 'Please select your preferred version'}
+              </p>
+            </div>
+
+            {/* Persian Translations Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-green-100 rounded-2xl shadow-inner">
+                  <span className="text-2xl">🇮🇷</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 border-b-2 border-green-200 pb-2 pr-4 pl-12 inline-block">
+                  {lang === 'fa' ? 'ترجمه‌های فارسی' : 'Persian Translations'}
+                </h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {translations.map((t) => (
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {translations.filter(t => t.language === 'fa').map((t) => (
                   <button
                     key={t.code}
                     onClick={() => handleTranslationSelect(t.code)}
-                    className={`group p-6 border-2 rounded-xl shadow-md transition-all duration-300 text-left ${selectedTranslation === t.code ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50'}`}
+                    className={`
+                      group relative overflow-hidden p-6 rounded-2xl border transition-all duration-300 text-right
+                      ${selectedTranslation === t.code
+                        ? 'bg-gradient-to-br from-green-50 to-emerald-100 border-green-500 shadow-lg scale-105 ring-2 ring-green-200'
+                        : 'bg-white/80 backdrop-blur-md border-white/50 hover:border-green-300 hover:shadow-xl hover:-translate-y-1'}
+                    `}
                   >
-                    <div className="font-bold text-lg mb-2 text-blue-700 group-hover:text-blue-900">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-green-500 transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+                    <div className="flex justify-between items-start mb-3">
+                      <span className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                        {t.code}
+                      </span>
+                      {t.hasAudio && (
+                        <span className="bg-blue-100 text-blue-700 p-1 rounded-full" title="دارای فایل صوتی">
+                          <Volume2 className="w-3 h-3" />
+                        </span>
+                      )}
+                      {t.isDefault && (
+                        <span className="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                          ★ {lang === 'fa' ? 'پیش‌فرض' : 'Default'}
+                        </span>
+                      )}
+                    </div>
+                    <h4 className="font-bold text-xl text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
                       {lang === 'fa' ? t.name.fa : t.name.en}
-                    </div>
-                    <div className="text-sm text-gray-600 mb-2">
+                    </h4>
+                    <p className="text-sm text-gray-600 leading-relaxed opacity-90 group-hover:opacity-100">
                       {lang === 'fa' ? t.description.fa : t.description.en}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* English Translations Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-blue-100 rounded-2xl shadow-inner">
+                  <span className="text-2xl">🇺🇸</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 border-b-2 border-blue-200 pb-2 pr-4 pl-12 inline-block">
+                  {lang === 'fa' ? 'ترجمه‌های انگلیسی' : 'English Translations'}
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {translations.filter(t => t.language === 'en').map((t) => (
+                  <button
+                    key={t.code}
+                    onClick={() => handleTranslationSelect(t.code)}
+                    className={`
+                      group relative overflow-hidden p-6 rounded-2xl border transition-all duration-300 text-left
+                      ${selectedTranslation === t.code
+                        ? 'bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-500 shadow-lg scale-105 ring-2 ring-blue-200'
+                        : 'bg-white/80 backdrop-blur-md border-white/50 hover:border-blue-300 hover:shadow-xl hover:-translate-y-1'}
+                    `}
+                  >
+                    <div className="absolute top-0 right-0 w-1 h-full bg-blue-500 transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+                    <div className="flex justify-between items-start mb-3">
+                      <span className="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                        {t.code}
+                      </span>
+                      {t.hasAudio && (
+                        <span className="bg-blue-100 text-blue-700 p-1 rounded-full" title="Audio Available">
+                          <Volume2 className="w-3 h-3" />
+                        </span>
+                      )}
                     </div>
-                    <div className="flex gap-2 text-xs">
-                      <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{t.language.toUpperCase()}</span>
-                      {t.isDefault && <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full">پیش‌فرض</span>}
-                    </div>
+                    <h4 className="font-bold text-xl text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                      {t.name.en}
+                    </h4>
+                    <p className="text-sm text-gray-600 leading-relaxed opacity-90 group-hover:opacity-100">
+                      {t.description.en}
+                    </p>
                   </button>
                 ))}
               </div>
@@ -603,103 +672,144 @@ const UnifiedBibleReader: React.FC = () => {
           </div>
         )}
         {/* Step 1: Modern Book Selection */}
-        {step === 'books' && (
-          <div className="space-y-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-100 p-8">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent mb-3">
-                  انتخاب کتاب
-                </h2>
-                <p className="text-gray-600 text-lg">
-                  {books.length} کتاب در دسترس است
-                </p>
-              </div>
-              {/* Old Testament */}
-              <div className="mb-12">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1 h-8 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
-                  <h3 className="text-2xl font-bold text-gray-800">عهد عتیق</h3>
-                  <div className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm">
-                    {books.filter(book => book.testament === 'OT').length} کتاب
+        {
+          step === 'books' && (
+            <div className="space-y-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-100 p-8">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent mb-3">
+                    انتخاب کتاب
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    {books.length} کتاب در دسترس است
+                  </p>
+                </div>
+                {/* Old Testament */}
+                <div className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-1 h-8 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
+                    <h3 className="text-2xl font-bold text-gray-800">عهد عتیق</h3>
+                    <div className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm">
+                      {books.filter(book => book.testament === 'OT').length} کتاب
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    {books.filter(book => book.testament === 'OT').map((book) => (
+                      <button
+                        key={book.key}
+                        onClick={() => handleBookSelect(book.key)}
+                        className="group relative p-4 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:shadow-md transition-all duration-300 text-center"
+                      >
+                        {book.hasAudio && (
+                          <div className="absolute top-2 right-2 text-amber-600 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <Volume2 size={14} />
+                          </div>
+                        )}
+                        <div className="font-bold text-gray-800 mb-2 group-hover:text-amber-700 transition-colors">
+                          {lang === 'fa' ? persianBookNames[book.key] || book.name.fa : book.name.en}
+                        </div>
+                        <div className="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full">
+                          {book.chapters} فصل
+                        </div>
+                      </button>
+                    ))}
                   </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                  {books.filter(book => book.testament === 'OT').map((book) => (
-                    <button
-                      key={book.key}
-                      onClick={() => handleBookSelect(book.key)}
-                      className="group p-4 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:shadow-md transition-all duration-300 text-center"
-                    >
-                      <div className="font-bold text-gray-800 mb-2 group-hover:text-amber-700 transition-colors">
-                        {lang === 'fa' ? persianBookNames[book.key] || book.name.fa : book.name.en}
-                      </div>
-                      <div className="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full">
-                        {book.chapters} فصل
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              {/* New Testament */}
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1 h-8 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
-                  <h3 className="text-2xl font-bold text-gray-800">عهد جدید</h3>
-                  <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-                    {books.filter(book => book.testament === 'NT').length} کتاب
+                {/* New Testament */}
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-1 h-8 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
+                    <h3 className="text-2xl font-bold text-gray-800">عهد جدید</h3>
+                    <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                      {books.filter(book => book.testament === 'NT').length} کتاب
+                    </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                  {books.filter(book => book.testament === 'NT').map((book) => (
-                    <button
-                      key={book.key}
-                      onClick={() => handleBookSelect(book.key)}
-                      className="group p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all duration-300 text-center"
-                    >
-                      <div className="font-bold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">
-                        {lang === 'fa' ? persianBookNames[book.key] || book.name.fa : book.name.en}
-                      </div>
-                      <div className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                        {book.chapters} فصل
-                      </div>
-                    </button>
-                  ))}
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    {books.filter(book => book.testament === 'NT').map((book) => (
+                      <button
+                        key={book.key}
+                        onClick={() => handleBookSelect(book.key)}
+                        className="group relative p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all duration-300 text-center"
+                      >
+                        {book.hasAudio && (
+                          <div className="absolute top-2 right-2 text-blue-600 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <Volume2 size={14} />
+                          </div>
+                        )}
+                        <div className="font-bold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">
+                          {lang === 'fa' ? persianBookNames[book.key] || book.name.fa : book.name.en}
+                        </div>
+                        <div className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                          {book.chapters} فصل
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-        {/* Step 3: FlipBook Bible Reading */}
-        {step === 'reading' && (
-          <FlipBookBible
-            verses={verses}
-            currentBook={currentBook}
-            selectedChapter={selectedChapter}
-            maxChapters={maxChapters}
-            isBilingual={isBilingual}
-            fontSize={fontSize}
-            isPlaying={isPlaying}
-            currentVerse={currentVerse}
-            onChapterChange={handleChapterChange}
-            onBilingualToggle={() => {
-              if (lang === 'fa') {
-                setIsBilingual(!isBilingual)
-              }
-            }}
-            onFontSizeChange={setFontSize}
-            onPlay={speakChapter}
-            onStop={() => {
-              window.speechSynthesis.cancel();
-              setIsPlaying(false);
-              setCurrentVerse(null);
-            }}
-            onPrevChapter={goToPrevChapter}
-            onNextChapter={goToNextChapter}
-            onLanguageChange={setLang}
-            lang={lang}
-            persianBookNames={persianBookNames}
-          />
-        )}
+          )
+        }
+        {/* Step 3: Reading View (Book or Karaoke) */}
+        {
+          step === 'reading' && (
+            viewMode === 'karaoke' ? (
+              <BibleKaraokeView
+                verses={verses.map(v => {
+                  const text = lang === 'fa' ? (v.text.fa || v.text.en) : (v.text.en || v.text.fa);
+                  return {
+                    number: v.number,
+                    text: text,
+                    words: text.split(/\s+/).filter(w => w.length > 0)
+                  };
+                })}
+                audioUrl={`${BIBLE_AUDIO_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.mp3`}
+                timingUrl={`${BIBLE_TIMING_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.json`}
+                onPlayStateChange={(playing) => {
+                  setIsPlaying(playing);
+                  if (playing && audioRef.current) {
+                    // Ensure main audio ref is paused if karaoke is playing
+                    audioRef.current.pause();
+                  }
+                }}
+                lang={lang}
+              />
+            ) : (
+              <FlipBookBible
+                verses={verses}
+                currentBook={currentBook}
+                selectedChapter={selectedChapter}
+                maxChapters={maxChapters}
+                isBilingual={isBilingual}
+                fontSize={fontSize}
+                isPlaying={isPlaying}
+                currentVerse={currentVerse}
+                onChapterChange={handleChapterChange}
+                onBilingualToggle={() => {
+                  if (lang === 'fa') {
+                    setIsBilingual(!isBilingual)
+                  }
+                }}
+                onFontSizeChange={setFontSize}
+                onPlay={speakChapter}
+                onStop={() => {
+                  // ❌ TTS DISABLED - فقط audio از Hidrive
+                  if (audioRef.current) {
+                    audioRef.current.pause();
+                    audioRef.current.currentTime = 0;
+                  }
+                  setIsPlaying(false);
+                  setCurrentVerse(null);
+                }}
+                onPrevChapter={goToPrevChapter}
+                onNextChapter={goToNextChapter}
+                onLanguageChange={setLang}
+                lang={lang}
+                persianBookNames={persianBookNames}
+              />
+            )
+          )
+        }
       </div>
     </div>
   );

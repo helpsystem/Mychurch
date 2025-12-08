@@ -26,7 +26,7 @@ interface ChurchImage {
 const CHURCH_IMAGES: ChurchImage[] = [
   {
     id: 1,
-    imagePath: '/church-photos/church-interior-1.jpg', // پنجره شیشه‌ای رنگی
+    imagePath: '/images/Church_interior_worship_space_70ed9ac2.png',
     title: {
       fa: 'محل پرستش مقدس',
       en: 'Sacred Worship Space',
@@ -42,7 +42,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 2,
-    imagePath: '/church-photos/church-interior-2.jpg', // محراب با صلیب
+    imagePath: '/images/jesus-cross-sunset.jpg',
     title: {
       fa: 'نور الهی',
       en: 'Divine Light',
@@ -58,7 +58,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 3,
-    imagePath: '/church-photos/church-interior-3.jpg', // صندلی‌ها و فضای پرستش
+    imagePath: '/images/Church_community_gathering_a97f90e1.png',
     title: {
       fa: 'خانه دعا',
       en: 'House of Prayer',
@@ -74,7 +74,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 4,
-    imagePath: '/church-photos/church-interior-4.jpg', // نورپردازی و فضای معنوی
+    imagePath: '/images/cross-cave-sunset.jpg',
     title: {
       fa: 'صلیب نجات',
       en: 'Cross of Salvation',
@@ -90,7 +90,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 5,
-    imagePath: '/church-photos/church-interior-5.jpg', // منبر و صحنه پرستش
+    imagePath: '/images/Persian_Christian_choir_singing_bfe3adf8.png',
     title: {
       fa: 'پرستش و ستایش',
       en: 'Worship and Praise',
@@ -106,7 +106,7 @@ const CHURCH_IMAGES: ChurchImage[] = [
   },
   {
     id: 6,
-    imagePath: '/church-photos/church-interior-6.jpg', // نمای کامل کلیسا
+    imagePath: '/images/Modern_church_building_exterior_83da6dba.png',
     title: {
       fa: 'جامعه ایمان',
       en: 'Community of Faith',
@@ -200,9 +200,8 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
       {CHURCH_IMAGES.map((image, index) => (
         <div
           key={image.id}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-            index === currentIndex ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+            }`}
           style={{ pointerEvents: index === currentIndex ? 'auto' : 'none' }}
         >
           <img
@@ -211,7 +210,7 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
             className="w-full h-full object-cover"
             loading={index === 0 ? 'eager' : 'lazy'}
           />
-          
+
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         </div>
@@ -220,33 +219,29 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
       {/* Text Content Overlay */}
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10 lg:p-12">
         <div
-          className={`max-w-4xl transition-all duration-700 ${
-            isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-          }`}
+          className={`max-w-4xl transition-all duration-700 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+            }`}
         >
           {/* Title */}
           <h2
-            className={`text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 ${
-              lang === 'fa' ? 'font-persian text-right' : 'text-left'
-            }`}
+            className={`text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 ${lang === 'fa' ? 'font-persian text-right' : 'text-left'
+              }`}
           >
             {currentImage.title[lang]}
           </h2>
 
           {/* Verse */}
           <p
-            className={`text-lg md:text-xl lg:text-2xl text-gray-100 mb-3 leading-relaxed ${
-              lang === 'fa' ? 'font-persian text-right' : 'text-left'
-            }`}
+            className={`text-lg md:text-xl lg:text-2xl text-gray-100 mb-3 leading-relaxed ${lang === 'fa' ? 'font-persian text-right' : 'text-left'
+              }`}
           >
             "{currentImage.verse[lang]}"
           </p>
 
           {/* Reference */}
           <p
-            className={`text-sm md:text-base lg:text-lg text-cyan-300 font-semibold ${
-              lang === 'fa' ? 'font-persian text-right' : 'text-left'
-            }`}
+            className={`text-sm md:text-base lg:text-lg text-cyan-300 font-semibold ${lang === 'fa' ? 'font-persian text-right' : 'text-left'
+              }`}
           >
             {currentImage.reference[lang]}
           </p>
@@ -259,9 +254,8 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
           <button
             onClick={goToPrevious}
             disabled={isTransitioning}
-            className={`absolute top-1/2 -translate-y-1/2 ${
-              lang === 'fa' ? 'right-4' : 'left-4'
-            } z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
+            className={`absolute top-1/2 -translate-y-1/2 ${lang === 'fa' ? 'right-4' : 'left-4'
+              } z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
             aria-label={lang === 'fa' ? 'تصویر قبلی' : 'Previous image'}
           >
             {lang === 'fa' ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
@@ -270,9 +264,8 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
           <button
             onClick={goToNext}
             disabled={isTransitioning}
-            className={`absolute top-1/2 -translate-y-1/2 ${
-              lang === 'fa' ? 'left-4' : 'right-4'
-            } z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
+            className={`absolute top-1/2 -translate-y-1/2 ${lang === 'fa' ? 'left-4' : 'right-4'
+              } z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
             aria-label={lang === 'fa' ? 'تصویر بعدی' : 'Next image'}
           >
             {lang === 'fa' ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
@@ -288,11 +281,10 @@ const AIImageSlider: React.FC<AIImageSliderProps> = ({
               key={index}
               onClick={() => goToSlide(index)}
               disabled={isTransitioning}
-              className={`w-2 h-2 rounded-full transition-all duration-300 disabled:cursor-not-allowed ${
-                index === currentIndex
+              className={`w-2 h-2 rounded-full transition-all duration-300 disabled:cursor-not-allowed ${index === currentIndex
                   ? 'bg-white w-8'
                   : 'bg-white/50 hover:bg-white/75'
-              }`}
+                }`}
               aria-label={`${lang === 'fa' ? 'برو به تصویر' : 'Go to slide'} ${index + 1}`}
             />
           ))}

@@ -23,6 +23,17 @@ const wordprojectRoutes = require('./routes/wordproject');
 const ttsRoutes = require('./routes/tts');
 const audioRoutes = require('./routes/audioRoutes'); // Smart Audio Source Resolver
 const downloadRoutes = require('./routes/downloadRoutes'); // WordProject Downloader
+const bibleLocalRoutes = require('./routes/bibleLocal'); // Local Bible Data (Text + Timestamps)
+
+// Try to load HiDrive routes
+let hidriveRoutes;
+try {
+  hidriveRoutes = require('./routes/hidriveRoutes');
+  console.log('✅ HiDrive routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load HiDrive routes:', error.message);
+  hidriveRoutes = null;
+}
 
 // Try to load Hugging Face TTS routes
 let huggingfaceTTSRoutes;
@@ -76,9 +87,9 @@ app.use('/generated-images', express.static(path.join(__dirname, '..', 'public',
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    ok: true, 
-    uptime: process.uptime(), 
+  res.json({
+    ok: true,
+    uptime: process.uptime(),
     ts: Date.now(),
     mode: 'development',
     version: '1.0.0'
@@ -108,6 +119,11 @@ if (geminiAudioCacheRoutes) {
 app.use('/api/tts', ttsRoutes);
 app.use('/api/audio', audioRoutes); // Smart Audio Source Resolver
 app.use('/api/downloads', downloadRoutes); // WordProject Downloader
+app.use('/api/bible-local', bibleLocalRoutes); // Local Bible Data
+if (hidriveRoutes) {
+  app.use('/api/hidrive', hidriveRoutes); // IONOS HiDrive storage
+  console.log('✅ HiDrive routes registered at /api/hidrive');
+}
 console.log('✅ Smart Audio Source Resolver registered at /api/audio');
 console.log('✅ WordProject Downloader registered at /api/downloads');
 
@@ -133,7 +149,7 @@ app.get('/', (req, res) => {
 // Error handling
 app.use((err, req, res, next) => {
   console.error('❌ Server Error:', err);
-  res.status(500).json({ 
+  res.status(500).json({
     error: 'Internal Server Error',
     message: err.message,
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
@@ -142,7 +158,7 @@ app.use((err, req, res, next) => {
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     error: 'Not Found',
     path: req.path,
     method: req.method
@@ -171,7 +187,7 @@ app.listen(PORT, '0.0.0.0', async () => {
   console.log('   🎨 /api/images/* - Auto-generated images\n');
   console.log('🔧 Mode: Development (No DB initialization)');
   console.log('🔧 Hot reload: nodemon recommended\n');
-  
+
   // Initialize Image Generation Service
   try {
     await imageService.initialize();
