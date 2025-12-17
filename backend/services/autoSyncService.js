@@ -2,6 +2,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
 const { pool } = require('../db-postgres');
 
 // Configuration (defaults are tuned for Gemini free tier; override via env vars)
@@ -34,12 +35,52 @@ class AutoSyncService {
         this.maxRequestsPerMinute = readEnvInt('AUTO_SYNC_MAX_RPM', DEFAULTS.MAX_REQUESTS_PER_MINUTE);
         this.usageFile = process.env.AUTO_SYNC_USAGE_FILE || DEFAULTS.USAGE_FILE;
 
+        const supabaseUrl = process.env.SUPABASE_URL;
+        const supabaseKey =
+            process.env.SUPABASE_SERVICE_KEY ||
+            process.env.VITE_SUPABASE_SERVICE_ROLE_KEY ||
+            process.env.VITE_SUPABASE_ANON_KEY;
+        this.supabase = supabaseUrl && supabaseKey
+            ? createClient(supabaseUrl, supabaseKey, {
+                auth: { autoRefreshToken: false, persistSession: false }
+            })
+            : null;
+
         this._recentRequestTimestamps = [];
         this._usage = this._loadUsage();
     }
 
     async sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    _hasSupabase() {
+        return Boolean(this.supabase);
+    }
+
+    _isDbConnError(err) {
+        const msg = String(err?.message || err);
+        return /ECONNREFUSED|ENOTFOUND|EAI_AGAIN|timeout|connect/i.test(msg);
+    }
+
+    async _supabaseSelectAll(table, select, buildQuery) {
+        // Paginates using range() to avoid default 1k limits
+        const pageSize = 1000;
+        let from = 0;
+        const out = [];
+
+        while (true) {
+            let query = this.supabase.from(table).select(select).range(from, from + pageSize - 1);
+            if (buildQuery) query = buildQuery(query);
+            const { data, error } = await query;
+            if (error) throw error;
+            if (!data || data.length === 0) break;
+            out.push(...data);
+            if (data.length < pageSize) break;
+            from += pageSize;
+        }
+
+        return out;
     }
 
     _todayKey() {
@@ -137,6 +178,18 @@ class AutoSyncService {
         console.log('🔄 Checking for missing Bible timing data...');
         console.log(`⚙️ Bible sync config: batch=${this.batchSize}, delayMs=${this.delayBetweenItemsMs}, maxDaily=${this.maxDailyLimit}, maxRPM=${this.maxRequestsPerMinute}`);
 
+        // Try Postgres first; fallback to Supabase when Postgres isn't reachable.
+        try {
+            await this._syncBibleChaptersPostgres();
+        } catch (err) {
+            if (!this._hasSupabase() || !this._isDbConnError(err)) throw err;
+            console.warn(`⚠️ Postgres not reachable; falling back to Supabase for Bible sync: ${err.message}`);
+            await this._syncBibleChaptersSupabase();
+        }
+    }
+
+    async _syncBibleChaptersPostgres() {
+
         // Find chapters that have audio but NO timing data
         // Assuming bible_audio_files or similar exists, or we iterate known structure
         // For now, let's query bible_verses to get chapters, and join with timing
@@ -193,6 +246,114 @@ class AutoSyncService {
         }
 
         console.log(`✅ Bible sync finished. Attempted ${totalProcessed} chapters this run.`);
+    }
+
+    async _syncBibleChaptersSupabase() {
+        if (!this.supabase) throw new Error('Supabase client is not configured');
+
+        const translations = ['TPV', 'MOJDEH', 'QADIM', 'POV-FAS'];
+        const attempted = new Set();
+        let totalProcessed = 0;
+
+        // Load book list once
+        const { data: books, error: booksErr } = await this.supabase
+            .from('bible_books')
+            .select('code,chapters_count,book_number')
+            .order('book_number', { ascending: true });
+        if (booksErr) throw booksErr;
+
+        for (const translation of translations) {
+            if (this._remainingToday() <= 0) break;
+
+            // Get existing timing keys for this translation
+            const existing = await this._supabaseSelectAll(
+                'bible_audio_timing',
+                'book_code,chapter',
+                (q) => q.eq('translation', translation)
+            );
+            const existingSet = new Set(existing.map(r => `${r.book_code}:${r.chapter}`));
+
+            while (this._remainingToday() > 0) {
+                const candidates = [];
+                for (const book of books || []) {
+                    const bookCode = book.code;
+                    const chaptersCount = Number(book.chapters_count || 0);
+                    if (!bookCode || !chaptersCount) continue;
+                    for (let ch = 1; ch <= chaptersCount; ch += 1) {
+                        if (existingSet.has(`${bookCode}:${ch}`)) continue;
+                        const key = `${translation}:${bookCode}:${ch}`;
+                        if (attempted.has(key)) continue;
+                        candidates.push({ translation, book: bookCode, chapter: ch });
+                        if (candidates.length >= this.batchSize) break;
+                    }
+                    if (candidates.length >= this.batchSize) break;
+                }
+
+                if (candidates.length === 0) break;
+                console.log(`📝 Found ${candidates.length} Bible chapters pending sync via Supabase (${translation}, remainingToday=${this._remainingToday()}).`);
+
+                let progressedThisBatch = false;
+                for (const item of candidates) {
+                    if (this._remainingToday() <= 0) return;
+                    const key = `${item.translation}:${item.book}:${item.chapter}`;
+                    attempted.add(key);
+
+                    const ok = await this._processBibleChapterSupabase(item);
+                    progressedThisBatch = progressedThisBatch || ok;
+                    if (ok) existingSet.add(`${item.book}:${item.chapter}`);
+                    totalProcessed += 1;
+                    await this.sleep(this.delayBetweenItemsMs);
+                }
+
+                if (!progressedThisBatch) break;
+            }
+        }
+
+        console.log(`✅ Bible sync finished (Supabase). Attempted ${totalProcessed} chapters this run.`);
+    }
+
+    async _processBibleChapterSupabase({ book, chapter, translation }) {
+        try {
+            const { data: verses, error } = await this.supabase
+                .from('bible_verses')
+                .select('verse,text')
+                .eq('book', book)
+                .eq('chapter', chapter)
+                .eq('translation', translation)
+                .order('verse', { ascending: true });
+            if (error) throw error;
+            if (!verses || verses.length === 0) {
+                console.warn(`No verses found for ${book} ${chapter} (${translation})`);
+                return false;
+            }
+
+            const audioUrl = await this.resolveAudioUrl(book, chapter, translation);
+            if (!audioUrl) {
+                console.warn(`❌ No audio URL found for ${book} ${chapter} (${translation})`);
+                return false;
+            }
+
+            const timingData = await this.generateTiming(verses, audioUrl, 'bible');
+            const payload = {
+                book_code: book,
+                chapter,
+                translation,
+                audio_url: audioUrl,
+                timing_data: timingData,
+                updated_at: new Date().toISOString()
+            };
+
+            const { error: upsertErr } = await this.supabase
+                .from('bible_audio_timing')
+                .upsert(payload, { onConflict: 'book_code,chapter,translation' });
+            if (upsertErr) throw upsertErr;
+
+            console.log(`✅ Saved timing for ${book} ${chapter} (${translation})`);
+            return true;
+        } catch (err) {
+            console.error(`❌ Failed to process ${book} ${chapter} (${translation}) via Supabase:`, err.message);
+            return false;
+        }
     }
 
     async processBibleChapter({ book, chapter, translation }) {
@@ -262,6 +423,18 @@ class AutoSyncService {
         console.log('🔄 Checking for missing Worship Song timing...');
         console.log(`⚙️ Worship sync config: batch=${this.batchSize}, delayMs=${this.delayBetweenItemsMs}, maxDaily=${this.maxDailyLimit}, maxRPM=${this.maxRequestsPerMinute}`);
 
+        // Try Postgres first; fallback to Supabase when Postgres isn't reachable.
+        try {
+            await this._syncWorshipSongsPostgres();
+        } catch (err) {
+            if (!this._hasSupabase() || !this._isDbConnError(err)) throw err;
+            console.warn(`⚠️ Postgres not reachable; falling back to Supabase for Worship sync: ${err.message}`);
+            await this._syncWorshipSongsSupabase();
+        }
+    }
+
+    async _syncWorshipSongsPostgres() {
+
         // Find songs with audio but no timing
         const query = `
       SELECT id, title_fa, lyrics, audiourl
@@ -305,6 +478,77 @@ class AutoSyncService {
         }
 
         console.log(`✅ Worship sync finished. Attempted ${totalProcessed} songs this run.`);
+    }
+
+    async _syncWorshipSongsSupabase() {
+        if (!this.supabase) throw new Error('Supabase client is not configured');
+
+        const attempted = new Set();
+        let totalProcessed = 0;
+
+        while (this._remainingToday() > 0) {
+            // Note: timing_data may be jsonb or text depending on schema.
+            let query = this.supabase
+                .from('worship_songs')
+                .select('id,title_fa,lyrics,audiourl,timing_data')
+                .not('audiourl', 'is', null)
+                .limit(this.batchSize);
+
+            query = query.or('timing_data.is.null,timing_data.eq.[]');
+
+            const { data: songs, error } = await query;
+            if (error) throw error;
+            if (!songs || songs.length === 0) break;
+
+            console.log(`📝 Found ${songs.length} Worship Songs pending sync via Supabase (remainingToday=${this._remainingToday()}).`);
+
+            let progressedThisBatch = false;
+            for (const song of songs) {
+                if (this._remainingToday() <= 0) return;
+                const key = String(song.id);
+                if (attempted.has(key)) continue;
+                attempted.add(key);
+
+                const ok = await this._processWorshipSongSupabase(song);
+                progressedThisBatch = progressedThisBatch || ok;
+                totalProcessed += 1;
+                await this.sleep(this.delayBetweenItemsMs);
+            }
+
+            if (!progressedThisBatch) break;
+        }
+
+        console.log(`✅ Worship sync finished (Supabase). Attempted ${totalProcessed} songs this run.`);
+    }
+
+    async _processWorshipSongSupabase(song) {
+        console.log(`▶️ Processing Song: ${song.title_fa || song.id}...`);
+        try {
+            const lyrics = typeof song.lyrics === 'string' ? JSON.parse(song.lyrics) : song.lyrics;
+            const text = lyrics?.fa || lyrics?.en;
+            if (!text) {
+                console.warn('No lyrics text found');
+                return false;
+            }
+
+            const result = await this.generateTiming({ text }, song.audiourl, 'worship');
+
+            const { error } = await this.supabase
+                .from('worship_songs')
+                .update({
+                    timing_data: result.timing,
+                    has_timing: true,
+                    timing_updated_at: new Date().toISOString()
+                })
+                .eq('id', song.id);
+            if (error) throw error;
+
+            console.log(`✅ Saved timing for song ${song.id}`);
+            return true;
+        } catch (err) {
+            console.error(`❌ Failed song ${song.id} via Supabase:`, err.message);
+            return false;
+        }
     }
 
     async processWorshipSong(song) {
