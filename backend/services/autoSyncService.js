@@ -620,7 +620,7 @@ class AutoSyncService {
             // Prefer the boolean column; it's cheaper and avoids json comparison quirks.
             const { data: songs, error } = await this.supabase
                 .from('worship_songs')
-                .select('id,title_fa,lyrics,audiourl,has_timing')
+                .select('id,title,lyrics,audiourl,has_timing')
                 .not('audiourl', 'is', null)
                 .or('has_timing.is.null,has_timing.eq.false')
                 .range(0, Math.max(0, this.batchSize - 1));
@@ -656,7 +656,16 @@ class AutoSyncService {
     }
 
     async _processWorshipSongSupabase(song) {
-        console.log(`▶️ Processing Song: ${song.title_fa || song.id}...`);
+        let titleLabel = String(song.id);
+        try {
+            const rawTitle = song.title;
+            const titleObj = typeof rawTitle === 'string' ? JSON.parse(rawTitle) : rawTitle;
+            titleLabel = titleObj?.fa || titleObj?.en || (typeof rawTitle === 'string' ? rawTitle : titleLabel);
+        } catch (e) {
+            // ignore
+        }
+
+        console.log(`▶️ Processing Song: ${titleLabel}...`);
         try {
             const lyrics = typeof song.lyrics === 'string' ? JSON.parse(song.lyrics) : song.lyrics;
             const text = lyrics?.fa || lyrics?.en;

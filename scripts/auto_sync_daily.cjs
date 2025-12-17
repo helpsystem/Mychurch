@@ -11,10 +11,18 @@ async function main() {
         const service = new AutoSyncService();
 
         // 1. Sync Worship Songs
-        await service.syncWorshipSongs();
+        try {
+            await service.syncWorshipSongs();
+        } catch (err) {
+            console.error('⚠️ Worship sync failed (continuing):', err?.message || err);
+        }
 
         // 2. Sync Bible Chapters (timing)
-        await service.syncBibleChapters();
+        try {
+            await service.syncBibleChapters();
+        } catch (err) {
+            console.error('⚠️ Bible sync failed (continuing):', err?.message || err);
+        }
 
         // 3. Export DB to JSON (Ensure "Other Translations" work on frontend)
         console.log('📦 Exporting Bible Database to JSON assets...');
