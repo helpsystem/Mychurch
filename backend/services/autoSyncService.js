@@ -28,7 +28,7 @@ class AutoSyncService {
         if (!apiKey) throw new Error('GEMINI_API_KEY is not set');
 
         this.genAI = new GoogleGenerativeAI(apiKey);
-        this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+        this.model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
         this.batchSize = readEnvInt('AUTO_SYNC_BATCH_SIZE', DEFAULTS.BATCH_SIZE);
         this.delayBetweenItemsMs = readEnvInt('AUTO_SYNC_DELAY_MS', DEFAULTS.DELAY_BETWEEN_ITEMS_MS);
@@ -38,6 +38,10 @@ class AutoSyncService {
         this.usageFile = process.env.AUTO_SYNC_USAGE_FILE || DEFAULTS.USAGE_FILE;
 
         this.publicBaseUrl = (process.env.AUTO_SYNC_PUBLIC_BASE_URL || 'https://samanabyar.online').replace(/\/$/, '');
+
+        // HiDrive credentials for Basic Auth (WebDAV URLs require authentication)
+        this.hidriveUser = process.env.HIDRIVE_USER || '';
+        this.hidrivePassword = process.env.HIDRIVE_PASSWORD || '';
 
         // If DATABASE_URL isn't configured, db-postgres falls back to a lightweight Supabase REST wrapper
         // that does not support many SQL features (LIMIT/JOIN/etc). In that situation, force Supabase paths.
@@ -726,8 +730,15 @@ class AutoSyncService {
     async generateTiming(content, audioUrl, type) {
         // content is { verses: [] } or { text: string }
 
-        const audioRes = await fetch(audioUrl);
-        if (!audioRes.ok) throw new Error('Failed to download audio');
+        // Build fetch options (add Basic Auth for HiDrive URLs)
+        const fetchOptions = {};
+        if (audioUrl.includes('hidrive') && this.hidriveUser && this.hidrivePassword) {
+            const authHeader = 'Basic ' + Buffer.from(`${this.hidriveUser}:${this.hidrivePassword}`).toString('base64');
+            fetchOptions.headers = { 'Authorization': authHeader };
+        }
+
+        const audioRes = await fetch(audioUrl, fetchOptions);
+        if (!audioRes.ok) throw new Error(`Failed to download audio (${audioRes.status} ${audioRes.statusText})`);
         const arrayBuffer = await audioRes.arrayBuffer();
         const base64Audio = Buffer.from(arrayBuffer).toString('base64');
 
