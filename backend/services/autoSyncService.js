@@ -28,7 +28,8 @@ class AutoSyncService {
         if (!apiKey) throw new Error('GEMINI_API_KEY is not set');
 
         this.genAI = new GoogleGenerativeAI(apiKey);
-        this.model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        // Use gemini-2.0-flash (stable, not experimental) for better quota availability
+        this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
         this.batchSize = readEnvInt('AUTO_SYNC_BATCH_SIZE', DEFAULTS.BATCH_SIZE);
         this.delayBetweenItemsMs = readEnvInt('AUTO_SYNC_DELAY_MS', DEFAULTS.DELAY_BETWEEN_ITEMS_MS);
