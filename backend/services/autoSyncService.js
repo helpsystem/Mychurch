@@ -39,6 +39,13 @@ class AutoSyncService {
 
         this.publicBaseUrl = (process.env.AUTO_SYNC_PUBLIC_BASE_URL || 'https://samanabyar.online').replace(/\/$/, '');
 
+        // If DATABASE_URL isn't configured, db-postgres falls back to a lightweight Supabase REST wrapper
+        // that does not support many SQL features (LIMIT/JOIN/etc). In that situation, force Supabase paths.
+        this.forceSupabase = !process.env.DATABASE_URL || process.env.DATABASE_URL_DISABLED === 'true';
+
+        // Local Bible text folder (server: /root/Mychurch/backend/bible_data/text)
+        this.localBibleTextRoot = path.join(__dirname, '..', 'bible_data', 'text');
+
         const supabaseUrl = process.env.SUPABASE_URL;
         const supabaseKey =
             process.env.SUPABASE_SERVICE_KEY ||
@@ -192,6 +199,11 @@ class AutoSyncService {
         console.log('🔄 Checking for missing Bible timing data...');
         console.log(`⚙️ Bible sync config: batch=${this.batchSize}, delayMs=${this.delayBetweenItemsMs}, maxDaily=${this.maxDailyLimit}, maxRPM=${this.maxRequestsPerMinute}`);
 
+        if (this.forceSupabase) {
+            await this._syncBibleChaptersSupabase();
+            return;
+        }
+
         // Try Postgres first; fallback to Supabase when Postgres isn't reachable.
         try {
             await this._syncBibleChaptersPostgres();
@@ -278,17 +290,14 @@ class AutoSyncService {
         let totalProcessed = 0;
         let totalAttempts = 0;
 
-        // Load book list once
-        const { data: books, error: booksErr } = await this.supabase
-            .from('bible_books')
-            .select('code,chapters_count,book_number')
-            .order('book_number', { ascending: true });
-        if (booksErr) throw booksErr;
-
         for (const translation of translations) {
             if (this._remainingToday() <= 0) break;
+            if (totalAttempts >= this.maxItemAttemptsPerRun) break;
 
-            // Get existing timing keys for this translation
+            const translationDir = path.join(this.localBibleTextRoot, translation);
+            if (!fs.existsSync(translationDir)) continue;
+
+            // Get existing timing keys for this translation (so we only process missing)
             const existing = await this._supabaseSelectAll(
                 'bible_audio_timing',
                 'book_code,chapter',
@@ -296,39 +305,57 @@ class AutoSyncService {
             );
             const existingSet = new Set(existing.map(r => `${r.book_code}:${r.chapter}`));
 
-            while (this._remainingToday() > 0) {
+            const bookDirs = fs.readdirSync(translationDir, { withFileTypes: true })
+                .filter(d => d.isDirectory())
+                .map(d => d.name)
+                .sort();
+
+            while (this._remainingToday() > 0 && totalAttempts < this.maxItemAttemptsPerRun) {
                 const candidates = [];
-                for (const book of books || []) {
-                    const bookCode = book.code;
-                    const chaptersCount = Number(book.chapters_count || 0);
-                    if (!bookCode || !chaptersCount) continue;
-                    for (let ch = 1; ch <= chaptersCount; ch += 1) {
-                        if (existingSet.has(`${bookCode}:${ch}`)) continue;
-                        const key = `${translation}:${bookCode}:${ch}`;
+
+                for (const bookCode of bookDirs) {
+                    const bookPath = path.join(translationDir, bookCode);
+                    let chapterFiles = [];
+                    try {
+                        chapterFiles = fs.readdirSync(bookPath, { withFileTypes: true })
+                            .filter(f => f.isFile() && f.name.toLowerCase().endsWith('.json'))
+                            .map(f => f.name);
+                    } catch (e) {
+                        continue;
+                    }
+
+                    const chapters = chapterFiles
+                        .map(name => Number.parseInt(name.replace(/\.json$/i, ''), 10))
+                        .filter(n => Number.isFinite(n) && n > 0)
+                        .sort((a, b) => a - b);
+
+                    for (const chapter of chapters) {
+                        if (existingSet.has(`${bookCode}:${chapter}`)) continue;
+                        const key = `${translation}:${bookCode}:${chapter}`;
                         if (attempted.has(key)) continue;
-                        candidates.push({ translation, book: bookCode, chapter: ch });
+                        candidates.push({ translation, book: bookCode, chapter });
                         if (candidates.length >= this.batchSize) break;
                     }
+
                     if (candidates.length >= this.batchSize) break;
                 }
 
                 if (candidates.length === 0) break;
-                console.log(`📝 Found ${candidates.length} Bible chapters pending sync via Supabase (${translation}, remainingToday=${this._remainingToday()}).`);
+                console.log(`📝 Found ${candidates.length} Bible chapters pending sync via local text (${translation}, remainingToday=${this._remainingToday()}).`);
 
                 let progressedThisBatch = false;
                 for (const item of candidates) {
                     if (this._remainingToday() <= 0) return;
-
                     if (totalAttempts >= this.maxItemAttemptsPerRun) {
                         console.log(`🛑 Max attempts reached for this run (${this.maxItemAttemptsPerRun}). Stopping Bible sync.`);
                         return;
                     }
+
                     const key = `${item.translation}:${item.book}:${item.chapter}`;
                     attempted.add(key);
-
                     totalAttempts += 1;
 
-                    const ok = await this._processBibleChapterSupabase(item);
+                    const ok = await this._processBibleChapterFromLocalTextSupabase(item);
                     progressedThisBatch = progressedThisBatch || ok;
                     if (ok) existingSet.add(`${item.book}:${item.chapter}`);
                     totalProcessed += 1;
@@ -339,7 +366,66 @@ class AutoSyncService {
             }
         }
 
-        console.log(`✅ Bible sync finished (Supabase). Attempted ${totalProcessed} chapters this run.`);
+        console.log(`✅ Bible sync finished (Supabase/local text). Attempted ${totalProcessed} chapters this run.`);
+    }
+
+    async _processBibleChapterFromLocalTextSupabase({ book, chapter, translation }) {
+        console.log(`▶️ Processing ${book} ${chapter} (${translation})...`);
+
+        try {
+            const chapterPath = path.join(this.localBibleTextRoot, translation, book, `${chapter}.json`);
+            if (!fs.existsSync(chapterPath)) {
+                console.warn(`Missing chapter JSON: ${chapterPath}`);
+                return false;
+            }
+
+            const parsed = JSON.parse(fs.readFileSync(chapterPath, 'utf8'));
+            const rawVerses = Array.isArray(parsed?.verses) ? parsed.verses : [];
+            if (rawVerses.length === 0) {
+                console.warn('No verses in chapter JSON');
+                return false;
+            }
+
+            const verses = rawVerses
+                .map((v, index) => {
+                    const verseNum = v.verse ?? v.verseNumber ?? v.verse_number ?? v.verseNumber ?? (index + 1);
+                    const text = v.text ?? v.verse_text ?? v.text_fa ?? v.textFa ?? v.text_en ?? v.textEn;
+                    return { verse: Number(verseNum), text: (text ?? '').toString() };
+                })
+                .filter(v => Number.isFinite(v.verse) && v.text);
+
+            if (verses.length === 0) {
+                console.warn('No usable verses after normalization');
+                return false;
+            }
+
+            const audioUrl = await this.resolveAudioUrl(book, chapter, translation);
+            if (!audioUrl) {
+                console.warn(`❌ No audio URL found for ${book} ${chapter} (${translation})`);
+                return false;
+            }
+
+            const timingData = await this.generateTiming(verses, audioUrl, 'bible');
+            const payload = {
+                book_code: book,
+                chapter,
+                translation,
+                audio_url: audioUrl,
+                timing_data: timingData,
+                updated_at: new Date().toISOString()
+            };
+
+            const { error: upsertErr } = await this.supabase
+                .from('bible_audio_timing')
+                .upsert(payload, { onConflict: 'book_code,chapter,translation' });
+            if (upsertErr) throw upsertErr;
+
+            console.log(`✅ Saved timing for ${book} ${chapter} (${translation})`);
+            return true;
+        } catch (err) {
+            console.error(`❌ Failed to process ${book} ${chapter} (${translation}) from local text:`, err.message);
+            return false;
+        }
     }
 
     async _processBibleChapterSupabase({ book, chapter, translation }) {
@@ -452,6 +538,11 @@ class AutoSyncService {
     async syncWorshipSongs() {
         console.log('🔄 Checking for missing Worship Song timing...');
         console.log(`⚙️ Worship sync config: batch=${this.batchSize}, delayMs=${this.delayBetweenItemsMs}, maxDaily=${this.maxDailyLimit}, maxRPM=${this.maxRequestsPerMinute}`);
+
+        if (this.forceSupabase) {
+            await this._syncWorshipSongsSupabase();
+            return;
+        }
 
         // Try Postgres first; fallback to Supabase when Postgres isn't reachable.
         try {
