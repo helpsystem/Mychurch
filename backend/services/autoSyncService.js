@@ -135,6 +135,7 @@ class AutoSyncService {
     // ----------------------------------------------------------------
     async syncBibleChapters() {
         console.log('🔄 Checking for missing Bible timing data...');
+        console.log(`⚙️ Bible sync config: batch=${this.batchSize}, delayMs=${this.delayBetweenItemsMs}, maxDaily=${this.maxDailyLimit}, maxRPM=${this.maxRequestsPerMinute}`);
 
         // Find chapters that have audio but NO timing data
         // Assuming bible_audio_files or similar exists, or we iterate known structure
@@ -157,19 +158,41 @@ class AutoSyncService {
             LIMIT ${this.batchSize}
     `;
 
-        const res = await pool.query(query);
-        const candidates = res.rows;
+        const attempted = new Set();
+        let totalProcessed = 0;
 
-        console.log(`📝 Found ${candidates.length} Bible chapters pending sync.`);
+        while (this._remainingToday() > 0) {
+            const res = await pool.query(query);
+            const candidates = res.rows;
+            if (candidates.length === 0) break;
 
-        for (const item of candidates) {
-            if (this._remainingToday() <= 0) {
-                console.log(`🛑 Daily limit reached. Stopping Bible sync for today (${this.maxDailyLimit}/day).`);
+            console.log(`📝 Found ${candidates.length} Bible chapters pending sync (remainingToday=${this._remainingToday()}).`);
+
+            let progressedThisBatch = false;
+
+            for (const item of candidates) {
+                if (this._remainingToday() <= 0) {
+                    console.log(`🛑 Daily limit reached. Stopping Bible sync for today (${this.maxDailyLimit}/day).`);
+                    return;
+                }
+
+                const key = `${item.translation}:${item.book}:${item.chapter}`;
+                if (attempted.has(key)) continue;
+                attempted.add(key);
+
+                await this.processBibleChapter(item);
+                progressedThisBatch = true;
+                totalProcessed += 1;
+                await this.sleep(this.delayBetweenItemsMs);
+            }
+
+            if (!progressedThisBatch) {
+                // Avoid looping forever on the same failing items.
                 break;
             }
-            await this.processBibleChapter(item);
-            await this.sleep(this.delayBetweenItemsMs);
         }
+
+        console.log(`✅ Bible sync finished. Attempted ${totalProcessed} chapters this run.`);
     }
 
     async processBibleChapter({ book, chapter, translation }) {
@@ -237,6 +260,7 @@ class AutoSyncService {
     // ----------------------------------------------------------------
     async syncWorshipSongs() {
         console.log('🔄 Checking for missing Worship Song timing...');
+        console.log(`⚙️ Worship sync config: batch=${this.batchSize}, delayMs=${this.delayBetweenItemsMs}, maxDaily=${this.maxDailyLimit}, maxRPM=${this.maxRequestsPerMinute}`);
 
         // Find songs with audio but no timing
         const query = `
@@ -247,19 +271,40 @@ class AutoSyncService {
             LIMIT ${this.batchSize}
     `;
 
-        const res = await pool.query(query);
-        const songs = res.rows;
+        const attempted = new Set();
+        let totalProcessed = 0;
 
-        console.log(`📝 Found ${songs.length} Worship Songs pending sync.`);
+        while (this._remainingToday() > 0) {
+            const res = await pool.query(query);
+            const songs = res.rows;
+            if (songs.length === 0) break;
 
-        for (const song of songs) {
-            if (this._remainingToday() <= 0) {
-                console.log(`🛑 Daily limit reached. Stopping Worship sync for today (${this.maxDailyLimit}/day).`);
+            console.log(`📝 Found ${songs.length} Worship Songs pending sync (remainingToday=${this._remainingToday()}).`);
+
+            let progressedThisBatch = false;
+
+            for (const song of songs) {
+                if (this._remainingToday() <= 0) {
+                    console.log(`🛑 Daily limit reached. Stopping Worship sync for today (${this.maxDailyLimit}/day).`);
+                    return;
+                }
+
+                const key = String(song.id);
+                if (attempted.has(key)) continue;
+                attempted.add(key);
+
+                await this.processWorshipSong(song);
+                progressedThisBatch = true;
+                totalProcessed += 1;
+                await this.sleep(this.delayBetweenItemsMs);
+            }
+
+            if (!progressedThisBatch) {
                 break;
             }
-            await this.processWorshipSong(song);
-            await this.sleep(this.delayBetweenItemsMs);
         }
+
+        console.log(`✅ Worship sync finished. Attempted ${totalProcessed} songs this run.`);
     }
 
     async processWorshipSong(song) {
