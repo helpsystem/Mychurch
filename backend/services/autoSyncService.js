@@ -11,6 +11,7 @@ const DEFAULTS = {
     DELAY_BETWEEN_ITEMS_MS: 5000,
     MAX_DAILY_LIMIT: 1000,
     MAX_REQUESTS_PER_MINUTE: 12,
+    MAX_ITEM_ATTEMPTS_PER_RUN: 300,
     USAGE_FILE: path.join(__dirname, '..', '.cache', 'autoSyncUsage.json')
 };
 
@@ -33,7 +34,10 @@ class AutoSyncService {
         this.delayBetweenItemsMs = readEnvInt('AUTO_SYNC_DELAY_MS', DEFAULTS.DELAY_BETWEEN_ITEMS_MS);
         this.maxDailyLimit = readEnvInt('AUTO_SYNC_MAX_DAILY', DEFAULTS.MAX_DAILY_LIMIT);
         this.maxRequestsPerMinute = readEnvInt('AUTO_SYNC_MAX_RPM', DEFAULTS.MAX_REQUESTS_PER_MINUTE);
+        this.maxItemAttemptsPerRun = readEnvInt('AUTO_SYNC_MAX_ATTEMPTS_PER_RUN', DEFAULTS.MAX_ITEM_ATTEMPTS_PER_RUN);
         this.usageFile = process.env.AUTO_SYNC_USAGE_FILE || DEFAULTS.USAGE_FILE;
+
+        this.publicBaseUrl = (process.env.AUTO_SYNC_PUBLIC_BASE_URL || 'https://samanabyar.online').replace(/\/$/, '');
 
         const supabaseUrl = process.env.SUPABASE_URL;
         const supabaseKey =
@@ -56,6 +60,16 @@ class AutoSyncService {
 
     _hasSupabase() {
         return Boolean(this.supabase);
+    }
+
+    _normalizeUrl(raw) {
+        if (!raw || typeof raw !== 'string') return null;
+        const trimmed = raw.trim();
+        if (!trimmed) return null;
+        if (/^https?:\/\//i.test(trimmed)) return trimmed;
+        // Allow relative URLs stored in DB
+        if (trimmed.startsWith('/')) return `${this.publicBaseUrl}${trimmed}`;
+        return null;
     }
 
     _isDbConnError(err) {
@@ -213,6 +227,7 @@ class AutoSyncService {
 
         const attempted = new Set();
         let totalProcessed = 0;
+        let totalAttempts = 0;
 
         while (this._remainingToday() > 0) {
             const res = await pool.query(query);
@@ -229,9 +244,16 @@ class AutoSyncService {
                     return;
                 }
 
+                if (totalAttempts >= this.maxItemAttemptsPerRun) {
+                    console.log(`🛑 Max attempts reached for this run (${this.maxItemAttemptsPerRun}). Stopping Bible sync.`);
+                    return;
+                }
+
                 const key = `${item.translation}:${item.book}:${item.chapter}`;
                 if (attempted.has(key)) continue;
                 attempted.add(key);
+
+                totalAttempts += 1;
 
                 await this.processBibleChapter(item);
                 progressedThisBatch = true;
@@ -254,6 +276,7 @@ class AutoSyncService {
         const translations = ['TPV', 'MOJDEH', 'QADIM', 'POV-FAS'];
         const attempted = new Set();
         let totalProcessed = 0;
+        let totalAttempts = 0;
 
         // Load book list once
         const { data: books, error: booksErr } = await this.supabase
@@ -295,8 +318,15 @@ class AutoSyncService {
                 let progressedThisBatch = false;
                 for (const item of candidates) {
                     if (this._remainingToday() <= 0) return;
+
+                    if (totalAttempts >= this.maxItemAttemptsPerRun) {
+                        console.log(`🛑 Max attempts reached for this run (${this.maxItemAttemptsPerRun}). Stopping Bible sync.`);
+                        return;
+                    }
                     const key = `${item.translation}:${item.book}:${item.chapter}`;
                     attempted.add(key);
+
+                    totalAttempts += 1;
 
                     const ok = await this._processBibleChapterSupabase(item);
                     progressedThisBatch = progressedThisBatch || ok;
@@ -446,6 +476,7 @@ class AutoSyncService {
 
         const attempted = new Set();
         let totalProcessed = 0;
+        let totalAttempts = 0;
 
         while (this._remainingToday() > 0) {
             const res = await pool.query(query);
@@ -462,9 +493,16 @@ class AutoSyncService {
                     return;
                 }
 
+                if (totalAttempts >= this.maxItemAttemptsPerRun) {
+                    console.log(`🛑 Max attempts reached for this run (${this.maxItemAttemptsPerRun}). Stopping Worship sync.`);
+                    return;
+                }
+
                 const key = String(song.id);
                 if (attempted.has(key)) continue;
                 attempted.add(key);
+
+                totalAttempts += 1;
 
                 await this.processWorshipSong(song);
                 progressedThisBatch = true;
@@ -485,18 +523,16 @@ class AutoSyncService {
 
         const attempted = new Set();
         let totalProcessed = 0;
+        let totalAttempts = 0;
 
         while (this._remainingToday() > 0) {
-            // Note: timing_data may be jsonb or text depending on schema.
-            let query = this.supabase
+            // Prefer the boolean column; it's cheaper and avoids json comparison quirks.
+            const { data: songs, error } = await this.supabase
                 .from('worship_songs')
-                .select('id,title_fa,lyrics,audiourl,timing_data')
+                .select('id,title_fa,lyrics,audiourl,has_timing')
                 .not('audiourl', 'is', null)
-                .limit(this.batchSize);
-
-            query = query.or('timing_data.is.null,timing_data.eq.[]');
-
-            const { data: songs, error } = await query;
+                .or('has_timing.is.null,has_timing.eq.false')
+                .range(0, Math.max(0, this.batchSize - 1));
             if (error) throw error;
             if (!songs || songs.length === 0) break;
 
@@ -505,9 +541,16 @@ class AutoSyncService {
             let progressedThisBatch = false;
             for (const song of songs) {
                 if (this._remainingToday() <= 0) return;
+
+                if (totalAttempts >= this.maxItemAttemptsPerRun) {
+                    console.log(`🛑 Max attempts reached for this run (${this.maxItemAttemptsPerRun}). Stopping Worship sync.`);
+                    return;
+                }
                 const key = String(song.id);
                 if (attempted.has(key)) continue;
                 attempted.add(key);
+
+                totalAttempts += 1;
 
                 const ok = await this._processWorshipSongSupabase(song);
                 progressedThisBatch = progressedThisBatch || ok;
@@ -531,7 +574,13 @@ class AutoSyncService {
                 return false;
             }
 
-            const result = await this.generateTiming({ text }, song.audiourl, 'worship');
+            const audioUrl = this._normalizeUrl(song.audiourl);
+            if (!audioUrl) {
+                console.warn('No valid audio URL');
+                return false;
+            }
+
+            const result = await this.generateTiming({ text }, audioUrl, 'worship');
 
             const { error } = await this.supabase
                 .from('worship_songs')
