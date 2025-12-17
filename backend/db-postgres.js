@@ -1,6 +1,16 @@
 const { Pool } = require('pg');
 const { createClient } = require('@supabase/supabase-js');
-require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
+
+// Prefer backend/.env regardless of current working directory.
+const backendEnvPath = path.join(__dirname, '.env');
+if (fs.existsSync(backendEnvPath)) {
+  dotenv.config({ path: backendEnvPath });
+} else {
+  dotenv.config();
+}
 
 // Check if we have DATABASE_URL (Supabase)
 const databaseUrl = process.env.DATABASE_URL;
