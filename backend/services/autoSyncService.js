@@ -1,11 +1,24 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fetch = require('node-fetch');
+const fs = require('fs');
+const path = require('path');
 const { pool } = require('../db-postgres');
 
-// Configuration
-const BATCH_SIZE = 5; // Process 5 items per run to be safe
-const DELAY_BETWEEN_ITEMS = 10000; // 10 seconds delay
-const MAX_DAILY_LIMIT = 50; // Safety cap
+// Configuration (defaults are tuned for Gemini free tier; override via env vars)
+const DEFAULTS = {
+    BATCH_SIZE: 50,
+    DELAY_BETWEEN_ITEMS_MS: 5000,
+    MAX_DAILY_LIMIT: 1000,
+    MAX_REQUESTS_PER_MINUTE: 12,
+    USAGE_FILE: path.join(__dirname, '..', '.cache', 'autoSyncUsage.json')
+};
+
+function readEnvInt(name, fallback) {
+    const raw = process.env[name];
+    if (raw === undefined || raw === '') return fallback;
+    const n = Number.parseInt(raw, 10);
+    return Number.isFinite(n) ? n : fallback;
+}
 
 class AutoSyncService {
     constructor() {
@@ -14,10 +27,107 @@ class AutoSyncService {
 
         this.genAI = new GoogleGenerativeAI(apiKey);
         this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+        this.batchSize = readEnvInt('AUTO_SYNC_BATCH_SIZE', DEFAULTS.BATCH_SIZE);
+        this.delayBetweenItemsMs = readEnvInt('AUTO_SYNC_DELAY_MS', DEFAULTS.DELAY_BETWEEN_ITEMS_MS);
+        this.maxDailyLimit = readEnvInt('AUTO_SYNC_MAX_DAILY', DEFAULTS.MAX_DAILY_LIMIT);
+        this.maxRequestsPerMinute = readEnvInt('AUTO_SYNC_MAX_RPM', DEFAULTS.MAX_REQUESTS_PER_MINUTE);
+        this.usageFile = process.env.AUTO_SYNC_USAGE_FILE || DEFAULTS.USAGE_FILE;
+
+        this._recentRequestTimestamps = [];
+        this._usage = this._loadUsage();
     }
 
     async sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    _todayKey() {
+        // UTC day key to avoid timezone surprises across servers
+        return new Date().toISOString().slice(0, 10);
+    }
+
+    _loadUsage() {
+        try {
+            const dir = path.dirname(this.usageFile);
+            fs.mkdirSync(dir, { recursive: true });
+            if (!fs.existsSync(this.usageFile)) {
+                const initial = { day: this._todayKey(), requests: 0 };
+                fs.writeFileSync(this.usageFile, JSON.stringify(initial, null, 2), 'utf8');
+                return initial;
+            }
+            const parsed = JSON.parse(fs.readFileSync(this.usageFile, 'utf8'));
+            if (!parsed || typeof parsed !== 'object') throw new Error('invalid usage file');
+            if (parsed.day !== this._todayKey()) {
+                const reset = { day: this._todayKey(), requests: 0 };
+                fs.writeFileSync(this.usageFile, JSON.stringify(reset, null, 2), 'utf8');
+                return reset;
+            }
+            if (typeof parsed.requests !== 'number') parsed.requests = 0;
+            return parsed;
+        } catch (e) {
+            // If the usage file is unreadable, fail safe to a reset counter.
+            return { day: this._todayKey(), requests: 0 };
+        }
+    }
+
+    _persistUsage() {
+        try {
+            const dir = path.dirname(this.usageFile);
+            fs.mkdirSync(dir, { recursive: true });
+            fs.writeFileSync(this.usageFile, JSON.stringify(this._usage, null, 2), 'utf8');
+        } catch (e) {
+            // Non-fatal: quota protection still works in-memory for this run.
+        }
+    }
+
+    _remainingToday() {
+        if (this._usage.day !== this._todayKey()) {
+            this._usage = { day: this._todayKey(), requests: 0 };
+            this._persistUsage();
+        }
+        return Math.max(0, this.maxDailyLimit - this._usage.requests);
+    }
+
+    async _throttleBeforeRequest() {
+        // Daily cap
+        if (this._remainingToday() <= 0) {
+            throw new Error(`Daily Gemini request limit reached (${this.maxDailyLimit}/day)`);
+        }
+
+        // RPM cap
+        const now = Date.now();
+        this._recentRequestTimestamps = this._recentRequestTimestamps.filter(ts => now - ts < 60_000);
+        if (this._recentRequestTimestamps.length >= this.maxRequestsPerMinute) {
+            const oldest = this._recentRequestTimestamps[0];
+            const waitMs = Math.max(0, 60_000 - (now - oldest)) + 250;
+            await this.sleep(waitMs);
+        }
+
+        // Reserve a slot (so concurrent calls don't exceed RPM)
+        this._recentRequestTimestamps.push(Date.now());
+        this._usage.requests += 1;
+        this._persistUsage();
+    }
+
+    async _withRetry(fn, { maxAttempts = 3 } = {}) {
+        let lastErr;
+        for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+            try {
+                return await fn(attempt);
+            } catch (err) {
+                lastErr = err;
+                const msg = String(err?.message || err);
+                const isRate = /429|rate\s*limit|quota/i.test(msg);
+                const isTransient = /503|502|timeout|ECONNRESET|ENOTFOUND|EAI_AGAIN/i.test(msg);
+                if (attempt >= maxAttempts || (!isRate && !isTransient)) throw err;
+
+                const backoffMs = Math.min(60_000, 2000 * (2 ** (attempt - 1)));
+                console.warn(`⏳ Gemini call failed (attempt ${attempt}/${maxAttempts}): ${msg}. Retrying in ${Math.round(backoffMs / 1000)}s...`);
+                await this.sleep(backoffMs);
+            }
+        }
+        throw lastErr;
     }
 
     // ----------------------------------------------------------------
@@ -42,9 +152,9 @@ class AutoSyncService {
         AND v.chapter = t.chapter 
         AND v.translation = t.translation
       WHERE t.id IS NULL
-      AND v.translation IN ('TPV', 'MOJDEH', 'POV-FAS') -- Focus on Persian
+            AND v.translation IN ('TPV', 'MOJDEH', 'QADIM', 'POV-FAS')
       ORDER BY v.book, v.chapter
-      LIMIT ${BATCH_SIZE}
+            LIMIT ${this.batchSize}
     `;
 
         const res = await pool.query(query);
@@ -53,8 +163,12 @@ class AutoSyncService {
         console.log(`📝 Found ${candidates.length} Bible chapters pending sync.`);
 
         for (const item of candidates) {
+            if (this._remainingToday() <= 0) {
+                console.log(`🛑 Daily limit reached. Stopping Bible sync for today (${this.maxDailyLimit}/day).`);
+                break;
+            }
             await this.processBibleChapter(item);
-            await this.sleep(DELAY_BETWEEN_ITEMS);
+            await this.sleep(this.delayBetweenItemsMs);
         }
     }
 
@@ -130,7 +244,7 @@ class AutoSyncService {
       FROM worship_songs
       WHERE (timing_data IS NULL OR timing_data = '[]')
       AND audiourl IS NOT NULL
-      LIMIT ${BATCH_SIZE}
+            LIMIT ${this.batchSize}
     `;
 
         const res = await pool.query(query);
@@ -139,8 +253,12 @@ class AutoSyncService {
         console.log(`📝 Found ${songs.length} Worship Songs pending sync.`);
 
         for (const song of songs) {
+            if (this._remainingToday() <= 0) {
+                console.log(`🛑 Daily limit reached. Stopping Worship sync for today (${this.maxDailyLimit}/day).`);
+                break;
+            }
             await this.processWorshipSong(song);
-            await this.sleep(DELAY_BETWEEN_ITEMS);
+            await this.sleep(this.delayBetweenItemsMs);
         }
     }
 
@@ -187,10 +305,13 @@ class AutoSyncService {
         Return ONLY valid JSON: { "timing": [ { "word": "word1", "startTime": 0, "endTime": 1 } ] }`;
         }
 
-        const result = await this.model.generateContent([
-            { inlineData: { mimeType: 'audio/mpeg', data: base64Audio } },
-            { text: prompt }
-        ]);
+        const result = await this._withRetry(async () => {
+            await this._throttleBeforeRequest();
+            return this.model.generateContent([
+                { inlineData: { mimeType: 'audio/mpeg', data: base64Audio } },
+                { text: prompt }
+            ]);
+        });
 
         let text = result.response.text();
         text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();

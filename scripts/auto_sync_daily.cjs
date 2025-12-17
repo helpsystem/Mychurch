@@ -10,6 +10,9 @@ async function main() {
         // 1. Sync Worship Songs
         await service.syncWorshipSongs();
 
+        // 2. Sync Bible Chapters (timing)
+        await service.syncBibleChapters();
+
         // 3. Export DB to JSON (Ensure "Other Translations" work on frontend)
         console.log('📦 Exporting Bible Database to JSON assets...');
         try {
