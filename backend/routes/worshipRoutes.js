@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
     } else if (file.mimetype.startsWith('video/')) {
       folder = 'videos';
     }
-    
+
     const uploadPath = path.join(__dirname, '../../public/worship', folder);
     if (!fs.existsSync(uploadPath)) {
       fs.mkdirSync(uploadPath, { recursive: true });
@@ -49,7 +49,7 @@ const fileFilter = (req, file, cb) => {
     'image/png',
     'image/gif'
   ];
-  
+
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
@@ -81,7 +81,7 @@ router.get('/', async (req, res) => {
       FROM worship_songs 
       ORDER BY created_at DESC
     `);
-    
+
     const worshipSongs = result.rows.map(song => ({
       id: song.id,
       title: parseJSON(song.title, {}),
@@ -104,7 +104,7 @@ router.get('/', async (req, res) => {
       // lyrics و timingData رو حذف کردیم چون خیلی بزرگ هستند
       // برای دریافت این دو از GET /api/worship-songs/:id استفاده می‌شود
     }));
-    
+
     res.json(worshipSongs);
   } catch (error) {
     console.error('Fetch Worship Songs Error:', error);
@@ -117,11 +117,11 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM worship_songs WHERE id = $1', [id]);
-    
+
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Worship song not found' });
     }
-    
+
     const song = result.rows[0];
     res.json({
       id: song.id,
@@ -156,7 +156,7 @@ router.get('/:id', async (req, res) => {
 // POST /api/worship-songs - ایجاد آهنگ پرستشی جدید
 router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
   const { title, artist, youtubeId, lyrics, audioUrl, videoUrl, presentationFileUrl, pdfFileUrl, sheetMusicUrl, autoSync } = req.body;
-  
+
   if (!title || !artist || !youtubeId) {
     return res.status(400).json({ message: 'Title, artist, and youtubeId are required.' });
   }
@@ -283,7 +283,7 @@ router.delete('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN'), async (r
     }
 
     const song = songResult.rows[0];
-    
+
     // حذف فایل‌ها از دیسک
     const filesToDelete = [
       song.presentation_file_url,
@@ -301,7 +301,7 @@ router.delete('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN'), async (r
 
     // حذف از دیتابیس
     const result = await pool.query('DELETE FROM worship_songs WHERE id = $1', [id]);
-    
+
     res.status(204).send();
   } catch (error) {
     console.error('Delete Worship Song Error:', error);
@@ -331,7 +331,7 @@ router.post('/upload-file', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MA
     }
 
     const fileUrl = `/worship/${folder}/${req.file.filename}`;
-    
+
     res.json({
       success: true,
       fileUrl: fileUrl,
@@ -349,14 +349,14 @@ router.post('/upload-file', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MA
 router.delete('/delete-file', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
   try {
     const { fileUrl } = req.body;
-    
+
     if (!fileUrl) {
       return res.status(400).json({ message: 'آدرس فایل الزامی است' });
     }
 
     const filename = path.basename(fileUrl);
     const filePath = path.join(__dirname, '../public/worship-files', filename);
-    
+
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
       res.json({ success: true, message: 'فایل با موفقیت حذف شد' });
@@ -377,7 +377,7 @@ router.post('/:id/resync', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MAN
 
     // Check if song exists
     const songResult = await pool.query('SELECT * FROM worship_songs WHERE id = $1', [id]);
-    
+
     if (songResult.rows.length === 0) {
       return res.status(404).json({ message: 'Worship song not found' });
     }
@@ -398,7 +398,7 @@ router.post('/:id/resync', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MAN
     `, [id]);
 
     if (existingJob.rows.length > 0) {
-      return res.status(409).json({ 
+      return res.status(409).json({
         message: 'Song is already queued or processing',
         job: existingJob.rows[0]
       });
@@ -446,7 +446,7 @@ router.get('/:id/sync-status', authenticateToken, async (req, res) => {
     `, [id]);
 
     if (jobResult.rows.length === 0) {
-      return res.json({ 
+      return res.json({
         hasJob: false,
         message: 'No sync job found for this song'
       });
@@ -490,8 +490,8 @@ router.get('/health-check', async (req, res) => {
       with_lyrics: songs.filter(s => s.lyrics && (s.lyrics.fa || s.lyrics.en)).length,
       with_timing: songs.filter(s => s.timing_data).length,
       with_chords: songs.filter(s => s.chords).length,
-      fully_complete: songs.filter(s => 
-        s.audiourl && s.audiourl.trim() && 
+      fully_complete: songs.filter(s =>
+        s.audiourl && s.audiourl.trim() &&
         s.lyrics && (s.lyrics.fa || s.lyrics.en) &&
         s.timing_data
       ).length,
@@ -500,7 +500,7 @@ router.get('/health-check', async (req, res) => {
       processing: 0,
       failed: 0
     };
-    
+
     // محاسبه درصدها
     const total = parseInt(stats.total);
     const percentages = {
@@ -529,9 +529,9 @@ router.get('/health-check', async (req, res) => {
         }
       },
       percentages,
-      health: percentages.fullyComplete >= 80 ? 'excellent' : 
-              percentages.fullyComplete >= 60 ? 'good' :
-              percentages.fullyComplete >= 40 ? 'fair' : 'needs_attention'
+      health: percentages.fullyComplete >= 80 ? 'excellent' :
+        percentages.fullyComplete >= 60 ? 'good' :
+          percentages.fullyComplete >= 40 ? 'fair' : 'needs_attention'
     });
 
   } catch (error) {
@@ -553,7 +553,7 @@ router.post('/process-all', async (req, res) => {
     if (error) throw error;
 
     // شمارش سرودهای نیازمند پردازش
-    const incomplete = songs.filter(s => 
+    const incomplete = songs.filter(s =>
       s.audiourl && s.audiourl.trim() &&
       s.lyrics && (s.lyrics.fa || s.lyrics.en) &&
       !s.timing_data
@@ -576,10 +576,10 @@ router.post('/process-all', async (req, res) => {
 
   } catch (error) {
     console.error('Process All Error:', error);
-    res.status(500).json({ 
+    res.status(500).json({
       success: false,
       message: 'Failed to queue songs for processing',
-      error: error.message 
+      error: error.message
     });
   }
 });
@@ -595,10 +595,10 @@ router.get('/incomplete', async (req, res) => {
     if (error) throw error;
 
     const incomplete = songs
-      .filter(song => 
-        !song.audiourl || 
+      .filter(song =>
+        !song.audiourl ||
         !song.audiourl.trim() ||
-        !song.lyrics || 
+        !song.lyrics ||
         (!song.lyrics.fa && !song.lyrics.en) ||
         !song.timing_data
       )
