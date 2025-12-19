@@ -256,7 +256,7 @@ export const api = {
 
   // Prayer Requests API methods
   getPrayerRequests: (publicOnly?: boolean) => {
-    const queryParams = publicOnly ? { public_only: 'true' } : {};
+    const queryParams: Record<string, string> = publicOnly ? { public_only: 'true' } : {};
     return api.get<any[]>('/api/prayer-requests', queryParams);
   },
 
@@ -271,4 +271,11 @@ export const api = {
 
   deletePrayerRequest: (id: number) =>
     api.delete(`/api/prayer-requests/${id}`),
+
+  // Sermons / Online Services API
+  getLiveSermon: () => api.get<any>('/api/sermons/live'),
+  getSermons: () => api.get<any[]>('/api/sermons'),
+  createSermon: (data: any) => api.post<any>('/api/sermons', data),
+  updateSermon: (id: number, data: any) => api.put<any>(`/api/sermons/${id}`, data),
+  deleteSermon: (id: number) => api.delete(`/api/sermons/${id}`),
 };

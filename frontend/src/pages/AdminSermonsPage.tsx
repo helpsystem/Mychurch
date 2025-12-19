@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { useLanguage } from '../hooks/useLanguage';
+import { api } from '../lib/api';
 import { Plus, Edit, Trash2, Video, Save, X, Calendar, User, Type, Link as LinkIcon, AlertCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
-
-// Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 interface Sermon {
     id: number;
@@ -20,7 +15,7 @@ interface Sermon {
     notes?: string;
 }
 
-const AdminSermonsPage: React.FC = () => {
+const AdminSermonsPage = () => {
     const { t, lang } = useLanguage();
     const [sermons, setSermons] = useState<Sermon[]>([]);
     const [loading, setLoading] = useState(true);
@@ -30,18 +25,15 @@ const AdminSermonsPage: React.FC = () => {
     // Fetch Sermons
     const fetchSermons = async () => {
         setLoading(true);
-        const { data, error } = await supabase
-            .from('sermons')
-            .select('*')
-            .order('date', { ascending: false });
-
-        if (error) {
+        try {
+            const data = await api.getSermons();
+            setSermons(data || []);
+        } catch (error) {
             console.error('Error fetching sermons:', error);
             toast.error('Failed to load sermons');
-        } else {
-            setSermons(data || []);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     useEffect(() => {
@@ -56,68 +48,54 @@ const AdminSermonsPage: React.FC = () => {
 
         const sermonData = {
             title: currentSermon.title,
-            preacher: currentSermon.preacher,
+            speaker: currentSermon.preacher, // Backend expects 'speaker', frontend interface uses 'preacher'
+            preacher: currentSermon.preacher, // Send both for compatibility
             date: currentSermon.date || new Date().toISOString().split('T')[0],
             youtube_id: currentSermon.youtube_id,
             description: currentSermon.description,
             is_live: currentSermon.is_live || false,
-            notes: currentSermon.notes
+            notes: currentSermon.notes,
+            audioUrl: 'https://youtube.com', // Placeholder required by backend schema if strictly enforced, or DB default
+            notesUrl: ''
         };
 
-        let error;
-        if (currentSermon.id) {
-            // Update
-            const { error: updateError } = await supabase
-                .from('sermons')
-                .update(sermonData)
-                .eq('id', currentSermon.id);
-            error = updateError;
-        } else {
-            // Insert
-            const { error: insertError } = await supabase
-                .from('sermons')
-                .insert([sermonData]);
-            error = insertError;
-        }
-
-        if (error) {
-            console.error('Error saving sermon:', error);
-            toast.error('Failed to save sermon');
-        } else {
+        try {
+            if (currentSermon.id) {
+                // Update
+                await api.updateSermon(currentSermon.id, sermonData);
+            } else {
+                // Insert
+                await api.createSermon(sermonData);
+            }
             toast.success('Sermon saved successfully');
             setIsEditing(false);
             setCurrentSermon({});
             fetchSermons();
+        } catch (error) {
+            console.error('Error saving sermon:', error);
+            toast.error('Failed to save sermon');
         }
     };
 
     const handleDelete = async (id: number) => {
         if (!window.confirm('Are you sure you want to delete this sermon?')) return;
 
-        const { error } = await supabase
-            .from('sermons')
-            .delete()
-            .eq('id', id);
-
-        if (error) {
-            toast.error('Failed to delete sermon');
-        } else {
+        try {
+            await api.deleteSermon(id);
             toast.success('Sermon deleted');
             fetchSermons();
+        } catch (error) {
+            toast.error('Failed to delete sermon');
         }
     };
 
     const toggleLive = async (sermon: Sermon) => {
-        const { error } = await supabase
-            .from('sermons')
-            .update({ is_live: !sermon.is_live })
-            .eq('id', sermon.id);
-
-        if (error) {
-            toast.error('Failed to update status');
-        } else {
+        try {
+            await api.updateSermon(sermon.id, { ...sermon, is_live: !sermon.is_live });
             toast.success(sermon.is_live ? 'Live stream ended' : 'Gone LIVE!');
             fetchSermons();
+        } catch (error) {
+            toast.error('Failed to update status');
         }
     };
 
@@ -152,14 +130,14 @@ const AdminSermonsPage: React.FC = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {sermons.map((sermon) => (
+                                {sermons.map((sermon: Sermon) => (
                                     <tr key={sermon.id} className="border-b border-gray-800 hover:bg-white/5 transition-colors">
                                         <td className="p-4">
                                             <button
                                                 onClick={() => toggleLive(sermon)}
                                                 className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold w-fit ${sermon.is_live
-                                                        ? 'bg-red-500/20 text-red-500 border border-red-500 animate-pulse'
-                                                        : 'bg-gray-700 text-gray-400'
+                                                    ? 'bg-red-500/20 text-red-500 border border-red-500 animate-pulse'
+                                                    : 'bg-gray-700 text-gray-400'
                                                     }`}
                                             >
                                                 {sermon.is_live ? (

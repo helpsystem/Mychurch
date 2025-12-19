@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { api } from '../lib/api';
 
 const LivePage: React.FC = () => {
     const { t } = useLanguage();
@@ -14,27 +9,21 @@ const LivePage: React.FC = () => {
 
     useEffect(() => {
         const fetchLiveSermon = async () => {
-            const { data } = await supabase
-                .from('sermons')
-                .select('*')
-                .eq('is_live', true)
-                .single();
-
-            setLiveSermon(data);
-            setLoading(false);
+            try {
+                const data = await api.getLiveSermon();
+                setLiveSermon(data);
+            } catch (error) {
+                console.error('Failed to fetch live sermon:', error);
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchLiveSermon();
 
-        // Realtime subscription? Maybe overkill for now, but nice.
-        const channel = supabase
-            .channel('public:sermons')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'sermons' }, fetchLiveSermon)
-            .subscribe();
-
-        return () => {
-            supabase.removeChannel(channel);
-        };
+        // Poll every 30 seconds for live status updates instead of realtime subscription
+        const interval = setInterval(fetchLiveSermon, 30000);
+        return () => clearInterval(interval);
     }, []);
 
     // Fallback if no live sermon
