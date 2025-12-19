@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست کتاب مقدس - Bible Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .status {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .status-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .controls {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .control-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #333;
+            min-width: 100px;
+        }
+        
+        select, button {
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        select {
+            background: white;
+            min-width: 200px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .content {
+            padding: 30px;
+            min-height: 400px;
+        }
+        
+        .verse {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-right: 4px solid #667eea;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: start;
+        }
+        
+        .verse-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50%;
+            font-weight: bold;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .verse-text {
+            flex: 1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 20px;
+            border-radius: 8px;
+            border-right: 4px solid #c33;
+        }
+        
+        .success {
+            background: #efe;
+            color: #3c3;
+            padding: 20px;
+            border-radius: 8px;
+            border-right: 4px solid #3c3;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📖 تست کتاب مقدس</h1>
+            <p>Bible API Test Page</p>
+            <div class="status">
+                <div class="status-item" id="api-status">🔄 در حال بررسی...</div>
+                <div class="status-item" id="books-status">📚 کتاب‌ها: -</div>
+                <div class="status-item" id="env-status">🌐 محیط: Production</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>کتاب:</label>
+                <select id="book-select">
+                    <option value="">در حال بارگذاری...</option>
+                </select>
+                
+                <label>فصل:</label>
+                <select id="chapter-select">
+                    <option value="1">1</option>
+                </select>
+                
+                <button onclick="loadChapter()">📖 نمایش</button>
+                <button onclick="testAll()">🧪 تست کامل</button>
+            </div>
+        </div>
+        
+        <div class="content" id="content">
+            <div class="loading">در حال بارگذاری کتاب‌ها...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://samanabyar.online/api';
+        let allBooks = [];
+
+        // Load books on page load
+        async function loadBooks() {
+            try {
+                const response = await fetch(`${API_BASE}/bible-json/books`);
+                const data = await response.json();
+                
+                if (data.success && data.books) {
+                    allBooks = data.books;
+                    const select = document.getElementById('book-select');
+                    select.innerHTML = data.books.map(b => 
+                        `<option value="${b.code}">${b.name_fa} (${b.name_en})</option>`
+                    ).join('');
+                    
+                    document.getElementById('api-status').innerHTML = '✅ API فعال';
+                    document.getElementById('books-status').innerHTML = `📚 کتاب‌ها: ${data.books.length}`;
+                    document.getElementById('content').innerHTML = '<div class="success">✅ سیستم آماده است! یک کتاب و فصل انتخاب کنید.</div>';
+                    
+                    // Update chapters for first book
+                    updateChapters();
+                } else {
+                    throw new Error('No books found');
+                }
+            } catch (error) {
+                document.getElementById('api-status').innerHTML = '❌ API خطا';
+                document.getElementById('content').innerHTML = `<div class="error">❌ خطا در بارگذاری کتاب‌ها: ${error.message}</div>`;
+            }
+        }
+
+        function updateChapters() {
+            const bookCode = document.getElementById('book-select').value;
+            const book = allBooks.find(b => b.code === bookCode);
+            
+            if (book) {
+                const chapters = book.chapters || 50;
+                const select = document.getElementById('chapter-select');
+                select.innerHTML = Array.from({length: chapters}, (_, i) => 
+                    `<option value="${i + 1}">${i + 1}</option>`
+                ).join('');
+            }
+        }
+
+        async function loadChapter() {
+            const bookCode = document.getElementById('book-select').value;
+            const chapter = document.getElementById('chapter-select').value;
+            const book = allBooks.find(b => b.code === bookCode);
+            
+            if (!bookCode || !chapter) {
+                alert('لطفاً کتاب و فصل را انتخاب کنید');
+                return;
+            }
+            
+            document.getElementById('content').innerHTML = '<div class="loading">⏳ در حال بارگذاری...</div>';
+            
+            try {
+                // Convert code to USFM (e.g., "01" -> "GEN")
+                const bookMap = {
+                    '01': 'GEN', '02': 'EXO', '03': 'LEV', '04': 'NUM', '05': 'DEU',
+                    '06': 'JOS', '07': 'JDG', '08': 'RUT', '09': '1SA', '10': '2SA',
+                    '11': '1KI', '12': '2KI', '13': '1CH', '14': '2CH', '15': 'EZR',
+                    '16': 'NEH', '17': 'EST', '18': 'JOB', '19': 'PSA', '20': 'PRO',
+                    '21': 'ECC', '22': 'SNG', '23': 'ISA', '24': 'JER', '25': 'LAM',
+                    '26': 'EZK', '27': 'DAN', '28': 'HOS', '29': 'JOL', '30': 'AMO',
+                    '31': 'OBA', '32': 'JON', '33': 'MIC', '34': 'NAM', '35': 'HAB',
+                    '36': 'ZEP', '37': 'HAG', '38': 'ZEC', '39': 'MAL',
+                    '40': 'MAT', '41': 'MRK', '42': 'LUK', '43': 'JHN', '44': 'ACT',
+                    '45': 'ROM', '46': '1CO', '47': '2CO', '48': 'GAL', '49': 'EPH',
+                    '50': 'PHP', '51': 'COL', '52': '1TH', '53': '2TH', '54': '1TI',
+                    '55': '2TI', '56': 'TIT', '57': 'PHM', '58': 'HEB', '59': 'JAS',
+                    '60': '1PE', '61': '2PE', '62': '1JN', '63': '2JN', '64': '3JN',
+                    '65': 'JUD', '66': 'REV'
+                };
+                
+                const usfmCode = bookMap[bookCode] || 'GEN';
+                const response = await fetch(`${API_BASE}/bible-local/content/TPV/${usfmCode}/${chapter}`);
+                const data = await response.json();
+                
+                if (data.success && data.verses) {
+                    const stats = `
+                        <div class="stats">
+                            <div class="stat-card">
+                                <div>📖 کتاب</div>
+                                <div class="stat-value">${book.name_fa}</div>
+                            </div>
+                            <div class="stat-card">
+                                <div>📑 فصل</div>
+                                <div class="stat-value">${chapter}</div>
+                            </div>
+                            <div class="stat-card">
+                                <div>📝 آیات</div>
+                                <div class="stat-value">${data.verses.length}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    const verses = data.verses.map(v => `
+                        <div class="verse">
+                            <div class="verse-number">${v.verse}</div>
+                            <div class="verse-text">${v.text || v.text_fa || 'متن موجود نیست'}</div>
+                        </div>
+                    `).join('');
+                    
+                    document.getElementById('content').innerHTML = stats + verses;
+                } else {
+                    throw new Error(data.error || 'محتوا یافت نشد');
+                }
+            } catch (error) {
+                document.getElementById('content').innerHTML = `<div class="error">❌ خطا: ${error.message}</div>`;
+            }
+        }
+
+        async function testAll() {
+            document.getElementById('content').innerHTML = '<div class="loading">🧪 در حال تست...</div>';
+            
+            const results = [];
+            const testBooks = ['01', '40', '66']; // Genesis, Matthew, Revelation
+            
+            for (const code of testBooks) {
+                try {
+                    const book = allBooks.find(b => b.code === code);
+                    const response = await fetch(`${API_BASE}/bible-json/books`);
+                    const data = await response.json();
+                    results.push(`✅ ${book.name_fa} - OK`);
+                } catch (error) {
+                    results.push(`❌ کتاب ${code} - خطا`);
+                }
+            }
+            
+            document.getElementById('content').innerHTML = `
+                <div class="success">
+                    <h3>نتایج تست:</h3>
+                    ${results.map(r => `<p>${r}</p>`).join('')}
+                </div>
+            `;
+        }
+
+        // Event listeners
+        document.getElementById('book-select').addEventListener('change', updateChapters);
+        
+        // Load on page load
+        window.addEventListener('DOMContentLoaded', loadBooks);
+    </script>
+</body>
+</html>

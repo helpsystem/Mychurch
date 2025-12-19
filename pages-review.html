@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست صفحات Bible & Worship - MyChurch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.8rem;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            margin: 20px 0 15px 0;
+            font-size: 1.3rem;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .link-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .link-card h4 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .link-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        
+        .link-card .route {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+            background: rgba(0,0,0,0.2);
+            padding: 5px 8px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .priority-high {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .priority-medium {
+            background: #ffd93d;
+            color: #333;
+        }
+        
+        .priority-low {
+            background: #6bcf7f;
+            color: white;
+        }
+        
+        .server-info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-right: 4px solid #667eea;
+        }
+        
+        .server-info code {
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 لیست کامل صفحات Bible & Worship</h1>
+        
+        <div class="server-info">
+            <strong>⚙️ دستورالعمل:</strong> ابتدا سرور را اجرا کنید: <code>npm run dev</code><br>
+            سپس روی هر لینک کلیک کنید تا صفحه در تب جدید باز شود.
+        </div>
+        
+        <!-- BIBLE PAGES -->
+        <div class="section">
+            <h2>📖 صفحات کتاب مقدس (Bible)</h2>
+            
+            <h3>🎯 صفحات اصلی (اولویت بالا)</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/bible" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اولویت بالا</span>
+                    <h4>📚 Bible Unified Page</h4>
+                    <p>صفحه اصلی یکپارچه با حالت‌های مختلف (خواندن، کارائوکه، 3D)</p>
+                    <div class="route">/bible</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/audio" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اولویت بالا</span>
+                    <h4>🎧 Audio Bible</h4>
+                    <p>پخش فایل‌های صوتی - یکپارچه با فایل‌های آپلود شده</p>
+                    <div class="route">/bible/audio</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/reader" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اولویت بالا</span>
+                    <h4>📖 Bible Reader</h4>
+                    <p>خواننده دوزبانه تعاملی</p>
+                    <div class="route">/bible/reader</div>
+                </a>
+            </div>
+            
+            <h3>🎵 صفحات صوتی (Audio)</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/bible/audio-suite" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>🎼 Audio Suite</h4>
+                    <p>مجموعه ابزارهای صوتی</p>
+                    <div class="route">/bible/audio-suite</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/audio-sync" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>🎯 Audio Sync</h4>
+                    <p>همگام‌سازی صدا با متن</p>
+                    <div class="route">/bible/audio-sync</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/audio-sync-demo" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">تست</span>
+                    <h4>🎬 Audio Sync Demo</h4>
+                    <p>نمایش همگام‌سازی</p>
+                    <div class="route">/bible/audio-sync-demo</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/audio-test" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">تست</span>
+                    <h4>🧪 Audio Test</h4>
+                    <p>تست پخش صدا</p>
+                    <div class="route">/bible/audio-test</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/audio-youversion" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">تست</span>
+                    <h4>📱 YouVersion Test</h4>
+                    <p>تست با فرمت YouVersion</p>
+                    <div class="route">/bible/audio-youversion</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/audio-sync-test" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">تست</span>
+                    <h4>🔬 Sync Test</h4>
+                    <p>تست همگام‌سازی</p>
+                    <div class="route">/bible/audio-sync-test</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/sync-test" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">تست</span>
+                    <h4>⚡ Bible Sync Test</h4>
+                    <p>تست سینک</p>
+                    <div class="route">/bible/sync-test</div>
+                </a>
+            </div>
+            
+            <h3>🎙️ صفحات TTS</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/bible-audio-tts" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>🗣️ Bible TTS</h4>
+                    <p>تولید صدا از متن</p>
+                    <div class="route">/bible-audio-tts</div>
+                </a>
+            </div>
+            
+            <h3>✨ صفحات ویژه</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/bible/text-only" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>📝 Text Only</h4>
+                    <p>فقط متن بدون امکانات اضافی</p>
+                    <div class="route">/bible/text-only</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible-study" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>📚 Bible Study</h4>
+                    <p>مطالعه کتاب مقدس</p>
+                    <div class="route">/bible-study</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/presentation-creator" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>🎞️ Presentation Creator</h4>
+                    <p>ساخت ارائه</p>
+                    <div class="route">/bible/presentation-creator</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible-presentation" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>📊 Presentation Dynamic</h4>
+                    <p>ارائه پویا</p>
+                    <div class="route">/bible-presentation</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اصلی</span>
+                    <h4>📖 Bible Reader</h4>
+                    <p>کتاب مقدس</p>
+                    <div class="route">/bible</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/bible/voice-chat" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">جالب</span>
+                    <h4>🎙️ Voice Chat</h4>
+                    <p>چت صوتی</p>
+                    <div class="route">/bible/voice-chat</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- WORSHIP PAGES -->
+        <div class="section">
+            <h2>🎵 صفحات سرود پرستشی (Worship)</h2>
+            
+            <h3>🎯 صفحات اصلی (اولویت بالا)</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/worship" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اولویت بالا</span>
+                    <h4>🎵 Worship Page</h4>
+                    <p>صفحه اصلی با لیست سرودها و پخش کارائوکه</p>
+                    <div class="route">/worship</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/worship-songs" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اولویت بالا</span>
+                    <h4>📋 Worship Songs</h4>
+                    <p>لیست تمام سرودها</p>
+                    <div class="route">/worship-songs</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/worship-presentation" target="_blank" class="link-card">
+                    <span class="priority-badge priority-high">اولویت بالا</span>
+                    <h4>🖥️ Worship Presentation</h4>
+                    <p>نمایش روی پروژکتور</p>
+                    <div class="route">/worship-presentation</div>
+                </a>
+            </div>
+            
+            <h3>🎼 صفحات ویژه</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/worship/audio-suite" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">متوسط</span>
+                    <h4>🎹 Audio Suite</h4>
+                    <p>مجموعه ابزارهای صوتی</p>
+                    <div class="route">/worship/audio-suite</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/worship/sync-test" target="_blank" class="link-card">
+                    <span class="priority-badge priority-low">تست</span>
+                    <h4>🔬 Sync Test</h4>
+                    <p>تست همگام‌سازی</p>
+                    <div class="route">/worship/sync-test</div>
+                </a>
+            </div>
+            
+            <h3>👨‍💼 صفحات مدیریت (نیاز به Admin)</h3>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/admin/worship-management" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">Admin</span>
+                    <h4>⚙️ Worship Management</h4>
+                    <p>مدیریت سرودها</p>
+                    <div class="route">/admin/worship-management</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/admin/worship-health" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">Admin</span>
+                    <h4>📊 Worship Health</h4>
+                    <p>وضعیت سلامت سرودها</p>
+                    <div class="route">/admin/worship-health</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- GENERAL TOOLS -->
+        <div class="section">
+            <h2>🛠️ ابزارهای عمومی</h2>
+            <div class="links-grid">
+                <a href="http://localhost:3000/#/presentation-creator" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">عمومی</span>
+                    <h4>🎬 Presentation Creator</h4>
+                    <p>ساخت ارائه عمومی</p>
+                    <div class="route">/presentation-creator</div>
+                </a>
+                
+                <a href="http://localhost:3000/#/admin/sync-management" target="_blank" class="link-card">
+                    <span class="priority-badge priority-medium">Admin</span>
+                    <h4>⚡ Sync Management</h4>
+                    <p>مدیریت همگام‌سازی</p>
+                    <div class="route">/admin/sync-management</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

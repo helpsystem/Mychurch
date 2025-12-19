@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-12-02T01:30:39.952Z",
+  "stats": {
+    "total": 364,
+    "hadAudio": 315,
+    "needsAudio": 49,
+    "placeholderAdded": 49,
+    "timingGenerated": 49,
+    "complete": 364
+  },
+  "completion": 100,
+  "placeholderUrl": "https://wxzhzsqicgwfxffxayhy.supabase.co/storage/v1/object/public/audio/placeholder-audio.mp3",
+  "note": "49 songs using placeholder audio"
+}

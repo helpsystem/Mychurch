@@ -1,8 +1,8 @@
-const fs = require('fs').promises;
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+const fs = require('fs').promises;
 const hidriveStorage = require('../backend/services/hidriveStorage');
 const { createClient } = require('@supabase/supabase-js');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env.server') });
 
 const supabase = createClient(
     process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL,
@@ -10,7 +10,8 @@ const supabase = createClient(
 );
 
 // مسیر فایل‌های صوتی
-const AUDIO_BASE_PATH = 'D:\\Windows.old\\Users\\Sami\\Desktop\\Iran Church DC\\Git\\Mychurch\\Project\\My Web Sites\\Bible\\www.kalameh.com';
+// مسیر فایل‌های صوتی
+const AUDIO_BASE_PATH = path.join(__dirname, '../bible_data/audio');
 
 async function findAllAudioFiles(basePath) {
     console.log('🔍 جستجوی فایل‌های صوتی...\n');
@@ -76,15 +77,21 @@ async function uploadBibleAudio() {
     for (const [index, filePath] of audioFiles.entries()) {
         const filename = path.basename(filePath);
         const progress = `[${index + 1}/${audioFiles.length}]`;
-
         try {
-            console.log(`${progress} در حال آپلود: ${filename}...`);
+            // Use relative path for remote filename to preserve structure
+            const relativePath = path.relative(AUDIO_BASE_PATH, filePath);
+            // Normalized path for HiDrive (forward slashes)
+            const remoteFilename = relativePath.split(path.sep).join('/');
+
+            console.log(`${progress} در حال آپلود: ${remoteFilename}...`);
 
             // آپلود به Hidrive
+            // Note: uploadFile takes (localPath, category, filename)
+            // We pass the full relative path as 'filename' so it appends to category base
             const hidriveUrl = await hidriveStorage.uploadFile(
                 filePath,
                 'bible-audio',
-                filename
+                remoteFilename
             );
 
             console.log(`  ✅ آپلود موفق: ${hidriveUrl}`);

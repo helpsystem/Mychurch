@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Test Audio Sync</title>
+<style>
+body { background: #1a1a2e; color: #fff; padding: 40px; font-family: Tahoma, Arial; }
+h1 { color: #4caf50; }
+audio { width: 100%; margin: 20px 0; }
+.lyrics { background: #16213e; padding: 20px; margin: 20px 0; border-radius: 10px; max-height: 400px; overflow-y: auto; }
+.line { padding: 10px; margin: 5px 0; transition: all 0.3s; }
+.active { background: yellow; color: black; font-weight: bold; transform: scale(1.05); }
+button { background: #4caf50; color: white; border: none; padding: 15px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; margin: 10px 5px; }
+button:hover { background: #45a049; }
+#info { background: #16213e; padding: 15px; border-radius: 5px; margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<h1>🎵 تست Audio با Timing Sync</h1>
+
+<div id="info">
+  <p>📁 فایل: /worship/audio/kalameh/El Shaddai in Farsi.mp3</p>
+  <p id="timingStatus">⏳ در حال بارگذاری timing...</p>
+</div>
+
+<audio id="player" controls>
+  <source src="/worship/audio/kalameh/El Shaddai in Farsi.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="loadTiming()">📊 بارگذاری Timing</button>
+<button onclick="player.play()">▶️ پخش</button>
+<button onclick="player.pause()">⏸️ توقف</button>
+
+<div class="lyrics" id="lyrics">
+  <p style="text-align:center; color:#888">ابتدا Timing را بارگذاری کنید...</p>
+</div>
+
+<script>
+const player = document.getElementById('player');
+const lyricsDiv = document.getElementById('lyrics');
+const statusDiv = document.getElementById('timingStatus');
+let timingData = null;
+let currentLine = -1;
+
+async function loadTiming() {
+  try {
+    statusDiv.textContent = '⏳ در حال بارگذاری...';
+    const response = await fetch('/worship/data/timings/song_1_timing.json');
+    
+    if (!response.ok) {
+      throw new Error('HTTP ' + response.status);
+    }
+    
+    timingData = await response.json();
+    statusDiv.innerHTML = '✅ Timing بارگذاری شد - ' + timingData.lines.length + ' خط';
+    
+    // نمایش lyrics
+    lyricsDiv.innerHTML = '';
+    timingData.lines.forEach((line, index) => {
+      const div = document.createElement('div');
+      div.className = 'line';
+      div.id = 'line-' + index;
+      div.textContent = line.line;
+      lyricsDiv.appendChild(div);
+    });
+    
+    statusDiv.innerHTML += '<br>📝 متن آهنگ نمایش داده شد. حالا Play را بزنید!';
+    
+  } catch (error) {
+    statusDiv.textContent = '❌ خطا: ' + error.message;
+  }
+}
+
+// Sync lyrics with audio
+player.addEventListener('timeupdate', function() {
+  if (!timingData) return;
+  
+  const currentTime = player.currentTime;
+  
+  // پیدا کردن خط فعلی
+  let activeIndex = -1;
+  for (let i = 0; i < timingData.lines.length; i++) {
+    const line = timingData.lines[i];
+    const nextLine = timingData.lines[i + 1];
+    
+    if (currentTime >= line.start && (!nextLine || currentTime < nextLine.start)) {
+      activeIndex = i;
+      break;
+    }
+  }
+  
+  // Highlight کردن خط فعال
+  if (activeIndex !== currentLine) {
+    // حذف highlight قبلی
+    if (currentLine >= 0) {
+      const oldLine = document.getElementById('line-' + currentLine);
+      if (oldLine) oldLine.classList.remove('active');
+    }
+    
+    // اضافه کردن highlight جدید
+    if (activeIndex >= 0) {
+      const newLine = document.getElementById('line-' + activeIndex);
+      if (newLine) {
+        newLine.classList.add('active');
+        newLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    
+    currentLine = activeIndex;
+  }
+});
+
+// بارگذاری خودکار
+window.onload = function() {
+  loadTiming();
+};
+</script>
+
+</body>
+</html>

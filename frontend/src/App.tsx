@@ -45,6 +45,7 @@ import BibleReaderPage from './pages/BibleReaderPage';
 import BibleUnifiedPage from './pages/BibleUnifiedPage';
 import UnifiedBibleReader from './components/UnifiedBibleReader';
 import BibleUnifiedPro from './pages/BibleUnifiedPro';
+import BibleUnifiedApp from './pages/BibleUnifiedApp';
 import TestComponent from './components/TestComponent';
 import MinimalBible from './components/MinimalBible';
 import SimpleBibleReader from './components/SimpleBibleReader';
@@ -147,7 +148,7 @@ function App() {
               <Route path="sermons" element={<SermonsPage />} />
               <Route path="worship" element={<WorshipPage />} />
               <Route path="worship/:id" element={<WorshipSongViewerPage />} />
-              <Route path="bible" element={<BibleUnifiedPro />} />
+              <Route path="bible" element={<BibleUnifiedApp />} />
               <Route path="bible/audio" element={<AudioBiblePage />} />
               <Route path="bible/text-only" element={<BibleTextOnlyPage />} />
               <Route
@@ -169,7 +170,7 @@ function App() {
               <Route path="bible-study" element={<BibleStudyPage />} />
               {/* Redirect old bible-karaoke path to /bible */}
               <Route path="bible-karaoke" element={<Navigate to="/bible" replace />} />
-              <Route path="bible-reader" element={<BilingualBibleReader />} />
+              <Route path="bible-reader" element={<Navigate to="/bible" replace />} />
               <Route path="bible-presentation-sample" element={<BilingualPresentationSample />} />
               <Route path="bible-presentation" element={<BilingualPresentationDynamic />} />
               <Route path="bible-audio-tts" element={<BibleWithTTS />} />

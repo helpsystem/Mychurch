@@ -54,7 +54,6 @@ $routes = @(
     @{ path = "/bible/audio-youversion"; title = "YouVersion Audio Test"; category = "Bible"; protected = $false },
     @{ path = "/bible/reader"; title = "Bilingual Bible Reader"; category = "Bible"; protected = $false },
     @{ path = "/bible-study"; title = "Bible Study"; category = "Bible"; protected = $false },
-    @{ path = "/bible-karaoke"; title = "Bible Karaoke"; category = "Bible"; protected = $false },
     @{ path = "/bible-reader"; title = "Bible Reader Alt"; category = "Bible"; protected = $false },
     @{ path = "/bible-presentation-sample"; title = "Bible Presentation Sample"; category = "Bible"; protected = $false },
     @{ path = "/bible-presentation"; title = "Bible Presentation Dynamic"; category = "Bible"; protected = $false },

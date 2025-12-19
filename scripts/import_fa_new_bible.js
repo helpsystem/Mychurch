@@ -89,7 +89,7 @@ async function importBible() {
         const { data: bookData, error: bookError } = await supabase
             .from('bible_books')
             .select('id')
-            .eq('abbreviation', bookAbbr)
+            .eq('book_iso', bookAbbr)
             .single();
 
         if (bookError || !bookData) {
@@ -99,6 +99,19 @@ async function importBible() {
         }
 
         const dbBookId = bookData.id;
+
+        // Get Translation ID for 'mojdeh'
+        const { data: transData, error: transError } = await supabase
+            .from('bible_translations')
+            .select('id')
+            .eq('code', 'mojdeh')
+            .single();
+
+        if (transError || !transData) {
+            console.error('Error: Translation mojdeh not found');
+            return;
+        }
+        const transId = transData.id;
 
         for (const chapterFile of chapters) {
             if (!chapterFile.endsWith('.htm')) continue;
@@ -112,7 +125,7 @@ async function importBible() {
             const { data: chapterData, error: chapterError } = await supabase
                 .from('bible_chapters')
                 .select('id')
-                .eq('book_id', dbBookId)
+                .eq('book_iso', bookAbbr)
                 .eq('chapter_number', chapterNum)
                 .single();
 
@@ -132,7 +145,6 @@ async function importBible() {
                 const verseNum = parseInt($(el).attr('id') || $(el).text().trim(), 10);
 
                 // Get text: The text is in the next sibling node(s)
-                // We need to traverse siblings until we hit a <br> or another .verse or end of block
                 let verseText = '';
                 let nextNode = el.nextSibling;
 
@@ -143,23 +155,20 @@ async function importBible() {
                     if (nextNode.type === 'text') {
                         verseText += nextNode.data;
                     } else if (nextNode.type === 'tag') {
-                        // If there are other tags like <i> or <b> inside the verse, include their text
                         verseText += $(nextNode).text();
                     }
                     nextNode = nextNode.nextSibling;
                 }
 
-                // Clean up text
                 verseText = verseText.replace(/&nbsp;/g, ' ').trim();
-
-                // Remove leading non-breaking spaces or common artifacts if any
                 verseText = verseText.replace(/^[\s\u00A0]+/, '');
 
                 if (verseNum && verseText) {
                     versesToInsert.push({
                         chapter_id: dbChapterId,
                         verse_number: verseNum,
-                        text_fa: verseText
+                        text_fa: verseText,
+                        translation_id: transId // Explicitly set translation ID
                     });
                 }
             });
@@ -168,7 +177,7 @@ async function importBible() {
                 if (!DRY_RUN) {
                     const { error } = await supabase
                         .from('bible_verses')
-                        .upsert(versesToInsert, { onConflict: 'chapter_id,verse_number' });
+                        .upsert(versesToInsert, { onConflict: 'chapter_id,verse_number,translation_id' });
 
                     if (error) {
                         console.error(`Error inserting ${bookAbbr} ${chapterNum}:`, error);
