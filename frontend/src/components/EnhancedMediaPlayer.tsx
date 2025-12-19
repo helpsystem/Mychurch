@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { 
-  X, Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, 
+import {
+  X, Play, Pause, Volume2, VolumeX, SkipBack, SkipForward,
   Download, Maximize, Minimize, Share2, Heart, Settings,
   List, Shuffle, Repeat, MoreHorizontal
 } from 'lucide-react';
@@ -288,16 +288,15 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       ref={playerRef}
-      className={`fixed inset-0 bg-black z-50 flex flex-col ${
-        isFullscreen ? 'bg-black' : 'bg-black/90'
-      }`}
+      className={`fixed inset-0 bg-black z-50 flex flex-col ${isFullscreen ? 'bg-black' : 'bg-black/90'
+        }`}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 bg-black-gradient text-white">
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={onClose}
             className="p-2 hover:bg-white/10 rounded-full transition-colors"
           >
@@ -316,9 +315,8 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
           {playlist.length > 0 && (
             <button
               onClick={() => setShowPlaylist(!showPlaylist)}
-              className={`p-2 rounded-full transition-colors ${
-                showPlaylist ? 'bg-blue-500' : 'hover:bg-white/10'
-              }`}
+              className={`p-2 rounded-full transition-colors ${showPlaylist ? 'bg-blue-500' : 'hover:bg-white/10'
+                }`}
             >
               <List size={20} />
             </button>
@@ -349,14 +347,24 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
         {/* Media Display */}
         <div className={`flex-1 flex flex-col ${showPlaylist ? 'w-2/3' : 'w-full'}`}>
           {isVideo ? (
-            <div className="flex-1 flex items-center justify-center bg-black">
-              <video
-                ref={videoRef}
-                src={mediaUrl}
-                className="max-w-full max-h-full"
-                controls={false}
-                preload="metadata"
-              />
+            <div className="flex-1 flex items-center justify-center bg-black relative">
+              {(mediaUrl?.includes('youtube.com') || mediaUrl?.includes('youtu.be')) ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${mediaUrl.includes('v=') ? mediaUrl.split('v=')[1]?.split('&')[0] : mediaUrl.split('/').pop()}?autoplay=1&rel=0&modestbranding=1`}
+                  className="w-full h-full absolute inset-0"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <video
+                  ref={videoRef}
+                  src={mediaUrl}
+                  className="max-w-full max-h-full"
+                  controls={false}
+                  preload="metadata"
+                />
+              )}
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-white p-8">
@@ -398,9 +406,8 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
                 onChange={handleSeek}
                 className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                 style={{
-                  background: `linear-gradient(to right, #3B82F6 0%, #3B82F6 ${
-                    (currentTime / duration) * 100
-                  }%, #374151 ${(currentTime / duration) * 100}%, #374151 100%)`
+                  background: `linear-gradient(to right, #3B82F6 0%, #3B82F6 ${(currentTime / duration) * 100
+                    }%, #374151 ${(currentTime / duration) * 100}%, #374151 100%)`
                 }}
               />
               <div className="flex justify-between text-xs text-dimWhite mt-2">
@@ -414,9 +421,8 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
               {/* Shuffle */}
               <button
                 onClick={() => setShuffle(!shuffleMode)}
-                className={`p-2 rounded transition-colors ${
-                  shuffleMode ? 'text-blue-400' : 'hover:bg-white/10'
-                }`}
+                className={`p-2 rounded transition-colors ${shuffleMode ? 'text-blue-400' : 'hover:bg-white/10'
+                  }`}
               >
                 <Shuffle size={20} />
               </button>
@@ -523,9 +529,8 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
                 {/* Favorite */}
                 <button
                   onClick={() => setIsFavorite(!isFavorite)}
-                  className={`p-2 rounded transition-colors ${
-                    isFavorite ? 'text-red-400' : 'hover:bg-white/10'
-                  }`}
+                  className={`p-2 rounded transition-colors ${isFavorite ? 'text-red-400' : 'hover:bg-white/10'
+                    }`}
                 >
                   <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />
                 </button>
@@ -561,9 +566,8 @@ const EnhancedMediaPlayer: React.FC<EnhancedMediaPlayerProps> = ({
                 <div
                   key={item.id}
                   onClick={() => onPlaylistItemClick?.(index)}
-                  className={`p-3 border-b border-gray-800 cursor-pointer hover:bg-white/5 transition-colors ${
-                    index === currentIndex ? 'bg-blue-500/20' : ''
-                  }`}
+                  className={`p-3 border-b border-gray-800 cursor-pointer hover:bg-white/5 transition-colors ${index === currentIndex ? 'bg-blue-500/20' : ''
+                    }`}
                 >
                   <p className="font-medium text-sm truncate">{item.title[lang]}</p>
                   <p className="text-xs text-dimWhite truncate">

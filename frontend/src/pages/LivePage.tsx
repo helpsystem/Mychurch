@@ -45,7 +45,7 @@ const LivePage: React.FC = () => {
                 <iframe
                     width="100%"
                     height="100%"
-                    src={`https://www.youtube.com/embed/${videoId}?autoplay=${isLive ? 1 : 0}&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1`}
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=${isLive ? 1 : 0}&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1${isLive ? '&cc_load_policy=1&cc_lang_pref=en' : ''}`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
