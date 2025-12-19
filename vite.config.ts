@@ -9,6 +9,7 @@ export default defineConfig({
         outDir: '../dist',
         emptyOutDir: true,
     },
+    envDir: '..',
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'frontend/src'),

@@ -12,12 +12,12 @@ export const PERSIAN_VOICE_CONFIGS = {
   // بهترین صداها برای فارسی در مرورگرها
   preferred: [
     'Microsoft Hedda - Persian (Farsi, Iran)',
-    'Microsoft Zira - Persian', 
+    'Microsoft Zira - Persian',
     'Google فارسی',
     'fa-IR-Standard-A',
     'fa-IR-Wavenet-A',
   ],
-  
+
   // تنظیمات صدا
   settings: {
     rate: 0.9,      // سرعت کمتر برای فارسی
@@ -32,13 +32,13 @@ export const PERSIAN_VOICE_CONFIGS = {
  */
 export function findBestPersianVoice(): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
-  
+
   console.log('🔍 Available voices:', voices.map(v => `${v.name} (${v.lang})`));
-  
+
   // First, try to find preferred voices
   for (const preferredName of PERSIAN_VOICE_CONFIGS.preferred) {
-    const voice = voices.find(v => 
-      v.name.includes(preferredName) || 
+    const voice = voices.find(v =>
+      v.name.includes(preferredName) ||
       v.name.toLowerCase().includes('persian') ||
       v.name.toLowerCase().includes('farsi')
     );
@@ -47,16 +47,16 @@ export function findBestPersianVoice(): SpeechSynthesisVoice | null {
       return voice;
     }
   }
-  
+
   // Second, try fa-IR locale
   const faVoice = voices.find(v => v.lang.startsWith('fa'));
   if (faVoice) {
     console.log('✅ Found Persian voice by locale:', faVoice.name);
     return faVoice;
   }
-  
+
   // Fallback: any voice with Persian keywords
-  const anyPersian = voices.find(v => 
+  const anyPersian = voices.find(v =>
     v.name.toLowerCase().includes('iran') ||
     v.name.includes('فارسی')
   );
@@ -64,8 +64,8 @@ export function findBestPersianVoice(): SpeechSynthesisVoice | null {
     console.log('⚠️ Using fallback Persian voice:', anyPersian.name);
     return anyPersian;
   }
-  
-  console.warn('⚠️ No Persian voice found, will use default');
+
+  // console.warn('⚠️ No Persian voice found, will use default');
   return null;
 }
 
@@ -83,37 +83,37 @@ export function speakPersian(
   } = {}
 ): SpeechSynthesisUtterance {
   const utterance = new SpeechSynthesisUtterance(text);
-  
+
   // Apply Persian voice
   const persianVoice = findBestPersianVoice();
   if (persianVoice) {
     utterance.voice = persianVoice;
   }
-  
+
   // Apply settings
   utterance.lang = PERSIAN_VOICE_CONFIGS.settings.lang;
   utterance.rate = options.rate ?? PERSIAN_VOICE_CONFIGS.settings.rate;
   utterance.pitch = options.pitch ?? PERSIAN_VOICE_CONFIGS.settings.pitch;
   utterance.volume = options.volume ?? PERSIAN_VOICE_CONFIGS.settings.volume;
-  
+
   // Event handlers
   if (options.onEnd) {
     utterance.onend = options.onEnd;
   }
-  
+
   if (options.onError) {
     utterance.onerror = options.onError;
   }
-  
+
   // Log for debugging
   utterance.onstart = () => {
     console.log(`🎤 Speaking Persian: "${text.substring(0, 50)}..."`);
     console.log(`   Voice: ${utterance.voice?.name || 'default'}`);
     console.log(`   Rate: ${utterance.rate}, Pitch: ${utterance.pitch}`);
   };
-  
+
   window.speechSynthesis.speak(utterance);
-  
+
   return utterance;
 }
 
@@ -124,10 +124,10 @@ export function isPersianTTSAvailable(): boolean {
   if (!window.speechSynthesis) {
     return false;
   }
-  
+
   const voices = window.speechSynthesis.getVoices();
-  return voices.some(v => 
-    v.lang.startsWith('fa') || 
+  return voices.some(v =>
+    v.lang.startsWith('fa') ||
     v.name.toLowerCase().includes('persian') ||
     v.name.toLowerCase().includes('farsi')
   );
@@ -143,10 +143,10 @@ export function getPersianVoicesInfo(): Array<{
   default: boolean;
 }> {
   const voices = window.speechSynthesis.getVoices();
-  
+
   return voices
-    .filter(v => 
-      v.lang.startsWith('fa') || 
+    .filter(v =>
+      v.lang.startsWith('fa') ||
       v.name.toLowerCase().includes('persian') ||
       v.name.toLowerCase().includes('farsi')
     )
@@ -163,7 +163,7 @@ export function getPersianVoicesInfo(): Array<{
  */
 export function showInstallPersianVoiceInstructions(): string {
   const userAgent = navigator.userAgent.toLowerCase();
-  
+
   if (userAgent.includes('win')) {
     return `
 برای نصب صدای فارسی در Windows:
@@ -192,7 +192,7 @@ export function showInstallPersianVoiceInstructions(): string {
 2. Voices > Add New Language > Persian (Farsi)
     `;
   }
-  
+
   return 'برای نصب صدای فارسی، به تنظیمات سیستم عامل خود مراجعه کنید.';
 }
 
@@ -201,13 +201,13 @@ if (typeof window !== 'undefined' && window.speechSynthesis) {
   window.speechSynthesis.onvoiceschanged = () => {
     const voices = window.speechSynthesis.getVoices();
     console.log(`🔊 Loaded ${voices.length} voices`);
-    
+
     const persianVoices = getPersianVoicesInfo();
     if (persianVoices.length > 0) {
       console.log('✅ Persian TTS available:', persianVoices);
     } else {
-      console.warn('⚠️ No Persian voice found');
-      console.log('💡', showInstallPersianVoiceInstructions());
+      // console.warn('⚠️ No Persian voice found');
+      // console.log('💡', showInstallPersianVoiceInstructions());
     }
   };
 }
