@@ -6,10 +6,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
     Book, Monitor, Mic2, Settings, ChevronLeft, ChevronRight,
     Menu, X, Volume2, Maximize2, Type, Sun, Moon, Search,
-    Home, Headphones, Layers, MoreHorizontal, ArrowLeft
+    Home, Headphones, Layers, MoreHorizontal, ArrowLeft, Languages
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import BilingualBiblePresentation, { BiblePayload } from '@/components/BilingualBiblePresentation';
+import MobileBibleReader from '@/components/MobileBibleReader';
+import { OnboardingTour } from '@/components/OnboardingTour';
 import BibleKaraokeMode from '@/components/BibleKaraokeMode';
 import BibleStudyMode from '@/components/BibleStudyMode';
 import Bible3DMode from '@/components/Bible3DMode';
@@ -56,6 +58,7 @@ const BibleUnifiedApp: React.FC = () => {
     const [showBookSelector, setShowBookSelector] = useState(false);
     const [showAudioPlayer, setShowAudioPlayer] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
 
     // Modes & Preferences
     const [mode, setMode] = useState<'study' | 'presentation' | 'karaoke' | 'book3d'>('presentation');
@@ -115,28 +118,52 @@ const BibleUnifiedApp: React.FC = () => {
             try {
                 const usfmCode = BOOK_CODE_MAP[selectedBook] || 'GEN';
                 const translationCode = translation.toUpperCase();
-                const response = await fetch(`/api/bible-local/content/${translationCode}/${usfmCode}/${selectedChapter}`);
-                const data = await response.json();
 
-                if (data.success && data.verses) {
-                    const audioUrlFa = data.audio || `/api/bible-local/audio/${translationCode}/${usfmCode}/${selectedChapter}`;
-                    const audioUrlEn = `/api/bible-local/audio/eng/${usfmCode}/${selectedChapter}`;
+                // 1. Fetch Primary Text (Selected Translation)
+                const primaryResponse = await fetch(`/api/bible-local/content/${translationCode}/${usfmCode}/${selectedChapter}`);
+                const primaryData = await primaryResponse.json();
+
+                // 2. Fetch Secondary Text (English fallback) if needed
+                let englishVerses: any[] = [];
+                const isPersian = ['MOJDEH', 'QADIM', 'TPV'].includes(translationCode);
+
+                if (isPersian) {
+                    try {
+                        const enResponse = await fetch(`/api/bible-local/content/NET/${usfmCode}/${selectedChapter}`);
+                        const enData = await enResponse.json();
+                        if (enData.success) englishVerses = enData.verses;
+                    } catch (e) {
+                        console.warn('Failed to fetch English fallback', e);
+                    }
+                }
+
+                if (primaryData.success && primaryData.verses) {
+                    const audioUrlFa = primaryData.audio || `/api/bible-local/audio/${translationCode}/${usfmCode}/${selectedChapter}`;
+                    const audioUrlEn = `/api/bible-local/audio/NET/${usfmCode}/${selectedChapter}`; // Default to NET audio for English
                     const currentBook = books.find(b => b.key === selectedBook);
-                    const isPersian = ['MOJDEH', 'QADIM', 'TPV'].includes(translationCode);
 
                     const payload: BiblePayload = {
                         book_en: currentBook?.name.en || 'Genesis',
                         book_fa: currentBook?.name.fa || 'پیدایش',
                         chapters: [{
                             chapterNumber: selectedChapter,
-                            verses: data.verses.map((v: any) => ({
-                                verseNumber: v.verse || 1,
-                                text_en: isPersian ? '[English translation not available for TPV]' : (v.text || ''),
-                                text_fa: isPersian ? (v.text || '') : '',
-                                audio_en: audioUrlEn,
-                                audio_fa: audioUrlFa
-                            }))
-                        }]
+                            verses: primaryData.verses.map((v: any, idx: number) => {
+                                // Find matching English verse (handle potential offset or missing verses gracefully)
+                                const enVerse = englishVerses.find(ev => ev.verse === v.verse) || englishVerses[idx];
+                                return {
+                                    verseNumber: v.verse || (idx + 1),
+                                    text_en: isPersian ? (enVerse?.text || '') : (v.text || ''),
+                                    text_fa: isPersian ? (v.text || '') : (enVerse?.text || ''), // If primary is EN, use it as FA? No, fetch FA if primary EN. Wait, simplified:
+                                    // Actually, if primary is English (NET/KJV), text_fa should probably be fetched too if we want dual.
+                                    // But user asked specifically: "In Farsi mode... apply one English translation".
+                                    // So I will focus on that case.
+                                    audio_en: audioUrlEn,
+                                    audio_fa: audioUrlFa,
+                                    timing: v.timing
+                                };
+                            })
+                        }],
+                        hasAudio: primaryData.hasAudio ?? true // Default true if undefined to avoid breaking old caches
                     };
                     setPresentationData(payload);
                 }
@@ -179,42 +206,47 @@ const BibleUnifiedApp: React.FC = () => {
                         <ChevronRight size={14} className="rotate-90 opacity-50" />
                     </button>
 
-                    <button onClick={() => setShowSettings(true)} className="p-2 text-gray-400">
+                    <button id="bible-settings-btn" onClick={() => setShowSettings(true)} className="p-2 text-gray-400">
                         <Settings size={20} />
                     </button>
                 </header>
 
                 {/* 2. MAIN CONTENT (Scrollable) */}
-                <main className="flex-1 overflow-hidden relative">
+                <main className="flex-1 overflow-hidden relative bg-neutral-50 dark:bg-neutral-950">
+                    <OnboardingTour />
                     {loading ? (
                         <div className="flex items-center justify-center h-full">
                             <div className="animate-spin w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full" />
                         </div>
                     ) : (
-                        <div className="h-full overflow-y-auto pb-20 scrollbar-hide">
-                            {/* Added pb-20 for bottom nav space */}
-                            {presentationData && (
-                                <BilingualBiblePresentation
-                                    data={presentationData}
-                                    autoStart={true}
-                                    enableAudio={isPlaying} // Pass playing state (simplified)
-                                    viewMode={viewMode}
-                                    key={`${selectedBook}-${selectedChapter}`}
-                                />
-                            )}
-                        </div>
+                        presentationData ? (
+                            <MobileBibleReader
+                                chapter={{
+                                    number: selectedChapter,
+                                    verses: presentationData.chapters[0].verses.map((v: any) => ({
+                                        verseNumber: v.verseNumber,
+                                        text_fa: v.text_fa,
+                                        text_en: v.text_en,
+                                        timing: v.timing
+                                    })),
+                                    audioUrl: lang === 'fa' ? presentationData.chapters[0].verses[0].audio_fa : presentationData.chapters[0].verses[0].audio_en
+                                }}
+                                bookName={currentBookName}
+                                translation={translation}
+                                onNextChapter={() => setSelectedChapter(c => c + 1)}
+                                onPrevChapter={() => setSelectedChapter(c => Math.max(1, c - 1))}
+                                isPlaying={isPlaying}
+                                onPlayPause={() => setIsPlaying(!isPlaying)}
+                                onSettingsClick={() => setShowSettings(true)}
+                                fontSize={1.4}
+                                viewMode={viewMode || 'fa'}
+                                theme={theme}
+                                hasAudio={(presentationData as any).hasAudio}
+                            />
+                        ) : (
+                            <div className="flex items-center justify-center h-full opacity-50">Select a book</div>
+                        )
                     )}
-
-                    {/* Floating Audio Play Button (If viewing text) */}
-                    <button
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className={`absolute bottom-6 right-6 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-40 transition-all ${isPlaying ? 'bg-red-500 text-white animate-pulse' : 'bg-purple-600 text-white'
-                            }`}
-                    >
-                        {isPlaying ? <div className="w-3 h-3 bg-white rounded-sm" /> : <div className="ml-1 w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent" />}
-                        {/* Status Ring */}
-                        <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping opacity-20" />
-                    </button>
                 </main>
 
                 {/* 3. BOTTOM NAVIGATION */}
@@ -243,10 +275,10 @@ const BibleUnifiedApp: React.FC = () => {
                         }}
                     />
                     <NavButton
-                        icon={<MoreHorizontal size={20} />}
-                        label={lang === 'fa' ? 'بیشتر' : 'More'}
-                        active={activeTab === 'more'}
-                        onClick={() => setActiveTab('more')}
+                        icon={<Menu size={20} />}
+                        label={lang === 'fa' ? 'منو' : 'Menu'}
+                        active={showMenu}
+                        onClick={() => setShowMenu(true)}
                     />
                 </nav>
 
@@ -281,7 +313,102 @@ const BibleUnifiedApp: React.FC = () => {
                     </div>
                 </Drawer>
 
-                {/* 5. AUDIO PLAYER SHEET */}
+                {/* 5. SETTINGS DRAWER (Mobile) */}
+                <Drawer isOpen={showSettings} onClose={() => setShowSettings(false)} title="تنظیمات (Settings)">
+                    <div className="p-6 space-y-8 bg-neutral-900 h-full text-white">
+                        {/* Translation */}
+                        <div className="space-y-3">
+                            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+                                <Globe size={16} /> ترجمه (Translation)
+                            </label>
+                            <div className="grid grid-cols-1 gap-2">
+                                {[
+                                    { id: 'MOJDEH', label: 'مژده (MZH) - تفسیری', hasAudio: true },
+                                    { id: 'QADIM', label: 'قدیم (POV) - استاندارد', hasAudio: true },
+                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: true },
+                                    { id: 'PCB', label: 'امید (PCB) - معاصر', hasAudio: true },
+                                    { id: 'NMV', label: 'هزاره نو (NM)', hasAudio: true }
+                                ].map((t) => (
+                                    <button
+                                        key={t.id}
+                                        onClick={() => { setTranslation(t.id); setShowSettings(false); }}
+                                        className={`px-4 py-3 rounded-xl border font-medium transition-all flex items-center justify-between ${translation === t.id
+                                            ? 'bg-purple-600 border-purple-500 text-white shadow-lg'
+                                            : 'bg-neutral-800 border-neutral-700 text-gray-400 hover:bg-neutral-750'
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <span className="font-bold">{t.label}</span>
+                                        </div>
+                                        {t.hasAudio && (
+                                            <div className="flex items-center gap-1 text-xs opacity-80">
+                                                <Volume2 size={16} className={translation === t.id ? "text-white" : "text-yellow-500"} />
+                                                <span className="hidden sm:inline">صوتی</span>
+                                            </div>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Theme */}
+                        <div className="space-y-3">
+                            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+                                <Sun size={16} /> ظاهر (Theme)
+                            </label>
+                            <div className="flex bg-neutral-800 rounded-xl p-1 border border-neutral-700">
+                                <button
+                                    onClick={() => setTheme('light')}
+                                    className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg transition-all ${theme === 'light' ? 'bg-white text-black shadow-md' : 'text-gray-400'}`}
+                                >
+                                    <Sun size={18} /> Light
+                                </button>
+                                <button
+                                    onClick={() => setTheme('dark')}
+                                    className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg transition-all ${theme === 'dark' ? 'bg-neutral-700 text-white shadow-md' : 'text-gray-400'}`}
+                                >
+                                    <Moon size={18} /> Dark
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* View Mode */}
+                        <div className="space-y-3">
+                            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+                                <BookOpen size={16} /> نمایش (View)
+                            </label>
+                            <div className="grid grid-cols-3 gap-2">
+                                <button onClick={() => setViewMode('fa')} className={`py-2 rounded-lg border ${viewMode === 'fa' ? 'bg-purple-600 border-purple-500 text-white' : 'bg-neutral-800 border-neutral-700 text-gray-400'}`}>فارسی</button>
+                                <button onClick={() => setViewMode('dual')} className={`py-2 rounded-lg border ${viewMode === 'dual' ? 'bg-purple-600 border-purple-500 text-white' : 'bg-neutral-800 border-neutral-700 text-gray-400'}`}>دوزبانه</button>
+                                <button onClick={() => setViewMode('en')} className={`py-2 rounded-lg border ${viewMode === 'en' ? 'bg-purple-600 border-purple-500 text-white' : 'bg-neutral-800 border-neutral-700 text-gray-400'}`}>English</button>
+                            </div>
+                        </div>
+                    </div>
+                </Drawer>
+
+                {/* 6. MENU DRAWER (Mobile) */}
+                <Drawer isOpen={showMenu} onClose={() => setShowMenu(false)} title="منو (Menu)">
+                    <div className="p-4 space-y-2 bg-neutral-900 h-full text-white">
+                        <a href="/" className="block p-4 rounded-xl bg-white/5 hover:bg-white/10 flex items-center gap-3">
+                            <Home size={20} className="text-purple-400" />
+                            <span className="font-bold">خانه (Home)</span>
+                        </a>
+                        <a href="/live" className="block p-4 rounded-xl bg-white/5 hover:bg-white/10 flex items-center gap-3">
+                            <Monitor size={20} className="text-red-400" />
+                            <span className="font-bold">پخش زنده (Live)</span>
+                        </a>
+                        <a href="/sermons" className="block p-4 rounded-xl bg-white/5 hover:bg-white/10 flex items-center gap-3">
+                            <Mic2 size={20} className="text-blue-400" />
+                            <span className="font-bold">موعظه‌ها (Sermons)</span>
+                        </a>
+                        <a href="/donate" className="block p-4 rounded-xl bg-white/5 hover:bg-white/10 flex items-center gap-3">
+                            <span className="w-5 h-5 flex items-center justify-center font-bold text-green-400">$</span>
+                            <span className="font-bold">هدایا (Donate)</span>
+                        </a>
+                    </div>
+                </Drawer>
+
+                {/* 7. AUDIO PLAYER SHEET */}
                 {/* Simplified for demo: just reusing the karaoke component or a control panel */}
                 {showAudioPlayer && (
                     <div className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex flex-col animate-in slide-in-from-bottom duration-300">
@@ -326,21 +453,31 @@ const BibleUnifiedApp: React.FC = () => {
 
                     <div className="h-6 w-px bg-white/10" />
 
-                    {/* Desktop Mode Switcher */}
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-6">
+                        <a href="/" className="text-gray-400 hover:text-white text-sm font-medium transition-colors flex items-center gap-2"><Home size={16} /> Home</a>
+                        <a href="/live" className="text-gray-400 hover:text-red-400 text-sm font-medium transition-colors flex items-center gap-2"><Monitor size={16} /> Live</a>
+                        <a href="/sermons" className="text-gray-400 hover:text-blue-400 text-sm font-medium transition-colors flex items-center gap-2"><Mic2 size={16} /> Sermons</a>
+                        <a href="/donate" className="text-gray-400 hover:text-green-400 text-sm font-medium transition-colors flex items-center gap-2"><span className="font-bold text-xs border border-current rounded px-1">$</span> Donate</a>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    {/* Mode Switcher - Compact */}
                     <div className="flex bg-neutral-800 p-1 rounded-lg">
                         {['presentation', 'study', 'karaoke', 'book3d'].map((m) => (
                             <button
                                 key={m}
                                 onClick={() => setMode(m as any)}
-                                className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all capitalize ${mode === m ? 'bg-neutral-700 text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
+                                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all capitalize ${mode === m ? 'bg-neutral-700 text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
                             >
                                 {m}
                             </button>
                         ))}
                     </div>
-                </div>
 
-                <div className="flex items-center gap-4">
+                    <div className="h-6 w-px bg-white/10" />
+
                     <select
                         value={translation}
                         onChange={(e) => setTranslation(e.target.value)}
@@ -353,7 +490,7 @@ const BibleUnifiedApp: React.FC = () => {
                     <button onClick={() => setViewMode(v => v === 'dual' ? 'fa' : 'dual')} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors" title="Toggle Dual View">
                         <Languages size={18} />
                     </button>
-                    <button className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors">
+                    <button onClick={() => setShowSettings(true)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors">
                         <Settings size={18} />
                     </button>
                 </div>
@@ -410,9 +547,10 @@ const BibleUnifiedApp: React.FC = () => {
                                 {mode === 'presentation' && (
                                     <BilingualBiblePresentation
                                         data={presentationData}
-                                        autoStart={true}
-                                        enableAudio={isPlaying}
+                                        autoStart={false}
+                                        enableAudio={true}
                                         viewMode={viewMode}
+                                        bookCode={BOOK_CODE_MAP[selectedBook]}
                                         key={`${selectedBook}-${selectedChapter}`}
                                     />
                                 )}
@@ -427,38 +565,7 @@ const BibleUnifiedApp: React.FC = () => {
                 </main>
             </div>
 
-            {/* DESKTOP AUDIO PLAYER BAR (Fixed Bottom) */}
-            <div className="h-16 bg-neutral-900 border-t border-white/10 flex items-center px-6 gap-6 z-50">
-                <div className="flex items-center gap-4 w-64">
-                    <div className="w-10 h-10 bg-purple-900/50 rounded flex items-center justify-center text-purple-400">
-                        <Book size={20} />
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-sm font-bold text-white">{currentBookName} {selectedChapter}</span>
-                        <span className="text-xs text-gray-500">{translation} Audio Bible</span>
-                    </div>
-                </div>
-
-                <div className="flex-1 flex flex-col items-center justify-center gap-1">
-                    <div className="flex items-center gap-4">
-                        <button className="text-gray-400 hover:text-white"><SkipBack /></button>
-                        <button
-                            onClick={() => setIsPlaying(!isPlaying)}
-                            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
-                        >
-                            {isPlaying ? <div className="w-3 h-3 bg-black" /> : <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-black border-b-[6px] border-b-transparent ml-1" />}
-                        </button>
-                        <button className="text-gray-400 hover:text-white"><SkipForward /></button>
-                    </div>
-                </div>
-
-                <div className="w-64 flex justify-end items-center gap-4">
-                    <Volume2 size={18} className="text-gray-400" />
-                    <div className="w-24 h-1 bg-gray-700 rounded-full overflow-hidden">
-                        <div className="w-2/3 h-full bg-purple-500" />
-                    </div>
-                </div>
-            </div>
+            {/* DESKTOP AUDIO PLAYER BAR (Fixed Bottom) - REMOVED (Relies on BilingualBiblePresentation controls) */}
         </div>
     );
 };
@@ -474,25 +581,41 @@ const NavButton = ({ icon, label, active, onClick }: any) => (
     </button>
 );
 
-const Drawer = ({ isOpen, onClose, children, title }: any) => (
-    <>
-        {isOpen && <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]" onClick={onClose} />}
-        <div className={`fixed inset-x-0 bottom-0 max-h-[85vh] h-[85vh] bg-neutral-900 rounded-t-3xl z-[70] transform transition-transform duration-300 ease-out flex flex-col shadow-2xl border-t border-white/10 ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
-            <div className="h-1.5 w-12 bg-gray-700 rounded-full mx-auto mt-3 mb-2 shrink-0" />
-            {title && (
-                <div className="px-6 py-2 border-b border-white/5 flex justify-between items-center shrink-0">
-                    <h3 className="font-bold text-lg">{title}</h3>
-                    <button onClick={onClose} className="p-2 bg-gray-800 rounded-full"><X size={16} /></button>
+// Responsive Drawer / Modal
+const Drawer = ({ isOpen, onClose, children, title }: any) => {
+    if (!isOpen) return null;
+    return (
+        <div className="fixed inset-0 z-[60] flex items-end md:items-center justify-center p-0 md:p-4">
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in" onClick={onClose} />
+
+            {/* Content Container */}
+            <div className={`
+                relative bg-neutral-900 z-[70] flex flex-col shadow-2xl border-white/10
+                w-full md:w-[500px] md:bg-neutral-900/95
+                rounded-t-3xl md:rounded-2xl border-t md:border
+                h-[85vh] md:h-auto md:max-h-[85vh]
+                transform transition-all duration-300 ease-out
+                animate-in slide-in-from-bottom-full md:slide-in-from-bottom-10 md:zoom-in-95
+            `}>
+                <div className="h-1.5 w-12 bg-gray-700 rounded-full mx-auto mt-3 mb-2 shrink-0 md:hidden" />
+                {title && (
+                    <div className="px-6 py-4 border-b border-white/5 flex justify-between items-center shrink-0">
+                        <h3 className="font-bold text-lg text-white">{title}</h3>
+                        <button onClick={onClose} className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition-colors">
+                            <X size={18} />
+                        </button>
+                    </div>
+                )}
+                <div className="flex-1 overflow-y-auto relative scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-transparent">
+                    {children}
                 </div>
-            )}
-            <div className="flex-1 overflow-hidden relative">
-                {children}
             </div>
         </div>
-    </>
-);
+    );
+};
 
-// Icons for player
+// Icons for player (Legacy, kept just in case)
 const SkipBack = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>;
 const SkipForward = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>;
 

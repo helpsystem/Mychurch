@@ -1,0 +1,129 @@
+[
+  {
+    "id": 1,
+    "title": {
+      "fa": "الشدای",
+      "en": "El Shaddai",
+      "es": "El Shaddai"
+    },
+    "artist": "Michael Card",
+    "youtubeId": "jMLhjqlVj5U",
+    "audioUrl": "/audio/ElShaddai.mp3",
+    "videoUrl": "https://www.youtube.com/embed/jMLhjqlVj5U",
+    "presentationFileUrl": "/pptx/ELSHADDAI.pptx",
+    "lyrics": {
+      "fa": "ای خدای قادر مطلق\nای خدای کوه ها\nتو ستوده باشی\nتا ابدالآباد",
+      "en": "El Shaddai, El Shaddai\nEl-Elyon na Adonai\nAge to age You're still the same\nBy the power of the name",
+      "es": "El Shaddai, El Shaddai\nEl-Elyon na Adonai\nEdad tras edad sigues siendo el mismo\nPor el poder del nombre"
+    },
+    "timepoints": [
+      { "time": 0.5, "word": "ای" },
+      { "time": 1.0, "word": "خدای" },
+      { "time": 1.5, "word": "قادر" },
+      { "time": 2.0, "word": "مطلق" },
+      { "time": 3.0, "word": "ای" },
+      { "time": 3.5, "word": "خدای" },
+      { "time": 4.0, "word": "کوه" },
+      { "time": 4.5, "word": "ها" },
+      { "time": 5.5, "word": "تو" },
+      { "time": 6.0, "word": "ستوده" },
+      { "time": 6.5, "word": "باشی" },
+      { "time": 7.5, "word": "تا" },
+      { "time": 8.0, "word": "ابدالآباد" }
+    ]
+  },
+  {
+    "id": 2,
+    "title": {
+      "fa": "شیون",
+      "en": "Shout to the Lord",
+      "es": "Grita al Señor"
+    },
+    "artist": "Hillsong Worship",
+    "youtubeId": "VjdHpGcZzyY",
+    "audioUrl": "/audio/ShoutToTheLord.mp3",
+    "videoUrl": "https://www.youtube.com/embed/VjdHpGcZzyY",
+    "lyrics": {
+      "fa": "خدایا خداوند من\nهیچ کس مانند تو نیست\nبرکت و شکوه تراست\nتمام دل من تو را می‌خواند",
+      "en": "My Jesus, my Savior\nLord, there is none like You\nAll of my days I want to praise\nThe wonders of Your mighty love",
+      "es": "Mi Jesús, mi Salvador\nSeñor, no hay nadie como Tú\nTodos mis días quiero alabar\nLas maravillas de Tu amor poderoso"
+    }
+  },
+  {
+    "id": 3,
+    "title": {
+      "fa": "قدوس قدوس قدوس",
+      "en": "Holy Holy Holy",
+      "es": "Santo Santo Santo"
+    },
+    "artist": "Traditional Hymn",
+    "youtubeId": "k1jkGmf2KNc",
+    "lyrics": {
+      "fa": "قدوس قدوس قدوس\nخداوند قادر مطلق\nصبحگاهان سرود ما\nبلند می‌شود نزد تو",
+      "en": "Holy, holy, holy\nLord God Almighty\nEarly in the morning\nOur song shall rise to Thee",
+      "es": "Santo, santo, santo\nSeñor Dios Todopoderoso\nTemprano en la mañana\nNuestra canción se elevará a Ti"
+    }
+  },
+  {
+    "id": 4,
+    "title": {
+      "fa": "چه عظیم است خدای من",
+      "en": "How Great Is Our God",
+      "es": "Cuán Grande Es Nuestro Dios"
+    },
+    "artist": "Chris Tomlin",
+    "youtubeId": "KBD18rsVJHk",
+    "audioUrl": "/audio/HowGreatIsOurGod.mp3",
+    "videoUrl": "https://www.youtube.com/embed/KBD18rsVJHk",
+    "lyrics": {
+      "fa": "چه عظیم است خدای من\nبسرایید چه عظیم است خدای من\nو همه خواهند دید\nچقدر عظیم، چقدر عظیم است خدای من",
+      "en": "How great is our God\nSing with me, how great is our God\nAnd all will see\nHow great, how great is our God",
+      "es": "Cuán grande es nuestro Dios\nCanta conmigo, cuán grande es nuestro Dios\nY todos verán\nCuán grande, cuán grande es nuestro Dios"
+    },
+    "timepoints": [
+      { "time": 0.5, "word": "چه" },
+      { "time": 1.0, "word": "عظیم" },
+      { "time": 1.5, "word": "است" },
+      { "time": 2.0, "word": "خدای" },
+      { "time": 2.5, "word": "من" },
+      { "time": 3.5, "word": "بسرایید" },
+      { "time": 4.0, "word": "چه" },
+      { "time": 4.5, "word": "عظیم" },
+      { "time": 5.0, "word": "است" },
+      { "time": 5.5, "word": "خدای" },
+      { "time": 6.0, "word": "من" }
+    ]
+  },
+  {
+    "id": 5,
+    "title": {
+      "fa": "شکرگزارم",
+      "en": "10,000 Reasons (Bless the Lord)",
+      "es": "10,000 Razones (Bendice al Señor)"
+    },
+    "artist": "Matt Redman",
+    "youtubeId": "DXDGE_lRI0E",
+    "videoUrl": "https://www.youtube.com/embed/DXDGE_lRI0E",
+    "lyrics": {
+      "fa": "جانم خداوند را متبارک بخوان\nای جان من خداوند را متبارک بخوان\nده هزار دلیل برای قلب من\nتا او را بیابم",
+      "en": "Bless the Lord, O my soul\nO my soul, worship His holy name\nSing like never before\nO my soul, I'll worship Your holy name",
+      "es": "Bendice al Señor, oh alma mía\nOh alma mía, adora Su santo nombre\nCanta como nunca antes\nOh alma mía, adoraré Tu santo nombre"
+    }
+  },
+  {
+    "id": 6,
+    "title": {
+      "fa": "نور جهان",
+      "en": "Light of the World",
+      "es": "Luz del Mundo"
+    },
+    "artist": "Lauren Daigle",
+    "youtubeId": "pdTRYG495iI",
+    "videoUrl": "https://www.youtube.com/embed/pdTRYG495iI",
+    "lyrics": {
+      "fa": "نور جهان تو هستی\nتاریکی فرار می‌کند\nهیچ چیز نمی‌تواند مقابل تو بایستد\nهیچ چیز نمی‌تواند مقابل تو بایستد",
+      "en": "You are the Light of the World\nDarkness has to flee\nNothing can stand against You\nNothing can stand against You",
+      "es": "Tú eres la Luz del Mundo\nLa oscuridad tiene que huir\nNada puede estar contra Ti\nNada puede estar contra Ti"
+    }
+  }
+]

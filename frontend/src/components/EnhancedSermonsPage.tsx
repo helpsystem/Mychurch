@@ -6,12 +6,7 @@ import UniversalMediaPlayer from './UniversalMediaPlayer';
 import EnhancedMediaPlayer from './EnhancedMediaPlayer';
 import { Sermon } from '../types';
 
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../lib/supabaseClient';
 
 type MediaItem = {
   id: number;
@@ -47,7 +42,7 @@ const EnhancedSermonsPage: React.FC = () => {
           title: { en: s.title, fa: s.title }, // DB currently has one title, duplicatin for now
           speaker: s.preacher || 'Unknown',
           date: s.date,
-          series: null,
+          series: undefined, // Fix: null -> undefined to match type definition
           audioUrl: '', // Not strictly using audioUrl for youtube items?
           videoUrl: `https://www.youtube.com/watch?v=${s.youtube_id}`,
           description: { en: s.description || '', fa: s.description || '' },

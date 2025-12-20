@@ -10,31 +10,27 @@ const SecurityHeaders: React.FC = () => {
           'http-equiv': 'Content-Security-Policy',
           content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://esm.sh https://fonts.googleapis.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://esm.sh; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:* https: wss: data:; media-src 'self' https: http://localhost:* blob:; object-src 'none'; base-uri 'self'; form-action 'self';"
         },
-        
-        // X-Frame-Options
-        {
-          'http-equiv': 'X-Frame-Options',
-          content: 'DENY'
-        },
-        
+
+
+
         // X-Content-Type-Options
         {
           'http-equiv': 'X-Content-Type-Options',
           content: 'nosniff'
         },
-        
+
         // Referrer Policy
         {
           'http-equiv': 'Referrer-Policy',
           content: 'strict-origin-when-cross-origin'
         },
-        
+
         // Permissions Policy
         {
           'http-equiv': 'Permissions-Policy',
           content: 'geolocation=(), microphone=(), camera=(), payment=()'
         },
-        
+
         // Additional security headers
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'msapplication-tap-highlight', content: 'no' },
@@ -45,11 +41,11 @@ const SecurityHeaders: React.FC = () => {
 
       securityMetas.forEach(meta => {
         const existingMeta = document.querySelector(
-          meta['http-equiv'] 
+          meta['http-equiv']
             ? `meta[http-equiv="${meta['http-equiv']}"]`
             : `meta[name="${meta.name}"]`
         );
-        
+
         if (!existingMeta) {
           const metaElement = document.createElement('meta');
           if (meta['http-equiv']) {

@@ -26,6 +26,12 @@ if (!rootElement) {
 }
 
 const root = ReactDOM.createRoot(rootElement);
+
+// Remove initial loader and show root
+const loader = document.getElementById('initial-loader');
+if (loader) loader.remove();
+rootElement.style.display = 'block';
+
 root.render(
   <React.StrictMode>
     <LanguageProvider>

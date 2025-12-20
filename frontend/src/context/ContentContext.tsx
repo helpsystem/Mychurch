@@ -5,8 +5,8 @@ import { api, getApiBaseUrl, setApiBaseUrl } from '../lib/api';
 import { getAuthToken } from '../lib/tokenManager';
 import { leadersData, sermonsData, eventsData, worshipSongsData, scheduleData, galleriesData, prayerRequestsData, testimonialsData, churchLettersData } from '../lib/mockData';
 import { INITIAL_BIBLE_BOOKS, INITIAL_BIBLE_CONTENT } from '../lib/bibleData';
-import { 
-    CHURCH_ADDRESS, CHURCH_PHONE, MEETING_TIME_EN, MEETING_TIME_FA, 
+import {
+    CHURCH_ADDRESS, CHURCH_PHONE, MEETING_TIME_EN, MEETING_TIME_FA,
     FACEBOOK_URL, YOUTUBE_URL, INSTAGRAM_URL
 } from '../lib/constants';
 
@@ -51,11 +51,11 @@ const initialContent: ContentData = {
     testimonials: testimonialsData,
     churchLetters: churchLettersData,
     pages: [
-        { 
-            id: 1, 
-            slug: 'welcome-to-our-church', 
+        {
+            id: 1,
+            slug: 'welcome-to-our-church',
             title: { en: 'Welcome!', fa: 'خوش آمدید!' },
-            content: { en: 'This is a sample page created from the admin dashboard.', fa: 'این یک صفحه نمونه است که از داشبورد ادمین ایجاد شده است.'},
+            content: { en: 'This is a sample page created from the admin dashboard.', fa: 'این یک صفحه نمونه است که از داشبورد ادمین ایجاد شده است.' },
             status: 'published'
         }
     ],
@@ -79,36 +79,37 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
         const fetchAllContent = async () => {
             setLoading(true);
             let apiWarningLogged = false;
-            
+
             // Helper function to convert URLs to HiDrive streaming proxy
             const convertToProxyURL = (url: string): string => {
                 if (!url) return url;
-                
+
                 // Already a proxy URL
                 if (url.startsWith('/api/hidrive/stream/')) {
                     return url;
                 }
-                
+
                 // Full WebDAV URL
                 if (url.startsWith('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/')) {
                     const path = url.replace('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/', '');
                     return `/api/hidrive/stream/${path}`;
                 }
-                
+
                 // Local path - convert to proxy
                 if (url.startsWith('/worship/') || url.startsWith('/sermons/') || url.startsWith('/events/') || url.startsWith('/bible/')) {
                     const path = url.startsWith('/') ? url.substring(1) : url;
                     return `/api/hidrive/stream/${path}`;
                 }
-                
+
                 return url;
             };
-            
+
             // Try to load worship songs from JSON file first
             let worshipSongsFromJSON = worshipSongsData;
             try {
                 const response = await fetch('/worship/data/worship_songs.json');
-                if (response.ok) {
+                const contentType = response.headers.get('content-type');
+                if (response.ok && contentType && contentType.includes('application/json')) {
                     const jsonData = await response.json();
                     // Convert audioUrl for each song to use HiDrive streaming proxy
                     worshipSongsFromJSON = jsonData.map((song: any) => {
@@ -134,7 +135,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             } catch (error) {
                 console.warn('⚠️ Could not load worship songs from JSON, using mock data:', error);
             }
-            
+
             // Auto-configure API base URL if not set
             try {
                 const currentUrl = getApiBaseUrl();
@@ -146,10 +147,10 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             } catch (error) {
                 console.warn('Could not auto-configure API base URL:', error);
             }
-            
+
             // Separate public and authenticated endpoints
             const token = getAuthToken();
-            
+
             const publicEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
                 { key: 'leaders', path: '/api/leaders', mockData: leadersData },
                 { key: 'sermons', path: '/api/sermons', mockData: sermonsData },
@@ -171,13 +172,13 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
 
             // Always fetch public endpoints
             const contentEndpoints = [...publicEndpoints];
-            
+
             // Only add authenticated endpoints if user is logged in
             if (token) {
                 contentEndpoints.push(...authenticatedEndpoints);
             }
 
-            const promises = contentEndpoints.map(endpoint => 
+            const promises = contentEndpoints.map(endpoint =>
                 api.get(endpoint.path)
                     .then(data => ({ key: endpoint.key, data, success: true }))
                     .catch(error => {
@@ -190,10 +191,10 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                         return { key: endpoint.key, data: endpoint.mockData, success: false };
                     })
             );
-            
+
             // Separately fetch Bible books and convert to expected format
             const biblePromise = api.get<{ success: boolean, books: any[] }>('/api/bible/books')
-                 .then(async data => {
+                .then(async data => {
                     if (data.success && data.books) {
                         // Transform API format to frontend format
                         const books: BibleBook[] = data.books.map((book: any) => ({
@@ -202,38 +203,38 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                             chapters: book.chapters,
                             testament: book.testament  // ✅ Keep testament field from backend
                         }));
-                        
+
                         // Initialize empty content structure - will be loaded on demand
                         const content: any = {};
-                        
+
                         console.log(`📖 Loaded ${books.length} Bible books from API with initial content`);
                         return { success: true, books, content };
                     } else {
                         throw new Error('Invalid API response format');
                     }
-                 })
-                 .catch(error => {
-                        if (error.name === 'ApiNotConfiguredError' && !apiWarningLogged) {
-                            console.warn("API base URL is not configured. The application is running on mock data. Please configure it in the admin panel under 'API Configuration'.");
-                            apiWarningLogged = true;
-                        } else if (error.name !== 'ApiNotConfiguredError') {
-                            console.error(`API Fetch Error: Could not fetch bible from /api/bible/books. Using mock data.`, error.message);
-                        }
-                        return { success: false, books: INITIAL_BIBLE_BOOKS, content: INITIAL_BIBLE_CONTENT };
-                 });
+                })
+                .catch(error => {
+                    if (error.name === 'ApiNotConfiguredError' && !apiWarningLogged) {
+                        console.warn("API base URL is not configured. The application is running on mock data. Please configure it in the admin panel under 'API Configuration'.");
+                        apiWarningLogged = true;
+                    } else if (error.name !== 'ApiNotConfiguredError') {
+                        console.error(`API Fetch Error: Could not fetch bible from /api/bible/books. Using mock data.`, error.message);
+                    }
+                    return { success: false, books: INITIAL_BIBLE_BOOKS, content: INITIAL_BIBLE_CONTENT };
+                });
 
             const results = await Promise.all([...promises, biblePromise]);
-            
+
             const newContent = results.slice(0, -1).reduce((acc, result: any) => {
                 acc[result.key] = result.data;
                 return acc;
             }, {} as Partial<ContentData>);
-            
+
             const bibleResult = results[results.length - 1] as { success: boolean, books: BibleBook[], content: ContentData['bibleContent'] };
 
             const atLeastOneApiSuccess = results.some(r => r.success);
             if (!atLeastOneApiSuccess && !apiWarningLogged) {
-                 console.error("Failed to fetch any content from API, using fallback mock data for everything.");
+                console.error("Failed to fetch any content from API, using fallback mock data for everything.");
             }
 
             setContent({
@@ -281,7 +282,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             [contentType]: (prevContent[contentType] as any[]).filter(item => item.id !== itemId),
         }));
     };
-    
+
     const updateSettings = async (settings: SiteSettings) => {
         const updatedSettings = await api.put<SiteSettings>('/api/settings', settings);
         setContent(prevContent => ({
@@ -297,7 +298,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             storage: updatedSettings
         }));
     };
-    
+
     const updateBibleVerse = async (book: string, chapter: string, verseIndex: number, lang: Language, text: string) => {
         const response = await api.put<{ bibleContent: ContentData['bibleContent'] }>('/api/bible', { book, chapter, verseIndex, lang, text });
         setContent(prevContent => ({
@@ -305,7 +306,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             bibleContent: response.bibleContent,
         }));
     };
-    
+
     const importBibleChapter = async (data: BibleImportData) => {
         const response = await api.importBibleChapter(data);
         setContent(prev => ({
@@ -336,7 +337,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             throw error;
         }
     };
-    
+
     const replaceFile = async (fileId: string, file: File): Promise<ManagedFile | null> => {
         const formData = new FormData();
         formData.append('file', file);
@@ -351,7 +352,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             }
 
             const updatedFile = await api.replace<ManagedFile>(`/api/files/replace/${fileToReplace.name}`, formData);
-             if (updatedFile) {
+            if (updatedFile) {
                 setContent(prevContent => ({
                     ...prevContent,
                     files: prevContent.files.map(f => f.id === fileId ? { ...updatedFile, id: fileId } : f),
@@ -364,12 +365,12 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             throw error;
         }
     };
-    
+
     const updateFile = async (fileId: string, data: Partial<ManagedFile>): Promise<ManagedFile | null> => {
         try {
             // This endpoint should only handle metadata (e.g., name), not file content.
             const updatedFile = await api.put<ManagedFile>(`/api/files/metadata/${fileId}`, data);
-             if (updatedFile) {
+            if (updatedFile) {
                 setContent(prevContent => ({
                     ...prevContent,
                     files: prevContent.files.map(f => f.id === fileId ? updatedFile : f),
