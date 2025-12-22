@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
-import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle, Play, Music } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 
 import WeeklySchedule from '../components/WeeklySchedule';
@@ -17,8 +17,12 @@ import './HomePage.css';
 
 const ParticleCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
+    // 🚀 در موبایل انیمیشن ذرات رو غیرفعال کن برای بهبود عملکرد
+    if (isMobile) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -36,7 +40,8 @@ const ParticleCanvas: React.FC = () => {
     setCanvasDimensions();
 
     const particles: { x: number; y: number; size: number; speedX: number; speedY: number; }[] = [];
-    const numberOfParticles = 50;
+    // 🚀 کاهش تعداد ذرات برای بهبود عملکرد
+    const numberOfParticles = 30;
 
     const initParticles = () => {
       particles.length = 0;
@@ -80,8 +85,11 @@ const ParticleCanvas: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isMobile]);
 
+  // 🚀 در موبایل اصلاً canvas رو رندر نکن
+  if (isMobile) return null;
+  
   return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0" />;
 };
 
@@ -530,24 +538,20 @@ const HomePage: React.FC = () => {
                 <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">{t('sermonsHomeTitle')}</h2>
                 <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[470px] mt-5">{t('sermonsHomeParagraph')}</p>
                 <div className="flex flex-row flex-wrap sm:mt-10 mt-6 gap-4">
-                  <Link to="/sermons" className="transform hover:scale-105 transition-transform duration-300">
-                    <div className="relative w-[128px] h-[42px]">
-                      <img src="https://i.ibb.co/kM0G5xX/apple.png" alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-50" aria-hidden="true" />
-                      <img src="https://i.ibb.co/kM0G5xX/apple.png" alt="Download on App Store" className="relative w-full h-full object-contain" />
-                    </div>
+                  <Link to="/sermons" className="group flex items-center gap-2 bg-gradient-to-r from-secondary to-blue-400 hover:from-blue-400 hover:to-secondary text-black font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
+                    <Play className="w-5 h-5" />
+                    <span>{lang === 'fa' ? 'مشاهده موعظه‌ها' : 'Watch Sermons'}</span>
                   </Link>
-                  <Link to="/sermons" className="transform hover:scale-105 transition-transform duration-300">
-                    <div className="relative w-[128px] h-[42px]">
-                      <img src="https://i.ibb.co/2SYxL06/google.png" alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-50" aria-hidden="true" />
-                      <img src="https://i.ibb.co/2SYxL06/google.png" alt="Get it on Google Play" className="relative w-full h-full object-contain" />
-                    </div>
+                  <Link to="/worship" className="group flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-white/20">
+                    <Music className="w-5 h-5" />
+                    <span>{lang === 'fa' ? 'سرودها' : 'Worship Songs'}</span>
                   </Link>
                 </div>
               </div>
               <div className="flex-1 flex justify-center items-center md:ml-10 ml-0 md:mt-0 mt-10 relative rtl:md:mr-10 rtl:md:ml-0">
-                <div className="relative w-full h-full">
-                  <img src="https://i.ibb.co/B4g4sP3/card.png" alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-30" aria-hidden="true" />
-                  <img src="https://i.ibb.co/B4g4sP3/card.png" alt="Sermons App Preview" className="relative w-full h-full object-contain z-[5] hover:scale-105 transition-transform duration-500" />
+                <div className="relative w-full h-80 rounded-xl overflow-hidden">
+                  <img src="/images/Persian_Christian_choir_singing_bfe3adf8.png" alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-30" aria-hidden="true" />
+                  <img src="/images/Persian_Christian_choir_singing_bfe3adf8.png" alt="Sermons Preview" className="relative w-full h-full object-cover z-[5] hover:scale-105 transition-transform duration-500" />
                 </div>
               </div>
             </section>

@@ -23,7 +23,7 @@ const wordprojectRoutes = require('./routes/wordproject');
 const ttsRoutes = require('./routes/tts');
 const audioRoutes = require('./routes/audioRoutes'); // Smart Audio Source Resolver
 const downloadRoutes = require('./routes/downloadRoutes'); // WordProject Downloader
-const bibleLocalRoutes = require('./routes/bibleLocal'); // Local Bible Data (Text + Timestamps)
+const bibleLocalRoutes = require('./routes/bible-local'); // Local Bible Data with HiDrive audio integration
 
 // Try to load HiDrive routes
 let hidriveRoutes;

@@ -134,18 +134,18 @@ const BilingualBiblePresentation: React.FC<Props> = ({
   enableAudio = false,
   viewMode = 'dual' // Default to dual
 }) => {
-  // 🐛 DEBUG: Log received data IN DETAIL
-  console.log('📚 BilingualBiblePresentation received data:', {
-    book_en: data.book_en,
-    book_fa: data.book_fa,
-    chapters: data.chapters.length,
-    firstChapter: data.chapters[0]?.chapterNumber,
-    firstVerseCount: data.chapters[0]?.verses.length,
-    firstVerseFa: data.chapters[0]?.verses[0]?.text_fa?.substring(0, 50) + '...'
-  });
-
-  // 🔍 DEBUG: Log FULL first verse object
-  console.log('🔍 FULL First verse object:', data.chapters[0]?.verses[0]);
+  // 🐛 DEBUG: Removed excessive logging - only log on mount
+  const hasLoggedRef = useRef(false);
+  useEffect(() => {
+    if (!hasLoggedRef.current) {
+      console.log('📚 BilingualBiblePresentation loaded:', {
+        book_fa: data.book_fa,
+        chapters: data.chapters.length,
+        verses: data.chapters[0]?.verses.length
+      });
+      hasLoggedRef.current = true;
+    }
+  }, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [chapterIdx, setChapterIdx] = useState(Math.max(0, startChapter - 1));
@@ -159,6 +159,7 @@ const BilingualBiblePresentation: React.FC<Props> = ({
   const [wordsPerSecond, setWordsPerSecond] = useState(1.6); // ✨ NEW: Highlight speed
   const [currentAudioTime, setCurrentAudioTime] = useState(0); // ✨ Track audio playback time
   const sharedAudioRef = useRef<HTMLAudioElement | null>(null); // ✨ Shared audio reference
+  const durationRef = useRef<number>(0); // ✨ Track audio duration for sync
 
   const [highlightColor, setHighlightColor] = useState('#fde047'); // ✨ NEW: Custom highlight color (yellow-300 default)
 
@@ -183,13 +184,7 @@ const BilingualBiblePresentation: React.FC<Props> = ({
   const chapter = data.chapters[chapterIdx];
   const verse = chapter?.verses[verseIdx];
 
-  // 🐛 DEBUG: Log current verse being displayed
-  console.log('📖 Current verse:', {
-    chapterIdx,
-    verseIdx,
-    verseNumber: verse?.verseNumber,
-    text_fa: verse?.text_fa?.substring(0, 50) + '...'
-  });
+  // 🐛 DEBUG: Removed - was causing excessive logging
 
   const enPaneRef = useRef<HTMLDivElement>(null);
   const faPaneRef = useRef<HTMLDivElement>(null);
@@ -455,20 +450,45 @@ const BilingualBiblePresentation: React.FC<Props> = ({
         </button>
       </div>
 
-      {/* 🎵 Audio Player - Positioned below controls */}
+      {/* 🎵 Audio Player - Positioned at the BOTTOM to avoid overlapping main toolbar */}
       {enableAudio && bookCode && (
-        <div className="fixed z-50 left-1/2 -translate-x-1/2 top-16">
+        <div className="fixed z-50 left-1/2 -translate-x-1/2 bottom-20 sm:bottom-8 w-[94vw] sm:w-auto">
           <PresentationAudioPlayer
             bookCode={bookCode}
             chapter={chapter.chapterNumber}
             compact={true}
             autoPlay={false}
+            isPlaying={playing} // ✨ Sync with toolbar
+            onPlayingChange={setPlaying} // ✨ Notify toolbar of changes
+            onTimeUpdate={(time: number) => {
+              setCurrentAudioTime(time);
+
+              // ✨ Use ACTUAL timing data from verses, not character count
+              if (chapter.verses && chapter.verses.length > 0) {
+                // Find the verse that matches current audio time
+                for (let i = 0; i < chapter.verses.length; i++) {
+                  const verse = chapter.verses[i];
+                  // Check if this verse has timing data
+                  if (verse.timing && verse.timing.start !== undefined && verse.timing.end !== undefined) {
+                    if (time >= verse.timing.start && time < verse.timing.end) {
+                      if (verseIdx !== i) {
+                        setVerseIdx(i);
+                      }
+                      break; // Found the current verse, stop searching
+                    }
+                  }
+                }
+              }
+            }}
+            onDurationChange={(dur: number) => {
+              durationRef.current = dur;
+            }}
           />
         </div>
       )}
 
       {/* Page */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="popLayout">
         <motion.div
           key={`chapter-${chapter.chapterNumber}`}
           initial={{ x: 60, opacity: 0 }}

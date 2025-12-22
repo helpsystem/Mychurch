@@ -51,32 +51,11 @@ const CriticalResourceLoader: React.FC<CriticalResourceLoaderProps> = ({ resourc
 };
 
 // Critical resources for the church website
+// Note: Removed preloads that caused warnings - fonts already loaded via CSS in index.html
 export const criticalResources: CriticalResource[] = [
-  // Critical fonts
-  {
-    href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap',
-    as: 'style'
-  },
-  {
-    href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap',
-    as: 'style'
-  },
-  
-  // Critical images
-  {
-    href: '/images/church-logo-hq.png',
-    as: 'image'
-  },
-  {
-    href: '/images/jesus-cross-sunset.jpg',
-    as: 'image'
-  },
-  
-  // Critical scripts
-  {
-    href: 'https://cdn.tailwindcss.com',
-    as: 'script'
-  }
+  // Only preconnect hints are useful - actual resources loaded elsewhere
+  // Fonts are loaded via link tags in index.html with media="print" onload trick
+  // Images are loaded on-demand when needed
 ];
 
 export default CriticalResourceLoader;

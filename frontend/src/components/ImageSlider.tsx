@@ -76,6 +76,8 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
             src={images[currentIndex]} 
             alt={`Slide ${currentIndex + 1}`}
             className="image-slider-img"
+            loading="lazy"
+            decoding="async"
           />
           
           {/* Enhanced Gradient Overlays */}

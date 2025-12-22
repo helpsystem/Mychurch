@@ -40,16 +40,16 @@ const LoadingScreen: React.FC<Props> = ({ onFinished }) => {
             setProgress(prev => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    setTimeout(() => onFinished(), 800);
+                    setTimeout(() => onFinished(), 300); // 🚀 کاهش از 800 به 300
                     return 100;
                 }
-                return prev + 1.5; // سریع‌تر: 1.5% در هر مرحله
+                return prev + 3; // 🚀 سریع‌تر: 3% در هر مرحله (قبلاً 1.5%)
             });
-        }, 60); // هر 60 میلی‌ثانیه
+        }, 50); // 🚀 هر 50 میلی‌ثانیه (قبلاً 60)
 
         const stepInterval = setInterval(() => {
             setCurrentStep(prev => (prev + 1) % loadingSteps.length);
-        }, 3000); // 3 ثانیه برای هر پیام
+        }, 2000); // 🚀 2 ثانیه برای هر پیام (قبلاً 3)
 
         return () => {
             clearInterval(interval);

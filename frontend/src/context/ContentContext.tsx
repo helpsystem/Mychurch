@@ -150,18 +150,23 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
 
             // Separate public and authenticated endpoints
             const token = getAuthToken();
+            
+            // 🚀 بهینه‌سازی: در موبایل فقط داده‌های ضروری رو بارگذاری کن
+            const isMobile = window.innerWidth < 768;
 
-            const publicEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
-                { key: 'leaders', path: '/api/leaders', mockData: leadersData },
-                { key: 'sermons', path: '/api/sermons', mockData: sermonsData },
-                { key: 'events', path: '/api/events', mockData: eventsData },
-                { key: 'worshipSongs', path: '/api/worship-songs', mockData: worshipSongsFromJSON },
-                { key: 'scheduleEvents', path: '/api/schedule-events', mockData: scheduleData },
-                { key: 'galleries', path: '/api/galleries', mockData: galleriesData },
-                { key: 'prayerRequests', path: '/api/prayer-requests', mockData: prayerRequestsData },
-                { key: 'testimonials', path: '/api/testimonials', mockData: testimonialsData },
-                { key: 'churchLetters', path: '/api/letters', mockData: churchLettersData },
-                { key: 'pages', path: '/api/pages', mockData: initialContent.pages },
+            const publicEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any, priority: 'high' | 'low' }[] = [
+                // اولویت بالا - همیشه لود میشن
+                { key: 'leaders', path: '/api/leaders', mockData: leadersData, priority: 'high' },
+                { key: 'sermons', path: '/api/sermons', mockData: sermonsData, priority: 'high' },
+                { key: 'events', path: '/api/events', mockData: eventsData, priority: 'high' },
+                { key: 'worshipSongs', path: '/api/worship-songs', mockData: worshipSongsFromJSON, priority: 'high' },
+                // اولویت پایین - در موبایل بعداً لود میشن
+                { key: 'scheduleEvents', path: '/api/schedule-events', mockData: scheduleData, priority: 'low' },
+                { key: 'galleries', path: '/api/galleries', mockData: galleriesData, priority: 'low' },
+                { key: 'prayerRequests', path: '/api/prayer-requests', mockData: prayerRequestsData, priority: 'low' },
+                { key: 'testimonials', path: '/api/testimonials', mockData: testimonialsData, priority: 'low' },
+                { key: 'churchLetters', path: '/api/letters', mockData: churchLettersData, priority: 'low' },
+                { key: 'pages', path: '/api/pages', mockData: initialContent.pages, priority: 'low' },
             ];
 
             const authenticatedEndpoints: { key: keyof Omit<ContentData, 'bibleBooks' | 'bibleContent'>, path: string, mockData: any }[] = [
@@ -170,8 +175,11 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                 { key: 'files', path: '/api/files', mockData: initialContent.files },
             ];
 
-            // Always fetch public endpoints
-            const contentEndpoints = [...publicEndpoints];
+            // 🚀 در موبایل فقط اولویت‌های بالا رو اول لود کن
+            const highPriorityEndpoints = publicEndpoints.filter(e => e.priority === 'high');
+            const lowPriorityEndpoints = publicEndpoints.filter(e => e.priority === 'low');
+            
+            const contentEndpoints = isMobile ? highPriorityEndpoints : publicEndpoints;
 
             // Only add authenticated endpoints if user is logged in
             if (token) {
@@ -245,6 +253,27 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             });
 
             setLoading(false);
+            
+            // 🚀 در موبایل، داده‌های با اولویت پایین رو با تأخیر لود کن
+            if (isMobile && lowPriorityEndpoints.length > 0) {
+                setTimeout(async () => {
+                    console.log('📱 Loading low-priority content for mobile...');
+                    const lowPriorityPromises = lowPriorityEndpoints.map(endpoint =>
+                        api.get(endpoint.path)
+                            .then(data => ({ key: endpoint.key, data, success: true }))
+                            .catch(() => ({ key: endpoint.key, data: endpoint.mockData, success: false }))
+                    );
+                    
+                    const lowResults = await Promise.all(lowPriorityPromises);
+                    const lowContent = lowResults.reduce((acc, result: any) => {
+                        acc[result.key] = result.data;
+                        return acc;
+                    }, {} as Partial<ContentData>);
+                    
+                    setContent(prev => ({ ...prev, ...lowContent }));
+                    console.log('✅ Low-priority content loaded');
+                }, 2000); // 2 ثانیه تأخیر
+            }
         };
 
         fetchAllContent();

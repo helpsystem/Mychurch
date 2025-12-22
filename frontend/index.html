@@ -958,22 +958,20 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
 
-  <!-- Initial Logo Loader (Premium) -->
-  <div id="initial-loader">
-    <div class="loader-ring-outer"></div>
-    <div class="loader-ring-inner"></div>
-    <div class="loader-logo-container">
-      <div class="loader-glow"></div>
-      <img src="/images/church-logo-ultra-hd.png" alt="IRAN CHURCH DC" class="loader-logo-img">
-    </div>
-    <div class="loader-text">IRAN CHURCH DC</div>
-    <div class="loader-subtitle">WASHINGTON DC</div>
-    <div class="loader-dots">
-      <div class="loader-dot"></div>
-      <div class="loader-dot"></div>
-      <div class="loader-dot"></div>
+  <!-- Initial Loader (Simple) -->
+  <div id="initial-loader"
+    style="position:fixed;inset:0;background:#00040F;display:flex;justify-content:center;align-items:center;z-index:9999;">
+    <div
+      style="width:50px;height:50px;border:3px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:#00F6FF;animation:spin 1s ease-in-out infinite;">
     </div>
   </div>
+  <style>
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 
   <div id="root"></div>
   <script type="module" src="/src/index.tsx"></script>

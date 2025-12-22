@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.29.1",
+    "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.76.1",
     "adm-zip": "^0.5.16",
     "axios": "^1.13.2",
@@ -46,6 +47,7 @@
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.3",
     "cheerio": "^1.1.2",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",

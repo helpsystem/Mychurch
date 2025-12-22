@@ -1,0 +1,28 @@
+{
+  "processedFiles": [],
+  "failedFiles": [
+    {
+      "key": "1CH_1",
+      "error": "متن یافت نشد: TypeError: fetch failed"
+    },
+    {
+      "key": "1CH_10",
+      "error": "متن یافت نشد: TypeError: fetch failed"
+    },
+    {
+      "key": "1CH_11",
+      "error": "متن یافت نشد: TypeError: fetch failed"
+    },
+    {
+      "key": "1CH_12",
+      "error": "متن یافت نشد: TypeError: fetch failed"
+    },
+    {
+      "key": "1CH_13",
+      "error": "متن یافت نشد: TypeError: fetch failed"
+    }
+  ],
+  "lastProcessedIndex": 4,
+  "startedAt": "2025-12-22T13:08:16.729Z",
+  "totalFiles": 1189
+}

@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import VerseOfTheDayModal from './VerseOfTheDayModal';
 import GlobalAudioPlayer from './GlobalAudioPlayer';
 
-const Layout: React.FC = () => {
+interface LayoutProps {
+  children?: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [showVerseModal, setShowVerseModal] = useState(false);
   const location = useLocation();
 
@@ -64,7 +68,7 @@ const Layout: React.FC = () => {
 
       <main className="flex-grow page-fade-in pb-24" key={location.pathname}>
         <div className="relative">
-          <Outlet />
+          {children || <Outlet />}
         </div>
       </main>
 

@@ -99,6 +99,19 @@ const imageGenerationService = require('./services/imageGenerationService');
 
 const app = express();
 
+// ---------- COMPRESSION MIDDLEWARE ----------
+// 🚀 فشرده‌سازی پاسخ‌ها برای بهبود سرعت در موبایل
+const compression = require('compression');
+app.use(compression({
+  level: 6, // سطح فشرده‌سازی (1-9)
+  threshold: 1024, // فقط فایل‌های بالای 1KB فشرده شوند
+  filter: (req, res) => {
+    // فشرده نکردن فایل‌های از قبل فشرده (تصاویر، ویدیو)
+    if (req.headers['x-no-compression']) return false;
+    return compression.filter(req, res);
+  }
+}));
+
 // ---------- DEV CSP HEADER ----------
 if (process.env.NODE_ENV !== 'production') {
   app.use((req, res, next) => {
@@ -136,7 +149,7 @@ app.use(helmet({
 // 2. Rate Limiting
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  max: 1000, // Increased from 100 to 1000 - homepage makes 10+ API calls
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests, please try again later.' }
@@ -458,7 +471,10 @@ const startServer = async () => {
     console.error('⚠️ Failed to start Background Sync Worker:', error.message);
   }
 
-  // سرور را اول شروع کن
+  // ✨ Initialize database FIRST (await it!)
+  await initializeDatabaseAsync();
+
+  // THEN start HTTP server
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
     console.log('API endpoints available:');
@@ -485,9 +501,6 @@ const startServer = async () => {
     console.log('  �️ /api/daily-images/* - Daily AI-generated images');
     console.log('  �📮 /api/notifications/* - Multi-channel notifications');
     console.log('  ❤️ /api/health - Health check');
-
-    // فعال‌سازی مقداردهی اولیه دیتابیس با timeout
-    initializeDatabaseAsync();
   });
 };
 

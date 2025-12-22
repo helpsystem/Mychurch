@@ -1,5 +1,19 @@
 /**
- * Bible Local Content API - Serves downloaded Bible files
+ * Bible Local Content API - Serves Bible content with HiDrive audio integration
+ * 
+ * UPDATED: Uses shared translation config for proper audio handling
+ * 
+ * BIBLE STRUCTURE:
+ * - Bible
+ *   └── Translations (MOJDEH, QADIM, NET, etc.)
+ *       └── Books (66 books: Genesis to Revelation)
+ *           └── Chapters (varies per book)
+ *               └── Verses
+ * 
+ * AUDIO NOTES:
+ * - Each translation may or may not have audio
+ * - Translations without audio use a fallback (e.g., QADIM → MOJDEH)
+ * - Audio files are stored on HiDrive
  */
 
 const express = require('express');
@@ -8,72 +22,249 @@ const fs = require('fs').promises;
 
 const router = express.Router();
 
-// Path to downloaded Bible data
-const BIBLE_DATA_DIR = path.join(__dirname, '../bible_data');
+// ============================================
+// TRANSLATION CONFIGURATION
+// ============================================
+const BIBLE_TRANSLATIONS = {
+    // Persian Translations
+    MOJDEH: {
+        code: 'MOJDEH',
+        language: 'fa',
+        hasAudio: true,
+        audioSource: 'hidrive',
+        audioFallback: null,
+        name: { en: 'Mojdeh (Good News)', fa: 'مژده' }
+    },
+    QADIM: {
+        code: 'QADIM',
+        language: 'fa',
+        hasAudio: false,
+        audioFallback: 'MOJDEH',
+        name: { en: 'Qadim (Classical)', fa: 'قدیم' }
+    },
+    TPV: {
+        code: 'TPV',
+        language: 'fa',
+        hasAudio: false,
+        audioFallback: 'MOJDEH',
+        name: { en: "Today's Persian Version", fa: 'ترجمه نوین' }
+    },
+    NMV: {
+        code: 'NMV',
+        language: 'fa',
+        hasAudio: false,
+        audioFallback: 'MOJDEH',
+        name: { en: 'New Millennium Version', fa: 'هزاره نو' }
+    },
+    PCB: {
+        code: 'PCB',
+        language: 'fa',
+        hasAudio: false,
+        audioFallback: 'MOJDEH',
+        name: { en: 'Persian Contemporary Bible', fa: 'معاصر' }
+    },
+    // English Translations
+    NET: {
+        code: 'NET',
+        language: 'en',
+        hasAudio: false,
+        audioFallback: null,
+        name: { en: 'New English Translation', fa: 'NET' }
+    },
+    KJV: {
+        code: 'KJV',
+        language: 'en',
+        hasAudio: true,
+        audioSource: 'wordproject',
+        audioFallback: null,
+        name: { en: 'King James Version', fa: 'کینگ جیمز' }
+    },
+    ESV: {
+        code: 'ESV',
+        language: 'en',
+        hasAudio: false,
+        audioFallback: 'KJV',
+        name: { en: 'English Standard Version', fa: 'ESV' }
+    }
+};
+
+/**
+ * Get the translation to use for audio (handles fallback)
+ */
+function getAudioTranslation(translationCode) {
+    const translation = BIBLE_TRANSLATIONS[translationCode.toUpperCase()];
+    if (!translation) return null;
+    
+    if (translation.hasAudio) {
+        return translation.code;
+    }
+    
+    if (translation.audioFallback) {
+        const fallback = BIBLE_TRANSLATIONS[translation.audioFallback];
+        if (fallback?.hasAudio) {
+            return fallback.code;
+        }
+    }
+    
+    return null;
+}
+
+/**
+ * Get translation info
+ */
+function getTranslationInfo(translationCode) {
+    return BIBLE_TRANSLATIONS[translationCode.toUpperCase()] || null;
+}
+
+// Path to Bible text files (public folder)
+const BIBLE_TEXT_DIR = path.join(__dirname, '../../public/text/bible');
+// Path to timing files
+const BIBLE_TIMING_DIR = path.join(__dirname, '../../public/bible/data/timings');
+
+// USFM code mapping (3-letter) to numeric book code (01-66)
+const USFM_TO_NUMERIC = {
+    'GEN': '01', 'EXO': '02', 'LEV': '03', 'NUM': '04', 'DEU': '05',
+    'JOS': '06', 'JDG': '07', 'RUT': '08', '1SA': '09', '2SA': '10',
+    '1KI': '11', '2KI': '12', '1CH': '13', '2CH': '14', 'EZR': '15',
+    'NEH': '16', 'EST': '17', 'JOB': '18', 'PSA': '19', 'PRO': '20',
+    'ECC': '21', 'SNG': '22', 'ISA': '23', 'JER': '24', 'LAM': '25',
+    'EZK': '26', 'DAN': '27', 'HOS': '28', 'JOL': '29', 'AMO': '30',
+    'OBA': '31', 'JON': '32', 'MIC': '33', 'NAM': '34', 'HAB': '35',
+    'ZEP': '36', 'HAG': '37', 'ZEC': '38', 'MAL': '39',
+    'MAT': '40', 'MRK': '41', 'LUK': '42', 'JHN': '43', 'ACT': '44',
+    'ROM': '45', '1CO': '46', '2CO': '47', 'GAL': '48', 'EPH': '49',
+    'PHP': '50', 'COL': '51', '1TH': '52', '2TH': '53', '1TI': '54',
+    '2TI': '55', 'TIT': '56', 'PHM': '57', 'HEB': '58', 'JAS': '59',
+    '1PE': '60', '2PE': '61', '1JN': '62', '2JN': '63', '3JN': '64',
+    'JUD': '65', 'REV': '66'
+};
+
+/**
+ * GET /api/bible-local/translations
+ * Returns list of available translations with their metadata
+ */
+router.get('/translations', (req, res) => {
+    const translations = Object.values(BIBLE_TRANSLATIONS).map(t => ({
+        code: t.code,
+        name: t.name,
+        language: t.language,
+        hasAudio: t.hasAudio,
+        audioFallback: t.audioFallback,
+        hasAudioAvailable: !!getAudioTranslation(t.code)
+    }));
+    
+    res.json({
+        success: true,
+        translations,
+        persian: translations.filter(t => t.language === 'fa'),
+        english: translations.filter(t => t.language === 'en')
+    });
+});
 
 /**
  * GET /api/bible-local/content/:translation/:book/:chapter
- * Serves chapter text from local JSON files
+ * Serves chapter text from public/text/bible with HiDrive audio URLs
  */
 router.get('/content/:translation/:book/:chapter', async (req, res) => {
     try {
         const { translation, book, chapter } = req.params;
-
-        const filePath = path.join(
-            BIBLE_DATA_DIR,
-            'text',
-            translation.toUpperCase(),
-            book.toUpperCase(),
-            `${chapter}.json`
+        const bookUpper = book.toUpperCase();
+        const translationUpper = translation.toUpperCase();
+        
+        // Get translation info
+        const translationInfo = getTranslationInfo(translationUpper);
+        const lang = translationInfo?.language || (
+            ['MOJDEH', 'QADIM', 'TPV', 'NMV', 'PCB'].includes(translationUpper) ? 'fa' : 'en'
         );
+        
+        // Convert USFM code (GEN, EXO...) to numeric (01, 02...)
+        const numericCode = USFM_TO_NUMERIC[bookUpper] || bookUpper;
 
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-        const data = JSON.parse(fileContent);
-
-        // CHECK AUDIO EXISTENCE
-        const primaryAudioPath = path.join(
-            BIBLE_DATA_DIR,
-            'audio',
-            translation.toUpperCase(),
-            book.toUpperCase(),
-            `${chapter}.mp3`
-        );
-
-        let audioUrl = null;
-
+        // Read text file from public/text/bible/{lang}/{numericCode}/{chapter}.json
+        const textPath = path.join(BIBLE_TEXT_DIR, lang, numericCode, `${chapter}.json`);
+        
+        let textData;
         try {
-            await fs.access(primaryAudioPath);
-            // file exists
-            audioUrl = `/api/bible-local/audio/${translation}/${book}/${chapter}`;
+            const fileContent = await fs.readFile(textPath, 'utf-8');
+            textData = JSON.parse(fileContent);
         } catch (e) {
-            // Primary audio missing, check fallback (MOJDEH) if Persian
-            const isPersian = ['TPV', 'QADIM', 'NM', 'PCB'].includes(translation.toUpperCase());
-            if (isPersian) {
-                const fallbackPath = path.join(BIBLE_DATA_DIR, 'audio', 'MOJDEH', book.toUpperCase(), `${chapter}.mp3`);
-                try {
-                    await fs.access(fallbackPath);
-                    // Fallback exists!
-                    // Note: We still point to the original URL structure, but the /audio endpoint (which we fixed)
-                    // will handle serving the fallback file content.
-                    // HOWEVER, for the frontend to know "it exists", we return true here.
-                    // Actually, if we return the same URL, the frontend will try to play it.
-                    // The /audio endpoint handles the logic.
-                    // So we just need to know if *eventually* it will work.
-                    audioUrl = `/api/bible-local/audio/${translation}/${book}/${chapter}`;
-                } catch (e2) {
-                    // No fallback either
-                    audioUrl = null;
-                }
+            console.error(`Bible text not found: ${textPath}`);
+            return res.status(404).json({
+                success: false,
+                error: 'Chapter not found',
+                message: `No text file at ${textPath}`
+            });
+        }
+
+        // Convert verses object to array format
+        const versesObj = textData.verses || {};
+        const versesArray = Object.entries(versesObj).map(([num, text]) => ({
+            verse: parseInt(num),
+            text: (text || '').replace(/&nbsp;/g, ' ').trim()
+        })).sort((a, b) => a.verse - b.verse);
+
+        // Get audio translation (handles fallback logic)
+        const audioTranslationCode = getAudioTranslation(translationUpper);
+        const hasAudioAvailable = !!audioTranslationCode;
+        
+        // Generate HiDrive audio URL if audio is available
+        let audioUrl = null;
+        let audioNote = null;
+        
+        if (audioTranslationCode) {
+            audioUrl = `/api/hidrive/stream/bible/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
+            
+            // Note if using fallback audio
+            if (audioTranslationCode !== translationUpper) {
+                const fallbackInfo = getTranslationInfo(audioTranslationCode);
+                audioNote = {
+                    usingFallback: true,
+                    originalTranslation: translationUpper,
+                    audioTranslation: audioTranslationCode,
+                    message: {
+                        en: `Audio from ${fallbackInfo?.name?.en || audioTranslationCode} translation`,
+                        fa: `صوت از ترجمه ${fallbackInfo?.name?.fa || audioTranslationCode}`
+                    }
+                };
             }
         }
 
-        data.audio = audioUrl;
+        // Check for timing file
+        const timingPath = path.join(BIBLE_TIMING_DIR, `${bookUpper}_${chapter}_timing.json`);
+        let hasTiming = false;
+        
+        try {
+            await fs.access(timingPath);
+            hasTiming = true;
+        } catch (e) {
+            // No timing file - that's okay
+        }
 
+        // Build response with comprehensive translation info
         res.json({
             success: true,
-            ...data,
+            
+            // Basic info
+            book: textData.book || book,
+            chapter: parseInt(chapter),
+            verses: versesArray,
+            
+            // Translation info
+            translation: {
+                code: translationUpper,
+                name: translationInfo?.name || { en: translationUpper, fa: translationUpper },
+                language: lang
+            },
+            
+            // Audio info
+            audio: audioUrl,
             audioUrl: audioUrl,
-            hasAudio: !!audioUrl // Explicit flag for frontend
+            hasAudio: hasAudioAvailable,
+            audioNote: audioNote,
+            
+            // Timing info
+            hasTiming: hasTiming,
+            timingUrl: hasTiming ? `/bible/data/timings/${bookUpper}_${chapter}_timing.json` : null
         });
 
     } catch (error) {
@@ -88,99 +279,28 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
 
 /**
  * GET /api/bible-local/audio/:translation/:book/:chapter
- * Streams MP3 audio with range support
+ * Redirects to HiDrive streaming endpoint with fallback support
  */
 router.get('/audio/:translation/:book/:chapter', async (req, res) => {
-    try {
-        const { translation, book, chapter } = req.params;
-
-        const audioPath = path.join(
-            BIBLE_DATA_DIR,
-            'audio',
-            translation.toUpperCase(),
-            book.toUpperCase(),
-            `${chapter}.mp3`
-        );
-
-        const stat = await fs.stat(audioPath);
-        const range = req.headers.range;
-
-        if (range) {
-            const parts = range.replace(/bytes=/, '').split('-');
-            const start = parseInt(parts[0], 10);
-            const end = parts[1] ? parseInt(parts[1], 10) : stat.size - 1;
-            const chunkSize = (end - start) + 1;
-
-            const readStream = require('fs').createReadStream(audioPath, { start, end });
-
-            res.writeHead(206, {
-                'Content-Range': `bytes ${start}-${end}/${stat.size}`,
-                'Accept-Ranges': 'bytes',
-                'Content-Length': chunkSize,
-                'Content-Type': 'audio/mpeg',
-            });
-
-            readStream.pipe(res);
-        } else {
-            res.writeHead(200, {
-                'Content-Length': stat.size,
-                'Content-Type': 'audio/mpeg',
-            });
-
-            require('fs').createReadStream(audioPath).pipe(res);
-        }
-
-    } catch (error) {
-        // Fallback Logic for Persian Translations
-        const { translation, book, chapter } = req.params;
-        const isPersian = ['TPV', 'QADIM', 'NM', 'PCB'].includes(translation.toUpperCase());
-
-        if (error.code === 'ENOENT' && isPersian && translation.toUpperCase() !== 'MOJDEH') {
-            try {
-                // Try serving MOJDEH audio as fallback
-                const fallbackPath = path.join(
-                    BIBLE_DATA_DIR,
-                    'audio',
-                    'MOJDEH', // Fallback translation
-                    book.toUpperCase(),
-                    `${chapter}.mp3`
-                );
-
-                const stat = await fs.stat(fallbackPath);
-
-                // Serve the fallback file
-                const range = req.headers.range;
-                if (range) {
-                    const parts = range.replace(/bytes=/, '').split('-');
-                    const start = parseInt(parts[0], 10);
-                    const end = parts[1] ? parseInt(parts[1], 10) : stat.size - 1;
-                    const chunkSize = (end - start) + 1;
-
-                    const readStream = require('fs').createReadStream(fallbackPath, { start, end });
-                    res.writeHead(206, {
-                        'Content-Range': `bytes ${start}-${end}/${stat.size}`,
-                        'Accept-Ranges': 'bytes',
-                        'Content-Length': chunkSize,
-                        'Content-Type': 'audio/mpeg',
-                    });
-                    readStream.pipe(res);
-                } else {
-                    res.writeHead(200, {
-                        'Content-Length': stat.size,
-                        'Content-Type': 'audio/mpeg',
-                    });
-                    require('fs').createReadStream(fallbackPath).pipe(res);
-                }
-                return; // Succesfully served fallback
-
-            } catch (fallbackError) {
-                console.error('Audio fallback failed:', fallbackError.message);
-            }
-        }
-
-        console.error('Audio stream error:', error.message);
-        res.status(404).json({ success: false, error: 'Audio not found' });
+    const { translation, book, chapter } = req.params;
+    const bookUpper = book.toUpperCase();
+    const translationUpper = translation.toUpperCase();
+    
+    // Get audio translation (handles fallback)
+    const audioTranslationCode = getAudioTranslation(translationUpper);
+    
+    if (!audioTranslationCode) {
+        return res.status(404).json({
+            success: false,
+            error: 'No audio available',
+            message: `Translation ${translationUpper} has no audio and no fallback available`
+        });
     }
+    
+    // Redirect to HiDrive stream
+    const hidriveUrl = `/api/hidrive/stream/bible/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
+    console.log(`🔄 Redirecting audio request to HiDrive: ${hidriveUrl}`);
+    res.redirect(302, hidriveUrl);
 });
 
 module.exports = router;

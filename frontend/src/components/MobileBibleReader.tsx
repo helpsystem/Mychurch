@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { Play, Pause, SkipBack, SkipForward, AlertCircle } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, AlertCircle, Info } from 'lucide-react';
 
 // --- Types ---
 export interface MobileVerse {
@@ -15,6 +15,13 @@ export interface MobileChapter {
     audioUrl?: string;
 }
 
+export interface AudioNote {
+    usingFallback: boolean;
+    originalTranslation: string;
+    audioTranslation: string;
+    message: { en: string; fa: string };
+}
+
 interface Props {
     chapter: MobileChapter;
     bookName: string;
@@ -28,6 +35,8 @@ interface Props {
     viewMode: 'dual' | 'fa' | 'en';
     theme: 'dark' | 'light';
     hasAudio?: boolean;
+    hasTiming?: boolean;
+    audioNote?: AudioNote; // Info about fallback audio
 }
 
 const MobileBibleReader: React.FC<Props> = ({
@@ -41,7 +50,9 @@ const MobileBibleReader: React.FC<Props> = ({
     fontSize = 1.2,
     viewMode,
     theme,
-    hasAudio = true
+    hasAudio = false,
+    hasTiming = false,
+    audioNote
 }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [currentTime, setCurrentTime] = useState(0);
@@ -49,6 +60,7 @@ const MobileBibleReader: React.FC<Props> = ({
     const activeVerseRef = useRef<HTMLDivElement>(null);
     const [userScrolled, setUserScrolled] = useState(false);
     const [audioError, setAudioError] = useState(false);
+    const [audioLoaded, setAudioLoaded] = useState(false); // 🔧 NEW: Track if audio actually loaded
 
     // Font size scaling className
     const getTextSizeClass = (size: number) => {
@@ -82,13 +94,21 @@ const MobileBibleReader: React.FC<Props> = ({
         }
     };
 
-    // Find Active Verse
+    // Find Active Verse - Only if hasTiming is true
     const activeVerseIndex = useMemo(() => {
-        if (!chapter.verses) return -1;
+        if (!hasTiming || !chapter.verses) return -1;
         return chapter.verses.findIndex(v =>
             v.timing && currentTime >= v.timing.start && currentTime < v.timing.end
         );
-    }, [currentTime, chapter.verses]);
+    }, [currentTime, chapter.verses, hasTiming]);
+
+    // Debug Logging for Timeline Issues (reduced frequency)
+    useEffect(() => {
+        // 🔧 Only log every 5 seconds to reduce console spam
+        if (isPlaying && currentTime > 0 && Math.floor(currentTime) % 5 === 0) {
+            console.log('🎵 Audio Time:', currentTime.toFixed(2), '| Active Verse:', activeVerseIndex);
+        }
+    }, [Math.floor(currentTime / 5), activeVerseIndex, isPlaying]);
 
     // Auto-Scroll to Active Verse
     useEffect(() => {
@@ -193,9 +213,17 @@ const MobileBibleReader: React.FC<Props> = ({
                     ref={audioRef}
                     src={chapter.audioUrl}
                     onTimeUpdate={handleTimeUpdate}
+                    onCanPlay={() => {
+                        console.log('✅ Audio ready to play');
+                        setAudioLoaded(true);
+                        setAudioError(false);
+                    }}
                     onError={(e) => {
-                        console.error("Audio error", e);
+                        console.error("❌ Audio error - file may not exist", e);
                         setAudioError(true);
+                        setAudioLoaded(false);
+                        // 🔧 Stop playing if audio fails
+                        if (isPlaying) onPlayPause();
                     }}
                     onEnded={() => {
                         if (isPlaying) onPlayPause();
@@ -211,16 +239,27 @@ const MobileBibleReader: React.FC<Props> = ({
                 </div>
             )}
 
-            {/* Floating Layout Controls - Moved HIGHER to avoid menu overlap (Visible only if Audio exists) */}
-            {hasAudio && (
+            {/* Audio Fallback Info Toast - Show when using fallback audio (always visible when audio available) */}
+            {audioNote?.usingFallback && hasAudio && !audioError && (
+                <div className="fixed bottom-36 left-1/2 -translate-x-1/2 bg-blue-600/90 text-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2 z-[110] animate-in fade-in slide-in-from-bottom">
+                    <Info size={16} />
+                    <span className="text-xs font-medium" dir={viewMode === 'fa' ? 'rtl' : 'ltr'}>
+                        {viewMode === 'fa' ? audioNote.message.fa : audioNote.message.en}
+                    </span>
+                </div>
+            )}
+
+            {/* Floating Layout Controls - Only show if audio is available AND loaded successfully */}
+            {hasAudio && !audioError && (
                 <div
                     id="bible-player-container"
-                    className="fixed bottom-32 left-1/2 -translate-x-1/2 flex items-center gap-6 z-[100]"
+                    className={`fixed bottom-32 left-1/2 -translate-x-1/2 flex items-center gap-6 z-[200] ${viewMode === 'fa' ? 'flex-row-reverse' : ''}`}
                 >
-                    {/* Previous Button */}
+                    {/* Previous Button - LEFT for LTR, RIGHT for RTL */}
                     <button
                         onClick={onPrevChapter}
                         className="w-12 h-12 flex items-center justify-center rounded-full bg-neutral-900/80 backdrop-blur border border-white/10 text-white hover:bg-neutral-800 shadow-lg active:scale-95 transition-all"
+                        title={viewMode === 'fa' ? 'فصل قبل' : 'Previous Chapter'}
                     >
                         <SkipBack size={20} />
                     </button>
@@ -239,10 +278,11 @@ const MobileBibleReader: React.FC<Props> = ({
                         {isPlaying ? <Pause size={36} fill="currentColor" /> : <Play size={36} fill="currentColor" className="ml-1" />}
                     </button>
 
-                    {/* Next Button */}
+                    {/* Next Button - RIGHT for LTR, LEFT for RTL */}
                     <button
                         onClick={onNextChapter}
                         className="w-12 h-12 flex items-center justify-center rounded-full bg-neutral-900/80 backdrop-blur border border-white/10 text-white hover:bg-neutral-800 shadow-lg active:scale-95 transition-all"
+                        title={viewMode === 'fa' ? 'فصل بعد' : 'Next Chapter'}
                     >
                         <SkipForward size={20} />
                     </button>

@@ -8,6 +8,7 @@ import { AuthProvider } from './context/AuthContext';
 import { ContentProvider } from './context/ContentContext';
 import { TourProvider } from './context/TourContext';
 import { AudioPlayerProvider } from './context/AudioPlayerContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Service Worker disabled during development to prevent caching issues
 // Unregister any existing service workers
@@ -39,7 +40,9 @@ root.render(
         <AuthProvider>
           <TourProvider>
             <AudioPlayerProvider>
-              <App />
+              <ErrorBoundary>
+                <App />
+              </ErrorBoundary>
             </AudioPlayerProvider>
           </TourProvider>
         </AuthProvider>

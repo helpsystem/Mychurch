@@ -72,6 +72,7 @@ const BibleUnifiedApp: React.FC = () => {
     const [selectedChapter, setSelectedChapter] = useState(1);
     const [presentationData, setPresentationData] = useState<BiblePayload | null>(null);
     const [loading, setLoading] = useState(false);
+    const [expandedBook, setExpandedBook] = useState<string | null>('01'); // For showing chapters list
 
     // Audio
     const [isPlaying, setIsPlaying] = useState(false);
@@ -125,7 +126,8 @@ const BibleUnifiedApp: React.FC = () => {
 
                 // 2. Fetch Secondary Text (English fallback) if needed
                 let englishVerses: any[] = [];
-                const isPersian = ['MOJDEH', 'QADIM', 'TPV'].includes(translationCode);
+                const isPersian = primaryData.translation?.language === 'fa' || 
+                    ['MOJDEH', 'QADIM', 'TPV', 'NMV', 'PCB'].includes(translationCode);
 
                 if (isPersian) {
                     try {
@@ -138,32 +140,38 @@ const BibleUnifiedApp: React.FC = () => {
                 }
 
                 if (primaryData.success && primaryData.verses) {
-                    const audioUrlFa = primaryData.audio || `/api/bible-local/audio/${translationCode}/${usfmCode}/${selectedChapter}`;
-                    const audioUrlEn = `/api/bible-local/audio/NET/${usfmCode}/${selectedChapter}`; // Default to NET audio for English
+                    // Use audio URL from API (handles fallback automatically)
+                    const audioUrl = primaryData.audioUrl || primaryData.audio || null;
                     const currentBook = books.find(b => b.key === selectedBook);
+                    
+                    // Log audio info for debugging
+                    if (primaryData.audioNote?.usingFallback) {
+                        console.log(`🎵 Using fallback audio: ${primaryData.audioNote.audioTranslation} for ${translationCode}`);
+                    }
 
                     const payload: BiblePayload = {
                         book_en: currentBook?.name.en || 'Genesis',
                         book_fa: currentBook?.name.fa || 'پیدایش',
+                        audioUrl: audioUrl,
+                        audioNote: primaryData.audioNote, // Info about fallback audio
                         chapters: [{
                             chapterNumber: selectedChapter,
+                            audioUrl: audioUrl,
                             verses: primaryData.verses.map((v: any, idx: number) => {
-                                // Find matching English verse (handle potential offset or missing verses gracefully)
                                 const enVerse = englishVerses.find(ev => ev.verse === v.verse) || englishVerses[idx];
                                 return {
                                     verseNumber: v.verse || (idx + 1),
                                     text_en: isPersian ? (enVerse?.text || '') : (v.text || ''),
-                                    text_fa: isPersian ? (v.text || '') : (enVerse?.text || ''), // If primary is EN, use it as FA? No, fetch FA if primary EN. Wait, simplified:
-                                    // Actually, if primary is English (NET/KJV), text_fa should probably be fetched too if we want dual.
-                                    // But user asked specifically: "In Farsi mode... apply one English translation".
-                                    // So I will focus on that case.
-                                    audio_en: audioUrlEn,
-                                    audio_fa: audioUrlFa,
+                                    text_fa: isPersian ? (v.text || '') : (enVerse?.text || ''),
+                                    audio_en: null,
+                                    audio_fa: audioUrl,
                                     timing: v.timing
                                 };
                             })
                         }],
-                        hasAudio: primaryData.hasAudio ?? true // Default true if undefined to avoid breaking old caches
+                        hasAudio: primaryData.hasAudio === true,
+                        hasTiming: primaryData.hasTiming === true,
+                        translation: primaryData.translation // Include translation info
                     };
                     setPresentationData(payload);
                 }
@@ -181,8 +189,9 @@ const BibleUnifiedApp: React.FC = () => {
     // RENDER HELPERS
     // -------------------------------------------------------------------------
 
-    // Get Current Book Name safely
-    const currentBookName = books.find(b => b.key === selectedBook)?.name[lang as 'en' | 'fa'] || (lang === 'fa' ? 'پیدایش' : 'Genesis');
+    // Get Current Book safely
+    const currentBook = books.find(b => b.key === selectedBook);
+    const currentBookName = currentBook?.name[lang as 'en' | 'fa'] || (lang === 'fa' ? 'پیدایش' : 'Genesis');
 
     // -------------------------------------------------------------------------
     // JSX: MOBILE LAYOUT
@@ -229,7 +238,7 @@ const BibleUnifiedApp: React.FC = () => {
                                         text_en: v.text_en,
                                         timing: v.timing
                                     })),
-                                    audioUrl: lang === 'fa' ? presentationData.chapters[0].verses[0].audio_fa : presentationData.chapters[0].verses[0].audio_en
+                                    audioUrl: presentationData.chapters[0]?.audioUrl || (presentationData as any).audioUrl || undefined
                                 }}
                                 bookName={currentBookName}
                                 translation={translation}
@@ -241,7 +250,9 @@ const BibleUnifiedApp: React.FC = () => {
                                 fontSize={1.4}
                                 viewMode={viewMode || 'fa'}
                                 theme={theme}
-                                hasAudio={(presentationData as any).hasAudio}
+                                hasAudio={(presentationData as any).hasAudio === true}
+                                hasTiming={(presentationData as any).hasTiming === true}
+                                audioNote={(presentationData as any).audioNote}
                             />
                         ) : (
                             <div className="flex items-center justify-center h-full opacity-50">Select a book</div>
@@ -323,11 +334,11 @@ const BibleUnifiedApp: React.FC = () => {
                             </label>
                             <div className="grid grid-cols-1 gap-2">
                                 {[
-                                    { id: 'MOJDEH', label: 'مژده (MZH) - تفسیری', hasAudio: true },
-                                    { id: 'QADIM', label: 'قدیم (POV) - استاندارد', hasAudio: true },
-                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: true },
-                                    { id: 'PCB', label: 'امید (PCB) - معاصر', hasAudio: true },
-                                    { id: 'NMV', label: 'هزاره نو (NM)', hasAudio: true }
+                                    { id: 'MOJDEH', label: 'مژده (MZH) - تفسیری', hasAudio: true, fallback: null },
+                                    { id: 'QADIM', label: 'قدیم (POV) - استاندارد', hasAudio: false, fallback: 'MOJDEH' },
+                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: false, fallback: 'MOJDEH' },
+                                    { id: 'PCB', label: 'امید (PCB) - معاصر', hasAudio: false, fallback: 'MOJDEH' },
+                                    { id: 'NMV', label: 'هزاره نو (NM)', hasAudio: false, fallback: 'MOJDEH' }
                                 ].map((t) => (
                                     <button
                                         key={t.id}
@@ -340,10 +351,15 @@ const BibleUnifiedApp: React.FC = () => {
                                         <div className="flex items-center gap-3">
                                             <span className="font-bold">{t.label}</span>
                                         </div>
-                                        {t.hasAudio && (
+                                        {t.hasAudio ? (
                                             <div className="flex items-center gap-1 text-xs opacity-80">
-                                                <Volume2 size={16} className={translation === t.id ? "text-white" : "text-yellow-500"} />
+                                                <Volume2 size={16} className={translation === t.id ? "text-white" : "text-green-500"} />
                                                 <span className="hidden sm:inline">صوتی</span>
+                                            </div>
+                                        ) : t.fallback && (
+                                            <div className="flex items-center gap-1 text-xs opacity-70">
+                                                <Volume2 size={14} className="text-blue-400" />
+                                                <span className="text-blue-400">صوت: {t.fallback}</span>
                                             </div>
                                         )}
                                     </button>
@@ -511,30 +527,101 @@ const BibleUnifiedApp: React.FC = () => {
                     </div>
                     <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-neutral-700">
                         {books.map(book => (
-                            <button
-                                key={book.key}
-                                onClick={() => { setSelectedBook(book.key); setSelectedChapter(1); }}
-                                className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between group transition-all ${selectedBook === book.key ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/20' : 'hover:bg-white/5 text-gray-400 hover:text-gray-200'}`}
-                            >
-                                <span className={lang === 'fa' ? 'font-medium' : 'font-medium'}>{lang === 'fa' ? book.name.fa : book.name.en}</span>
-                                {selectedBook === book.key && <ChevronRight size={14} />}
-                            </button>
+                            <div key={book.key}>
+                                {/* Book Header */}
+                                <button
+                                    onClick={() => {
+                                        setExpandedBook(expandedBook === book.key ? null : book.key);
+                                        if (selectedBook !== book.key) {
+                                            setSelectedBook(book.key);
+                                            setSelectedChapter(1);
+                                        }
+                                    }}
+                                    className={`w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all ${selectedBook === book.key ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/20' : 'hover:bg-white/5 text-gray-400 hover:text-gray-200'}`}
+                                >
+                                    <ChevronRight size={14} className={`transition-transform ${expandedBook === book.key ? 'rotate-90' : ''}`} />
+                                    <span className="font-medium">{lang === 'fa' ? book.name.fa : book.name.en}</span>
+                                </button>
+                                
+                                {/* Chapter Grid - Expandable */}
+                                {expandedBook === book.key && (
+                                    <div className="grid grid-cols-5 gap-1 p-2 bg-black/30 rounded-lg mt-1 mb-2">
+                                        {Array.from({ length: book.chapters }, (_, i) => i + 1).map(ch => (
+                                            <button
+                                                key={ch}
+                                                onClick={() => { setSelectedBook(book.key); setSelectedChapter(ch); }}
+                                                className={`py-2 rounded text-sm font-medium transition-all ${
+                                                    selectedBook === book.key && selectedChapter === ch
+                                                        ? 'bg-purple-500 text-white'
+                                                        : 'bg-neutral-800 text-gray-400 hover:bg-neutral-700 hover:text-white'
+                                                }`}
+                                            >
+                                                {ch}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
                 </aside>
 
                 {/* MAIN STAGE */}
                 <main className="flex-1 relative bg-black flex flex-col">
-                    {/* Toolbar / Breadcrumbs */}
-                    <div className="h-12 bg-neutral-800/50 border-b border-white/5 flex items-center justify-between px-6">
-                        <div className="flex items-center gap-2 text-gray-300">
-                            <span className="font-bold text-white">{currentBookName}</span>
+                    {/* Toolbar / Breadcrumbs - IMPROVED */}
+                    <div className="h-14 bg-gradient-to-r from-neutral-800/80 to-neutral-900/80 backdrop-blur border-b border-white/5 flex items-center justify-between px-6">
+                        <div className="flex items-center gap-3 text-gray-300">
+                            <span className="font-bold text-white text-lg">{currentBookName}</span>
                             <ChevronRight size={14} className="opacity-50" />
-                            <span className="font-mono bg-white/10 px-2 py-0.5 rounded text-sm">CH {selectedChapter}</span>
+                            
+                            {/* Chapter Navigation - Standard Direction */}
+                            <div className="flex items-center bg-black/40 rounded-xl border border-white/10 overflow-hidden">
+                                {/* Previous Chapter - Always LEFT arrow */}
+                                <button 
+                                    onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
+                                    disabled={selectedChapter <= 1}
+                                    className="px-3 py-2 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all border-r border-white/10"
+                                    title={lang === 'fa' ? 'فصل قبل' : 'Previous Chapter'}
+                                >
+                                    <ChevronLeft size={18} />
+                                </button>
+                                
+                                {/* Chapter Dropdown */}
+                                <div className="relative group">
+                                    <select
+                                        value={selectedChapter}
+                                        onChange={(e) => setSelectedChapter(Number(e.target.value))}
+                                        className="appearance-none bg-transparent px-4 py-2 text-center font-bold text-white cursor-pointer hover:bg-white/5 transition-all min-w-[80px] focus:outline-none focus:ring-2 focus:ring-purple-500/50 rounded"
+                                        style={{ textAlignLast: 'center' }}
+                                    >
+                                        {Array.from({ length: currentBook?.chapters || 50 }, (_, i) => i + 1).map(ch => (
+                                            <option key={ch} value={ch} className="bg-neutral-800 text-white">
+                                                {lang === 'fa' ? `فصل ${ch}` : `Ch ${ch}`}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <span className="font-mono text-base">{lang === 'fa' ? `فصل ${selectedChapter}` : `CH ${selectedChapter}`}</span>
+                                    </div>
+                                </div>
+                                
+                                {/* Next Chapter - Always RIGHT arrow */}
+                                <button 
+                                    onClick={() => setSelectedChapter(c => Math.min(currentBook?.chapters || 50, c + 1))}
+                                    disabled={selectedChapter >= (currentBook?.chapters || 50)}
+                                    className="px-3 py-2 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all border-l border-white/10"
+                                    title={lang === 'fa' ? 'فصل بعد' : 'Next Chapter'}
+                                >
+                                    <ChevronRight size={18} />
+                                </button>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-1">
-                            <button onClick={() => setSelectedChapter(c => Math.max(1, c - 1))} className="p-1.5 hover:bg-white/10 rounded disabled:opacity-30"><ChevronLeft size={16} /></button>
-                            <button onClick={() => setSelectedChapter(c => c + 1)} className="p-1.5 hover:bg-white/10 rounded"><ChevronRight size={16} /></button>
+                        
+                        {/* Quick Info */}
+                        <div className="flex items-center gap-2 text-gray-400 text-sm">
+                            <span className="bg-purple-600/20 text-purple-300 px-2 py-1 rounded-lg text-xs font-medium">
+                                {translation}
+                            </span>
                         </div>
                     </div>
 

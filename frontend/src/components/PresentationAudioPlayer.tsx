@@ -1,14 +1,15 @@
 // PresentationAudioPlayer.tsx
 // ============================================================
-// Compact audio player for Presentation Mode
+// Ultra-Premium Floating Audio Player for Presentation Mode
 // ============================================================
 // Integrates with BilingualBiblePresentation
-// Uses Smart Audio System (local → CDN fallback)
+// Uses Bible Local API (previously failed with generic audio API)
+// Style adapted from "BibleReader.tsx" (Reference Project)
 // ============================================================
 
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Volume2, Play, Pause, RotateCcw, Settings } from 'lucide-react';
+import { Volume2, Play, Pause, RotateCcw, Settings, SkipBack, SkipForward, Loader2 } from 'lucide-react';
 
 interface PresentationAudioPlayerProps {
   bookCode: string;
@@ -16,15 +17,12 @@ interface PresentationAudioPlayerProps {
   onPlay?: () => void;
   onPause?: () => void;
   onEnded?: () => void;
+  onTimeUpdate?: (time: number) => void;
+  onDurationChange?: (duration: number) => void;
   autoPlay?: boolean;
-  compact?: boolean; // Ultra-compact mode for presentation
-}
-
-interface AudioSource {
-  source: string;
-  type: string;
-  priority: number;
-  exists: boolean | string;
+  compact?: boolean;
+  isPlaying?: boolean; // ✨ External play control
+  onPlayingChange?: (playing: boolean) => void; // ✨ Notify parent of play state changes
 }
 
 const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
@@ -33,13 +31,17 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
   onPlay,
   onPause,
   onEnded,
+  onTimeUpdate,
+  onDurationChange,
   autoPlay = false,
   compact = true,
+  isPlaying = false, // ✨ External control
+  onPlayingChange,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [audioSource, setAudioSource] = useState<AudioSource | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [playing, setPlaying] = useState(false);
+  // ❌ REMOVED: const [playing, setPlaying] = useState(false); - now using prop isPlaying
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -54,27 +56,49 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
 
   // Auto-play if enabled
   useEffect(() => {
-    if (audioSource && autoPlay && audioRef.current) {
+    if (audioUrl && autoPlay && audioRef.current) {
       audioRef.current.play().catch(err => {
         console.error('Auto-play failed:', err);
       });
     }
-  }, [audioSource, autoPlay]);
+  }, [audioUrl, autoPlay]);
+
+  // ✨ Sync isPlaying prop with audio element
+  useEffect(() => {
+    if (!audioRef.current || !audioUrl) return;
+
+    const audio = audioRef.current;
+
+    if (isPlaying && audio.paused) {
+      // Prop says play, but audio is paused → play it
+      audio.play().catch(err => {
+        console.error('Sync play failed:', err);
+        onPlayingChange?.(false); // Notify parent that play failed
+      });
+    } else if (!isPlaying && !audio.paused) {
+      // Prop says pause, but audio is playing → pause it
+      audio.pause();
+    }
+  }, [isPlaying, audioUrl, onPlayingChange]);
 
   const fetchAudioSource = async () => {
     try {
       setLoading(true);
       setError(null);
-      
-      const response = await axios.get(`/api/audio/source/${bookCode}/${chapter}`, {
-        params: { lang: 'fa' },
-      });
+      setAudioUrl(null);
 
-      if (response.data.success && response.data.primary) {
-        setAudioSource(response.data.primary);
+      // Use the verify-to-work 'bible-local' endpoint
+      // Try TPV (Persian) first
+      const response = await axios.get(`/api/bible-local/content/TPV/${bookCode}/${chapter}`);
+
+      if (response.data.success && response.data.audioUrl) {
+        setAudioUrl(response.data.audioUrl);
       } else {
+        // If local TPV fails, try fetching metadata from the 'backend' general route if it exists,
+        // or fallback to just showing error.
         setError('فایل صوتی یافت نشد');
       }
+
     } catch (err) {
       console.error('Failed to fetch audio source:', err);
       setError('خطا در بارگذاری فایل صوتی');
@@ -86,13 +110,13 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
   const togglePlayPause = () => {
     if (!audioRef.current) return;
 
-    if (playing) {
+    if (isPlaying) {
       audioRef.current.pause();
-      setPlaying(false);
+      onPlayingChange?.(false); // ✨ Notify parent
       onPause?.();
     } else {
       audioRef.current.play().then(() => {
-        setPlaying(true);
+        onPlayingChange?.(true); // ✨ Notify parent
         onPlay?.();
       }).catch(err => {
         console.error('Play error:', err);
@@ -103,18 +127,22 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
+      const time = audioRef.current.currentTime;
+      setCurrentTime(time);
+      onTimeUpdate?.(time);
     }
   };
 
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
-      setDuration(audioRef.current.duration);
+      const dur = audioRef.current.duration;
+      setDuration(dur);
+      onDurationChange?.(dur);
     }
   };
 
   const handleEnded = () => {
-    setPlaying(false);
+    onPlayingChange?.(false);
     onEnded?.();
   };
 
@@ -146,7 +174,7 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
-      setPlaying(true);
+      onPlayingChange?.(true);
     }
   };
 
@@ -157,23 +185,10 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const getSourceTypeLabel = (type: string): string => {
-    switch (type) {
-      case 'local-edge-tts':
-        return '🟢 محلی (Edge TTS)';
-      case 'local-wordproject':
-        return '🟢 محلی (WordProject)';
-      case 'cdn-wordproject':
-        return '🌐 آنلاین (WordProject)';
-      default:
-        return type;
-    }
-  };
-
   if (loading) {
     return (
-      <div className="flex items-center gap-2 text-white/60 text-sm px-4 py-2">
-        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/30 border-t-white"></div>
+      <div className="flex items-center gap-2 bg-neutral-900/80 backdrop-blur-md rounded-full px-4 py-2 border border-white/10 shadow-lg text-white/60 text-sm">
+        <Loader2 className="w-4 h-4 animate-spin" />
         <span>در حال بارگذاری صوت...</span>
       </div>
     );
@@ -181,11 +196,11 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
 
   if (error) {
     return (
-      <div className="flex items-center gap-2 text-red-400 text-sm px-4 py-2">
+      <div className="flex items-center gap-2 bg-red-900/80 backdrop-blur-md rounded-full px-4 py-2 border border-red-500/30 shadow-lg text-red-200 text-sm">
         <span>⚠️ {error}</span>
         <button
           onClick={fetchAudioSource}
-          className="text-xs bg-red-600 hover:bg-red-700 px-2 py-1 rounded transition"
+          className="text-xs bg-red-600 hover:bg-red-500 px-2 py-1 rounded-full transition-colors"
         >
           تلاش مجدد
         </button>
@@ -193,67 +208,68 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
     );
   }
 
-  if (!audioSource) {
-    return (
-      <div className="text-white/60 text-sm px-4 py-2">
-        صوت موجود نیست
-      </div>
-    );
+  if (!audioUrl) {
+    return null;
   }
 
-  // Compact mode for presentation
-  if (compact) {
-    return (
-      <div className="flex items-center gap-3 bg-neutral-800/80 backdrop-blur rounded-2xl px-4 py-2 shadow-lg">
-        {/* Audio Element */}
-        <audio
-          ref={audioRef}
-          src={audioSource.source}
-          onTimeUpdate={handleTimeUpdate}
-          onLoadedMetadata={handleLoadedMetadata}
-          onEnded={handleEnded}
-          onError={() => setError('خطا در بارگذاری فایل صوتی')}
-        />
+  // Ultra-Premium Floating Player Design (Adapted from Reference Code)
+  return (
+    <div
+      className="flex items-center gap-3 sm:gap-4 rounded-[2.5rem] bg-neutral-800/90 p-2 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10 min-w-[320px]"
+      dir="ltr"
+    >
+      <audio
+        ref={audioRef}
+        src={audioUrl}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={handleEnded}
+        onError={() => setError('خطا در بارگذاری فایل صوتی')}
+      />
 
-        {/* Play/Pause Button */}
+      {/* Play Controls */}
+      <div className="flex items-center gap-2 pr-2 border-r border-white/10">
         <button
           onClick={togglePlayPause}
-          className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full transition"
+          className="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 hover:scale-105 active:scale-95 text-white transition-all flex items-center justify-center shadow-lg shadow-blue-500/30"
+          title={isPlaying ? "Pause" : "Play"}
         >
-          {playing ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white ml-0.5" />}
+          {isPlaying ? <Pause size={22} fill="currentColor" /> : <Play size={22} fill="currentColor" className="ml-1" />}
         </button>
 
-        {/* Progress Bar */}
-        <div className="flex-1 flex flex-col gap-1 min-w-0">
+        <button
+          onClick={restart}
+          className="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-all"
+        >
+          <RotateCcw size={18} />
+        </button>
+      </div>
+
+      {/* Progress & Time */}
+      <div className="flex-1 flex flex-col gap-1 min-w-[120px]">
+        <div className="flex items-center justify-between text-[10px] text-white/50 font-mono px-1">
+          <span>{formatTime(currentTime)}</span>
+          <span>{formatTime(duration)}</span>
+        </div>
+        <div className="relative group h-2 flex items-center">
           <input
             type="range"
             min="0"
             max={duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-1 bg-neutral-600 rounded-full appearance-none cursor-pointer"
+            className="w-full h-1 bg-neutral-600 rounded-full appearance-none cursor-pointer hover:h-1.5 transition-all focus:outline-none"
             style={{
-              background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / duration) * 100}%, #525252 ${(currentTime / duration) * 100}%, #525252 100%)`
+              background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / duration) * 100}%, #404040 ${(currentTime / duration) * 100}%, #404040 100%)`
             }}
           />
-          <div className="flex items-center justify-between text-xs text-white/70">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
         </div>
+      </div>
 
-        {/* Restart Button */}
-        <button
-          onClick={restart}
-          className="w-8 h-8 flex items-center justify-center bg-neutral-700 hover:bg-neutral-600 rounded-full transition"
-          title="شروع از ابتدا"
-        >
-          <RotateCcw className="w-4 h-4 text-white" />
-        </button>
-
-        {/* Volume Control */}
-        <div className="flex items-center gap-2">
-          <Volume2 className="w-4 h-4 text-white/70" />
+      {/* Volume & Settings */}
+      <div className="flex items-center gap-2 pl-2">
+        <div className="hidden sm:flex items-center gap-2 group">
+          <Volume2 size={16} className="text-white/50 group-hover:text-white transition-colors" />
           <input
             type="range"
             min="0"
@@ -265,58 +281,34 @@ const PresentationAudioPlayer: React.FC<PresentationAudioPlayerProps> = ({
           />
         </div>
 
-        {/* Settings Button */}
         <div className="relative">
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className="w-8 h-8 flex items-center justify-center bg-neutral-700 hover:bg-neutral-600 rounded-full transition"
-            title="تنظیمات"
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${showSettings ? 'bg-white/20 text-white' : 'hover:bg-white/10 text-white/70'}`}
           >
-            <Settings className="w-4 h-4 text-white" />
+            <Settings size={18} />
           </button>
 
-          {/* Settings Dropdown */}
+          {/* Speed Popup */}
           {showSettings && (
-            <div className="absolute bottom-12 right-0 bg-neutral-800 rounded-lg shadow-xl p-3 space-y-2 min-w-[180px]">
-              <div className="text-white/90 text-sm font-semibold mb-2">سرعت پخش</div>
-              {[0.5, 0.75, 1, 1.25, 1.5, 2].map(rate => (
-                <button
-                  key={rate}
-                  onClick={() => handlePlaybackRateChange(rate)}
-                  className={`w-full text-left px-3 py-2 rounded transition ${
-                    playbackRate === rate
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-neutral-700 text-white/80 hover:bg-neutral-600'
-                  }`}
-                >
-                  {rate}x {rate === 1 && '(عادی)'}
-                </button>
-              ))}
-              
-              <div className="mt-3 pt-2 border-t border-neutral-700 text-xs text-white/60">
-                {getSourceTypeLabel(audioSource.type)}
+            <div className="absolute bottom-14 right-0 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-2 w-32 animate-in fade-in slide-in-from-bottom-2 z-50">
+              <div className="text-[10px] text-center text-white/40 mb-2 uppercase tracking-widest font-bold">Speed</div>
+              <div className="space-y-1">
+                {[0.75, 1, 1.25, 1.5, 2].map(rate => (
+                  <button
+                    key={rate}
+                    onClick={() => handlePlaybackRateChange(rate)}
+                    className={`w-full text-center py-1.5 rounded-lg text-xs font-medium transition-colors ${playbackRate === rate ? 'bg-blue-600/20 text-blue-400' : 'text-gray-300 hover:bg-white/5'
+                      }`}
+                  >
+                    {rate}x
+                  </button>
+                ))}
               </div>
             </div>
           )}
         </div>
       </div>
-    );
-  }
-
-  // Full mode (not used in presentation, but available)
-  return (
-    <div className="bg-neutral-800 rounded-lg p-4 space-y-4">
-      <audio
-        ref={audioRef}
-        src={audioSource.source}
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        onEnded={handleEnded}
-        onError={() => setError('خطا در بارگذاری فایل صوتی')}
-      />
-
-      {/* Full player controls... */}
-      <div className="text-white">Full player mode (not implemented)</div>
     </div>
   );
 };
