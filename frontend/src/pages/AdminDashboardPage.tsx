@@ -1,41 +1,44 @@
-
-
-
-
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail, Zap, Video } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
-import DatabaseUpdateManager from '../components/DatabaseUpdateManager';
 import { Link, useNavigate } from 'react-router-dom';
-import ImageStudioPage from './ImageStudioPage';
-import EnvironmentPage from './EnvironmentPage';
-import BackupPage from './BackupPage';
-import DashboardView from '../components/admin/DashboardView';
 import { useTour } from '../hooks/useTour';
 import { TourStep } from '../context/TourContext';
 import TourPromptModal from '../components/TourPromptModal';
-import StoragePage from './StoragePage';
 
-import PermissionsManager from '../components/admin/PermissionsManager';
-import ContentManager from '../components/admin/ContentManager';
-import PagesView from '../components/admin/PagesView';
-import SettingsView from '../components/admin/SettingsView';
-import BibleManager from '../components/admin/BibleManager';
-import PushNotificationsManager from '../components/admin/PushNotificationsManager';
-import GalleryManager from '../components/admin/GalleryManager';
-import FileManager from '../components/admin/FileManager';
-import ImageManager from '../components/admin/ImageManager';
-import CommunicationsManager from '../components/admin/CommunicationsManager';
-import TestimonialsManager from '../components/admin/TestimonialsManager';
-import LettersManager from '../components/admin/LettersManager';
-import AnnouncementsManager from '../components/admin/AnnouncementsManager';
-import { AnalyticsDashboard } from '../components/admin/AnalyticsDashboard';
-import MessageHistory from '../components/admin/MessageHistory';
-import SongsManager from '../components/admin/SongsManager';
+// 🚀 Lazy Loading - کامپوننت‌های ادمین فقط وقتی نیاز باشه لود میشن
+// این باعث کاهش 300KB+ در لود اولیه صفحه ادمین میشه
+const DashboardView = lazy(() => import('../components/admin/DashboardView'));
+const PagesView = lazy(() => import('../components/admin/PagesView'));
+const ContentManager = lazy(() => import('../components/admin/ContentManager'));
+const SongsManager = lazy(() => import('../components/admin/SongsManager'));
+const TestimonialsManager = lazy(() => import('../components/admin/TestimonialsManager'));
+const LettersManager = lazy(() => import('../components/admin/LettersManager'));
+const AnnouncementsManager = lazy(() => import('../components/admin/AnnouncementsManager'));
+const AnalyticsDashboard = lazy(() => import('../components/admin/AnalyticsDashboard').then(m => ({ default: m.AnalyticsDashboard })));
+const MessageHistory = lazy(() => import('../components/admin/MessageHistory'));
+const GalleryManager = lazy(() => import('../components/admin/GalleryManager'));
+const ImageManager = lazy(() => import('../components/admin/ImageManager'));
+const FileManager = lazy(() => import('../components/admin/FileManager'));
+const BibleManager = lazy(() => import('../components/admin/BibleManager'));
+const ImageStudioPage = lazy(() => import('./ImageStudioPage'));
+const CommunicationsManager = lazy(() => import('../components/admin/CommunicationsManager'));
+const PushNotificationsManager = lazy(() => import('../components/admin/PushNotificationsManager'));
+const PermissionsManager = lazy(() => import('../components/admin/PermissionsManager'));
+const SettingsView = lazy(() => import('../components/admin/SettingsView'));
+const StoragePage = lazy(() => import('./StoragePage'));
+const DatabaseUpdateManager = lazy(() => import('../components/DatabaseUpdateManager'));
+const EnvironmentPage = lazy(() => import('./EnvironmentPage'));
+const BackupPage = lazy(() => import('./BackupPage'));
+
+// Loading spinner برای lazy components
+const AdminLoadingSpinner = () => (
+    <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
+    </div>
+);
 
 
 const AdminDashboardPage: React.FC = () => {
@@ -146,31 +149,39 @@ const AdminDashboardPage: React.FC = () => {
     };
 
     const renderView = () => {
-        switch (view) {
-            case 'dashboard': return <DashboardView />;
-            case 'pages': return <PagesView />;
-            case 'content': return <ContentManager />;
-            case 'songs': return <SongsManager />;
-            case 'testimonials': return <TestimonialsManager />;
-            case 'letters': return <LettersManager />;
-            case 'announcements': return <AnnouncementsManager />;
-            case 'analytics': return <AnalyticsDashboard />;
-            case 'message-history': return <MessageHistory />;
-            case 'galleries': return <GalleryManager />;
-            case 'image-manager': return <ImageManager images={[]} title="مدیریت تصاویر سایت" />;
-            case 'file-manager': return <FileManager />;
-            case 'bible': return <BibleManager />;
-            case 'image-studio': return <ImageStudioPage />;
-            case 'communications': return <CommunicationsManager />;
-            case 'notifications': return <PushNotificationsManager />;
-            case 'users': return <PermissionsManager />;
-            case 'settings': return <SettingsView />;
-            case 'storage': return <StoragePage />;
-            case 'database': return <DatabaseUpdateManager />;
-            case 'api': return <EnvironmentPage />;
-            case 'backup': return <BackupPage />;
-            default: return <DashboardView />;
-        }
+        const viewComponent = (() => {
+            switch (view) {
+                case 'dashboard': return <DashboardView />;
+                case 'pages': return <PagesView />;
+                case 'content': return <ContentManager />;
+                case 'songs': return <SongsManager />;
+                case 'testimonials': return <TestimonialsManager />;
+                case 'letters': return <LettersManager />;
+                case 'announcements': return <AnnouncementsManager />;
+                case 'analytics': return <AnalyticsDashboard />;
+                case 'message-history': return <MessageHistory />;
+                case 'galleries': return <GalleryManager />;
+                case 'image-manager': return <ImageManager images={[]} title="مدیریت تصاویر سایت" />;
+                case 'file-manager': return <FileManager />;
+                case 'bible': return <BibleManager />;
+                case 'image-studio': return <ImageStudioPage />;
+                case 'communications': return <CommunicationsManager />;
+                case 'notifications': return <PushNotificationsManager />;
+                case 'users': return <PermissionsManager />;
+                case 'settings': return <SettingsView />;
+                case 'storage': return <StoragePage />;
+                case 'database': return <DatabaseUpdateManager />;
+                case 'api': return <EnvironmentPage />;
+                case 'backup': return <BackupPage />;
+                default: return <DashboardView />;
+            }
+        })();
+        
+        return (
+            <Suspense fallback={<AdminLoadingSpinner />}>
+                {viewComponent}
+            </Suspense>
+        );
     };
 
     const renderMenuItem = (item: any) => {

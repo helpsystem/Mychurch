@@ -31,6 +31,7 @@ const testimonialsRoutes = require('./routes/testimonialsRoutes');
 const lettersRoutes = require('./routes/lettersRoutes');
 const announcementsRoutes = require('./routes/announcementsRoutes');
 const translationRoutes = require('./routes/translationRoutes');
+const translateRoutes = require('./routes/translateRoutes'); // New AI translation
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const messageHistoryRoutes = require('./routes/messageHistoryRoutes');
 const pagesRoutes = require('./routes/pagesRoutes');
@@ -152,7 +153,11 @@ const apiLimiter = rateLimit({
   max: 1000, // Increased from 100 to 1000 - homepage makes 10+ API calls
   standardHeaders: true,
   legacyHeaders: false,
-  message: { error: 'Too many requests, please try again later.' }
+  message: { error: 'Too many requests, please try again later.' },
+  skip: (req) => {
+    // Skip rate limiting for health check
+    return req.path === '/api/health';
+  }
 });
 
 // Apply rate limiting to all API routes
@@ -162,9 +167,36 @@ app.use('/api/', apiLimiter);
 const authLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 10, // Limit each IP to 10 login/register attempts per hour
-  message: { error: 'Too many login attempts, please try again later.' }
+  message: { error: 'Too many login attempts, please try again later.' },
+  skipSuccessfulRequests: true // Don't count successful requests
 });
-app.use('/api/auth/', authLimiter);
+app.use('/api/auth/login', authLimiter);
+app.use('/api/auth/register', authLimiter);
+
+// AI endpoints - stricter to prevent abuse
+const aiLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 50, // 50 AI requests per hour
+  message: { error: 'Too many AI requests. Please try again later.' }
+});
+app.use('/api/ai/', aiLimiter);
+app.use('/api/ai-chat/', aiLimiter);
+
+// File upload limiter
+const uploadLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 30, // 30 uploads per hour
+  message: { error: 'Too many file uploads. Please try again later.' }
+});
+// Will be applied to upload routes later
+
+// Prayer requests - prevent spam
+const prayerLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 5, // 5 prayer requests per day
+  message: { error: 'Too many prayer requests today. Please try again tomorrow.' }
+});
+// Will be applied to prayer routes later
 
 
 // ---------- CORS ----------
@@ -328,9 +360,10 @@ app.use('/api/schedule-events', scheduleRoutes);
 app.use('/api/galleries', galleriesRoutes);
 app.use('/api/prayer-requests', prayerRoutes);
 app.use('/api/testimonials', testimonialsRoutes);
-app.use('/api/letters', lettersRoutes);
+app.use('/api/letters', authenticateToken, lettersRoutes); // Letter management system
 app.use('/api/announcements', announcementsRoutes);
-app.use('/api/translate', translationRoutes);
+app.use('/api/translate', translationRoutes); // Old translation routes
+app.use('/api/ai/translate', aiLimiter, translateRoutes); // New AI-powered translation
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/messages', messageHistoryRoutes);
 app.use('/api/pages', pagesRoutes);
@@ -384,7 +417,7 @@ app.get('*', (req, res) => {
 });
 
 // Upload جدید
-app.post('/api/files/upload', upload.single('file'), async (req, res) => {
+app.post('/api/files/upload', uploadLimiter, upload.single('file'), async (req, res) => {
   try {
     if (!req.file) throw new Error('No file received.');
     const folder = getFolderFromReq(req); // مثلا images/leaders
@@ -399,7 +432,7 @@ app.post('/api/files/upload', upload.single('file'), async (req, res) => {
 });
 
 // Replace یک فایل موجود (نام فایل ثابت می‌ماند)
-app.put('/api/files/replace/:fileName', upload.single('file'), async (req, res) => {
+app.put('/api/files/replace/:fileName', uploadLimiter, upload.single('file'), async (req, res) => {
   try {
     if (!req.file) throw new Error('No file received.');
     const folder = getFolderFromReq(req);

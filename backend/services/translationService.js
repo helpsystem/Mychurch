@@ -1,146 +1,211 @@
-// Translation Service for Church Website Backend
-// Integrates with Google Gemini for professional translations
+// backend/services/translationService.js
+// AI-Powered Translation Service with Context Awareness
 
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-class TranslationService {
-  constructor() {
-    this.model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+// Context-specific prompts for different content types
+const CONTEXT_PROMPTS = {
+  'leader-bio': {
+    system: 'You are a professional translator specializing in church leadership biographies.',
+    requirements: [
+      'Use formal, respectful Persian language',
+      'Maintain Christian/Biblical terminology accurately',
+      'Keep the same professional tone and style',
+      'Preserve any Bible verse references in standard format',
+      'Ensure natural, native-sounding translation'
+    ]
+  },
+  'leader-title': {
+    system: 'You are translating church leadership titles.',
+    requirements: [
+      'Use standard Persian church terminology',
+      'Keep it concise and respectful',
+      'Use common Persian equivalents for positions'
+    ]
+  },
+  'sermon': {
+    system: 'You are translating sermon descriptions and titles.',
+    requirements: [
+      'Keep theological concepts accurate and precise',
+      'Maintain inspirational and encouraging tone',
+      'Preserve Bible references in standard format (Book Chapter:Verse)',
+      'Use appropriate Christian terminology in Persian'
+    ]
+  },
+  'event': {
+    system: 'You are translating church event information.',
+    requirements: [
+      'Maintain inviting, welcoming tone',
+      'Keep times and dates clear if mentioned',
+      'Use appropriate event-related terminology',
+      'Make it engaging and encouraging'
+    ]
+  },
+  'announcement': {
+    system: 'You are translating church announcements.',
+    requirements: [
+      'Keep the tone clear and informative',
+      'Maintain urgency level of original',
+      'Preserve any important dates, times, or contact information',
+      'Use appropriate formal church language'
+    ]
+  },
+  'general': {
+    system: 'You are a professional translator for church content.',
+    requirements: [
+      'Maintain appropriate tone and style',
+      'Keep Christian terminology accurate',
+      'Ensure natural, fluent translation'
+    ]
   }
+};
 
-  /**
-   * Translate text professionally between languages
-   * @param {string} text - Text to translate
-   * @param {string} fromLang - Source language (en, fa)
-   * @param {string} toLang - Target language (en, fa)
-   * @param {string} context - Context (announcement, letter, sermon, etc.)
-   * @returns {Promise<string>} Translated text
-   */
-  async translateText(text, fromLang, toLang, context = 'general') {
-    if (fromLang === toLang) return text;
+/**
+ * Translate text with context awareness
+ * @param {Object} params - Translation parameters
+ * @param {string} params.text - Text to translate
+ * @param {string} params.sourceLang - Source language ('en' or 'fa')
+ * @param {string} params.targetLang - Target language ('en' or 'fa')
+ * @param {string} params.context - Content context (leader-bio, sermon, event, etc.)
+ * @param {string} params.quality - Quality level (quick, professional, literary)
+ * @returns {Promise<Object>} Translation result
+ */
+async function translateWithContext({
+  text,
+  sourceLang = 'en',
+  targetLang = 'fa',
+  context = 'general',
+  quality = 'professional'
+}) {
+  try {
+    // Validate input
+    if (!text || text.trim().length === 0) {
+      throw new Error('Text is required for translation');
+    }
 
-    const contextPrompts = {
-      announcement: "This is a church announcement or notice",
-      letter: "This is an official church letter or correspondence", 
-      sermon: "This is religious/spiritual content from a sermon",
-      event: "This is about a church event or gathering",
-      prayer: "This is a prayer request or spiritual message",
-      general: "This is general church content"
-    };
+    if (text.length > 5000) {
+      throw new Error('Text is too long. Maximum 5000 characters allowed.');
+    }
 
-    const prompt = `Translate the following ${contextPrompts[context] || contextPrompts.general} from ${fromLang === 'fa' ? 'Persian/Farsi' : 'English'} to ${toLang === 'fa' ? 'Persian/Farsi' : 'English'}.
+    // Get context prompt or use general
+    const contextPrompt = CONTEXT_PROMPTS[context] || CONTEXT_PROMPTS['general'];
 
-IMPORTANT GUIDELINES:
-- Use professional, respectful church language
-- Maintain religious tone and terminology appropriately
-- For Persian: Use proper formal Persian suitable for church communications
-- For English: Use professional church English
-- Preserve any proper names, biblical references, and specific terms
-- Maintain the original meaning and tone exactly
+    const sourceLangName = sourceLang === 'en' ? 'English' : 'Persian (Farsi)';
+    const targetLangName = targetLang === 'fa' ? 'Persian (Farsi)' : 'English';
+
+    // Build the prompt
+    const prompt = `${contextPrompt.system}
+
+Translate the following text from ${sourceLangName} to ${targetLangName}.
+
+Requirements:
+${contextPrompt.requirements.map(r => `- ${r}`).join('\n')}
+
+Quality Level: ${quality}
+- "professional" means accurate, polished, and natural
+- "quick" means fast but still accurate
+- "literary" means elegant and formal
 
 Text to translate:
 """
-${text}
+${text.trim()}
 """
 
-Provide ONLY the translation, no explanations or additional text:`;
+IMPORTANT: Provide ONLY the ${targetLangName} translation. Do not include any explanations, notes, or the original text. Just the translation.`;
 
-    try {
-      const result = await this.model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-    } catch (error) {
-      console.error('Translation error:', error);
-      throw new Error('Translation failed: ' + error.message);
+    // Call Gemini AI
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const result = await model.generateContent(prompt);
+    const translation = result.response.text().trim();
+
+    // Remove any quotation marks that AI might add
+    const cleanedTranslation = translation.replace(/^["']|["']$/g, '');
+
+    return {
+      success: true,
+      translation: cleanedTranslation,
+      sourceLang,
+      targetLang,
+      context,
+      confidence: 0.95, // Could be enhanced with actual confidence scoring
+      characterCount: cleanedTranslation.length
+    };
+
+  } catch (error) {
+    console.error('Translation error:', error);
+
+    // Handle specific errors
+    if (error.message?.includes('API key')) {
+      throw new Error('Translation service configuration error');
     }
-  }
 
-  /**
-   * Auto-translate content to both languages
-   * @param {string} text - Original text
-   * @param {string} sourceLang - Source language (en or fa)
-   * @param {string} context - Content context
-   * @returns {Promise<{en: string, fa: string}>} Bilingual content
-   */
-  async autoTranslate(text, sourceLang, context = 'general') {
-    const targetLang = sourceLang === 'en' ? 'fa' : 'en';
-    
-    try {
-      const translation = await this.translateText(text, sourceLang, targetLang, context);
-      
-      return {
-        [sourceLang]: text,
-        [targetLang]: translation
-      };
-    } catch (error) {
-      console.error('Auto-translation error:', error);
-      // Fallback: return original text in both languages
-      return {
-        en: sourceLang === 'en' ? text : `[Translation needed: ${text}]`,
-        fa: sourceLang === 'fa' ? text : `[ترجمه مورد نیاز: ${text}]`
-      };
-    }
-  }
-
-  /**
-   * Batch translate multiple texts
-   * @param {Array<{text: string, context: string}>} texts - Array of texts with context
-   * @param {string} sourceLang - Source language
-   * @returns {Promise<Array<{en: string, fa: string}>>} Array of translated content
-   */
-  async batchTranslate(texts, sourceLang) {
-    const promises = texts.map(({ text, context }) => 
-      this.autoTranslate(text, sourceLang, context)
-    );
-    
-    try {
-      return await Promise.all(promises);
-    } catch (error) {
-      console.error('Batch translation error:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Validate and prepare content for translation
-   * @param {string} text - Text to validate
-   * @returns {boolean} Whether text is suitable for translation
-   */
-  validateForTranslation(text) {
-    if (!text || typeof text !== 'string') return false;
-    if (text.trim().length === 0) return false;
-    if (text.length > 5000) return false; // Reasonable limit
-    return true;
-  }
-
-  /**
-   * Get supported languages
-   * @returns {Array} List of supported language codes
-   */
-  getSupportedLanguages() {
-    return [
-      { code: 'en', name: 'English', nativeName: 'English' },
-      { code: 'fa', name: 'Persian', nativeName: 'فارسی' }
-    ];
-  }
-
-  /**
-   * Get available contexts for translation
-   * @returns {Array} List of available contexts
-   */
-  getAvailableContexts() {
-    return [
-      { code: 'announcement', label: { en: 'Announcement', fa: 'اطلاعیه' } },
-      { code: 'letter', label: { en: 'Official Letter', fa: 'نامه رسمی' } },
-      { code: 'sermon', label: { en: 'Sermon/Spiritual', fa: 'موعظه/معنوی' } },
-      { code: 'event', label: { en: 'Event', fa: 'رویداد' } },
-      { code: 'prayer', label: { en: 'Prayer/Spiritual', fa: 'دعا/معنوی' } },
-      { code: 'general', label: { en: 'General', fa: 'عمومی' } }
-    ];
+    throw new Error(`Translation failed: ${error.message}`);
   }
 }
 
-const translationService = new TranslationService();
-module.exports = { translationService };
+/**
+ * Batch translate multiple texts with same context
+ * @param {Array} texts - Array of texts to translate
+ * @param {Object} options - Translation options
+ * @returns {Promise<Array>} Array of translations
+ */
+async function batchTranslate(texts, options) {
+  const translations = [];
+
+  for (const text of texts) {
+    try {
+      const result = await translateWithContext({ text, ...options });
+      translations.push(result);
+    } catch (error) {
+      translations.push({
+        success: false,
+        error: error.message,
+        originalText: text
+      });
+    }
+  }
+
+  return translations;
+}
+
+/**
+ * Suggest alternative translations
+ * @param {Object} params - Same as translateWithContext
+ * @returns {Promise<Array>} Array of alternative translations
+ */
+async function suggestAlternatives(params) {
+  const prompt = `Provide 3 different translation variations for the following text.
+Each variation should have a slightly different tone or word choice, but all should be accurate.
+
+${params.text}
+
+Format your response as:
+1. [First variation]
+2. [Second variation]
+3. [Third variation]`;
+
+  try {
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const result = await model.generateContent(prompt);
+    const response = result.response.text();
+
+    // Parse the numbered list
+    const alternatives = response
+      .split('\n')
+      .filter(line => /^\d+\./.test(line))
+      .map(line => line.replace(/^\d+\.\s*/, '').trim());
+
+    return alternatives.slice(0, 3); // Ensure max 3 alternatives
+  } catch (error) {
+    console.error('Alternative generation error:', error);
+    return [];
+  }
+}
+
+module.exports = {
+  translateWithContext,
+  batchTranslate,
+  suggestAlternatives
+};

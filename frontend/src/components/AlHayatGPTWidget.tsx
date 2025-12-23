@@ -1,54 +1,63 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import BibleAIChatWidget from './BibleAIChatWidget';
+import React, { useEffect } from 'react';
 
 interface Props {
     containerId?: string;
     style?: React.CSSProperties;
-    className?: string;
-    width?: string;
-    height?: string;
-    customStyle?: Record<string, string>;
 }
 
-export default function AlHayatGPTWidget({ 
+export default function AlHayatGPTWidget({
     containerId = 'alhayat-gpt-widget-container',
-    style = { width: '100%', height: '100%' },
-    className = '',
-    width,
-    height,
-    customStyle = {}
+    style = { width: '100%', height: '100%' }
 }: Props) {
-    const [isLoading, setIsLoading] = useState(true);
-    const [hasError, setHasError] = useState(false);
-
-    // Simple timeout to handle loading state
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setIsLoading(false);
-        }, 3000); // Show loading for 3 seconds
+        const initWidget = () => {
+            const container = document.getElementById(containerId);
+            const windowObj = window as unknown as Record<string, unknown>;
+            const sdk = windowObj['AlHayatGPT'];
 
-        return () => clearTimeout(timeoutId);
-    }, []);
+            // Final check to ensure the container exists and hasn't been initialized
+            if (sdk && typeof sdk === 'object' && sdk !== null &&
+                'createWidget' in sdk && typeof sdk.createWidget === 'function' &&
+                container && !container.hasAttribute('data-ahgpt-widget-initialized')) {
+                container.setAttribute('data-ahgpt-widget-initialized', 'true');
+                (sdk.createWidget as (options: { containerId: string }) => void)({ containerId });
+            }
+        };
 
-    // Use our local Bible AI Chat Widget instead of external service
-    return (
-        <div style={{ position: 'relative', ...style }} className={className}>
-            {isLoading && (
-                <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-10">
-                    <div className="flex flex-col items-center text-white">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-2"></div>
-                        <p className="text-sm">آماده‌سازی دستیار هوشمند...</p>
-                    </div>
-                </div>
-            )}
-            
-            {!isLoading && (
-                <div className="w-full h-full">
-                    <BibleAIChatWidget />
-                </div>
-            )}
-        </div>
-    );
+        const loadAndInit = () => {
+            const windowObj = window as unknown as Record<string, unknown>;
+
+            // If SDK is already ready, initialize now
+            if (windowObj['AlHayatGPTSDKReady']) {
+                initWidget();
+                return;
+            }
+
+            // If not ready, add a listener for when it is
+            window.addEventListener('AlHayatGPTSDKReady', initWidget);
+
+            // Check if script is already being loaded or has been loaded
+            if (document.getElementById('ahgpt-sdk-script')) {
+                return;
+            }
+
+            // If not, create and load the script
+            const script = document.createElement('script');
+            script.id = 'ahgpt-sdk-script';
+            script.src = 'https://www.alhayatgpt.com/sdk.js';
+            script.async = true;
+            document.body.appendChild(script);
+        };
+
+        loadAndInit();
+
+        // Cleanup: remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('AlHayatGPTSDKReady', initWidget);
+        };
+    }, [containerId]);
+
+    return <div id={containerId} style={style} />;
 }

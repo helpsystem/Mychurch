@@ -51,6 +51,10 @@ export default defineConfig({
                     'vendor-bible': ['react-pageflip', 'pdfjs-dist'],
                     // چارت‌ها
                     'vendor-charts': ['chart.js', 'react-chartjs-2'],
+                    // پاورپوینت - جدا برای لود بهتر
+                    'vendor-pptx': ['pptxgenjs'],
+                    // Supabase - جدا
+                    'vendor-supabase': ['@supabase/supabase-js'],
                 }
             }
         },
@@ -59,11 +63,22 @@ export default defineConfig({
         terserOptions: {
             compress: {
                 drop_console: true,
-                drop_debugger: true
+                drop_debugger: true,
+                passes: 2, // 🚀 دو پاس برای فشرده‌سازی بهتر
+            },
+            mangle: {
+                safari10: true, // 🚀 سازگاری با Safari
+            },
+            format: {
+                comments: false, // 🚀 حذف همه کامنت‌ها
             }
         },
         // افزایش محدودیت chunk برای هشدار
         chunkSizeWarningLimit: 1000,
+        // 🚀 بهینه‌سازی CSS
+        cssCodeSplit: true,
+        // 🚀 Source maps فقط در development
+        sourcemap: false,
     },
     envDir: '..',
     resolve: {

@@ -1,40 +1,51 @@
+# Robots.txt for MyChurch - Iranian Christian Church DC
+# https://samanabyar.online
+
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://samanabyar.online/sitemap.xml
 
-# Optimize for bilingual content
-Allow: /en/
-Allow: /fa/
+# Disallow admin pages
+Disallow: /#/admin
+Disallow: /#/admin/*
 
-# Disallow admin and private areas
-Disallow: /admin/
+# Disallow user authentication pages (no value for search engines)
+Disallow: /#/login
+Disallow: /#/signup
+Disallow: /#/verify-email
+
+# Disallow API endpoints from being indexed
 Disallow: /api/
-Disallow: /tmp/
-Disallow: /*.json$
 
-# Allow important resources
-Allow: /images/
+# Allow all static assets
 Allow: /assets/
-Allow: /manifest.json
-Allow: /sw.js
+Allow: /images/
+Allow: /audio/
+Allow: /data/
 
-# Crawl delay to be respectful
+# Crawl delay (be nice to the server)
 Crawl-delay: 1
 
-# Popular search engines
+# User-agent specific rules for major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 1
 
-# Block unnecessary bots
+# Block bad bots
 User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
 Disallow: /
 
 User-agent: MJ12bot
