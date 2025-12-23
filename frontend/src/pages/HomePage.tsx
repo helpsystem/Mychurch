@@ -22,7 +22,7 @@ const ParticleCanvas: React.FC = () => {
   useEffect(() => {
     // 🚀 در موبایل انیمیشن ذرات رو غیرفعال کن برای بهبود عملکرد
     if (isMobile) return;
-    
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -89,7 +89,7 @@ const ParticleCanvas: React.FC = () => {
 
   // 🚀 در موبایل اصلاً canvas رو رندر نکن
   if (isMobile) return null;
-  
+
   return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0" />;
 };
 
@@ -297,72 +297,73 @@ const HomePage: React.FC = () => {
       <SEOHead {...seoConfig} />
       <div className="bg-primary w-full overflow-hidden">
         {/* Hero Section */}
-        <div className="flex justify-center items-start">
+        <div className="flex justify-center items-start min-h-[90vh]">
           <div className="xl:max-w-[1280px] w-full">
-            <section id="home" className="flex md:flex-row flex-col sm:py-16 py-6 relative">
+            <section id="home" className="flex md:flex-row flex-col sm:py-16 py-6 relative items-center">
               <ParticleCanvas />
-              <div className="flex-1 flex justify-center items-start flex-col xl:px-0 sm:px-16 px-6 z-10">
-                <div className="flex flex-row items-center py-[6px] px-4 bg-gray-gradient rounded-[10px] mb-2">
-                  <img src={content.settings.logoUrl} alt="discount" className="w-[32px] h-[32px]" />
-                  <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] ml-2 rtl:mr-2 rtl:ml-0">
-                    {isAuthenticated && user ? `${t('welcomeBack')}, ${user.profileData.name}` : t('heroWelcome')}
+
+              {/* Text Content */}
+              <div className="flex-1 flex justify-center items-start flex-col xl:px-0 sm:px-16 px-6 z-10 animate-fade-in-up">
+
+                {/* Discount / Welcome Label */}
+                <div className="flex flex-row items-center py-[8px] px-6 bg-glass-gradient rounded-[20px] mb-6 backdrop-blur-md border border-white/10 shadow-lg">
+                  <img src={content.settings.logoUrl} alt="logo" className="w-[32px] h-[32px]" />
+                  <p className="font-normal text-dimWhite text-[16px] leading-[24px] ml-3 rtl:mr-3 rtl:ml-0 uppercase tracking-wider">
+                    {lang === 'fa' ? 'به خانه خوش آمدید' : 'Welcome Home'}
                   </p>
                 </div>
 
-                <div className="flex flex-row justify-between items-center w-full">
-                  <h1 className="flex-1 font-semibold ss:text-[72px] text-[52px] text-white ss:leading-[100px] leading-[75px]">
-                    {t('heroSlogan1')} <br className="sm:block hidden" /> {" "}
-                    <span className="text-gradient">{t('heroSlogan2')}</span>
+                {/* Main Heading */}
+                <div className="w-full relative">
+                  <h1 className="font-bold ss:text-[72px] text-[52px] text-white ss:leading-[90px] leading-[70px] tracking-tight mb-4">
+                    {lang === 'fa' ? (
+                      <>
+                        <span className="block text-gradient">مکانی برای</span>
+                        <span>ایمان و اجتماع</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="block text-gradient">A Place For</span>
+                        <span>Faith & Community</span>
+                      </>
+                    )}
                   </h1>
-                  <div className="ss:flex hidden md:mr-4 mr-0 rtl:ml-4 rtl:mr-0">
-                    <div className="flex justify-center items-center w-[140px] h-[140px] rounded-full bg-blue-gradient p-[2px] cursor-pointer">
-                      <Link to="/ai-helper" className="flex justify-center items-center flex-col bg-primary w-[100%] h-[100%] rounded-full">
-                        <div className="flex justify-center items-start flex-row">
-                          <p className="font-medium text-[18px] leading-[23px] mr-2 rtl:ml-2 rtl:mr-0">
-                            <span className="text-gradient">{t('askNow')}</span>
-                          </p>
-                          <ArrowUpRight className="w-[23px] h-[23px] object-contain text-secondary" />
-                        </div>
-                        <p className="font-medium text-[18px] leading-[23px]">
-                          <span className="text-gradient">AI</span>
-                        </p>
-                      </Link>
-                    </div>
-                  </div>
                 </div>
-                <div className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[470px] mt-5">
-                  <ScrambledText text={t('heroParagraph')} />
-                </div>
-              </div>
 
-              <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10`}>
-                {/* اسلایدر حرفه‌ای تصاویر کلیسا با آیات کتاب مقدس */}
-                <AIImageSlider
-                  autoPlayInterval={6000}
-                  showNavigationButtons={true}
-                  showIndicators={true}
-                  className="w-full max-w-[650px] relative z-[5]"
-                />
-                <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />
-                <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient" />
-                <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient" />
-              </div>
+                {/* Description */}
+                <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[520px] mt-4 mb-8 text-justify opacity-0 animate-fade-in-delay">
+                  {lang === 'fa'
+                    ? 'به یک جامعه مسیحی پرجنب و جوش و فارسی زبان در قلب واشنگتن دی سی بپیوندید. مکانی برای رشد در ایمان، یافتن مشارکت و تجربه محبت مسیح را کشف کنید.'
+                    : 'Join a vibrant Persian-speaking Christian community in the heart of Washington D.C. Discover a place to grow in faith, find fellowship, and experience the love of Christ.'}
+                </p>
 
-              <div className="ss:hidden flex justify-center items-center z-10">
-                <div className="flex justify-center items-center w-[140px] h-[140px] rounded-full bg-blue-gradient p-[2px] cursor-pointer">
-                  <Link to="/ai-helper" className="flex justify-center items-center flex-col bg-primary w-[100%] h-[100%] rounded-full">
-                    <div className="flex justify-center items-start flex-row">
-                      <p className="font-medium text-[18px] leading-[23px] mr-2 rtl:ml-2 rtl:mr-0">
-                        <span className="text-gradient">{t('askNow')}</span>
-                      </p>
-                      <ArrowUpRight className="w-[23px] h-[23px] object-contain text-secondary" />
-                    </div>
-                    <p className="font-medium text-[18px] leading-[23px]">
-                      <span className="text-gradient">AI</span>
-                    </p>
+                {/* CTA Buttons */}
+                <div className="flex flex-row flex-wrap gap-4 opacity-0 animate-fade-in-delay-2">
+                  <Link to="/sermons" className="bg-blue-gradient text-primary font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 flex items-center">
+                    {lang === 'fa' ? 'شروع کنید' : 'Get Started'}
+                    <ArrowUpRight className="ml-2 w-5 h-5 rtl:mr-2 rtl:ml-0" />
+                  </Link>
+                  <Link to="/about" className="glass-button text-white font-semibold py-4 px-8 rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 flex items-center">
+                    {lang === 'fa' ? 'درباره ما' : 'About Us'}
                   </Link>
                 </div>
               </div>
+
+              {/* Hero Image / Slider */}
+              <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10 animate-float`}>
+                <AIImageSlider
+                  autoPlayInterval={5000}
+                  showNavigationButtons={false}
+                  showIndicators={true}
+                  className="w-full max-w-[650px] relative z-[5] rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10"
+                />
+
+                {/* Glow Effects */}
+                <div className="absolute z-[0] w-[50%] h-[50%] top-0 -right-20 pink__gradient opacity-60" />
+                <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient opacity-20" />
+                <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient opacity-60" />
+              </div>
+
             </section>
           </div>
         </div>
