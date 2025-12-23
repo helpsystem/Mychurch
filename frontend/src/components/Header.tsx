@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
-import { Menu, X, Bell, Check, ChevronDown, User as UserIcon, LogOut, LayoutDashboard, Home, BookOpen, HeartHandshake, Heart, Info, DollarSign, MessageSquare, Phone, BrainCircuit, Image, Globe, HelpCircle, Users, Tv, Search, Bookmark, Gamepad2, Volume2, Music } from 'lucide-react';
+import { Menu, X, Bell, Check, ChevronDown, User as UserIcon, LogOut, LayoutDashboard, Home, BookOpen, HeartHandshake, Heart, Info, DollarSign, MessageSquare, Phone, BrainCircuit, Image, Globe, HelpCircle, Users, Tv, Search, Bookmark, Gamepad2, Volume2, Music, Calendar } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { getProfilePictureUrl } from '../lib/utils';
 import { User } from '../types';
@@ -134,6 +134,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
             { to: '/gallery', title: t('galleries'), icon: <Image size={16} /> },
             { to: '/ai-helper', title: t('navAiHelper'), icon: <BrainCircuit size={16} /> },
             { to: '/live', title: t('navLive'), icon: <Tv size={16} /> },
+            { to: '/persian-calendar', title: lang === 'fa' ? 'تقویم' : 'Calendar', icon: <Calendar size={16} /> },
             { to: '/giving', title: t('navGiving'), icon: <DollarSign size={16} /> },
             { to: '/help-center', title: t('footerLinkHelp'), icon: <HelpCircle size={16} /> },
         ],
