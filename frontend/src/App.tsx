@@ -109,6 +109,7 @@ const AdminN8NAutomationPage = lazy(() => import('./pages/AdminN8NAutomationPage
 const AdminAudioDashboardPage = lazy(() => import('./pages/AdminAudioDashboardPage'));
 const PresentationCreatorPage = lazy(() => import('./pages/PresentationCreatorPage'));
 const AdminSyncManagementPage = lazy(() => import('./pages/AdminSyncManagementPage'));
+const PersianCalendarPage = lazy(() => import('./pages/PersianCalendarPage')); // Persian Smart Calendar
 
 function App() {
   const { lang } = useLanguage();
@@ -232,6 +233,7 @@ function App() {
                 <Route path="letters/:id" element={<Layout><LetterViewerPage /></Layout>} />
                 <Route path="announcements" element={<Layout><AnnouncementsPage /></Layout>} />
                 <Route path="calendar" element={<Layout><CalendarPage /></Layout>} />
+                <Route path="persian-calendar" element={<Layout><PersianCalendarPage /></Layout>} />
                 <Route path="tts-demo" element={<Layout><TTSDemo /></Layout>} />
                 <Route path="huggingface-tts" element={<Layout><HuggingFaceTTSDemo /></Layout>} />
                 <Route path="admin/tts-usage" element={<Layout><TTSUsageDashboard /></Layout>} />
