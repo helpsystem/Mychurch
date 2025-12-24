@@ -32,6 +32,7 @@ const userRoutes = require('./routes/userRoutes');
 const testimonialsRoutes = require('./routes/testimonialsRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const announcementsRoutes = require('./routes/announcementsRoutes');
+const galleriesRoutes = require('./routes/galleriesRoutes');
 
 // Try to load HiDrive routes
 let hidriveRoutes;
@@ -124,6 +125,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/testimonials', testimonialsRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/announcements', announcementsRoutes);
+app.use('/api/galleries', galleriesRoutes);
 
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
