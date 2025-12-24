@@ -1,11 +1,13 @@
 // server.js  (UTF-8, CRLF)
-require('dotenv').config();
+const path = require('path');
+// dotenv is loaded by server-wrapper.js, no need to load again
+// require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
-const path = require('path');
 const ftp = require('basic-ftp');
 const { initializeDatabase } = require('./initDB-postgres');
+const { authenticateToken } = require('./middleware/auth');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');

@@ -2,15 +2,9 @@ const { Pool } = require('pg');
 const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs');
 const path = require('path');
-const dotenv = require('dotenv');
 
-// Prefer backend/.env regardless of current working directory.
-const backendEnvPath = path.join(__dirname, '.env');
-if (fs.existsSync(backendEnvPath)) {
-  dotenv.config({ path: backendEnvPath });
-} else {
-  dotenv.config();
-}
+// Environment variables are loaded by server-wrapper.js
+
 
 // Check if we have DATABASE_URL (Supabase)
 const databaseUrl = process.env.DATABASE_URL;
@@ -40,7 +34,19 @@ if (!useSupabaseClient) {
       else console.log('✅ Connected to PostgreSQL successfully');
     });
 
-    module.exports = { pool: realPool, parseJSON: (v) => v, parseUser: (u) => u };
+    // Helper function to safely parse JSON fields
+    const parseJSONReal = (value, defaultValue = {}) => {
+      if (!value) return defaultValue;
+      if (typeof value === 'object') return value;
+      try {
+        return JSON.parse(value);
+      } catch (e) {
+        console.error('Failed to parse JSON:', e);
+        return defaultValue;
+      }
+    };
+
+    module.exports = { pool: realPool, parseJSON: parseJSONReal, parseUser: (u) => u };
     return;
   } catch (e) {
     console.error('Failed to init Postgres pool:', e);

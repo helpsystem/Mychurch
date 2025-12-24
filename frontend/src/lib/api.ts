@@ -33,8 +33,15 @@ export const getApiBaseUrl = (): string => {
   }
 
   // Fallback to environment variable
-  if (typeof process !== 'undefined' && process.env.VITE_API_BASE) {
-    return process.env.VITE_API_BASE;
+  if (typeof process !== 'undefined') {
+    if (process.env.VITE_API_BASE) return process.env.VITE_API_BASE;
+    if (process.env.VITE_API_URL) return process.env.VITE_API_URL;
+  }
+
+  // Also check import.meta.env if available (Vite standard)
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    if (import.meta.env.VITE_API_BASE) return import.meta.env.VITE_API_BASE;
+    if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
   }
 
   return '';
