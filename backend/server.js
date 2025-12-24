@@ -52,6 +52,7 @@ const ttsRoutes = require('./routes/tts');
 const geminiAudioTimingRoutes = require('./routes/geminiAudioTiming');
 const audioSyncRoutes = require('./routes/audioSyncRoutes');
 const storageRoutes = require('./routes/storageRoutes');
+const communicationsRoutes = require('./routes/communicationsRoutes');
 
 // Try to load HiDrive routes
 let hidriveRoutes;
@@ -368,6 +369,7 @@ app.use('/api/translate', translationRoutes); // Old translation routes
 app.use('/api/ai/translate', aiLimiter, translateRoutes); // New AI-powered translation
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/messages', messageHistoryRoutes);
+app.use('/api/communications', communicationsRoutes); // Bulk communications
 app.use('/api/pages', pagesRoutes);
 app.use('/api/daily-images', dailyImagesRoutes);
 app.use('/api/settings', settingsRoutes);

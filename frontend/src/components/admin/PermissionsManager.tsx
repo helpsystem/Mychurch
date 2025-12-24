@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useLanguage } from '../../hooks/useLanguage';
 import { User, ActivityLog } from '../../types';
 import Spinner from '../Spinner';
-import { UserPlus, Edit, Eye, Send, Key } from 'lucide-react';
+import { UserPlus, Edit, Eye, Send, Key, RefreshCw, AlertCircle } from 'lucide-react';
 import UserFormModal from '../UserFormModal';
 import ActivityLogModal from '../ActivityLogModal';
 import InviteUserModal from '../InviteUserModal';
@@ -12,9 +12,10 @@ import { getProfilePictureUrl } from '../../lib/utils';
 
 const PermissionsManager: React.FC = () => {
     const { getUsers, updateUserRole, createUser, updateUser, sendInvitation } = useAuth();
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const [users, setUsers] = useState<User[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isActivityModalOpen, setIsActivityModalOpen] = useState(false);
     const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
@@ -24,15 +25,17 @@ const PermissionsManager: React.FC = () => {
 
     const fetchUsers = useCallback(async () => {
         setIsLoading(true);
+        setError(null);
         try {
             const userList = await getUsers();
-            setUsers(userList);
-        } catch (error) {
-            console.error("Failed to fetch users", error);
+            setUsers(Array.isArray(userList) ? userList : []);
+        } catch (err: any) {
+            console.error("Failed to fetch users", err);
+            setError(err.message || (lang === 'fa' ? 'خطا در بارگذاری کاربران' : 'Failed to load users'));
         } finally {
             setIsLoading(false);
         }
-    }, [getUsers]);
+    }, [getUsers, lang]);
 
     useEffect(() => {
         fetchUsers();
@@ -78,10 +81,10 @@ const PermissionsManager: React.FC = () => {
         try {
             if (selectedUser) {
                 await updateUser(selectedUser.email, data);
-                 showStatus(t('userUpdatedSuccess'));
+                 showStatus(t('userUpdatedSuccess') || 'User updated successfully');
             } else {
                 await createUser(data);
-                 showStatus(t('userCreatedSuccess'));
+                 showStatus(t('userCreatedSuccess') || 'User created successfully');
             }
             fetchUsers();
             setIsModalOpen(false);
@@ -94,19 +97,53 @@ const PermissionsManager: React.FC = () => {
     };
     
     if (isLoading) {
-        return <div className="flex justify-center items-center h-64"><Spinner size="12" /></div>;
+        return (
+            <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
+                <div className="flex justify-center items-center h-64">
+                    <Spinner size="12" />
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
+                <div className="text-center py-12">
+                    <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-white mb-2">
+                        {lang === 'fa' ? 'خطا در بارگذاری' : 'Error Loading Data'}
+                    </h3>
+                    <p className="text-gray-400 mb-4">{error}</p>
+                    <button 
+                        onClick={fetchUsers}
+                        className="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center gap-2 mx-auto"
+                    >
+                        <RefreshCw size={16} />
+                        {lang === 'fa' ? 'تلاش مجدد' : 'Retry'}
+                    </button>
+                </div>
+            </div>
+        );
     }
 
     return (
         <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-semibold text-white">{t('managePermissions')}</h2>
+                <h2 className="text-2xl font-semibold text-white">{t('managePermissions') || 'User Management'}</h2>
                 <div className="flex gap-2">
+                    <button 
+                        onClick={fetchUsers} 
+                        className="p-2 bg-gray-700 rounded-md hover:bg-gray-600"
+                        title={lang === 'fa' ? 'بروزرسانی' : 'Refresh'}
+                    >
+                        <RefreshCw size={16} className="text-white" />
+                    </button>
                      <button onClick={() => setIsInviteModalOpen(true)} className="py-2 px-4 bg-gray-700 text-white rounded-md hover:bg-gray-600 flex items-center gap-2">
-                        <Send size={16}/> {t('sendInvitation')}
+                        <Send size={16}/> {t('sendInvitation') || 'Invite'}
                     </button>
                     <button onClick={() => handleOpenModal()} className="py-2 px-4 bg-blue-gradient text-primary font-bold rounded-md flex items-center gap-2">
-                        <UserPlus size={16}/> {t('addNewUser')}
+                        <UserPlus size={16}/> {t('addNewUser') || 'Add User'}
                     </button>
                 </div>
             </div>

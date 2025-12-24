@@ -25,6 +25,14 @@ const audioRoutes = require('./routes/audioRoutes'); // Smart Audio Source Resol
 const downloadRoutes = require('./routes/downloadRoutes'); // WordProject Downloader
 const bibleLocalRoutes = require('./routes/bible-local'); // Local Bible Data with HiDrive audio integration
 
+// Admin Panel Routes - Added for Admin features
+const analyticsRoutes = require('./routes/analyticsRoutes');
+const communicationsRoutes = require('./routes/communicationsRoutes');
+const userRoutes = require('./routes/userRoutes');
+const testimonialsRoutes = require('./routes/testimonialsRoutes');
+const settingsRoutes = require('./routes/settingsRoutes');
+const announcementsRoutes = require('./routes/announcementsRoutes');
+
 // Try to load HiDrive routes
 let hidriveRoutes;
 try {
@@ -108,6 +116,15 @@ app.use('/api/worship-songs', worshipRoutes);
 app.use('/api/prayer-requests', prayerRoutes);
 app.use('/api/images', imageRoutes);
 app.use('/api/wordproject', wordprojectRoutes);
+
+// Admin Panel Routes
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/communications', communicationsRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/testimonials', testimonialsRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/announcements', announcementsRoutes);
+
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);
   console.log('✅ Hugging Face TTS routes registered at /api/tts/huggingface');

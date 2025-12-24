@@ -65,6 +65,110 @@ const upload = multer({
   }
 });
 
+// GET /api/worship-songs/health-check - بررسی وضعیت کلی سرودها
+// IMPORTANT: This route must be defined BEFORE /:id to avoid matching "health-check" as id
+router.get('/health-check', async (req, res) => {
+  try {
+    // Use pool instead of supabase client for reliability
+    const result = await pool.query(`
+      SELECT audiourl, lyrics, timing_data, chords 
+      FROM worship_songs
+    `);
+    
+    const songs = result.rows.map(row => ({
+      audiourl: row.audiourl,
+      lyrics: parseJSON(row.lyrics, {}),
+      timing_data: row.timing_data,
+      chords: row.chords
+    }));
+
+    const stats = {
+      total: songs.length,
+      with_audio: songs.filter(s => s.audiourl && s.audiourl.trim()).length,
+      with_lyrics: songs.filter(s => s.lyrics && (s.lyrics.fa || s.lyrics.en)).length,
+      with_timing: songs.filter(s => s.timing_data).length,
+      with_chords: songs.filter(s => s.chords).length,
+      fully_complete: songs.filter(s =>
+        s.audiourl && s.audiourl.trim() &&
+        s.lyrics && (s.lyrics.fa || s.lyrics.en) &&
+        s.timing_data
+      ).length,
+      completed: 0,
+      queued: 0,
+      processing: 0,
+      failed: 0
+    };
+
+    // محاسبه درصدها
+    const total = stats.total || 1; // Avoid division by zero
+    const percentages = {
+      withAudio: ((stats.with_audio / total) * 100).toFixed(1),
+      withLyrics: ((stats.with_lyrics / total) * 100).toFixed(1),
+      withTiming: ((stats.with_timing / total) * 100).toFixed(1),
+      withChords: ((stats.with_chords / total) * 100).toFixed(1),
+      fullyComplete: ((stats.fully_complete / total) * 100).toFixed(1),
+      completed: ((stats.completed / total) * 100).toFixed(1)
+    };
+
+    res.json({
+      success: true,
+      stats: {
+        total: stats.total,
+        withAudio: stats.with_audio,
+        withLyrics: stats.with_lyrics,
+        withTiming: stats.with_timing,
+        withChords: stats.with_chords,
+        fullyComplete: stats.fully_complete,
+        processingStatus: {
+          completed: stats.completed,
+          queued: stats.queued,
+          processing: stats.processing,
+          failed: stats.failed
+        }
+      },
+      percentages,
+      health: parseFloat(percentages.fullyComplete) >= 80 ? 'excellent' :
+        parseFloat(percentages.fullyComplete) >= 60 ? 'good' :
+          parseFloat(percentages.fullyComplete) >= 40 ? 'fair' : 'needs_attention'
+    });
+
+  } catch (error) {
+    console.error('Health Check Error:', error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+});
+
+// GET /api/worship-songs/incomplete - دریافت سرودهای ناقص
+// IMPORTANT: This route must be defined BEFORE /:id
+router.get('/incomplete', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT id, title, audiourl, lyrics, timing_data, chords
+      FROM worship_songs
+      WHERE audiourl IS NULL OR audiourl = ''
+         OR lyrics IS NULL
+         OR timing_data IS NULL
+      ORDER BY created_at DESC
+    `);
+
+    const songs = result.rows.map(row => ({
+      id: row.id,
+      title: parseJSON(row.title, {}),
+      missing: {
+        audio: !row.audiourl || !row.audiourl.trim(),
+        lyrics: !row.lyrics,
+        timing: !row.timing_data,
+        chords: !row.chords
+      }
+    }));
+
+    res.json({ success: true, songs, count: songs.length });
+  } catch (error) {
+    console.error('Incomplete Songs Error:', error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+});
+
 // GET /api/worship-songs - دریافت همه آهنگ‌های پرستشی
 router.get('/', async (req, res) => {
   try {
@@ -471,160 +575,6 @@ router.get('/:id/sync-status', authenticateToken, async (req, res) => {
 
   } catch (error) {
     console.error('Get Sync Status Error:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-// GET /api/worship-songs/health-check - بررسی وضعیت کلی سرودها
-router.get('/health-check', async (req, res) => {
-  try {
-    const { data: songs, error } = await supabase
-      .from('worship_songs')
-      .select('audiourl, lyrics, timing_data, chords');
-
-    if (error) throw error;
-
-    const stats = {
-      total: songs.length,
-      with_audio: songs.filter(s => s.audiourl && s.audiourl.trim()).length,
-      with_lyrics: songs.filter(s => s.lyrics && (s.lyrics.fa || s.lyrics.en)).length,
-      with_timing: songs.filter(s => s.timing_data).length,
-      with_chords: songs.filter(s => s.chords).length,
-      fully_complete: songs.filter(s =>
-        s.audiourl && s.audiourl.trim() &&
-        s.lyrics && (s.lyrics.fa || s.lyrics.en) &&
-        s.timing_data
-      ).length,
-      completed: 0,
-      queued: 0,
-      processing: 0,
-      failed: 0
-    };
-
-    // محاسبه درصدها
-    const total = parseInt(stats.total);
-    const percentages = {
-      withAudio: ((parseInt(stats.with_audio) / total) * 100).toFixed(1),
-      withLyrics: ((parseInt(stats.with_lyrics) / total) * 100).toFixed(1),
-      withTiming: ((parseInt(stats.with_timing) / total) * 100).toFixed(1),
-      withChords: ((parseInt(stats.with_chords) / total) * 100).toFixed(1),
-      fullyComplete: ((parseInt(stats.fully_complete) / total) * 100).toFixed(1),
-      completed: ((parseInt(stats.completed) / total) * 100).toFixed(1)
-    };
-
-    res.json({
-      success: true,
-      stats: {
-        total: parseInt(stats.total),
-        withAudio: parseInt(stats.with_audio),
-        withLyrics: parseInt(stats.with_lyrics),
-        withTiming: parseInt(stats.with_timing),
-        withChords: parseInt(stats.with_chords),
-        fullyComplete: parseInt(stats.fully_complete),
-        processingStatus: {
-          completed: parseInt(stats.completed),
-          queued: parseInt(stats.queued),
-          processing: parseInt(stats.processing),
-          failed: parseInt(stats.failed)
-        }
-      },
-      percentages,
-      health: percentages.fullyComplete >= 80 ? 'excellent' :
-        percentages.fullyComplete >= 60 ? 'good' :
-          percentages.fullyComplete >= 40 ? 'fair' : 'needs_attention'
-    });
-
-  } catch (error) {
-    console.error('Health Check Error:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-// POST /api/worship-songs/process-all - پردازش دسته‌جمعی همه سرودها
-router.post('/process-all', async (req, res) => {
-  try {
-    const { force = false, generateTiming = true } = req.body;
-
-    // دریافت همه سرودها
-    const { data: songs, error } = await supabase
-      .from('worship_songs')
-      .select('id, audiourl, lyrics, timing_data');
-
-    if (error) throw error;
-
-    // شمارش سرودهای نیازمند پردازش
-    const incomplete = songs.filter(s =>
-      s.audiourl && s.audiourl.trim() &&
-      s.lyrics && (s.lyrics.fa || s.lyrics.en) &&
-      !s.timing_data
-    );
-
-    if (incomplete.length === 0) {
-      return res.json({
-        success: true,
-        message: 'All songs are already processed',
-        queued: 0
-      });
-    }
-
-    res.json({
-      success: true,
-      message: `${incomplete.length} songs need processing`,
-      queued: incomplete.length,
-      total: incomplete.length
-    });
-
-  } catch (error) {
-    console.error('Process All Error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to queue songs for processing',
-      error: error.message
-    });
-  }
-});
-
-// GET /api/worship-songs/incomplete - لیست سرودهای ناقص
-router.get('/incomplete', async (req, res) => {
-  try {
-    const { data: songs, error } = await supabase
-      .from('worship_songs')
-      .select('id, title, artist, audiourl, lyrics, timing_data, chords')
-      .limit(100);
-
-    if (error) throw error;
-
-    const incomplete = songs
-      .filter(song =>
-        !song.audiourl ||
-        !song.audiourl.trim() ||
-        !song.lyrics ||
-        (!song.lyrics.fa && !song.lyrics.en) ||
-        !song.timing_data
-      )
-      .map(song => {
-        const missing = [];
-        if (!song.audiourl || !song.audiourl.trim()) missing.push('audio');
-        if (!song.lyrics || (!song.lyrics.fa && !song.lyrics.en)) missing.push('lyrics');
-        if (!song.timing_data) missing.push('timing');
-
-        return {
-          id: song.id,
-          title: song.title || {},
-          artist: song.artist,
-          missing,
-          hasChords: !!song.chords
-        };
-      });
-
-    res.json({
-      success: true,
-      total: incomplete.length,
-      songs: incomplete
-    });
-
-  } catch (error) {
-    console.error('Get Incomplete Songs Error:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });

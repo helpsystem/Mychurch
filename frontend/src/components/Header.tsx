@@ -206,7 +206,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
                                 <div className="flex items-center gap-3 p-3">
                                     <img src={getProfilePictureUrl(user)} alt="profile" className="w-10 h-10 rounded-full object-cover border-2 border-dimWhite" />
                                     <div>
-                                        <p className="font-semibold text-white">{user?.profileData.name}</p>
+                                        <p className="font-semibold text-white">{user?.profileData?.name || user?.email}</p>
                                         <p className="text-sm text-dimWhite">{user?.email}</p>
                                     </div>
                                 </div>

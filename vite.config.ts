@@ -81,6 +81,10 @@ export default defineConfig({
         sourcemap: false,
     },
     envDir: '..',
+    define: {
+        'process.env': {},
+        'global': 'globalThis',
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'frontend/src'),

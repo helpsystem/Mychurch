@@ -394,10 +394,15 @@ const AnnouncementsManager: React.FC = () => {
     fetchAnnouncements();
   }, []);
 
-  if (!user?.permissions.includes('manage_announcements')) {
+  // Allow access for SUPER_ADMIN, MANAGER, or users with manage_announcements permission
+  const hasAccess = user?.role === 'SUPER_ADMIN' || 
+                    user?.role === 'MANAGER' || 
+                    user?.permissions?.includes('manage_announcements');
+
+  if (!hasAccess) {
     return (
       <div className="text-center py-8">
-        <p className="text-gray-500">{lang === 'fa' ? 'دسترسی محدود' : 'Access restricted'}</p>
+        <p className="text-gray-500">{lang === 'fa' ? 'دسترسی محدود - نیاز به نقش مدیر یا ابرمدیر' : 'Access restricted - Requires Manager or Admin role'}</p>
       </div>
     );
   }

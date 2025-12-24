@@ -1,22 +1,48 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useContent } from '../../hooks/useContent';
 import { useLanguage } from '../../hooks/useLanguage';
 import { SiteSettings } from '../../types';
 import Spinner from '../Spinner';
 import ImagePickerModal from '../ImagePickerModal';
-import { Save } from 'lucide-react';
+import { Save, AlertCircle, CheckCircle } from 'lucide-react';
+
+// Default settings to prevent undefined errors
+const defaultSettings: SiteSettings = {
+    churchName: { en: 'Iranian Christian Church of D.C.', fa: 'کلیسای مسیحی ایرانی واشنگتن دی‌سی' },
+    footerDescription: { en: 'A place of faith and community', fa: 'مکانی برای ایمان و جامعه' },
+    address: '',
+    phone: '',
+    whatsappNumber: '',
+    meetingTime: { en: 'Sundays 10:30 AM', fa: 'یکشنبه‌ها ساعت ۱۰:۳۰ صبح' },
+    facebookUrl: '',
+    youtubeUrl: '',
+    instagramUrl: '',
+    logoUrl: '/images/church-logo-ultra-hd.png',
+    verseOfTheDayAttribution: { en: '', fa: '' },
+    newsletterUrl: '',
+    telegramUrl: '',
+    whatsappGroupUrl: ''
+};
 
 const SettingsView: React.FC = () => {
-    const { t } = useLanguage();
-    const { content, updateSettings } = useContent();
-    const [settings, setSettings] = useState<SiteSettings>(content.settings);
+    const { t, lang } = useLanguage();
+    const { content, updateSettings, loading } = useContent();
+    const [settings, setSettings] = useState<SiteSettings>(content?.settings || defaultSettings);
     const [isLoading, setIsLoading] = useState(false);
     const [isImagePickerOpen, setIsImagePickerOpen] = useState(false);
+    const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, lang?: 'en' | 'fa') => {
+    // Update settings when content loads
+    useEffect(() => {
+        if (content?.settings) {
+            setSettings({ ...defaultSettings, ...content.settings });
+        }
+    }, [content?.settings]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, langKey?: 'en' | 'fa') => {
         const { name, value } = e.target;
-        if (lang) {
+        if (langKey) {
             setSettings(prev => {
                 const settingKey = name as keyof SiteSettings;
                 const currentVal = prev[settingKey] as any;
@@ -26,7 +52,7 @@ const SettingsView: React.FC = () => {
                         ...prev,
                         [settingKey]: {
                             ...currentVal,
-                            [lang]: value
+                            [langKey]: value
                         }
                     };
                 }
@@ -45,12 +71,20 @@ const SettingsView: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        setStatusMessage(null);
         try {
             await updateSettings(settings);
-            alert("Settings saved successfully!");
-        } catch (error) {
+            setStatusMessage({ 
+                type: 'success', 
+                text: lang === 'fa' ? 'تنظیمات با موفقیت ذخیره شد!' : 'Settings saved successfully!' 
+            });
+            setTimeout(() => setStatusMessage(null), 3000);
+        } catch (error: any) {
             console.error("Failed to save settings:", error);
-            alert("Failed to save settings.");
+            setStatusMessage({ 
+                type: 'error', 
+                text: error.message || (lang === 'fa' ? 'خطا در ذخیره تنظیمات' : 'Failed to save settings') 
+            });
         } finally {
             setIsLoading(false);
         }
@@ -58,30 +92,52 @@ const SettingsView: React.FC = () => {
 
     const inputClass = "w-full p-2 border border-gray-600 bg-primary rounded-md focus:outline-none focus:ring-2 focus:ring-secondary text-white";
 
+    if (loading) {
+        return (
+            <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
+                <div className="flex justify-center items-center h-64">
+                    <Spinner size="12" />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold text-white">{t('siteSettings')}</h1>
+                <h1 className="text-3xl font-bold text-white">{t('siteSettings') || 'Site Settings'}</h1>
+                
+                {/* Status Message */}
+                {statusMessage && (
+                    <div className={`p-4 rounded-lg flex items-center gap-2 ${
+                        statusMessage.type === 'success' 
+                            ? 'bg-green-900/50 border border-green-500/50 text-green-300' 
+                            : 'bg-red-900/50 border border-red-500/50 text-red-300'
+                    }`}>
+                        {statusMessage.type === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+                        {statusMessage.text}
+                    </div>
+                )}
                 
                 {/* General Settings */}
                 <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
-                    <h2 className="text-xl font-semibold text-white mb-4 border-b border-gray-700 pb-2">{t('generalSettings')}</h2>
+                    <h2 className="text-xl font-semibold text-white mb-4 border-b border-gray-700 pb-2">{t('generalSettings') || 'General Settings'}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm text-dimWhite mb-1">{t('churchNameEn')}</label>
-                            <input name="churchName" value={settings.churchName.en} onChange={e => handleChange(e, 'en')} className={inputClass} />
+                            <label className="block text-sm text-dimWhite mb-1">{t('churchNameEn') || 'Church Name (EN)'}</label>
+                            <input name="churchName" value={settings.churchName?.en || ''} onChange={e => handleChange(e, 'en')} className={inputClass} />
                         </div>
                         <div>
-                            <label className="block text-sm text-dimWhite mb-1">{t('churchNameFa')}</label>
-                            <input name="churchName" value={settings.churchName.fa} onChange={e => handleChange(e, 'fa')} className={inputClass} dir="rtl"/>
+                            <label className="block text-sm text-dimWhite mb-1">{t('churchNameFa') || 'Church Name (FA)'}</label>
+                            <input name="churchName" value={settings.churchName?.fa || ''} onChange={e => handleChange(e, 'fa')} className={inputClass} dir="rtl"/>
                         </div>
                          <div>
-                            <label className="block text-sm text-dimWhite mb-1">{t('footerDescEn')}</label>
-                            <input name="footerDescription" value={settings.footerDescription.en} onChange={e => handleChange(e, 'en')} className={inputClass} />
+                            <label className="block text-sm text-dimWhite mb-1">{t('footerDescEn') || 'Footer Description (EN)'}</label>
+                            <input name="footerDescription" value={settings.footerDescription?.en || ''} onChange={e => handleChange(e, 'en')} className={inputClass} />
                         </div>
                         <div>
-                            <label className="block text-sm text-dimWhite mb-1">{t('footerDescFa')}</label>
-                            <input name="footerDescription" value={settings.footerDescription.fa} onChange={e => handleChange(e, 'fa')} className={inputClass} dir="rtl" />
+                            <label className="block text-sm text-dimWhite mb-1">{t('footerDescFa') || 'Footer Description (FA)'}</label>
+                            <input name="footerDescription" value={settings.footerDescription?.fa || ''} onChange={e => handleChange(e, 'fa')} className={inputClass} dir="rtl" />
                         </div>
                          <div>
                             <label className="block text-sm text-dimWhite mb-1">{t('logoUrl')}</label>

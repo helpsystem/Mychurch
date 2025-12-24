@@ -3,6 +3,72 @@ const { pool } = require('../db-postgres');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
+// GET /api/analytics/site-overview - Simple site-wide statistics (fallback)
+router.get('/site-overview', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'ADMIN'), async (req, res) => {
+  try {
+    // Gather basic stats from existing tables with error handling for each
+    const stats = {
+      users: 0,
+      sermons: 0,
+      events: 0,
+      worshipSongs: 0,
+      prayerRequests: 0,
+      testimonials: 0,
+      announcements: 0
+    };
+    
+    // Users
+    try {
+      const usersResult = await pool.query('SELECT COUNT(*) FROM users');
+      stats.users = parseInt(usersResult.rows[0].count) || 0;
+    } catch (e) { console.log('No users table'); }
+    
+    // Sermons
+    try {
+      const sermonsResult = await pool.query('SELECT COUNT(*) FROM sermons');
+      stats.sermons = parseInt(sermonsResult.rows[0].count) || 0;
+    } catch (e) { console.log('No sermons table'); }
+    
+    // Events
+    try {
+      const eventsResult = await pool.query('SELECT COUNT(*) FROM events');
+      stats.events = parseInt(eventsResult.rows[0].count) || 0;
+    } catch (e) { console.log('No events table'); }
+    
+    // Worship Songs
+    try {
+      const songsResult = await pool.query('SELECT COUNT(*) FROM worship_songs');
+      stats.worshipSongs = parseInt(songsResult.rows[0].count) || 0;
+    } catch (e) { console.log('No worship_songs table'); }
+    
+    // Prayer Requests
+    try {
+      const prayersResult = await pool.query('SELECT COUNT(*) FROM prayer_requests');
+      stats.prayerRequests = parseInt(prayersResult.rows[0].count) || 0;
+    } catch (e) { console.log('No prayer_requests table'); }
+    
+    // Testimonials
+    try {
+      const testimonialsResult = await pool.query('SELECT COUNT(*) FROM testimonials');
+      stats.testimonials = parseInt(testimonialsResult.rows[0].count) || 0;
+    } catch (e) { console.log('No testimonials table'); }
+    
+    // Announcements
+    try {
+      const announcementsResult = await pool.query('SELECT COUNT(*) FROM church_announcements');
+      stats.announcements = parseInt(announcementsResult.rows[0].count) || 0;
+    } catch (e) { console.log('No church_announcements table'); }
+    
+    res.json({
+      ...stats,
+      generatedAt: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Site Overview Error:', error);
+    res.status(500).json({ message: 'Failed to fetch site overview', error: error.message });
+  }
+});
+
 // GET /api/analytics/overview - آمار کلی داشبورد
 router.get('/overview', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'ADMIN'), async (req, res) => {
   try {

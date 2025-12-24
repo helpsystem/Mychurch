@@ -56,11 +56,23 @@ interface PerformanceData {
   }>;
 }
 
+interface SiteOverview {
+  users: number;
+  sermons: number;
+  events: number;
+  worshipSongs: number;
+  prayerRequests: number;
+  testimonials: number;
+  announcements: number;
+  generatedAt: string;
+}
+
 const COLORS = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444', '#8B5CF6', '#06B6D4'];
 
 export const AnalyticsDashboard: React.FC = () => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
   const [performanceData, setPerformanceData] = useState<PerformanceData | null>(null);
+  const [siteOverview, setSiteOverview] = useState<SiteOverview | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'performance'>('overview');
@@ -68,27 +80,43 @@ export const AnalyticsDashboard: React.FC = () => {
   const fetchAnalytics = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('authToken');
-      
-      const [overviewResponse, performanceResponse] = await Promise.all([
-        fetch('/api/analytics/overview', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/analytics/performance', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        })
-      ]);
-
-      if (!overviewResponse.ok || !performanceResponse.ok) {
-        throw new Error('Failed to fetch analytics data');
-      }
-
-      const overviewData = await overviewResponse.json();
-      const performanceStats = await performanceResponse.json();
-
-      setAnalyticsData(overviewData);
-      setPerformanceData(performanceStats);
       setError(null);
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      
+      // Try to fetch site overview first (simpler, more reliable)
+      try {
+        const siteResponse = await fetch('/api/analytics/site-overview', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (siteResponse.ok) {
+          const siteData = await siteResponse.json();
+          setSiteOverview(siteData);
+        }
+      } catch (e) {
+        console.log('Site overview not available');
+      }
+      
+      // Try to fetch detailed analytics (may fail if tables don't exist)
+      try {
+        const [overviewResponse, performanceResponse] = await Promise.all([
+          fetch('/api/analytics/overview', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          }),
+          fetch('/api/analytics/performance', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          })
+        ]);
+
+        if (overviewResponse.ok && performanceResponse.ok) {
+          const overviewData = await overviewResponse.json();
+          const performanceStats = await performanceResponse.json();
+          setAnalyticsData(overviewData);
+          setPerformanceData(performanceStats);
+        }
+      } catch (e) {
+        console.log('Detailed analytics not available, using site overview');
+      }
+      
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
       console.error('Analytics fetch error:', err);
@@ -103,22 +131,51 @@ export const AnalyticsDashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-[400px] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading analytics...</p>
+          <p className="mt-4 text-gray-400">Loading analytics...</p>
         </div>
       </div>
     );
   }
 
-  if (error) {
+  // Show simple site overview if detailed analytics aren't available
+  if (!analyticsData && siteOverview) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center p-8 bg-white rounded-lg shadow-md">
+      <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
+        <h2 className="text-2xl font-bold text-white mb-6">Site Overview</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Users', value: siteOverview.users, icon: '👥' },
+            { label: 'Sermons', value: siteOverview.sermons, icon: '🎤' },
+            { label: 'Events', value: siteOverview.events, icon: '📅' },
+            { label: 'Worship Songs', value: siteOverview.worshipSongs, icon: '🎵' },
+            { label: 'Prayer Requests', value: siteOverview.prayerRequests, icon: '🙏' },
+            { label: 'Testimonials', value: siteOverview.testimonials, icon: '✨' },
+            { label: 'Announcements', value: siteOverview.announcements, icon: '📢' },
+          ].map((stat, idx) => (
+            <div key={idx} className="bg-gray-800/50 p-4 rounded-lg text-center">
+              <div className="text-3xl mb-2">{stat.icon}</div>
+              <div className="text-2xl font-bold text-white">{stat.value}</div>
+              <div className="text-sm text-gray-400">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-gray-500 mt-4 text-right">
+          Updated: {new Date(siteOverview.generatedAt).toLocaleString()}
+        </p>
+      </div>
+    );
+  }
+
+  if (error && !siteOverview) {
+    return (
+      <div className="bg-black-gradient p-6 rounded-[20px] box-shadow">
+        <div className="text-center p-8">
           <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Error Loading Analytics</h2>
-          <p className="text-gray-600 mb-4">{error}</p>
+          <h2 className="text-xl font-bold text-white mb-2">Error Loading Analytics</h2>
+          <p className="text-gray-400 mb-4">{error}</p>
           <button
             onClick={fetchAnalytics}
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
