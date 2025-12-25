@@ -110,6 +110,9 @@ const AdminAudioDashboardPage = lazy(() => import('./pages/AdminAudioDashboardPa
 const PresentationCreatorPage = lazy(() => import('./pages/PresentationCreatorPage'));
 const AdminSyncManagementPage = lazy(() => import('./pages/AdminSyncManagementPage'));
 const PersianCalendarPage = lazy(() => import('./pages/PersianCalendarPage')); // Persian Smart Calendar
+const AdminTimingPage = lazy(() => import('./pages/AdminTimingPage')); // Admin Timing Management
+const AdvancedAudioSync = lazy(() => import('./components/AdvancedAudioSync')); // Advanced Audio Sync Tool
+const AdminToolsPage = lazy(() => import('./pages/AdminToolsPage')); // Admin Tools Dashboard
 
 function App() {
   const { lang } = useLanguage();
@@ -298,10 +301,58 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route
+                  path="/admin/timing"
+                  element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <Layout><AdminTimingPage /></Layout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/sync-management"
+                  element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <Layout><AdminSyncManagementPage /></Layout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/audio-sync"
+                  element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <Layout><AdvancedAudioSync /></Layout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/presentation-creator"
+                  element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <Layout><PresentationCreatorPage /></Layout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/bible-presentation"
+                  element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <Layout><BiblePresentationCreatorPage /></Layout>
+                    </ProtectedRoute>
+                  }
+                />
 
                 {/* Test route outside Layout */}
 
                 <Route path="presentation" element={<PresentationPage />} />
+                <Route
+                  path="/admin/tools"
+                  element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER', 'LEADER']}>
+                      <AdminToolsPage />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route
                   path="/admin"
                   element={
