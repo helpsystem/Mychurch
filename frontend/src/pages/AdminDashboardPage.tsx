@@ -32,6 +32,7 @@ const StoragePage = lazy(() => import('./StoragePage'));
 const DatabaseUpdateManager = lazy(() => import('../components/DatabaseUpdateManager'));
 const EnvironmentPage = lazy(() => import('./EnvironmentPage'));
 const BackupPage = lazy(() => import('./BackupPage'));
+const AdminSermonsPage = lazy(() => import('./AdminSermonsPage'));
 
 // Loading spinner برای lazy components
 const AdminLoadingSpinner = () => (
@@ -118,7 +119,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'pages', label: t('pages'), icon: <FileText />, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'content', label: t('footerLinkContent'), icon: <Settings />, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'sermons', label: lang === 'fa' ? 'مدیریت جلسات آنلاین' : 'Online Services', icon: <Video />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'], externalLink: '/admin/sermons' },
+            { id: 'sermons', label: lang === 'fa' ? 'مدیریت جلسات آنلاین' : 'Online Services', icon: <Video />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'worship-health', label: lang === 'fa' ? '📊 وضعیت سرودها' : '📊 Songs Health', icon: <BarChart2 />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'], externalLink: '/#/admin/worship-health' },
             { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare />, roles: ['MANAGER', 'SUPER_ADMIN'] },
             { id: 'letters', label: t('navLetters'), icon: <Mail />, roles: ['SUPER_ADMIN'] },
@@ -155,6 +156,7 @@ const AdminDashboardPage: React.FC = () => {
                 case 'pages': return <PagesView />;
                 case 'content': return <ContentManager />;
                 case 'songs': return <SongsManager />;
+                case 'sermons': return <AdminSermonsPage />;
                 case 'testimonials': return <TestimonialsManager />;
                 case 'letters': return <LettersManager />;
                 case 'announcements': return <AnnouncementsManager />;

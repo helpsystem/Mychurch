@@ -32,21 +32,25 @@ const generateReferenceNumber = (type) => {
 // GET /api/announcements/published - دریافت اطلاعیه‌های منتشر شده برای نمایش عمومی
 router.get('/published', async (req, res) => {
   try {
+    // Check if table exists first
+    const tableCheck = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_schema = 'public' AND table_name = 'church_announcements'
+      )
+    `);
+    
+    if (!tableCheck.rows[0].exists) {
+      return res.json([]);
+    }
+    
+    // Use the actual schema columns: is_active, start_date, end_date, type, priority (numeric)
     const result = await pool.query(`
       SELECT * FROM church_announcements 
-      WHERE status = 'published' 
-      AND (publish_date IS NULL OR publish_date <= CURRENT_TIMESTAMP)
-      AND (expiry_date IS NULL OR expiry_date > CURRENT_TIMESTAMP)
-      ORDER BY 
-        CASE priority 
-          WHEN 'urgent' THEN 1 
-          WHEN 'high' THEN 2 
-          WHEN 'normal' THEN 3 
-          WHEN 'low' THEN 4 
-          ELSE 5 
-        END,
-        publish_date DESC, 
-        created_at DESC
+      WHERE is_active = true 
+      AND (start_date IS NULL OR start_date <= CURRENT_TIMESTAMP)
+      AND (end_date IS NULL OR end_date > CURRENT_TIMESTAMP)
+      ORDER BY priority ASC, created_at DESC
     `);
 
     const announcements = result.rows.map(announcement => ({
@@ -59,10 +63,11 @@ router.get('/published', async (req, res) => {
         en: announcement.content_en,
         fa: announcement.content_fa
       },
-      type: announcement.announcement_type,
+      type: announcement.type,
       priority: announcement.priority,
-      publishDate: announcement.publish_date,
-      referenceNumber: announcement.reference_number
+      publishDate: announcement.start_date,
+      expiryDate: announcement.end_date,
+      isActive: announcement.is_active
     }));
 
     res.json(announcements);
@@ -94,17 +99,11 @@ router.get('/:id', async (req, res) => {
         en: announcement.content_en,
         fa: announcement.content_fa
       },
-      type: announcement.announcement_type,
+      type: announcement.type || announcement.announcement_type,
       priority: announcement.priority,
-      targetAudience: parseJSON(announcement.target_audience, ['all']),
-      channels: parseJSON(announcement.channels, ['website']),
-      autoTranslate: announcement.auto_translate,
-      sourceLanguage: announcement.source_language,
-      authorEmail: announcement.author_email,
-      status: announcement.status,
-      publishDate: announcement.publish_date,
-      expiryDate: announcement.expiry_date,
-      referenceNumber: announcement.reference_number,
+      isActive: announcement.is_active,
+      publishDate: announcement.start_date || announcement.publish_date,
+      expiryDate: announcement.end_date || announcement.expiry_date,
       createdAt: announcement.created_at,
       updatedAt: announcement.updated_at
     });
@@ -117,20 +116,36 @@ router.get('/:id', async (req, res) => {
 // GET /api/announcements - دریافت همه اطلاعیه‌ها
 router.get('/', async (req, res) => {
   try {
-    const { status, type, page = 1, limit = 20 } = req.query;
+    // Check if table exists first
+    const tableCheck = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_schema = 'public' AND table_name = 'church_announcements'
+      )
+    `);
+    
+    if (!tableCheck.rows[0].exists) {
+      return res.json({
+        announcements: [],
+        pagination: { page: 1, limit: 20, total: 0, pages: 0 },
+        note: 'Announcements table not yet created. Run database migration to enable announcements.'
+      });
+    }
+    
+    const { is_active, type, page = 1, limit = 20 } = req.query;
     const offset = (page - 1) * limit;
     
     let query = 'SELECT * FROM church_announcements';
     let params = [];
     let whereConditions = [];
 
-    if (status) {
-      whereConditions.push(`status = $${params.length + 1}`);
-      params.push(status);
+    if (is_active !== undefined) {
+      whereConditions.push(`is_active = $${params.length + 1}`);
+      params.push(is_active === 'true');
     }
 
     if (type) {
-      whereConditions.push(`announcement_type = $${params.length + 1}`);
+      whereConditions.push(`type = $${params.length + 1}`);
       params.push(type);
     }
 
@@ -152,17 +167,11 @@ router.get('/', async (req, res) => {
         en: announcement.content_en,
         fa: announcement.content_fa
       },
-      type: announcement.announcement_type,
+      type: announcement.type || announcement.announcement_type,
       priority: announcement.priority,
-      targetAudience: parseJSON(announcement.target_audience, ['all']),
-      channels: parseJSON(announcement.channels, ['website']),
-      autoTranslate: announcement.auto_translate,
-      sourceLanguage: announcement.source_language,
-      authorEmail: announcement.author_email,
-      status: announcement.status,
-      publishDate: announcement.publish_date,
-      expiryDate: announcement.expiry_date,
-      referenceNumber: announcement.reference_number,
+      isActive: announcement.is_active,
+      publishDate: announcement.start_date || announcement.publish_date,
+      expiryDate: announcement.end_date || announcement.expiry_date,
       createdAt: announcement.created_at,
       updatedAt: announcement.updated_at
     }));
@@ -199,44 +208,34 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
     title, 
     content, 
     type = 'general', 
-    priority = 'normal',
-    targetAudience = ['all'],
-    channels = ['website'],
-    autoTranslate = false,
-    sourceLanguage = 'en',
-    publishDate,
-    expiryDate
+    priority = 1,
+    startDate,
+    endDate,
+    isActive = true
   } = req.body;
   
   if (!title || !content) {
     return res.status(400).json({ message: 'Title and content are required.' });
   }
 
-  // Generate reference number
-  const referenceNumber = generateReferenceNumber(type);
-
   try {
+    // Use actual schema: title_fa, title_en, content_fa, content_en, type, priority, start_date, end_date, is_active
     const result = await pool.query(
       `INSERT INTO church_announcements (
-        title_en, title_fa, content_en, content_fa, announcement_type, 
-        priority, target_audience, channels, auto_translate, source_language,
-        author_email, publish_date, expiry_date, reference_number
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+        title_en, title_fa, content_en, content_fa, type, 
+        priority, start_date, end_date, is_active, created_by
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
       [
-        sourceLanguage === 'en' ? title : null,
-        sourceLanguage === 'fa' ? title : null,
-        sourceLanguage === 'en' ? content : null,
-        sourceLanguage === 'fa' ? content : null,
+        title.en || title,
+        title.fa || title,
+        content.en || content,
+        content.fa || content,
         type,
         priority,
-        JSON.stringify(targetAudience),
-        JSON.stringify(channels),
-        autoTranslate,
-        sourceLanguage,
-        req.user.email,
-        publishDate || null,
-        expiryDate || null,
-        referenceNumber
+        startDate || null,
+        endDate || null,
+        isActive,
+        req.user?.id || null
       ]
     );
 
@@ -251,17 +250,11 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
         en: newAnnouncement.content_en,
         fa: newAnnouncement.content_fa
       },
-      type: newAnnouncement.announcement_type,
+      type: newAnnouncement.type,
       priority: newAnnouncement.priority,
-      targetAudience: parseJSON(newAnnouncement.target_audience, ['all']),
-      channels: parseJSON(newAnnouncement.channels, ['website']),
-      autoTranslate: newAnnouncement.auto_translate,
-      sourceLanguage: newAnnouncement.source_language,
-      authorEmail: newAnnouncement.author_email,
-      status: newAnnouncement.status,
-      publishDate: newAnnouncement.publish_date,
-      expiryDate: newAnnouncement.expiry_date,
-      referenceNumber: newAnnouncement.reference_number,
+      isActive: newAnnouncement.is_active,
+      publishDate: newAnnouncement.start_date,
+      expiryDate: newAnnouncement.end_date,
       createdAt: newAnnouncement.created_at,
       updatedAt: newAnnouncement.updated_at
     });

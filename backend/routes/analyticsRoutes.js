@@ -72,6 +72,29 @@ router.get('/site-overview', authenticateToken, authorizeRoles('SUPER_ADMIN', 'M
 // GET /api/analytics/overview - آمار کلی داشبورد
 router.get('/overview', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'ADMIN'), async (req, res) => {
   try {
+    // Check if required tables exist
+    const tableCheck = await pool.query(`
+      SELECT table_name FROM information_schema.tables 
+      WHERE table_schema = 'public' 
+      AND table_name IN ('church_announcements', 'message_logs')
+    `);
+    const existingTables = tableCheck.rows.map(r => r.table_name);
+    const hasAnnouncements = existingTables.includes('church_announcements');
+    const hasMessageLogs = existingTables.includes('message_logs');
+    
+    // If tables don't exist, return simplified response
+    if (!hasAnnouncements || !hasMessageLogs) {
+      return res.json({
+        announcements: { total_announcements: 0, published_announcements: 0, draft_announcements: 0, announcements_last_30_days: 0 },
+        channels: [],
+        dailyStats: [],
+        languages: [],
+        delivery: [],
+        generatedAt: new Date().toISOString(),
+        note: 'Some analytics tables are not yet created. Run database migration to enable full analytics.'
+      });
+    }
+    
     // آمار کلی اطلاعیه‌ها
     const announcementsStats = await pool.query(`
       SELECT 
@@ -214,6 +237,24 @@ router.get('/announcements/:id', authenticateToken, authorizeRoles('SUPER_ADMIN'
 // GET /api/analytics/performance - آمار عملکرد سیستم
 router.get('/performance', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
   try {
+    // Check if message_logs table exists
+    const tableCheck = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_schema = 'public' AND table_name = 'message_logs'
+      )
+    `);
+    
+    if (!tableCheck.rows[0].exists) {
+      return res.json({
+        channelPerformance: [],
+        commonErrors: [],
+        hourlyUsage: [],
+        generatedAt: new Date().toISOString(),
+        note: 'Message logs table not yet created. Run database migration to enable performance analytics.'
+      });
+    }
+    
     // آمار عملکرد کانال‌ها
     const channelPerformance = await pool.query(`
       SELECT 

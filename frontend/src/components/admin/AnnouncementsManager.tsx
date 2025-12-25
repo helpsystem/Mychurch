@@ -178,8 +178,8 @@ const AnnouncementsManager: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/announcements`, {
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const response = await fetch('/api/announcements', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -206,10 +206,10 @@ const AnnouncementsManager: React.FC = () => {
     setError(null);
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
       const url = editingAnnouncement 
-        ? `${window.location.origin.replace(':5000', ':3001')}/api/announcements/${editingAnnouncement.id}`
-        : `${window.location.origin.replace(':5000', ':3001')}/api/announcements`;
+        ? `/api/announcements/${editingAnnouncement.id}`
+        : '/api/announcements';
 
       const response = await fetch(url, {
         method: editingAnnouncement ? 'PUT' : 'POST',
@@ -252,10 +252,10 @@ const AnnouncementsManager: React.FC = () => {
   const handleAutoTranslate = async (announcementId: number) => {
     setTranslating(announcementId);
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
       
       // Call translation service
-      const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/announcements/${announcementId}/translate`, {
+      const response = await fetch(`/api/announcements/${announcementId}/translate`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -283,8 +283,8 @@ const AnnouncementsManager: React.FC = () => {
   const handlePublish = async (announcement: ChurchAnnouncement) => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/announcements/${announcement.id}/publish`, {
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const response = await fetch(`/api/announcements/${announcement.id}/publish`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -315,8 +315,8 @@ const AnnouncementsManager: React.FC = () => {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/announcements/${announcementId}`, {
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const response = await fetch(`/api/announcements/${announcementId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
