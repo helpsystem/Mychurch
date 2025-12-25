@@ -44,8 +44,31 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   wordDurationRatio = 1,
   songId
 }) => {
-  // Backend قبلاً URL را تبدیل کرده است، پس مستقیم استفاده می‌کنیم
-  const processedAudioUrl = audioUrl || '';
+  // Encode کردن URL برای پشتیبانی از نام‌های فارسی
+  const processedAudioUrl = React.useMemo(() => {
+    if (!audioUrl) return '';
+    // اگر URL کامل (http/https) است، فقط قسمت path را encode کن
+    if (audioUrl.startsWith('http://') || audioUrl.startsWith('https://')) {
+      try {
+        const url = new URL(audioUrl);
+        // Encode هر قسمت از path جداگانه
+        const encodedPath = url.pathname.split('/').map(segment => 
+          encodeURIComponent(decodeURIComponent(segment))
+        ).join('/');
+        return `${url.origin}${encodedPath}${url.search}`;
+      } catch {
+        return audioUrl;
+      }
+    }
+    // برای URL های local مثل /worship/audio/...
+    if (audioUrl.startsWith('/')) {
+      const segments = audioUrl.split('/');
+      return segments.map(segment => 
+        segment ? encodeURIComponent(decodeURIComponent(segment)) : segment
+      ).join('/');
+    }
+    return audioUrl;
+  }, [audioUrl]);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const lyricsContainerRef = useRef<HTMLDivElement>(null);
