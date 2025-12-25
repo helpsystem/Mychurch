@@ -5,40 +5,49 @@ import { USFlagIcon, IranFlagIcon } from './FlagIcons';
 const LanguageSwitcher: React.FC = () => {
   const { lang, setLang } = useLanguage();
 
+  const toggleLanguage = () => {
+    setLang(lang === 'fa' ? 'en' : 'fa');
+  };
+
   return (
-    <div className="relative flex w-32 items-center rounded-full bg-primary p-1 border border-gray-700">
-      {/* Positioner for the moving highlight */}
-      <div className="absolute inset-0">
-        <span
-          className="absolute top-0 left-0 h-full w-1/2 rounded-full bg-blue-gradient transition-transform duration-300 ease-in-out shadow-lg"
-          style={{
-            transform: `translateX(${lang === 'en' ? '0%' : '100%'})`,
-          }}
-          aria-hidden="true"
-        />
+    <button
+      onClick={toggleLanguage}
+      className="group relative flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer"
+      aria-label={lang === 'fa' ? 'Switch to English' : 'تغییر به فارسی'}
+    >
+      {/* Current Language - Large & Prominent */}
+      <div className="flex items-center gap-2">
+        {lang === 'fa' ? (
+          <>
+            <IranFlagIcon className="w-7 h-5 rounded shadow-md ring-2 ring-white/50" />
+            <span className="text-white font-bold text-sm">فارسی</span>
+          </>
+        ) : (
+          <>
+            <USFlagIcon className="w-7 h-5 rounded shadow-md ring-2 ring-white/50" />
+            <span className="text-white font-bold text-sm">English</span>
+          </>
+        )}
       </div>
 
-      {/* Buttons */}
-      <button
-        onClick={() => setLang('en')}
-        className="relative z-10 flex w-1/2 items-center justify-center gap-1.5 py-1.5 text-sm font-medium transition-all duration-300"
-        aria-label="Switch to English"
-        aria-pressed={lang === 'en'}
-      >
-        <USFlagIcon className={`w-5 h-4 rounded-sm shadow-sm ${lang === 'en' ? 'ring-1 ring-white/50' : ''}`} />
-        <span className={`${lang === 'en' ? 'text-white font-semibold' : 'text-dimWhite'} transition-colors duration-300`}>EN</span>
-      </button>
+      {/* Divider */}
+      <div className="w-px h-5 bg-white/30" />
 
-      <button
-        onClick={() => setLang('fa')}
-        className="relative z-10 flex w-1/2 items-center justify-center gap-1.5 py-1.5 text-sm font-medium transition-all duration-300"
-        aria-label="Switch to Farsi"
-        aria-pressed={lang === 'fa'}
-      >
-        <IranFlagIcon className={`w-5 h-4 rounded-sm shadow-sm ${lang === 'fa' ? 'ring-1 ring-white/50' : ''}`} />
-        <span className={`${lang === 'fa' ? 'text-white font-semibold' : 'text-dimWhite'} transition-colors duration-300`}>FA</span>
-      </button>
-    </div>
+      {/* Other Language - Small & Dimmed */}
+      <div className="flex items-center gap-1 opacity-50 group-hover:opacity-80 transition-opacity duration-300">
+        {lang === 'fa' ? (
+          <>
+            <USFlagIcon className="w-4 h-3 rounded shadow-sm" />
+            <span className="text-white/70 text-xs hidden sm:inline">EN</span>
+          </>
+        ) : (
+          <>
+            <IranFlagIcon className="w-4 h-3 rounded shadow-sm" />
+            <span className="text-white/70 text-xs hidden sm:inline">FA</span>
+          </>
+        )}
+      </div>
+    </button>
   );
 };
 
