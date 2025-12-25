@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useLanguage } from '../hooks/useLanguage';
+import { useAuth } from '../hooks/useAuth';
 import { WorshipSong } from '../types';
 import { useContent } from '../hooks/useContent';
 import { Youtube, FileText, FileMusic } from 'lucide-react';
@@ -94,8 +95,13 @@ const LoadingSkeleton: React.FC = () => (
 
 const WorshipPage: React.FC = () => {
   const { lang, t } = useLanguage();
+  const { user, isAuthenticated } = useAuth();
   const { content, loading: isLoading } = useContent();
   const songs = content.worshipSongs || [];
+  
+  // Check if user is admin or leader
+  const isAdminOrLeader = user && ['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'].includes(user.role);
+  
   const [selectedSongIndex, setSelectedSongIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [timingData, setTimingData] = useState<TimingData | null>(null);
@@ -652,8 +658,8 @@ const WorshipPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 sm:px-16 px-6 sm:py-12 py-4">
-      {/* Test Modal Button */}
-      {!presentationMode && songs.length > 0 && (
+      {/* Test Modal Button - ADMIN/LEADER ONLY */}
+      {isAdminOrLeader && !presentationMode && songs.length > 0 && (
         <button
           onClick={() => {
             console.log('🔥 Test button clicked, setting first song');
@@ -665,8 +671,8 @@ const WorshipPage: React.FC = () => {
         </button>
       )}
       
-      {/* Presentation Mode Toggle Button */}
-      {!presentationMode && (
+      {/* Presentation Mode Toggle Button - ADMIN/LEADER ONLY */}
+      {isAdminOrLeader && !presentationMode && (
         <button
           onClick={() => {
             setPresentationMode(true);
@@ -739,8 +745,8 @@ const WorshipPage: React.FC = () => {
                     title={songs[selectedSongIndex].title?.[lang]}
                     artist={songs[selectedSongIndex].artist}
                     autoLoadTiming={true}
-                    enableManualSync={true}
-                    showTimingControls={true}
+                    enableManualSync={isAdminOrLeader}
+                    showTimingControls={isAdminOrLeader}
                   />
                   {songs[selectedSongIndex].youtubeId && (
                     <div className="mt-4">
@@ -1087,8 +1093,8 @@ const WorshipPage: React.FC = () => {
                         title={activeSong.title?.[lang]}
                         artist={activeSong.artist}
                         autoLoadTiming={true}
-                        enableManualSync={true}
-                        showTimingControls={true}
+                        enableManualSync={isAdminOrLeader}
+                        showTimingControls={isAdminOrLeader}
                       />
                       {/* لینک یوتیوب اگر موجود باشد */}
                       {activeSong.youtubeId && (
@@ -1156,49 +1162,51 @@ const WorshipPage: React.FC = () => {
                   )}
                 </div>
 
-                {/* بخش دانلود فایل‌ها - همیشه نمایش بده */}
-                <div className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto mb-6">
-                  {/* PPTX */}
-                  {activeSong.presentationFileUrl ? (
-                    <a href={activeSong.presentationFileUrl} download className="bg-green-600 py-2 rounded-lg text-center hover:bg-green-700">
-                      📑 {lang === 'fa' ? 'دانلود پاورپوینت' : 'Download PPT'}
-                    </a>
-                  ) : (
-                    <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                      📑 {lang === 'fa' ? 'پاورپوینت موجود نیست' : 'No PowerPoint'}
-                    </button>
-                  )}
-                  {/* PDF */}
-                  {activeSong.pdfFileUrl ? (
-                    <a href={activeSong.pdfFileUrl} download className="bg-blue-600 py-2 rounded-lg text-center hover:bg-blue-700">
-                      <FileText className="inline mr-1" /> {lang === 'fa' ? 'دانلود PDF' : 'Download PDF'}
-                    </a>
-                  ) : (
-                    <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                      <FileText className="inline mr-1" /> {lang === 'fa' ? 'PDF موجود نیست' : 'No PDF'}
-                    </button>
-                  )}
-                  {/* Sheet */}
-                  {activeSong.sheetMusicUrl ? (
-                    <a href={activeSong.sheetMusicUrl} download className="bg-purple-600 py-2 rounded-lg text-center hover:bg-purple-700">
-                      <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'دانلود نت' : 'Download Sheet'}
-                    </a>
-                  ) : (
-                    <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                      <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'نت موجود نیست' : 'No Sheet'}
-                    </button>
-                  )}
-                  {/* MP3 */}
-                  {activeSong.audioUrl ? (
-                    <a href={activeSong.audioUrl} download className="bg-teal-600 py-2 rounded-lg text-center hover:bg-teal-700">
-                      🎵 {lang === 'fa' ? 'دانلود MP3' : 'Download MP3'}
-                    </a>
-                  ) : (
-                    <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                      🎵 {lang === 'fa' ? 'فایل صوتی موجود نیست' : 'No MP3'}
-                    </button>
-                  )}
-                </div>
+                {/* بخش دانلود فایل‌ها - فقط برای ADMIN/LEADER */}
+                {isAdminOrLeader && (
+                  <div className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto mb-6">
+                    {/* PPTX */}
+                    {activeSong.presentationFileUrl ? (
+                      <a href={activeSong.presentationFileUrl} download className="bg-green-600 py-2 rounded-lg text-center hover:bg-green-700">
+                        📑 {lang === 'fa' ? 'دانلود پاورپوینت' : 'Download PPT'}
+                      </a>
+                    ) : (
+                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                        📑 {lang === 'fa' ? 'پاورپوینت موجود نیست' : 'No PowerPoint'}
+                      </button>
+                    )}
+                    {/* PDF */}
+                    {activeSong.pdfFileUrl ? (
+                      <a href={activeSong.pdfFileUrl} download className="bg-blue-600 py-2 rounded-lg text-center hover:bg-blue-700">
+                        <FileText className="inline mr-1" /> {lang === 'fa' ? 'دانلود PDF' : 'Download PDF'}
+                      </a>
+                    ) : (
+                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                        <FileText className="inline mr-1" /> {lang === 'fa' ? 'PDF موجود نیست' : 'No PDF'}
+                      </button>
+                    )}
+                    {/* Sheet */}
+                    {activeSong.sheetMusicUrl ? (
+                      <a href={activeSong.sheetMusicUrl} download className="bg-purple-600 py-2 rounded-lg text-center hover:bg-purple-700">
+                        <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'دانلود نت' : 'Download Sheet'}
+                      </a>
+                    ) : (
+                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                        <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'نت موجود نیست' : 'No Sheet'}
+                      </button>
+                    )}
+                    {/* MP3 */}
+                    {activeSong.audioUrl ? (
+                      <a href={activeSong.audioUrl} download className="bg-teal-600 py-2 rounded-lg text-center hover:bg-teal-700">
+                        🎵 {lang === 'fa' ? 'دانلود MP3' : 'Download MP3'}
+                      </a>
+                    ) : (
+                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                        🎵 {lang === 'fa' ? 'فایل صوتی موجود نیست' : 'No MP3'}
+                      </button>
+                    )}
+                  </div>
+                )}
 
                 {/* شعر - فقط اگر آکورد و نوت جدا نباشند */}
                 {!((activeSong as any)?.chords || activeSong.notation) && activeSong.lyrics?.[lang] && (
