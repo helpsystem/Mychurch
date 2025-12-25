@@ -81,6 +81,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             let apiWarningLogged = false;
 
             // Helper function to convert URLs to HiDrive streaming proxy
+            // Note: Local URLs (/worship/audio/...) should NOT be converted - they're served directly by Vite
             const convertToProxyURL = (url: string): string => {
                 if (!url) return url;
 
@@ -89,16 +90,17 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                     return url;
                 }
 
-                // Full WebDAV URL
+                // Full WebDAV URL - convert to proxy
                 if (url.startsWith('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/')) {
                     const path = url.replace('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/', '');
                     return `/api/hidrive/stream/${path}`;
                 }
 
-                // Local path - convert to proxy
-                if (url.startsWith('/worship/') || url.startsWith('/sermons/') || url.startsWith('/events/') || url.startsWith('/bible/')) {
-                    const path = url.startsWith('/') ? url.substring(1) : url;
-                    return `/api/hidrive/stream/${path}`;
+                // Local paths starting with /worship/, /sermons/, etc. should be served directly by Vite
+                // No conversion needed - these files exist in frontend/public/
+                if (url.startsWith('/worship/') || url.startsWith('/sermons/') || url.startsWith('/events/') || url.startsWith('/bible/') || url.startsWith('/audio/')) {
+                    // Return as-is for local serving
+                    return url;
                 }
 
                 return url;

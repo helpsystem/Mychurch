@@ -415,8 +415,12 @@ class HiDriveStorage {
     const axios = require('axios');
 
     try {
-      // Build full WebDAV URL
-      const webdavUrl = `${this.config.publicUrl}/${filePath}`;
+      // Build full WebDAV URL with proper encoding for non-ASCII characters (Persian, etc.)
+      // Encode each path segment separately to preserve slashes
+      const encodedFilePath = filePath.split('/').map(segment => 
+        encodeURIComponent(segment)
+      ).join('/');
+      const webdavUrl = `${this.config.publicUrl}/${encodedFilePath}`;
 
       console.log(`🔄 Streaming from WebDAV: ${webdavUrl} ${range ? `(Range: ${range})` : ''}`);
 
