@@ -23,7 +23,7 @@ const BibleModeSelector: React.FC<BibleModeSelectorProps> = ({ currentMode, onMo
             id: 'listen',
             label: lang === 'fa' ? 'شنیداری' : 'Listen',
             icon: Headphones,
-            description: lang === 'fa' ? 'کارائوکه و صوت' : 'Karaoke & Audio'
+            description: lang === 'fa' ? 'همخوانی و صوت' : 'Synchronized & Audio'
         },
         {
             id: 'immersive',

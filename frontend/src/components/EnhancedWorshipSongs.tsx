@@ -1,10 +1,33 @@
 import React, { useState, useMemo } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
-import { Music, Search, Filter, Play, ExternalLink, List, Grid, Download, FileText, Presentation, Music2 } from 'lucide-react';
+import { Music, Search, Filter, Play, ExternalLink, List, Grid, Download, FileText, Presentation, Music2, Mic, PlayCircle, Shuffle } from 'lucide-react';
 import UniversalMediaPlayer from './UniversalMediaPlayer';
 import EnhancedMediaPlayer from './EnhancedMediaPlayer';
+import LocalAudioPlayerWithSyncedLyrics from './LocalAudioPlayerWithSyncedLyrics';
 import { WorshipSong } from '../types';
+import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
+
+// Helper function to strip chord notations and verse markers from lyrics
+const stripChords = (text: string): string => {
+  if (!text) return '';
+  return text
+    // Remove chord patterns like [Am], [Dm7], [Bb], [G#m], etc.
+    .replace(/\[[A-Ga-g][#b]?[a-zA-Z0-9\/]*\]/g, '')
+    // Remove verse markers like V1, V2, V3, Verse 1, etc.
+    .replace(/\b[Vv]\d+\b/g, '')
+    .replace(/\bVerse\s*\d*\b/gi, '')
+    // Remove Chorus, Bridge, Pre-Chorus, Outro, Intro markers
+    .replace(/\b(Chorus|Bridge|Pre-Chorus|Outro|Intro|Verse)\s*(\(\d+\)|\(\d*x\d*\))?/gi, '')
+    // Remove (x2) style repeat markers
+    .replace(/\([x×]\d+\)/gi, '')
+    .replace(/\(\d+x\)/gi, '')
+    // Remove [column] markers
+    .replace(/\[column\]/gi, '')
+    // Clean up extra whitespace
+    .replace(/\s+/g, ' ')
+    .trim();
+};
 
 type MediaItem = {
   id: number;
@@ -28,6 +51,21 @@ const EnhancedWorshipSongs: React.FC = () => {
   const [currentPlaylist, setCurrentPlaylist] = useState<MediaItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Global Audio Player Context
+  const {
+    playSong: playGlobalSong,
+    playAll: playAllGlobal,
+    currentSong: globalCurrentSong,
+    isPlaying: globalIsPlaying
+  } = useAudioPlayer();
+
+  // Karaoke Mode State
+  const [showKaraokeMode, setShowKaraokeMode] = useState(false);
+  const [karaokeSong, setKaraokeSong] = useState<WorshipSong | null>(null);
+
+  // Alphabetical Filter State
+  const [activeLetterFilter, setActiveLetterFilter] = useState<string | null>(null);
+
   // Convert WorshipSong to MediaItem
   const convertToMediaItem = (song: WorshipSong): MediaItem => ({
     id: song.id,
@@ -39,15 +77,43 @@ const EnhancedWorshipSongs: React.FC = () => {
     lyrics: song.lyrics
   });
 
-  // Filter songs based on search and artist selection
-  const filteredSongs = useMemo(() => {
-    return content.worshipSongs.filter(song => {
-      const matchesSearch = song.title[lang].toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesArtist = selectedArtist === 'all' || song.artist === selectedArtist;
-      return matchesSearch && matchesArtist;
+  // 🔤 Sort songs alphabetically
+  const sortedSongs = useMemo(() => {
+    return [...content.worshipSongs].sort((a, b) => {
+      const titleA = (a.title?.[lang] || a.title?.fa || a.title?.en || '').trim();
+      const titleB = (b.title?.[lang] || b.title?.fa || b.title?.en || '').trim();
+      return titleA.localeCompare(titleB, lang === 'fa' ? 'fa' : 'en');
     });
-  }, [content.worshipSongs, searchTerm, selectedArtist, lang]);
+  }, [content.worshipSongs, lang]);
+
+  // 🔤 Extract first letters of songs
+  const availableLetters = useMemo(() => {
+    const letters = new Set<string>();
+    sortedSongs.forEach(song => {
+      const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
+      if (title) {
+        letters.add(title[0].toUpperCase());
+      }
+    });
+    return Array.from(letters).sort((a, b) => a.localeCompare(b, lang === 'fa' ? 'fa' : 'en'));
+  }, [sortedSongs, lang]);
+
+  // 🆕 Newest songs (last 5)
+  const newestSongs = useMemo(() => {
+    return sortedSongs.slice(-5).reverse();
+  }, [sortedSongs]);
+
+  // Filter songs based on search, artist, and letter selection
+  const filteredSongs = useMemo(() => {
+    return sortedSongs.filter(song => {
+      const matchesSearch = song.title[lang].toLowerCase().includes(searchTerm.toLowerCase()) ||
+        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesArtist = selectedArtist === 'all' || song.artist === selectedArtist;
+      const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
+      const matchesLetter = !activeLetterFilter || title[0]?.toUpperCase() === activeLetterFilter;
+      return matchesSearch && matchesArtist && matchesLetter;
+    });
+  }, [sortedSongs, searchTerm, selectedArtist, lang, activeLetterFilter]);
 
   // Get unique artists for filter
   const artists = useMemo(() => {
@@ -63,7 +129,7 @@ const EnhancedWorshipSongs: React.FC = () => {
     setCurrentSong(mediaItem);
     setCurrentPlaylist(playlist);
     setCurrentIndex(index);
-    
+
     if (showFull) {
       setShowFullPlayer(true);
     }
@@ -71,11 +137,60 @@ const EnhancedWorshipSongs: React.FC = () => {
 
   const handlePlayAll = () => {
     if (filteredSongs.length > 0) {
-      const playlist = filteredSongs.map(convertToMediaItem);
-      setCurrentSong(playlist[0]);
-      setCurrentPlaylist(playlist);
-      setCurrentIndex(0);
-      setShowFullPlayer(true);
+      // Use global audio player for Play All
+      const songsForPlayer: Song[] = filteredSongs
+        .filter(s => s.audioUrl)
+        .map(song => ({
+          id: song.id,
+          title: song.title[lang] || song.title.fa,
+          artist: song.artist,
+          audioUrl: song.audioUrl!,
+          thumbnail: song.youtubeId ? `https://img.youtube.com/vi/${song.youtubeId}/default.jpg` : undefined,
+          lyrics: song.lyrics?.[lang] || song.lyrics?.fa,
+          youtubeId: (song as any).youtubeId,
+        }));
+
+      if (songsForPlayer.length > 0) {
+        playAllGlobal(songsForPlayer, false);
+      }
+    }
+  };
+
+  // Quick play from card - uses global player
+  const handleQuickPlay = (song: WorshipSong) => {
+    if (!song.audioUrl) return;
+
+    const songForPlayer: Song = {
+      id: song.id,
+      title: song.title[lang] || song.title.fa,
+      artist: song.artist,
+      audioUrl: song.audioUrl,
+      thumbnail: song.youtubeId ? `https://img.youtube.com/vi/${song.youtubeId}/default.jpg` : undefined,
+      lyrics: song.lyrics?.[lang] || song.lyrics?.fa,
+      youtubeId: (song as any).youtubeId,
+    };
+
+    playGlobalSong(songForPlayer);
+  };
+
+  // Play All with Shuffle
+  const handlePlayAllShuffle = () => {
+    if (filteredSongs.length > 0) {
+      const songsForPlayer: Song[] = filteredSongs
+        .filter(s => s.audioUrl)
+        .map(song => ({
+          id: song.id,
+          title: song.title[lang] || song.title.fa,
+          artist: song.artist,
+          audioUrl: song.audioUrl!,
+          thumbnail: song.youtubeId ? `https://img.youtube.com/vi/${song.youtubeId}/default.jpg` : undefined,
+          lyrics: song.lyrics?.[lang] || song.lyrics?.fa,
+          youtubeId: (song as any).youtubeId,
+        }));
+
+      if (songsForPlayer.length > 0) {
+        playAllGlobal(songsForPlayer, true); // true = shuffle
+      }
     }
   };
 
@@ -96,116 +211,169 @@ const EnhancedWorshipSongs: React.FC = () => {
     setCurrentSong(currentPlaylist[index]);
   };
 
+  // Open Karaoke Mode with word-by-word highlighting
+  const openKaraoke = (song: WorshipSong) => {
+    setKaraokeSong(song);
+    setShowKaraokeMode(true);
+  };
+
   const handleKalamehArchive = () => {
     window.open('https://www.kalameh.com/song-archive', '_blank');
   };
 
-  const SongCard: React.FC<{ song: WorshipSong }> = ({ song }) => (
-    <div className="bg-black-gradient rounded-[20px] p-6 text-white hover:scale-105 transition-all duration-300 interactive-card">
-      <div className="mb-4">
-        <h3 className="font-semibold text-lg mb-2 leading-tight">{song.title[lang]}</h3>
-        <p className="text-dimWhite text-sm mb-2">{song.artist}</p>
-        
-        {/* YouTube preview if available */}
-        {song.youtubeId && (
-          <div className="relative mb-3 rounded-lg overflow-hidden">
-            <img
-              src={`https://img.youtube.com/vi/${song.youtubeId}/mqdefault.jpg`}
-              alt={song.title[lang]}
-              className="w-full h-32 object-cover"
-            />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <Play size={24} className="text-white opacity-80" />
+  const SongCard: React.FC<{ song: WorshipSong }> = ({ song }) => {
+    // Check if this song is currently playing
+    const isCurrentlyPlaying = globalCurrentSong?.id === song.id && globalIsPlaying;
+    const isCurrentSong = globalCurrentSong?.id === song.id;
+
+    return (
+      <div className={`bg-black-gradient rounded-[20px] p-6 text-white hover:scale-105 transition-all duration-300 interactive-card relative ${isCurrentSong ? 'ring-2 ring-purple-500 ring-offset-2 ring-offset-slate-900' : ''}`}>
+        {/* Now Playing Indicator */}
+        {isCurrentlyPlaying && (
+          <div className="absolute top-4 right-4 flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg animate-pulse">
+            <div className="flex items-center gap-0.5">
+              <div className="w-1 h-3 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-1 h-4 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-1 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
+            <span>در حال پخش</span>
           </div>
         )}
-      </div>
 
-      {/* Quick Play Controls */}
-      <div className="space-y-3">
-        {song.audioUrl && (
-          <UniversalMediaPlayer
-            item={convertToMediaItem(song)}
-            mode="card"
-            className="mb-3"
-          />
+        {/* Paused indicator */}
+        {isCurrentSong && !globalIsPlaying && (
+          <div className="absolute top-4 right-4 flex items-center gap-2 bg-gray-600 px-3 py-1.5 rounded-full text-xs font-semibold">
+            <span>⏸️</span>
+            <span>متوقف</span>
+          </div>
         )}
 
-        {/* Action Buttons */}
-        <div className="flex gap-2 flex-wrap">
-          {(song.audioUrl || song.videoUrl) && (
-            <button
-              onClick={() => handlePlaySong(song, true)}
-              className="flex items-center gap-2 px-3 py-2 bg-blue-gradient rounded-lg hover:scale-105 transition-transform text-sm"
-            >
-              <Play size={16} />
-              <span>{t('play')}</span>
-            </button>
-          )}
+        <div className="mb-4">
+          <h3 className="font-semibold text-lg mb-2 leading-tight">{song.title[lang]}</h3>
+          <p className="text-dimWhite text-sm mb-2">{song.artist}</p>
 
+          {/* YouTube preview if available */}
           {song.youtubeId && (
-            <button
-              onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtubeId}`, '_blank')}
-              className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors text-sm"
-            >
-              <ExternalLink size={16} />
-              <span>YouTube</span>
-            </button>
+            <div className="relative mb-3 rounded-lg overflow-hidden">
+              <img
+                src={`https://img.youtube.com/vi/${song.youtubeId}/mqdefault.jpg`}
+                alt={song.title[lang]}
+                className="w-full h-32 object-cover"
+              />
+              <div className={`absolute inset-0 flex items-center justify-center ${isCurrentlyPlaying ? 'bg-purple-600/60' : 'bg-black/40'}`}>
+                {isCurrentlyPlaying ? (
+                  <div className="flex items-center gap-1">
+                    <div className="w-1.5 h-6 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-1.5 h-8 bg-white rounded-full animate-bounce" style={{ animationDelay: '100ms' }} />
+                    <div className="w-1.5 h-5 bg-white rounded-full animate-bounce" style={{ animationDelay: '200ms' }} />
+                    <div className="w-1.5 h-7 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                ) : (
+                  <Play size={24} className="text-white opacity-80" />
+                )}
+              </div>
+            </div>
           )}
         </div>
 
-        {/* Download Files Section */}
-        {((song as any).presentationFileUrl || (song as any).pdfFileUrl || (song as any).sheetMusicUrl) && (
-          <div className="mt-3 pt-3 border-t border-white/10">
-            <p className="text-xs text-dimWhite mb-2">{lang === 'fa' ? 'فایل‌های قابل دانلود:' : 'Downloadable Files:'}</p>
-            <div className="flex gap-2 flex-wrap">
-              {(song as any).presentationFileUrl && (
-                <a
-                  href={(song as any).presentationFileUrl}
-                  download
-                  className="flex items-center gap-1 px-3 py-1.5 bg-orange-600 hover:bg-orange-700 rounded-lg transition-colors text-xs"
-                >
-                  <Presentation size={14} />
-                  <span>PowerPoint</span>
-                </a>
-              )}
-              
-              {(song as any).pdfFileUrl && (
-                <a
-                  href={(song as any).pdfFileUrl}
-                  download
-                  className="flex items-center gap-1 px-3 py-1.5 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors text-xs"
-                >
-                  <FileText size={14} />
-                  <span>PDF</span>
-                </a>
-              )}
-              
-              {(song as any).sheetMusicUrl && (
-                <a
-                  href={(song as any).sheetMusicUrl}
-                  download
-                  className="flex items-center gap-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 rounded-lg transition-colors text-xs"
-                >
-                  <Music2 size={14} />
-                  <span>{lang === 'fa' ? 'نت موسیقی' : 'Sheet Music'}</span>
-                </a>
-              )}
-            </div>
-          </div>
-        )}
+        {/* Quick Play Controls */}
+        <div className="space-y-3">
+          {song.audioUrl && (
+            <UniversalMediaPlayer
+              item={convertToMediaItem(song)}
+              mode="card"
+              className="mb-3"
+            />
+          )}
 
-        {/* Lyrics Preview */}
-        {song.lyrics && song.lyrics[lang] && (
-          <div className="mt-3 p-3 bg-white/5 rounded-lg">
-            <p className="text-xs text-dimWhite leading-relaxed line-clamp-3">
-              {song.lyrics[lang].slice(0, 120)}...
-            </p>
+          {/* Action Buttons */}
+          <div className="flex gap-2 flex-wrap">
+            {(song.audioUrl || song.videoUrl) && (
+              <button
+                onClick={() => handlePlaySong(song, true)}
+                className="flex items-center gap-2 px-3 py-2 bg-blue-gradient rounded-lg hover:scale-105 transition-transform text-sm"
+              >
+                <Play size={16} />
+                <span>{t('play')}</span>
+              </button>
+            )}
+
+            {song.youtubeId && (
+              <button
+                onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtubeId}`, '_blank')}
+                className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors text-sm"
+              >
+                <ExternalLink size={16} />
+                <span>YouTube</span>
+              </button>
+            )}
+
+            {/* Karaoke Mode Button */}
+            {song.audioUrl && (
+              <button
+                onClick={() => openKaraoke(song)}
+                className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg transition-all text-sm font-medium shadow-lg shadow-purple-500/30"
+                title={lang === 'fa' ? 'حالت متن زنده' : 'Live Text Mode'}
+              >
+                <Mic size={16} />
+                <span>{lang === 'fa' ? 'متن زنده' : 'Live Text'}</span>
+              </button>
+            )}
           </div>
-        )}
+
+          {/* Download Files Section */}
+          {((song as any).presentationFileUrl || (song as any).pdfFileUrl || (song as any).sheetMusicUrl) && (
+            <div className="mt-3 pt-3 border-t border-white/10">
+              <p className="text-xs text-dimWhite mb-2">{lang === 'fa' ? 'فایل‌های قابل دانلود:' : 'Downloadable Files:'}</p>
+              <div className="flex gap-2 flex-wrap">
+                {(song as any).presentationFileUrl && (
+                  <a
+                    href={(song as any).presentationFileUrl}
+                    download
+                    className="flex items-center gap-1 px-3 py-1.5 bg-orange-600 hover:bg-orange-700 rounded-lg transition-colors text-xs"
+                  >
+                    <Presentation size={14} />
+                    <span>PowerPoint</span>
+                  </a>
+                )}
+
+                {(song as any).pdfFileUrl && (
+                  <a
+                    href={(song as any).pdfFileUrl}
+                    download
+                    className="flex items-center gap-1 px-3 py-1.5 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors text-xs"
+                  >
+                    <FileText size={14} />
+                    <span>PDF</span>
+                  </a>
+                )}
+
+                {(song as any).sheetMusicUrl && (
+                  <a
+                    href={(song as any).sheetMusicUrl}
+                    download
+                    className="flex items-center gap-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 rounded-lg transition-colors text-xs"
+                  >
+                    <Music2 size={14} />
+                    <span>{lang === 'fa' ? 'نت موسیقی' : 'Sheet Music'}</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Lyrics Preview */}
+          {song.lyrics && song.lyrics[lang] && (
+            <div className="mt-3 p-3 bg-white/5 rounded-lg">
+              <p className="text-xs text-dimWhite leading-relaxed line-clamp-3">
+                {stripChords(song.lyrics[lang]).slice(0, 120)}...
+              </p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const SongListItem: React.FC<{ song: WorshipSong }> = ({ song }) => (
     <div className="bg-black-gradient rounded-[15px] p-4 flex items-center gap-4 text-white hover:scale-[1.02] transition-all duration-300">
@@ -238,7 +406,18 @@ const EnhancedWorshipSongs: React.FC = () => {
         >
           <Play size={20} />
         </button>
-        
+
+        {/* Karaoke Button */}
+        {song.audioUrl && (
+          <button
+            onClick={() => openKaraoke(song)}
+            className="p-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-full transition-all shadow-lg shadow-purple-500/30"
+            title={lang === 'fa' ? 'حالت متن زنده' : 'Live Text Mode'}
+          >
+            <Mic size={16} />
+          </button>
+        )}
+
         {song.youtubeId && (
           <button
             onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtubeId}`, '_blank')}
@@ -247,7 +426,7 @@ const EnhancedWorshipSongs: React.FC = () => {
             <ExternalLink size={16} />
           </button>
         )}
-        
+
         {/* Download Files Dropdown */}
         {((song as any).presentationFileUrl || (song as any).pdfFileUrl || (song as any).sheetMusicUrl) && (
           <div className="relative group">
@@ -301,8 +480,8 @@ const EnhancedWorshipSongs: React.FC = () => {
             {lang === 'fa' ? 'آرشیو سرودهای مسیحی' : 'Christian Worship Songs'}
           </h1>
           <p className="font-normal text-dimWhite text-lg max-w-3xl mx-auto mb-6">
-            {lang === 'fa' 
-              ? 'مجموعه کاملی از سرودهای مسیحی فارسی شامل فایل‌های صوتی، ویدیویی و متن سرودها' 
+            {lang === 'fa'
+              ? 'مجموعه کاملی از سرودهای مسیحی فارسی شامل فایل‌های صوتی، ویدیویی و متن سرودها'
               : 'A complete collection of Persian Christian worship songs including audio, video files and lyrics'
             }
           </p>
@@ -327,6 +506,74 @@ const EnhancedWorshipSongs: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* 🔤 Horizontal Alphabet Navigator */}
+        {availableLetters.length > 0 && (
+          <div className="sticky top-0 z-40 bg-gradient-to-b from-primary via-primary/95 to-transparent backdrop-blur-lg py-4 px-4 mb-8 border-b border-purple-500/30 shadow-xl rounded-xl">
+            <div className="max-w-7xl mx-auto">
+              {/* عنوان */}
+              <div className="text-center text-xs font-bold text-gray-400 mb-3 tracking-widest">
+                {lang === 'fa' ? '🔤 فهرست الفبایی سرودها' : '🔤 ALPHABETICAL INDEX'}
+              </div>
+
+              {/* لیست حروف */}
+              <div className="flex flex-wrap justify-center items-center gap-2">
+                {/* دکمه # برای جدیدترین */}
+                <button
+                  onClick={() => setActiveLetterFilter(activeLetterFilter === '#' ? null : '#')}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${activeLetterFilter === '#'
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/40 scale-110'
+                      : 'bg-black-gradient text-gray-300 hover:bg-gray-700 hover:text-white'
+                    }`}
+                  title={lang === 'fa' ? 'جدیدترین سرودها' : 'Newest Songs'}
+                >
+                  #
+                </button>
+
+                {/* حروف الفبا */}
+                {availableLetters.map(letter => (
+                  <button
+                    key={letter}
+                    onClick={() => setActiveLetterFilter(activeLetterFilter === letter ? null : letter)}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${activeLetterFilter === letter
+                        ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg shadow-purple-500/40 scale-110'
+                        : 'bg-black-gradient text-gray-300 hover:bg-gray-700 hover:text-white'
+                      }`}
+                  >
+                    {letter}
+                  </button>
+                ))}
+
+                {/* دکمه پاک کردن فیلتر */}
+                {activeLetterFilter && (
+                  <button
+                    onClick={() => setActiveLetterFilter(null)}
+                    className="px-4 py-2 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all text-sm font-medium"
+                  >
+                    {lang === 'fa' ? '✕ حذف فیلتر' : '✕ Clear'}
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Newest Songs Section (when # is selected) */}
+        {activeLetterFilter === '#' && newestSongs.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+              <span className="text-green-400">🆕</span>
+              {lang === 'fa' ? 'جدیدترین سرودها' : 'Newest Songs'}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {newestSongs.map((song, index) => (
+                <div key={song.id} className="reveal-on-scroll" style={{ transitionDelay: `${index * 100}ms` }}>
+                  <SongCard song={song} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Controls and Filters */}
         <div className="flex flex-col lg:flex-row gap-4 mb-8 reveal-on-scroll">
@@ -361,17 +608,15 @@ const EnhancedWorshipSongs: React.FC = () => {
           <div className="flex bg-black-gradient rounded-[10px] p-1">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-lg transition-colors ${
-                viewMode === 'grid' ? 'bg-blue-gradient text-primary' : 'text-gray-400 hover:text-white'
-              }`}
+              className={`p-2 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-blue-gradient text-primary' : 'text-gray-400 hover:text-white'
+                }`}
             >
               <Grid size={20} />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded-lg transition-colors ${
-                viewMode === 'list' ? 'bg-blue-gradient text-primary' : 'text-gray-400 hover:text-white'
-              }`}
+              className={`p-2 rounded-lg transition-colors ${viewMode === 'list' ? 'bg-blue-gradient text-primary' : 'text-gray-400 hover:text-white'
+                }`}
             >
               <List size={20} />
             </button>
@@ -381,8 +626,8 @@ const EnhancedWorshipSongs: React.FC = () => {
         {/* Results Count */}
         <div className="mb-6 reveal-on-scroll">
           <p className="text-dimWhite">
-            {lang === 'fa' 
-              ? `${filteredSongs.length} سرود یافت شد` 
+            {lang === 'fa'
+              ? `${filteredSongs.length} سرود یافت شد`
               : `${filteredSongs.length} songs found`
             }
           </p>
@@ -392,7 +637,7 @@ const EnhancedWorshipSongs: React.FC = () => {
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredSongs.map((song, index) => (
-              <div key={song.id} className="reveal-on-scroll" style={{transitionDelay: `${index * 100}ms`}}>
+              <div key={song.id} className="reveal-on-scroll" style={{ transitionDelay: `${index * 100}ms` }}>
                 <SongCard song={song} />
               </div>
             ))}
@@ -400,7 +645,7 @@ const EnhancedWorshipSongs: React.FC = () => {
         ) : (
           <div className="space-y-4">
             {filteredSongs.map((song, index) => (
-              <div key={song.id} className="reveal-on-scroll" style={{transitionDelay: `${index * 50}ms`}}>
+              <div key={song.id} className="reveal-on-scroll" style={{ transitionDelay: `${index * 50}ms` }}>
                 <SongListItem song={song} />
               </div>
             ))}
@@ -415,8 +660,8 @@ const EnhancedWorshipSongs: React.FC = () => {
               {lang === 'fa' ? 'سرودی یافت نشد' : 'No songs found'}
             </h3>
             <p className="text-dimWhite">
-              {lang === 'fa' 
-                ? 'لطفاً کلمات جستجو یا فیلترها را تغییر دهید' 
+              {lang === 'fa'
+                ? 'لطفاً کلمات جستجو یا فیلترها را تغییر دهید'
                 : 'Try adjusting your search terms or filters'
               }
             </p>
@@ -430,24 +675,24 @@ const EnhancedWorshipSongs: React.FC = () => {
               {lang === 'fa' ? 'درباره مجموعه سرودها' : 'About Our Song Collection'}
             </h3>
             <p className="text-dimWhite mb-6 leading-relaxed">
-              {lang === 'fa' 
-                ? 'این مجموعه شامل سرودهای مسیحی فارسی است که با دقت انتخاب شده‌اند. محتوا از وب‌سایت کلمه ارائه شده و برای استفاده در خدمات و عبادت شخصی در دسترس قرار گرفته است.' 
+              {lang === 'fa'
+                ? 'این مجموعه شامل سرودهای مسیحی فارسی است که با دقت انتخاب شده‌اند. محتوا از وب‌سایت کلمه ارائه شده و برای استفاده در خدمات و عبادت شخصی در دسترس قرار گرفته است.'
                 : 'This collection features carefully selected Persian Christian worship songs. Content is provided by Kalameh.com and made available for use in services and personal worship.'
               }
             </p>
             <div className="flex justify-center space-x-6 rtl:space-x-reverse text-sm">
-              <a 
-                href="https://www.kalameh.com/song-archive" 
-                target="_blank" 
+              <a
+                href="https://www.kalameh.com/song-archive"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
               >
                 {lang === 'fa' ? 'آرشیو کامل' : 'Full Archive'}
               </a>
               <span className="text-gray-500">•</span>
-              <a 
-                href="https://www.kalameh.com/shop" 
-                target="_blank" 
+              <a
+                href="https://www.kalameh.com/shop"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
               >
@@ -471,6 +716,39 @@ const EnhancedWorshipSongs: React.FC = () => {
           onPlaylistItemClick={handlePlaylistItemClick}
           showLyrics={Boolean(currentSong.lyrics)}
         />
+      )}
+
+      {/* Fullscreen Karaoke Mode Modal */}
+      {showKaraokeMode && karaokeSong && (
+        <div className="fixed inset-0 z-50 bg-black/95 overflow-auto">
+          {/* Close Button */}
+          <button
+            onClick={() => setShowKaraokeMode(false)}
+            className="fixed top-4 right-4 z-60 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white"
+            title={lang === 'fa' ? 'بستن' : 'Close'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          {/* Karaoke Player */}
+          <div className="flex items-center justify-center min-h-screen p-4">
+            <LocalAudioPlayerWithSyncedLyrics
+              audioUrl={karaokeSong.audioUrl || ''}
+              lyrics={karaokeSong.lyrics?.[lang] || karaokeSong.lyrics?.fa || ''}
+              originalLyricsWithChords={karaokeSong.lyrics?.fa || karaokeSong.lyrics?.[lang] || ''}
+              title={karaokeSong.title[lang]}
+              artist={karaokeSong.artist}
+              lang={lang}
+              songId={karaokeSong.id}
+              showChords={true}
+              youtubeId={(karaokeSong as any).youtubeId}
+              onClose={() => setShowKaraokeMode(false)}
+            />
+          </div>
+        </div>
       )}
 
       {/* Mini Player */}

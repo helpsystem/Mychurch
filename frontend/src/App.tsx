@@ -15,6 +15,8 @@ import CriticalResourceLoader, { criticalResources } from './components/Performa
 import FontOptimizer from './components/Performance/FontOptimizer';
 import SecurityHeaders from './components/SEO/SecurityHeaders';
 import AnalyticsSetup from './components/Analytics/AnalyticsSetup';
+import { AudioPlayerProvider } from './contexts/AudioPlayerContext';
+import FloatingMiniPlayer from './components/FloatingMiniPlayer';
 
 // 🚀 Lazy Loading - صفحات کم‌استفاده فقط وقتی نیاز باشه لود میشن
 // این باعث کاهش چشمگیر زمان بارگذاری اولیه میشه
@@ -159,223 +161,227 @@ function App() {
       <AnalyticsSetup enableGoogleAnalytics={false} /> {/* Enable for production */}
       <CriticalResourceLoader resources={criticalResources} />
       <FontOptimizer />
-      <div dir={lang === 'fa' ? 'rtl' : 'ltr'} className={`bg-primary text-white w-full overflow-hidden min-h-screen ${lang === 'fa' ? 'font-vazir' : 'font-poppins'}`}>
-        <HashRouter>
-          <ErrorBoundary>
-            <Toaster position="top-center" />
-            <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-[#00040F]"><div className="w-10 h-10 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div></div>}>
-              <Routes>
-                {/* PUBLIC ROUTES */}
-                <Route path="/" element={<Layout><HomePage /></Layout>} />
-                <Route path="/about" element={<Layout><AboutPage /></Layout>} />
-                <Route path="/leaders" element={<Layout><LeadersPage /></Layout>} />
-                <Route path="/sermons" element={<Layout><SermonsPage /></Layout>} />
-                <Route path="/worship" element={<Layout><WorshipPage /></Layout>} />
-                <Route path="worship/:id" element={<Layout><WorshipSongViewerPage /></Layout>} />
-                <Route path="bible" element={<Layout><BibleUnifiedApp /></Layout>} />
-                <Route path="bible/audio" element={<Layout><AudioBiblePage /></Layout>} />
-                <Route path="bible/text-only" element={<Layout><BibleTextOnlyPage /></Layout>} />
-                <Route
-                  path="bible/audio-suite"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <Layout><BibleAudioSuitePage /></Layout>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="bible/audio-sync-demo" element={<Layout><BibleAudioSyncDemoPage /></Layout>} />
-                <Route path="bible/audio-test" element={<Layout><BibleAudioTestPage /></Layout>} />
-                <Route path="bible/audio-youversion" element={<Layout><BibleAudioYouVersionTestPage /></Layout>} />
-                <Route path="bible/audio-sync" element={<Layout><BibleAudioSyncPage /></Layout>} />
-                <Route path="bible/audio-sync-test" element={<Layout><BibleAudioSyncTestPage /></Layout>} />
-                <Route path="bible/voice-chat" element={<Layout><BibleVoiceChatPage /></Layout>} />
-                <Route path="bible/presentation-creator" element={<Layout><BiblePresentationCreatorPage /></Layout>} />
-                <Route path="bible/reader" element={<Layout><BilingualBibleReader /></Layout>} />
-                <Route path="bible-study" element={<Layout><BibleStudyPage /></Layout>} />
-                {/* Redirect old bible-karaoke path to /bible */}
-                <Route path="bible-karaoke" element={<Navigate to="/bible" replace />} />
-                <Route path="bible-reader" element={<Navigate to="/bible" replace />} />
-                <Route path="bible-presentation-sample" element={<Layout><BilingualPresentationSample /></Layout>} />
-                <Route path="bible-presentation" element={<Layout><BilingualPresentationDynamic /></Layout>} />
-                <Route path="bible-audio-tts" element={<Layout><BibleWithTTS /></Layout>} />
-                <Route
-                  path="worship/audio-suite"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <Layout><WorshipAudioSuitePage /></Layout>
-                    </ProtectedRoute>
-                  }
-                />
+      <div dir={lang === 'fa' ? 'rtl' : 'ltr'} className={`bg-primary text-white w-full overflow-x-hidden min-h-screen ${lang === 'fa' ? 'font-vazir' : 'font-poppins'}`}>
+        <AudioPlayerProvider>
+          <HashRouter>
+            <ErrorBoundary>
+              <Toaster position="top-center" />
+              <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-[#00040F]"><div className="w-10 h-10 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div></div>}>
+                <Routes>
+                  {/* PUBLIC ROUTES */}
+                  <Route path="/" element={<Layout><HomePage /></Layout>} />
+                  <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+                  <Route path="/leaders" element={<Layout><LeadersPage /></Layout>} />
+                  <Route path="/sermons" element={<Layout><SermonsPage /></Layout>} />
+                  <Route path="/worship" element={<Layout><WorshipPage /></Layout>} />
+                  <Route path="worship/:id" element={<Layout><WorshipSongViewerPage /></Layout>} />
+                  <Route path="bible" element={<Layout><BibleUnifiedApp /></Layout>} />
+                  <Route path="bible/audio" element={<Layout><AudioBiblePage /></Layout>} />
+                  <Route path="bible/text-only" element={<Layout><BibleTextOnlyPage /></Layout>} />
+                  <Route
+                    path="bible/audio-suite"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><BibleAudioSuitePage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="bible/audio-sync-demo" element={<Layout><BibleAudioSyncDemoPage /></Layout>} />
+                  <Route path="bible/audio-test" element={<Layout><BibleAudioTestPage /></Layout>} />
+                  <Route path="bible/audio-youversion" element={<Layout><BibleAudioYouVersionTestPage /></Layout>} />
+                  <Route path="bible/audio-sync" element={<Layout><BibleAudioSyncPage /></Layout>} />
+                  <Route path="bible/audio-sync-test" element={<Layout><BibleAudioSyncTestPage /></Layout>} />
+                  <Route path="bible/voice-chat" element={<Layout><BibleVoiceChatPage /></Layout>} />
+                  <Route path="bible/presentation-creator" element={<Layout><BiblePresentationCreatorPage /></Layout>} />
+                  <Route path="bible/reader" element={<Layout><BilingualBibleReader /></Layout>} />
+                  <Route path="bible-study" element={<Layout><BibleStudyPage /></Layout>} />
+                  {/* Redirect old bible-karaoke path to /bible */}
+                  <Route path="bible-karaoke" element={<Navigate to="/bible" replace />} />
+                  <Route path="bible-reader" element={<Navigate to="/bible" replace />} />
+                  <Route path="bible-presentation-sample" element={<Layout><BilingualPresentationSample /></Layout>} />
+                  <Route path="bible-presentation" element={<Layout><BilingualPresentationDynamic /></Layout>} />
+                  <Route path="bible-audio-tts" element={<Layout><BibleWithTTS /></Layout>} />
+                  <Route
+                    path="worship/audio-suite"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><WorshipAudioSuitePage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
 
-                <Route path="worship-songs" element={<Layout><WorshipSongsPage /></Layout>} />
-                <Route path="worship-presentation" element={<Layout><WorshipPresentationPage /></Layout>} />
+                  <Route path="worship-songs" element={<Layout><WorshipSongsPage /></Layout>} />
+                  <Route path="worship-presentation" element={<Layout><WorshipPresentationPage /></Layout>} />
 
-                <Route path="presentation-creator" element={<Layout><PresentationCreatorPage /></Layout>} />
-                <Route path="admin/sync-management" element={
-                  <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
-                    <Layout><AdminSyncManagementPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="daily-devotional" element={<Layout><DailyDevotionalPage /></Layout>} />
-                <Route path="daily-messages" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><Layout><DailyMessagesPage /></Layout></ProtectedRoute>} />
-                <Route path="notification-center" element={<Layout><NotificationCenterPage /></Layout>} />
-                <Route path="giving" element={<Layout><GivingPage /></Layout>} />
-                <Route path="prayer" element={<Layout><PrayerPage /></Layout>} />
-                <Route path="prayer-requests" element={<Layout><PrayerRequestsPage /></Layout>} />
-                <Route path="events" element={<Layout><EventsPage /></Layout>} />
-                <Route path="contact" element={<Layout><ContactPage /></Layout>} />
-                <Route path="connect" element={<Layout><ConnectPage /></Layout>} />
-                <Route path="ai-helper" element={<Layout><AiHelperPage /></Layout>} />
-                <Route path="alhayat-gpt-examples" element={<Layout><AlHayatGPTExamplesPage /></Layout>} />
-                <Route path="gallery" element={<Layout><GalleryPage /></Layout>} />
-                <Route path="gallery/:id" element={<Layout><GalleryPage /></Layout>} />
-                <Route path="help-center" element={<Layout><HelpCenterPage /></Layout>} />
-                <Route path="new-here" element={<Layout><NewHerePage /></Layout>} />
-                <Route path="testimonials" element={<Layout><TestimonialsPage /></Layout>} />
-                <Route path="live" element={<Layout><LivePage /></Layout>} />
-                <Route path="letters/:id" element={<Layout><LetterViewerPage /></Layout>} />
-                <Route path="announcements" element={<Layout><AnnouncementsPage /></Layout>} />
-                <Route path="calendar" element={<Layout><CalendarPage /></Layout>} />
-                <Route path="persian-calendar" element={<Layout><PersianCalendarPage /></Layout>} />
-                <Route path="tts-demo" element={<Layout><TTSDemo /></Layout>} />
-                <Route path="huggingface-tts" element={<Layout><HuggingFaceTTSDemo /></Layout>} />
-                <Route path="admin/tts-usage" element={<Layout><TTSUsageDashboard /></Layout>} />
-                <Route path="tailwind-demo" element={<Layout><TailwindDemoPage /></Layout>} />
-                <Route path="page/:slug" element={<Layout><CustomPageRenderer /></Layout>} />
-                <Route path="admin/worship-health" element={
-                  <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                    <Layout><WorshipSongsHealthDashboard /></Layout>
-                  </ProtectedRoute>
-                } />
-
-                {/* Auth Routes */}
-                <Route path="login" element={<LoginPage />} />
-                <Route path="signup" element={<SignupPage />} />
-                <Route path="verify-email" element={<VerifyEmailPage />} />
-                <Route path="admin/login" element={<AdminLoginPage />} />
-
-                {/* Profile - Protected */}
-                <Route path="profile" element={
-                  <ProtectedRoute>
-                    <Layout><ProfilePage /></Layout>
-                  </ProtectedRoute>
-                } />
-
-                <Route
-                  path="events/recorder"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'LEADER']}>
-                      <Layout><ChurchEventRecorderPage /></Layout>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/worship-management"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <AdminWorshipManagementPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/configure-backend"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN']}>
-                      <ConfigureBackendPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/automations"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN']}>
-                      <AdminN8NAutomationPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/sermons"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'LEADER']}>
-                      <AdminSermonsPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/timing"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <Layout><AdminTimingPage /></Layout>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/sync-management"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                  <Route path="presentation-creator" element={<Layout><PresentationCreatorPage /></Layout>} />
+                  <Route path="admin/sync-management" element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
                       <Layout><AdminSyncManagementPage /></Layout>
                     </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/audio-sync"
-                  element={
+                  } />
+                  <Route path="daily-devotional" element={<Layout><DailyDevotionalPage /></Layout>} />
+                  <Route path="daily-messages" element={<ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}><Layout><DailyMessagesPage /></Layout></ProtectedRoute>} />
+                  <Route path="notification-center" element={<Layout><NotificationCenterPage /></Layout>} />
+                  <Route path="giving" element={<Layout><GivingPage /></Layout>} />
+                  <Route path="prayer" element={<Layout><PrayerPage /></Layout>} />
+                  <Route path="prayer-requests" element={<Layout><PrayerRequestsPage /></Layout>} />
+                  <Route path="events" element={<Layout><EventsPage /></Layout>} />
+                  <Route path="contact" element={<Layout><ContactPage /></Layout>} />
+                  <Route path="connect" element={<Layout><ConnectPage /></Layout>} />
+                  <Route path="ai-helper" element={<Layout><AiHelperPage /></Layout>} />
+                  <Route path="alhayat-gpt-examples" element={<Layout><AlHayatGPTExamplesPage /></Layout>} />
+                  <Route path="gallery" element={<Layout><GalleryPage /></Layout>} />
+                  <Route path="gallery/:id" element={<Layout><GalleryPage /></Layout>} />
+                  <Route path="help-center" element={<Layout><HelpCenterPage /></Layout>} />
+                  <Route path="new-here" element={<Layout><NewHerePage /></Layout>} />
+                  <Route path="testimonials" element={<Layout><TestimonialsPage /></Layout>} />
+                  <Route path="live" element={<Layout><LivePage /></Layout>} />
+                  <Route path="letters/:id" element={<Layout><LetterViewerPage /></Layout>} />
+                  <Route path="announcements" element={<Layout><AnnouncementsPage /></Layout>} />
+                  <Route path="calendar" element={<Layout><CalendarPage /></Layout>} />
+                  <Route path="persian-calendar" element={<Layout><PersianCalendarPage /></Layout>} />
+                  <Route path="tts-demo" element={<Layout><TTSDemo /></Layout>} />
+                  <Route path="huggingface-tts" element={<Layout><HuggingFaceTTSDemo /></Layout>} />
+                  <Route path="admin/tts-usage" element={<Layout><TTSUsageDashboard /></Layout>} />
+                  <Route path="tailwind-demo" element={<Layout><TailwindDemoPage /></Layout>} />
+                  <Route path="page/:slug" element={<Layout><CustomPageRenderer /></Layout>} />
+                  <Route path="admin/worship-health" element={
                     <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <Layout><AdvancedAudioSync /></Layout>
+                      <Layout><WorshipSongsHealthDashboard /></Layout>
                     </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/presentation-creator"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <Layout><PresentationCreatorPage /></Layout>
+                  } />
+
+                  {/* Auth Routes */}
+                  <Route path="login" element={<LoginPage />} />
+                  <Route path="signup" element={<SignupPage />} />
+                  <Route path="verify-email" element={<VerifyEmailPage />} />
+                  <Route path="admin/login" element={<AdminLoginPage />} />
+
+                  {/* Profile - Protected */}
+                  <Route path="profile" element={
+                    <ProtectedRoute>
+                      <Layout><ProfilePage /></Layout>
                     </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/bible-presentation"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
-                      <Layout><BiblePresentationCreatorPage /></Layout>
-                    </ProtectedRoute>
-                  }
-                />
+                  } />
 
-                {/* Test route outside Layout */}
+                  <Route
+                    path="events/recorder"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'LEADER']}>
+                        <Layout><ChurchEventRecorderPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/worship-management"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <AdminWorshipManagementPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/configure-backend"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN']}>
+                        <ConfigureBackendPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/automations"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN']}>
+                        <AdminN8NAutomationPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/sermons"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'LEADER']}>
+                        <AdminSermonsPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/timing"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><AdminTimingPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/sync-management"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><AdminSyncManagementPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/audio-sync"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><AdvancedAudioSync /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/presentation-creator"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><PresentationCreatorPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/bible-presentation"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><BiblePresentationCreatorPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
 
-                <Route path="presentation" element={<PresentationPage />} />
-                <Route
-                  path="/admin/tools"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER', 'LEADER']}>
-                      <AdminToolsPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin"
-                  element={
-                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
-                      <AdminDashboardPage />
-                    </ProtectedRoute>
-                  }
-                />
+                  {/* Test route outside Layout */}
 
-                {/* 404 Not Found - Must be last */}
-                <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
-              </Routes>
-            </Suspense>
+                  <Route path="presentation" element={<PresentationPage />} />
+                  <Route
+                    path="/admin/tools"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER', 'LEADER']}>
+                        <AdminToolsPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
+                        <AdminDashboardPage />
+                      </ProtectedRoute>
+                    }
+                  />
 
-            {/* Bible AI Chat Widget - Lazy loaded */}
-            <Suspense fallback={null}>
-              <BibleAIChatWidget />
-            </Suspense>
+                  {/* 404 Not Found - Must be last */}
+                  <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
+                </Routes>
+              </Suspense>
 
-            {/* Verse Modal - Show after loading - Inside Router context */}
-            {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
-          </ErrorBoundary>
-        </HashRouter>
+              {/* Bible AI Chat Widget - Lazy loaded */}
+              <Suspense fallback={null}>
+                <BibleAIChatWidget />
+              </Suspense>
+
+              {/* Verse Modal - Show after loading - Inside Router context */}
+              {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
+            </ErrorBoundary>
+          </HashRouter>
+          {/* Floating Audio Player - Shows when audio is playing */}
+          <FloatingMiniPlayer />
+        </AudioPlayerProvider>
       </div>
     </>
   );

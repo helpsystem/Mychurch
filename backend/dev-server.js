@@ -65,6 +65,16 @@ try {
   console.error('   Stack:', error.stack);
 }
 
+// Try to load Precision Timing routes (Gemini 2.5 Pro for worship songs)
+let precisionTimingRoutes;
+try {
+  console.log('🔄 Loading Precision Timing routes...');
+  precisionTimingRoutes = require('./routes/precisionTimingRoutes');
+  console.log('✅ Precision Timing routes loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to load Precision Timing routes:', error.message);
+}
+
 // Import services
 const imageService = require('./services/imageGenerationService');
 
@@ -142,6 +152,10 @@ app.use('/api/bible-local', bibleLocalRoutes); // Local Bible Data
 if (hidriveRoutes) {
   app.use('/api/hidrive', hidriveRoutes); // IONOS HiDrive storage
   console.log('✅ HiDrive routes registered at /api/hidrive');
+}
+if (precisionTimingRoutes) {
+  app.use('/api/timing', precisionTimingRoutes); // Precision Timing (Gemini 2.5 Pro)
+  console.log('✅ Precision Timing routes registered at /api/timing');
 }
 console.log('✅ Smart Audio Source Resolver registered at /api/audio');
 console.log('✅ WordProject Downloader registered at /api/downloads');

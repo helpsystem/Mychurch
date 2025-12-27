@@ -1,5 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, Download, Youtube, Music, Eye, EyeOff, FileText, X, Presentation } from 'lucide-react';
+import { downloadPPTX } from '../utils/pptxGenerator';
+import ChordLyricsRenderer from './ChordLyricsRenderer';
 
 interface LyricLine {
   time: number; // زمان شروع خط (به ثانیه)
@@ -16,7 +18,8 @@ interface WordWithTime {
 
 interface Props {
   audioUrl: string;
-  lyrics?: string; // متن کامل آهنگ (فقط متن، بدون آکورد)
+  lyrics?: string; // متن کامل آهنگ (ممکن است شامل آکورد باشد)
+  originalLyricsWithChords?: string; // متن اصلی با آکوردها
   chords?: string; // آکوردها جداگانه
   notation?: string; // نوت‌های موسیقی جداگانه
   lyricLines?: LyricLine[]; // اگر زمان‌بندی دقیق دارید (با یا بدون words)
@@ -27,11 +30,14 @@ interface Props {
   lineDelay?: number; // تاخیر اول موزیک قبل از شروع خواندن (ثانیه)
   lineDuration?: number; // مدت زمان هر خط (ثانیه) - پیش‌فرض: 3
   songId?: number | string; // شناسه آهنگ برای کش کردن
+  youtubeId?: string; // شناسه یوتیوب
+  onClose?: () => void; // بستن مودال
 }
 
 const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   audioUrl,
   lyrics,
+  originalLyricsWithChords,
   chords,
   notation,
   lyricLines: propLyricLines,
@@ -42,7 +48,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   lineDelay = 0,
   lineDuration = 3,
   wordDurationRatio = 1,
-  songId
+  songId,
+  youtubeId,
+  onClose
 }) => {
   // Encode کردن URL برای پشتیبانی از نام‌های فارسی
   const processedAudioUrl = React.useMemo(() => {
@@ -52,7 +60,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       try {
         const url = new URL(audioUrl);
         // Encode هر قسمت از path جداگانه
-        const encodedPath = url.pathname.split('/').map(segment => 
+        const encodedPath = url.pathname.split('/').map(segment =>
           encodeURIComponent(decodeURIComponent(segment))
         ).join('/');
         return `${url.origin}${encodedPath}${url.search}`;
@@ -63,7 +71,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     // برای URL های local مثل /worship/audio/...
     if (audioUrl.startsWith('/')) {
       const segments = audioUrl.split('/');
-      return segments.map(segment => 
+      return segments.map(segment =>
         segment ? encodeURIComponent(decodeURIComponent(segment)) : segment
       ).join('/');
     }
@@ -83,6 +91,44 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   const [syncAdjustment, setSyncAdjustment] = useState(0);
   const [showSyncControls, setShowSyncControls] = useState(false);
   const [fetchedLyricLines, setFetchedLyricLines] = useState<LyricLine[] | null>(null);
+  const [showChordsDisplay, setShowChordsDisplay] = useState(showChords);
+
+  // Download Audio Handler
+  const handleDownloadAudio = useCallback(() => {
+    if (!processedAudioUrl) return;
+    const link = document.createElement('a');
+    link.href = processedAudioUrl;
+    link.download = `${title || 'song'}.mp3`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, [processedAudioUrl, title]);
+
+  // Open YouTube
+  const handleOpenYouTube = useCallback(() => {
+    if (youtubeId) {
+      window.open(`https://www.youtube.com/watch?v=${youtubeId}`, '_blank');
+    }
+  }, [youtubeId]);
+
+  // PowerPoint Export Handler
+  const handleExportPPTX = useCallback(async () => {
+    const lyricsToExport = originalLyricsWithChords || lyrics || '';
+    if (!lyricsToExport) return;
+
+    try {
+      await downloadPPTX({
+        title: title || 'Untitled Song',
+        artist: artist,
+        lyrics: lyricsToExport,
+        showChords: showChordsDisplay,
+        lang: lang as 'fa' | 'en',
+      });
+    } catch (error) {
+      console.error('Error exporting PowerPoint:', error);
+      alert(lang === 'fa' ? '❌ خطا در ساخت پاورپوینت' : '❌ Error creating PowerPoint');
+    }
+  }, [originalLyricsWithChords, lyrics, title, artist, showChordsDisplay, lang]);
 
   // Caching Logic: Fetch timing from localStorage or Server
   useEffect(() => {
@@ -142,16 +188,47 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
   }, [songId]);
 
   // پردازش متن و تبدیل به خطوط با زمان‌بندی تقریبی
+  // تابع کمکی برای بررسی خط marker
+  const isMarkerLineInternal = (text: string): boolean => {
+    if (!text) return true;
+    const trimmed = text.trim();
+    if (!trimmed) return true;
+    // بررسی خطوط فقط marker یا آکورد
+    return /^(V\d+|Chorus\d*|Pre-Chorus\d*|Bridge\d*|Intro|Outro|Verse\s*\d*|Tag|Ending|Coda|Instrumental|Interlude|Music|\[column\]|\[repeat\])(\s*\(x\d+\))?$/i.test(trimmed);
+  };
+
+  // تابع کمکی برای فیلتر کردن داده‌های timing
+  const filterLyricLines = (lines: LyricLine[]): LyricLine[] => {
+    return lines.filter(line => {
+      // حذف خطوط marker
+      if (isMarkerLineInternal(line.text)) return false;
+
+      // پاکسازی متن خط
+      let cleanText = line.text || '';
+      // حذف آکوردها
+      cleanText = cleanText.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
+      // حذف مارکرهای ساختاری
+      cleanText = cleanText.replace(/\[(column|repeat|instrumental|interlude|solo|tag|ending|coda)\]/gi, '');
+
+      // اگر بعد از پاکسازی خط خالی شد، حذف کن
+      if (!cleanText.trim()) return false;
+
+      return true;
+    });
+  };
+
   const processedLyrics: LyricLine[] = React.useMemo(() => {
     // 1. اولویت با داده‌های دقیق کش شده یا فچ شده
     if (fetchedLyricLines && fetchedLyricLines.length > 0) {
-      return fetchedLyricLines;
+      // فیلتر کردن خطوط marker
+      return filterLyricLines(fetchedLyricLines);
     }
 
     // 2. اولویت دوم با props ورودی (اگر دقیق باشد)
     if (propLyricLines && propLyricLines.length > 0) {
       console.log('🎵 Using precise timing from props');
-      return propLyricLines;
+      // فیلتر کردن خطوط marker
+      return filterLyricLines(propLyricLines);
     }
 
     if (!lyrics) {
@@ -161,13 +238,19 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     // حذف آکوردهای درون‌خطی مثل [Em], [G], [F], [C#/A]
     let cleanLyrics = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
 
-    // حذف برچسب‌های V1, V2, Chorus و ...
-    cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
+    // حذف برچسب‌های ساختاری مثل [column], [repeat], [x2] و غیره
+    cleanLyrics = cleanLyrics.replace(/\[(column|repeat|instrumental|interlude|solo|tag|ending|coda)\]/gi, '');
+
+    // حذف برچسب‌های V1, V2, Chorus, Pre-Chorus, Bridge و ... (چه در ابتدای خط چه تنها)
+    cleanLyrics = cleanLyrics.replace(/^(V\d+|Chorus\d*|Pre-Chorus\d*|Bridge\d*|Intro|Outro|Verse\s*\d*|Tag|Ending|Coda|Instrumental|Interlude|Music)\s*(\(x\d+\))?$/gim, '');
+
+    // حذف (x2), (x3), x2, x3 از انتهای خطوط
+    cleanLyrics = cleanLyrics.replace(/\s*\(?x\d+\)?\s*$/gim, '');
 
     // تقسیم متن به خطوط
     const lines = cleanLyrics.split('\n');
 
-    // فیلتر خطوط خالی و خطوط فقط آکورد
+    // فیلتر خطوط خالی و خطوط فقط آکورد یا خطوط marker
     const cleanedLines = lines.filter(line => {
       const trimmed = line.trim();
       if (!trimmed) return false; // خطوط خالی را حذف کن
@@ -175,6 +258,9 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       // اگر خط فقط شامل حروف انگلیسی، #, b, m, /, فاصله و اعداد است (بدون متن فارسی/انگلیسی)
       const isChordOnlyLine = /^[A-G#bm\/\s\d\[\]]+$/.test(trimmed);
       if (isChordOnlyLine) return false;
+
+      // حذف خطوطی که فقط شامل برچسب‌های ساختاری هستند
+      if (isMarkerLineInternal(trimmed)) return false;
 
       return true; // همه خطوط دیگر را نگه دار
     });
@@ -227,7 +313,7 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
       console.log('⚠️ Using CALCULATED timing (no precise timing available)');
       // محاسبه تقریبی timing برای کلمات
       processedLyrics.forEach((line, lineIndex) => {
-        const words = line.text.split(/\s+/).filter(w => w.trim().length > 0);
+        const words = (line.text || '').split(/\s+/).filter(w => w.trim().length > 0);
         const lineStartTime = line.time;
         const actualLineDuration = lineDuration; // مدت زمان خط
         const wordDuration = words.length > 0 ? (actualLineDuration / words.length) * wordDurationRatio : 0.4;
@@ -398,8 +484,31 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  // تابع حذف آکورد و مارکرهای ساختاری از متن
+  const stripChords = (text: string): string => {
+    if (!text) return '';
+    // حذف آکوردها مثل [Em], [G], [C#/A]
+    let result = text.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
+    // حذف مارکرهای ساختاری مثل [column], [repeat]
+    result = result.replace(/\[(column|repeat|instrumental|interlude|solo|tag|ending|coda)\]/gi, '');
+    // حذف مارکرهای V1, Chorus, etc
+    result = result.replace(/^(V\d+|Chorus\d*|Pre-Chorus\d*|Bridge\d*|Intro|Outro|Verse\s*\d*|Tag|Ending|Coda|Instrumental|Interlude)(\s*\(x\d+\))?$/i, '');
+    // حذف (x2), (x3) از انتها
+    result = result.replace(/\s*\(?x\d+\)?\s*$/gi, '');
+    return result.trim();
+  };
+
+  // تابع بررسی اینکه آیا یک خط فقط marker است
+  const isMarkerLine = (text: string): boolean => {
+    if (!text) return true;
+    const trimmed = text.trim();
+    if (!trimmed) return true;
+    // بررسی خطوط فقط marker
+    return /^(V\d+|Chorus\d*|Pre-Chorus\d*|Bridge\d*|Intro|Outro|Verse\s*\d*|Tag|Ending|Coda|Instrumental|Interlude|\[column\]|\[repeat\])(\s*\(x\d+\))?$/i.test(trimmed);
+  };
+
   return (
-    <div className="w-full max-w-4xl mx-auto bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-purple-500/30">
+    <div className="w-full max-w-4xl mx-auto bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-purple-500/30 flex flex-col max-h-[90vh]">
       {/* Audio Element */}
       <audio ref={audioRef} src={processedAudioUrl} preload="metadata" />
 
@@ -426,20 +535,88 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Lyrics Display with Word-by-Word Sync - Centered */}
+      {/* Action Buttons Toolbar - نوار ابزار دکمه‌ها */}
+      <div className="flex flex-wrap items-center justify-center gap-3 p-4 bg-black/40 border-b border-purple-500/20">
+        {/* Download Audio Button */}
+        {processedAudioUrl && (
+          <button
+            onClick={handleDownloadAudio}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg text-white text-sm font-medium transition-all shadow-lg shadow-green-500/30 hover:scale-105"
+            title={lang === 'fa' ? 'دانلود فایل صوتی' : 'Download Audio'}
+          >
+            <Download size={18} />
+            <span>{lang === 'fa' ? 'دانلود صوتی' : 'Download'}</span>
+          </button>
+        )}
+
+        {/* YouTube Link Button */}
+        {youtubeId && (
+          <button
+            onClick={handleOpenYouTube}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 rounded-lg text-white text-sm font-medium transition-all shadow-lg shadow-red-500/30 hover:scale-105"
+            title={lang === 'fa' ? 'مشاهده در یوتیوب' : 'Watch on YouTube'}
+          >
+            <Youtube size={18} />
+            <span>YouTube</span>
+          </button>
+        )}
+
+        {/* Chords Toggle Button */}
+        <button
+          onClick={() => setShowChordsDisplay(!showChordsDisplay)}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 ${showChordsDisplay
+            ? 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 shadow-lg shadow-orange-500/30 text-white'
+            : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-gray-200'
+            }`}
+          title={lang === 'fa' ? (showChordsDisplay ? 'مخفی کردن آکوردها' : 'نمایش آکوردها') : (showChordsDisplay ? 'Hide Chords' : 'Show Chords')}
+        >
+          <Music size={18} />
+          <span>{lang === 'fa' ? (showChordsDisplay ? 'آکوردها ✓' : 'آکوردها') : (showChordsDisplay ? 'Chords ✓' : 'Chords')}</span>
+        </button>
+
+        {/* Close Button - only if onClose is provided */}
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 rounded-lg text-white text-sm font-medium transition-all hover:scale-105"
+            title={lang === 'fa' ? 'بستن' : 'Close'}
+          >
+            <X size={18} />
+            <span>{lang === 'fa' ? 'بستن' : 'Close'}</span>
+          </button>
+        )}
+
+        {/* PowerPoint Export Button */}
+        {(lyrics || originalLyricsWithChords) && (
+          <button
+            onClick={handleExportPPTX}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 rounded-lg text-white text-sm font-medium transition-all shadow-lg shadow-blue-500/30 hover:scale-105"
+            title={lang === 'fa' ? 'خروجی پاورپوینت' : 'Export PowerPoint'}
+          >
+            <Presentation size={18} />
+            <span>{lang === 'fa' ? 'پاورپوینت' : 'PPT'}</span>
+          </button>
+        )}
+      </div>
       {processedLyrics.length > 0 && (
         <div
           ref={lyricsContainerRef}
-          className="min-h-[400px] max-h-[600px] overflow-y-auto p-10 bg-gradient-to-b from-black/60 via-purple-900/10 to-black/60 backdrop-blur-md scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent flex items-start justify-center"
+          className="flex-1 overflow-y-auto p-10 bg-gradient-to-b from-black/60 via-purple-900/10 to-black/60 backdrop-blur-md scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent flex items-start justify-center"
           dir={lang === 'fa' ? 'rtl' : 'ltr'}
         >
           <div className="w-full text-center space-y-6 py-8">
             {processedLyrics.map((line, lineIndex) => {
+              // اگر خط فقط مارکر است، آن را نادیده بگیر
+              if (isMarkerLine(line.text)) return null;
+
               // اگر این خط words دقیق دارد، از آن استفاده کن
               const hasWordTiming = line.words && line.words.length > 0;
               const lineWords = hasWordTiming
-                ? line.words.map(w => w.word)
-                : line.text.split(/\s+/).filter(w => w.trim().length > 0);
+                ? line.words.map(w => stripChords(w.word)).filter(w => w && w.trim().length > 0)
+                : (stripChords(line.text) || '').split(/\s+/).filter(w => w.trim().length > 0);
+
+              // اگر بعد از پاکسازی کلمه‌ای نماند، خط را نمایش نده
+              if (lineWords.length === 0) return null;
 
               return (
                 <p
@@ -522,8 +699,23 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Controls - طراحی مدرن */}
-      <div className="p-8 bg-gradient-to-t from-slate-900 via-purple-900/20 to-transparent backdrop-blur-xl border-t border-purple-500/30">
+      {/* Chord Display Section - appears when showChordsDisplay is enabled */}
+      {showChordsDisplay && originalLyricsWithChords && (
+        <div className="bg-gradient-to-b from-black/40 via-purple-900/20 to-black/40 p-6 border-t border-purple-500/20">
+          <h4 className="text-center text-lg font-semibold text-purple-300 mb-4">
+            {lang === 'fa' ? '🎸 متن با آکورد' : '🎸 Lyrics with Chords'}
+          </h4>
+          <ChordLyricsRenderer
+            lyrics={originalLyricsWithChords}
+            showChords={true}
+            lang={lang as 'fa' | 'en'}
+            fontSize="lg"
+          />
+        </div>
+      )}
+
+      {/* Controls - Fixed at bottom */}
+      <div className="sticky bottom-0 p-6 bg-gradient-to-t from-slate-900 via-purple-900/50 to-slate-900/90 backdrop-blur-xl border-t border-purple-500/30 flex-shrink-0">
         {/* Sync Adjustment Controls */}
         <div className="mb-4">
           <button

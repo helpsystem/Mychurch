@@ -4,7 +4,9 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
 import { WorshipSong } from '../types';
 import { useContent } from '../hooks/useContent';
-import { Youtube, FileText, FileMusic } from 'lucide-react';
+import { Youtube, FileText, FileMusic, Play, Mic, ExternalLink, Presentation, Music2, Shuffle, PlayCircle, SkipBack, SkipForward } from 'lucide-react';
+import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
+import UniversalMediaPlayer from '../components/UniversalMediaPlayer';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
 import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
@@ -43,39 +45,121 @@ const ModalPortal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return ReactDOM.createPortal(children, modalRoot);
 };
 
-// 🔹 کارت نمایش سرود
-const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void }> = ({ song, onClick }) => {
+// 🔹 کارت نمایش سرود با پلیر و دکمه‌ها
+const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void; onKaraoke?: () => void }> = ({ song, onClick, onKaraoke }) => {
   const { lang } = useLanguage();
   const hasYoutube = !!song.youtubeId;
+  const hasAudio = !!song.audioUrl;
   const thumbnailUrl = hasYoutube ? `https://img.youtube.com/vi/${song.youtubeId}/hqdefault.jpg` : '/images/Prayer_circle_hands_together_feb88f83.png';
 
-  const handleClick = () => {
+  const handleCardClick = () => {
     console.log('🎵 Card Clicked:', song.title?.[lang]);
     onClick?.();
   };
 
+  const handleKaraokeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onKaraoke?.();
+  };
+
+  const handleYoutubeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open(`https://www.youtube.com/watch?v=${song.youtubeId}`, '_blank');
+  };
+
+  // Convert song to MediaItem for UniversalMediaPlayer
+  const mediaItem = {
+    id: song.id,
+    title: song.title,
+    artist: song.artist,
+    audioUrl: song.audioUrl,
+    videoUrl: song.videoUrl,
+    type: 'song' as const,
+    lyrics: song.lyrics
+  };
+
   return (
     <div
-      className="bg-gradient-to-br from-purple-600/20 to-blue-600/20 backdrop-blur-sm border border-purple-500/30 rounded-[20px] overflow-hidden cursor-pointer hover:scale-105 hover:shadow-2xl hover:border-purple-500/60 transition-all duration-300"
-      onClick={handleClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') handleClick();
-      }}
+      className="bg-gradient-to-br from-purple-600/20 to-blue-600/20 backdrop-blur-sm border border-purple-500/30 rounded-[20px] overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-purple-500/60 transition-all duration-300"
     >
-      <div className="relative overflow-hidden">
-        <img src={thumbnailUrl} alt="" className="absolute inset-0 w-full h-48 object-cover blur-sm scale-110 opacity-50" aria-hidden="true" />
-        <img src={thumbnailUrl} alt={song.title?.[lang] || 'Song'} className="relative w-full h-48 object-cover" />
+      {/* Thumbnail - clickable for details */}
+      <div
+        className="relative overflow-hidden cursor-pointer"
+        onClick={handleCardClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCardClick(); }}
+      >
+        <img src={thumbnailUrl} alt="" className="absolute inset-0 w-full h-40 object-cover blur-sm scale-110 opacity-50" aria-hidden="true" />
+        <img src={thumbnailUrl} alt={song.title?.[lang] || 'Song'} className="relative w-full h-40 object-cover" />
         {hasYoutube && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition">
-            <Youtube size={64} className="text-white drop-shadow-lg" />
+            <Play size={48} className="text-white drop-shadow-lg" />
           </div>
         )}
       </div>
-      <div className="p-4 flex flex-col bg-black/30 backdrop-blur-sm">
-        <h3 className="text-lg font-bold text-white text-center drop-shadow-md">{song.title?.[lang]}</h3>
+
+      {/* Song Info */}
+      <div className="p-4 bg-black/30 backdrop-blur-sm">
+        <h3
+          className="text-lg font-bold text-white text-center drop-shadow-md cursor-pointer hover:text-purple-300 transition"
+          onClick={handleCardClick}
+        >
+          {song.title?.[lang]}
+        </h3>
         <p className="text-gray-300 text-sm text-center mt-1">{song.artist}</p>
+
+        {/* Integrated Player */}
+        {hasAudio && (
+          <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+            <UniversalMediaPlayer
+              item={mediaItem}
+              mode="card"
+              className="bg-purple-900/30 rounded-lg"
+            />
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-2 mt-3 justify-center">
+          {/* متن زنده (Live Text) Button */}
+          {hasAudio && (
+            <button
+              onClick={handleKaraokeClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg transition-all text-xs font-medium shadow-lg shadow-purple-500/30"
+              title={lang === 'fa' ? 'حالت متن زنده' : 'Live Text Mode'}
+            >
+              <Mic size={14} />
+              <span>{lang === 'fa' ? 'متن زنده' : 'Live Text'}</span>
+            </button>
+          )}
+
+          {/* YouTube Button */}
+          {hasYoutube && (
+            <button
+              onClick={handleYoutubeClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-red-600 hover:bg-red-700 rounded-lg transition-colors text-xs font-medium"
+              title="YouTube"
+            >
+              <ExternalLink size={14} />
+              <span>YouTube</span>
+            </button>
+          )}
+
+          {/* PowerPoint Download */}
+          {(song as any).presentationFileUrl && (
+            <a
+              href={(song as any).presentationFileUrl}
+              download
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-600 hover:bg-orange-700 rounded-lg transition-colors text-xs font-medium"
+              title="PowerPoint"
+            >
+              <Presentation size={14} />
+              <span>PPT</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -98,15 +182,27 @@ const WorshipPage: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
   const { content, loading: isLoading } = useContent();
   const songs = content.worshipSongs || [];
-  
+
+  // 🎵 Global Audio Player Context for Archive Playback
+  const {
+    playSong: playGlobalSong,
+    playAll: playAllGlobal,
+    currentSong: globalCurrentSong,
+    isPlaying: globalIsPlaying
+  } = useAudioPlayer();
+
   // Check if user is admin or leader
   const isAdminOrLeader = user && ['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'].includes(user.role);
-  
+
   const [selectedSongIndex, setSelectedSongIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [timingData, setTimingData] = useState<TimingData | null>(null);
   const [loadingTiming, setLoadingTiming] = useState(false);
   const [activeLetterFilter, setActiveLetterFilter] = useState<string | null>(null);
+
+  // Karaoke Mode State
+  const [showKaraokeMode, setShowKaraokeMode] = useState(false);
+  const [karaokeSong, setKaraokeSong] = useState<WorshipSong | null>(null);
 
   // 🔤 سورت کردن سرودها بر اساس حروف الفبا
   const sortedSongs = React.useMemo(() => {
@@ -142,7 +238,7 @@ const WorshipPage: React.FC = () => {
   const groupedSongs = React.useMemo(() => {
     const groups: { [key: string]: WorshipSong[] } = {};
     const songsToGroup = activeLetterFilter ? filteredSongs : sortedSongs;
-    
+
     songsToGroup.forEach(song => {
       const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
       const firstLetter = title[0]?.toUpperCase() || '#';
@@ -151,7 +247,7 @@ const WorshipPage: React.FC = () => {
       }
       groups[firstLetter].push(song);
     });
-    
+
     return groups;
   }, [sortedSongs, filteredSongs, activeLetterFilter, lang]);
 
@@ -159,6 +255,44 @@ const WorshipPage: React.FC = () => {
   const recentSongs = React.useMemo(() => {
     return sortedSongs.slice(-5); // 5 تای آخر
   }, [sortedSongs]);
+
+  // 🎵 پخش همه سرودها با FloatingMiniPlayer
+  const handlePlayAll = () => {
+    const songsForPlayer: Song[] = sortedSongs
+      .filter(s => s.audioUrl)
+      .map(song => ({
+        id: song.id,
+        title: song.title[lang] || song.title.fa,
+        artist: song.artist,
+        audioUrl: song.audioUrl!,
+        thumbnail: song.youtubeId ? `https://img.youtube.com/vi/${song.youtubeId}/default.jpg` : undefined,
+        lyrics: song.lyrics?.[lang] || song.lyrics?.fa,
+        youtubeId: song.youtubeId,
+      }));
+
+    if (songsForPlayer.length > 0) {
+      playAllGlobal(songsForPlayer, false);
+    }
+  };
+
+  // 🔀 پخش تصادفی سرودها
+  const handlePlayAllShuffle = () => {
+    const songsForPlayer: Song[] = sortedSongs
+      .filter(s => s.audioUrl)
+      .map(song => ({
+        id: song.id,
+        title: song.title[lang] || song.title.fa,
+        artist: song.artist,
+        audioUrl: song.audioUrl!,
+        thumbnail: song.youtubeId ? `https://img.youtube.com/vi/${song.youtubeId}/default.jpg` : undefined,
+        lyrics: song.lyrics?.[lang] || song.lyrics?.fa,
+        youtubeId: song.youtubeId,
+      }));
+
+    if (songsForPlayer.length > 0) {
+      playAllGlobal(songsForPlayer, true); // true = shuffle
+    }
+  };
 
   // 🔤 اسکرول به اولین سرود با حرف مشخص
   const scrollToLetter = (letter: string) => {
@@ -168,7 +302,7 @@ const WorshipPage: React.FC = () => {
     } else {
       // فیلتر روی حرف جدید
       setActiveLetterFilter(letter);
-      
+
       // اسکرول به بخش آن حرف
       setTimeout(() => {
         const letterSection = document.getElementById(`letter-${letter}`);
@@ -189,20 +323,29 @@ const WorshipPage: React.FC = () => {
     });
   }, [isLoading, songs]);
 
-  // تابع فیلتر lyrics مثل timing-recorder
+  // تابع فیلتر lyrics - حذف آکوردها و مارکرهای ساختاری
   const filterLyrics = (lyrics: string): string => {
     if (!lyrics) return '';
-    
-    // حذف Chord ها: [C], [Dm], [G], etc.
+
+    // حذف Chord ها: [C], [Dm], [G], [C#/A], etc.
     let clean = lyrics.replace(/\[([A-G][#b]?m?\d?[\/]?[A-G]?[#b]?)\]/g, '');
-    
-    // حذف عناوین: V1, V2, Chorus, etc.
-    clean = clean.replace(/^(V\d+|Chorus\d*|Bridge|Intro|Outro|Verse\s*\d*)$/gm, '');
-    
+
+    // حذف مارکرهای ساختاری مثل [column], [repeat], [instrumental]
+    clean = clean.replace(/\[(column|repeat|instrumental|interlude|solo|tag|ending|coda)\]/gi, '');
+
+    // حذف عناوین بخش‌ها: V1, V2, Chorus, Pre-Chorus, Bridge و ...
+    clean = clean.replace(/^(V\d+|Chorus\d*|Pre-Chorus\d*|Bridge\d*|Intro|Outro|Verse\s*\d*|Tag|Ending|Coda|Instrumental|Interlude|Music)(\s*\(x\d+\))?$/gim, '');
+
+    // حذف (x2), (x3), x2, x3 از انتهای خطوط
+    clean = clean.replace(/\s*\(?x\d+\)?\s*$/gim, '');
+
     // حذف virgool‌های انتهای خط (برای سینک با timing)
     clean = clean.replace(/\s*،\s*$/gm, '');
     clean = clean.replace(/،\s+/g, ' '); // virgool وسط خط → فاصله
-    
+
+    // حذف خطوط خالی اضافی
+    clean = clean.replace(/\n\s*\n+/g, '\n');
+
     return clean.trim();
   };
 
@@ -211,10 +354,10 @@ const WorshipPage: React.FC = () => {
     if (selectedSongIndex !== null && songs[selectedSongIndex]) {
       const song = songs[selectedSongIndex];
       const timingPath = `/worship/data/timings/song_${song.id}_timing.json`;
-      
+
       console.log('🔍 Trying to load timing for song:', song.id, song.title?.fa);
       console.log('📁 Timing path:', timingPath);
-      
+
       setLoadingTiming(true);
       fetch(timingPath)
         .then(res => {
@@ -250,7 +393,7 @@ const WorshipPage: React.FC = () => {
   const openOnSecondScreen = (song: WorshipSong) => {
     // بارگذاری timing data برای پرژکتور
     const timingPath = `/worship/data/timings/song_${song.id}_timing.json`;
-    
+
     // ساخت HTML کامل برای صفحه دوم
     const html = `
 <!DOCTYPE html>
@@ -584,14 +727,14 @@ const WorshipPage: React.FC = () => {
     if (newWindow) {
       newWindow.document.write(html);
       newWindow.document.close();
-      
+
       // اطلاع به کاربر
-      alert(lang === 'fa' 
+      alert(lang === 'fa'
         ? '✅ صفحه جدید باز شد!\n\n💡 نکات:\n- پنجره را به صفحه دوم بکشید\n- F11 برای تمام صفحه\n- ESC برای بستن'
         : '✅ New window opened!\n\n💡 Tips:\n- Drag to second screen\n- F11 for fullscreen\n- ESC to close'
       );
     } else {
-      alert(lang === 'fa' 
+      alert(lang === 'fa'
         ? '❌ لطفاً popup را در مرورگر خود مجاز کنید!'
         : '❌ Please allow popups in your browser!'
       );
@@ -612,10 +755,10 @@ const WorshipPage: React.FC = () => {
   useEffect(() => {
     if (activeSong) {
       const timingPath = `/worship/data/timings/song_${activeSong.id}_timing.json`;
-      
+
       console.log('🔍 Loading timing for MODAL song:', activeSong.id, activeSong.title?.fa);
       console.log('📁 Timing path:', timingPath);
-      
+
       setLoadingTiming(true);
       fetch(timingPath)
         .then(res => {
@@ -670,7 +813,7 @@ const WorshipPage: React.FC = () => {
           🧪 Test Modal
         </button>
       )}
-      
+
       {/* Presentation Mode Toggle Button - ADMIN/LEADER ONLY */}
       {isAdminOrLeader && !presentationMode && (
         <button
@@ -705,7 +848,7 @@ const WorshipPage: React.FC = () => {
               >
                 ◀ {lang === 'fa' ? 'قبلی' : 'Prev'}
               </button>
-              
+
               <select
                 value={selectedSongIndex}
                 onChange={(e) => setSelectedSongIndex(Number(e.target.value))}
@@ -784,7 +927,34 @@ const WorshipPage: React.FC = () => {
           <div className="text-center mb-8 pt-8">
             <h1 className="font-bold text-4xl md:text-5xl mb-4 text-white drop-shadow-2xl">{t('worshipTitle')}</h1>
             <p className="text-gray-300 text-lg mb-6">{t('worshipDescription')}</p>
+
+            {/* 🎵 دکمه‌های پخش آرشیو */}
+            {sortedSongs.filter(s => s.audioUrl).length > 0 && (
+              <div className="flex flex-wrap gap-4 justify-center">
+                <button
+                  onClick={handlePlayAll}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white rounded-[10px] font-semibold shadow-lg shadow-green-500/30 hover:scale-105 transition-all"
+                  title={lang === 'fa' ? 'پخش همه سرودها' : 'Play All Songs'}
+                >
+                  <PlayCircle size={20} />
+                  <span>{lang === 'fa' ? 'پخش همه' : 'Play All'}</span>
+                  <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                    {sortedSongs.filter(s => s.audioUrl).length}
+                  </span>
+                </button>
+
+                <button
+                  onClick={handlePlayAllShuffle}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-[10px] font-semibold shadow-lg shadow-purple-500/30 hover:scale-105 transition-all"
+                  title={lang === 'fa' ? 'پخش تصادفی' : 'Shuffle Play'}
+                >
+                  <Shuffle size={20} />
+                  <span>{lang === 'fa' ? 'پخش تصادفی' : 'Shuffle'}</span>
+                </button>
+              </div>
+            )}
           </div>
+
 
           {/* Horizontal Alphabet Navigator - بالای صفحه */}
           {availableLetters.length > 0 && (
@@ -794,7 +964,7 @@ const WorshipPage: React.FC = () => {
                 <div className="text-center text-xs font-bold text-gray-400 mb-3 tracking-widest">
                   {lang === 'fa' ? '🔤 فهرست الفبایی سرودها' : '🔤 ALPHABETICAL INDEX'}
                 </div>
-                
+
                 {/* لیست حروف */}
                 <div className="flex flex-wrap justify-center items-center gap-2">
                   {/* دکمه # برای جدیدترین */}
@@ -803,7 +973,7 @@ const WorshipPage: React.FC = () => {
                     className={`
                       relative px-4 py-2 rounded-xl font-black text-sm transition-all duration-200
                       ${activeLetterFilter === '#'
-                        ? 'bg-gradient-to-br from-yellow-500 to-orange-600 text-white scale-110 shadow-lg shadow-yellow-500/60 ring-2 ring-white/30' 
+                        ? 'bg-gradient-to-br from-yellow-500 to-orange-600 text-white scale-110 shadow-lg shadow-yellow-500/60 ring-2 ring-white/30'
                         : 'bg-gradient-to-br from-yellow-600/20 to-orange-600/20 text-yellow-400 hover:from-yellow-500/50 hover:to-orange-500/50 hover:text-white hover:scale-105 hover:shadow-md border border-yellow-500/30'
                       }
                     `}
@@ -819,12 +989,12 @@ const WorshipPage: React.FC = () => {
 
                   {/* خط جداکننده */}
                   <div className="w-px h-8 bg-purple-500/30"></div>
-                  
+
                   {/* حروف الفبا */}
                   {availableLetters.map((letter) => {
                     const count = groupedSongs[letter]?.length || 0;
                     const isActive = activeLetterFilter === letter;
-                    
+
                     return (
                       <button
                         key={letter}
@@ -832,7 +1002,7 @@ const WorshipPage: React.FC = () => {
                         className={`
                           relative px-3 py-2 rounded-xl font-black text-sm transition-all duration-200
                           ${isActive
-                            ? 'bg-gradient-to-br from-purple-500 to-pink-600 text-white scale-110 shadow-lg shadow-purple-500/60 ring-2 ring-white/30' 
+                            ? 'bg-gradient-to-br from-purple-500 to-pink-600 text-white scale-110 shadow-lg shadow-purple-500/60 ring-2 ring-white/30'
                             : 'bg-white/10 text-gray-300 hover:bg-gradient-to-br hover:from-purple-500/70 hover:to-pink-500/70 hover:text-white hover:scale-105 hover:shadow-md border border-purple-500/20'
                           }
                         `}
@@ -847,7 +1017,7 @@ const WorshipPage: React.FC = () => {
                       </button>
                     );
                   })}
-                  
+
                   {/* دکمه نمایش همه */}
                   {activeLetterFilter && (
                     <>
@@ -865,25 +1035,25 @@ const WorshipPage: React.FC = () => {
               </div>
             </div>
           )}
-            
-            {/* نمایش فیلتر فعال */}
-            {activeLetterFilter && (
-              <div className="mb-8 flex items-center justify-center gap-2">
-                <span className="text-gray-400">{lang === 'fa' ? 'فیلتر:' : 'Filter:'}</span>
-                <span className="bg-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl">
-                  {activeLetterFilter === '#' 
-                    ? (lang === 'fa' ? '# جدیدترین‌ها' : '# Recent') 
-                    : activeLetterFilter
-                  }
-                </span>
-                <button
-                  onClick={() => setActiveLetterFilter(null)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm"
-                >
-                  ✕ {lang === 'fa' ? 'حذف فیلتر' : 'Clear'}
-                </button>
-              </div>
-            )}
+
+          {/* نمایش فیلتر فعال */}
+          {activeLetterFilter && (
+            <div className="mb-8 flex items-center justify-center gap-2">
+              <span className="text-gray-400">{lang === 'fa' ? 'فیلتر:' : 'Filter:'}</span>
+              <span className="bg-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl">
+                {activeLetterFilter === '#'
+                  ? (lang === 'fa' ? '# جدیدترین‌ها' : '# Recent')
+                  : activeLetterFilter
+                }
+              </span>
+              <button
+                onClick={() => setActiveLetterFilter(null)}
+                className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm"
+              >
+                ✕ {lang === 'fa' ? 'حذف فیلتر' : 'Clear'}
+              </button>
+            </div>
+          )}
 
           <div id="songs-container" className="pb-12">
             {isLoading ? (
@@ -894,13 +1064,13 @@ const WorshipPage: React.FC = () => {
               <div className="text-center py-20">
                 <div className="text-6xl mb-4">🎵</div>
                 <h2 className="text-2xl font-bold mb-2 text-white">
-                  {activeLetterFilter 
+                  {activeLetterFilter
                     ? (lang === 'fa' ? `سرودی با حرف "${activeLetterFilter}" یافت نشد` : `No songs starting with "${activeLetterFilter}"`)
                     : (lang === 'fa' ? 'هنوز سرودی اضافه نشده است' : 'No songs yet')
                   }
                 </h2>
                 <p className="text-gray-400">
-                  {activeLetterFilter 
+                  {activeLetterFilter
                     ? (lang === 'fa' ? 'حرف دیگری را انتخاب کنید' : 'Try another letter')
                     : (lang === 'fa' ? 'لطفاً صبر کنید یا با مدیر تماس بگیرید' : 'Please wait or contact admin')
                   }
@@ -929,12 +1099,12 @@ const WorshipPage: React.FC = () => {
                         {recentSongs.length} {lang === 'fa' ? 'سرود' : 'songs'}
                       </span>
                     </div>
-                    
+
                     {/* Songs Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                       {recentSongs.map((song, i) => (
                         <div key={song.id || i} className="relative">
-                          <WorshipSongCard song={song} onClick={() => setActiveSong(song)} />
+                          <WorshipSongCard song={song} onClick={() => setActiveSong(song)} onKaraoke={() => { setKaraokeSong(song); setShowKaraokeMode(true); }} />
                           {/* NEW Badge */}
                           <div className="absolute -top-2 -right-2 bg-gradient-to-br from-red-500 to-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-bounce">
                             🆕 {lang === 'fa' ? 'جدید' : 'NEW'}
@@ -970,11 +1140,11 @@ const WorshipPage: React.FC = () => {
                           {groupedSongs[letter].length} {lang === 'fa' ? 'سرود' : 'songs'}
                         </span>
                       </div>
-                      
+
                       {/* Songs Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {groupedSongs[letter].map((song, i) => (
-                          <WorshipSongCard key={song.id || i} song={song} onClick={() => setActiveSong(song)} />
+                          <WorshipSongCard key={song.id || i} song={song} onClick={() => setActiveSong(song)} onKaraoke={() => { setKaraokeSong(song); setShowKaraokeMode(true); }} />
                         ))}
                       </div>
                     </div>
@@ -986,7 +1156,7 @@ const WorshipPage: React.FC = () => {
           {/* Popup Modal for Song Details */}
           {activeSong && (
             <ModalPortal>
-              <div 
+              <div
                 className="fixed inset-0 bg-black/95 backdrop-blur-md z-[99999] flex items-center justify-center p-4"
                 style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
                 onClick={(e) => {
@@ -996,7 +1166,7 @@ const WorshipPage: React.FC = () => {
                   }
                 }}
               >
-                <div 
+                <div
                   className="bg-gradient-to-br from-gray-900 via-purple-900/30 to-gray-900 border-2 border-purple-500/50 rounded-2xl p-8 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -1009,7 +1179,7 @@ const WorshipPage: React.FC = () => {
                           const btn = document.activeElement as HTMLButtonElement;
                           btn.disabled = true;
                           btn.innerHTML = '⏳';
-                          
+
                           const response = await fetch(`/api/timing/generate/${activeSong.id}`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -1020,9 +1190,9 @@ const WorshipPage: React.FC = () => {
                               duration: 180
                             })
                           });
-                          
+
                           const data = await response.json();
-                          
+
                           if (data.success) {
                             alert(lang === 'fa' ? '✅ Timing ساخته شد! صفحه رفرش میشه...' : '✅ Timing generated! Refreshing...');
                             window.location.reload();
@@ -1041,7 +1211,7 @@ const WorshipPage: React.FC = () => {
                     >
                       🎵
                     </button>
-                    
+
                     {/* دکمه فرستادن به صفحه دوم */}
                     <button
                       onClick={() => {
@@ -1053,7 +1223,7 @@ const WorshipPage: React.FC = () => {
                     >
                       📺
                     </button>
-                    
+
                     {/* دکمه بستن */}
                     <button
                       onClick={() => {
@@ -1068,192 +1238,213 @@ const WorshipPage: React.FC = () => {
 
                   <h2 className="text-4xl font-bold mb-3 text-center text-white drop-shadow-lg">{activeSong.title?.[lang]}</h2>
                   <p className="text-gray-300 text-lg text-center mb-4">{activeSong.artist}</p>
-                {/* chord/mode badges if provided */}
-                {(activeSong as any)?.chord || (activeSong as any)?.mode ? (
-                  <div className="flex items-center justify-center gap-3 mb-4 text-sm">
-                    {(activeSong as any)?.chord && (
-                      <span className="bg-gray-800 text-gray-200 px-3 py-1 rounded-full">🎸 {lang === 'fa' ? 'آکورد' : 'Chord'}: {(activeSong as any).chord}</span>
-                    )}
-                    {(activeSong as any)?.mode && (
-                      <span className="bg-gray-800 text-gray-200 px-3 py-1 rounded-full">🎼 {lang === 'fa' ? 'مد' : 'Mode'}: {(activeSong as any).mode}</span>
-                    )}
-                  </div>
-                ) : null}
-
-                {/* پخش ویدیو یا صدا */}
-                <div className="mb-6">
-                  {/* اولویت با پلیر صوتی + متن هایلایت شده */}
-                  {activeSong.audioUrl ? (
-                    <>
-                      <UniversalAudioPlayer
-                        audioUrl={activeSong.audioUrl}
-                        lyrics={filterLyrics(activeSong.lyrics?.fa || activeSong.lyrics?.en || '')}
-                        timingPath={`/worship/data/timings/song_${activeSong.id}_timing.json`}
-                        lang={lang}
-                        title={activeSong.title?.[lang]}
-                        artist={activeSong.artist}
-                        autoLoadTiming={true}
-                        enableManualSync={isAdminOrLeader}
-                        showTimingControls={isAdminOrLeader}
-                      />
-                      {/* لینک یوتیوب اگر موجود باشد */}
-                      {activeSong.youtubeId && (
-                        <div className="mt-4 text-center">
-                          <a
-                            href={`https://www.youtube.com/watch?v=${activeSong.youtubeId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold"
-                          >
-                            🎥 {lang === 'fa' ? 'مشاهده ویدیو در یوتیوب' : 'Watch on YouTube'}
-                          </a>
-                        </div>
+                  {/* chord/mode badges if provided */}
+                  {(activeSong as any)?.chord || (activeSong as any)?.mode ? (
+                    <div className="flex items-center justify-center gap-3 mb-4 text-sm">
+                      {(activeSong as any)?.chord && (
+                        <span className="bg-gray-800 text-gray-200 px-3 py-1 rounded-full">🎸 {lang === 'fa' ? 'آکورد' : 'Chord'}: {(activeSong as any).chord}</span>
                       )}
-                      {/* نمایش آکوردها و نوت‌ها زیر پلیر */}
-                      <div className="mt-6">
-                        <ChordLyricsDisplay
-                          lyrics={activeSong.lyrics?.[lang]}
-                          chords={(activeSong as any)?.chords}
-                          notation={activeSong.notation}
-                          lang={lang}
-                          showChords={true}
-                        />
-                      </div>
-                    </>
-                  ) : activeSong.youtubeId ? (
-                    <>
-                      {/* YouTube Embed Player */}
-                      <div className="bg-black/40 rounded-lg p-4 border border-red-500/30 mb-6">
-                        <div className="aspect-video mb-4">
-                          <iframe
-                            className="w-full h-full rounded-lg"
-                            src={`https://www.youtube.com/embed/${activeSong.youtubeId}?autoplay=0&rel=0`}
-                            title={activeSong.title?.[lang]}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          ></iframe>
-                        </div>
-                        <div className="text-center">
-                          <a
-                            href={`https://www.youtube.com/watch?v=${activeSong.youtubeId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-sm"
-                          >
-                            <Youtube size={20} />
-                            {lang === 'fa' ? 'باز کردن در یوتیوب' : 'Open in YouTube'}
-                          </a>
-                        </div>
-                      </div>
-                      {/* نمایش آکوردها و متن */}
-                      <div className="mt-6">
-                        <ChordLyricsDisplay
-                          lyrics={activeSong.lyrics?.[lang]}
-                          chords={(activeSong as any)?.chords}
-                          notation={activeSong.notation}
-                          lang={lang}
-                          showChords={true}
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <p className="text-center text-gray-500">{t('noMedia')}</p>
-                  )}
-                </div>
+                      {(activeSong as any)?.mode && (
+                        <span className="bg-gray-800 text-gray-200 px-3 py-1 rounded-full">🎼 {lang === 'fa' ? 'مد' : 'Mode'}: {(activeSong as any).mode}</span>
+                      )}
+                    </div>
+                  ) : null}
 
-                {/* بخش دانلود فایل‌ها - فقط برای ADMIN/LEADER */}
-                {isAdminOrLeader && (
-                  <div className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto mb-6">
-                    {/* PPTX */}
-                    {activeSong.presentationFileUrl ? (
-                      <a href={activeSong.presentationFileUrl} download className="bg-green-600 py-2 rounded-lg text-center hover:bg-green-700">
-                        📑 {lang === 'fa' ? 'دانلود پاورپوینت' : 'Download PPT'}
-                      </a>
-                    ) : (
-                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                        📑 {lang === 'fa' ? 'پاورپوینت موجود نیست' : 'No PowerPoint'}
-                      </button>
-                    )}
-                    {/* PDF */}
-                    {activeSong.pdfFileUrl ? (
-                      <a href={activeSong.pdfFileUrl} download className="bg-blue-600 py-2 rounded-lg text-center hover:bg-blue-700">
-                        <FileText className="inline mr-1" /> {lang === 'fa' ? 'دانلود PDF' : 'Download PDF'}
-                      </a>
-                    ) : (
-                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                        <FileText className="inline mr-1" /> {lang === 'fa' ? 'PDF موجود نیست' : 'No PDF'}
-                      </button>
-                    )}
-                    {/* Sheet */}
-                    {activeSong.sheetMusicUrl ? (
-                      <a href={activeSong.sheetMusicUrl} download className="bg-purple-600 py-2 rounded-lg text-center hover:bg-purple-700">
-                        <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'دانلود نت' : 'Download Sheet'}
-                      </a>
-                    ) : (
-                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                        <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'نت موجود نیست' : 'No Sheet'}
-                      </button>
-                    )}
-                    {/* MP3 */}
+                  {/* پخش ویدیو یا صدا */}
+                  <div className="mb-6">
+                    {/* اولویت با پلیر صوتی + متن هایلایت شده با قابلیت‌های حرفه‌ای */}
                     {activeSong.audioUrl ? (
-                      <a href={activeSong.audioUrl} download className="bg-teal-600 py-2 rounded-lg text-center hover:bg-teal-700">
-                        🎵 {lang === 'fa' ? 'دانلود MP3' : 'Download MP3'}
-                      </a>
+                      <>
+                        <LocalAudioPlayerWithSyncedLyrics
+                          audioUrl={activeSong.audioUrl}
+                          lyrics={filterLyrics(activeSong.lyrics?.fa || activeSong.lyrics?.en || '')}
+                          originalLyricsWithChords={activeSong.lyrics?.fa || activeSong.lyrics?.en || ''}
+                          songId={activeSong.id}
+                          lang={lang}
+                          title={activeSong.title?.[lang]}
+                          artist={activeSong.artist}
+                          showChords={false}
+                          youtubeId={activeSong.youtubeId}
+                          onClose={() => setActiveSong(null)}
+                        />
+                        {/* نمایش آکوردها و نوت‌ها زیر پلیر */}
+                        <div className="mt-6">
+                          <ChordLyricsDisplay
+                            lyrics={activeSong.lyrics?.[lang]}
+                            chords={(activeSong as any)?.chords}
+                            notation={activeSong.notation}
+                            lang={lang}
+                            showChords={true}
+                          />
+                        </div>
+                      </>
+                    ) : activeSong.youtubeId ? (
+                      <>
+                        {/* YouTube Embed Player */}
+                        <div className="bg-black/40 rounded-lg p-4 border border-red-500/30 mb-6">
+                          <div className="aspect-video mb-4">
+                            <iframe
+                              className="w-full h-full rounded-lg"
+                              src={`https://www.youtube.com/embed/${activeSong.youtubeId}?autoplay=0&rel=0`}
+                              title={activeSong.title?.[lang]}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                          <div className="text-center">
+                            <a
+                              href={`https://www.youtube.com/watch?v=${activeSong.youtubeId}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-sm"
+                            >
+                              <Youtube size={20} />
+                              {lang === 'fa' ? 'باز کردن در یوتیوب' : 'Open in YouTube'}
+                            </a>
+                          </div>
+                        </div>
+                        {/* نمایش آکوردها و متن */}
+                        <div className="mt-6">
+                          <ChordLyricsDisplay
+                            lyrics={activeSong.lyrics?.[lang]}
+                            chords={(activeSong as any)?.chords}
+                            notation={activeSong.notation}
+                            lang={lang}
+                            showChords={true}
+                          />
+                        </div>
+                      </>
                     ) : (
-                      <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
-                        🎵 {lang === 'fa' ? 'فایل صوتی موجود نیست' : 'No MP3'}
-                      </button>
+                      <p className="text-center text-gray-500">{t('noMedia')}</p>
                     )}
                   </div>
-                )}
 
-                {/* شعر - فقط اگر آکورد و نوت جدا نباشند */}
-                {!((activeSong as any)?.chords || activeSong.notation) && activeSong.lyrics?.[lang] && (
+                  {/* بخش دانلود فایل‌ها - فقط برای ADMIN/LEADER */}
+                  {isAdminOrLeader && (
+                    <div className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto mb-6">
+                      {/* PPTX */}
+                      {activeSong.presentationFileUrl ? (
+                        <a href={activeSong.presentationFileUrl} download className="bg-green-600 py-2 rounded-lg text-center hover:bg-green-700">
+                          📑 {lang === 'fa' ? 'دانلود پاورپوینت' : 'Download PPT'}
+                        </a>
+                      ) : (
+                        <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                          📑 {lang === 'fa' ? 'پاورپوینت موجود نیست' : 'No PowerPoint'}
+                        </button>
+                      )}
+                      {/* PDF */}
+                      {activeSong.pdfFileUrl ? (
+                        <a href={activeSong.pdfFileUrl} download className="bg-blue-600 py-2 rounded-lg text-center hover:bg-blue-700">
+                          <FileText className="inline mr-1" /> {lang === 'fa' ? 'دانلود PDF' : 'Download PDF'}
+                        </a>
+                      ) : (
+                        <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                          <FileText className="inline mr-1" /> {lang === 'fa' ? 'PDF موجود نیست' : 'No PDF'}
+                        </button>
+                      )}
+                      {/* Sheet */}
+                      {activeSong.sheetMusicUrl ? (
+                        <a href={activeSong.sheetMusicUrl} download className="bg-purple-600 py-2 rounded-lg text-center hover:bg-purple-700">
+                          <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'دانلود نت' : 'Download Sheet'}
+                        </a>
+                      ) : (
+                        <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                          <FileMusic className="inline mr-1" /> {lang === 'fa' ? 'نت موجود نیست' : 'No Sheet'}
+                        </button>
+                      )}
+                      {/* MP3 */}
+                      {activeSong.audioUrl ? (
+                        <a href={activeSong.audioUrl} download className="bg-teal-600 py-2 rounded-lg text-center hover:bg-teal-700">
+                          🎵 {lang === 'fa' ? 'دانلود MP3' : 'Download MP3'}
+                        </a>
+                      ) : (
+                        <button disabled className="bg-gray-700/60 py-2 rounded-lg text-center cursor-not-allowed text-gray-300">
+                          🎵 {lang === 'fa' ? 'فایل صوتی موجود نیست' : 'No MP3'}
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* شعر - فقط اگر آکورد و نوت جدا نباشند */}
+                  {!((activeSong as any)?.chords || activeSong.notation) && activeSong.lyrics?.[lang] && (
+                    <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
+                      <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'متن سرود' : 'Lyrics'}</h3>
+                      <pre className="whitespace-pre-wrap text-gray-200 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                        {activeSong.lyrics[lang]}
+                      </pre>
+                    </div>
+                  )}
+
+                  {/* نوت موسیقی - حذف شد چون در ChordLyricsDisplay نمایش داده می‌شود */}
+
+                  {/* توضیحات - همیشه نمایش بده */}
                   <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
-                    <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'متن سرود' : 'Lyrics'}</h3>
-                    <pre className="whitespace-pre-wrap text-gray-200 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                      {activeSong.lyrics[lang]}
-                    </pre>
+                    <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'توضیحات' : 'Notes'}</h3>
+                    {activeSong.notes ? (
+                      <p className="text-gray-300 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                        {activeSong.notes}
+                      </p>
+                    ) : (
+                      <p className="text-center text-gray-400">{lang === 'fa' ? 'توضیحی ثبت نشده است' : 'No notes'}</p>
+                    )}
                   </div>
-                )}
 
-                {/* نوت موسیقی - حذف شد چون در ChordLyricsDisplay نمایش داده می‌شود */}
-
-                {/* توضیحات - همیشه نمایش بده */}
-                <div className="bg-black/40 border border-gray-700 rounded-xl p-4 mb-6">
-                  <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'توضیحات' : 'Notes'}</h3>
-                  {activeSong.notes ? (
-                    <p className="text-gray-300 text-center" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-                      {activeSong.notes}
-                    </p>
-                  ) : (
-                    <p className="text-center text-gray-400">{lang === 'fa' ? 'توضیحی ثبت نشده است' : 'No notes'}</p>
-                  )}
-                </div>
-
-                {/* فایل‌های ضمیمه - همیشه نمایش بده */}
-                <div className="bg-black/40 border border-gray-700 rounded-xl p-4">
-                  <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'فایل‌های ضمیمه' : 'Attachments'}</h3>
-                  {activeSong.attachments && activeSong.attachments.length > 0 ? (
-                    <ul className="list-disc pl-6 text-blue-400">
-                      {activeSong.attachments.map((a, i) => (
-                        <li key={i}>
-                          <a href={a.url || (a as any).path} target="_blank" rel="noopener noreferrer" download className="hover:text-blue-300">
-                            {a.name || a.url || (a as any).path}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-center text-gray-400">{lang === 'fa' ? 'فایلی موجود نیست' : 'No attachments'}</p>
-                  )}
+                  {/* فایل‌های ضمیمه - همیشه نمایش بده */}
+                  <div className="bg-black/40 border border-gray-700 rounded-xl p-4">
+                    <h3 className="text-xl font-semibold mb-2 text-center">{lang === 'fa' ? 'فایل‌های ضمیمه' : 'Attachments'}</h3>
+                    {activeSong.attachments && activeSong.attachments.length > 0 ? (
+                      <ul className="list-disc pl-6 text-blue-400">
+                        {activeSong.attachments.map((a, i) => (
+                          <li key={i}>
+                            <a href={a.url || (a as any).path} target="_blank" rel="noopener noreferrer" download className="hover:text-blue-300">
+                              {a.name || a.url || (a as any).path}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-center text-gray-400">{lang === 'fa' ? 'فایلی موجود نیست' : 'No attachments'}</p>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
             </ModalPortal>
           )}
         </>
+      )}
+
+      {/* Fullscreen Karaoke Mode Modal */}
+      {showKaraokeMode && karaokeSong && (
+        <div className="fixed inset-0 z-[99999] bg-black/95 overflow-auto">
+          {/* Close Button */}
+          <button
+            onClick={() => setShowKaraokeMode(false)}
+            className="fixed top-4 right-4 z-50 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white"
+            title={lang === 'fa' ? 'بستن' : 'Close'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          {/* Karaoke Player */}
+          <div className="flex items-center justify-center min-h-screen p-4">
+            <LocalAudioPlayerWithSyncedLyrics
+              audioUrl={karaokeSong.audioUrl || ''}
+              lyrics={karaokeSong.lyrics?.[lang] || karaokeSong.lyrics?.fa || ''}
+              originalLyricsWithChords={karaokeSong.lyrics?.fa || karaokeSong.lyrics?.[lang] || ''}
+              title={karaokeSong.title[lang]}
+              artist={karaokeSong.artist}
+              lang={lang}
+              songId={karaokeSong.id}
+              showChords={true}
+              youtubeId={(karaokeSong as any).youtubeId}
+              onClose={() => setShowKaraokeMode(false)}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

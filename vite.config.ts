@@ -36,7 +36,7 @@ export default defineConfig({
     root: 'frontend',
     build: {
         outDir: '../dist',
-        emptyOutDir: true,
+        emptyOutDir: false, // ✅ تغییر داده شد - دیگه فایل‌ها پاک نمیشن
         // 🚀 بهینه‌سازی برای موبایل - تقسیم کد به فایل‌های کوچکتر
         rollupOptions: {
             output: {

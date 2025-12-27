@@ -171,6 +171,13 @@ const VerseOfTheDayModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             role="dialog"
             aria-modal="true"
             aria-labelledby="verse-title"
+            style={{ touchAction: 'auto' }}
+            onClick={(e) => {
+                // Close modal when clicking on backdrop (not on content)
+                if (e.target === e.currentTarget) {
+                    onClose();
+                }
+            }}
         >
             <div className="relative transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale">
                 {verseEn && verseFa && !loading && !error && bookImage ? (

@@ -35,7 +35,10 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
-    "docker:restart": "docker-compose restart"
+    "docker:restart": "docker-compose restart",
+    "build:safe": "powershell -File scripts/build-tools.ps1 safe",
+    "build:backup": "powershell -File scripts/build-tools.ps1 backup",
+    "clean:artifacts": "powershell -File scripts/build-tools.ps1 clean"
   },
   "dependencies": {
     "@google/genai": "^1.29.1",

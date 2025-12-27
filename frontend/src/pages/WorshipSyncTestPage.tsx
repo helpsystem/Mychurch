@@ -8,7 +8,7 @@ const WorshipSyncTestPage: React.FC = () => {
   const { lang, t } = useLanguage();
   const { content, loading } = useContent();
   const songs = content.worshipSongs || [];
-  
+
   const [selectedSongIndex, setSelectedSongIndex] = useState(0);
 
   // فیلتر کردن سرودهایی که فایل صوتی دارند
@@ -55,8 +55,8 @@ const WorshipSyncTestPage: React.FC = () => {
             <Sparkles className="w-8 h-8 text-purple-400" />
           </div>
           <p className="text-xl text-gray-300">
-            {lang === 'fa' 
-              ? 'Gemini AI - سیستم کارائوکه هوشمند' 
+            {lang === 'fa'
+              ? 'Gemini AI - سیستم کارائوکه هوشمند'
               : 'Gemini AI - Smart Karaoke System'}
           </p>
         </div>
@@ -74,7 +74,7 @@ const WorshipSyncTestPage: React.FC = () => {
             >
               {lang === 'fa' ? '◀ قبلی' : '◀ Previous'}
             </button>
-            
+
             <select
               value={selectedSongIndex}
               onChange={(e) => setSelectedSongIndex(Number(e.target.value))}
@@ -98,8 +98,8 @@ const WorshipSyncTestPage: React.FC = () => {
           </div>
 
           <div className="mt-4 text-center text-gray-400 text-sm">
-            {lang === 'fa' 
-              ? `سرود ${selectedSongIndex + 1} از ${songsWithAudio.length}` 
+            {lang === 'fa'
+              ? `سرود ${selectedSongIndex + 1} از ${songsWithAudio.length}`
               : `Song ${selectedSongIndex + 1} of ${songsWithAudio.length}`}
           </div>
         </div>
@@ -122,22 +122,22 @@ const WorshipSyncTestPage: React.FC = () => {
           </h3>
           <ul className="space-y-2 text-gray-300" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
             <li>
-              {lang === 'fa' 
-                ? '1️⃣ دکمه "فعال‌سازی حالت Karaoke" را بزنید'
-                : '1️⃣ Click "Enable Karaoke Mode" button'}
+              {lang === 'fa'
+                ? '1️⃣ دکمه "فعال‌سازی حالت متن زنده" را بزنید'
+                : '1️⃣ Click "Enable Live Text Mode" button'}
             </li>
             <li>
-              {lang === 'fa' 
+              {lang === 'fa'
                 ? '2️⃣ Gemini AI صوت را تحلیل کرده و timing تولید می‌کند'
                 : '2️⃣ Gemini AI analyzes audio and generates timing'}
             </li>
             <li>
-              {lang === 'fa' 
+              {lang === 'fa'
                 ? '3️⃣ هر کلمه همزمان با صوت Highlight می‌شود'
                 : '3️⃣ Each word highlights in sync with audio'}
             </li>
             <li>
-              {lang === 'fa' 
+              {lang === 'fa'
                 ? '⚠️ توجه: هر بار تحلیل ممکن است 30-60 ثانیه طول بکشد'
                 : '⚠️ Note: Each analysis may take 30-60 seconds'}
             </li>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { 
-  Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, 
+import {
+  Play, Pause, Volume2, VolumeX, SkipBack, SkipForward,
   Download, Share2, Heart, Clock, Maximize2, Minimize2,
   MoreHorizontal, List
 } from 'lucide-react';
@@ -52,11 +52,12 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false); // Track if user clicked play
   const [playbackRate, setPlaybackRate] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showVolume, setShowVolume] = useState(false);
   const [showPlaylistPanel, setShowPlaylistPanel] = useState(false);
-  
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -134,6 +135,24 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
     }
   }, [autoPlay, item.id]);
 
+  // Sync with other players - when another player starts, stop this one
+  useEffect(() => {
+    const handleOtherPlayerStarted = (e: CustomEvent) => {
+      if (e.detail.playerId !== item.id && isPlaying) {
+        const media = mediaRef.current;
+        if (media) {
+          media.pause();
+          setIsPlaying(false);
+        }
+      }
+    };
+
+    window.addEventListener('audioPlayerStarted' as any, handleOtherPlayerStarted);
+    return () => {
+      window.removeEventListener('audioPlayerStarted' as any, handleOtherPlayerStarted);
+    };
+  }, [item.id, isPlaying]);
+
   const handlePlay = async () => {
     const media = mediaRef.current;
     if (!media) return;
@@ -143,11 +162,15 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
         media.pause();
         setIsPlaying(false);
       } else {
+        setHasUserInteracted(true);
+        // Notify other players to stop
+        window.dispatchEvent(new CustomEvent('audioPlayerStarted', { detail: { playerId: item.id } }));
         await media.play();
         setIsPlaying(true);
       }
     } catch (error) {
       console.error('Playback failed:', error);
+      setHasUserInteracted(false);
     }
   };
 
@@ -159,7 +182,7 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
     const rect = progressBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const newTime = (clickX / rect.width) * duration;
-    
+
     media.currentTime = newTime;
     setCurrentTime(newTime);
   };
@@ -266,7 +289,7 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
           <div className="hidden sm:flex items-center gap-2 text-xs">
             <span>{formatTime(currentTime)}</span>
             <div className="w-20 h-1 bg-gray-600 rounded-full">
-              <div 
+              <div
                 className="h-full bg-blue-gradient rounded-full transition-all duration-300"
                 style={{ width: `${progressPercent}%` }}
               />
@@ -277,12 +300,12 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
 
         {/* Mobile progress bar */}
         <div className="sm:hidden mt-2">
-          <div 
+          <div
             ref={progressRef}
             className="w-full h-1 bg-gray-600 rounded-full cursor-pointer"
             onClick={handleSeek}
           >
-            <div 
+            <div
               className="h-full bg-blue-gradient rounded-full transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
@@ -302,72 +325,48 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
   // Card mode for inline players
   if (mode === 'card') {
     return (
-      <div className={`bg-black-gradient rounded-[20px] p-6 text-white ${className}`}>
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className={`bg-black-gradient rounded-[20px] p-3 text-white ${className}`}>
+        <div className="flex flex-col sm:flex-row gap-2">
           {/* Media Info */}
           <div className="flex-1">
-            <h3 className="font-semibold text-lg mb-1">{item.title[lang]}</h3>
-            <p className="text-dimWhite text-sm mb-3">
+            <h3 className="font-semibold text-base mb-0.5">{item.title[lang]}</h3>
+            <p className="text-dimWhite text-xs mb-2">
               {item.artist || item.speaker}
             </p>
 
-            {/* Progress Bar */}
-            <div 
+            <div
               ref={progressRef}
-              className="w-full h-2 bg-gray-700 rounded-full cursor-pointer mb-3"
+              className="w-full h-1.5 bg-gray-700 rounded-full cursor-pointer mb-2"
               onClick={handleSeek}
             >
-              <div 
+              <div
                 className="h-full bg-blue-gradient rounded-full transition-all duration-300"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
 
             {/* Time Display */}
-            <div className="flex justify-between text-xs text-dimWhite mb-4">
+            <div className="flex justify-between text-xs text-dimWhite">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>
           </div>
 
-          {/* Controls */}
+          {/* Controls - RTL layout */}
           <div className="flex-shrink-0">
-            <div className="flex items-center gap-2 mb-4">
-              {/* Previous */}
-              {onPrevious && (
+            <div className="flex items-center gap-1 mb-2" dir="rtl">
+              {/* Next (right side for RTL) */}
+              {onNext && (
                 <button
-                  onClick={onPrevious}
+                  onClick={onNext}
                   className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                  title="بعدی"
                 >
-                  <SkipBack size={20} />
+                  <SkipForward size={20} />
                 </button>
               )}
 
-              {/* Skip Back */}
-              <button
-                onClick={() => skip(-10)}
-                className="p-2 hover:bg-white/10 rounded-full transition-colors"
-                title={`${t('skipBack')} 10s`}
-              >
-                <SkipBack size={16} />
-              </button>
-
-              {/* Play/Pause */}
-              <button
-                onClick={handlePlay}
-                className="w-12 h-12 bg-blue-gradient rounded-full flex items-center justify-center hover:scale-105 transition-transform"
-                disabled={isBuffering}
-              >
-                {isBuffering ? (
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                ) : isPlaying ? (
-                  <Pause size={24} />
-                ) : (
-                  <Play size={24} />
-                )}
-              </button>
-
-              {/* Skip Forward */}
+              {/* Skip Forward (+10s) */}
               <button
                 onClick={() => skip(10)}
                 className="p-2 hover:bg-white/10 rounded-full transition-colors"
@@ -376,16 +375,42 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
                 <SkipForward size={16} />
               </button>
 
-              {/* Next */}
-              {onNext && (
+              {/* Play/Pause */}
+              <button
+                onClick={handlePlay}
+                className="w-12 h-12 bg-blue-gradient rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+                disabled={hasUserInteracted && isBuffering}
+              >
+                {hasUserInteracted && isBuffering ? (
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                ) : isPlaying ? (
+                  <Pause size={24} />
+                ) : (
+                  <Play size={24} />
+                )}
+              </button>
+
+              {/* Skip Back (-10s) */}
+              <button
+                onClick={() => skip(-10)}
+                className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                title={`${t('skipBack')} 10s`}
+              >
+                <SkipBack size={16} />
+              </button>
+
+              {/* Previous (left side for RTL) */}
+              {onPrevious && (
                 <button
-                  onClick={onNext}
+                  onClick={onPrevious}
                   className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                  title="قبلی"
                 >
-                  <SkipForward size={20} />
+                  <SkipBack size={20} />
                 </button>
               )}
             </div>
+
 
             {/* Secondary Controls */}
             <div className="flex items-center gap-2 justify-center">
@@ -433,9 +458,8 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
               {/* Favorite */}
               <button
                 onClick={() => setIsFavorite(!isFavorite)}
-                className={`p-1 rounded transition-colors ${
-                  isFavorite ? 'text-red-400 hover:text-red-300' : 'hover:bg-white/10'
-                }`}
+                className={`p-1 rounded transition-colors ${isFavorite ? 'text-red-400 hover:text-red-300' : 'hover:bg-white/10'
+                  }`}
                 title={t('addToFavorites')}
               >
                 <Heart size={16} fill={isFavorite ? 'currentColor' : 'none'} />

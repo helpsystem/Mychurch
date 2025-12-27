@@ -156,11 +156,15 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 z-40"
                     onClick={closeMenu}
+                    style={{ touchAction: 'auto' }}
                 />
             )}
 
             {/* Mobile Menu Sidebar */}
-            <div className={`fixed inset-0 bg-primary z-50 p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : (lang === 'fa' ? 'translate-x-full' : '-translate-x-full')}`}>
+            <div 
+                className={`fixed inset-0 bg-primary z-50 p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : (lang === 'fa' ? 'translate-x-full' : '-translate-x-full')}`}
+                style={{ touchAction: isMenuOpen ? 'auto' : 'none', pointerEvents: isMenuOpen ? 'auto' : 'none' }}
+            >
                 <div className="flex justify-between items-center mb-8">
                     <Link to="/" onClick={closeMenu} className="flex items-center gap-3">
                         <img src={content.settings.logoUrl} alt="Church Logo" className="w-10 h-10" />

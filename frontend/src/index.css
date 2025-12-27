@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile Touch Fix - Critical for iOS and Android */
+html, body {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  overscroll-behavior: none;
+}
+
+/* Ensure all interactive elements are touchable */
+button, a, input, select, textarea, [role="button"], [tabindex] {
+  touch-action: manipulation;
+}
+
 /* Custom styles from index.html */
 body {
   background-color: #00040F; /* primary */
@@ -227,4 +240,36 @@ html[dir="rtl"] .rtl-position-helper {
   left: 0;
   padding-right: 0;
   padding-left: 0.75rem;
+}
+
+/* Mobile Touch Improvements */
+@media (max-width: 768px) {
+  /* Ensure all clickable elements have proper touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Fix iOS Safari scroll issues */
+  .overflow-y-auto, .overflow-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure modals and overlays are touchable */
+  .fixed.inset-0 {
+    touch-action: auto;
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* Fix for iOS where touch doesn't work properly */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure scrollable areas work on iOS */
+  [class*="overflow-y"], [class*="overflow-auto"] {
+    -webkit-overflow-scrolling: touch;
+  }
 }
