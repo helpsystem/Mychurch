@@ -9,7 +9,7 @@
   background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 50%, #0a0e1a 100%);
   overflow: hidden;
   z-index: 9999;
-  touch-action: none; /* Prevent touch interactions during loading */
+  cursor: pointer; /* Allow click/tap to skip */
 }
 
 /* Animated Background */

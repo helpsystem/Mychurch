@@ -12,6 +12,12 @@ const LoadingScreen: React.FC<Props> = ({ onFinished }) => {
     const [progress, setProgress] = useState(0);
     const [currentStep, setCurrentStep] = useState(0);
 
+    // 📱 Allow tap/click to skip loading
+    const handleSkip = () => {
+        sessionStorage.setItem('app_loaded', 'true');
+        onFinished();
+    };
+
     const loadingSteps = [
         { 
             en: "✝ Welcome to Iranian Christian Church of D.C. - Where Faith Meets Fellowship", 
@@ -58,7 +64,11 @@ const LoadingScreen: React.FC<Props> = ({ onFinished }) => {
     }, [onFinished, loadingSteps.length]);
 
     return (
-        <div className="loading-container-modern">
+        <div className="loading-container-modern" onClick={handleSkip} role="button" aria-label="Tap to skip loading">
+            {/* 📱 Tap anywhere to skip */}
+            <div className="absolute top-6 right-6 text-white/60 text-sm animate-pulse z-20">
+                {lang === 'fa' ? '👆 بزنید برای رد شدن' : '👆 Tap to skip'}
+            </div>
             {/* Animated Background */}
             <div className="loading-bg-animation">
                 <div className="loading-circle loading-circle-1"></div>

@@ -533,9 +533,8 @@
 
     /* --- END: Audio Player Styles --- */
     /* --- START: Initial Logo Loader (Premium) --- */
-    #root {
-      display: none;
-    }
+    /* 📱 Root is now shown by default for faster mobile loading */
+    /* The loader will overlay it until removed by JavaScript */
 
     #initial-loader {
       position: fixed;
@@ -996,12 +995,13 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
 
-  <!-- Initial Loader (Simple) -->
-  <div id="initial-loader"
-    style="position:fixed;inset:0;background:#00040F;display:flex;justify-content:center;align-items:center;z-index:9999;">
+  <!-- Initial Loader (Simple) - Mobile optimized with tap to skip -->
+  <div id="initial-loader" onclick="this.style.display='none';document.getElementById('root').style.display='block';"
+    style="position:fixed;inset:0;background:#00040F;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;cursor:pointer;">
     <div
       style="width:50px;height:50px;border:3px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:#00F6FF;animation:spin 1s ease-in-out infinite;">
     </div>
+    <p style="color:rgba(255,255,255,0.5);margin-top:20px;font-size:12px;">👆 Tap to skip</p>
   </div>
   <style>
     @keyframes spin {

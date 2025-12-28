@@ -151,7 +151,16 @@ function App() {
   const [showLoading, setShowLoading] = useState(() => {
     // Only show loader once per session
     if (typeof window !== 'undefined') {
-      return !sessionStorage.getItem('app_loaded');
+      // 📱 Skip loader completely on mobile for faster experience
+      const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const alreadyLoaded = sessionStorage.getItem('app_loaded');
+      
+      // On mobile: skip loader entirely OR if already loaded this session
+      if (isMobile || alreadyLoaded) {
+        sessionStorage.setItem('app_loaded', 'true');
+        return false;
+      }
+      return true;
     }
     return true;
   });
@@ -163,23 +172,34 @@ function App() {
     const handleOpenVerseModal = () => setShowVerseModal(true);
     window.addEventListener('openVerseModal', handleOpenVerseModal);
 
-    // 🚀 کاهش زمان بارگذاری از 2.5 به 1.5 ثانیه
+    // 🚀 Show verse modal after a short delay (only if loading was skipped)
+    if (!showLoading) {
+      const verseTimer = setTimeout(() => {
+        setShowVerseModal(true);
+      }, 500);
+      return () => {
+        clearTimeout(verseTimer);
+        window.removeEventListener('openVerseModal', handleOpenVerseModal);
+      };
+    }
+
+    // 🚀 کاهش زمان بارگذاری از 1.5 به 1 ثانیه
     const timer = setTimeout(() => {
       setShowLoading(false);
       sessionStorage.setItem('app_loaded', 'true');
       // Show verse modal right after loading finishes
       const verseTimer = setTimeout(() => {
         setShowVerseModal(true);
-      }, 1000); // 🚀 تأخیر بیشتر برای نمایش مودال (1 ثانیه)
+      }, 500); // 🚀 تأخیر کمتر برای نمایش مودال
 
       return () => clearTimeout(verseTimer);
-    }, 1500); // 🚀 زمان لودینگ بهینه‌شده
+    }, 1000); // 🚀 زمان لودینگ کاهش یافت به 1 ثانیه
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('openVerseModal', handleOpenVerseModal);
     };
-  }, []);
+  }, [showLoading]);
 
   if (showLoading) {
     return <LoadingScreen onFinished={() => setShowLoading(false)} />;
