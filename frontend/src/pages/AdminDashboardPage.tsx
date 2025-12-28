@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
-import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail, Zap, Video } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail, Zap, Video, RefreshCw } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTour } from '../hooks/useTour';
@@ -50,7 +50,19 @@ const AdminDashboardPage: React.FC = () => {
     const [view, setView] = useState('dashboard');
     const [showTourPrompt, setShowTourPrompt] = useState(false);
     const [openMenu, setOpenMenu] = useState<string | null>('coreContent');
+    const [simulatedRole, setSimulatedRole] = useState<string | null>(null);
     const navigate = useNavigate();
+
+    // Role options for SUPER_ADMIN to simulate
+    const roleOptions = [
+        { value: 'USER', label: lang === 'fa' ? '👤 کاربر عادی' : '👤 Regular User', labelShort: lang === 'fa' ? 'کاربر' : 'User' },
+        { value: 'LEADER', label: lang === 'fa' ? '📢 رهبر' : '📢 Leader', labelShort: lang === 'fa' ? 'رهبر' : 'Leader' },
+        { value: 'WORSHIP_LEADER', label: lang === 'fa' ? '🎵 رهبر پرستش' : '🎵 Worship Leader', labelShort: lang === 'fa' ? 'رهبر پرستش' : 'Worship Leader' },
+        { value: 'MANAGER', label: lang === 'fa' ? '⚙️ مدیر سایت' : '⚙️ Site Manager', labelShort: lang === 'fa' ? 'مدیر' : 'Manager' },
+    ];
+
+    // Effective role: simulated role (for SUPER_ADMIN testing) or actual user role
+    const effectiveRole = simulatedRole || user?.role || '';
 
     useEffect(() => {
         const hasSeenTour = localStorage.getItem('hasSeenAdminTour');
@@ -115,37 +127,37 @@ const AdminDashboardPage: React.FC = () => {
 
     const menuItems = {
         coreContent: [
-            { id: 'dashboard', label: t('dashboard'), icon: <LayoutDashboard />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'pages', label: t('pages'), icon: <FileText />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'content', label: t('footerLinkContent'), icon: <Settings />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music />, roles: ['MANAGER', 'SUPER_ADMIN'] },
+            { id: 'dashboard', label: t('dashboard'), icon: <LayoutDashboard />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER', 'WORSHIP_LEADER'] },
+            { id: 'pages', label: t('pages'), icon: <FileText />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
+            { id: 'content', label: t('footerLinkContent'), icon: <Settings />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
+            { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'] },
             { id: 'sermons', label: lang === 'fa' ? 'مدیریت جلسات آنلاین' : 'Online Services', icon: <Video />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'worship-health', label: lang === 'fa' ? '📊 وضعیت سرودها' : '📊 Songs Health', icon: <BarChart2 />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'], externalLink: '/#/admin/worship-health' },
-            { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare />, roles: ['MANAGER', 'SUPER_ADMIN'] },
+            { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'letters', label: t('navLetters'), icon: <Mail />, roles: ['SUPER_ADMIN'] },
-            { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle />, roles: ['SUPER_ADMIN', 'MANAGER'] },
-            { id: 'daily-messages', label: lang === 'fa' ? 'پیام‌های روزانه' : 'Daily Messages', icon: <Send />, roles: ['SUPER_ADMIN', 'MANAGER'], externalLink: '/daily-messages' },
-            { id: 'analytics', label: 'آمار و گزارش‌گیری', icon: <BarChart2 />, roles: ['SUPER_ADMIN', 'MANAGER'] },
-            { id: 'message-history', label: 'تاریخچه پیام‌ها', icon: <History />, roles: ['SUPER_ADMIN', 'MANAGER'] },
-            { id: 'bible', label: t('navBible'), icon: <BookOpen />, roles: ['SUPER_ADMIN'] },
+            { id: 'announcements', label: 'اطلاعیه‌ها', icon: <MessageCircle />, roles: ['SUPER_ADMIN', 'MANAGER', 'LEADER'] },
+            { id: 'daily-messages', label: lang === 'fa' ? 'پیام‌های روزانه' : 'Daily Messages', icon: <Send />, roles: ['SUPER_ADMIN', 'MANAGER', 'LEADER'], externalLink: '/daily-messages' },
+            { id: 'analytics', label: 'آمار و گزارش‌گیری', icon: <BarChart2 />, roles: ['SUPER_ADMIN', 'MANAGER', 'LEADER', 'WORSHIP_LEADER'] },
+            { id: 'message-history', label: 'تاریخچه پیام‌ها', icon: <History />, roles: ['SUPER_ADMIN', 'MANAGER', 'LEADER'] },
+            { id: 'bible', label: t('navBible'), icon: <BookOpen />, roles: ['SUPER_ADMIN', 'LEADER'] },
         ],
         fileManager: [
-            { id: 'galleries', label: t('galleries'), icon: <ImageIcon />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'image-manager', label: 'تصاویر سایت', icon: <Folder />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'file-manager', label: t('adminMenuFileManager'), icon: <ImageUp />, roles: ['MANAGER', 'SUPER_ADMIN'] },
-            { id: 'image-studio', label: t('imageStudio'), icon: <Wand2 />, roles: ['MANAGER', 'SUPER_ADMIN'] },
+            { id: 'galleries', label: t('galleries'), icon: <ImageIcon />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER', 'WORSHIP_LEADER'] },
+            { id: 'image-manager', label: 'تصاویر سایت', icon: <Folder />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
+            { id: 'file-manager', label: t('adminMenuFileManager'), icon: <ImageUp />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
+            { id: 'image-studio', label: t('imageStudio'), icon: <Wand2 />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
         ],
         siteAdmin: [
             { id: 'users', label: t('user'), icon: <Users />, roles: ['SUPER_ADMIN'] },
-            { id: 'communications', label: t('communications'), icon: <Send />, roles: ['SUPER_ADMIN', 'MANAGER'] },
-            { id: 'notifications', label: t('pushNotifications'), icon: <MessageCircle />, roles: ['SUPER_ADMIN'] },
+            { id: 'communications', label: t('communications'), icon: <Send />, roles: ['SUPER_ADMIN', 'MANAGER', 'LEADER'] },
+            { id: 'notifications', label: t('pushNotifications'), icon: <MessageCircle />, roles: ['SUPER_ADMIN', 'MANAGER'] },
             { id: 'automations', label: lang === 'fa' ? 'اتوماسیون n8n' : 'n8n Automations', icon: <Zap />, roles: ['SUPER_ADMIN'], externalLink: '/admin/automations' },
             { id: 'settings', label: t('siteSettings'), icon: <SlidersHorizontal />, roles: ['SUPER_ADMIN'] },
             { id: 'storage', label: t('storage'), icon: <HardDrive />, roles: ['SUPER_ADMIN'] },
             { id: 'database', label: t('dbUpdatesTitle'), icon: <DatabaseZap />, roles: ['SUPER_ADMIN'] },
             { id: 'api', label: t('apiConfiguration'), icon: <Globe />, roles: ['SUPER_ADMIN'] },
             { id: 'backup', label: t('backupExport'), icon: <Download />, roles: ['SUPER_ADMIN'] },
-            { id: 'fileshare', label: t('navFileShare'), icon: <Share2 />, roles: ['MANAGER', 'SUPER_ADMIN'], externalLink: 'https://hidrive.ionos.com/upl/IzAt51PFG' }
+            { id: 'fileshare', label: t('navFileShare'), icon: <Share2 />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'], externalLink: 'https://hidrive.ionos.com/upl/IzAt51PFG' }
         ]
     };
 
@@ -178,7 +190,7 @@ const AdminDashboardPage: React.FC = () => {
                 default: return <DashboardView />;
             }
         })();
-        
+
         return (
             <Suspense fallback={<AdminLoadingSpinner />}>
                 {viewComponent}
@@ -248,24 +260,58 @@ const AdminDashboardPage: React.FC = () => {
                                 <span>{t('adminMenuCoreContent')}</span>
                                 {openMenu === 'coreContent' ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                             </button>
-                            {openMenu === 'coreContent' && <ul className="pl-2 mt-1 space-y-1">{menuItems.coreContent.filter(item => user && item.roles.includes(user.role)).map(renderMenuItem)}</ul>}
+                            {openMenu === 'coreContent' && <ul className="pl-2 mt-1 space-y-1">{menuItems.coreContent.filter(item => effectiveRole && item.roles.includes(effectiveRole)).map(renderMenuItem)}</ul>}
                         </li>
                         <li>
                             <button onClick={() => toggleMenu('fileManager')} className="w-full flex justify-between items-center text-left text-sm font-semibold text-gray-400 uppercase tracking-wider p-2">
                                 <span>{t('adminMenuFileManager')}</span>
                                 {openMenu === 'fileManager' ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                             </button>
-                            {openMenu === 'fileManager' && <ul className="pl-2 mt-1 space-y-1">{menuItems.fileManager.filter(item => user && item.roles.includes(user.role)).map(renderMenuItem)}</ul>}
+                            {openMenu === 'fileManager' && <ul className="pl-2 mt-1 space-y-1">{menuItems.fileManager.filter(item => effectiveRole && item.roles.includes(effectiveRole)).map(renderMenuItem)}</ul>}
                         </li>
                         <li>
                             <button onClick={() => toggleMenu('siteAdmin')} className="w-full flex justify-between items-center text-left text-sm font-semibold text-gray-400 uppercase tracking-wider p-2">
                                 <span>{t('adminMenuSiteAdmin')}</span>
                                 {openMenu === 'siteAdmin' ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                             </button>
-                            {openMenu === 'siteAdmin' && <ul className="pl-2 mt-1 space-y-1">{menuItems.siteAdmin.filter(item => user && item.roles.includes(user.role)).map(renderMenuItem)}</ul>}
+                            {openMenu === 'siteAdmin' && <ul className="pl-2 mt-1 space-y-1">{menuItems.siteAdmin.filter(item => effectiveRole && item.roles.includes(effectiveRole)).map(renderMenuItem)}</ul>}
                         </li>
                     </ul>
                 </nav>
+
+                {/* Role Switcher - Only for SUPER_ADMIN */}
+                {user?.role === 'SUPER_ADMIN' && (
+                    <div className="border-t border-gray-700 pt-4 mt-2">
+                        <div className="px-2 mb-2">
+                            <label className="text-xs text-gray-400 block mb-1">
+                                {lang === 'fa' ? '🔄 مشاهده به عنوان:' : '🔄 View as:'}
+                            </label>
+                            <select
+                                value={simulatedRole || ''}
+                                onChange={(e) => setSimulatedRole(e.target.value || null)}
+                                className="w-full bg-gray-800 text-white text-sm rounded-lg px-3 py-2 border border-gray-700 focus:border-blue-500 focus:outline-none"
+                            >
+                                <option value="">
+                                    {lang === 'fa' ? '👑 مدیر ارشد (نقش واقعی)' : '👑 Super Admin (Real Role)'}
+                                </option>
+                                {roleOptions.map(role => (
+                                    <option key={role.value} value={role.value}>
+                                        {role.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        {simulatedRole && (
+                            <button
+                                onClick={() => setSimulatedRole(null)}
+                                className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm bg-yellow-600/20 text-yellow-400 rounded-lg hover:bg-yellow-600/30 transition"
+                            >
+                                <RefreshCw size={14} />
+                                {lang === 'fa' ? 'بازگشت به نقش واقعی' : 'Return to Real Role'}
+                            </button>
+                        )}
+                    </div>
+                )}
                 <div className="border-t border-gray-700 pt-4 mt-2">
                     <button onClick={handleStartTour} className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors text-dimWhite hover:bg-gray-800 hover:text-white">
                         <HelpCircle />
@@ -283,6 +329,26 @@ const AdminDashboardPage: React.FC = () => {
             </aside>
 
             <main className="flex-1 overflow-y-auto p-8">
+                {/* Simulated Role Warning Banner */}
+                {simulatedRole && user?.role === 'SUPER_ADMIN' && (
+                    <div className="mb-4 p-3 bg-yellow-600/20 border border-yellow-500/30 rounded-lg flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-yellow-400">
+                            <Eye size={18} />
+                            <span>
+                                {lang === 'fa'
+                                    ? `در حال مشاهده به عنوان: ${roleOptions.find(r => r.value === simulatedRole)?.labelShort || simulatedRole}`
+                                    : `Viewing as: ${roleOptions.find(r => r.value === simulatedRole)?.labelShort || simulatedRole}`
+                                }
+                            </span>
+                        </div>
+                        <button
+                            onClick={() => setSimulatedRole(null)}
+                            className="text-sm text-yellow-400 hover:text-yellow-300 underline"
+                        >
+                            {lang === 'fa' ? 'بازگشت' : 'Exit'}
+                        </button>
+                    </div>
+                )}
                 {renderView()}
             </main>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
-import WorshipAudioSync from '../src/components/WorshipAudioSync';
+import WorshipAudioSync from '../components/WorshipAudioSync';
 import { Music, Sparkles } from 'lucide-react';
 
 const WorshipSyncTestPage: React.FC = () => {

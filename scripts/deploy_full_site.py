@@ -26,6 +26,20 @@ LOCAL_DIST = os.path.join(
 # مسیر روی سرور (مسیر اصلی سایت)
 REMOTE_BASE = "/var/www/html"
 
+# پوشه‌هایی که نباید آپلود شوند (فایل‌های صوتی روی سرور خارجی هستند)
+EXCLUDE_FOLDERS = [
+    "worship/audio",
+    "worship\\audio",
+]
+
+def should_skip_path(local_path, base_local_dir):
+    """بررسی اینکه آیا این مسیر باید skip شود"""
+    rel_path = os.path.relpath(local_path, base_local_dir)
+    for exclude in EXCLUDE_FOLDERS:
+        if rel_path.startswith(exclude) or exclude in rel_path:
+            return True
+    return False
+
 def ensure_remote_directory(sftp, remote_path):
     """ایجاد پوشه به صورت بازگشتی"""
     try:
@@ -42,12 +56,22 @@ def ensure_remote_directory(sftp, remote_path):
 def upload_directory(sftp, local_dir, remote_dir, base_local_dir):
     """آپلود یک پوشه به صورت بازگشتی"""
     
+    # بررسی skip شدن پوشه
+    if should_skip_path(local_dir, base_local_dir):
+        rel_path = os.path.relpath(local_dir, base_local_dir)
+        print(f"   ⏭️  Skip: {rel_path} (فایل‌های صوتی روی سرور خارجی)")
+        return
+    
     # ایجاد پوشه روی سرور
     ensure_remote_directory(sftp, remote_dir)
     
     for item in os.listdir(local_dir):
         local_path = os.path.join(local_dir, item)
         remote_path = os.path.join(remote_dir, item).replace('\\', '/')
+        
+        # skip کردن فایل‌های exclude شده
+        if should_skip_path(local_path, base_local_dir):
+            continue
         
         if os.path.isfile(local_path):
             # آپلود فایل

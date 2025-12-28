@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import BibleAudioSync from '../src/components/BibleAudioSync';
+import { BibleAudioSync } from '../components/BibleAudioSync';
 import { BookOpen, Sparkles } from 'lucide-react';
 
 // نمونه داده برای تست - داده‌های واقعی از کتاب مقدس

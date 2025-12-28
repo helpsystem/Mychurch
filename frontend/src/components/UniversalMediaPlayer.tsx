@@ -48,6 +48,29 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
   const { lang, t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+
+  // Process audio URL for Persian filenames
+  const processAudioUrl = (url: string): string => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      try {
+        const urlObj = new URL(url);
+        const encodedPath = urlObj.pathname.split('/').map(segment =>
+          encodeURIComponent(decodeURIComponent(segment))
+        ).join('/');
+        return `${urlObj.origin}${encodedPath}${urlObj.search}`;
+      } catch {
+        return url;
+      }
+    }
+    if (url.startsWith('/')) {
+      const segments = url.split('/');
+      return segments.map(segment =>
+        segment ? encodeURIComponent(decodeURIComponent(segment)) : segment
+      ).join('/');
+    }
+    return url;
+  };
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
@@ -64,7 +87,8 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
 
   // Media type detection
   const isVideo = Boolean(item.videoUrl);
-  const mediaUrl = isVideo ? item.videoUrl : item.audioUrl;
+  const rawMediaUrl = isVideo ? item.videoUrl : item.audioUrl;
+  const mediaUrl = rawMediaUrl ? processAudioUrl(rawMediaUrl) : undefined;
   const mediaRef = isVideo ? videoRef : audioRef;
 
   useEffect(() => {
@@ -155,7 +179,22 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
 
   const handlePlay = async () => {
     const media = mediaRef.current;
-    if (!media) return;
+    if (!media) {
+      console.error('🔴 UniversalMediaPlayer: mediaRef.current is null');
+      return;
+    }
+    
+    if (!mediaUrl) {
+      console.error('🔴 UniversalMediaPlayer: No mediaUrl provided');
+      return;
+    }
+
+    console.log('🎵 UniversalMediaPlayer: handlePlay called', {
+      mediaUrl,
+      currentSrc: media.src,
+      readyState: media.readyState,
+      paused: media.paused
+    });
 
     try {
       if (isPlaying) {

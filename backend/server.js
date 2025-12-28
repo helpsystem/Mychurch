@@ -244,7 +244,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // Serve worship audio and timing files
+// Try public folder first (development), then dist folder (production)
 app.use('/worship', express.static(path.join(__dirname, '../public/worship')));
+app.use('/worship', express.static(path.join(__dirname, '../dist/worship')));
 
 // ---------- FTP CONFIG ----------
 const ftpConfig = {

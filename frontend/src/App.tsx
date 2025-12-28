@@ -102,6 +102,7 @@ const BibleAudioYouVersionTestPage = lazy(() => import('./pages/BibleAudioYouVer
 const BibleAudioSyncPage = lazy(() => import('./pages/BibleAudioSyncPage'));
 const BibleAudioSyncTestPage = lazy(() => import('./pages/BibleAudioSyncTestPage'));
 const BibleVoiceChatPage = lazy(() => import('./pages/BibleVoiceChatPage'));
+const BibleAIChatPage = lazy(() => import('./pages/BibleAIChatPage'));
 const BiblePresentationCreatorPage = lazy(() => import('./pages/BiblePresentationCreatorPage'));
 const ChurchEventRecorderPage = lazy(() => import('./pages/ChurchEventRecorderPage'));
 const BibleTextOnlyPage = lazy(() => import('./pages/BibleTextOnlyPage'));
@@ -115,6 +116,35 @@ const PersianCalendarPage = lazy(() => import('./pages/PersianCalendarPage')); /
 const AdminTimingPage = lazy(() => import('./pages/AdminTimingPage')); // Admin Timing Management
 const AdvancedAudioSync = lazy(() => import('./components/AdvancedAudioSync')); // Advanced Audio Sync Tool
 const AdminToolsPage = lazy(() => import('./pages/AdminToolsPage')); // Admin Tools Dashboard
+const AITestPage = lazy(() => import('./pages/AITestPage')); // AI Test Page
+const BackupPage = lazy(() => import('./pages/BackupPage')); // Backup Management
+const BibleSyncTestPage = lazy(() => import('./pages/BibleSyncTestPage')); // Bible Sync Test
+const BillingPage = lazy(() => import('./pages/BillingPage')); // Billing Page
+const EnvironmentPage = lazy(() => import('./pages/EnvironmentPage')); // Environment Settings
+const ImageStudioPage = lazy(() => import('./pages/ImageStudioPage')); // AI Image Studio
+const ModernBibleTestPage = lazy(() => import('./pages/ModernBibleTestPage')); // Modern Bible Test
+const SimpleWorshipPage = lazy(() => import('./pages/SimpleWorshipPage')); // Simple Worship
+const StoragePage = lazy(() => import('./pages/StoragePage')); // Storage Management
+const VirtualRealityPage = lazy(() => import('./pages/VirtualRealityPage')); // VR Experience
+const WorshipSongsArchive = lazy(() => import('./pages/WorshipSongsArchive')); // Songs Archive
+const WorshipSyncTestPage = lazy(() => import('./pages/WorshipSyncTestPage')); // Worship Sync Test
+const AdminWorshipManager = lazy(() => import('./pages/admin/AdminWorshipManager')); // Admin Worship Manager
+
+// Wrapper to hide BibleAIChatWidget on AI Helper page
+const BibleAIChatWidgetWrapper: React.FC = () => {
+  // Check if we're on the AI helper page
+  const isAiHelperPage = window.location.hash.includes('/ai-helper');
+
+  if (isAiHelperPage) {
+    return null; // Don't show the floating button on AI Helper page
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <BibleAIChatWidget />
+    </Suspense>
+  );
+};
 
 function App() {
   const { lang } = useLanguage();
@@ -192,11 +222,16 @@ function App() {
                   <Route path="bible/audio-sync" element={<Layout><BibleAudioSyncPage /></Layout>} />
                   <Route path="bible/audio-sync-test" element={<Layout><BibleAudioSyncTestPage /></Layout>} />
                   <Route path="bible/voice-chat" element={<Layout><BibleVoiceChatPage /></Layout>} />
+                  <Route path="bible/ai-chat" element={<Layout><BibleAIChatPage /></Layout>} />
                   <Route path="bible/presentation-creator" element={<Layout><BiblePresentationCreatorPage /></Layout>} />
                   <Route path="bible/reader" element={<Layout><BilingualBibleReader /></Layout>} />
+                  <Route path="bible/tts" element={<Layout><BibleTTSPage /></Layout>} />
+                  <Route path="bible/persian-tts" element={<Layout><PersianBibleTTSPage /></Layout>} />
+                  <Route path="bible/flipbook" element={<Layout><BibleFlipbook3DPage /></Layout>} />
+                  <Route path="bible/karaoke" element={<Layout><BibleKaraokeReader /></Layout>} />
                   <Route path="bible-study" element={<Layout><BibleStudyPage /></Layout>} />
-                  {/* Redirect old bible-karaoke path to /bible */}
-                  <Route path="bible-karaoke" element={<Navigate to="/bible" replace />} />
+                  {/* Redirect old bible-karaoke path to /bible/karaoke */}
+                  <Route path="bible-karaoke" element={<Navigate to="/bible/karaoke" replace />} />
                   <Route path="bible-reader" element={<Navigate to="/bible" replace />} />
                   <Route path="bible-presentation-sample" element={<Layout><BilingualPresentationSample /></Layout>} />
                   <Route path="bible-presentation" element={<Layout><BilingualPresentationDynamic /></Layout>} />
@@ -365,15 +400,81 @@ function App() {
                     }
                   />
 
+                  {/* Bible Additional Routes */}
+                  <Route path="bible/unified" element={<Layout><BibleUnifiedPage /></Layout>} />
+                  <Route path="bible/unified-pro" element={<Layout><BibleUnifiedPro /></Layout>} />
+                  <Route path="bible/viewer" element={<Layout><BibleViewer /></Layout>} />
+                  <Route path="bible/sync-test" element={<Layout><BibleSyncTestPage /></Layout>} />
+                  <Route path="bible/modern-test" element={<Layout><ModernBibleTestPage /></Layout>} />
+                  <Route path="bible/audio-player" element={<Layout><BibleAudioPlayer /></Layout>} />
+                  <Route
+                    path="bible/admin-upload"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
+                        <Layout><BibleAdminUpload /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  {/* Worship Additional Routes */}
+                  <Route path="worship/simple" element={<Layout><SimpleWorshipPage /></Layout>} />
+                  <Route path="worship/archive" element={<Layout><WorshipSongsArchive /></Layout>} />
+                  <Route path="worship/sync-test" element={<Layout><WorshipSyncTestPage /></Layout>} />
+
+                  {/* Admin Additional Routes */}
+                  <Route
+                    path="/admin/backup"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN']}>
+                        <Layout><BackupPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/storage"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
+                        <Layout><StoragePage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/environment"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN']}>
+                        <Layout><EnvironmentPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/billing"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN']}>
+                        <Layout><BillingPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/worship-manager"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><AdminWorshipManager /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  {/* AI & Tools Routes */}
+                  <Route path="ai-test" element={<Layout><AITestPage /></Layout>} />
+                  <Route path="image-studio" element={<Layout><ImageStudioPage /></Layout>} />
+                  <Route path="vr" element={<Layout><VirtualRealityPage /></Layout>} />
+
                   {/* 404 Not Found - Must be last */}
                   <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
                 </Routes>
               </Suspense>
 
-              {/* Bible AI Chat Widget - Lazy loaded */}
-              <Suspense fallback={null}>
-                <BibleAIChatWidget />
-              </Suspense>
+              {/* Bible AI Chat Widget - Lazy loaded - Hidden on AI Helper page */}
+              <BibleAIChatWidgetWrapper />
 
               {/* Verse Modal - Show after loading - Inside Router context */}
               {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}

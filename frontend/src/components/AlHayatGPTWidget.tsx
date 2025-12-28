@@ -5,11 +5,13 @@ import React, { useEffect } from 'react';
 interface Props {
     containerId?: string;
     style?: React.CSSProperties;
+    language?: 'fa' | 'en' | 'ar';  // Add language support
 }
 
 export default function AlHayatGPTWidget({
     containerId = 'alhayat-gpt-widget-container',
-    style = { width: '100%', height: '100%' }
+    style = { width: '100%', height: '100%' },
+    language = 'fa'  // Default to Persian for Iranian church
 }: Props) {
     useEffect(() => {
         const initWidget = () => {
@@ -22,7 +24,12 @@ export default function AlHayatGPTWidget({
                 'createWidget' in sdk && typeof sdk.createWidget === 'function' &&
                 container && !container.hasAttribute('data-ahgpt-widget-initialized')) {
                 container.setAttribute('data-ahgpt-widget-initialized', 'true');
-                (sdk.createWidget as (options: { containerId: string }) => void)({ containerId });
+
+                // Pass language option to the widget
+                (sdk.createWidget as (options: { containerId: string; language?: string }) => void)({
+                    containerId,
+                    language  // Pass language to SDK
+                });
             }
         };
 
@@ -57,7 +64,7 @@ export default function AlHayatGPTWidget({
         return () => {
             window.removeEventListener('AlHayatGPTSDKReady', initWidget);
         };
-    }, [containerId]);
+    }, [containerId, language]);
 
     return <div id={containerId} style={style} />;
 }
