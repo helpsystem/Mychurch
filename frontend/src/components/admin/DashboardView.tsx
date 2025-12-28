@@ -11,7 +11,7 @@ import Spinner from '../Spinner';
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const DashboardView: React.FC = () => {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const { content } = useContent();
     const { getUsers, getSiteActivity } = useAuth();
     
