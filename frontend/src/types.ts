@@ -94,7 +94,7 @@ export interface AuthContextType {
   loading: boolean;
   getUsers: () => Promise<User[]>;
   updateUserPermissions: (email: string, permissions: string[]) => Promise<boolean>;
-  updateUserRole: (email: string, role: 'USER' | 'MANAGER' | 'SUPER_ADMIN') => Promise<boolean>;
+  updateUserRole: (email: string, role: 'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN') => Promise<boolean>;
   createUser: (userData: any) => Promise<User | null>;
   updateUser: (email: string, userData: Partial<User>) => Promise<User | null>;
   updateBillingInfoItem: (field: keyof BillingInfo, value: string) => Promise<User | null>;

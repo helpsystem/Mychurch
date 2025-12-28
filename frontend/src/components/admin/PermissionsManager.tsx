@@ -175,6 +175,8 @@ const PermissionsManager: React.FC = () => {
                                         className="p-1 border border-gray-600 bg-primary rounded-md focus:outline-none focus:ring-1 focus:ring-secondary text-white"
                                     >
                                         <option value="USER">{t('roleUser')}</option>
+                                        <option value="LEADER">{lang === 'fa' ? 'رهبر' : 'Leader'}</option>
+                                        <option value="WORSHIP_LEADER">{lang === 'fa' ? 'رهبر پرستش' : 'Worship Leader'}</option>
                                         <option value="MANAGER">{t('roleManager')}</option>
                                         <option value="SUPER_ADMIN">{t('roleSuperAdmin')}</option>
                                     </select>

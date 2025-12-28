@@ -65,14 +65,16 @@ const DashboardView: React.FC = () => {
     };
     
     const userRoleData = {
-        labels: [t('roleUser'), t('roleManager'), t('roleSuperAdmin')],
+        labels: [t('roleUser'), lang === 'fa' ? 'رهبر' : 'Leader', lang === 'fa' ? 'رهبر پرستش' : 'Worship Leader', t('roleManager'), t('roleSuperAdmin')],
         datasets: [{
             data: [
                 users.filter(u => u.role === 'USER').length,
+                users.filter(u => u.role === 'LEADER').length,
+                users.filter(u => u.role === 'WORSHIP_LEADER').length,
                 users.filter(u => u.role === 'MANAGER').length,
                 users.filter(u => u.role === 'SUPER_ADMIN').length,
             ],
-            backgroundColor: ['#DEF9FA', '#7DE7EB', '#00F6FF'],
+            backgroundColor: ['#DEF9FA', '#A78BFA', '#F472B6', '#7DE7EB', '#00F6FF'],
             borderColor: '#00040F',
             borderWidth: 2,
         }]
@@ -101,7 +103,7 @@ const DashboardView: React.FC = () => {
         { title: t('totalUsers'), value: users.length, icon: <Users/>, color: 'bg-yellow-500' },
         { title: t('totalSermons'), value: content.sermons.length, icon: <MicVocal/>, color: 'bg-green-500' },
         { title: t('totalPages'), value: content.pages.length, icon: <FileText/>, color: 'bg-blue-500' },
-        { title: t('totalNotifications'), value: 2, icon: <Bell/>, color: 'bg-red-500' }, // Mocked value
+        { title: lang === 'fa' ? 'سرودهای پرستشی' : 'Worship Songs', value: content.worshipSongs.length, icon: <Music/>, color: 'bg-purple-500' },
     ];
 
     return (
