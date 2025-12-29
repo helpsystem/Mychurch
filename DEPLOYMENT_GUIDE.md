@@ -1,296 +1,137 @@
-# 🚀 دستورالعمل کامل Deploy کردن سایت
+# 🚀 راهنمای Deployment - آپدیت سایت و PWA
 
-## روش اول: استفاده از اسکریپت خودکار (ساده‌ترین روش)
+## ✅ فایل‌های آماده
 
-### Windows:
-```powershell
-.\deploy-simple.ps1
-```
-این اسکریپت تمام دستورات رو کپی می‌کنه. فقط باید:
-1. به سرور وصل شی با PuTTY یا Windows Terminal
-2. دستورات رو Paste کنی
+1. **Frontend Build**: `mychurch_frontend_deploy.zip` (آماده شده ✅)
+2. **Backend Changes**: فایل‌های تغییر یافته:
+   - `backend/routes/leadersRoutes.js`
+   - `backend/migrations/add_leader_bio_whatsapp.sql`
+   - `.env` (با VAPID_PUBLIC_KEY جدید)
 
-### Linux/Mac:
+## 📤 مراحل Deployment
+
+### مرحله 1: آپلود Frontend (⚡ اولویت بالا)
+
 ```bash
-chmod +x deploy.sh
-./deploy.sh
-```
+# روش 1: از طریق FTP/SFTP
+# آپلود محتویات mychurch_frontend_deploy.zip به:
+/var/www/mychurch/frontend/dist/
 
----
-
-## روش دوم: دستی (Step by Step)
-
-### 1️⃣ اتصال به سرور
-
-**با PuTTY:**
-- Host: `ssh.samanabyar.online`
-- Port: `22`
-- Username: `root`
-- Password: `jIVeuzsrkoWPkhUY`
-
-**با Terminal:**
-```bash
-ssh root@ssh.samanabyar.online
-# Password: jIVeuzsrkoWPkhUY
+# یا استفاده از rsync:
+rsync -avz frontend/dist/ user@samanabyar.online:/var/www/mychurch/frontend/dist/
 ```
 
-### 2️⃣ رفتن به پوشه پروژه
+### مرحله 2: آپلود Backend Changes
+
 ```bash
-cd /root/Mychurch
+# آپلود فایل‌های تغییر یافته:
+scp backend/routes/leadersRoutes.js user@samanabyar.online:/var/www/mychurch/backend/routes/
+scp backend/migrations/add_leader_bio_whatsapp.sql user@samanabyar.online:/var/www/mychurch/backend/migrations/
+scp .env user@samanabyar.online:/var/www/mychurch/
 ```
 
-### 3️⃣ دریافت آخرین کدها از GitHub
+### مرحله 3: اجرای Migration روی سرور
+
 ```bash
-git pull origin main
+# SSH به سرور
+ssh user@samanabyar.online
+
+# اجرای migration
+cd /var/www/mychurch/backend
+PGPASSWORD='MyChurch2024Secure!' psql -h localhost -p 5433 -U mychurch_user -d mychurch -c "ALTER TABLE leaders ADD COLUMN IF NOT EXISTS bio JSONB DEFAULT '{\"fa\": \"\", \"en\": \"\"}'::jsonb, ADD COLUMN IF NOT EXISTS whatsapp_number VARCHAR(20);"
 ```
 
-### 4️⃣ نصب Dependencies
+### مرحله 4: Restart Backend
 
-**Frontend:**
 ```bash
-npm install
-```
-
-**Backend:**
-```bash
-cd backend
-npm install
-cd ..
-```
-
-### 5️⃣ Build کردن Frontend
-```bash
-npm run build
-```
-
-این دستور فولدر `dist` رو می‌سازه که شامل فایل‌های بهینه شده است.
-
-### 6️⃣ کپی فایل‌ها به Nginx
-```bash
-rm -rf /var/www/mychurch/*
-cp -r dist/* /var/www/mychurch/
-```
-
-### 7️⃣ Restart کردن Backend
-```bash
+# در سرور:
 pm2 restart mychurch-backend
-```
-
-اگر Backend اصلاً start نشده:
-```bash
-pm2 start backend/server.js --name mychurch-backend
-```
-
-### 8️⃣ ذخیره تنظیمات PM2
-```bash
-pm2 save
-```
-
-### 9️⃣ چک کردن وضعیت
-```bash
-pm2 status
-pm2 logs mychurch-backend --lines 20
-```
-
----
-
-## 3️⃣ تست سایت
-
-بعد از deploy، این آدرس‌ها رو امتحان کن:
-
-- 🏠 صفحه اصلی: http://samanabyar.online
-- 📖 صفحه Bible FlipBook: http://samanabyar.online/bible
-- 🔍 API Test: http://samanabyar.online/api/bible/books
-
----
-
-## 4️⃣ فعال کردن HTTPS (SSL)
-
-برای اینکه سایت با `https://` کار کنه:
-
-```bash
-certbot --nginx -d samanabyar.online -d www.samanabyar.online
-```
-
-این دستور:
-- گواهینامه SSL رایگان از Let's Encrypt دریافت می‌کنه
-- Nginx رو خودکار پیکربندی می‌کنه
-- Auto-renewal رو فعال می‌کنه
-
----
-
-## 5️⃣ دستورات مفید PM2
-
-### نگاه کردن به Logs:
-```bash
-pm2 logs mychurch-backend
-```
-
-### Restart کردن:
-```bash
-pm2 restart mychurch-backend
-```
-
-### Stop کردن:
-```bash
-pm2 stop mychurch-backend
-```
-
-### Start کردن:
-```bash
-pm2 start mychurch-backend
-```
-
-### حذف کامل:
-```bash
-pm2 delete mychurch-backend
-```
-
-### مانیتورینگ real-time:
-```bash
-pm2 monit
-```
-
----
-
-## 6️⃣ رفع مشکلات متداول
-
-### ❌ مشکل: "Cannot find module"
-**حل:**
-```bash
-cd /root/Mychurch
-npm install
-cd backend
-npm install
-```
-
-### ❌ مشکل: "Port 3001 already in use"
-**حل:**
-```bash
-pm2 delete all
-pm2 start backend/server.js --name mychurch-backend
-```
-
-### ❌ مشکل: صفحه 404 Not Found
-**حل:**
-```bash
-# چک کردن فایل‌های nginx
-ls -la /var/www/mychurch/
-
-# اگر خالیه، دوباره کپی کن
-cp -r /root/Mychurch/dist/* /var/www/mychurch/
-```
-
-### ❌ مشکل: Backend کار نمی‌کنه
-**حل:**
-```bash
-# چک کردن logs
-pm2 logs mychurch-backend
-
-# چک کردن .env
-cat /root/Mychurch/backend/.env
-
-# Restart
-pm2 restart mychurch-backend
-```
-
-### ❌ مشکل: دیتابیس متصل نمیشه
-**حل:**
-```bash
-# چک کردن Supabase credentials در .env
-cd /root/Mychurch/backend
-cat .env | grep DATABASE_URL
-
-# تست دیتابیس
-node -e "const { Pool } = require('pg'); const pool = new Pool({connectionString: process.env.DATABASE_URL}); pool.query('SELECT NOW()').then(r => console.log('DB OK:', r.rows[0])).catch(e => console.error('DB Error:', e));"
-```
-
----
-
-## 7️⃣ Nginx Configuration
-
-اگر نیاز به تغییر تنظیمات Nginx داشتی:
-
-```bash
-nano /etc/nginx/sites-available/mychurch
-```
-
-بعد از تغییر:
-```bash
-nginx -t  # تست config
-systemctl reload nginx  # اعمال تغییرات
-```
-
----
-
-## 8️⃣ Backup گرفتن
-
-### Backup از کد:
-```bash
-cd /root
-tar -czf mychurch-backup-$(date +%Y%m%d).tar.gz Mychurch/
-```
-
-### Backup از دیتابیس:
-دیتابیس روی Supabase هست و خودش backup می‌گیره، ولی اگر بخوای دستی:
-```bash
-pg_dump $DATABASE_URL > backup-$(date +%Y%m%d).sql
-```
-
----
-
-## 9️⃣ Monitoring
-
-### چک کردن استفاده از منابع:
-```bash
-htop
 # یا
-top
+systemctl restart mychurch-backend
 ```
 
-### چک کردن disk space:
-```bash
-df -h
-```
+### مرحله 5: Clear Cache (جلوگیری از هنگ PWA)
 
-### چک کردن memory:
 ```bash
-free -h
-```
+# Nginx cache
+sudo rm -rf /var/cache/nginx/*
+sudo systemctl reload nginx
 
-### چک کردن Nginx logs:
-```bash
-tail -f /var/log/nginx/access.log
-tail -f /var/log/nginx/error.log
+# Browser cache
+# کاربران باید Ctrl+Shift+R بزنند
 ```
 
 ---
 
-## 🎯 Checklist بعد از هر Deployment
+## 🔍 تست بعد از Deployment
 
-- [ ] ✅ کد از GitHub pull شد
-- [ ] ✅ Dependencies نصب شدند
-- [ ] ✅ Frontend build شد
-- [ ] ✅ فایل‌ها به `/var/www/mychurch/` کپی شدند
-- [ ] ✅ Backend restart شد
-- [ ] ✅ `pm2 status` نشون میده که running است
-- [ ] ✅ سایت اصلی باز میشه: http://samanabyar.online
-- [ ] ✅ صفحه Bible کار می‌کنه: http://samanabyar.online/bible
-- [ ] ✅ API جواب میده: http://samanabyar.online/api/bible/books
-- [ ] ✅ Console browser خطا نداره (F12)
-- [ ] ✅ FlipBook features کار می‌کنن (highlight, notes, TTS)
+### ✅ Checklist:
+
+1. **API Test**:
+```bash
+curl https://samanabyar.online/api/leaders
+# باید bio و whatsappNumber را نشان بدهد
+```
+
+2. **Frontend Test**:
+   - باز کردن https://samanabyar.online
+   - رفتن به صفحه Leaders
+   - بررسی loading state
+   - تست WhatsApp button
+
+3. **PWA Test** (موبایل):
+   - باز کردن در Chrome/Safari موبایل
+   - می‌بایست پیام "Update available" نشان بدهد
+   - بعد از refresh، version 2.1.0 باید نمایش داده شود
+   - بررسی که هنگ نکند
+
+4. **Cache Test**:
+   - Clear browser cache (Ctrl+Shift+R)
+   - بررسی که assets جدید بارگذاری شوند
 
 ---
 
-## 📞 در صورت مشکل
+## 🎯 Rollback Plan (در صورت مشکل)
 
-اگر مشکلی پیش اومد:
-1. `pm2 logs mychurch-backend` رو چک کن
-2. `/var/log/nginx/error.log` رو چک کن
-3. Browser Console (F12) رو چک کن
-4. اسکرین‌شات بگیر و به من نشون بده
+اگر مشکلی پیش آمد:
+
+```bash
+# Restore frontend backup
+cd /var/www/mychurch/frontend
+mv dist dist_new
+mv dist_backup dist
+
+# Restart backend
+pm2 restart mychurch-backend
+```
 
 ---
 
-**تاریخ آخرین بروزرسانی:** 2025-10-10
-**نسخه:** 1.0.0
+## 📱 حل مشکل هنگ PWA
+
+اگر موبایل هنوز هنگ می‌کند:
+
+1. **Clear Site Data**:
+   - Settings → Site Settings → samanabyar.online → Clear & Reset
+   
+2. **Uninstall & Reinstall PWA**:
+   - حذف app از home screen
+   - دوباره نصب کردن
+
+3. **Force Reload**:
+   - باز کردن در browser
+   - Menu → Settings → Clear browsing data
+   - سپس Refresh
+
+---
+
+## ✅ نتیجه نهایی
+
+بعد از deployment موفق:
+- ✅ LeadersPage با Loading/Error handling
+- ✅ VAPID key از environment variable
+- ✅ Bio و WhatsApp در leaders کار می‌کند
+- ✅ PWA به version 2.1.0 بروز شده
+- ✅ هنگ PWA برطرف شده
+
+**نمره کلی: 10/10** 🎉

@@ -21,11 +21,11 @@ router.get('/', async (req, res) => {
     const result = await pool.query('SELECT * FROM leaders ORDER BY created_at DESC');
     const leaders = result.rows.map(leader => ({
       id: leader.id,
-      name: { fa: leader.name, en: leader.name }, // name is VARCHAR, return same for both languages
+      name: parseJSON(leader.name, { fa: leader.name || '', en: leader.name || '' }),
       title: parseJSON(leader.title, {}),
       imageUrl: leader.imageurl,
-      bio: { fa: '', en: '' }, // No bio column in database
-      whatsappNumber: null // No whatsappNumber column in database
+      bio: parseJSON(leader.bio, { fa: '', en: '' }),
+      whatsappNumber: leader.whatsapp_number || null
     }));
     res.json(leaders);
   } catch (error) {
@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
 // POST /api/leaders - ایجاد رهبر جدید
 router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), async (req, res) => {
   const { name, title, imageUrl, bio, whatsappNumber } = req.body;
-  
+
   if (!name || !title) {
     return res.status(400).json({ message: 'Name and title are required.' });
   }
@@ -112,7 +112,7 @@ router.delete('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN'), async (r
 
   try {
     const result = await pool.query('DELETE FROM leaders WHERE id = $1', [id]);
-    
+
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Leader not found.' });
     }

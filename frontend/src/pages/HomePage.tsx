@@ -309,7 +309,7 @@ const HomePage: React.FC = () => {
                 <div className="flex flex-row items-center py-[8px] px-6 bg-glass-gradient rounded-[20px] mb-6 backdrop-blur-md border border-white/10 shadow-lg">
                   <img src={content.settings.logoUrl} alt="logo" className="w-[32px] h-[32px]" />
                   <p className="font-normal text-dimWhite text-[16px] leading-[24px] ml-3 rtl:mr-3 rtl:ml-0 uppercase tracking-wider">
-                    {lang === 'fa' ? 'به خانه خوش آمدید' : 'Welcome Home'}
+                    {lang === 'fa' ? 'پلتفرم هوشمند کلیسای ایرانیان' : 'AI-Powered Church Platform'}
                   </p>
                 </div>
 
@@ -318,13 +318,13 @@ const HomePage: React.FC = () => {
                   <h1 className="font-bold ss:text-[72px] text-[52px] text-white ss:leading-[90px] leading-[70px] tracking-tight mb-4">
                     {lang === 'fa' ? (
                       <>
-                        <span className="block text-gradient">مکانی برای</span>
-                        <span>ایمان و اجتماع</span>
+                        <span className="block text-gradient">اولین پلتفرم هوشمند</span>
+                        <span>تعاملی جامعه مسیحی</span>
                       </>
                     ) : (
                       <>
-                        <span className="block text-gradient">A Place For</span>
-                        <span>Faith & Community</span>
+                        <span className="block text-gradient">First AI-Powered</span>
+                        <span>Interactive Community</span>
                       </>
                     )}
                   </h1>
@@ -333,18 +333,18 @@ const HomePage: React.FC = () => {
                 {/* Description */}
                 <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[520px] mt-4 mb-8 text-justify opacity-0 animate-fade-in-delay">
                   {lang === 'fa'
-                    ? 'به یک جامعه مسیحی پرجنب و جوش و فارسی زبان در قلب واشنگتن دی سی بپیوندید. مکانی برای رشد در ایمان، یافتن مشارکت و تجربه محبت مسیح را کشف کنید.'
-                    : 'Join a vibrant Persian-speaking Christian community in the heart of Washington D.C. Discover a place to grow in faith, find fellowship, and experience the love of Christ.'}
+                    ? 'با قدرت هوش مصنوعی Gemini، تجربه‌ای شخصی‌سازی شده برای اعضای جامعه. گفتگوی صوتی زنده، یادگیری هوشمند کتاب مقدس و ارتباطی نوین را تجربه کنید.'
+                    : 'Powered by Google Gemini AI for a personalized community experience. Experience real-time voice chat, intelligent Bible study, and seamless connection.'}
                 </p>
 
                 {/* CTA Buttons */}
                 <div className="flex flex-row flex-wrap gap-4 opacity-0 animate-fade-in-delay-2">
-                  <Link to="/sermons" className="bg-blue-gradient text-primary font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 flex items-center">
-                    {lang === 'fa' ? 'شروع کنید' : 'Get Started'}
-                    <ArrowUpRight className="ml-2 w-5 h-5 rtl:mr-2 rtl:ml-0" />
+                  <Link to="/ai-helper" className="bg-blue-gradient text-primary font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 flex items-center">
+                    {lang === 'fa' ? 'تجربه هوش مصنوعی' : 'Try AI Experience'}
+                    <Sparkles className="ml-2 w-5 h-5 rtl:mr-2 rtl:ml-0" />
                   </Link>
                   <Link to="/about" className="glass-button text-white font-semibold py-4 px-8 rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 flex items-center">
-                    {lang === 'fa' ? 'درباره ما' : 'About Us'}
+                    {lang === 'fa' ? 'درباره پلتفرم' : 'Platform Features'}
                   </Link>
                 </div>
               </div>
@@ -435,6 +435,71 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
+                </div>
+              </div>
+            </section>
+
+            {/* AI Features Section - NEW */}
+            <section className="sm:py-16 py-6 reveal-on-scroll">
+              <div className="flex flex-col items-center justify-center text-center mb-10">
+                 <div className="flex items-center gap-2 mb-4 px-4 py-1 rounded-full bg-blue-500/10 border border-blue-400/30">
+                    <Sparkles className="w-4 h-4 text-blue-400" />
+                    <span className="text-blue-400 text-sm font-medium uppercase tracking-wider">Powered by Gemini AI</span>
+                 </div>
+                 <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] mb-4 heading-glow">
+                    {lang === 'fa' ? 'قابلیت‌های هوشمند' : 'AI Capabilities'}
+                 </h2>
+                 <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[700px]">
+                    {lang === 'fa' 
+                       ? 'تکنولوژی در خدمت ایمان. ما از پیشرفته‌ترین مدل‌های هوش مصنوعی گوگل برای ارائه خدمات بهتر استفاده می‌کنیم.' 
+                       : 'Technology serving faith. We leverage Google\'s most advanced AI models to provide superior community services.'}
+                 </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Feature 1 */}
+                <div className="glass-card p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
+                    <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 text-blue-400 group-hover:scale-110 transition-transform">
+                        <MessageCircle className="w-7 h-7" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-3">
+                        {lang === 'fa' ? 'گفتگوی زنده Gemini' : 'Gemini Live Chat'}
+                    </h3>
+                    <p className="text-dimWhite text-sm leading-6">
+                        {lang === 'fa' 
+                           ? 'با دستیار هوشمند صوتی ما صحبت کنید. سوالات خود را بپرسید و پاسخ‌های دقیق دریافت کنید.' 
+                           : 'Talk to our intelligent voice assistant. Ask questions and receive accurate, contextual responses.'}
+                    </p>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="glass-card p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
+                    <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 text-purple-400 group-hover:scale-110 transition-transform">
+                        <Music className="w-7 h-7" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-3">
+                        {lang === 'fa' ? 'هماهنگ‌سازی هوشمند' : 'Smart Sync'}
+                    </h3>
+                    <p className="text-dimWhite text-sm leading-6">
+                        {lang === 'fa' 
+                           ? 'تحلیل دقیق فایل‌های صوتی برای هماهنگی متن و صدا با دقت میلی‌ثانیه برای تجربه بهتر.' 
+                           : 'Precise analysis of audio files for millisecond-accurate text-audio synchronization.'}
+                    </p>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="glass-card p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
+                    <div className="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center mb-4 text-green-400 group-hover:scale-110 transition-transform">
+                        <Book className="w-7 h-7" />
+                    </div>
+                    <h3 className="text-white font-semibold text-xl mb-3">
+                        {lang === 'fa' ? 'مطالعه تعاملی' : 'Interactive Study'}
+                    </h3>
+                    <p className="text-dimWhite text-sm leading-6">
+                        {lang === 'fa' 
+                           ? 'تبدیل متن به گفتار با کیفیت بالا و تولید محتوای آموزشی متناسب با نیاز شما.' 
+                           : 'High-quality Text-to-Speech and personalized educational content generation suited to your needs.'}
+                    </p>
                 </div>
               </div>
             </section>

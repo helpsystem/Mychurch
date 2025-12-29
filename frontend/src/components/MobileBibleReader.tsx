@@ -137,7 +137,7 @@ const MobileBibleReader: React.FC<Props> = ({
             {/* Main Content */}
             <div
                 ref={containerRef}
-                className="flex-1 overflow-y-auto px-4 py-4 pb-64 touch-pan-y" // Increased bottom padding to clear player
+                className="flex-1 overflow-y-auto px-4 py-4 pb-72 touch-pan-y" // Increased bottom padding to clear player + nav
                 onScroll={handleScroll}
             >
                 {/* Chapter Title for Context */}
@@ -253,7 +253,7 @@ const MobileBibleReader: React.FC<Props> = ({
             {hasAudio && !audioError && (
                 <div
                     id="bible-player-container"
-                    className={`fixed bottom-32 left-1/2 -translate-x-1/2 flex items-center gap-6 z-[200] ${viewMode === 'fa' ? 'flex-row-reverse' : ''}`}
+                    className={`fixed bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-6 z-[200] pb-safe ${viewMode === 'fa' ? 'flex-row-reverse' : ''}`}
                 >
                     {/* Previous Button - LEFT for LTR, RIGHT for RTL */}
                     <button

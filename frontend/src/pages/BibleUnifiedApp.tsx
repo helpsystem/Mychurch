@@ -126,7 +126,7 @@ const BibleUnifiedApp: React.FC = () => {
 
                 // 2. Fetch Secondary Text (English fallback) if needed
                 let englishVerses: any[] = [];
-                const isPersian = primaryData.translation?.language === 'fa' || 
+                const isPersian = primaryData.translation?.language === 'fa' ||
                     ['MOJDEH', 'QADIM', 'TPV', 'NMV', 'PCB'].includes(translationCode);
 
                 if (isPersian) {
@@ -143,7 +143,7 @@ const BibleUnifiedApp: React.FC = () => {
                     // Use audio URL from API (handles fallback automatically)
                     const audioUrl = primaryData.audioUrl || primaryData.audio || null;
                     const currentBook = books.find(b => b.key === selectedBook);
-                    
+
                     // Log audio info for debugging
                     if (primaryData.audioNote?.usingFallback) {
                         console.log(`🎵 Using fallback audio: ${primaryData.audioNote.audioTranslation} for ${translationCode}`);
@@ -356,10 +356,10 @@ const BibleUnifiedApp: React.FC = () => {
                                                 <Volume2 size={16} className={translation === t.id ? "text-white" : "text-green-500"} />
                                                 <span className="hidden sm:inline">صوتی</span>
                                             </div>
-                                        ) : t.fallback && (
-                                            <div className="flex items-center gap-1 text-xs opacity-70">
-                                                <Volume2 size={14} className="text-blue-400" />
-                                                <span className="text-blue-400">صوت: {t.fallback}</span>
+                                        ) : (
+                                            <div className="flex items-center gap-1 text-xs opacity-50">
+                                                <Volume2 size={14} className="text-gray-500" style={{ opacity: 0.3 }} />
+                                                <span className="text-gray-500 hidden sm:inline">بدون صوت</span>
                                             </div>
                                         )}
                                     </button>
@@ -542,7 +542,7 @@ const BibleUnifiedApp: React.FC = () => {
                                     <ChevronRight size={14} className={`transition-transform ${expandedBook === book.key ? 'rotate-90' : ''}`} />
                                     <span className="font-medium">{lang === 'fa' ? book.name.fa : book.name.en}</span>
                                 </button>
-                                
+
                                 {/* Chapter Grid - Expandable */}
                                 {expandedBook === book.key && (
                                     <div className="grid grid-cols-5 gap-1 p-2 bg-black/30 rounded-lg mt-1 mb-2">
@@ -550,11 +550,10 @@ const BibleUnifiedApp: React.FC = () => {
                                             <button
                                                 key={ch}
                                                 onClick={() => { setSelectedBook(book.key); setSelectedChapter(ch); }}
-                                                className={`py-2 rounded text-sm font-medium transition-all ${
-                                                    selectedBook === book.key && selectedChapter === ch
+                                                className={`py-2 rounded text-sm font-medium transition-all ${selectedBook === book.key && selectedChapter === ch
                                                         ? 'bg-purple-500 text-white'
                                                         : 'bg-neutral-800 text-gray-400 hover:bg-neutral-700 hover:text-white'
-                                                }`}
+                                                    }`}
                                             >
                                                 {ch}
                                             </button>
@@ -573,11 +572,11 @@ const BibleUnifiedApp: React.FC = () => {
                         <div className="flex items-center gap-3 text-gray-300">
                             <span className="font-bold text-white text-lg">{currentBookName}</span>
                             <ChevronRight size={14} className="opacity-50" />
-                            
+
                             {/* Chapter Navigation - Standard Direction */}
                             <div className="flex items-center bg-black/40 rounded-xl border border-white/10 overflow-hidden">
                                 {/* Previous Chapter - Always LEFT arrow */}
-                                <button 
+                                <button
                                     onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
                                     disabled={selectedChapter <= 1}
                                     className="px-3 py-2 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all border-r border-white/10"
@@ -585,7 +584,7 @@ const BibleUnifiedApp: React.FC = () => {
                                 >
                                     <ChevronLeft size={18} />
                                 </button>
-                                
+
                                 {/* Chapter Dropdown */}
                                 <div className="relative group">
                                     <select
@@ -604,9 +603,9 @@ const BibleUnifiedApp: React.FC = () => {
                                         <span className="font-mono text-base">{lang === 'fa' ? `فصل ${selectedChapter}` : `CH ${selectedChapter}`}</span>
                                     </div>
                                 </div>
-                                
+
                                 {/* Next Chapter - Always RIGHT arrow */}
-                                <button 
+                                <button
                                     onClick={() => setSelectedChapter(c => Math.min(currentBook?.chapters || 50, c + 1))}
                                     disabled={selectedChapter >= (currentBook?.chapters || 50)}
                                     className="px-3 py-2 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all border-l border-white/10"
@@ -616,7 +615,7 @@ const BibleUnifiedApp: React.FC = () => {
                                 </button>
                             </div>
                         </div>
-                        
+
                         {/* Quick Info */}
                         <div className="flex items-center gap-2 text-gray-400 text-sm">
                             <span className="bg-purple-600/20 text-purple-300 px-2 py-1 rounded-lg text-xs font-medium">
