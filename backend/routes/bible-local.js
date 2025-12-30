@@ -45,8 +45,9 @@ const BIBLE_TRANSLATIONS = {
     TPV: {
         code: 'TPV',
         language: 'fa',
-        hasAudio: false,
-        audioFallback: 'MOJDEH',
+        hasAudio: true,
+        audioSource: 'hidrive',
+        audioFallback: null,
         name: { en: "Today's Persian Version", fa: 'ترجمه نوین' }
     },
     NMV: {
@@ -94,18 +95,18 @@ const BIBLE_TRANSLATIONS = {
 function getAudioTranslation(translationCode) {
     const translation = BIBLE_TRANSLATIONS[translationCode.toUpperCase()];
     if (!translation) return null;
-    
+
     if (translation.hasAudio) {
         return translation.code;
     }
-    
+
     if (translation.audioFallback) {
         const fallback = BIBLE_TRANSLATIONS[translation.audioFallback];
         if (fallback?.hasAudio) {
             return fallback.code;
         }
     }
-    
+
     return null;
 }
 
@@ -152,7 +153,7 @@ router.get('/translations', (req, res) => {
         audioFallback: t.audioFallback,
         hasAudioAvailable: !!getAudioTranslation(t.code)
     }));
-    
+
     res.json({
         success: true,
         translations,
@@ -164,36 +165,57 @@ router.get('/translations', (req, res) => {
 /**
  * GET /api/bible-local/content/:translation/:book/:chapter
  * Serves chapter text from public/text/bible with HiDrive audio URLs
+ * 
+ * FILE STRUCTURE:
+ * - Translation-specific: public/text/bible/{TRANSLATION}/{book}/{chapter}.json
+ * - Language fallback: public/text/bible/{lang}/{book}/{chapter}.json
+ * 
+ * NOTE: Currently all Persian translations share the same text files under 'fa' folder.
+ * To have different text per translation, create folders like MOJDEH/, QADIM/, TPV/
  */
 router.get('/content/:translation/:book/:chapter', async (req, res) => {
     try {
         const { translation, book, chapter } = req.params;
         const bookUpper = book.toUpperCase();
         const translationUpper = translation.toUpperCase();
-        
+
         // Get translation info
         const translationInfo = getTranslationInfo(translationUpper);
         const lang = translationInfo?.language || (
             ['MOJDEH', 'QADIM', 'TPV', 'NMV', 'PCB'].includes(translationUpper) ? 'fa' : 'en'
         );
-        
+
         // Convert USFM code (GEN, EXO...) to numeric (01, 02...)
         const numericCode = USFM_TO_NUMERIC[bookUpper] || bookUpper;
 
-        // Read text file from public/text/bible/{lang}/{numericCode}/{chapter}.json
-        const textPath = path.join(BIBLE_TEXT_DIR, lang, numericCode, `${chapter}.json`);
-        
+        // Try translation-specific folder first, then fallback to language folder
+        // This allows future support for distinct translation texts
+        const translationPath = path.join(BIBLE_TEXT_DIR, translationUpper, numericCode, `${chapter}.json`);
+        const languagePath = path.join(BIBLE_TEXT_DIR, lang, numericCode, `${chapter}.json`);
+
         let textData;
+        let textSource = 'translation'; // Track which source was used
+        
         try {
-            const fileContent = await fs.readFile(textPath, 'utf-8');
+            // First try translation-specific folder (MOJDEH/, QADIM/, TPV/)
+            const fileContent = await fs.readFile(translationPath, 'utf-8');
             textData = JSON.parse(fileContent);
+            console.log(`📖 Bible: Loaded from translation folder: ${translationUpper}`);
         } catch (e) {
-            console.error(`Bible text not found: ${textPath}`);
-            return res.status(404).json({
-                success: false,
-                error: 'Chapter not found',
-                message: `No text file at ${textPath}`
-            });
+            // Fallback to language folder (fa/, en/)
+            try {
+                const fileContent = await fs.readFile(languagePath, 'utf-8');
+                textData = JSON.parse(fileContent);
+                textSource = 'language';
+                console.log(`📖 Bible: Loaded from language folder: ${lang} (fallback for ${translationUpper})`);
+            } catch (e2) {
+                console.error(`Bible text not found. Tried:\n  1. ${translationPath}\n  2. ${languagePath}`);
+                return res.status(404).json({
+                    success: false,
+                    error: 'Chapter not found',
+                    message: `No text file found for ${translationUpper}/${bookUpper}/${chapter}`
+                });
+            }
         }
 
         // Convert verses object to array format
@@ -207,13 +229,16 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         const audioTranslationCode = getAudioTranslation(translationUpper);
         const hasAudioAvailable = !!audioTranslationCode;
         
+        // Check if this translation has its OWN audio (not via fallback)
+        const hasOwnAudio = translationInfo?.hasAudio === true;
+
         // Generate HiDrive audio URL if audio is available
         let audioUrl = null;
         let audioNote = null;
-        
+
         if (audioTranslationCode) {
             audioUrl = `/api/hidrive/stream/bible/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
-            
+
             // Note if using fallback audio
             if (audioTranslationCode !== translationUpper) {
                 const fallbackInfo = getTranslationInfo(audioTranslationCode);
@@ -232,7 +257,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Check for timing file
         const timingPath = path.join(BIBLE_TIMING_DIR, `${bookUpper}_${chapter}_timing.json`);
         let hasTiming = false;
-        
+
         try {
             await fs.access(timingPath);
             hasTiming = true;
@@ -243,25 +268,38 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Build response with comprehensive translation info
         res.json({
             success: true,
-            
+
             // Basic info
             book: textData.book || book,
             chapter: parseInt(chapter),
             verses: versesArray,
-            
+
             // Translation info
             translation: {
                 code: translationUpper,
                 name: translationInfo?.name || { en: translationUpper, fa: translationUpper },
-                language: lang
+                language: lang,
+                textSource: textSource // 'translation' or 'language' (shared)
             },
-            
+
+            // Text source note (if using shared language text)
+            textNote: textSource === 'language' ? {
+                usingSharedText: true,
+                message: {
+                    en: `All Persian translations currently share the same text`,
+                    fa: `همه ترجمه‌های فارسی از یک متن استفاده می‌کنند`
+                }
+            } : null,
+
             // Audio info
+            // hasAudio: true if this translation has its OWN audio (use for UI show/hide)
+            // hasAudioAvailable: true if audio is available (own or via fallback)
             audio: audioUrl,
             audioUrl: audioUrl,
-            hasAudio: hasAudioAvailable,
+            hasAudio: hasOwnAudio,
+            hasAudioAvailable: hasAudioAvailable,
             audioNote: audioNote,
-            
+
             // Timing info
             hasTiming: hasTiming,
             timingUrl: hasTiming ? `/bible/data/timings/${bookUpper}_${chapter}_timing.json` : null
@@ -285,10 +323,10 @@ router.get('/audio/:translation/:book/:chapter', async (req, res) => {
     const { translation, book, chapter } = req.params;
     const bookUpper = book.toUpperCase();
     const translationUpper = translation.toUpperCase();
-    
+
     // Get audio translation (handles fallback)
     const audioTranslationCode = getAudioTranslation(translationUpper);
-    
+
     if (!audioTranslationCode) {
         return res.status(404).json({
             success: false,
@@ -296,7 +334,7 @@ router.get('/audio/:translation/:book/:chapter', async (req, res) => {
             message: `Translation ${translationUpper} has no audio and no fallback available`
         });
     }
-    
+
     // Redirect to HiDrive stream
     const hidriveUrl = `/api/hidrive/stream/bible/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
     console.log(`🔄 Redirecting audio request to HiDrive: ${hidriveUrl}`);

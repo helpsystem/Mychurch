@@ -61,6 +61,7 @@ const BibleUnifiedPro: React.FC = () => {
 
     // Audio State
     const [isPlaying, setIsPlaying] = useState(false);
+    const [hasAudio, setHasAudio] = useState(true); // Track if current translation has audio
 
     // Translation is now user-selectable (MOJDEH, QADIM, TPV)
 
@@ -100,11 +101,14 @@ const BibleUnifiedPro: React.FC = () => {
                 const response = await fetch(`/api/bible-local/content/${translationCode}/${usfmCode}/${selectedChapter}`);
                 const data = await response.json();
 
-                console.log('📖 Bible fetch:', { translationCode, usfmCode, selectedChapter, success: data.success, verseCount: data.verses?.length });
+                console.log('📖 Bible fetch:', { translationCode, usfmCode, selectedChapter, success: data.success, verseCount: data.verses?.length, hasAudio: data.hasAudio });
 
                 if (data.success && data.verses) {
+                    // Update audio availability state
+                    setHasAudio(data.hasAudio || false);
+
                     // Audio URL from local backend API or HiDrive
-                    const audioUrlFa = data.audio || `/api/bible-local/audio/${translationCode}/${usfmCode}/${selectedChapter}`;
+                    const audioUrlFa = data.audio || data.hasAudio ? `/api/bible-local/audio/${translationCode}/${usfmCode}/${selectedChapter}` : null;
                     const audioUrlEn = `/api/bible-local/audio/eng/${usfmCode}/${selectedChapter}`;
 
                     const currentBook = books.find(b => b.key === selectedBook);
@@ -190,16 +194,6 @@ const BibleUnifiedPro: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    {/* View Mode Toggles */}
-                    {/* View Mode Toggles removed as per user request (moved to internal controls or redundant) */}
-                    {/* The user specifically asked to remove "these" pointing to top left, which likely refers to these specific toggles if they were visible there, or just general cleanup. 
-                        However, the user wants "Reading mode: English, Farsi" but "Both languages must be removed" from the *Reading Mode* (Audio), not necessarily the view mode. 
-                        BUT, looking at the screenshot, the top-left has "En | Fa". 
-                        The code I see has "View Mode Toggles" in the header. 
-                        "1- هذه باید حذف بشن" (These must be removed).
-                        I will comment them out for now to be safe.
-                    */}
-
                     <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
                         <Settings size={20} />
                     </button>
@@ -278,9 +272,10 @@ const BibleUnifiedPro: React.FC = () => {
                                     <BilingualBiblePresentation
                                         data={presentationData}
                                         autoStart={true}
-                                        enableAudio={true}
+                                        enableAudio={hasAudio}
                                         viewMode={viewMode}
-                                        key={`${selectedBook}-${selectedChapter}`}
+                                        hasAudio={hasAudio}
+                                        key={`${selectedBook}-${selectedChapter}-${translation}`}
                                     />
                                 </div>
                             )}
@@ -333,58 +328,70 @@ const BibleUnifiedPro: React.FC = () => {
             </div>
 
             {/* ------------------------------------------------------------ */}
-            {/* 3. DOCK (Floating Audio Controls) */}
+            {/* 3. DOCK (Floating Audio Controls) - Only show if translation has audio */}
             {/* ------------------------------------------------------------ */}
-            <div className={`absolute bottom-16 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${sidebarOpen ? 'translate-y-0' : 'translate-y-0'}`}>
-                <div className="bg-neutral-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-2 px-6 shadow-2xl flex items-center gap-6 ring-1 ring-white/5">
+            {!hasAudio && (
+                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
+                    <div className="bg-amber-600/90 backdrop-blur-xl border border-amber-500/30 rounded-xl px-4 py-2 shadow-lg text-white text-sm" dir="rtl">
+                        <span className="mr-2">🔇</span>
+                        {lang === 'fa' ? 'صوت برای این ترجمه موجود نیست' : 'Audio not available for this translation'}
+                    </div>
+                </div>
+            )}
+            {hasAudio && (
+                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 pb-[env(safe-area-inset-bottom)] w-[94vw] sm:w-auto">
+                    <div className="bg-neutral-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-2 px-6 shadow-2xl flex items-center gap-6 ring-1 ring-white/5">
 
-                    {/* Chapter Nav */}
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
-                            disabled={selectedChapter <= 1}
-                            className="p-2 hover:bg-white/10 rounded-full transition-colors disabled:opacity-30 text-gray-300"
-                        >
-                            <ChevronLeft size={20} />
-                        </button>
+                        {/* Chapter Nav */}
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
+                                disabled={selectedChapter <= 1}
+                                className="p-2 hover:bg-white/10 rounded-full transition-colors disabled:opacity-30 text-gray-300"
+                            >
+                                <ChevronLeft size={20} />
+                            </button>
 
-                        <div className="flex flex-col items-center min-w-[3rem]">
-                            <span className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Chapter</span>
-                            <span className="font-mono text-xl font-bold text-white leading-none">{selectedChapter}</span>
+                            <div className="flex flex-col items-center min-w-[3rem]">
+                                <span className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Chapter</span>
+                                <span className="font-mono text-xl font-bold text-white leading-none">{selectedChapter}</span>
+                            </div>
+
+                            <button
+                                onClick={() => setSelectedChapter(c => c + 1)}
+                                className="p-2 hover:bg-white/10 rounded-full transition-colors text-gray-300"
+                            >
+                                <ChevronRight size={20} />
+                            </button>
                         </div>
 
+                        <div className="h-10 w-px bg-white/10 mx-2"></div>
+
+                        {/* Playback */}
                         <button
-                            onClick={() => setSelectedChapter(c => c + 1)}
-                            className="p-2 hover:bg-white/10 rounded-full transition-colors text-gray-300"
+                            onClick={() => setIsPlaying(!isPlaying)}
+                            className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-95 border-4 ${isPlaying ? 'bg-purple-600 border-neutral-900 text-white' : 'bg-white border-neutral-900 text-black'}`}
                         >
-                            <ChevronRight size={20} />
+                            {isPlaying ? <div className="w-4 h-4 bg-white rounded-sm" /> : <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-black border-b-[8px] border-b-transparent ml-1" />}
                         </button>
-                    </div>
 
-                    <div className="h-10 w-px bg-white/10 mx-2"></div>
+                        <div className="h-10 w-px bg-white/10 mx-2"></div>
 
-                    {/* Playback */}
-                    <button
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-95 border-4 ${isPlaying ? 'bg-purple-600 border-neutral-900 text-white' : 'bg-white border-neutral-900 text-black'}`}
-                    >
-                        {isPlaying ? <div className="w-4 h-4 bg-white rounded-sm" /> : <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-black border-b-[8px] border-b-transparent ml-1" />}
-                    </button>
+                        {/* Tools */}
+                        <div className="flex items-center gap-2">
+                            <button className="px-3 py-1.5 hover:bg-white/10 rounded-lg text-xs font-mono text-gray-400 hover:text-white transition-colors border border-transparent hover:border-white/10">
+                                1.0x
+                            </button>
+                        </div>
 
-                    <div className="h-10 w-px bg-white/10 mx-2"></div>
-
-                    {/* Tools */}
-                    <div className="flex items-center gap-2">
-                        <button className="px-3 py-1.5 hover:bg-white/10 rounded-lg text-xs font-mono text-gray-400 hover:text-white transition-colors border border-transparent hover:border-white/10">
-                            1.0x
-                        </button>
                     </div>
 
                 </div>
-            </div>
+            )}
 
         </div>
     );
 };
+
 
 export default BibleUnifiedPro;

@@ -20,7 +20,7 @@ SERVER_PASSWORD = "jIVeuzsrkoWPkhUY"
 # مسیر dist لوکال
 LOCAL_DIST = os.path.join(
     os.path.dirname(os.path.dirname(__file__)),
-    "frontend", "dist"
+    "dist"
 )
 
 # مسیر روی سرور (مسیر اصلی سایت)

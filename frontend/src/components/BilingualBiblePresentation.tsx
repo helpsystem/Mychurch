@@ -124,6 +124,7 @@ interface Props {
   bookCode?: string; // 🎵 NEW: Book code for audio (e.g., 'EPH', 'MAT')
   enableAudio?: boolean; // 🎵 NEW: Enable audio player
   viewMode?: 'dual' | 'fa' | 'en'; // ✨ NEW: External view control
+  hasAudio?: boolean; // 🔇 NEW: Whether translation has audio available
 }
 
 const BilingualBiblePresentation: React.FC<Props> = ({
@@ -132,7 +133,8 @@ const BilingualBiblePresentation: React.FC<Props> = ({
   autoStart = false,
   bookCode,
   enableAudio = false,
-  viewMode = 'dual' // Default to dual
+  viewMode = 'dual', // Default to dual
+  hasAudio = true // Default to true for backward compatibility
 }) => {
   // 🐛 DEBUG: Removed excessive logging - only log on mount
   const hasLoggedRef = useRef(false);
@@ -393,22 +395,34 @@ const BilingualBiblePresentation: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Controls */}
-      <div className={`fixed z-50 left-1/2 -translate-x-1/2 top-3 flex items-center gap-2 rounded-2xl bg-neutral-800/80 px-3 py-2 backdrop-blur shadow-lg`}>
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => setPlaying((p) => !p)}>
-          {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-        </button>
+      {/* Controls - Floating toolbar with mobile-friendly positioning */}
+      <div className={`
+        fixed z-50 
+        left-1/2 -translate-x-1/2 
+        top-3 sm:top-3
+        flex flex-wrap items-center justify-center gap-2 
+        rounded-2xl bg-neutral-800/90 px-3 py-2 backdrop-blur-md shadow-lg
+        max-w-[95vw] sm:max-w-none
+      `}>
+        {/* Play/Pause - Only show if audio available */}
+        {hasAudio && (
+          <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => setPlaying((p) => !p)}>
+            {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+          </button>
+        )}
         <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={prevVerse}><SkipBack className="w-5 h-5" /></button>
         <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={nextVerse}><SkipForward className="w-5 h-5" /></button>
-        <button className={`px-3 py-1 rounded-xl ${autoAdvance ? "bg-emerald-600" : "bg-neutral-700 hover:bg-neutral-600"}`} onClick={() => setAutoAdvance(a => !a)} title="Auto advance"><RefreshCw className="w-5 h-5" /></button>
+        {hasAudio && (
+          <button className={`px-3 py-1 rounded-xl ${autoAdvance ? "bg-emerald-600" : "bg-neutral-700 hover:bg-neutral-600"}`} onClick={() => setAutoAdvance(a => !a)} title="Auto advance"><RefreshCw className="w-5 h-5" /></button>
+        )}
         <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => requestFullscreen(containerRef.current)}><Maximize2 className="w-5 h-5" /></button>
-        <div className="mx-2 text-sm opacity-90">Ch {chapter.chapterNumber} • V {verse?.verseNumber ?? 1}</div>
-        <div className="flex items-center gap-1 text-xs">
+        <div className="mx-2 text-sm opacity-90 hidden sm:block">Ch {chapter.chapterNumber} • V {verse?.verseNumber ?? 1}</div>
+        <div className="flex items-center gap-1 text-xs hidden sm:flex">
           <Type className="w-4 h-4" />
           <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={() => setFontScale(s => Math.max(0.8, s - 0.05))}>A-</button>
           <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={() => setFontScale(s => Math.min(1.8, s + 0.05))}>A+</button>
         </div>
-        <div className="flex items-center gap-1 text-xs">
+        <div className="flex items-center gap-1 text-xs hidden sm:flex">
           <Book className="w-4 h-4" />
           <select className="bg-neutral-700 rounded px-2 py-0.5" value={displayMode} onChange={(e) => setDisplayMode(e.target.value as any)}>
             {hasEnglishTranslation && <option value="both">هر دو زبان</option>}
@@ -416,43 +430,51 @@ const BilingualBiblePresentation: React.FC<Props> = ({
             {hasEnglishTranslation && <option value="en">فقط انگلیسی</option>}
           </select>
         </div>
-        <div className="flex items-center gap-1 text-xs">
-          <Volume2 className="w-4 h-4" />
-          <select className="bg-neutral-700 rounded px-2 py-0.5" value={readingMode} onChange={(e) => setReadingMode(e.target.value as any)}>
-            <option value="fa">خواندن فارسی</option>
-            {hasEnglishTranslation && <option value="en">خواندن انگلیسی</option>}
-          </select>
+        {/* Audio controls - only show when audio is available */}
+        {hasAudio && (
+          <div className="flex items-center gap-1 text-xs hidden sm:flex">
+            <Volume2 className="w-4 h-4" />
+            <select className="bg-neutral-700 rounded px-2 py-0.5" value={readingMode} onChange={(e) => setReadingMode(e.target.value as any)}>
+              <option value="fa">خواندن فارسی</option>
+              {hasEnglishTranslation && <option value="en">خواندن انگلیسی</option>}
+            </select>
 
-          {/* ✨ NEW: Color Picker for Highlight */}
-          <div className="flex items-center gap-1 ml-2 border-l border-white/20 pl-2">
-            <span className="text-[10px] opacity-70">Highlight:</span>
-            <input
-              type="color"
-              value={highlightColor}
-              onChange={(e) => setHighlightColor(e.target.value)}
-              className="w-5 h-5 rounded cursor-pointer border-none bg-transparent p-0"
-              title="رنگ هایلایت"
-            />
+            {/* ✨ Color Picker for Highlight */}
+            <div className="flex items-center gap-1 ml-2 border-l border-white/20 pl-2">
+              <span className="text-[10px] opacity-70">Highlight:</span>
+              <input
+                type="color"
+                value={highlightColor}
+                onChange={(e) => setHighlightColor(e.target.value)}
+                className="w-5 h-5 rounded cursor-pointer border-none bg-transparent p-0"
+                title="رنگ هایلایت"
+              />
+            </div>
           </div>
-        </div>
-        <button
-          className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-700"
-          onClick={testSpeak}
-          title="Test Voice">
-          🔊
-        </button>
-        {/* ✨ NEW: Read-Along Mode Toggle */}
-        <button
-          className={`px-3 py-1 rounded-xl font-semibold text-xs ${readAlongMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-neutral-700 hover:bg-neutral-600'}`}
-          onClick={() => setReadAlongMode(!readAlongMode)}
-          title="حالت روخوانی کلمه به کلمه">
-          {readAlongMode ? '🎤 روخوانی' : '📖 معمولی'}
-        </button>
+        )}
+        {/* Test voice - only show when audio is available */}
+        {hasAudio && (
+          <button
+            className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-700 hidden sm:block"
+            onClick={testSpeak}
+            title="Test Voice">
+            🔊
+          </button>
+        )}
+        {/* ✨ Read-Along Mode Toggle - only show when audio is available */}
+        {hasAudio && (
+          <button
+            className={`px-3 py-1 rounded-xl font-semibold text-xs ${readAlongMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-neutral-700 hover:bg-neutral-600'}`}
+            onClick={() => setReadAlongMode(!readAlongMode)}
+            title="حالت روخوانی کلمه به کلمه">
+            {readAlongMode ? '🎤 روخوانی' : '📖 معمولی'}
+          </button>
+        )}
       </div>
 
-      {/* 🎵 Audio Player - Positioned at the BOTTOM to avoid overlapping main toolbar */}
-      {enableAudio && bookCode && (
-        <div className="fixed z-50 left-1/2 -translate-x-1/2 bottom-20 sm:bottom-8 w-[94vw] sm:w-auto">
+      {/* 🎵 Audio Player - Positioned at the BOTTOM, only show when audio is available */}
+      {enableAudio && hasAudio && bookCode && (
+        <div className="fixed z-50 left-1/2 -translate-x-1/2 bottom-20 sm:bottom-8 pb-[env(safe-area-inset-bottom)] w-[94vw] sm:w-auto">
           <PresentationAudioPlayer
             bookCode={bookCode}
             chapter={chapter.chapterNumber}
