@@ -117,10 +117,24 @@ function getTranslationInfo(translationCode) {
     return BIBLE_TRANSLATIONS[translationCode.toUpperCase()] || null;
 }
 
-// Path to Bible text files (frontend public folder - where translations are stored)
-const BIBLE_TEXT_DIR = path.join(__dirname, '../../frontend/public/text/bible');
+// Determine if we're in production or development
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Path to Bible text files - check both locations
+// Production: dist/text/bible (after Vite build)
+// Development: frontend/public/text/bible
+const BIBLE_TEXT_DIRS = [
+    path.join(__dirname, '../../dist/text/bible'),           // Production (built)
+    path.join(__dirname, '../../frontend/public/text/bible'), // Development
+    path.join(__dirname, '../../public/text/bible')           // Alternative (legacy)
+];
+
 // Path to timing files
-const BIBLE_TIMING_DIR = path.join(__dirname, '../../frontend/public/bible/data/timings');
+const BIBLE_TIMING_DIRS = [
+    path.join(__dirname, '../../dist/bible/data/timings'),
+    path.join(__dirname, '../../frontend/public/bible/data/timings'),
+    path.join(__dirname, '../../public/bible/data/timings')
+];
 
 // USFM code mapping (3-letter) to numeric book code (01-66)
 const USFM_TO_NUMERIC = {
@@ -188,29 +202,37 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Convert USFM code (GEN, EXO...) to numeric (01, 02...)
         const numericCode = USFM_TO_NUMERIC[bookUpper] || bookUpper;
 
-        // Build possible paths - files can be stored with USFM code (GEN) or numeric code (01)
-        const translationPathUSFM = path.join(BIBLE_TEXT_DIR, translationUpper, bookUpper, `${chapter}.json`);
-        const translationPathNumeric = path.join(BIBLE_TEXT_DIR, translationUpper, numericCode, `${chapter}.json`);
-        const languagePathNumeric = path.join(BIBLE_TEXT_DIR, lang, numericCode, `${chapter}.json`);
-
         let textData;
         let textSource = 'translation'; // Track which source was used
-        
-        // Try multiple paths in order of preference
-        const pathsToTry = [
-            { path: translationPathUSFM, source: 'translation' },
-            { path: translationPathNumeric, source: 'translation' },
-            { path: languagePathNumeric, source: 'language' }
-        ];
-        
         let foundPath = null;
+        
+        // Build paths to try for EACH base directory (production and development)
+        const pathsToTry = [];
+        for (const baseDir of BIBLE_TEXT_DIRS) {
+            // Try translation-specific folder first (USFM code like GEN)
+            pathsToTry.push({ 
+                path: path.join(baseDir, translationUpper, bookUpper, `${chapter}.json`), 
+                source: 'translation' 
+            });
+            // Then try translation-specific folder (numeric code like 01)
+            pathsToTry.push({ 
+                path: path.join(baseDir, translationUpper, numericCode, `${chapter}.json`), 
+                source: 'translation' 
+            });
+            // Finally try language folder fallback
+            pathsToTry.push({ 
+                path: path.join(baseDir, lang, numericCode, `${chapter}.json`), 
+                source: 'language' 
+            });
+        }
+        
         for (const { path: tryPath, source } of pathsToTry) {
             try {
                 const fileContent = await fs.readFile(tryPath, 'utf-8');
                 textData = JSON.parse(fileContent);
                 textSource = source;
                 foundPath = tryPath;
-                console.log(`📖 Bible: Loaded from ${source} folder: ${tryPath}`);
+                console.log(`📖 Bible: Loaded ${translationUpper} from ${source} folder: ${tryPath}`);
                 break;
             } catch (e) {
                 // Continue to next path
@@ -218,7 +240,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         }
         
         if (!textData) {
-            console.error(`Bible text not found. Tried paths:`, pathsToTry.map(p => p.path));
+            console.error(`Bible text not found for ${translationUpper}. Tried paths:`, pathsToTry.map(p => p.path));
             return res.status(404).json({
                 success: false,
                 error: 'Chapter not found',
