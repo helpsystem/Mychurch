@@ -336,12 +336,14 @@ const BibleAIChatWidget: React.FC = () => {
           timestamp: new Date()
         };
         setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    // Add to queue
+    // Add to queue - useEffect will trigger processRequestQueue
     setRequestQueue(prev => [...prev, request]);
-    processRequestQueue();
+    // Removed duplicate call: processRequestQueue() is called by useEffect when requestQueue changes
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
