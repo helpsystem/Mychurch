@@ -10,7 +10,15 @@
  * - Audio index generation for frontend
  */
 
-const textToSpeech = require('@google-cloud/text-to-speech');
+// Optional dependency - may not be installed in all environments
+let textToSpeech;
+try {
+  textToSpeech = require('@google-cloud/text-to-speech');
+} catch (e) {
+  console.warn('⚠️  @google-cloud/text-to-speech not installed - TTS features disabled');
+  textToSpeech = null;
+}
+
 const fs = require('fs').promises;
 const fsSync = require('fs');
 const path = require('path');
@@ -18,10 +26,15 @@ const crypto = require('crypto');
 
 class TTSManager {
   constructor() {
-    // Initialize Google Cloud TTS client
-    this.client = new textToSpeech.TextToSpeechClient({
-      keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
-    });
+    // Initialize Google Cloud TTS client (if available)
+    if (textToSpeech && process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+      this.client = new textToSpeech.TextToSpeechClient({
+        keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+      });
+    } else {
+      this.client = null;
+      console.warn('⚠️  Google Cloud TTS client not initialized');
+    }
 
     // Configuration
     this.config = {
