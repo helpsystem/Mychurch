@@ -46,7 +46,15 @@ class SyncWorker {
   }
 
   async processNextJob() {
-    const client = await pool.connect();
+    let client;
+    
+    try {
+      client = await pool.connect();
+    } catch (connError) {
+      // Database not available, skip this job cycle
+      console.log('⚠️  SyncWorker: Database not available, skipping job cycle');
+      return;
+    }
 
     try {
       // Get next pending job with highest priority
@@ -89,10 +97,14 @@ class SyncWorker {
       });
 
     } catch (error) {
-      await client.query('ROLLBACK');
+      if (client) {
+        try { await client.query('ROLLBACK'); } catch (e) { /* ignore */ }
+      }
       console.error('Error fetching next job:', error);
     } finally {
-      client.release();
+      if (client) {
+        try { client.release(); } catch (e) { /* ignore */ }
+      }
     }
   }
 

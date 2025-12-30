@@ -3,8 +3,7 @@ const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs');
 const path = require('path');
 
-// Environment variables are loaded by server-wrapper.js
-
+// Environment variables are loaded by server-wrapper.js or set by hosting platform (Render)
 
 // Check if we have DATABASE_URL (Supabase)
 const databaseUrl = process.env.DATABASE_URL;
@@ -56,23 +55,49 @@ if (!useSupabaseClient) {
 
 // Fallback to old Supabase Client implementation if real pool failed
 console.log('⚠️  Falling back to Supabase REST API Mock...');
-const supabaseClient = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY,
+
+// Check for required Supabase environment variables
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl) {
+  console.error('❌ CRITICAL: Neither DATABASE_URL nor SUPABASE_URL is set!');
+  console.error('   Please set one of these environment variables:');
+  console.error('   - DATABASE_URL: Direct PostgreSQL connection string');
+  console.error('   - SUPABASE_URL + SUPABASE_SERVICE_KEY: Supabase REST API');
+  console.error('');
+  console.error('   For Render.com deployment, set these in the Environment tab.');
+  // Don't exit - allow server to start but routes will fail
+}
+
+if (!supabaseKey) {
+  console.error('⚠️  WARNING: SUPABASE_SERVICE_KEY not found, using ANON key');
+}
+
+const supabaseClient = supabaseUrl ? createClient(
+  supabaseUrl,
+  supabaseKey || 'missing-key',
   {
     auth: {
       autoRefreshToken: false,
       persistSession: false
     }
   }
-);
+) : null;
 
 console.log('🔗 Using Supabase REST API (IPv4-compatible)');
-console.log('📍 Supabase URL:', process.env.SUPABASE_URL);
+console.log('📍 Supabase URL:', supabaseUrl || 'NOT SET');
 
 // Create wrapper pool that uses Supabase client (no IPv6 issues)
 const pool = {
   query: async (text, values) => {
+    // Check if supabaseClient is available
+    if (!supabaseClient) {
+      console.error('❌ Database query failed: No database connection available');
+      console.error('   Query:', text.substring(0, 100));
+      throw new Error('Database not configured. Please set DATABASE_URL or SUPABASE_URL environment variables.');
+    }
+
     // Parse table name from SQL
     const tableMatch = text.match(/FROM\s+([a-z_]+)|INTO\s+([a-z_]+)|UPDATE\s+([a-z_]+)/i);
     const tableName = (tableMatch && (tableMatch[1] || tableMatch[2] || tableMatch[3])) || null;
@@ -134,6 +159,12 @@ const pool = {
 
 // Connection is always ready with Supabase client
 const connectWithRetry = async (maxRetries = 1) => {
+  // Skip connection test if no supabaseClient
+  if (!supabaseClient) {
+    console.log('⚠️  Skipping connection test - no database client configured');
+    return false;
+  }
+
   try {
     const { data, error } = await supabaseClient.from('users').select('id').limit(1);
     if (error && error.code !== 'PGRST116') { // PGRST116 = table empty, which is OK
