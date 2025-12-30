@@ -117,10 +117,10 @@ function getTranslationInfo(translationCode) {
     return BIBLE_TRANSLATIONS[translationCode.toUpperCase()] || null;
 }
 
-// Path to Bible text files (public folder)
-const BIBLE_TEXT_DIR = path.join(__dirname, '../../public/text/bible');
+// Path to Bible text files (frontend public folder - where translations are stored)
+const BIBLE_TEXT_DIR = path.join(__dirname, '../../frontend/public/text/bible');
 // Path to timing files
-const BIBLE_TIMING_DIR = path.join(__dirname, '../../public/bible/data/timings');
+const BIBLE_TIMING_DIR = path.join(__dirname, '../../frontend/public/bible/data/timings');
 
 // USFM code mapping (3-letter) to numeric book code (01-66)
 const USFM_TO_NUMERIC = {
@@ -188,42 +188,63 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Convert USFM code (GEN, EXO...) to numeric (01, 02...)
         const numericCode = USFM_TO_NUMERIC[bookUpper] || bookUpper;
 
-        // Try translation-specific folder first, then fallback to language folder
-        // This allows future support for distinct translation texts
-        const translationPath = path.join(BIBLE_TEXT_DIR, translationUpper, numericCode, `${chapter}.json`);
-        const languagePath = path.join(BIBLE_TEXT_DIR, lang, numericCode, `${chapter}.json`);
+        // Build possible paths - files can be stored with USFM code (GEN) or numeric code (01)
+        const translationPathUSFM = path.join(BIBLE_TEXT_DIR, translationUpper, bookUpper, `${chapter}.json`);
+        const translationPathNumeric = path.join(BIBLE_TEXT_DIR, translationUpper, numericCode, `${chapter}.json`);
+        const languagePathNumeric = path.join(BIBLE_TEXT_DIR, lang, numericCode, `${chapter}.json`);
 
         let textData;
         let textSource = 'translation'; // Track which source was used
         
-        try {
-            // First try translation-specific folder (MOJDEH/, QADIM/, TPV/)
-            const fileContent = await fs.readFile(translationPath, 'utf-8');
-            textData = JSON.parse(fileContent);
-            console.log(`📖 Bible: Loaded from translation folder: ${translationUpper}`);
-        } catch (e) {
-            // Fallback to language folder (fa/, en/)
+        // Try multiple paths in order of preference
+        const pathsToTry = [
+            { path: translationPathUSFM, source: 'translation' },
+            { path: translationPathNumeric, source: 'translation' },
+            { path: languagePathNumeric, source: 'language' }
+        ];
+        
+        let foundPath = null;
+        for (const { path: tryPath, source } of pathsToTry) {
             try {
-                const fileContent = await fs.readFile(languagePath, 'utf-8');
+                const fileContent = await fs.readFile(tryPath, 'utf-8');
                 textData = JSON.parse(fileContent);
-                textSource = 'language';
-                console.log(`📖 Bible: Loaded from language folder: ${lang} (fallback for ${translationUpper})`);
-            } catch (e2) {
-                console.error(`Bible text not found. Tried:\n  1. ${translationPath}\n  2. ${languagePath}`);
-                return res.status(404).json({
-                    success: false,
-                    error: 'Chapter not found',
-                    message: `No text file found for ${translationUpper}/${bookUpper}/${chapter}`
-                });
+                textSource = source;
+                foundPath = tryPath;
+                console.log(`📖 Bible: Loaded from ${source} folder: ${tryPath}`);
+                break;
+            } catch (e) {
+                // Continue to next path
             }
         }
+        
+        if (!textData) {
+            console.error(`Bible text not found. Tried paths:`, pathsToTry.map(p => p.path));
+            return res.status(404).json({
+                success: false,
+                error: 'Chapter not found',
+                message: `No text file found for ${translationUpper}/${bookUpper}/${chapter}`
+            });
+        }
 
-        // Convert verses object to array format
-        const versesObj = textData.verses || {};
-        const versesArray = Object.entries(versesObj).map(([num, text]) => ({
-            verse: parseInt(num),
-            text: (text || '').replace(/&nbsp;/g, ' ').trim()
-        })).sort((a, b) => a.verse - b.verse);
+        // Convert verses to array format - supports both formats:
+        // Format 1 (old): { "verses": { "1": "text", "2": "text" } }
+        // Format 2 (new): { "verses": [{ "verse": 1, "text": "..." }] }
+        let versesArray;
+        const versesData = textData.verses || {};
+        
+        if (Array.isArray(versesData)) {
+            // New format: already an array of { verse, text }
+            versesArray = versesData.map(v => ({
+                verse: parseInt(v.verse),
+                text: (v.text || '').replace(/&nbsp;/g, ' ').trim()
+            })).sort((a, b) => a.verse - b.verse);
+        } else {
+            // Old format: object { "1": "text", "2": "text" }
+            versesArray = Object.entries(versesData).map(([num, text]) => ({
+                verse: parseInt(num),
+                text: (text || '').replace(/&nbsp;/g, ' ').trim()
+            })).sort((a, b) => a.verse - b.verse);
+        }
 
         // Get audio translation (handles fallback logic)
         const audioTranslationCode = getAudioTranslation(translationUpper);
