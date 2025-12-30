@@ -299,15 +299,15 @@ router.get('/test', async (req, res) => {
 });
 
 /**
- * GET /api/hidrive/stream/*
+ * GET /api/hidrive/stream/*path
  * Stream any file from HiDrive by full path
  * Example: /api/hidrive/stream/worship/audio/kalameh/song.mp3
  * Public access (no auth required)
  */
-router.get('/stream/*', async (req, res) => {
+router.get('/stream/*path', async (req, res) => {
   try {
     // Get the full path after /stream/
-    const filePath = req.params[0]; // e.g., "worship/audio/kalameh/song.mp3"
+    const filePath = req.params.path; // e.g., "worship/audio/kalameh/song.mp3"
 
     if (!filePath) {
       return res.status(400).json({

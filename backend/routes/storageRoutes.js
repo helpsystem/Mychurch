@@ -144,16 +144,16 @@ router.post('/upload',
 );
 
 /**
- * DELETE /api/storage/delete/:bucket/*
+ * DELETE /api/storage/delete/:bucket/*path
  * حذف فایل
  */
-router.delete('/delete/:bucket/*', 
+router.delete('/delete/:bucket/*path', 
   authenticateToken, 
   authorizeRoles('SUPER_ADMIN', 'MANAGER'),
   async (req, res) => {
     try {
       const { bucket } = req.params;
-      const filePath = req.params[0];
+      const filePath = req.params.path;
 
       if (!filePath) {
         return res.status(400).json({
@@ -183,13 +183,13 @@ router.delete('/delete/:bucket/*',
 );
 
 /**
- * GET /api/storage/url/:bucket/*
+ * GET /api/storage/url/:bucket/*path
  * گرفتن URL فایل
  */
-router.get('/url/:bucket/*', async (req, res) => {
+router.get('/url/:bucket/*path', async (req, res) => {
   try {
     const { bucket } = req.params;
-    const filePath = req.params[0];
+    const filePath = req.params.path;
     const { signed = false, expiresIn = 3600 } = req.query;
 
     if (signed === 'true') {
