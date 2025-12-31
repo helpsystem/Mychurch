@@ -225,9 +225,9 @@ const BibleUnifiedPro: React.FC = () => {
                                 onChange={(e) => setTranslation(e.target.value)}
                                 className="w-full bg-neutral-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:border-purple-500 focus:outline-none transition-colors"
                             >
-                                <option value="MOJDEH">{lang === 'fa' ? '✓ مژده (کامل + صدا)' : 'MOJDEH (Complete + Audio)'}</option>
-                                <option value="QADIM">{lang === 'fa' ? '✓ قدیم (کامل)' : 'QADIM (Complete)'}</option>
-                                <option value="TPV">{lang === 'fa' ? '✓ TPV (کامل + صدا)' : 'TPV (Complete + Audio)'}</option>
+                                <option value="MOJDEH">{lang === 'fa' ? '🔊 مژده (کامل + صدا)' : '🔊 MOJDEH (Complete + Audio)'}</option>
+                                <option value="QADIM">{lang === 'fa' ? '📖 قدیم (کامل - بدون صوت)' : '📖 QADIM (Complete - No Audio)'}</option>
+                                <option value="TPV">{lang === 'fa' ? '🔊 TPV (کامل + صدا)' : '🔊 TPV (Complete + Audio)'}</option>
                             </select>
                         </div>
 
@@ -328,60 +328,74 @@ const BibleUnifiedPro: React.FC = () => {
             </div>
 
             {/* ------------------------------------------------------------ */}
-            {/* 3. DOCK (Floating Audio Controls) - Only show if translation has audio */}
+            {/* 3. DOCK (Floating Audio Controls) - Mobile-optimized */}
             {/* ------------------------------------------------------------ */}
             {!hasAudio && (
-                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
-                    <div className="bg-amber-600/90 backdrop-blur-xl border border-amber-500/30 rounded-xl px-4 py-2 shadow-lg text-white text-sm" dir="rtl">
-                        <span className="mr-2">🔇</span>
-                        {lang === 'fa' ? 'صوت برای این ترجمه موجود نیست' : 'Audio not available for this translation'}
+                <div className="fixed bottom-6 sm:bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 pb-[env(safe-area-inset-bottom)]">
+                    <div className="bg-amber-600/95 backdrop-blur-xl border border-amber-500/30 rounded-xl px-4 py-3 shadow-lg text-white text-sm flex items-center gap-2" dir="rtl">
+                        <span className="text-lg">🔇</span>
+                        <span>{lang === 'fa' ? 'صوت برای این ترجمه موجود نیست' : 'Audio not available for this translation'}</span>
                     </div>
                 </div>
             )}
             {hasAudio && (
-                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 pb-[env(safe-area-inset-bottom)] w-[94vw] sm:w-auto">
-                    <div className="bg-neutral-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-2 px-6 shadow-2xl flex items-center gap-6 ring-1 ring-white/5">
+                <div className="fixed bottom-0 sm:bottom-4 left-0 sm:left-1/2 right-0 sm:right-auto sm:-translate-x-1/2 z-50 transition-all duration-300 pb-[env(safe-area-inset-bottom)]">
+                    <div className="bg-neutral-900/95 sm:bg-neutral-900/90 backdrop-blur-xl border-t sm:border border-white/10 sm:rounded-2xl p-3 sm:p-2 sm:px-6 shadow-2xl flex items-center justify-between sm:justify-start gap-3 sm:gap-6 ring-1 ring-white/5">
 
                         {/* Chapter Nav */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1 sm:gap-2">
                             <button
                                 onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
                                 disabled={selectedChapter <= 1}
-                                className="p-2 hover:bg-white/10 rounded-full transition-colors disabled:opacity-30 text-gray-300"
+                                className="p-2 sm:p-2 hover:bg-white/10 active:bg-white/20 rounded-full transition-colors disabled:opacity-30 text-gray-300"
                             >
-                                <ChevronLeft size={20} />
+                                <ChevronLeft size={24} className="sm:w-5 sm:h-5" />
                             </button>
 
-                            <div className="flex flex-col items-center min-w-[3rem]">
-                                <span className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Chapter</span>
-                                <span className="font-mono text-xl font-bold text-white leading-none">{selectedChapter}</span>
+                            <div className="flex flex-col items-center min-w-[2.5rem] sm:min-w-[3rem]">
+                                <span className="text-[9px] sm:text-[10px] text-gray-500 font-bold tracking-widest uppercase">
+                                    {lang === 'fa' ? 'فصل' : 'CH'}
+                                </span>
+                                <span className="font-mono text-lg sm:text-xl font-bold text-white leading-none">{selectedChapter}</span>
                             </div>
 
                             <button
                                 onClick={() => setSelectedChapter(c => c + 1)}
-                                className="p-2 hover:bg-white/10 rounded-full transition-colors text-gray-300"
+                                className="p-2 sm:p-2 hover:bg-white/10 active:bg-white/20 rounded-full transition-colors text-gray-300"
                             >
-                                <ChevronRight size={20} />
+                                <ChevronRight size={24} className="sm:w-5 sm:h-5" />
                             </button>
                         </div>
 
-                        <div className="h-10 w-px bg-white/10 mx-2"></div>
+                        <div className="hidden sm:block h-10 w-px bg-white/10"></div>
 
-                        {/* Playback */}
+                        {/* Playback - Larger on mobile */}
                         <button
                             onClick={() => setIsPlaying(!isPlaying)}
-                            className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-95 border-4 ${isPlaying ? 'bg-purple-600 border-neutral-900 text-white' : 'bg-white border-neutral-900 text-black'}`}
+                            className={`w-16 h-16 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all active:scale-90 border-4 ${isPlaying 
+                                ? 'bg-gradient-to-br from-purple-500 to-pink-600 border-neutral-900 text-white' 
+                                : 'bg-white border-neutral-900 text-black'
+                            }`}
                         >
-                            {isPlaying ? <div className="w-4 h-4 bg-white rounded-sm" /> : <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-black border-b-[8px] border-b-transparent ml-1" />}
+                            {isPlaying 
+                                ? <div className="w-5 h-5 sm:w-4 sm:h-4 bg-white rounded-sm" /> 
+                                : <div className="w-0 h-0 border-t-[10px] sm:border-t-[8px] border-t-transparent border-l-[16px] sm:border-l-[14px] border-l-black border-b-[10px] sm:border-b-[8px] border-b-transparent ml-1" />
+                            }
                         </button>
 
-                        <div className="h-10 w-px bg-white/10 mx-2"></div>
+                        <div className="hidden sm:block h-10 w-px bg-white/10"></div>
 
-                        {/* Tools */}
-                        <div className="flex items-center gap-2">
+                        {/* Tools - Hidden on small mobile */}
+                        <div className="hidden sm:flex items-center gap-2">
                             <button className="px-3 py-1.5 hover:bg-white/10 rounded-lg text-xs font-mono text-gray-400 hover:text-white transition-colors border border-transparent hover:border-white/10">
                                 1.0x
                             </button>
+                        </div>
+
+                        {/* Audio indicator on mobile */}
+                        <div className="flex sm:hidden items-center gap-1 text-green-400">
+                            <Volume2 size={18} />
+                            <span className="text-xs">{lang === 'fa' ? 'صوت' : 'Audio'}</span>
                         </div>
 
                     </div>

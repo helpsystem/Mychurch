@@ -220,7 +220,7 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
 
           {/* RIGHT COLUMN: FARSI (only if 'both' or 'fa') */}
           {(viewMode === 'both' || viewMode === 'fa') && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {chapter.verses.map((verse) => {
                 const verseWords = verse.text_fa.split(/\s+/).filter(w => w.length > 0);
                 const startWordIndex = allWords.findIndex(w => w.verseNumber === verse.verseNumber);
@@ -229,20 +229,32 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
 
                 return (
                   <div key={`fa-${verse.verseNumber}`}
-                    className={`p-6 rounded-2xl transition-all duration-500 ${isVerseActive ? 'bg-white shadow-lg scale-105 border-r-4' : 'bg-white/40 opacity-80'}`}
+                    className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl transition-all duration-500 ${isVerseActive ? 'bg-white shadow-xl scale-[1.02] border-r-4' : 'bg-white/40 opacity-80'}`}
                     style={{ borderColor: isVerseActive ? highlightColor : 'transparent' }}
                   >
-                    <span className="text-purple-600 font-bold text-xl ml-3">{verse.verseNumber}</span>
-                    <span className="text-lg text-neutral-800 leading-relaxed font-serif">
+                    <span className="text-purple-600 font-bold text-lg sm:text-xl ml-2 sm:ml-3">{verse.verseNumber}</span>
+                    <span className="text-base sm:text-lg text-neutral-800 leading-loose sm:leading-relaxed font-serif">
                       {verseWords.map((word, idx) => {
                         const wordGlobalIndex = startWordIndex + idx;
                         const isWordActive = wordGlobalIndex === currentWordIndex;
+                        const isWordPassed = wordGlobalIndex < currentWordIndex && isVerseActive;
                         return (
                           <span
                             key={`word-${wordGlobalIndex}`}
                             id={`word-${wordGlobalIndex}`}
-                            className={`transition-all duration-300 ${isWordActive ? 'font-extrabold text-purple-800 scale-105' : ''}`}
-                            style={{ backgroundColor: isWordActive ? highlightColor + '40' : 'transparent' }}
+                            className={`
+                              inline-block transition-all duration-200 px-0.5 rounded
+                              ${isWordActive 
+                                ? 'font-extrabold text-purple-900 scale-110 animate-pulse shadow-lg' 
+                                : isWordPassed 
+                                  ? 'text-purple-700 font-semibold' 
+                                  : 'text-neutral-800'
+                              }
+                            `}
+                            style={{ 
+                              backgroundColor: isWordActive ? highlightColor : 'transparent',
+                              textShadow: isWordActive ? '0 0 20px ' + highlightColor : 'none'
+                            }}
                           >
                             {word}{' '}
                           </span>
@@ -257,11 +269,11 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
         </div>
       </div>
 
-      {/* Bottom audio controls */}
-      <div className="bg-white/95 backdrop-blur border-t border-neutral-200 px-6 py-4 z-50">
+      {/* Bottom audio controls - Mobile optimized */}
+      <div className="bg-white/95 backdrop-blur border-t border-neutral-200 px-4 sm:px-6 py-3 sm:py-4 z-50 pb-[env(safe-area-inset-bottom)]">
         {/* Progress bar */}
         <div
-          className="w-full h-3 bg-neutral-200 rounded-full cursor-pointer mb-3 overflow-hidden"
+          className="w-full h-2 sm:h-3 bg-neutral-200 rounded-full cursor-pointer mb-3 overflow-hidden touch-none"
           onClick={handleSeek}
         >
           <div
@@ -272,19 +284,19 @@ const ReadAlongView: React.FC<ReadAlongViewProps> = ({
 
         {/* Time and controls */}
         <div className="flex items-center justify-between">
-          <div className="text-sm font-mono text-neutral-600">
+          <div className="text-xs sm:text-sm font-mono text-neutral-600">
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
 
           <button
             onClick={onPlayPause}
-            className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+            className="w-14 h-14 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg"
           >
             {playing ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
           </button>
 
-          <div className="text-sm text-neutral-500">
-            {viewMode !== 'en' && `کلمه ${currentWordIndex + 1} از ${allWords.length}`}
+          <div className="text-xs sm:text-sm text-neutral-500">
+            {viewMode !== 'en' && `${currentWordIndex + 1}/${allWords.length}`}
           </div>
         </div>
       </div>

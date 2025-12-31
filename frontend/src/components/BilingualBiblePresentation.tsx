@@ -399,24 +399,24 @@ const BilingualBiblePresentation: React.FC<Props> = ({
       <div className={`
         fixed z-50 
         left-1/2 -translate-x-1/2 
-        top-3 sm:top-3
-        flex flex-wrap items-center justify-center gap-2 
-        rounded-2xl bg-neutral-800/90 px-3 py-2 backdrop-blur-md shadow-lg
-        max-w-[95vw] sm:max-w-none
+        top-2 sm:top-3
+        flex flex-wrap items-center justify-center gap-1 sm:gap-2 
+        rounded-xl sm:rounded-2xl bg-neutral-800/95 px-2 sm:px-3 py-2 backdrop-blur-md shadow-lg
+        max-w-[98vw] sm:max-w-none
       `}>
         {/* Play/Pause - Only show if audio available */}
         {hasAudio && (
-          <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => setPlaying((p) => !p)}>
-            {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+          <button className="p-2 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 shadow-md" onClick={() => setPlaying((p) => !p)}>
+            {playing ? <Pause className="w-5 h-5 sm:w-5 sm:h-5" /> : <Play className="w-5 h-5 sm:w-5 sm:h-5" />}
           </button>
         )}
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={prevVerse}><SkipBack className="w-5 h-5" /></button>
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={nextVerse}><SkipForward className="w-5 h-5" /></button>
+        <button className="p-2 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-neutral-700 hover:bg-neutral-600 active:scale-95 transition-all" onClick={prevVerse}><SkipBack className="w-5 h-5" /></button>
+        <button className="p-2 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-neutral-700 hover:bg-neutral-600 active:scale-95 transition-all" onClick={nextVerse}><SkipForward className="w-5 h-5" /></button>
         {hasAudio && (
-          <button className={`px-3 py-1 rounded-xl ${autoAdvance ? "bg-emerald-600" : "bg-neutral-700 hover:bg-neutral-600"}`} onClick={() => setAutoAdvance(a => !a)} title="Auto advance"><RefreshCw className="w-5 h-5" /></button>
+          <button className={`p-2 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl active:scale-95 transition-all ${autoAdvance ? "bg-emerald-600" : "bg-neutral-700 hover:bg-neutral-600"}`} onClick={() => setAutoAdvance(a => !a)} title="Auto advance"><RefreshCw className="w-5 h-5" /></button>
         )}
-        <button className="px-3 py-1 rounded-xl bg-neutral-700 hover:bg-neutral-600" onClick={() => requestFullscreen(containerRef.current)}><Maximize2 className="w-5 h-5" /></button>
-        <div className="mx-2 text-sm opacity-90 hidden sm:block">Ch {chapter.chapterNumber} • V {verse?.verseNumber ?? 1}</div>
+        <button className="p-2 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-neutral-700 hover:bg-neutral-600 active:scale-95 transition-all" onClick={() => requestFullscreen(containerRef.current)}><Maximize2 className="w-5 h-5" /></button>
+        <div className="mx-1 sm:mx-2 text-xs sm:text-sm opacity-90 hidden sm:block">Ch {chapter.chapterNumber} • V {verse?.verseNumber ?? 1}</div>
         <div className="flex items-center gap-1 text-xs hidden sm:flex">
           <Type className="w-4 h-4" />
           <button className="px-2 py-0.5 rounded bg-neutral-700" onClick={() => setFontScale(s => Math.max(0.8, s - 0.05))}>A-</button>
@@ -464,18 +464,19 @@ const BilingualBiblePresentation: React.FC<Props> = ({
         {/* ✨ Read-Along Mode Toggle - only show when audio is available */}
         {hasAudio && (
           <button
-            className={`px-3 py-1 rounded-xl font-semibold text-xs ${readAlongMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-neutral-700 hover:bg-neutral-600'}`}
+            className={`px-2 sm:px-3 py-1 sm:py-1 rounded-lg sm:rounded-xl font-semibold text-xs transition-all active:scale-95 ${readAlongMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg shadow-purple-500/30 animate-pulse' : 'bg-neutral-700 hover:bg-neutral-600'}`}
             onClick={() => setReadAlongMode(!readAlongMode)}
             title="حالت روخوانی کلمه به کلمه">
-            {readAlongMode ? '🎤 روخوانی' : '📖 معمولی'}
+            {readAlongMode ? '🎤 همخوانی' : '📖 عادی'}
           </button>
         )}
       </div>
 
-      {/* 🎵 Audio Player - Positioned at the BOTTOM, only show when audio is available */}
+      {/* 🎵 Audio Player - Positioned at the BOTTOM, mobile-optimized */}
       {enableAudio && hasAudio && bookCode && (
-        <div className="fixed z-50 left-1/2 -translate-x-1/2 bottom-20 sm:bottom-8 pb-[env(safe-area-inset-bottom)] w-[94vw] sm:w-auto">
-          <PresentationAudioPlayer
+        <div className="fixed z-50 left-0 right-0 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 bottom-0 sm:bottom-20 pb-[env(safe-area-inset-bottom)] sm:w-auto">
+          <div className="bg-neutral-900/95 sm:bg-transparent border-t sm:border-0 border-white/10 px-2 sm:px-0">
+            <PresentationAudioPlayer
             bookCode={bookCode}
             chapter={chapter.chapterNumber}
             compact={true}
@@ -506,6 +507,7 @@ const BilingualBiblePresentation: React.FC<Props> = ({
               durationRef.current = dur;
             }}
           />
+          </div>
         </div>
       )}
 
