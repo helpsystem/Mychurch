@@ -129,11 +129,11 @@ const BIBLE_TEXT_DIRS = [
     path.join(__dirname, '../../public/text/bible')           // Alternative (legacy)
 ];
 
-// Path to timing files
+// Path to timing files - matches file structure: bible_data/timestamps/{TRANSLATION}/{BOOK}/{CHAPTER}.json
 const BIBLE_TIMING_DIRS = [
-    path.join(__dirname, '../../dist/bible/data/timings'),
-    path.join(__dirname, '../../frontend/public/bible/data/timings'),
-    path.join(__dirname, '../../public/bible/data/timings')
+    path.join(__dirname, '../../dist/bible_data/timestamps'),          // Production (built)
+    path.join(__dirname, '../../public/bible_data/timestamps'),        // Development (public)
+    path.join(__dirname, '../../frontend/public/bible_data/timestamps') // Development (frontend/public)
 ];
 
 // USFM code mapping (3-letter) to numeric book code (01-66)
@@ -205,27 +205,27 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         let textData;
         let textSource = 'translation'; // Track which source was used
         let foundPath = null;
-        
+
         // Build paths to try for EACH base directory (production and development)
         const pathsToTry = [];
         for (const baseDir of BIBLE_TEXT_DIRS) {
             // Try translation-specific folder first (USFM code like GEN)
-            pathsToTry.push({ 
-                path: path.join(baseDir, translationUpper, bookUpper, `${chapter}.json`), 
-                source: 'translation' 
+            pathsToTry.push({
+                path: path.join(baseDir, translationUpper, bookUpper, `${chapter}.json`),
+                source: 'translation'
             });
             // Then try translation-specific folder (numeric code like 01)
-            pathsToTry.push({ 
-                path: path.join(baseDir, translationUpper, numericCode, `${chapter}.json`), 
-                source: 'translation' 
+            pathsToTry.push({
+                path: path.join(baseDir, translationUpper, numericCode, `${chapter}.json`),
+                source: 'translation'
             });
             // Finally try language folder fallback
-            pathsToTry.push({ 
-                path: path.join(baseDir, lang, numericCode, `${chapter}.json`), 
-                source: 'language' 
+            pathsToTry.push({
+                path: path.join(baseDir, lang, numericCode, `${chapter}.json`),
+                source: 'language'
             });
         }
-        
+
         for (const { path: tryPath, source } of pathsToTry) {
             try {
                 const fileContent = await fs.readFile(tryPath, 'utf-8');
@@ -238,7 +238,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
                 // Continue to next path
             }
         }
-        
+
         if (!textData) {
             console.error(`Bible text not found for ${translationUpper}. Tried paths:`, pathsToTry.map(p => p.path));
             return res.status(404).json({
@@ -253,7 +253,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Format 2 (new): { "verses": [{ "verse": 1, "text": "..." }] }
         let versesArray;
         const versesData = textData.verses || {};
-        
+
         if (Array.isArray(versesData)) {
             // New format: already an array of { verse, text }
             versesArray = versesData.map(v => ({
@@ -271,7 +271,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Get audio translation (handles fallback logic)
         const audioTranslationCode = getAudioTranslation(translationUpper);
         const hasAudioAvailable = !!audioTranslationCode;
-        
+
         // Check if this translation has its OWN audio (not via fallback)
         const hasOwnAudio = translationInfo?.hasAudio === true;
 
@@ -298,16 +298,78 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         }
 
         // Check for timing file - try multiple directories
+        // File structure: bible_data/timestamps/{TRANSLATION}/{BOOK}/{CHAPTER}.json
         let hasTiming = false;
+        let timingData = null;
+        
+        // Try with the audio translation first (since timing syncs with audio)
+        const timingTranslation = audioTranslationCode || translationUpper;
+        const timingPathsToTry = [];
+        
         for (const timingDir of BIBLE_TIMING_DIRS) {
-            const timingPath = path.join(timingDir, `${bookUpper}_${chapter}_timing.json`);
+            // New format: TRANSLATION/BOOK/CHAPTER.json
+            timingPathsToTry.push(path.join(timingDir, timingTranslation, bookUpper, `${chapter}.json`));
+            // Also try with requested translation
+            if (timingTranslation !== translationUpper) {
+                timingPathsToTry.push(path.join(timingDir, translationUpper, bookUpper, `${chapter}.json`));
+            }
+            // Legacy format: BOOK_CHAPTER_timing.json (backward compatibility)
+            timingPathsToTry.push(path.join(timingDir, `${bookUpper}_${chapter}_timing.json`));
+        }
+        
+        for (const timingPath of timingPathsToTry) {
             try {
                 await fs.access(timingPath);
+                const timingContent = await fs.readFile(timingPath, 'utf-8');
+                timingData = JSON.parse(timingContent);
                 hasTiming = true;
+                console.log(`⏱️ Timing: Loaded from ${timingPath}`);
                 break;
             } catch (e) {
-                // No timing file in this dir - try next
+                // No timing file at this path - try next
             }
+        }
+
+        // Merge timing data into verses if available
+        if (hasTiming && timingData) {
+            // Group words by verse number if structure is flat words array
+            let wordsByVerse = {};
+
+            if (timingData.words && Array.isArray(timingData.words)) {
+                // Flat structure (like GEN_1_timing.json)
+                timingData.words.forEach(w => {
+                    const vNum = typeof w.verseNum === 'number' ? w.verseNum : parseInt(w.verseNum);
+                    if (!wordsByVerse[vNum]) {
+                        wordsByVerse[vNum] = [];
+                    }
+                    wordsByVerse[vNum].push(w);
+                });
+            } else if (timingData.verses && Array.isArray(timingData.verses)) {
+                // Nested structure (backward compatibility)
+                timingData.verses.forEach((v, idx) => {
+                    // Assuming sequential verses if no explicit number
+                    const vNum = v.verse || (idx + 1);
+                    if (v.words) {
+                        wordsByVerse[vNum] = v.words;
+                    }
+                });
+            }
+
+            versesArray = versesArray.map(v => {
+                const verseWords = wordsByVerse[v.verse];
+
+                if (verseWords && verseWords.length > 0) {
+                    return {
+                        ...v,
+                        timing: {
+                            start: verseWords[0].start || 0,
+                            end: verseWords[verseWords.length - 1].end || 0,
+                            words: verseWords
+                        }
+                    };
+                }
+                return v;
+            });
         }
 
         // Build response with comprehensive translation info
@@ -345,9 +407,9 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
             hasAudioAvailable: hasAudioAvailable,
             audioNote: audioNote,
 
-            // Timing info
+            // Timing info - URL matches static file path
             hasTiming: hasTiming,
-            timingUrl: hasTiming ? `/bible/data/timings/${bookUpper}_${chapter}_timing.json` : null
+            timingUrl: hasTiming ? `/bible_data/timestamps/${audioTranslationCode || translationUpper}/${bookUpper}/${chapter}.json` : null
         });
 
     } catch (error) {

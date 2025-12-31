@@ -248,6 +248,12 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/worship', express.static(path.join(__dirname, '../public/worship')));
 app.use('/worship', express.static(path.join(__dirname, '../dist/worship')));
 
+// Serve Bible data (timings, structure, etc.)
+// Try multiple locations: public (development), frontend/public, and dist (production)
+app.use('/bible_data', express.static(path.join(__dirname, '../public/bible_data')));
+app.use('/bible_data', express.static(path.join(__dirname, '../frontend/public/bible_data')));
+app.use('/bible_data', express.static(path.join(__dirname, '../dist/bible_data')));
+
 // ---------- FTP CONFIG ----------
 const ftpConfig = {
   host: process.env.FTP_HOST,
