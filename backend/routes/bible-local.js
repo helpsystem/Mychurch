@@ -297,15 +297,17 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
             }
         }
 
-        // Check for timing file
-        const timingPath = path.join(BIBLE_TIMING_DIR, `${bookUpper}_${chapter}_timing.json`);
+        // Check for timing file - try multiple directories
         let hasTiming = false;
-
-        try {
-            await fs.access(timingPath);
-            hasTiming = true;
-        } catch (e) {
-            // No timing file - that's okay
+        for (const timingDir of BIBLE_TIMING_DIRS) {
+            const timingPath = path.join(timingDir, `${bookUpper}_${chapter}_timing.json`);
+            try {
+                await fs.access(timingPath);
+                hasTiming = true;
+                break;
+            } catch (e) {
+                // No timing file in this dir - try next
+            }
         }
 
         // Build response with comprehensive translation info
