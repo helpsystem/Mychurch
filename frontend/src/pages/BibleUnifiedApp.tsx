@@ -6,7 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
     Book, Monitor, Mic2, Settings, ChevronLeft, ChevronRight,
     Menu, X, Volume2, Maximize2, Type, Sun, Moon, Search,
-    Home, Headphones, Layers, MoreHorizontal, ArrowLeft, Languages
+    Home, Headphones, Layers, MoreHorizontal, ArrowLeft, Languages, Box
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import BilingualBiblePresentation, { BiblePayload } from '@/components/BilingualBiblePresentation';
@@ -336,7 +336,7 @@ const BibleUnifiedApp: React.FC = () => {
                                 {[
                                     { id: 'MOJDEH', label: 'مژده (MZH) - تفسیری', hasAudio: true, fallback: null },
                                     { id: 'QADIM', label: 'قدیم (POV) - استاندارد', hasAudio: false, fallback: 'MOJDEH' },
-                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: false, fallback: 'MOJDEH' },
+                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: true, fallback: 'MOJDEH' },
                                     { id: 'PCB', label: 'امید (PCB) - معاصر', hasAudio: false, fallback: 'MOJDEH' },
                                     { id: 'NMV', label: 'هزاره نو (NM)', hasAudio: false, fallback: 'MOJDEH' }
                                 ].map((t) => (
@@ -358,12 +358,43 @@ const BibleUnifiedApp: React.FC = () => {
                                             </div>
                                         ) : (
                                             <div className="flex items-center gap-1 text-xs opacity-50">
-                                                <Volume2 size={14} className="text-gray-500" style={{ opacity: 0.3 }} />
-                                                <span className="text-gray-500 hidden sm:inline">بدون صوت</span>
+                                                <Book size={16} className="text-gray-500" style={{ opacity: 0.5 }} />
+                                                <span className="text-gray-500 hidden sm:inline">متن</span>
                                             </div>
                                         )}
                                     </button>
                                 ))}
+                            </div>
+                        </div>
+
+                        {/* Display Mode */}
+                        <div className="space-y-3">
+                            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+                                <Monitor size={16} /> حالت نمایش (Display Mode)
+                            </label>
+                            <div className="grid grid-cols-2 gap-2">
+                                {[
+                                    { mode: 'presentation', label: 'ارائه', icon: Monitor },
+                                    { mode: 'study', label: 'مطالعه', icon: Book },
+                                    { mode: 'karaoke', label: 'کارائوکه', icon: Mic2 },
+                                    { mode: 'book3d', label: 'سه‌بعدی', icon: Box }
+                                ].map((m) => {
+                                    const Icon = m.icon;
+                                    const isCurrent = mode === m.mode;
+                                    return (
+                                        <button
+                                            key={m.mode}
+                                            onClick={() => setMode(m.mode as any)}
+                                            className={`px-3 py-3 rounded-xl border font-medium transition-all flex items-center gap-2 ${isCurrent
+                                                ? 'bg-purple-600 border-purple-500 text-white shadow-lg'
+                                                : 'bg-neutral-800 border-neutral-700 text-gray-400 hover:bg-neutral-750'
+                                                }`}
+                                        >
+                                            <Icon size={18} />
+                                            <span className="text-sm">{m.label}</span>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </div>
 
@@ -551,8 +582,8 @@ const BibleUnifiedApp: React.FC = () => {
                                                 key={ch}
                                                 onClick={() => { setSelectedBook(book.key); setSelectedChapter(ch); }}
                                                 className={`py-2 rounded text-sm font-medium transition-all ${selectedBook === book.key && selectedChapter === ch
-                                                        ? 'bg-purple-500 text-white'
-                                                        : 'bg-neutral-800 text-gray-400 hover:bg-neutral-700 hover:text-white'
+                                                    ? 'bg-purple-500 text-white'
+                                                    : 'bg-neutral-800 text-gray-400 hover:bg-neutral-700 hover:text-white'
                                                     }`}
                                             >
                                                 {ch}

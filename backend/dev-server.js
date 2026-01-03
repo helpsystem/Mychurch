@@ -25,6 +25,9 @@ const audioRoutes = require('./routes/audioRoutes'); // Smart Audio Source Resol
 const downloadRoutes = require('./routes/downloadRoutes'); // WordProject Downloader
 const bibleLocalRoutes = require('./routes/bible-local'); // Local Bible Data with HiDrive audio integration
 
+// Schedule Events Routes
+const scheduleRoutes = require('./routes/scheduleRoutes');
+
 // Admin Panel Routes - Added for Admin features
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const communicationsRoutes = require('./routes/communicationsRoutes');
@@ -136,6 +139,7 @@ app.use('/api/testimonials', testimonialsRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/announcements', announcementsRoutes);
 app.use('/api/galleries', galleriesRoutes);
+app.use('/api/schedule-events', scheduleRoutes);
 
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);

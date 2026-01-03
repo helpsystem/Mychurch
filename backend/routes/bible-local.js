@@ -280,7 +280,9 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         let audioNote = null;
 
         if (audioTranslationCode) {
-            audioUrl = `/api/hidrive/stream/bible/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
+            // Generate audio URL - using local static files served from /bible_data
+            // Files are located at: public/bible_data/audio/{TRANSLATION}/{BOOK}/{CHAPTER}.mp3
+            audioUrl = `/bible_data/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
 
             // Note if using fallback audio
             if (audioTranslationCode !== translationUpper) {
@@ -300,12 +302,10 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Check for timing file - try multiple directories
         // File structure: bible_data/timestamps/{TRANSLATION}/{BOOK}/{CHAPTER}.json
         let hasTiming = false;
-        let timingData = null;
-        
         // Try with the audio translation first (since timing syncs with audio)
         const timingTranslation = audioTranslationCode || translationUpper;
         const timingPathsToTry = [];
-        
+
         for (const timingDir of BIBLE_TIMING_DIRS) {
             // New format: TRANSLATION/BOOK/CHAPTER.json
             timingPathsToTry.push(path.join(timingDir, timingTranslation, bookUpper, `${chapter}.json`));
@@ -316,7 +316,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
             // Legacy format: BOOK_CHAPTER_timing.json (backward compatibility)
             timingPathsToTry.push(path.join(timingDir, `${bookUpper}_${chapter}_timing.json`));
         }
-        
+
         for (const timingPath of timingPathsToTry) {
             try {
                 await fs.access(timingPath);
