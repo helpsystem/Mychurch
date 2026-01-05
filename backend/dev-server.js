@@ -107,6 +107,9 @@ app.use(express.json());
 // Serve static files (generated images)
 app.use('/generated-images', express.static(path.join(__dirname, '..', 'public', 'generated-images')));
 
+// Serve Bible data (audio and timestamps) - IMPORTANT for local Bible audio playback
+app.use('/bible_data', express.static(path.join(__dirname, '..', 'public', 'bible_data')));
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({

@@ -302,6 +302,7 @@ router.get('/content/:translation/:book/:chapter', async (req, res) => {
         // Check for timing file - try multiple directories
         // File structure: bible_data/timestamps/{TRANSLATION}/{BOOK}/{CHAPTER}.json
         let hasTiming = false;
+        let timingData = null;
         // Try with the audio translation first (since timing syncs with audio)
         const timingTranslation = audioTranslationCode || translationUpper;
         const timingPathsToTry = [];
