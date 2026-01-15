@@ -49,7 +49,7 @@ class HiDriveService {
         password: this.config.password,
         readyTimeout: 30000
       });
-      
+
       this.connected = true;
       console.log('✅ Connected to HiDrive');
     } catch (error) {
@@ -75,7 +75,7 @@ class HiDriveService {
   createSafeFilename(originalName) {
     const ext = path.extname(originalName);
     const nameWithoutExt = path.basename(originalName, ext);
-    
+
     // اگر فقط ASCII باشد، استفاده مستقیم
     if (/^[a-zA-Z0-9_\-. ]+$/.test(nameWithoutExt)) {
       return originalName.replace(/\s+/g, '_');
@@ -117,7 +117,7 @@ class HiDriveService {
     try {
       const originalName = path.basename(localPath);
       const safeName = this.createSafeFilename(originalName);
-      
+
       // ساخت مسیر remote
       let remotePath = `${this.config.basePath}/${category}`;
       if (subcategory) {
@@ -138,7 +138,7 @@ class HiDriveService {
         publicPath += `/${subcategory}`;
       }
       publicPath += `/${safeName}`;
-      
+
       const publicUrl = this.config.publicUrl + publicPath;
 
       console.log(`✅ Uploaded: ${originalName} → ${safeName}`);
@@ -190,7 +190,7 @@ class HiDriveService {
       }
 
       const files = await this.sftp.list(remotePath);
-      
+
       return files.map(file => ({
         name: file.name,
         size: file.size,
@@ -219,7 +219,7 @@ class HiDriveService {
 
       await this.sftp.delete(remotePath);
       console.log(`✅ Deleted: ${filename}`);
-      
+
       return { success: true };
     } catch (error) {
       console.error(`❌ Failed to delete ${filename}:`, error.message);
@@ -229,11 +229,19 @@ class HiDriveService {
 
   /**
    * بررسی وجود فایل
+   * @param {string} category - دسته‌بندی
+   * @param {string} subcategory - زیر دسته (اختیاری)
+   * @param {string} filename - نام فایل
    */
   async fileExists(category, subcategory, filename) {
-    await this.connect();
+    // اگر فقط یک آرگومان داده شد، فرض می‌کنیم مسیر کامل است
+    if (category && !subcategory && !filename) {
+      return this.checkPathExists(category);
+    }
 
     try {
+      await this.connect();
+
       let remotePath = `${this.config.basePath}/${category}`;
       if (subcategory) {
         remotePath += `/${subcategory}`;
@@ -242,6 +250,36 @@ class HiDriveService {
 
       return await this.sftp.exists(remotePath);
     } catch (error) {
+      console.error(`Error checking file existence: ${error.message}`);
+      return false;
+    }
+  }
+
+  /**
+   * بررسی وجود مسیر (فایل یا پوشه)
+   * @param {string} fullPath - مسیر نسبی یا کامل
+   */
+  async checkPathExists(fullPath) {
+    try {
+      await this.connect();
+
+      // اگر مسیر با / شروع نشده، اسلش اضافه کن
+      let remotePath = fullPath;
+
+      // اگر مسیر کامل نیست (یعنی شامل basePath نیست)، basePath را اضافه کن
+      // اما اگر مسیر از قبل کامل به نظر می‌رسد، دست نزن
+      if (!remotePath.startsWith(this.config.basePath) && !remotePath.startsWith('/users/')) {
+        if (!remotePath.startsWith('/')) remotePath = '/' + remotePath;
+        remotePath = `${this.config.basePath}${remotePath}`;
+      }
+
+      // تمیزکاری مسیر (حذف اسلش‌های تکراری)
+      remotePath = remotePath.replace(/\/\//g, '/');
+
+      const exists = await this.sftp.exists(remotePath);
+      return !!exists;
+    } catch (error) {
+      console.error(`Error checking path existence: ${error.message}`);
       return false;
     }
   }
@@ -255,7 +293,7 @@ class HiDriveService {
       publicPath += `/${subcategory}`;
     }
     publicPath += `/${filename}`;
-    
+
     return this.config.publicUrl + publicPath;
   }
 
@@ -272,7 +310,7 @@ class HiDriveService {
       for (const file of files) {
         if (file.isFile()) {
           const localPath = path.join(localDir, file.name);
-          
+
           try {
             const result = await this.uploadFile(localPath, category, subcategory);
             results.push(result);

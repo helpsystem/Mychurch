@@ -9,6 +9,7 @@ import {
     CHURCH_ADDRESS, CHURCH_PHONE, MEETING_TIME_EN, MEETING_TIME_FA,
     FACEBOOK_URL, YOUTUBE_URL, INSTAGRAM_URL
 } from '../lib/constants';
+import { encodeAudioUrl } from '../utils/encodeAudioUrl';
 
 export const ContentContext = createContext<ContentContextType | undefined>(undefined);
 
@@ -97,10 +98,10 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                 }
 
                 // Local paths starting with /worship/, /sermons/, etc. should be served directly by Vite
-                // No conversion needed - these files exist in frontend/public/
+                // Apply URL encoding for Persian/non-ASCII filenames to prevent 404 errors
                 if (url.startsWith('/worship/') || url.startsWith('/sermons/') || url.startsWith('/events/') || url.startsWith('/bible/') || url.startsWith('/audio/')) {
-                    // Return as-is for local serving
-                    return url;
+                    // Encode URL to handle Persian/Farsi characters properly
+                    return encodeAudioUrl(url);
                 }
 
                 return url;
@@ -152,7 +153,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
 
             // Separate public and authenticated endpoints
             const token = getAuthToken();
-            
+
             // 🚀 بهینه‌سازی: در موبایل فقط داده‌های ضروری رو بارگذاری کن
             const isMobile = window.innerWidth < 768;
 
@@ -180,7 +181,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             // 🚀 در موبایل فقط اولویت‌های بالا رو اول لود کن
             const highPriorityEndpoints = publicEndpoints.filter(e => e.priority === 'high');
             const lowPriorityEndpoints = publicEndpoints.filter(e => e.priority === 'low');
-            
+
             const contentEndpoints = isMobile ? highPriorityEndpoints : publicEndpoints;
 
             // Only add authenticated endpoints if user is logged in
@@ -255,7 +256,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
             });
 
             setLoading(false);
-            
+
             // 🚀 در موبایل، داده‌های با اولویت پایین رو با تأخیر لود کن
             if (isMobile && lowPriorityEndpoints.length > 0) {
                 setTimeout(async () => {
@@ -265,13 +266,13 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
                             .then(data => ({ key: endpoint.key, data, success: true }))
                             .catch(() => ({ key: endpoint.key, data: endpoint.mockData, success: false }))
                     );
-                    
+
                     const lowResults = await Promise.all(lowPriorityPromises);
                     const lowContent = lowResults.reduce((acc, result: any) => {
                         acc[result.key] = result.data;
                         return acc;
                     }, {} as Partial<ContentData>);
-                    
+
                     setContent(prev => ({ ...prev, ...lowContent }));
                     console.log('✅ Low-priority content loaded');
                 }, 2000); // 2 ثانیه تأخیر

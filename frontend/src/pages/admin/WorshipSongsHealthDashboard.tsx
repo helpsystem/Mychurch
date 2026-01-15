@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useAuth } from '../../hooks/useAuth';
 import axios from 'axios';
-import { 
-  CheckCircle, XCircle, AlertCircle, RefreshCw, 
+import {
+  CheckCircle, XCircle, AlertCircle, RefreshCw,
   Music, FileText, Clock, Activity, Play, TrendingUp
 } from 'lucide-react';
 
 interface HealthStats {
   total: number;
   withAudio: number;
+  audioMissingFile?: number; // New field
   withLyrics: number;
   withTiming: number;
   withChords: number;
@@ -24,12 +25,15 @@ interface HealthStats {
 
 interface Percentages {
   withAudio: string;
+  audioMissingFile?: string; // New field
   withLyrics: string;
   withTiming: string;
   withChords: string;
   fullyComplete: string;
   completed: string;
 }
+
+
 
 const WorshipSongsHealthDashboard: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -69,8 +73,8 @@ const WorshipSongsHealthDashboard: React.FC = () => {
   };
 
   const handleProcessAll = async () => {
-    if (!confirm(lang === 'fa' 
-      ? 'آیا مطمئن هستید که می‌خواهید همه سرودهای ناقص را پردازش کنید؟' 
+    if (!confirm(lang === 'fa'
+      ? 'آیا مطمئن هستید که می‌خواهید همه سرودهای ناقص را پردازش کنید؟'
       : 'Are you sure you want to process all incomplete songs?')) {
       return;
     }
@@ -81,14 +85,14 @@ const WorshipSongsHealthDashboard: React.FC = () => {
         generateTiming: true
       });
 
-      alert(lang === 'fa' 
-        ? `${response.data.queued} سرود در صف پردازش قرار گرفت` 
+      alert(lang === 'fa'
+        ? `${response.data.queued} سرود در صف پردازش قرار گرفت`
         : `${response.data.queued} songs queued for processing`);
 
       await loadHealthStats();
     } catch (error: any) {
-      alert(lang === 'fa' 
-        ? `خطا: ${error.response?.data?.message || error.message}` 
+      alert(lang === 'fa'
+        ? `خطا: ${error.response?.data?.message || error.message}`
         : `Error: ${error.response?.data?.message || error.message}`);
     } finally {
       setProcessing(false);
@@ -139,8 +143,8 @@ const WorshipSongsHealthDashboard: React.FC = () => {
             {lang === 'fa' ? '🎵 داشبورد سلامت سرودهای پرستشی' : '🎵 Worship Songs Health Dashboard'}
           </h1>
           <p className="text-gray-300">
-            {lang === 'fa' 
-              ? 'بررسی وضعیت و کامل بودن تمام سرودها' 
+            {lang === 'fa'
+              ? 'بررسی وضعیت و کامل بودن تمام سرودها'
               : 'Monitor status and completeness of all worship songs'}
           </p>
         </div>
@@ -185,12 +189,11 @@ const WorshipSongsHealthDashboard: React.FC = () => {
               </div>
 
               {/* Health Status */}
-              <div className={`bg-gray-700/50 rounded-xl p-4 border ${
-                health === 'excellent' ? 'border-green-500/30' :
+              <div className={`bg-gray-700/50 rounded-xl p-4 border ${health === 'excellent' ? 'border-green-500/30' :
                 health === 'good' ? 'border-blue-500/30' :
-                health === 'fair' ? 'border-yellow-500/30' :
-                'border-red-500/30'
-              }`}>
+                  health === 'fair' ? 'border-yellow-500/30' :
+                    'border-red-500/30'
+                }`}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-gray-300">{lang === 'fa' ? 'وضعیت سلامت' : 'Health Status'}</span>
                   <TrendingUp className={getHealthColor(health)} size={24} />
@@ -200,7 +203,6 @@ const WorshipSongsHealthDashboard: React.FC = () => {
                 </div>
               </div>
 
-              {/* With Audio */}
               <div className="bg-gray-700/50 rounded-xl p-4">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-gray-300">{lang === 'fa' ? 'دارای صدا' : 'With Audio'}</span>
@@ -211,6 +213,24 @@ const WorshipSongsHealthDashboard: React.FC = () => {
                   <span className="text-sm ml-2 text-gray-400">({percentages.withAudio}%)</span>
                 </div>
               </div>
+
+              {/* Missing Audio Files Alert */}
+              {(stats.audioMissingFile || 0) > 0 && (
+                <div className="bg-red-600/20 rounded-xl p-4 border border-red-500/50 animate-pulse">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-gray-300">{lang === 'fa' ? 'فایل صوتی گم شده' : 'Missing Audio Files'}</span>
+                    <AlertCircle className="text-red-400" size={24} />
+                  </div>
+                  <div className="text-2xl font-bold text-red-400">
+                    {stats.audioMissingFile}
+                  </div>
+                  <div className="text-xs text-red-300 mt-1">
+                    {lang === 'fa'
+                      ? 'لینک در دیتابیس هست اما فایل در HiDrive نیست!'
+                      : 'Link exists in DB but file missing on HiDrive!'}
+                  </div>
+                </div>
+              )}
 
               {/* With Lyrics */}
               <div className="bg-gray-700/50 rounded-xl p-4">
@@ -334,9 +354,13 @@ const WorshipSongsHealthDashboard: React.FC = () => {
                   <div className="flex gap-2">
                     {song.missing.map((item: string) => (
                       <span key={item} className="bg-red-600/30 text-red-400 px-3 py-1 rounded-full text-xs border border-red-500/30">
-                        {lang === 'fa' 
-                          ? item === 'audio' ? 'بدون صدا' : item === 'lyrics' ? 'بدون متن' : 'بدون تایمینگ'
-                          : `No ${item}`
+                        {lang === 'fa'
+                          ? item === 'audio' ? 'بدون لینک صدا'
+                            : item === 'audioFile' ? 'فایل صوتی گم شده'
+                              : item === 'lyrics' ? 'بدون متن'
+                                : 'بدون تایمینگ'
+                          : item === 'audioFile' ? 'Missing Audio File'
+                            : `No ${item}`
                         }
                       </span>
                     ))}

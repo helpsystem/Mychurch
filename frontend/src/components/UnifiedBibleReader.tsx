@@ -74,6 +74,8 @@ const UnifiedBibleReader: React.FC = () => {
   const [selectedBookKey, setSelectedBookKey] = useState<string>('');
   const [selectedChapter, setSelectedChapter] = useState<number>(1);
   const [verses, setVerses] = useState<BibleVerse[]>([]);
+  const [chapterAudioUrl, setChapterAudioUrl] = useState<string | null>(null);
+  const [chapterTimingUrl, setChapterTimingUrl] = useState<string | null>(null);
 
   // UI State
   const [isLoading, setIsLoading] = useState(true);  // Start with loading
@@ -177,6 +179,8 @@ const UnifiedBibleReader: React.FC = () => {
         verses?: { fa: string[]; en: string[] };
         translation?: { code: string; name: { en: string; fa: string } };
         message?: string;
+        audioUrl?: string;
+        timingUrl?: string;
       }>(`/api/bible/content/${selectedBookKey}/${selectedChapter}`);
 
       console.log('✅ Verses loaded:', data);
@@ -200,6 +204,11 @@ const UnifiedBibleReader: React.FC = () => {
 
         console.log(`✅ Loaded ${formattedVerses.length} verses`);
         setVerses(formattedVerses);
+
+        // Store audio/timing URLs from backend if available
+        if (data.audioUrl) setChapterAudioUrl(data.audioUrl);
+        if (data.timingUrl) setChapterTimingUrl(data.timingUrl);
+
         setStep('reading');
       } else {
         throw new Error(data.message || 'Invalid API response for verses');
@@ -221,6 +230,8 @@ const UnifiedBibleReader: React.FC = () => {
     setSelectedChapter(1);
     setVerses([]);
     setBooks([]);
+    setChapterAudioUrl(null);
+    setChapterTimingUrl(null);
     console.log('🔄 ترجمه انتخاب شد:', translationCode);
   };
 
@@ -228,12 +239,16 @@ const UnifiedBibleReader: React.FC = () => {
     setSelectedBookKey(bookKey);
     setSelectedChapter(1);
     setVerses([]);
+    setChapterAudioUrl(null);
+    setChapterTimingUrl(null);
     console.log('📖 کتاب انتخاب شد:', bookKey);
   };
 
   const handleChapterChange = (chapter: number) => {
     setSelectedChapter(chapter);
     setVerses([]);
+    setChapterAudioUrl(null);
+    setChapterTimingUrl(null);
     console.log('📄 فصل انتخاب شد:', chapter);
   };
 
@@ -763,8 +778,8 @@ const UnifiedBibleReader: React.FC = () => {
                     words: text.split(/\s+/).filter(w => w.length > 0)
                   };
                 })}
-                audioUrl={`${BIBLE_AUDIO_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.mp3`}
-                timingUrl={`${BIBLE_TIMING_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.json`}
+                audioUrl={chapterAudioUrl || `${BIBLE_AUDIO_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.mp3`}
+                timingUrl={chapterTimingUrl || `${BIBLE_TIMING_BASE_URL}/${lang}/${selectedBookKey}/${selectedChapter}.json`}
                 onPlayStateChange={(playing) => {
                   setIsPlaying(playing);
                   if (playing && audioRef.current) {

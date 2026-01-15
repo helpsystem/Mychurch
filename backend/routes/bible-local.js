@@ -30,23 +30,24 @@ const BIBLE_TRANSLATIONS = {
     MOJDEH: {
         code: 'MOJDEH',
         language: 'fa',
-        hasAudio: true,
-        audioSource: 'hidrive',
+        hasAudio: false,      // Audio is for QADIM only
+        audioSource: null,
         audioFallback: null,
         name: { en: 'Mojdeh (Good News)', fa: 'مژده' }
     },
     QADIM: {
         code: 'QADIM',
         language: 'fa',
-        hasAudio: false,
-        audioFallback: 'MOJDEH',
+        hasAudio: true,       // Audio folder moved to QADIM
+        audioSource: 'local',
+        audioFallback: null,
         name: { en: 'Qadim (Classical)', fa: 'قدیم' }
     },
     TPV: {
         code: 'TPV',
         language: 'fa',
-        hasAudio: true,
-        audioSource: 'hidrive',
+        hasAudio: true,      // Confirmed local files exist
+        audioSource: 'local', // Using local /bible_data/audio
         audioFallback: null,
         name: { en: "Today's Persian Version", fa: 'ترجمه نوین' }
     },
@@ -54,14 +55,14 @@ const BIBLE_TRANSLATIONS = {
         code: 'NMV',
         language: 'fa',
         hasAudio: false,
-        audioFallback: 'MOJDEH',
+        audioFallback: 'TPV',
         name: { en: 'New Millennium Version', fa: 'هزاره نو' }
     },
     PCB: {
         code: 'PCB',
         language: 'fa',
         hasAudio: false,
-        audioFallback: 'MOJDEH',
+        audioFallback: 'TPV',
         name: { en: 'Persian Contemporary Bible', fa: 'معاصر' }
     },
     // English Translations
@@ -444,9 +445,11 @@ router.get('/audio/:translation/:book/:chapter', async (req, res) => {
     }
 
     // Redirect to HiDrive stream
-    const hidriveUrl = `/api/hidrive/stream/bible/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
-    console.log(`🔄 Redirecting audio request to HiDrive: ${hidriveUrl}`);
-    res.redirect(302, hidriveUrl);
+    // Redirect to local static file
+    // Note: The static middleware in server.js serves /bible_data from public/bible_data
+    const localUrl = `/bible_data/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
+    console.log(`🔄 Redirecting audio request to Local: ${localUrl}`);
+    res.redirect(302, localUrl);
 });
 
 module.exports = router;

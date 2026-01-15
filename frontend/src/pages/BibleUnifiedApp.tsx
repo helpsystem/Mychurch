@@ -335,10 +335,13 @@ const BibleUnifiedApp: React.FC = () => {
                             <div className="grid grid-cols-1 gap-2">
                                 {[
                                     { id: 'MOJDEH', label: 'مژده (MZH) - تفسیری', hasAudio: true, fallback: null },
-                                    { id: 'QADIM', label: 'قدیم (POV) - استاندارد', hasAudio: false, fallback: 'MOJDEH' },
-                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: true, fallback: 'MOJDEH' },
+                                    { id: 'QADIM', label: 'قدیم (POV) - استاندارد', hasAudio: true, fallback: null },
+                                    { id: 'TPV', label: 'هزاره نو (TPV) - امروزی', hasAudio: true, fallback: null },
+                                    { id: 'NMV', label: 'مژده جدید (NMV)', hasAudio: true, fallback: null },
                                     { id: 'PCB', label: 'امید (PCB) - معاصر', hasAudio: false, fallback: 'MOJDEH' },
-                                    { id: 'NMV', label: 'هزاره نو (NM)', hasAudio: false, fallback: 'MOJDEH' }
+                                    { id: 'RCPV', label: 'معاصر بازبینی (RCPV)', hasAudio: false, fallback: 'MOJDEH' },
+                                    { id: 'ASV', label: 'American Standard (ASV)', hasAudio: false, fallback: null },
+                                    { id: 'NIV', label: 'New International (NIV)', hasAudio: false, fallback: null }
                                 ].map((t) => (
                                     <button
                                         key={t.id}
@@ -530,9 +533,18 @@ const BibleUnifiedApp: React.FC = () => {
                         onChange={(e) => setTranslation(e.target.value)}
                         className="bg-neutral-800 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:border-purple-500 outline-none"
                     >
-                        <option value="MOJDEH">MZH (Mojdeh)</option>
-                        <option value="QADIM">POV (Old Persian)</option>
-                        <option value="TPV">TPV (Today's)</option>
+                        <optgroup label="🇮🇷 فارسی">
+                            <option value="MOJDEH">🔊 MZH - مژده (Mojdeh)</option>
+                            <option value="QADIM">🔊 POV - ترجمه قدیم</option>
+                            <option value="TPV">🔊 TPV - ترجمه امروز</option>
+                            <option value="NMV">🔊 NMV - مژده جدید</option>
+                            <option value="PCB">📖 PCB - معاصر فارسی</option>
+                            <option value="RCPV">📖 RCPV - معاصر بازبینی</option>
+                        </optgroup>
+                        <optgroup label="🇬🇧 English">
+                            <option value="ASV">📖 ASV - American Standard</option>
+                            <option value="NIV">📖 NIV - New International</option>
+                        </optgroup>
                     </select>
                     <button onClick={() => setViewMode(v => v === 'dual' ? 'fa' : 'dual')} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors" title="Toggle Dual View">
                         <Languages size={18} />

@@ -49,7 +49,8 @@ const ModalPortal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void; onKaraoke?: () => void }> = ({ song, onClick, onKaraoke }) => {
   const { lang } = useLanguage();
   const hasYoutube = !!song.youtubeId;
-  const hasAudio = !!song.audioUrl;
+  // Check for valid audio URL (not empty and starts with / or http)
+  const hasAudio = !!(song.audioUrl && song.audioUrl.trim() !== '' && (song.audioUrl.startsWith('/') || song.audioUrl.startsWith('http')));
   const thumbnailUrl = hasYoutube ? `https://img.youtube.com/vi/${song.youtubeId}/hqdefault.jpg` : '/images/Prayer_circle_hands_together_feb88f83.png';
 
   const handleCardClick = () => {
@@ -117,6 +118,22 @@ const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void; onKar
               mode="card"
               className="bg-purple-900/30 rounded-lg"
             />
+          </div>
+        )}
+
+        {/* YouTube Embed Player - for songs without local audio */}
+        {!hasAudio && hasYoutube && (
+          <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+            <div className="aspect-video rounded-lg overflow-hidden bg-black/50">
+              <iframe
+                src={`https://www.youtube.com/embed/${song.youtubeId}?rel=0&modestbranding=1`}
+                title={song.title?.[lang] || 'Worship Song'}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+                loading="lazy"
+              />
+            </div>
           </div>
         )}
 

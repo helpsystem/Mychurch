@@ -22,9 +22,10 @@ if (!useSupabaseClient) {
   // Real Postgres Pool
   try {
     console.log('🔗 Connecting to PostgreSQL directly...');
+    const isLocalhost = databaseUrl.includes('localhost') || databaseUrl.includes('127.0.0.1');
     const realPool = new Pool({
       connectionString: databaseUrl,
-      ssl: { rejectUnauthorized: false }
+      ssl: isLocalhost ? false : { rejectUnauthorized: false }
     });
 
     // Test connection

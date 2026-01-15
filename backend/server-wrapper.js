@@ -11,7 +11,7 @@ const dotenv = require('dotenv');
 const fs = require('fs');
 
 // Load environment variables from root .env file
-const envPath = path.resolve(__dirname, '../.env');
+const envPath = path.resolve(__dirname, '.env');
 
 if (!fs.existsSync(envPath)) {
     console.error('❌ .env file not found at:', envPath);

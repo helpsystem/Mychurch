@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useContent } from '../hooks/useContent';
-import { Music, Search, Filter, Play, ExternalLink, List, Grid, Download, FileText, Presentation, Music2, Mic, PlayCircle, Shuffle } from 'lucide-react';
+import { Music, Search, Filter, Play, ExternalLink, List, Grid, Download, FileText, Presentation, Music2, Mic, PlayCircle, Shuffle, Wand2 } from 'lucide-react';
 import UniversalMediaPlayer from './UniversalMediaPlayer';
 import EnhancedMediaPlayer from './EnhancedMediaPlayer';
 import LocalAudioPlayerWithSyncedLyrics from './LocalAudioPlayerWithSyncedLyrics';
+import { AdvancedKaraokeMode, PresentationGenerator, ChordDetector } from './worship';
 import { WorshipSong } from '../types';
 import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
 
@@ -63,6 +64,18 @@ const EnhancedWorshipSongs: React.FC = () => {
   const [showKaraokeMode, setShowKaraokeMode] = useState(false);
   const [karaokeSong, setKaraokeSong] = useState<WorshipSong | null>(null);
 
+  // Advanced Karaoke Mode State
+  const [showAdvancedKaraoke, setShowAdvancedKaraoke] = useState(false);
+  const [advancedKaraokeSong, setAdvancedKaraokeSong] = useState<WorshipSong | null>(null);
+
+  // Presentation Generator State
+  const [showPresentationGenerator, setShowPresentationGenerator] = useState(false);
+  const [presentationSong, setPresentationSong] = useState<WorshipSong | null>(null);
+
+  // Chord Detector State
+  const [showChordDetector, setShowChordDetector] = useState(false);
+  const [chordDetectorSong, setChordDetectorSong] = useState<WorshipSong | null>(null);
+
   // Alphabetical Filter State
   const [activeLetterFilter, setActiveLetterFilter] = useState<string | null>(null);
 
@@ -106,9 +119,13 @@ const EnhancedWorshipSongs: React.FC = () => {
   // Filter songs based on search, artist, and letter selection
   const filteredSongs = useMemo(() => {
     return sortedSongs.filter(song => {
-      const matchesSearch = song.title[lang].toLowerCase().includes(searchTerm.toLowerCase()) ||
-        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesArtist = selectedArtist === 'all' || song.artist === selectedArtist;
+      // Defensive check for title and artist
+      const titleByLang = song.title?.[lang] || song.title?.fa || song.title?.en || '';
+      const artist = song.artist || '';
+
+      const matchesSearch = titleByLang.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        artist.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesArtist = selectedArtist === 'all' || artist === selectedArtist;
       const title = (song.title?.[lang] || song.title?.fa || song.title?.en || '').trim();
       const matchesLetter = !activeLetterFilter || title[0]?.toUpperCase() === activeLetterFilter;
       return matchesSearch && matchesArtist && matchesLetter;
@@ -319,6 +336,36 @@ const EnhancedWorshipSongs: React.FC = () => {
                 <span>{lang === 'fa' ? 'متن زنده' : 'Live Text'}</span>
               </button>
             )}
+
+            {/* Presentation Generator Button */}
+            {song.lyrics && song.lyrics[lang] && (
+              <button
+                onClick={() => {
+                  setPresentationSong(song);
+                  setShowPresentationGenerator(true);
+                }}
+                className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-lg transition-all text-sm font-medium"
+                title={lang === 'fa' ? 'ساخت پرزنتیشن' : 'Generate Presentation'}
+              >
+                <Presentation size={16} />
+                <span>{lang === 'fa' ? 'پرزنتیشن' : 'Slides'}</span>
+              </button>
+            )}
+
+            {/* Chord Detector Button */}
+            {song.lyrics && song.lyrics[lang] && (
+              <button
+                onClick={() => {
+                  setChordDetectorSong(song);
+                  setShowChordDetector(true);
+                }}
+                className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 rounded-lg transition-all text-sm font-medium"
+                title={lang === 'fa' ? 'تشخیص آکورد' : 'Detect Chords'}
+              >
+                <Music2 size={16} />
+                <span>{lang === 'fa' ? 'آکورد' : 'Chords'}</span>
+              </button>
+            )}
           </div>
 
           {/* Download Files Section */}
@@ -522,8 +569,8 @@ const EnhancedWorshipSongs: React.FC = () => {
                 <button
                   onClick={() => setActiveLetterFilter(activeLetterFilter === '#' ? null : '#')}
                   className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${activeLetterFilter === '#'
-                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/40 scale-110'
-                      : 'bg-black-gradient text-gray-300 hover:bg-gray-700 hover:text-white'
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/40 scale-110'
+                    : 'bg-black-gradient text-gray-300 hover:bg-gray-700 hover:text-white'
                     }`}
                   title={lang === 'fa' ? 'جدیدترین سرودها' : 'Newest Songs'}
                 >
@@ -536,8 +583,8 @@ const EnhancedWorshipSongs: React.FC = () => {
                     key={letter}
                     onClick={() => setActiveLetterFilter(activeLetterFilter === letter ? null : letter)}
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${activeLetterFilter === letter
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg shadow-purple-500/40 scale-110'
-                        : 'bg-black-gradient text-gray-300 hover:bg-gray-700 hover:text-white'
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg shadow-purple-500/40 scale-110'
+                      : 'bg-black-gradient text-gray-300 hover:bg-gray-700 hover:text-white'
                       }`}
                   >
                     {letter}
@@ -749,6 +796,44 @@ const EnhancedWorshipSongs: React.FC = () => {
             />
           </div>
         </div>
+      )}
+
+      {/* Advanced Karaoke Mode */}
+      {showAdvancedKaraoke && advancedKaraokeSong && (
+        <AdvancedKaraokeMode
+          isOpen={showAdvancedKaraoke}
+          onClose={() => setShowAdvancedKaraoke(false)}
+          song={{
+            id: advancedKaraokeSong.id,
+            title: advancedKaraokeSong.title,
+            artist: advancedKaraokeSong.artist,
+            audioUrl: advancedKaraokeSong.audioUrl || '',
+            lyrics: advancedKaraokeSong.lyrics
+          }}
+          lang={lang}
+        />
+      )}
+
+      {/* Presentation Generator */}
+      {showPresentationGenerator && presentationSong && (
+        <PresentationGenerator
+          isOpen={showPresentationGenerator}
+          onClose={() => setShowPresentationGenerator(false)}
+          songTitle={presentationSong.title}
+          lyrics={presentationSong.lyrics?.[lang] || presentationSong.lyrics?.fa || ''}
+          lang={lang}
+        />
+      )}
+
+      {/* Chord Detector */}
+      {showChordDetector && chordDetectorSong && (
+        <ChordDetector
+          isOpen={showChordDetector}
+          onClose={() => setShowChordDetector(false)}
+          songTitle={chordDetectorSong.title[lang]}
+          existingLyrics={chordDetectorSong.lyrics?.[lang] || chordDetectorSong.lyrics?.fa || ''}
+          lang={lang}
+        />
       )}
 
       {/* Mini Player */}

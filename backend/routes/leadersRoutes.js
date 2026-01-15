@@ -19,14 +19,22 @@ const parseJSON = (field, defaultValue = {}) => {
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM leaders ORDER BY created_at DESC');
-    const leaders = result.rows.map(leader => ({
-      id: leader.id,
-      name: parseJSON(leader.name, { fa: leader.name || '', en: leader.name || '' }),
-      title: parseJSON(leader.title, {}),
-      imageUrl: leader.imageurl,
-      bio: parseJSON(leader.bio, { fa: '', en: '' }),
-      whatsappNumber: leader.whatsapp_number || null
-    }));
+    console.log('DEBUG LEADERS:', result.rows.length > 0 ? Object.keys(result.rows[0]) : 'No rows');
+    const leaders = result.rows.map(leader => {
+      try {
+        return {
+          id: leader.id,
+          name: parseJSON(leader.name, { fa: leader.name || '', en: leader.name || '' }),
+          title: parseJSON(leader.title, {}),
+          imageUrl: leader.imageurl,
+          bio: parseJSON(leader.bio, { fa: '', en: '' }),
+          whatsappNumber: leader.whatsapp_number || null
+        };
+      } catch (e) {
+        console.error('Error mapping leader:', leader, e);
+        return null;
+      }
+    }).filter(l => l !== null);
     res.json(leaders);
   } catch (error) {
     console.error('Fetch Leaders Error:', error);
@@ -44,7 +52,7 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
 
   try {
     const result = await pool.query(
-      'INSERT INTO leaders (name, title, imageUrl, bio, whatsappNumber) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      'INSERT INTO leaders (name, title, imageUrl, bio, whatsapp_number) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [
         JSON.stringify(name),
         JSON.stringify(title),
@@ -61,7 +69,7 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
       title: parseJSON(newLeader.title, {}),
       imageUrl: newLeader.imageurl,
       bio: parseJSON(newLeader.bio, {}),
-      whatsappNumber: newLeader.whatsappnumber
+      whatsappNumber: newLeader.whatsapp_number
     });
   } catch (error) {
     console.error('Create Leader Error:', error);
@@ -76,7 +84,7 @@ router.put('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), 
 
   try {
     const result = await pool.query(
-      'UPDATE leaders SET name = $1, title = $2, imageUrl = $3, bio = $4, whatsappNumber = $5 WHERE id = $6 RETURNING *',
+      'UPDATE leaders SET name = $1, title = $2, imageUrl = $3, bio = $4, whatsapp_number = $5 WHERE id = $6 RETURNING *',
       [
         JSON.stringify(name),
         JSON.stringify(title),
@@ -98,7 +106,7 @@ router.put('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), 
       title: parseJSON(updatedLeader.title, {}),
       imageUrl: updatedLeader.imageurl,
       bio: parseJSON(updatedLeader.bio, {}),
-      whatsappNumber: updatedLeader.whatsappnumber
+      whatsappNumber: updatedLeader.whatsapp_number
     });
   } catch (error) {
     console.error('Update Leader Error:', error);

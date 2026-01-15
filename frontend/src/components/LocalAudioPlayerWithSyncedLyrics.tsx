@@ -146,9 +146,10 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
           // فرض بر این است که فرمت ذخیره شده سازگار است (lines array)
           if (parsed.lines) {
             // Map JSON format to LyricLine format
+            // JSON uses 'line' field, not 'text' (Gemini timing format)
             const mappedLines = parsed.lines.map((l: any) => ({
               time: l.start,
-              text: l.text,
+              text: l.line || l.text || l.content, // Support 'line', 'text', or 'content'
               words: l.words
             }));
             setFetchedLyricLines(mappedLines);
@@ -169,9 +170,10 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
           localStorage.setItem(cacheKey, JSON.stringify(data)); // Cache raw JSON
 
           if (data.lines) {
+            // JSON uses 'line' field, not 'text' (Gemini timing format)
             const mappedLines = data.lines.map((l: any) => ({
               time: l.start,
-              text: l.text,
+              text: l.line || l.text || l.content, // Support 'line', 'text', or 'content'
               words: l.words
             }));
             setFetchedLyricLines(mappedLines);

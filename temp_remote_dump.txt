@@ -1,0 +1,36 @@
+275: 
+276:         // Check if this translation has its OWN audio (not via fallback)
+277:         const hasOwnAudio = translationInfo?.hasAudio === true;
+278: 
+279:         // Generate HiDrive audio URL if audio is available
+280:         let audioUrl = null;
+281:         let audioNote = null;
+282: 
+283:         if (audioTranslationCode) {
+284:             // Generate audio URL - using local static files served from /bible_data
+285:             // Files are located at: public/bible_data/audio/{TRANSLATION}/{BOOK}/{CHAPTER}.mp3
+286:             audioUrl = `/bible_data/audio/${audioTranslationCode}/${bookUpper}/${chapter}.mp3`;
+287: 
+288:             // Note if using fallback audio
+289:             if (audioTranslationCode !== translationUpper) {
+290:                 const fallbackInfo = getTranslationInfo(audioTranslationCode);
+291:                 audioNote = {
+292:                     usingFallback: true,
+293:                     originalTranslation: translationUpper,
+294:                     audioTranslation: audioTranslationCode,
+295:                     message: {
+296:                         en: `Audio from ${fallbackInfo?.name?.en || audioTranslationCode} translation`,
+297:                         fa: `صوت از ترجمه ${fallbackInfo?.name?.fa || audioTranslationCode}`
+298:                     }
+299:                 };
+300:             }
+301:         }
+302: 
+303:         // Check for timing file - try multiple directories
+304:         // File structure: bible_data/timestamps/{TRANSLATION}/{BOOK}/{CHAPTER}.json
+305:         let hasTiming = false;
+306:         let timingData = null;
+307:         // Try with the audio translation first (since timing syncs with audio)
+308:         const timingTranslation = audioTranslationCode || translationUpper;
+309:         const timingPathsToTry = [];
+310: 

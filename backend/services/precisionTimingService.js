@@ -1,10 +1,10 @@
 /**
- * Precision Worship Timing Service
- * Uses Gemini 2.5 Pro for highly accurate word-level audio-text synchronization
- * Based on audio-visual-presentation-creator patterns
+ * Precision Timing Service v3.0
+ * Uses Gemini 2.5 Flash with JSON Schema for highly accurate word-level audio-text synchronization
+ * Based on the professional audio-text-sync-&-highlight patterns
  */
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI, Type } = require('@google/genai');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
@@ -14,21 +14,24 @@ class PrecisionTimingService {
         const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
         if (!apiKey) throw new Error('GEMINI_API_KEY is not set');
 
-        this.genAI = new GoogleGenerativeAI(apiKey);
-        // Use gemini-2.0-flash for better quota availability 
-        // (gemini-2.5-pro has 0 free tier quota)
-        this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+        this.ai = new GoogleGenAI({ apiKey });
 
         // HiDrive credentials for audio files
         this.hidriveUser = process.env.HIDRIVE_USER || '';
         this.hidrivePassword = process.env.HIDRIVE_PASSWORD || '';
 
-        // Timing output directory
-        this.outputDir = path.join(__dirname, '..', '..', 'frontend', 'public', 'worship', 'data', 'timings');
+        // Timing output directory for worship songs
+        this.worshipOutputDir = path.join(__dirname, '..', '..', 'frontend', 'public', 'worship', 'data', 'timings');
 
-        // Ensure output directory exists
-        if (!fs.existsSync(this.outputDir)) {
-            fs.mkdirSync(this.outputDir, { recursive: true });
+        // Timing output directory for Bible
+        this.bibleOutputDir = path.join(__dirname, '..', '..', 'frontend', 'public', 'bible_data', 'timestamps');
+
+        // Ensure output directories exist
+        if (!fs.existsSync(this.worshipOutputDir)) {
+            fs.mkdirSync(this.worshipOutputDir, { recursive: true });
+        }
+        if (!fs.existsSync(this.bibleOutputDir)) {
+            fs.mkdirSync(this.bibleOutputDir, { recursive: true });
         }
     }
 
@@ -37,23 +40,28 @@ class PrecisionTimingService {
      * @param {Object} params - { songId, audioUrl, lyrics }
      * @returns {Object} Timing data with lines and words
      */
-    async generatePreciseTiming({ songId, audioUrl, lyrics }) {
-        console.log(`🎵 Generating precise timing for song ${songId}...`);
+    async generateWorshipTiming({ songId, audioUrl, lyrics }) {
+        console.log(`🎵 Generating timing for worship song ${songId}...`);
 
         try {
             // 1. Download audio and convert to base64
             const audioBase64 = await this.downloadAudioAsBase64(audioUrl);
+            const mimeType = audioUrl.endsWith('.wav') ? 'audio/wav' : 'audio/mpeg';
 
             // 2. Clean lyrics (remove chord notations)
             const cleanLyrics = this.stripChords(lyrics);
 
-            // 3. Call Gemini 2.5 Pro with structured JSON schema
-            const timingData = await this.callGeminiForTiming(audioBase64, cleanLyrics);
+            // 3. Call Gemini with JSON Schema
+            const timingData = await this.callGeminiWithSchema({
+                audioBase64,
+                mimeType,
+                lyrics: cleanLyrics,
+                type: 'worship'
+            });
 
             // 4. Save to JSON file
-            const outputPath = await this.saveTimingFile(songId, timingData);
-
-            console.log(`✅ Timing saved to ${outputPath}`);
+            const outputPath = await this.saveWorshipTimingFile(songId, timingData);
+            console.log(`✅ Worship timing saved to ${outputPath}`);
 
             return {
                 success: true,
@@ -67,6 +75,55 @@ class PrecisionTimingService {
             return {
                 success: false,
                 songId,
+                error: error.message
+            };
+        }
+    }
+
+    /**
+     * Generate precise word-level timing for a Bible chapter
+     * @param {Object} params - { translation, bookCode, chapter, verses, audioUrl }
+     * @returns {Object} Timing data with verses and words
+     */
+    async generateBibleTiming({ translation, bookCode, chapter, verses, audioUrl }) {
+        console.log(`📖 Generating timing for ${translation}/${bookCode}/${chapter}...`);
+
+        try {
+            // 1. Download audio and convert to base64
+            const audioBase64 = await this.downloadAudioAsBase64(audioUrl);
+
+            // 2. Prepare verse text
+            const versesText = verses.map(v => `آیه ${v.verse}: ${v.text}`).join('\n');
+
+            // 3. Call Gemini with JSON Schema
+            const timingData = await this.callGeminiWithSchema({
+                audioBase64,
+                mimeType: 'audio/mpeg',
+                lyrics: versesText,
+                type: 'bible',
+                metadata: { translation, bookCode, chapter }
+            });
+
+            // 4. Save to JSON file
+            const outputPath = await this.saveBibleTimingFile(translation, bookCode, chapter, timingData);
+            console.log(`✅ Bible timing saved to ${outputPath}`);
+
+            return {
+                success: true,
+                translation,
+                bookCode,
+                chapter,
+                outputPath,
+                timing: timingData
+            };
+
+        } catch (error) {
+            console.error(`❌ Failed to generate Bible timing:`, error.message);
+            return {
+                success: false,
+                translation,
+                bookCode,
+                chapter,
                 error: error.message
             };
         }
@@ -122,82 +179,81 @@ class PrecisionTimingService {
     }
 
     /**
-     * Call Gemini 2.5 Pro with JSON schema for structured timing output
+     * Call Gemini 2.5 Flash with structured JSON Schema output
+     * This is the core method using the professional approach
      */
-    async callGeminiForTiming(audioBase64, lyrics) {
-        console.log(`🤖 Calling Gemini 2.0 Flash for timing analysis...`);
+    async callGeminiWithSchema({ audioBase64, mimeType, lyrics, type, metadata = {} }) {
+        console.log(`🤖 Calling Gemini 2.5 Flash with JSON Schema...`);
 
-        const systemInstruction = `You are an expert audio transcription and synchronization service specialized in Persian worship songs.
-        
-Your task is to analyze the audio and precisely match each word in the provided lyrics to its timing in the audio.
+        const prompt = type === 'bible'
+            ? `Listen to this Persian Bible audio and generate precise word-level timestamps for each verse.
+               Match the audio exactly to these verses:
+               ${lyrics}
+               
+               Generate timestamps in seconds with 2 decimal precision.`
+            : `Listen to this Persian worship song and generate precise word-level timestamps.
+               Match the audio exactly to these lyrics:
+               ${lyrics}
+               
+               Generate timestamps in seconds with 2 decimal precision.`;
 
-CRITICAL REQUIREMENTS:
-1. Output MUST be valid JSON only - no explanations, no markdown
-2. Each word must have startTime and endTime in seconds (decimal)
-3. Group words into lines that match the lyrical structure
-4. Timestamps must be precise to 0.01 seconds
-5. Ensure no overlapping timestamps between words
-6. If a word is sung multiple times, each instance needs its own entry
-
-For the lyrics: "${lyrics.substring(0, 2000)}..."`;
-
-        const prompt = `Analyze this Persian worship song audio against the reference lyrics.
-        
-Reference lyrics:
-"""
-${lyrics}
-"""
-
-Return ONLY valid JSON in this exact format:
-{
-  "lines": [
-    {
-      "line": "خط اول متن",
-      "start": 0.00,
-      "end": 5.50,
-      "words": [
-        { "word": "کلمه", "start": 0.00, "end": 0.80 },
-        { "word": "دوم", "start": 0.85, "end": 1.20 }
-      ]
-    }
-  ]
-}`;
+        // Define JSON Schema for structured output
+        const responseSchema = {
+            type: Type.OBJECT,
+            properties: {
+                lines: {
+                    type: Type.ARRAY,
+                    items: {
+                        type: Type.OBJECT,
+                        properties: {
+                            line: { type: Type.STRING, description: "The full text of this line/verse" },
+                            label: { type: Type.STRING, description: "Verse number like '1' or line identifier" },
+                            start: { type: Type.NUMBER, description: "Start time in seconds" },
+                            end: { type: Type.NUMBER, description: "End time in seconds" },
+                            words: {
+                                type: Type.ARRAY,
+                                items: {
+                                    type: Type.OBJECT,
+                                    properties: {
+                                        word: { type: Type.STRING },
+                                        start: { type: Type.NUMBER },
+                                        end: { type: Type.NUMBER }
+                                    },
+                                    required: ['word', 'start', 'end']
+                                }
+                            }
+                        },
+                        required: ['line', 'start', 'end', 'words']
+                    }
+                },
+                total_duration: { type: Type.NUMBER, description: "Total audio duration in seconds" }
+            },
+            required: ['lines']
+        };
 
         try {
-            const result = await this.model.generateContent({
+            const response = await this.ai.models.generateContent({
+                model: 'gemini-2.5-flash',
                 contents: [
                     {
-                        role: 'user',
                         parts: [
-                            { inlineData: { mimeType: 'audio/mpeg', data: audioBase64 } },
+                            { inlineData: { mimeType, data: audioBase64 } },
                             { text: prompt }
                         ]
                     }
                 ],
-                systemInstruction: systemInstruction,
-                generationConfig: {
-                    temperature: 0.1,  // Low temperature for precise timing
-                    maxOutputTokens: 8192
+                config: {
+                    responseMimeType: "application/json",
+                    responseSchema: responseSchema,
+                    temperature: 0.1  // Low temperature for precise timing
                 }
             });
 
-            let responseText = result.response.text();
+            const resultJson = response.text;
+            const parsedResponse = JSON.parse(resultJson);
 
-            // Clean up response - remove markdown code blocks if present
-            responseText = responseText
-                .replace(/```json\n?/g, '')
-                .replace(/```\n?/g, '')
-                .trim();
-
-            const timingData = JSON.parse(responseText);
-
-            // Validate structure
-            if (!timingData.lines || !Array.isArray(timingData.lines)) {
-                throw new Error('Invalid timing structure - missing lines array');
-            }
-
-            console.log(`✅ Generated timing for ${timingData.lines.length} lines`);
-            return timingData;
+            console.log(`✅ Generated timing for ${parsedResponse.lines?.length || 0} lines`);
+            return parsedResponse;
 
         } catch (error) {
             console.error('❌ Gemini API error:', error.message);
@@ -206,31 +262,75 @@ Return ONLY valid JSON in this exact format:
     }
 
     /**
-     * Save timing data to JSON file
+     * Save worship song timing data to JSON file
      */
-    async saveTimingFile(songId, timingData) {
+    async saveWorshipTimingFile(songId, timingData) {
         const filename = `song_${songId}_timing.json`;
-        const outputPath = path.join(this.outputDir, filename);
+        const outputPath = path.join(this.worshipOutputDir, filename);
 
         const fileContent = {
             songId,
             generatedAt: new Date().toISOString(),
-            version: '2.0',
-            model: 'gemini-2.0-flash',
+            version: '3.0',
+            model: 'gemini-2.5-flash',
+            schema: 'json-schema',
             ...timingData
         };
 
         fs.writeFileSync(outputPath, JSON.stringify(fileContent, null, 2), 'utf8');
-
         return outputPath;
     }
 
     /**
-     * Get existing timing for a song
+     * Save Bible timing data to JSON file
      */
-    getExistingTiming(songId) {
+    async saveBibleTimingFile(translation, bookCode, chapter, timingData) {
+        const dirPath = path.join(this.bibleOutputDir, translation.toUpperCase(), bookCode);
+
+        if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+        }
+
+        const filename = `${chapter}.json`;
+        const outputPath = path.join(dirPath, filename);
+
+        const fileContent = {
+            translation,
+            bookCode,
+            chapter,
+            generatedAt: new Date().toISOString(),
+            version: '3.0',
+            model: 'gemini-2.5-flash',
+            schema: 'json-schema',
+            ...timingData
+        };
+
+        fs.writeFileSync(outputPath, JSON.stringify(fileContent, null, 2), 'utf8');
+        return outputPath;
+    }
+
+    /**
+     * Get existing timing for a worship song
+     */
+    getExistingWorshipTiming(songId) {
         const filename = `song_${songId}_timing.json`;
-        const filePath = path.join(this.outputDir, filename);
+        const filePath = path.join(this.worshipOutputDir, filename);
+
+        if (fs.existsSync(filePath)) {
+            try {
+                return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get existing timing for a Bible chapter
+     */
+    getExistingBibleTiming(translation, bookCode, chapter) {
+        const filePath = path.join(this.bibleOutputDir, translation.toUpperCase(), bookCode, `${chapter}.json`);
 
         if (fs.existsSync(filePath)) {
             try {
@@ -245,10 +345,10 @@ Return ONLY valid JSON in this exact format:
     /**
      * List all songs with timing files
      */
-    listTimingFiles() {
-        if (!fs.existsSync(this.outputDir)) return [];
+    listWorshipTimingFiles() {
+        if (!fs.existsSync(this.worshipOutputDir)) return [];
 
-        return fs.readdirSync(this.outputDir)
+        return fs.readdirSync(this.worshipOutputDir)
             .filter(f => f.startsWith('song_') && f.endsWith('_timing.json'))
             .map(f => {
                 const match = f.match(/song_(\d+)_timing\.json/);

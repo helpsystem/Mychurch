@@ -1,7 +1,6 @@
 // server.js  (UTF-8, CRLF)
 const path = require('path');
-// dotenv is loaded by server-wrapper.js, no need to load again
-// require('dotenv').config({ path: path.join(__dirname, '../.env') });
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
