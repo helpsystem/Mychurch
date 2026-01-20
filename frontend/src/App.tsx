@@ -128,10 +128,7 @@ const StoragePage = lazy(() => import('./pages/StoragePage')); // Storage Manage
 const VirtualRealityPage = lazy(() => import('./pages/VirtualRealityPage')); // VR Experience
 const WorshipSongsArchive = lazy(() => import('./pages/WorshipSongsArchive')); // Songs Archive
 const WorshipSyncTestPage = lazy(() => import('./pages/WorshipSyncTestPage')); // Worship Sync Test
-const AMLLDemoPage = lazy(() => import('./pages/AMLLDemoPage')); // Apple Music-Like Lyrics Demo
-const AMLLTestPage = lazy(() => import('./pages/AMLLTestPage')); // AMLL Test Page
 const AdminWorshipManager = lazy(() => import('./pages/admin/AdminWorshipManager')); // Admin Worship Manager
-const TestAmllPage = lazy(() => import('./pages/TestAmllPage')); // AMLL Test Page
 const KaraokeTestPage = lazy(() => import('./pages/KaraokeTestPage')); // Karaoke Worship Player Test
 const SimpleKaraokeTest = lazy(() => import('./pages/SimpleKaraokeTest')); // Simple Karaoke Test
 
@@ -230,8 +227,6 @@ function App() {
                   <Route path="/sermons" element={<Layout><SermonsPage /></Layout>} />
                   <Route path="/worship" element={<Layout><WorshipPage /></Layout>} />
                   <Route path="worship/:id" element={<Layout><WorshipSongViewerPage /></Layout>} />
-                  <Route path="amll-demo" element={<AMLLDemoPage />} />
-                  <Route path="amll-test" element={<AMLLTestPage />} />
                   <Route path="bible" element={<Layout><BibleUnifiedApp /></Layout>} />
                   <Route path="bible/audio" element={<Layout><AudioBiblePage /></Layout>} />
                   <Route path="bible/text-only" element={<Layout><BibleTextOnlyPage /></Layout>} />
@@ -494,9 +489,6 @@ function App() {
                   <Route path="ai-test" element={<Layout><AITestPage /></Layout>} />
                   <Route path="image-studio" element={<Layout><ImageStudioPage /></Layout>} />
                   <Route path="vr" element={<Layout><VirtualRealityPage /></Layout>} />
-
-                  {/* AMLL Test Page */}
-                  <Route path="test-amll" element={<TestAmllPage />} />
 
                   {/* Karaoke Worship Player Test Page */}
                   <Route path="karaoke-test" element={<KaraokeTestPage />} />
