@@ -9,7 +9,7 @@ import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
 import UniversalMediaPlayer from '../components/UniversalMediaPlayer';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
 import YouTubePlayerWithLyrics from '../components/YouTubePlayerWithLyrics';
-import LocalAudioPlayerWithSyncedLyrics from '../components/LocalAudioPlayerWithSyncedLyrics';
+import KaraokeWorshipPlayer from '../components/KaraokeWorshipPlayer';
 import UniversalAudioPlayer from '../components/UniversalAudioPlayer';
 import ChordLyricsDisplay from '../components/ChordLyricsDisplay';
 
@@ -39,10 +39,11 @@ interface TimingData {
   lines: TimingLine[];
 }
 
-// 🔹 Modal Portal Component
+// 🔹 Modal Portal Component - renders directly to body for true fullscreen
 const ModalPortal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const modalRoot = document.getElementById('root') || document.body;
-  return ReactDOM.createPortal(children, modalRoot);
+  // IMPORTANT: Always use document.body to escape parent restrictions
+  console.log('🚀 ModalPortal: Rendering to document.body');
+  return ReactDOM.createPortal(children, document.body);
 };
 
 // 🔹 کارت نمایش سرود با پلیر و دکمه‌ها
@@ -1269,10 +1270,10 @@ const WorshipPage: React.FC = () => {
 
                   {/* پخش ویدیو یا صدا */}
                   <div className="mb-6">
-                    {/* اولویت با پلیر صوتی + متن هایلایت شده با قابلیت‌های حرفه‌ای */}
+                    {/* اولویت با پلیر کارائوکه با هایلایت کلمه به کلمه */}
                     {activeSong.audioUrl ? (
                       <>
-                        <LocalAudioPlayerWithSyncedLyrics
+                        <KaraokeWorshipPlayer
                           audioUrl={activeSong.audioUrl}
                           lyrics={filterLyrics(activeSong.lyrics?.fa || activeSong.lyrics?.en || '')}
                           originalLyricsWithChords={activeSong.lyrics?.fa || activeSong.lyrics?.en || ''}
@@ -1448,7 +1449,7 @@ const WorshipPage: React.FC = () => {
 
           {/* Karaoke Player */}
           <div className="flex items-center justify-center min-h-screen p-4">
-            <LocalAudioPlayerWithSyncedLyrics
+            <KaraokeWorshipPlayer
               audioUrl={karaokeSong.audioUrl || ''}
               lyrics={karaokeSong.lyrics?.[lang] || karaokeSong.lyrics?.fa || ''}
               originalLyricsWithChords={karaokeSong.lyrics?.fa || karaokeSong.lyrics?.[lang] || ''}
