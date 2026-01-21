@@ -156,6 +156,106 @@ class PrecisionTimingService {
     }
 
     /**
+     * Add Finglish transliterations to timing data for words that don't have them
+     */
+    async addFinglishTransliterations(timingData) {
+        console.log('🔤 Adding Finglish transliterations...');
+
+        // Collect all Persian words that need transliteration
+        const wordsToTransliterate = [];
+
+        for (const line of timingData.lines || []) {
+            for (const wordObj of line.words || []) {
+                if (!wordObj.finglish && wordObj.word) {
+                    wordsToTransliterate.push(wordObj.word);
+                }
+            }
+        }
+
+        if (wordsToTransliterate.length === 0) {
+            console.log('✅ All words already have Finglish');
+            return;
+        }
+
+        console.log(`📝 Transliterating ${wordsToTransliterate.length} words...`);
+
+        // Create bulk transliteration request
+        const persianText = wordsToTransliterate.join('\n');
+
+        const systemInstruction = `You are a professional Persian phonetic transliteration system specialized in converting Farsi (Persian) text into accurate **Finglish** (Latin script Persian).
+Your goal is to produce readable phonetic versions that match how Persian words are pronounced.
+
+Context:
+- Application: Worship song lyrics
+- Use case: For non-Persian speakers to read and sing Persian lyrics correctly
+- Style: Keep natural Persian pronunciation, not English accent
+
+🔤 Rules for Transliteration:
+1. Preserve capitalization for divine names (e.g., "Khoda", "Masiih").
+2. Use long vowels as:
+   - ا → "a"
+   - آ → "aa"
+   - ای / ی → "i"
+   - او / و → "oo"
+   - اُ / ُ → "o"
+   - اِ / ِ → "e"
+3. Keep voiced consonants close to Persian sounds:
+   - ق / غ → "gh"
+   - خ → "kh"
+   - چ → "ch"
+   - ژ → "zh"
+   - ش → "sh"
+   - ث / س / ص → "s"
+   - ذ / ز / ض → "z"
+   - ط / ت → "t"
+   - ظ → "z"
+   - ح / ه → "h"
+   - ع (silent between vowels) → use ' (apostrophe)
+4. Maintain word spacing and punctuation identical to original Persian line.
+
+📘 Example:
+Input: آرامی
+Output: arami
+
+Input: خداوند
+Output: Khodavand
+
+**CRITICAL**: Your response should consist ONLY of the Finglish transliteration, one word per line, in the same order as input. Do not include explanations or original Persian text.`;
+
+        try {
+            const response = await this.ai.models.generateContent({
+                model: 'gemini-2.5-flash',
+                contents: persianText,
+                config: {
+                    systemInstruction: systemInstruction,
+                    temperature: 0.1
+                }
+            });
+
+            const finglishWords = response.text.trim().split('\n');
+
+            // Map back to timing data
+            let wordIndex = 0;
+            for (const line of timingData.lines || []) {
+                for (const wordObj of line.words || []) {
+                    if (!wordObj.finglish && wordObj.word) {
+                        if (wordIndex < finglishWords.length) {
+                            wordObj.finglish = finglishWords[wordIndex].trim();
+                            wordIndex++;
+                        }
+                    }
+                }
+            }
+
+            console.log(`✅ Added Finglish for ${wordIndex} words`);
+
+        } catch (error) {
+            console.error('⚠️  Failed to generate Finglish:', error.message);
+            // Continue without Finglish rather than failing
+        }
+    }
+
+    /**
      * Strip chord notations from lyrics
      */
     stripChords(text) {
@@ -215,11 +315,12 @@ class PrecisionTimingService {
                                 items: {
                                     type: Type.OBJECT,
                                     properties: {
-                                        word: { type: Type.STRING },
+                                        word: { type: Type.STRING, description: "Persian word" },
+                                        finglish: { type: Type.STRING, description: "Phonetic transliteration in Latin script" },
                                         start: { type: Type.NUMBER },
                                         end: { type: Type.NUMBER }
                                     },
-                                    required: ['word', 'start', 'end']
+                                    required: ['word', 'finglish', 'start', 'end']
                                 }
                             }
                         },
@@ -253,6 +354,12 @@ class PrecisionTimingService {
             const parsedResponse = JSON.parse(resultJson);
 
             console.log(`✅ Generated timing for ${parsedResponse.lines?.length || 0} lines`);
+
+            // Generate Finglish transliterations if not already present
+            if (type === 'worship') {
+                await this.addFinglishTransliterations(parsedResponse);
+            }
+
             return parsedResponse;
 
         } catch (error) {

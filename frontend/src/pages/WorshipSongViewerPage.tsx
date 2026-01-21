@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { HIDRIVE_PUBLIC_URL } from '../lib/constants';
-import { Play, Pause, Music, Volume2 } from 'lucide-react';
+import { Play, Pause, Music, Volume2, Captions } from 'lucide-react';
+import WorshipKaraokeView from '../components/WorshipKaraokeView';
 
 interface WordTiming {
   word: string;
@@ -28,6 +29,7 @@ const WorshipSongViewerPage: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [hasAudio, setHasAudio] = useState(false);
+  const [viewMode, setViewMode] = useState<'lyrics' | 'karaoke'>('lyrics');
   const audioRef = useRef<HTMLAudioElement>(null);
   const lyricsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +48,7 @@ const WorshipSongViewerPage: React.FC = () => {
   const loadSong = async () => {
     try {
       // In a real app, fetch song details from API or JSON
-      const response = await fetch(`${HIDRIVE_PUBLIC_URL}/worship/data/worship_songs.json`);
+      const response = await fetch(`/worship/data/worship_songs.json`);
       if (response.ok) {
         const songs = await response.json();
         const foundSong = songs.find((s: any) => s.id.toString() === id);
@@ -55,7 +57,7 @@ const WorshipSongViewerPage: React.FC = () => {
             id: foundSong.id,
             title: foundSong.title_fa,
             artist: foundSong.artist_fa || 'ناشناس',
-            audioUrl: foundSong.audio_file ? `${HIDRIVE_PUBLIC_URL}/worship/audio/${foundSong.audio_file}` : '',
+            audioUrl: foundSong.audio_file ? `/worship/audio/${foundSong.audio_file}` : '',
             lyrics: foundSong.lyrics
           });
           return;
@@ -95,7 +97,7 @@ Bridge
 
   const loadTimings = async () => {
     try {
-      const response = await fetch(`${HIDRIVE_PUBLIC_URL}/worship/data/timings/song_${id}_timing.json`);
+      const response = await fetch(`/worship/data/timings/song_${id}_timing.json`);
       if (response.ok) {
         const data = await response.json();
         setTimings(data.words || []);
@@ -250,6 +252,32 @@ Bridge
             </p>
           </div>
 
+          {/* View Mode Toggle - Only show if timing data exists */}
+          {timings.length > 0 && hasAudio && (
+            <div className="flex justify-center gap-2 mb-4">
+              <button
+                onClick={() => setViewMode('lyrics')}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${viewMode === 'lyrics'
+                  ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30'
+                  : 'bg-[#0f3460] text-gray-400 hover:text-white'
+                  }`}
+              >
+                <Music size={18} />
+                نمای متن
+              </button>
+              <button
+                onClick={() => setViewMode('karaoke')}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${viewMode === 'karaoke'
+                  ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30'
+                  : 'bg-[#0f3460] text-gray-400 hover:text-white'
+                  }`}
+              >
+                <Captions size={18} />
+                نمای کارائوکه
+              </button>
+            </div>
+          )}
+
           {/* Player Controls - LTR Direction */}
           {hasAudio ? (
             <div className="max-w-2xl mx-auto bg-[#0f3460] rounded-xl p-4 shadow-lg border border-white/5" dir="ltr">
@@ -311,16 +339,24 @@ Bridge
         </div>
       </div>
 
-      {/* Lyrics Display */}
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <div
-          ref={lyricsContainerRef}
-          className="flex flex-wrap gap-8 justify-center"
-          dir="rtl"
-        >
-          {lyricColumns.map((colText, index) => renderLyricsColumn(colText, index))}
+      {/* Content Display - Conditional based on view mode */}
+      {viewMode === 'karaoke' && timings.length > 0 ? (
+        <WorshipKaraokeView
+          songId={parseInt(id || '0')}
+          currentTime={currentTime}
+          isPlaying={isPlaying}
+        />
+      ) : (
+        <div className="container mx-auto px-4 py-8 max-w-6xl">
+          <div
+            ref={lyricsContainerRef}
+            className="flex flex-wrap gap-8 justify-center"
+            dir="rtl"
+          >
+            {lyricColumns.map((colText, index) => renderLyricsColumn(colText, index))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

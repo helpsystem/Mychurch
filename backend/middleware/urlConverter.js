@@ -11,24 +11,39 @@
 function convertToProxyURL(url) {
   if (!url) return url;
 
-  // If already a proxy URL, return as-is
-  if (url.startsWith('/api/hidrive/stream/')) {
-    return url;
+  // IMPORTANT: Convert proxy URLs BACK to local paths for local files
+  // Database may have stored URLs with /api/hidrive/stream/ prefix (with possible typos)
+  // For local files (worship/audio, etc.) they should be served directly by Vite
+  
+  // Use regex to handle typos in database: strream, streaam, etc.
+  const hidriveProxyPattern = /^\/a{1,2}pi\/hidrive\/str{1,2}e{1,2}a{1,2}m\//i;
+  if (hidriveProxyPattern.test(url)) {
+    // Extract path after the hidrive proxy prefix
+    const localPath = url.replace(hidriveProxyPattern, '/');
+    // Handle double slashes and typos in path
+    const cleanPath = localPath.replace(/\/+/g, '/');
+    return cleanPath;
   }
 
-  // If it's a full WebDAV URL, convert to proxy
+  // If it's a full WebDAV URL, check if it's for local files
   if (url.startsWith('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/')) {
     const path = url.replace('https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/', '');
+    
+    // For worship audio files, they are stored locally in public/worship/audio
+    // Return local path instead of proxy URL
+    if (path.startsWith('worship/audio/')) {
+      return `/${path}`;
+    }
+    
+    // For other HiDrive files, use the proxy
     return `/api/hidrive/stream/${path}`;
   }
 
-  // If it's a local path starting with /, convert to proxy
-  if (url.startsWith('/worship/') || url.startsWith('/sermons/') || url.startsWith('/events/') || url.startsWith('/bible/')) {
-    const path = url.startsWith('/') ? url.substring(1) : url;
-    return `/api/hidrive/stream/${path}`;
-  }
-
-  // Return original if no conversion needed
+  // Local paths starting with / should NOT be converted to proxy
+  // They are served directly by Vite dev server or static hosting
+  // Keep local paths as-is: /worship/, /sermons/, /events/, /bible/
+  
+  // Return original URL - let Vite/static server handle local files
   return url;
 }
 

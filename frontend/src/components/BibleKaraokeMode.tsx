@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, SkipBack, SkipForward, AlertCircle } from 'lucide-react';
-import { supabase } from '../lib/supabaseClient';
+// Removed supabase import - using local API instead
 
 interface WordTiming {
     word: string;
@@ -54,111 +54,56 @@ const BibleKaraokeMode: React.FC<BibleKaraokeModeProps> = ({
 
     const wordHighlightColor = '#2dd4bf';
 
-    // Load data
+    // Load data using local API instead of Supabase
     useEffect(() => {
         const loadData = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                // 1. Get chapter_id from bible_chapters
-                const { data: chapters, error: chapterError } = await supabase
-                    .from('bible_chapters')
-                    .select('id')
-                    .eq('book_iso', currentBook)
-                    .eq('chapter_number', currentChapter);
-
-                if (chapterError) {
-                    throw new Error(`Chapter error: ${chapterError.message}`);
+                // Use local API endpoint that provides both text and timestamps
+                const apiUrl = `/api/bible-local/content/${translation}/${currentBook}/${currentChapter}`;
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`Chapter error: Failed to fetch (${response.status})`);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.error || 'خطا در دریافت اطلاعات');
                 }
 
-                if (!chapters || chapters.length === 0) {
-                    throw new Error(`فصل پیدا نشد: ${currentBook} ${currentChapter}`);
-                }
+                setBookNameFa(data.book || currentBook);
+                setAudioUrl(data.audioUrl || `/bible_data/audio/${translation}/${currentBook}/${currentChapter}.mp3`);
 
-                const chapterId = chapters[0].id;
-
-                // 2. Get verses from bible_verses using chapter_id
-                const translationMap: Record<string, number> = { 'TPV': 1, 'NMV': 2, 'MOJDEH': 3 };
-                const translationId = translationMap[translation] || 1;
-
-                const { data: verses, error: versesError } = await supabase
-                    .from('bible_verses')
-                    .select('*')
-                    .eq('chapter_id', chapterId)
-                    .eq('translation_id', translationId)
-                    .order('verse_number', { ascending: true });
-
-                if (versesError) {
-                    throw new Error(`Verses error: ${versesError.message}`);
-                }
-
-                if (!verses || verses.length === 0) {
-                    throw new Error(`آیات پیدا نشد`);
-                }
-
-                setBookNameFa(currentBook);
-                setAudioUrl(`/bible_data/audio/${translation}/${currentBook}/${currentChapter}.mp3`);
-
-                // 3. Fetch timestamp file
-                const timestampUrl = `/bible_data/timestamps/${translation}/${currentBook}/${currentChapter}.json`;
-                const timestampRes = await fetch(timestampUrl);
-
-                if (!timestampRes.ok) {
-                    console.warn('⚠️ No timestamp file');
-                    const verseLines: LineSegment[] = verses.map((v: BibleVerse) => ({
-                        type: 'verse',
-                        label: String(v.verse_number),
-                        content: v.text_fa,
-                        words: []
-                    }));
-                    setLines(verseLines);
-                    return;
-                }
-
-                const timestampData = await timestampRes.json();
                 const processedLines: LineSegment[] = [];
 
-                // 4. Add intro
-                if (timestampData.intro) {
+                // Add intro if available
+                if (data.intro) {
                     processedLines.push({
                         type: 'book_title',
-                        content: timestampData.intro.text,
-                        words: timestampData.intro.words || []
+                        content: data.intro.text || data.intro,
+                        words: data.intro.words || []
                     });
                 }
 
-                // 5. Match verses by TEXT CONTENT
-                if (timestampData.verses && Array.isArray(timestampData.verses)) {
-                    timestampData.verses.forEach((tsVerse: any) => {
-                        const tsText = tsVerse.text.trim();
-                        const matchingVerse = verses.find((v: BibleVerse) => {
-                            const dbText = v.text_fa.trim();
-                            return dbText.substring(0, 50) === tsText.substring(0, 50);
+                // Process verses from API response
+                if (data.verses && Array.isArray(data.verses)) {
+                    data.verses.forEach((verse: any) => {
+                        const hasTimingWords = verse.timing && verse.timing.words && verse.timing.words.length > 0;
+                        
+                        processedLines.push({
+                            type: 'verse',
+                            label: String(verse.verse),
+                            content: verse.text,
+                            words: hasTimingWords ? verse.timing.words : []
                         });
-
-                        if (matchingVerse) {
-                            processedLines.push({
-                                type: 'verse',
-                                label: String(matchingVerse.verse_number),
-                                content: matchingVerse.text_fa,
-                                words: tsVerse.words || []
-                            });
-                        } else {
-                            const isChapterTitle = tsVerse.text.includes('فصل') ||
-                                tsVerse.text.includes('باب') ||
-                                tsVerse.text.includes('Chapter');
-
-                            processedLines.push({
-                                type: isChapterTitle ? 'chapter_title' : 'text',
-                                content: tsVerse.text,
-                                words: tsVerse.words || []
-                            });
-                        }
                     });
                 }
 
-                console.log(`✅ Loaded ${processedLines.length} lines`);
+                console.log(`✅ Loaded ${processedLines.length} lines from local API`);
                 setLines(processedLines);
 
             } catch (err) {

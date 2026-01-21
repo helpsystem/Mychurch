@@ -115,7 +115,7 @@ async function processAllSongs() {
         }
 
         try {
-            const result = await timingService.generatePreciseTiming({
+            const result = await timingService.generateWorshipTiming({
                 songId: song.id,
                 audioUrl: audioUrl,
                 lyrics: lyricsText

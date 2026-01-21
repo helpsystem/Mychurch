@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { copyFileSync, mkdirSync, readdirSync, statSync, existsSync } from 'fs';
 
-// Helper to copy directory recursively
+// Helper to copy directory recursively (skip audio folder)
 function copyDirSync(src: string, dest: string) {
     if (!existsSync(src)) return;
     mkdirSync(dest, { recursive: true });
@@ -11,6 +11,13 @@ function copyDirSync(src: string, dest: string) {
     for (const entry of entries) {
         const srcPath = path.join(src, entry.name);
         const destPath = path.join(dest, entry.name);
+
+        // Skip audio folder - files are already on server, don't include in build
+        if (entry.name === 'audio') {
+            console.log('⏭️ Skipping audio folder (served directly from server)');
+            continue;
+        }
+
         if (entry.isDirectory()) {
             copyDirSync(srcPath, destPath);
         } else {
@@ -18,6 +25,7 @@ function copyDirSync(src: string, dest: string) {
         }
     }
 }
+
 
 export default defineConfig({
     plugins: [

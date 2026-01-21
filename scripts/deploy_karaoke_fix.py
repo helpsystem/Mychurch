@@ -9,13 +9,13 @@ import os
 from pathlib import Path
 
 # Server credentials
-HOST = 'samanabyar.online'
+HOST = 'samanabyar.online'  # or IP: 195.250.25.185
 USERNAME = 'root'
-PASSWORD = 'jIVeuzsrkoWPkhUY'
+PASSWORD = 'KishavarZ@1403'
 
 # Paths
 LOCAL_DIST = r'D:\Windows.old\Users\Sami\Desktop\Iran Church DC\Git\Mychurch\dist'
-REMOTE_DIST = '/root/Mychurch/dist'
+REMOTE_DIST = '/var/www/html/mychurch/dist'
 
 def upload_directory(sftp, local_path, remote_path):
     """Recursively upload a directory"""
@@ -46,10 +46,15 @@ def main():
         print(f"📡 Connecting to {HOST}...")
         ssh.connect(HOST, username=USERNAME, password=PASSWORD)
         
-        # Backup old dist
-        print("💾 Backing up old dist folder...")
-        stdin, stdout, stderr = ssh.exec_command(f'mv {REMOTE_DIST} {REMOTE_DIST}.backup.$(date +%Y%m%d_%H%M%S)')
+        # Create directory structure if it doesn't exist
+        print("📁 Ensuring directory structure exists...")
+        stdin, stdout, stderr = ssh.exec_command(f'mkdir -p /var/www/html/mychurch')
         stdout.read()
+        
+        # Backup old dist if exists
+        print("💾 Backing up old dist folder...")
+        stdin, stdout, stderr = ssh.exec_command(f'[ -d {REMOTE_DIST} ] && mv {REMOTE_DIST} {REMOTE_DIST}.backup.$(date +%Y%m%d_%H%M%S) || echo "No existing dist to backup"')
+        print(stdout.read().decode())
         
         # Upload new dist
         print("📤 Uploading new dist folder...")
@@ -59,7 +64,7 @@ def main():
         
         # Restart backend (optional, but good practice)
         print("🔄 Restarting backend...")
-        stdin, stdout, stderr = ssh.exec_command('pm2 restart backend')
+        stdin, stdout, stderr = ssh.exec_command('cd /var/www/html/mychurch/backend && pm2 restart mychurch-backend')
         print(stdout.read().decode())
         
         print("✅ Deployment complete!")

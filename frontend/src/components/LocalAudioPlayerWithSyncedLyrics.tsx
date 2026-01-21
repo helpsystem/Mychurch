@@ -6,7 +6,7 @@ import ChordLyricsRenderer from './ChordLyricsRenderer';
 interface LyricLine {
   time: number; // زمان شروع خط (به ثانیه)
   text: string;
-  words?: Array<{ word: string; start: number; end: number }>; // کلمات با timing دقیق
+  words?: Array<{ word: string; finglish?: string; start: number; end: number }>; // کلمات با timing دقیق و Finglish
 }
 
 interface WordWithTime {
@@ -675,22 +675,53 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                       console.log(`✨ HIGHLIGHTING: "${word}" (global: ${globalWordIndex}, current: ${currentWordIndex})`);
                     }
 
+                    // Get Finglish for this word if available
+                    const wordData = hasWordTiming ? line.words?.[wordIndex] : null;
+                    const finglish = wordData?.finglish;
+
                     return (
                       <span
                         key={`${lineIndex}-${wordIndex}`}
-                        className={`inline-block mx-1.5 transition-all duration-300 ${isActiveWord && isInActiveLine
-                          ? 'text-yellow-300 font-extrabold scale-150 drop-shadow-[0_0_25px_rgba(253,224,71,1)] animate-pulse'
-                          : isInActiveLine
-                            ? 'text-white font-semibold'
-                            : ''
+                        className={`inline-flex flex-col items-center mx-1.5 transition-all duration-300 ${isActiveWord && isInActiveLine
+                          ? 'scale-125'
+                          : 'scale-100'
                           }`}
                         style={{
-                          transform: isActiveWord && isInActiveLine ? 'scale(1.5) translateY(-4px)' : 'scale(1)',
-                          transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                          textShadow: isActiveWord && isInActiveLine ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.6)' : 'none'
+                          transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)'
                         }}
                       >
-                        {word}
+                        {/* Persian Word */}
+                        <span
+                          className={`transition-all duration-300 ${isActiveWord && isInActiveLine
+                            ? 'text-yellow-300 font-extrabold drop-shadow-[0_0_25px_rgba(253,224,71,1)]'
+                            : isInActiveLine
+                              ? 'text-white font-semibold'
+                              : ''
+                            }`}
+                          style={{
+                            textShadow: isActiveWord && isInActiveLine ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.6)' : 'none'
+                          }}
+                        >
+                          {word}
+                        </span>
+
+                        {/* Finglish Subtitle */}
+                        {finglish && (
+                          <span
+                            className={`text-xs mt-1 transition-all duration-300 font-mono ${isActiveWord && isInActiveLine
+                              ? 'text-purple-300 font-bold'
+                              : isInActiveLine
+                                ? 'text-purple-400/80'
+                                : 'text-gray-500/60'
+                              }`}
+                            style={{
+                              fontSize: '0.65rem',
+                              letterSpacing: '0.02em'
+                            }}
+                          >
+                            {finglish}
+                          </span>
+                        )}
                       </span>
                     );
                   })}
