@@ -269,28 +269,48 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
     };
   }, []);
 
-  // Auto-scroll to active line
+  // Find active or next upcoming line index
+  const getActiveOrNextLineIndex = useCallback(() => {
+    if (!timingData?.lines) return -1;
+    
+    const tolerance = 0.3; // 300ms tolerance for timing
+    
+    // First try to find actively playing line
+    const activeIndex = timingData.lines.findIndex(line => {
+      const start = line.words[0]?.start ?? line.start;
+      const end = line.words[line.words.length - 1]?.end ?? line.end;
+      return currentTime >= (start - tolerance) && currentTime <= (end + tolerance);
+    });
+    
+    if (activeIndex !== -1) return activeIndex;
+    
+    // If in a gap, find the next upcoming line
+    const nextIndex = timingData.lines.findIndex(line => {
+      const start = line.words[0]?.start ?? line.start;
+      return currentTime < start;
+    });
+    
+    return nextIndex !== -1 ? nextIndex : -1;
+  }, [timingData, currentTime]);
+
+  // Auto-scroll to active or next line
   useEffect(() => {
     if (!timingData || !lyricsContainerRef.current) return;
     
-    const activeLineIndex = timingData.lines.findIndex(line => {
-      const start = line.words[0]?.start || line.start;
-      const end = line.words[line.words.length - 1]?.end || line.end;
-      return currentTime >= start && currentTime <= end;
-    });
+    const targetIndex = getActiveOrNextLineIndex();
 
-    if (activeLineIndex !== -1) {
+    if (targetIndex !== -1) {
       const container = lyricsContainerRef.current;
-      const activeLineElement = container.children[activeLineIndex] as HTMLElement;
-      if (activeLineElement) {
+      const targetElement = container.children[targetIndex] as HTMLElement;
+      if (targetElement) {
         const containerRect = container.getBoundingClientRect();
-        const elementRect = activeLineElement.getBoundingClientRect();
+        const elementRect = targetElement.getBoundingClientRect();
         if (elementRect.top < containerRect.top + 50 || elementRect.bottom > containerRect.bottom - 50) {
-          activeLineElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
     }
-  }, [currentTime, timingData]);
+  }, [currentTime, timingData, getActiveOrNextLineIndex]);
 
   // Auto-play if enabled
   useEffect(() => {
@@ -452,7 +472,13 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
 
           const lineStart = line.words[0]?.start ?? line.start;
           const lineEnd = line.words[line.words.length - 1]?.end ?? line.end;
-          const isLineActive = currentTime >= lineStart && currentTime <= lineEnd;
+          const tolerance = 0.5; // 500ms tolerance for better sync
+          const isLineActive = currentTime >= (lineStart - tolerance) && currentTime <= (lineEnd + tolerance);
+          
+          // Check if this is the next upcoming line (for gap preview)
+          const activeOrNextIndex = getActiveOrNextLineIndex();
+          const isNextLine = !isLineActive && lineIndex === activeOrNextIndex;
+          const isUpcoming = isNextLine && currentTime < lineStart;
 
           return (
             <div 
@@ -460,15 +486,17 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
               onClick={() => seekToLine(lineStart)}
               className={`p-4 rounded-xl cursor-pointer transition-all duration-300 text-center`}
               style={{ 
-                backgroundColor: isLineActive ? lineHighlightColor : 'transparent',
+                backgroundColor: isLineActive ? lineHighlightColor : (isUpcoming ? 'rgba(59, 130, 246, 0.1)' : 'transparent'),
                 transform: isLineActive ? 'scale(1.02)' : 'scale(1)',
-                boxShadow: isLineActive ? '0 4px 20px rgba(16, 185, 129, 0.2)' : 'none',
+                boxShadow: isLineActive ? '0 4px 20px rgba(16, 185, 129, 0.2)' : (isUpcoming ? '0 2px 10px rgba(59, 130, 246, 0.15)' : 'none'),
+                border: isUpcoming ? '1px dashed rgba(59, 130, 246, 0.4)' : 'none',
               }}
             >
               {/* Persian/Main Lyrics */}
               <div className="text-2xl md:text-3xl leading-relaxed mb-2">
                 {line.words.map((wordObj, wordIndex) => {
-                  const isWordActive = currentTime >= wordObj.start && currentTime < wordObj.end;
+                  const wordTolerance = 0.15; // 150ms for word precision
+                  const isWordActive = currentTime >= (wordObj.start - wordTolerance) && currentTime < (wordObj.end + wordTolerance);
                   const cleanWord = removeChords(wordObj.word);
                   
                   return (
@@ -494,7 +522,8 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
               {showFinglish && isRTL && (
                 <div className="text-lg text-white/40 mt-2 tracking-wide" dir="ltr" style={{ fontFamily: 'system-ui, sans-serif' }}>
                   {line.words.map((wordObj, wordIndex) => {
-                    const isWordActive = currentTime >= wordObj.start && currentTime < wordObj.end;
+                    const wordTolerance = 0.15;
+                    const isWordActive = currentTime >= (wordObj.start - wordTolerance) && currentTime < (wordObj.end + wordTolerance);
                     const cleanWord = removeChords(wordObj.word);
                     const finglishWord = wordObj.finglish || toFinglish(cleanWord);
                     return (
