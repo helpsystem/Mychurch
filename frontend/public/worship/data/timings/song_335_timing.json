@@ -1,910 +1,1673 @@
 {
   "songId": 335,
-  "generatedAt": "2026-01-15T02:25:03.319Z",
+  "generatedAt": "2026-01-20T00:13:43.771Z",
   "version": "3.0",
   "model": "gemini-2.5-flash",
   "schema": "json-schema",
   "lines": [
     {
-      "line": "آرامی دل های سازنده دریاها",
-      "start": 0,
-      "end": 2.4,
+      "line": "آرامــی دلــهــایــی",
+      "start": 36.5,
+      "end": 38.98,
       "words": [
         {
-          "word": "آرامی",
-          "start": 0,
-          "end": 0.4
+          "word": "آرامــی",
+          "finglish": "Aarami",
+          "start": 36.5,
+          "end": 37.38
         },
         {
-          "word": "دل",
-          "start": 0.5,
-          "end": 0.9
-        },
-        {
-          "word": "های",
-          "start": 1,
-          "end": 1.4
-        },
-        {
-          "word": "سازنده",
-          "start": 1.5,
-          "end": 1.9
-        },
-        {
-          "word": "دریاها",
-          "start": 2,
-          "end": 2.4
+          "word": "دلــهــایــی",
+          "finglish": "delhaayi",
+          "start": 37.8,
+          "end": 38.98
         }
       ]
     },
     {
-      "line": "روشنی خورشیدی زیبایی رویاها",
-      "start": 3.4,
-      "end": 5.3,
+      "line": "ســـازنــده‌ی دریــاهــا",
+      "start": 39.6,
+      "end": 42.48,
       "words": [
         {
-          "word": "روشنی",
-          "start": 3.4,
-          "end": 3.8
-        },
-        {
-          "word": "خورشیدی",
-          "start": 3.9,
-          "end": 4.3
-        },
-        {
-          "word": "زیبایی",
-          "start": 4.4,
-          "end": 4.8
-        },
-        {
-          "word": "رویاها",
-          "start": 4.9,
-          "end": 5.3
-        }
-      ]
-    },
-    {
-      "line": "از تو امنیت دارم در کشمکش طوفان",
-      "start": 6.3,
-      "end": 9.7,
-      "words": [
-        {
-          "word": "از",
-          "start": 6.3,
-          "end": 6.7
-        },
-        {
-          "word": "تو",
-          "start": 6.8,
-          "end": 7.2
-        },
-        {
-          "word": "امنیت",
-          "start": 7.3,
-          "end": 7.7
-        },
-        {
-          "word": "دارم",
-          "start": 7.8,
-          "end": 8.2
-        },
-        {
-          "word": "در",
-          "start": 8.3,
-          "end": 8.7
-        },
-        {
-          "word": "کشمکش",
-          "start": 8.8,
-          "end": 9.2
-        },
-        {
-          "word": "طوفان",
-          "start": 9.3,
-          "end": 9.7
-        }
-      ]
-    },
-    {
-      "line": "من قایق پوسیده تو رهبر این سکان",
-      "start": 10.7,
-      "end": 14.1,
-      "words": [
-        {
-          "word": "من",
-          "start": 10.7,
-          "end": 11.1
-        },
-        {
-          "word": "قایق",
-          "start": 11.2,
-          "end": 11.6
-        },
-        {
-          "word": "پوسیده",
-          "start": 11.7,
-          "end": 12.1
-        },
-        {
-          "word": "تو",
-          "start": 12.2,
-          "end": 12.6
-        },
-        {
-          "word": "رهبر",
-          "start": 12.7,
-          "end": 13.1
-        },
-        {
-          "word": "این",
-          "start": 13.2,
-          "end": 13.6
-        },
-        {
-          "word": "سکان",
-          "start": 13.7,
-          "end": 14.1
-        }
-      ]
-    },
-    {
-      "line": "آرامی دل های سازنده دریاها",
-      "start": 16.1,
-      "end": 18.5,
-      "words": [
-        {
-          "word": "آرامی",
-          "start": 16.1,
-          "end": 16.5
-        },
-        {
-          "word": "دل",
-          "start": 16.6,
-          "end": 17
-        },
-        {
-          "word": "های",
-          "start": 17.1,
-          "end": 17.5
-        },
-        {
-          "word": "سازنده",
-          "start": 17.6,
-          "end": 18
-        },
-        {
-          "word": "دریاها",
-          "start": 18.1,
-          "end": 18.5
-        }
-      ]
-    },
-    {
-      "line": "روشنی خورشیدی زیبایی رویاها",
-      "start": 19.5,
-      "end": 21.4,
-      "words": [
-        {
-          "word": "روشنی",
-          "start": 19.5,
-          "end": 19.9
-        },
-        {
-          "word": "خورشیدی",
-          "start": 20,
-          "end": 20.4
-        },
-        {
-          "word": "زیبایی",
-          "start": 20.5,
-          "end": 20.9
-        },
-        {
-          "word": "رویاها",
-          "start": 21,
-          "end": 21.4
-        }
-      ]
-    },
-    {
-      "line": "از تو امنیت دارم در کشمکش طوفان",
-      "start": 22.4,
-      "end": 25.8,
-      "words": [
-        {
-          "word": "از",
-          "start": 22.4,
-          "end": 22.8
-        },
-        {
-          "word": "تو",
-          "start": 22.9,
-          "end": 23.3
-        },
-        {
-          "word": "امنیت",
-          "start": 23.4,
-          "end": 23.8
-        },
-        {
-          "word": "دارم",
-          "start": 23.9,
-          "end": 24.3
-        },
-        {
-          "word": "در",
-          "start": 24.4,
-          "end": 24.8
-        },
-        {
-          "word": "کشمکش",
-          "start": 24.9,
-          "end": 25.3
-        },
-        {
-          "word": "طوفان",
-          "start": 25.4,
-          "end": 25.8
-        }
-      ]
-    },
-    {
-      "line": "من قایق پوسیده تو رهبر این سکان",
-      "start": 26.8,
-      "end": 30.2,
-      "words": [
-        {
-          "word": "من",
-          "start": 26.8,
-          "end": 27.2
-        },
-        {
-          "word": "قایق",
-          "start": 27.3,
-          "end": 27.7
-        },
-        {
-          "word": "پوسیده",
-          "start": 27.8,
-          "end": 28.2
-        },
-        {
-          "word": "تو",
-          "start": 28.3,
-          "end": 28.7
-        },
-        {
-          "word": "رهبر",
-          "start": 28.8,
-          "end": 29.2
-        },
-        {
-          "word": "این",
-          "start": 29.3,
-          "end": 29.7
-        },
-        {
-          "word": "سکان",
-          "start": 29.8,
-          "end": 30.2
-        }
-      ]
-    },
-    {
-      "line": "تا مقصد آزادی سرباز تو می مانم",
-      "start": 32.2,
-      "end": 35.6,
-      "words": [
-        {
-          "word": "تا",
-          "start": 32.2,
-          "end": 32.6
-        },
-        {
-          "word": "مقصد",
-          "start": 32.7,
-          "end": 33.1
-        },
-        {
-          "word": "آزادی",
-          "start": 33.2,
-          "end": 33.6
-        },
-        {
-          "word": "سرباز",
-          "start": 33.7,
-          "end": 34.1
-        },
-        {
-          "word": "تو",
-          "start": 34.2,
-          "end": 34.6
-        },
-        {
-          "word": "می",
-          "start": 34.7,
-          "end": 35.1
-        },
-        {
-          "word": "مانم",
-          "start": 35.2,
-          "end": 35.6
-        }
-      ]
-    },
-    {
-      "line": "نعمت نجاتم را از فیض تو می دانم",
-      "start": 36.6,
-      "end": 40.5,
-      "words": [
-        {
-          "word": "نعمت",
-          "start": 36.6,
-          "end": 37
-        },
-        {
-          "word": "نجاتم",
-          "start": 37.1,
-          "end": 37.5
-        },
-        {
-          "word": "را",
-          "start": 37.6,
-          "end": 38
-        },
-        {
-          "word": "از",
-          "start": 38.1,
-          "end": 38.5
-        },
-        {
-          "word": "فیض",
-          "start": 38.6,
-          "end": 39
-        },
-        {
-          "word": "تو",
-          "start": 39.1,
-          "end": 39.5
-        },
-        {
-          "word": "می",
+          "word": "ســـازنــده‌ی",
+          "finglish": "saazandeye",
           "start": 39.6,
-          "end": 40
+          "end": 40.88
         },
         {
-          "word": "دانم",
-          "start": 40.1,
-          "end": 40.5
+          "word": "دریــاهــا",
+          "finglish": "daryaahaa",
+          "start": 41.3,
+          "end": 42.48
         }
       ]
     },
     {
-      "line": "تا مقصد آزادی سرباز تو می مانم",
-      "start": 42.5,
-      "end": 45.9,
+      "line": "روشنی خورشیدی ، زیبایی رویاهــا",
+      "start": 43,
+      "end": 49.68,
+      "words": [
+        {
+          "word": "روشنی",
+          "finglish": "roshani",
+          "start": 43,
+          "end": 44.08
+        },
+        {
+          "word": "خورشیدی",
+          "finglish": "khorshidi",
+          "start": 44.48,
+          "end": 45.68
+        },
+        {
+          "word": "زیبایی",
+          "finglish": "zibaayi",
+          "start": 47,
+          "end": 48.08
+        },
+        {
+          "word": "رویاهــا",
+          "finglish": "royaahaa",
+          "start": 48.48,
+          "end": 49.68
+        }
+      ]
+    },
+    {
+      "line": "از تو امنیت دارم ، در کشمکش طوفــان",
+      "start": 50.5,
+      "end": 56.78,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 50.5,
+          "end": 50.88
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 51.08,
+          "end": 51.38
+        },
+        {
+          "word": "امنیت",
+          "finglish": "amniyat",
+          "start": 51.78,
+          "end": 52.68
+        },
+        {
+          "word": "دارم",
+          "finglish": "daaram",
+          "start": 52.98,
+          "end": 53.58
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 54.28,
+          "end": 54.58
+        },
+        {
+          "word": "کشمکش",
+          "finglish": "keshmaakeshe",
+          "start": 54.98,
+          "end": 55.88
+        },
+        {
+          "word": "طوفــان",
+          "finglish": "toofaan",
+          "start": 56.18,
+          "end": 56.78
+        }
+      ]
+    },
+    {
+      "line": "من قایق پوسیده ، تو رهبر این سکــان",
+      "start": 57.5,
+      "end": 63.88,
+      "words": [
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 57.5,
+          "end": 57.88
+        },
+        {
+          "word": "قایق",
+          "finglish": "ghaayegh",
+          "start": 58.28,
+          "end": 58.88
+        },
+        {
+          "word": "پوسیده",
+          "finglish": "pooside",
+          "start": 59.18,
+          "end": 59.98
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 61.08,
+          "end": 61.38
+        },
+        {
+          "word": "رهبر",
+          "finglish": "rahbar",
+          "start": 61.68,
+          "end": 62.28
+        },
+        {
+          "word": "این",
+          "finglish": "in",
+          "start": 62.48,
+          "end": 62.78
+        },
+        {
+          "word": "سکــان",
+          "finglish": "sokaan",
+          "start": 63.08,
+          "end": 63.88
+        }
+      ]
+    },
+    {
+      "line": "آرامــی دلــهــایــی",
+      "start": 104.8,
+      "end": 107.48,
+      "words": [
+        {
+          "word": "آرامــی",
+          "finglish": "Aarami",
+          "start": 104.8,
+          "end": 105.78
+        },
+        {
+          "word": "دلــهــایــی",
+          "finglish": "delhaayi",
+          "start": 106.2,
+          "end": 107.48
+        }
+      ]
+    },
+    {
+      "line": "ســـازنــده‌ی دریــاهــا",
+      "start": 108,
+      "end": 110.98,
+      "words": [
+        {
+          "word": "ســـازنــده‌ی",
+          "finglish": "saazandeye",
+          "start": 108,
+          "end": 109.38
+        },
+        {
+          "word": "دریــاهــا",
+          "finglish": "daryaahaa",
+          "start": 109.8,
+          "end": 110.98
+        }
+      ]
+    },
+    {
+      "line": "روشنی خورشیدی ، زیبایی رویاهــا",
+      "start": 111.5,
+      "end": 117.78,
+      "words": [
+        {
+          "word": "روشنی",
+          "finglish": "roshani",
+          "start": 111.5,
+          "end": 112.58
+        },
+        {
+          "word": "خورشیدی",
+          "finglish": "khorshidi",
+          "start": 112.98,
+          "end": 114.18
+        },
+        {
+          "word": "زیبایی",
+          "finglish": "zibaayi",
+          "start": 115.4,
+          "end": 116.48
+        },
+        {
+          "word": "رویاهــا",
+          "finglish": "royaahaa",
+          "start": 116.88,
+          "end": 117.78
+        }
+      ]
+    },
+    {
+      "line": "از تو امنیت دارم ، در کشمکش طوفــان",
+      "start": 118.5,
+      "end": 124.78,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 118.5,
+          "end": 118.88
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 119.08,
+          "end": 119.38
+        },
+        {
+          "word": "امنیت",
+          "finglish": "amniyat",
+          "start": 119.78,
+          "end": 120.68
+        },
+        {
+          "word": "دارم",
+          "finglish": "daaram",
+          "start": 120.98,
+          "end": 121.58
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 122.28,
+          "end": 122.58
+        },
+        {
+          "word": "کشمکش",
+          "finglish": "keshmaakeshe",
+          "start": 122.98,
+          "end": 123.88
+        },
+        {
+          "word": "طوفــان",
+          "finglish": "toofaan",
+          "start": 124.18,
+          "end": 124.78
+        }
+      ]
+    },
+    {
+      "line": "من قایق پوسیده ، تو رهبر این سکــان",
+      "start": 125.5,
+      "end": 131.88,
+      "words": [
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 125.5,
+          "end": 125.88
+        },
+        {
+          "word": "قایق",
+          "finglish": "ghaayegh",
+          "start": 126.28,
+          "end": 126.88
+        },
+        {
+          "word": "پوسیده",
+          "finglish": "pooside",
+          "start": 127.18,
+          "end": 127.98
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 129.08,
+          "end": 129.38
+        },
+        {
+          "word": "رهبر",
+          "finglish": "rahbar",
+          "start": 129.68,
+          "end": 130.28
+        },
+        {
+          "word": "این",
+          "finglish": "in",
+          "start": 130.48,
+          "end": 130.78
+        },
+        {
+          "word": "سکــان",
+          "finglish": "sokaan",
+          "start": 131.08,
+          "end": 131.88
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 133,
+      "end": 139.78,
       "words": [
         {
           "word": "تا",
-          "start": 42.5,
-          "end": 42.9
+          "finglish": "taa",
+          "start": 133,
+          "end": 133.38
         },
         {
           "word": "مقصد",
-          "start": 43,
-          "end": 43.4
+          "finglish": "maghsad",
+          "start": 133.78,
+          "end": 134.48
         },
         {
           "word": "آزادی",
-          "start": 43.5,
-          "end": 43.9
+          "finglish": "aazaadi",
+          "start": 134.88,
+          "end": 135.78
         },
         {
           "word": "سرباز",
-          "start": 44,
-          "end": 44.4
+          "finglish": "sarbaaz",
+          "start": 136.68,
+          "end": 137.48
         },
         {
           "word": "تو",
-          "start": 44.5,
-          "end": 44.9
+          "finglish": "to",
+          "start": 137.68,
+          "end": 137.98
         },
         {
-          "word": "می",
-          "start": 45,
-          "end": 45.4
-        },
-        {
-          "word": "مانم",
-          "start": 45.5,
-          "end": 45.9
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 138.28,
+          "end": 139.78
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "نعمت نجاتم را از فیض تو می دانم",
-      "start": 46.9,
-      "end": 50.8,
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 140,
+      "end": 145.98,
       "words": [
         {
           "word": "نعمت",
-          "start": 46.9,
-          "end": 47.3
+          "finglish": "nemat",
+          "start": 140,
+          "end": 140.78
         },
         {
           "word": "نجاتم",
-          "start": 47.4,
-          "end": 47.8
+          "finglish": "najaatam",
+          "start": 141.08,
+          "end": 141.78
         },
         {
           "word": "را",
-          "start": 47.9,
-          "end": 48.3
+          "finglish": "raa",
+          "start": 141.98,
+          "end": 142.28
         },
         {
           "word": "از",
-          "start": 48.4,
-          "end": 48.8
+          "finglish": "az",
+          "start": 142.88,
+          "end": 143.18
         },
         {
           "word": "فیض",
-          "start": 48.9,
-          "end": 49.3
+          "finglish": "feize",
+          "start": 143.48,
+          "end": 144.08
         },
         {
           "word": "تو",
-          "start": 49.4,
-          "end": 49.8
+          "finglish": "to",
+          "start": 144.28,
+          "end": 144.58
         },
         {
-          "word": "می",
-          "start": 49.9,
-          "end": 50.3
-        },
-        {
-          "word": "دانم",
-          "start": 50.4,
-          "end": 50.8
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 144.88,
+          "end": 145.98
         }
       ]
     },
     {
-      "line": "آن دم که در این جسمم در غصه و در شادی",
-      "start": 52.8,
-      "end": 58.2,
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 147,
+      "end": 153.78,
       "words": [
         {
-          "word": "آن",
-          "start": 52.8,
-          "end": 53.2
+          "word": "تا",
+          "finglish": "taa",
+          "start": 147,
+          "end": 147.38
         },
         {
-          "word": "دم",
-          "start": 53.3,
-          "end": 53.7
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 147.78,
+          "end": 148.48
         },
         {
-          "word": "که",
-          "start": 53.8,
-          "end": 54.2
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 148.88,
+          "end": 149.78
         },
         {
-          "word": "در",
-          "start": 54.3,
-          "end": 54.7
-        },
-        {
-          "word": "این",
-          "start": 54.8,
-          "end": 55.2
-        },
-        {
-          "word": "جسمم",
-          "start": 55.3,
-          "end": 55.7
-        },
-        {
-          "word": "در",
-          "start": 55.8,
-          "end": 56.2
-        },
-        {
-          "word": "غصه",
-          "start": 56.3,
-          "end": 56.7
-        },
-        {
-          "word": "و",
-          "start": 56.8,
-          "end": 57.2
-        },
-        {
-          "word": "در",
-          "start": 57.3,
-          "end": 57.7
-        },
-        {
-          "word": "شادی",
-          "start": 57.8,
-          "end": 58.2
-        }
-      ]
-    },
-    {
-      "line": "در ثروت و فقر و ظلم ویرانی و آبادی",
-      "start": 59.2,
-      "end": 63.6,
-      "words": [
-        {
-          "word": "در",
-          "start": 59.2,
-          "end": 59.6
-        },
-        {
-          "word": "ثروت",
-          "start": 59.7,
-          "end": 60.1
-        },
-        {
-          "word": "و",
-          "start": 60.2,
-          "end": 60.6
-        },
-        {
-          "word": "فقر",
-          "start": 60.7,
-          "end": 61.1
-        },
-        {
-          "word": "و",
-          "start": 61.2,
-          "end": 61.6
-        },
-        {
-          "word": "ظلم",
-          "start": 61.7,
-          "end": 62.1
-        },
-        {
-          "word": "ویرانی",
-          "start": 62.2,
-          "end": 62.6
-        },
-        {
-          "word": "و",
-          "start": 62.7,
-          "end": 63.1
-        },
-        {
-          "word": "آبادی",
-          "start": 63.2,
-          "end": 63.6
-        }
-      ]
-    },
-    {
-      "line": "حاشا که اگر جز تو یار دیگری گیرم",
-      "start": 64.6,
-      "end": 68.5,
-      "words": [
-        {
-          "word": "حاشا",
-          "start": 64.6,
-          "end": 65
-        },
-        {
-          "word": "که",
-          "start": 65.1,
-          "end": 65.5
-        },
-        {
-          "word": "اگر",
-          "start": 65.6,
-          "end": 66
-        },
-        {
-          "word": "جز",
-          "start": 66.1,
-          "end": 66.5
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 150.68,
+          "end": 151.48
         },
         {
           "word": "تو",
-          "start": 66.6,
-          "end": 67
+          "finglish": "to",
+          "start": 151.68,
+          "end": 151.98
         },
         {
-          "word": "یار",
-          "start": 67.1,
-          "end": 67.5
-        },
-        {
-          "word": "دیگری",
-          "start": 67.6,
-          "end": 68
-        },
-        {
-          "word": "گیرم",
-          "start": 68.1,
-          "end": 68.5
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 152.28,
+          "end": 153.78
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "زنده ام از عشق تو در راه تو می میرم",
-      "start": 69.5,
-      "end": 74.4,
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 154,
+      "end": 159.98,
       "words": [
         {
-          "word": "زنده",
-          "start": 69.5,
-          "end": 69.9
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 154,
+          "end": 154.78
         },
         {
-          "word": "ام",
-          "start": 70,
-          "end": 70.4
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 155.08,
+          "end": 155.78
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 155.98,
+          "end": 156.28
         },
         {
           "word": "از",
-          "start": 70.5,
-          "end": 70.9
+          "finglish": "az",
+          "start": 156.88,
+          "end": 157.18
         },
         {
-          "word": "عشق",
-          "start": 71,
-          "end": 71.4
-        },
-        {
-          "word": "تو",
-          "start": 71.5,
-          "end": 71.9
-        },
-        {
-          "word": "در",
-          "start": 72,
-          "end": 72.4
-        },
-        {
-          "word": "راه",
-          "start": 72.5,
-          "end": 72.9
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 157.48,
+          "end": 158.08
         },
         {
           "word": "تو",
-          "start": 73,
-          "end": 73.4
+          "finglish": "to",
+          "start": 158.28,
+          "end": 158.58
         },
         {
-          "word": "می",
-          "start": 73.5,
-          "end": 73.9
-        },
-        {
-          "word": "میرم",
-          "start": 74,
-          "end": 74.4
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 158.88,
+          "end": 159.98
         }
       ]
     },
     {
-      "line": "آن دم که در این جسمم در غصه و در شادی",
-      "start": 76.4,
-      "end": 81.8,
+      "line": "آن‌دم کـه در ایـن جـسـمــم",
+      "start": 202,
+      "end": 204.48,
       "words": [
         {
-          "word": "آن",
-          "start": 76.4,
-          "end": 76.8
+          "word": "آن‌دم",
+          "finglish": "aandam",
+          "start": 202,
+          "end": 202.68
         },
         {
-          "word": "دم",
-          "start": 76.9,
-          "end": 77.3
-        },
-        {
-          "word": "که",
-          "start": 77.4,
-          "end": 77.8
+          "word": "کـه",
+          "finglish": "ke",
+          "start": 202.88,
+          "end": 203.08
         },
         {
           "word": "در",
-          "start": 77.9,
-          "end": 78.3
+          "finglish": "dar",
+          "start": 203.28,
+          "end": 203.48
         },
         {
-          "word": "این",
-          "start": 78.4,
-          "end": 78.8
+          "word": "ایـن",
+          "finglish": "in",
+          "start": 203.68,
+          "end": 203.98
         },
         {
-          "word": "جسمم",
-          "start": 78.9,
-          "end": 79.3
-        },
+          "word": "جـسـمــم",
+          "finglish": "jasmam",
+          "start": 204.18,
+          "end": 204.48
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "در غــصــه و در شـــادی",
+      "start": 205,
+      "end": 207.78,
+      "words": [
         {
           "word": "در",
-          "start": 79.4,
-          "end": 79.8
+          "finglish": "dar",
+          "start": 205,
+          "end": 205.28
         },
         {
-          "word": "غصه",
-          "start": 79.9,
-          "end": 80.3
+          "word": "غــصــه",
+          "finglish": "ghosse",
+          "start": 205.58,
+          "end": 206.18
         },
         {
           "word": "و",
-          "start": 80.4,
-          "end": 80.8
+          "finglish": "o",
+          "start": 206.28,
+          "end": 206.38
         },
         {
           "word": "در",
-          "start": 80.9,
-          "end": 81.3
+          "finglish": "dar",
+          "start": 206.58,
+          "end": 206.78
         },
         {
-          "word": "شادی",
-          "start": 81.4,
-          "end": 81.8
+          "word": "شـــادی",
+          "finglish": "shaadi",
+          "start": 207.08,
+          "end": 207.78
         }
       ]
     },
     {
-      "line": "در ثروت و فقر و ظلم ویرانی و آبادی",
-      "start": 82.8,
-      "end": 87.2,
+      "line": "در ثروت و فقر و ظــلم ویرانی و آبادی",
+      "start": 208.4,
+      "end": 214.48,
       "words": [
         {
           "word": "در",
-          "start": 82.8,
-          "end": 83.2
+          "finglish": "dar",
+          "start": 208.4,
+          "end": 208.68
         },
         {
           "word": "ثروت",
-          "start": 83.3,
-          "end": 83.7
+          "finglish": "servat",
+          "start": 208.98,
+          "end": 209.58
         },
         {
           "word": "و",
-          "start": 83.8,
-          "end": 84.2
+          "finglish": "o",
+          "start": 209.68,
+          "end": 209.78
         },
         {
           "word": "فقر",
-          "start": 84.3,
-          "end": 84.7
+          "finglish": "faghr",
+          "start": 210.08,
+          "end": 210.48
         },
         {
           "word": "و",
-          "start": 84.8,
-          "end": 85.2
+          "finglish": "o",
+          "start": 210.58,
+          "end": 210.68
         },
         {
-          "word": "ظلم",
-          "start": 85.3,
-          "end": 85.7
+          "word": "ظــلم",
+          "finglish": "zolm",
+          "start": 210.98,
+          "end": 211.48
         },
         {
           "word": "ویرانی",
-          "start": 85.8,
-          "end": 86.2
+          "finglish": "viraani",
+          "start": 212.08,
+          "end": 212.88
         },
         {
           "word": "و",
-          "start": 86.3,
-          "end": 86.7
+          "finglish": "o",
+          "start": 212.98,
+          "end": 213.08
         },
         {
           "word": "آبادی",
-          "start": 86.8,
-          "end": 87.2
+          "finglish": "aabaadi",
+          "start": 213.38,
+          "end": 214.48
         }
       ]
     },
     {
-      "line": "حاشا که اگر جز تو یار دیگری گیرم",
-      "start": 88.2,
-      "end": 92.1,
+      "line": "حاشا که اگر جز تـو یار دگری گـیـرم",
+      "start": 215.3,
+      "end": 221.78,
       "words": [
         {
           "word": "حاشا",
-          "start": 88.2,
-          "end": 88.6
+          "finglish": "haashaa",
+          "start": 215.3,
+          "end": 215.98
         },
         {
           "word": "که",
-          "start": 88.7,
-          "end": 89.1
+          "finglish": "ke",
+          "start": 216.18,
+          "end": 216.38
         },
         {
           "word": "اگر",
-          "start": 89.2,
-          "end": 89.6
+          "finglish": "agar",
+          "start": 216.68,
+          "end": 217.08
         },
         {
           "word": "جز",
-          "start": 89.7,
-          "end": 90.1
+          "finglish": "joz",
+          "start": 217.28,
+          "end": 217.58
         },
         {
-          "word": "تو",
-          "start": 90.2,
-          "end": 90.6
+          "word": "تـو",
+          "finglish": "to",
+          "start": 217.78,
+          "end": 218.08
         },
         {
           "word": "یار",
-          "start": 90.7,
-          "end": 91.1
+          "finglish": "yaar",
+          "start": 218.78,
+          "end": 219.18
         },
         {
-          "word": "دیگری",
-          "start": 91.2,
-          "end": 91.6
+          "word": "دگری",
+          "finglish": "degari",
+          "start": 219.48,
+          "end": 220.08
         },
         {
-          "word": "گیرم",
-          "start": 91.7,
-          "end": 92.1
+          "word": "گـیـرم",
+          "finglish": "giram",
+          "start": 220.38,
+          "end": 221.78
         }
       ]
     },
     {
-      "line": "زنده ام از عشق تو در راه تو می میرم",
-      "start": 93.1,
-      "end": 98,
+      "line": "زنده‌ام از عشق تـو در راه تو می‌مـیـرم",
+      "start": 222.4,
+      "end": 228.78,
       "words": [
         {
-          "word": "زنده",
-          "start": 93.1,
-          "end": 93.5
-        },
-        {
-          "word": "ام",
-          "start": 93.6,
-          "end": 94
+          "word": "زنده‌ام",
+          "finglish": "zendeam",
+          "start": 222.4,
+          "end": 223.28
         },
         {
           "word": "از",
-          "start": 94.1,
-          "end": 94.5
+          "finglish": "az",
+          "start": 223.48,
+          "end": 223.68
         },
         {
           "word": "عشق",
-          "start": 94.6,
-          "end": 95
+          "finglish": "eshghe",
+          "start": 223.98,
+          "end": 224.48
         },
         {
-          "word": "تو",
-          "start": 95.1,
-          "end": 95.5
+          "word": "تـو",
+          "finglish": "to",
+          "start": 224.68,
+          "end": 224.98
         },
         {
           "word": "در",
-          "start": 95.6,
-          "end": 96
+          "finglish": "dar",
+          "start": 225.68,
+          "end": 225.88
         },
         {
           "word": "راه",
-          "start": 96.1,
-          "end": 96.5
+          "finglish": "raahe",
+          "start": 226.08,
+          "end": 226.48
         },
         {
           "word": "تو",
-          "start": 96.6,
-          "end": 97
+          "finglish": "to",
+          "start": 226.68,
+          "end": 226.88
         },
         {
-          "word": "می",
-          "start": 97.1,
-          "end": 97.5
+          "word": "می‌مـیـرم",
+          "finglish": "mimiram",
+          "start": 227.18,
+          "end": 228.78
+        }
+      ]
+    },
+    {
+      "line": "آن‌دم کـه در ایـن جـسـمــم",
+      "start": 230,
+      "end": 232.48,
+      "words": [
+        {
+          "word": "آن‌دم",
+          "finglish": "aandam",
+          "start": 230,
+          "end": 230.68
         },
         {
-          "word": "میرم",
-          "start": 97.6,
-          "end": 98
+          "word": "کـه",
+          "finglish": "ke",
+          "start": 230.88,
+          "end": 231.08
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 231.28,
+          "end": 231.48
+        },
+        {
+          "word": "ایـن",
+          "finglish": "in",
+          "start": 231.68,
+          "end": 231.98
+        },
+        {
+          "word": "جـسـمــم",
+          "finglish": "jasmam",
+          "start": 232.18,
+          "end": 232.48
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "در غــصــه و در شـــادی",
+      "start": 233,
+      "end": 235.78,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 233,
+          "end": 233.28
+        },
+        {
+          "word": "غــصــه",
+          "finglish": "ghosse",
+          "start": 233.58,
+          "end": 234.18
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 234.28,
+          "end": 234.38
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 234.58,
+          "end": 234.78
+        },
+        {
+          "word": "شـــادی",
+          "finglish": "shaadi",
+          "start": 235.08,
+          "end": 235.78
+        }
+      ]
+    },
+    {
+      "line": "در ثروت و فقر و ظــلم ویرانی و آبادی",
+      "start": 236.4,
+      "end": 242.48,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 236.4,
+          "end": 236.68
+        },
+        {
+          "word": "ثروت",
+          "finglish": "servat",
+          "start": 236.98,
+          "end": 237.58
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 237.68,
+          "end": 237.78
+        },
+        {
+          "word": "فقر",
+          "finglish": "faghr",
+          "start": 238.08,
+          "end": 238.48
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 238.58,
+          "end": 238.68
+        },
+        {
+          "word": "ظــلم",
+          "finglish": "zolm",
+          "start": 238.98,
+          "end": 239.48
+        },
+        {
+          "word": "ویرانی",
+          "finglish": "viraani",
+          "start": 240.08,
+          "end": 240.88
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 240.98,
+          "end": 241.08
+        },
+        {
+          "word": "آبادی",
+          "finglish": "aabaadi",
+          "start": 241.38,
+          "end": 242.48
+        }
+      ]
+    },
+    {
+      "line": "حاشا که اگر جز تـو یار دگری گـیـرم",
+      "start": 243.3,
+      "end": 249.78,
+      "words": [
+        {
+          "word": "حاشا",
+          "finglish": "haashaa",
+          "start": 243.3,
+          "end": 243.98
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 244.18,
+          "end": 244.38
+        },
+        {
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 244.68,
+          "end": 245.08
+        },
+        {
+          "word": "جز",
+          "finglish": "joz",
+          "start": 245.28,
+          "end": 245.58
+        },
+        {
+          "word": "تـو",
+          "finglish": "to",
+          "start": 245.78,
+          "end": 246.08
+        },
+        {
+          "word": "یار",
+          "finglish": "yaar",
+          "start": 246.78,
+          "end": 247.18
+        },
+        {
+          "word": "دگری",
+          "finglish": "degari",
+          "start": 247.48,
+          "end": 248.08
+        },
+        {
+          "word": "گـیـرم",
+          "finglish": "giram",
+          "start": 248.38,
+          "end": 249.78
+        }
+      ]
+    },
+    {
+      "line": "زنده‌ام از عشق تـو در راه تو می‌مـیـرم",
+      "start": 250.4,
+      "end": 256.78,
+      "words": [
+        {
+          "word": "زنده‌ام",
+          "finglish": "zendeam",
+          "start": 250.4,
+          "end": 251.28
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 251.48,
+          "end": 251.68
+        },
+        {
+          "word": "عشق",
+          "finglish": "eshghe",
+          "start": 251.98,
+          "end": 252.48
+        },
+        {
+          "word": "تـو",
+          "finglish": "to",
+          "start": 252.68,
+          "end": 252.98
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 253.68,
+          "end": 253.88
+        },
+        {
+          "word": "راه",
+          "finglish": "raahe",
+          "start": 254.08,
+          "end": 254.48
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 254.68,
+          "end": 254.88
+        },
+        {
+          "word": "می‌مـیـرم",
+          "finglish": "mimiram",
+          "start": 255.18,
+          "end": 256.78
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 257.5,
+      "end": 264.08,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 257.5,
+          "end": 257.88
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 258.28,
+          "end": 258.98
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 259.38,
+          "end": 260.28
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 261.18,
+          "end": 261.98
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 262.18,
+          "end": 262.48
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 262.78,
+          "end": 264.08
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 264.3,
+      "end": 270.48,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 264.3,
+          "end": 265.08
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 265.38,
+          "end": 266.08
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 266.28,
+          "end": 266.58
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 267.18,
+          "end": 267.48
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 267.78,
+          "end": 268.38
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 268.58,
+          "end": 268.88
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 269.18,
+          "end": 270.48
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 270.9,
+      "end": 277.88,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 270.9,
+          "end": 271.28
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 271.68,
+          "end": 272.38
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 272.78,
+          "end": 273.68
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 274.58,
+          "end": 275.38
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 275.58,
+          "end": 275.88
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 276.18,
+          "end": 277.88
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 278,
+      "end": 284.78,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 278,
+          "end": 278.78
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 279.08,
+          "end": 279.78
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 279.98,
+          "end": 280.28
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 280.88,
+          "end": 281.18
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 281.48,
+          "end": 282.08
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 282.28,
+          "end": 282.58
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 282.88,
+          "end": 284.78
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 285.4,
+      "end": 291.98,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 285.4,
+          "end": 285.78
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 286.18,
+          "end": 286.88
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 287.28,
+          "end": 288.18
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 289.08,
+          "end": 289.88
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 290.08,
+          "end": 290.38
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 290.68,
+          "end": 291.98
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 292.2,
+      "end": 298.98,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 292.2,
+          "end": 292.98
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 293.28,
+          "end": 293.98
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 294.18,
+          "end": 294.48
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 295.08,
+          "end": 295.38
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 295.68,
+          "end": 296.28
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 296.48,
+          "end": 296.78
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 297.08,
+          "end": 298.98
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 299.4,
+      "end": 306.08,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 299.4,
+          "end": 299.78
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 300.18,
+          "end": 300.88
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 301.28,
+          "end": 302.18
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 303.08,
+          "end": 303.88
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 304.08,
+          "end": 304.38
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 304.68,
+          "end": 306.08
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 306.3,
+      "end": 313.08,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 306.3,
+          "end": 307.08
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 307.38,
+          "end": 308.08
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 308.28,
+          "end": 308.58
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 309.18,
+          "end": 309.48
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 309.78,
+          "end": 310.38
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 310.58,
+          "end": 310.88
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 311.18,
+          "end": 313.08
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 313.5,
+      "end": 320.08,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 313.5,
+          "end": 313.88
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 314.28,
+          "end": 314.98
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 315.38,
+          "end": 316.28
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 317.18,
+          "end": 317.98
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 318.18,
+          "end": 318.48
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 318.78,
+          "end": 320.08
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 320.3,
+      "end": 327.08,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 320.3,
+          "end": 321.08
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 321.38,
+          "end": 322.08
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 322.28,
+          "end": 322.58
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 323.18,
+          "end": 323.48
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 323.78,
+          "end": 324.38
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 324.58,
+          "end": 324.88
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 325.18,
+          "end": 327.08
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 327.5,
+      "end": 334.08,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 327.5,
+          "end": 327.88
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 328.28,
+          "end": 328.98
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 329.38,
+          "end": 330.28
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 331.18,
+          "end": 331.98
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 332.18,
+          "end": 332.48
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 332.78,
+          "end": 334.08
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 334.3,
+      "end": 341.08,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 334.3,
+          "end": 335.08
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 335.38,
+          "end": 336.08
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 336.28,
+          "end": 336.58
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 337.18,
+          "end": 337.48
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 337.78,
+          "end": 338.38
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 338.58,
+          "end": 338.88
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 339.18,
+          "end": 341.08
+        }
+      ]
+    },
+    {
+      "line": "تا مقصد آزادی سرباز تو می‌‌مانــم",
+      "start": 341.5,
+      "end": 348.08,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "taa",
+          "start": 341.5,
+          "end": 341.88
+        },
+        {
+          "word": "مقصد",
+          "finglish": "maghsad",
+          "start": 342.28,
+          "end": 342.98
+        },
+        {
+          "word": "آزادی",
+          "finglish": "aazaadi",
+          "start": 343.38,
+          "end": 344.28
+        },
+        {
+          "word": "سرباز",
+          "finglish": "sarbaaz",
+          "start": 345.18,
+          "end": 345.98
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 346.18,
+          "end": 346.48
+        },
+        {
+          "word": "می‌‌مانــم",
+          "finglish": "mimaanam",
+          "start": 346.78,
+          "end": 348.08
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "نعمت نجاتم را از فیض تو می‌دانــم",
+      "start": 348.3,
+      "end": 353.08,
+      "words": [
+        {
+          "word": "نعمت",
+          "finglish": "nemat",
+          "start": 348.3,
+          "end": 349.08
+        },
+        {
+          "word": "نجاتم",
+          "finglish": "najaatam",
+          "start": 349.38,
+          "end": 350.08
+        },
+        {
+          "word": "را",
+          "finglish": "raa",
+          "start": 350.28,
+          "end": 350.58
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 351.18,
+          "end": 351.48
+        },
+        {
+          "word": "فیض",
+          "finglish": "feize",
+          "start": 351.78,
+          "end": 352.38
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 352.58,
+          "end": 352.88
+        },
+        {
+          "word": "می‌دانــم",
+          "finglish": "midaanam",
+          "start": 353.18,
+          "end": 353.08
         }
       ]
     }
   ],
-  "total_duration": 100
+  "total_duration": 247
 }

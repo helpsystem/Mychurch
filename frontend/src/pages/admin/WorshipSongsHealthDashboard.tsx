@@ -4,8 +4,23 @@ import { useAuth } from '../../hooks/useAuth';
 import axios from 'axios';
 import {
   CheckCircle, XCircle, AlertCircle, RefreshCw,
-  Music, FileText, Clock, Activity, Play, TrendingUp
+  Music, FileText, Clock, Activity, Play, TrendingUp, Eye, Search
 } from 'lucide-react';
+
+interface TimingInfo {
+  loaded: boolean;
+  lineCount: number;
+  wordCount: number;
+  duration?: number;
+}
+
+interface SongTimingDetail {
+  id: number;
+  title: { fa: string; en: string };
+  artist?: string;
+  audioUrl?: string;
+  timing: TimingInfo;
+}
 
 interface HealthStats {
   total: number;
@@ -44,6 +59,10 @@ const WorshipSongsHealthDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [incompleteSongs, setIncompleteSongs] = useState<any[]>([]);
+  const [songsWithTiming, setSongsWithTiming] = useState<SongTimingDetail[]>([]);
+  const [showTimingDetails, setShowTimingDetails] = useState(false);
+  const [loadingTiming, setLoadingTiming] = useState(false);
+  const [timingSearchTerm, setTimingSearchTerm] = useState('');
 
   useEffect(() => {
     loadHealthStats();
@@ -71,6 +90,85 @@ const WorshipSongsHealthDashboard: React.FC = () => {
       console.error('Failed to load incomplete songs:', error);
     }
   };
+
+  // Load timing details for all songs
+  const loadTimingDetails = async () => {
+    setLoadingTiming(true);
+    try {
+      // Get all songs from worship_songs.json
+      const songsResponse = await fetch('/worship/data/worship_songs.json');
+      const songs = await songsResponse.json();
+      
+      const timingDetails: SongTimingDetail[] = [];
+      
+      for (const song of songs) {
+        try {
+          const timingResponse = await fetch(`/worship/data/timings/song_${song.id}_timing.json`);
+          if (timingResponse.ok) {
+            const timingData = await timingResponse.json();
+            const lineCount = timingData.lines?.length || 0;
+            const wordCount = timingData.words?.length || timingData.metadata?.wordCount || 0;
+            const duration = timingData.metadata?.totalDuration || 0;
+            
+            timingDetails.push({
+              id: song.id,
+              title: song.title || { fa: song.title_fa, en: song.title_en },
+              artist: song.artist,
+              audioUrl: song.audioUrl || song.audio_url,
+              timing: {
+                loaded: true,
+                lineCount,
+                wordCount,
+                duration
+              }
+            });
+          } else {
+            timingDetails.push({
+              id: song.id,
+              title: song.title || { fa: song.title_fa, en: song.title_en },
+              artist: song.artist,
+              audioUrl: song.audioUrl || song.audio_url,
+              timing: {
+                loaded: false,
+                lineCount: 0,
+                wordCount: 0
+              }
+            });
+          }
+        } catch {
+          timingDetails.push({
+            id: song.id,
+            title: song.title || { fa: song.title_fa, en: song.title_en },
+            artist: song.artist,
+            audioUrl: song.audioUrl || song.audio_url,
+            timing: {
+              loaded: false,
+              lineCount: 0,
+              wordCount: 0
+            }
+          });
+        }
+      }
+      
+      setSongsWithTiming(timingDetails);
+      setShowTimingDetails(true);
+    } catch (error) {
+      console.error('Failed to load timing details:', error);
+    } finally {
+      setLoadingTiming(false);
+    }
+  };
+
+  const filteredTimingSongs = songsWithTiming.filter(song => {
+    if (!timingSearchTerm) return true;
+    const search = timingSearchTerm.toLowerCase();
+    return (
+      song.title?.fa?.toLowerCase().includes(search) ||
+      song.title?.en?.toLowerCase().includes(search) ||
+      song.artist?.toLowerCase().includes(search) ||
+      song.id.toString().includes(search)
+    );
+  });
 
   const handleProcessAll = async () => {
     if (!confirm(lang === 'fa'
@@ -331,8 +429,107 @@ const WorshipSongsHealthDashboard: React.FC = () => {
               <RefreshCw size={20} />
               {lang === 'fa' ? 'بروزرسانی آمار' : 'Refresh Stats'}
             </button>
+
+            <button
+              onClick={loadTimingDetails}
+              disabled={loadingTiming}
+              className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-105 disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {loadingTiming ? (
+                <>
+                  <RefreshCw className="animate-spin" size={20} />
+                  {lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}
+                </>
+              ) : (
+                <>
+                  <Eye size={20} />
+                  {lang === 'fa' ? 'جزئیات تایمینگ' : 'Timing Details'}
+                </>
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Timing Details Section */}
+        {showTimingDetails && songsWithTiming.length > 0 && (
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 mt-6 border border-yellow-500/30 shadow-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <Clock className="text-yellow-400" />
+                {lang === 'fa' ? `جزئیات تایمینگ سرودها (${songsWithTiming.filter(s => s.timing.loaded).length}/${songsWithTiming.length})` : `Timing Details (${songsWithTiming.filter(s => s.timing.loaded).length}/${songsWithTiming.length})`}
+              </h2>
+              <button
+                onClick={() => setShowTimingDetails(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                <XCircle size={24} />
+              </button>
+            </div>
+
+            {/* Search Box */}
+            <div className="mb-4 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder={lang === 'fa' ? 'جستجو در سرودها...' : 'Search songs...'}
+                value={timingSearchTerm}
+                onChange={(e) => setTimingSearchTerm(e.target.value)}
+                className="w-full bg-gray-700/50 border border-gray-600 rounded-lg py-3 pl-10 pr-4 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500"
+              />
+            </div>
+
+            <div className="space-y-2 max-h-[500px] overflow-y-auto">
+              {filteredTimingSongs.map((song) => (
+                <div key={song.id} className={`rounded-lg p-4 flex items-center justify-between ${song.timing.loaded ? 'bg-green-900/20 border border-green-500/30' : 'bg-red-900/20 border border-red-500/30'}`}>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      {song.timing.loaded ? (
+                        <CheckCircle className="text-green-400" size={18} />
+                      ) : (
+                        <XCircle className="text-red-400" size={18} />
+                      )}
+                      <span className="text-white font-semibold">
+                        {song.title?.fa || song.title?.en || `Song ${song.id}`}
+                      </span>
+                      <span className="text-gray-500 text-sm">#{song.id}</span>
+                    </div>
+                    {song.artist && (
+                      <div className="text-sm text-gray-400 mt-1">{song.artist}</div>
+                    )}
+                    {song.audioUrl && (
+                      <div className="text-xs text-gray-500 mt-1 truncate max-w-md" title={song.audioUrl}>
+                        🎵 {song.audioUrl}
+                      </div>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    {song.timing.loaded ? (
+                      <div className="space-y-1">
+                        <div className="text-green-400 font-mono text-sm">
+                          ✅ {lang === 'fa' ? `تایمینگ: ${song.timing.lineCount} خط` : `Timing: ${song.timing.lineCount} lines`}
+                        </div>
+                        {song.timing.wordCount > 0 && (
+                          <div className="text-gray-400 text-xs">
+                            {song.timing.wordCount} {lang === 'fa' ? 'کلمه' : 'words'}
+                          </div>
+                        )}
+                        {song.timing.duration && song.timing.duration > 0 && (
+                          <div className="text-gray-400 text-xs">
+                            {Math.floor(song.timing.duration / 60)}:{String(Math.floor(song.timing.duration % 60)).padStart(2, '0')}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="text-red-400 font-mono text-sm">
+                        ❌ {lang === 'fa' ? 'بدون تایمینگ' : 'No timing'}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Incomplete Songs List */}
         {incompleteSongs.length > 0 && (

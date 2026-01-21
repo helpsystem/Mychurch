@@ -1,337 +1,1458 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 51,
-    "lineCount": 10,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.277Z"
-  },
+  "songId": 15,
+  "generatedAt": "2026-01-20T02:16:34.340Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "Verse (x2)",
-      "start": 0,
-      "end": 18,
+      "line": "چشمان قلبم را بگشا ، چشمان قلبم بگشا",
+      "start": 8.77,
+      "end": 15.03,
       "words": [
         {
-          "word": "Verse",
-          "start": 0,
-          "end": 9
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 8.77,
+          "end": 9.27
         },
         {
-          "word": "(x2)",
-          "start": 9,
-          "end": 18
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 9.61,
+          "end": 9.97
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 10.15,
+          "end": 10.32
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 10.68,
+          "end": 11.18
+        },
+        {
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 13.04,
+          "end": 13.54
+        },
+        {
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 13.88,
+          "end": 14.19
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 14.53,
+          "end": 15.03
         }
       ]
     },
     {
-      "line": "چـ[E]ـشمان قلبم را بگشا ، چـ[B]ـشمان قلبم بگشا",
-      "start": 18,
-      "end": 36,
+      "line": "تا تو را بینم ، تا تو را بینم",
+      "start": 16.2,
+      "end": 22.1,
       "words": [
         {
-          "word": "چـ[E]ـشمان",
-          "start": 18,
-          "end": 20.25
+          "word": "تا",
+          "finglish": "Ta",
+          "start": 16.2,
+          "end": 16.4
         },
         {
-          "word": "قلبم",
-          "start": 20.25,
-          "end": 22.5
+          "word": "تو",
+          "finglish": "To",
+          "start": 16.59,
+          "end": 16.79
         },
         {
           "word": "را",
-          "start": 22.5,
-          "end": 24.75
+          "finglish": "Ra",
+          "start": 16.96,
+          "end": 17.13
         },
         {
-          "word": "بگشا",
-          "start": 24.75,
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 17.5,
+          "end": 18
+        },
+        {
+          "word": "تا",
+          "finglish": "Ta",
+          "start": 20.3,
+          "end": 20.5
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 20.69,
+          "end": 20.89
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 21.06,
+          "end": 21.23
+        },
+        {
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 21.6,
+          "end": 22.1
+        }
+      ]
+    },
+    {
+      "line": "چشمان قلبم را بگشا ، چشمان قلبم بگشا",
+      "start": 26.5,
+      "end": 32.76,
+      "words": [
+        {
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 26.5,
           "end": 27
         },
         {
-          "word": "،",
-          "start": 27,
-          "end": 29.25
-        },
-        {
-          "word": "چـ[B]ـشمان",
-          "start": 29.25,
-          "end": 31.5
-        },
-        {
           "word": "قلبم",
-          "start": 31.5,
-          "end": 33.75
+          "finglish": "Ghalbam",
+          "start": 27.34,
+          "end": 27.7
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 27.88,
+          "end": 28.05
         },
         {
           "word": "بگشا",
-          "start": 33.75,
-          "end": 36
+          "finglish": "Bogsha",
+          "start": 28.41,
+          "end": 28.91
+        },
+        {
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 30.77,
+          "end": 31.27
+        },
+        {
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 31.61,
+          "end": 31.92
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 32.26,
+          "end": 32.76
         }
       ]
     },
     {
-      "line": "تا تو را بـ[A]ـینم ، تا تو را بــ[Bsus4]ـینــ[E]ـم",
-      "start": 36,
-      "end": 54,
+      "line": "تا تو را بینم ، تا تو را بینم",
+      "start": 33.93,
+      "end": 39.83,
       "words": [
         {
           "word": "تا",
-          "start": 36,
-          "end": 38
+          "finglish": "Ta",
+          "start": 33.93,
+          "end": 34.13
         },
         {
           "word": "تو",
-          "start": 38,
-          "end": 40
+          "finglish": "To",
+          "start": 34.32,
+          "end": 34.52
         },
         {
           "word": "را",
-          "start": 40,
-          "end": 42
+          "finglish": "Ra",
+          "start": 34.69,
+          "end": 34.86
         },
         {
-          "word": "بـ[A]ـینم",
-          "start": 42,
-          "end": 44
-        },
-        {
-          "word": "،",
-          "start": 44,
-          "end": 46
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 35.23,
+          "end": 35.73
         },
         {
           "word": "تا",
-          "start": 46,
-          "end": 48
+          "finglish": "Ta",
+          "start": 38.03,
+          "end": 38.23
         },
         {
           "word": "تو",
-          "start": 48,
-          "end": 50
+          "finglish": "To",
+          "start": 38.42,
+          "end": 38.62
         },
         {
           "word": "را",
-          "start": 50,
-          "end": 52
+          "finglish": "Ra",
+          "start": 38.79,
+          "end": 38.96
         },
         {
-          "word": "بــ[Bsus4]ـینــ[E]ـم",
-          "start": 52,
-          "end": 54
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 39.33,
+          "end": 39.83
         }
       ]
     },
     {
-      "line": "Chorus",
-      "start": 54,
-      "end": 72,
-      "words": [
-        {
-          "word": "Chorus",
-          "start": 54,
-          "end": 72
-        }
-      ]
-    },
-    {
-      "line": "در جلا[B]ل آسمان[C#m] ، نو[A]ر رویت درخـ[B]ـشان",
-      "start": 72,
-      "end": 90,
+      "line": "در جلال آسمان ، نور رویت درخشان",
+      "start": 43.68,
+      "end": 50.6,
       "words": [
         {
           "word": "در",
-          "start": 72,
-          "end": 74.57142857142857
+          "finglish": "Dar",
+          "start": 43.68,
+          "end": 43.88
         },
         {
-          "word": "جلا[B]ل",
-          "start": 74.57142857142857,
-          "end": 77.14285714285714
+          "word": "جلال",
+          "finglish": "Jalal",
+          "start": 44.24,
+          "end": 44.64
         },
         {
-          "word": "آسمان[C#m]",
-          "start": 77.14285714285714,
-          "end": 79.71428571428572
+          "word": "آسمان",
+          "finglish": "Aseman",
+          "start": 45.19,
+          "end": 45.89
         },
         {
-          "word": "،",
-          "start": 79.71428571428572,
-          "end": 82.28571428571429
-        },
-        {
-          "word": "نو[A]ر",
-          "start": 82.28571428571429,
-          "end": 84.85714285714286
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 48.33,
+          "end": 48.63
         },
         {
           "word": "رویت",
-          "start": 84.85714285714286,
-          "end": 87.42857142857143
+          "finglish": "Rooyat",
+          "start": 48.99,
+          "end": 49.39
         },
         {
-          "word": "درخـ[B]ـشان",
-          "start": 87.42857142857143,
-          "end": 90
+          "word": "درخشان",
+          "finglish": "Derakhshan",
+          "start": 50,
+          "end": 50.6
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "مـ[B]ـهر و قوت از توسـ[C#m]ـت",
-      "start": 90,
-      "end": 108,
+      "line": "مهر و قوت از توست",
+      "start": 52.88,
+      "end": 55.29,
       "words": [
         {
-          "word": "مـ[B]ـهر",
-          "start": 90,
-          "end": 93.6
+          "word": "مهر",
+          "finglish": "Mehr",
+          "start": 52.88,
+          "end": 53.28
         },
         {
           "word": "و",
-          "start": 93.6,
-          "end": 97.2
+          "finglish": "Va",
+          "start": 53.37,
+          "end": 53.47
         },
         {
           "word": "قوت",
-          "start": 97.2,
-          "end": 100.8
+          "finglish": "Ghovat",
+          "start": 53.79,
+          "end": 54.19
         },
         {
           "word": "از",
-          "start": 100.8,
-          "end": 104.4
+          "finglish": "Az",
+          "start": 54.39,
+          "end": 54.59
         },
         {
-          "word": "توسـ[C#m]ـت",
-          "start": 104.4,
-          "end": 108
+          "word": "توست",
+          "finglish": "Tost",
+          "start": 54.89,
+          "end": 55.29
         }
       ]
     },
     {
-      "line": "تو هستی قد[A]وس قدوس قد[B]وس",
-      "start": 108,
-      "end": 126,
+      "line": "تو هستی قدوس قدوس قدوس",
+      "start": 56,
+      "end": 59.3,
       "words": [
         {
           "word": "تو",
-          "start": 108,
-          "end": 111.6
+          "finglish": "To",
+          "start": 56,
+          "end": 56.1
         },
         {
           "word": "هستی",
-          "start": 111.6,
+          "finglish": "Hasti",
+          "start": 56.3,
+          "end": 56.6
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 57,
+          "end": 57.5
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 57.9,
+          "end": 58.4
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 58.8,
+          "end": 59.3
+        }
+      ]
+    },
+    {
+      "line": "در جلال آسمان ، نور رویت درخشان",
+      "start": 101.38,
+      "end": 108.3,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 101.38,
+          "end": 101.58
+        },
+        {
+          "word": "جلال",
+          "finglish": "Jalal",
+          "start": 101.94,
+          "end": 102.34
+        },
+        {
+          "word": "آسمان",
+          "finglish": "Aseman",
+          "start": 102.89,
+          "end": 103.59
+        },
+        {
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 106.03,
+          "end": 106.33
+        },
+        {
+          "word": "رویت",
+          "finglish": "Rooyat",
+          "start": 106.69,
+          "end": 107.09
+        },
+        {
+          "word": "درخشان",
+          "finglish": "Derakhshan",
+          "start": 107.7,
+          "end": 108.3
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "مهر و قوت از توست",
+      "start": 110.58,
+      "end": 112.99,
+      "words": [
+        {
+          "word": "مهر",
+          "finglish": "Mehr",
+          "start": 110.58,
+          "end": 110.98
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 111.07,
+          "end": 111.17
+        },
+        {
+          "word": "قوت",
+          "finglish": "Ghovat",
+          "start": 111.49,
+          "end": 111.89
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 112.09,
+          "end": 112.29
+        },
+        {
+          "word": "توست",
+          "finglish": "Tost",
+          "start": 112.59,
+          "end": 112.99
+        }
+      ]
+    },
+    {
+      "line": "تو هستی قدوس قدوس قدوس",
+      "start": 113.7,
+      "end": 117,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 113.7,
+          "end": 113.8
+        },
+        {
+          "word": "هستی",
+          "finglish": "Hasti",
+          "start": 114,
+          "end": 114.3
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 114.7,
           "end": 115.2
         },
         {
-          "word": "قد[A]وس",
-          "start": 115.2,
-          "end": 118.8
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 115.6,
+          "end": 116.1
         },
         {
           "word": "قدوس",
-          "start": 118.8,
-          "end": 122.4
-        },
-        {
-          "word": "قد[B]وس",
-          "start": 122.4,
-          "end": 126
+          "finglish": "Ghoddus",
+          "start": 116.5,
+          "end": 117
         }
       ]
     },
     {
-      "line": "Bridge",
-      "start": 126,
-      "end": 144,
+      "line": "چشمان قلبم را بگشا ، چشمان قلبم بگشا",
+      "start": 121.5,
+      "end": 127.76,
       "words": [
         {
-          "word": "Bridge",
-          "start": 126,
-          "end": 144
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 121.5,
+          "end": 122
+        },
+        {
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 122.34,
+          "end": 122.7
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 122.88,
+          "end": 123.05
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 123.41,
+          "end": 123.91
+        },
+        {
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 125.77,
+          "end": 126.27
+        },
+        {
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 126.61,
+          "end": 126.92
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 127.26,
+          "end": 127.76
         }
       ]
     },
     {
-      "line": "قد[A]وس قدوس قد[B]وس ، قد[A]وس قدوس قد[B]وس",
-      "start": 144,
-      "end": 162,
+      "line": "تا تو را بینم ، تا تو را بینم",
+      "start": 128.93,
+      "end": 134.83,
       "words": [
         {
-          "word": "قد[A]وس",
-          "start": 144,
-          "end": 146.57142857142858
+          "word": "تا",
+          "finglish": "Ta",
+          "start": 128.93,
+          "end": 129.13
         },
         {
-          "word": "قدوس",
-          "start": 146.57142857142858,
-          "end": 149.14285714285714
+          "word": "تو",
+          "finglish": "To",
+          "start": 129.32,
+          "end": 129.52
         },
         {
-          "word": "قد[B]وس",
-          "start": 149.14285714285714,
-          "end": 151.71428571428572
+          "word": "را",
+          "finglish": "Ra",
+          "start": 129.69,
+          "end": 129.86
         },
         {
-          "word": "،",
-          "start": 151.71428571428572,
-          "end": 154.28571428571428
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 130.23,
+          "end": 130.73
         },
         {
-          "word": "قد[A]وس",
-          "start": 154.28571428571428,
-          "end": 156.85714285714286
+          "word": "تا",
+          "finglish": "Ta",
+          "start": 133.03,
+          "end": 133.23
         },
         {
-          "word": "قدوس",
-          "start": 156.85714285714286,
-          "end": 159.42857142857144
+          "word": "تو",
+          "finglish": "To",
+          "start": 133.42,
+          "end": 133.62
         },
         {
-          "word": "قد[B]وس",
-          "start": 159.42857142857144,
-          "end": 162
+          "word": "را",
+          "finglish": "Ra",
+          "start": 133.79,
+          "end": 133.96
+        },
+        {
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 134.33,
+          "end": 134.83
         }
       ]
     },
     {
-      "line": "قد[A]وس قدوس قد[B]وس ، چشمانم بــ[Bsus4]ـگشا[E]",
-      "start": 162,
-      "end": 180,
+      "line": "چشمان قلبم را بگشا ، چشمان قلبم بگشا",
+      "start": 139,
+      "end": 145.26,
       "words": [
         {
-          "word": "قد[A]وس",
-          "start": 162,
-          "end": 165
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 139,
+          "end": 139.5
+        },
+        {
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 139.84,
+          "end": 140.2
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 140.38,
+          "end": 140.55
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 140.91,
+          "end": 141.41
+        },
+        {
+          "word": "چشمان",
+          "finglish": "Cheshman",
+          "start": 143.27,
+          "end": 143.77
+        },
+        {
+          "word": "قلبم",
+          "finglish": "Ghalbam",
+          "start": 144.11,
+          "end": 144.42
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 144.76,
+          "end": 145.26
+        }
+      ]
+    },
+    {
+      "line": "تا تو را بینم ، تا تو را بینم",
+      "start": 146.43,
+      "end": 152.33,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "Ta",
+          "start": 146.43,
+          "end": 146.63
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 146.82,
+          "end": 147.02
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 147.19,
+          "end": 147.36
+        },
+        {
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 147.73,
+          "end": 148.23
+        },
+        {
+          "word": "تا",
+          "finglish": "Ta",
+          "start": 150.53,
+          "end": 150.73
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 150.92,
+          "end": 151.12
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 151.29,
+          "end": 151.46
+        },
+        {
+          "word": "بینم",
+          "finglish": "Binam",
+          "start": 151.83,
+          "end": 152.33
+        }
+      ]
+    },
+    {
+      "line": "در جلال آسمان ، نور رویت درخشان",
+      "start": 155.58,
+      "end": 202.5,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 155.58,
+          "end": 155.78
+        },
+        {
+          "word": "جلال",
+          "finglish": "Jalal",
+          "start": 156.14,
+          "end": 156.54
+        },
+        {
+          "word": "آسمان",
+          "finglish": "Aseman",
+          "start": 157.09,
+          "end": 157.79
+        },
+        {
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 200.23,
+          "end": 200.53
+        },
+        {
+          "word": "رویت",
+          "finglish": "Rooyat",
+          "start": 200.89,
+          "end": 201.29
+        },
+        {
+          "word": "درخشان",
+          "finglish": "Derakhshan",
+          "start": 201.9,
+          "end": 202.5
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "مهر و قوت از توست",
+      "start": 204.78,
+      "end": 207.19,
+      "words": [
+        {
+          "word": "مهر",
+          "finglish": "Mehr",
+          "start": 204.78,
+          "end": 205.18
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 205.27,
+          "end": 205.37
+        },
+        {
+          "word": "قوت",
+          "finglish": "Ghovat",
+          "start": 205.69,
+          "end": 206.09
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 206.29,
+          "end": 206.49
+        },
+        {
+          "word": "توست",
+          "finglish": "Tost",
+          "start": 206.79,
+          "end": 207.19
+        }
+      ]
+    },
+    {
+      "line": "تو هستی قدوس قدوس قدوس",
+      "start": 207.9,
+      "end": 211.2,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 207.9,
+          "end": 208
+        },
+        {
+          "word": "هستی",
+          "finglish": "Hasti",
+          "start": 208.2,
+          "end": 208.5
         },
         {
           "word": "قدوس",
-          "start": 165,
-          "end": 168
+          "finglish": "Ghoddus",
+          "start": 208.9,
+          "end": 209.4
         },
         {
-          "word": "قد[B]وس",
-          "start": 168,
-          "end": 171
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 209.8,
+          "end": 210.3
         },
         {
-          "word": "،",
-          "start": 171,
-          "end": 174
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 210.7,
+          "end": 211.2
+        }
+      ]
+    },
+    {
+      "line": "در جلال آسمان ، نور رویت درخشان",
+      "start": 212.58,
+      "end": 219.5,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 212.58,
+          "end": 212.78
+        },
+        {
+          "word": "جلال",
+          "finglish": "Jalal",
+          "start": 213.14,
+          "end": 213.54
+        },
+        {
+          "word": "آسمان",
+          "finglish": "Aseman",
+          "start": 214.09,
+          "end": 214.79
+        },
+        {
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 217.23,
+          "end": 217.53
+        },
+        {
+          "word": "رویت",
+          "finglish": "Rooyat",
+          "start": 217.89,
+          "end": 218.29
+        },
+        {
+          "word": "درخشان",
+          "finglish": "Derakhshan",
+          "start": 218.9,
+          "end": 219.5
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "مهر و قوت از توست",
+      "start": 221.78,
+      "end": 224.19,
+      "words": [
+        {
+          "word": "مهر",
+          "finglish": "Mehr",
+          "start": 221.78,
+          "end": 222.18
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 222.27,
+          "end": 222.37
+        },
+        {
+          "word": "قوت",
+          "finglish": "Ghovat",
+          "start": 222.69,
+          "end": 223.09
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 223.29,
+          "end": 223.49
+        },
+        {
+          "word": "توست",
+          "finglish": "Tost",
+          "start": 223.79,
+          "end": 224.19
+        }
+      ]
+    },
+    {
+      "line": "تو هستی قدوس قدوس قدوس",
+      "start": 224.9,
+      "end": 228.2,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 224.9,
+          "end": 225
+        },
+        {
+          "word": "هستی",
+          "finglish": "Hasti",
+          "start": 225.2,
+          "end": 225.5
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 225.9,
+          "end": 226.4
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 226.8,
+          "end": 227.3
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 227.7,
+          "end": 228.2
+        }
+      ]
+    },
+    {
+      "line": "قدوس قدوس قدوس ، قدوس قدوس قدوس",
+      "start": 232.4,
+      "end": 239,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 232.4,
+          "end": 232.9
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 233.3,
+          "end": 233.8
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 234.2,
+          "end": 234.7
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 236.7,
+          "end": 237.2
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 237.6,
+          "end": 238.1
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 238.5,
+          "end": 239
+        }
+      ],
+      "label": "Bridge"
+    },
+    {
+      "line": "قدوس قدوس قدوس ، چشمانم بگشا",
+      "start": 241.1,
+      "end": 245.8,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 241.1,
+          "end": 241.6
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 242,
+          "end": 242.5
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 242.9,
+          "end": 243.4
         },
         {
           "word": "چشمانم",
-          "start": 174,
-          "end": 177
+          "finglish": "Cheshmanam",
+          "start": 244.4,
+          "end": 245
         },
         {
-          "word": "بــ[Bsus4]ـگشا[E]",
-          "start": 177,
-          "end": 180
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 245.3,
+          "end": 245.8
+        }
+      ]
+    },
+    {
+      "line": "قدوس قدوس قدوس ، قدوس قدوس قدوس",
+      "start": 249.8,
+      "end": 256.4,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 249.8,
+          "end": 250.3
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 250.7,
+          "end": 251.2
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 251.6,
+          "end": 252.1
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 254.1,
+          "end": 254.6
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 255,
+          "end": 255.5
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 255.9,
+          "end": 256.4
+        }
+      ],
+      "label": "Bridge"
+    },
+    {
+      "line": "قدوس قدوس قدوس ، چشمانم بگشا",
+      "start": 258.4,
+      "end": 303.1,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 258.4,
+          "end": 258.9
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 259.3,
+          "end": 259.8
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 300.2,
+          "end": 300.7
+        },
+        {
+          "word": "چشمانم",
+          "finglish": "Cheshmanam",
+          "start": 301.7,
+          "end": 302.3
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 302.6,
+          "end": 303.1
+        }
+      ]
+    },
+    {
+      "line": "قدوس قدوس قدوس ، قدوس قدوس قدوس",
+      "start": 307.4,
+      "end": 314,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 307.4,
+          "end": 307.9
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 308.3,
+          "end": 308.8
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 309.2,
+          "end": 309.7
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 311.7,
+          "end": 312.2
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 312.6,
+          "end": 313.1
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 313.5,
+          "end": 314
+        }
+      ],
+      "label": "Bridge"
+    },
+    {
+      "line": "قدوس قدوس قدوس ، چشمانم بگشا",
+      "start": 316,
+      "end": 320.7,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 316,
+          "end": 316.5
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 316.9,
+          "end": 317.4
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 317.8,
+          "end": 318.3
+        },
+        {
+          "word": "چشمانم",
+          "finglish": "Cheshmanam",
+          "start": 319.3,
+          "end": 319.9
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 320.2,
+          "end": 320.7
+        }
+      ]
+    },
+    {
+      "line": "قدوس قدوس قدوس ، قدوس قدوس قدوس",
+      "start": 324.3,
+      "end": 330.9,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 324.3,
+          "end": 324.8
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 325.2,
+          "end": 325.7
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 326.1,
+          "end": 326.6
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 328.6,
+          "end": 329.1
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 329.5,
+          "end": 330
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 330.4,
+          "end": 330.9
+        }
+      ],
+      "label": "Bridge"
+    },
+    {
+      "line": "قدوس قدوس قدوس ، چشمانم بگشا",
+      "start": 332.9,
+      "end": 337.6,
+      "words": [
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 332.9,
+          "end": 333.4
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 333.8,
+          "end": 334.3
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 334.7,
+          "end": 335.2
+        },
+        {
+          "word": "چشمانم",
+          "finglish": "Cheshmanam",
+          "start": 336.2,
+          "end": 336.8
+        },
+        {
+          "word": "بگشا",
+          "finglish": "Bogsha",
+          "start": 337.1,
+          "end": 337.6
+        }
+      ]
+    },
+    {
+      "line": "در جلال آسمان ، نور رویت درخشان",
+      "start": 340.48,
+      "end": 347.4,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 340.48,
+          "end": 340.68
+        },
+        {
+          "word": "جلال",
+          "finglish": "Jalal",
+          "start": 341.04,
+          "end": 341.44
+        },
+        {
+          "word": "آسمان",
+          "finglish": "Aseman",
+          "start": 341.99,
+          "end": 342.69
+        },
+        {
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 345.13,
+          "end": 345.43
+        },
+        {
+          "word": "رویت",
+          "finglish": "Rooyat",
+          "start": 345.79,
+          "end": 346.19
+        },
+        {
+          "word": "درخشان",
+          "finglish": "Derakhshan",
+          "start": 346.8,
+          "end": 347.4
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "مهر و قوت از توست",
+      "start": 349.68,
+      "end": 352.09,
+      "words": [
+        {
+          "word": "مهر",
+          "finglish": "Mehr",
+          "start": 349.68,
+          "end": 350.08
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 350.17,
+          "end": 350.27
+        },
+        {
+          "word": "قوت",
+          "finglish": "Ghovat",
+          "start": 350.59,
+          "end": 350.99
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 351.19,
+          "end": 351.39
+        },
+        {
+          "word": "توست",
+          "finglish": "Tost",
+          "start": 351.69,
+          "end": 352.09
+        }
+      ]
+    },
+    {
+      "line": "تو هستی قدوس قدوس قدوس",
+      "start": 352.8,
+      "end": 356.1,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 352.8,
+          "end": 352.9
+        },
+        {
+          "word": "هستی",
+          "finglish": "Hasti",
+          "start": 353.1,
+          "end": 353.4
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 353.8,
+          "end": 354.3
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 354.7,
+          "end": 355.2
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 355.6,
+          "end": 356.1
+        }
+      ]
+    },
+    {
+      "line": "در جلال آسمان ، نور رویت درخشان",
+      "start": 357.68,
+      "end": 404.3,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 357.68,
+          "end": 357.88
+        },
+        {
+          "word": "جلال",
+          "finglish": "Jalal",
+          "start": 358.24,
+          "end": 358.64
+        },
+        {
+          "word": "آسمان",
+          "finglish": "Aseman",
+          "start": 359.19,
+          "end": 359.89
+        },
+        {
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 402.03,
+          "end": 402.33
+        },
+        {
+          "word": "رویت",
+          "finglish": "Rooyat",
+          "start": 402.69,
+          "end": 403.09
+        },
+        {
+          "word": "درخشان",
+          "finglish": "Derakhshan",
+          "start": 403.7,
+          "end": 404.3
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "مهر و قوت از توست",
+      "start": 406.48,
+      "end": 408.89,
+      "words": [
+        {
+          "word": "مهر",
+          "finglish": "Mehr",
+          "start": 406.48,
+          "end": 406.88
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 406.97,
+          "end": 407.07
+        },
+        {
+          "word": "قوت",
+          "finglish": "Ghovat",
+          "start": 407.39,
+          "end": 407.79
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 407.99,
+          "end": 408.19
+        },
+        {
+          "word": "توست",
+          "finglish": "Tost",
+          "start": 408.49,
+          "end": 408.89
+        }
+      ]
+    },
+    {
+      "line": "تو هستی قدوس قدوس قدوس",
+      "start": 409.6,
+      "end": 412.9,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 409.6,
+          "end": 409.7
+        },
+        {
+          "word": "هستی",
+          "finglish": "Hasti",
+          "start": 409.9,
+          "end": 410.2
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 410.6,
+          "end": 411.1
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 411.5,
+          "end": 412
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus",
+          "start": 412.4,
+          "end": 412.9
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 254
 }

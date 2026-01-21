@@ -1,164 +1,790 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 22,
-    "lineCount": 6,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.274Z"
-  },
+  "songId": 13,
+  "generatedAt": "2026-01-20T02:13:21.995Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "Verse",
-      "start": 0,
-      "end": 30,
+      "line": "عظیمی ، عجیبــی",
+      "start": 4.49,
+      "end": 9.69,
       "words": [
         {
-          "word": "Verse",
-          "start": 0,
-          "end": 30
+          "word": "عظیمی",
+          "finglish": "Azimi",
+          "start": 4.49,
+          "end": 5.99
+        },
+        {
+          "word": "عجیبی",
+          "finglish": "Ajibi",
+          "start": 8.09,
+          "end": 9.69
         }
       ]
     },
     {
-      "line": "عظیمی[Bm] ، عجیبـ[G]ـی",
-      "start": 30,
-      "end": 60,
+      "line": "خدای من ، قدوس و پاک",
+      "start": 11.69,
+      "end": 17.09,
       "words": [
         {
-          "word": "عظیمی[Bm]",
-          "start": 30,
-          "end": 40
-        },
-        {
-          "word": "،",
-          "start": 40,
-          "end": 50
-        },
-        {
-          "word": "عجیبـ[G]ـی",
-          "start": 50,
-          "end": 60
-        }
-      ]
-    },
-    {
-      "line": "خدای[D] من ، قدوس و [F#]پاک",
-      "start": 60,
-      "end": 90,
-      "words": [
-        {
-          "word": "خدای[D]",
-          "start": 60,
-          "end": 65
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 11.69,
+          "end": 12.39
         },
         {
           "word": "من",
-          "start": 65,
-          "end": 70
-        },
-        {
-          "word": "،",
-          "start": 70,
-          "end": 75
+          "finglish": "Man",
+          "start": 12.49,
+          "end": 13.09
         },
         {
           "word": "قدوس",
-          "start": 75,
-          "end": 80
+          "finglish": "Ghoddus o",
+          "start": 15.09,
+          "end": 16.09
         },
         {
-          "word": "و",
-          "start": 80,
-          "end": 85
-        },
-        {
-          "word": "[F#]پاک",
-          "start": 85,
-          "end": 90
+          "word": "پاک",
+          "finglish": "Pak",
+          "start": 16.19,
+          "end": 17.09
         }
       ]
     },
     {
-      "line": "Chorus",
-      "start": 90,
-      "end": 120,
+      "line": "عظیمی ، عجیبــی",
+      "start": 19.59,
+      "end": 24.49,
       "words": [
         {
-          "word": "Chorus",
-          "start": 90,
-          "end": 120
+          "word": "عظیمی",
+          "finglish": "Azimi",
+          "start": 19.59,
+          "end": 20.99
+        },
+        {
+          "word": "عجیبی",
+          "finglish": "Ajibi",
+          "start": 22.99,
+          "end": 24.49
         }
       ]
     },
     {
-      "line": "تنها تـ[Bm]ـو را می‌پرستم ای خدا[G]وند و شاهم",
-      "start": 120,
-      "end": 150,
+      "line": "خدای من ، قدوس و پاک",
+      "start": 26.49,
+      "end": 31.59,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 26.49,
+          "end": 27.19
+        },
+        {
+          "word": "من",
+          "finglish": "Man",
+          "start": 27.29,
+          "end": 27.89
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus o",
+          "start": 29.89,
+          "end": 30.79
+        },
+        {
+          "word": "پاک",
+          "finglish": "Pak",
+          "start": 30.89,
+          "end": 31.59
+        }
+      ]
+    },
+    {
+      "line": "تنها تــو را می‌پرستم ای خداوند و شاهم",
+      "start": 33.69,
+      "end": 39.99,
       "words": [
         {
           "word": "تنها",
-          "start": 120,
-          "end": 123.75
+          "finglish": "Tanha",
+          "start": 33.69,
+          "end": 34.29
         },
         {
-          "word": "تـ[Bm]ـو",
-          "start": 123.75,
-          "end": 127.5
+          "word": "تو",
+          "finglish": "To",
+          "start": 34.39,
+          "end": 34.69
         },
         {
           "word": "را",
-          "start": 127.5,
-          "end": 131.25
+          "finglish": "Ra",
+          "start": 34.79,
+          "end": 35.09
         },
         {
-          "word": "می‌پرستم",
-          "start": 131.25,
-          "end": 135
+          "word": "میپرستم",
+          "finglish": "Miparastam",
+          "start": 35.29,
+          "end": 36.79
         },
         {
           "word": "ای",
-          "start": 135,
-          "end": 138.75
+          "finglish": "Ey",
+          "start": 37.09,
+          "end": 37.39
         },
         {
-          "word": "خدا[G]وند",
-          "start": 138.75,
-          "end": 142.5
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 37.69,
+          "end": 38.59
         },
         {
           "word": "و",
-          "start": 142.5,
-          "end": 146.25
+          "finglish": "o",
+          "start": 38.69,
+          "end": 38.79
         },
         {
           "word": "شاهم",
-          "start": 146.25,
-          "end": 150
+          "finglish": "Shah am",
+          "start": 38.99,
+          "end": 39.99
         }
       ]
     },
     {
-      "line": "تمامـ[D]ـی جانم تسلیـ[F#]ـمت",
-      "start": 150,
-      "end": 180,
+      "line": "تمامــی جانم تسلیــمت",
+      "start": 41.49,
+      "end": 45.09,
       "words": [
         {
-          "word": "تمامـ[D]ـی",
-          "start": 150,
-          "end": 160
+          "word": "تمامی",
+          "finglish": "Tamamiye",
+          "start": 41.49,
+          "end": 42.59
         },
         {
           "word": "جانم",
-          "start": 160,
-          "end": 170
+          "finglish": "Janam",
+          "start": 43.49,
+          "end": 44.09
         },
         {
-          "word": "تسلیـ[F#]ـمت",
-          "start": 170,
-          "end": 180
+          "word": "تسلیم",
+          "finglish": "Taslimat",
+          "start": 44.19,
+          "end": 45.09
+        }
+      ]
+    },
+    {
+      "line": "تنها تــو را می‌پرستم ای خداوند و شاهم",
+      "start": 48.59,
+      "end": 54.89,
+      "words": [
+        {
+          "word": "تنها",
+          "finglish": "Tanha",
+          "start": 48.59,
+          "end": 49.19
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 49.29,
+          "end": 49.59
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 49.69,
+          "end": 49.99
+        },
+        {
+          "word": "میپرستم",
+          "finglish": "Miparastam",
+          "start": 50.19,
+          "end": 51.69
+        },
+        {
+          "word": "ای",
+          "finglish": "Ey",
+          "start": 51.99,
+          "end": 52.29
+        },
+        {
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 52.59,
+          "end": 53.49
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 53.59,
+          "end": 53.69
+        },
+        {
+          "word": "شاهم",
+          "finglish": "Shah am",
+          "start": 53.89,
+          "end": 54.89
+        }
+      ]
+    },
+    {
+      "line": "تمامــی جانم تسلیــمت",
+      "start": 56.29,
+      "end": 59.89,
+      "words": [
+        {
+          "word": "تمامی",
+          "finglish": "Tamamiye",
+          "start": 56.29,
+          "end": 57.39
+        },
+        {
+          "word": "جانم",
+          "finglish": "Janam",
+          "start": 58.29,
+          "end": 58.89
+        },
+        {
+          "word": "تسلیم",
+          "finglish": "Taslimat",
+          "start": 58.99,
+          "end": 59.89
+        }
+      ]
+    },
+    {
+      "line": "عظیمی ، عجیبــی",
+      "start": 103.09,
+      "end": 107.99,
+      "words": [
+        {
+          "word": "عظیمی",
+          "finglish": "Azimi",
+          "start": 103.09,
+          "end": 104.49
+        },
+        {
+          "word": "عجیبی",
+          "finglish": "Ajibi",
+          "start": 106.49,
+          "end": 107.99
+        }
+      ]
+    },
+    {
+      "line": "خدای من ، قدوس و پاک",
+      "start": 109.99,
+      "end": 114.99,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 109.99,
+          "end": 110.69
+        },
+        {
+          "word": "من",
+          "finglish": "Man",
+          "start": 110.79,
+          "end": 111.39
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus o",
+          "start": 113.39,
+          "end": 114.29
+        },
+        {
+          "word": "پاک",
+          "finglish": "Pak",
+          "start": 114.39,
+          "end": 114.99
+        }
+      ]
+    },
+    {
+      "line": "عظیمی ، عجیبــی",
+      "start": 117.59,
+      "end": 122.49,
+      "words": [
+        {
+          "word": "عظیمی",
+          "finglish": "Azimi",
+          "start": 117.59,
+          "end": 118.99
+        },
+        {
+          "word": "عجیبی",
+          "finglish": "Ajibi",
+          "start": 120.99,
+          "end": 122.49
+        }
+      ]
+    },
+    {
+      "line": "خدای من ، قدوس و پاک",
+      "start": 124.49,
+      "end": 129.49,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 124.49,
+          "end": 125.19
+        },
+        {
+          "word": "من",
+          "finglish": "Man",
+          "start": 125.29,
+          "end": 125.89
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus o",
+          "start": 127.89,
+          "end": 128.79
+        },
+        {
+          "word": "پاک",
+          "finglish": "Pak",
+          "start": 128.89,
+          "end": 129.49
+        }
+      ]
+    },
+    {
+      "line": "تنها تــو را می‌پرستم ای خداوند و شاهم",
+      "start": 131.69,
+      "end": 137.99,
+      "words": [
+        {
+          "word": "تنها",
+          "finglish": "Tanha",
+          "start": 131.69,
+          "end": 132.29
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 132.39,
+          "end": 132.69
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 132.79,
+          "end": 133.09
+        },
+        {
+          "word": "میپرستم",
+          "finglish": "Miparastam",
+          "start": 133.29,
+          "end": 134.79
+        },
+        {
+          "word": "ای",
+          "finglish": "Ey",
+          "start": 135.09,
+          "end": 135.39
+        },
+        {
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 135.69,
+          "end": 136.59
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 136.69,
+          "end": 136.79
+        },
+        {
+          "word": "شاهم",
+          "finglish": "Shah am",
+          "start": 136.99,
+          "end": 137.99
+        }
+      ]
+    },
+    {
+      "line": "تمامــی جانم تسلیــمت",
+      "start": 139.49,
+      "end": 143.09,
+      "words": [
+        {
+          "word": "تمامی",
+          "finglish": "Tamamiye",
+          "start": 139.49,
+          "end": 140.59
+        },
+        {
+          "word": "جانم",
+          "finglish": "Janam",
+          "start": 141.49,
+          "end": 142.09
+        },
+        {
+          "word": "تسلیم",
+          "finglish": "Taslimat",
+          "start": 142.19,
+          "end": 143.09
+        }
+      ]
+    },
+    {
+      "line": "تنها تــو را می‌پرستم ای خداوند و شاهم",
+      "start": 146.09,
+      "end": 152.39,
+      "words": [
+        {
+          "word": "تنها",
+          "finglish": "Tanha",
+          "start": 146.09,
+          "end": 146.69
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 146.79,
+          "end": 147.09
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 147.19,
+          "end": 147.49
+        },
+        {
+          "word": "میپرستم",
+          "finglish": "Miparastam",
+          "start": 147.69,
+          "end": 149.19
+        },
+        {
+          "word": "ای",
+          "finglish": "Ey",
+          "start": 149.49,
+          "end": 149.79
+        },
+        {
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 150.09,
+          "end": 150.99
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 151.09,
+          "end": 151.19
+        },
+        {
+          "word": "شاهم",
+          "finglish": "Shah am",
+          "start": 151.39,
+          "end": 152.39
+        }
+      ]
+    },
+    {
+      "line": "تمامــی جانم تسلیــمت",
+      "start": 153.79,
+      "end": 157.39,
+      "words": [
+        {
+          "word": "تمامی",
+          "finglish": "Tamamiye",
+          "start": 153.79,
+          "end": 154.89
+        },
+        {
+          "word": "جانم",
+          "finglish": "Janam",
+          "start": 155.79,
+          "end": 156.39
+        },
+        {
+          "word": "تسلیم",
+          "finglish": "Taslimat",
+          "start": 156.49,
+          "end": 157.39
+        }
+      ]
+    },
+    {
+      "line": "تنها تــو را می‌پرستم ای خداوند و شاهم",
+      "start": 200.59,
+      "end": 206.89,
+      "words": [
+        {
+          "word": "تنها",
+          "finglish": "Tanha",
+          "start": 200.59,
+          "end": 201.19
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 201.29,
+          "end": 201.59
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 201.69,
+          "end": 201.99
+        },
+        {
+          "word": "میپرستم",
+          "finglish": "Miparastam",
+          "start": 202.19,
+          "end": 203.69
+        },
+        {
+          "word": "ای",
+          "finglish": "Ey",
+          "start": 203.99,
+          "end": 204.29
+        },
+        {
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 204.59,
+          "end": 205.49
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 205.59,
+          "end": 205.69
+        },
+        {
+          "word": "شاهم",
+          "finglish": "Shah am",
+          "start": 205.89,
+          "end": 206.89
+        }
+      ]
+    },
+    {
+      "line": "تمامــی جانم تسلیــمت",
+      "start": 208.29,
+      "end": 211.89,
+      "words": [
+        {
+          "word": "تمامی",
+          "finglish": "Tamamiye",
+          "start": 208.29,
+          "end": 209.39
+        },
+        {
+          "word": "جانم",
+          "finglish": "Janam",
+          "start": 210.29,
+          "end": 210.89
+        },
+        {
+          "word": "تسلیم",
+          "finglish": "Taslimat",
+          "start": 210.99,
+          "end": 211.89
+        }
+      ]
+    },
+    {
+      "line": "تنها تــو را می‌پرستم ای خداوند و شاهم",
+      "start": 214.49,
+      "end": 220.79,
+      "words": [
+        {
+          "word": "تنها",
+          "finglish": "Tanha",
+          "start": 214.49,
+          "end": 215.09
+        },
+        {
+          "word": "تو",
+          "finglish": "To",
+          "start": 215.19,
+          "end": 215.49
+        },
+        {
+          "word": "را",
+          "finglish": "Ra",
+          "start": 215.59,
+          "end": 215.89
+        },
+        {
+          "word": "میپرستم",
+          "finglish": "Miparastam",
+          "start": 216.09,
+          "end": 217.59
+        },
+        {
+          "word": "ای",
+          "finglish": "Ey",
+          "start": 217.89,
+          "end": 218.19
+        },
+        {
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 218.49,
+          "end": 219.39
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 219.49,
+          "end": 219.59
+        },
+        {
+          "word": "شاهم",
+          "finglish": "Shah am",
+          "start": 219.79,
+          "end": 220.79
+        }
+      ]
+    },
+    {
+      "line": "تمامــی جانم تسلیــمت",
+      "start": 222.19,
+      "end": 225.79,
+      "words": [
+        {
+          "word": "تمامی",
+          "finglish": "Tamamiye",
+          "start": 222.19,
+          "end": 223.29
+        },
+        {
+          "word": "جانم",
+          "finglish": "Janam",
+          "start": 224.19,
+          "end": 224.79
+        },
+        {
+          "word": "تسلیم",
+          "finglish": "Taslimat",
+          "start": 224.89,
+          "end": 225.79
+        }
+      ]
+    },
+    {
+      "line": "عظیمی ، عجیبــی",
+      "start": 229.09,
+      "end": 233.99,
+      "words": [
+        {
+          "word": "عظیمی",
+          "finglish": "Azimi",
+          "start": 229.09,
+          "end": 230.49
+        },
+        {
+          "word": "عجیبی",
+          "finglish": "Ajibi",
+          "start": 232.49,
+          "end": 233.99
+        }
+      ]
+    },
+    {
+      "line": "خدای من ، قدوس و پاک",
+      "start": 235.99,
+      "end": 241.09,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 235.99,
+          "end": 236.69
+        },
+        {
+          "word": "من",
+          "finglish": "Man",
+          "start": 236.79,
+          "end": 237.39
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus o",
+          "start": 239.39,
+          "end": 240.29
+        },
+        {
+          "word": "پاک",
+          "finglish": "Pak",
+          "start": 240.39,
+          "end": 241.09
+        }
+      ]
+    },
+    {
+      "line": "عظیمی ، عجیبــی",
+      "start": 244.09,
+      "end": 248.99,
+      "words": [
+        {
+          "word": "عظیمی",
+          "finglish": "Azimi",
+          "start": 244.09,
+          "end": 245.49
+        },
+        {
+          "word": "عجیبی",
+          "finglish": "Ajibi",
+          "start": 247.49,
+          "end": 248.99
+        }
+      ]
+    },
+    {
+      "line": "خدای من ، قدوس و پاک",
+      "start": 250.99,
+      "end": 256.09,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 250.99,
+          "end": 251.69
+        },
+        {
+          "word": "من",
+          "finglish": "Man",
+          "start": 251.79,
+          "end": 252.39
+        },
+        {
+          "word": "قدوس",
+          "finglish": "Ghoddus o",
+          "start": 254.39,
+          "end": 255.29
+        },
+        {
+          "word": "پاک",
+          "finglish": "Pak",
+          "start": 255.39,
+          "end": 256.09
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 178
 }

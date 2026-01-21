@@ -1,1447 +1,1063 @@
 {
-  "metadata": {
-    "title": "تماشایی‌ترین تصویر دنیا",
-    "artist": "روزبه نجارنژاد",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/%d8%aa%d9%85%d8%a7%d8%b4%d8%a7%db%8c%db%8c%e2%80%8c%d8%aa%d8%b1%db%8c%d9%86%20%d8%aa%d8%b5%d9%88%db%8c%d8%b1%20%d8%af%d9%86%db%8c%d8%a7.mp3",
-    "totalDuration": 253.86,
-    "wordCount": 116,
-    "lineCount": 39
-  },
-  "words": [
-    {
-      "word": "تماشــایی‌ترین",
-      "start": 6.08,
-      "end": 8.22
-    },
-    {
-      "word": "تــصویر",
-      "start": 8.22,
-      "end": 10.35
-    },
-    {
-      "word": "دنیــا",
-      "start": 10.35,
-      "end": 12.49
-    },
-    {
-      "word": "همون",
-      "start": 12.49,
-      "end": 14.62
-    },
-    {
-      "word": "تــصویر",
-      "start": 14.62,
-      "end": 16.76
-    },
-    {
-      "word": "رویایی",
-      "start": 16.76,
-      "end": 18.9
-    },
-    {
-      "word": "عشــقه",
-      "start": 18.9,
-      "end": 21.03
-    },
-    {
-      "word": "از",
-      "start": 21.03,
-      "end": 23.17
-    },
-    {
-      "word": "اون",
-      "start": 23.17,
-      "end": 25.3
-    },
-    {
-      "word": "اول",
-      "start": 25.3,
-      "end": 27.44
-    },
-    {
-      "word": "که",
-      "start": 27.44,
-      "end": 29.58
-    },
-    {
-      "word": "عاشــق",
-      "start": 29.58,
-      "end": 31.71
-    },
-    {
-      "word": "عشق",
-      "start": 31.71,
-      "end": 33.85
-    },
-    {
-      "word": "رو",
-      "start": 33.85,
-      "end": 35.98
-    },
-    {
-      "word": "فهــمید",
-      "start": 35.98,
-      "end": 38.12
-    },
-    {
-      "word": "می‌دونــسته",
-      "start": 38.12,
-      "end": 40.26
-    },
-    {
-      "word": "که",
-      "start": 40.26,
-      "end": 42.39
-    },
-    {
-      "word": "عشــق",
-      "start": 42.39,
-      "end": 44.53
-    },
-    {
-      "word": "خاک",
-      "start": 44.53,
-      "end": 46.66
-    },
-    {
-      "word": "بهــشته",
-      "start": 46.66,
-      "end": 48.8
-    },
-    {
-      "word": "منم",
-      "start": 48.8,
-      "end": 50.94
-    },
-    {
-      "word": "وقتی",
-      "start": 50.94,
-      "end": 53.07
-    },
-    {
-      "word": "که",
-      "start": 53.07,
-      "end": 55.21
-    },
-    {
-      "word": "عشقــت",
-      "start": 55.21,
-      "end": 57.34
-    },
-    {
-      "word": "رو",
-      "start": 57.34,
-      "end": 59.48
-    },
-    {
-      "word": "درونــم",
-      "start": 59.48,
-      "end": 61.62
-    },
-    {
-      "word": "شعله",
-      "start": 61.62,
-      "end": 63.75
-    },
-    {
-      "word": "ور",
-      "start": 63.75,
-      "end": 65.89
-    },
-    {
-      "word": "دیــدم",
-      "start": 65.89,
-      "end": 68.02
-    },
-    {
-      "word": "نفسهــات",
-      "start": 68.03,
-      "end": 70.16
-    },
-    {
-      "word": "جونمو",
-      "start": 70.16,
-      "end": 72.3
-    },
-    {
-      "word": "جون",
-      "start": 72.3,
-      "end": 74.43
-    },
-    {
-      "word": "داد",
-      "start": 74.43,
-      "end": 76.57
-    },
-    {
-      "word": "و",
-      "start": 76.57,
-      "end": 78.71
-    },
-    {
-      "word": "من",
-      "start": 78.71,
-      "end": 80.84
-    },
-    {
-      "word": "رازت",
-      "start": 80.84,
-      "end": 82.98
-    },
-    {
-      "word": "رو",
-      "start": 82.98,
-      "end": 85.11
-    },
-    {
-      "word": "فهمــیدم",
-      "start": 85.11,
-      "end": 87.25
-    },
-    {
-      "word": "که",
-      "start": 87.25,
-      "end": 89.39
-    },
-    {
-      "word": "فهمــیدم",
-      "start": 89.39,
-      "end": 91.52
-    },
-    {
-      "word": "خدا",
-      "start": 91.52,
-      "end": 93.66
-    },
-    {
-      "word": "بودی",
-      "start": 93.66,
-      "end": 95.79
-    },
-    {
-      "word": "ولی",
-      "start": 95.79,
-      "end": 97.93
-    },
-    {
-      "word": "نزدیکتری",
-      "start": 97.93,
-      "end": 100.07
-    },
-    {
-      "word": "امروز",
-      "start": 100.07,
-      "end": 102.2
-    },
-    {
-      "word": "که",
-      "start": 102.2,
-      "end": 104.34
-    },
-    {
-      "word": "پشت",
-      "start": 104.34,
-      "end": 106.47
-    },
-    {
-      "word": "من",
-      "start": 106.47,
-      "end": 108.61
-    },
-    {
-      "word": "بهت",
-      "start": 108.61,
-      "end": 110.75
-    },
-    {
-      "word": "گــرمه",
-      "start": 110.75,
-      "end": 112.88
-    },
-    {
-      "word": "پدر",
-      "start": 112.88,
-      "end": 115.02
-    },
-    {
-      "word": "هستی",
-      "start": 115.02,
-      "end": 117.15
-    },
-    {
-      "word": "برام",
-      "start": 117.15,
-      "end": 119.29
-    },
-    {
-      "word": "هــر",
-      "start": 119.29,
-      "end": 121.43
-    },
-    {
-      "word": "روز",
-      "start": 121.43,
-      "end": 123.56
-    },
-    {
-      "word": "[column]",
-      "start": 123.56,
-      "end": 125.7
-    },
-    {
-      "word": "از",
-      "start": 125.7,
-      "end": 127.83
-    },
-    {
-      "word": "این",
-      "start": 127.83,
-      "end": 129.97
-    },
-    {
-      "word": "احساس",
-      "start": 129.97,
-      "end": 132.11
-    },
-    {
-      "word": "زیبــاتر",
-      "start": 132.11,
-      "end": 134.24
-    },
-    {
-      "word": "مگه",
-      "start": 134.24,
-      "end": 136.38
-    },
-    {
-      "word": "هــست",
-      "start": 136.38,
-      "end": 138.51
-    },
-    {
-      "word": "که",
-      "start": 138.51,
-      "end": 140.65
-    },
-    {
-      "word": "اسم",
-      "start": 140.65,
-      "end": 142.79
-    },
-    {
-      "word": "تو",
-      "start": 142.79,
-      "end": 144.92
-    },
-    {
-      "word": "پدر",
-      "start": 144.92,
-      "end": 147.06
-    },
-    {
-      "word": "حرف",
-      "start": 147.06,
-      "end": 149.19
-    },
-    {
-      "word": "زبون",
-      "start": 149.19,
-      "end": 151.33
-    },
-    {
-      "word": "شه",
-      "start": 151.33,
-      "end": 153.47
-    },
-    {
-      "word": "چنان",
-      "start": 153.47,
-      "end": 155.6
-    },
-    {
-      "word": "تــار",
-      "start": 155.6,
-      "end": 157.74
-    },
-    {
-      "word": "تنم",
-      "start": 157.74,
-      "end": 159.87
-    },
-    {
-      "word": "بسته",
-      "start": 159.87,
-      "end": 162.01
-    },
-    {
-      "word": "به",
-      "start": 162.01,
-      "end": 164.15
-    },
-    {
-      "word": "پودت",
-      "start": 164.15,
-      "end": 166.28
-    },
-    {
-      "word": "که",
-      "start": 166.28,
-      "end": 168.42
-    },
-    {
-      "word": "هر",
-      "start": 168.42,
-      "end": 170.55
-    },
-    {
-      "word": "چــی",
-      "start": 170.55,
-      "end": 172.69
-    },
-    {
-      "word": "تو",
-      "start": 172.69,
-      "end": 174.83
-    },
-    {
-      "word": "بگی",
-      "start": 174.83,
-      "end": 176.96
-    },
-    {
-      "word": "می‌گم",
-      "start": 176.96,
-      "end": 179.1
-    },
-    {
-      "word": "همون",
-      "start": 179.1,
-      "end": 181.23
-    },
-    {
-      "word": "شه",
-      "start": 181.23,
-      "end": 183.37
-    },
-    {
-      "word": "بگو",
-      "start": 183.37,
-      "end": 185.51
-    },
-    {
-      "word": "حــرف",
-      "start": 185.51,
-      "end": 187.64
-    },
-    {
-      "word": "دلت",
-      "start": 187.64,
-      "end": 189.78
-    },
-    {
-      "word": "رو",
-      "start": 189.78,
-      "end": 191.91
-    },
-    {
-      "word": "تا",
-      "start": 191.92,
-      "end": 194.05
-    },
-    {
-      "word": "که",
-      "start": 194.05,
-      "end": 196.19
-    },
-    {
-      "word": "من",
-      "start": 196.19,
-      "end": 198.32
-    },
-    {
-      "word": "راهت",
-      "start": 198.32,
-      "end": 200.46
-    },
-    {
-      "word": "رو",
-      "start": 200.46,
-      "end": 202.6
-    },
-    {
-      "word": "بشنــاسم",
-      "start": 202.6,
-      "end": 204.73
-    },
-    {
-      "word": "بفهمــم",
-      "start": 204.73,
-      "end": 206.87
-    },
-    {
-      "word": "قلبتـو",
-      "start": 206.87,
-      "end": 209.0
-    },
-    {
-      "word": "تصویری",
-      "start": 209.0,
-      "end": 211.14
-    },
-    {
-      "word": "از",
-      "start": 211.14,
-      "end": 213.28
-    },
-    {
-      "word": "عشقت",
-      "start": 213.28,
-      "end": 215.41
-    },
-    {
-      "word": "به",
-      "start": 215.41,
-      "end": 217.55
-    },
-    {
-      "word": "دنیــا",
-      "start": 217.55,
-      "end": 219.68
-    },
-    {
-      "word": "شم",
-      "start": 219.68,
-      "end": 221.82
-    },
-    {
-      "word": "خدایی",
-      "start": 221.82,
-      "end": 223.96
-    },
-    {
-      "word": "که",
-      "start": 223.96,
-      "end": 226.09
-    },
-    {
-      "word": "می‌خواد",
-      "start": 226.09,
-      "end": 228.23
-    },
-    {
-      "word": "باشه",
-      "start": 228.23,
-      "end": 230.36
-    },
-    {
-      "word": "پدر",
-      "start": 230.36,
-      "end": 232.5
-    },
-    {
-      "word": "واسه",
-      "start": 232.5,
-      "end": 234.64
-    },
-    {
-      "word": "همه",
-      "start": 234.64,
-      "end": 236.77
-    },
-    {
-      "word": "دنیا",
-      "start": 236.77,
-      "end": 238.91
-    },
-    {
-      "word": "بده",
-      "start": 238.91,
-      "end": 241.04
-    },
-    {
-      "word": "آغوش",
-      "start": 241.04,
-      "end": 243.18
-    },
-    {
-      "word": "گرمــش",
-      "start": 243.18,
-      "end": 245.32
-    },
-    {
-      "word": "رو",
-      "start": 245.32,
-      "end": 247.45
-    },
-    {
-      "word": "نمونه",
-      "start": 247.45,
-      "end": 249.59
-    },
-    {
-      "word": "هیچکسی",
-      "start": 249.59,
-      "end": 251.72
-    },
-    {
-      "word": "تــنها",
-      "start": 251.72,
-      "end": 253.86
-    }
-  ],
+  "songId": 7,
+  "generatedAt": "2026-01-20T02:04:59.311Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
       "line": "تماشــایی‌ترین تــصویر دنیــا",
-      "start": 6.08,
-      "end": 12.49,
+      "start": 58.46,
+      "end": 64.6,
       "words": [
         {
           "word": "تماشــایی‌ترین",
-          "start": 6.08,
-          "end": 8.22
+          "finglish": "tamashayi-tarin",
+          "start": 58.46,
+          "end": 60.96
         },
         {
           "word": "تــصویر",
-          "start": 8.22,
-          "end": 10.35
+          "finglish": "tasvir",
+          "start": 60.96,
+          "end": 63.06
         },
         {
           "word": "دنیــا",
-          "start": 10.35,
-          "end": 12.49
+          "finglish": "donya",
+          "start": 63.06,
+          "end": 64.6
         }
       ]
     },
     {
-      "line": "همون تــصویر رویایی",
-      "start": 12.49,
-      "end": 18.9,
+      "line": "همون تــصویر رویایی عشــقه",
+      "start": 65.4,
+      "end": 71,
       "words": [
         {
           "word": "همون",
-          "start": 12.49,
-          "end": 14.62
+          "finglish": "hamoon",
+          "start": 65.4,
+          "end": 66.2
         },
         {
           "word": "تــصویر",
-          "start": 14.62,
-          "end": 16.76
+          "finglish": "tasvir",
+          "start": 66.2,
+          "end": 67.4
         },
         {
           "word": "رویایی",
-          "start": 16.76,
-          "end": 18.9
+          "finglish": "royayi-e",
+          "start": 67.4,
+          "end": 68.8
+        },
+        {
+          "word": "عشــقه",
+          "finglish": "eshghe",
+          "start": 68.8,
+          "end": 71
         }
       ]
     },
     {
-      "line": "عشــقه از اون",
-      "start": 18.9,
-      "end": 25.3,
+      "line": "از اون اول که عاشــق عشق رو فهــمید",
+      "start": 72.6,
+      "end": 78,
       "words": [
         {
-          "word": "عشــقه",
-          "start": 18.9,
-          "end": 21.03
-        },
-        {
           "word": "از",
-          "start": 21.03,
-          "end": 23.17
+          "finglish": "az",
+          "start": 72.6,
+          "end": 72.8
         },
         {
           "word": "اون",
-          "start": 23.17,
-          "end": 25.3
-        }
-      ]
-    },
-    {
-      "line": "اول که عاشــق",
-      "start": 25.3,
-      "end": 31.71,
-      "words": [
+          "finglish": "oon",
+          "start": 72.8,
+          "end": 73.2
+        },
         {
           "word": "اول",
-          "start": 25.3,
-          "end": 27.44
+          "finglish": "avval",
+          "start": 73.2,
+          "end": 73.7
         },
         {
           "word": "که",
-          "start": 27.44,
-          "end": 29.58
+          "finglish": "ke",
+          "start": 73.7,
+          "end": 74
         },
         {
           "word": "عاشــق",
-          "start": 29.58,
-          "end": 31.71
-        }
-      ]
-    },
-    {
-      "line": "عشق رو فهــمید",
-      "start": 31.71,
-      "end": 38.12,
-      "words": [
+          "finglish": "ashegh",
+          "start": 74,
+          "end": 74.8
+        },
         {
           "word": "عشق",
-          "start": 31.71,
-          "end": 33.85
+          "finglish": "eshgh",
+          "start": 74.8,
+          "end": 75.3
         },
         {
           "word": "رو",
-          "start": 33.85,
-          "end": 35.98
+          "finglish": "ro",
+          "start": 75.3,
+          "end": 75.6
         },
         {
           "word": "فهــمید",
-          "start": 35.98,
-          "end": 38.12
+          "finglish": "fahmid",
+          "start": 75.6,
+          "end": 78
         }
       ]
     },
     {
-      "line": "می‌دونــسته که عشــق",
-      "start": 38.12,
-      "end": 44.53,
+      "line": "می‌دونــسته که عشــق خاک بهــشته",
+      "start": 79.4,
+      "end": 84.7,
       "words": [
         {
           "word": "می‌دونــسته",
-          "start": 38.12,
-          "end": 40.26
+          "finglish": "midooneste",
+          "start": 79.4,
+          "end": 80.7
         },
         {
           "word": "که",
-          "start": 40.26,
-          "end": 42.39
+          "finglish": "ke",
+          "start": 80.7,
+          "end": 81
         },
         {
           "word": "عشــق",
-          "start": 42.39,
-          "end": 44.53
-        }
-      ]
-    },
-    {
-      "line": "خاک بهــشته منم",
-      "start": 44.53,
-      "end": 50.94,
-      "words": [
+          "finglish": "eshgh",
+          "start": 81,
+          "end": 81.7
+        },
         {
           "word": "خاک",
-          "start": 44.53,
-          "end": 46.66
+          "finglish": "khake",
+          "start": 81.7,
+          "end": 82.3
         },
         {
           "word": "بهــشته",
-          "start": 46.66,
-          "end": 48.8
-        },
-        {
-          "word": "منم",
-          "start": 48.8,
-          "end": 50.94
+          "finglish": "beheshte",
+          "start": 82.3,
+          "end": 84.7
         }
       ]
     },
     {
-      "line": "وقتی که عشقــت",
-      "start": 50.94,
-      "end": 57.34,
+      "line": "منم وقتی که عشقــت رو درونــم شعله ور دیــدم",
+      "start": 86.4,
+      "end": 93.3,
       "words": [
         {
+          "word": "منم",
+          "finglish": "manam",
+          "start": 86.4,
+          "end": 86.8
+        },
+        {
           "word": "وقتی",
-          "start": 50.94,
-          "end": 53.07
+          "finglish": "vaghti",
+          "start": 86.8,
+          "end": 87.3
         },
         {
           "word": "که",
-          "start": 53.07,
-          "end": 55.21
+          "finglish": "ke",
+          "start": 87.3,
+          "end": 87.5
         },
         {
           "word": "عشقــت",
-          "start": 55.21,
-          "end": 57.34
-        }
-      ]
-    },
-    {
-      "line": "رو درونــم شعله",
-      "start": 57.34,
-      "end": 63.75,
-      "words": [
+          "finglish": "eshghet",
+          "start": 87.5,
+          "end": 88.3
+        },
         {
           "word": "رو",
-          "start": 57.34,
-          "end": 59.48
+          "finglish": "ro",
+          "start": 88.3,
+          "end": 88.5
         },
         {
           "word": "درونــم",
-          "start": 59.48,
-          "end": 61.62
+          "finglish": "daroonam",
+          "start": 88.5,
+          "end": 89.5
         },
         {
           "word": "شعله",
-          "start": 61.62,
-          "end": 63.75
-        }
-      ]
-    },
-    {
-      "line": "ور دیــدم نفسهــات",
-      "start": 63.75,
-      "end": 70.16,
-      "words": [
+          "finglish": "shole",
+          "start": 89.5,
+          "end": 90.2
+        },
         {
           "word": "ور",
-          "start": 63.75,
-          "end": 65.89
+          "finglish": "var",
+          "start": 90.2,
+          "end": 90.5
         },
         {
           "word": "دیــدم",
-          "start": 65.89,
-          "end": 68.02
-        },
-        {
-          "word": "نفسهــات",
-          "start": 68.03,
-          "end": 70.16
+          "finglish": "didam",
+          "start": 90.5,
+          "end": 93.3
         }
       ]
     },
     {
-      "line": "جونمو جون داد",
-      "start": 70.16,
-      "end": 76.57,
+      "line": "نفسهــات جونمو جون داد و من رازت رو فهمــیدم",
+      "start": 93.8,
+      "end": 100,
       "words": [
         {
+          "word": "نفسهــات",
+          "finglish": "nafas-hat",
+          "start": 93.8,
+          "end": 94.6
+        },
+        {
           "word": "جونمو",
-          "start": 70.16,
-          "end": 72.3
+          "finglish": "joonamo",
+          "start": 94.6,
+          "end": 95.2
         },
         {
           "word": "جون",
-          "start": 72.3,
-          "end": 74.43
+          "finglish": "joon",
+          "start": 95.2,
+          "end": 95.6
         },
         {
           "word": "داد",
-          "start": 74.43,
-          "end": 76.57
-        }
-      ]
-    },
-    {
-      "line": "و من رازت",
-      "start": 76.57,
-      "end": 82.98,
-      "words": [
+          "finglish": "dad",
+          "start": 95.6,
+          "end": 96
+        },
         {
           "word": "و",
-          "start": 76.57,
-          "end": 78.71
+          "finglish": "o",
+          "start": 96,
+          "end": 96.2
         },
         {
           "word": "من",
-          "start": 78.71,
-          "end": 80.84
+          "finglish": "man",
+          "start": 96.2,
+          "end": 96.5
         },
         {
           "word": "رازت",
-          "start": 80.84,
-          "end": 82.98
-        }
-      ]
-    },
-    {
-      "line": "رو فهمــیدم که",
-      "start": 82.98,
-      "end": 89.39,
-      "words": [
+          "finglish": "razet",
+          "start": 96.5,
+          "end": 97.2
+        },
         {
           "word": "رو",
-          "start": 82.98,
-          "end": 85.11
+          "finglish": "ro",
+          "start": 97.2,
+          "end": 97.4
         },
         {
           "word": "فهمــیدم",
-          "start": 85.11,
-          "end": 87.25
-        },
-        {
-          "word": "که",
-          "start": 87.25,
-          "end": 89.39
+          "finglish": "fahmidam",
+          "start": 97.4,
+          "end": 100
         }
       ]
     },
     {
-      "line": "فهمــیدم خدا بودی",
-      "start": 89.39,
-      "end": 95.79,
+      "line": "که فهمــیدم خدا بودی ولی نزدیکتری امروز",
+      "start": 100.6,
+      "end": 104.7,
       "words": [
         {
+          "word": "که",
+          "finglish": "ke",
+          "start": 100.6,
+          "end": 100.8
+        },
+        {
           "word": "فهمــیدم",
-          "start": 89.39,
-          "end": 91.52
+          "finglish": "fahmidam",
+          "start": 100.8,
+          "end": 101.5
         },
         {
           "word": "خدا",
-          "start": 91.52,
-          "end": 93.66
+          "finglish": "khoda",
+          "start": 101.5,
+          "end": 102.1
         },
         {
           "word": "بودی",
-          "start": 93.66,
-          "end": 95.79
-        }
-      ]
-    },
-    {
-      "line": "ولی نزدیکتری امروز",
-      "start": 95.79,
-      "end": 102.2,
-      "words": [
+          "finglish": "boodi",
+          "start": 102.1,
+          "end": 102.6
+        },
         {
           "word": "ولی",
-          "start": 95.79,
-          "end": 97.93
+          "finglish": "vali",
+          "start": 102.6,
+          "end": 103
         },
         {
           "word": "نزدیکتری",
-          "start": 97.93,
-          "end": 100.07
+          "finglish": "nazdiktar-i",
+          "start": 103,
+          "end": 104
         },
         {
           "word": "امروز",
-          "start": 100.07,
-          "end": 102.2
+          "finglish": "emrooz",
+          "start": 104,
+          "end": 104.7
         }
       ]
     },
     {
-      "line": "که پشت من",
-      "start": 102.2,
-      "end": 108.61,
+      "line": "که پشت من بهت گــرمه پدر هستی برام هــر روز",
+      "start": 108,
+      "end": 116,
       "words": [
         {
           "word": "که",
-          "start": 102.2,
-          "end": 104.34
+          "finglish": "ke",
+          "start": 108,
+          "end": 108.2
         },
         {
           "word": "پشت",
-          "start": 104.34,
-          "end": 106.47
+          "finglish": "poshte",
+          "start": 108.2,
+          "end": 108.6
         },
         {
           "word": "من",
-          "start": 106.47,
-          "end": 108.61
-        }
-      ]
-    },
-    {
-      "line": "بهت گــرمه پدر",
-      "start": 108.61,
-      "end": 115.02,
-      "words": [
+          "finglish": "man",
+          "start": 108.6,
+          "end": 108.9
+        },
         {
           "word": "بهت",
-          "start": 108.61,
-          "end": 110.75
+          "finglish": "behet",
+          "start": 108.9,
+          "end": 109.2
         },
         {
           "word": "گــرمه",
-          "start": 110.75,
-          "end": 112.88
+          "finglish": "garme",
+          "start": 109.2,
+          "end": 109.8
         },
         {
           "word": "پدر",
-          "start": 112.88,
-          "end": 115.02
-        }
-      ]
-    },
-    {
-      "line": "هستی برام هــر",
-      "start": 115.02,
-      "end": 121.43,
-      "words": [
+          "finglish": "pedar",
+          "start": 109.8,
+          "end": 110.3
+        },
         {
           "word": "هستی",
-          "start": 115.02,
-          "end": 117.15
+          "finglish": "hasti",
+          "start": 110.3,
+          "end": 110.8
         },
         {
           "word": "برام",
-          "start": 117.15,
-          "end": 119.29
+          "finglish": "baram",
+          "start": 110.8,
+          "end": 111.3
         },
         {
           "word": "هــر",
-          "start": 119.29,
-          "end": 121.43
-        }
-      ]
-    },
-    {
-      "line": "روز [column] از",
-      "start": 121.43,
-      "end": 127.83,
-      "words": [
+          "finglish": "har",
+          "start": 111.3,
+          "end": 111.6
+        },
         {
           "word": "روز",
-          "start": 121.43,
-          "end": 123.56
-        },
-        {
-          "word": "[column]",
-          "start": 123.56,
-          "end": 125.7
-        },
-        {
-          "word": "از",
-          "start": 125.7,
-          "end": 127.83
+          "finglish": "rooz",
+          "start": 111.6,
+          "end": 116
         }
       ]
     },
     {
-      "line": "این احساس زیبــاتر",
-      "start": 127.83,
-      "end": 134.24,
+      "line": "از این احساس زیبــاتر مگه هــست",
+      "start": 145.6,
+      "end": 152,
       "words": [
         {
+          "word": "از",
+          "finglish": "az",
+          "start": 145.6,
+          "end": 145.8
+        },
+        {
           "word": "این",
-          "start": 127.83,
-          "end": 129.97
+          "finglish": "in",
+          "start": 145.8,
+          "end": 146
         },
         {
           "word": "احساس",
-          "start": 129.97,
-          "end": 132.11
+          "finglish": "ehsas",
+          "start": 146,
+          "end": 146.6
         },
         {
           "word": "زیبــاتر",
-          "start": 132.11,
-          "end": 134.24
-        }
-      ]
-    },
-    {
-      "line": "مگه هــست که",
-      "start": 134.24,
-      "end": 140.65,
-      "words": [
+          "finglish": "zibatar",
+          "start": 146.6,
+          "end": 147.5
+        },
         {
           "word": "مگه",
-          "start": 134.24,
-          "end": 136.38
+          "finglish": "mage",
+          "start": 147.5,
+          "end": 148
         },
         {
           "word": "هــست",
-          "start": 136.38,
-          "end": 138.51
-        },
-        {
-          "word": "که",
-          "start": 138.51,
-          "end": 140.65
+          "finglish": "hast",
+          "start": 148,
+          "end": 152
         }
       ]
     },
     {
-      "line": "اسم تو پدر",
-      "start": 140.65,
-      "end": 147.06,
+      "line": "که اسم تو پدر حرف زبون شه",
+      "start": 153,
+      "end": 159.5,
       "words": [
         {
+          "word": "که",
+          "finglish": "ke",
+          "start": 153,
+          "end": 153.2
+        },
+        {
           "word": "اسم",
-          "start": 140.65,
-          "end": 142.79
+          "finglish": "esme",
+          "start": 153.2,
+          "end": 153.6
         },
         {
           "word": "تو",
-          "start": 142.79,
-          "end": 144.92
+          "finglish": "to",
+          "start": 153.6,
+          "end": 153.9
         },
         {
           "word": "پدر",
-          "start": 144.92,
-          "end": 147.06
-        }
-      ]
-    },
-    {
-      "line": "حرف زبون شه",
-      "start": 147.06,
-      "end": 153.47,
-      "words": [
+          "finglish": "pedar",
+          "start": 153.9,
+          "end": 154.4
+        },
         {
           "word": "حرف",
-          "start": 147.06,
-          "end": 149.19
+          "finglish": "harfe",
+          "start": 154.4,
+          "end": 154.8
         },
         {
           "word": "زبون",
-          "start": 149.19,
-          "end": 151.33
+          "finglish": "zaboon",
+          "start": 154.8,
+          "end": 155.4
         },
         {
           "word": "شه",
-          "start": 151.33,
-          "end": 153.47
+          "finglish": "she",
+          "start": 155.4,
+          "end": 159.5
         }
       ]
     },
     {
-      "line": "چنان تــار تنم",
-      "start": 153.47,
-      "end": 159.87,
+      "line": "چنان تــار تنم بسته به پودت",
+      "start": 160.5,
+      "end": 167,
       "words": [
         {
           "word": "چنان",
-          "start": 153.47,
-          "end": 155.6
+          "finglish": "chenan",
+          "start": 160.5,
+          "end": 161
         },
         {
           "word": "تــار",
-          "start": 155.6,
-          "end": 157.74
+          "finglish": "tare",
+          "start": 161,
+          "end": 161.5
         },
         {
           "word": "تنم",
-          "start": 157.74,
-          "end": 159.87
-        }
-      ]
-    },
-    {
-      "line": "بسته به پودت",
-      "start": 159.87,
-      "end": 166.28,
-      "words": [
+          "finglish": "tanam",
+          "start": 161.5,
+          "end": 162
+        },
         {
           "word": "بسته",
-          "start": 159.87,
-          "end": 162.01
+          "finglish": "baste",
+          "start": 162,
+          "end": 162.5
         },
         {
           "word": "به",
-          "start": 162.01,
-          "end": 164.15
+          "finglish": "be",
+          "start": 162.5,
+          "end": 162.7
         },
         {
           "word": "پودت",
-          "start": 164.15,
-          "end": 166.28
+          "finglish": "poodet",
+          "start": 162.7,
+          "end": 167
         }
       ]
     },
     {
-      "line": "که هر چــی",
-      "start": 166.28,
-      "end": 172.69,
+      "line": "که هر چــی تو بگی می‌گم همون شه",
+      "start": 167.8,
+      "end": 174,
       "words": [
         {
           "word": "که",
-          "start": 166.28,
-          "end": 168.42
+          "finglish": "ke",
+          "start": 167.8,
+          "end": 168
         },
         {
           "word": "هر",
-          "start": 168.42,
-          "end": 170.55
+          "finglish": "har",
+          "start": 168,
+          "end": 168.2
         },
         {
           "word": "چــی",
-          "start": 170.55,
-          "end": 172.69
-        }
-      ]
-    },
-    {
-      "line": "تو بگی می‌گم",
-      "start": 172.69,
-      "end": 179.1,
-      "words": [
+          "finglish": "chi",
+          "start": 168.2,
+          "end": 168.5
+        },
         {
           "word": "تو",
-          "start": 172.69,
-          "end": 174.83
+          "finglish": "to",
+          "start": 168.5,
+          "end": 168.7
         },
         {
           "word": "بگی",
-          "start": 174.83,
-          "end": 176.96
+          "finglish": "begi",
+          "start": 168.7,
+          "end": 169.1
         },
         {
           "word": "می‌گم",
-          "start": 176.96,
-          "end": 179.1
-        }
-      ]
-    },
-    {
-      "line": "همون شه بگو",
-      "start": 179.1,
-      "end": 185.51,
-      "words": [
+          "finglish": "migam",
+          "start": 169.1,
+          "end": 169.6
+        },
         {
           "word": "همون",
-          "start": 179.1,
-          "end": 181.23
+          "finglish": "hamoon",
+          "start": 169.6,
+          "end": 170.2
         },
         {
           "word": "شه",
-          "start": 181.23,
-          "end": 183.37
-        },
-        {
-          "word": "بگو",
-          "start": 183.37,
-          "end": 185.51
+          "finglish": "she",
+          "start": 170.2,
+          "end": 174
         }
       ]
     },
     {
-      "line": "حــرف دلت رو",
-      "start": 185.51,
-      "end": 191.91,
+      "line": "بگو حــرف دلت رو تا که من راهت رو بشنــاسم",
+      "start": 175.3,
+      "end": 182.8,
       "words": [
         {
+          "word": "بگو",
+          "finglish": "begoo",
+          "start": 175.3,
+          "end": 175.6
+        },
+        {
           "word": "حــرف",
-          "start": 185.51,
-          "end": 187.64
+          "finglish": "harfe",
+          "start": 175.6,
+          "end": 176
         },
         {
           "word": "دلت",
-          "start": 187.64,
-          "end": 189.78
+          "finglish": "delet",
+          "start": 176,
+          "end": 176.4
         },
         {
           "word": "رو",
-          "start": 189.78,
-          "end": 191.91
-        }
-      ]
-    },
-    {
-      "line": "تا که من",
-      "start": 191.92,
-      "end": 198.32,
-      "words": [
+          "finglish": "ro",
+          "start": 176.4,
+          "end": 176.6
+        },
         {
           "word": "تا",
-          "start": 191.92,
-          "end": 194.05
+          "finglish": "ta",
+          "start": 176.6,
+          "end": 176.8
         },
         {
           "word": "که",
-          "start": 194.05,
-          "end": 196.19
+          "finglish": "ke",
+          "start": 176.8,
+          "end": 177
         },
         {
           "word": "من",
-          "start": 196.19,
-          "end": 198.32
-        }
-      ]
-    },
-    {
-      "line": "راهت رو بشنــاسم",
-      "start": 198.32,
-      "end": 204.73,
-      "words": [
+          "finglish": "man",
+          "start": 177,
+          "end": 177.2
+        },
         {
           "word": "راهت",
-          "start": 198.32,
-          "end": 200.46
+          "finglish": "rahet",
+          "start": 177.2,
+          "end": 177.7
         },
         {
           "word": "رو",
-          "start": 200.46,
-          "end": 202.6
+          "finglish": "ro",
+          "start": 177.7,
+          "end": 177.9
         },
         {
           "word": "بشنــاسم",
-          "start": 202.6,
-          "end": 204.73
+          "finglish": "beshnasam",
+          "start": 177.9,
+          "end": 182.8
         }
       ]
     },
     {
-      "line": "بفهمــم قلبتـو تصویری",
-      "start": 204.73,
-      "end": 211.14,
+      "line": "بفهمــم قلبتـو تصویری از عشقت به دنیــا شم",
+      "start": 183.4,
+      "end": 189.9,
       "words": [
         {
           "word": "بفهمــم",
-          "start": 204.73,
-          "end": 206.87
+          "finglish": "befahmam",
+          "start": 183.4,
+          "end": 183.9
         },
         {
           "word": "قلبتـو",
-          "start": 206.87,
-          "end": 209.0
+          "finglish": "ghalb-eto",
+          "start": 183.9,
+          "end": 184.5
         },
         {
           "word": "تصویری",
-          "start": 209.0,
-          "end": 211.14
-        }
-      ]
-    },
-    {
-      "line": "از عشقت به",
-      "start": 211.14,
-      "end": 217.55,
-      "words": [
+          "finglish": "tasviri",
+          "start": 184.5,
+          "end": 185.1
+        },
         {
           "word": "از",
-          "start": 211.14,
-          "end": 213.28
+          "finglish": "az",
+          "start": 185.1,
+          "end": 185.3
         },
         {
           "word": "عشقت",
-          "start": 213.28,
-          "end": 215.41
+          "finglish": "eshghet",
+          "start": 185.3,
+          "end": 185.9
         },
         {
           "word": "به",
-          "start": 215.41,
-          "end": 217.55
-        }
-      ]
-    },
-    {
-      "line": "دنیــا شم خدایی",
-      "start": 217.55,
-      "end": 223.96,
-      "words": [
+          "finglish": "be",
+          "start": 185.9,
+          "end": 186.1
+        },
         {
           "word": "دنیــا",
-          "start": 217.55,
-          "end": 219.68
+          "finglish": "donya",
+          "start": 186.1,
+          "end": 186.7
         },
         {
           "word": "شم",
-          "start": 219.68,
-          "end": 221.82
-        },
-        {
-          "word": "خدایی",
-          "start": 221.82,
-          "end": 223.96
+          "finglish": "sham",
+          "start": 186.7,
+          "end": 189.9
         }
       ]
     },
     {
-      "line": "که می‌خواد باشه",
-      "start": 223.96,
-      "end": 230.36,
+      "line": "خدایی که می‌خواد باشه پدر واسه همه دنیا",
+      "start": 190.5,
+      "end": 197.5,
       "words": [
         {
+          "word": "خدایی",
+          "finglish": "khodayi",
+          "start": 190.5,
+          "end": 191
+        },
+        {
           "word": "که",
-          "start": 223.96,
-          "end": 226.09
+          "finglish": "ke",
+          "start": 191,
+          "end": 191.2
         },
         {
           "word": "می‌خواد",
-          "start": 226.09,
-          "end": 228.23
+          "finglish": "mikhad",
+          "start": 191.2,
+          "end": 191.7
         },
         {
           "word": "باشه",
-          "start": 228.23,
-          "end": 230.36
-        }
-      ]
-    },
-    {
-      "line": "پدر واسه همه",
-      "start": 230.36,
-      "end": 236.77,
-      "words": [
+          "finglish": "bashe",
+          "start": 191.7,
+          "end": 192.1
+        },
         {
           "word": "پدر",
-          "start": 230.36,
-          "end": 232.5
+          "finglish": "pedar",
+          "start": 192.1,
+          "end": 192.5
         },
         {
           "word": "واسه",
-          "start": 232.5,
-          "end": 234.64
+          "finglish": "vase",
+          "start": 192.5,
+          "end": 192.9
         },
         {
           "word": "همه",
-          "start": 234.64,
-          "end": 236.77
+          "finglish": "hame",
+          "start": 192.9,
+          "end": 193.2
+        },
+        {
+          "word": "دنیا",
+          "finglish": "donya",
+          "start": 193.2,
+          "end": 197.5
         }
       ]
     },
     {
-      "line": "دنیا بده آغوش",
-      "start": 236.77,
-      "end": 243.18,
+      "line": "بده آغوش گرمــش رو نمونه هیچکسی تــنها",
+      "start": 197.9,
+      "end": 204.7,
       "words": [
         {
-          "word": "دنیا",
-          "start": 236.77,
-          "end": 238.91
-        },
-        {
           "word": "بده",
-          "start": 238.91,
-          "end": 241.04
+          "finglish": "bede",
+          "start": 197.9,
+          "end": 198.2
         },
         {
           "word": "آغوش",
-          "start": 241.04,
-          "end": 243.18
-        }
-      ]
-    },
-    {
-      "line": "گرمــش رو نمونه",
-      "start": 243.18,
-      "end": 249.59,
-      "words": [
+          "finglish": "aghooshe",
+          "start": 198.2,
+          "end": 198.7
+        },
         {
           "word": "گرمــش",
-          "start": 243.18,
-          "end": 245.32
+          "finglish": "garmesh",
+          "start": 198.7,
+          "end": 199.3
         },
         {
           "word": "رو",
-          "start": 245.32,
-          "end": 247.45
+          "finglish": "ro",
+          "start": 199.3,
+          "end": 199.5
         },
         {
           "word": "نمونه",
-          "start": 247.45,
-          "end": 249.59
+          "finglish": "namoone",
+          "start": 199.5,
+          "end": 200.1
+        },
+        {
+          "word": "هیچکسی",
+          "finglish": "hichkasi",
+          "start": 200.1,
+          "end": 200.8
+        },
+        {
+          "word": "تــنها",
+          "finglish": "tanha",
+          "start": 200.8,
+          "end": 204.7
         }
       ]
     },
     {
-      "line": "هیچکسی تــنها",
-      "start": 249.59,
-      "end": 253.86,
+      "line": "بگو حــرف دلت رو تا که من راهت رو بشنــاسم",
+      "start": 205.5,
+      "end": 212.7,
       "words": [
         {
+          "word": "بگو",
+          "finglish": "begoo",
+          "start": 205.5,
+          "end": 205.8
+        },
+        {
+          "word": "حــرف",
+          "finglish": "harfe",
+          "start": 205.8,
+          "end": 206.1
+        },
+        {
+          "word": "دلت",
+          "finglish": "delet",
+          "start": 206.1,
+          "end": 206.5
+        },
+        {
+          "word": "رو",
+          "finglish": "ro",
+          "start": 206.5,
+          "end": 206.7
+        },
+        {
+          "word": "تا",
+          "finglish": "ta",
+          "start": 206.7,
+          "end": 206.9
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 206.9,
+          "end": 207.1
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 207.1,
+          "end": 207.3
+        },
+        {
+          "word": "راهت",
+          "finglish": "rahet",
+          "start": 207.3,
+          "end": 207.8
+        },
+        {
+          "word": "رو",
+          "finglish": "ro",
+          "start": 207.8,
+          "end": 208
+        },
+        {
+          "word": "بشنــاسم",
+          "finglish": "beshnasam",
+          "start": 208,
+          "end": 212.7
+        }
+      ]
+    },
+    {
+      "line": "بفهمــم قلبتـو تصویری از عشقت به دنیــا شم",
+      "start": 213.2,
+      "end": 219.9,
+      "words": [
+        {
+          "word": "بفهمــم",
+          "finglish": "befahmam",
+          "start": 213.2,
+          "end": 213.7
+        },
+        {
+          "word": "قلبتـو",
+          "finglish": "ghalb-eto",
+          "start": 213.7,
+          "end": 214.3
+        },
+        {
+          "word": "تصویری",
+          "finglish": "tasviri",
+          "start": 214.3,
+          "end": 214.9
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 214.9,
+          "end": 215.1
+        },
+        {
+          "word": "عشقت",
+          "finglish": "eshghet",
+          "start": 215.1,
+          "end": 215.7
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 215.7,
+          "end": 215.9
+        },
+        {
+          "word": "دنیــا",
+          "finglish": "donya",
+          "start": 215.9,
+          "end": 216.5
+        },
+        {
+          "word": "شم",
+          "finglish": "sham",
+          "start": 216.5,
+          "end": 219.9
+        }
+      ]
+    },
+    {
+      "line": "خدایی که می‌خواد باشه پدر واسه همه دنیا",
+      "start": 220.5,
+      "end": 227.7,
+      "words": [
+        {
+          "word": "خدایی",
+          "finglish": "khodayi",
+          "start": 220.5,
+          "end": 221
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 221,
+          "end": 221.2
+        },
+        {
+          "word": "می‌خواد",
+          "finglish": "mikhad",
+          "start": 221.2,
+          "end": 221.7
+        },
+        {
+          "word": "باشه",
+          "finglish": "bashe",
+          "start": 221.7,
+          "end": 222.1
+        },
+        {
+          "word": "پدر",
+          "finglish": "pedar",
+          "start": 222.1,
+          "end": 222.5
+        },
+        {
+          "word": "واسه",
+          "finglish": "vase",
+          "start": 222.5,
+          "end": 222.9
+        },
+        {
+          "word": "همه",
+          "finglish": "hame",
+          "start": 222.9,
+          "end": 223.2
+        },
+        {
+          "word": "دنیا",
+          "finglish": "donya",
+          "start": 223.2,
+          "end": 227.7
+        }
+      ]
+    },
+    {
+      "line": "بده آغوش گرمــش رو نمونه هیچکسی تــنها",
+      "start": 228,
+      "end": 235,
+      "words": [
+        {
+          "word": "بده",
+          "finglish": "bede",
+          "start": 228,
+          "end": 228.3
+        },
+        {
+          "word": "آغوش",
+          "finglish": "aghooshe",
+          "start": 228.3,
+          "end": 228.8
+        },
+        {
+          "word": "گرمــش",
+          "finglish": "garmesh",
+          "start": 228.8,
+          "end": 229.4
+        },
+        {
+          "word": "رو",
+          "finglish": "ro",
+          "start": 229.4,
+          "end": 229.6
+        },
+        {
+          "word": "نمونه",
+          "finglish": "namoone",
+          "start": 229.6,
+          "end": 230.2
+        },
+        {
           "word": "هیچکسی",
-          "start": 249.59,
-          "end": 251.72
+          "finglish": "hichkasi",
+          "start": 230.2,
+          "end": 230.9
         },
         {
           "word": "تــنها",
-          "start": 251.72,
-          "end": 253.86
+          "finglish": "tanha",
+          "start": 230.9,
+          "end": 235
+        }
+      ]
+    },
+    {
+      "line": "تماشــایی‌ترین تــصویر دنیــا",
+      "start": 239,
+      "end": 248,
+      "words": [
+        {
+          "word": "تماشــایی‌ترین",
+          "finglish": "tamashayi-tarin",
+          "start": 239,
+          "end": 241.5
+        },
+        {
+          "word": "تــصویر",
+          "finglish": "tasvir",
+          "start": 241.5,
+          "end": 243.6
+        },
+        {
+          "word": "دنیــا",
+          "finglish": "donya",
+          "start": 243.6,
+          "end": 248
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 253
 }

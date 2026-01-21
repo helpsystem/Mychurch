@@ -1,268 +1,1146 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 40,
-    "lineCount": 8,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.279Z"
-  },
+  "songId": 16,
+  "generatedAt": "2026-01-20T02:18:10.157Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "Verse (x2)",
-      "start": 0,
-      "end": 22.5,
-      "words": [
-        {
-          "word": "Verse",
-          "start": 0,
-          "end": 11.25
-        },
-        {
-          "word": "(x2)",
-          "start": 11.25,
-          "end": 22.5
-        }
-      ]
-    },
-    {
-      "line": "دل طا[F]هر در من بـ[C]ـیافرین[Bb] ای خد[C]ا",
-      "start": 22.5,
-      "end": 45,
+      "line": "دل طاهر در من بیافرین ای خدا",
+      "start": 1.9,
+      "end": 4.79,
       "words": [
         {
           "word": "دل",
-          "start": 22.5,
-          "end": 25.714285714285715
+          "finglish": "del",
+          "start": 1.9,
+          "end": 2.19
         },
         {
-          "word": "طا[F]هر",
-          "start": 25.714285714285715,
-          "end": 28.92857142857143
+          "word": "طاهر",
+          "finglish": "taher",
+          "start": 2.19,
+          "end": 2.59
         },
         {
           "word": "در",
-          "start": 28.92857142857143,
-          "end": 32.14285714285714
+          "finglish": "dar",
+          "start": 2.59,
+          "end": 2.79
         },
         {
           "word": "من",
-          "start": 32.14285714285714,
-          "end": 35.35714285714286
+          "finglish": "man",
+          "start": 2.79,
+          "end": 3.09
         },
         {
-          "word": "بـ[C]ـیافرین[Bb]",
-          "start": 35.35714285714286,
-          "end": 38.57142857142857
+          "word": "بیافرین",
+          "finglish": "biafarin",
+          "start": 3.09,
+          "end": 3.89
         },
         {
           "word": "ای",
-          "start": 38.57142857142857,
-          "end": 41.785714285714285
+          "finglish": "ey",
+          "start": 3.89,
+          "end": 4.09
         },
         {
-          "word": "خد[C]ا",
-          "start": 41.785714285714285,
-          "end": 45
+          "word": "خدا",
+          "finglish": "khoda",
+          "start": 4.09,
+          "end": 4.79
         }
-      ]
+      ],
+      "label": "Verse 1 Part 1"
     },
     {
-      "line": "رو[F]ح راستی در و[C]جودم تازه سا[Bb]ز",
-      "start": 45,
-      "end": 67.5,
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 9.9,
+      "end": 12.59,
       "words": [
         {
-          "word": "رو[F]ح",
-          "start": 45,
-          "end": 48.75
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 9.9,
+          "end": 10.19
         },
         {
           "word": "راستی",
-          "start": 48.75,
-          "end": 52.5
+          "finglish": "rasti",
+          "start": 10.19,
+          "end": 10.69
         },
         {
           "word": "در",
-          "start": 52.5,
-          "end": 56.25
+          "finglish": "dar",
+          "start": 10.69,
+          "end": 10.89
         },
         {
-          "word": "و[C]جودم",
-          "start": 56.25,
-          "end": 60
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 10.89,
+          "end": 11.59
         },
         {
           "word": "تازه",
-          "start": 60,
-          "end": 63.75
+          "finglish": "taze",
+          "start": 11.59,
+          "end": 12.09
         },
         {
-          "word": "سا[Bb]ز",
-          "start": 63.75,
-          "end": 67.5
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 12.09,
+          "end": 12.59
         }
-      ]
+      ],
+      "label": "Verse 1 Part 2"
     },
     {
-      "line": "Chorus",
-      "start": 67.5,
-      "end": 90,
+      "line": "دل طاهر در من بیافرین ای خدا",
+      "start": 16.9,
+      "end": 19.79,
       "words": [
         {
-          "word": "Chorus",
-          "start": 67.5,
-          "end": 90
+          "word": "دل",
+          "finglish": "del",
+          "start": 16.9,
+          "end": 17.19
+        },
+        {
+          "word": "طاهر",
+          "finglish": "taher",
+          "start": 17.19,
+          "end": 17.59
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 17.59,
+          "end": 17.79
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 17.79,
+          "end": 18.09
+        },
+        {
+          "word": "بیافرین",
+          "finglish": "biafarin",
+          "start": 18.09,
+          "end": 18.89
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 18.89,
+          "end": 19.09
+        },
+        {
+          "word": "خدا",
+          "finglish": "khoda",
+          "start": 19.09,
+          "end": 19.79
         }
-      ]
+      ],
+      "label": "Verse 1 Part 1 (Reprise)"
     },
     {
-      "line": "از [Gm]حضور خو[C]د مرا د[F]ور مگردا[Dm]ن",
-      "start": 90,
-      "end": 112.5,
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 24.9,
+      "end": 27.59,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 24.9,
+          "end": 25.19
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 25.19,
+          "end": 25.69
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 25.69,
+          "end": 25.89
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 25.89,
+          "end": 26.59
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 26.59,
+          "end": 27.09
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 27.09,
+          "end": 27.59
+        }
+      ],
+      "label": "Verse 1 Part 2 (Reprise)"
+    },
+    {
+      "line": "دل طاهر در من بیافرین ای خدا",
+      "start": 32.5,
+      "end": 35.79,
+      "words": [
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 32.5,
+          "end": 32.89
+        },
+        {
+          "word": "طاهر",
+          "finglish": "taher",
+          "start": 32.89,
+          "end": 33.39
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 33.39,
+          "end": 33.59
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 33.59,
+          "end": 33.89
+        },
+        {
+          "word": "بیافرین",
+          "finglish": "biafarin",
+          "start": 33.89,
+          "end": 34.79
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 34.79,
+          "end": 35.09
+        },
+        {
+          "word": "خدا",
+          "finglish": "khoda",
+          "start": 35.09,
+          "end": 35.79
+        }
+      ],
+      "label": "Verse 2 Part 1"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 40.5,
+      "end": 43.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 40.5,
+          "end": 40.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 40.79,
+          "end": 41.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 41.29,
+          "end": 41.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 41.49,
+          "end": 42.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 42.19,
+          "end": 42.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 42.69,
+          "end": 43.19
+        }
+      ],
+      "label": "Verse 2 Part 2"
+    },
+    {
+      "line": "دل طاهر در من بیافرین ای خدا",
+      "start": 47.5,
+      "end": 50.79,
+      "words": [
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 47.5,
+          "end": 47.89
+        },
+        {
+          "word": "طاهر",
+          "finglish": "taher",
+          "start": 47.89,
+          "end": 48.39
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 48.39,
+          "end": 48.59
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 48.59,
+          "end": 48.89
+        },
+        {
+          "word": "بیافرین",
+          "finglish": "biafarin",
+          "start": 48.89,
+          "end": 49.79
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 49.79,
+          "end": 50.09
+        },
+        {
+          "word": "خدا",
+          "finglish": "khoda",
+          "start": 50.09,
+          "end": 50.79
+        }
+      ],
+      "label": "Verse 2 Part 1 (Reprise)"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 55.5,
+      "end": 58.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 55.5,
+          "end": 55.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 55.79,
+          "end": 56.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 56.29,
+          "end": 56.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 56.49,
+          "end": 57.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 57.19,
+          "end": 57.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 57.69,
+          "end": 58.19
+        }
+      ],
+      "label": "Verse 2 Part 2 (Reprise)"
+    },
+    {
+      "line": "از حضور خود مرا دور مگردان",
+      "start": 63,
+      "end": 65.69,
       "words": [
         {
           "word": "از",
-          "start": 90,
-          "end": 93.75
+          "finglish": "az",
+          "start": 63,
+          "end": 63.19
         },
         {
-          "word": "[Gm]حضور",
-          "start": 93.75,
-          "end": 97.5
+          "word": "حضور",
+          "finglish": "hozoor",
+          "start": 63.19,
+          "end": 63.69
         },
         {
-          "word": "خو[C]د",
-          "start": 97.5,
-          "end": 101.25
+          "word": "خود",
+          "finglish": "khod",
+          "start": 63.69,
+          "end": 64.09
         },
         {
           "word": "مرا",
-          "start": 101.25,
-          "end": 105
+          "finglish": "mara",
+          "start": 64.09,
+          "end": 64.49
         },
         {
-          "word": "د[F]ور",
-          "start": 105,
-          "end": 108.75
+          "word": "دور",
+          "finglish": "door",
+          "start": 64.49,
+          "end": 64.89
         },
         {
-          "word": "مگردا[Dm]ن",
-          "start": 108.75,
-          "end": 112.5
+          "word": "مگردان",
+          "finglish": "magardan",
+          "start": 64.89,
+          "end": 65.69
         }
-      ]
+      ],
+      "label": "Chorus 1 Part 1"
     },
     {
-      "line": "رو[Gm]ی قدوسـ[C]ـت را از من مگـ[F]ـیر",
-      "start": 112.5,
-      "end": 135,
+      "line": "روی قدوست را از من نگیر",
+      "start": 71,
+      "end": 73.39,
       "words": [
         {
-          "word": "رو[Gm]ی",
-          "start": 112.5,
-          "end": 116.25
+          "word": "روی",
+          "finglish": "rooy",
+          "start": 71,
+          "end": 71.29
         },
         {
-          "word": "قدوسـ[C]ـت",
-          "start": 116.25,
-          "end": 120
+          "word": "قدوست",
+          "finglish": "ghoddosat",
+          "start": 71.29,
+          "end": 72.09
         },
         {
           "word": "را",
-          "start": 120,
-          "end": 123.75
+          "finglish": "ra",
+          "start": 72.09,
+          "end": 72.29
         },
         {
           "word": "از",
-          "start": 123.75,
-          "end": 127.5
+          "finglish": "az",
+          "start": 72.29,
+          "end": 72.49
         },
         {
           "word": "من",
-          "start": 127.5,
-          "end": 131.25
+          "finglish": "man",
+          "start": 72.49,
+          "end": 72.79
         },
         {
-          "word": "مگـ[F]ـیر",
-          "start": 131.25,
-          "end": 135
+          "word": "نگیر",
+          "finglish": "nagir",
+          "start": 72.79,
+          "end": 73.39
         }
-      ]
+      ],
+      "label": "Chorus 1 Part 2"
     },
     {
-      "line": "شاد[Gm]ی قـ[C]ـلبم را به[F] من با[C]زگردا[Dm]ن",
-      "start": 135,
-      "end": 157.5,
+      "line": "شادی قلبم را به من بازگردان",
+      "start": 78,
+      "end": 80.69,
       "words": [
         {
-          "word": "شاد[Gm]ی",
-          "start": 135,
-          "end": 138.75
+          "word": "شادی",
+          "finglish": "shadi",
+          "start": 78,
+          "end": 78.49
         },
         {
-          "word": "قـ[C]ـلبم",
-          "start": 138.75,
-          "end": 142.5
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 78.49,
+          "end": 79.09
         },
         {
           "word": "را",
-          "start": 142.5,
-          "end": 146.25
+          "finglish": "ra",
+          "start": 79.09,
+          "end": 79.29
         },
         {
-          "word": "به[F]",
-          "start": 146.25,
-          "end": 150
+          "word": "به",
+          "finglish": "be",
+          "start": 79.29,
+          "end": 79.49
         },
         {
           "word": "من",
-          "start": 150,
-          "end": 153.75
+          "finglish": "man",
+          "start": 79.49,
+          "end": 79.79
         },
         {
-          "word": "با[C]زگردا[Dm]ن",
-          "start": 153.75,
-          "end": 157.5
+          "word": "بازگردان",
+          "finglish": "bazgardan",
+          "start": 79.79,
+          "end": 80.69
         }
-      ]
+      ],
+      "label": "Chorus 1 Part 3"
     },
     {
-      "line": "رو[Gm]ح راستی در و[C]جودم تازه سا[F]ز",
-      "start": 157.5,
-      "end": 180,
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 86,
+      "end": 88.69,
       "words": [
         {
-          "word": "رو[Gm]ح",
-          "start": 157.5,
-          "end": 161.25
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 86,
+          "end": 86.29
         },
         {
           "word": "راستی",
-          "start": 161.25,
-          "end": 165
+          "finglish": "rasti",
+          "start": 86.29,
+          "end": 86.79
         },
         {
           "word": "در",
-          "start": 165,
-          "end": 168.75
+          "finglish": "dar",
+          "start": 86.79,
+          "end": 86.99
         },
         {
-          "word": "و[C]جودم",
-          "start": 168.75,
-          "end": 172.5
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 86.99,
+          "end": 87.69
         },
         {
           "word": "تازه",
-          "start": 172.5,
-          "end": 176.25
+          "finglish": "taze",
+          "start": 87.69,
+          "end": 88.19
         },
         {
-          "word": "سا[F]ز",
-          "start": 176.25,
-          "end": 180
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 88.19,
+          "end": 88.69
         }
-      ]
+      ],
+      "label": "Chorus 1 Part 4"
+    },
+    {
+      "line": "دل طاهر در من بیافرین ای خدا",
+      "start": 93,
+      "end": 96.29,
+      "words": [
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 93,
+          "end": 93.39
+        },
+        {
+          "word": "طاهر",
+          "finglish": "taher",
+          "start": 93.39,
+          "end": 93.89
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 93.89,
+          "end": 94.09
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 94.09,
+          "end": 94.39
+        },
+        {
+          "word": "بیافرین",
+          "finglish": "biafarin",
+          "start": 94.39,
+          "end": 95.29
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 95.29,
+          "end": 95.59
+        },
+        {
+          "word": "خدا",
+          "finglish": "khoda",
+          "start": 95.59,
+          "end": 96.29
+        }
+      ],
+      "label": "Verse 3 Part 1"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 100.5,
+      "end": 103.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 100.5,
+          "end": 100.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 100.79,
+          "end": 101.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 101.29,
+          "end": 101.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 101.49,
+          "end": 102.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 102.19,
+          "end": 102.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 102.69,
+          "end": 103.19
+        }
+      ],
+      "label": "Verse 3 Part 2"
+    },
+    {
+      "line": "دل طاهر در من بیافرین ای خدا",
+      "start": 107.5,
+      "end": 110.79,
+      "words": [
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 107.5,
+          "end": 107.89
+        },
+        {
+          "word": "طاهر",
+          "finglish": "taher",
+          "start": 107.89,
+          "end": 108.39
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 108.39,
+          "end": 108.59
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 108.59,
+          "end": 108.89
+        },
+        {
+          "word": "بیافرین",
+          "finglish": "biafarin",
+          "start": 108.89,
+          "end": 109.79
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 109.79,
+          "end": 110.09
+        },
+        {
+          "word": "خدا",
+          "finglish": "khoda",
+          "start": 110.09,
+          "end": 110.79
+        }
+      ],
+      "label": "Verse 3 Part 1 (Reprise)"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 115.5,
+      "end": 118.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 115.5,
+          "end": 115.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 115.79,
+          "end": 116.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 116.29,
+          "end": 116.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 116.49,
+          "end": 117.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 117.19,
+          "end": 117.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 117.69,
+          "end": 118.19
+        }
+      ],
+      "label": "Verse 3 Part 2 (Reprise)"
+    },
+    {
+      "line": "از حضور خود مرا دور مگردان",
+      "start": 123,
+      "end": 125.69,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 123,
+          "end": 123.19
+        },
+        {
+          "word": "حضور",
+          "finglish": "hozoor",
+          "start": 123.19,
+          "end": 123.69
+        },
+        {
+          "word": "خود",
+          "finglish": "khod",
+          "start": 123.69,
+          "end": 124.09
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 124.09,
+          "end": 124.49
+        },
+        {
+          "word": "دور",
+          "finglish": "door",
+          "start": 124.49,
+          "end": 124.89
+        },
+        {
+          "word": "مگردان",
+          "finglish": "magardan",
+          "start": 124.89,
+          "end": 125.69
+        }
+      ],
+      "label": "Chorus 2 Part 1"
+    },
+    {
+      "line": "روی قدوست را از من نگیر",
+      "start": 130.5,
+      "end": 132.89,
+      "words": [
+        {
+          "word": "روی",
+          "finglish": "rooy",
+          "start": 130.5,
+          "end": 130.79
+        },
+        {
+          "word": "قدوست",
+          "finglish": "ghoddosat",
+          "start": 130.79,
+          "end": 131.59
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 131.59,
+          "end": 131.79
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 131.79,
+          "end": 131.99
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 131.99,
+          "end": 132.29
+        },
+        {
+          "word": "نگیر",
+          "finglish": "nagir",
+          "start": 132.29,
+          "end": 132.89
+        }
+      ],
+      "label": "Chorus 2 Part 2"
+    },
+    {
+      "line": "شادی قلبم را به من بازگردان",
+      "start": 137.5,
+      "end": 140.19,
+      "words": [
+        {
+          "word": "شادی",
+          "finglish": "shadi",
+          "start": 137.5,
+          "end": 137.99
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 137.99,
+          "end": 138.59
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 138.59,
+          "end": 138.79
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 138.79,
+          "end": 138.99
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 138.99,
+          "end": 139.29
+        },
+        {
+          "word": "بازگردان",
+          "finglish": "bazgardan",
+          "start": 139.29,
+          "end": 140.19
+        }
+      ],
+      "label": "Chorus 2 Part 3"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 145.5,
+      "end": 148.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 145.5,
+          "end": 145.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 145.79,
+          "end": 146.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 146.29,
+          "end": 146.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 146.49,
+          "end": 147.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 147.19,
+          "end": 147.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 147.69,
+          "end": 148.19
+        }
+      ],
+      "label": "Chorus 2 Part 4"
+    },
+    {
+      "line": "از حضور خود مرا دور مگردان",
+      "start": 153,
+      "end": 155.69,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 153,
+          "end": 153.19
+        },
+        {
+          "word": "حضور",
+          "finglish": "hozoor",
+          "start": 153.19,
+          "end": 153.69
+        },
+        {
+          "word": "خود",
+          "finglish": "khod",
+          "start": 153.69,
+          "end": 154.09
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 154.09,
+          "end": 154.49
+        },
+        {
+          "word": "دور",
+          "finglish": "door",
+          "start": 154.49,
+          "end": 154.89
+        },
+        {
+          "word": "مگردان",
+          "finglish": "magardan",
+          "start": 154.89,
+          "end": 155.69
+        }
+      ],
+      "label": "Chorus 3 Part 1"
+    },
+    {
+      "line": "روی قدوست را از من نگیر",
+      "start": 160.5,
+      "end": 162.89,
+      "words": [
+        {
+          "word": "روی",
+          "finglish": "rooy",
+          "start": 160.5,
+          "end": 160.79
+        },
+        {
+          "word": "قدوست",
+          "finglish": "ghoddosat",
+          "start": 160.79,
+          "end": 161.59
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 161.59,
+          "end": 161.79
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 161.79,
+          "end": 161.99
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 161.99,
+          "end": 162.29
+        },
+        {
+          "word": "نگیر",
+          "finglish": "nagir",
+          "start": 162.29,
+          "end": 162.89
+        }
+      ],
+      "label": "Chorus 3 Part 2"
+    },
+    {
+      "line": "شادی قلبم را به من بازگردان",
+      "start": 167.5,
+      "end": 170.19,
+      "words": [
+        {
+          "word": "شادی",
+          "finglish": "shadi",
+          "start": 167.5,
+          "end": 167.99
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 167.99,
+          "end": 168.59
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 168.59,
+          "end": 168.79
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 168.79,
+          "end": 168.99
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 168.99,
+          "end": 169.29
+        },
+        {
+          "word": "بازگردان",
+          "finglish": "bazgardan",
+          "start": 169.29,
+          "end": 170.19
+        }
+      ],
+      "label": "Chorus 3 Part 3"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 175.5,
+      "end": 178.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 175.5,
+          "end": 175.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 175.79,
+          "end": 176.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 176.29,
+          "end": 176.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 176.49,
+          "end": 177.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 177.19,
+          "end": 177.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 177.69,
+          "end": 178.19
+        }
+      ],
+      "label": "Chorus 3 Part 4"
+    },
+    {
+      "line": "روح راستی در وجودم تازه ساز",
+      "start": 183.5,
+      "end": 186.19,
+      "words": [
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 183.5,
+          "end": 183.79
+        },
+        {
+          "word": "راستی",
+          "finglish": "rasti",
+          "start": 183.79,
+          "end": 184.29
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 184.29,
+          "end": 184.49
+        },
+        {
+          "word": "وجودم",
+          "finglish": "vojoodam",
+          "start": 184.49,
+          "end": 185.19
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 185.19,
+          "end": 185.69
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 185.69,
+          "end": 186.19
+        }
+      ],
+      "label": "Outro"
     }
-  ]
+  ],
+  "total_duration": 199
 }

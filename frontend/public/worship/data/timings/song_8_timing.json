@@ -1,441 +1,1590 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 69,
-    "lineCount": 12,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.253Z"
-  },
+  "songId": 8,
+  "generatedAt": "2026-01-20T02:06:40.889Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "Verse (x2)",
-      "start": 0,
-      "end": 15,
+      "line": "به دیدار و لــمسی تازه من محتاجــم",
+      "start": 2.7,
+      "end": 8.5,
       "words": [
         {
-          "word": "Verse",
-          "start": 0,
-          "end": 7.5
-        },
-        {
-          "word": "(x2)",
-          "start": 7.5,
-          "end": 15
-        }
-      ]
-    },
-    {
-      "line": "به[Gm] دیدار و لـ[Cm]ـمسی تازه من محتاجـ[Gm]ـم",
-      "start": 15,
-      "end": 30,
-      "words": [
-        {
-          "word": "به[Gm]",
-          "start": 15,
-          "end": 17.142857142857142
+          "word": "به",
+          "finglish": "be",
+          "start": 2.7,
+          "end": 3
         },
         {
           "word": "دیدار",
-          "start": 17.142857142857142,
-          "end": 19.285714285714285
+          "finglish": "didar",
+          "start": 3.1,
+          "end": 3.6
         },
         {
           "word": "و",
-          "start": 19.285714285714285,
-          "end": 21.42857142857143
+          "finglish": "o",
+          "start": 3.6,
+          "end": 3.7
         },
         {
-          "word": "لـ[Cm]ـمسی",
-          "start": 21.42857142857143,
-          "end": 23.57142857142857
+          "word": "لمسی",
+          "finglish": "lamsi",
+          "start": 3.8,
+          "end": 4.2
         },
         {
           "word": "تازه",
-          "start": 23.57142857142857,
-          "end": 25.714285714285715
+          "finglish": "taze",
+          "start": 4.2,
+          "end": 4.6
         },
         {
           "word": "من",
-          "start": 25.714285714285715,
-          "end": 27.857142857142858
-        },
-        {
-          "word": "محتاجـ[Gm]ـم",
-          "start": 27.857142857142858,
-          "end": 30
-        }
-      ]
-    },
-    {
-      "line": "و به قدرت خـ[G]ـونت عیسی[Cm] ، من محتاجـ[Gm]ـم",
-      "start": 30,
-      "end": 45,
-      "words": [
-        {
-          "word": "و",
-          "start": 30,
-          "end": 31.875
-        },
-        {
-          "word": "به",
-          "start": 31.875,
-          "end": 33.75
-        },
-        {
-          "word": "قدرت",
-          "start": 33.75,
-          "end": 35.625
-        },
-        {
-          "word": "خـ[G]ـونت",
-          "start": 35.625,
-          "end": 37.5
-        },
-        {
-          "word": "عیسی[Cm]",
-          "start": 37.5,
-          "end": 39.375
-        },
-        {
-          "word": "،",
-          "start": 39.375,
-          "end": 41.25
-        },
-        {
-          "word": "من",
-          "start": 41.25,
-          "end": 43.125
-        },
-        {
-          "word": "محتاجـ[Gm]ـم",
-          "start": 43.125,
-          "end": 45
-        }
-      ]
-    },
-    {
-      "line": "Pre-Chorus",
-      "start": 45,
-      "end": 60,
-      "words": [
-        {
-          "word": "Pre-Chorus",
-          "start": 45,
-          "end": 60
-        }
-      ]
-    },
-    {
-      "line": "بـ[Gm]ـه پری و آتش روحت",
-      "start": 60,
-      "end": 75,
-      "words": [
-        {
-          "word": "بـ[Gm]ـه",
-          "start": 60,
-          "end": 63
-        },
-        {
-          "word": "پری",
-          "start": 63,
-          "end": 66
-        },
-        {
-          "word": "و",
-          "start": 66,
-          "end": 69
-        },
-        {
-          "word": "آتش",
-          "start": 69,
-          "end": 72
-        },
-        {
-          "word": "روحت",
-          "start": 72,
-          "end": 75
-        }
-      ]
-    },
-    {
-      "line": "چـ[Eb]ـشمه های جاری روحت",
-      "start": 75,
-      "end": 90,
-      "words": [
-        {
-          "word": "چـ[Eb]ـشمه",
-          "start": 75,
-          "end": 78.75
-        },
-        {
-          "word": "های",
-          "start": 78.75,
-          "end": 82.5
-        },
-        {
-          "word": "جاری",
-          "start": 82.5,
-          "end": 86.25
-        },
-        {
-          "word": "روحت",
-          "start": 86.25,
-          "end": 90
-        }
-      ]
-    },
-    {
-      "line": "بـه[Dsus4] مسح و تجهیز روح [D]من محتاجم",
-      "start": 90,
-      "end": 105,
-      "words": [
-        {
-          "word": "بـه[Dsus4]",
-          "start": 90,
-          "end": 92.14285714285714
-        },
-        {
-          "word": "مسح",
-          "start": 92.14285714285714,
-          "end": 94.28571428571429
-        },
-        {
-          "word": "و",
-          "start": 94.28571428571429,
-          "end": 96.42857142857143
-        },
-        {
-          "word": "تجهیز",
-          "start": 96.42857142857143,
-          "end": 98.57142857142857
-        },
-        {
-          "word": "روح",
-          "start": 98.57142857142857,
-          "end": 100.71428571428571
-        },
-        {
-          "word": "[D]من",
-          "start": 100.71428571428571,
-          "end": 102.85714285714286
+          "finglish": "man",
+          "start": 4.7,
+          "end": 4.8
         },
         {
           "word": "محتاجم",
-          "start": 102.85714285714286,
-          "end": 105
+          "finglish": "mohtajam",
+          "start": 4.9,
+          "end": 5.5
         }
       ]
     },
     {
-      "line": "Chorus (x2)",
-      "start": 105,
-      "end": 120,
+      "line": "و به قدرت خــونت عیسی ، من محتاجــم",
+      "start": 9.9,
+      "end": 15.5,
       "words": [
         {
-          "word": "Chorus",
-          "start": 105,
-          "end": 112.5
+          "word": "و",
+          "finglish": "o",
+          "start": 9.9,
+          "end": 10
         },
         {
-          "word": "(x2)",
-          "start": 112.5,
-          "end": 120
+          "word": "به",
+          "finglish": "be",
+          "start": 10,
+          "end": 10.1
+        },
+        {
+          "word": "قدرت",
+          "finglish": "ghodrat",
+          "start": 10.2,
+          "end": 10.6
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 10.7,
+          "end": 11.1
+        },
+        {
+          "word": "عیسی",
+          "finglish": "isa",
+          "start": 11.1,
+          "end": 11.5
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 11.5,
+          "end": 11.7
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 11.7,
+          "end": 12.2
         }
       ]
     },
     {
-      "line": "در[Gm] غم و ترس و تنهایی [Eb]تو رفیقی تو همراهی",
-      "start": 120,
-      "end": 135,
+      "line": "به دیدار و لــمسی تازه من محتاجــم",
+      "start": 17.4,
+      "end": 22.8,
       "words": [
         {
-          "word": "در[Gm]",
-          "start": 120,
-          "end": 121.5
+          "word": "به",
+          "finglish": "be",
+          "start": 17.4,
+          "end": 17.7
+        },
+        {
+          "word": "دیدار",
+          "finglish": "didar",
+          "start": 17.7,
+          "end": 18.2
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 18.2,
+          "end": 18.3
+        },
+        {
+          "word": "لمسی",
+          "finglish": "lamsi",
+          "start": 18.4,
+          "end": 18.8
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 18.9,
+          "end": 19.2
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 19.3,
+          "end": 19.4
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 19.5,
+          "end": 20
+        }
+      ]
+    },
+    {
+      "line": "و به قدرت خــونت عیسی ، من محتاجــم",
+      "start": 24.4,
+      "end": 29.5,
+      "words": [
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 24.4,
+          "end": 24.5
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 24.5,
+          "end": 24.6
+        },
+        {
+          "word": "قدرت",
+          "finglish": "ghodrat",
+          "start": 24.7,
+          "end": 25.1
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 25.2,
+          "end": 25.6
+        },
+        {
+          "word": "عیسی",
+          "finglish": "isa",
+          "start": 25.6,
+          "end": 26
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 26.1,
+          "end": 26.2
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 26.3,
+          "end": 26.8
+        }
+      ]
+    },
+    {
+      "line": "به دیدار و لــمسی تازه من محتاجــم",
+      "start": 32.2,
+      "end": 37.5,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 32.2,
+          "end": 32.5
+        },
+        {
+          "word": "دیدار",
+          "finglish": "didar",
+          "start": 32.5,
+          "end": 33
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 33,
+          "end": 33.1
+        },
+        {
+          "word": "لمسی",
+          "finglish": "lamsi",
+          "start": 33.2,
+          "end": 33.6
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 33.7,
+          "end": 34
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 34.1,
+          "end": 34.2
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 34.3,
+          "end": 34.8
+        }
+      ]
+    },
+    {
+      "line": "و به قدرت خــونت عیسی ، من محتاجــم",
+      "start": 39.4,
+      "end": 44.8,
+      "words": [
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 39.4,
+          "end": 39.5
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 39.5,
+          "end": 39.6
+        },
+        {
+          "word": "قدرت",
+          "finglish": "ghodrat",
+          "start": 39.7,
+          "end": 40.1
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 40.2,
+          "end": 40.6
+        },
+        {
+          "word": "عیسی",
+          "finglish": "isa",
+          "start": 40.6,
+          "end": 41
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 41.1,
+          "end": 41.2
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 41.3,
+          "end": 41.8
+        }
+      ]
+    },
+    {
+      "line": "بــه پری و آتش روحت",
+      "start": 46.6,
+      "end": 48.3,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 46.6,
+          "end": 46.8
+        },
+        {
+          "word": "پری",
+          "finglish": "pori",
+          "start": 46.8,
+          "end": 47.2
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 47.2,
+          "end": 47.3
+        },
+        {
+          "word": "آتش",
+          "finglish": "atash",
+          "start": 47.4,
+          "end": 47.8
+        },
+        {
+          "word": "روحت",
+          "finglish": "roohat",
+          "start": 47.9,
+          "end": 48.3
+        }
+      ]
+    },
+    {
+      "line": "چــشمه های جاری روحت",
+      "start": 50,
+      "end": 51.6,
+      "words": [
+        {
+          "word": "چشمه",
+          "finglish": "cheshmeh",
+          "start": 50,
+          "end": 50.4
+        },
+        {
+          "word": "های",
+          "finglish": "haye",
+          "start": 50.4,
+          "end": 50.6
+        },
+        {
+          "word": "جاری",
+          "finglish": "jari",
+          "start": 50.7,
+          "end": 51.1
+        },
+        {
+          "word": "روحت",
+          "finglish": "roohat",
+          "start": 51.2,
+          "end": 51.6
+        }
+      ]
+    },
+    {
+      "line": "بـه مسح و تجهیز روح من محتاجم",
+      "start": 53.8,
+      "end": 56.2,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 53.8,
+          "end": 54
+        },
+        {
+          "word": "مسح",
+          "finglish": "mash",
+          "start": 54,
+          "end": 54.3
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 54.3,
+          "end": 54.4
+        },
+        {
+          "word": "تجهیز",
+          "finglish": "tajhiz",
+          "start": 54.5,
+          "end": 55
+        },
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 55.1,
+          "end": 55.4
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 55.4,
+          "end": 55.6
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 55.7,
+          "end": 56.2
+        }
+      ]
+    },
+    {
+      "line": "در غم و ترس و تنهایی تو رفیقی تو همراهی",
+      "start": 1.012,
+      "end": 1.043,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 1.012,
+          "end": 1.014
         },
         {
           "word": "غم",
-          "start": 121.5,
-          "end": 123
+          "finglish": "gham",
+          "start": 1.014,
+          "end": 1.016
         },
         {
           "word": "و",
-          "start": 123,
-          "end": 124.5
+          "finglish": "o",
+          "start": 1.016,
+          "end": 1.017
         },
         {
           "word": "ترس",
-          "start": 124.5,
-          "end": 126
+          "finglish": "tars",
+          "start": 1.018,
+          "end": 1.021
         },
         {
           "word": "و",
-          "start": 126,
-          "end": 127.5
+          "finglish": "o",
+          "start": 1.021,
+          "end": 1.022
         },
         {
           "word": "تنهایی",
-          "start": 127.5,
-          "end": 129
-        },
-        {
-          "word": "[Eb]تو",
-          "start": 129,
-          "end": 130.5
-        },
-        {
-          "word": "رفیقی",
-          "start": 130.5,
-          "end": 132
+          "finglish": "tanhayi",
+          "start": 1.023,
+          "end": 1.028
         },
         {
           "word": "تو",
-          "start": 132,
-          "end": 133.5
+          "finglish": "to",
+          "start": 1.029,
+          "end": 1.03
+        },
+        {
+          "word": "رفیقی",
+          "finglish": "rafighi",
+          "start": 1.031,
+          "end": 1.035
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 1.036,
+          "end": 1.037
         },
         {
           "word": "همراهی",
-          "start": 133.5,
-          "end": 135
+          "finglish": "hamrahi",
+          "start": 1.038,
+          "end": 1.043
         }
       ]
     },
     {
-      "line": "تو[Cm]یی آن صخره محکم ، [D]پابرجایی",
-      "start": 135,
-      "end": 150,
+      "line": "تویی آن صخره محکم ، پابرجایی",
+      "start": 1.085,
+      "end": 1.107,
       "words": [
         {
-          "word": "تو[Cm]یی",
-          "start": 135,
-          "end": 137.5
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 1.085,
+          "end": 1.088
         },
         {
           "word": "آن",
-          "start": 137.5,
-          "end": 140
+          "finglish": "an",
+          "start": 1.089,
+          "end": 1.09
         },
         {
           "word": "صخره",
-          "start": 140,
-          "end": 142.5
+          "finglish": "sakhreh",
+          "start": 1.091,
+          "end": 1.095
         },
         {
           "word": "محکم",
-          "start": 142.5,
-          "end": 145
+          "finglish": "mohkam",
+          "start": 1.096,
+          "end": 1.1
         },
         {
-          "word": "،",
-          "start": 145,
-          "end": 147.5
-        },
-        {
-          "word": "[D]پابرجایی",
-          "start": 147.5,
-          "end": 150
+          "word": "پابرجایی",
+          "finglish": "pabajayi",
+          "start": 1.101,
+          "end": 1.107
         }
       ]
     },
     {
-      "line": "از[Gm] گناه و از عصیانم [Eb]طاهرم ساز ای پادشاهم",
-      "start": 150,
-      "end": 165,
+      "line": "از گناه و از عصیانم طاهرم ساز ای پادشاهم",
+      "start": 1.157,
+      "end": 1.191,
       "words": [
         {
-          "word": "از[Gm]",
-          "start": 150,
-          "end": 151.66666666666666
+          "word": "از",
+          "finglish": "az",
+          "start": 1.157,
+          "end": 1.16
         },
         {
           "word": "گناه",
-          "start": 151.66666666666666,
-          "end": 153.33333333333334
+          "finglish": "gonah",
+          "start": 1.16,
+          "end": 1.164
         },
         {
           "word": "و",
-          "start": 153.33333333333334,
-          "end": 155
+          "finglish": "o",
+          "start": 1.164,
+          "end": 1.165
         },
         {
           "word": "از",
-          "start": 155,
-          "end": 156.66666666666666
+          "finglish": "az",
+          "start": 1.166,
+          "end": 1.167
         },
         {
           "word": "عصیانم",
-          "start": 156.66666666666666,
-          "end": 158.33333333333334
+          "finglish": "osyanam",
+          "start": 1.168,
+          "end": 1.173
         },
         {
-          "word": "[Eb]طاهرم",
-          "start": 158.33333333333334,
-          "end": 160
+          "word": "طاهرم",
+          "finglish": "taheram",
+          "start": 1.174,
+          "end": 1.178
         },
         {
           "word": "ساز",
-          "start": 160,
-          "end": 161.66666666666666
+          "finglish": "saz",
+          "start": 1.179,
+          "end": 1.182
         },
         {
           "word": "ای",
-          "start": 161.66666666666666,
-          "end": 163.33333333333334
+          "finglish": "ey",
+          "start": 1.183,
+          "end": 1.184
         },
         {
           "word": "پادشاهم",
-          "start": 163.33333333333334,
-          "end": 165
+          "finglish": "padshaham",
+          "start": 1.185,
+          "end": 1.191
         }
       ]
     },
     {
-      "line": "کـ[Cm]ـن مداوا قلب و جانم ، [D]ای درمانم",
-      "start": 165,
-      "end": 180,
+      "line": "کــن مداوا قلب و جانم ، ای درمانم",
+      "start": 1.23,
+      "end": 1.257,
       "words": [
         {
-          "word": "کـ[Cm]ـن",
-          "start": 165,
-          "end": 166.875
+          "word": "کن",
+          "finglish": "kon",
+          "start": 1.23,
+          "end": 1.232
         },
         {
           "word": "مداوا",
-          "start": 166.875,
-          "end": 168.75
+          "finglish": "modava",
+          "start": 1.233,
+          "end": 1.238
         },
         {
           "word": "قلب",
-          "start": 168.75,
-          "end": 170.625
+          "finglish": "ghalb",
+          "start": 1.239,
+          "end": 1.242
         },
         {
           "word": "و",
-          "start": 170.625,
-          "end": 172.5
+          "finglish": "o",
+          "start": 1.242,
+          "end": 1.243
         },
         {
           "word": "جانم",
-          "start": 172.5,
-          "end": 174.375
+          "finglish": "janam",
+          "start": 1.244,
+          "end": 1.248
         },
         {
-          "word": "،",
-          "start": 174.375,
-          "end": 176.25
-        },
-        {
-          "word": "[D]ای",
-          "start": 176.25,
-          "end": 178.125
+          "word": "ای",
+          "finglish": "ey",
+          "start": 1.249,
+          "end": 1.25
         },
         {
           "word": "درمانم",
-          "start": 178.125,
-          "end": 180
+          "finglish": "darmanam",
+          "start": 1.251,
+          "end": 1.257
+        }
+      ]
+    },
+    {
+      "line": "در غم و ترس و تنهایی تو رفیقی تو همراهی",
+      "start": 1.304,
+      "end": 1.335,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 1.304,
+          "end": 1.306
+        },
+        {
+          "word": "غم",
+          "finglish": "gham",
+          "start": 1.306,
+          "end": 1.308
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 1.308,
+          "end": 1.309
+        },
+        {
+          "word": "ترس",
+          "finglish": "tars",
+          "start": 1.31,
+          "end": 1.313
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 1.313,
+          "end": 1.314
+        },
+        {
+          "word": "تنهایی",
+          "finglish": "tanhayi",
+          "start": 1.315,
+          "end": 1.32
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 1.321,
+          "end": 1.322
+        },
+        {
+          "word": "رفیقی",
+          "finglish": "rafighi",
+          "start": 1.323,
+          "end": 1.327
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 1.328,
+          "end": 1.329
+        },
+        {
+          "word": "همراهی",
+          "finglish": "hamrahi",
+          "start": 1.33,
+          "end": 1.335
+        }
+      ]
+    },
+    {
+      "line": "تویی آن صخره محکم ، پابرجایی",
+      "start": 1.377,
+      "end": 1.399,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 1.377,
+          "end": 1.38
+        },
+        {
+          "word": "آن",
+          "finglish": "an",
+          "start": 1.381,
+          "end": 1.382
+        },
+        {
+          "word": "صخره",
+          "finglish": "sakhreh",
+          "start": 1.383,
+          "end": 1.387
+        },
+        {
+          "word": "محکم",
+          "finglish": "mohkam",
+          "start": 1.388,
+          "end": 1.392
+        },
+        {
+          "word": "پابرجایی",
+          "finglish": "pabajayi",
+          "start": 1.393,
+          "end": 1.399
+        }
+      ]
+    },
+    {
+      "line": "از گناه و از عصیانم طاهرم ساز ای پادشاهم",
+      "start": 1.448,
+      "end": 1.482,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 1.448,
+          "end": 1.451
+        },
+        {
+          "word": "گناه",
+          "finglish": "gonah",
+          "start": 1.451,
+          "end": 1.455
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 1.455,
+          "end": 1.456
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 1.457,
+          "end": 1.458
+        },
+        {
+          "word": "عصیانم",
+          "finglish": "osyanam",
+          "start": 1.459,
+          "end": 1.464
+        },
+        {
+          "word": "طاهرم",
+          "finglish": "taheram",
+          "start": 1.465,
+          "end": 1.469
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 1.47,
+          "end": 1.473
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 1.474,
+          "end": 1.475
+        },
+        {
+          "word": "پادشاهم",
+          "finglish": "padshaham",
+          "start": 1.476,
+          "end": 1.482
+        }
+      ]
+    },
+    {
+      "line": "کــن مداوا قلب و جانم ، ای درمانم",
+      "start": 1.521,
+      "end": 1.548,
+      "words": [
+        {
+          "word": "کن",
+          "finglish": "kon",
+          "start": 1.521,
+          "end": 1.523
+        },
+        {
+          "word": "مداوا",
+          "finglish": "modava",
+          "start": 1.524,
+          "end": 1.529
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 1.53,
+          "end": 1.533
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 1.533,
+          "end": 1.534
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 1.535,
+          "end": 1.539
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 1.54,
+          "end": 1.541
+        },
+        {
+          "word": "درمانم",
+          "finglish": "darmanam",
+          "start": 1.542,
+          "end": 1.548
+        }
+      ]
+    },
+    {
+      "line": "به دیدار و لــمسی تازه من محتاجــم",
+      "start": 2.066,
+      "end": 2.092,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 2.066,
+          "end": 2.069
+        },
+        {
+          "word": "دیدار",
+          "finglish": "didar",
+          "start": 2.069,
+          "end": 2.074
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.074,
+          "end": 2.075
+        },
+        {
+          "word": "لمسی",
+          "finglish": "lamsi",
+          "start": 2.076,
+          "end": 2.08
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 2.081,
+          "end": 2.084
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 2.085,
+          "end": 2.086
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 2.087,
+          "end": 2.092
+        }
+      ]
+    },
+    {
+      "line": "و به قدرت خــونت عیسی ، من محتاجــم",
+      "start": 2.138,
+      "end": 2.162,
+      "words": [
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.138,
+          "end": 2.139
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 2.139,
+          "end": 2.14
+        },
+        {
+          "word": "قدرت",
+          "finglish": "ghodrat",
+          "start": 2.141,
+          "end": 2.145
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 2.146,
+          "end": 2.15
+        },
+        {
+          "word": "عیسی",
+          "finglish": "isa",
+          "start": 2.15,
+          "end": 2.154
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 2.155,
+          "end": 2.157
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 2.157,
+          "end": 2.162
+        }
+      ]
+    },
+    {
+      "line": "به دیدار و لــمسی تازه من محتاجــم",
+      "start": 2.212,
+      "end": 2.238,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 2.212,
+          "end": 2.215
+        },
+        {
+          "word": "دیدار",
+          "finglish": "didar",
+          "start": 2.215,
+          "end": 2.22
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.22,
+          "end": 2.221
+        },
+        {
+          "word": "لمسی",
+          "finglish": "lamsi",
+          "start": 2.222,
+          "end": 2.226
+        },
+        {
+          "word": "تازه",
+          "finglish": "taze",
+          "start": 2.227,
+          "end": 2.23
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 2.231,
+          "end": 2.232
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 2.233,
+          "end": 2.238
+        }
+      ]
+    },
+    {
+      "line": "و به قدرت خــونت عیسی ، من محتاجــم",
+      "start": 2.282,
+      "end": 2.306,
+      "words": [
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.282,
+          "end": 2.283
+        },
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 2.283,
+          "end": 2.284
+        },
+        {
+          "word": "قدرت",
+          "finglish": "ghodrat",
+          "start": 2.285,
+          "end": 2.289
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 2.29,
+          "end": 2.294
+        },
+        {
+          "word": "عیسی",
+          "finglish": "isa",
+          "start": 2.294,
+          "end": 2.298
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 2.299,
+          "end": 2.3
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 2.301,
+          "end": 2.306
+        }
+      ]
+    },
+    {
+      "line": "بــه پری و آتش روحت",
+      "start": 2.356,
+      "end": 2.373,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 2.356,
+          "end": 2.358
+        },
+        {
+          "word": "پری",
+          "finglish": "pori",
+          "start": 2.358,
+          "end": 2.362
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.362,
+          "end": 2.363
+        },
+        {
+          "word": "آتش",
+          "finglish": "atash",
+          "start": 2.364,
+          "end": 2.368
+        },
+        {
+          "word": "روحت",
+          "finglish": "roohat",
+          "start": 2.369,
+          "end": 2.373
+        }
+      ]
+    },
+    {
+      "line": "چــشمه های جاری روحت",
+      "start": 2.393,
+      "end": 2.409,
+      "words": [
+        {
+          "word": "چشمه",
+          "finglish": "cheshmeh",
+          "start": 2.393,
+          "end": 2.397
+        },
+        {
+          "word": "های",
+          "finglish": "haye",
+          "start": 2.397,
+          "end": 2.399
+        },
+        {
+          "word": "جاری",
+          "finglish": "jari",
+          "start": 2.4,
+          "end": 2.404
+        },
+        {
+          "word": "روحت",
+          "finglish": "roohat",
+          "start": 2.405,
+          "end": 2.409
+        }
+      ]
+    },
+    {
+      "line": "بـه مسح و تجهیز روح من محتاجم",
+      "start": 2.428,
+      "end": 2.452,
+      "words": [
+        {
+          "word": "به",
+          "finglish": "be",
+          "start": 2.428,
+          "end": 2.43
+        },
+        {
+          "word": "مسح",
+          "finglish": "mash",
+          "start": 2.43,
+          "end": 2.433
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.433,
+          "end": 2.434
+        },
+        {
+          "word": "تجهیز",
+          "finglish": "tajhiz",
+          "start": 2.435,
+          "end": 2.44
+        },
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 2.441,
+          "end": 2.444
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 2.444,
+          "end": 2.446
+        },
+        {
+          "word": "محتاجم",
+          "finglish": "mohtajam",
+          "start": 2.447,
+          "end": 2.452
+        }
+      ]
+    },
+    {
+      "line": "در غم و ترس و تنهایی تو رفیقی تو همراهی",
+      "start": 2.498,
+      "end": 2.529,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 2.498,
+          "end": 2.5
+        },
+        {
+          "word": "غم",
+          "finglish": "gham",
+          "start": 2.5,
+          "end": 2.502
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.502,
+          "end": 2.503
+        },
+        {
+          "word": "ترس",
+          "finglish": "tars",
+          "start": 2.504,
+          "end": 2.507
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 2.507,
+          "end": 2.508
+        },
+        {
+          "word": "تنهایی",
+          "finglish": "tanhayi",
+          "start": 2.509,
+          "end": 2.514
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 2.515,
+          "end": 2.516
+        },
+        {
+          "word": "رفیقی",
+          "finglish": "rafighi",
+          "start": 2.517,
+          "end": 2.521
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 2.522,
+          "end": 2.523
+        },
+        {
+          "word": "همراهی",
+          "finglish": "hamrahi",
+          "start": 2.524,
+          "end": 2.529
+        }
+      ]
+    },
+    {
+      "line": "تویی آن صخره محکم ، پابرجایی",
+      "start": 2.57,
+      "end": 2.592,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 2.57,
+          "end": 2.573
+        },
+        {
+          "word": "آن",
+          "finglish": "an",
+          "start": 2.574,
+          "end": 2.575
+        },
+        {
+          "word": "صخره",
+          "finglish": "sakhreh",
+          "start": 2.576,
+          "end": 2.58
+        },
+        {
+          "word": "محکم",
+          "finglish": "mohkam",
+          "start": 2.581,
+          "end": 2.585
+        },
+        {
+          "word": "پابرجایی",
+          "finglish": "pabajayi",
+          "start": 2.586,
+          "end": 2.592
+        }
+      ]
+    },
+    {
+      "line": "از گناه و از عصیانم طاهرم ساز ای پادشاهم",
+      "start": 3.043,
+      "end": 3.077,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 3.043,
+          "end": 3.046
+        },
+        {
+          "word": "گناه",
+          "finglish": "gonah",
+          "start": 3.046,
+          "end": 3.05
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 3.05,
+          "end": 3.051
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 3.052,
+          "end": 3.053
+        },
+        {
+          "word": "عصیانم",
+          "finglish": "osyanam",
+          "start": 3.054,
+          "end": 3.059
+        },
+        {
+          "word": "طاهرم",
+          "finglish": "taheram",
+          "start": 3.06,
+          "end": 3.064
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 3.065,
+          "end": 3.068
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 3.069,
+          "end": 3.07
+        },
+        {
+          "word": "پادشاهم",
+          "finglish": "padshaham",
+          "start": 3.071,
+          "end": 3.077
+        }
+      ]
+    },
+    {
+      "line": "کــن مداوا قلب و جانم ، ای درمانم",
+      "start": 3.116,
+      "end": 3.143,
+      "words": [
+        {
+          "word": "کن",
+          "finglish": "kon",
+          "start": 3.116,
+          "end": 3.118
+        },
+        {
+          "word": "مداوا",
+          "finglish": "modava",
+          "start": 3.119,
+          "end": 3.124
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 3.125,
+          "end": 3.128
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 3.128,
+          "end": 3.129
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 3.13,
+          "end": 3.134
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 3.135,
+          "end": 3.136
+        },
+        {
+          "word": "درمانم",
+          "finglish": "darmanam",
+          "start": 3.137,
+          "end": 3.143
+        }
+      ]
+    },
+    {
+      "line": "در غم و ترس و تنهایی تو رفیقی تو همراهی",
+      "start": 3.185,
+      "end": 3.216,
+      "words": [
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 3.185,
+          "end": 3.187
+        },
+        {
+          "word": "غم",
+          "finglish": "gham",
+          "start": 3.187,
+          "end": 3.189
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 3.189,
+          "end": 3.19
+        },
+        {
+          "word": "ترس",
+          "finglish": "tars",
+          "start": 3.191,
+          "end": 3.194
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 3.194,
+          "end": 3.195
+        },
+        {
+          "word": "تنهایی",
+          "finglish": "tanhayi",
+          "start": 3.196,
+          "end": 3.201
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 3.202,
+          "end": 3.203
+        },
+        {
+          "word": "رفیقی",
+          "finglish": "rafighi",
+          "start": 3.204,
+          "end": 3.208
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 3.209,
+          "end": 3.21
+        },
+        {
+          "word": "همراهی",
+          "finglish": "hamrahi",
+          "start": 3.211,
+          "end": 3.216
+        }
+      ]
+    },
+    {
+      "line": "تویی آن صخره محکم ، پابرجایی",
+      "start": 3.257,
+      "end": 3.279,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 3.257,
+          "end": 3.26
+        },
+        {
+          "word": "آن",
+          "finglish": "an",
+          "start": 3.261,
+          "end": 3.262
+        },
+        {
+          "word": "صخره",
+          "finglish": "sakhreh",
+          "start": 3.263,
+          "end": 3.267
+        },
+        {
+          "word": "محکم",
+          "finglish": "mohkam",
+          "start": 3.268,
+          "end": 3.272
+        },
+        {
+          "word": "پابرجایی",
+          "finglish": "pabajayi",
+          "start": 3.273,
+          "end": 3.279
+        }
+      ]
+    },
+    {
+      "line": "از گناه و از عصیانم طاهرم ساز ای پادشاهم",
+      "start": 3.33,
+      "end": 3.364,
+      "words": [
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 3.33,
+          "end": 3.333
+        },
+        {
+          "word": "گناه",
+          "finglish": "gonah",
+          "start": 3.333,
+          "end": 3.337
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 3.337,
+          "end": 3.338
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 3.339,
+          "end": 3.34
+        },
+        {
+          "word": "عصیانم",
+          "finglish": "osyanam",
+          "start": 3.341,
+          "end": 3.346
+        },
+        {
+          "word": "طاهرم",
+          "finglish": "taheram",
+          "start": 3.347,
+          "end": 3.351
+        },
+        {
+          "word": "ساز",
+          "finglish": "saz",
+          "start": 3.352,
+          "end": 3.355
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 3.356,
+          "end": 3.357
+        },
+        {
+          "word": "پادشاهم",
+          "finglish": "padshaham",
+          "start": 3.358,
+          "end": 3.364
+        }
+      ]
+    },
+    {
+      "line": "کــن مداوا قلب و جانم ، ای درمانم",
+      "start": 3.402,
+      "end": 3.429,
+      "words": [
+        {
+          "word": "کن",
+          "finglish": "kon",
+          "start": 3.402,
+          "end": 3.404
+        },
+        {
+          "word": "مداوا",
+          "finglish": "modava",
+          "start": 3.405,
+          "end": 3.41
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 3.411,
+          "end": 3.414
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 3.414,
+          "end": 3.415
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 3.416,
+          "end": 3.42
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 3.421,
+          "end": 3.422
+        },
+        {
+          "word": "درمانم",
+          "finglish": "darmanam",
+          "start": 3.423,
+          "end": 3.429
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 350
 }

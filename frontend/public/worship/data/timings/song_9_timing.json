@@ -1,395 +1,1554 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 64,
-    "lineCount": 9,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.267Z"
-  },
+  "songId": 9,
+  "generatedAt": "2026-01-20T02:07:57.285Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "Verse (x2)",
-      "start": 0,
-      "end": 20,
+      "line": "عیســی تو را می‌پرستم ، با تمامی دل و جان",
+      "start": 3.66,
+      "end": 10.42,
       "words": [
         {
-          "word": "Verse",
-          "start": 0,
-          "end": 10
-        },
-        {
-          "word": "(x2)",
-          "start": 10,
-          "end": 20
-        }
-      ]
-    },
-    {
-      "line": "عیسـ[Em]ـی تو را می‌پرستم ، با تما[B]می دل و جا[Em]ن",
-      "start": 20,
-      "end": 40,
-      "words": [
-        {
-          "word": "عیسـ[Em]ـی",
-          "start": 20,
-          "end": 22
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 3.66,
+          "end": 4.21
         },
         {
           "word": "تو",
-          "start": 22,
-          "end": 24
+          "finglish": "to",
+          "start": 4.21,
+          "end": 4.39
         },
         {
           "word": "را",
-          "start": 24,
-          "end": 26
+          "finglish": "ra",
+          "start": 4.39,
+          "end": 4.6
         },
         {
           "word": "می‌پرستم",
-          "start": 26,
-          "end": 28
-        },
-        {
-          "word": "،",
-          "start": 28,
-          "end": 30
+          "finglish": "mi parastam",
+          "start": 4.96,
+          "end": 5.86
         },
         {
           "word": "با",
-          "start": 30,
-          "end": 32
+          "finglish": "ba",
+          "start": 6.58,
+          "end": 6.75
         },
         {
-          "word": "تما[B]می",
-          "start": 32,
-          "end": 34
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 7.09,
+          "end": 7.64
         },
         {
           "word": "دل",
-          "start": 34,
-          "end": 36
+          "finglish": "del",
+          "start": 7.9,
+          "end": 8.2
         },
         {
           "word": "و",
-          "start": 36,
-          "end": 38
+          "finglish": "o",
+          "start": 8.2,
+          "end": 8.3
         },
         {
-          "word": "جا[Em]ن",
-          "start": 38,
-          "end": 40
+          "word": "جان",
+          "finglish": "jan",
+          "start": 8.56,
+          "end": 10.42
         }
       ]
     },
     {
-      "line": "با هـ[Em]ـر آنچه که من هستم ، با تما[B]می قلب و جا[Em]ن",
-      "start": 40,
-      "end": 60,
+      "line": "با هــر آنچه که من هستم ، با تمامی قلب و جان",
+      "start": 11.4,
+      "end": 17.92,
       "words": [
         {
           "word": "با",
-          "start": 40,
-          "end": 41.666666666666664
+          "finglish": "ba",
+          "start": 11.4,
+          "end": 11.56
         },
         {
-          "word": "هـ[Em]ـر",
-          "start": 41.666666666666664,
-          "end": 43.333333333333336
+          "word": "هر",
+          "finglish": "har",
+          "start": 11.75,
+          "end": 11.97
         },
         {
           "word": "آنچه",
-          "start": 43.333333333333336,
-          "end": 45
+          "finglish": "anche",
+          "start": 12.24,
+          "end": 12.63
         },
         {
           "word": "که",
-          "start": 45,
-          "end": 46.666666666666664
+          "finglish": "ke",
+          "start": 12.79,
+          "end": 12.9
         },
         {
           "word": "من",
-          "start": 46.666666666666664,
-          "end": 48.333333333333336
+          "finglish": "man",
+          "start": 13.06,
+          "end": 13.26
         },
         {
           "word": "هستم",
-          "start": 48.333333333333336,
-          "end": 50
-        },
-        {
-          "word": "،",
-          "start": 50,
-          "end": 51.66666666666667
+          "finglish": "hastam",
+          "start": 13.56,
+          "end": 14.07
         },
         {
           "word": "با",
-          "start": 51.66666666666667,
-          "end": 53.333333333333336
+          "finglish": "ba",
+          "start": 14.67,
+          "end": 14.86
         },
         {
-          "word": "تما[B]می",
-          "start": 53.333333333333336,
-          "end": 55
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 15.2,
+          "end": 15.68
         },
         {
           "word": "قلب",
-          "start": 55,
-          "end": 56.66666666666667
+          "finglish": "ghalb",
+          "start": 16,
+          "end": 16.3
         },
         {
           "word": "و",
-          "start": 56.66666666666667,
-          "end": 58.333333333333336
+          "finglish": "o",
+          "start": 16.3,
+          "end": 16.4
         },
         {
-          "word": "جا[Em]ن",
-          "start": 58.333333333333336,
-          "end": 60
+          "word": "جان",
+          "finglish": "jan",
+          "start": 16.66,
+          "end": 17.92
         }
       ]
     },
     {
-      "line": "Chorus1 (x2)",
-      "start": 60,
-      "end": 80,
+      "line": "عیســی تو را می‌پرستم ، با تمامی دل و جان",
+      "start": 19.3,
+      "end": 25.3,
       "words": [
         {
-          "word": "Chorus1",
-          "start": 60,
-          "end": 70
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 19.3,
+          "end": 19.8
         },
         {
-          "word": "(x2)",
-          "start": 70,
-          "end": 80
-        }
-      ]
-    },
-    {
-      "line": "یهوه[Am] یری صاحبـ[Em]ـی مرا ، سلطان[B] جانم عیسـ[Em]ـی",
-      "start": 80,
-      "end": 100,
-      "words": [
-        {
-          "word": "یهوه[Am]",
-          "start": 80,
-          "end": 82.5
-        },
-        {
-          "word": "یری",
-          "start": 82.5,
-          "end": 85
-        },
-        {
-          "word": "صاحبـ[Em]ـی",
-          "start": 85,
-          "end": 87.5
-        },
-        {
-          "word": "مرا",
-          "start": 87.5,
-          "end": 90
-        },
-        {
-          "word": "،",
-          "start": 90,
-          "end": 92.5
-        },
-        {
-          "word": "سلطان[B]",
-          "start": 92.5,
-          "end": 95
-        },
-        {
-          "word": "جانم",
-          "start": 95,
-          "end": 97.5
-        },
-        {
-          "word": "عیسـ[Em]ـی",
-          "start": 97.5,
-          "end": 100
-        }
-      ]
-    },
-    {
-      "line": "تویی خـ[Am]ـدایم سلطان[Em] قلبم ، دوستت د[B]ارم ای عیسـ[Em]ـی",
-      "start": 100,
-      "end": 120,
-      "words": [
-        {
-          "word": "تویی",
-          "start": 100,
-          "end": 102.22222222222223
-        },
-        {
-          "word": "خـ[Am]ـدایم",
-          "start": 102.22222222222223,
-          "end": 104.44444444444444
-        },
-        {
-          "word": "سلطان[Em]",
-          "start": 104.44444444444444,
-          "end": 106.66666666666667
-        },
-        {
-          "word": "قلبم",
-          "start": 106.66666666666667,
-          "end": 108.88888888888889
-        },
-        {
-          "word": "،",
-          "start": 108.88888888888889,
-          "end": 111.11111111111111
-        },
-        {
-          "word": "دوستت",
-          "start": 111.11111111111111,
-          "end": 113.33333333333333
-        },
-        {
-          "word": "د[B]ارم",
-          "start": 113.33333333333333,
-          "end": 115.55555555555556
-        },
-        {
-          "word": "ای",
-          "start": 115.55555555555556,
-          "end": 117.77777777777777
-        },
-        {
-          "word": "عیسـ[Em]ـی",
-          "start": 117.77777777777777,
-          "end": 120
-        }
-      ]
-    },
-    {
-      "line": "Chorus2 (x2)",
-      "start": 120,
-      "end": 140,
-      "words": [
-        {
-          "word": "Chorus2",
-          "start": 120,
-          "end": 130
-        },
-        {
-          "word": "(x2)",
-          "start": 130,
-          "end": 140
-        }
-      ]
-    },
-    {
-      "line": "عیسی مـ[Am]ـلجایم شادی[Em] جانم ، تنها تـ[B]ـو را ستایـ[Em]ـم",
-      "start": 140,
-      "end": 160,
-      "words": [
-        {
-          "word": "عیسی",
-          "start": 140,
-          "end": 142.22222222222223
-        },
-        {
-          "word": "مـ[Am]ـلجایم",
-          "start": 142.22222222222223,
-          "end": 144.44444444444446
-        },
-        {
-          "word": "شادی[Em]",
-          "start": 144.44444444444446,
-          "end": 146.66666666666666
-        },
-        {
-          "word": "جانم",
-          "start": 146.66666666666666,
-          "end": 148.88888888888889
-        },
-        {
-          "word": "،",
-          "start": 148.88888888888889,
-          "end": 151.11111111111111
-        },
-        {
-          "word": "تنها",
-          "start": 151.11111111111111,
-          "end": 153.33333333333334
-        },
-        {
-          "word": "تـ[B]ـو",
-          "start": 153.33333333333334,
-          "end": 155.55555555555554
+          "word": "تو",
+          "finglish": "to",
+          "start": 19.8,
+          "end": 19.95
         },
         {
           "word": "را",
-          "start": 155.55555555555554,
-          "end": 157.77777777777777
+          "finglish": "ra",
+          "start": 19.95,
+          "end": 20.15
         },
         {
-          "word": "ستایـ[Em]ـم",
-          "start": 157.77777777777777,
-          "end": 160
+          "word": "می‌پرستم",
+          "finglish": "mi parastam",
+          "start": 20.5,
+          "end": 21.3
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 22,
+          "end": 22.16
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 22.48,
+          "end": 22.98
+        },
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 23.27,
+          "end": 23.57
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 23.57,
+          "end": 23.67
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 23.9,
+          "end": 25.3
         }
       ]
     },
     {
-      "line": "تویی الـ[Am]ـشدای ، تویی اد[Em]ونای ، تویی شا[B]ه من عیسـ[Em]ـی",
-      "start": 160,
-      "end": 180,
+      "line": "با هــر آنچه که من هستم ، با تمامی قلب و جان",
+      "start": 26.5,
+      "end": 32.9,
       "words": [
         {
-          "word": "تویی",
-          "start": 160,
-          "end": 162
+          "word": "با",
+          "finglish": "ba",
+          "start": 26.5,
+          "end": 26.66
         },
         {
-          "word": "الـ[Am]ـشدای",
-          "start": 162,
-          "end": 164
+          "word": "هر",
+          "finglish": "har",
+          "start": 26.85,
+          "end": 27.07
         },
         {
-          "word": "،",
-          "start": 164,
-          "end": 166
+          "word": "آنچه",
+          "finglish": "anche",
+          "start": 27.34,
+          "end": 27.73
         },
         {
-          "word": "تویی",
-          "start": 166,
-          "end": 168
-        },
-        {
-          "word": "اد[Em]ونای",
-          "start": 168,
-          "end": 170
-        },
-        {
-          "word": "،",
-          "start": 170,
-          "end": 172
-        },
-        {
-          "word": "تویی",
-          "start": 172,
-          "end": 174
-        },
-        {
-          "word": "شا[B]ه",
-          "start": 174,
-          "end": 176
+          "word": "که",
+          "finglish": "ke",
+          "start": 27.89,
+          "end": 28
         },
         {
           "word": "من",
-          "start": 176,
-          "end": 178
+          "finglish": "man",
+          "start": 28.16,
+          "end": 28.36
         },
         {
-          "word": "عیسـ[Em]ـی",
-          "start": 178,
-          "end": 180
+          "word": "هستم",
+          "finglish": "hastam",
+          "start": 28.66,
+          "end": 29.17
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 29.77,
+          "end": 29.96
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 30.3,
+          "end": 30.78
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 31.1,
+          "end": 31.4
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 31.4,
+          "end": 31.5
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 31.76,
+          "end": 32.9
+        }
+      ]
+    },
+    {
+      "line": "یهوه یری صاحبــی مرا ، سلطان جانم عیســی",
+      "start": 34.3,
+      "end": 40.7,
+      "words": [
+        {
+          "word": "یهوه",
+          "finglish": "Yahova",
+          "start": 34.3,
+          "end": 34.8
+        },
+        {
+          "word": "یری",
+          "finglish": "Yara",
+          "start": 35,
+          "end": 35.3
+        },
+        {
+          "word": "صاحبی",
+          "finglish": "sahebi",
+          "start": 36,
+          "end": 36.5
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 36.7,
+          "end": 37
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 37.8,
+          "end": 38.3
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 38.6,
+          "end": 39
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 39.3,
+          "end": 40.7
+        }
+      ]
+    },
+    {
+      "line": "تویی خــدایم سلطان قلبم ، دوستت دارم ای عیســی",
+      "start": 41.3,
+      "end": 47.6,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 41.3,
+          "end": 41.6
+        },
+        {
+          "word": "خدایم",
+          "finglish": "Khodayam",
+          "start": 42.1,
+          "end": 42.6
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 43.3,
+          "end": 43.8
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 44.1,
+          "end": 44.5
+        },
+        {
+          "word": "دوستت",
+          "finglish": "dooset",
+          "start": 45.4,
+          "end": 45.8
+        },
+        {
+          "word": "دارم",
+          "finglish": "daram",
+          "start": 46,
+          "end": 46.3
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 46.5,
+          "end": 46.6
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 46.8,
+          "end": 47.6
+        }
+      ]
+    },
+    {
+      "line": "یهوه یری صاحبــی مرا ، سلطان جانم عیســی",
+      "start": 48.8,
+      "end": 55.7,
+      "words": [
+        {
+          "word": "یهوه",
+          "finglish": "Yahova",
+          "start": 48.8,
+          "end": 49.3
+        },
+        {
+          "word": "یری",
+          "finglish": "Yara",
+          "start": 49.5,
+          "end": 49.8
+        },
+        {
+          "word": "صاحبی",
+          "finglish": "sahebi",
+          "start": 50.5,
+          "end": 51
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 51.2,
+          "end": 51.5
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 52.3,
+          "end": 52.8
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 53.1,
+          "end": 53.5
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 53.8,
+          "end": 55.7
+        }
+      ]
+    },
+    {
+      "line": "تویی خــدایم سلطان قلبم ، دوستت دارم ای عیســی",
+      "start": 56.3,
+      "end": 103.8,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 56.3,
+          "end": 56.6
+        },
+        {
+          "word": "خدایم",
+          "finglish": "Khodayam",
+          "start": 57.1,
+          "end": 57.6
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 58.3,
+          "end": 58.8
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 59.1,
+          "end": 59.5
+        },
+        {
+          "word": "دوستت",
+          "finglish": "dooset",
+          "start": 100.4,
+          "end": 100.8
+        },
+        {
+          "word": "دارم",
+          "finglish": "daram",
+          "start": 101,
+          "end": 101.3
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 101.5,
+          "end": 101.6
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 101.8,
+          "end": 103.8
+        }
+      ]
+    },
+    {
+      "line": "عیســی تو را می‌پرستم ، با تمامی دل و جان",
+      "start": 106.4,
+      "end": 112.5,
+      "words": [
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 106.4,
+          "end": 106.9
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 106.9,
+          "end": 107.05
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 107.05,
+          "end": 107.25
+        },
+        {
+          "word": "می‌پرستم",
+          "finglish": "mi parastam",
+          "start": 107.6,
+          "end": 108.4
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 109.1,
+          "end": 109.26
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 109.58,
+          "end": 110.08
+        },
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 110.37,
+          "end": 110.67
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 110.67,
+          "end": 110.77
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 111,
+          "end": 112.5
+        }
+      ]
+    },
+    {
+      "line": "با هــر آنچه که من هستم ، با تمامی قلب و جان",
+      "start": 113.6,
+      "end": 119.9,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 113.6,
+          "end": 113.76
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 113.95,
+          "end": 114.17
+        },
+        {
+          "word": "آنچه",
+          "finglish": "anche",
+          "start": 114.44,
+          "end": 114.83
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 114.99,
+          "end": 115.1
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 115.26,
+          "end": 115.46
+        },
+        {
+          "word": "هستم",
+          "finglish": "hastam",
+          "start": 115.76,
+          "end": 116.27
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 116.87,
+          "end": 117.06
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 117.4,
+          "end": 117.88
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 118.2,
+          "end": 118.5
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 118.5,
+          "end": 118.6
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 118.86,
+          "end": 119.9
+        }
+      ]
+    },
+    {
+      "line": "عیســی تو را می‌پرستم ، با تمامی دل و جان",
+      "start": 121.4,
+      "end": 127.8,
+      "words": [
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 121.4,
+          "end": 121.9
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 121.9,
+          "end": 122.05
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 122.05,
+          "end": 122.25
+        },
+        {
+          "word": "می‌پرستم",
+          "finglish": "mi parastam",
+          "start": 122.6,
+          "end": 123.4
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 124.1,
+          "end": 124.26
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 124.58,
+          "end": 125.08
+        },
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 125.37,
+          "end": 125.67
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 125.67,
+          "end": 125.77
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 126,
+          "end": 127.8
+        }
+      ]
+    },
+    {
+      "line": "با هــر آنچه که من هستم ، با تمامی قلب و جان",
+      "start": 129,
+      "end": 135.5,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 129,
+          "end": 129.16
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 129.35,
+          "end": 129.57
+        },
+        {
+          "word": "آنچه",
+          "finglish": "anche",
+          "start": 129.84,
+          "end": 130.23
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 130.39,
+          "end": 130.5
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 130.66,
+          "end": 130.86
+        },
+        {
+          "word": "هستم",
+          "finglish": "hastam",
+          "start": 131.16,
+          "end": 131.67
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 132.27,
+          "end": 132.46
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 132.8,
+          "end": 133.28
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 133.6,
+          "end": 133.9
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 133.9,
+          "end": 134
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 134.26,
+          "end": 135.5
+        }
+      ]
+    },
+    {
+      "line": "یهوه یری صاحبــی مرا ، سلطان جانم عیســی",
+      "start": 136.4,
+      "end": 142.8,
+      "words": [
+        {
+          "word": "یهوه",
+          "finglish": "Yahova",
+          "start": 136.4,
+          "end": 136.9
+        },
+        {
+          "word": "یری",
+          "finglish": "Yara",
+          "start": 137.1,
+          "end": 137.4
+        },
+        {
+          "word": "صاحبی",
+          "finglish": "sahebi",
+          "start": 138.1,
+          "end": 138.6
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 138.8,
+          "end": 139.1
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 139.9,
+          "end": 140.4
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 140.7,
+          "end": 141.1
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 141.4,
+          "end": 142.8
+        }
+      ]
+    },
+    {
+      "line": "تویی خــدایم سلطان قلبم ، دوستت دارم ای عیســی",
+      "start": 143.4,
+      "end": 150,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 143.4,
+          "end": 143.7
+        },
+        {
+          "word": "خدایم",
+          "finglish": "Khodayam",
+          "start": 144.2,
+          "end": 144.7
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 145.4,
+          "end": 145.9
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 146.2,
+          "end": 146.6
+        },
+        {
+          "word": "دوستت",
+          "finglish": "dooset",
+          "start": 147.5,
+          "end": 147.9
+        },
+        {
+          "word": "دارم",
+          "finglish": "daram",
+          "start": 148.1,
+          "end": 148.4
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 148.6,
+          "end": 148.7
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 148.9,
+          "end": 150
+        }
+      ]
+    },
+    {
+      "line": "یهوه یری صاحبــی مرا ، سلطان جانم عیســی",
+      "start": 151,
+      "end": 158,
+      "words": [
+        {
+          "word": "یهوه",
+          "finglish": "Yahova",
+          "start": 151,
+          "end": 151.5
+        },
+        {
+          "word": "یری",
+          "finglish": "Yara",
+          "start": 151.7,
+          "end": 152
+        },
+        {
+          "word": "صاحبی",
+          "finglish": "sahebi",
+          "start": 152.7,
+          "end": 153.2
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 153.4,
+          "end": 153.7
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 154.5,
+          "end": 155
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 155.3,
+          "end": 155.7
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 156,
+          "end": 158
+        }
+      ]
+    },
+    {
+      "line": "تویی خــدایم سلطان قلبم ، دوستت دارم ای عیســی",
+      "start": 158.6,
+      "end": 206,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 158.6,
+          "end": 158.9
+        },
+        {
+          "word": "خدایم",
+          "finglish": "Khodayam",
+          "start": 159.4,
+          "end": 159.9
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 200.6,
+          "end": 201.1
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 201.4,
+          "end": 201.8
+        },
+        {
+          "word": "دوستت",
+          "finglish": "dooset",
+          "start": 202.7,
+          "end": 203.1
+        },
+        {
+          "word": "دارم",
+          "finglish": "daram",
+          "start": 203.3,
+          "end": 203.6
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 203.8,
+          "end": 203.9
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 204.1,
+          "end": 206
+        }
+      ]
+    },
+    {
+      "line": "عیسی مــلجایم شادی جانم ، تنها تــو را ستایــم",
+      "start": 207,
+      "end": 214.8,
+      "words": [
+        {
+          "word": "عیسی",
+          "finglish": "Isa",
+          "start": 207,
+          "end": 207.4
+        },
+        {
+          "word": "ملجایم",
+          "finglish": "maljayam",
+          "start": 207.7,
+          "end": 208.2
+        },
+        {
+          "word": "شادی",
+          "finglish": "shadi",
+          "start": 208.9,
+          "end": 209.3
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 209.6,
+          "end": 210
+        },
+        {
+          "word": "تنها",
+          "finglish": "tanha",
+          "start": 210.8,
+          "end": 211.2
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 211.4,
+          "end": 211.5
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 211.6,
+          "end": 211.7
+        },
+        {
+          "word": "ستایم",
+          "finglish": "setayam",
+          "start": 212,
+          "end": 214.8
+        }
+      ]
+    },
+    {
+      "line": "تویی الــشدای ، تویی ادونای ، تویی شاه من عیســی",
+      "start": 215.4,
+      "end": 222,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 215.4,
+          "end": 215.7
+        },
+        {
+          "word": "الشدای",
+          "finglish": "El Shaddai",
+          "start": 216.1,
+          "end": 216.7
+        },
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 217.4,
+          "end": 217.7
+        },
+        {
+          "word": "ادونای",
+          "finglish": "Adonai",
+          "start": 218,
+          "end": 218.5
+        },
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 219.2,
+          "end": 219.5
+        },
+        {
+          "word": "شاه",
+          "finglish": "shah",
+          "start": 219.7,
+          "end": 220
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 220.2,
+          "end": 220.4
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 220.6,
+          "end": 222
+        }
+      ]
+    },
+    {
+      "line": "عیســی تو را می‌پرستم ، با تمامی دل و جان",
+      "start": 224.5,
+      "end": 230.8,
+      "words": [
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 224.5,
+          "end": 225
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 225,
+          "end": 225.15
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 225.15,
+          "end": 225.35
+        },
+        {
+          "word": "می‌پرستم",
+          "finglish": "mi parastam",
+          "start": 225.7,
+          "end": 226.5
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 227.2,
+          "end": 227.36
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 227.68,
+          "end": 228.18
+        },
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 228.47,
+          "end": 228.77
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 228.77,
+          "end": 228.87
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 229.1,
+          "end": 230.8
+        }
+      ]
+    },
+    {
+      "line": "با هــر آنچه که من هستم ، با تمامی قلب و جان",
+      "start": 231.9,
+      "end": 238.4,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 231.9,
+          "end": 232.06
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 232.25,
+          "end": 232.47
+        },
+        {
+          "word": "آنچه",
+          "finglish": "anche",
+          "start": 232.74,
+          "end": 233.13
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 233.29,
+          "end": 233.4
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 233.56,
+          "end": 233.76
+        },
+        {
+          "word": "هستم",
+          "finglish": "hastam",
+          "start": 234.06,
+          "end": 234.57
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 235.17,
+          "end": 235.36
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 235.7,
+          "end": 236.18
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 236.5,
+          "end": 236.8
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 236.8,
+          "end": 236.9
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 237.16,
+          "end": 238.4
+        }
+      ]
+    },
+    {
+      "line": "عیســی تو را می‌پرستم ، با تمامی دل و جان",
+      "start": 239.8,
+      "end": 246.4,
+      "words": [
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 239.8,
+          "end": 240.3
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 240.3,
+          "end": 240.45
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 240.45,
+          "end": 240.65
+        },
+        {
+          "word": "می‌پرستم",
+          "finglish": "mi parastam",
+          "start": 241,
+          "end": 241.8
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 242.5,
+          "end": 242.66
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 242.98,
+          "end": 243.48
+        },
+        {
+          "word": "دل",
+          "finglish": "del",
+          "start": 243.77,
+          "end": 244.07
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 244.07,
+          "end": 244.17
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 244.4,
+          "end": 246.4
+        }
+      ]
+    },
+    {
+      "line": "با هــر آنچه که من هستم ، با تمامی قلب و جان",
+      "start": 247.6,
+      "end": 254,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 247.6,
+          "end": 247.76
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 247.95,
+          "end": 248.17
+        },
+        {
+          "word": "آنچه",
+          "finglish": "anche",
+          "start": 248.44,
+          "end": 248.83
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 248.99,
+          "end": 249.1
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 249.26,
+          "end": 249.46
+        },
+        {
+          "word": "هستم",
+          "finglish": "hastam",
+          "start": 249.76,
+          "end": 250.27
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 250.87,
+          "end": 251.06
+        },
+        {
+          "word": "تمامی",
+          "finglish": "tamami",
+          "start": 251.4,
+          "end": 251.88
+        },
+        {
+          "word": "قلب",
+          "finglish": "ghalb",
+          "start": 252.2,
+          "end": 252.5
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 252.5,
+          "end": 252.6
+        },
+        {
+          "word": "جان",
+          "finglish": "jan",
+          "start": 252.86,
+          "end": 254
+        }
+      ]
+    },
+    {
+      "line": "یهوه یری صاحبــی مرا ، سلطان جانم عیســی",
+      "start": 255,
+      "end": 302,
+      "words": [
+        {
+          "word": "یهوه",
+          "finglish": "Yahova",
+          "start": 255,
+          "end": 255.5
+        },
+        {
+          "word": "یری",
+          "finglish": "Yara",
+          "start": 255.7,
+          "end": 256
+        },
+        {
+          "word": "صاحبی",
+          "finglish": "sahebi",
+          "start": 256.7,
+          "end": 257.2
+        },
+        {
+          "word": "مرا",
+          "finglish": "mara",
+          "start": 257.4,
+          "end": 257.7
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 258.5,
+          "end": 259
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 259.3,
+          "end": 259.7
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 260,
+          "end": 302
+        }
+      ]
+    },
+    {
+      "line": "تویی خــدایم سلطان قلبم ، دوستت دارم ای عیســی",
+      "start": 302.6,
+      "end": 309.8,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 302.6,
+          "end": 302.9
+        },
+        {
+          "word": "خدایم",
+          "finglish": "Khodayam",
+          "start": 303.4,
+          "end": 303.9
+        },
+        {
+          "word": "سلطان",
+          "finglish": "soltan",
+          "start": 304.6,
+          "end": 305.1
+        },
+        {
+          "word": "قلبم",
+          "finglish": "ghalbam",
+          "start": 305.4,
+          "end": 305.8
+        },
+        {
+          "word": "دوستت",
+          "finglish": "dooset",
+          "start": 306.7,
+          "end": 307.1
+        },
+        {
+          "word": "دارم",
+          "finglish": "daram",
+          "start": 307.3,
+          "end": 307.6
+        },
+        {
+          "word": "ای",
+          "finglish": "ey",
+          "start": 307.8,
+          "end": 307.9
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 308.1,
+          "end": 309.8
+        }
+      ]
+    },
+    {
+      "line": "عیسی مــلجایم شادی جانم ، تنها تــو را ستایــم",
+      "start": 310.8,
+      "end": 317.8,
+      "words": [
+        {
+          "word": "عیسی",
+          "finglish": "Isa",
+          "start": 310.8,
+          "end": 311.2
+        },
+        {
+          "word": "ملجایم",
+          "finglish": "maljayam",
+          "start": 311.5,
+          "end": 312
+        },
+        {
+          "word": "شادی",
+          "finglish": "shadi",
+          "start": 312.7,
+          "end": 313.1
+        },
+        {
+          "word": "جانم",
+          "finglish": "janam",
+          "start": 313.4,
+          "end": 313.8
+        },
+        {
+          "word": "تنها",
+          "finglish": "tanha",
+          "start": 314.6,
+          "end": 315
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 315.2,
+          "end": 315.3
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 315.4,
+          "end": 315.5
+        },
+        {
+          "word": "ستایم",
+          "finglish": "setayam",
+          "start": 315.8,
+          "end": 317.8
+        }
+      ]
+    },
+    {
+      "line": "تویی الــشدای ، تویی ادونای ، تویی شاه من عیســی",
+      "start": 318.4,
+      "end": 325.8,
+      "words": [
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 318.4,
+          "end": 318.7
+        },
+        {
+          "word": "الشدای",
+          "finglish": "El Shaddai",
+          "start": 319.1,
+          "end": 319.7
+        },
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 320.4,
+          "end": 320.7
+        },
+        {
+          "word": "ادونای",
+          "finglish": "Adonai",
+          "start": 321,
+          "end": 321.5
+        },
+        {
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 322.2,
+          "end": 322.5
+        },
+        {
+          "word": "شاه",
+          "finglish": "shah",
+          "start": 322.7,
+          "end": 323
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 323.2,
+          "end": 323.4
+        },
+        {
+          "word": "عیســی",
+          "finglish": "Isa",
+          "start": 323.6,
+          "end": 325.8
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 328
 }

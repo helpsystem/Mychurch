@@ -1,857 +1,1171 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 127,
-    "lineCount": 30,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.276Z"
-  },
+  "songId": 14,
+  "generatedAt": "2026-01-20T02:15:09.624Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "V1",
-      "start": 0,
-      "end": 6,
+      "line": "خداوند تویی نور و نجاتم",
+      "start": 10.5,
+      "end": 12.19,
       "words": [
         {
-          "word": "V1",
-          "start": 0,
-          "end": 6
-        }
-      ]
-    },
-    {
-      "line": "خد[F]اوند تویی نور و نجا[Dm]تم",
-      "start": 6,
-      "end": 12,
-      "words": [
-        {
-          "word": "خد[F]اوند",
-          "start": 6,
-          "end": 7.2
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 10.5,
+          "end": 11.09
         },
         {
           "word": "تویی",
-          "start": 7.2,
-          "end": 8.4
+          "finglish": "toyi",
+          "start": 11.09,
+          "end": 11.3
         },
         {
           "word": "نور",
-          "start": 8.4,
-          "end": 9.6
+          "finglish": "noor",
+          "start": 11.3,
+          "end": 11.52
         },
         {
           "word": "و",
-          "start": 9.6,
-          "end": 10.8
+          "finglish": "o",
+          "start": 11.52,
+          "end": 11.6
         },
         {
-          "word": "نجا[Dm]تم",
-          "start": 10.8,
-          "end": 12
+          "word": "نجاتم",
+          "finglish": "nejatam",
+          "start": 11.6,
+          "end": 12.19
         }
       ]
     },
     {
-      "line": "کلا[C]مت چراغ راهنما[F]یم",
-      "start": 12,
-      "end": 18,
+      "line": "کلامت چراغ راهنمایم",
+      "start": 15.7,
+      "end": 17.4,
       "words": [
         {
-          "word": "کلا[C]مت",
-          "start": 12,
-          "end": 14
+          "word": "کلامت",
+          "finglish": "kalamet",
+          "start": 15.7,
+          "end": 16.2
         },
         {
           "word": "چراغ",
-          "start": 14,
-          "end": 16
+          "finglish": "cheragh",
+          "start": 16.2,
+          "end": 16.6
         },
         {
-          "word": "راهنما[F]یم",
-          "start": 16,
-          "end": 18
+          "word": "راهنمایم",
+          "finglish": "rahnamayam",
+          "start": 16.6,
+          "end": 17.4
         }
       ]
     },
     {
-      "line": "حمد[F]ت گویم و تسبیحت خوا[Bb]نم چون",
-      "start": 18,
-      "end": 24,
+      "line": "حمدت گویم و تسبیحت خوانم چون",
+      "start": 21.2,
+      "end": 23.3,
       "words": [
         {
-          "word": "حمد[F]ت",
-          "start": 18,
-          "end": 19
+          "word": "حمدت",
+          "finglish": "hamdet",
+          "start": 21.2,
+          "end": 21.6
         },
         {
           "word": "گویم",
-          "start": 19,
-          "end": 20
+          "finglish": "gooyam",
+          "start": 21.6,
+          "end": 21.9
         },
         {
           "word": "و",
-          "start": 20,
-          "end": 21
-        },
-        {
-          "word": "تسبیحت",
-          "start": 21,
+          "finglish": "o",
+          "start": 21.9,
           "end": 22
         },
         {
-          "word": "خوا[Bb]نم",
+          "word": "تسبیحت",
+          "finglish": "tasbihat",
           "start": 22,
+          "end": 22.5
+        },
+        {
+          "word": "خوانم",
+          "finglish": "khanam",
+          "start": 22.5,
           "end": 23
         },
         {
           "word": "چون",
+          "finglish": "chon",
           "start": 23,
-          "end": 24
+          "end": 23.3
         }
       ]
     },
     {
-      "line": "فدیه[F] شدی بهر[C] گناها[F]نم",
-      "start": 24,
-      "end": 30,
+      "line": "فدیه شدی بهر گناهانم",
+      "start": 26.5,
+      "end": 28.2,
       "words": [
         {
-          "word": "فدیه[F]",
-          "start": 24,
-          "end": 25.5
+          "word": "فدیه",
+          "finglish": "fedye",
+          "start": 26.5,
+          "end": 26.8
         },
         {
           "word": "شدی",
-          "start": 25.5,
-          "end": 27
+          "finglish": "shodi",
+          "start": 26.8,
+          "end": 27.1
         },
         {
-          "word": "بهر[C]",
-          "start": 27,
-          "end": 28.5
+          "word": "بهر",
+          "finglish": "bahre",
+          "start": 27.1,
+          "end": 27.4
         },
         {
-          "word": "گناها[F]نم",
-          "start": 28.5,
-          "end": 30
+          "word": "گناهانم",
+          "finglish": "gonahanam",
+          "start": 27.4,
+          "end": 28.2
         }
       ]
     },
     {
-      "line": "خدا[F]وند شبان من تو هـ[Dm]ـستی",
-      "start": 30,
-      "end": 36,
+      "line": "خداوند شبان من تو هــستی",
+      "start": 32.7,
+      "end": 34.4,
       "words": [
         {
-          "word": "خدا[F]وند",
-          "start": 30,
-          "end": 31.2
+          "word": "خداوند",
+          "finglish": "Khodavand",
+          "start": 32.7,
+          "end": 33.2
         },
         {
           "word": "شبان",
-          "start": 31.2,
-          "end": 32.4
-        },
-        {
-          "word": "من",
-          "start": 32.4,
+          "finglish": "shaban",
+          "start": 33.2,
           "end": 33.6
         },
         {
-          "word": "تو",
+          "word": "من",
+          "finglish": "man",
           "start": 33.6,
-          "end": 34.8
+          "end": 33.8
         },
         {
-          "word": "هـ[Dm]ـستی",
-          "start": 34.8,
-          "end": 36
+          "word": "تو",
+          "finglish": "to",
+          "start": 33.8,
+          "end": 34
+        },
+        {
+          "word": "هستی",
+          "finglish": "hasti",
+          "start": 34,
+          "end": 34.4
         }
       ]
     },
     {
-      "line": "نور[C] زندگی من تو هـ[F]ـستی",
-      "start": 36,
-      "end": 42,
+      "line": "نور زندگی من تو هــستی",
+      "start": 38.2,
+      "end": 40,
       "words": [
         {
-          "word": "نور[C]",
-          "start": 36,
-          "end": 37.2
+          "word": "نور",
+          "finglish": "noor",
+          "start": 38.2,
+          "end": 38.5
         },
         {
           "word": "زندگی",
-          "start": 37.2,
-          "end": 38.4
+          "finglish": "zendegi",
+          "start": 38.5,
+          "end": 39.1
         },
         {
           "word": "من",
-          "start": 38.4,
-          "end": 39.6
+          "finglish": "man",
+          "start": 39.1,
+          "end": 39.3
         },
         {
           "word": "تو",
-          "start": 39.6,
-          "end": 40.8
+          "finglish": "to",
+          "start": 39.3,
+          "end": 39.5
         },
         {
-          "word": "هـ[F]ـستی",
-          "start": 40.8,
-          "end": 42
+          "word": "هستی",
+          "finglish": "hasti",
+          "start": 39.5,
+          "end": 40
         }
       ]
     },
     {
-      "line": "تویی[F] راه و راستی و حیا[Bb]تم تو",
-      "start": 42,
-      "end": 48,
+      "line": "تویی راه و راستی و حیاتم تو",
+      "start": 43.8,
+      "end": 45.8,
       "words": [
         {
-          "word": "تویی[F]",
-          "start": 42,
-          "end": 42.857142857142854
+          "word": "تویی",
+          "finglish": "toyi",
+          "start": 43.8,
+          "end": 44.1
         },
         {
           "word": "راه",
-          "start": 42.857142857142854,
-          "end": 43.714285714285715
+          "finglish": "rah",
+          "start": 44.1,
+          "end": 44.4
         },
         {
           "word": "و",
-          "start": 43.714285714285715,
-          "end": 44.57142857142857
+          "finglish": "o",
+          "start": 44.4,
+          "end": 44.5
         },
         {
           "word": "راستی",
-          "start": 44.57142857142857,
-          "end": 45.42857142857143
+          "finglish": "rasti",
+          "start": 44.5,
+          "end": 45
         },
         {
           "word": "و",
-          "start": 45.42857142857143,
-          "end": 46.285714285714285
+          "finglish": "o",
+          "start": 45,
+          "end": 45.1
         },
         {
-          "word": "حیا[Bb]تم",
-          "start": 46.285714285714285,
-          "end": 47.14285714285714
+          "word": "حیاتم",
+          "finglish": "hayatam",
+          "start": 45.1,
+          "end": 45.6
         },
         {
           "word": "تو",
-          "start": 47.14285714285714,
-          "end": 48
+          "finglish": "to",
+          "start": 45.6,
+          "end": 45.8
         }
       ]
     },
     {
-      "line": "الف[F] و یا هستی[C] خداوند[F]م",
-      "start": 48,
-      "end": 54,
+      "line": "الف و یا هستی خداوندم",
+      "start": 49.7,
+      "end": 51.4,
       "words": [
         {
-          "word": "الف[F]",
-          "start": 48,
-          "end": 49.2
+          "word": "الف",
+          "finglish": "alef",
+          "start": 49.7,
+          "end": 50
         },
         {
           "word": "و",
-          "start": 49.2,
-          "end": 50.4
+          "finglish": "o",
+          "start": 50,
+          "end": 50.1
         },
         {
           "word": "یا",
-          "start": 50.4,
-          "end": 51.6
+          "finglish": "ya",
+          "start": 50.1,
+          "end": 50.3
         },
         {
-          "word": "هستی[C]",
-          "start": 51.6,
-          "end": 52.8
+          "word": "هستی",
+          "finglish": "hasti",
+          "start": 50.3,
+          "end": 50.7
         },
         {
-          "word": "خداوند[F]م",
-          "start": 52.8,
-          "end": 54
+          "word": "خداوندم",
+          "finglish": "Khodavandam",
+          "start": 50.7,
+          "end": 51.4
         }
       ]
     },
     {
-      "line": "Chorus (x2)",
-      "start": 54,
-      "end": 60,
+      "line": "منجی من معبود من",
+      "start": 55.4,
+      "end": 59.3,
       "words": [
         {
-          "word": "Chorus",
-          "start": 54,
-          "end": 57
-        },
-        {
-          "word": "(x2)",
-          "start": 57,
-          "end": 60
-        }
-      ]
-    },
-    {
-      "line": "منجی[Gm] من معبو[F]د من",
-      "start": 60,
-      "end": 66,
-      "words": [
-        {
-          "word": "منجی[Gm]",
-          "start": 60,
-          "end": 61.5
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 55.4,
+          "end": 55.8
         },
         {
           "word": "من",
-          "start": 61.5,
-          "end": 63
+          "finglish": "man",
+          "start": 55.8,
+          "end": 56
         },
         {
-          "word": "معبو[F]د",
-          "start": 63,
-          "end": 64.5
+          "word": "معبود",
+          "finglish": "mabood",
+          "start": 58.6,
+          "end": 59.1
         },
         {
           "word": "من",
-          "start": 64.5,
-          "end": 66
+          "finglish": "man",
+          "start": 59.1,
+          "end": 59.3
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "با خو[C]نت بخشیدی زندگیم[F]",
-      "start": 66,
-      "end": 72,
+      "line": "با خونت بخشیدی زندگیم",
+      "start": 61.6,
+      "end": 63.2,
       "words": [
         {
           "word": "با",
-          "start": 66,
-          "end": 67.5
+          "finglish": "ba",
+          "start": 61.6,
+          "end": 61.7
         },
         {
-          "word": "خو[C]نت",
-          "start": 67.5,
-          "end": 69
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 61.7,
+          "end": 62.1
         },
         {
           "word": "بخشیدی",
-          "start": 69,
-          "end": 70.5
+          "finglish": "bakhshidi",
+          "start": 62.1,
+          "end": 62.6
         },
         {
-          "word": "زندگیم[F]",
-          "start": 70.5,
-          "end": 72
+          "word": "زندگیم",
+          "finglish": "zendegim",
+          "start": 62.6,
+          "end": 63.2
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "عیسی[Gm] مسیح خدا[F]وندم",
-      "start": 72,
-      "end": 78,
+      "line": "عیسی مسیح خداوندم",
+      "start": 67.6,
+      "end": 69.1,
       "words": [
         {
-          "word": "عیسی[Gm]",
-          "start": 72,
-          "end": 74
+          "word": "عیسی",
+          "finglish": "Isa",
+          "start": 67.6,
+          "end": 68
         },
         {
           "word": "مسیح",
-          "start": 74,
-          "end": 76
+          "finglish": "Masih",
+          "start": 68,
+          "end": 68.4
         },
         {
-          "word": "خدا[F]وندم",
-          "start": 76,
-          "end": 78
+          "word": "خداوندم",
+          "finglish": "Khodavandam",
+          "start": 68.4,
+          "end": 69.1
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "بخشـ[C]ـیدی حیات جاودانیـ[F]ـم",
-      "start": 78,
-      "end": 84,
+      "line": "بخشــیدی حیات جاودانیــم",
+      "start": 73,
+      "end": 74.7,
       "words": [
         {
-          "word": "بخشـ[C]ـیدی",
-          "start": 78,
-          "end": 80
+          "word": "بخشیدی",
+          "finglish": "bakhshidi",
+          "start": 73,
+          "end": 73.5
         },
         {
           "word": "حیات",
-          "start": 80,
-          "end": 82
+          "finglish": "hayat",
+          "start": 73.5,
+          "end": 73.8
         },
         {
-          "word": "جاودانیـ[F]ـم",
-          "start": 82,
-          "end": 84
+          "word": "جاودانیم",
+          "finglish": "javdanim",
+          "start": 73.8,
+          "end": 74.7
         }
-      ]
+      ],
+      "label": "Chorus"
     },
     {
-      "line": "[column]",
-      "start": 84,
-      "end": 90,
+      "line": "گفتی نزدم آیید گرانباران",
+      "start": 79,
+      "end": 80.7,
       "words": [
         {
-          "word": "[column]",
-          "start": 84,
-          "end": 90
-        }
-      ]
-    },
-    {
-      "line": "V2",
-      "start": 90,
-      "end": 96,
-      "words": [
-        {
-          "word": "V2",
-          "start": 90,
-          "end": 96
-        }
-      ]
-    },
-    {
-      "line": "گفتی[F] نزدم آیید گرانبا[Dm]ران",
-      "start": 96,
-      "end": 102,
-      "words": [
-        {
-          "word": "گفتی[F]",
-          "start": 96,
-          "end": 97.5
+          "word": "گفتی",
+          "finglish": "gofti",
+          "start": 79,
+          "end": 79.3
         },
         {
           "word": "نزدم",
-          "start": 97.5,
-          "end": 99
+          "finglish": "nazdam",
+          "start": 79.3,
+          "end": 79.7
         },
         {
           "word": "آیید",
-          "start": 99,
-          "end": 100.5
+          "finglish": "ayid",
+          "start": 79.7,
+          "end": 80
         },
         {
-          "word": "گرانبا[Dm]ران",
-          "start": 100.5,
-          "end": 102
+          "word": "گرانباران",
+          "finglish": "garanbaran",
+          "start": 80,
+          "end": 80.7
         }
-      ]
+      ],
+      "label": "V2"
     },
     {
-      "line": "من شـ[C]ـما را آرامی خواهـ[F]ـم داد",
-      "start": 102,
-      "end": 108,
+      "line": "من شــما را آرامی خواهــم داد",
+      "start": 84.6,
+      "end": 86.3,
       "words": [
         {
           "word": "من",
-          "start": 102,
-          "end": 103
+          "finglish": "man",
+          "start": 84.6,
+          "end": 84.7
         },
         {
-          "word": "شـ[C]ـما",
-          "start": 103,
-          "end": 104
+          "word": "شما",
+          "finglish": "shoma",
+          "start": 84.7,
+          "end": 85
         },
         {
           "word": "را",
-          "start": 104,
-          "end": 105
+          "finglish": "ra",
+          "start": 85,
+          "end": 85.1
         },
         {
           "word": "آرامی",
-          "start": 105,
-          "end": 106
-        },
-        {
-          "word": "خواهـ[F]ـم",
-          "start": 106,
-          "end": 107
-        },
-        {
-          "word": "داد",
-          "start": 107,
-          "end": 108
-        }
-      ]
-    },
-    {
-      "line": "چون بـ[F]ـر صلیب فدیه شدی بهر[Bb]م تو",
-      "start": 108,
-      "end": 114,
-      "words": [
-        {
-          "word": "چون",
-          "start": 108,
-          "end": 108.85714285714286
-        },
-        {
-          "word": "بـ[F]ـر",
-          "start": 108.85714285714286,
-          "end": 109.71428571428571
-        },
-        {
-          "word": "صلیب",
-          "start": 109.71428571428571,
-          "end": 110.57142857142857
-        },
-        {
-          "word": "فدیه",
-          "start": 110.57142857142857,
-          "end": 111.42857142857143
-        },
-        {
-          "word": "شدی",
-          "start": 111.42857142857143,
-          "end": 112.28571428571429
-        },
-        {
-          "word": "بهر[Bb]م",
-          "start": 112.28571428571429,
-          "end": 113.14285714285714
-        },
-        {
-          "word": "تو",
-          "start": 113.14285714285714,
-          "end": 114
-        }
-      ]
-    },
-    {
-      "line": "با خو[F]نت بشستـ[C]ـی گناها[F]نم",
-      "start": 114,
-      "end": 120,
-      "words": [
-        {
-          "word": "با",
-          "start": 114,
-          "end": 115.5
-        },
-        {
-          "word": "خو[F]نت",
-          "start": 115.5,
-          "end": 117
-        },
-        {
-          "word": "بشستـ[C]ـی",
-          "start": 117,
-          "end": 118.5
-        },
-        {
-          "word": "گناها[F]نم",
-          "start": 118.5,
-          "end": 120
-        }
-      ]
-    },
-    {
-      "line": "زین [F]پس ما فرزند خدا [Dm]هستیم",
-      "start": 120,
-      "end": 126,
-      "words": [
-        {
-          "word": "زین",
-          "start": 120,
-          "end": 121
-        },
-        {
-          "word": "[F]پس",
-          "start": 121,
-          "end": 122
-        },
-        {
-          "word": "ما",
-          "start": 122,
-          "end": 123
-        },
-        {
-          "word": "فرزند",
-          "start": 123,
-          "end": 124
-        },
-        {
-          "word": "خدا",
-          "start": 124,
-          "end": 125
-        },
-        {
-          "word": "[Dm]هستیم",
-          "start": 125,
-          "end": 126
-        }
-      ]
-    },
-    {
-      "line": "شر[C]یک تاج و جلالش [F]هستیم",
-      "start": 126,
-      "end": 132,
-      "words": [
-        {
-          "word": "شر[C]یک",
-          "start": 126,
-          "end": 127.2
-        },
-        {
-          "word": "تاج",
-          "start": 127.2,
-          "end": 128.4
-        },
-        {
-          "word": "و",
-          "start": 128.4,
-          "end": 129.6
-        },
-        {
-          "word": "جلالش",
-          "start": 129.6,
-          "end": 130.8
-        },
-        {
-          "word": "[F]هستیم",
-          "start": 130.8,
-          "end": 132
-        }
-      ]
-    },
-    {
-      "line": "خد[F]ا داد پسر یگانه‌[Bb]اش تا",
-      "start": 132,
-      "end": 138,
-      "words": [
-        {
-          "word": "خد[F]ا",
-          "start": 132,
-          "end": 133.2
-        },
-        {
-          "word": "داد",
-          "start": 133.2,
-          "end": 134.4
-        },
-        {
-          "word": "پسر",
-          "start": 134.4,
-          "end": 135.6
-        },
-        {
-          "word": "یگانه‌[Bb]اش",
-          "start": 135.6,
-          "end": 136.8
-        },
-        {
-          "word": "تا",
-          "start": 136.8,
-          "end": 138
-        }
-      ]
-    },
-    {
-      "line": "فدیه[F] شود بهر[C] گناهانـ[F]ـم",
-      "start": 138,
-      "end": 144,
-      "words": [
-        {
-          "word": "فدیه[F]",
-          "start": 138,
-          "end": 139.5
-        },
-        {
-          "word": "شود",
-          "start": 139.5,
-          "end": 141
-        },
-        {
-          "word": "بهر[C]",
-          "start": 141,
-          "end": 142.5
-        },
-        {
-          "word": "گناهانـ[F]ـم",
-          "start": 142.5,
-          "end": 144
-        }
-      ]
-    },
-    {
-      "line": "Chorus (x2)",
-      "start": 144,
-      "end": 150,
-      "words": [
-        {
-          "word": "Chorus",
-          "start": 144,
-          "end": 147
-        },
-        {
-          "word": "(x2)",
-          "start": 147,
-          "end": 150
-        }
-      ]
-    },
-    {
-      "line": "V3",
-      "start": 150,
-      "end": 156,
-      "words": [
-        {
-          "word": "V3",
-          "start": 150,
-          "end": 156
-        }
-      ]
-    },
-    {
-      "line": "عیسی[F] خواهم رویت را ببـ[Dm]ـینم",
-      "start": 156,
-      "end": 162,
-      "words": [
-        {
-          "word": "عیسی[F]",
-          "start": 156,
-          "end": 157.2
+          "finglish": "arami",
+          "start": 85.1,
+          "end": 85.6
         },
         {
           "word": "خواهم",
-          "start": 157.2,
-          "end": 158.4
+          "finglish": "khaham",
+          "start": 85.6,
+          "end": 86
         },
         {
-          "word": "رویت",
-          "start": 158.4,
-          "end": 159.6
-        },
-        {
-          "word": "را",
-          "start": 159.6,
-          "end": 160.8
-        },
-        {
-          "word": "ببـ[Dm]ـینم",
-          "start": 160.8,
-          "end": 162
+          "word": "داد",
+          "finglish": "dad",
+          "start": 86,
+          "end": 86.3
         }
-      ]
+      ],
+      "label": "V2"
     },
     {
-      "line": "بازگـ[C]ـشتت را در ابرها ببـ[F]ـینم",
-      "start": 162,
-      "end": 168,
+      "line": "چون بــر صلیب فدیه شدی بهرم تو",
+      "start": 90.7,
+      "end": 92.6,
       "words": [
         {
-          "word": "بازگـ[C]ـشتت",
-          "start": 162,
-          "end": 163.2
-        },
-        {
-          "word": "را",
-          "start": 163.2,
-          "end": 164.4
-        },
-        {
-          "word": "در",
-          "start": 164.4,
-          "end": 165.6
-        },
-        {
-          "word": "ابرها",
-          "start": 165.6,
-          "end": 166.8
-        },
-        {
-          "word": "ببـ[F]ـینم",
-          "start": 166.8,
-          "end": 168
-        }
-      ]
-    },
-    {
-      "line": "تا با[F] قلبی پر از روح سرا[Bb]یم من",
-      "start": 168,
-      "end": 174,
-      "words": [
-        {
-          "word": "تا",
-          "start": 168,
-          "end": 168.75
-        },
-        {
-          "word": "با[F]",
-          "start": 168.75,
-          "end": 169.5
-        },
-        {
-          "word": "قلبی",
-          "start": 169.5,
-          "end": 170.25
-        },
-        {
-          "word": "پر",
-          "start": 170.25,
-          "end": 171
-        },
-        {
-          "word": "از",
-          "start": 171,
-          "end": 171.75
-        },
-        {
-          "word": "روح",
-          "start": 171.75,
-          "end": 172.5
-        },
-        {
-          "word": "سرا[Bb]یم",
-          "start": 172.5,
-          "end": 173.25
-        },
-        {
-          "word": "من",
-          "start": 173.25,
-          "end": 174
-        }
-      ]
-    },
-    {
-      "line": "جلا[F]ل بر تو باد ا[C]ی خداوند[F]م",
-      "start": 174,
-      "end": 180,
-      "words": [
-        {
-          "word": "جلا[F]ل",
-          "start": 174,
-          "end": 175
+          "word": "چون",
+          "finglish": "chon",
+          "start": 90.7,
+          "end": 90.9
         },
         {
           "word": "بر",
-          "start": 175,
-          "end": 176
+          "finglish": "bar",
+          "start": 90.9,
+          "end": 91.1
+        },
+        {
+          "word": "صلیب",
+          "finglish": "salib",
+          "start": 91.1,
+          "end": 91.5
+        },
+        {
+          "word": "فدیه",
+          "finglish": "fedye",
+          "start": 91.5,
+          "end": 91.8
+        },
+        {
+          "word": "شدی",
+          "finglish": "shodi",
+          "start": 91.8,
+          "end": 92.1
+        },
+        {
+          "word": "بهرم",
+          "finglish": "bahram",
+          "start": 92.1,
+          "end": 92.4
         },
         {
           "word": "تو",
-          "start": 176,
-          "end": 177
+          "finglish": "to",
+          "start": 92.4,
+          "end": 92.6
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "با خونت بشستــی گناهانم",
+      "start": 96.4,
+      "end": 98.1,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 96.4,
+          "end": 96.5
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 96.5,
+          "end": 96.9
+        },
+        {
+          "word": "بشستی",
+          "finglish": "beshosti",
+          "start": 96.9,
+          "end": 97.4
+        },
+        {
+          "word": "گناهانم",
+          "finglish": "gonahanam",
+          "start": 97.4,
+          "end": 98.1
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "زین پس ما فرزند خدا هستیم",
+      "start": 102.6,
+      "end": 104.5,
+      "words": [
+        {
+          "word": "زین",
+          "finglish": "zin",
+          "start": 102.6,
+          "end": 102.8
+        },
+        {
+          "word": "پس",
+          "finglish": "pas",
+          "start": 102.8,
+          "end": 103
+        },
+        {
+          "word": "ما",
+          "finglish": "ma",
+          "start": 103,
+          "end": 103.2
+        },
+        {
+          "word": "فرزند",
+          "finglish": "farzand",
+          "start": 103.2,
+          "end": 103.7
+        },
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 103.7,
+          "end": 104
+        },
+        {
+          "word": "هستیم",
+          "finglish": "hastim",
+          "start": 104,
+          "end": 104.5
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "شریک تاج و جلالش هستیم",
+      "start": 108.4,
+      "end": 110.2,
+      "words": [
+        {
+          "word": "شریک",
+          "finglish": "sharik",
+          "start": 108.4,
+          "end": 108.8
+        },
+        {
+          "word": "تاج",
+          "finglish": "taj",
+          "start": 108.8,
+          "end": 109.1
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 109.1,
+          "end": 109.2
+        },
+        {
+          "word": "جلالش",
+          "finglish": "jalalesh",
+          "start": 109.2,
+          "end": 109.7
+        },
+        {
+          "word": "هستیم",
+          "finglish": "hastim",
+          "start": 109.7,
+          "end": 110.2
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "خدا داد پسر یگانه‌اش تا",
+      "start": 114.4,
+      "end": 116.2,
+      "words": [
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 114.4,
+          "end": 114.7
+        },
+        {
+          "word": "داد",
+          "finglish": "dad",
+          "start": 114.7,
+          "end": 114.9
+        },
+        {
+          "word": "پسر",
+          "finglish": "pesar",
+          "start": 114.9,
+          "end": 115.3
+        },
+        {
+          "word": "یگانه",
+          "finglish": "yeganeh",
+          "start": 115.3,
+          "end": 115.8
+        },
+        {
+          "word": "اش",
+          "finglish": "ash",
+          "start": 115.8,
+          "end": 116
+        },
+        {
+          "word": "تا",
+          "finglish": "ta",
+          "start": 116,
+          "end": 116.2
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "فدیه شود بهر گناهانــم",
+      "start": 120.4,
+      "end": 122,
+      "words": [
+        {
+          "word": "فدیه",
+          "finglish": "fedye",
+          "start": 120.4,
+          "end": 120.7
+        },
+        {
+          "word": "شود",
+          "finglish": "shavad",
+          "start": 120.7,
+          "end": 121
+        },
+        {
+          "word": "بهر",
+          "finglish": "bahre",
+          "start": 121,
+          "end": 121.3
+        },
+        {
+          "word": "گناهانم",
+          "finglish": "gonahanam",
+          "start": 121.3,
+          "end": 122
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "منجی من معبود من",
+      "start": 126.3,
+      "end": 130.2,
+      "words": [
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 126.3,
+          "end": 126.7
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 126.7,
+          "end": 126.9
+        },
+        {
+          "word": "معبود",
+          "finglish": "mabood",
+          "start": 129.5,
+          "end": 130
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 130,
+          "end": 130.2
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "با خونت بخشیدی زندگیم",
+      "start": 132.3,
+      "end": 133.9,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 132.3,
+          "end": 132.4
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 132.4,
+          "end": 132.8
+        },
+        {
+          "word": "بخشیدی",
+          "finglish": "bakhshidi",
+          "start": 132.8,
+          "end": 133.3
+        },
+        {
+          "word": "زندگیم",
+          "finglish": "zendegim",
+          "start": 133.3,
+          "end": 133.9
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "عیسی مسیح خداوندم",
+      "start": 138.6,
+      "end": 140.1,
+      "words": [
+        {
+          "word": "عیسی",
+          "finglish": "Isa",
+          "start": 138.6,
+          "end": 139
+        },
+        {
+          "word": "مسیح",
+          "finglish": "Masih",
+          "start": 139,
+          "end": 139.4
+        },
+        {
+          "word": "خداوندم",
+          "finglish": "Khodavandam",
+          "start": 139.4,
+          "end": 140.1
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "بخشــیدی حیات جاودانیــم",
+      "start": 144.2,
+      "end": 145.9,
+      "words": [
+        {
+          "word": "بخشیدی",
+          "finglish": "bakhshidi",
+          "start": 144.2,
+          "end": 144.7
+        },
+        {
+          "word": "حیات",
+          "finglish": "hayat",
+          "start": 144.7,
+          "end": 145
+        },
+        {
+          "word": "جاودانیم",
+          "finglish": "javdanim",
+          "start": 145,
+          "end": 145.9
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "عیسی خواهم رویت را ببــینم",
+      "start": 150.5,
+      "end": 152,
+      "words": [
+        {
+          "word": "عیسی",
+          "finglish": "Isa",
+          "start": 150.5,
+          "end": 150.8
+        },
+        {
+          "word": "خواهم",
+          "finglish": "khaham",
+          "start": 150.8,
+          "end": 151.1
+        },
+        {
+          "word": "رویت",
+          "finglish": "rooyat",
+          "start": 151.1,
+          "end": 151.4
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 151.4,
+          "end": 151.5
+        },
+        {
+          "word": "ببینم",
+          "finglish": "bebinam",
+          "start": 151.5,
+          "end": 152
+        }
+      ],
+      "label": "V3"
+    },
+    {
+      "line": "بازگــشتت را در ابرها ببــینم",
+      "start": 156.6,
+      "end": 158.5,
+      "words": [
+        {
+          "word": "بازگشتت",
+          "finglish": "bazgashtat",
+          "start": 156.6,
+          "end": 157.2
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 157.2,
+          "end": 157.3
+        },
+        {
+          "word": "در",
+          "finglish": "dar",
+          "start": 157.3,
+          "end": 157.5
+        },
+        {
+          "word": "ابرها",
+          "finglish": "abrhah",
+          "start": 157.5,
+          "end": 158
+        },
+        {
+          "word": "ببینم",
+          "finglish": "bebinam",
+          "start": 158,
+          "end": 158.5
+        }
+      ],
+      "label": "V3"
+    },
+    {
+      "line": "تا با قلبی پر از روح سرایم من",
+      "start": 162.5,
+      "end": 164.5,
+      "words": [
+        {
+          "word": "تا",
+          "finglish": "ta",
+          "start": 162.5,
+          "end": 162.6
+        },
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 162.6,
+          "end": 162.7
+        },
+        {
+          "word": "قلبی",
+          "finglish": "ghalbi",
+          "start": 162.7,
+          "end": 163.1
+        },
+        {
+          "word": "پر",
+          "finglish": "por",
+          "start": 163.1,
+          "end": 163.3
+        },
+        {
+          "word": "از",
+          "finglish": "az",
+          "start": 163.3,
+          "end": 163.4
+        },
+        {
+          "word": "روح",
+          "finglish": "rooh",
+          "start": 163.4,
+          "end": 163.7
+        },
+        {
+          "word": "سرایم",
+          "finglish": "sarayam",
+          "start": 163.7,
+          "end": 164.3
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 164.3,
+          "end": 164.5
+        }
+      ],
+      "label": "V3"
+    },
+    {
+      "line": "جلال بر تو باد ای خداوندم",
+      "start": 168.5,
+      "end": 170.2,
+      "words": [
+        {
+          "word": "جلال",
+          "finglish": "jalal",
+          "start": 168.5,
+          "end": 168.8
+        },
+        {
+          "word": "بر",
+          "finglish": "bar",
+          "start": 168.8,
+          "end": 169
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 169,
+          "end": 169.2
         },
         {
           "word": "باد",
-          "start": 177,
-          "end": 178
+          "finglish": "bad",
+          "start": 169.2,
+          "end": 169.4
         },
         {
-          "word": "ا[C]ی",
-          "start": 178,
-          "end": 179
+          "word": "ای",
+          "finglish": "ey",
+          "start": 169.4,
+          "end": 169.5
         },
         {
-          "word": "خداوند[F]م",
-          "start": 179,
-          "end": 180
+          "word": "خداوندم",
+          "finglish": "Khodavandam",
+          "start": 169.5,
+          "end": 170.2
+        }
+      ],
+      "label": "V3"
+    },
+    {
+      "line": "منجی من معبود من",
+      "start": 174.6,
+      "end": 178.5,
+      "words": [
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 174.6,
+          "end": 175
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 175,
+          "end": 175.2
+        },
+        {
+          "word": "معبود",
+          "finglish": "mabood",
+          "start": 177.8,
+          "end": 178.3
+        },
+        {
+          "word": "من",
+          "finglish": "man",
+          "start": 178.3,
+          "end": 178.5
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "با خونت بخشیدی زندگیم",
+      "start": 180.6,
+      "end": 182.2,
+      "words": [
+        {
+          "word": "با",
+          "finglish": "ba",
+          "start": 180.6,
+          "end": 180.7
+        },
+        {
+          "word": "خونت",
+          "finglish": "khoonat",
+          "start": 180.7,
+          "end": 181.1
+        },
+        {
+          "word": "بخشیدی",
+          "finglish": "bakhshidi",
+          "start": 181.1,
+          "end": 181.6
+        },
+        {
+          "word": "زندگیم",
+          "finglish": "zendegim",
+          "start": 181.6,
+          "end": 182.2
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "عیسی مسیح خداوندم",
+      "start": 186.6,
+      "end": 188.1,
+      "words": [
+        {
+          "word": "عیسی",
+          "finglish": "Isa",
+          "start": 186.6,
+          "end": 187
+        },
+        {
+          "word": "مسیح",
+          "finglish": "Masih",
+          "start": 187,
+          "end": 187.4
+        },
+        {
+          "word": "خداوندم",
+          "finglish": "Khodavandam",
+          "start": 187.4,
+          "end": 188.1
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "بخشــیدی حیات جاودانیــم",
+      "start": 192.2,
+      "end": 193.9,
+      "words": [
+        {
+          "word": "بخشیدی",
+          "finglish": "bakhshidi",
+          "start": 192.2,
+          "end": 192.7
+        },
+        {
+          "word": "حیات",
+          "finglish": "hayat",
+          "start": 192.7,
+          "end": 193
+        },
+        {
+          "word": "جاودانیم",
+          "finglish": "javdanim",
+          "start": 193,
+          "end": 193.9
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "بخشــیدی حیات جاودانیــم",
+      "start": 198,
+      "end": 199.7,
+      "words": [
+        {
+          "word": "بخشیدی",
+          "finglish": "bakhshidi",
+          "start": 198,
+          "end": 198.5
+        },
+        {
+          "word": "حیات",
+          "finglish": "hayat",
+          "start": 198.5,
+          "end": 198.8
+        },
+        {
+          "word": "جاودانیم",
+          "finglish": "javdanim",
+          "start": 198.8,
+          "end": 199.7
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 209
 }

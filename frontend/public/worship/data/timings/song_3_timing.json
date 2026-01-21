@@ -1,721 +1,1246 @@
 {
-  "metadata": {
-    "title": "بخوان نام عیسی را",
-    "artist": "مجید دستوری",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/Bekhan%20name%20Isa%20ra.mp3",
-    "totalDuration": 307.32,
-    "wordCount": 56,
-    "lineCount": 21
-  },
-  "words": [
-    {
-      "word": "PYM",
-      "start": 6.56,
-      "end": 7.96
-    },
-    {
-      "word": "JBZ",
-      "start": 7.96,
-      "end": 9.36
-    },
-    {
-      "word": "PYM",
-      "start": 55.02,
-      "end": 56.42
-    },
-    {
-      "word": "JBZ",
-      "start": 56.42,
-      "end": 57.82
-    },
-    {
-      "word": "PYM",
-      "start": 65.52,
-      "end": 66.92
-    },
-    {
-      "word": "JBZ",
-      "start": 66.92,
-      "end": 66.96
-    },
-    {
-      "word": "PYM",
-      "start": 94.54,
-      "end": 95.94
-    },
-    {
-      "word": "JBZ",
-      "start": 95.94,
-      "end": 95.98
-    },
-    {
-      "word": "PYM",
-      "start": 121.92,
-      "end": 122.86
-    },
-    {
-      "word": "JBZ",
-      "start": 122.86,
-      "end": 122.9
-    },
-    {
-      "word": "PYM",
-      "start": 122.9,
-      "end": 122.96
-    },
-    {
-      "word": "JBZ",
-      "start": 122.96,
-      "end": 123.84
-    },
-    {
-      "word": "PYM",
-      "start": 138.72,
-      "end": 140.12
-    },
-    {
-      "word": "JBZ",
-      "start": 140.12,
-      "end": 140.16
-    },
-    {
-      "word": "PYM",
-      "start": 148.64,
-      "end": 150.04
-    },
-    {
-      "word": "JBZ",
-      "start": 150.04,
-      "end": 151.44
-    },
-    {
-      "word": "PYM",
-      "start": 155.86,
-      "end": 157.26
-    },
-    {
-      "word": "JBZ",
-      "start": 157.26,
-      "end": 157.64
-    },
-    {
-      "word": "PYM",
-      "start": 159.48,
-      "end": 160.88
-    },
-    {
-      "word": "JBZ",
-      "start": 160.88,
-      "end": 160.92
-    },
-    {
-      "word": "PYM",
-      "start": 170.82,
-      "end": 172.22
-    },
-    {
-      "word": "JBZ",
-      "start": 172.22,
-      "end": 172.26
-    },
-    {
-      "word": "PYM",
-      "start": 172.26,
-      "end": 172.6
-    },
-    {
-      "word": "JBZ",
-      "start": 172.6,
-      "end": 174.36
-    },
-    {
-      "word": "PYM",
-      "start": 177.98,
-      "end": 179.38
-    },
-    {
-      "word": "JBZ",
-      "start": 179.38,
-      "end": 179.42
-    },
-    {
-      "word": "PYM",
-      "start": 187.78,
-      "end": 189.18
-    },
-    {
-      "word": "JBZ",
-      "start": 189.18,
-      "end": 190.58
-    },
-    {
-      "word": "PYM",
-      "start": 194.48,
-      "end": 195.88
-    },
-    {
-      "word": "JBZ",
-      "start": 195.88,
-      "end": 195.92
-    },
-    {
-      "word": "PYM",
-      "start": 200.12,
-      "end": 201.52
-    },
-    {
-      "word": "JBZ",
-      "start": 201.52,
-      "end": 202.14
-    },
-    {
-      "word": "PYM",
-      "start": 216.94,
-      "end": 218.34
-    },
-    {
-      "word": "JBZ",
-      "start": 218.34,
-      "end": 218.38
-    },
-    {
-      "word": "PYM",
-      "start": 225.08,
-      "end": 226.48
-    },
-    {
-      "word": "JBZ",
-      "start": 226.48,
-      "end": 226.52
-    },
-    {
-      "word": "PYM",
-      "start": 228.58,
-      "end": 229.98
-    },
-    {
-      "word": "JBZ",
-      "start": 229.98,
-      "end": 230.02
-    },
-    {
-      "word": "PYM",
-      "start": 230.02,
-      "end": 230.08
-    },
-    {
-      "word": "JBZ",
-      "start": 230.08,
-      "end": 232.58
-    },
-    {
-      "word": "PYM",
-      "start": 236.96,
-      "end": 238.36
-    },
-    {
-      "word": "JBZ",
-      "start": 238.36,
-      "end": 239.06
-    },
-    {
-      "word": "PYM",
-      "start": 239.06,
-      "end": 239.12
-    },
-    {
-      "word": "JBZ",
-      "start": 239.12,
-      "end": 240.18
-    },
-    {
-      "word": "PYM",
-      "start": 253.2,
-      "end": 254.6
-    },
-    {
-      "word": "JBZ",
-      "start": 254.6,
-      "end": 256.0
-    },
-    {
-      "word": "PYM",
-      "start": 278.74,
-      "end": 280.14
-    },
-    {
-      "word": "JBZ",
-      "start": 280.14,
-      "end": 281.54
-    },
-    {
-      "word": "PYM",
-      "start": 283.78,
-      "end": 285.18
-    },
-    {
-      "word": "JBZ",
-      "start": 285.18,
-      "end": 285.24
-    },
-    {
-      "word": "PYM",
-      "start": 288.18,
-      "end": 289.58
-    },
-    {
-      "word": "JBZ",
-      "start": 289.58,
-      "end": 289.62
-    },
-    {
-      "word": "PYM",
-      "start": 300.1,
-      "end": 301.5
-    },
-    {
-      "word": "JBZ",
-      "start": 301.5,
-      "end": 302.9
-    },
-    {
-      "word": "PYM",
-      "start": 305.88,
-      "end": 307.28
-    },
-    {
-      "word": "JBZ",
-      "start": 307.28,
-      "end": 307.32
-    }
-  ],
+  "songId": 3,
+  "generatedAt": "2026-01-20T02:00:31.949Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "PYM JBZ PYM",
-      "start": 6.56,
-      "end": 56.42,
+      "line": "هر جا که تــنهایی ، هر جا که بی‌تابی",
+      "start": 38.3,
+      "end": 44.4,
       "words": [
         {
-          "word": "PYM",
-          "start": 6.56,
-          "end": 7.96
+          "word": "هر",
+          "finglish": "har",
+          "start": 38.3,
+          "end": 38.48
         },
         {
-          "word": "JBZ",
-          "start": 7.96,
-          "end": 9.36
+          "word": "جا",
+          "finglish": "ja",
+          "start": 38.48,
+          "end": 38.67
         },
         {
-          "word": "PYM",
-          "start": 55.02,
-          "end": 56.42
+          "word": "که",
+          "finglish": "ke",
+          "start": 38.67,
+          "end": 38.8
+        },
+        {
+          "word": "تــنهایی",
+          "finglish": "tanhayi",
+          "start": 38.8,
+          "end": 40.2
+        },
+        {
+          "word": "،",
+          "finglish": ",",
+          "start": 40.2,
+          "end": 40.3
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 41.9,
+          "end": 42.1
+        },
+        {
+          "word": "جا",
+          "finglish": "ja",
+          "start": 42.1,
+          "end": 42.3
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 42.3,
+          "end": 42.4
+        },
+        {
+          "word": "بی‌تابی",
+          "finglish": "bitabi",
+          "start": 42.4,
+          "end": 44.4
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 56.42,
-      "end": 66.92,
+      "line": "هر جا غریبــی و ندیدی آشنایی",
+      "start": 46.4,
+      "end": 52.6,
       "words": [
         {
-          "word": "JBZ",
-          "start": 56.42,
-          "end": 57.82
+          "word": "هر",
+          "finglish": "har",
+          "start": 46.4,
+          "end": 46.6
         },
         {
-          "word": "PYM",
-          "start": 65.52,
-          "end": 66.92
+          "word": "جا",
+          "finglish": "ja",
+          "start": 46.6,
+          "end": 46.8
+        },
+        {
+          "word": "غریبــی",
+          "finglish": "gharibi",
+          "start": 46.8,
+          "end": 48.4
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 48.4,
+          "end": 49.9
+        },
+        {
+          "word": "ندیدی",
+          "finglish": "nadidi",
+          "start": 50.3,
+          "end": 51.3
+        },
+        {
+          "word": "آشنایی",
+          "finglish": "ashnayi",
+          "start": 51.3,
+          "end": 52.6
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 66.92,
-      "end": 95.94,
+      "line": "هر جا که ترسیدی ، هر جا که رنــجیدی",
+      "start": 54.5,
+      "end": 61.1,
       "words": [
         {
-          "word": "JBZ",
-          "start": 66.92,
-          "end": 66.96
+          "word": "هر",
+          "finglish": "har",
+          "start": 54.5,
+          "end": 54.7
         },
         {
-          "word": "PYM",
-          "start": 94.54,
-          "end": 95.94
+          "word": "جا",
+          "finglish": "ja",
+          "start": 54.7,
+          "end": 54.9
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 54.9,
+          "end": 55
+        },
+        {
+          "word": "ترسیدی",
+          "finglish": "tarsidi",
+          "start": 55,
+          "end": 56.6
+        },
+        {
+          "word": "،",
+          "finglish": ",",
+          "start": 56.6,
+          "end": 56.7
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 58.3,
+          "end": 58.5
+        },
+        {
+          "word": "جا",
+          "finglish": "ja",
+          "start": 58.5,
+          "end": 58.7
+        },
+        {
+          "word": "که",
+          "finglish": "ke",
+          "start": 58.7,
+          "end": 58.8
+        },
+        {
+          "word": "رنــجیدی",
+          "finglish": "ranjidi",
+          "start": 58.8,
+          "end": 61.1
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 95.94,
-      "end": 122.86,
+      "line": "هر جا اگر غــم بود هر جا نبخــشیدی",
+      "start": 62.7,
+      "end": 69,
       "words": [
         {
-          "word": "JBZ",
-          "start": 95.94,
-          "end": 95.98
+          "word": "هر",
+          "finglish": "har",
+          "start": 62.7,
+          "end": 62.9
         },
         {
-          "word": "PYM",
-          "start": 121.92,
-          "end": 122.86
+          "word": "جا",
+          "finglish": "ja",
+          "start": 62.9,
+          "end": 63.1
+        },
+        {
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 63.1,
+          "end": 63.4
+        },
+        {
+          "word": "غــم",
+          "finglish": "gham",
+          "start": 63.4,
+          "end": 64.1
+        },
+        {
+          "word": "بود",
+          "finglish": "bud",
+          "start": 64.1,
+          "end": 65
+        },
+        {
+          "word": "هر",
+          "finglish": "har",
+          "start": 66.2,
+          "end": 66.4
+        },
+        {
+          "word": "جا",
+          "finglish": "ja",
+          "start": 66.4,
+          "end": 66.6
+        },
+        {
+          "word": "نَبَخشیدی",
+          "finglish": "nabakhshidi",
+          "start": 66.6,
+          "end": 69
         }
       ]
     },
     {
-      "line": "JBZ PYM JBZ PYM",
-      "start": 122.86,
-      "end": 140.12,
+      "line": "بخوان نام عیــسی را",
+      "start": 111.5,
+      "end": 117.7,
       "words": [
         {
-          "word": "JBZ",
-          "start": 122.86,
-          "end": 122.9
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 111.5,
+          "end": 114.3
         },
         {
-          "word": "PYM",
+          "word": "نام",
+          "finglish": "name",
+          "start": 114.9,
+          "end": 115.5
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 115.5,
+          "end": 116.8
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 116.8,
+          "end": 117.7
+        }
+      ]
+    },
+    {
+      "line": "بخوان منجی یکــتا را",
+      "start": 119.6,
+      "end": 125.7,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 119.6,
+          "end": 122.3
+        },
+        {
+          "word": "منجی",
+          "finglish": "monji",
           "start": 122.9,
-          "end": 122.96
+          "end": 123.7
         },
         {
-          "word": "JBZ",
-          "start": 122.96,
-          "end": 123.84
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 123.7,
+          "end": 125
         },
         {
-          "word": "PYM",
-          "start": 138.72,
-          "end": 140.12
+          "word": "را",
+          "finglish": "ra",
+          "start": 125,
+          "end": 125.7
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 140.12,
-      "end": 150.04,
+      "line": "بخوان نام عیــسی را",
+      "start": 127.6,
+      "end": 133.9,
       "words": [
         {
-          "word": "JBZ",
-          "start": 140.12,
-          "end": 140.16
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 127.6,
+          "end": 130.4
         },
         {
-          "word": "PYM",
-          "start": 148.64,
-          "end": 150.04
+          "word": "نام",
+          "finglish": "name",
+          "start": 131,
+          "end": 131.6
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 131.6,
+          "end": 132.9
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 132.9,
+          "end": 133.9
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 150.04,
-      "end": 157.26,
+      "line": "بخوان منجی یکــتا را",
+      "start": 135.6,
+      "end": 141.6,
       "words": [
         {
-          "word": "JBZ",
-          "start": 150.04,
-          "end": 151.44
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 135.6,
+          "end": 138.2
         },
         {
-          "word": "PYM",
-          "start": 155.86,
-          "end": 157.26
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 138.8,
+          "end": 139.6
+        },
+        {
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 139.6,
+          "end": 140.9
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 140.9,
+          "end": 141.6
         }
       ]
     },
     {
-      "line": "JBZ PYM JBZ PYM",
-      "start": 157.26,
-      "end": 172.22,
+      "line": "اگر دنیا تو را پــس زد",
+      "start": 215.8,
+      "end": 219,
       "words": [
         {
-          "word": "JBZ",
-          "start": 157.26,
-          "end": 157.64
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 215.8,
+          "end": 216.1
         },
         {
-          "word": "PYM",
-          "start": 159.48,
-          "end": 160.88
+          "word": "دنیا",
+          "finglish": "donya",
+          "start": 216.1,
+          "end": 216.6
         },
         {
-          "word": "JBZ",
-          "start": 160.88,
-          "end": 160.92
+          "word": "تو",
+          "finglish": "to",
+          "start": 216.6,
+          "end": 216.8
         },
         {
-          "word": "PYM",
-          "start": 170.82,
-          "end": 172.22
+          "word": "را",
+          "finglish": "ra",
+          "start": 216.8,
+          "end": 217
+        },
+        {
+          "word": "پــس",
+          "finglish": "pas",
+          "start": 217,
+          "end": 218
+        },
+        {
+          "word": "زد",
+          "finglish": "zad",
+          "start": 218,
+          "end": 219
         }
       ]
     },
     {
-      "line": "JBZ PYM JBZ PYM",
-      "start": 172.22,
-      "end": 179.38,
+      "line": "اگر مــغلوب و مطــرودی",
+      "start": 219.7,
+      "end": 223.2,
       "words": [
         {
-          "word": "JBZ",
-          "start": 172.22,
-          "end": 172.26
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 219.7,
+          "end": 220
         },
         {
-          "word": "PYM",
-          "start": 172.26,
-          "end": 172.6
+          "word": "مــغلوب",
+          "finglish": "maghloob",
+          "start": 220,
+          "end": 221.2
         },
         {
-          "word": "JBZ",
-          "start": 172.6,
-          "end": 174.36
+          "word": "و",
+          "finglish": "o",
+          "start": 221.2,
+          "end": 221.3
         },
         {
-          "word": "PYM",
-          "start": 177.98,
-          "end": 179.38
+          "word": "مطــرودی",
+          "finglish": "matroodi",
+          "start": 221.3,
+          "end": 223.2
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 179.38,
-      "end": 189.18,
+      "line": "اگر نــداری هیچ امــید",
+      "start": 224,
+      "end": 227.7,
       "words": [
         {
-          "word": "JBZ",
-          "start": 179.38,
-          "end": 179.42
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 224,
+          "end": 224.3
         },
         {
-          "word": "PYM",
-          "start": 187.78,
-          "end": 189.18
+          "word": "نــداری",
+          "finglish": "nadari",
+          "start": 224.3,
+          "end": 225.5
+        },
+        {
+          "word": "هیچ",
+          "finglish": "hich",
+          "start": 225.5,
+          "end": 226.2
+        },
+        {
+          "word": "امــید",
+          "finglish": "omid",
+          "start": 226.2,
+          "end": 227.7
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 189.18,
-      "end": 195.88,
+      "line": "دنیا گفت تو نابودی",
+      "start": 228.3,
+      "end": 231.9,
       "words": [
         {
-          "word": "JBZ",
-          "start": 189.18,
-          "end": 190.58
+          "word": "دنیا",
+          "finglish": "donya",
+          "start": 228.3,
+          "end": 229
         },
         {
-          "word": "PYM",
-          "start": 194.48,
-          "end": 195.88
+          "word": "گفت",
+          "finglish": "goft",
+          "start": 229,
+          "end": 229.7
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 229.7,
+          "end": 230
+        },
+        {
+          "word": "نابودی",
+          "finglish": "naboodi",
+          "start": 230,
+          "end": 231.9
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 195.88,
-      "end": 201.52,
+      "line": "بدان عــیسی تو را خوانده",
+      "start": 232.5,
+      "end": 236,
       "words": [
         {
-          "word": "JBZ",
-          "start": 195.88,
-          "end": 195.92
+          "word": "بدان",
+          "finglish": "bedan",
+          "start": 232.5,
+          "end": 233.1
         },
         {
-          "word": "PYM",
-          "start": 200.12,
-          "end": 201.52
+          "word": "عــیسی",
+          "finglish": "isa",
+          "start": 233.1,
+          "end": 234.2
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 234.2,
+          "end": 234.4
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 234.4,
+          "end": 234.6
+        },
+        {
+          "word": "خوانده",
+          "finglish": "khande",
+          "start": 234.6,
+          "end": 236
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 201.52,
-      "end": 218.34,
+      "line": "او گــفته تو فرزندی",
+      "start": 236.4,
+      "end": 239.9,
       "words": [
         {
-          "word": "JBZ",
-          "start": 201.52,
-          "end": 202.14
+          "word": "او",
+          "finglish": "oo",
+          "start": 236.4,
+          "end": 236.6
         },
         {
-          "word": "PYM",
-          "start": 216.94,
-          "end": 218.34
+          "word": "گــفته",
+          "finglish": "gofte",
+          "start": 236.6,
+          "end": 237.6
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 237.6,
+          "end": 237.8
+        },
+        {
+          "word": "فرزندی",
+          "finglish": "farzandi",
+          "start": 237.8,
+          "end": 239.9
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 218.34,
-      "end": 226.48,
+      "line": "نه منفور و نه محکــومی",
+      "start": 240.4,
+      "end": 244,
       "words": [
         {
-          "word": "JBZ",
-          "start": 218.34,
-          "end": 218.38
+          "word": "نه",
+          "finglish": "na",
+          "start": 240.4,
+          "end": 240.6
         },
         {
-          "word": "PYM",
-          "start": 225.08,
-          "end": 226.48
+          "word": "منفور",
+          "finglish": "manfoor",
+          "start": 240.6,
+          "end": 241.6
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 241.6,
+          "end": 241.7
+        },
+        {
+          "word": "نه",
+          "finglish": "na",
+          "start": 241.7,
+          "end": 241.9
+        },
+        {
+          "word": "محکــومی",
+          "finglish": "mahkoomi",
+          "start": 241.9,
+          "end": 244
         }
       ]
     },
     {
-      "line": "JBZ PYM JBZ PYM JBZ",
-      "start": 226.48,
-      "end": 232.58,
+      "line": "تو محبــوب خداوندی",
+      "start": 244.4,
+      "end": 248.4,
       "words": [
         {
-          "word": "JBZ",
-          "start": 226.48,
-          "end": 226.52
+          "word": "تو",
+          "finglish": "to",
+          "start": 244.4,
+          "end": 244.6
         },
         {
-          "word": "PYM",
-          "start": 228.58,
-          "end": 229.98
+          "word": "محبــوب",
+          "finglish": "mahboob",
+          "start": 244.6,
+          "end": 246
         },
         {
-          "word": "JBZ",
-          "start": 229.98,
-          "end": 230.02
-        },
-        {
-          "word": "PYM",
-          "start": 230.02,
-          "end": 230.08
-        },
-        {
-          "word": "JBZ",
-          "start": 230.08,
-          "end": 232.58
+          "word": "خداوندی",
+          "finglish": "khodavandi",
+          "start": 246,
+          "end": 248.4
         }
       ]
     },
     {
-      "line": "PYM JBZ PYM JBZ PYM",
-      "start": 236.96,
-      "end": 254.6,
+      "line": "اگر دنیا تو را پــس زد",
+      "start": 250.8,
+      "end": 254.2,
       "words": [
         {
-          "word": "PYM",
-          "start": 236.96,
-          "end": 238.36
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 250.8,
+          "end": 251.1
         },
         {
-          "word": "JBZ",
-          "start": 238.36,
-          "end": 239.06
+          "word": "دنیا",
+          "finglish": "donya",
+          "start": 251.1,
+          "end": 251.6
         },
         {
-          "word": "PYM",
-          "start": 239.06,
-          "end": 239.12
+          "word": "تو",
+          "finglish": "to",
+          "start": 251.6,
+          "end": 251.8
         },
         {
-          "word": "JBZ",
-          "start": 239.12,
-          "end": 240.18
+          "word": "را",
+          "finglish": "ra",
+          "start": 251.8,
+          "end": 252
         },
         {
-          "word": "PYM",
-          "start": 253.2,
-          "end": 254.6
+          "word": "پــس",
+          "finglish": "pas",
+          "start": 252,
+          "end": 253
+        },
+        {
+          "word": "زد",
+          "finglish": "zad",
+          "start": 253,
+          "end": 254.2
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 254.6,
-      "end": 280.14,
+      "line": "اگر مــغلوب و مطــرودی",
+      "start": 254.7,
+      "end": 258.2,
       "words": [
         {
-          "word": "JBZ",
-          "start": 254.6,
-          "end": 256.0
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 254.7,
+          "end": 255
         },
         {
-          "word": "PYM",
-          "start": 278.74,
-          "end": 280.14
+          "word": "مــغلوب",
+          "finglish": "maghloob",
+          "start": 255,
+          "end": 256.2
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 256.2,
+          "end": 256.3
+        },
+        {
+          "word": "مطــرودی",
+          "finglish": "matroodi",
+          "start": 256.3,
+          "end": 258.2
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 280.14,
-      "end": 285.18,
+      "line": "اگر نــداری هیچ امــید",
+      "start": 258.9,
+      "end": 262.5,
       "words": [
         {
-          "word": "JBZ",
-          "start": 280.14,
-          "end": 281.54
+          "word": "اگر",
+          "finglish": "agar",
+          "start": 258.9,
+          "end": 259.2
         },
         {
-          "word": "PYM",
-          "start": 283.78,
-          "end": 285.18
+          "word": "نــداری",
+          "finglish": "nadari",
+          "start": 259.2,
+          "end": 260.4
+        },
+        {
+          "word": "هیچ",
+          "finglish": "hich",
+          "start": 260.4,
+          "end": 261.1
+        },
+        {
+          "word": "امــید",
+          "finglish": "omid",
+          "start": 261.1,
+          "end": 262.5
         }
       ]
     },
     {
-      "line": "JBZ PYM JBZ PYM",
-      "start": 285.18,
-      "end": 301.5,
+      "line": "دنیا گفت تو نابودی",
+      "start": 263.1,
+      "end": 266.8,
       "words": [
         {
-          "word": "JBZ",
-          "start": 285.18,
-          "end": 285.24
+          "word": "دنیا",
+          "finglish": "donya",
+          "start": 263.1,
+          "end": 263.8
         },
         {
-          "word": "PYM",
-          "start": 288.18,
-          "end": 289.58
+          "word": "گفت",
+          "finglish": "goft",
+          "start": 263.8,
+          "end": 264.5
         },
         {
-          "word": "JBZ",
-          "start": 289.58,
-          "end": 289.62
+          "word": "تو",
+          "finglish": "to",
+          "start": 264.5,
+          "end": 264.8
         },
         {
-          "word": "PYM",
-          "start": 300.1,
-          "end": 301.5
+          "word": "نابودی",
+          "finglish": "naboodi",
+          "start": 264.8,
+          "end": 266.8
         }
       ]
     },
     {
-      "line": "JBZ PYM",
-      "start": 301.5,
-      "end": 307.28,
+      "line": "بدان عــیسی تو را خوانده",
+      "start": 267.4,
+      "end": 270.9,
       "words": [
         {
-          "word": "JBZ",
-          "start": 301.5,
-          "end": 302.9
+          "word": "بدان",
+          "finglish": "bedan",
+          "start": 267.4,
+          "end": 268
         },
         {
-          "word": "PYM",
-          "start": 305.88,
-          "end": 307.28
+          "word": "عــیسی",
+          "finglish": "isa",
+          "start": 268,
+          "end": 269.1
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 269.1,
+          "end": 269.3
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 269.3,
+          "end": 269.5
+        },
+        {
+          "word": "خوانده",
+          "finglish": "khande",
+          "start": 269.5,
+          "end": 270.9
         }
       ]
     },
     {
-      "line": "JBZ",
-      "start": 307.28,
-      "end": 307.32,
+      "line": "او گــفته تو فرزندی",
+      "start": 271.3,
+      "end": 274.8,
       "words": [
         {
-          "word": "JBZ",
-          "start": 307.28,
-          "end": 307.32
+          "word": "او",
+          "finglish": "oo",
+          "start": 271.3,
+          "end": 271.5
+        },
+        {
+          "word": "گــفته",
+          "finglish": "gofte",
+          "start": 271.5,
+          "end": 272.5
+        },
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 272.5,
+          "end": 272.7
+        },
+        {
+          "word": "فرزندی",
+          "finglish": "farzandi",
+          "start": 272.7,
+          "end": 274.8
+        }
+      ]
+    },
+    {
+      "line": "نه منفور و نه محکــومی",
+      "start": 275.3,
+      "end": 278.9,
+      "words": [
+        {
+          "word": "نه",
+          "finglish": "na",
+          "start": 275.3,
+          "end": 275.5
+        },
+        {
+          "word": "منفور",
+          "finglish": "manfoor",
+          "start": 275.5,
+          "end": 276.5
+        },
+        {
+          "word": "و",
+          "finglish": "o",
+          "start": 276.5,
+          "end": 276.6
+        },
+        {
+          "word": "نه",
+          "finglish": "na",
+          "start": 276.6,
+          "end": 276.8
+        },
+        {
+          "word": "محکــومی",
+          "finglish": "mahkoomi",
+          "start": 276.8,
+          "end": 278.9
+        }
+      ]
+    },
+    {
+      "line": "تو محبــوب خداوندی",
+      "start": 279.3,
+      "end": 283.3,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 279.3,
+          "end": 279.5
+        },
+        {
+          "word": "محبــوب",
+          "finglish": "mahboob",
+          "start": 279.5,
+          "end": 280.9
+        },
+        {
+          "word": "خداوندی",
+          "finglish": "khodavandi",
+          "start": 280.9,
+          "end": 283.3
+        }
+      ]
+    },
+    {
+      "line": "تو محبــوب خداونــدی",
+      "start": 325.6,
+      "end": 329.8,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 325.6,
+          "end": 325.8
+        },
+        {
+          "word": "محبــوب",
+          "finglish": "mahboob",
+          "start": 325.8,
+          "end": 327.2
+        },
+        {
+          "word": "خداونــدی",
+          "finglish": "khodavandi",
+          "start": 327.2,
+          "end": 329.8
+        }
+      ]
+    },
+    {
+      "line": "تو محبــوب خداونــدی",
+      "start": 332,
+      "end": 336,
+      "words": [
+        {
+          "word": "تو",
+          "finglish": "to",
+          "start": 332,
+          "end": 332.2
+        },
+        {
+          "word": "محبــوب",
+          "finglish": "mahboob",
+          "start": 332.2,
+          "end": 333.6
+        },
+        {
+          "word": "خداونــدی",
+          "finglish": "khodavandi",
+          "start": 333.6,
+          "end": 336
+        }
+      ]
+    },
+    {
+      "line": "بخوان نام عیــسی را",
+      "start": 338.2,
+      "end": 344,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 338.2,
+          "end": 340.9
+        },
+        {
+          "word": "نام",
+          "finglish": "name",
+          "start": 341.5,
+          "end": 342.1
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 342.1,
+          "end": 343.4
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 343.4,
+          "end": 344
+        }
+      ]
+    },
+    {
+      "line": "بخوان منجی یکــتا را",
+      "start": 346,
+      "end": 351.6,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 346,
+          "end": 348.7
+        },
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 349.3,
+          "end": 350.1
+        },
+        {
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 350.1,
+          "end": 351
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 351,
+          "end": 351.6
+        }
+      ]
+    },
+    {
+      "line": "بخوان نام عیــسی را",
+      "start": 354.4,
+      "end": 400.9,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 354.4,
+          "end": 357.1
+        },
+        {
+          "word": "نام",
+          "finglish": "name",
+          "start": 357.7,
+          "end": 358.3
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 358.3,
+          "end": 359.6
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 359.6,
+          "end": 400.9
+        }
+      ]
+    },
+    {
+      "line": "بخوان منجی یکــتا را",
+      "start": 402.2,
+      "end": 407.6,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 402.2,
+          "end": 404.9
+        },
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 405.5,
+          "end": 406.3
+        },
+        {
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 406.3,
+          "end": 407.2
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 407.2,
+          "end": 407.6
+        }
+      ]
+    },
+    {
+      "line": "بخوان نام عیــسی را",
+      "start": 410.6,
+      "end": 416.4,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 410.6,
+          "end": 413.3
+        },
+        {
+          "word": "نام",
+          "finglish": "name",
+          "start": 413.9,
+          "end": 414.5
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 414.5,
+          "end": 415.8
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 415.8,
+          "end": 416.4
+        }
+      ]
+    },
+    {
+      "line": "بخوان منجی یکــتا را",
+      "start": 418.5,
+      "end": 424.2,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 418.5,
+          "end": 421.2
+        },
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 421.8,
+          "end": 422.6
+        },
+        {
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 422.6,
+          "end": 423.5
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 423.5,
+          "end": 424.2
+        }
+      ]
+    },
+    {
+      "line": "بخوان نام عیــسی را",
+      "start": 426.6,
+      "end": 432.7,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 426.6,
+          "end": 429.3
+        },
+        {
+          "word": "نام",
+          "finglish": "name",
+          "start": 429.9,
+          "end": 430.5
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 430.5,
+          "end": 431.8
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 431.8,
+          "end": 432.7
+        }
+      ]
+    },
+    {
+      "line": "بخوان منجی یکــتا را",
+      "start": 434.6,
+      "end": 440.4,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 434.6,
+          "end": 437.3
+        },
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 437.9,
+          "end": 438.7
+        },
+        {
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 438.7,
+          "end": 439.6
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 439.6,
+          "end": 440.4
+        }
+      ]
+    },
+    {
+      "line": "بخوان نام عیــسی را",
+      "start": 443,
+      "end": 448.7,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 443,
+          "end": 445.7
+        },
+        {
+          "word": "نام",
+          "finglish": "name",
+          "start": 446.3,
+          "end": 446.9
+        },
+        {
+          "word": "عیــسی",
+          "finglish": "isa",
+          "start": 446.9,
+          "end": 448.2
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 448.2,
+          "end": 448.7
+        }
+      ]
+    },
+    {
+      "line": "بخوان منجی یکــتا را",
+      "start": 450.9,
+      "end": 456.8,
+      "words": [
+        {
+          "word": "بخوان",
+          "finglish": "bekhan",
+          "start": 450.9,
+          "end": 453.6
+        },
+        {
+          "word": "منجی",
+          "finglish": "monji",
+          "start": 454.2,
+          "end": 455
+        },
+        {
+          "word": "یکــتا",
+          "finglish": "yekta",
+          "start": 455,
+          "end": 456
+        },
+        {
+          "word": "را",
+          "finglish": "ra",
+          "start": 456,
+          "end": 456.8
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 507.5
 }

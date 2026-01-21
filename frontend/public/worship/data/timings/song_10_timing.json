@@ -1,426 +1,1192 @@
 {
-  "metadata": {
-    "title": "Auto-generated",
-    "totalDuration": 180,
-    "wordCount": 59,
-    "lineCount": 17,
-    "generated": true,
-    "generatedAt": "2025-12-02T00:49:37.268Z"
-  },
+  "songId": 10,
+  "generatedAt": "2026-01-20T02:09:11.523Z",
+  "version": "3.0",
+  "model": "gemini-2.5-flash",
+  "schema": "json-schema",
   "lines": [
     {
-      "line": "V1",
-      "start": 0,
-      "end": 10.588235294117647,
+      "line": "کلمه جسم گردید",
+      "start": 8.4,
+      "end": 10,
       "words": [
         {
-          "word": "V1",
-          "start": 0,
-          "end": 10.588235294117647
+          "word": "کلمه",
+          "finglish": "Kalame",
+          "start": 8.4,
+          "end": 8.9
+        },
+        {
+          "word": "جسم",
+          "finglish": "Jesm",
+          "start": 8.9,
+          "end": 9.3
+        },
+        {
+          "word": "گردید",
+          "finglish": "Gardid",
+          "start": 9.3,
+          "end": 10
         }
       ]
     },
     {
-      "line": "کـ[F]ـلمه جـ[G]ـسم گرد[Am]ید",
-      "start": 10.588235294117647,
-      "end": 21.176470588235293,
+      "line": "در آن آخوری پست",
+      "start": 12.2,
+      "end": 14,
       "words": [
         {
-          "word": "کـ[F]ـلمه",
-          "start": 10.588235294117647,
-          "end": 14.117647058823529
-        },
-        {
-          "word": "جـ[G]ـسم",
-          "start": 14.117647058823529,
-          "end": 17.647058823529413
-        },
-        {
-          "word": "گرد[Am]ید",
-          "start": 17.647058823529413,
-          "end": 21.176470588235293
-        }
-      ]
-    },
-    {
-      "line": "در[Dm] آن آخو[G]ری پـ[Am]ـست",
-      "start": 21.176470588235293,
-      "end": 31.764705882352942,
-      "words": [
-        {
-          "word": "در[Dm]",
-          "start": 21.176470588235293,
-          "end": 23.823529411764707
+          "word": "در",
+          "finglish": "Dar",
+          "start": 12.2,
+          "end": 12.45
         },
         {
           "word": "آن",
-          "start": 23.823529411764707,
-          "end": 26.470588235294116
+          "finglish": "An",
+          "start": 12.45,
+          "end": 12.75
         },
         {
-          "word": "آخو[G]ری",
-          "start": 26.470588235294116,
-          "end": 29.11764705882353
+          "word": "آخوری",
+          "finglish": "Akhoori",
+          "start": 12.75,
+          "end": 13.45
         },
         {
-          "word": "پـ[Am]ـست",
-          "start": 29.11764705882353,
-          "end": 31.764705882352942
+          "word": "پست",
+          "finglish": "Past",
+          "start": 13.45,
+          "end": 14
         }
       ]
     },
     {
-      "line": "نـ[F]ـور جها[G]ن مولود گـ[Am]ـشت",
-      "start": 31.764705882352942,
-      "end": 42.35294117647059,
+      "line": "نور جهان مولود گشت",
+      "start": 16.3,
+      "end": 18.15,
       "words": [
         {
-          "word": "نـ[F]ـور",
-          "start": 31.764705882352942,
-          "end": 34.411764705882355
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 16.3,
+          "end": 16.65
         },
         {
-          "word": "جها[G]ن",
-          "start": 34.411764705882355,
-          "end": 37.05882352941177
+          "word": "جهان",
+          "finglish": "Jahan",
+          "start": 16.65,
+          "end": 17.05
         },
         {
           "word": "مولود",
-          "start": 37.05882352941177,
-          "end": 39.705882352941174
+          "finglish": "Mawlood",
+          "start": 17.05,
+          "end": 17.75
         },
         {
-          "word": "گـ[Am]ـشت",
-          "start": 39.705882352941174,
-          "end": 42.35294117647059
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 17.75,
+          "end": 18.15
         }
       ]
     },
     {
-      "line": "آن[Dm] ستاره ظا[G]هر گـ[Am]ـشت",
-      "start": 42.35294117647059,
-      "end": 52.94117647058823,
+      "line": "آن ستاره ظاهر گشت",
+      "start": 20.3,
+      "end": 22.15,
       "words": [
         {
-          "word": "آن[Dm]",
-          "start": 42.35294117647059,
-          "end": 45
+          "word": "آن",
+          "finglish": "An",
+          "start": 20.3,
+          "end": 20.55
         },
         {
           "word": "ستاره",
-          "start": 45,
-          "end": 47.64705882352941
+          "finglish": "Setare",
+          "start": 20.55,
+          "end": 21.15
         },
         {
-          "word": "ظا[G]هر",
-          "start": 47.64705882352941,
-          "end": 50.294117647058826
+          "word": "ظاهر",
+          "finglish": "Zaher",
+          "start": 21.15,
+          "end": 21.75
         },
         {
-          "word": "گـ[Am]ـشت",
-          "start": 50.294117647058826,
-          "end": 52.94117647058823
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 21.75,
+          "end": 22.15
         }
       ]
     },
     {
-      "line": "Chorus (x2)",
-      "start": 52.94117647058823,
-      "end": 63.529411764705884,
+      "line": "کلمه جسم گردید",
+      "start": 24.4,
+      "end": 25.75,
       "words": [
         {
-          "word": "Chorus",
-          "start": 52.94117647058823,
-          "end": 58.23529411764706
+          "word": "کلمه",
+          "finglish": "Kalame",
+          "start": 24.4,
+          "end": 24.8
         },
         {
-          "word": "(x2)",
-          "start": 58.23529411764706,
-          "end": 63.52941176470588
+          "word": "جسم",
+          "finglish": "Jesm",
+          "start": 24.8,
+          "end": 25.15
+        },
+        {
+          "word": "گردید",
+          "finglish": "Gardid",
+          "start": 25.15,
+          "end": 25.75
         }
       ]
     },
     {
-      "line": "عـ[Am]ـمانو[F]ئیــ[Em]ـل مولود گـ[Am]ـشت",
-      "start": 63.529411764705884,
-      "end": 74.11764705882352,
+      "line": "در آن آخوری پست",
+      "start": 28.2,
+      "end": 30,
       "words": [
         {
-          "word": "عـ[Am]ـمانو[F]ئیــ[Em]ـل",
-          "start": 63.529411764705884,
-          "end": 67.05882352941177
+          "word": "در",
+          "finglish": "Dar",
+          "start": 28.2,
+          "end": 28.45
+        },
+        {
+          "word": "آن",
+          "finglish": "An",
+          "start": 28.45,
+          "end": 28.75
+        },
+        {
+          "word": "آخوری",
+          "finglish": "Akhoori",
+          "start": 28.75,
+          "end": 29.45
+        },
+        {
+          "word": "پست",
+          "finglish": "Past",
+          "start": 29.45,
+          "end": 30
+        }
+      ]
+    },
+    {
+      "line": "نور جهان مولود گشت",
+      "start": 32.2,
+      "end": 34.05,
+      "words": [
+        {
+          "word": "نور",
+          "finglish": "Noor",
+          "start": 32.2,
+          "end": 32.55
+        },
+        {
+          "word": "جهان",
+          "finglish": "Jahan",
+          "start": 32.55,
+          "end": 32.95
         },
         {
           "word": "مولود",
-          "start": 67.05882352941177,
-          "end": 70.58823529411765
+          "finglish": "Mawlood",
+          "start": 32.95,
+          "end": 33.65
         },
         {
-          "word": "گـ[Am]ـشت",
-          "start": 70.58823529411765,
-          "end": 74.11764705882354
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 33.65,
+          "end": 34.05
         }
       ]
     },
     {
-      "line": "خـ[C]ـدا با[F] ما [G]، در ما گـ[Am]ـشت",
-      "start": 74.11764705882352,
-      "end": 84.70588235294117,
+      "line": "آن ستاره ظاهر گشت",
+      "start": 36.3,
+      "end": 38.15,
       "words": [
         {
-          "word": "خـ[C]ـدا",
-          "start": 74.11764705882352,
-          "end": 75.63025210084032
+          "word": "آن",
+          "finglish": "An",
+          "start": 36.3,
+          "end": 36.55
         },
         {
-          "word": "با[F]",
-          "start": 75.63025210084032,
-          "end": 77.14285714285714
+          "word": "ستاره",
+          "finglish": "Setare",
+          "start": 36.55,
+          "end": 37.15
+        },
+        {
+          "word": "ظاهر",
+          "finglish": "Zaher",
+          "start": 37.15,
+          "end": 37.75
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 37.75,
+          "end": 38.15
+        }
+      ]
+    },
+    {
+      "line": "عمانوئیل مولود گشت",
+      "start": 40,
+      "end": 46,
+      "words": [
+        {
+          "word": "عمانوئیل",
+          "finglish": "Emanouil",
+          "start": 40,
+          "end": 44.8
+        },
+        {
+          "word": "مولود",
+          "finglish": "Mawlood",
+          "start": 44.8,
+          "end": 45.5
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 45.5,
+          "end": 46
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "خدا با ما ، در ما گشت",
+      "start": 47.5,
+      "end": 50.7,
+      "words": [
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 47.5,
+          "end": 48
+        },
+        {
+          "word": "با",
+          "finglish": "Ba",
+          "start": 48,
+          "end": 48.3
         },
         {
           "word": "ما",
-          "start": 77.14285714285714,
-          "end": 78.65546218487394
-        },
-        {
-          "word": "[G]،",
-          "start": 78.65546218487394,
-          "end": 80.16806722689074
+          "finglish": "Ma",
+          "start": 48.3,
+          "end": 48.7
         },
         {
           "word": "در",
-          "start": 80.16806722689074,
-          "end": 81.68067226890756
+          "finglish": "Dar",
+          "start": 49.5,
+          "end": 49.8
         },
         {
           "word": "ما",
-          "start": 81.68067226890756,
-          "end": 83.19327731092436
+          "finglish": "Ma",
+          "start": 49.8,
+          "end": 50.2
         },
         {
-          "word": "گـ[Am]ـشت",
-          "start": 83.19327731092436,
-          "end": 84.70588235294117
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 50.2,
+          "end": 50.7
         }
       ]
     },
     {
-      "line": "او[Am] آمد[F] ، او[Em] آمـ[Am]ـد",
-      "start": 84.70588235294117,
-      "end": 95.29411764705883,
+      "line": "او آمد ، او آمد",
+      "start": 55,
+      "end": 58.5,
       "words": [
         {
-          "word": "او[Am]",
-          "start": 84.70588235294117,
-          "end": 86.82352941176471
+          "word": "او",
+          "finglish": "Oo",
+          "start": 55,
+          "end": 55.5
         },
         {
-          "word": "آمد[F]",
-          "start": 86.82352941176471,
-          "end": 88.94117647058823
-        },
-        {
-          "word": "،",
-          "start": 88.94117647058823,
-          "end": 91.05882352941177
-        },
-        {
-          "word": "او[Em]",
-          "start": 91.05882352941177,
-          "end": 93.17647058823529
-        },
-        {
-          "word": "آمـ[Am]ـد",
-          "start": 93.17647058823529,
-          "end": 95.29411764705883
-        }
-      ]
-    },
-    {
-      "line": "او[C] بهر[F] ما[G] فدیه گـ[Am]ـشت",
-      "start": 95.29411764705883,
-      "end": 105.88235294117646,
-      "words": [
-        {
-          "word": "او[C]",
-          "start": 95.29411764705883,
-          "end": 97.41176470588236
-        },
-        {
-          "word": "بهر[F]",
-          "start": 97.41176470588236,
-          "end": 99.52941176470588
-        },
-        {
-          "word": "ما[G]",
-          "start": 99.52941176470588,
-          "end": 101.64705882352942
-        },
-        {
-          "word": "فدیه",
-          "start": 101.64705882352942,
-          "end": 103.76470588235294
-        },
-        {
-          "word": "گـ[Am]ـشت",
-          "start": 103.76470588235294,
-          "end": 105.88235294117648
-        }
-      ]
-    },
-    {
-      "line": "[column]",
-      "start": 105.88235294117646,
-      "end": 116.47058823529412,
-      "words": [
-        {
-          "word": "[column]",
-          "start": 105.88235294117646,
-          "end": 116.47058823529412
-        }
-      ]
-    },
-    {
-      "line": "V2",
-      "start": 116.47058823529412,
-      "end": 127.05882352941177,
-      "words": [
-        {
-          "word": "V2",
-          "start": 116.47058823529412,
-          "end": 127.05882352941177
-        }
-      ]
-    },
-    {
-      "line": "پـ[F]ـدر سـ[G]ـرمدی آمـ[Am]ـد",
-      "start": 127.05882352941177,
-      "end": 137.64705882352942,
-      "words": [
-        {
-          "word": "پـ[F]ـدر",
-          "start": 127.05882352941177,
-          "end": 130.58823529411765
-        },
-        {
-          "word": "سـ[G]ـرمدی",
-          "start": 130.58823529411765,
-          "end": 134.11764705882354
-        },
-        {
-          "word": "آمـ[Am]ـد",
-          "start": 134.11764705882354,
-          "end": 137.64705882352942
-        }
-      ]
-    },
-    {
-      "line": "او[Dm] از یک با[G]کره آمـ[Am]ـد",
-      "start": 137.64705882352942,
-      "end": 148.23529411764704,
-      "words": [
-        {
-          "word": "او[Dm]",
-          "start": 137.64705882352942,
-          "end": 139.76470588235296
-        },
-        {
-          "word": "از",
-          "start": 139.76470588235296,
-          "end": 141.8823529411765
-        },
-        {
-          "word": "یک",
-          "start": 141.8823529411765,
-          "end": 144
-        },
-        {
-          "word": "با[G]کره",
-          "start": 144,
-          "end": 146.11764705882354
-        },
-        {
-          "word": "آمـ[Am]ـد",
-          "start": 146.11764705882354,
-          "end": 148.23529411764707
-        }
-      ]
-    },
-    {
-      "line": "اسـ[F]ـم او عـ[G]ـجیب و مهـ[Am]ـیب",
-      "start": 148.23529411764704,
-      "end": 158.8235294117647,
-      "words": [
-        {
-          "word": "اسـ[F]ـم",
-          "start": 148.23529411764704,
-          "end": 150.35294117647058
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 55.5,
+          "end": 56
         },
         {
           "word": "او",
-          "start": 150.35294117647058,
-          "end": 152.47058823529412
+          "finglish": "Oo",
+          "start": 57.5,
+          "end": 58
         },
         {
-          "word": "عـ[G]ـجیب",
-          "start": 152.47058823529412,
-          "end": 154.58823529411762
-        },
-        {
-          "word": "و",
-          "start": 154.58823529411762,
-          "end": 156.70588235294116
-        },
-        {
-          "word": "مهـ[Am]ـیب",
-          "start": 156.70588235294116,
-          "end": 158.8235294117647
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 58,
+          "end": 58.5
         }
       ]
     },
     {
-      "line": "خـ[Dm]ـدای عـ[G]ـظیم و قد[Am]یر",
-      "start": 158.8235294117647,
-      "end": 169.41176470588235,
+      "line": "او بهر ما فدیه گشت",
+      "start": 103,
+      "end": 105.7,
       "words": [
         {
-          "word": "خـ[Dm]ـدای",
-          "start": 158.8235294117647,
-          "end": 161.47058823529412
+          "word": "او",
+          "finglish": "Oo",
+          "start": 103,
+          "end": 103.5
         },
         {
-          "word": "عـ[G]ـظیم",
-          "start": 161.47058823529412,
-          "end": 164.1176470588235
+          "word": "بهر",
+          "finglish": "Bahre",
+          "start": 103.5,
+          "end": 104
         },
         {
-          "word": "و",
-          "start": 164.1176470588235,
-          "end": 166.76470588235293
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 104,
+          "end": 104.5
         },
         {
-          "word": "قد[Am]یر",
-          "start": 166.76470588235293,
-          "end": 169.41176470588235
+          "word": "فدیه",
+          "finglish": "Fedye",
+          "start": 104.5,
+          "end": 105.2
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 105.2,
+          "end": 105.7
         }
       ]
     },
     {
-      "line": "Chorus (x2)",
-      "start": 169.41176470588235,
-      "end": 180,
+      "line": "عمانوئیل مولود گشت",
+      "start": 110.5,
+      "end": 116.5,
       "words": [
         {
-          "word": "Chorus",
-          "start": 169.41176470588235,
-          "end": 174.70588235294116
+          "word": "عمانوئیل",
+          "finglish": "Emanouil",
+          "start": 110.5,
+          "end": 115.3
         },
         {
-          "word": "(x2)",
-          "start": 174.70588235294116,
-          "end": 180
+          "word": "مولود",
+          "finglish": "Mawlood",
+          "start": 115.3,
+          "end": 116
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 116,
+          "end": 116.5
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "خدا با ما ، در ما گشت",
+      "start": 118,
+      "end": 121.2,
+      "words": [
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 118,
+          "end": 118.5
+        },
+        {
+          "word": "با",
+          "finglish": "Ba",
+          "start": 118.5,
+          "end": 118.8
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 118.8,
+          "end": 119.2
+        },
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 120,
+          "end": 120.3
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 120.3,
+          "end": 120.7
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 120.7,
+          "end": 121.2
+        }
+      ]
+    },
+    {
+      "line": "او آمد ، او آمد",
+      "start": 125.5,
+      "end": 129,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 125.5,
+          "end": 126
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 126,
+          "end": 126.5
+        },
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 128,
+          "end": 128.5
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 128.5,
+          "end": 129
+        }
+      ]
+    },
+    {
+      "line": "او بهر ما فدیه گشت",
+      "start": 133.5,
+      "end": 136.2,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 133.5,
+          "end": 134
+        },
+        {
+          "word": "بهر",
+          "finglish": "Bahre",
+          "start": 134,
+          "end": 134.5
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 134.5,
+          "end": 135
+        },
+        {
+          "word": "فدیه",
+          "finglish": "Fedye",
+          "start": 135,
+          "end": 135.7
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 135.7,
+          "end": 136.2
+        }
+      ]
+    },
+    {
+      "line": "پدر سرمدی آمد",
+      "start": 141,
+      "end": 142.4,
+      "words": [
+        {
+          "word": "پدر",
+          "finglish": "Pedar",
+          "start": 141,
+          "end": 141.4
+        },
+        {
+          "word": "سرمدی",
+          "finglish": "Sarmadi",
+          "start": 141.4,
+          "end": 142
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 142,
+          "end": 142.4
+        }
+      ],
+      "label": "V2"
+    },
+    {
+      "line": "او از یک باکره آمد",
+      "start": 145,
+      "end": 146.6,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 145,
+          "end": 145.2
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 145.2,
+          "end": 145.4
+        },
+        {
+          "word": "یک",
+          "finglish": "Yek",
+          "start": 145.4,
+          "end": 145.6
+        },
+        {
+          "word": "باکره",
+          "finglish": "Bakere",
+          "start": 145.6,
+          "end": 146.2
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 146.2,
+          "end": 146.6
+        }
+      ]
+    },
+    {
+      "line": "اسم او عجیب و مهیب",
+      "start": 148.8,
+      "end": 150.5,
+      "words": [
+        {
+          "word": "اسم",
+          "finglish": "Esm",
+          "start": 148.8,
+          "end": 149.1
+        },
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 149.1,
+          "end": 149.3
+        },
+        {
+          "word": "عجیب",
+          "finglish": "Ajib",
+          "start": 149.3,
+          "end": 149.8
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 149.8,
+          "end": 150
+        },
+        {
+          "word": "مهیب",
+          "finglish": "Mahib",
+          "start": 150,
+          "end": 150.5
+        }
+      ]
+    },
+    {
+      "line": "خدای عظیم و قدیر",
+      "start": 152.5,
+      "end": 154,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 152.5,
+          "end": 152.9
+        },
+        {
+          "word": "عظیم",
+          "finglish": "Azim",
+          "start": 152.9,
+          "end": 153.3
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 153.3,
+          "end": 153.5
+        },
+        {
+          "word": "قدیر",
+          "finglish": "Ghadir",
+          "start": 153.5,
+          "end": 154
+        }
+      ]
+    },
+    {
+      "line": "پدر سرمدی آمد",
+      "start": 156.5,
+      "end": 157.7,
+      "words": [
+        {
+          "word": "پدر",
+          "finglish": "Pedar",
+          "start": 156.5,
+          "end": 156.8
+        },
+        {
+          "word": "سرمدی",
+          "finglish": "Sarmadi",
+          "start": 156.8,
+          "end": 157.3
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 157.3,
+          "end": 157.7
+        }
+      ]
+    },
+    {
+      "line": "او از یک باکره آمد",
+      "start": 200.5,
+      "end": 202.1,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 200.5,
+          "end": 200.7
+        },
+        {
+          "word": "از",
+          "finglish": "Az",
+          "start": 200.7,
+          "end": 200.9
+        },
+        {
+          "word": "یک",
+          "finglish": "Yek",
+          "start": 200.9,
+          "end": 201.1
+        },
+        {
+          "word": "باکره",
+          "finglish": "Bakere",
+          "start": 201.1,
+          "end": 201.7
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 201.7,
+          "end": 202.1
+        }
+      ]
+    },
+    {
+      "line": "اسم او عجیب و مهیب",
+      "start": 204.5,
+      "end": 206.2,
+      "words": [
+        {
+          "word": "اسم",
+          "finglish": "Esm",
+          "start": 204.5,
+          "end": 204.8
+        },
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 204.8,
+          "end": 205
+        },
+        {
+          "word": "عجیب",
+          "finglish": "Ajib",
+          "start": 205,
+          "end": 205.5
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 205.5,
+          "end": 205.7
+        },
+        {
+          "word": "مهیب",
+          "finglish": "Mahib",
+          "start": 205.7,
+          "end": 206.2
+        }
+      ]
+    },
+    {
+      "line": "خدای عظیم و قدیر",
+      "start": 208,
+      "end": 209.5,
+      "words": [
+        {
+          "word": "خدای",
+          "finglish": "Khodaye",
+          "start": 208,
+          "end": 208.4
+        },
+        {
+          "word": "عظیم",
+          "finglish": "Azim",
+          "start": 208.4,
+          "end": 208.8
+        },
+        {
+          "word": "و",
+          "finglish": "Va",
+          "start": 208.8,
+          "end": 209
+        },
+        {
+          "word": "قدیر",
+          "finglish": "Ghadir",
+          "start": 209,
+          "end": 209.5
+        }
+      ]
+    },
+    {
+      "line": "عمانوئیل مولود گشت",
+      "start": 211.5,
+      "end": 217.5,
+      "words": [
+        {
+          "word": "عمانوئیل",
+          "finglish": "Emanouil",
+          "start": 211.5,
+          "end": 216.3
+        },
+        {
+          "word": "مولود",
+          "finglish": "Mawlood",
+          "start": 216.3,
+          "end": 217
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 217,
+          "end": 217.5
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "خدا با ما ، در ما گشت",
+      "start": 219,
+      "end": 222.2,
+      "words": [
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 219,
+          "end": 219.5
+        },
+        {
+          "word": "با",
+          "finglish": "Ba",
+          "start": 219.5,
+          "end": 219.8
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 219.8,
+          "end": 220.2
+        },
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 221,
+          "end": 221.3
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 221.3,
+          "end": 221.7
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 221.7,
+          "end": 222.2
+        }
+      ]
+    },
+    {
+      "line": "او آمد ، او آمد",
+      "start": 226.5,
+      "end": 230,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 226.5,
+          "end": 227
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 227,
+          "end": 227.5
+        },
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 229,
+          "end": 229.5
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 229.5,
+          "end": 230
+        }
+      ]
+    },
+    {
+      "line": "او بهر ما فدیه گشت",
+      "start": 234.5,
+      "end": 237.2,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 234.5,
+          "end": 235
+        },
+        {
+          "word": "بهر",
+          "finglish": "Bahre",
+          "start": 235,
+          "end": 235.5
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 235.5,
+          "end": 236
+        },
+        {
+          "word": "فدیه",
+          "finglish": "Fedye",
+          "start": 236,
+          "end": 236.7
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 236.7,
+          "end": 237.2
+        }
+      ]
+    },
+    {
+      "line": "عمانوئیل مولود گشت",
+      "start": 242,
+      "end": 248,
+      "words": [
+        {
+          "word": "عمانوئیل",
+          "finglish": "Emanouil",
+          "start": 242,
+          "end": 246.8
+        },
+        {
+          "word": "مولود",
+          "finglish": "Mawlood",
+          "start": 246.8,
+          "end": 247.5
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 247.5,
+          "end": 248
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "خدا با ما ، در ما گشت",
+      "start": 249.5,
+      "end": 252.7,
+      "words": [
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 249.5,
+          "end": 250
+        },
+        {
+          "word": "با",
+          "finglish": "Ba",
+          "start": 250,
+          "end": 250.3
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 250.3,
+          "end": 250.7
+        },
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 251.5,
+          "end": 251.8
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 251.8,
+          "end": 252.2
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 252.2,
+          "end": 252.7
+        }
+      ]
+    },
+    {
+      "line": "او آمد ، او آمد",
+      "start": 257,
+      "end": 300.5,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 257,
+          "end": 257.5
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 257.5,
+          "end": 258
+        },
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 259.5,
+          "end": 300
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 300,
+          "end": 300.5
+        }
+      ]
+    },
+    {
+      "line": "او بهر ما فدیه گشت",
+      "start": 305,
+      "end": 307.7,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 305,
+          "end": 305.5
+        },
+        {
+          "word": "بهر",
+          "finglish": "Bahre",
+          "start": 305.5,
+          "end": 306
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 306,
+          "end": 306.5
+        },
+        {
+          "word": "فدیه",
+          "finglish": "Fedye",
+          "start": 306.5,
+          "end": 307.2
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 307.2,
+          "end": 307.7
+        }
+      ]
+    },
+    {
+      "line": "عمانوئیل مولود گشت",
+      "start": 312.5,
+      "end": 318.5,
+      "words": [
+        {
+          "word": "عمانوئیل",
+          "finglish": "Emanouil",
+          "start": 312.5,
+          "end": 317.3
+        },
+        {
+          "word": "مولود",
+          "finglish": "Mawlood",
+          "start": 317.3,
+          "end": 318
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 318,
+          "end": 318.5
+        }
+      ],
+      "label": "Chorus"
+    },
+    {
+      "line": "خدا با ما ، در ما گشت",
+      "start": 319.5,
+      "end": 322.7,
+      "words": [
+        {
+          "word": "خدا",
+          "finglish": "Khoda",
+          "start": 319.5,
+          "end": 320
+        },
+        {
+          "word": "با",
+          "finglish": "Ba",
+          "start": 320,
+          "end": 320.3
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 320.3,
+          "end": 320.7
+        },
+        {
+          "word": "در",
+          "finglish": "Dar",
+          "start": 321.5,
+          "end": 321.8
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 321.8,
+          "end": 322.2
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 322.2,
+          "end": 322.7
+        }
+      ]
+    },
+    {
+      "line": "او آمد ، او آمد",
+      "start": 327,
+      "end": 330.5,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 327,
+          "end": 327.5
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 327.5,
+          "end": 328
+        },
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 329.5,
+          "end": 330
+        },
+        {
+          "word": "آمد",
+          "finglish": "Amad",
+          "start": 330,
+          "end": 330.5
+        }
+      ]
+    },
+    {
+      "line": "او بهر ما فدیه گشت",
+      "start": 335,
+      "end": 337.7,
+      "words": [
+        {
+          "word": "او",
+          "finglish": "Oo",
+          "start": 335,
+          "end": 335.5
+        },
+        {
+          "word": "بهر",
+          "finglish": "Bahre",
+          "start": 335.5,
+          "end": 336
+        },
+        {
+          "word": "ما",
+          "finglish": "Ma",
+          "start": 336,
+          "end": 336.5
+        },
+        {
+          "word": "فدیه",
+          "finglish": "Fedye",
+          "start": 336.5,
+          "end": 337.2
+        },
+        {
+          "word": "گشت",
+          "finglish": "Gasht",
+          "start": 337.2,
+          "end": 337.7
         }
       ]
     }
-  ]
+  ],
+  "total_duration": 223
 }
