@@ -131,6 +131,7 @@ const WorshipSyncTestPage = lazy(() => import('./pages/WorshipSyncTestPage')); /
 const AdminWorshipManager = lazy(() => import('./pages/admin/AdminWorshipManager')); // Admin Worship Manager
 const KaraokeTestPage = lazy(() => import('./pages/KaraokeTestPage')); // Karaoke Worship Player Test
 const SimpleKaraokeTest = lazy(() => import('./pages/SimpleKaraokeTest')); // Simple Karaoke Test
+const AdminAudioProcessorPage = lazy(() => import('./pages/AdminAudioProcessorPage')); // AI Audio Processor with Gemini
 
 // Wrapper to hide BibleAIChatWidget on AI Helper page
 const BibleAIChatWidgetWrapper: React.FC = () => {
@@ -398,6 +399,14 @@ function App() {
                     element={
                       <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
                         <Layout><BiblePresentationCreatorPage /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/audio-processor"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                        <Layout><AdminAudioProcessorPage /></Layout>
                       </ProtectedRoute>
                     }
                   />

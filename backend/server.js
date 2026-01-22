@@ -412,6 +412,11 @@ app.use('/api/tts', ttsRoutes);
 app.use('/api/bible-unified', bibleUnifiedRoutes);
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
+// Audio Processor - Admin feature for transcription, translation, TTS, and PPTX export
+const audioProcessorRoutes = require('./routes/audioProcessorRoutes');
+app.use('/api/audio-processor', audioProcessorRoutes);
+console.log('✅ Audio Processor routes registered at /api/audio-processor');
+
 // Health برای تست اتصال فرانت
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, uptime: process.uptime(), ts: Date.now() });
