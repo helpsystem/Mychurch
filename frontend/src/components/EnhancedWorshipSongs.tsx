@@ -783,6 +783,9 @@ const EnhancedWorshipSongs: React.FC = () => {
           lyrics={karaokeSong.lyrics?.[lang] || karaokeSong.lyrics?.fa || ''}
           originalLyricsWithChords={karaokeSong.lyrics?.fa || karaokeSong.lyrics?.[lang] || ''}
           lang={lang as 'fa' | 'en'}
+          notes={karaokeSong.notes}
+          description={karaokeSong.description}
+          attachments={karaokeSong.attachments}
           onClose={() => setShowKaraokeMode(false)}
         />
       )}

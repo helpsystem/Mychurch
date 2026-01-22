@@ -693,13 +693,15 @@ const LocalAudioPlayerWithSyncedLyrics: React.FC<Props> = ({
                         {/* Persian Word */}
                         <span
                           className={`transition-all duration-300 ${isActiveWord && isInActiveLine
-                            ? 'text-yellow-300 font-extrabold drop-shadow-[0_0_25px_rgba(253,224,71,1)]'
+                            ? 'font-extrabold'
                             : isInActiveLine
                               ? 'text-white font-semibold'
                               : ''
                             }`}
                           style={{
-                            textShadow: isActiveWord && isInActiveLine ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.6)' : 'none'
+                            color: isActiveWord && isInActiveLine ? '#fde047' : undefined, // yellow-300 default
+                            textShadow: isActiveWord && isInActiveLine ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 60px rgba(253, 224, 71, 0.4)' : 'none',
+                            filter: isActiveWord && isInActiveLine ? 'drop-shadow(0 0 15px rgba(253, 224, 71, 0.8))' : 'none'
                           }}
                         >
                           {word}

@@ -14,10 +14,10 @@ export interface AdminMessage {
 export interface Email {
   id: string;
   from: { name: string; email: string };
-  to: string; 
+  to: string;
   subject: string;
-  body: string; 
-  date: string; 
+  body: string;
+  date: string;
   isRead: boolean;
 }
 
@@ -54,9 +54,9 @@ export interface Invitation {
 }
 
 export interface ActivityLog {
-    date: string;
-    action: string;
-    details: string;
+  date: string;
+  action: string;
+  details: string;
 }
 
 export interface User {
@@ -150,6 +150,14 @@ export interface WorshipSong {
   pdfFileUrl?: string;
   sheetMusicUrl?: string;
   timepoints?: Array<{ time: number; word: string }>;
+  notes?: string;  // ✅ Sheet music notes, musical instructions
+  description?: string;  // ✅ Song description, background, usage
+  attachments?: Array<{  // ✅ Attached files (PDF, PowerPoint, etc.)
+    name: string;
+    url: string;
+    size?: string;
+    type?: string;
+  }>;
 }
 
 export interface Leader {
@@ -170,22 +178,22 @@ export interface Event {
 }
 
 export interface PrayerRequest {
-    id: number;
-    text: string;
-    category: 'thanksgiving' | 'healing' | 'guidance' | 'family' | 'other';
-    isAnonymous: boolean;
-    authorName?: string;
-    prayerCount: number;
-    createdAt: string; // ISO Date String
+  id: number;
+  text: string;
+  category: 'thanksgiving' | 'healing' | 'guidance' | 'family' | 'other';
+  isAnonymous: boolean;
+  authorName?: string;
+  prayerCount: number;
+  createdAt: string; // ISO Date String
 }
 
 export interface Testimonial {
-    id: number;
-    authorName: string;
-    text: Record<Language, string>;
-    isAnonymous: boolean;
-    status: 'pending' | 'approved';
-    createdAt: string; // ISO Date String
+  id: number;
+  authorName: string;
+  text: Record<Language, string>;
+  isAnonymous: boolean;
+  status: 'pending' | 'approved';
+  createdAt: string; // ISO Date String
 }
 
 export interface ScheduleEvent {
@@ -289,11 +297,11 @@ export interface ManagedFile {
 }
 
 export interface FieldConfig {
-    name: string;
-    label: string;
-    type: 'text' | 'textarea' | 'number' | 'select' | 'user-select';
-    lang?: 'en' | 'fa'; // For bilingual fields
-    options?: { value: string; label: string }[];
+  name: string;
+  label: string;
+  type: 'text' | 'textarea' | 'number' | 'select' | 'user-select';
+  lang?: 'en' | 'fa'; // For bilingual fields
+  options?: { value: string; label: string }[];
 }
 
 export interface ZendeskArticle {
@@ -309,7 +317,7 @@ export interface ChurchLetter {
   to: Record<Language, string>;
   requestedBy: Record<Language, string>;
   body: Record<Language, string>;
-  authorEmail: string; 
+  authorEmail: string;
   createdAt: string; // ISO Date String
   authorizedUsers: string[]; // Array of user emails
 }

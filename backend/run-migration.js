@@ -20,7 +20,11 @@ async function runMigration() {
     console.log(`\n📡 Supabase URL: ${supabaseUrl}`);
 
     // خواندن فایل migration
-    const migrationPath = path.join(__dirname, '../migrations/add_complete_worship_assets.sql');
+    // Take from command line arg or default
+    const migrationArg = process.argv[2];
+    const migrationPath = migrationArg
+        ? (path.isAbsolute(migrationArg) ? migrationArg : path.resolve(process.cwd(), migrationArg))
+        : path.join(__dirname, '../migrations/add_complete_worship_assets.sql');
 
     if (!fs.existsSync(migrationPath)) {
         console.error('\n❌ فایل migration یافت نشد:', migrationPath);

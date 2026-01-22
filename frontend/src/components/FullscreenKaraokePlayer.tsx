@@ -10,11 +10,12 @@
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import ReactDOM from 'react-dom';
-import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, X, Settings, Music, ChevronDown, Layout } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, X, Settings, Music, ChevronDown, Layout, Palette, Languages } from 'lucide-react';
 import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
 import { AmllLyricPlayer } from './AmllLyricPlayer';
 import { AmllBackground } from './AmllBackground';
 import { convertToAmllFormat, hasFinglishSupport, type OurTimingData } from '../utils/amllConverter';
+import { CollapsibleSection, AttachmentList } from './CollapsibleSection';
 
 // AMLL Mode type
 type LyricsViewMode = 'classic' | 'amll';
@@ -45,6 +46,14 @@ interface Props {
     artist?: string;
     audioUrl?: string;
     lang?: 'fa' | 'en';
+    notes?: string;  // ✅ NEW
+    description?: string;  // ✅ NEW
+    attachments?: Array<{  // ✅ NEW
+        name: string;
+        url: string;
+        size?: string;
+        type?: string;
+    }>;
     onClose: () => void;
 }
 
@@ -56,6 +65,9 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
     artist,
     audioUrl,
     lang = 'fa',
+    notes,
+    description,
+    attachments,
     onClose
 }) => {
     // Global Audio Player
@@ -86,6 +98,17 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
     const [showChords, setShowChords] = useState(false); // Toggle for chords section
     const [layoutMode, setLayoutMode] = useState<KaraokeLayoutMode>(getStoredLayoutMode());
     const [showLayoutSelector, setShowLayoutSelector] = useState(false);
+    
+    // 🎨 Appearance Settings (from audio-text-sync v2.1)
+    const [showAppearance, setShowAppearance] = useState(false);
+    const [wordHighlightColor, setWordHighlightColor] = useState(() => localStorage.getItem('karaoke_wordColor') || '#fde047'); // yellow-300
+    const [lineHighlightColor, setLineHighlightColor] = useState(() => localStorage.getItem('karaoke_lineColor') || '#581c87'); // purple-900
+    
+    // 🌐 Translation State
+    const [showTranslation, setShowTranslation] = useState(false);
+    const [translatedText, setTranslatedText] = useState<string | null>(null);
+    const [isTranslating, setIsTranslating] = useState(false);
+    const [translationLang, setTranslationLang] = useState<'persian' | 'english' | 'finglish'>('english');
     const [showBackground, setShowBackground] = useState(false); // AMLL dynamic background
     const [timingData, setTimingData] = useState<OurTimingData | null>(null);
     const [viewMode, setViewMode] = useState<LyricsViewMode>(getStoredViewMode()); // Classic vs AMLL
@@ -208,6 +231,47 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
         setViewMode(mode);
         saveViewMode(mode);
         console.log('🎭 View mode changed to:', mode);
+    };
+
+    // 🎨 Save appearance settings to localStorage
+    useEffect(() => {
+        localStorage.setItem('karaoke_wordColor', wordHighlightColor);
+        localStorage.setItem('karaoke_lineColor', lineHighlightColor);
+    }, [wordHighlightColor, lineHighlightColor]);
+
+    // 🌐 Translation function using Gemini API
+    const handleTranslate = async (target: 'persian' | 'english' | 'finglish') => {
+        const fullText = processedLyrics.map(l => l.text).join('\n');
+        if (!fullText) return;
+        
+        setIsTranslating(true);
+        setTranslationLang(target);
+        setShowTranslation(true);
+        
+        try {
+            const response = await fetch('/api/translate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text: fullText,
+                    targetLanguage: target,
+                    type: 'lyrics'
+                })
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                setTranslatedText(data.translation || data.text);
+            } else {
+                console.error('Translation failed');
+                setTranslatedText(null);
+            }
+        } catch (error) {
+            console.error('Translation error:', error);
+            setTranslatedText(null);
+        } finally {
+            setIsTranslating(false);
+        }
     };
 
     // Convert to AMLL format
@@ -368,8 +432,12 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                                         ? 'opacity-40 scale-95'
                                         : lineIndex > currentLyricIndex
                                             ? 'opacity-60 scale-95'
-                                            : 'scale-100 bg-purple-900/10'
+                                            : 'scale-100'
                                         }`}
+                                    style={{
+                                        backgroundColor: isActiveLine ? `${lineHighlightColor}40` : 'transparent',
+                                        boxShadow: isActiveLine ? `0 0 30px ${lineHighlightColor}30` : 'none'
+                                    }}
                                     onClick={() => seekTo(line.time)}
                                 >
                                     {/* LEFT COLUMN: Finglish */}
@@ -386,15 +454,17 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                                                     <span
                                                         key={`finglish-${lineIndex}-${wordIndex}`}
                                                         className={`inline-block mx-1.5 transition-all duration-300 ${isActiveWord
-                                                            ? 'text-yellow-300 font-extrabold scale-125 drop-shadow-[0_0_20px_rgba(253,224,71,1)]'
+                                                            ? 'font-extrabold'
                                                             : isActiveLine
                                                                 ? 'font-normal'
                                                                 : ''
                                                             }`}
                                                         style={{
+                                                            color: isActiveWord ? wordHighlightColor : undefined,
                                                             transform: isActiveWord ? 'scale(1.25) translateY(-2px)' : 'scale(1)',
                                                             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                                            textShadow: isActiveWord ? '0 0 25px rgba(253, 224, 71, 0.8)' : 'none'
+                                                            textShadow: isActiveWord ? `0 0 25px ${wordHighlightColor}cc, 0 0 50px ${wordHighlightColor}66` : 'none',
+                                                            filter: isActiveWord ? `drop-shadow(0 0 10px ${wordHighlightColor})` : 'none'
                                                         }}
                                                     >
                                                         {wordObj.finglish || wordObj.word}
@@ -418,15 +488,17 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                                                     <span
                                                         key={`persian-${lineIndex}-${wordIndex}`}
                                                         className={`inline-block mx-1.5 transition-all duration-300 ${isActiveWord
-                                                            ? 'text-yellow-300 font-extrabold scale-150 drop-shadow-[0_0_25px_rgba(253,224,71,1)] animate-pulse'
+                                                            ? 'font-extrabold'
                                                             : isActiveLine
                                                                 ? 'text-white font-semibold'
                                                                 : ''
                                                             }`}
                                                         style={{
+                                                            color: isActiveWord ? wordHighlightColor : undefined,
                                                             transform: isActiveWord ? 'scale(1.5) translateY(-4px)' : 'scale(1)',
                                                             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                                            textShadow: isActiveWord ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.6)' : 'none'
+                                                            textShadow: isActiveWord ? `0 0 30px ${wordHighlightColor}cc, 0 0 60px ${wordHighlightColor}66` : 'none',
+                                                            filter: isActiveWord ? `drop-shadow(0 0 15px ${wordHighlightColor})` : 'none'
                                                         }}
                                                     >
                                                         {wordObj.word}
@@ -448,16 +520,22 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
 
                                 if (lineWords.length === 0) return null;
 
+                                const isActiveLine = lineIndex === currentLyricIndex;
+
                                 return (
                                     <div
                                         key={lineIndex}
                                         data-line={lineIndex}
-                                        className={`transition-all duration-500 cursor-pointer ${lineIndex < currentLyricIndex
+                                        className={`transition-all duration-500 cursor-pointer px-4 py-3 rounded-lg ${lineIndex < currentLyricIndex
                                             ? 'opacity-40 scale-95'
                                             : lineIndex > currentLyricIndex
                                                 ? 'opacity-60 scale-95'
                                                 : 'scale-100'
                                             }`}
+                                        style={{
+                                            backgroundColor: isActiveLine ? `${lineHighlightColor}40` : 'transparent',
+                                            boxShadow: isActiveLine ? `0 0 30px ${lineHighlightColor}30` : 'none'
+                                        }}
                                         onClick={() => seekTo(line.time)}
                                     >
                                         <p className={`text-3xl leading-relaxed font-medium ${lineIndex < currentLyricIndex
@@ -476,15 +554,17 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                                                     <span
                                                         key={`${lineIndex}-${wordIndex}`}
                                                         className={`inline-block mx-1.5 transition-all duration-300 ${isActiveWord
-                                                            ? 'text-yellow-300 font-extrabold scale-150 drop-shadow-[0_0_25px_rgba(253,224,71,1)] animate-pulse'
+                                                            ? 'font-extrabold'
                                                             : isInActiveLine
                                                                 ? 'text-white font-semibold'
                                                                 : ''
                                                             }`}
                                                         style={{
+                                                            color: isActiveWord ? wordHighlightColor : undefined,
                                                             transform: isActiveWord ? 'scale(1.5) translateY(-4px)' : 'scale(1)',
                                                             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                                            textShadow: isActiveWord ? '0 0 30px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.6)' : 'none'
+                                                            textShadow: isActiveWord ? `0 0 30px ${wordHighlightColor}cc, 0 0 60px ${wordHighlightColor}66` : 'none',
+                                                            filter: isActiveWord ? `drop-shadow(0 0 15px ${wordHighlightColor})` : 'none'
                                                         }}
                                                     >
                                                         {wordObj.word}
@@ -502,6 +582,117 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
 
             {/* Player Controls - Fixed at bottom */}
             <div className="bg-gradient-to-t from-slate-900 via-purple-900/50 to-slate-900/90 backdrop-blur-xl border-t border-purple-500/30 p-6">
+
+                {/* 🎨 Appearance Settings Panel */}
+                {showAppearance && (
+                    <div className="mb-6 bg-slate-800/80 p-4 rounded-xl border border-purple-500/30 animate-in slide-in-from-top duration-300">
+                        <h3 className="text-sm font-semibold text-purple-300 mb-4 flex items-center gap-2">
+                            <Palette size={16} /> {lang === 'fa' ? 'تنظیمات ظاهری' : 'Appearance Settings'}
+                        </h3>
+                        <div className="flex flex-wrap justify-center gap-8">
+                            <div className="flex flex-col items-center gap-2">
+                                <label className="text-xs text-gray-400 uppercase font-semibold">
+                                    {lang === 'fa' ? 'رنگ کلمه فعال' : 'Word Highlight'}
+                                </label>
+                                <div className="flex items-center gap-2">
+                                    <input 
+                                        type="color" 
+                                        value={wordHighlightColor} 
+                                        onChange={(e) => setWordHighlightColor(e.target.value)} 
+                                        className="w-12 h-12 rounded-lg cursor-pointer bg-transparent border-2 border-purple-500/30 p-1"
+                                    />
+                                    <span className="text-sm font-mono text-gray-300 bg-slate-700/50 px-2 py-1 rounded">{wordHighlightColor}</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col items-center gap-2">
+                                <label className="text-xs text-gray-400 uppercase font-semibold">
+                                    {lang === 'fa' ? 'رنگ پس‌زمینه خط' : 'Line Background'}
+                                </label>
+                                <div className="flex items-center gap-2">
+                                    <input 
+                                        type="color" 
+                                        value={lineHighlightColor} 
+                                        onChange={(e) => setLineHighlightColor(e.target.value)} 
+                                        className="w-12 h-12 rounded-lg cursor-pointer bg-transparent border-2 border-purple-500/30 p-1"
+                                    />
+                                    <span className="text-sm font-mono text-gray-300 bg-slate-700/50 px-2 py-1 rounded">{lineHighlightColor}</span>
+                                </div>
+                            </div>
+                            {/* Quick Presets */}
+                            <div className="flex flex-col items-center gap-2">
+                                <label className="text-xs text-gray-400 uppercase font-semibold">
+                                    {lang === 'fa' ? 'پیش‌فرض‌ها' : 'Presets'}
+                                </label>
+                                <div className="flex gap-2">
+                                    <button onClick={() => { setWordHighlightColor('#fde047'); setLineHighlightColor('#581c87'); }} className="w-8 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-purple-900 border-2 border-white/20" title="Default" />
+                                    <button onClick={() => { setWordHighlightColor('#2dd4bf'); setLineHighlightColor('#0f172a'); }} className="w-8 h-8 rounded-full bg-gradient-to-r from-teal-400 to-slate-900 border-2 border-white/20" title="Teal" />
+                                    <button onClick={() => { setWordHighlightColor('#f472b6'); setLineHighlightColor('#1e1b4b'); }} className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-400 to-indigo-950 border-2 border-white/20" title="Pink" />
+                                    <button onClick={() => { setWordHighlightColor('#4ade80'); setLineHighlightColor('#052e16'); }} className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-green-950 border-2 border-white/20" title="Green" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* 🌐 Translation Panel */}
+                {showTranslation && (
+                    <div className="mb-6 bg-slate-800/80 p-4 rounded-xl border border-blue-500/30 animate-in slide-in-from-top duration-300">
+                        <div className="flex items-center justify-between mb-3">
+                            <h3 className="text-sm font-semibold text-blue-300 flex items-center gap-2">
+                                <Languages size={16} /> {lang === 'fa' ? 'ترجمه' : 'Translation'} ({translationLang})
+                            </h3>
+                            <button onClick={() => setShowTranslation(false)} className="text-gray-400 hover:text-white">
+                                <X size={16} />
+                            </button>
+                        </div>
+                        <div className="max-h-48 overflow-y-auto">
+                            {isTranslating ? (
+                                <div className="flex items-center justify-center py-8">
+                                    <div className="w-8 h-8 border-2 border-t-transparent border-blue-400 rounded-full animate-spin"></div>
+                                    <span className="ml-3 text-gray-300">{lang === 'fa' ? 'در حال ترجمه...' : 'Translating...'}</span>
+                                </div>
+                            ) : translatedText ? (
+                                <p className={`text-lg leading-relaxed whitespace-pre-wrap text-gray-200 ${translationLang === 'persian' ? 'font-vazir text-right' : 'text-left'}`} dir={translationLang === 'persian' ? 'rtl' : 'ltr'}>
+                                    {translatedText}
+                                </p>
+                            ) : (
+                                <p className="text-gray-500 text-center py-4">{lang === 'fa' ? 'ترجمه‌ای موجود نیست' : 'No translation available'}</p>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Quick Actions Bar */}
+                <div className="flex justify-center gap-2 mb-4">
+                    <button
+                        onClick={() => setShowAppearance(!showAppearance)}
+                        className={`p-2 rounded-lg transition-all ${showAppearance ? 'bg-purple-600 text-white' : 'bg-slate-700 text-gray-400 hover:text-white hover:bg-slate-600'}`}
+                        title={lang === 'fa' ? 'تنظیمات ظاهری' : 'Appearance'}
+                    >
+                        <Palette size={20} />
+                    </button>
+                    <button
+                        onClick={() => handleTranslate('english')}
+                        disabled={isTranslating}
+                        className="px-3 py-2 text-sm rounded-lg transition-colors bg-slate-700 text-gray-300 hover:bg-indigo-600 hover:text-white disabled:opacity-50"
+                    >
+                        {lang === 'fa' ? 'انگلیسی' : 'English'}
+                    </button>
+                    <button
+                        onClick={() => handleTranslate('persian')}
+                        disabled={isTranslating}
+                        className="px-3 py-2 text-sm rounded-lg transition-colors bg-slate-700 text-gray-300 hover:bg-blue-600 hover:text-white disabled:opacity-50"
+                    >
+                        {lang === 'fa' ? 'فارسی' : 'Persian'}
+                    </button>
+                    <button
+                        onClick={() => handleTranslate('finglish')}
+                        disabled={isTranslating}
+                        className="px-3 py-2 text-sm rounded-lg transition-colors bg-slate-700 text-gray-300 hover:bg-purple-600 hover:text-white disabled:opacity-50"
+                    >
+                        Finglish
+                    </button>
+                </div>
 
                 {/* Collapsible Chords Section */}
                 {originalLyricsWithChords && (
@@ -654,6 +845,42 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                         className="w-32 h-2 rounded-full appearance-none cursor-pointer bg-slate-700"
                         aria-label="Volume control"
                     />
+                </div>
+
+                {/* Collapsible Sections for Notes, Description, and Attachments */}
+                <div className="mt-8 space-y-3 max-w-4xl mx-auto px-4 pb-6">
+                    {/* متن یا نوت */}
+                    <CollapsibleSection
+                        title={lang === 'fa' ? 'متن یا نوت' : 'Notes or Sheet Music'}
+                        isEmpty={!notes}
+                        emptyText={lang === 'fa' ? 'متن یا نوت موجود نیست' : 'No notes available'}
+                    >
+                        <div className="prose prose-sm max-w-none text-gray-200 whitespace-pre-wrap leading-relaxed">
+                            {notes}
+                        </div>
+                    </CollapsibleSection>
+
+                    {/* توضیحات */}
+                    <CollapsibleSection
+                        title={lang === 'fa' ? 'توضیحات' : 'Description'}
+                        isEmpty={!description}
+                        emptyText={lang === 'fa' ? 'توضیحی ثبت نشده است' : 'No description available'}
+                    >
+                        <div className="prose prose-sm max-w-none text-gray-200 whitespace-pre-wrap leading-relaxed">
+                            {description}
+                        </div>
+                    </CollapsibleSection>
+
+                    {/* فایلهای ضمیمه */}
+                    <CollapsibleSection
+                        title={lang === 'fa' ? 'فایلهای ضمیمه' : 'Attachments'}
+                        isEmpty={!attachments || attachments.length === 0}
+                        emptyText={lang === 'fa' ? 'فایلی موجود نیست' : 'No files attached'}
+                    >
+                        {attachments && attachments.length > 0 && (
+                            <AttachmentList attachments={attachments} />
+                        )}
+                    </CollapsibleSection>
                 </div>
             </div>
         </div>,
