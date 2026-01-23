@@ -819,32 +819,6 @@ const WorshipPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 sm:px-16 px-6 sm:py-12 py-4">
-      {/* Test Modal Button - ADMIN/LEADER ONLY */}
-      {isAdminOrLeader && !presentationMode && songs.length > 0 && (
-        <button
-          onClick={() => {
-            console.log('🔥 Test button clicked, setting first song');
-            setActiveSong(songs[0]);
-          }}
-          className="fixed top-20 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-green-600 z-50 flex items-center gap-2 font-semibold"
-        >
-          🧪 Test Modal
-        </button>
-      )}
-
-      {/* Presentation Mode Toggle Button - ADMIN/LEADER ONLY */}
-      {isAdminOrLeader && !presentationMode && (
-        <button
-          onClick={() => {
-            setPresentationMode(true);
-            setSelectedSongIndex(0);
-          }}
-          className="fixed top-4 right-4 bg-yellow-500 text-black px-4 py-2 rounded-lg shadow-lg hover:bg-yellow-600 z-50 flex items-center gap-2 font-semibold"
-          title={lang === 'fa' ? 'حالت پرزنتیشن' : 'Presentation Mode'}
-        >
-          🎥 {lang === 'fa' ? 'حالت پرزنتیشن' : 'Presentation Mode'}
-        </button>
-      )}
 
       {presentationMode ? (
         /* Presentation Mode View */
@@ -1188,70 +1162,79 @@ const WorshipPage: React.FC = () => {
                   className="bg-gradient-to-br from-gray-900 via-purple-900/30 to-gray-900 border-2 border-purple-500/50 rounded-2xl p-8 max-w-5xl w-full relative max-h-[90vh] overflow-y-auto shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* دکمه‌های بالای راست */}
-                  <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
-                    {/* دکمه Generate Timing */}
-                    <button
-                      onClick={async () => {
-                        try {
-                          const btn = document.activeElement as HTMLButtonElement;
-                          btn.disabled = true;
-                          btn.innerHTML = '⏳';
+                  {/* دکمه بستن - بالای راست */}
+                  <button
+                    onClick={() => {
+                      console.log('🔴 Close button clicked');
+                      setActiveSong(null);
+                    }}
+                    className="absolute top-4 right-4 z-10 text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
+                    title={lang === 'fa' ? 'بستن' : 'Close'}
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
 
-                          const response = await fetch(`/api/timing/generate/${activeSong.id}`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                              lyrics: activeSong.lyrics?.fa || activeSong.lyrics?.en || '',
-                              title: activeSong.title?.fa || activeSong.title?.en || '',
-                              artist: activeSong.artist || '',
-                              duration: 180
-                            })
-                          });
+                  {/* دکمه‌های ابزار - پایین modal */}
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center gap-3 z-10">
+                    {/* دکمه Generate Timing - فقط برای ادمین */}
+                    {isAdminOrLeader && (
+                      <button
+                        onClick={async () => {
+                          try {
+                            const btn = document.activeElement as HTMLButtonElement;
+                            btn.disabled = true;
+                            btn.textContent = lang === 'fa' ? 'در حال ساخت...' : 'Generating...';
 
-                          const data = await response.json();
+                            const response = await fetch(`/api/timing/generate/${activeSong.id}`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({
+                                lyrics: activeSong.lyrics?.fa || activeSong.lyrics?.en || '',
+                                title: activeSong.title?.fa || activeSong.title?.en || '',
+                                artist: activeSong.artist || '',
+                                duration: 180
+                              })
+                            });
 
-                          if (data.success) {
-                            alert(lang === 'fa' ? '✅ Timing ساخته شد! صفحه رفرش میشه...' : '✅ Timing generated! Refreshing...');
-                            window.location.reload();
-                          } else {
-                            alert(`❌ Error: ${data.error}`);
-                            btn.disabled = false;
-                            btn.innerHTML = '🎵';
+                            const data = await response.json();
+
+                            if (data.success) {
+                              alert(lang === 'fa' ? '✅ Timing ساخته شد! صفحه رفرش میشه...' : '✅ Timing generated! Refreshing...');
+                              window.location.reload();
+                            } else {
+                              alert(`❌ Error: ${data.error}`);
+                              btn.disabled = false;
+                              btn.textContent = lang === 'fa' ? 'ساخت Timing' : 'Generate Timing';
+                            }
+                          } catch (error) {
+                            console.error('Error generating timing:', error);
+                            alert('❌ Failed to generate timing');
                           }
-                        } catch (error) {
-                          console.error('Error generating timing:', error);
-                          alert('❌ Failed to generate timing');
-                        }
-                      }}
-                      className="bg-green-600 hover:bg-green-700 text-white rounded-full w-12 h-12 hover:scale-110 transition-transform flex items-center justify-center text-2xl font-bold shadow-lg"
-                      title={lang === 'fa' ? 'ساخت Timing خودکار' : 'Generate Auto Timing'}
-                    >
-                      🎵
-                    </button>
+                        }}
+                        className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-all flex items-center gap-2"
+                        title={lang === 'fa' ? 'ساخت Timing خودکار' : 'Generate Auto Timing'}
+                      >
+                        <Music2 className="w-4 h-4" />
+                        {lang === 'fa' ? 'ساخت Timing' : 'Generate Timing'}
+                      </button>
+                    )}
 
-                    {/* دکمه فرستادن به صفحه دوم */}
-                    <button
-                      onClick={() => {
-                        console.log('📺 Opening on second screen');
-                        openOnSecondScreen(activeSong);
-                      }}
-                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 hover:scale-110 transition-transform flex items-center justify-center text-2xl font-bold shadow-lg"
-                      title={lang === 'fa' ? 'فرستادن به صفحه دوم (پروژکتور)' : 'Send to Second Screen (Projector)'}
-                    >
-                      📺
-                    </button>
-
-                    {/* دکمه بستن */}
-                    <button
-                      onClick={() => {
-                        console.log('🔴 Close button clicked');
-                        setActiveSong(null);
-                      }}
-                      className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 hover:scale-110 transition-transform flex items-center justify-center text-2xl font-bold shadow-lg"
-                    >
-                      ✕
-                    </button>
+                    {/* دکمه فرستادن به صفحه دوم - فقط برای ادمین */}
+                    {isAdminOrLeader && (
+                      <button
+                        onClick={() => {
+                          console.log('📺 Opening on second screen');
+                          openOnSecondScreen(activeSong);
+                        }}
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-all flex items-center gap-2"
+                        title={lang === 'fa' ? 'فرستادن به صفحه دوم (پروژکتور)' : 'Send to Second Screen (Projector)'}
+                      >
+                        <Presentation className="w-4 h-4" />
+                        {lang === 'fa' ? 'صفحه دوم' : 'Second Screen'}
+                      </button>
+                    )}
                   </div>
 
                   <h2 className="text-4xl font-bold mb-3 text-center text-white drop-shadow-lg">{activeSong.title?.[lang]}</h2>
