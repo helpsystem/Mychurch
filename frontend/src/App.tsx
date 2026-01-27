@@ -132,6 +132,10 @@ const AdminWorshipManager = lazy(() => import('./pages/admin/AdminWorshipManager
 const KaraokeTestPage = lazy(() => import('./pages/KaraokeTestPage')); // Karaoke Worship Player Test
 const SimpleKaraokeTest = lazy(() => import('./pages/SimpleKaraokeTest')); // Simple Karaoke Test
 const AdminAudioProcessorPage = lazy(() => import('./pages/AdminAudioProcessorPage')); // AI Audio Processor with Gemini
+const AdvancedWorshipDemoPage = lazy(() => import('./pages/AdvancedWorshipDemoPage'));
+const AudioStudioPage = lazy(() => import('./pages/AudioStudioPage')); // AI Audio Studio V3
+const VersionDemoPage = lazy(() => import('./pages/VersionDemoPage')); // Multi-Version Song Demo
+const AdminVersionTrashPage = lazy(() => import('./pages/admin/AdminVersionTrashPage')); // Version Trash Management
 
 // Wrapper to hide BibleAIChatWidget on AI Helper page
 const BibleAIChatWidgetWrapper: React.FC = () => {
@@ -270,6 +274,7 @@ function App() {
 
                   <Route path="worship-songs" element={<Layout><WorshipSongsPage /></Layout>} />
                   <Route path="worship-presentation" element={<Layout><WorshipPresentationPage /></Layout>} />
+                  <Route path="worship/audio-studio" element={<Layout><AudioStudioPage /></Layout>} />
 
                   <Route path="presentation-creator" element={<Layout><PresentationCreatorPage /></Layout>} />
                   <Route path="admin/sync-management" element={
@@ -451,6 +456,8 @@ function App() {
                   <Route path="worship/simple" element={<Layout><SimpleWorshipPage /></Layout>} />
                   <Route path="worship/archive" element={<Layout><WorshipSongsArchive /></Layout>} />
                   <Route path="worship/sync-test" element={<Layout><WorshipSyncTestPage /></Layout>} />
+                  <Route path="worship/advanced-demo" element={<Layout><AdvancedWorshipDemoPage /></Layout>} />
+                  <Route path="worship/version-demo" element={<Layout><VersionDemoPage /></Layout>} />
 
                   {/* Admin Additional Routes */}
                   <Route
@@ -490,6 +497,14 @@ function App() {
                     element={
                       <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
                         <Layout><AdminWorshipManager /></Layout>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/version-trash"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
+                        <Layout><AdminVersionTrashPage /></Layout>
                       </ProtectedRoute>
                     }
                   />

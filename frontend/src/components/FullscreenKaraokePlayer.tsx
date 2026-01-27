@@ -98,12 +98,12 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
     const [showChords, setShowChords] = useState(false); // Toggle for chords section
     const [layoutMode, setLayoutMode] = useState<KaraokeLayoutMode>(getStoredLayoutMode());
     const [showLayoutSelector, setShowLayoutSelector] = useState(false);
-    
+
     // 🎨 Appearance Settings (from audio-text-sync v2.1)
     const [showAppearance, setShowAppearance] = useState(false);
     const [wordHighlightColor, setWordHighlightColor] = useState(() => localStorage.getItem('karaoke_wordColor') || '#fde047'); // yellow-300
     const [lineHighlightColor, setLineHighlightColor] = useState(() => localStorage.getItem('karaoke_lineColor') || '#581c87'); // purple-900
-    
+
     // 🌐 Translation State
     const [showTranslation, setShowTranslation] = useState(false);
     const [translatedText, setTranslatedText] = useState<string | null>(null);
@@ -152,9 +152,11 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                 }
             }
 
-            // Fetch from server
+            // Fetch from server with cache busting
             try {
-                const response = await fetch(`/worship/data/timings/song_${songId}_timing.json`);
+                // Add version timestamp to prevent browser caching
+                const cacheBuster = new Date().getTime();
+                const response = await fetch(`/worship/data/timings/song_${songId}_timing.json?v=${cacheBuster}`);
                 if (response.ok) {
                     const data = await response.json();
                     localStorage.setItem(cacheKey, JSON.stringify(data));
@@ -168,6 +170,8 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                         }));
                         setFetchedLyricLines(mappedLines);
                     }
+                } else {
+                    console.warn(`Timing file not found for song ${songId}: ${response.status}`);
                 }
             } catch (error) {
                 console.error('Error fetching timing:', error);
@@ -243,11 +247,11 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
     const handleTranslate = async (target: 'persian' | 'english' | 'finglish') => {
         const fullText = processedLyrics.map(l => l.text).join('\n');
         if (!fullText) return;
-        
+
         setIsTranslating(true);
         setTranslationLang(target);
         setShowTranslation(true);
-        
+
         try {
             const response = await fetch('/api/translate', {
                 method: 'POST',
@@ -258,7 +262,7 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                     type: 'lyrics'
                 })
             });
-            
+
             if (response.ok) {
                 const data = await response.json();
                 setTranslatedText(data.translation || data.text);
@@ -595,10 +599,10 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                                     {lang === 'fa' ? 'رنگ کلمه فعال' : 'Word Highlight'}
                                 </label>
                                 <div className="flex items-center gap-2">
-                                    <input 
-                                        type="color" 
-                                        value={wordHighlightColor} 
-                                        onChange={(e) => setWordHighlightColor(e.target.value)} 
+                                    <input
+                                        type="color"
+                                        value={wordHighlightColor}
+                                        onChange={(e) => setWordHighlightColor(e.target.value)}
                                         className="w-12 h-12 rounded-lg cursor-pointer bg-transparent border-2 border-purple-500/30 p-1"
                                     />
                                     <span className="text-sm font-mono text-gray-300 bg-slate-700/50 px-2 py-1 rounded">{wordHighlightColor}</span>
@@ -609,10 +613,10 @@ const FullscreenKaraokePlayer: React.FC<Props> = ({
                                     {lang === 'fa' ? 'رنگ پس‌زمینه خط' : 'Line Background'}
                                 </label>
                                 <div className="flex items-center gap-2">
-                                    <input 
-                                        type="color" 
-                                        value={lineHighlightColor} 
-                                        onChange={(e) => setLineHighlightColor(e.target.value)} 
+                                    <input
+                                        type="color"
+                                        value={lineHighlightColor}
+                                        onChange={(e) => setLineHighlightColor(e.target.value)}
                                         className="w-12 h-12 rounded-lg cursor-pointer bg-transparent border-2 border-purple-500/30 p-1"
                                     />
                                     <span className="text-sm font-mono text-gray-300 bg-slate-700/50 px-2 py-1 rounded">{lineHighlightColor}</span>

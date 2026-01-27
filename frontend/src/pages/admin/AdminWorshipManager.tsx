@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useAuth } from '../../hooks/useAuth';
-import { Upload, Music, FileText, Image, Trash2, Save, Plus } from 'lucide-react';
+import { Upload, Music, FileText, Image, Trash2, Save, Plus, Wand2, X, Play, ExternalLink } from 'lucide-react';
 import axios from 'axios';
+import { AudioTextSyncStudio } from '../../components/worship/AudioTextSyncStudio';
 
 interface WorshipSong {
   id?: number;
@@ -30,6 +31,10 @@ const AdminWorshipManager: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState('');
+
+  // Sync Modal State
+  const [showSyncModal, setShowSyncModal] = useState(false);
+  const [syncSongId, setSyncSongId] = useState<number | null>(null);
 
   // بارگذاری لیست سرودها
   useEffect(() => {
@@ -87,7 +92,7 @@ const AdminWorshipManager: React.FC = () => {
         await axios.post('/api/worship-songs', selectedSong);
         setMessage('✅ سرود جدید با موفقیت اضافه شد');
       }
-      
+
       fetchSongs();
       setIsEditing(false);
       setSelectedSong(null);
@@ -160,11 +165,10 @@ const AdminWorshipManager: React.FC = () => {
               {songs.map(song => (
                 <div
                   key={song.id}
-                  className={`p-3 mb-2 rounded-lg cursor-pointer transition ${
-                    selectedSong?.id === song.id
-                      ? 'bg-cyan-500/30 border border-cyan-500'
-                      : 'bg-gray-800/50 hover:bg-gray-700/50'
-                  }`}
+                  className={`p-3 mb-2 rounded-lg cursor-pointer transition ${selectedSong?.id === song.id
+                    ? 'bg-cyan-500/30 border border-cyan-500'
+                    : 'bg-gray-800/50 hover:bg-gray-700/50'
+                    }`}
                   onClick={() => {
                     setSelectedSong(song);
                     setIsEditing(false);
@@ -198,6 +202,27 @@ const AdminWorshipManager: React.FC = () => {
                           >
                             ویرایش
                           </button>
+                          <button
+                            onClick={() => {
+                              setSyncSongId(selectedSong.id || null);
+                              setShowSyncModal(true);
+                            }}
+                            disabled={!selectedSong.audioUrl}
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+                            title={!selectedSong.audioUrl ? 'ابتدا فایل صوتی آپلود کنید' : 'سینک هوشمند با AI'}
+                          >
+                            <Wand2 size={16} />
+                            ⚡ سینک هوشمند
+                          </button>
+                          <a
+                            href={`/#/worship/song/${selectedSong.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+                          >
+                            <Play size={16} />
+                            پخش
+                          </a>
                           <button
                             onClick={() => handleDelete(selectedSong.id!)}
                             className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center gap-2"
@@ -283,7 +308,7 @@ const AdminWorshipManager: React.FC = () => {
                     {isEditing && (
                       <div className="space-y-3 bg-gray-800/50 p-4 rounded-lg">
                         <h3 className="text-white font-semibold mb-3">آپلود فایل‌ها</h3>
-                        
+
                         {/* فایل صوتی */}
                         <div>
                           <label className="text-white block mb-2">
@@ -370,9 +395,9 @@ const AdminWorshipManager: React.FC = () => {
                       <label className="text-white block mb-2">متن سرود (فارسی)</label>
                       <textarea
                         value={selectedSong.lyrics?.fa || ''}
-                        onChange={(e) => setSelectedSong({ 
-                          ...selectedSong, 
-                          lyrics: { ...selectedSong.lyrics, fa: e.target.value } 
+                        onChange={(e) => setSelectedSong({
+                          ...selectedSong,
+                          lyrics: { ...selectedSong.lyrics, fa: e.target.value }
                         })}
                         disabled={!isEditing}
                         rows={6}
@@ -404,6 +429,54 @@ const AdminWorshipManager: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Sync Modal */}
+      {showSyncModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl w-full max-w-6xl max-h-[95vh] overflow-auto shadow-2xl">
+            {/* Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center z-10">
+              <div className="flex items-center gap-3">
+                <Wand2 className="text-purple-500" size={24} />
+                <h2 className="text-xl font-bold text-gray-800">
+                  سینک هوشمند سرود #{syncSongId} - {selectedSong?.title?.fa || selectedSong?.title?.en}
+                </h2>
+              </div>
+              <div className="flex items-center gap-3">
+                <a
+                  href={`/#/worship/song/${syncSongId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg"
+                >
+                  <ExternalLink size={16} />
+                  تست در صفحه اصلی
+                </a>
+                <button
+                  onClick={() => {
+                    setShowSyncModal(false);
+                    setSyncSongId(null);
+                  }}
+                  className="p-2 hover:bg-gray-100 rounded-full transition"
+                  title="بستن"
+                >
+                  <X size={24} className="text-gray-500" />
+                </button>
+              </div>
+            </div>
+
+            {/* AudioTextSyncStudio */}
+            <div className="p-0">
+              <AudioTextSyncStudio />
+            </div>
+
+            {/* Footer */}
+            <div className="sticky bottom-0 bg-gray-50 border-t border-gray-200 p-4 text-center text-sm text-gray-500">
+              <p>💡 بعد از تولید تایمینگ، دکمه "💾 دانلود JSON Player" را بزنید و فایل را در <code className="bg-gray-200 px-2 py-1 rounded">public/worship/data/timings/</code> قرار دهید</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

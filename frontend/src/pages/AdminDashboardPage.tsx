@@ -131,6 +131,7 @@ const AdminDashboardPage: React.FC = () => {
             { id: 'pages', label: t('pages'), icon: <FileText />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'content', label: t('footerLinkContent'), icon: <Settings />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'] },
+            { id: 'audio-studio', label: lang === 'fa' ? '🎙️ استودیو صوتی AI' : '🎙️ AI Audio Studio', icon: <MicVocal />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'], externalLink: '/#/worship/audio-studio' },
             { id: 'sermons', label: lang === 'fa' ? 'مدیریت جلسات آنلاین' : 'Online Services', icon: <Video />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'worship-health', label: lang === 'fa' ? '📊 وضعیت سرودها' : '📊 Songs Health', icon: <BarChart2 />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'], externalLink: '/#/admin/worship-health' },
             { id: 'testimonials', label: t('navTestimonials'), icon: <MessageSquare />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
