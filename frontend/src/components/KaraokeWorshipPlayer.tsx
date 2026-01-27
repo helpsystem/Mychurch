@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import { 
-  Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, 
+import React, { useEffect, useRef, useState, useCallback, useMemo, useContext } from 'react';
+import {
+  Play, Pause, Volume2, VolumeX, SkipBack, SkipForward,
   Download, Youtube, Maximize2, Minimize2, X, Settings,
-  Languages, Music, FileText, Edit3, Save, Clock, Palette, 
+  Languages, Music, FileText, Edit3, Save, Clock, Palette,
   MousePointer2, Minus, Plus
 } from 'lucide-react';
+import { AuthContext } from '../context/AuthContext';
 
 // Types for timing data
 interface WordTiming {
@@ -73,7 +74,7 @@ const persianToFinglish: Record<string, string> = {
   'ر': 'r', 'ز': 'z', 'ژ': 'zh', 'س': 's', 'ش': 'sh', 'ص': 's',
   'ض': 'z', 'ط': 't', 'ظ': 'z', 'ع': 'a', 'غ': 'gh', 'ف': 'f',
   'ق': 'gh', 'ک': 'k', 'گ': 'g', 'ل': 'l', 'م': 'm', 'ن': 'n',
-  'و': 'o', 'ه': 'h', 'ی': 'i', 'ئ': 'y', 'ء': '', 
+  'و': 'o', 'ه': 'h', 'ی': 'i', 'ئ': 'y', 'ء': '',
   'ـ': '', '‌': '', // ZWNJ and Kashida
   'ة': 'h', 'ي': 'i', 'ى': 'a', 'أ': 'a', 'إ': 'e', 'ؤ': 'o',
 };
@@ -91,18 +92,18 @@ const toFinglish = (word: string): string => {
 // Convert words array to lines (group words by time gap or fixed interval)
 const convertWordsToLines = (words: WordTiming[], wordsPerLine: number = 6): LineTiming[] => {
   if (!words || words.length === 0) return [];
-  
+
   const lines: LineTiming[] = [];
   let currentWords: WordTiming[] = [];
-  
+
   for (let i = 0; i < words.length; i++) {
     currentWords.push(words[i]);
-    
+
     // Check if we should start a new line
-    const shouldBreak = 
+    const shouldBreak =
       currentWords.length >= wordsPerLine ||
       (i < words.length - 1 && words[i + 1].start - words[i].end > 1.5); // Gap > 1.5 seconds
-    
+
     if (shouldBreak || i === words.length - 1) {
       const lineText = currentWords.map(w => w.word).join(' ');
       lines.push({
@@ -114,7 +115,7 @@ const convertWordsToLines = (words: WordTiming[], wordsPerLine: number = 6): Lin
       currentWords = [];
     }
   }
-  
+
   return lines;
 };
 
@@ -126,14 +127,14 @@ const normalizeTimingData = (raw: TimingDataRaw): TimingData => {
       lines: raw.lines
     };
   }
-  
+
   if (raw.words && raw.words.length > 0) {
     return {
       metadata: raw.metadata,
       lines: convertWordsToLines(raw.words)
     };
   }
-  
+
   return {
     metadata: raw.metadata,
     lines: []
@@ -179,20 +180,24 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   const [showSettings, setShowSettings] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Auth Context
+  const { user } = useContext(AuthContext) || {};
+  const canEdit = user?.role === 'SUPER_ADMIN' || user?.role === 'MANAGER' || (user?.role as any) === 'LEADER' || (user?.role as any) === 'WORSHIP_LEADER';
+
   // NEW: Sync Delay - تنظیم دستی زمان
   const [syncDelay, setSyncDelay] = useState(0);
-  
+
   // NEW: Editable highlight colors - رنگ‌بندی قابل تنظیم
   const [wordHighlightColor, setWordHighlightColor] = useState('#10b981'); // emerald-500
   const [lineHighlightColor, setLineHighlightColor] = useState('#1e293b'); // slate-800
   const [showAppearance, setShowAppearance] = useState(false);
-  
+
   // NEW: Manual Sync Mode - حالت هماهنگی لمسی
   const [isSyncMode, setIsSyncMode] = useState(false);
-  
+
   // NEW: Edit Mode - حالت ویرایش
   const [isEditing, setIsEditing] = useState(false);
-  
+
   // Effective time with sync delay - زمان موثر با تاخیر
   const effectiveTime = useMemo(() => Math.max(0, currentTime - syncDelay), [currentTime, syncDelay]);
 
@@ -229,7 +234,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
     const loadTiming = async () => {
       setIsLoading(true);
       setError(null);
-      
+
       try {
         const response = await fetch(`/worship/data/timings/song_${songId}_timing.json`);
         if (response.ok) {
@@ -286,31 +291,31 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   // Find active or next upcoming line index
   const getActiveOrNextLineIndex = useCallback(() => {
     if (!timingData?.lines) return -1;
-    
+
     const tolerance = 0.3; // 300ms tolerance for timing
-    
+
     // First try to find actively playing line (using effectiveTime)
     const activeIndex = timingData.lines.findIndex(line => {
       const start = line.words[0]?.start ?? line.start;
       const end = line.words[line.words.length - 1]?.end ?? line.end;
       return effectiveTime >= (start - tolerance) && effectiveTime <= (end + tolerance);
     });
-    
+
     if (activeIndex !== -1) return activeIndex;
-    
+
     // If in a gap, find the next upcoming line
     const nextIndex = timingData.lines.findIndex(line => {
       const start = line.words[0]?.start ?? line.start;
       return effectiveTime < start;
     });
-    
+
     return nextIndex !== -1 ? nextIndex : -1;
   }, [timingData, effectiveTime]);
 
   // Auto-scroll to active or next line (disabled during edit/sync mode)
   useEffect(() => {
     if (!timingData || !lyricsContainerRef.current || isEditing || isSyncMode) return;
-    
+
     const targetIndex = getActiveOrNextLineIndex();
 
     if (targetIndex !== -1) {
@@ -390,7 +395,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   // Fullscreen toggle
   const toggleFullscreen = useCallback(async () => {
     if (!containerRef.current) return;
-    
+
     try {
       if (!document.fullscreenElement) {
         await containerRef.current.requestFullscreen();
@@ -430,7 +435,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
       if (!prev) return null;
       const newLines = [...prev.lines];
       const line = newLines[lineIndex];
-      
+
       const startTime = line.words[0]?.start || 0;
       const endTime = line.words[line.words.length - 1]?.end || 0;
       const duration = Math.max(0.1, endTime - startTime);
@@ -461,23 +466,23 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   // NEW: Manual sync - کلیک روی کلمه برای تنظیم زمان
   const handleManualSync = useCallback((lineIndex: number, wordIndex: number) => {
     if (!audioRef.current || !isSyncMode) return;
-    
+
     const time = audioRef.current.currentTime;
     const formattedTime = Number(time.toFixed(2));
 
     setTimingData(prev => {
       if (!prev) return null;
       const newLines = [...prev.lines];
-      
+
       // Update current word
-      const line = {...newLines[lineIndex]};
+      const line = { ...newLines[lineIndex] };
       const newWords = [...line.words];
-      const word = {...newWords[wordIndex]};
+      const word = { ...newWords[wordIndex] };
 
       const oldDuration = word.end - word.start;
       word.start = formattedTime;
       word.end = Number((formattedTime + oldDuration).toFixed(2));
-      
+
       newWords[wordIndex] = word;
       line.words = newWords;
       newLines[lineIndex] = line;
@@ -497,12 +502,12 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
       }
 
       if (prevLineIndex >= 0 && prevWordIndex >= 0) {
-        const pLine = newLines[prevLineIndex] === line ? line : {...newLines[prevLineIndex]};
+        const pLine = newLines[prevLineIndex] === line ? line : { ...newLines[prevLineIndex] };
         const pWords = pLine === line ? newWords : [...pLine.words];
-        const prevWord = {...pWords[prevWordIndex]};
-        
+        const prevWord = { ...pWords[prevWordIndex] };
+
         prevWord.end = formattedTime;
-        
+
         pWords[prevWordIndex] = prevWord;
         pLine.words = pWords;
         newLines[prevLineIndex] = pLine;
@@ -555,7 +560,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   // Render lyrics with word-by-word highlighting
   const renderLyrics = () => {
     console.log('renderLyrics called', { timingData, hasLines: timingData?.lines?.length });
-    
+
     if (!timingData || !timingData.lines || timingData.lines.length === 0) {
       return (
         <div className="flex items-center justify-center h-full text-white/50">
@@ -569,10 +574,10 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
     }
 
     return (
-      <div 
+      <div
         ref={lyricsContainerRef}
         className="space-y-6 p-6 overflow-y-auto"
-        style={{ 
+        style={{
           maxHeight: isFullscreen ? 'calc(100vh - 200px)' : '350px',
           direction: isRTL ? 'rtl' : 'ltr',
           fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
@@ -584,12 +589,11 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
           if (/^(V\d+|Verse|Chorus|Bridge|Intro|Outro|Pre-Chorus)$/i.test(cleanLine)) {
             const isLineActive = currentTime >= line.start && currentTime <= line.end;
             return (
-              <div 
+              <div
                 key={lineIndex}
                 onClick={() => seekToLine(line.start)}
-                className={`text-center py-2 cursor-pointer transition-all duration-300 text-sm font-semibold uppercase tracking-wider ${
-                  isLineActive ? 'text-emerald-400' : 'text-white/30'
-                }`}
+                className={`text-center py-2 cursor-pointer transition-all duration-300 text-sm font-semibold uppercase tracking-wider ${isLineActive ? 'text-emerald-400' : 'text-white/30'
+                  }`}
               >
                 {cleanLine}
               </div>
@@ -600,7 +604,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
           const lineEnd = line.words[line.words.length - 1]?.end ?? line.end;
           const tolerance = 0.5; // 500ms tolerance for better sync
           const isLineActive = effectiveTime >= (lineStart - tolerance) && effectiveTime <= (lineEnd + tolerance);
-          
+
           // Check if this is the next upcoming line (for gap preview)
           const activeOrNextIndex = getActiveOrNextLineIndex();
           const isNextLine = !isLineActive && lineIndex === activeOrNextIndex;
@@ -614,7 +618,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                   value={line.line}
                   onChange={(e) => handleLineChange(lineIndex, e.target.value)}
                   className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-600 focus:border-emerald-500 outline-none resize-none min-h-[60px] text-xl"
-                  style={{ 
+                  style={{
                     fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
                     direction: isRTL ? 'rtl' : 'ltr',
                   }}
@@ -629,11 +633,11 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
           }
 
           return (
-            <div 
+            <div
               key={lineIndex}
               onClick={() => !isEditing && !isSyncMode && seekToLine(lineStart)}
               className={`p-4 rounded-xl cursor-pointer transition-all duration-300 text-center`}
-              style={{ 
+              style={{
                 backgroundColor: isLineActive ? `${lineHighlightColor}cc` : (isUpcoming ? 'rgba(59, 130, 246, 0.1)' : 'transparent'),
                 transform: isLineActive ? 'scale(1.02)' : 'scale(1)',
                 boxShadow: isLineActive ? `0 4px 20px ${wordHighlightColor}33` : (isUpcoming ? '0 2px 10px rgba(59, 130, 246, 0.15)' : 'none'),
@@ -646,15 +650,14 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                   const wordTolerance = 0.15; // 150ms for word precision
                   const isWordActive = effectiveTime >= (wordObj.start - wordTolerance) && effectiveTime < (wordObj.end + wordTolerance);
                   const cleanWord = removeChords(wordObj.word);
-                  
+
                   return (
-                    <span 
+                    <span
                       key={wordIndex}
                       onClick={() => isSyncMode && handleManualSync(lineIndex, wordIndex)}
-                      className={`inline-block mx-1 transition-all duration-150 px-1 rounded ${
-                        isWordActive ? 'font-bold' : ''
-                      } ${isSyncMode ? 'cursor-pointer hover:bg-yellow-500/30 hover:text-yellow-200 border-b border-dashed border-yellow-600' : ''}`}
-                      style={{ 
+                      className={`inline-block mx-1 transition-all duration-150 px-1 rounded ${isWordActive ? 'font-bold' : ''
+                        } ${isSyncMode ? 'cursor-pointer hover:bg-yellow-500/30 hover:text-yellow-200 border-b border-dashed border-yellow-600' : ''}`}
+                      style={{
                         color: isWordActive ? wordHighlightColor : (isLineActive ? 'white' : 'rgba(255,255,255,0.6)'),
                         textShadow: isWordActive ? `0 0 20px ${wordHighlightColor}, 0 0 40px ${wordHighlightColor}` : 'none',
                         transform: isWordActive ? 'scale(1.15)' : 'scale(1)',
@@ -677,10 +680,10 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                     const cleanWord = removeChords(wordObj.word);
                     const finglishWord = wordObj.finglish || toFinglish(cleanWord);
                     return (
-                      <span 
+                      <span
                         key={wordIndex}
                         className="inline-block mx-1"
-                        style={{ 
+                        style={{
                           color: isWordActive ? wordHighlightColor : 'rgba(255,255,255,0.4)',
                           fontWeight: isWordActive ? 600 : 400,
                         }}
@@ -725,7 +728,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
           left: 0,
           width: '100%',
           height: '100%',
-          background: albumArt 
+          background: albumArt
             ? `linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), url(${albumArt}) center/cover`
             : 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
           zIndex: 0,
@@ -745,10 +748,10 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
         }}
       >
         <div style={{ flex: 1 }}>
-          <h2 style={{ 
-            color: 'white', 
-            fontSize: '1.5rem', 
-            fontWeight: 600, 
+          <h2 style={{
+            color: 'white',
+            fontSize: '1.5rem',
+            fontWeight: 600,
             margin: 0,
             textShadow: '0 2px 4px rgba(0,0,0,0.5)',
             fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
@@ -757,9 +760,9 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
             {title}
           </h2>
           {artist && (
-            <p style={{ 
-              color: 'rgba(255,255,255,0.7)', 
-              fontSize: '0.9rem', 
+            <p style={{
+              color: 'rgba(255,255,255,0.7)',
+              fontSize: '0.9rem',
               margin: '4px 0 0 0',
               fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
               direction: isRTL ? 'rtl' : 'ltr',
@@ -860,10 +863,10 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
         >
           {/* Sync Delay Control - تنظیم زمان */}
           <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px', 
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
               marginBottom: '12px',
               color: 'white',
               fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
@@ -871,14 +874,14 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
               <Clock size={16} className="text-teal-400" />
               <span style={{ fontWeight: 600 }}>{lang === 'fa' ? 'تنظیم زمان' : 'Sync Delay'}</span>
             </div>
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
-              gap: '12px', 
-              background: 'rgba(255,255,255,0.05)', 
-              borderRadius: '12px', 
-              padding: '12px' 
+              gap: '12px',
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: '12px',
+              padding: '12px'
             }}>
               <button
                 onClick={() => setSyncDelay(d => Math.max(d - 0.1, -5))}
@@ -897,8 +900,8 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
               >
                 <Minus size={14} />
               </button>
-              <div style={{ 
-                textAlign: 'center', 
+              <div style={{
+                textAlign: 'center',
                 minWidth: '80px',
                 fontFamily: 'SF Mono, Monaco, monospace',
                 fontSize: '1.25rem',
@@ -925,73 +928,75 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                 <Plus size={14} />
               </button>
             </div>
-            <p style={{ 
-              textAlign: 'center', 
-              fontSize: '0.7rem', 
-              color: 'rgba(255,255,255,0.4)', 
+            <p style={{
+              textAlign: 'center',
+              fontSize: '0.7rem',
+              color: 'rgba(255,255,255,0.4)',
               marginTop: '8px',
               fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
             }}>
-              {syncDelay > 0 
+              {syncDelay > 0
                 ? (lang === 'fa' ? 'تاخیر - متن خیلی سریع بود' : 'Delay - text was too fast')
-                : syncDelay < 0 
+                : syncDelay < 0
                   ? (lang === 'fa' ? 'جلو بردن - متن خیلی کند بود' : 'Ahead - text was too slow')
                   : (lang === 'fa' ? 'هماهنگی کامل' : 'Perfect sync')}
             </p>
           </div>
 
           {/* Edit & Sync Mode Buttons */}
-          <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
-            <button
-              onClick={() => { setIsEditing(!isEditing); if(!isEditing) setIsSyncMode(false); }}
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                background: isEditing ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255,255,255,0.1)',
-                border: isEditing ? '1px solid #eab308' : '1px solid transparent',
-                borderRadius: '10px',
-                padding: '10px',
-                color: isEditing ? '#fbbf24' : 'white',
-                cursor: 'pointer',
-                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                transition: 'all 0.2s',
-              }}
-              title={lang === 'fa' ? 'ویرایش متن' : 'Edit Text'}
-            >
-              {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
-              {isEditing ? (lang === 'fa' ? 'ذخیره' : 'Save') : (lang === 'fa' ? 'ویرایش' : 'Edit')}
-            </button>
-            <button
-              onClick={() => { setIsSyncMode(!isSyncMode); if(!isSyncMode) setIsEditing(false); }}
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                background: isSyncMode ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255,255,255,0.1)',
-                border: isSyncMode ? '1px solid #ef4444' : '1px solid transparent',
-                borderRadius: '10px',
-                padding: '10px',
-                color: isSyncMode ? '#f87171' : 'white',
-                cursor: 'pointer',
-                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                transition: 'all 0.2s',
-                animation: isSyncMode ? 'pulse 2s infinite' : 'none',
-              }}
-              title={lang === 'fa' ? 'هماهنگی لمسی' : 'Touch Sync'}
-            >
-              <MousePointer2 size={16} />
-              {lang === 'fa' ? 'هماهنگی' : 'Sync'}
-            </button>
-          </div>
+          {canEdit && (
+            <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
+              <button
+                onClick={() => { setIsEditing(!isEditing); if (!isEditing) setIsSyncMode(false); }}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: isEditing ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255,255,255,0.1)',
+                  border: isEditing ? '1px solid #eab308' : '1px solid transparent',
+                  borderRadius: '10px',
+                  padding: '10px',
+                  color: isEditing ? '#fbbf24' : 'white',
+                  cursor: 'pointer',
+                  fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                  fontSize: '0.85rem',
+                  fontWeight: 500,
+                  transition: 'all 0.2s',
+                }}
+                title={lang === 'fa' ? 'ویرایش متن' : 'Edit Text'}
+              >
+                {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
+                {isEditing ? (lang === 'fa' ? 'ذخیره' : 'Save') : (lang === 'fa' ? 'ویرایش' : 'Edit')}
+              </button>
+              <button
+                onClick={() => { setIsSyncMode(!isSyncMode); if (!isSyncMode) setIsEditing(false); }}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: isSyncMode ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255,255,255,0.1)',
+                  border: isSyncMode ? '1px solid #ef4444' : '1px solid transparent',
+                  borderRadius: '10px',
+                  padding: '10px',
+                  color: isSyncMode ? '#f87171' : 'white',
+                  cursor: 'pointer',
+                  fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                  fontSize: '0.85rem',
+                  fontWeight: 500,
+                  transition: 'all 0.2s',
+                  animation: isSyncMode ? 'pulse 2s infinite' : 'none',
+                }}
+                title={lang === 'fa' ? 'هماهنگی لمسی' : 'Touch Sync'}
+              >
+                <MousePointer2 size={16} />
+                {lang === 'fa' ? 'هماهنگی' : 'Sync'}
+              </button>
+            </div>
+          )}
 
           {/* Appearance Settings - رنگ‌بندی */}
           <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -1013,13 +1018,13 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
               <Palette size={16} className="text-purple-400" />
               <span style={{ fontWeight: 600 }}>{lang === 'fa' ? 'رنگ‌بندی' : 'Appearance'}</span>
             </button>
-            
+
             {showAppearance && (
               <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {/* Word Highlight Color */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ 
-                    fontSize: '0.8rem', 
+                  <span style={{
+                    fontSize: '0.8rem',
                     color: 'rgba(255,255,255,0.7)',
                     fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
                   }}>
@@ -1037,8 +1042,8 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                 </div>
                 {/* Line Highlight Color */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ 
-                    fontSize: '0.8rem', 
+                  <span style={{
+                    fontSize: '0.8rem',
                     color: 'rgba(255,255,255,0.7)',
                     fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
                   }}>
@@ -1060,9 +1065,9 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
 
           {/* Show Finglish */}
           <div style={{ marginBottom: '12px' }}>
-            <label style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
+            <label style={{
+              display: 'flex',
+              alignItems: 'center',
               gap: '8px',
               color: 'white',
               cursor: 'pointer',
@@ -1082,7 +1087,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
           {/* Download & External Links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '12px' }}>
             {/* Download Timing JSON */}
-            {timingData && (isEditing || syncDelay !== 0) && (
+            {canEdit && timingData && (isEditing || syncDelay !== 0) && (
               <button
                 onClick={handleDownloadTiming}
                 className="hover:bg-teal-600/30"
@@ -1206,7 +1211,7 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                 overflow: 'hidden',
               }}>
                 {/* Progress Fill */}
-                <div 
+                <div
                   style={{
                     height: '100%',
                     width: `${(currentTime / (duration || 1)) * 100}%`,
@@ -1240,9 +1245,9 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
             </div>
 
             {/* Time Labels */}
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
               color: 'rgba(255,255,255,0.7)',
               fontSize: '0.75rem',
               fontFamily: 'SF Mono, Monaco, monospace',
