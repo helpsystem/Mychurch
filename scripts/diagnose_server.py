@@ -1,70 +1,60 @@
 
 import paramiko
-import json
+import os
+import datetime
 
-SERVER = 'samanabyar.online'
-USERNAME = 'root'
-PASSWORD = 'jIVeuzsrkoWPkhUY'
+# Configuration
+SERVER_HOST = "samanabyar.online"
+SERVER_USER = "root"
+SERVER_PASSWORD = "jIVeuzsrkoWPkhUY"
 
-def check_server_state():
-    print("🕵️‍♂️ Diagnosing Server State...")
+def get_file_info(ssh, path):
+    stdin, stdout, stderr = ssh.exec_command(f"ls -la --time-style=+%Y-%m-%d_%H:%M:%S {path}")
+    return stdout.read().decode().strip()
+
+def run_cmd(ssh, cmd):
+    print(f"Running: {cmd}")
+    stdin, stdout, stderr = ssh.exec_command(cmd)
+    out = stdout.read().decode().strip()
+    err = stderr.read().decode().strip()
+    if out: print(f"OUT:\n{out}")
+    if err: print(f"ERR:\n{err}")
+    return out
+
+def main():
+    print("🔍 Starting Server Diagnosis...")
+    
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(SERVER, username=USERNAME, password=PASSWORD, timeout=15)
+        ssh.connect(SERVER_HOST, username=SERVER_USER, password=SERVER_PASSWORD)
+        print("✅ Connected to server")
         
-        # 1. Get PM2 Info to find the running directory
-        print("\n[1] Checking PM2 Process Info...")
-        stdin, stdout, stderr = ssh.exec_command('pm2 jlist')
-        pm2_json = stdout.read().decode()
+        # 1. Check Nginx Config
+        print("\n1️⃣ Checking Nginx Sites...")
+        sites = run_cmd(ssh, "ls /etc/nginx/sites-enabled/")
+        if sites:
+            for site in sites.split():
+                print(f"\n--- Config for {site} ---")
+                run_cmd(ssh, f"cat /etc/nginx/sites-enabled/{site}")
         
-        try:
-            processes = json.loads(pm2_json)
-            backend_proc = next((p for p in processes if 'backend' in p['name']), None)
+        # 2. Check Directories
+        print("\n2️⃣ Checking Web Directories...")
+        
+        dirs_to_check = ["/var/www/mychurch", "/var/www/html", "/var/www/mychurch/dist"]
+        
+        for d in dirs_to_check:
+            print(f"\nScanning: {d}")
+            run_cmd(ssh, f"ls -la {d} | head -n 10")
             
-            if backend_proc:
-                cwd = backend_proc['pm2_env']['pm_cwd']
-                status = backend_proc['pm2_env']['status']
-                print(f"   ✅ Backend Found:")
-                print(f"      Status: {status}")
-                print(f"      CWD: {cwd}")
-                
-                # 2. Check the file in THAT directory
-                file_path = f"{cwd}/routes/bible-local.js"
-                print(f"\n[2] Checking file at: {file_path}")
-                
-                # Check for 'hidrive'
-                cmd_hidrive = f'grep "hidrive" "{file_path}"'
-                stdin, stdout, stderr = ssh.exec_command(cmd_hidrive)
-                hidrive_matches = stdout.read().decode().strip()
-                
-                # Check for '/bible_data/audio'
-                cmd_new = f'grep "/bible_data/audio" "{file_path}"'
-                stdin, stdout, stderr = ssh.exec_command(cmd_new)
-                new_matches = stdout.read().decode().strip()
-                
-                print("   --- Grep Results ---")
-                if hidrive_matches:
-                    print(f"   ⚠️  FOUND 'hidrive' (Old Code?):\n{hidrive_matches}")
-                else:
-                    print("   ✅ 'hidrive' NOT found.")
-                    
-                if new_matches:
-                    print(f"   ✅ FOUND '/bible_data/audio' (New Code):\n{new_matches}")
-                else:
-                    print("   ❌ '/bible_data/audio' NOT found (New code missing).")
-                    
-            else:
-                print("   ❌ 'backend' process not found in PM2 list.")
-                
-        except json.JSONDecodeError:
-            print("   ❌ Failed to parse PM2 JSON output.")
-            print(pm2_json[:200]) # Print start of output
-            
+            # Check index.html timestamp specifically
+            index = f"{d}/index.html"
+            info = run_cmd(ssh, f"stat {index}")
+
         ssh.close()
         
     except Exception as e:
         print(f"❌ Error: {e}")
 
-if __name__ == '__main__':
-    check_server_state()
+if __name__ == "__main__":
+    main()

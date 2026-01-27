@@ -390,6 +390,15 @@ curl -I https://samanabyar.online/worship/data/timings/song_X_timing.json
 
 ## 📊 آمار و اطلاعات
 
+### آمار کلی سیستم
+
+| ویژگی | مقدار |
+|-------|-------|
+| **کل فایل‌های تایمینگ** | 364 عدد |
+| **محدوده ID** | song_1 تا song_364 |
+| **دقت تایمینگ** | 0.01 ثانیه |
+| **مدل AI** | user-app-precise (Gemini) |
+
 ### نمونه آهنگ آرامی دلهایی (ID: 335)
 
 | ویژگی | مقدار |
@@ -398,10 +407,8 @@ curl -I https://samanabyar.online/worship/data/timings/song_X_timing.json
 | تعداد کلمات | ~324 |
 | مدت زمان | 358.97 ثانیه |
 | شروع اولین کلمه | 36.63s |
-| دقت تایمینگ | 0.01s |
 | حجم فایل JSON | 54KB |
-| مدل AI | user-app-precise (Gemini) |
-| تاریخ تولید | 2026-01-23 |
+| تاریخ تولید | 2026-01-23
 
 ---
 
@@ -419,8 +426,9 @@ curl -I https://samanabyar.online/worship/data/timings/song_X_timing.json
 
 - **مستندات کامل:** این فایل
 - **کد منبع اپ:** `Project/audio-text-sync-&-highlight.v3 (2)/`
-- **کامپوننت سایت:** `frontend/src/components/KaraokeWorshipPlayer.tsx`
+- **کامپوننت سایت:** `frontend/src/components/KaraokeWorshipPlayer.tsx` (1405 خط کد)
 - **اسکریپت تبدیل:** `backend/convert-timing.js`
+- **فایل‌های تایمینگ:** `public/worship/data/timings/` (364 فایل)
 
 ---
 
