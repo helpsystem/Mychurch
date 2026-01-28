@@ -5,7 +5,7 @@
  * با پشتیبانی از فونت Vazirmatn برای فارسی
  */
 
-import { BroadcastSlide, AppLanguage } from './types';
+import { Slide, AppLanguage } from './types';
 
 // Types
 export interface PPTXExportOptions {
@@ -41,38 +41,47 @@ const DEFAULT_OPTIONS: PPTXExportOptions = {
 };
 
 /**
- * تبدیل BroadcastSlide به فرمت PPTX
+ * تبدیل Slide به فرمت PPTX
  */
-function convertSlideForPPTX(slide: BroadcastSlide, lang: AppLanguage): PPTXSlide {
+function convertSlideForPPTX(slide: Slide, lang: AppLanguage): PPTXSlide {
   switch (slide.type) {
-    case 'SCRIPTURE':
+    case 'SCRIPTURE': {
+      const content = slide.content as any;
       return {
         type: 'scripture',
-        title: slide.reference || slide.content.title?.[lang],
-        body: slide.content.text?.[lang] || slide.content.body?.[lang],
-        reference: slide.reference,
+        title: content.pages?.[0]?.bookName?.[lang] || 'Scripture',
+        body: content.pages?.[0]?.textPrimary || content.pages?.[0]?.textSecondary || '',
+        reference: `${content.pages?.[0]?.book} ${content.pages?.[0]?.chapter}:${content.pages?.[0]?.verses}`,
       };
+    }
       
-    case 'LYRICS':
+    case 'LYRICS': {
+      const content = slide.content as any;
+      const bodyText = content.lines?.map((l: any) => l.text || l).join('\n') || '';
       return {
         type: 'lyrics',
-        title: slide.content.title?.[lang],
-        body: slide.content.lyrics?.[lang] || slide.content.body?.[lang],
+        title: content.title || 'Lyrics',
+        body: bodyText,
       };
+    }
       
-    case 'MEDIA':
+    case 'MEDIA': {
+      const content = slide.content as any;
       return {
         type: 'image',
-        imageUrl: slide.content.imageUrl,
-        title: slide.content.title?.[lang],
+        imageUrl: content.url || content.imageUrl,
+        title: content.title || 'Media',
       };
+    }
       
-    case 'ANNOUNCEMENT':
+    case 'ANNOUNCEMENT': {
+      const content = slide.content as any;
       return {
         type: 'title',
-        title: slide.content.title?.[lang],
-        body: slide.content.body?.[lang],
+        title: content.title || 'Announcement',
+        body: content.content || '',
       };
+    }
       
     default:
       return {
@@ -297,7 +306,7 @@ function escapeXML(text: string): string {
  * Export slides to PPTX (via backend)
  */
 export async function exportToPPTX(
-  slides: BroadcastSlide[],
+  slides: Slide[],
   filename: string,
   options: Partial<PPTXExportOptions> = {}
 ): Promise<void> {
@@ -366,7 +375,7 @@ export async function exportToPPTX(
  * Export to ProPresenter format (.pro6)
  */
 export async function exportToProPresenter(
-  slides: BroadcastSlide[],
+  slides: Slide[],
   filename: string,
   lang: AppLanguage
 ): Promise<void> {
@@ -406,16 +415,16 @@ export async function exportToProPresenter(
 /**
  * Export to plain text (for teleprompter)
  */
-export function exportToText(slides: BroadcastSlide[], lang: AppLanguage): string {
+export function exportToText(slides: Slide[], lang: AppLanguage): string {
   return slides.map((slide, index) => {
-    const title = slide.content.title?.[lang] || '';
-    const body = slide.content.body?.[lang] || slide.content.text?.[lang] || '';
-    const reference = slide.reference || '';
+    const content = slide.content as any;
+    const title = content.title || content.pages?.[0]?.bookName?.[lang] || `Slide ${index + 1}`;
+    const body = content.lines?.map((l: any) => l.text || l).join('\n') || 
+                 content.pages?.[0]?.textPrimary || 
+                 content.content || '';
     
-    let text = `=== Slide ${index + 1} ===\n`;
-    if (title) text += `${title}\n`;
+    let text = `=== ${title} ===\n`;
     if (body) text += `\n${body}\n`;
-    if (reference) text += `\n— ${reference}\n`;
     text += '\n';
     
     return text;

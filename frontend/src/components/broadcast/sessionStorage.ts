@@ -4,7 +4,7 @@
  * ذخیره و بازیابی session های Broadcast Console در Supabase
  */
 
-import { BroadcastSession, BroadcastSlide } from './types';
+import { BroadcastSession, Slide } from './types';
 
 const API_BASE = '/api/broadcast-sessions';
 
@@ -13,8 +13,7 @@ export interface SavedSession {
   id: string;
   name: string;
   description?: string;
-  slides: BroadcastSlide[];
-  settings: BroadcastSession['settings'];
+  slides: Slide[];
   createdBy: string;
   createdAt: string;
   updatedAt: string;
@@ -237,7 +236,7 @@ const AUTOSAVE_KEY = 'broadcast_autosave';
 /**
  * ذخیره خودکار در localStorage
  */
-export function autoSaveLocal(slides: BroadcastSlide[], settings: any): void {
+export function autoSaveLocal(slides: Slide[], settings: any): void {
   try {
     const data = {
       slides,
@@ -253,7 +252,7 @@ export function autoSaveLocal(slides: BroadcastSlide[], settings: any): void {
 /**
  * بازیابی از auto-save
  */
-export function getAutoSave(): { slides: BroadcastSlide[]; settings: any; savedAt: string } | null {
+export function getAutoSave(): { slides: Slide[]; settings: any; savedAt: string } | null {
   try {
     const data = localStorage.getItem(AUTOSAVE_KEY);
     if (!data) return null;

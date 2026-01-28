@@ -1,0 +1,16 @@
+{
+  "name": "broadcast-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "WebSocket server for Broadcast Console",
+  "main": "broadcast-server.js",
+  "scripts": {
+    "start": "node broadcast-server.js",
+    "dev": "node --watch broadcast-server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
+    "cors": "^2.8.5"
+  }
+}

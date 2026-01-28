@@ -4,17 +4,21 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
+import {
   BroadcastSession, Slide, SlideType, BroadcastOverlayConfig,
-  SlideContentScripture, SlideContentLyrics, SlideContentMedia,
+  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
   LowerThirdItem, PrayerRequest, DonationItem, AppLanguage
 } from './types';
 import { BROADCAST_TRANSLATIONS } from './dataService';
+import { useHybridRecorder } from './hooks/useHybridRecorder';
+import { useWebSocketSync } from './hooks/useWebSocketSync';
 import {
-  Play, Pause, ChevronLeft, ChevronRight, Settings, 
+  Play, Pause, ChevronLeft, ChevronRight, Settings,
   Video, Mic, MicOff, Camera, CameraOff, Image as ImageIcon,
-  Radio, Users, Heart, Gift, Plus, Trash2, X
+  Radio, Users, Heart, Gift, Plus, Trash2, X, Calendar, Megaphone, Circle
 } from 'lucide-react';
+import { SmartWorshipPlayer } from '../worship/SmartWorshipPlayer';
+import { HelpTooltip, HELP_TEXTS } from './HelpTooltip';
 
 interface LiveConsoleProps {
   session: BroadcastSession;
@@ -38,20 +42,47 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
+  // Hybrid Recorder Hook
+  const {
+    isRecording,
+    recordingTime,
+    uploadProgress,
+    error: recorderError,
+    startRecording,
+    stopRecording
+  } = useHybridRecorder(mediaStream);
+
+  // WebSocket Sync Hook
+  const {
+    state: syncState,
+    connect: connectSync,
+    disconnect: disconnectSync,
+    sendSlideChange,
+    sendPlayControl
+  } = useWebSocketSync({
+    isLeader: true,
+    onSlideChange: (slideIndex) => {
+      // دستگاه‌های دیگر اسلاید را تغییر دادند
+      onSlideChange(slideIndex);
+    }
+  });
+
   // State
   const [showSettings, setShowSettings] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>('layout');
   const [internalPageIndex, setInternalPageIndex] = useState(0);
   const [isLive, setIsLive] = useState(false);
-  
+  const [sessionId, setSessionId] = useState<string>('');
+  const [showSyncPanel, setShowSyncPanel] = useState(false);
+
   // Lower Third State
   const [newLowerThird, setNewLowerThird] = useState<Partial<LowerThirdItem>>({ title: '', subtitle: '' });
-  
+
   // Prayer Request State
   const [newPrayerName, setNewPrayerName] = useState('');
   const [newPrayerContent, setNewPrayerContent] = useState('');
-  
+
   // Donation State
   const [newDonation, setNewDonation] = useState<Partial<DonationItem>>({ title: '', description: '', url: '', duration: 30 });
 
@@ -81,6 +112,31 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     return () => clearInterval(interval);
   }, [broadcastConfig.showLowerThird, broadcastConfig.isRotating, broadcastConfig.lowerThirds.length, broadcastConfig.rotationInterval, setBroadcastConfig]);
 
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const savedConfig = localStorage.getItem('broadcast_config');
+    if (savedConfig) {
+      try {
+        const parsed = JSON.parse(savedConfig);
+        setBroadcastConfig(prev => ({ ...prev, ...parsed }));
+      } catch (e) { console.log('Failed to load broadcast settings'); }
+    }
+  }, []);
+
+  // Save settings to localStorage when changed
+  useEffect(() => {
+    const toSave = {
+      layout: broadcastConfig.layout,
+      showLogo: broadcastConfig.showLogo,
+      logoUrl: broadcastConfig.logoUrl,
+      showLowerThird: broadcastConfig.showLowerThird,
+      isRotating: broadcastConfig.isRotating,
+      showPrayerTicker: broadcastConfig.showPrayerTicker,
+      leaderVideoShape: broadcastConfig.leaderVideoShape
+    };
+    localStorage.setItem('broadcast_config', JSON.stringify(toSave));
+  }, [broadcastConfig.layout, broadcastConfig.showLogo, broadcastConfig.logoUrl, broadcastConfig.showLowerThird, broadcastConfig.isRotating, broadcastConfig.showPrayerTicker, broadcastConfig.leaderVideoShape]);
+
   const activeSlide = session.slides[activeSlideIndex];
   const activeLowerThird = broadcastConfig.lowerThirds[broadcastConfig.activeLowerThirdIndex];
   const activeDonation = broadcastConfig.donations.find(d => d.id === broadcastConfig.activeDonationId);
@@ -95,7 +151,12 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       }
     }
     if (activeSlideIndex > 0) {
-      onSlideChange(activeSlideIndex - 1);
+      const newIndex = activeSlideIndex - 1;
+      onSlideChange(newIndex);
+      // Sync with other devices
+      if (syncState.isConnected) {
+        sendSlideChange(newIndex);
+      }
     }
   };
 
@@ -108,8 +169,27 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       }
     }
     if (activeSlideIndex < session.slides.length - 1) {
-      onSlideChange(activeSlideIndex + 1);
+      const newIndex = activeSlideIndex + 1;
+      onSlideChange(newIndex);
+      // Sync with other devices
+      if (syncState.isConnected) {
+        sendSlideChange(newIndex);
+      }
     }
+  };
+
+  // Format recording time
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Handle sync connection
+  const handleConnectSync = () => {
+    const id = sessionId || `session-${Date.now()}`;
+    setSessionId(id);
+    connectSync(id);
   };
 
   // Lower Third Handlers
@@ -196,7 +276,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     if (activeSlide.type === SlideType.SCRIPTURE) {
       const content = activeSlide.content as SlideContentScripture;
       const currentPage = content.pages[internalPageIndex];
-      
+
       return (
         <div className="text-center p-8 animate-in fade-in duration-500">
           <p className={`text-4xl font-bold text-white leading-relaxed mb-6 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -210,16 +290,15 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
           <p className={`text-amber-400 font-semibold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
             {currentPage?.bookName[lang]} {currentPage?.chapter}:{currentPage?.verses}
           </p>
-          
+
           {/* Page indicators */}
           {content.pages.length > 1 && (
             <div className="flex justify-center gap-2 mt-6">
               {content.pages.map((_, i) => (
                 <div
                   key={i}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    i === internalPageIndex ? 'bg-amber-500 w-4' : 'bg-slate-600'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all ${i === internalPageIndex ? 'bg-amber-500 w-4' : 'bg-slate-600'
+                    }`}
                 />
               ))}
             </div>
@@ -230,7 +309,21 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
     if (activeSlide.type === SlideType.LYRICS) {
       const content = activeSlide.content as SlideContentLyrics;
-      
+
+      // اگر timing data و audio موجود است از SmartWorshipPlayer استفاده کن
+      if (content.hasTiming && content.timingData && content.audioUrl) {
+        return (
+          <SmartWorshipPlayer
+            timingData={content.timingData}
+            audioSrc={content.audioUrl}
+            translations={{
+              finglish: content.finglishLines
+            }}
+          />
+        );
+      }
+
+      // نمایش ساده اگر timing ندارد
       return (
         <div className="text-center p-8 space-y-4">
           <h2 className={`text-2xl font-bold text-pink-400 mb-6 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -239,9 +332,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
           {content.lines.map((line, i) => (
             <p
               key={i}
-              className={`text-3xl font-bold text-white leading-relaxed ${
-                line.isChorus ? 'text-pink-300 italic' : ''
-              } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              className={`text-3xl font-bold text-white leading-relaxed ${line.isChorus ? 'text-pink-300 italic' : ''
+                } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
             >
               {line.text}
             </p>
@@ -252,7 +344,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
     if (activeSlide.type === SlideType.MEDIA) {
       const content = activeSlide.content as SlideContentMedia;
-      
+
       return (
         <div className="flex items-center justify-center h-full">
           {content.mediaType === 'image' && (
@@ -277,6 +369,64 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       );
     }
 
+    if (activeSlide.type === SlideType.ANNOUNCEMENT) {
+      const content = activeSlide.content as SlideContentAnnouncement;
+
+      return (
+        <div className="flex items-center justify-center h-full p-8">
+          <div className="bg-gradient-to-br from-green-900/80 to-slate-900/80 backdrop-blur-md rounded-3xl p-8 max-w-2xl border border-green-600/30 shadow-2xl">
+            {/* Header with icon */}
+            <div className="flex items-center gap-3 mb-4">
+              <Megaphone className="w-8 h-8 text-green-400" />
+              <h2 className={`text-3xl font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {content.title}
+              </h2>
+            </div>
+
+            {/* Image */}
+            {content.imageUrl && (
+              <div className="mb-4 rounded-xl overflow-hidden">
+                <img src={content.imageUrl} alt={content.title} className="w-full max-h-64 object-cover" />
+              </div>
+            )}
+
+            {/* Content */}
+            {content.content && (
+              <p className={`text-xl text-slate-200 leading-relaxed mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {content.content}
+              </p>
+            )}
+
+            {/* Event Date */}
+            {content.eventDate && (
+              <div className="flex items-center gap-2 text-green-400 mb-4">
+                <Calendar className="w-5 h-5" />
+                <span className={`text-lg ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {new Date(content.eventDate).toLocaleString(isRTL ? 'fa-IR' : 'en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
+              </div>
+            )}
+
+            {/* Link */}
+            {content.link && (
+              <div className="text-center mt-4 pt-4 border-t border-green-600/30">
+                <span className="text-slate-400 text-sm">
+                  🔗 {content.link}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
     return null;
   };
 
@@ -284,47 +434,163 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     <div className="flex-1 flex flex-col bg-slate-950 h-full overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Top Bar */}
       <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {/* Live Indicator */}
           <button
             onClick={() => setIsLive(!isLive)}
-            className={`px-3 py-1 rounded-lg font-bold text-xs transition ${
-              isLive 
-                ? 'bg-red-600 text-white animate-pulse' 
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-            }`}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${isLive
+              ? 'bg-red-600 text-white animate-pulse'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+              }`}
           >
-            <span className="flex items-center gap-2">
-              <Radio className="w-4 h-4" />
-              {t.live}
-            </span>
+            <Radio className="w-4 h-4" />
+            {isLive ? 'LIVE' : 'OFF AIR'}
           </button>
-          
-          <h1 className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-            {session.title}
-          </h1>
+
+          {/* Record Button */}
+          <button
+            onClick={isRecording ? stopRecording : startRecording}
+            disabled={!mediaStream}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all ${isRecording
+              ? 'bg-red-600 text-white'
+              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              } disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
+            {isRecording ? (
+              <>
+                <Circle className="w-3 h-3 fill-current animate-pulse" />
+                <span>{formatTime(recordingTime)}</span>
+                {uploadProgress > 0 && uploadProgress < 100 && (
+                  <span className="text-xs">({uploadProgress}%)</span>
+                )}
+              </>
+            ) : (
+              <>
+                <Video className="w-4 h-4" />
+                <span>REC</span>
+              </>
+            )}
+          </button>
+
+          {/* Sync Button */}
+          <button
+            onClick={() => setShowSyncPanel(!showSyncPanel)}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all ${syncState.isConnected
+              ? 'bg-green-600 text-white'
+              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+          >
+            <Users className="w-4 h-4" />
+            {syncState.isConnected ? (
+              <span>{syncState.syncedDevices} Connected</span>
+            ) : (
+              <span>Sync</span>
+            )}
+          </button>
+
+          {/* Recorder Error */}
+          {recorderError && (
+            <span className="text-xs text-red-400 max-w-xs truncate">
+              ⚠️ {recorderError}
+            </span>
+          )}
         </div>
-        
+
         <div className="flex items-center gap-3">
           {/* Slide Counter */}
           <span className="text-slate-400 text-sm">
             {activeSlideIndex + 1} / {session.slides.length}
           </span>
-          
+
           {/* Settings Button */}
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${
-              showSettings 
-                ? 'bg-indigo-600 text-white' 
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-            }`}
+            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
+              ? 'bg-indigo-600 text-white'
+              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+              }`}
           >
             <Settings className="w-4 h-4" />
             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.settings}</span>
           </button>
         </div>
       </div>
+
+      {/* Sync Panel (Modal) */}
+      {showSyncPanel && (
+        <div className="absolute inset-0 bg-black/80 z-50 flex items-center justify-center p-6">
+          <div className="bg-slate-900 rounded-xl shadow-2xl border border-slate-700 max-w-md w-full">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                  <Users className="w-6 h-6 text-green-500" />
+                  Multi-Device Sync
+                </h3>
+                <button
+                  onClick={() => setShowSyncPanel(false)}
+                  className="text-slate-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {syncState.isConnected ? (
+                  <>
+                    <div className="bg-green-900/30 border border-green-700/50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 text-green-400 mb-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <span className="font-semibold">Connected</span>
+                      </div>
+                      <div className="text-sm text-slate-300 space-y-1">
+                        <p>Session ID: <span className="font-mono text-xs">{syncState.sessionId}</span></p>
+                        <p>Devices: {syncState.syncedDevices}</p>
+                        <p>Latency: {syncState.latency}ms</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={disconnectSync}
+                      className="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-semibold transition"
+                    >
+                      Disconnect
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <div className="bg-slate-800 rounded-lg p-4">
+                      <label className="block text-sm text-slate-300 mb-2">
+                        Session ID (optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={sessionId}
+                        onChange={(e) => setSessionId(e.target.value)}
+                        placeholder="Leave empty to auto-generate"
+                        className="w-full bg-slate-700 text-white px-3 py-2 rounded border border-slate-600 focus:border-green-500 outline-none"
+                      />
+                      <p className="text-xs text-slate-400 mt-2">
+                        Other devices should use the same Session ID to join
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleConnectSync}
+                      className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-lg font-semibold transition"
+                    >
+                      Start Sync
+                    </button>
+                  </>
+                )}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-700">
+                <p className="text-xs text-slate-400">
+                  💡 Tip: Share the Session ID with other devices. Only the Leader can change slides.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="flex-1 flex">
@@ -339,22 +605,20 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 autoPlay
                 muted
                 playsInline
-                className={`absolute inset-0 w-full h-full object-cover ${
-                  broadcastConfig.layout === 'PIP' ? 'z-0' : 
+                className={`absolute inset-0 w-full h-full object-cover ${broadcastConfig.layout === 'PIP' ? 'z-0' :
                   broadcastConfig.layout === 'SPLIT' ? 'w-1/2' : ''
-                }`}
+                  }`}
               />
             )}
-            
+
             {/* Slide Content */}
-            <div className={`absolute inset-0 flex items-center justify-center ${
-              broadcastConfig.layout === 'PIP' ? 'bottom-20 right-4 left-auto top-auto w-80 h-48 rounded-xl bg-black/80 z-10' :
+            <div className={`absolute inset-0 flex items-center justify-center ${broadcastConfig.layout === 'PIP' ? 'bottom-20 right-4 left-auto top-auto w-80 h-48 rounded-xl bg-black/80 z-10' :
               broadcastConfig.layout === 'SPLIT' ? 'right-0 w-1/2' :
-              'bg-black/60'
-            }`}>
+                'bg-black/60'
+              }`}>
               {renderSlideContent()}
             </div>
-            
+
             {/* Logo */}
             {broadcastConfig.showLogo && broadcastConfig.logoUrl && (
               <img
@@ -363,7 +627,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 className="absolute top-4 left-4 w-16 h-16 object-contain z-20"
               />
             )}
-            
+
             {/* Lower Third */}
             {broadcastConfig.showLowerThird && activeLowerThird && (
               <div className="absolute bottom-20 left-4 right-4 z-20">
@@ -379,7 +643,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 </div>
               </div>
             )}
-            
+
             {/* Prayer Ticker */}
             {broadcastConfig.showPrayerTicker && broadcastConfig.prayerRequests.length > 0 && (
               <div className="absolute bottom-4 left-0 right-0 bg-black/70 py-2 z-20">
@@ -392,7 +656,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 </div>
               </div>
             )}
-            
+
             {/* Active Donation */}
             {activeDonation && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-30">
@@ -412,7 +676,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
               </div>
             )}
           </div>
-          
+
           {/* Controls */}
           <div className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-center gap-4 px-4">
             <button
@@ -423,11 +687,11 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
               <ChevronLeft className="w-5 h-5" />
               <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.prev}</span>
             </button>
-            
+
             <div className={`px-6 py-2 bg-slate-800 rounded-xl text-white font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               {activeSlideIndex + 1} / {session.slides.length}
             </div>
-            
+
             <button
               onClick={handleNext}
               disabled={activeSlideIndex === session.slides.length - 1 && (
@@ -444,15 +708,16 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
         {/* Settings Panel */}
         {showSettings && (
-          <div className="w-80 bg-slate-900 border-l border-slate-800 overflow-y-auto">
+          <div className="w-80 bg-slate-900 border-l border-slate-800 overflow-y-auto z-30 relative">
             {/* Layout Section */}
             <div className="border-b border-slate-800">
               <button
                 onClick={() => toggleSection('layout')}
                 className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
               >
-                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   📺 {t.layout}
+                  <HelpTooltip textFa={HELP_TEXTS.layout.fa} textEn={HELP_TEXTS.layout.en} lang={lang} />
                 </span>
                 <span className={`text-slate-500 transition-transform ${openSection === 'layout' ? 'rotate-180' : ''}`}>
                   ▼
@@ -469,11 +734,10 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                     <button
                       key={layout.id}
                       onClick={() => setBroadcastConfig(prev => ({ ...prev, layout: layout.id as any }))}
-                      className={`p-3 rounded-lg border text-center transition ${
-                        broadcastConfig.layout === layout.id
-                          ? 'bg-indigo-600 border-indigo-500 text-white'
-                          : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
-                      }`}
+                      className={`p-3 rounded-lg border text-center transition ${broadcastConfig.layout === layout.id
+                        ? 'bg-indigo-600 border-indigo-500 text-white'
+                        : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                        }`}
                     >
                       <span className="text-2xl block mb-1">{layout.icon}</span>
                       <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{layout.label}</span>
@@ -489,8 +753,9 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 onClick={() => toggleSection('logo')}
                 className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
               >
-                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   🖼️ {t.uploadLogo}
+                  <HelpTooltip textFa={HELP_TEXTS.logo.fa} textEn={HELP_TEXTS.logo.en} lang={lang} />
                 </span>
                 <span className={`text-slate-500 transition-transform ${openSection === 'logo' ? 'rotate-180' : ''}`}>
                   ▼
@@ -528,6 +793,43 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
               )}
             </div>
 
+            {/* Video Shape Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('videoShape')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  📹 {isRTL ? 'شکل تصویر رهبر' : 'Leader Video Shape'}
+                  <HelpTooltip textFa={HELP_TEXTS.videoShape.fa} textEn={HELP_TEXTS.videoShape.en} lang={lang} />
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'videoShape' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'videoShape' && (
+                <div className="p-4 pt-0 grid grid-cols-3 gap-2">
+                  {[
+                    { id: 'rectangle', label: isRTL ? 'مستطیل' : 'Rectangle', icon: '▬' },
+                    { id: 'square', label: isRTL ? 'مربع' : 'Square', icon: '◼' },
+                    { id: 'circle', label: isRTL ? 'دایره' : 'Circle', icon: '●' }
+                  ].map(shape => (
+                    <button
+                      key={shape.id}
+                      onClick={() => setBroadcastConfig(prev => ({ ...prev, leaderVideoShape: shape.id as any }))}
+                      className={`p-3 rounded-lg border text-center transition ${broadcastConfig.leaderVideoShape === shape.id
+                        ? 'bg-indigo-600 border-indigo-500 text-white'
+                        : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                        }`}
+                      title={shape.label}
+                    >
+                      <span className="text-2xl block mb-1">{shape.icon}</span>
+                      <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{shape.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             {/* Lower Thirds Section */}
             <div className="border-b border-slate-800">
               <button
@@ -567,15 +869,14 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       {t.addItem}
                     </button>
                   </div>
-                  
+
                   {/* List */}
                   <div className="space-y-2">
                     {broadcastConfig.lowerThirds.map((item, i) => (
                       <div
                         key={item.id}
-                        className={`flex items-center gap-2 p-2 rounded-lg ${
-                          i === broadcastConfig.activeLowerThirdIndex ? 'bg-indigo-600/30 border border-indigo-500' : 'bg-slate-800'
-                        }`}
+                        className={`flex items-center gap-2 p-2 rounded-lg ${i === broadcastConfig.activeLowerThirdIndex ? 'bg-indigo-600/30 border border-indigo-500' : 'bg-slate-800'
+                          }`}
                       >
                         <button
                           onClick={() => setBroadcastConfig(prev => ({ ...prev, activeLowerThirdIndex: i }))}
@@ -593,7 +894,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       </div>
                     ))}
                   </div>
-                  
+
                   {/* Toggle & Rotation */}
                   <div className="mt-4 space-y-2">
                     <label className="flex items-center gap-2 cursor-pointer">
@@ -661,7 +962,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       {t.addRequest}
                     </button>
                   </div>
-                  
+
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
@@ -673,7 +974,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       {t.showPrayerWall}
                     </span>
                   </label>
-                  
+
                   {/* Prayer List */}
                   <div className="mt-3 space-y-2 max-h-32 overflow-y-auto">
                     {broadcastConfig.prayerRequests.map((req) => (
@@ -736,26 +1037,24 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       {t.addDonation}
                     </button>
                   </div>
-                  
+
                   {/* Donation List */}
                   <div className="space-y-2">
                     {broadcastConfig.donations.map((item) => (
                       <div
                         key={item.id}
-                        className={`flex items-center gap-2 p-2 rounded-lg ${
-                          broadcastConfig.activeDonationId === item.id ? 'bg-green-600/30 border border-green-500' : 'bg-slate-800'
-                        }`}
+                        className={`flex items-center gap-2 p-2 rounded-lg ${broadcastConfig.activeDonationId === item.id ? 'bg-green-600/30 border border-green-500' : 'bg-slate-800'
+                          }`}
                       >
                         <div className="flex-1">
                           <p className={`text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{item.title}</p>
                         </div>
                         <button
                           onClick={() => handleShowDonation(item.id)}
-                          className={`px-2 py-1 text-xs rounded ${
-                            broadcastConfig.activeDonationId === item.id
-                              ? 'bg-green-600 text-white'
-                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                          }`}
+                          className={`px-2 py-1 text-xs rounded ${broadcastConfig.activeDonationId === item.id
+                            ? 'bg-green-600 text-white'
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                            }`}
                         >
                           {broadcastConfig.activeDonationId === item.id ? t.showing : t.show}
                         </button>

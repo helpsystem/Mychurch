@@ -9,7 +9,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { BroadcastSlide, AppLanguage } from './types';
+import { Slide, AppLanguage } from './types';
 
 // Types
 export interface SyncMessage {
@@ -49,7 +49,7 @@ export interface UseWebSocketSyncReturn {
   connect: (sessionId: string) => void;
   disconnect: () => void;
   createSession: () => string;
-  sendSlideChange: (slideIndex: number, slide: BroadcastSlide) => void;
+  sendSlideChange: (slideIndex: number, slide: Slide) => void;
   sendOverlayToggle: (overlayType: string, visible: boolean, data?: any) => void;
   sendLowerThird: (name: string, title: string, visible: boolean) => void;
   sendPlayControl: (action: 'play' | 'pause' | 'stop' | 'seek', time?: number) => void;
@@ -259,7 +259,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
   }, [connect]);
   
   // Send slide change
-  const sendSlideChange = useCallback((slideIndex: number, slide: BroadcastSlide) => {
+  const sendSlideChange = useCallback((slideIndex: number, slide: Slide) => {
     sendMessage({
       type: 'slide_change',
       payload: { slideIndex, slide },

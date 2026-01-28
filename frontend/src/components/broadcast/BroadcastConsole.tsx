@@ -31,6 +31,7 @@ const INITIAL_OVERLAY: BroadcastOverlayConfig = {
   layout: 'SLIDES_ONLY',
   logoUrl: null,
   showLogo: false,
+  leaderVideoShape: 'rectangle',
   lowerThirds: [],
   activeLowerThirdIndex: 0,
   showLowerThird: false,
@@ -56,7 +57,7 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
   const [broadcastConfig, setBroadcastConfig] = useState<BroadcastOverlayConfig>(INITIAL_OVERLAY);
   const [lang, setLang] = useState<AppLanguage>(initialLang);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  
+
   // PreFlight State
   const [cameraStatus, setCameraStatus] = useState<'checking' | 'granted' | 'denied' | 'error'>('checking');
   const [micStatus, setMicStatus] = useState<'checking' | 'granted' | 'denied' | 'error'>('checking');
@@ -79,18 +80,18 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
         video: !skipCamera,
         audio: true
       });
-      
+
       setStream(mediaStream);
       setCameraStatus(skipCamera ? 'denied' : 'granted');
       setMicStatus('granted');
       setIsReady(true);
     } catch (err: any) {
       console.error('Media access error:', err);
-      
+
       if (err.name === 'NotAllowedError') {
         setCameraStatus('denied');
         setMicStatus('denied');
-        setError(lang === 'fa' 
+        setError(lang === 'fa'
           ? 'دسترسی به دوربین یا میکروفون رد شد. لطفاً در تنظیمات مرورگر اجازه دهید.'
           : 'Camera or microphone access denied. Please allow in browser settings.');
       } else if (err.name === 'NotFoundError') {
@@ -138,7 +139,7 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
   // PreFlight Check Screen
   if (!isReady) {
     return (
-      <div 
+      <div
         className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900/20 to-slate-900 flex items-center justify-center p-4"
         dir={isRTL ? 'rtl' : 'ltr'}
       >
@@ -159,12 +160,11 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
           {/* Status Checks */}
           <div className="space-y-4 mb-6">
             {/* Camera Status */}
-            <div className={`flex items-center gap-4 p-4 rounded-xl ${
-              cameraStatus === 'granted' ? 'bg-green-500/20 border border-green-500/30' :
-              cameraStatus === 'denied' ? 'bg-yellow-500/20 border border-yellow-500/30' :
-              cameraStatus === 'error' ? 'bg-red-500/20 border border-red-500/30' :
-              'bg-slate-700/50 border border-slate-600'
-            }`}>
+            <div className={`flex items-center gap-4 p-4 rounded-xl ${cameraStatus === 'granted' ? 'bg-green-500/20 border border-green-500/30' :
+                cameraStatus === 'denied' ? 'bg-yellow-500/20 border border-yellow-500/30' :
+                  cameraStatus === 'error' ? 'bg-red-500/20 border border-red-500/30' :
+                    'bg-slate-700/50 border border-slate-600'
+              }`}>
               {cameraStatus === 'granted' ? (
                 <Camera className="w-6 h-6 text-green-400" />
               ) : cameraStatus === 'checking' ? (
@@ -176,12 +176,11 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
                 <p className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   {lang === 'fa' ? 'دوربین' : 'Camera'}
                 </p>
-                <p className={`text-sm ${
-                  cameraStatus === 'granted' ? 'text-green-400' :
-                  cameraStatus === 'denied' ? 'text-yellow-400' :
-                  cameraStatus === 'error' ? 'text-red-400' :
-                  'text-slate-400'
-                } ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                <p className={`text-sm ${cameraStatus === 'granted' ? 'text-green-400' :
+                    cameraStatus === 'denied' ? 'text-yellow-400' :
+                      cameraStatus === 'error' ? 'text-red-400' :
+                        'text-slate-400'
+                  } ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   {cameraStatus === 'granted' && (lang === 'fa' ? 'متصل' : 'Connected')}
                   {cameraStatus === 'denied' && (lang === 'fa' ? 'غیرفعال' : 'Disabled')}
                   {cameraStatus === 'error' && (lang === 'fa' ? 'خطا' : 'Error')}
@@ -191,11 +190,10 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
             </div>
 
             {/* Microphone Status */}
-            <div className={`flex items-center gap-4 p-4 rounded-xl ${
-              micStatus === 'granted' ? 'bg-green-500/20 border border-green-500/30' :
-              micStatus === 'denied' ? 'bg-red-500/20 border border-red-500/30' :
-              'bg-slate-700/50 border border-slate-600'
-            }`}>
+            <div className={`flex items-center gap-4 p-4 rounded-xl ${micStatus === 'granted' ? 'bg-green-500/20 border border-green-500/30' :
+                micStatus === 'denied' ? 'bg-red-500/20 border border-red-500/30' :
+                  'bg-slate-700/50 border border-slate-600'
+              }`}>
               {micStatus === 'granted' ? (
                 <Mic className="w-6 h-6 text-green-400" />
               ) : micStatus === 'checking' ? (
@@ -207,11 +205,10 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
                 <p className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   {lang === 'fa' ? 'میکروفون' : 'Microphone'}
                 </p>
-                <p className={`text-sm ${
-                  micStatus === 'granted' ? 'text-green-400' :
-                  micStatus === 'denied' ? 'text-red-400' :
-                  'text-slate-400'
-                } ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                <p className={`text-sm ${micStatus === 'granted' ? 'text-green-400' :
+                    micStatus === 'denied' ? 'text-red-400' :
+                      'text-slate-400'
+                  } ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   {micStatus === 'granted' && (lang === 'fa' ? 'متصل' : 'Connected')}
                   {micStatus === 'denied' && (lang === 'fa' ? 'غیرفعال' : 'Disabled')}
                   {micStatus === 'checking' && (lang === 'fa' ? 'در حال بررسی...' : 'Checking...')}

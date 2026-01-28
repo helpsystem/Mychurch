@@ -4,19 +4,19 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  Slide, SlideType, BroadcastSession, 
-  SlideContentScripture, SlideContentLyrics, SlideContentMedia,
+import {
+  Slide, SlideType, BroadcastSession,
+  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
   ScripturePage, WorshipSong, BibleBook, AppLanguage
 } from './types';
-import { 
+import {
   fetchWorshipSongs, searchSongs, parseLyrics,
   getBibleBooks, searchScripture, fetchBibleVerse,
-  BROADCAST_TRANSLATIONS 
+  BROADCAST_TRANSLATIONS
 } from './dataService';
-import { 
-  BookOpen, Music, Image, Video, Plus, GripVertical, 
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone
+import {
+  BookOpen, Music, Image, Video, Plus, GripVertical,
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar
 } from 'lucide-react';
 
 interface SlideBuilderProps {
@@ -38,31 +38,47 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 }) => {
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
-  
+
   // Modal State
   const [activeModal, setActiveModal] = useState<ModalType>('NONE');
-  
+
   // Data State
   const [songs, setSongs] = useState<WorshipSong[]>([]);
   const [songSearch, setSongSearch] = useState('');
   const [selectedSong, setSelectedSong] = useState<WorshipSong | null>(null);
-  
+  const [showAllSongs, setShowAllSongs] = useState(false);
+
   // Scripture State
   const [scriptureSearch, setScriptureSearch] = useState('');
   const [scripturePages, setScripturePages] = useState<ScripturePage[]>([]);
   const [isFetching, setIsFetching] = useState(false);
-  
+
+  // Scripture Dropdown State (Enhanced)
+  const [selectedBook, setSelectedBook] = useState('John');
+  const [selectedChapter, setSelectedChapter] = useState(1);
+  const [selectedVerseStart, setSelectedVerseStart] = useState(1);
+  const [selectedVerseEnd, setSelectedVerseEnd] = useState(1);
+  const [showEnglish, setShowEnglish] = useState(true);
+  const [bookSearch, setBookSearch] = useState('');
+
   // Lyrics Form State
   const [lyricsTitle, setLyricsTitle] = useState('');
   const [lyricsText, setLyricsText] = useState('');
   const [lyricsChords, setLyricsChords] = useState('');
-  
+
   // Media Form State
   const [mediaUrl, setMediaUrl] = useState('');
   const [mediaType, setMediaType] = useState<'image' | 'video' | 'audio'>('image');
   const [mediaLoop, setMediaLoop] = useState(false);
   const [mediaAutoplay, setMediaAutoplay] = useState(true);
-  
+
+  // Announcement Form State
+  const [announcementTitle, setAnnouncementTitle] = useState('');
+  const [announcementContent, setAnnouncementContent] = useState('');
+  const [announcementImageUrl, setAnnouncementImageUrl] = useState('');
+  const [announcementLink, setAnnouncementLink] = useState('');
+  const [announcementEventDate, setAnnouncementEventDate] = useState('');
+
   // Drag State
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
@@ -71,8 +87,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     fetchWorshipSongs().then(setSongs);
   }, []);
 
-  // Filter songs based on search
-  const filteredSongs = searchSongs(songs, songSearch);
+  // Filter songs based on search - show all if button clicked, otherwise limit
+  const filteredSongs = showAllSongs
+    ? searchSongs(songs, songSearch)
+    : searchSongs(songs, songSearch).slice(0, 10);
 
   // Reset forms
   const resetForms = () => {
@@ -80,6 +98,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setScripturePages([]);
     setSongSearch('');
     setSelectedSong(null);
+    setShowAllSongs(false);
     setLyricsTitle('');
     setLyricsText('');
     setLyricsChords('');
@@ -87,6 +106,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setMediaType('image');
     setMediaLoop(false);
     setMediaAutoplay(true);
+    setAnnouncementTitle('');
+    setAnnouncementContent('');
+    setAnnouncementImageUrl('');
+    setAnnouncementLink('');
+    setAnnouncementEventDate('');
   };
 
   // Add slide to session
@@ -104,7 +128,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     }));
     setActiveModal('NONE');
     resetForms();
-    
+
     // Select the new slide
     onSlideSelect(session.slides.length);
   }, [session.slides.length, setSession, onSlideSelect]);
@@ -123,12 +147,12 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Move slide
   const moveSlide = useCallback((index: number, direction: 'up' | 'down') => {
     if ((direction === 'up' && index === 0) || (direction === 'down' && index === session.slides.length - 1)) return;
-    
+
     const newSlides = [...session.slides];
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     [newSlides[index], newSlides[targetIndex]] = [newSlides[targetIndex], newSlides[index]];
     newSlides.forEach((s, i) => s.order = i);
-    
+
     setSession(prev => ({ ...prev, slides: newSlides }));
     onSlideSelect(targetIndex);
   }, [session.slides, setSession, onSlideSelect]);
@@ -136,7 +160,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Handle Scripture Search
   const handleScriptureSearch = async () => {
     if (!scriptureSearch.trim()) return;
-    
+
     setIsFetching(true);
     const result = await searchScripture(scriptureSearch);
     if (result) {
@@ -148,23 +172,37 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Handle Scripture Submit
   const handleScriptureSubmit = () => {
     if (scripturePages.length === 0) return;
-    
+
     const content: SlideContentScripture = { pages: scripturePages };
     addSlide(SlideType.SCRIPTURE, content);
   };
 
-  // Handle Song Selection
-  const handleSongSelect = (song: WorshipSong) => {
+  // Handle Song Selection - with timing data loading
+  const handleSongSelect = async (song: WorshipSong) => {
     setSelectedSong(song);
     setLyricsTitle(song.title[lang] || song.title.fa);
     setLyricsText(song.lyrics?.fa || '');
     setLyricsChords(song.chord || '');
+
+    // Load timing data if available
+    if (song.hasTiming) {
+      try {
+        const timingRes = await fetch(`/worship/timing/${song.id}_timing.json`);
+        if (timingRes.ok) {
+          const timingData = await timingRes.json();
+          // Store timing in song object temporarily
+          (song as any)._timingData = timingData;
+        }
+      } catch (err) {
+        console.log('No timing data for song', song.id);
+      }
+    }
   };
 
-  // Handle Lyrics Submit
+  // Handle Lyrics Submit - with timing data
   const handleLyricsSubmit = () => {
     if (!lyricsTitle || !lyricsText) return;
-    
+
     const lines = parseLyrics(lyricsText);
     const content: SlideContentLyrics = {
       songId: selectedSong?.id,
@@ -172,7 +210,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       lines,
       chords: lyricsChords,
       audioUrl: selectedSong?.audioUrl,
-      youtubeId: selectedSong?.youtubeId
+      youtubeId: selectedSong?.youtubeId,
+      hasTiming: selectedSong?.hasTiming,
+      timingData: (selectedSong as any)?._timingData
     };
     addSlide(SlideType.LYRICS, content);
   };
@@ -180,7 +220,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Handle Media Submit
   const handleMediaSubmit = () => {
     if (!mediaUrl) return;
-    
+
     const content: SlideContentMedia = {
       url: mediaUrl,
       mediaType,
@@ -190,13 +230,35 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     addSlide(SlideType.MEDIA, content);
   };
 
+  // Handle Announcement Submit
+  const handleAnnouncementSubmit = () => {
+    if (!announcementTitle) return;
+
+    const content: SlideContentAnnouncement = {
+      title: announcementTitle,
+      content: announcementContent,
+      imageUrl: announcementImageUrl || undefined,
+      link: announcementLink || undefined,
+      eventDate: announcementEventDate || undefined
+    };
+    addSlide(SlideType.ANNOUNCEMENT, content);
+  };
+
+  // Handle Announcement Image Upload
+  const handleAnnouncementImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const objectUrl = URL.createObjectURL(file);
+    setAnnouncementImageUrl(objectUrl);
+  };
+
   // Handle file upload
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const objectUrl = URL.createObjectURL(file);
     setMediaUrl(objectUrl);
-    
+
     // Auto-detect type
     if (file.type.startsWith('image/')) setMediaType('image');
     else if (file.type.startsWith('video/')) setMediaType('video');
@@ -216,12 +278,12 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const handleDrop = (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
     if (draggedIndex === null || draggedIndex === dropIndex) return;
-    
+
     const newSlides = [...session.slides];
     const [draggedItem] = newSlides.splice(draggedIndex, 1);
     newSlides.splice(dropIndex, 0, draggedItem);
     newSlides.forEach((s, i) => s.order = i);
-    
+
     setSession(prev => ({ ...prev, slides: newSlides }));
     setDraggedIndex(null);
   };
@@ -229,7 +291,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Render slide thumbnail
   const renderThumbnail = (slide: Slide, index: number) => {
     const isActive = index === activeSlideIndex;
-    
+
     return (
       <div
         key={slide.id}
@@ -240,8 +302,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         onClick={() => onSlideSelect(index)}
         className={`
           relative group cursor-pointer rounded-xl overflow-hidden border-2 transition-all duration-200
-          ${isActive 
-            ? 'border-teal-500 shadow-lg shadow-teal-500/20 scale-105' 
+          ${isActive
+            ? 'border-teal-500 shadow-lg shadow-teal-500/20 scale-105'
             : 'border-slate-700 hover:border-slate-500'}
         `}
       >
@@ -270,18 +332,26 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               {(slide.content as SlideContentMedia).mediaType === 'audio' && <Mic className="w-6 h-6 text-green-400 mx-auto" />}
             </div>
           )}
+          {slide.type === SlideType.ANNOUNCEMENT && (
+            <div className="text-center">
+              <Megaphone className="w-6 h-6 text-green-400 mx-auto mb-1" />
+              <p className="text-[10px] text-white truncate">
+                {(slide.content as SlideContentAnnouncement).title}
+              </p>
+            </div>
+          )}
         </div>
-        
+
         {/* Slide Number */}
         <div className="absolute top-1 left-1 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded">
           {index + 1}
         </div>
-        
+
         {/* Drag Handle */}
         <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <GripVertical className="w-4 h-4 text-slate-400" />
         </div>
-        
+
         {/* Actions */}
         <div className="absolute bottom-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
@@ -310,7 +380,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   };
 
   return (
-    <div 
+    <div
       className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-full overflow-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
@@ -319,7 +389,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         <h2 className={`text-lg font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
           {t.smartBuilder}
         </h2>
-        
+
         {/* Quick Add Buttons */}
         <div className="grid grid-cols-2 gap-2">
           <button
@@ -352,7 +422,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           </button>
         </div>
       </div>
-      
+
       {/* Slides List */}
       <div className="flex-1 overflow-y-auto p-4">
         {session.slides.length === 0 ? (
@@ -367,34 +437,141 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       </div>
 
       {/* ============ MODALS ============ */}
-      
-      {/* Scripture Modal */}
+
+      {/* Scripture Modal - Enhanced with Dropdowns */}
       {activeModal === 'SCRIPTURE' && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[80vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               📖 {t.addScripture}
             </h3>
-            
-            {/* Search */}
-            <div className="flex gap-2 mb-4">
-              <input
-                type="text"
-                value={scriptureSearch}
-                onChange={(e) => setScriptureSearch(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleScriptureSearch()}
-                placeholder={t.searchScripture}
-                className={`flex-1 bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              />
-              <button
-                onClick={handleScriptureSearch}
-                disabled={isFetching}
-                className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition disabled:opacity-50"
-              >
-                {isFetching ? '...' : <Search className="w-5 h-5" />}
-              </button>
+
+            {/* Book Selection */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {t.book}
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={bookSearch}
+                  onChange={(e) => setBookSearch(e.target.value)}
+                  placeholder={isRTL ? 'جستجوی کتاب...' : 'Search book...'}
+                  className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                />
+                <div className="absolute top-full left-0 right-0 bg-slate-900 rounded-lg mt-1 max-h-48 overflow-y-auto z-10 border border-slate-700">
+                  {getBibleBooks()
+                    .filter(b =>
+                      bookSearch === '' ||
+                      b.name.fa.includes(bookSearch) ||
+                      b.name.en.toLowerCase().includes(bookSearch.toLowerCase()) ||
+                      b.key.toLowerCase().includes(bookSearch.toLowerCase())
+                    )
+                    .slice(0, 15)
+                    .map(book => (
+                      <button
+                        key={book.key}
+                        onClick={() => {
+                          setSelectedBook(book.key);
+                          setBookSearch(book.name[lang]);
+                          setSelectedChapter(1);
+                          setSelectedVerseStart(1);
+                          setSelectedVerseEnd(1);
+                        }}
+                        className={`w-full px-3 py-2 text-left hover:bg-slate-700 transition ${selectedBook === book.key ? 'bg-amber-600/30 text-amber-400' : 'text-white'
+                          } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      >
+                        {book.name[lang]} ({book.chapters} {isRTL ? 'باب' : 'ch.'})
+                      </button>
+                    ))}
+                </div>
+              </div>
             </div>
-            
+
+            {/* Chapter & Verse Selection */}
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {t.chapter}
+                </label>
+                <select
+                  value={selectedChapter}
+                  onChange={(e) => {
+                    setSelectedChapter(Number(e.target.value));
+                    setSelectedVerseStart(1);
+                    setSelectedVerseEnd(1);
+                  }}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                >
+                  {Array.from({ length: getBibleBooks().find(b => b.key === selectedBook)?.chapters || 1 }, (_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'از آیه' : 'From'}
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={176}
+                  value={selectedVerseStart}
+                  onChange={(e) => setSelectedVerseStart(Number(e.target.value))}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                />
+              </div>
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'تا آیه' : 'To'}
+                </label>
+                <input
+                  type="number"
+                  min={selectedVerseStart}
+                  max={176}
+                  value={selectedVerseEnd}
+                  onChange={(e) => setSelectedVerseEnd(Number(e.target.value))}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                />
+              </div>
+            </div>
+
+            {/* Show English Toggle */}
+            <label className="flex items-center gap-3 mb-4 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showEnglish}
+                onChange={(e) => setShowEnglish(e.target.checked)}
+                className="accent-amber-500 w-5 h-5"
+              />
+              <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? '☑ نمایش متن انگلیسی' : '☑ Show English text'}
+              </span>
+            </label>
+
+            {/* Fetch Button */}
+            <button
+              onClick={async () => {
+                setIsFetching(true);
+                const verses = selectedVerseStart === selectedVerseEnd
+                  ? String(selectedVerseStart)
+                  : `${selectedVerseStart}-${selectedVerseEnd}`;
+                const result = await fetchBibleVerse(selectedBook, selectedChapter, verses);
+                if (result) {
+                  // اگر showEnglish فعال نیست، textSecondary را خالی کن
+                  if (!showEnglish) {
+                    result.textSecondary = '';
+                  }
+                  setScripturePages([result]);
+                }
+                setIsFetching(false);
+              }}
+              disabled={isFetching}
+              className={`w-full py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition disabled:opacity-50 mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+            >
+              {isFetching ? '...' : (isRTL ? '📥 دریافت آیه' : '📥 Fetch Verse')}
+            </button>
+
             {/* Preview */}
             {scripturePages.length > 0 && (
               <div className="bg-slate-900 rounded-lg p-4 mb-4">
@@ -415,7 +592,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 ))}
               </div>
             )}
-            
+
             {/* Actions */}
             <div className="flex gap-3 justify-end">
               <button
@@ -443,7 +620,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               🎵 {t.addLyrics}
             </h3>
-            
+
             {/* Song Search */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -456,23 +633,49 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 placeholder={t.searchSongs}
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
-              
+
               {/* Song List */}
               {filteredSongs.length > 0 && !selectedSong && (
-                <div className="mt-2 bg-slate-900 rounded-lg max-h-40 overflow-y-auto">
+                <div className="mt-2 bg-slate-900 rounded-lg max-h-60 overflow-y-auto border border-slate-700">
                   {filteredSongs.map((song) => (
                     <button
                       key={song.id}
                       onClick={() => handleSongSelect(song)}
-                      className={`w-full px-3 py-2 text-left hover:bg-slate-700 transition text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      className={`w-full px-3 py-2 text-left hover:bg-slate-700 transition text-white border-b border-slate-800 last:border-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                     >
-                      <span className="font-medium">{song.title[lang] || song.title.fa}</span>
-                      <span className="text-slate-400 text-sm ml-2">- {song.artist}</span>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="font-medium">{song.title[lang] || song.title.fa}</span>
+                          <span className="text-slate-400 text-sm ml-2">- {song.artist}</span>
+                        </div>
+                        {song.audioUrl && <span className="text-green-400 text-xs">🎵</span>}
+                      </div>
+                      {song.lyrics?.fa && (
+                        <p className={`text-slate-500 text-xs mt-1 truncate ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {song.lyrics.fa.substring(0, 60)}...
+                        </p>
+                      )}
                     </button>
                   ))}
+                  {/* Show More Button */}
+                  {!showAllSongs && songs.length > 10 && (
+                    <button
+                      onClick={() => setShowAllSongs(true)}
+                      className={`w-full px-3 py-2 text-center text-pink-400 hover:bg-slate-800 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    >
+                      {isRTL ? `نمایش همه (${songs.length} سرود)` : `Show all (${songs.length} songs)`}
+                    </button>
+                  )}
                 </div>
               )}
-              
+
+              {/* No Songs Found */}
+              {filteredSongs.length === 0 && songSearch && !selectedSong && (
+                <div className={`mt-2 text-center text-slate-500 py-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'سرودی پیدا نشد' : 'No songs found'}
+                </div>
+              )}
+
               {/* Selected Song */}
               {selectedSong && (
                 <div className="mt-2 flex items-center justify-between bg-pink-600/20 border border-pink-600/40 rounded-lg px-3 py-2">
@@ -485,7 +688,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 </div>
               )}
             </div>
-            
+
             {/* Title */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -498,7 +701,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
             </div>
-            
+
             {/* Lyrics */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -511,7 +714,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
             </div>
-            
+
             {/* Chords */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -525,7 +728,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
               />
             </div>
-            
+
             {/* Actions */}
             <div className="flex gap-3 justify-end">
               <button
@@ -553,7 +756,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               🖼️ {t.addMedia}
             </h3>
-            
+
             {/* Media Type */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -568,11 +771,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   <button
                     key={type}
                     onClick={() => setMediaType(type as any)}
-                    className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg border transition ${
-                      mediaType === type
-                        ? 'bg-blue-600 border-blue-500 text-white'
-                        : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
-                    }`}
+                    className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg border transition ${mediaType === type
+                      ? 'bg-blue-600 border-blue-500 text-white'
+                      : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
+                      }`}
                   >
                     {icon}
                     <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{label}</span>
@@ -580,7 +782,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 ))}
               </div>
             </div>
-            
+
             {/* File Upload */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -593,7 +795,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className="w-full text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-slate-700 file:text-white hover:file:bg-slate-600"
               />
             </div>
-            
+
             {/* Or URL */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -607,7 +809,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
               />
             </div>
-            
+
             {/* Preview */}
             {mediaUrl && (
               <div className="mb-4 bg-slate-900 rounded-lg p-4">
@@ -616,7 +818,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 {mediaType === 'audio' && <audio src={mediaUrl} className="w-full" controls />}
               </div>
             )}
-            
+
             {/* Options */}
             <div className="flex gap-4 mb-4">
               <label className="flex items-center gap-2 cursor-pointer">
@@ -638,7 +840,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{t.autoplay}</span>
               </label>
             </div>
-            
+
             {/* Actions */}
             <div className="flex gap-3 justify-end">
               <button
@@ -651,6 +853,134 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 onClick={handleMediaSubmit}
                 disabled={!mediaUrl}
                 className={`px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.add}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Announcement Modal */}
+      {activeModal === 'ANNOUNCEMENT' && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[85vh] overflow-y-auto">
+            <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              📢 {t.addAnnouncement}
+            </h3>
+
+            {/* Title */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {t.title} *
+              </label>
+              <input
+                type="text"
+                value={announcementTitle}
+                onChange={(e) => setAnnouncementTitle(e.target.value)}
+                placeholder={isRTL ? 'عنوان اعلان...' : 'Announcement title...'}
+                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              />
+            </div>
+
+            {/* Content */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'متن اعلان' : 'Content'}
+              </label>
+              <textarea
+                value={announcementContent}
+                onChange={(e) => setAnnouncementContent(e.target.value)}
+                rows={4}
+                placeholder={isRTL ? 'متن اعلان را وارد کنید...' : 'Enter announcement content...'}
+                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              />
+            </div>
+
+            {/* Image Upload */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'تصویر (اختیاری)' : 'Image (optional)'}
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleAnnouncementImageUpload}
+                className="w-full text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-slate-700 file:text-white hover:file:bg-slate-600"
+              />
+              {announcementImageUrl && (
+                <div className="mt-2 relative">
+                  <img src={announcementImageUrl} alt="Preview" className="max-h-32 rounded-lg" />
+                  <button
+                    onClick={() => setAnnouncementImageUrl('')}
+                    className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-500"
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Event Date */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                <Calendar className="w-4 h-4 inline mr-1" />
+                {isRTL ? 'تاریخ رویداد (اختیاری)' : 'Event Date (optional)'}
+              </label>
+              <input
+                type="datetime-local"
+                value={announcementEventDate}
+                onChange={(e) => setAnnouncementEventDate(e.target.value)}
+                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+              />
+            </div>
+
+            {/* Link */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'لینک (اختیاری)' : 'Link (optional)'}
+              </label>
+              <input
+                type="url"
+                value={announcementLink}
+                onChange={(e) => setAnnouncementLink(e.target.value)}
+                placeholder="https://..."
+                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400"
+              />
+            </div>
+
+            {/* Preview */}
+            {(announcementTitle || announcementContent) && (
+              <div className="mb-4 bg-slate-900 rounded-lg p-4 border border-green-600/30">
+                <p className={`text-sm text-green-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'پیش‌نمایش:' : 'Preview:'}
+                </p>
+                <h4 className={`text-white font-bold text-lg mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {announcementTitle || (isRTL ? 'بدون عنوان' : 'No title')}
+                </h4>
+                <p className={`text-slate-300 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {announcementContent || (isRTL ? 'بدون محتوا' : 'No content')}
+                </p>
+                {announcementEventDate && (
+                  <p className="text-green-400 text-xs mt-2">
+                    📅 {new Date(announcementEventDate).toLocaleString(isRTL ? 'fa-IR' : 'en-US')}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Actions */}
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => { setActiveModal('NONE'); resetForms(); }}
+                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.cancel}
+              </button>
+              <button
+                onClick={handleAnnouncementSubmit}
+                disabled={!announcementTitle}
+                className={`px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               >
                 {t.add}
               </button>

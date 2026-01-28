@@ -64,6 +64,10 @@ export interface SlideContentLyrics {
   chords?: string;        // آکورد کلی آهنگ
   audioUrl?: string;      // فایل صوتی
   youtubeId?: string;     // لینک یوتوب
+  // Karaoke/Sync support
+  timingData?: any;       // SystemTimingV2 data for karaoke
+  finglishLines?: string[]; // Finglish translations
+  hasTiming?: boolean;    // آیا timing کاراکه دارد
 }
 
 // =============== MEDIA (رسانه) ===============
@@ -88,9 +92,9 @@ export interface SlideContentAnnouncement {
 
 // =============== UNIFIED SLIDE ===============
 
-export type SlideContent = 
-  | SlideContentScripture 
-  | SlideContentLyrics 
+export type SlideContent =
+  | SlideContentScripture
+  | SlideContentLyrics
   | SlideContentMedia
   | SlideContentAnnouncement;
 
@@ -145,26 +149,29 @@ export interface DonationItem {
 export interface BroadcastOverlayConfig {
   // Layout
   layout: BroadcastLayout;
-  
+
   // Branding
   logoUrl: string | null;
   showLogo: boolean;
   churchName?: string;
-  
+
+  // Leader Video Shape
+  leaderVideoShape: 'rectangle' | 'square' | 'circle';
+
   // Lower Thirds (زیرنویس اطلاعات)
   lowerThirds: LowerThirdItem[];
   activeLowerThirdIndex: number;
   showLowerThird: boolean;
   lowerThirdSize: LowerThirdSize;
-  
+
   // Rotation
   isRotating: boolean;
   rotationInterval: number;
-  
+
   // Prayer Wall
   prayerRequests: PrayerRequest[];
   showPrayerTicker: boolean;
-  
+
   // Donations
   donations: DonationItem[];
   activeDonationId: string | null;
@@ -198,7 +205,7 @@ export interface TranslationDict {
   save: string;
   preview: string;
   close: string;
-  
+
   // Builder
   smartBuilder: string;
   aiAssistant: string;
@@ -210,7 +217,7 @@ export interface TranslationDict {
   addMedia: string;
   addAnnouncement: string;
   noSlides: string;
-  
+
   // Scripture
   book: string;
   chapter: string;
@@ -219,7 +226,7 @@ export interface TranslationDict {
   searchScripture: string;
   fetch: string;
   fetching: string;
-  
+
   // Lyrics
   songTitle: string;
   selectSong: string;
@@ -227,7 +234,7 @@ export interface TranslationDict {
   lyricsLabel: string;
   chordsLabel: string;
   audioLabel: string;
-  
+
   // Media
   mediaType: string;
   image: string;
@@ -237,13 +244,13 @@ export interface TranslationDict {
   fileUrl: string;
   loop: string;
   autoplay: string;
-  
+
   // Console
   presenterNotes: string;
   noNotes: string;
   prev: string;
   next: string;
-  
+
   // Broadcast Settings
   layout: string;
   fullCam: string;
@@ -252,7 +259,7 @@ export interface TranslationDict {
   slidesOnly: string;
   uploadLogo: string;
   showLogo: string;
-  
+
   // Lower Thirds
   infoOverlay: string;
   addItem: string;
@@ -262,14 +269,14 @@ export interface TranslationDict {
   rotation: string;
   interval: string;
   size: string;
-  
+
   // Prayer Wall
   prayerWall: string;
   showPrayerWall: string;
   addRequest: string;
   requestNamePlaceholder: string;
   requestContentPlaceholder: string;
-  
+
   // Donations
   donations: string;
   donationTitle: string;
