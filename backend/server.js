@@ -28,6 +28,10 @@ const audioSyncAdvancedRoutes = require('./routes/audioSyncAdvancedRoutes');
 const scheduleRoutes = require('./routes/scheduleRoutes');
 const galleriesRoutes = require('./routes/galleriesRoutes');
 const prayerRoutes = require('./routes/prayerRoutes');
+
+// Broadcast Console Routes
+const broadcastAiRoutes = require('./routes/broadcastAiRoutes');
+const broadcastSessionRoutes = require('./routes/broadcastSessionRoutes');
 const testimonialsRoutes = require('./routes/testimonialsRoutes');
 const lettersRoutes = require('./routes/lettersRoutes');
 const announcementsRoutes = require('./routes/announcementsRoutes');
@@ -379,6 +383,10 @@ app.use('/api/messages', messageHistoryRoutes);
 app.use('/api/communications', communicationsRoutes); // Bulk communications
 app.use('/api/pages', pagesRoutes);
 app.use('/api/daily-images', dailyImagesRoutes);
+
+// Broadcast Console API routes
+app.use('/api/broadcast-ai', broadcastAiRoutes);
+app.use('/api/broadcast-sessions', broadcastSessionRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);

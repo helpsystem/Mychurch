@@ -3,7 +3,7 @@ import {
   Play, Pause, Volume2, VolumeX, SkipBack, SkipForward,
   Download, Youtube, Maximize2, Minimize2, X, Settings,
   Languages, Music, FileText, Edit3, Save, Clock, Palette,
-  MousePointer2, Minus, Plus
+  MousePointer2, Minus, Plus, ChevronDown, ChevronUp, Paperclip, Info
 } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
@@ -60,6 +60,10 @@ interface KaraokeWorshipPlayerProps {
   showControls?: boolean;
   autoPlay?: boolean;
   className?: string;
+  // New props for accordion sections
+  description?: string; // توضیحات
+  notes?: string; // متن یا نوت
+  attachments?: { name: string; url: string; type?: string }[]; // فایل‌های ضمیمه
 }
 
 // Remove chord markers like [Am], [F], [G] from text
@@ -161,6 +165,9 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   showControls = true,
   autoPlay = false,
   className = '',
+  description,
+  notes,
+  attachments = [],
 }) => {
   // Refs
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -177,7 +184,6 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
   const [timingData, setTimingData] = useState<TimingData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showFinglish, setShowFinglish] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Auth Context
@@ -194,6 +200,14 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
 
   // NEW: Manual Sync Mode - حالت هماهنگی لمسی
   const [isSyncMode, setIsSyncMode] = useState(false);
+
+  // NEW: Accordion sections - بخش‌های کشویی
+  const [showPublicSettings, setShowPublicSettings] = useState(false);
+  const [showAdminSettings, setShowAdminSettings] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
+  const [showAttachments, setShowAttachments] = useState(false);
+  const [displayChords, setDisplayChords] = useState(showChords);
 
   // NEW: Edit Mode - حالت ویرایش
   const [isEditing, setIsEditing] = useState(false);
@@ -773,13 +787,13 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
         </div>
 
         <div style={{ display: 'flex', gap: '8px' }}>
-          {/* Settings Toggle */}
+          {/* Public Settings Toggle - برای همه کاربران */}
           <button
-            onClick={() => setShowSettings(!showSettings)}
+            onClick={() => { setShowPublicSettings(!showPublicSettings); setShowAdminSettings(false); }}
             className="hover:bg-white/20"
             style={{
-              background: showSettings ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-              border: 'none',
+              background: showPublicSettings ? 'rgba(20, 184, 166, 0.3)' : 'rgba(255,255,255,0.1)',
+              border: showPublicSettings ? '1px solid #14b8a6' : 'none',
               borderRadius: '50%',
               width: '40px',
               height: '40px',
@@ -790,10 +804,34 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
               color: 'white',
               transition: 'all 0.2s',
             }}
-            title={lang === 'fa' ? 'تنظیمات' : 'Settings'}
+            title={lang === 'fa' ? 'تنظیمات نمایش' : 'Display Settings'}
           >
             <Settings size={20} />
           </button>
+
+          {/* Admin Settings Toggle - فقط برای ادمین و رهبران */}
+          {canEdit && (
+            <button
+              onClick={() => { setShowAdminSettings(!showAdminSettings); setShowPublicSettings(false); }}
+              className="hover:bg-yellow-500/20"
+              style={{
+                background: showAdminSettings ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255,255,255,0.1)',
+                border: showAdminSettings ? '1px solid #eab308' : 'none',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: showAdminSettings ? '#fbbf24' : 'white',
+                transition: 'all 0.2s',
+              }}
+              title={lang === 'fa' ? 'تنظیمات ادمین' : 'Admin Settings'}
+            >
+              <Edit3 size={20} />
+            </button>
+          )}
 
           {/* Fullscreen Toggle */}
           <button
@@ -843,8 +881,8 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
         </div>
       </div>
 
-      {/* Settings Panel - Extended */}
-      {showSettings && (
+      {/* ========== PUBLIC SETTINGS PANEL - تنظیمات عمومی (برای همه) ========== */}
+      {showPublicSettings && (
         <div
           style={{
             position: 'absolute',
@@ -861,6 +899,212 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
             boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
           }}
         >
+          <h4 style={{
+            color: 'white',
+            margin: '0 0 12px 0',
+            fontSize: '0.9rem',
+            fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}>
+            <Settings size={16} className="text-teal-400" />
+            {lang === 'fa' ? 'تنظیمات نمایش' : 'Display Settings'}
+          </h4>
+
+          {/* Appearance Settings - رنگ‌بندی */}
+          <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <button
+              onClick={() => setShowAppearance(!showAppearance)}
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '8px',
+                background: 'transparent',
+                border: 'none',
+                padding: '8px 0',
+                color: 'white',
+                cursor: 'pointer',
+                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Palette size={16} className="text-purple-400" />
+                <span style={{ fontWeight: 600 }}>{lang === 'fa' ? 'رنگ‌بندی' : 'Appearance'}</span>
+              </div>
+              {showAppearance ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+
+            {showAppearance && (
+              <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {/* Word Highlight Color */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{
+                    fontSize: '0.8rem',
+                    color: 'rgba(255,255,255,0.7)',
+                    fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                  }}>
+                    {lang === 'fa' ? 'رنگ کلمه' : 'Word Color'}
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <input
+                      type="color"
+                      value={wordHighlightColor}
+                      onChange={(e) => setWordHighlightColor(e.target.value)}
+                      style={{ width: '32px', height: '32px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
+                    />
+                    <span style={{ fontSize: '0.7rem', fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)' }}>{wordHighlightColor}</span>
+                  </div>
+                </div>
+                {/* Line Highlight Color */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{
+                    fontSize: '0.8rem',
+                    color: 'rgba(255,255,255,0.7)',
+                    fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                  }}>
+                    {lang === 'fa' ? 'رنگ خط' : 'Line Color'}
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <input
+                      type="color"
+                      value={lineHighlightColor}
+                      onChange={(e) => setLineHighlightColor(e.target.value)}
+                      style={{ width: '32px', height: '32px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
+                    />
+                    <span style={{ fontSize: '0.7rem', fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)' }}>{lineHighlightColor}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Show Finglish Toggle - نمایش فینگلیش */}
+          <div style={{ marginBottom: '12px' }}>
+            <label style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: 'white',
+              cursor: 'pointer',
+              fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+            }}>
+              <input
+                type="checkbox"
+                checked={showFinglish}
+                onChange={(e) => setShowFinglish(e.target.checked)}
+                style={{ width: '18px', height: '18px', accentColor: wordHighlightColor }}
+              />
+              <Languages size={16} />
+              {lang === 'fa' ? 'نمایش فینگلیش' : 'Show Finglish'}
+            </label>
+          </div>
+
+          {/* Show Chords Toggle - نمایش آکوردها */}
+          {originalLyricsWithChords && (
+            <div style={{ marginBottom: '12px' }}>
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'white',
+                cursor: 'pointer',
+                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+              }}>
+                <input
+                  type="checkbox"
+                  checked={displayChords}
+                  onChange={(e) => setDisplayChords(e.target.checked)}
+                  style={{ width: '18px', height: '18px', accentColor: '#eab308' }}
+                />
+                <Music size={16} className="text-yellow-400" />
+                {lang === 'fa' ? 'نمایش آکوردها' : 'Show Chords'}
+              </label>
+            </div>
+          )}
+
+          {/* Download & YouTube Links - عمومی */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '12px' }}>
+            {youtubeId && (
+              <button
+                onClick={handleOpenYouTube}
+                className="hover:bg-red-600/30"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(255,0,0,0.2)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '10px 12px',
+                  color: 'white',
+                  cursor: 'pointer',
+                  fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                  fontSize: '0.85rem',
+                }}
+              >
+                <Youtube size={16} />
+                {lang === 'fa' ? 'یوتیوب' : 'YouTube'}
+              </button>
+            )}
+
+            <button
+              onClick={handleDownload}
+              className="hover:bg-white/20"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: 'rgba(255,255,255,0.1)',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '10px 12px',
+                color: 'white',
+                cursor: 'pointer',
+                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                fontSize: '0.85rem',
+              }}
+            >
+              <Download size={16} />
+              {lang === 'fa' ? 'دانلود صوت' : 'Download Audio'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ========== ADMIN SETTINGS PANEL - تنظیمات ادمین (فقط مدیران) ========== */}
+      {showAdminSettings && canEdit && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '70px',
+            [isRTL ? 'left' : 'right']: '70px',
+            background: 'rgba(0,0,0,0.95)',
+            borderRadius: '16px',
+            padding: '20px',
+            zIndex: 20,
+            minWidth: '280px',
+            maxWidth: '320px',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(234, 179, 8, 0.3)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          }}
+        >
+          <h4 style={{
+            color: '#fbbf24',
+            margin: '0 0 12px 0',
+            fontSize: '0.9rem',
+            fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}>
+            <Settings size={16} />
+            {lang === 'fa' ? 'تنظیمات ادمین' : 'Admin Settings'}
+          </h4>
+
           {/* Sync Delay Control - تنظیم زمان */}
           <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{
@@ -944,154 +1188,66 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
           </div>
 
           {/* Edit & Sync Mode Buttons */}
-          {canEdit && (
-            <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
-              <button
-                onClick={() => { setIsEditing(!isEditing); if (!isEditing) setIsSyncMode(false); }}
-                style={{
-                  flex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  background: isEditing ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255,255,255,0.1)',
-                  border: isEditing ? '1px solid #eab308' : '1px solid transparent',
-                  borderRadius: '10px',
-                  padding: '10px',
-                  color: isEditing ? '#fbbf24' : 'white',
-                  cursor: 'pointer',
-                  fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                  fontSize: '0.85rem',
-                  fontWeight: 500,
-                  transition: 'all 0.2s',
-                }}
-                title={lang === 'fa' ? 'ویرایش متن' : 'Edit Text'}
-              >
-                {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
-                {isEditing ? (lang === 'fa' ? 'ذخیره' : 'Save') : (lang === 'fa' ? 'ویرایش' : 'Edit')}
-              </button>
-              <button
-                onClick={() => { setIsSyncMode(!isSyncMode); if (!isSyncMode) setIsEditing(false); }}
-                style={{
-                  flex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  background: isSyncMode ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255,255,255,0.1)',
-                  border: isSyncMode ? '1px solid #ef4444' : '1px solid transparent',
-                  borderRadius: '10px',
-                  padding: '10px',
-                  color: isSyncMode ? '#f87171' : 'white',
-                  cursor: 'pointer',
-                  fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                  fontSize: '0.85rem',
-                  fontWeight: 500,
-                  transition: 'all 0.2s',
-                  animation: isSyncMode ? 'pulse 2s infinite' : 'none',
-                }}
-                title={lang === 'fa' ? 'هماهنگی لمسی' : 'Touch Sync'}
-              >
-                <MousePointer2 size={16} />
-                {lang === 'fa' ? 'هماهنگی' : 'Sync'}
-              </button>
-            </div>
-          )}
-
-          {/* Appearance Settings - رنگ‌بندی */}
-          <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
             <button
-              onClick={() => setShowAppearance(!showAppearance)}
+              onClick={() => { setIsEditing(!isEditing); if (!isEditing) setIsSyncMode(false); }}
               style={{
-                width: '100%',
+                flex: 1,
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                background: 'transparent',
-                border: 'none',
-                padding: '8px 0',
-                color: 'white',
+                justifyContent: 'center',
+                gap: '6px',
+                background: isEditing ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255,255,255,0.1)',
+                border: isEditing ? '1px solid #eab308' : '1px solid transparent',
+                borderRadius: '10px',
+                padding: '10px',
+                color: isEditing ? '#fbbf24' : 'white',
                 cursor: 'pointer',
                 fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                transition: 'all 0.2s',
               }}
+              title={lang === 'fa' ? 'ویرایش متن' : 'Edit Text'}
             >
-              <Palette size={16} className="text-purple-400" />
-              <span style={{ fontWeight: 600 }}>{lang === 'fa' ? 'رنگ‌بندی' : 'Appearance'}</span>
+              {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
+              {isEditing ? (lang === 'fa' ? 'ذخیره' : 'Save') : (lang === 'fa' ? 'ویرایش' : 'Edit')}
             </button>
-
-            {showAppearance && (
-              <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {/* Word Highlight Color */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{
-                    fontSize: '0.8rem',
-                    color: 'rgba(255,255,255,0.7)',
-                    fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                  }}>
-                    {lang === 'fa' ? 'رنگ کلمه' : 'Word Color'}
-                  </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <input
-                      type="color"
-                      value={wordHighlightColor}
-                      onChange={(e) => setWordHighlightColor(e.target.value)}
-                      style={{ width: '32px', height: '32px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
-                    />
-                    <span style={{ fontSize: '0.7rem', fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)' }}>{wordHighlightColor}</span>
-                  </div>
-                </div>
-                {/* Line Highlight Color */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{
-                    fontSize: '0.8rem',
-                    color: 'rgba(255,255,255,0.7)',
-                    fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                  }}>
-                    {lang === 'fa' ? 'رنگ خط' : 'Line Color'}
-                  </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <input
-                      type="color"
-                      value={lineHighlightColor}
-                      onChange={(e) => setLineHighlightColor(e.target.value)}
-                      style={{ width: '32px', height: '32px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
-                    />
-                    <span style={{ fontSize: '0.7rem', fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)' }}>{lineHighlightColor}</span>
-                  </div>
-                </div>
-              </div>
-            )}
+            <button
+              onClick={() => { setIsSyncMode(!isSyncMode); if (!isSyncMode) setIsEditing(false); }}
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                background: isSyncMode ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255,255,255,0.1)',
+                border: isSyncMode ? '1px solid #ef4444' : '1px solid transparent',
+                borderRadius: '10px',
+                padding: '10px',
+                color: isSyncMode ? '#f87171' : 'white',
+                cursor: 'pointer',
+                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                transition: 'all 0.2s',
+                animation: isSyncMode ? 'pulse 2s infinite' : 'none',
+              }}
+              title={lang === 'fa' ? 'هماهنگی لمسی' : 'Touch Sync'}
+            >
+              <MousePointer2 size={16} />
+              {lang === 'fa' ? 'هماهنگی' : 'Sync'}
+            </button>
           </div>
 
-          {/* Show Finglish */}
-          <div style={{ marginBottom: '12px' }}>
-            <label style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              color: 'white',
-              cursor: 'pointer',
-              fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-            }}>
-              <input
-                type="checkbox"
-                checked={showFinglish}
-                onChange={(e) => setShowFinglish(e.target.checked)}
-                style={{ width: '18px', height: '18px', accentColor: wordHighlightColor }}
-              />
-              <Languages size={16} />
-              {lang === 'fa' ? 'نمایش فینگلیش' : 'Show Finglish'}
-            </label>
-          </div>
-
-          {/* Download & External Links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '12px' }}>
-            {/* Download Timing JSON */}
-            {canEdit && timingData && (isEditing || syncDelay !== 0) && (
+          {/* Download Timing JSON - فقط ادمین */}
+          {timingData && (isEditing || syncDelay !== 0) && (
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '12px' }}>
               <button
                 onClick={handleDownloadTiming}
                 className="hover:bg-teal-600/30"
                 style={{
+                  width: '100%',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
@@ -1108,52 +1264,198 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                 <Download size={16} />
                 {lang === 'fa' ? 'دانلود زمان‌بندی (JSON)' : 'Download Timing (JSON)'}
               </button>
-            )}
+            </div>
+          )}
+        </div>
+      )}
 
-            {youtubeId && (
-              <button
-                onClick={handleOpenYouTube}
-                className="hover:bg-red-600/30"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'rgba(255,0,0,0.2)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '10px 12px',
-                  color: 'white',
-                  cursor: 'pointer',
-                  fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
-                  fontSize: '0.85rem',
-                }}
-              >
-                <Youtube size={16} />
-                {lang === 'fa' ? 'یوتیوب' : 'YouTube'}
-              </button>
-            )}
-
-            <button
-              onClick={handleDownload}
-              className="hover:bg-white/20"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: 'rgba(255,255,255,0.1)',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '10px 12px',
-                color: 'white',
-                cursor: 'pointer',
-                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+      {/* ========== NOTES SECTION - متن یا نوت (کشویی) ========== */}
+      {notes && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: showControls ? '160px' : '20px',
+            left: '20px',
+            right: '20px',
+            zIndex: 15,
+          }}
+        >
+          <button
+            onClick={() => setShowNotes(!showNotes)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: showNotes ? 'rgba(59, 130, 246, 0.3)' : 'rgba(0,0,0,0.6)',
+              border: showNotes ? '1px solid #3b82f6' : '1px solid rgba(255,255,255,0.2)',
+              borderRadius: showNotes ? '12px 12px 0 0' : '12px',
+              padding: '10px 16px',
+              color: 'white',
+              cursor: 'pointer',
+              fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+              fontSize: '0.85rem',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            <FileText size={16} className="text-blue-400" />
+            {lang === 'fa' ? 'متن / نوت' : 'Notes'}
+            {showNotes ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+          </button>
+          {showNotes && (
+            <div style={{
+              background: 'rgba(0,0,0,0.8)',
+              border: '1px solid #3b82f6',
+              borderTop: 'none',
+              borderRadius: '0 0 12px 12px',
+              padding: '16px',
+              maxHeight: '200px',
+              overflowY: 'auto',
+              backdropFilter: 'blur(10px)',
+            }}>
+              <pre style={{
+                color: 'rgba(255,255,255,0.9)',
                 fontSize: '0.85rem',
-              }}
-            >
-              <Download size={16} />
-              {lang === 'fa' ? 'دانلود صوت' : 'Download Audio'}
-            </button>
-          </div>
+                lineHeight: '1.6',
+                whiteSpace: 'pre-wrap',
+                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                direction: isRTL ? 'rtl' : 'ltr',
+                margin: 0,
+              }}>
+                {notes}
+              </pre>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ========== DESCRIPTION SECTION - توضیحات (کشویی) ========== */}
+      {description && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: showControls ? (notes ? '220px' : '160px') : (notes ? '80px' : '20px'),
+            left: '20px',
+            right: '20px',
+            zIndex: 14,
+          }}
+        >
+          <button
+            onClick={() => setShowDescription(!showDescription)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: showDescription ? 'rgba(139, 92, 246, 0.3)' : 'rgba(0,0,0,0.6)',
+              border: showDescription ? '1px solid #8b5cf6' : '1px solid rgba(255,255,255,0.2)',
+              borderRadius: showDescription ? '12px 12px 0 0' : '12px',
+              padding: '10px 16px',
+              color: 'white',
+              cursor: 'pointer',
+              fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+              fontSize: '0.85rem',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            <Info size={16} className="text-purple-400" />
+            {lang === 'fa' ? 'توضیحات' : 'Description'}
+            {showDescription ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+          </button>
+          {showDescription && (
+            <div style={{
+              background: 'rgba(0,0,0,0.8)',
+              border: '1px solid #8b5cf6',
+              borderTop: 'none',
+              borderRadius: '0 0 12px 12px',
+              padding: '16px',
+              maxHeight: '200px',
+              overflowY: 'auto',
+              backdropFilter: 'blur(10px)',
+            }}>
+              <p style={{
+                color: 'rgba(255,255,255,0.9)',
+                fontSize: '0.85rem',
+                lineHeight: '1.6',
+                fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                direction: isRTL ? 'rtl' : 'ltr',
+                margin: 0,
+              }}>
+                {description}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ========== ATTACHMENTS SECTION - فایل‌های ضمیمه (کشویی) ========== */}
+      {attachments && attachments.length > 0 && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '70px',
+            left: '20px',
+            zIndex: 13,
+          }}
+        >
+          <button
+            onClick={() => setShowAttachments(!showAttachments)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: showAttachments ? 'rgba(34, 197, 94, 0.3)' : 'rgba(0,0,0,0.6)',
+              border: showAttachments ? '1px solid #22c55e' : '1px solid rgba(255,255,255,0.2)',
+              borderRadius: showAttachments ? '12px 12px 0 0' : '12px',
+              padding: '10px 16px',
+              color: 'white',
+              cursor: 'pointer',
+              fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+              fontSize: '0.85rem',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            <Paperclip size={16} className="text-green-400" />
+            {lang === 'fa' ? `فایل‌های ضمیمه (${attachments.length})` : `Attachments (${attachments.length})`}
+            {showAttachments ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
+          {showAttachments && (
+            <div style={{
+              background: 'rgba(0,0,0,0.8)',
+              border: '1px solid #22c55e',
+              borderTop: 'none',
+              borderRadius: '0 0 12px 12px',
+              padding: '12px',
+              maxHeight: '200px',
+              overflowY: 'auto',
+              backdropFilter: 'blur(10px)',
+              minWidth: '200px',
+            }}>
+              {attachments.map((file, idx) => (
+                <a
+                  key={idx}
+                  href={file.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '8px',
+                    background: 'rgba(255,255,255,0.05)',
+                    marginBottom: idx < attachments.length - 1 ? '8px' : 0,
+                    fontFamily: isRTL ? 'Vazirmatn, IRANSans, Tahoma, sans-serif' : 'inherit',
+                    fontSize: '0.85rem',
+                  }}
+                  className="hover:bg-white/10"
+                >
+                  <Download size={14} className="text-green-400" />
+                  {file.name}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -1368,6 +1670,51 @@ const KaraokeWorshipPlayer: React.FC<KaraokeWorshipPlayerProps> = ({
                 }}
               />
             </div>
+
+            {/* Download Audio - برای همه کاربران */}
+            <button
+              onClick={handleDownload}
+              className="hover:bg-white/20"
+              style={{
+                background: 'rgba(255,255,255,0.1)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '36px',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: 'white',
+                marginLeft: '8px',
+              }}
+              title={lang === 'fa' ? 'دانلود' : 'Download'}
+            >
+              <Download size={18} />
+            </button>
+
+            {/* YouTube Link - برای همه کاربران */}
+            {youtubeId && (
+              <button
+                onClick={handleOpenYouTube}
+                className="hover:bg-red-500/30"
+                style={{
+                  background: 'rgba(255,0,0,0.2)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '36px',
+                  height: '36px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: 'white',
+                }}
+                title={lang === 'fa' ? 'یوتیوب' : 'YouTube'}
+              >
+                <Youtube size={18} />
+              </button>
+            )}
           </div>
         </div>
       )}

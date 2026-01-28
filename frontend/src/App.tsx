@@ -136,6 +136,7 @@ const AdvancedWorshipDemoPage = lazy(() => import('./pages/AdvancedWorshipDemoPa
 const AudioStudioPage = lazy(() => import('./pages/AudioStudioPage')); // AI Audio Studio V3
 const VersionDemoPage = lazy(() => import('./pages/VersionDemoPage')); // Multi-Version Song Demo
 const AdminVersionTrashPage = lazy(() => import('./pages/admin/AdminVersionTrashPage')); // Version Trash Management
+const AdminBroadcastPage = lazy(() => import('./pages/AdminBroadcastPage')); // Broadcast Console Pro
 
 // Wrapper to hide BibleAIChatWidget on AI Helper page
 const BibleAIChatWidgetWrapper: React.FC = () => {
@@ -311,6 +312,13 @@ function App() {
                   <Route path="admin/worship-health" element={
                     <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
                       <Layout><WorshipSongsHealthDashboard /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  
+                  {/* 🎬 Broadcast Console Pro - Full Screen */}
+                  <Route path="admin/broadcast" element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <AdminBroadcastPage />
                     </ProtectedRoute>
                   } />
 
