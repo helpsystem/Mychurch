@@ -10,7 +10,7 @@ import { BibleBook, ScripturePage } from './types';
 import { fetchBibleVerse, getBibleBooks, searchBibleBooks } from './dataService';
 
 interface VerseGridPickerProps {
-    onVerseSelect: (verse: ScripturePage) => void;
+    onVerseSelect: (verses: ScripturePage[]) => void;
     lang: 'fa' | 'en';
     onClose: () => void;
 }
@@ -178,10 +178,26 @@ const VerseGridPicker: React.FC<VerseGridPickerProps> = ({
         }
     }, [startVerse, endVerse, selectedBook, fetchPreview]);
 
-    // Add verse to slides
+    // Add verse to slides (bilingual: Persian + English)
     const handleAdd = () => {
         if (preview) {
-            onVerseSelect(preview);
+            // Create Persian version
+            const persianVerse: ScripturePage = {
+                ...preview,
+                textPrimary: preview.textPrimary,
+                textSecondary: preview.textSecondary
+            };
+
+            // Create English version (swap primary/secondary)
+            const englishVerse: ScripturePage = {
+                ...preview,
+                id: crypto.randomUUID(), // New ID for second slide
+                textPrimary: preview.textSecondary || '',
+                textSecondary: preview.textPrimary || ''
+            };
+
+            // Return both verses
+            onVerseSelect([persianVerse, englishVerse]);
             onClose();
         }
     };

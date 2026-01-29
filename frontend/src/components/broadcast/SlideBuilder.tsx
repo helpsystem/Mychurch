@@ -446,9 +446,12 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       {activeModal === 'SCRIPTURE' && useNewVersePicker && (
         <VerseGridPicker
           lang={lang}
-          onVerseSelect={(verse) => {
-            const content: SlideContentScripture = { pages: [verse] };
-            addSlide(SlideType.SCRIPTURE, content);
+          onVerseSelect={(verses) => {
+            // Add all verses (Persian + English)
+            verses.forEach(verse => {
+              const content: SlideContentScripture = { pages: [verse] };
+              addSlide(SlideType.SCRIPTURE, content);
+            });
           }}
           onClose={() => { setActiveModal('NONE'); resetForms(); }}
         />
