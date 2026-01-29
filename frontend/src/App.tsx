@@ -314,8 +314,11 @@ function App() {
                       <Layout><WorshipSongsHealthDashboard /></Layout>
                     </ProtectedRoute>
                   } />
-                  
-                  {/* 🎬 Broadcast Console Pro - Full Screen */}
+
+                  {/* 🎬 Broadcast Console - Public (Temporary for Testing) */}
+                  <Route path="broadcast" element={<AdminBroadcastPage />} />
+
+                  {/* 🎬 Broadcast Console Pro - Protected (Admin Only) */}
                   <Route path="admin/broadcast" element={
                     <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
                       <AdminBroadcastPage />
