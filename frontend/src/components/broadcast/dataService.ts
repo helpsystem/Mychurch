@@ -23,7 +23,7 @@ export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
   } catch (error) {
     console.log('API unavailable, using local JSON');
   }
-  
+
   // اگر API کار نکرد، از فایل JSON استفاده کن
   try {
     const response = await fetch('/worship/data/worship_songs.json');
@@ -33,7 +33,7 @@ export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
   } catch (error) {
     console.error('Failed to fetch worship songs:', error);
   }
-  
+
   return [];
 }
 
@@ -42,9 +42,9 @@ export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
  */
 export function searchSongs(songs: WorshipSong[], query: string): WorshipSong[] {
   if (!query.trim()) return songs.slice(0, 20); // نمایش 20 تای اول
-  
+
   const q = query.toLowerCase();
-  return songs.filter(song => 
+  return songs.filter(song =>
     song.title.fa.toLowerCase().includes(q) ||
     song.title.en?.toLowerCase().includes(q) ||
     song.artist?.toLowerCase().includes(q)
@@ -64,13 +64,13 @@ export function getSongById(songs: WorshipSong[], id: number): WorshipSong | und
 export function parseLyrics(lyricsText: string): { text: string; isChorus: boolean; isVerse: boolean }[] {
   const lines = lyricsText.split('\n');
   const result: { text: string; isChorus: boolean; isVerse: boolean }[] = [];
-  
+
   let currentSection = '';
-  
+
   for (const line of lines) {
     const trimmed = line.trim();
     if (!trimmed) continue;
-    
+
     // تشخیص نوع بخش
     if (/^(V\d+|Verse|بند)/i.test(trimmed)) {
       currentSection = 'verse';
@@ -83,14 +83,14 @@ export function parseLyrics(lyricsText: string): { text: string; isChorus: boole
     if (/^\[column\]$/i.test(trimmed)) {
       continue; // نادیده بگیر
     }
-    
+
     result.push({
       text: trimmed,
       isChorus: currentSection === 'chorus',
       isVerse: currentSection === 'verse' || currentSection === ''
     });
   }
-  
+
   return result;
 }
 
@@ -108,7 +108,7 @@ export function getBibleBooks(): BibleBook[] {
  */
 export function searchBibleBooks(query: string): BibleBook[] {
   if (!query.trim()) return INITIAL_BIBLE_BOOKS;
-  
+
   const q = query.toLowerCase();
   return INITIAL_BIBLE_BOOKS.filter(book =>
     book.key.toLowerCase().includes(q) ||
@@ -128,41 +128,46 @@ export async function fetchBibleVerse(
   bookKey: string,
   chapter: number,
   verses: string,
-  translation: string = 'mojdeh'
+  translation: string = 'bilingual'
 ): Promise<ScripturePage | null> {
   try {
-    // اول سعی کن از API بگیری
-    const response = await fetch(`/api/bible/${bookKey}/${chapter}?translation=${translation}`);
+    // استفاده از API endpoint صحیح برای داده‌های دوزبانه
+    const response = await fetch(`/api/bible/content/${bookKey}/${chapter}`);
     if (response.ok) {
       const data = await response.json();
-      const book = INITIAL_BIBLE_BOOKS.find(b => b.key === bookKey);
-      
-      // Parse verse range
-      const [startVerse, endVerse] = verses.includes('-') 
-        ? verses.split('-').map(Number)
-        : [parseInt(verses), parseInt(verses)];
-      
-      // Extract verses
-      const verseTexts = data.verses
-        ?.filter((_: any, i: number) => i + 1 >= startVerse && i + 1 <= endVerse)
-        ?.map((v: any) => v.text)
-        ?.join(' ') || '';
-      
-      return {
-        id: crypto.randomUUID(),
-        book: bookKey,
-        bookName: book?.name || { fa: bookKey, en: bookKey },
-        chapter,
-        verses,
-        textPrimary: verseTexts,
-        textSecondary: '',
-        translation
-      };
+
+      if (data.success && data.verses) {
+        const book = INITIAL_BIBLE_BOOKS.find(b => b.key === bookKey);
+
+        // Parse verse range
+        const [startVerse, endVerse] = verses.includes('-')
+          ? verses.split('-').map(Number)
+          : [parseInt(verses), parseInt(verses)];
+
+        // Extract Persian and English verses
+        const faVerses = data.verses.fa
+          ?.slice(startVerse - 1, endVerse)
+          ?.join(' ') || '';
+        const enVerses = data.verses.en
+          ?.slice(startVerse - 1, endVerse)
+          ?.join(' ') || '';
+
+        return {
+          id: crypto.randomUUID(),
+          book: bookKey,
+          bookName: book?.name || { fa: bookKey, en: bookKey },
+          chapter,
+          verses,
+          textPrimary: faVerses,
+          textSecondary: enVerses,
+          translation
+        };
+      }
     }
   } catch (error) {
     console.log('API unavailable, using local data');
   }
-  
+
   // استفاده از داده‌های لوکال
   const localContent = INITIAL_BIBLE_CONTENT[bookKey]?.[chapter.toString()];
   if (localContent) {
@@ -170,14 +175,14 @@ export async function fetchBibleVerse(
     const [startVerse, endVerse] = verses.includes('-')
       ? verses.split('-').map(Number)
       : [parseInt(verses), parseInt(verses)];
-    
+
     const faVerses = localContent.fa
       ?.slice(startVerse - 1, endVerse)
       ?.join(' ') || '';
     const enVerses = localContent.en
       ?.slice(startVerse - 1, endVerse)
       ?.join(' ') || '';
-    
+
     return {
       id: crypto.randomUUID(),
       book: bookKey,
@@ -189,7 +194,7 @@ export async function fetchBibleVerse(
       translation: 'local'
     };
   }
-  
+
   return null;
 }
 
@@ -204,12 +209,12 @@ export async function searchScripture(query: string): Promise<ScripturePage | nu
     // انگلیسی: "John 3:16" یا "John 3:16-17"
     /^(\d?\s*\w+)\s+(\d+):(\d+(?:-\d+)?)/i
   ];
-  
+
   for (const pattern of patterns) {
     const match = query.match(pattern);
     if (match) {
       const [, bookSearch, chapter, verses] = match;
-      
+
       // پیدا کردن کتاب
       const book = findBibleBook(bookSearch.trim());
       if (book) {
@@ -217,7 +222,7 @@ export async function searchScripture(query: string): Promise<ScripturePage | nu
       }
     }
   }
-  
+
   return null;
 }
 
@@ -226,7 +231,7 @@ export async function searchScripture(query: string): Promise<ScripturePage | nu
  */
 function findBibleBook(search: string): BibleBook | undefined {
   const s = search.toLowerCase();
-  
+
   // نقشه نام‌های فارسی به کلید انگلیسی
   const persianNames: Record<string, string> = {
     'یوحنا': 'John',
@@ -251,12 +256,12 @@ function findBibleBook(search: string): BibleBook | undefined {
     'عبرانیان': 'Hebrews',
     'یعقوب': 'James'
   };
-  
+
   // اول چک کن نام فارسی هست
   if (persianNames[search]) {
     return INITIAL_BIBLE_BOOKS.find(b => b.key === persianNames[search]);
   }
-  
+
   // بعد جستجو در لیست کتاب‌ها
   return INITIAL_BIBLE_BOOKS.find(book =>
     book.key.toLowerCase() === s ||
@@ -281,7 +286,7 @@ export const BROADCAST_TRANSLATIONS = {
     save: 'Save',
     preview: 'Preview',
     close: 'Close',
-    
+
     // Builder
     smartBuilder: 'Smart Builder',
     aiAssistant: 'AI Assistant',
@@ -293,7 +298,7 @@ export const BROADCAST_TRANSLATIONS = {
     addMedia: 'Media',
     addAnnouncement: 'Announcement',
     noSlides: 'No slides yet. Add one above.',
-    
+
     // Scripture
     book: 'Book',
     chapter: 'Chapter',
@@ -302,7 +307,7 @@ export const BROADCAST_TRANSLATIONS = {
     searchScripture: 'Search (e.g. John 3:16)',
     fetch: 'Fetch',
     fetching: 'Fetching...',
-    
+
     // Lyrics
     songTitle: 'Song Title',
     selectSong: 'Select from Library',
@@ -310,7 +315,7 @@ export const BROADCAST_TRANSLATIONS = {
     lyricsLabel: 'Lyrics',
     chordsLabel: 'Chords (Leaders Only)',
     audioLabel: 'Audio Track',
-    
+
     // Media
     mediaType: 'Media Type',
     image: 'Image',
@@ -320,13 +325,13 @@ export const BROADCAST_TRANSLATIONS = {
     fileUrl: 'File URL',
     loop: 'Loop',
     autoplay: 'Auto Play',
-    
+
     // Console
     presenterNotes: 'Presenter Notes',
     noNotes: 'No notes for this slide.',
     prev: 'Previous',
     next: 'Next',
-    
+
     // Broadcast Settings
     layout: 'Broadcast Layout',
     fullCam: 'Full Camera',
@@ -335,7 +340,7 @@ export const BROADCAST_TRANSLATIONS = {
     slidesOnly: 'Slides Only',
     uploadLogo: 'Upload Logo',
     showLogo: 'Show Logo',
-    
+
     // Lower Thirds
     infoOverlay: 'Lower Thirds',
     addItem: 'Add New Item',
@@ -345,14 +350,14 @@ export const BROADCAST_TRANSLATIONS = {
     rotation: 'Auto Rotation',
     interval: 'Interval (sec)',
     size: 'Size',
-    
+
     // Prayer Wall
     prayerWall: 'Prayer Wall',
     showPrayerWall: 'Show Prayer Ticker',
     addRequest: 'Add Request',
     requestNamePlaceholder: 'Name',
     requestContentPlaceholder: 'Prayer request...',
-    
+
     // Donations
     donations: 'Donations & QR',
     donationTitle: 'Title',
@@ -376,7 +381,7 @@ export const BROADCAST_TRANSLATIONS = {
     save: 'ذخیره',
     preview: 'پیش‌نمایش',
     close: 'بستن',
-    
+
     // Builder
     smartBuilder: '🎬 اسلایدساز هوشمند',
     aiAssistant: 'دستیار هوش مصنوعی',
@@ -388,7 +393,7 @@ export const BROADCAST_TRANSLATIONS = {
     addMedia: '🖼️ رسانه',
     addAnnouncement: '📢 اعلان',
     noSlides: 'هنوز اسلایدی نیست. از بالا اضافه کنید.',
-    
+
     // Scripture
     book: 'کتاب',
     chapter: 'باب',
@@ -397,7 +402,7 @@ export const BROADCAST_TRANSLATIONS = {
     searchScripture: 'جستجو (مثلا یوحنا ۳:۱۶)',
     fetch: 'دریافت',
     fetching: 'در حال دریافت...',
-    
+
     // Lyrics
     songTitle: 'عنوان سرود',
     selectSong: 'انتخاب از کتابخانه',
@@ -405,7 +410,7 @@ export const BROADCAST_TRANSLATIONS = {
     lyricsLabel: 'متن سرود',
     chordsLabel: 'آکوردها (فقط رهبران)',
     audioLabel: 'فایل صوتی',
-    
+
     // Media
     mediaType: 'نوع رسانه',
     image: 'تصویر',
@@ -415,13 +420,13 @@ export const BROADCAST_TRANSLATIONS = {
     fileUrl: 'لینک فایل',
     loop: 'تکرار',
     autoplay: 'پخش خودکار',
-    
+
     // Console
     presenterNotes: 'یادداشت‌های ارائه‌دهنده',
     noNotes: 'یادداشتی وجود ندارد.',
     prev: 'قبلی',
     next: 'بعدی',
-    
+
     // Broadcast Settings
     layout: 'چیدمان پخش',
     fullCam: 'تمام صفحه',
@@ -430,7 +435,7 @@ export const BROADCAST_TRANSLATIONS = {
     slidesOnly: 'فقط اسلاید',
     uploadLogo: 'بارگذاری لوگو',
     showLogo: 'نمایش لوگو',
-    
+
     // Lower Thirds
     infoOverlay: 'زیرنویس اطلاعات',
     addItem: 'افزودن مورد جدید',
@@ -440,14 +445,14 @@ export const BROADCAST_TRANSLATIONS = {
     rotation: 'چرخش خودکار',
     interval: 'فاصله زمانی (ثانیه)',
     size: 'اندازه',
-    
+
     // Prayer Wall
     prayerWall: 'دیوار دعا',
     showPrayerWall: 'نمایش لیست دعا',
     addRequest: 'ثبت درخواست',
     requestNamePlaceholder: 'نام',
     requestContentPlaceholder: 'متن درخواست دعا...',
-    
+
     // Donations
     donations: 'هدایا و بارکد',
     donationTitle: 'عنوان',
