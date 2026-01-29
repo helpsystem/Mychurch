@@ -18,6 +18,7 @@ import {
   BookOpen, Music, Image, Video, Plus, GripVertical,
   Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar
 } from 'lucide-react';
+import VerseGridPicker from './VerseGridPicker';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -60,6 +61,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [selectedVerseEnd, setSelectedVerseEnd] = useState(1);
   const [showEnglish, setShowEnglish] = useState(true);
   const [bookSearch, setBookSearch] = useState('');
+
+  // Use new verse grid picker (calendar-like UI)
+  const [useNewVersePicker] = useState(true);
 
   // Lyrics Form State
   const [lyricsTitle, setLyricsTitle] = useState('');
@@ -438,8 +442,20 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
       {/* ============ MODALS ============ */}
 
-      {/* Scripture Modal - Enhanced with Dropdowns */}
-      {activeModal === 'SCRIPTURE' && (
+      {/* Scripture Modal - Enhanced with Grid Picker OR Legacy Dropdowns */}
+      {activeModal === 'SCRIPTURE' && useNewVersePicker && (
+        <VerseGridPicker
+          lang={lang}
+          onVerseSelect={(verse) => {
+            const content: SlideContentScripture = { pages: [verse] };
+            addSlide(SlideType.SCRIPTURE, content);
+          }}
+          onClose={() => { setActiveModal('NONE'); resetForms(); }}
+        />
+      )}
+
+      {/* Legacy Scripture Modal - Fallback */}
+      {activeModal === 'SCRIPTURE' && !useNewVersePicker && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[80vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
