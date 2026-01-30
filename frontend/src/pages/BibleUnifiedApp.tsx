@@ -42,6 +42,8 @@ const BOOK_CODE_MAP: { [key: string]: string } = {
     '65': 'JUD', '66': 'REV'
 };
 
+import { getBibleBooks as getLocalBibleBooks } from '@/data/bibleBooks';
+
 const BibleUnifiedApp: React.FC = () => {
     const { lang } = useLanguage();
 
@@ -90,10 +92,11 @@ const BibleUnifiedApp: React.FC = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Fetch Books
+    // Fetch Books with Local Fallback
     useEffect(() => {
         const fetchBooks = async () => {
             try {
+                // Try fetching from API first
                 const response = await fetch('/api/bible-json/books');
                 const data = await response.json();
                 if (data.success && data.books) {
@@ -104,10 +107,23 @@ const BibleUnifiedApp: React.FC = () => {
                         testament: b.testament || 'OT'
                     }));
                     setBooks(transformedBooks);
+                    console.log('✅ Bible books loaded from API');
+                    return;
                 }
             } catch (err) {
-                console.error("Failed to fetch books", err);
+                console.warn('⚠️ API unavailable, using local fallback', err);
             }
+
+            // Fallback to local data
+            const localBooks = getLocalBibleBooks();
+            const transformedBooks: BibleBook[] = localBooks.map(b => ({
+                key: b.code,
+                name: { en: b.name_en, fa: b.name_fa },
+                chapters: b.chapters,
+                testament: b.testament
+            }));
+            setBooks(transformedBooks);
+            console.log('📚 Bible books loaded from local fallback');
         };
         fetchBooks();
     }, []);
