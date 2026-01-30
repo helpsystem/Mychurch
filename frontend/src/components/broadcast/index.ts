@@ -18,6 +18,8 @@ export { SlideBuilder } from './SlideBuilder';
 export { LiveConsole } from './LiveConsole';
 export { KaraokeLyricsDisplay } from './KaraokeLyricsDisplay';
 export { RecordingPanel } from './RecordingPanel';
+export { default as ScriptureSelector } from './ScriptureSelector';
+export { default as VerseGridPicker } from './VerseGridPicker';
 
 // Hooks
 export { useHybridRecorder } from './useHybridRecorder';

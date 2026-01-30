@@ -1,6 +1,8 @@
 const express = require('express');
 const { pool } = require('../db-postgres');
-const supabaseClient = require('../supabase-client');
+// ❌ Supabase disabled - using local PostgreSQL only
+// const supabaseClient = require('../supabase-client');
+const supabaseClient = null; // Disabled
 const router = express.Router();
 
 // Mock data generator for when database is unavailable
@@ -331,8 +333,8 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
 
     const persianTransId = translationMap[faTranslation] || 2; // Default to qadim
 
-    // Try Supabase Client first (uses HTTPS, bypasses port 5432 block)
-    if (supabaseClient) {
+    // ✅ Try PostgreSQL pool FIRST (local database)
+    if (pool && typeof pool.query === 'function') {
       try {
         console.log(`📖 Fetching verses via Supabase Client: ${bookKey} chapter ${chapter} (FA: ${faTranslation})`);
 
@@ -490,130 +492,62 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
 
       const book = bookResult.rows[0];
       const chapterNum = parseInt(chapter);
-      const bookId = book.id;
 
-      // Get translation info or use default
-      let translationId = 1; // Default to mojdeh (translation_id = 1)
-      let selectedTranslation = null;
-
-      if (translation) {
-        const translationQuery = `
-        SELECT id, code, name_fa, name_en
-        FROM bible_translations 
-        WHERE code = $1 AND is_active = true
-      `;
-        const translationResult = await pool.query(translationQuery, [translation]);
-
-        if (translationResult.rows.length > 0) {
-          translationId = translationResult.rows[0].id;
-          selectedTranslation = translationResult.rows[0];
-        }
-      }
-
-      // If no specific translation requested, get default translation
-      if (!translationId) {
-        const defaultTranslationQuery = `
-        SELECT id, code, name_fa, name_en
-        FROM bible_translations 
-        WHERE is_default = true AND is_active = true
-        ORDER BY sort_order
+      // First, find the chapter_id for this book and chapter
+      const chapterQuery = `
+        SELECT id FROM bible_chapters 
+        WHERE book_iso = $1 AND chapter_number = $2
         LIMIT 1
       `;
-        const defaultResult = await pool.query(defaultTranslationQuery);
+      const chapterResult = await pool.query(chapterQuery, [book.code, chapterNum]);
+      
+      if (chapterResult.rows.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'Chapter not found'
+        });
+      }
+      
+      const chapterId = chapterResult.rows[0].id;
 
-        if (defaultResult.rows.length > 0) {
-          translationId = defaultResult.rows[0].id;
-          selectedTranslation = defaultResult.rows[0];
-        }
+      // Get translation info
+      let translationId = persianTransId;
+      let selectedTranslation = null;
+
+      const translationQuery = `
+        SELECT id, code, name_fa, name_en
+        FROM bible_translations 
+        WHERE id = $1 AND is_active = true
+      `;
+      const translationResult = await pool.query(translationQuery, [translationId]);
+
+      if (translationResult.rows.length > 0) {
+        selectedTranslation = translationResult.rows[0];
       }
 
-      // Get verses from bible_verses table for specific translation
-      let versesQuery, versesResult;
-
-      // Get Persian verses (from selected translation or default)
-      let persianVersesQuery = `
-      SELECT 
-        verse_number,
-        text_fa
-      FROM bible_verses 
-      WHERE book_id = $1 AND chapter_number = $2 AND translation_id = $3
-      ORDER BY verse_number
-    `;
-      const persianVerses = await pool.query(persianVersesQuery, [bookId, chapterNum, translationId]);
-
-      // Get English verses (from English translation - KJV)
-      const englishTranslationQuery = `
-      SELECT id FROM bible_translations 
-      WHERE code = 'kjv' OR code = 'niv' OR LOWER(name_en) LIKE '%english%'
-      ORDER BY is_default DESC, sort_order
-      LIMIT 1
-    `;
-      const englishTransResult = await pool.query(englishTranslationQuery);
-
-      let englishVerses = { rows: [] };
-      if (englishTransResult.rows.length > 0) {
-        const englishTransId = englishTransResult.rows[0].id;
-        const englishVersesQuery = `
-        SELECT 
-          verse_number,
-          text_en
+      // Get Persian verses using chapter_id
+      const persianVersesQuery = `
+        SELECT verse_number, text_fa
         FROM bible_verses 
-        WHERE book_id = $1 AND chapter_number = $2 AND translation_id = $3
+        WHERE chapter_id = $1 AND translation_id = $2
         ORDER BY verse_number
       `;
-        englishVerses = await pool.query(englishVersesQuery, [bookId, chapterNum, englishTransId]);
-      }
+      const persianVerses = await pool.query(persianVersesQuery, [chapterId, translationId]);
 
-      // If no translation-specific verses, try fallback
-      if (persianVerses.rows.length === 0) {
-        versesQuery = `
-        SELECT 
-          verse_number,
-          text_en,
-          text_fa
+      // Get English verses (translation_id = 8 for NET)
+      const englishVersesQuery = `
+        SELECT verse_number, text_en
         FROM bible_verses 
-        WHERE book_id = $1 AND chapter_number = $2
+        WHERE chapter_id = $1 AND translation_id = 8
         ORDER BY verse_number
       `;
-        versesResult = await pool.query(versesQuery, [bookId, chapterNum]);
+      const englishVerses = await pool.query(englishVersesQuery, [chapterId]);
 
-        if (versesResult.rows.length === 0) {
-          return res.status(404).json({
-            success: false,
-            message: 'No verses available for this chapter yet.'
-          });
-        }
-
-        // Use fallback data
-        const verses = {
-          en: [],
-          fa: []
-        };
-
-        for (const verse of versesResult.rows) {
-          const index = verse.verse_number - 1;
-          verses.en[index] = verse.text_en || '';
-          verses.fa[index] = verse.text_fa || '';
-        }
-
-        return res.json({
-          success: true,
-          book: {
-            key: book.code,
-            name: {
-              en: book.name_en,
-              fa: book.name_fa
-            }
-          },
-          chapter: chapterNum,
-          verses: verses,
-          translation: selectedTranslation ? {
-            code: selectedTranslation.code,
-            name: {
-              en: selectedTranslation.name_en,
-              fa: selectedTranslation.name_fa
-            }
-          } : null
+      // If no verses found, return 404
+      if (persianVerses.rows.length === 0 && englishVerses.rows.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'No verses available for this chapter yet.'
         });
       }
 

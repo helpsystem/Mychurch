@@ -294,67 +294,89 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     if (activeSlide.type === SlideType.SCRIPTURE) {
       const content = activeSlide.content as SlideContentScripture;
       const currentPage = content.pages[internalPageIndex];
+      const hasEnglish = currentPage?.textSecondary && 
+        (Array.isArray(currentPage.textSecondary) ? currentPage.textSecondary.length > 0 : !!currentPage.textSecondary);
+      const hasFarsi = currentPage?.textPrimary && 
+        (Array.isArray(currentPage.textPrimary) ? currentPage.textPrimary.length > 0 : !!currentPage.textPrimary);
 
       return (
-        <div className="text-center p-8 animate-in fade-in duration-500">
-          {/* Display verses as array if available */}
-          {Array.isArray(currentPage?.textPrimary) ? (
-            <div className="space-y-4 mb-6" dir={isRTL ? 'rtl' : 'ltr'}>
-              {currentPage.textPrimary.map((verse, idx) => (
-                <div key={idx} className={`flex gap-3 items-start ${isRTL ? 'flex-row' : 'flex-row'}`}>
-                  <span className="text-2xl font-bold text-amber-400 min-w-[40px]">
-                    {currentPage?.verseNumbers?.[idx] || (idx + 1)}
-                  </span>
-                  <p className={`text-3xl font-bold text-white leading-relaxed flex-1 text-${isRTL ? 'right' : 'left'} ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    {verse}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className={`text-4xl font-bold text-white leading-relaxed mb-6 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-              {currentPage?.textPrimary}
-            </p>
-          )}
-
-          {/* English verses */}
-          {currentPage?.textSecondary && (
-            Array.isArray(currentPage.textSecondary) ? (
-              <div className="space-y-3 mb-6 border-t border-slate-600 pt-6" dir="ltr">
-                {currentPage.textSecondary.map((verse, idx) => (
-                  <div key={idx} className="flex gap-3 items-start">
-                    <span className="text-xl font-bold text-purple-400 min-w-[40px]">
-                      {currentPage?.verseNumbers?.[idx] || (idx + 1)}
-                    </span>
-                    <p className="text-2xl text-slate-300 leading-relaxed flex-1 text-left">
-                      {verse}
-                    </p>
+        <div className="h-full w-full flex flex-col animate-in fade-in duration-500 overflow-hidden">
+          {/* Main Content - Two Column Layout like Bible Page */}
+          <div className={`flex-1 flex ${hasEnglish && hasFarsi ? 'flex-row' : 'flex-col'} gap-4 p-4 overflow-auto`}>
+            
+            {/* English Column (Left) */}
+            {hasEnglish && (
+              <div className="flex-1 bg-slate-800/50 rounded-xl p-4 overflow-auto" dir="ltr">
+                <h3 className="text-lg font-bold text-purple-400 mb-4 text-center border-b border-purple-400/30 pb-2">
+                  English
+                </h3>
+                {Array.isArray(currentPage.textSecondary) ? (
+                  <div className="space-y-3">
+                    {currentPage.textSecondary.map((verse, idx) => (
+                      <div key={idx} className="flex gap-2 items-start">
+                        <span className="text-lg font-bold text-purple-400 min-w-[32px] text-right">
+                          {currentPage?.verseNumbers?.[idx] || (idx + 1)}
+                        </span>
+                        <p className="text-xl text-slate-200 leading-relaxed flex-1">
+                          {verse}
+                        </p>
+                      </div>
+                    ))}
                   </div>
+                ) : (
+                  <p className="text-xl text-slate-200 leading-relaxed">
+                    {currentPage.textSecondary}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Farsi Column (Right) */}
+            {hasFarsi && (
+              <div className="flex-1 bg-amber-900/30 rounded-xl p-4 overflow-auto" dir="rtl">
+                <h3 className="text-lg font-bold text-amber-400 mb-4 text-center border-b border-amber-400/30 pb-2 font-[Vazirmatn]">
+                  فارسی
+                </h3>
+                {Array.isArray(currentPage.textPrimary) ? (
+                  <div className="space-y-3">
+                    {currentPage.textPrimary.map((verse, idx) => (
+                      <div key={idx} className="flex gap-2 items-start flex-row-reverse">
+                        <span className="text-lg font-bold text-amber-400 min-w-[32px] text-left">
+                          {currentPage?.verseNumbers?.[idx] || (idx + 1)}
+                        </span>
+                        <p className="text-xl text-white leading-relaxed flex-1 text-right font-[Vazirmatn]">
+                          {verse}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xl text-white leading-relaxed font-[Vazirmatn]">
+                    {currentPage.textPrimary}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Footer - Reference */}
+          <div className="bg-gradient-to-r from-indigo-600/80 via-purple-600/80 to-indigo-600/80 p-3 text-center">
+            <p className={`text-white font-semibold text-lg ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              {currentPage?.bookName?.[lang] || currentPage?.bookName?.fa} {currentPage?.chapter}:{currentPage?.verses}
+            </p>
+            
+            {/* Page indicators */}
+            {content.pages.length > 1 && (
+              <div className="flex justify-center gap-2 mt-2">
+                {content.pages.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 rounded-full transition-all ${i === internalPageIndex ? 'bg-white w-4' : 'bg-white/40'}`}
+                  />
                 ))}
               </div>
-            ) : (
-              <p className="text-xl text-slate-300 italic mb-4">
-                {currentPage.textSecondary}
-              </p>
-            )
-          )}
-
-          <p className={`text-amber-400 font-semibold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-            {currentPage?.bookName[lang]} {currentPage?.chapter}:{currentPage?.verses}
-          </p>
-
-          {/* Page indicators */}
-          {content.pages.length > 1 && (
-            <div className="flex justify-center gap-2 mt-6">
-              {content.pages.map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-2 h-2 rounded-full transition-all ${i === internalPageIndex ? 'bg-amber-500 w-4' : 'bg-slate-600'
-                    }`}
-                />
-              ))}
-            </div>
-          )}
+            )}
+          </div>
         </div>
       );
     }

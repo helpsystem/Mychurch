@@ -19,6 +19,7 @@ import {
   Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
+import ScriptureSelector from './ScriptureSelector';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -442,14 +443,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
       {/* ============ MODALS ============ */}
 
-      {/* Scripture Modal - Enhanced with Grid Picker OR Legacy Dropdowns */}
+      {/* Scripture Modal - Pro Version with full features */}
       {activeModal === 'SCRIPTURE' && useNewVersePicker && (
-        <VerseGridPicker
+        <ScriptureSelector
           lang={lang}
-          onVerseSelect={(verses) => {
-            // Add all verses (Persian + English)
-            verses.forEach(verse => {
-              const content: SlideContentScripture = { pages: [verse] };
+          onAddSlides={(pages) => {
+            // Add each page as a separate slide
+            pages.forEach(page => {
+              const content: SlideContentScripture = { pages: [page] };
               addSlide(SlideType.SCRIPTURE, content);
             });
           }}
