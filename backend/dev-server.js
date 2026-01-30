@@ -5,8 +5,10 @@
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
 const express = require('express');
+const http = require('http');
 const cors = require('cors');
 const path = require('path');
+const { initBroadcastWebSocket } = require('./broadcastWebSocket');
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
@@ -206,7 +208,13 @@ app.use((req, res) => {
 });
 
 // Start server
-app.listen(PORT, '0.0.0.0', async () => {
+const server = http.createServer(app);
+
+// Initialize WebSocket for broadcast sync
+initBroadcastWebSocket(server);
+console.log('🔌 Broadcast WebSocket initialized');
+
+server.listen(PORT, '0.0.0.0', async () => {
   console.log('\n🚀 ====================================');
   console.log('🚀  Development Server Started');
   console.log('🚀 ====================================\n');
@@ -224,7 +232,8 @@ app.listen(PORT, '0.0.0.0', async () => {
   console.log('   📅 /api/events/* - Events');
   console.log('   🎵 /api/worship-songs/* - Worship songs');
   console.log('   🙏 /api/prayer-requests/* - Prayer requests');
-  console.log('   🎨 /api/images/* - Auto-generated images\n');
+  console.log('   🎨 /api/images/* - Auto-generated images');
+  console.log(`   🔌 ws://localhost:${PORT}/ws/broadcast-sync - Broadcast WebSocket\n`);
   console.log('🔧 Mode: Development (No DB initialization)');
   console.log('🔧 Hot reload: nodemon recommended\n');
 

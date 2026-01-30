@@ -101,6 +101,7 @@
     "ssh2": "^1.17.0",
     "ssh2-sftp-client": "^11.0.0",
     "twilio": "^5.9.0",
+    "ws": "^8.19.0",
     "zod": "^4.1.8"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@ import {
 } from './types';
 import { BROADCAST_TRANSLATIONS } from './dataService';
 import { useHybridRecorder } from './hooks/useHybridRecorder';
-import { useWebSocketSync } from './hooks/useWebSocketSync';
+import { useWebSocketSync } from './useWebSocketSync';
 import {
   Play, Pause, ChevronLeft, ChevronRight, Settings,
   Video, Mic, MicOff, Camera, CameraOff, Image as ImageIcon,
@@ -123,6 +123,22 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     }
   }, []);
 
+  // Auto-connect to WebSocket when session loads
+  useEffect(() => {
+    if (session.id && !syncState.isConnected) {
+      console.log('🔌 Auto-connecting to WebSocket for session:', session.id);
+      connectSync(session.id);
+    }
+  }, [session.id, syncState.isConnected, connectSync]);
+
+  // Send current slide when WebSocket connects or slide changes
+  useEffect(() => {
+    if (syncState.isConnected && session.slides[activeSlideIndex]) {
+      console.log('📤 Sending slide to connected devices:', activeSlideIndex);
+      sendSlideChange(activeSlideIndex, session.slides[activeSlideIndex]);
+    }
+  }, [syncState.isConnected, activeSlideIndex, session.slides, sendSlideChange]);
+
   // Save settings to localStorage when changed
   useEffect(() => {
     const toSave = {
@@ -155,7 +171,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       onSlideChange(newIndex);
       // Sync with other devices
       if (syncState.isConnected) {
-        sendSlideChange(newIndex);
+        const prevSlide = session.slides[newIndex];
+        sendSlideChange(newIndex, prevSlide);
       }
     }
   };
@@ -173,7 +190,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       onSlideChange(newIndex);
       // Sync with other devices
       if (syncState.isConnected) {
-        sendSlideChange(newIndex);
+        const nextSlide = session.slides[newIndex];
+        sendSlideChange(newIndex, nextSlide);
       }
     }
   };
@@ -279,14 +297,48 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
       return (
         <div className="text-center p-8 animate-in fade-in duration-500">
-          <p className={`text-4xl font-bold text-white leading-relaxed mb-6 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-            {currentPage?.textPrimary}
-          </p>
-          {currentPage?.textSecondary && (
-            <p className="text-xl text-slate-300 italic mb-4">
-              {currentPage.textSecondary}
+          {/* Display verses as array if available */}
+          {Array.isArray(currentPage?.textPrimary) ? (
+            <div className="space-y-4 mb-6" dir={isRTL ? 'rtl' : 'ltr'}>
+              {currentPage.textPrimary.map((verse, idx) => (
+                <div key={idx} className={`flex gap-3 items-start ${isRTL ? 'flex-row' : 'flex-row'}`}>
+                  <span className="text-2xl font-bold text-amber-400 min-w-[40px]">
+                    {currentPage?.verseNumbers?.[idx] || (idx + 1)}
+                  </span>
+                  <p className={`text-3xl font-bold text-white leading-relaxed flex-1 text-${isRTL ? 'right' : 'left'} ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                    {verse}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className={`text-4xl font-bold text-white leading-relaxed mb-6 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              {currentPage?.textPrimary}
             </p>
           )}
+
+          {/* English verses */}
+          {currentPage?.textSecondary && (
+            Array.isArray(currentPage.textSecondary) ? (
+              <div className="space-y-3 mb-6 border-t border-slate-600 pt-6" dir="ltr">
+                {currentPage.textSecondary.map((verse, idx) => (
+                  <div key={idx} className="flex gap-3 items-start">
+                    <span className="text-xl font-bold text-purple-400 min-w-[40px]">
+                      {currentPage?.verseNumbers?.[idx] || (idx + 1)}
+                    </span>
+                    <p className="text-2xl text-slate-300 leading-relaxed flex-1 text-left">
+                      {verse}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xl text-slate-300 italic mb-4">
+                {currentPage.textSecondary}
+              </p>
+            )
+          )}
+
           <p className={`text-amber-400 font-semibold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
             {currentPage?.bookName[lang]} {currentPage?.chapter}:{currentPage?.verses}
           </p>
@@ -482,7 +534,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
           >
             <Users className="w-4 h-4" />
             {syncState.isConnected ? (
-              <span>{syncState.syncedDevices} Connected</span>
+              <span>{syncState.connectedDevices.length} Connected</span>
             ) : (
               <span>Sync</span>
             )}
@@ -544,8 +596,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       </div>
                       <div className="text-sm text-slate-300 space-y-1">
                         <p>Session ID: <span className="font-mono text-xs">{syncState.sessionId}</span></p>
-                        <p>Devices: {syncState.syncedDevices}</p>
-                        <p>Latency: {syncState.latency}ms</p>
+                        <p>Devices: {syncState.connectedDevices.length}</p>
+                        <p>Session: {syncState.sessionId || 'None'}</p>
                       </div>
                     </div>
                     <button

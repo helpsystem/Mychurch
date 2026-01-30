@@ -42,6 +42,8 @@ export interface UseWebSocketSyncOptions {
   deviceName?: string;
   role?: 'controller' | 'viewer' | 'backup';
   autoConnect?: boolean;
+  isLeader?: boolean;
+  onSlideChange?: (slideIndex: number) => void;
 }
 
 export interface UseWebSocketSyncReturn {

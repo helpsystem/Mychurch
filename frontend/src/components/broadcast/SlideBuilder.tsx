@@ -579,7 +579,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 if (result) {
                   // اگر showEnglish فعال نیست، textSecondary را خالی کن
                   if (!showEnglish) {
-                    result.textSecondary = '';
+                    result.textSecondary = [];
                   }
                   setScripturePages([result]);
                 }
@@ -599,13 +599,44 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                     <p className={`text-amber-400 text-sm mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                       {page.bookName[lang]} {page.chapter}:{page.verses}
                     </p>
-                    <p className={`text-white text-lg leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {page.textPrimary}
-                    </p>
-                    {page.textSecondary && (
-                      <p className="text-slate-400 text-sm mt-2 italic">
-                        {page.textSecondary}
+                    {/* Display verses as array if available */}
+                    {Array.isArray(page.textPrimary) ? (
+                      <div className="space-y-2">
+                        {page.textPrimary.map((verse, idx) => (
+                          <div key={idx} className="flex gap-2 items-start">
+                            <span className="text-amber-400 font-bold min-w-[30px]">
+                              {page.verseNumbers?.[idx] || (idx + 1)}
+                            </span>
+                            <p className={`text-white text-base leading-relaxed flex-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                              {verse}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className={`text-white text-lg leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {page.textPrimary}
                       </p>
+                    )}
+                    {page.textSecondary && (
+                      Array.isArray(page.textSecondary) ? (
+                        <div className="space-y-2 mt-3 border-t border-slate-700 pt-3">
+                          {page.textSecondary.map((verse, idx) => (
+                            <div key={idx} className="flex gap-2 items-start">
+                              <span className="text-slate-500 font-bold min-w-[30px] text-sm">
+                                {page.verseNumbers?.[idx] || (idx + 1)}
+                              </span>
+                              <p className="text-slate-400 text-sm leading-relaxed flex-1">
+                                {verse}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-slate-400 text-sm mt-2 italic">
+                          {page.textSecondary}
+                        </p>
+                      )
                     )}
                   </div>
                 ))}

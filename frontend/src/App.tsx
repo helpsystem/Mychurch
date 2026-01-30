@@ -137,6 +137,7 @@ const AudioStudioPage = lazy(() => import('./pages/AudioStudioPage')); // AI Aud
 const VersionDemoPage = lazy(() => import('./pages/VersionDemoPage')); // Multi-Version Song Demo
 const AdminVersionTrashPage = lazy(() => import('./pages/admin/AdminVersionTrashPage')); // Version Trash Management
 const AdminBroadcastPage = lazy(() => import('./pages/AdminBroadcastPage')); // Broadcast Console Pro
+const BroadcastViewerPage = lazy(() => import('./pages/BroadcastViewerPage')); // Broadcast Viewer for Projector
 
 // Wrapper to hide BibleAIChatWidget on AI Helper page
 const BibleAIChatWidgetWrapper: React.FC = () => {
@@ -317,6 +318,9 @@ function App() {
 
                   {/* 🎬 Broadcast Console - Public (Temporary for Testing) */}
                   <Route path="broadcast" element={<AdminBroadcastPage />} />
+                  
+                  {/* 🎬 Broadcast Viewer - Public Display for Projector */}
+                  <Route path="broadcast/view" element={<BroadcastViewerPage />} />
 
                   {/* 🎬 Broadcast Console Pro - Protected (Admin Only) */}
                   <Route path="admin/broadcast" element={

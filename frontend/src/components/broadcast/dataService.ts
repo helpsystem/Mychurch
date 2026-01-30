@@ -144,13 +144,17 @@ export async function fetchBibleVerse(
           ? verses.split('-').map(Number)
           : [parseInt(verses), parseInt(verses)];
 
-        // Extract Persian and English verses
+        // Extract Persian and English verses as arrays
         const faVerses = data.verses.fa
-          ?.slice(startVerse - 1, endVerse)
-          ?.join(' ') || '';
+          ?.slice(startVerse - 1, endVerse) || [];
         const enVerses = data.verses.en
-          ?.slice(startVerse - 1, endVerse)
-          ?.join(' ') || '';
+          ?.slice(startVerse - 1, endVerse) || [];
+        
+        // Create verse numbers array
+        const verseNumbers = Array.from(
+          { length: endVerse - startVerse + 1 },
+          (_, i) => startVerse + i
+        );
 
         return {
           id: crypto.randomUUID(),
@@ -158,6 +162,7 @@ export async function fetchBibleVerse(
           bookName: book?.name || { fa: bookKey, en: bookKey },
           chapter,
           verses,
+          verseNumbers,
           textPrimary: faVerses,
           textSecondary: enVerses,
           translation
@@ -177,11 +182,15 @@ export async function fetchBibleVerse(
       : [parseInt(verses), parseInt(verses)];
 
     const faVerses = localContent.fa
-      ?.slice(startVerse - 1, endVerse)
-      ?.join(' ') || '';
+      ?.slice(startVerse - 1, endVerse) || [];
     const enVerses = localContent.en
-      ?.slice(startVerse - 1, endVerse)
-      ?.join(' ') || '';
+      ?.slice(startVerse - 1, endVerse) || [];
+    
+    // Create verse numbers array
+    const verseNumbers = Array.from(
+      { length: endVerse - startVerse + 1 },
+      (_, i) => startVerse + i
+    );
 
     return {
       id: crypto.randomUUID(),
@@ -189,6 +198,7 @@ export async function fetchBibleVerse(
       bookName: book?.name || { fa: bookKey, en: bookKey },
       chapter,
       verses,
+      verseNumbers,
       textPrimary: faVerses,
       textSecondary: enVerses,
       translation: 'local'

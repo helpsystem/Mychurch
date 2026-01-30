@@ -1,12 +1,13 @@
-// server.js  (UTF-8, CRLF)
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
+const http = require('http');
 const cors = require('cors');
 const multer = require('multer');
 const ftp = require('basic-ftp');
 const { initializeDatabase } = require('./initDB-postgres');
 const { authenticateToken } = require('./middleware/auth');
+const { initBroadcastWebSocket } = require('./broadcastWebSocket');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -531,8 +532,15 @@ const startServer = async () => {
   // ✨ Initialize database FIRST (await it!)
   await initializeDatabaseAsync();
 
-  // THEN start HTTP server
-  app.listen(PORT, '0.0.0.0', () => {
+  // THEN create HTTP server
+  const server = http.createServer(app);
+
+  // Initialize WebSocket for broadcast sync
+  initBroadcastWebSocket(server);
+  console.log('🔌 Broadcast WebSocket server initialized');
+
+  // Start HTTP server
+  server.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Church API Backend running on http://localhost:${PORT}`);
     console.log('API endpoints available:');
     console.log('  🔐 /api/auth/* - Authentication routes');
@@ -555,8 +563,9 @@ const startServer = async () => {
     console.log('  ⚙️ /api/settings/* - Site settings');
     console.log('  📁 /api/files/* - File management');
     console.log('  📖✨ /api/daily-content/* - Daily scripture content');
-    console.log('  �️ /api/daily-images/* - Daily AI-generated images');
-    console.log('  �📮 /api/notifications/* - Multi-channel notifications');
+    console.log('  🖼️ /api/daily-images/* - Daily AI-generated images');
+    console.log('  📮 /api/notifications/* - Multi-channel notifications');
+    console.log('  🔌 ws://localhost:${PORT}/ws/broadcast-sync - Broadcast WebSocket');
     console.log('  ❤️ /api/health - Health check');
   });
 };

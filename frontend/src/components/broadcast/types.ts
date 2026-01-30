@@ -27,8 +27,9 @@ export interface ScripturePage {
   };
   chapter: number;
   verses: string;         // مثل "1-3" یا "16"
-  textPrimary: string;    // متن فارسی
-  textSecondary: string;  // متن انگلیسی
+  verseNumbers: number[]; // آرایه شماره آیات: [1, 2, 3]
+  textPrimary: string[];  // آرایه آیات فارسی
+  textSecondary: string[]; // آرایه آیات انگلیسی
   translation?: string;   // ترجمه: mojdeh, qadim, etc.
 }
 
