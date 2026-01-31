@@ -322,7 +322,7 @@ router.get('/books', async (req, res) => {
 router.get('/content/:bookKey/:chapter', async (req, res) => {
   try {
     const { bookKey, chapter } = req.params;
-    const { faTranslation = 'qadim' } = req.query; // Persian translation: qadim | mojdeh | tafsiri
+    const { faTranslation = 'qadim', enTranslation = 'kjv' } = req.query; // Persian & English translation
 
     // Map Persian translation names to translation IDs
     const translationMap = {
@@ -331,7 +331,14 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
       'tafsiri': 3   // تفسیری (OT only)
     };
 
+    // Map English translation names to translation IDs
+    const englishTranslationMap = {
+      'kjv': 20,     // King James Version
+      'net': 8       // New English Translation (incomplete)
+    };
+
     const persianTransId = translationMap[faTranslation] || 2; // Default to qadim
+    const englishTransId = englishTranslationMap[enTranslation] || 20; // Default to KJV
 
     // ✅ Try PostgreSQL pool FIRST (local database)
     if (pool && typeof pool.query === 'function') {
@@ -353,49 +360,49 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           });
         }
 
-        // Fetch English (NET - translation 8) + Selected Persian translation
+        // Fetch English (KJV - translation 20) + Selected Persian translation
         let verses = [];
         let translationUsed = null;
 
         try {
-          const [trans8Verses, transFaVerses] = await Promise.all([
-            supabaseClient.getVerses(book.book_iso, parseInt(chapter), 8).catch(() => []),      // English NET
+          const [enVerses, transFaVerses] = await Promise.all([
+            supabaseClient.getVerses(book.book_iso, parseInt(chapter), englishTransId).catch(() => []),      // English KJV
             supabaseClient.getVerses(book.book_iso, parseInt(chapter), persianTransId).catch(() => [])  // Persian selected
           ]);
 
-          if (trans8Verses.length > 0 || transFaVerses.length > 0) {
+          if (enVerses.length > 0 || transFaVerses.length > 0) {
             // Merge both translations
-            const maxVerses = Math.max(trans8Verses.length, transFaVerses.length);
+            const maxVerses = Math.max(enVerses.length, transFaVerses.length);
             for (let i = 0; i < maxVerses; i++) {
               verses.push({
-                verse_number: (trans8Verses[i]?.verse_number || transFaVerses[i]?.verse_number || i + 1),
-                text_en: trans8Verses[i]?.text_en || trans8Verses[i]?.text_fa || '',
+                verse_number: (enVerses[i]?.verse_number || transFaVerses[i]?.verse_number || i + 1),
+                text_en: enVerses[i]?.text_fa || enVerses[i]?.text_en || '', // KJV stores text in text_fa column
                 text_fa: transFaVerses[i]?.text_fa || transFaVerses[i]?.text_en || ''
               });
             }
-            translationUsed = `NET + ${faTranslation}`;
+            translationUsed = `${enTranslation.toUpperCase()} + ${faTranslation}`;
           }
         } catch (err) {
-          console.log(`⚠️ Translation 8/${persianTransId} failed, trying fallback...`);
+          console.log(`⚠️ Translation ${englishTransId}/${persianTransId} failed, trying fallback...`);
         }
 
         // Fallback: try qadim if selected translation failed
         if (verses.length === 0 && faTranslation !== 'qadim') {
           try {
-            const [trans8Verses, trans2Verses] = await Promise.all([
-              supabaseClient.getVerses(book.book_iso, parseInt(chapter), 8).catch(() => []),
+            const [enVerses, trans2Verses] = await Promise.all([
+              supabaseClient.getVerses(book.book_iso, parseInt(chapter), englishTransId).catch(() => []),
               supabaseClient.getVerses(book.book_iso, parseInt(chapter), 2).catch(() => [])
             ]);
 
-            const maxVerses = Math.max(trans8Verses.length, trans2Verses.length);
+            const maxVerses = Math.max(enVerses.length, trans2Verses.length);
             for (let i = 0; i < maxVerses; i++) {
               verses.push({
-                verse_number: (trans8Verses[i]?.verse_number || trans2Verses[i]?.verse_number || i + 1),
-                text_en: trans8Verses[i]?.text_en || '',
+                verse_number: (enVerses[i]?.verse_number || trans2Verses[i]?.verse_number || i + 1),
+                text_en: enVerses[i]?.text_fa || '',  // KJV stores text in text_fa column
                 text_fa: trans2Verses[i]?.text_fa || ''
               });
             }
-            translationUsed = 'NET + qadim (fallback)';
+            translationUsed = `${enTranslation.toUpperCase()} + qadim (fallback)`;
           } catch { }
         }
 
@@ -426,6 +433,11 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           'tafsiri': { en: 'Persian Explanatory', fa: 'تفسیری فارسی' }
         };
 
+        const englishTranslationNames = {
+          'kjv': { en: 'King James Version', fa: 'نسخه کینگ جیمز' },
+          'net': { en: 'New English Translation', fa: 'ترجمه نوین انگلیسی' }
+        };
+
 
         // Construct audio and timing URLs (pointing to local static files)
         // We use QADIM as the standard for audio/timing currently
@@ -446,7 +458,7 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           audioUrl: audioUrl,
           timingUrl: timingUrl,
           translations: {
-            en: { code: 'NET', name: { en: 'New English Translation', fa: 'ترجمه نوین انگلیسی' } },
+            en: { code: enTranslation.toUpperCase(), name: englishTranslationNames[enTranslation] || englishTranslationNames['kjv'] },
             fa: { code: faTranslation, name: translationNames[faTranslation] || translationNames['qadim'] }
           },
           translationUsed: translationUsed
