@@ -1,9 +1,97 @@
 const express = require('express');
 const { pool } = require('../db-postgres');
+const fs = require('fs').promises;
+const path = require('path');
 // ❌ Supabase disabled - using local PostgreSQL only
 // const supabaseClient = require('../supabase-client');
 const supabaseClient = null; // Disabled
 const router = express.Router();
+
+// Book code to number mapping for ASV JSON files
+const BOOK_TO_NUMBER = {
+  'GEN': '01', 'EXO': '02', 'LEV': '03', 'NUM': '04', 'DEU': '05',
+  'JOS': '06', 'JDG': '07', 'RUT': '08', '1SA': '09', '2SA': '10',
+  '1KI': '11', '2KI': '12', '1CH': '13', '2CH': '14', 'EZR': '15',
+  'NEH': '16', 'EST': '17', 'JOB': '18', 'PSA': '19', 'PRO': '20',
+  'ECC': '21', 'SNG': '22', 'ISA': '23', 'JER': '24', 'LAM': '25',
+  'EZK': '26', 'DAN': '27', 'HOS': '28', 'JOL': '29', 'AMO': '30',
+  'OBA': '31', 'JON': '32', 'MIC': '33', 'NAM': '34', 'HAB': '35',
+  'ZEP': '36', 'HAG': '37', 'ZEC': '38', 'MAL': '39',
+  'MAT': '40', 'MRK': '41', 'LUK': '42', 'JHN': '43', 'ACT': '44',
+  'ROM': '45', '1CO': '46', '2CO': '47', 'GAL': '48', 'EPH': '49',
+  'PHP': '50', 'COL': '51', '1TH': '52', '2TH': '53', '1TI': '54',
+  '2TI': '55', 'TIT': '56', 'PHM': '57', 'HEB': '58', 'JAS': '59',
+  '1PE': '60', '2PE': '61', '1JN': '62', '2JN': '63', '3JN': '64',
+  'JUD': '65', 'REV': '66'
+};
+
+// Helper function to load NET verses from JSON file (preferred - has complete verses)
+async function loadNETVerses(bookKey, chapter) {
+  const basePaths = [
+    path.join(__dirname, '../../frontend/public/text/bible/NET'),  // Frontend source
+    path.join(__dirname, '../../public/text/bible/NET'),
+    path.join(__dirname, '../../dist/text/bible/NET'),
+    path.join(process.cwd(), 'frontend/public/text/bible/NET'),
+    path.join(process.cwd(), 'public/text/bible/NET'),
+    path.join(process.cwd(), 'dist/text/bible/NET')
+  ];
+  
+  for (const basePath of basePaths) {
+    const filePath = path.join(basePath, bookKey.toUpperCase(), `${chapter}.json`);
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      const data = JSON.parse(content);
+      console.log(`📖 NET: Loaded from ${filePath}`);
+      
+      // NET format has verses as array of {verse, text}
+      const verses = data.verses || [];
+      return verses.map(v => ({
+        verse_number: v.verse,
+        text: String(v.text || '').trim()
+      }));
+    } catch (e) {
+      // Continue to next path
+    }
+  }
+  
+  console.log(`⚠️ NET: No file found for ${bookKey} chapter ${chapter}`);
+  return [];
+}
+
+// Helper function to load ASV verses from JSON file
+async function loadASVVerses(bookKey, chapter) {
+  const bookNum = BOOK_TO_NUMBER[bookKey.toUpperCase()];
+  if (!bookNum) return [];
+  
+  // Try different base paths
+  const basePaths = [
+    path.join(__dirname, '../../public/text/bible/en'),
+    path.join(__dirname, '../../dist/text/bible/en'),
+    path.join(process.cwd(), 'public/text/bible/en'),
+    path.join(process.cwd(), 'dist/text/bible/en')
+  ];
+  
+  for (const basePath of basePaths) {
+    const filePath = path.join(basePath, bookNum, `${chapter}.json`);
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      const data = JSON.parse(content);
+      console.log(`📖 ASV: Loaded from ${filePath}`);
+      
+      // Convert verses object to array
+      const verses = data.verses || {};
+      return Object.entries(verses).map(([num, text]) => ({
+        verse_number: parseInt(num),
+        text: String(text || '').trim()
+      })).sort((a, b) => a.verse_number - b.verse_number);
+    } catch (e) {
+      // Continue to next path
+    }
+  }
+  
+  console.log(`⚠️ ASV: No file found for ${bookKey} chapter ${chapter}`);
+  return [];
+}
 
 // Mock data generator for when database is unavailable
 function generateMockBibleBooks() {
@@ -334,7 +422,8 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
     // Map English translation names to translation IDs
     const englishTranslationMap = {
       'kjv': 20,     // King James Version
-      'net': 8       // New English Translation (incomplete)
+      'net': 8,      // New English Translation (incomplete)
+      'asv': 'file'  // American Standard Version (from JSON files)
     };
 
     const persianTransId = translationMap[faTranslation] || 2; // Default to qadim
@@ -360,24 +449,32 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
           });
         }
 
-        // Fetch English (KJV - translation 20) + Selected Persian translation
+        // Fetch English + Selected Persian translation
         let verses = [];
         let translationUsed = null;
 
         try {
-          const [enVerses, transFaVerses] = await Promise.all([
-            supabaseClient.getVerses(book.book_iso, parseInt(chapter), englishTransId).catch(() => []),      // English KJV
-            supabaseClient.getVerses(book.book_iso, parseInt(chapter), persianTransId).catch(() => [])  // Persian selected
-          ]);
+          // For ASV, load from JSON files instead of database
+          let enVerses = [];
+          if (enTranslation === 'asv' || englishTransId === 'file') {
+            enVerses = await loadASVVerses(book.book_iso, parseInt(chapter));
+            enVerses = enVerses.map(v => ({ verse_number: v.verse_number, text_en: v.text }));
+          } else {
+            enVerses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), englishTransId).catch(() => []);
+          }
+          
+          const transFaVerses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), persianTransId).catch(() => []);
 
           if (enVerses.length > 0 || transFaVerses.length > 0) {
             // Merge both translations
             const maxVerses = Math.max(enVerses.length, transFaVerses.length);
             for (let i = 0; i < maxVerses; i++) {
+              const enVerse = enVerses[i] || {};
+              const faVerse = transFaVerses[i] || {};
               verses.push({
-                verse_number: (enVerses[i]?.verse_number || transFaVerses[i]?.verse_number || i + 1),
-                text_en: enVerses[i]?.text_fa || enVerses[i]?.text_en || '', // KJV stores text in text_fa column
-                text_fa: transFaVerses[i]?.text_fa || transFaVerses[i]?.text_en || ''
+                verse_number: (enVerse.verse_number || faVerse.verse_number || i + 1),
+                text_en: enVerse.text_en || enVerse.text_fa || enVerse.text || '', 
+                text_fa: faVerse.text_fa || faVerse.text_en || ''
               });
             }
             translationUsed = `${enTranslation.toUpperCase()} + ${faTranslation}`;
@@ -435,7 +532,8 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
 
         const englishTranslationNames = {
           'kjv': { en: 'King James Version', fa: 'نسخه کینگ جیمز' },
-          'net': { en: 'New English Translation', fa: 'ترجمه نوین انگلیسی' }
+          'net': { en: 'New English Translation', fa: 'ترجمه نوین انگلیسی' },
+          'asv': { en: 'American Standard Version', fa: 'نسخه امریکن استاندارد' }
         };
 
 
@@ -546,14 +644,48 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
       `;
       const persianVerses = await pool.query(persianVersesQuery, [chapterId, translationId]);
 
-      // Get English verses (translation_id = 8 for NET)
+      // Get English verses - Smart fallback: KJV (database) -> ASV (files) -> NET (files)
+      let englishVerses = { rows: [] };
+      let englishSource = enTranslation;
+      
+      // Always try KJV first from database (most reliable when available)
       const englishVersesQuery = `
-        SELECT verse_number, text_en
+        SELECT verse_number, COALESCE(text_en, text_fa) as text_en
         FROM bible_verses 
-        WHERE chapter_id = $1 AND translation_id = 8
+        WHERE chapter_id = $1 AND translation_id = 20
         ORDER BY verse_number
       `;
-      const englishVerses = await pool.query(englishVersesQuery, [chapterId]);
+      const kjvResult = await pool.query(englishVersesQuery, [chapterId]);
+      
+      if (kjvResult.rows.length > 0) {
+        englishVerses = kjvResult;
+        englishSource = 'kjv';
+        console.log(`📖 KJV: Loaded ${englishVerses.rows.length} verses from database for ${book.code} ch${chapterNum}`);
+      } else {
+        // KJV not available, try ASV from files
+        const asvVerses = await loadASVVerses(book.code, chapterNum);
+        if (asvVerses.length > 0) {
+          englishVerses.rows = asvVerses.map(v => ({
+            verse_number: v.verse_number,
+            text_en: v.text
+          }));
+          englishSource = 'asv';
+          console.log(`📖 ASV: Loaded ${englishVerses.rows.length} verses for ${book.code} ch${chapterNum}`);
+        } else {
+          // Try NET as last resort
+          const netVerses = await loadNETVerses(book.code, chapterNum);
+          if (netVerses.length > 0) {
+            englishVerses.rows = netVerses.map(v => ({
+              verse_number: v.verse_number,
+              text_en: v.text
+            }));
+            englishSource = 'net';
+            console.log(`📖 NET: Loaded ${englishVerses.rows.length} verses for ${book.code} ch${chapterNum}`);
+          } else {
+            console.log(`⚠️ No English translation available for ${book.code} ch${chapterNum}`);
+          }
+        }
+      }
 
       // If no verses found, return 404
       if (persianVerses.rows.length === 0 && englishVerses.rows.length === 0) {

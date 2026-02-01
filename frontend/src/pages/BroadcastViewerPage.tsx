@@ -1,31 +1,45 @@
 /**
  * 🎬 Broadcast Viewer Page
  * صفحه نمایش پخش زنده - برای نمایش روی پروژکتور
+ * 
+ * این صفحه از دو روش برای دریافت داده استفاده می‌کند:
+ * 1. BroadcastChannel API - برای ارتباط بین تب‌های همان مرورگر (بدون نیاز به سرور)
+ * 2. WebSocket - برای ارتباط بین دستگاه‌های مختلف
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useWebSocketSync } from '../components/broadcast';
+import { SmartWorshipPlayer } from '../components/worship/SmartWorshipPlayer';
 import type { Slide, BroadcastOverlayConfig, SlideType } from '../components/broadcast/types';
 
 interface ViewerState {
   currentSlide: Slide | null;
   slideIndex: number;
+  internalPageIndex: number;
   config: BroadcastOverlayConfig | null;
   connected: boolean;
+  connectionType: 'none' | 'broadcast-channel' | 'websocket';
+  audioCurrentTime: number; // زمان جاری صوت برای sync کاراوکه
 }
 
 const BroadcastViewerPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session') || 'default';
+  const broadcastChannelRef = useRef<BroadcastChannel | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const [state, setState] = useState<ViewerState>({
     currentSlide: null,
     slideIndex: 0,
+    internalPageIndex: 0,
     config: null,
-    connected: false
+    connected: false,
+    connectionType: 'none',
+    audioCurrentTime: 0
   });
 
+  // WebSocket sync (for cross-device communication)
   const { state: syncState } = useWebSocketSync({
     sessionId,
     deviceName: 'Projector Display',
@@ -33,6 +47,77 @@ const BroadcastViewerPage: React.FC = () => {
     autoConnect: true
   });
 
+  // BroadcastChannel for same-browser communication (more reliable for local use)
+  useEffect(() => {
+    // Create BroadcastChannel for same-browser tab communication
+    const channelName = `broadcast-console-${sessionId}`;
+    const channel = new BroadcastChannel(channelName);
+    broadcastChannelRef.current = channel;
+    
+    console.log('📺 Viewer: BroadcastChannel connected to:', channelName);
+    
+    channel.onmessage = (event) => {
+      const msg = event.data;
+      console.log('📺 Viewer received via BroadcastChannel:', msg.type);
+      
+      if (msg.type === 'slide_change' && msg.payload) {
+        setState(prev => ({
+          ...prev,
+          currentSlide: msg.payload.slide,
+          slideIndex: msg.payload.index,
+          internalPageIndex: msg.payload.internalPageIndex || 0,
+          connected: true,
+          connectionType: 'broadcast-channel'
+        }));
+      }
+      
+      if (msg.type === 'overlay_toggle' && msg.payload) {
+        setState(prev => ({
+          ...prev,
+          config: msg.payload,
+          connected: true,
+          connectionType: 'broadcast-channel'
+        }));
+      }
+      
+      if (msg.type === 'full_state' && msg.payload) {
+        setState(prev => ({
+          ...prev,
+          currentSlide: msg.payload.currentSlide,
+          slideIndex: msg.payload.slideIndex,
+          internalPageIndex: msg.payload.internalPageIndex || 0,
+          config: msg.payload.config,
+          connected: true,
+          connectionType: 'broadcast-channel'
+        }));
+      }
+      
+      // Handle scroll sync from console
+      if (msg.type === 'scroll_sync' && msg.payload && scrollContainerRef.current) {
+        const { scrollPercentage } = msg.payload;
+        const container = scrollContainerRef.current;
+        const targetScroll = scrollPercentage * (container.scrollHeight - container.clientHeight);
+        container.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+      
+      // Handle audio sync for karaoke
+      if (msg.type === 'audio_sync' && msg.payload) {
+        setState(prev => ({
+          ...prev,
+          audioCurrentTime: msg.payload.currentTime
+        }));
+      }
+    };
+    
+    // Request initial state from console
+    channel.postMessage({ type: 'viewer_ready', payload: { sessionId } });
+    
+    return () => {
+      channel.close();
+    };
+  }, [sessionId]);
+
+  // WebSocket messages (fallback for cross-device)
   useEffect(() => {
     if (syncState.lastMessage) {
       const msg = syncState.lastMessage;
@@ -41,7 +126,10 @@ const BroadcastViewerPage: React.FC = () => {
         setState(prev => ({
           ...prev,
           currentSlide: msg.payload.slide,
-          slideIndex: msg.payload.index
+          slideIndex: msg.payload.index,
+          internalPageIndex: msg.payload.internalPageIndex || 0,
+          connected: true,
+          connectionType: 'websocket'
         }));
       }
       
@@ -55,10 +143,13 @@ const BroadcastViewerPage: React.FC = () => {
   }, [syncState.lastMessage]);
 
   useEffect(() => {
-    setState(prev => ({
-      ...prev,
-      connected: syncState.isConnected
-    }));
+    if (syncState.isConnected) {
+      setState(prev => ({
+        ...prev,
+        connected: true,
+        connectionType: prev.connectionType === 'none' ? 'websocket' : prev.connectionType
+      }));
+    }
   }, [syncState.isConnected]);
 
   const renderSlideContent = () => {
@@ -88,123 +179,144 @@ const BroadcastViewerPage: React.FC = () => {
 
     if (slide.type === 'SCRIPTURE') {
       const scriptureContent = slide.content as import('../components/broadcast/types').SlideContentScripture;
-      const firstPage = scriptureContent.pages?.[0];
+      const currentPage = scriptureContent.pages?.[state.internalPageIndex] || scriptureContent.pages?.[0];
       
-      console.log('📖 Scripture Slide:', { scriptureContent, firstPage, slideContent: slide.content });
+      if (!currentPage) return null;
       
-      if (!firstPage) {
-        console.warn('⚠️ No firstPage found in scripture content');
-        return null;
-      }
+      // Check if we have arrays
+      const hasFarsiArray = Array.isArray(currentPage.textPrimary) && currentPage.textPrimary.length > 0;
+      const hasEnglishArray = Array.isArray(currentPage.textSecondary) && currentPage.textSecondary.length > 0;
       
-      // Check if we have array verses
-      const hasArrayVerses = Array.isArray(firstPage.textPrimary);
+      // Prepare verses for synchronized display (same as console)
+      const englishVerses = hasEnglishArray ? currentPage.textSecondary as string[] : [];
+      const farsiVerses = hasFarsiArray ? currentPage.textPrimary as string[] : [];
+      const maxVerses = Math.max(englishVerses.length, farsiVerses.length);
+
+      // Translation display names
+      const faTranslationNames: Record<string, string> = {
+        mojdeh: 'مژده',
+        qadim: 'قدیم',
+        tafsiri: 'تفسیری'
+      };
+      const enTranslationNames: Record<string, string> = {
+        kjv: 'KJV',
+        asv: 'ASV',
+        net: 'NET'
+      };
+
+      const faTransName = faTranslationNames[currentPage.translation || 'mojdeh'] || 'مژده';
+      const enTransName = enTranslationNames[currentPage.enTranslation || 'asv'] || 'ASV';
       
       return (
-        <div className="relative h-full overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-indigo-900 to-purple-950">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700/20 via-transparent to-transparent"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-purple-700/20 via-transparent to-transparent"></div>
-          </div>
+        <div className="fixed inset-0 flex flex-col bg-gradient-to-br from-blue-950 via-indigo-900 to-purple-950 overflow-hidden">
+          {/* Background decorations */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700/20 via-transparent to-transparent pointer-events-none"></div>
           
-          <div className="absolute top-10 right-10 text-white/5 text-9xl">✝</div>
-          <div className="absolute bottom-10 left-10 text-white/5 text-9xl">✝</div>
-          
-          <div className="relative flex items-start justify-center h-full p-8 overflow-y-auto animate-fadeIn">
-            <div className="w-full max-w-[95vw]">
-              {/* Header with Book name and chapter */}
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                {/* English Header */}
-                <div className="text-center" dir="ltr">
-                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-purple-500/30 rounded-xl backdrop-blur-sm border-2 border-purple-400/50 shadow-lg">
-                    <span className="text-3xl font-bold text-purple-300">{firstPage.bookName.en}</span>
-                    <span className="text-5xl font-extrabold text-purple-200">{firstPage.chapter}</span>
-                  </div>
-                </div>
-                {/* Persian Header */}
-                <div className="text-center" dir="rtl">
-                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-blue-500/30 rounded-xl backdrop-blur-sm border-2 border-blue-400/50 shadow-lg">
-                    <span className="text-3xl font-bold text-blue-300" style={{ fontFamily: 'Vazirmatn, sans-serif' }}>
-                      {firstPage.bookName.fa}
+          {/* Header Row with Beautiful Book Info - Same as Console */}
+          <div className="flex-shrink-0 flex flex-row gap-4 px-6 pt-4" dir="ltr">
+            {hasEnglishArray && (
+              <div className="flex-1 bg-gradient-to-br from-slate-800/80 to-purple-900/30 rounded-t-xl px-6 py-4 border-b-2 border-purple-500/50">
+                <div className="text-center">
+                  <h3 className="text-3xl font-bold text-purple-300">
+                    📖 {currentPage?.bookName?.en || 'Book'}
+                  </h3>
+                  <div className="flex items-center justify-center gap-4 mt-2 text-xl">
+                    <span className="bg-purple-600/40 px-3 py-1 rounded text-purple-200">
+                      {enTransName}
                     </span>
-                    <span className="text-5xl font-extrabold text-blue-200">{firstPage.chapter}</span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-purple-200">
+                      Chapter {currentPage?.chapter}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-purple-200">
+                      Verses {currentPage?.verses}
+                    </span>
                   </div>
                 </div>
               </div>
-
-              {hasArrayVerses ? (
-                /* Side by side verses with verse numbers - like BiblePage */
-                <div className="grid grid-cols-2 gap-6">
-                  {/* English Column - LEFT */}
-                  <div className="space-y-4" dir="ltr">
-                    {firstPage.textSecondary && Array.isArray(firstPage.textSecondary) && firstPage.textSecondary.map((verse, index) => (
-                      <div 
-                        key={index} 
-                        className="flex gap-3 items-start p-3 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-400/20 hover:bg-purple-500/20 transition-all animate-slideInUp"
-                        style={{ animationDelay: `${index * 0.05}s` }}
-                      >
-                        <span className="text-3xl font-extrabold text-purple-300 min-w-[50px] text-center drop-shadow-lg"
-                              style={{ textShadow: '0 0 15px rgba(216, 180, 254, 0.6)' }}>
-                          {firstPage.verseNumbers?.[index] || (index + 1)}
-                        </span>
-                        <p className="text-2xl leading-relaxed font-medium text-white drop-shadow-lg flex-1"
-                           style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
-                          {verse}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Persian Column - RIGHT */}
-                  <div className="space-y-4" dir="rtl">
-                    {firstPage.textPrimary.map((verse, index) => (
-                      <div 
-                        key={index} 
-                        className="flex gap-3 items-start p-3 rounded-lg bg-blue-500/10 backdrop-blur-sm border border-blue-400/20 hover:bg-blue-500/20 transition-all animate-slideInUp"
-                        style={{ 
-                          animationDelay: `${index * 0.05}s`,
-                          fontFamily: 'Vazirmatn, sans-serif'
-                        }}
-                      >
-                        <span className="text-3xl font-extrabold text-blue-300 min-w-[50px] text-center drop-shadow-lg"
-                              style={{ textShadow: '0 0 15px rgba(147, 197, 253, 0.6)' }}>
-                          {firstPage.verseNumbers?.[index] || (index + 1)}
-                        </span>
-                        <p className="text-2xl leading-[1.8] font-semibold text-white drop-shadow-lg flex-1"
-                           style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
-                          {verse}
-                        </p>
-                      </div>
-                    ))}
+            )}
+            {hasFarsiArray && (
+              <div className="flex-1 bg-gradient-to-bl from-amber-900/50 to-slate-800/80 rounded-t-xl px-6 py-4 border-b-2 border-amber-500/50">
+                <div className="text-center" dir="rtl">
+                  <h3 className="text-3xl font-bold text-amber-300 font-[Vazirmatn]">
+                    📖 {currentPage?.bookName?.fa || 'کتاب'}
+                  </h3>
+                  <div className="flex items-center justify-center gap-4 mt-2 text-xl font-[Vazirmatn]">
+                    <span className="bg-amber-600/40 px-3 py-1 rounded text-amber-200">
+                      {faTransName}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-amber-200">
+                      فصل {currentPage?.chapter}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-amber-200">
+                      آیات {currentPage?.verses}
+                    </span>
                   </div>
                 </div>
-              ) : (
-                /* Fallback for old string format - centered */
-                <div className="text-center max-w-6xl mx-auto">
-                  <div className="mb-12" dir="rtl">
-                    <p className="text-5xl leading-[1.8] font-bold text-white drop-shadow-2xl mb-8 animate-slideInUp" 
-                       style={{ 
-                         textShadow: '0 0 30px rgba(147, 197, 253, 0.5)',
-                         fontFamily: 'Vazirmatn, sans-serif'
-                       }}>
-                      {firstPage.textPrimary}
-                    </p>
+              </div>
+            )}
+          </div>
+
+          {/* Main Content - Synchronized Verse-by-Verse Display (Same as Console) */}
+          <div ref={scrollContainerRef} className="flex-1 overflow-auto px-6 pb-4">
+            <div className="space-y-4">
+              {Array.from({ length: maxVerses }).map((_, idx) => {
+                const englishVerse = englishVerses[idx] || '';
+                const farsiVerse = farsiVerses[idx] || '';
+                const verseNum = currentPage?.verseNumbers?.[idx] || (idx + 1);
+                
+                // Skip if both verses are empty
+                if ((!englishVerse || englishVerse.trim() === '') && (!farsiVerse || farsiVerse.trim() === '')) {
+                  return null;
+                }
+
+                return (
+                  <div key={idx} className="flex flex-row gap-4" dir="ltr">
+                    {/* English Verse (Left) */}
+                    {hasEnglishArray && (
+                      <div className="flex-1 bg-slate-800/50 rounded-lg p-4" dir="ltr">
+                        <div className="flex gap-3 items-start">
+                          <span className="text-2xl font-bold text-purple-400 min-w-[40px] text-right"
+                                style={{ textShadow: '0 0 15px rgba(216, 180, 254, 0.6)' }}>
+                            {verseNum}
+                          </span>
+                          <p className="text-2xl text-slate-200 leading-relaxed flex-1"
+                             style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
+                            {englishVerse || ''}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Farsi Verse (Right) */}
+                    {hasFarsiArray && (
+                      <div className="flex-1 bg-amber-900/30 rounded-lg p-4" dir="rtl">
+                        <div className="flex gap-3 items-start">
+                          <span className="text-2xl font-bold text-amber-400 min-w-[40px] text-right"
+                                style={{ textShadow: '0 0 15px rgba(251, 191, 36, 0.6)' }}>
+                            {verseNum}
+                          </span>
+                          <p className="text-2xl text-white leading-[1.8] flex-1 text-right font-[Vazirmatn]"
+                             style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
+                            {farsiVerse || ''}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  
-                  {firstPage.textSecondary && (
-                    <div className="mt-12 pt-8 border-t border-white/10" dir="ltr">
-                      <p className="text-4xl leading-relaxed text-gray-100 animate-slideInUp" 
-                         style={{ 
-                           animationDelay: '0.3s',
-                           textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' 
-                         }}>
-                        {firstPage.textSecondary}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
+                );
+              })}
             </div>
+          </div>
+
+          {/* Footer - Reference */}
+          <div className="flex-shrink-0 bg-gradient-to-r from-indigo-600/80 via-purple-600/80 to-indigo-600/80 p-4 text-center">
+            <p className="text-white font-semibold text-2xl font-[Vazirmatn]">
+              {currentPage?.bookName?.fa} {currentPage?.chapter}:{currentPage?.verses}
+            </p>
           </div>
         </div>
       );
@@ -213,31 +325,48 @@ const BroadcastViewerPage: React.FC = () => {
     if (slide.type === 'LYRICS') {
       const lyricsContent = slide.content as import('../components/broadcast/types').SlideContentLyrics;
       
+      // اگر timing data و audio موجود است از SmartWorshipPlayer استفاده کن
+      if (lyricsContent.hasTiming && lyricsContent.timingData && lyricsContent.audioUrl) {
+        return (
+          <div className="fixed inset-0 bg-gradient-to-br from-purple-950 via-fuchsia-900 to-pink-950">
+            <SmartWorshipPlayer
+              timingData={lyricsContent.timingData}
+              audioSrc={lyricsContent.audioUrl}
+              viewOnly={true}
+              externalCurrentTime={state.audioCurrentTime}
+              translations={{
+                finglish: lyricsContent.finglishLines
+              }}
+            />
+          </div>
+        );
+      }
+
+      // نمایش ساده اگر timing ندارد
       return (
-        <div className="relative h-full overflow-hidden">
+        <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-950 via-fuchsia-900 to-pink-950">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-600/20 via-transparent to-transparent animate-pulse"></div>
           </div>
           
-          <div className="absolute top-20 left-20 text-white/5 text-8xl animate-bounce" style={{ animationDuration: '3s' }}>🎵</div>
-          <div className="absolute bottom-20 right-20 text-white/5 text-8xl animate-bounce" style={{ animationDuration: '4s', animationDelay: '0.5s' }}>🎶</div>
+          <div className="absolute top-20 left-20 text-white/5 text-8xl animate-bounce pointer-events-none" style={{ animationDuration: '3s' }}>🎵</div>
+          <div className="absolute bottom-20 right-20 text-white/5 text-8xl animate-bounce pointer-events-none" style={{ animationDuration: '4s', animationDelay: '0.5s' }}>🎶</div>
           
-          <div className="relative flex items-center justify-center h-full p-16">
-            <div className="text-center max-w-5xl animate-fadeIn">
-              <h2 className="text-6xl font-bold text-white mb-16 drop-shadow-2xl"
+          <div className="relative flex items-center justify-center h-full p-8 overflow-y-auto">
+            <div className="text-center max-w-5xl">
+              <h2 className="text-5xl font-bold text-white mb-12 drop-shadow-2xl font-[Vazirmatn]"
                   style={{ textShadow: '0 0 40px rgba(236, 72, 153, 0.6)' }}>
                 {lyricsContent.title}
               </h2>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {lyricsContent.lines.map((line, idx) => (
                   <p 
                     key={idx} 
-                    className={`text-6xl leading-[1.6] font-bold transition-all duration-300 animate-slideInUp ${
-                      line.isChorus ? 'text-yellow-200 scale-110' : 'text-white'
+                    className={`text-4xl leading-[1.6] font-bold transition-all duration-300 font-[Vazirmatn] ${
+                      line.isChorus ? 'text-yellow-200 scale-105' : 'text-white'
                     }`}
                     style={{ 
-                      animationDelay: `${idx * 0.1}s`,
                       textShadow: line.isChorus 
                         ? '0 0 30px rgba(253, 224, 71, 0.6), 0 0 60px rgba(253, 224, 71, 0.4)' 
                         : '0 4px 12px rgba(0, 0, 0, 0.6)'
@@ -350,31 +479,40 @@ const BroadcastViewerPage: React.FC = () => {
     const lowerThird = state.config.lowerThirds[state.config.activeLowerThirdIndex || 0];
     if (!lowerThird) return null;
 
+    // Position above prayer ticker if it's visible
+    const bottomOffset = state.config?.showPrayerTicker && state.config.prayerRequests?.length ? 'bottom-16' : 'bottom-4';
+
     return (
-      <div className="absolute bottom-0 left-0 right-0 animate-slideInUp">
-        <div className="bg-gradient-to-r from-blue-600/95 via-indigo-600/95 to-purple-600/95 backdrop-blur-lg p-8 shadow-2xl border-t-2 border-white/20">
-          <div className="container mx-auto flex items-center justify-between gap-6">
-            <div className="flex-1">
-              <h3 className="text-4xl font-bold text-white drop-shadow-lg mb-2"
+      <div className={`absolute ${bottomOffset} right-4 animate-slideInUp z-30`} dir="rtl">
+        <div className="bg-gradient-to-l from-indigo-600/95 via-purple-600/95 to-indigo-600/95 backdrop-blur-lg px-6 py-4 shadow-2xl rounded-xl border border-white/20 max-w-md">
+          <div className="flex items-center gap-4">
+            {lowerThird.imageUrl && (
+              <div className="relative flex-shrink-0">
+                <div className="absolute inset-0 bg-white/30 rounded-full blur-lg"></div>
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-xl">
+                  <img 
+                    src={lowerThird.imageUrl} 
+                    alt={lowerThird.title} 
+                    className="absolute w-full h-full object-cover"
+                    style={{
+                      transform: `scale(${lowerThird.imagePosition?.scale || 1}) translate(${(lowerThird.imagePosition?.x || 50) - 50}%, ${(lowerThird.imagePosition?.y || 50) - 50}%)`,
+                      transformOrigin: 'center'
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+            <div className="flex-1 text-right">
+              <h3 className="text-2xl font-bold text-white drop-shadow-lg font-[Vazirmatn]"
                   style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}>
                 {lowerThird.title}
               </h3>
               {lowerThird.subtitle && (
-                <p className="text-2xl text-blue-100 font-medium">
+                <p className="text-lg text-blue-100 font-medium font-[Vazirmatn]">
                   {lowerThird.subtitle}
                 </p>
               )}
             </div>
-            {lowerThird.imageUrl && (
-              <div className="relative">
-                <div className="absolute inset-0 bg-white/30 rounded-full blur-xl"></div>
-                <img 
-                  src={lowerThird.imageUrl} 
-                  alt={lowerThird.title} 
-                  className="relative w-32 h-32 rounded-full object-cover border-4 border-white shadow-2xl"
-                />
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -387,13 +525,13 @@ const BroadcastViewerPage: React.FC = () => {
     }
 
     return (
-      <div className="absolute top-8 right-8 animate-fadeIn">
+      <div className="absolute top-8 left-8 animate-fadeIn z-30">
         <div className="relative">
           <div className="absolute inset-0 bg-white/20 rounded-full blur-2xl animate-pulse"></div>
           <img 
             src={state.config.logoUrl} 
             alt="Church Logo" 
-            className="relative w-40 h-40 object-contain drop-shadow-2xl"
+            className="relative w-24 h-24 object-contain drop-shadow-2xl"
             style={{ filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))' }}
           />
         </div>
@@ -401,13 +539,42 @@ const BroadcastViewerPage: React.FC = () => {
     );
   };
 
+  const renderPrayerTicker = () => {
+    if (!state.config?.showPrayerTicker || !state.config.prayerRequests?.length) {
+      return null;
+    }
+
+    const prayers = state.config.prayerRequests;
+    // برای seamless loop، اگر فقط یک دعا وجود دارد، از duplicate استفاده نکن
+    const needsDuplicate = prayers.length > 1;
+
+    return (
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-purple-900/90 via-indigo-900/90 to-purple-900/90 py-3 z-40 backdrop-blur-sm border-t border-white/10">
+        <div className={`whitespace-nowrap flex ${needsDuplicate ? 'animate-marquee' : 'justify-center'}`}>
+          {prayers.map(req => (
+            <span key={req.id} className="mx-12 text-xl text-white font-[Vazirmatn]">
+              🙏 <span className="text-yellow-300 font-bold">{req.name}</span>: {req.content}
+            </span>
+          ))}
+          {/* Duplicate for seamless loop - فقط اگر بیش از یک دعا وجود دارد */}
+          {needsDuplicate && prayers.map(req => (
+            <span key={`dup-${req.id}`} className="mx-12 text-xl text-white font-[Vazirmatn]">
+              🙏 <span className="text-yellow-300 font-bold">{req.name}</span>: {req.content}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="w-screen h-screen bg-black overflow-hidden relative">
-      {!state.connected && (
+      {/* Only show disconnected warning briefly, then hide */}
+      {!state.connected && !state.currentSlide && (
         <div className="absolute top-6 left-6 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-xl z-50 shadow-2xl animate-pulse border-2 border-red-400">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-            <span className="font-bold">⚠️ اتصال قطع شده</span>
+            <span className="font-bold font-[Vazirmatn]">⚠️ در انتظار اتصال...</span>
           </div>
         </div>
       )}
@@ -418,10 +585,9 @@ const BroadcastViewerPage: React.FC = () => {
 
       {renderLogo()}
       {renderLowerThird()}
+      {renderPrayerTicker()}
 
-      <div className="absolute top-6 right-6 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-md text-white px-5 py-2 rounded-xl text-lg font-bold shadow-lg border border-white/20">
-        <span className="text-yellow-300">📄</span> اسلاید {state.slideIndex + 1}
-      </div>
+      {/* Removed slide number indicator - not needed in output */}
       
       <style>{`
         @keyframes fadeIn {
@@ -440,6 +606,11 @@ const BroadcastViewerPage: React.FC = () => {
           }
         }
         
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        
         .animate-fadeIn {
           animation: fadeIn 0.8s ease-out;
         }
@@ -447,6 +618,10 @@ const BroadcastViewerPage: React.FC = () => {
         .animate-slideInUp {
           animation: slideInUp 0.6s ease-out forwards;
           opacity: 0;
+        }
+        
+        .animate-marquee {
+          animation: marquee 30s linear infinite;
         }
       `}</style>
     </div>

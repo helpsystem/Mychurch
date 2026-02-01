@@ -33,6 +33,7 @@ const prayerRoutes = require('./routes/prayerRoutes');
 // Broadcast Console Routes
 const broadcastAiRoutes = require('./routes/broadcastAiRoutes');
 const broadcastSessionRoutes = require('./routes/broadcastSessionRoutes');
+const broadcastUploadRoutes = require('./routes/broadcastUploadRoutes'); // Video upload to HiDrive
 const testimonialsRoutes = require('./routes/testimonialsRoutes');
 const lettersRoutes = require('./routes/lettersRoutes');
 const announcementsRoutes = require('./routes/announcementsRoutes');
@@ -388,6 +389,7 @@ app.use('/api/daily-images', dailyImagesRoutes);
 // Broadcast Console API routes
 app.use('/api/broadcast-ai', broadcastAiRoutes);
 app.use('/api/broadcast-sessions', broadcastSessionRoutes);
+app.use('/api/broadcast/upload', broadcastUploadRoutes); // Video recording upload to HiDrive
 app.use('/api/settings', settingsRoutes);
 app.use('/api/files', filesRoutes);
 app.use('/api/presentations', presentationRoutes);

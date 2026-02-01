@@ -3,7 +3,7 @@
  * کنسول زنده پخش با پیش‌نمایش اسلایدها
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   BroadcastSession, Slide, SlideType, BroadcastOverlayConfig,
   SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
@@ -14,8 +14,9 @@ import { useHybridRecorder } from './hooks/useHybridRecorder';
 import { useWebSocketSync } from './useWebSocketSync';
 import {
   Play, Pause, ChevronLeft, ChevronRight, Settings,
-  Video, Mic, MicOff, Camera, CameraOff, Image as ImageIcon,
-  Radio, Users, Heart, Gift, Plus, Trash2, X, Calendar, Megaphone, Circle
+  Video, VideoOff, Mic, MicOff, Camera, CameraOff, Image as ImageIcon,
+  Radio, Users, Heart, Gift, Plus, Trash2, X, Calendar, Megaphone, Circle, Monitor,
+  Save, FolderOpen, Download
 } from 'lucide-react';
 import { SmartWorshipPlayer } from '../worship/SmartWorshipPlayer';
 import { HelpTooltip, HELP_TEXTS } from './HelpTooltip';
@@ -23,7 +24,9 @@ import { HelpTooltip, HELP_TEXTS } from './HelpTooltip';
 interface LiveConsoleProps {
   session: BroadcastSession;
   mediaStream: MediaStream | null;
+  setMediaStream?: (stream: MediaStream | null) => void;
   lang: AppLanguage;
+  onLangToggle?: () => void;
   broadcastConfig: BroadcastOverlayConfig;
   setBroadcastConfig: React.Dispatch<React.SetStateAction<BroadcastOverlayConfig>>;
   activeSlideIndex: number;
@@ -33,7 +36,9 @@ interface LiveConsoleProps {
 export const LiveConsole: React.FC<LiveConsoleProps> = ({
   session,
   mediaStream,
+  setMediaStream,
   lang,
+  onLangToggle,
   broadcastConfig,
   setBroadcastConfig,
   activeSlideIndex,
@@ -42,6 +47,14 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
   const videoRef = useRef<HTMLVideoElement>(null);
+  const broadcastChannelRef = useRef<BroadcastChannel | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollThrottleRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Camera & Microphone state
+  const [isCameraOn, setIsCameraOn] = useState(!!mediaStream?.getVideoTracks().length);
+  const [isMicOn, setIsMicOn] = useState(!!mediaStream?.getAudioTracks().length);
+  const [isRequestingMedia, setIsRequestingMedia] = useState(false);
 
   // Hybrid Recorder Hook
   const {
@@ -77,7 +90,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const [showSyncPanel, setShowSyncPanel] = useState(false);
 
   // Lower Third State
-  const [newLowerThird, setNewLowerThird] = useState<Partial<LowerThirdItem>>({ title: '', subtitle: '' });
+  const [newLowerThird, setNewLowerThird] = useState<Partial<LowerThirdItem>>({ title: '', subtitle: '', imageUrl: '' });
 
   // Prayer Request State
   const [newPrayerName, setNewPrayerName] = useState('');
@@ -86,12 +99,234 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   // Donation State
   const [newDonation, setNewDonation] = useState<Partial<DonationItem>>({ title: '', description: '', url: '', duration: 30 });
 
+  // === بخش ۱: ذخیره/بارگذاری تنظیمات (Templates) ===
+  const [savedTemplates, setSavedTemplates] = useState<Array<{ id: string; name: string; date: string; config: BroadcastOverlayConfig }>>([]);
+  const [showTemplateModal, setShowTemplateModal] = useState<false | 'save' | 'load'>(false);
+  const [templateName, setTemplateName] = useState('');
+
+  // === بخش ۲: ذخیره/بارگذاری پرزنتیشن (Slides Only) ===
+  const [savedPresentations, setSavedPresentations] = useState<Array<{ id: string; name: string; date: string; slides: Slide[]; slideCount: number }>>([]);
+  const [showPresentationModal, setShowPresentationModal] = useState<false | 'save' | 'load'>(false);
+  const [presentationName, setPresentationName] = useState('');
+
+  // Load saved templates and presentations on mount
+  useEffect(() => {
+    // Load Templates
+    const savedT = localStorage.getItem('saved_templates');
+    if (savedT) {
+      try {
+        setSavedTemplates(JSON.parse(savedT));
+      } catch (e) { console.log('Failed to load saved templates'); }
+    }
+    // Load Presentations
+    const savedP = localStorage.getItem('saved_presentations_v2');
+    if (savedP) {
+      try {
+        setSavedPresentations(JSON.parse(savedP));
+      } catch (e) { console.log('Failed to load saved presentations'); }
+    }
+  }, []);
+
+  // === توابع تنظیمات (Templates) ===
+  const handleSaveTemplate = () => {
+    if (!templateName.trim()) return;
+    const newTemplate = {
+      id: crypto.randomUUID(),
+      name: templateName.trim(),
+      date: new Date().toISOString(),
+      config: broadcastConfig
+    };
+    const updated = [...savedTemplates, newTemplate];
+    setSavedTemplates(updated);
+    localStorage.setItem('saved_templates', JSON.stringify(updated));
+    setTemplateName('');
+    setShowTemplateModal(false);
+  };
+
+  const handleLoadTemplate = (id: string) => {
+    const template = savedTemplates.find(t => t.id === id);
+    if (template) {
+      setBroadcastConfig(template.config);
+      setNewLowerThird({ title: '', subtitle: '', imageUrl: '', imagePosition: undefined });
+      setNewPrayerName('');
+      setNewPrayerContent('');
+      setNewDonation({ title: '', description: '', url: '', duration: 30 });
+    }
+    setShowTemplateModal(false);
+  };
+
+  const handleDeleteTemplate = (id: string) => {
+    const updated = savedTemplates.filter(t => t.id !== id);
+    setSavedTemplates(updated);
+    localStorage.setItem('saved_templates', JSON.stringify(updated));
+  };
+
+  // === توابع پرزنتیشن (Slides) ===
+  const handleSavePresentation = () => {
+    if (!presentationName.trim()) return;
+    const newPresentation = {
+      id: crypto.randomUUID(),
+      name: presentationName.trim(),
+      date: new Date().toISOString(),
+      slides: session.slides,
+      slideCount: session.slides.length
+    };
+    const updated = [...savedPresentations, newPresentation];
+    setSavedPresentations(updated);
+    localStorage.setItem('saved_presentations_v2', JSON.stringify(updated));
+    setPresentationName('');
+    setShowPresentationModal(false);
+  };
+
+  const handleLoadPresentation = (id: string) => {
+    const presentation = savedPresentations.find(p => p.id === id);
+    if (presentation) {
+      // بارگذاری اسلایدها
+      if (typeof (window as any).setSessionSlides === 'function') {
+        (window as any).setSessionSlides(presentation.slides);
+      }
+      onSlideChange(0); // نمایش اولین اسلاید
+    }
+    setShowPresentationModal(false);
+  };
+
+  const handleDeletePresentation = (id: string) => {
+    const updated = savedPresentations.filter(p => p.id !== id);
+    setSavedPresentations(updated);
+    localStorage.setItem('saved_presentations_v2', JSON.stringify(updated));
+  };
+
+  // BroadcastChannel for same-browser communication (for Display window)
+  useEffect(() => {
+    const channelName = `broadcast-console-${syncState.sessionId || session.id || 'default'}`;
+    const channel = new BroadcastChannel(channelName);
+    broadcastChannelRef.current = channel;
+    
+    console.log('🎬 Console: BroadcastChannel initialized:', channelName);
+    
+    // Listen for viewer ready messages
+    channel.onmessage = (event) => {
+      if (event.data.type === 'viewer_ready') {
+        console.log('📺 Viewer connected, sending current state');
+        // Send current state to newly connected viewer
+        const activeSlide = session.slides[activeSlideIndex];
+        channel.postMessage({
+          type: 'full_state',
+          payload: {
+            currentSlide: activeSlide,
+            slideIndex: activeSlideIndex,
+            internalPageIndex: internalPageIndex,
+            config: broadcastConfig
+          }
+        });
+      }
+    };
+    
+    return () => {
+      channel.close();
+    };
+  }, [syncState.sessionId, session.id, activeSlideIndex, internalPageIndex, broadcastConfig, session.slides]);
+
+  // Send slide changes via BroadcastChannel (including internalPageIndex)
+  useEffect(() => {
+    if (broadcastChannelRef.current && session.slides[activeSlideIndex]) {
+      broadcastChannelRef.current.postMessage({
+        type: 'slide_change',
+        payload: {
+          slide: session.slides[activeSlideIndex],
+          index: activeSlideIndex,
+          internalPageIndex: internalPageIndex
+        }
+      });
+    }
+  }, [activeSlideIndex, session.slides, internalPageIndex]);
+
+  // Send config changes via BroadcastChannel
+  useEffect(() => {
+    if (broadcastChannelRef.current) {
+      broadcastChannelRef.current.postMessage({
+        type: 'overlay_toggle',
+        payload: broadcastConfig
+      });
+    }
+  }, [broadcastConfig]);
+
+  // Handle scroll sync - send scroll position to viewer
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+    // Throttle scroll events
+    if (scrollThrottleRef.current) return;
+    
+    scrollThrottleRef.current = setTimeout(() => {
+      scrollThrottleRef.current = null;
+      
+      const target = e.target as HTMLDivElement;
+      const scrollPercentage = target.scrollTop / (target.scrollHeight - target.clientHeight) || 0;
+      
+      if (broadcastChannelRef.current) {
+        broadcastChannelRef.current.postMessage({
+          type: 'scroll_sync',
+          payload: { scrollPercentage }
+        });
+      }
+    }, 50); // Throttle to 50ms
+  }, []);
+
   // Set up video stream
   useEffect(() => {
     if (videoRef.current && mediaStream) {
       videoRef.current.srcObject = mediaStream;
     }
   }, [mediaStream]);
+
+  // Update camera/mic state when mediaStream changes
+  useEffect(() => {
+    setIsCameraOn(!!mediaStream?.getVideoTracks().filter(t => t.enabled).length);
+    setIsMicOn(!!mediaStream?.getAudioTracks().filter(t => t.enabled).length);
+  }, [mediaStream]);
+
+  // Toggle Camera
+  const toggleCamera = async () => {
+    if (!mediaStream) {
+      // Request camera access
+      setIsRequestingMedia(true);
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: isMicOn });
+        if (setMediaStream) setMediaStream(stream);
+        setIsCameraOn(true);
+      } catch (err) {
+        console.error('Camera access error:', err);
+      }
+      setIsRequestingMedia(false);
+    } else {
+      // Toggle existing camera track
+      mediaStream.getVideoTracks().forEach(track => {
+        track.enabled = !track.enabled;
+      });
+      setIsCameraOn(!isCameraOn);
+    }
+  };
+
+  // Toggle Microphone
+  const toggleMic = async () => {
+    if (!mediaStream) {
+      // Request mic access
+      setIsRequestingMedia(true);
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: isCameraOn, audio: true });
+        if (setMediaStream) setMediaStream(stream);
+        setIsMicOn(true);
+      } catch (err) {
+        console.error('Mic access error:', err);
+      }
+      setIsRequestingMedia(false);
+    } else {
+      // Toggle existing audio track
+      mediaStream.getAudioTracks().forEach(track => {
+        track.enabled = !track.enabled;
+      });
+      setIsMicOn(!isMicOn);
+    }
+  };
 
   // Reset internal page when slide changes
   useEffect(() => {
@@ -217,13 +452,14 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       id: crypto.randomUUID(),
       title: newLowerThird.title,
       subtitle: newLowerThird.subtitle || '',
-      imageUrl: newLowerThird.imageUrl
+      imageUrl: newLowerThird.imageUrl,
+      imagePosition: newLowerThird.imagePosition
     };
     setBroadcastConfig(prev => ({
       ...prev,
       lowerThirds: [...prev.lowerThirds, item]
     }));
-    setNewLowerThird({ title: '', subtitle: '' });
+    setNewLowerThird({ title: '', subtitle: '', imageUrl: '', imagePosition: undefined });
   };
 
   const handleDeleteLowerThird = (id: string) => {
@@ -299,64 +535,126 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       const hasFarsi = currentPage?.textPrimary && 
         (Array.isArray(currentPage.textPrimary) ? currentPage.textPrimary.length > 0 : !!currentPage.textPrimary);
 
+      // Prepare verses array for synchronized display
+      const englishVerses = Array.isArray(currentPage.textSecondary) ? currentPage.textSecondary : [currentPage.textSecondary];
+      const farsiVerses = Array.isArray(currentPage.textPrimary) ? currentPage.textPrimary : [currentPage.textPrimary];
+      const maxVerses = Math.max(englishVerses.length, farsiVerses.length);
+
+      // Translation display names
+      const faTranslationNames: Record<string, string> = {
+        mojdeh: 'مژده',
+        qadim: 'قدیم',
+        tafsiri: 'تفسیری'
+      };
+      const enTranslationNames: Record<string, string> = {
+        kjv: 'KJV',
+        asv: 'ASV',
+        net: 'NET'
+      };
+
+      const faTransName = faTranslationNames[currentPage.translation || 'mojdeh'] || 'مژده';
+      const enTransName = enTranslationNames[currentPage.enTranslation || 'asv'] || 'ASV';
+
       return (
         <div className="h-full w-full flex flex-col animate-in fade-in duration-500 overflow-hidden">
-          {/* Main Content - Two Column Layout like Bible Page */}
-          <div className={`flex-1 flex ${hasEnglish && hasFarsi ? 'flex-row' : 'flex-col'} gap-4 p-4 overflow-auto`}>
-            
-            {/* English Column (Left) */}
+          {/* Header Row with Beautiful Book Info */}
+          <div className="flex flex-row gap-4 px-4 pt-4" dir="ltr">
             {hasEnglish && (
-              <div className="flex-1 bg-slate-800/50 rounded-xl p-4 overflow-auto" dir="ltr">
-                <h3 className="text-lg font-bold text-purple-400 mb-4 text-center border-b border-purple-400/30 pb-2">
-                  English
-                </h3>
-                {Array.isArray(currentPage.textSecondary) ? (
-                  <div className="space-y-3">
-                    {currentPage.textSecondary.map((verse, idx) => (
-                      <div key={idx} className="flex gap-2 items-start">
-                        <span className="text-lg font-bold text-purple-400 min-w-[32px] text-right">
-                          {currentPage?.verseNumbers?.[idx] || (idx + 1)}
-                        </span>
-                        <p className="text-xl text-slate-200 leading-relaxed flex-1">
-                          {verse}
-                        </p>
-                      </div>
-                    ))}
+              <div className="flex-1 bg-gradient-to-br from-slate-800/80 to-purple-900/30 rounded-t-xl px-4 py-3 border-b-2 border-purple-500/50">
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-purple-300">
+                    📖 {currentPage?.bookName?.en || 'Book'}
+                  </h3>
+                  <div className="flex items-center justify-center gap-3 mt-1 text-sm">
+                    <span className="bg-purple-600/40 px-2 py-0.5 rounded text-purple-200">
+                      {enTransName}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-purple-200">
+                      Chapter {currentPage?.chapter}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-purple-200">
+                      Verses {currentPage?.verses}
+                    </span>
                   </div>
-                ) : (
-                  <p className="text-xl text-slate-200 leading-relaxed">
-                    {currentPage.textSecondary}
-                  </p>
-                )}
+                </div>
               </div>
             )}
-
-            {/* Farsi Column (Right) */}
             {hasFarsi && (
-              <div className="flex-1 bg-amber-900/30 rounded-xl p-4 overflow-auto" dir="rtl">
-                <h3 className="text-lg font-bold text-amber-400 mb-4 text-center border-b border-amber-400/30 pb-2 font-[Vazirmatn]">
-                  فارسی
-                </h3>
-                {Array.isArray(currentPage.textPrimary) ? (
-                  <div className="space-y-3">
-                    {currentPage.textPrimary.map((verse, idx) => (
-                      <div key={idx} className="flex gap-2 items-start flex-row-reverse">
-                        <span className="text-lg font-bold text-amber-400 min-w-[32px] text-left">
-                          {currentPage?.verseNumbers?.[idx] || (idx + 1)}
-                        </span>
-                        <p className="text-xl text-white leading-relaxed flex-1 text-right font-[Vazirmatn]">
-                          {verse}
-                        </p>
-                      </div>
-                    ))}
+              <div className="flex-1 bg-gradient-to-bl from-amber-900/50 to-slate-800/80 rounded-t-xl px-4 py-3 border-b-2 border-amber-500/50">
+                <div className="text-center" dir="rtl">
+                  <h3 className="text-xl font-bold text-amber-300 font-[Vazirmatn]">
+                    📖 {currentPage?.bookName?.fa || 'کتاب'}
+                  </h3>
+                  <div className="flex items-center justify-center gap-3 mt-1 text-sm font-[Vazirmatn]">
+                    <span className="bg-amber-600/40 px-2 py-0.5 rounded text-amber-200">
+                      {faTransName}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-amber-200">
+                      فصل {currentPage?.chapter}
+                    </span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-amber-200">
+                      آیات {currentPage?.verses}
+                    </span>
                   </div>
-                ) : (
-                  <p className="text-xl text-white leading-relaxed font-[Vazirmatn]">
-                    {currentPage.textPrimary}
-                  </p>
-                )}
+                </div>
               </div>
             )}
+          </div>
+
+          {/* Main Content - Synchronized Verse-by-Verse Display */}
+          <div 
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex-1 overflow-auto px-4 pb-4"
+          >
+            <div className="space-y-3">
+              {Array.from({ length: maxVerses }).map((_, idx) => {
+                const englishVerse = englishVerses[idx] || '';
+                const farsiVerse = farsiVerses[idx] || '';
+                const verseNum = currentPage?.verseNumbers?.[idx] || (idx + 1);
+                
+                // Skip if both verses are empty
+                if ((!englishVerse || englishVerse.trim() === '') && (!farsiVerse || farsiVerse.trim() === '')) {
+                  return null;
+                }
+
+                return (
+                  <div key={idx} className="flex flex-row gap-4" dir="ltr">
+                    {/* English Verse (Left) */}
+                    {hasEnglish && (
+                      <div className="flex-1 bg-slate-800/50 rounded-lg p-3" dir="ltr">
+                        <div className="flex gap-2 items-start">
+                          <span className="text-lg font-bold text-purple-400 min-w-[32px] text-right">
+                            {verseNum}
+                          </span>
+                          <p className="text-xl text-slate-200 leading-relaxed flex-1">
+                            {englishVerse || ''}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Farsi Verse (Right) */}
+                    {hasFarsi && (
+                      <div className="flex-1 bg-amber-900/30 rounded-lg p-3" dir="rtl">
+                        <div className="flex gap-2 items-start">
+                          <span className="text-lg font-bold text-amber-400 min-w-[32px] text-right">
+                            {verseNum}
+                          </span>
+                          <p className="text-xl text-white leading-relaxed flex-1 text-right font-[Vazirmatn]">
+                            {farsiVerse || ''}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* Footer - Reference */}
@@ -390,6 +688,15 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
           <SmartWorshipPlayer
             timingData={content.timingData}
             audioSrc={content.audioUrl}
+            onTimeUpdate={(time) => {
+              // ارسال زمان به Display برای sync کاراوکه
+              if (broadcastChannelRef.current) {
+                broadcastChannelRef.current.postMessage({
+                  type: 'audio_sync',
+                  payload: { currentTime: time }
+                });
+              }
+            }}
             translations={{
               finglish: content.finglishLines
             }}
@@ -509,64 +816,27 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       {/* Top Bar */}
       <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
         <div className="flex items-center gap-3">
-          {/* Live Indicator */}
+          {/* Settings Button */}
           <button
-            onClick={() => setIsLive(!isLive)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${isLive
-              ? 'bg-red-600 text-white animate-pulse'
-              : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+            onClick={() => setShowSettings(!showSettings)}
+            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
+              ? 'bg-indigo-600 text-white'
+              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
               }`}
+            title={isRTL ? 'تنظیمات' : 'Settings'}
           >
-            <Radio className="w-4 h-4" />
-            {isLive ? 'LIVE' : 'OFF AIR'}
+            <Settings className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات' : 'Settings'}</span>
           </button>
-
-          {/* Record Button */}
-          <button
-            onClick={isRecording ? stopRecording : startRecording}
-            disabled={!mediaStream}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all ${isRecording
-              ? 'bg-red-600 text-white'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-              } disabled:opacity-50 disabled:cursor-not-allowed`}
-          >
-            {isRecording ? (
-              <>
-                <Circle className="w-3 h-3 fill-current animate-pulse" />
-                <span>{formatTime(recordingTime)}</span>
-                {uploadProgress > 0 && uploadProgress < 100 && (
-                  <span className="text-xs">({uploadProgress}%)</span>
-                )}
-              </>
-            ) : (
-              <>
-                <Video className="w-4 h-4" />
-                <span>REC</span>
-              </>
-            )}
-          </button>
-
-          {/* Sync Button */}
-          <button
-            onClick={() => setShowSyncPanel(!showSyncPanel)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all ${syncState.isConnected
-              ? 'bg-green-600 text-white'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-              }`}
-          >
-            <Users className="w-4 h-4" />
-            {syncState.isConnected ? (
-              <span>{syncState.connectedDevices.length} Connected</span>
-            ) : (
-              <span>Sync</span>
-            )}
-          </button>
-
-          {/* Recorder Error */}
-          {recorderError && (
-            <span className="text-xs text-red-400 max-w-xs truncate">
-              ⚠️ {recorderError}
-            </span>
+          {/* Language Toggle */}
+          {onLangToggle && (
+            <button
+              onClick={onLangToggle}
+              className="px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 bg-slate-700 text-slate-300 hover:bg-slate-600"
+              title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
+            >
+              <span className="font-bold">{lang === 'fa' ? 'FA' : 'EN'}</span>
+            </button>
           )}
         </div>
 
@@ -576,17 +846,167 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             {activeSlideIndex + 1} / {session.slides.length}
           </span>
 
-          {/* Settings Button */}
+          {/* === دکمه‌های تنظیمات (Templates) === */}
+          <div className="flex items-center gap-1 border-r border-slate-700 pr-3 mr-1">
+            <button
+              onClick={() => setShowTemplateModal('save')}
+              className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-purple-600 hover:bg-purple-500 text-white"
+              title={isRTL ? 'ذخیره تنظیمات' : 'Save Settings'}
+            >
+              <Settings className="w-3 h-3" />
+              <Save className="w-3 h-3" />
+            </button>
+            <button
+              onClick={() => setShowTemplateModal('load')}
+              className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
+              title={isRTL ? 'بارگذاری تنظیمات' : 'Load Settings'}
+            >
+              <Settings className="w-3 h-3" />
+              <FolderOpen className="w-3 h-3" />
+            </button>
+          </div>
+
+          {/* === دکمه‌های پرزنتیشن (Slides) === */}
           <button
-            onClick={() => setShowSettings(!showSettings)}
-            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
-              ? 'bg-indigo-600 text-white'
-              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-              }`}
+            onClick={() => setShowPresentationModal('save')}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-blue-600 hover:bg-blue-500 text-white"
+            title={isRTL ? 'ذخیره اسلایدها' : 'Save Slides'}
           >
-            <Settings className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.settings}</span>
+            <Save className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ذخیره' : 'Save'}</span>
           </button>
+          <button
+            onClick={() => setShowPresentationModal('load')}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
+            title={isRTL ? 'بارگذاری اسلایدها' : 'Load Slides'}
+          >
+            <FolderOpen className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'بارگذاری' : 'Load'}</span>
+          </button>
+
+          {/* === مودال بارگذاری تنظیمات === */}
+          {showTemplateModal === 'load' && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-slate-800 border border-purple-500/30 rounded-lg shadow-xl p-4 w-80 max-h-[80vh] overflow-y-auto">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-bold text-purple-300 text-sm flex items-center gap-2">
+                    <Settings className="w-4 h-4" />
+                    {isRTL ? '🎨 تنظیمات ذخیره‌شده' : '🎨 Saved Settings'}
+                  </span>
+                  <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white"><X className="w-4 h-4" /></button>
+                </div>
+                <div className="space-y-2">
+                  {savedTemplates.length === 0 && (
+                    <span className="text-slate-400 text-xs">{isRTL ? 'هیچ تنظیماتی ذخیره نشده' : 'No saved settings'}</span>
+                  )}
+                  {savedTemplates.map(t => (
+                    <div key={t.id} className="flex items-center gap-2 bg-slate-700 rounded p-2 border border-purple-500/20">
+                      <div className="flex-1">
+                        <div className="text-white text-xs font-bold">{t.name}</div>
+                        <div className="text-slate-400 text-xs">{new Date(t.date).toLocaleString()}</div>
+                      </div>
+                      <button onClick={() => handleLoadTemplate(t.id)} className="text-purple-400 hover:text-purple-300" title="Load"><Download className="w-4 h-4" /></button>
+                      <button onClick={() => handleDeleteTemplate(t.id)} className="text-red-400 hover:text-red-300" title="Delete"><Trash2 className="w-4 h-4" /></button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* === مودال ذخیره تنظیمات === */}
+          {showTemplateModal === 'save' && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-slate-800 border border-purple-500/30 rounded-lg shadow-xl p-6 w-80">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-bold text-purple-300 text-sm flex items-center gap-2">
+                    <Settings className="w-4 h-4" />
+                    {isRTL ? '🎨 ذخیره تنظیمات' : '🎨 Save Settings'}
+                  </span>
+                  <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white"><X className="w-4 h-4" /></button>
+                </div>
+                <p className="text-slate-400 text-xs mb-3">
+                  {isRTL ? 'شامل: Layout، Lower Third، Prayer Ticker، Logo...' : 'Includes: Layout, Lower Third, Prayer Ticker, Logo...'}
+                </p>
+                <input
+                  type="text"
+                  value={templateName}
+                  onChange={e => setTemplateName(e.target.value)}
+                  placeholder={isRTL ? 'نام تنظیمات...' : 'Settings name...'}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm mb-4"
+                />
+                <button
+                  onClick={handleSaveTemplate}
+                  className="w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition text-sm font-bold"
+                >
+                  {isRTL ? 'ذخیره تنظیمات' : 'Save Settings'}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* === مودال بارگذاری پرزنتیشن === */}
+          {showPresentationModal === 'load' && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-slate-800 border border-blue-500/30 rounded-lg shadow-xl p-4 w-80 max-h-[80vh] overflow-y-auto">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-bold text-blue-300 text-sm flex items-center gap-2">
+                    <Monitor className="w-4 h-4" />
+                    {isRTL ? '📑 پرزنتیشن‌ها (اسلایدها)' : '📑 Presentations (Slides)'}
+                  </span>
+                  <button onClick={() => setShowPresentationModal(false)} className="text-slate-400 hover:text-white"><X className="w-4 h-4" /></button>
+                </div>
+                <div className="space-y-2">
+                  {savedPresentations.length === 0 && (
+                    <span className="text-slate-400 text-xs">{isRTL ? 'هیچ پرزنتیشنی ذخیره نشده' : 'No saved presentations'}</span>
+                  )}
+                  {savedPresentations.map(p => (
+                    <div key={p.id} className="flex items-center gap-2 bg-slate-700 rounded p-2 border border-blue-500/20">
+                      <div className="flex-1">
+                        <div className="text-white text-xs font-bold">{p.name}</div>
+                        <div className="text-slate-400 text-xs">
+                          {new Date(p.date).toLocaleString()} • {p.slideCount || p.slides?.length || 0} {isRTL ? 'اسلاید' : 'slides'}
+                        </div>
+                      </div>
+                      <button onClick={() => handleLoadPresentation(p.id)} className="text-blue-400 hover:text-blue-300" title="Load"><Download className="w-4 h-4" /></button>
+                      <button onClick={() => handleDeletePresentation(p.id)} className="text-red-400 hover:text-red-300" title="Delete"><Trash2 className="w-4 h-4" /></button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* === مودال ذخیره پرزنتیشن === */}
+          {showPresentationModal === 'save' && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-slate-800 border border-blue-500/30 rounded-lg shadow-xl p-6 w-80">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-bold text-blue-300 text-sm flex items-center gap-2">
+                    <Monitor className="w-4 h-4" />
+                    {isRTL ? '📑 ذخیره پرزنتیشن' : '📑 Save Presentation'}
+                  </span>
+                  <button onClick={() => setShowPresentationModal(false)} className="text-slate-400 hover:text-white"><X className="w-4 h-4" /></button>
+                </div>
+                <p className="text-slate-400 text-xs mb-3">
+                  {isRTL ? `شامل ${session.slides.length} اسلاید (آیات، سرودها، رسانه‌ها...)` : `Includes ${session.slides.length} slides (verses, songs, media...)`}
+                </p>
+                <input
+                  type="text"
+                  value={presentationName}
+                  onChange={e => setPresentationName(e.target.value)}
+                  placeholder={isRTL ? 'نام پرزنتیشن...' : 'Presentation name...'}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm mb-4"
+                />
+                <button
+                  onClick={handleSavePresentation}
+                  className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition text-sm font-bold"
+                >
+                  {isRTL ? 'ذخیره پرزنتیشن' : 'Save Presentation'}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -671,27 +1091,39 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
         {/* Preview Area */}
         <div className="flex-1 flex flex-col">
           {/* Live Preview */}
-          <div className="flex-1 relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-            {/* Camera Feed (Background) */}
+          <div className="flex-1 relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+            {/* Slide Content - Always background/main in PIP mode */}
+            <div className={`absolute inset-0 flex items-center justify-center ${
+              broadcastConfig.layout === 'SPLIT' ? 'right-0 w-1/2' :
+              broadcastConfig.layout === 'FULL_CAM' ? 'z-10' :
+              '' // For PIP and SLIDES_ONLY - full size
+            }`}>
+              {renderSlideContent()}
+            </div>
+
+            {/* Camera Feed - Small overlay in PIP mode */}
             {mediaStream && broadcastConfig.layout !== 'SLIDES_ONLY' && (
               <video
                 ref={videoRef}
                 autoPlay
                 muted
                 playsInline
-                className={`absolute inset-0 w-full h-full object-cover ${broadcastConfig.layout === 'PIP' ? 'z-0' :
-                  broadcastConfig.layout === 'SPLIT' ? 'w-1/2' : ''
-                  }`}
+                className={`absolute object-cover ${
+                  broadcastConfig.layout === 'PIP' 
+                    ? `w-48 h-36 rounded-xl border-2 border-white/20 shadow-2xl z-20 ${
+                        broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                        broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
+                        broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
+                        'bottom-24 right-4' // bottom-right default
+                      } ${
+                        broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
+                        broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                      }`
+                    : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2' 
+                    : 'inset-0 w-full h-full z-0' // FULL_CAM
+                }`}
               />
             )}
-
-            {/* Slide Content */}
-            <div className={`absolute inset-0 flex items-center justify-center ${broadcastConfig.layout === 'PIP' ? 'bottom-20 right-4 left-auto top-auto w-80 h-48 rounded-xl bg-black/80 z-10' :
-              broadcastConfig.layout === 'SPLIT' ? 'right-0 w-1/2' :
-                'bg-black/60'
-              }`}>
-              {renderSlideContent()}
-            </div>
 
             {/* Logo */}
             {broadcastConfig.showLogo && broadcastConfig.logoUrl && (
@@ -751,8 +1183,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             )}
           </div>
 
-          {/* Controls */}
-          <div className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-center gap-4 px-4">
+          {/* Controls - Always LTR: Prev on left, Next on right */}
+          <div dir="ltr" className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-center gap-4 px-4">
             <button
               onClick={handlePrev}
               disabled={activeSlideIndex === 0 && internalPageIndex === 0}
@@ -798,25 +1230,57 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 </span>
               </button>
               {openSection === 'layout' && (
-                <div className="p-4 pt-0 grid grid-cols-2 gap-2">
-                  {[
-                    { id: 'FULL_CAM', label: t.fullCam, icon: '📷' },
-                    { id: 'PIP', label: t.pip, icon: '🖼️' },
-                    { id: 'SPLIT', label: t.split, icon: '✂️' },
-                    { id: 'SLIDES_ONLY', label: t.slidesOnly, icon: '📑' }
-                  ].map(layout => (
-                    <button
-                      key={layout.id}
-                      onClick={() => setBroadcastConfig(prev => ({ ...prev, layout: layout.id as any }))}
-                      className={`p-3 rounded-lg border text-center transition ${broadcastConfig.layout === layout.id
-                        ? 'bg-indigo-600 border-indigo-500 text-white'
-                        : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
-                        }`}
-                    >
-                      <span className="text-2xl block mb-1">{layout.icon}</span>
-                      <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{layout.label}</span>
-                    </button>
-                  ))}
+                <div className="p-4 pt-0 space-y-4">
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { id: 'FULL_CAM', label: t.fullCam, icon: '📷' },
+                      { id: 'PIP', label: t.pip, icon: '🖼️' },
+                      { id: 'SPLIT', label: t.split, icon: '✂️' },
+                      { id: 'SLIDES_ONLY', label: t.slidesOnly, icon: '📑' }
+                    ].map(layout => (
+                      <button
+                        key={layout.id}
+                        onClick={() => setBroadcastConfig(prev => ({ ...prev, layout: layout.id as any }))}
+                        className={`p-3 rounded-lg border text-center transition ${broadcastConfig.layout === layout.id
+                          ? 'bg-indigo-600 border-indigo-500 text-white'
+                          : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                          }`}
+                      >
+                        <span className="text-2xl block mb-1">{layout.icon}</span>
+                        <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{layout.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {/* PIP Position Selector - Only show when PIP is selected */}
+                  {broadcastConfig.layout === 'PIP' && (
+                    <div className="mt-4">
+                      <p className={`text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {isRTL ? '📍 موقعیت دوربین:' : '📍 Camera Position:'}
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { id: 'top-left', label: isRTL ? 'بالا چپ' : 'Top Left', icon: '↖️' },
+                          { id: 'top-right', label: isRTL ? 'بالا راست' : 'Top Right', icon: '↗️' },
+                          { id: 'bottom-left', label: isRTL ? 'پایین چپ' : 'Bottom Left', icon: '↙️' },
+                          { id: 'bottom-right', label: isRTL ? 'پایین راست' : 'Bottom Right', icon: '↘️' }
+                        ].map(pos => (
+                          <button
+                            key={pos.id}
+                            onClick={() => setBroadcastConfig(prev => ({ ...prev, pipPosition: pos.id as any }))}
+                            className={`p-2 rounded-lg border text-center transition text-sm ${
+                              broadcastConfig.pipPosition === pos.id
+                                ? 'bg-green-600 border-green-500 text-white'
+                                : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                            }`}
+                          >
+                            <span className="mr-1">{pos.icon}</span>
+                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{pos.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -935,6 +1399,128 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       placeholder={t.subtitle}
                       className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                     />
+                    
+                    {/* Image Upload for Leader Photo */}
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={newLowerThird.imageUrl || ''}
+                        onChange={(e) => setNewLowerThird(prev => ({ ...prev, imageUrl: e.target.value }))}
+                        placeholder={isRTL ? 'لینک عکس رهبر (اختیاری)' : 'Leader photo URL (optional)'}
+                        className={`flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      />
+                      <label className="flex-shrink-0 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = (evt) => {
+                                setNewLowerThird(prev => ({ ...prev, imageUrl: evt.target?.result as string }));
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                        <span className="flex items-center gap-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 text-sm transition">
+                          <ImageIcon className="w-4 h-4" />
+                        </span>
+                      </label>
+                    </div>
+                    
+                    {/* Preview of selected image with position & zoom controls */}
+                    {newLowerThird.imageUrl && (
+                      <div className="space-y-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                        <div className="flex items-center gap-3">
+                          {/* Image Preview with position controls */}
+                          <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500 bg-slate-900">
+                            <img 
+                              src={newLowerThird.imageUrl} 
+                              alt="Preview" 
+                              className="absolute w-full h-full object-cover"
+                              style={{
+                                transform: `scale(${newLowerThird.imagePosition?.scale || 1}) translate(${(newLowerThird.imagePosition?.x || 50) - 50}%, ${(newLowerThird.imagePosition?.y || 50) - 50}%)`,
+                                transformOrigin: 'center'
+                              }}
+                            />
+                          </div>
+                          <div className="flex-1 space-y-2">
+                            <span className={`text-xs text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                              {isRTL ? 'تنظیم موقعیت و زوم' : 'Adjust position & zoom'}
+                            </span>
+                            {/* Zoom Slider */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-500">🔍</span>
+                              <input
+                                type="range"
+                                min="0.5"
+                                max="2"
+                                step="0.1"
+                                value={newLowerThird.imagePosition?.scale || 1}
+                                onChange={(e) => setNewLowerThird(prev => ({
+                                  ...prev,
+                                  imagePosition: {
+                                    x: prev.imagePosition?.x || 50,
+                                    y: prev.imagePosition?.y || 50,
+                                    scale: parseFloat(e.target.value)
+                                  }
+                                }))}
+                                className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                              />
+                              <span className="text-xs text-slate-400 w-8">{((newLowerThird.imagePosition?.scale || 1) * 100).toFixed(0)}%</span>
+                            </div>
+                            {/* Position X */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-500">↔</span>
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={newLowerThird.imagePosition?.x || 50}
+                                onChange={(e) => setNewLowerThird(prev => ({
+                                  ...prev,
+                                  imagePosition: {
+                                    x: parseFloat(e.target.value),
+                                    y: prev.imagePosition?.y || 50,
+                                    scale: prev.imagePosition?.scale || 1
+                                  }
+                                }))}
+                                className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                              />
+                            </div>
+                            {/* Position Y */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-500">↕</span>
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={newLowerThird.imagePosition?.y || 50}
+                                onChange={(e) => setNewLowerThird(prev => ({
+                                  ...prev,
+                                  imagePosition: {
+                                    x: prev.imagePosition?.x || 50,
+                                    y: parseFloat(e.target.value),
+                                    scale: prev.imagePosition?.scale || 1
+                                  }
+                                }))}
+                                className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                              />
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => setNewLowerThird(prev => ({ ...prev, imageUrl: undefined, imagePosition: undefined }))}
+                            className="text-red-400 hover:text-red-300 p-1"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    
                     <button
                       onClick={handleAddLowerThird}
                       className={`w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
@@ -952,6 +1538,9 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                         className={`flex items-center gap-2 p-2 rounded-lg ${i === broadcastConfig.activeLowerThirdIndex ? 'bg-indigo-600/30 border border-indigo-500' : 'bg-slate-800'
                           }`}
                       >
+                        {item.imageUrl && (
+                          <img src={item.imageUrl} alt="" className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-slate-600" />
+                        )}
                         <button
                           onClick={() => setBroadcastConfig(prev => ({ ...prev, activeLowerThirdIndex: i }))}
                           className="flex-1 text-left"

@@ -38,6 +38,7 @@ const testimonialsRoutes = require('./routes/testimonialsRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const announcementsRoutes = require('./routes/announcementsRoutes');
 const galleriesRoutes = require('./routes/galleriesRoutes');
+const broadcastUploadRoutes = require('./routes/broadcastUploadRoutes'); // Video upload to HiDrive
 
 // Try to load HiDrive routes
 let hidriveRoutes;
@@ -145,6 +146,7 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/announcements', announcementsRoutes);
 app.use('/api/galleries', galleriesRoutes);
 app.use('/api/schedule-events', scheduleRoutes);
+app.use('/api/broadcast/upload', broadcastUploadRoutes); // Video recording upload
 
 if (huggingfaceTTSRoutes) {
   app.use('/api/tts/huggingface', huggingfaceTTSRoutes);

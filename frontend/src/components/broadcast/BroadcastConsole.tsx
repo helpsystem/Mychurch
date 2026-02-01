@@ -29,6 +29,7 @@ const INITIAL_SESSION: BroadcastSession = {
 
 const INITIAL_OVERLAY: BroadcastOverlayConfig = {
   layout: 'SLIDES_ONLY',
+  pipPosition: 'bottom-right', // موقعیت پیش‌فرض دوربین
   logoUrl: null,
   showLogo: false,
   leaderVideoShape: 'rectangle',
@@ -63,6 +64,19 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
   const [micStatus, setMicStatus] = useState<'checking' | 'granted' | 'denied' | 'error'>('checking');
   const [error, setError] = useState<string | null>(null);
   const [skipCamera, setSkipCamera] = useState(false);
+
+  // تابع برای بارگذاری اسلایدها از LiveConsole
+  const setSessionSlides = (slides: BroadcastSession['slides']) => {
+    setSession(prev => ({ ...prev, slides }));
+  };
+
+  // Expose setSessionSlides to window for LiveConsole access
+  useEffect(() => {
+    (window as any).setSessionSlides = setSessionSlides;
+    return () => {
+      delete (window as any).setSessionSlides;
+    };
+  }, []);
 
   // Check permissions on mount
   useEffect(() => {
@@ -279,18 +293,6 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
   // Main Console
   return (
     <div className={`flex h-screen w-screen overflow-hidden bg-slate-950 text-slate-100 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-      {/* Language Toggle (Floating) */}
-      <div className="fixed top-4 left-4 z-50">
-        <button
-          onClick={toggleLang}
-          className="bg-slate-800/80 backdrop-blur border border-slate-700 hover:border-indigo-500 text-white px-3 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-2 shadow-lg"
-        >
-          <span>{lang === 'fa' ? '🇮🇷 FA' : '🇺🇸 EN'}</span>
-          <span className="text-slate-500">⇄</span>
-          <span>{lang === 'fa' ? '🇺🇸 EN' : '🇮🇷 FA'}</span>
-        </button>
-      </div>
-
       {/* Left Sidebar: Slide Builder */}
       <SlideBuilder
         session={session}
@@ -304,7 +306,9 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
       <LiveConsole
         session={session}
         mediaStream={stream}
+        setMediaStream={setStream}
         lang={lang}
+        onLangToggle={toggleLang}
         broadcastConfig={broadcastConfig}
         setBroadcastConfig={setBroadcastConfig}
         activeSlideIndex={activeSlideIndex}

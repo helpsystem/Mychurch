@@ -8,6 +8,9 @@ interface SmartWorshipPlayerProps {
     audioSrc: string;
     backgroundImage?: string;
     title?: string;
+    viewOnly?: boolean; // حالت فقط نمایش - بدون کنترل
+    externalCurrentTime?: number; // زمان جاری از بیرون (برای سینک)
+    onTimeUpdate?: (time: number) => void; // callback برای گزارش زمان به parent
     translations?: {
         finglish?: string[];
         english?: string[];
@@ -19,6 +22,9 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     timingData,
     audioSrc,
     backgroundImage = '/images/worship/worship-bg-default.jpg',
+    viewOnly = false,
+    externalCurrentTime,
+    onTimeUpdate,
     translations
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -82,14 +88,25 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         return null; // No finglish found
     };
 
-    // Sync Loop
+    // Sync Loop - use externalCurrentTime if in viewOnly mode
     useEffect(() => {
+        // در حالت viewOnly از زمان خارجی استفاده کن
+        if (viewOnly && externalCurrentTime !== undefined) {
+            setCurrentTime(externalCurrentTime);
+            return;
+        }
+
         const audio = audioRef.current;
         if (!audio) return;
 
-        let animationFrameId: number;
+        let animationFrameId: number | undefined;
         const loop = () => {
-            setCurrentTime(audio.currentTime);
+            const time = audio.currentTime;
+            setCurrentTime(time);
+            // گزارش زمان به parent برای سینک با Display
+            if (onTimeUpdate) {
+                onTimeUpdate(time);
+            }
             if (!audio.paused && !audio.ended) {
                 animationFrameId = requestAnimationFrame(loop);
             }
@@ -97,12 +114,14 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
         if (isPlaying) {
             loop();
-        } else {
-            cancelAnimationFrame(animationFrameId);
         }
 
-        return () => cancelAnimationFrame(animationFrameId);
-    }, [isPlaying]);
+        return () => {
+            if (animationFrameId !== undefined) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
+    }, [isPlaying, onTimeUpdate, viewOnly, externalCurrentTime]);
 
     const togglePlay = () => {
         if (audioRef.current) {
@@ -257,7 +276,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                 )}
             </div>
 
-            {/* Controls Layer - Always visible */}
+            {/* Controls Layer - Hidden in viewOnly mode */}
+            {!viewOnly && (
             <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 lg:p-6" dir="ltr">
 
                 {/* Progress Bar */}
@@ -335,6 +355,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     </div>
                 </div>
             </div>
+            )}
 
             <audio
                 ref={audioRef}

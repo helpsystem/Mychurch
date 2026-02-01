@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
+import WorshipSongSelector from './WorshipSongSelector';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -664,140 +665,20 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         </div>
       )}
 
-      {/* Lyrics Modal */}
+      {/* Lyrics Modal - NEW Enhanced Worship Song Selector */}
       {activeModal === 'LYRICS' && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-2xl p-6 max-h-[85vh] overflow-y-auto">
-            <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-              🎵 {t.addLyrics}
-            </h3>
-
-            {/* Song Search */}
-            <div className="mb-4">
-              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.selectSong}
-              </label>
-              <input
-                type="text"
-                value={songSearch}
-                onChange={(e) => setSongSearch(e.target.value)}
-                placeholder={t.searchSongs}
-                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              />
-
-              {/* Song List */}
-              {filteredSongs.length > 0 && !selectedSong && (
-                <div className="mt-2 bg-slate-900 rounded-lg max-h-60 overflow-y-auto border border-slate-700">
-                  {filteredSongs.map((song) => (
-                    <button
-                      key={song.id}
-                      onClick={() => handleSongSelect(song)}
-                      className={`w-full px-3 py-2 text-left hover:bg-slate-700 transition text-white border-b border-slate-800 last:border-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="font-medium">{song.title[lang] || song.title.fa}</span>
-                          <span className="text-slate-400 text-sm ml-2">- {song.artist}</span>
-                        </div>
-                        {song.audioUrl && <span className="text-green-400 text-xs">🎵</span>}
-                      </div>
-                      {song.lyrics?.fa && (
-                        <p className={`text-slate-500 text-xs mt-1 truncate ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          {song.lyrics.fa.substring(0, 60)}...
-                        </p>
-                      )}
-                    </button>
-                  ))}
-                  {/* Show More Button */}
-                  {!showAllSongs && songs.length > 10 && (
-                    <button
-                      onClick={() => setShowAllSongs(true)}
-                      className={`w-full px-3 py-2 text-center text-pink-400 hover:bg-slate-800 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                    >
-                      {isRTL ? `نمایش همه (${songs.length} سرود)` : `Show all (${songs.length} songs)`}
-                    </button>
-                  )}
-                </div>
-              )}
-
-              {/* No Songs Found */}
-              {filteredSongs.length === 0 && songSearch && !selectedSong && (
-                <div className={`mt-2 text-center text-slate-500 py-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'سرودی پیدا نشد' : 'No songs found'}
-                </div>
-              )}
-
-              {/* Selected Song */}
-              {selectedSong && (
-                <div className="mt-2 flex items-center justify-between bg-pink-600/20 border border-pink-600/40 rounded-lg px-3 py-2">
-                  <span className={`text-pink-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    {selectedSong.title[lang]} - {selectedSong.artist}
-                  </span>
-                  <button onClick={() => setSelectedSong(null)} className="text-pink-400 hover:text-pink-300">
-                    ✕
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Title */}
-            <div className="mb-4">
-              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.songTitle}
-              </label>
-              <input
-                type="text"
-                value={lyricsTitle}
-                onChange={(e) => setLyricsTitle(e.target.value)}
-                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              />
-            </div>
-
-            {/* Lyrics */}
-            <div className="mb-4">
-              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.lyricsLabel}
-              </label>
-              <textarea
-                value={lyricsText}
-                onChange={(e) => setLyricsText(e.target.value)}
-                rows={8}
-                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              />
-            </div>
-
-            {/* Chords */}
-            <div className="mb-4">
-              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.chordsLabel}
-              </label>
-              <input
-                type="text"
-                value={lyricsChords}
-                onChange={(e) => setLyricsChords(e.target.value)}
-                placeholder="e.g., Am - G - C - F"
-                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
-              />
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-3 justify-end">
-              <button
-                onClick={() => { setActiveModal('NONE'); resetForms(); }}
-                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={handleLyricsSubmit}
-                disabled={!lyricsTitle || !lyricsText}
-                className={`px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              >
-                {t.add}
-              </button>
-            </div>
-          </div>
-        </div>
+        <WorshipSongSelector
+          lang={lang}
+          onSelectSong={(content, options) => {
+            // Add the slide with the configured content
+            addSlide(SlideType.LYRICS, {
+              ...content,
+              // Store display options in the content for later use
+              displayOptions: options
+            } as any);
+          }}
+          onClose={() => { setActiveModal('NONE'); resetForms(); }}
+        />
       )}
 
       {/* Media Modal */}

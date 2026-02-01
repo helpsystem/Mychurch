@@ -30,6 +30,7 @@ interface SelectedVerse {
   verseStart: number;
   verseEnd: number;
   translation: 'mojdeh' | 'qadim' | 'tafsiri';
+  enTranslation: 'asv' | 'net' | 'kjv';
   showFa: boolean;
   showEn: boolean;
   textFa: string[];
@@ -70,6 +71,10 @@ const translations = {
     mojdeh: 'مژده',
     qadim: 'قدیم',
     tafsiri: 'تفسیری',
+    enTranslation: 'ترجمه انگلیسی',
+    asv: 'ASV (امریکن استاندارد)',
+    net: 'NET (ترجمه نوین)',
+    kjv: 'KJV (کینگ جیمز)',
     clickToPreview: 'برای پیش‌نمایش کلیک کنید',
     chapters: 'فصل'
   },
@@ -97,6 +102,10 @@ const translations = {
     mojdeh: 'Mojdeh',
     qadim: 'Qadim',
     tafsiri: 'Tafsiri',
+    enTranslation: 'English Translation',
+    asv: 'ASV (American Standard)',
+    net: 'NET (New English)',
+    kjv: 'KJV (King James)',
     clickToPreview: 'Click to preview',
     chapters: 'chapters'
   }
@@ -194,6 +203,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [verseEnd, setVerseEnd] = useState(1);
   const [verseCount, setVerseCount] = useState(31);
   const [translation, setTranslation] = useState<'mojdeh' | 'qadim' | 'tafsiri'>('mojdeh');
+  const [enTranslation, setEnTranslation] = useState<'asv' | 'net' | 'kjv'>('asv'); // ASV as default - most complete coverage
   
   // Display Options
   const [showFa, setShowFa] = useState(true);
@@ -226,7 +236,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/bible/content/${selectedBook.key}/${selectedChapter}?faTranslation=${translation}`
+        `/api/bible/content/${selectedBook.key}/${selectedChapter}?faTranslation=${translation}&enTranslation=${enTranslation}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -243,13 +253,13 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     } finally {
       setLoading(false);
     }
-  }, [selectedBook, selectedChapter, translation]);
+  }, [selectedBook, selectedChapter, translation, enTranslation]);
 
   useEffect(() => {
     if (step === 'verse' && selectedBook) {
       fetchChapterData();
     }
-  }, [step, selectedBook, selectedChapter, translation, fetchChapterData]);
+  }, [step, selectedBook, selectedChapter, translation, enTranslation, fetchChapterData]);
 
   // Handle book selection
   const handleBookSelect = (book: BibleBook) => {
@@ -300,6 +310,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
       verseStart,
       verseEnd,
       translation,
+      enTranslation,
       showFa,
       showEn,
       textFa: versesData.fa.slice(verseStart - 1, verseEnd),
@@ -335,7 +346,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
       verseNumbers: verse.verseNumbers,
       textPrimary: verse.showFa ? verse.textFa : verse.textEn,
       textSecondary: verse.showFa && verse.showEn ? verse.textEn : (verse.showEn && !verse.showFa ? verse.textFa : []),
-      translation: verse.translation
+      translation: verse.translation,
+      enTranslation: verse.enTranslation
     }));
 
     onAddSlides(slides);
@@ -486,9 +498,9 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
               <div className="space-y-6">
                 {/* Options Bar */}
                 <div className="flex flex-wrap items-center gap-4 bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-                  {/* Translation Select */}
+                  {/* Persian Translation Select */}
                   <div className="flex items-center gap-2">
-                    <span className="text-slate-400 text-sm">{t.translation}:</span>
+                    <span className="text-slate-400 text-sm">🇮🇷 {t.translation}:</span>
                     <select
                       value={translation}
                       onChange={(e) => setTranslation(e.target.value as any)}
@@ -497,6 +509,20 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                       <option value="mojdeh">{t.mojdeh}</option>
                       <option value="qadim">{t.qadim}</option>
                       <option value="tafsiri">{t.tafsiri}</option>
+                    </select>
+                  </div>
+
+                  {/* English Translation Select */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-slate-400 text-sm">🇺🇸 {t.enTranslation}:</span>
+                    <select
+                      value={enTranslation}
+                      onChange={(e) => setEnTranslation(e.target.value as any)}
+                      className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm"
+                    >
+                      <option value="asv">{t.asv}</option>
+                      <option value="net">{t.net}</option>
+                      <option value="kjv">{t.kjv}</option>
                     </select>
                   </div>
 

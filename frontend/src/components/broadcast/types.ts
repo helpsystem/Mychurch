@@ -30,7 +30,8 @@ export interface ScripturePage {
   verseNumbers: number[]; // آرایه شماره آیات: [1, 2, 3]
   textPrimary: string[];  // آرایه آیات فارسی
   textSecondary: string[]; // آرایه آیات انگلیسی
-  translation?: string;   // ترجمه: mojdeh, qadim, etc.
+  translation?: string;   // ترجمه فارسی: mojdeh, qadim, etc.
+  enTranslation?: string; // ترجمه انگلیسی: asv, net, kjv
 }
 
 export interface SlideContentScripture {
@@ -58,6 +59,19 @@ export interface LyricsLine {
   isVerse?: boolean;      // آیا بند است
 }
 
+// Display options for worship songs
+export interface LyricsDisplayOptions {
+  showFarsiLyrics: boolean;
+  showFinglish: boolean;
+  showEnglishLyrics: boolean;
+  showChords: boolean;
+  showTitle: boolean;
+  showArtist: boolean;
+  showBackground: boolean;
+  backgroundType: 'gradient' | 'image' | 'video';
+  backgroundUrl?: string;
+}
+
 export interface SlideContentLyrics {
   songId?: number;        // ارجاع به آهنگ در دیتابیس
   title: string;
@@ -69,6 +83,8 @@ export interface SlideContentLyrics {
   timingData?: any;       // SystemTimingV2 data for karaoke
   finglishLines?: string[]; // Finglish translations
   hasTiming?: boolean;    // آیا timing کاراکه دارد
+  // Display options
+  displayOptions?: LyricsDisplayOptions;
 }
 
 // =============== MEDIA (رسانه) ===============
@@ -123,12 +139,20 @@ export interface BroadcastSession {
 
 export type BroadcastLayout = 'FULL_CAM' | 'PIP' | 'SPLIT' | 'SLIDES_ONLY';
 export type LowerThirdSize = 'small' | 'standard' | 'large' | 'xl';
+export type PipPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
+export interface ImagePosition {
+  x: number;              // درصد جابجایی افقی (0-100)
+  y: number;              // درصد جابجایی عمودی (0-100)
+  scale: number;          // مقیاس (0.5 تا 2)
+}
 
 export interface LowerThirdItem {
   id: string;
   title: string;          // نام یا عنوان
   subtitle: string;       // زیرعنوان (مثلا نقش)
   imageUrl?: string;      // عکس پروفایل
+  imagePosition?: ImagePosition; // تنظیمات موقعیت و زوم تصویر
 }
 
 export interface PrayerRequest {
@@ -150,6 +174,7 @@ export interface DonationItem {
 export interface BroadcastOverlayConfig {
   // Layout
   layout: BroadcastLayout;
+  pipPosition: PipPosition; // موقعیت دوربین در حالت تصویر در تصویر
 
   // Branding
   logoUrl: string | null;
