@@ -460,7 +460,13 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
             enVerses = await loadASVVerses(book.book_iso, parseInt(chapter));
             enVerses = enVerses.map(v => ({ verse_number: v.verse_number, text_en: v.text }));
           } else {
-            enVerses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), englishTransId).catch(() => []);
+            // KJV and other English translations store text in text_fa column
+            const rawEnVerses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), englishTransId).catch(() => []);
+            // Map text_fa to text_en for English translations
+            enVerses = rawEnVerses.map(v => ({ 
+              verse_number: v.verse_number, 
+              text_en: v.text_fa || v.text_en || v.text || '' 
+            }));
           }
           
           const transFaVerses = await supabaseClient.getVerses(book.book_iso, parseInt(chapter), persianTransId).catch(() => []);
@@ -473,8 +479,8 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
               const faVerse = transFaVerses[i] || {};
               verses.push({
                 verse_number: (enVerse.verse_number || faVerse.verse_number || i + 1),
-                text_en: enVerse.text_en || enVerse.text_fa || enVerse.text || '', 
-                text_fa: faVerse.text_fa || faVerse.text_en || ''
+                text_en: enVerse.text_en || '', 
+                text_fa: faVerse.text_fa || ''
               });
             }
             translationUsed = `${enTranslation.toUpperCase()} + ${faTranslation}`;

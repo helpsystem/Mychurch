@@ -240,6 +240,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
       );
       if (response.ok) {
         const data = await response.json();
+        console.log('[ScriptureSelector] API Response:', { fa: data.verses?.fa?.length, en: data.verses?.en?.length, data });
         if (data.success) {
           setVersesData({
             fa: data.verses?.fa || [],
@@ -296,12 +297,24 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Add current selection to list
   const addToList = () => {
-    if (!selectedBook || versesData.fa.length === 0) return;
+    console.log('[ScriptureSelector] addToList called:', { 
+      selectedBook: selectedBook?.key, 
+      versesDataFa: versesData.fa.length, 
+      versesDataEn: versesData.en.length,
+      verseStart,
+      verseEnd
+    });
+    if (!selectedBook || (versesData.fa.length === 0 && versesData.en.length === 0)) return;
 
     const verseNumbers = Array.from(
       { length: verseEnd - verseStart + 1 },
       (_, i) => verseStart + i
     );
+
+    const textFaSlice = versesData.fa.slice(verseStart - 1, verseEnd);
+    const textEnSlice = versesData.en.slice(verseStart - 1, verseEnd);
+    
+    console.log('[ScriptureSelector] Creating verse with:', { textFaSlice, textEnSlice });
 
     const newVerse: SelectedVerse = {
       id: crypto.randomUUID(),
@@ -313,8 +326,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
       enTranslation,
       showFa,
       showEn,
-      textFa: versesData.fa.slice(verseStart - 1, verseEnd),
-      textEn: versesData.en.slice(verseStart - 1, verseEnd),
+      textFa: textFaSlice,
+      textEn: textEnSlice,
       verseNumbers
     };
 
@@ -335,20 +348,25 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Add all selected verses as slides
   const handleAddAllSlides = () => {
-    const slides: ScripturePage[] = selectedVerses.map(verse => ({
-      id: verse.id,
-      book: verse.book.key,
-      bookName: verse.book.name,
-      chapter: verse.chapter,
-      verses: verse.verseStart === verse.verseEnd
-        ? `${verse.verseStart}`
-        : `${verse.verseStart}-${verse.verseEnd}`,
-      verseNumbers: verse.verseNumbers,
-      textPrimary: verse.showFa ? verse.textFa : verse.textEn,
-      textSecondary: verse.showFa && verse.showEn ? verse.textEn : (verse.showEn && !verse.showFa ? verse.textFa : []),
-      translation: verse.translation,
-      enTranslation: verse.enTranslation
-    }));
+    console.log('[ScriptureSelector] handleAddAllSlides - selectedVerses:', selectedVerses);
+    const slides: ScripturePage[] = selectedVerses.map(verse => {
+      const slide = {
+        id: verse.id,
+        book: verse.book.key,
+        bookName: verse.book.name,
+        chapter: verse.chapter,
+        verses: verse.verseStart === verse.verseEnd
+          ? `${verse.verseStart}`
+          : `${verse.verseStart}-${verse.verseEnd}`,
+        verseNumbers: verse.verseNumbers,
+        textPrimary: verse.showFa ? verse.textFa : verse.textEn,
+        textSecondary: verse.showFa && verse.showEn ? verse.textEn : (verse.showEn && !verse.showFa ? verse.textFa : []),
+        translation: verse.translation,
+        enTranslation: verse.enTranslation
+      };
+      console.log('[ScriptureSelector] Created slide:', slide);
+      return slide;
+    });
 
     onAddSlides(slides);
     onClose();

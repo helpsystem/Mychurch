@@ -89,12 +89,24 @@ export interface SlideContentLyrics {
 
 // =============== MEDIA (رسانه) ===============
 
+export interface MediaDisplayConfig {
+  width: number;        // درصد عرض (10-100)
+  height: number;       // درصد ارتفاع (10-100)
+  position: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'custom';
+  customX?: number;     // موقعیت X سفارشی (0-100)
+  customY?: number;     // موقعیت Y سفارشی (0-100)
+  objectFit: 'cover' | 'contain' | 'fill' | 'none';
+  borderRadius?: number; // گوشه گرد (0-50)
+  opacity?: number;     // شفافیت (0-100)
+}
+
 export interface SlideContentMedia {
   url: string;
   mediaType: 'image' | 'video' | 'audio';
   title?: string;
   isLoop?: boolean;
   isAutoPlay?: boolean;
+  displayConfig?: MediaDisplayConfig;
 }
 
 // =============== ANNOUNCEMENT (اعلانات) ===============
@@ -160,6 +172,8 @@ export interface PrayerRequest {
   name: string;
   content: string;
   timestamp?: Date;
+  category?: string;  // دسته‌بندی: healing, family, work, etc.
+  priority?: number;  // 1-5 (1=highest)
 }
 
 export interface DonationItem {
@@ -169,6 +183,37 @@ export interface DonationItem {
   url: string;            // لینک پرداخت یا QR
   qrCodeUrl?: string;     // تصویر QR Code
   duration: number;       // مدت نمایش (ثانیه)
+}
+
+// =============== AMEN BADGE OVERLAY ===============
+
+export interface AmenBadgeConfig {
+  show: boolean;
+  position: {
+    x: number;  // درصد از چپ (0-100)
+    y: number;  // درصد از بالا (0-100)
+  };
+  style: 'amen-only' | 'amen-cross' | 'cross-only';
+  size: 'small' | 'medium' | 'large';
+  animationSpeed: 'slow' | 'normal' | 'fast';
+}
+
+// =============== PRAYER CREDITS ROLL CONFIG ===============
+
+export interface PrayerCreditsConfig {
+  enabled: boolean;
+  speed: number;  // 1-10 (1=slowest, 10=fastest)
+  showCategory: boolean;
+  sortBy: 'priority' | 'time' | 'name';
+}
+
+export interface PrayerRequest {
+  id: string;
+  name: string;
+  content: string;
+  timestamp?: Date;
+  category?: string;  // دسته‌بندی: healing, family, work, etc.
+  priority?: number;  // 1-5 (1=highest)
 }
 
 export interface BroadcastOverlayConfig {
@@ -197,11 +242,15 @@ export interface BroadcastOverlayConfig {
   // Prayer Wall
   prayerRequests: PrayerRequest[];
   showPrayerTicker: boolean;
+  prayerCreditsConfig?: PrayerCreditsConfig;
 
   // Donations
   donations: DonationItem[];
   activeDonationId: string | null;
   donationDisplayMode: 'OVERLAY' | 'FULLSCREEN';
+
+  // Amen Badge Overlay
+  amenBadge?: AmenBadgeConfig;
 }
 
 // =============== DEVICE STATUS ===============

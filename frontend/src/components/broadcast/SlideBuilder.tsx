@@ -7,7 +7,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   Slide, SlideType, BroadcastSession,
   SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
-  ScripturePage, WorshipSong, BibleBook, AppLanguage
+  ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig
 } from './types';
 import {
   fetchWorshipSongs, searchSongs, parseLyrics,
@@ -16,7 +16,7 @@ import {
 } from './dataService';
 import {
   BookOpen, Music, Image, Video, Plus, GripVertical,
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
@@ -77,6 +77,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [mediaType, setMediaType] = useState<'image' | 'video' | 'audio'>('image');
   const [mediaLoop, setMediaLoop] = useState(false);
   const [mediaAutoplay, setMediaAutoplay] = useState(true);
+  const [mediaDisplayConfig, setMediaDisplayConfig] = useState<MediaDisplayConfig>({
+    width: 100,
+    height: 100,
+    position: 'center',
+    customX: 50,
+    customY: 50,
+    objectFit: 'contain',
+    borderRadius: 0,
+    opacity: 100
+  });
 
   // Announcement Form State
   const [announcementTitle, setAnnouncementTitle] = useState('');
@@ -87,6 +97,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
   // Drag State
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  
+  // Edit State
+  const [editingSlideIndex, setEditingSlideIndex] = useState<number | null>(null);
 
   // Load songs on mount
   useEffect(() => {
@@ -117,6 +130,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setAnnouncementImageUrl('');
     setAnnouncementLink('');
     setAnnouncementEventDate('');
+    setEditingSlideIndex(null);
   };
 
   // Add slide to session
@@ -163,6 +177,59 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     onSlideSelect(targetIndex);
   }, [session.slides, setSession, onSlideSelect]);
 
+  // Edit slide - open modal with existing data
+  const startEditSlide = useCallback((index: number) => {
+    const slide = session.slides[index];
+    setEditingSlideIndex(index);
+    
+    if (slide.type === SlideType.LYRICS) {
+      const content = slide.content as SlideContentLyrics;
+      setLyricsTitle(content.title);
+      setLyricsText(content.lines?.map(l => l.text).join('\n') || '');
+      setLyricsChords(content.chords || '');
+      setActiveModal('LYRICS');
+    } else if (slide.type === SlideType.ANNOUNCEMENT) {
+      const content = slide.content as SlideContentAnnouncement;
+      setAnnouncementTitle(content.title);
+      setAnnouncementContent(content.content || '');
+      setAnnouncementImageUrl(content.imageUrl || '');
+      setAnnouncementLink(content.link || '');
+      setAnnouncementEventDate(content.eventDate || '');
+      setActiveModal('ANNOUNCEMENT');
+    } else if (slide.type === SlideType.MEDIA) {
+      const content = slide.content as SlideContentMedia;
+      setMediaUrl(content.url);
+      setMediaType(content.mediaType);
+      setMediaLoop(content.isLoop || false);
+      setMediaAutoplay(content.isAutoPlay || false);
+      // Load display config if exists
+      if (content.displayConfig) {
+        setMediaDisplayConfig(content.displayConfig);
+      } else {
+        setMediaDisplayConfig({
+          width: 100,
+          height: 100,
+          position: 'center',
+          objectFit: 'contain',
+          borderRadius: 0,
+          opacity: 100
+        });
+      }
+      setActiveModal('MEDIA');
+    }
+  }, [session.slides]);
+
+  // Update existing slide
+  const updateSlide = useCallback((index: number, newContent: any) => {
+    setSession(prev => ({
+      ...prev,
+      slides: prev.slides.map((s, i) => i === index ? { ...s, content: newContent } : s)
+    }));
+    setEditingSlideIndex(null);
+    setActiveModal('NONE');
+    resetForms();
+  }, [setSession]);
+
   // Handle Scripture Search
   const handleScriptureSearch = async () => {
     if (!scriptureSearch.trim()) return;
@@ -187,22 +254,55 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const handleSongSelect = async (song: WorshipSong) => {
     setSelectedSong(song);
     setLyricsTitle(song.title[lang] || song.title.fa);
-    setLyricsText(song.lyrics?.fa || '');
     setLyricsChords(song.chord || '');
 
     // Load timing data if available
+    let timingData = null;
     if (song.hasTiming) {
-      try {
-        const timingRes = await fetch(`/worship/timing/${song.id}_timing.json`);
-        if (timingRes.ok) {
-          const timingData = await timingRes.json();
-          // Store timing in song object temporarily
-          (song as any)._timingData = timingData;
+      // Try multiple paths for timing data
+      const timingPaths = [
+        `/worship/data/timings/song_${song.id}_timing.json`,
+        `/worship/timing/${song.id}_timing.json`,
+        `/worship/timing/song_${song.id}_timing.json`
+      ];
+      
+      for (const path of timingPaths) {
+        try {
+          const timingRes = await fetch(path);
+          if (timingRes.ok) {
+            timingData = await timingRes.json();
+            console.log('✅ Loaded timing from:', path);
+            break;
+          }
+        } catch (err) {
+          // Try next path
         }
-      } catch (err) {
-        console.log('No timing data for song', song.id);
+      }
+      
+      if (timingData) {
+        // Store timing in song object temporarily
+        (song as any)._timingData = timingData;
+      } else {
+        console.log('⚠️ No timing data found for song', song.id);
       }
     }
+    
+    // Use song.lyrics if available, otherwise extract from timing data
+    let lyricsFromTiming = '';
+    if (timingData?.lines && Array.isArray(timingData.lines)) {
+      lyricsFromTiming = timingData.lines.map((l: any) => l.line || '').join('\n');
+    }
+    
+    const finalLyrics = song.lyrics?.fa || lyricsFromTiming || '';
+    setLyricsText(finalLyrics);
+    
+    console.log('📝 Song selected:', {
+      id: song.id,
+      title: song.title.fa,
+      hasLyrics: !!song.lyrics?.fa,
+      hasTimingData: !!timingData,
+      lyricsLength: finalLyrics.length
+    });
   };
 
   // Handle Lyrics Submit - with timing data
@@ -210,6 +310,20 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     if (!lyricsTitle || !lyricsText) return;
 
     const lines = parseLyrics(lyricsText);
+    const timingData = (selectedSong as any)?._timingData;
+    
+    // Extract finglish lines from timing data if available
+    let finglishLines: string[] | undefined;
+    if (timingData?.lines) {
+      finglishLines = timingData.lines.map((line: any) => {
+        // Get finglish from word array
+        if (line.words && Array.isArray(line.words)) {
+          return line.words.map((w: any) => w.finglish || '').join(' ').trim();
+        }
+        return '';
+      });
+    }
+    
     const content: SlideContentLyrics = {
       songId: selectedSong?.id,
       title: lyricsTitle,
@@ -218,9 +332,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       audioUrl: selectedSong?.audioUrl,
       youtubeId: selectedSong?.youtubeId,
       hasTiming: selectedSong?.hasTiming,
-      timingData: (selectedSong as any)?._timingData
+      timingData: timingData,
+      finglishLines: finglishLines
     };
-    addSlide(SlideType.LYRICS, content);
+    
+    // If editing, update existing slide
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      addSlide(SlideType.LYRICS, content);
+    }
   };
 
   // Handle Media Submit
@@ -231,9 +352,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       url: mediaUrl,
       mediaType,
       isLoop: mediaLoop,
-      isAutoPlay: mediaAutoplay
+      isAutoPlay: mediaAutoplay,
+      displayConfig: mediaDisplayConfig
     };
-    addSlide(SlideType.MEDIA, content);
+    
+    // If editing, update existing slide
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      addSlide(SlideType.MEDIA, content);
+    }
   };
 
   // Handle Announcement Submit
@@ -247,7 +375,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       link: announcementLink || undefined,
       eventDate: announcementEventDate || undefined
     };
-    addSlide(SlideType.ANNOUNCEMENT, content);
+    
+    // If editing, update existing slide
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      addSlide(SlideType.ANNOUNCEMENT, content);
+    }
   };
 
   // Handle Announcement Image Upload
@@ -360,6 +494,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
         {/* Actions */}
         <div className="absolute bottom-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={(e) => { e.stopPropagation(); startEditSlide(index); }}
+            className="p-1 bg-blue-600/80 rounded hover:bg-blue-500"
+            title={isRTL ? 'ویرایش' : 'Edit'}
+          >
+            <Edit3 className="w-3 h-3 text-white" />
+          </button>
           <button
             onClick={(e) => { e.stopPropagation(); moveSlide(index, 'up'); }}
             className="p-1 bg-slate-700 rounded hover:bg-slate-600"
@@ -684,7 +825,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       {/* Media Modal */}
       {activeModal === 'MEDIA' && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               🖼️ {t.addMedia}
             </h3>
@@ -772,6 +913,145 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{t.autoplay}</span>
               </label>
             </div>
+
+            {/* === Display Settings (ابعاد و موقعیت تصویر) === */}
+            {mediaType === 'image' && (
+              <div className="mb-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700">
+                <h4 className={`text-sm font-bold text-white mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  📐 {isRTL ? 'تنظیمات نمایش' : 'Display Settings'}
+                </h4>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Width */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'عرض:' : 'Width:'} {mediaDisplayConfig.width}%
+                    </label>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      value={mediaDisplayConfig.width}
+                      onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, width: parseInt(e.target.value) }))}
+                      className="w-full accent-blue-500"
+                    />
+                  </div>
+                  
+                  {/* Height */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'ارتفاع:' : 'Height:'} {mediaDisplayConfig.height}%
+                    </label>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      value={mediaDisplayConfig.height}
+                      onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, height: parseInt(e.target.value) }))}
+                      className="w-full accent-blue-500"
+                    />
+                  </div>
+                  
+                  {/* Position */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'موقعیت:' : 'Position:'}
+                    </label>
+                    <select
+                      value={mediaDisplayConfig.position}
+                      onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, position: e.target.value as any }))}
+                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
+                    >
+                      <option value="center">{isRTL ? 'مرکز' : 'Center'}</option>
+                      <option value="top-left">{isRTL ? 'بالا چپ' : 'Top Left'}</option>
+                      <option value="top-right">{isRTL ? 'بالا راست' : 'Top Right'}</option>
+                      <option value="bottom-left">{isRTL ? 'پایین چپ' : 'Bottom Left'}</option>
+                      <option value="bottom-right">{isRTL ? 'پایین راست' : 'Bottom Right'}</option>
+                      <option value="custom">{isRTL ? 'سفارشی' : 'Custom'}</option>
+                    </select>
+                  </div>
+                  
+                  {/* Object Fit */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'برش تصویر:' : 'Fit Mode:'}
+                    </label>
+                    <select
+                      value={mediaDisplayConfig.objectFit}
+                      onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, objectFit: e.target.value as any }))}
+                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
+                    >
+                      <option value="cover">{isRTL ? 'پر کردن (Cover)' : 'Cover'}</option>
+                      <option value="contain">{isRTL ? 'کامل (Contain)' : 'Contain'}</option>
+                      <option value="fill">{isRTL ? 'کشیدن (Fill)' : 'Fill'}</option>
+                      <option value="none">{isRTL ? 'بدون تغییر' : 'None'}</option>
+                    </select>
+                  </div>
+                  
+                  {/* Border Radius */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'گوشه گرد:' : 'Border Radius:'} {mediaDisplayConfig.borderRadius}px
+                    </label>
+                    <input
+                      type="range"
+                      min="0"
+                      max="50"
+                      value={mediaDisplayConfig.borderRadius}
+                      onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, borderRadius: parseInt(e.target.value) }))}
+                      className="w-full accent-blue-500"
+                    />
+                  </div>
+                  
+                  {/* Opacity */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'شفافیت:' : 'Opacity:'} {mediaDisplayConfig.opacity}%
+                    </label>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      value={mediaDisplayConfig.opacity}
+                      onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, opacity: parseInt(e.target.value) }))}
+                      className="w-full accent-blue-500"
+                    />
+                  </div>
+                </div>
+                
+                {/* Custom Position Controls */}
+                {mediaDisplayConfig.position === 'custom' && (
+                  <div className="grid grid-cols-2 gap-4 mt-3 pt-3 border-t border-slate-700">
+                    <div>
+                      <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        X: {mediaDisplayConfig.customX}%
+                      </label>
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={mediaDisplayConfig.customX}
+                        onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, customX: parseInt(e.target.value) }))}
+                        className="w-full accent-purple-500"
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        Y: {mediaDisplayConfig.customY}%
+                      </label>
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={mediaDisplayConfig.customY}
+                        onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, customY: parseInt(e.target.value) }))}
+                        className="w-full accent-purple-500"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Actions */}
             <div className="flex gap-3 justify-end">

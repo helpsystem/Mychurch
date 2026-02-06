@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { SmartWorshipPlayer } from '../worship/SmartWorshipPlayer';
 import { HelpTooltip, HELP_TEXTS } from './HelpTooltip';
+import PrayerCreditsRoll from './PrayerCreditsRoll';
 
 interface LiveConsoleProps {
   session: BroadcastSession;
@@ -56,6 +57,13 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const [isMicOn, setIsMicOn] = useState(!!mediaStream?.getAudioTracks().length);
   const [isRequestingMedia, setIsRequestingMedia] = useState(false);
 
+  // Device Selection State
+  const [videoDevices, setVideoDevices] = useState<MediaDeviceInfo[]>([]);
+  const [audioDevices, setAudioDevices] = useState<MediaDeviceInfo[]>([]);
+  const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('');
+  const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('');
+  const [showDeviceSelector, setShowDeviceSelector] = useState(false);
+
   // Hybrid Recorder Hook
   const {
     isRecording,
@@ -88,6 +96,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const [isLive, setIsLive] = useState(false);
   const [sessionId, setSessionId] = useState<string>('');
   const [showSyncPanel, setShowSyncPanel] = useState(false);
+  const [displayWindow, setDisplayWindow] = useState<Window | null>(null);
 
   // Lower Third State
   const [newLowerThird, setNewLowerThird] = useState<Partial<LowerThirdItem>>({ title: '', subtitle: '', imageUrl: '' });
@@ -95,6 +104,9 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   // Prayer Request State
   const [newPrayerName, setNewPrayerName] = useState('');
   const [newPrayerContent, setNewPrayerContent] = useState('');
+  const [newPrayerCategory, setNewPrayerCategory] = useState<string>('other');
+  const [newPrayerPriority, setNewPrayerPriority] = useState<number>(3);
+  const [showPrayerCredits, setShowPrayerCredits] = useState(false);
 
   // Donation State
   const [newDonation, setNewDonation] = useState<Partial<DonationItem>>({ title: '', description: '', url: '', duration: 30 });
@@ -283,6 +295,92 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     setIsCameraOn(!!mediaStream?.getVideoTracks().filter(t => t.enabled).length);
     setIsMicOn(!!mediaStream?.getAudioTracks().filter(t => t.enabled).length);
   }, [mediaStream]);
+
+  // Enumerate available devices
+  const enumerateDevices = useCallback(async () => {
+    try {
+      // First request permission to see device labels
+      const tempStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).catch(() => null);
+      if (tempStream) {
+        tempStream.getTracks().forEach(track => track.stop());
+      }
+      
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videos = devices.filter(d => d.kind === 'videoinput');
+      const audios = devices.filter(d => d.kind === 'audioinput');
+      setVideoDevices(videos);
+      setAudioDevices(audios);
+      
+      // Set default selected if not set
+      if (!selectedVideoDevice && videos.length > 0) {
+        setSelectedVideoDevice(videos[0].deviceId);
+      }
+      if (!selectedAudioDevice && audios.length > 0) {
+        setSelectedAudioDevice(audios[0].deviceId);
+      }
+      
+      return { videos, audios };
+    } catch (err) {
+      console.error('Error enumerating devices:', err);
+      return { videos: [], audios: [] };
+    }
+  }, [selectedVideoDevice, selectedAudioDevice]);
+
+  // Load devices on mount and when showDeviceSelector opens
+  useEffect(() => {
+    if (showDeviceSelector) {
+      enumerateDevices();
+    }
+  }, [showDeviceSelector, enumerateDevices]);
+
+  // Auto-start camera/mic on first load if not already active
+  useEffect(() => {
+    const autoStartCamera = async () => {
+      if (!mediaStream && !isRequestingMedia) {
+        setIsRequestingMedia(true);
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+          if (setMediaStream) setMediaStream(stream);
+          setIsCameraOn(true);
+          setIsMicOn(true);
+          console.log('📷 Camera auto-started successfully');
+        } catch (err) {
+          console.log('📷 Camera auto-start failed (user may need to grant permission):', err);
+        }
+        setIsRequestingMedia(false);
+      }
+    };
+    
+    // Small delay to let component mount
+    const timer = setTimeout(autoStartCamera, 500);
+    return () => clearTimeout(timer);
+  }, []); // Run only once on mount
+
+  // Apply selected devices
+  const applySelectedDevices = async () => {
+    setIsRequestingMedia(true);
+    try {
+      // Stop existing tracks
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+      }
+      
+      const constraints: MediaStreamConstraints = {
+        video: selectedVideoDevice ? { deviceId: { exact: selectedVideoDevice } } : true,
+        audio: selectedAudioDevice ? { deviceId: { exact: selectedAudioDevice } } : true
+      };
+      
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      if (setMediaStream) setMediaStream(stream);
+      setIsCameraOn(true);
+      setIsMicOn(true);
+      setShowDeviceSelector(false);
+    } catch (err) {
+      console.error('Error applying devices:', err);
+      alert('خطا در اتصال به دوربین/میکروفون انتخاب شده');
+    }
+    setIsRequestingMedia(false);
+  };
 
   // Toggle Camera
   const toggleCamera = async () => {
@@ -477,7 +575,9 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       id: crypto.randomUUID(),
       name: newPrayerName,
       content: newPrayerContent,
-      timestamp: new Date()
+      timestamp: new Date(),
+      category: newPrayerCategory,
+      priority: newPrayerPriority
     };
     setBroadcastConfig(prev => ({
       ...prev,
@@ -485,6 +585,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     }));
     setNewPrayerName('');
     setNewPrayerContent('');
+    setNewPrayerCategory('other');
+    setNewPrayerPriority(3);
   };
 
   // Donation Handlers
@@ -530,10 +632,14 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     if (activeSlide.type === SlideType.SCRIPTURE) {
       const content = activeSlide.content as SlideContentScripture;
       const currentPage = content.pages[internalPageIndex];
+      console.log('[LiveConsole] SCRIPTURE slide currentPage:', currentPage);
+      console.log('[LiveConsole] textPrimary:', currentPage?.textPrimary);
+      console.log('[LiveConsole] textSecondary:', currentPage?.textSecondary);
       const hasEnglish = currentPage?.textSecondary && 
         (Array.isArray(currentPage.textSecondary) ? currentPage.textSecondary.length > 0 : !!currentPage.textSecondary);
       const hasFarsi = currentPage?.textPrimary && 
         (Array.isArray(currentPage.textPrimary) ? currentPage.textPrimary.length > 0 : !!currentPage.textPrimary);
+      console.log('[LiveConsole] hasEnglish:', hasEnglish, 'hasFarsi:', hasFarsi);
 
       // Prepare verses array for synchronized display
       const englishVerses = Array.isArray(currentPage.textSecondary) ? currentPage.textSecondary : [currentPage.textSecondary];
@@ -682,43 +788,136 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     if (activeSlide.type === SlideType.LYRICS) {
       const content = activeSlide.content as SlideContentLyrics;
 
-      // اگر timing data و audio موجود است از SmartWorshipPlayer استفاده کن
-      if (content.hasTiming && content.timingData && content.audioUrl) {
+      // اگر timing و audio موجود است - از SmartWorshipPlayer کامل استفاده کن
+      if (content.timingData && content.audioUrl) {
         return (
-          <SmartWorshipPlayer
-            timingData={content.timingData}
-            audioSrc={content.audioUrl}
-            onTimeUpdate={(time) => {
-              // ارسال زمان به Display برای sync کاراوکه
-              if (broadcastChannelRef.current) {
-                broadcastChannelRef.current.postMessage({
-                  type: 'audio_sync',
-                  payload: { currentTime: time }
-                });
-              }
-            }}
-            translations={{
-              finglish: content.finglishLines
-            }}
-          />
+          <div className="h-full flex flex-col">
+            <SmartWorshipPlayer
+              timingData={content.timingData}
+              audioSrc={content.audioUrl}
+              title={content.title}
+              onTimeUpdate={(time) => {
+                // ارسال زمان به Display برای sync کاراوکه
+                if (broadcastChannelRef.current) {
+                  broadcastChannelRef.current.postMessage({
+                    type: 'audio_sync',
+                    payload: { currentTime: time }
+                  });
+                }
+              }}
+              translations={{
+                finglish: content.finglishLines
+              }}
+            />
+          </div>
         );
       }
 
-      // نمایش ساده اگر timing ندارد
+      // نمایش با پلیر صوتی حرفه‌ای اگر فقط audio دارد (بدون timing کامل)
+      // اگر lines خالی است ولی timingData داریم، از آن استفاده کن
+      const displayLines = content.lines.length > 0 
+        ? content.lines 
+        : (content.timingData?.lines || []).map((l: any) => ({ 
+            text: l.line || '', 
+            isChorus: l.label?.toLowerCase().includes('chorus') || false,
+            isVerse: true 
+          }));
+      
+      // استخراج finglish از timing data اگر نیست
+      const finglishLines = content.finglishLines?.length > 0 
+        ? content.finglishLines 
+        : (content.timingData?.lines || []).map((line: any) => {
+            if (line.words && Array.isArray(line.words)) {
+              return line.words.map((w: any) => w.finglish || '').join(' ').trim();
+            }
+            return '';
+          });
+      
       return (
-        <div className="text-center p-8 space-y-4">
-          <h2 className={`text-2xl font-bold text-pink-400 mb-6 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-            {content.title}
-          </h2>
-          {content.lines.map((line, i) => (
-            <p
-              key={i}
-              className={`text-3xl font-bold text-white leading-relaxed ${line.isChorus ? 'text-pink-300 italic' : ''
-                } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-            >
-              {line.text}
-            </p>
-          ))}
+        <div className="h-full flex flex-col bg-gradient-to-br from-pink-900/30 via-purple-900/30 to-slate-900">
+          {/* Header with title */}
+          <div className="p-4 bg-gradient-to-r from-pink-600/80 to-purple-600/80">
+            <h2 className={`text-2xl font-bold text-white text-center ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              🎵 {content.title}
+            </h2>
+            {content.chords && (
+              <p className="text-pink-200 text-center text-sm mt-1">🎸 {content.chords}</p>
+            )}
+          </div>
+
+          {/* Audio Player - حرفه‌ای با کنترل‌های کامل */}
+          {content.audioUrl && (
+            <div className="px-4 py-4 bg-slate-800/90 border-b border-slate-700">
+              <div className="flex items-center gap-4">
+                <div className="flex-1">
+                  <audio
+                    id="lyrics-audio-player"
+                    src={content.audioUrl}
+                    controls
+                    className="w-full h-12 rounded-lg"
+                    style={{ 
+                      filter: 'invert(1) hue-rotate(180deg)',
+                      backgroundColor: 'transparent'
+                    }}
+                    onPlay={() => {
+                      // Broadcast play event
+                      if (broadcastChannelRef.current) {
+                        broadcastChannelRef.current.postMessage({
+                          type: 'audio_play',
+                          payload: { audioUrl: content.audioUrl }
+                        });
+                      }
+                    }}
+                    onTimeUpdate={(e) => {
+                      // Broadcast time for sync
+                      if (broadcastChannelRef.current) {
+                        broadcastChannelRef.current.postMessage({
+                          type: 'audio_sync',
+                          payload: { currentTime: (e.target as HTMLAudioElement).currentTime }
+                        });
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Lyrics Display - با Finglish */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-4" dir="rtl">
+            {displayLines.map((line: any, i: number) => (
+              <div key={i} className="text-center py-2">
+                {/* Farsi Lyrics */}
+                <p
+                  className={`text-2xl lg:text-3xl font-bold text-white leading-relaxed ${
+                    line.isChorus ? 'text-pink-300 italic bg-pink-900/20 py-2 px-4 rounded-xl inline-block' : ''
+                  } font-[Vazirmatn]`}
+                >
+                  {line.text || line}
+                </p>
+                {/* Finglish if available */}
+                {finglishLines?.[i] && finglishLines[i].trim() && (
+                  <p className="text-lg text-cyan-300 mt-2 font-mono tracking-wide" dir="ltr">
+                    {finglishLines[i]}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* YouTube link if available */}
+          {content.youtubeId && (
+            <div className="p-3 bg-red-900/30 text-center border-t border-red-600/30">
+              <a
+                href={`https://youtube.com/watch?v=${content.youtubeId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-300 hover:text-red-200 text-sm flex items-center justify-center gap-2"
+              >
+                <span>▶️</span> {isRTL ? 'تماشا در یوتیوب' : 'Watch on YouTube'}
+              </a>
+            </div>
+          )}
         </div>
       );
     }
@@ -813,6 +1012,122 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
   return (
     <div className="flex-1 flex flex-col bg-slate-950 h-full overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+      {/* Device Selector Modal */}
+      {showDeviceSelector && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-900 rounded-2xl border border-slate-700 w-full max-w-md shadow-2xl">
+            <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+              <h3 className={`text-lg font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? '📷 انتخاب دوربین و میکروفون' : '📷 Select Camera & Microphone'}
+              </h3>
+              <button onClick={() => setShowDeviceSelector(false)} className="text-slate-400 hover:text-white">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-4 space-y-4">
+              {/* Camera Selection */}
+              <div>
+                <label className={`block text-sm text-slate-300 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  🎥 {isRTL ? 'دوربین:' : 'Camera:'}
+                </label>
+                <select
+                  value={selectedVideoDevice}
+                  onChange={(e) => setSelectedVideoDevice(e.target.value)}
+                  className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm"
+                >
+                  {videoDevices.length === 0 ? (
+                    <option value="">{isRTL ? 'دوربینی یافت نشد' : 'No camera found'}</option>
+                  ) : (
+                    videoDevices.map((device, i) => (
+                      <option key={device.deviceId} value={device.deviceId}>
+                        {device.label || `${isRTL ? 'دوربین' : 'Camera'} ${i + 1}`}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </div>
+
+              {/* Microphone Selection */}
+              <div>
+                <label className={`block text-sm text-slate-300 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  🎤 {isRTL ? 'میکروفون:' : 'Microphone:'}
+                </label>
+                <select
+                  value={selectedAudioDevice}
+                  onChange={(e) => setSelectedAudioDevice(e.target.value)}
+                  className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm"
+                >
+                  {audioDevices.length === 0 ? (
+                    <option value="">{isRTL ? 'میکروفونی یافت نشد' : 'No microphone found'}</option>
+                  ) : (
+                    audioDevices.map((device, i) => (
+                      <option key={device.deviceId} value={device.deviceId}>
+                        {device.label || `${isRTL ? 'میکروفون' : 'Microphone'} ${i + 1}`}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </div>
+
+              {/* Refresh Devices */}
+              <button
+                onClick={enumerateDevices}
+                className="w-full py-2 text-sm text-slate-400 hover:text-white transition"
+              >
+                🔄 {isRTL ? 'بروزرسانی لیست دستگاه‌ها' : 'Refresh Device List'}
+              </button>
+            </div>
+
+            <div className="p-4 border-t border-slate-700 flex gap-2">
+              <button
+                onClick={() => setShowDeviceSelector(false)}
+                className="flex-1 py-2 bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 transition"
+              >
+                {isRTL ? 'انصراف' : 'Cancel'}
+              </button>
+              <button
+                onClick={applySelectedDevices}
+                disabled={isRequestingMedia}
+                className="flex-1 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition disabled:opacity-50"
+              >
+                {isRequestingMedia ? '...' : (isRTL ? '✓ اتصال' : '✓ Connect')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Camera/Mic Status Indicator - Fixed Top */}
+      <div className="h-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700 flex items-center justify-center gap-6 text-xs">
+        <button
+          onClick={() => setShowDeviceSelector(true)}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all cursor-pointer hover:scale-105 ${
+            isCameraOn ? 'bg-green-600/30 text-green-400 border border-green-500/50' : 'bg-red-600/20 text-red-400 border border-red-500/30'
+          }`}
+          title={isRTL ? 'کلیک برای انتخاب دوربین' : 'Click to select camera'}
+        >
+          {isCameraOn ? <Camera className="w-3.5 h-3.5" /> : <CameraOff className="w-3.5 h-3.5" />}
+          <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isCameraOn ? (isRTL ? 'دوربین فعال' : 'Camera ON') : (isRTL ? 'دوربین غیرفعال' : 'Camera OFF')}</span>
+        </button>
+        <button
+          onClick={() => setShowDeviceSelector(true)}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all cursor-pointer hover:scale-105 ${
+            isMicOn ? 'bg-green-600/30 text-green-400 border border-green-500/50' : 'bg-red-600/20 text-red-400 border border-red-500/30'
+          }`}
+          title={isRTL ? 'کلیک برای انتخاب میکروفون' : 'Click to select microphone'}
+        >
+          {isMicOn ? <Mic className="w-3.5 h-3.5" /> : <MicOff className="w-3.5 h-3.5" />}
+          <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isMicOn ? (isRTL ? 'میکروفون فعال' : 'Mic ON') : (isRTL ? 'میکروفون غیرفعال' : 'Mic OFF')}</span>
+        </button>
+        {isRecording && (
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/40 text-red-300 border border-red-500/50 animate-pulse">
+            <Circle className="w-3 h-3 fill-red-500" />
+            <span>REC {formatTime(recordingTime)}</span>
+          </div>
+        )}
+      </div>
+
       {/* Top Bar */}
       <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
         <div className="flex items-center gap-3">
@@ -838,6 +1153,36 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
               <span className="font-bold">{lang === 'fa' ? 'FA' : 'EN'}</span>
             </button>
           )}
+          
+          {/* Open Display Window Button */}
+          <button
+            onClick={() => {
+              const existingWindow = displayWindow && !displayWindow.closed ? displayWindow : null;
+              if (existingWindow) {
+                existingWindow.focus();
+              } else {
+                const win = window.open(
+                  `/#/broadcast/view?session=${syncState.sessionId || session.id || 'default'}`,
+                  'BroadcastDisplay',
+                  'width=1280,height=720,menubar=no,toolbar=no,location=no,status=no'
+                );
+                setDisplayWindow(win);
+              }
+            }}
+            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${
+              displayWindow && !displayWindow.closed
+                ? 'bg-green-600 text-white animate-pulse'
+                : 'bg-purple-600 text-white hover:bg-purple-500'
+            }`}
+            title={isRTL ? 'باز کردن صفحه نمایش (پروژکتور)' : 'Open Display Window (Projector)'}
+          >
+            <Monitor className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
+              {displayWindow && !displayWindow.closed 
+                ? (isRTL ? 'نمایشگر فعال' : 'Display Active') 
+                : (isRTL ? 'نمایشگر' : 'Display')}
+            </span>
+          </button>
         </div>
 
         <div className="flex items-center gap-3">
@@ -1136,16 +1481,37 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
             {/* Lower Third */}
             {broadcastConfig.showLowerThird && activeLowerThird && (
-              <div className="absolute bottom-20 left-4 right-4 z-20">
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-4 backdrop-blur-sm border border-white/10 max-w-lg">
-                  <p className={`text-white font-bold text-lg ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    {activeLowerThird.title}
-                  </p>
-                  {activeLowerThird.subtitle && (
-                    <p className="text-white/70 text-sm">
-                      {activeLowerThird.subtitle}
-                    </p>
-                  )}
+              <div className="absolute bottom-20 left-4 right-4 z-20" dir={isRTL ? 'rtl' : 'ltr'}>
+                <div className="bg-gradient-to-r from-indigo-600/95 via-purple-600/95 to-indigo-600/95 backdrop-blur-lg rounded-xl p-4 border border-white/20 max-w-lg shadow-2xl">
+                  <div className="flex items-center gap-4">
+                    {/* Leader Image */}
+                    {activeLowerThird.imageUrl && (
+                      <div className="relative flex-shrink-0">
+                        <div className="absolute inset-0 bg-white/30 rounded-full blur-lg"></div>
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-xl">
+                          <img 
+                            src={activeLowerThird.imageUrl} 
+                            alt={activeLowerThird.title} 
+                            className="absolute w-full h-full object-cover"
+                            style={{
+                              transform: `scale(${activeLowerThird.imagePosition?.scale || 1}) translate(${(activeLowerThird.imagePosition?.x || 50) - 50}%, ${(activeLowerThird.imagePosition?.y || 50) - 50}%)`,
+                              transformOrigin: 'center'
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <div className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      <p className={`text-white font-bold text-lg ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {activeLowerThird.title}
+                      </p>
+                      {activeLowerThird.subtitle && (
+                        <p className={`text-white/70 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {activeLowerThird.subtitle}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -1174,10 +1540,54 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                   <p className={`text-white/80 mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                     {activeDonation.description}
                   </p>
-                  {/* QR Code would go here */}
-                  <div className="w-40 h-40 bg-white rounded-xl mx-auto flex items-center justify-center">
-                    <span className="text-slate-500 text-sm">QR Code</span>
+                  {/* QR Code Display */}
+                  <div className="w-48 h-48 bg-white rounded-xl mx-auto flex items-center justify-center overflow-hidden">
+                    {activeDonation.url && activeDonation.url.startsWith('data:image') ? (
+                      <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-2" />
+                    ) : activeDonation.url ? (
+                      <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-2" />
+                    ) : (
+                      <span className="text-slate-500 text-sm">{isRTL ? 'QR کد ندارد' : 'No QR Code'}</span>
+                    )}
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Amen Badge Preview */}
+            {broadcastConfig.amenBadge?.show && (
+              <div 
+                className="absolute z-40"
+                style={{
+                  left: `${broadcastConfig.amenBadge.position?.x || 50}%`,
+                  top: `${broadcastConfig.amenBadge.position?.y || 90}%`,
+                  transform: 'translate(-50%, -50%)'
+                }}
+              >
+                <div 
+                  className={`
+                    ${broadcastConfig.amenBadge.size === 'small' ? 'text-lg' : broadcastConfig.amenBadge.size === 'medium' ? 'text-2xl' : 'text-3xl'}
+                    px-3 py-1 rounded-lg
+                    bg-gradient-to-br from-amber-600/30 via-yellow-500/20 to-amber-700/30
+                    backdrop-blur-sm border border-yellow-400/30
+                    select-none cursor-move
+                  `}
+                  style={{
+                    animation: `heartbeat ${broadcastConfig.amenBadge.animationSpeed === 'slow' ? '2s' : broadcastConfig.amenBadge.animationSpeed === 'normal' ? '1.2s' : '0.7s'} ease-in-out infinite`
+                  }}
+                  title={isRTL ? 'از slider های تنظیمات برای جابجایی استفاده کنید' : 'Use sliders in settings to reposition'}
+                >
+                  {broadcastConfig.amenBadge.style === 'amen-only' ? (
+                    <span className="font-bold font-[Vazirmatn] text-white" style={{ textShadow: '0 0 10px rgba(255, 215, 0, 0.8)' }}>آمین</span>
+                  ) : broadcastConfig.amenBadge.style === 'cross-only' ? (
+                    <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
+                  ) : (
+                    <div className="flex items-center gap-1">
+                      <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
+                      <span className="font-bold font-[Vazirmatn] text-white" style={{ textShadow: '0 0 10px rgba(255, 215, 0, 0.8)' }}>آمین</span>
+                      <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -1617,6 +2027,37 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       rows={2}
                       className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                     />
+                    
+                    {/* Category & Priority */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <select
+                        value={newPrayerCategory}
+                        onChange={(e) => setNewPrayerCategory(e.target.value)}
+                        className={`bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      >
+                        <option value="healing">{isRTL ? '💚 شفا' : '💚 Healing'}</option>
+                        <option value="family">{isRTL ? '👨‍👩‍👧‍👦 خانواده' : '👨‍👩‍👧‍👦 Family'}</option>
+                        <option value="work">{isRTL ? '💼 کار و شغل' : '💼 Work'}</option>
+                        <option value="salvation">{isRTL ? '✝️ نجات' : '✝️ Salvation'}</option>
+                        <option value="guidance">{isRTL ? '🧭 هدایت' : '🧭 Guidance'}</option>
+                        <option value="peace">{isRTL ? '🕊️ آرامش' : '🕊️ Peace'}</option>
+                        <option value="provision">{isRTL ? '🙌 تأمین نیازها' : '🙌 Provision'}</option>
+                        <option value="protection">{isRTL ? '🛡️ محافظت' : '🛡️ Protection'}</option>
+                        <option value="thanksgiving">{isRTL ? '🙏 شکرگزاری' : '🙏 Thanksgiving'}</option>
+                        <option value="other">{isRTL ? '💭 سایر' : '💭 Other'}</option>
+                      </select>
+                      <select
+                        value={newPrayerPriority}
+                        onChange={(e) => setNewPrayerPriority(parseInt(e.target.value))}
+                        className={`bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      >
+                        <option value={1}>{isRTL ? '⭐ فوری' : '⭐ Urgent'}</option>
+                        <option value={2}>{isRTL ? '🔴 مهم' : '🔴 Important'}</option>
+                        <option value={3}>{isRTL ? '🟡 عادی' : '🟡 Normal'}</option>
+                        <option value={4}>{isRTL ? '🟢 کم اولویت' : '🟢 Low'}</option>
+                      </select>
+                    </div>
+                    
                     <button
                       onClick={handleAddPrayerRequest}
                       className={`w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
@@ -1626,24 +2067,48 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                     </button>
                   </div>
 
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={broadcastConfig.showPrayerTicker}
-                      onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showPrayerTicker: e.target.checked }))}
-                      className="accent-purple-500"
-                    />
-                    <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {t.showPrayerWall}
-                    </span>
-                  </label>
+                  {/* Display Mode Controls */}
+                  <div className="space-y-2 mb-3">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={broadcastConfig.showPrayerTicker}
+                        onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showPrayerTicker: e.target.checked }))}
+                        className="accent-purple-500"
+                      />
+                      <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        📜 {isRTL ? 'نمایش زیرنویس' : 'Show Ticker'}
+                      </span>
+                    </label>
+                    
+                    {/* Credits Roll Button */}
+                    <button
+                      onClick={() => setShowPrayerCredits(true)}
+                      disabled={broadcastConfig.prayerRequests.length === 0}
+                      className={`w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:opacity-90 transition text-sm disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    >
+                      🎬 {isRTL ? 'تیتراژ پایانی (Credits Roll)' : 'Credits Roll'}
+                    </button>
+                  </div>
 
                   {/* Prayer List */}
-                  <div className="mt-3 space-y-2 max-h-32 overflow-y-auto">
+                  <div className="mt-3 space-y-2 max-h-40 overflow-y-auto">
                     {broadcastConfig.prayerRequests.map((req) => (
                       <div key={req.id} className="flex items-start gap-2 bg-slate-800 p-2 rounded-lg">
                         <div className="flex-1">
-                          <p className={`text-white text-xs font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{req.name}</p>
+                          <div className="flex items-center gap-2">
+                            <p className={`text-white text-xs font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                              {req.priority === 1 ? '⭐' : req.priority === 2 ? '🔴' : ''} {req.name}
+                            </p>
+                            {req.category && (
+                              <span className="text-xs text-slate-500">
+                                {req.category === 'healing' ? '💚' : 
+                                 req.category === 'family' ? '👨‍👩‍👧‍👦' :
+                                 req.category === 'salvation' ? '✝️' :
+                                 req.category === 'peace' ? '🕊️' : '💭'}
+                              </span>
+                            )}
+                          </div>
                           <p className={`text-slate-400 text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{req.content}</p>
                         </div>
                         <button
@@ -1685,13 +2150,57 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       placeholder={t.donationTitle}
                       className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                     />
-                    <input
-                      type="text"
-                      value={newDonation.url}
-                      onChange={(e) => setNewDonation(prev => ({ ...prev, url: e.target.value }))}
-                      placeholder={t.donationUrl}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm"
-                    />
+                    
+                    {/* QR Code Image Upload */}
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={newDonation.url || ''}
+                        onChange={(e) => setNewDonation(prev => ({ ...prev, url: e.target.value }))}
+                        placeholder={isRTL ? 'لینک یا آدرس QR Code' : 'QR Code URL or link'}
+                        className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm"
+                      />
+                      <label className="flex-shrink-0 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = (evt) => {
+                                setNewDonation(prev => ({ ...prev, url: evt.target?.result as string }));
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                        <span className="flex items-center gap-1 px-3 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-white text-sm transition">
+                          <ImageIcon className="w-4 h-4" />
+                          <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                            {isRTL ? 'آپلود QR' : 'Upload QR'}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                    
+                    {/* QR Preview */}
+                    {newDonation.url && newDonation.url.startsWith('data:image') && (
+                      <div className="flex items-center gap-3 p-2 bg-slate-800/50 rounded-lg border border-green-600/30">
+                        <img src={newDonation.url} alt="QR Preview" className="w-16 h-16 object-contain bg-white rounded" />
+                        <span className={`text-xs text-green-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {isRTL ? '✓ تصویر QR آماده است' : '✓ QR image ready'}
+                        </span>
+                        <button
+                          onClick={() => setNewDonation(prev => ({ ...prev, url: '' }))}
+                          className="ml-auto text-red-400 hover:text-red-300 p-1"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
+                    
                     <button
                       onClick={handleAddDonation}
                       className={`w-full py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
@@ -1727,6 +2236,173 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 </div>
               )}
             </div>
+
+            {/* Amen Badge Section - آمین + صلیب */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('amen')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  ✝️ {isRTL ? 'آمین + صلیب' : 'Amen Badge'}
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'amen' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'amen' && (
+                <div className="p-4 pt-0 space-y-4">
+                  {/* Toggle Show */}
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={broadcastConfig.amenBadge?.show || false}
+                      onChange={(e) => setBroadcastConfig(prev => ({
+                        ...prev,
+                        amenBadge: {
+                          ...prev.amenBadge || { position: { x: 50, y: 90 }, style: 'amen-cross', size: 'medium', animationSpeed: 'normal' },
+                          show: e.target.checked
+                        }
+                      }))}
+                      className="accent-yellow-500"
+                    />
+                    <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'نمایش آمین' : 'Show Amen Badge'}
+                    </span>
+                  </label>
+
+                  {/* Style Selection */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'استایل:' : 'Style:'}
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { key: 'amen-cross', label: '✝️ آمین ✝️' },
+                        { key: 'amen-only', label: 'آمین' },
+                        { key: 'cross-only', label: '✝️' }
+                      ].map((style) => (
+                        <button
+                          key={style.key}
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: { ...prev.amenBadge!, style: style.key as any }
+                          }))}
+                          className={`py-2 px-3 rounded-lg text-sm transition ${
+                            broadcastConfig.amenBadge?.style === style.key
+                              ? 'bg-yellow-600 text-white'
+                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                          } font-[Vazirmatn]`}
+                        >
+                          {style.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Size Selection */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'اندازه:' : 'Size:'}
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { key: 'small', label: isRTL ? 'کوچک' : 'Small' },
+                        { key: 'medium', label: isRTL ? 'متوسط' : 'Medium' },
+                        { key: 'large', label: isRTL ? 'بزرگ' : 'Large' }
+                      ].map((size) => (
+                        <button
+                          key={size.key}
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: { ...prev.amenBadge!, size: size.key as any }
+                          }))}
+                          className={`py-2 px-3 rounded-lg text-sm transition ${
+                            broadcastConfig.amenBadge?.size === size.key
+                              ? 'bg-yellow-600 text-white'
+                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                          } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                        >
+                          {size.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Animation Speed */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'سرعت ضربان:' : 'Heartbeat Speed:'}
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { key: 'slow', label: isRTL ? 'آرام' : 'Slow' },
+                        { key: 'normal', label: isRTL ? 'عادی' : 'Normal' },
+                        { key: 'fast', label: isRTL ? 'تند' : 'Fast' }
+                      ].map((speed) => (
+                        <button
+                          key={speed.key}
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: { ...prev.amenBadge!, animationSpeed: speed.key as any }
+                          }))}
+                          className={`py-2 px-3 rounded-lg text-sm transition ${
+                            broadcastConfig.amenBadge?.animationSpeed === speed.key
+                              ? 'bg-yellow-600 text-white'
+                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                          } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                        >
+                          {speed.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Position Control */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'موقعیت (در پیش‌نمایش drag کنید):' : 'Position (drag in preview):'}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-xs text-slate-500">X:</span>
+                        <input
+                          type="range"
+                          min="5"
+                          max="95"
+                          value={broadcastConfig.amenBadge?.position?.x || 50}
+                          onChange={(e) => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: {
+                              ...prev.amenBadge!,
+                              position: { ...prev.amenBadge!.position, x: parseInt(e.target.value) }
+                            }
+                          }))}
+                          className="w-full accent-yellow-500"
+                        />
+                      </div>
+                      <div>
+                        <span className="text-xs text-slate-500">Y:</span>
+                        <input
+                          type="range"
+                          min="5"
+                          max="95"
+                          value={broadcastConfig.amenBadge?.position?.y || 90}
+                          onChange={(e) => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: {
+                              ...prev.amenBadge!,
+                              position: { ...prev.amenBadge!.position, y: parseInt(e.target.value) }
+                            }
+                          }))}
+                          className="w-full accent-yellow-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -1740,7 +2416,45 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
         .animate-marquee {
           animation: marquee 20s linear infinite;
         }
+        @keyframes heartbeat {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          25% {
+            transform: scale(1.08);
+            opacity: 0.95;
+          }
+          50% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          75% {
+            transform: scale(1.05);
+            opacity: 0.97;
+          }
+        }
       `}</style>
+
+      {/* Prayer Credits Roll Modal */}
+      {showPrayerCredits && (
+        <div className="fixed inset-0 z-[100]">
+          <PrayerCreditsRoll
+            prayers={broadcastConfig.prayerRequests}
+            config={broadcastConfig.prayerCreditsConfig || { enabled: true, speed: 5, showCategory: true, sortBy: 'priority' }}
+            onConfigChange={(newConfig) => setBroadcastConfig(prev => ({ ...prev, prayerCreditsConfig: newConfig }))}
+            lang={lang}
+            isEditing={true}
+          />
+          <button
+            onClick={() => setShowPrayerCredits(false)}
+            className="fixed top-4 right-4 z-[101] p-3 bg-red-600 hover:bg-red-500 text-white rounded-full shadow-lg transition"
+            title={isRTL ? 'بستن' : 'Close'}
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

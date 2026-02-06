@@ -139,13 +139,15 @@ const AdminVersionTrashPage = lazy(() => import('./pages/admin/AdminVersionTrash
 const AdminBroadcastPage = lazy(() => import('./pages/AdminBroadcastPage')); // Broadcast Console Pro
 const BroadcastViewerPage = lazy(() => import('./pages/BroadcastViewerPage')); // Broadcast Viewer for Projector
 
-// Wrapper to hide BibleAIChatWidget on AI Helper page
+// Wrapper to hide BibleAIChatWidget on AI Helper page and Broadcast Viewer
 const BibleAIChatWidgetWrapper: React.FC = () => {
-  // Check if we're on the AI helper page
+  // Check if we're on pages where AI widget should be hidden
   const isAiHelperPage = window.location.hash.includes('/ai-helper');
+  const isBroadcastViewer = window.location.hash.includes('/broadcast/view');
+  const isBroadcastAdmin = window.location.hash.includes('/admin/broadcast');
 
-  if (isAiHelperPage) {
-    return null; // Don't show the floating button on AI Helper page
+  if (isAiHelperPage || isBroadcastViewer || isBroadcastAdmin) {
+    return null; // Don't show the floating button on these pages
   }
 
   return (

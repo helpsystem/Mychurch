@@ -11,6 +11,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useWebSocketSync } from '../components/broadcast';
 import { SmartWorshipPlayer } from '../components/worship/SmartWorshipPlayer';
+import AmenBadge from '../components/broadcast/AmenBadge';
 import type { Slide, BroadcastOverlayConfig, SlideType } from '../components/broadcast/types';
 
 interface ViewerState {
@@ -29,6 +30,67 @@ const BroadcastViewerPage: React.FC = () => {
   const broadcastChannelRef = useRef<BroadcastChannel | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
+  // ❌ غیرفعال کردن تمام تعاملات کاربر در صفحه نمایشگر
+  useEffect(() => {
+    // Disable keyboard events
+    const handleKeyDown = (e: KeyboardEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+    
+    // Disable scroll
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+    
+    // Disable touch scroll
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+    
+    // Disable context menu (right click)
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+    
+    // Disable mouse clicks except for debug purposes
+    const handleMouseDown = (e: MouseEvent) => {
+      // Allow clicks for video controls if needed, but generally block
+      if (!(e.target as HTMLElement)?.closest('video')) {
+        e.preventDefault();
+      }
+    };
+    
+    // Add event listeners
+    document.addEventListener('keydown', handleKeyDown, { passive: false });
+    document.addEventListener('wheel', handleWheel, { passive: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('mousedown', handleMouseDown);
+    
+    // Add CSS to disable text selection and interactions
+    document.body.style.overflow = 'hidden';
+    document.body.style.userSelect = 'none';
+    document.body.style.touchAction = 'none';
+    
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('wheel', handleWheel);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.body.style.overflow = '';
+      document.body.style.userSelect = '';
+      document.body.style.touchAction = '';
+    };
+  }, []);
+
   const [state, setState] = useState<ViewerState>({
     currentSlide: null,
     slideIndex: 0,
@@ -342,7 +404,33 @@ const BroadcastViewerPage: React.FC = () => {
         );
       }
 
-      // نمایش ساده اگر timing ندارد
+      // نمایش ساده اگر timing ندارد - بدون پلیر صوتی
+      // استخراج متن از منابع مختلف
+      let displayLines: Array<{text: string; isChorus?: boolean}> = [];
+      
+      // اول از lines استفاده کن
+      if (lyricsContent.lines?.length > 0) {
+        displayLines = lyricsContent.lines;
+      }
+      // اگر نه، از timingData استفاده کن
+      else if (lyricsContent.timingData?.lines && Array.isArray(lyricsContent.timingData.lines)) {
+        displayLines = lyricsContent.timingData.lines.map((l: any) => ({ 
+          text: l.line || '', 
+          isChorus: l.label?.toLowerCase().includes('chorus') || false
+        }));
+      }
+      
+      // استخراج finglish از timingData اگر موجود نیست
+      let finglishLines = lyricsContent.finglishLines;
+      if (!finglishLines && lyricsContent.timingData?.lines) {
+        finglishLines = lyricsContent.timingData.lines.map((line: any) => {
+          if (line.words && Array.isArray(line.words)) {
+            return line.words.map((w: any) => w.finglish || '').join(' ').trim();
+          }
+          return '';
+        });
+      }
+      
       return (
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-950 via-fuchsia-900 to-pink-950">
@@ -352,28 +440,41 @@ const BroadcastViewerPage: React.FC = () => {
           <div className="absolute top-20 left-20 text-white/5 text-8xl animate-bounce pointer-events-none" style={{ animationDuration: '3s' }}>🎵</div>
           <div className="absolute bottom-20 right-20 text-white/5 text-8xl animate-bounce pointer-events-none" style={{ animationDuration: '4s', animationDelay: '0.5s' }}>🎶</div>
           
-          <div className="relative flex items-center justify-center h-full p-8 overflow-y-auto">
-            <div className="text-center max-w-5xl">
-              <h2 className="text-5xl font-bold text-white mb-12 drop-shadow-2xl font-[Vazirmatn]"
+          <div className="relative flex flex-col h-full">
+            {/* Title Header */}
+            <div className="flex-shrink-0 p-6 bg-gradient-to-r from-pink-600/80 via-purple-600/80 to-pink-600/80">
+              <h2 className="text-5xl font-bold text-white text-center drop-shadow-2xl font-[Vazirmatn]"
                   style={{ textShadow: '0 0 40px rgba(236, 72, 153, 0.6)' }}>
-                {lyricsContent.title}
+                🎵 {lyricsContent.title}
               </h2>
-              
-              <div className="space-y-4">
-                {lyricsContent.lines.map((line, idx) => (
-                  <p 
-                    key={idx} 
-                    className={`text-4xl leading-[1.6] font-bold transition-all duration-300 font-[Vazirmatn] ${
-                      line.isChorus ? 'text-yellow-200 scale-105' : 'text-white'
-                    }`}
-                    style={{ 
-                      textShadow: line.isChorus 
-                        ? '0 0 30px rgba(253, 224, 71, 0.6), 0 0 60px rgba(253, 224, 71, 0.4)' 
-                        : '0 4px 12px rgba(0, 0, 0, 0.6)'
-                    }}
-                  >
-                    {line.text}
-                  </p>
+            </div>
+            
+            {/* Lyrics Content - Scrollable */}
+            <div className="flex-1 overflow-y-auto p-8">
+              <div className="text-center max-w-5xl mx-auto space-y-6">
+                {displayLines.map((line: any, idx: number) => (
+                  <div key={idx} className="text-center">
+                    {/* Persian/Farsi Text */}
+                    <p 
+                      className={`text-4xl leading-[1.8] font-bold transition-all duration-300 font-[Vazirmatn] ${
+                        line.isChorus ? 'text-yellow-200 scale-105 border-l-4 border-r-4 border-yellow-400/50 px-6 py-2' : 'text-white'
+                      }`}
+                      style={{ 
+                        textShadow: line.isChorus 
+                          ? '0 0 30px rgba(253, 224, 71, 0.6), 0 0 60px rgba(253, 224, 71, 0.4)' 
+                          : '0 4px 12px rgba(0, 0, 0, 0.6)'
+                      }}
+                    >
+                      {line.text}
+                    </p>
+                    {/* Finglish Text */}
+                    {finglishLines?.[idx] && (
+                      <p className="text-2xl text-cyan-300 mt-2 font-mono tracking-wide" dir="ltr"
+                         style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)' }}>
+                        {finglishLines[idx]}
+                      </p>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
@@ -384,19 +485,67 @@ const BroadcastViewerPage: React.FC = () => {
 
     if (slide.type === 'MEDIA') {
       const mediaContent = slide.content as import('../components/broadcast/types').SlideContentMedia;
+      const displayConfig = mediaContent.displayConfig || {
+        width: 100,
+        height: 100,
+        position: 'center',
+        objectFit: 'contain',
+        borderRadius: 0,
+        opacity: 100
+      };
+      
+      // Calculate position styles
+      const getPositionStyles = () => {
+        const base: React.CSSProperties = {
+          width: `${displayConfig.width}%`,
+          height: `${displayConfig.height}%`,
+          opacity: displayConfig.opacity / 100,
+          borderRadius: `${displayConfig.borderRadius}px`,
+          objectFit: displayConfig.objectFit as any,
+        };
+        
+        switch (displayConfig.position) {
+          case 'top-left':
+            return { ...base, position: 'absolute' as const, top: '2%', left: '2%' };
+          case 'top-center':
+            return { ...base, position: 'absolute' as const, top: '2%', left: '50%', transform: 'translateX(-50%)' };
+          case 'top-right':
+            return { ...base, position: 'absolute' as const, top: '2%', right: '2%' };
+          case 'center-left':
+            return { ...base, position: 'absolute' as const, top: '50%', left: '2%', transform: 'translateY(-50%)' };
+          case 'center':
+            return { ...base, position: 'absolute' as const, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+          case 'center-right':
+            return { ...base, position: 'absolute' as const, top: '50%', right: '2%', transform: 'translateY(-50%)' };
+          case 'bottom-left':
+            return { ...base, position: 'absolute' as const, bottom: '2%', left: '2%' };
+          case 'bottom-center':
+            return { ...base, position: 'absolute' as const, bottom: '2%', left: '50%', transform: 'translateX(-50%)' };
+          case 'bottom-right':
+            return { ...base, position: 'absolute' as const, bottom: '2%', right: '2%' };
+          case 'custom':
+            return { 
+              ...base, 
+              position: 'absolute' as const, 
+              left: `${displayConfig.customX || 50}%`, 
+              top: `${displayConfig.customY || 50}%`, 
+              transform: 'translate(-50%, -50%)' 
+            };
+          default:
+            return { ...base, position: 'absolute' as const, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+        }
+      };
       
       return (
         <div className="relative h-full bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-          <div className="flex items-center justify-center h-full p-8">
+          <div className="relative h-full">
             {mediaContent.mediaType === 'image' && (
-              <div className="relative animate-fadeIn">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl"></div>
-                <img 
-                  src={mediaContent.url} 
-                  alt={mediaContent.title || 'Media'} 
-                  className="relative max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10"
-                />
-              </div>
+              <img 
+                src={mediaContent.url} 
+                alt={mediaContent.title || 'Media'} 
+                style={getPositionStyles()}
+                className="shadow-2xl border-2 border-white/10 animate-fadeIn"
+              />
             )}
             {mediaContent.mediaType === 'video' && (
               <video 
@@ -404,7 +553,8 @@ const BroadcastViewerPage: React.FC = () => {
                 controls 
                 autoPlay={mediaContent.isAutoPlay}
                 loop={mediaContent.isLoop}
-                className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl border-2 border-white/20"
+                style={getPositionStyles()}
+                className="shadow-2xl border-2 border-white/20"
               />
             )}
           </div>
@@ -567,8 +717,42 @@ const BroadcastViewerPage: React.FC = () => {
     );
   };
 
+  // Render Donation QR Code Overlay
+  const renderDonation = () => {
+    if (!state.config?.activeDonationId || !state.config.donations?.length) {
+      return null;
+    }
+    
+    const activeDonation = state.config.donations.find(d => d.id === state.config?.activeDonationId);
+    if (!activeDonation) return null;
+    
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-50">
+        <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-3xl p-12 text-center max-w-lg animate-fadeIn">
+          <div className="text-6xl mb-6">🎁</div>
+          <h3 className="text-4xl font-bold text-white mb-4 font-[Vazirmatn]">
+            {activeDonation.title}
+          </h3>
+          {activeDonation.description && (
+            <p className="text-xl text-white/80 mb-6 font-[Vazirmatn]">
+              {activeDonation.description}
+            </p>
+          )}
+          {/* QR Code Display */}
+          <div className="w-64 h-64 bg-white rounded-2xl mx-auto flex items-center justify-center overflow-hidden shadow-2xl">
+            {activeDonation.url ? (
+              <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-3" />
+            ) : (
+              <span className="text-slate-500 text-lg">QR Code</span>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="w-screen h-screen bg-black overflow-hidden relative">
+    <div className="w-screen h-screen bg-black overflow-hidden relative select-none" style={{ userSelect: 'none', cursor: 'none' }}>
       {/* Only show disconnected warning briefly, then hide */}
       {!state.connected && !state.currentSlide && (
         <div className="absolute top-6 left-6 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-xl z-50 shadow-2xl animate-pulse border-2 border-red-400">
@@ -586,6 +770,15 @@ const BroadcastViewerPage: React.FC = () => {
       {renderLogo()}
       {renderLowerThird()}
       {renderPrayerTicker()}
+      {renderDonation()}
+
+      {/* Amen Badge Overlay */}
+      {state.config?.amenBadge && (
+        <AmenBadge 
+          config={state.config.amenBadge}
+          isEditable={false}
+        />
+      )}
 
       {/* Removed slide number indicator - not needed in output */}
       
