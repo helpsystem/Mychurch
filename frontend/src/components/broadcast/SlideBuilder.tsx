@@ -255,36 +255,45 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setSelectedSong(song);
     setLyricsTitle(song.title[lang] || song.title.fa);
     setLyricsChords(song.chord || '');
+    
+    console.log('🎵 [SlideBuilder] Song selected:', {
+      id: song.id,
+      title: song.title.fa,
+      hasTiming: song.hasTiming,
+      audioUrl: song.audioUrl
+    });
 
     // Load timing data if available
     let timingData = null;
-    if (song.hasTiming) {
-      // Try multiple paths for timing data
-      const timingPaths = [
-        `/worship/data/timings/song_${song.id}_timing.json`,
-        `/worship/timing/${song.id}_timing.json`,
-        `/worship/timing/song_${song.id}_timing.json`
-      ];
-      
-      for (const path of timingPaths) {
-        try {
-          const timingRes = await fetch(path);
-          if (timingRes.ok) {
-            timingData = await timingRes.json();
-            console.log('✅ Loaded timing from:', path);
-            break;
-          }
-        } catch (err) {
-          // Try next path
+    // Always try to load timing data regardless of hasTiming flag
+    const timingPaths = [
+      `/worship/data/timings/song_${song.id}_timing.json`,
+      `/worship/timing/${song.id}_timing.json`,
+      `/worship/timing/song_${song.id}_timing.json`
+    ];
+    
+    for (const path of timingPaths) {
+      try {
+        const timingRes = await fetch(path);
+        if (timingRes.ok) {
+          timingData = await timingRes.json();
+          console.log('✅ Loaded timing from:', path);
+          break;
         }
+      } catch (err) {
+        // Try next path
       }
-      
-      if (timingData) {
-        // Store timing in song object temporarily
-        (song as any)._timingData = timingData;
-      } else {
-        console.log('⚠️ No timing data found for song', song.id);
-      }
+    }
+    
+    if (timingData) {
+      // Store timing in song object temporarily
+      (song as any)._timingData = timingData;
+      console.log('📊 [SlideBuilder] Timing data loaded:', {
+        linesCount: timingData.lines?.length,
+        hasWords: timingData.lines?.[0]?.words?.length > 0
+      });
+    } else {
+      console.log('⚠️ No timing data found for song', song.id);
     }
     
     // Use song.lyrics if available, otherwise extract from timing data

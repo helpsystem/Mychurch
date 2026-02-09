@@ -788,6 +788,23 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     if (activeSlide.type === SlideType.LYRICS) {
       const content = activeSlide.content as SlideContentLyrics;
 
+      // Debug log - comprehensive
+      console.log('🎵 [LiveConsole] LYRICS slide detected!');
+      console.log('[LiveConsole] LYRICS content FULL:', {
+        title: content.title,
+        songId: content.songId,
+        hasTimingData: !!content.timingData,
+        hasAudioUrl: !!content.audioUrl,
+        audioUrl: content.audioUrl,
+        hasTiming: content.hasTiming,
+        linesCount: content.lines?.length || 0,
+        linesPreview: content.lines?.slice(0, 3),
+        timingLinesCount: content.timingData?.lines?.length || 0,
+        finglishCount: content.finglishLines?.length || 0,
+        allContentKeys: Object.keys(content),
+        fullContent: content
+      });
+
       // اگر timing و audio موجود است - از SmartWorshipPlayer کامل استفاده کن
       if (content.timingData && content.audioUrl) {
         return (
@@ -815,7 +832,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
       // نمایش با پلیر صوتی حرفه‌ای اگر فقط audio دارد (بدون timing کامل)
       // اگر lines خالی است ولی timingData داریم، از آن استفاده کن
-      const displayLines = content.lines.length > 0 
+      let displayLines = content.lines?.length > 0 
         ? content.lines 
         : (content.timingData?.lines || []).map((l: any) => ({ 
             text: l.line || '', 
@@ -824,7 +841,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
           }));
       
       // استخراج finglish از timing data اگر نیست
-      const finglishLines = content.finglishLines?.length > 0 
+      let finglishLines = (content.finglishLines && content.finglishLines.length > 0) 
         ? content.finglishLines 
         : (content.timingData?.lines || []).map((line: any) => {
             if (line.words && Array.isArray(line.words)) {
@@ -832,6 +849,52 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             }
             return '';
           });
+      
+      // 🔧 اگر هنوز خالی است، سعی کن از displayOptions.rawLyrics استفاده کن
+      if (displayLines.length === 0 && (content as any).displayOptions?.rawLyrics) {
+        const rawLines = (content as any).displayOptions.rawLyrics.split('\n').filter((l: string) => l.trim());
+        displayLines = rawLines.map((text: string) => ({
+          text,
+          isChorus: /chorus|کروس|ریفرین/i.test(text),
+          isVerse: true
+        }));
+        console.log('📝 [LiveConsole] Using rawLyrics fallback:', displayLines.length, 'lines');
+      }
+      
+      console.log('[LiveConsole] displayLines:', {
+        count: displayLines.length,
+        preview: displayLines.slice(0, 3),
+        finglishCount: finglishLines.length
+      });
+      
+      // 🔧 اگر هنوز خالی است، نمایش پیام
+      if (displayLines.length === 0) {
+        return (
+          <div className="h-full flex flex-col items-center justify-center bg-gradient-to-br from-pink-900/30 via-purple-900/30 to-slate-900 p-8">
+            <div className="bg-gradient-to-r from-pink-600/80 to-purple-600/80 rounded-2xl p-6 max-w-lg text-center">
+              <h2 className={`text-3xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                🎵 {content.title}
+              </h2>
+              {content.chords && (
+                <p className="text-pink-200 text-lg mb-4">🎸 {content.chords}</p>
+              )}
+              {content.audioUrl && (
+                <div className="mt-4">
+                  <audio
+                    src={content.audioUrl}
+                    controls
+                    className="w-full h-12 rounded-lg"
+                    style={{ filter: 'invert(1) hue-rotate(180deg)' }}
+                  />
+                </div>
+              )}
+              <p className={`text-pink-200 mt-4 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? '⚠️ متن سرود موجود نیست - از SmartPlayer استفاده کنید' : '⚠️ No lyrics available'}
+              </p>
+            </div>
+          </div>
+        );
+      }
       
       return (
         <div className="h-full flex flex-col bg-gradient-to-br from-pink-900/30 via-purple-900/30 to-slate-900">
@@ -1447,27 +1510,68 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             </div>
 
             {/* Camera Feed - Small overlay in PIP mode */}
-            {mediaStream && broadcastConfig.layout !== 'SLIDES_ONLY' && (
-              <video
-                ref={videoRef}
-                autoPlay
-                muted
-                playsInline
-                className={`absolute object-cover ${
-                  broadcastConfig.layout === 'PIP' 
-                    ? `w-48 h-36 rounded-xl border-2 border-white/20 shadow-2xl z-20 ${
-                        broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
-                        broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
-                        broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
-                        'bottom-24 right-4' // bottom-right default
-                      } ${
-                        broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
-                        broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
-                      }`
-                    : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2' 
-                    : 'inset-0 w-full h-full z-0' // FULL_CAM
-                }`}
-              />
+            {broadcastConfig.layout !== 'SLIDES_ONLY' && (
+              <>
+                {mediaStream ? (
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    muted
+                    playsInline
+                    className={`absolute object-cover ${
+                      broadcastConfig.layout === 'PIP' 
+                        ? `w-48 h-36 rounded-xl border-2 border-white/20 shadow-2xl z-20 ${
+                            broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                            broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
+                            broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
+                            'bottom-24 right-4' // bottom-right default
+                          } ${
+                            broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
+                            broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                          }`
+                        : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2' 
+                        : 'inset-0 w-full h-full z-0' // FULL_CAM
+                    }`}
+                  />
+                ) : (
+                  /* Camera Placeholder when no stream */
+                  <div
+                    className={`absolute bg-slate-800/90 flex flex-col items-center justify-center border-2 border-dashed border-slate-600 ${
+                      broadcastConfig.layout === 'PIP' 
+                        ? `w-48 h-36 rounded-xl shadow-2xl z-20 ${
+                            broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                            broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
+                            broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
+                            'bottom-24 right-4'
+                          } ${
+                            broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
+                            broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                          }`
+                        : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2' 
+                        : 'inset-0 w-full h-full z-0'
+                    }`}
+                  >
+                    <Camera className="w-8 h-8 text-slate-500 mb-2" />
+                    <span className="text-xs text-slate-400 text-center px-2">دوربین غیرفعال</span>
+                    <button
+                      onClick={async () => {
+                        try {
+                          const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                          if (setMediaStream) setMediaStream(stream);
+                          setIsCameraOn(true);
+                          setIsMicOn(true);
+                        } catch (err) {
+                          console.error('Camera error:', err);
+                          alert('خطا در دسترسی به دوربین');
+                        }
+                      }}
+                      className="mt-2 text-xs bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg"
+                    >
+                      فعال کردن
+                    </button>
+                  </div>
+                )}
+              </>
             )}
 
             {/* Logo */}

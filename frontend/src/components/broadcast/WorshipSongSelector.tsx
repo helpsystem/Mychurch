@@ -91,17 +91,36 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     setSelectedSong(song);
     setStep('configure');
 
-    // Load timing data if available
-    if (song.hasTiming) {
+    // Always try to load timing data from multiple paths
+    const timingPaths = [
+      `/worship/data/timings/song_${song.id}_timing.json`,
+      `/worship/timing/${song.id}_timing.json`,
+      `/worship/timing/song_${song.id}_timing.json`
+    ];
+    
+    let loadedTiming = null;
+    for (const path of timingPaths) {
       try {
-        const res = await fetch(`/worship/timing/${song.id}_timing.json`);
+        const res = await fetch(path);
         if (res.ok) {
-          const data = await res.json();
-          setTimingData(data);
+          loadedTiming = await res.json();
+          console.log('✅ [WorshipSongSelector] Timing loaded from:', path);
+          break;
         }
       } catch (err) {
-        console.log('No timing data for song', song.id);
+        // Try next path
       }
+    }
+    
+    if (loadedTiming) {
+      setTimingData(loadedTiming);
+      console.log('📊 [WorshipSongSelector] Timing data:', {
+        linesCount: loadedTiming.lines?.length,
+        hasWords: loadedTiming.lines?.[0]?.words?.length > 0
+      });
+    } else {
+      console.log('⚠️ [WorshipSongSelector] No timing data for song', song.id);
+      setTimingData(null);
     }
   };
 
@@ -133,7 +152,26 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     if (!selectedSong) throw new Error('No song selected');
 
     const rawLyrics = selectedSong.lyrics?.fa || '';
-    const lines = parseLyrics(cleanLyrics(rawLyrics));
+    let lines = parseLyrics(cleanLyrics(rawLyrics));
+    
+    // If no lyrics from song, try to extract from timing data
+    if (lines.length === 0 && timingData?.lines) {
+      console.log('📝 [WorshipSongSelector] Extracting lyrics from timing data');
+      lines = timingData.lines.map((l: any) => ({
+        text: l.line || l.words?.map((w: any) => w.word).join(' ') || '',
+        isChorus: l.label?.toLowerCase().includes('chorus') || false,
+        isVerse: true
+      }));
+    }
+    
+    console.log('🎵 [WorshipSongSelector] buildSlideContent:', {
+      songId: selectedSong.id,
+      title: selectedSong.title.fa,
+      hasLyrics: !!selectedSong.lyrics?.fa,
+      linesCount: lines.length,
+      hasTimingData: !!timingData,
+      hasAudio: !!selectedSong.audioUrl
+    });
 
     return {
       songId: selectedSong.id,
@@ -142,7 +180,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       chords: selectedSong.chord,
       audioUrl: selectedSong.audioUrl,
       youtubeId: selectedSong.youtubeId,
-      hasTiming: selectedSong.hasTiming,
+      hasTiming: selectedSong.hasTiming || !!timingData,
       timingData,
       finglishLines: timingData?.lines?.map((l: any) => 
         l.words?.map((w: any) => w.finglish || w.word).join(' ')

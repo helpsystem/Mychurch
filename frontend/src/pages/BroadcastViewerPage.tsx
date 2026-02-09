@@ -387,15 +387,16 @@ const BroadcastViewerPage: React.FC = () => {
     if (slide.type === 'LYRICS') {
       const lyricsContent = slide.content as import('../components/broadcast/types').SlideContentLyrics;
       
-      // اگر timing data و audio موجود است از SmartWorshipPlayer استفاده کن
-      if (lyricsContent.hasTiming && lyricsContent.timingData && lyricsContent.audioUrl) {
+      // 🎵 همیشه از SmartWorshipPlayer استفاده کن - دقیقاً مثل صفحه پرستش
+      // اگر timing data داریم از آن استفاده کن، اگر نه یک timing ساده بساز
+      if (lyricsContent.timingData && lyricsContent.audioUrl) {
         return (
           <div className="fixed inset-0 bg-gradient-to-br from-purple-950 via-fuchsia-900 to-pink-950">
             <SmartWorshipPlayer
               timingData={lyricsContent.timingData}
               audioSrc={lyricsContent.audioUrl}
-              viewOnly={true}
-              externalCurrentTime={state.audioCurrentTime}
+              title={lyricsContent.title}
+              viewOnly={false}
               translations={{
                 finglish: lyricsContent.finglishLines
               }}
@@ -404,18 +405,27 @@ const BroadcastViewerPage: React.FC = () => {
         );
       }
 
+      // 🔧 Helper function to strip chord markers like [Em], [C], [Bm] etc.
+      const stripChords = (text: string): string => {
+        if (!text) return '';
+        return text.replace(/\[[A-Ga-g][#bmM]?[mMsusaddim0-9]*\]/g, '').trim();
+      };
+
       // نمایش ساده اگر timing ندارد - بدون پلیر صوتی
       // استخراج متن از منابع مختلف
       let displayLines: Array<{text: string; isChorus?: boolean}> = [];
       
       // اول از lines استفاده کن
       if (lyricsContent.lines?.length > 0) {
-        displayLines = lyricsContent.lines;
+        displayLines = lyricsContent.lines.map(line => ({
+          ...line,
+          text: stripChords(line.text) // حذف chord markers
+        }));
       }
       // اگر نه، از timingData استفاده کن
       else if (lyricsContent.timingData?.lines && Array.isArray(lyricsContent.timingData.lines)) {
         displayLines = lyricsContent.timingData.lines.map((l: any) => ({ 
-          text: l.line || '', 
+          text: stripChords(l.line || ''), 
           isChorus: l.label?.toLowerCase().includes('chorus') || false
         }));
       }
@@ -454,7 +464,7 @@ const BroadcastViewerPage: React.FC = () => {
               <div className="text-center max-w-5xl mx-auto space-y-6">
                 {displayLines.map((line: any, idx: number) => (
                   <div key={idx} className="text-center">
-                    {/* Persian/Farsi Text */}
+                    {/* Persian/Farsi Text - بدون chord markers */}
                     <p 
                       className={`text-4xl leading-[1.8] font-bold transition-all duration-300 font-[Vazirmatn] ${
                         line.isChorus ? 'text-yellow-200 scale-105 border-l-4 border-r-4 border-yellow-400/50 px-6 py-2' : 'text-white'
