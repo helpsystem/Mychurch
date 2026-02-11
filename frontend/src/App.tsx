@@ -333,7 +333,11 @@ function App() {
                   } />
 
                   {/* 🎬 Broadcast Console - Public (Temporary for Testing) */}
-                  <Route path="broadcast" element={<AdminBroadcastPage />} />
+                  <Route path="broadcast" element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'LEADER', 'WORSHIP_LEADER']}>
+                      <AdminBroadcastPage />
+                    </ProtectedRoute>
+                  } />
 
                   {/* 🎬 Broadcast Viewer - Public Display for Projector */}
                   <Route path="broadcast/view" element={<BroadcastViewerPage />} />

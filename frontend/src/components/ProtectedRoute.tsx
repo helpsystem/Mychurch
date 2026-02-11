@@ -5,7 +5,7 @@ import Spinner from './Spinner';
 
 interface ProtectedRouteProps {
   children: JSX.Element;
-  roles?: Array<'USER' | 'MANAGER' | 'SUPER_ADMIN'>;
+  roles?: Array<'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN'>;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, roles }) => {

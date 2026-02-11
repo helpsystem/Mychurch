@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     checkLoggedIn();
   }, []);
 
-  const handleAuthAction = useCallback(async (action: Promise<{user: User, token: string}>) => {
+  const handleAuthAction = useCallback(async (action: Promise<{ user: User, token: string }>) => {
     try {
       const { user, token } = await action;
       setToken(token);
@@ -35,7 +35,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       throw error;
     }
   }, []);
-  
+
   const handleDataUpdate = useCallback(async (action: Promise<User | null>) => {
     try {
       const resultUser = await action;
@@ -51,13 +51,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const login = (email: string, password: string) => handleAuthAction(authService.login({ email, password }));
   const adminLogin = (email: string, password: string) => handleAuthAction(authService.adminLogin({ email, password }));
-  
+
   const signup = async (name: string, email: string, password: string, captchaToken?: string, website?: string): Promise<void> => {
     try {
-        await authService.signup({ name, email, password, captchaToken, website });
+      await authService.signup({ name, email, password, captchaToken, website });
     } catch (error) {
-        console.error("Signup failed:", error);
-        throw error;
+      console.error("Signup failed:", error);
+      throw error;
     }
   };
 
@@ -80,9 +80,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
     return false;
   }, [user]);
-  
+
   const sendMessage = async (toEmail: string, subject: Record<Language, string>, body: Record<Language, string>, methods: ('inbox' | 'email')[]): Promise<boolean> => {
-      return authService.sendMessage({ toEmail, subject, body, methods });
+    return authService.sendMessage({ toEmail, subject, body, methods });
   };
 
   const updateBillingInfoItem = (field: keyof BillingInfo, value: string) => handleDataUpdate(authService.updateBillingInfoItem(field, value));

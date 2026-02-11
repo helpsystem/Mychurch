@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useAuth } from '../../hooks/useAuth';
 import {
   BroadcastSession, Slide, SlideType, BroadcastOverlayConfig,
   SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
@@ -22,6 +23,8 @@ import { SmartWorshipPlayer } from '../worship/SmartWorshipPlayer';
 import { HelpTooltip, HELP_TEXTS } from './HelpTooltip';
 import PrayerCreditsRoll from './PrayerCreditsRoll';
 import { BookOpen } from 'lucide-react';
+import DeviceSettingsModal from './DeviceSettingsModal';
+import BroadcastStatusBadge from './BroadcastStatusBadge';
 
 interface LiveConsoleProps {
   session: BroadcastSession;
@@ -53,6 +56,9 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollThrottleRef = useRef<NodeJS.Timeout | null>(null);
 
+  const { user } = useAuth();
+  const isAdmin = ['SUPER_ADMIN', 'MANAGER'].includes(user?.role || '');
+
   // Camera & Microphone state
   const [isCameraOn, setIsCameraOn] = useState(!!mediaStream?.getVideoTracks().length);
   const [isMicOn, setIsMicOn] = useState(!!mediaStream?.getAudioTracks().length);
@@ -63,6 +69,11 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const [audioDevices, setAudioDevices] = useState<MediaDeviceInfo[]>([]);
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('');
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('');
+
+  // Advanced Camera Settings
+  const [videoResolution, setVideoResolution] = useState<'default' | 'hd' | 'fhd'>('default');
+  const [isMirrored, setIsMirrored] = useState<boolean>(false);
+  const [isBlur, setIsBlur] = useState<boolean>(false);
   const [showDeviceSelector, setShowDeviceSelector] = useState(false);
 
   // Hybrid Recorder Hook
@@ -358,6 +369,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   }, []); // Run only once on mount
 
   // Apply selected devices
+  // Apply selected devices with resolution constraints
   const applySelectedDevices = async () => {
     setIsRequestingMedia(true);
     try {
@@ -366,19 +378,29 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
         mediaStream.getTracks().forEach(track => track.stop());
       }
 
+      let videoConstraints: boolean | MediaTrackConstraints = selectedVideoDevice ? { deviceId: { exact: selectedVideoDevice } } : true;
+
+      // Apply Resolution
+      if (videoResolution === 'hd') {
+        videoConstraints = { ...((videoConstraints as object) || {}), width: { ideal: 1280 }, height: { ideal: 720 }, deviceId: selectedVideoDevice ? { exact: selectedVideoDevice } : undefined };
+      } else if (videoResolution === 'fhd') {
+        videoConstraints = { ...((videoConstraints as object) || {}), width: { ideal: 1920 }, height: { ideal: 1080 }, deviceId: selectedVideoDevice ? { exact: selectedVideoDevice } : undefined };
+      }
+
       const constraints: MediaStreamConstraints = {
-        video: selectedVideoDevice ? { deviceId: { exact: selectedVideoDevice } } : true,
+        video: videoConstraints,
         audio: selectedAudioDevice ? { deviceId: { exact: selectedAudioDevice } } : true
       };
 
+      console.log('📷 Applying constraints:', constraints);
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       if (setMediaStream) setMediaStream(stream);
       setIsCameraOn(true);
       setIsMicOn(true);
-      setShowDeviceSelector(false);
+      // setShowDeviceSelector(false); // Do not close automatically, let user close
     } catch (err) {
       console.error('Error applying devices:', err);
-      alert('خطا در اتصال به دوربین/میکروفون انتخاب شده');
+      alert('خطا در اتصال به دوربین/میکروفون انتخاب شده (یا رزولوشن پشتیبانی نمی‌شود)');
     }
     setIsRequestingMedia(false);
   };
@@ -486,6 +508,16 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     };
     localStorage.setItem('broadcast_config', JSON.stringify(toSave));
   }, [broadcastConfig.layout, broadcastConfig.showLogo, broadcastConfig.logoUrl, broadcastConfig.showLowerThird, broadcastConfig.isRotating, broadcastConfig.showPrayerTicker, broadcastConfig.leaderVideoShape]);
+
+  // Auto-apply devices/resolution when changed
+  useEffect(() => {
+    if (showDeviceSelector && (selectedVideoDevice || selectedAudioDevice)) {
+      const timer = setTimeout(() => {
+        applySelectedDevices();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedVideoDevice, selectedAudioDevice, videoResolution]);
 
   const liveSlide = session.slides[activeSlideIndex];
   const activeLowerThird = broadcastConfig.lowerThirds[broadcastConfig.activeLowerThirdIndex];
@@ -1053,90 +1085,25 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   return (
     <div className="flex-1 flex flex-col bg-slate-950 h-full overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Device Selector Modal */}
-      {showDeviceSelector && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 rounded-2xl border border-slate-700 w-full max-w-md shadow-2xl">
-            <div className="p-4 border-b border-slate-700 flex items-center justify-between">
-              <h3 className={`text-lg font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? '📷 انتخاب دوربین و میکروفون' : '📷 Select Camera & Microphone'}
-              </h3>
-              <button onClick={() => setShowDeviceSelector(false)} className="text-slate-400 hover:text-white">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+      <DeviceSettingsModal
+        isOpen={showDeviceSelector}
+        onClose={() => setShowDeviceSelector(false)}
+        videoDevices={videoDevices}
+        audioDevices={audioDevices}
+        selectedVideoDevice={selectedVideoDevice}
+        selectedAudioDevice={selectedAudioDevice}
+        onVideoDeviceChange={setSelectedVideoDevice}
+        onAudioDeviceChange={setSelectedAudioDevice}
+        onRefreshDevices={enumerateDevices}
+        videoResolution={videoResolution}
+        onResolutionChange={setVideoResolution}
+        isMirrored={isMirrored}
+        onMirrorChange={setIsMirrored}
+        isBlur={isBlur}
+        onBlurChange={setIsBlur}
+        isRTL={isRTL}
+      />
 
-            <div className="p-4 space-y-4">
-              {/* Camera Selection */}
-              <div>
-                <label className={`block text-sm text-slate-300 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  🎥 {isRTL ? 'دوربین:' : 'Camera:'}
-                </label>
-                <select
-                  value={selectedVideoDevice}
-                  onChange={(e) => setSelectedVideoDevice(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm"
-                >
-                  {videoDevices.length === 0 ? (
-                    <option value="">{isRTL ? 'دوربینی یافت نشد' : 'No camera found'}</option>
-                  ) : (
-                    videoDevices.map((device, i) => (
-                      <option key={device.deviceId} value={device.deviceId}>
-                        {device.label || `${isRTL ? 'دوربین' : 'Camera'} ${i + 1}`}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </div>
-
-              {/* Microphone Selection */}
-              <div>
-                <label className={`block text-sm text-slate-300 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  🎤 {isRTL ? 'میکروفون:' : 'Microphone:'}
-                </label>
-                <select
-                  value={selectedAudioDevice}
-                  onChange={(e) => setSelectedAudioDevice(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm"
-                >
-                  {audioDevices.length === 0 ? (
-                    <option value="">{isRTL ? 'میکروفونی یافت نشد' : 'No microphone found'}</option>
-                  ) : (
-                    audioDevices.map((device, i) => (
-                      <option key={device.deviceId} value={device.deviceId}>
-                        {device.label || `${isRTL ? 'میکروفون' : 'Microphone'} ${i + 1}`}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </div>
-
-              {/* Refresh Devices */}
-              <button
-                onClick={enumerateDevices}
-                className="w-full py-2 text-sm text-slate-400 hover:text-white transition"
-              >
-                🔄 {isRTL ? 'بروزرسانی لیست دستگاه‌ها' : 'Refresh Device List'}
-              </button>
-            </div>
-
-            <div className="p-4 border-t border-slate-700 flex gap-2">
-              <button
-                onClick={() => setShowDeviceSelector(false)}
-                className="flex-1 py-2 bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 transition"
-              >
-                {isRTL ? 'انصراف' : 'Cancel'}
-              </button>
-              <button
-                onClick={applySelectedDevices}
-                disabled={isRequestingMedia}
-                className="flex-1 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition disabled:opacity-50"
-              >
-                {isRequestingMedia ? '...' : (isRTL ? '✓ اتصال' : '✓ Connect')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Camera/Mic Status Indicator - Fixed Top */}
       <div className="h-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700 flex items-center justify-center gap-6 text-xs">
@@ -1169,18 +1136,22 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       {/* Top Bar */}
       <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
         <div className="flex items-center gap-3">
-          {/* Settings Button */}
-          <button
-            onClick={() => setShowSettings(!showSettings)}
-            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
-              ? 'bg-indigo-600 text-white'
-              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-              }`}
-            title={isRTL ? 'تنظیمات' : 'Settings'}
-          >
-            <Settings className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات' : 'Settings'}</span>
-          </button>
+          <BroadcastStatusBadge isLive={isRecording} viewerCount={isRecording ? 124 : 0} />
+          <div className="h-6 w-px bg-slate-700 mx-1"></div>
+          {/* Settings Button - Admin Only */}
+          {isAdmin && (
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
+                ? 'bg-indigo-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              title={isRTL ? 'تنظیمات' : 'Settings'}
+            >
+              <Settings className="w-4 h-4" />
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات' : 'Settings'}</span>
+            </button>
+          )}
           {/* Language Toggle */}
           {onLangToggle && (
             <button
@@ -1393,6 +1364,10 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                         : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
                           : 'inset-0 w-full h-full z-0' // FULL_CAM
                         }`}
+                      style={{
+                        transform: isMirrored ? 'scaleX(-1)' : undefined,
+                        filter: isBlur ? 'blur(8px)' : undefined
+                      }}
                     />
                   ) : (
                     /* Camera Placeholder when no stream */

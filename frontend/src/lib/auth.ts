@@ -5,36 +5,36 @@ import { getAuthToken, removeToken } from './tokenManager';
 // All paths have been reviewed and corrected to ensure they point to the correct backend endpoints.
 
 export const signup = async (signupData: { name: string; email: string; password: string; captchaToken?: string; website?: string; }): Promise<void> => {
-  await api.post('/api/auth/signup', signupData);
+    await api.post('/api/auth/signup', signupData);
 };
 
-export const verifyEmail = async (token: string): Promise<{user: User, token: string}> => {
-  return api.post('/api/auth/verify-email', { token });
+export const verifyEmail = async (token: string): Promise<{ user: User, token: string }> => {
+    return api.post('/api/auth/verify-email', { token });
 };
 
-export const login = async (loginData: { email: string; password: string; }): Promise<{user: User, token: string}> => {
-  return api.post('/api/auth/login', loginData);
+export const login = async (loginData: { email: string; password: string; }): Promise<{ user: User, token: string }> => {
+    return api.post('/api/auth/login', loginData);
 };
 
-export const adminLogin = async (loginData: { email: string; password: string; }): Promise<{user: User, token: string}> => {
-  return api.post('/api/auth/admin-login', loginData);
+export const adminLogin = async (loginData: { email: string; password: string; }): Promise<{ user: User, token: string }> => {
+    return api.post('/api/auth/admin-login', loginData);
 };
 
 export const logout = () => {
-  removeToken();
+    removeToken();
 };
 
 export const fetchCurrentUser = async (): Promise<User | null> => {
-  const token = getAuthToken();
-  if (!token) return null;
-  try {
-    const data = await api.get<{ user: User }>('/api/auth/me');
-    return data.user;
-  } catch (error) {
-    console.error("Failed to fetch current user, token might be invalid.", error);
-    removeToken();
-    return null;
-  }
+    const token = getAuthToken();
+    if (!token) return null;
+    try {
+        const data = await api.get<{ user: User }>('/api/auth/me');
+        return data.user;
+    } catch (error) {
+        console.error("Failed to fetch current user, token might be invalid.", error);
+        removeToken();
+        return null;
+    }
 };
 
 export const getUsers = async (): Promise<User[]> => {
@@ -46,7 +46,7 @@ export const updateUserPermissions = async (email: string, permissions: string[]
     return true;
 }
 
-export const updateUserRole = async (email: string, role: 'USER' | 'MANAGER' | 'SUPER_ADMIN'): Promise<boolean> => {
+export const updateUserRole = async (email: string, role: 'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN'): Promise<boolean> => {
     await api.put<void>(`/api/users/${email}/role`, { role });
     return true;
 }
@@ -84,8 +84,8 @@ export const getSiteActivity = async (): Promise<ActivityLog[]> => {
     });
 }
 
-export const createUser = async (userData: {name: string, email: string, password: string, role: string, permissions: string[]}): Promise<User> => {
-    const { user } = await api.post<{user: User}>('/api/users', userData);
+export const createUser = async (userData: { name: string, email: string, password: string, role: string, permissions: string[] }): Promise<User> => {
+    const { user } = await api.post<{ user: User }>('/api/users', userData);
     return user;
 };
 
