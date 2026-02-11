@@ -16,6 +16,11 @@ interface SmartWorshipPlayerProps {
         english?: string[];
         persian?: string[];
     };
+    // New Style Props
+    backgroundOpacity?: number;
+    backgroundBlur?: number;
+    textShadow?: boolean;
+    objectFit?: 'cover' | 'contain' | 'fill';
 }
 
 export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
@@ -25,7 +30,12 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     viewOnly = false,
     externalCurrentTime,
     onTimeUpdate,
-    translations
+    translations,
+    // Defaults
+    backgroundOpacity = 60,
+    backgroundBlur = 0,
+    textShadow = true,
+    objectFit = 'cover'
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -207,10 +217,16 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     <img
                         src={backgroundImage}
                         alt="Background"
-                        className="w-full h-full object-cover opacity-40 blur-sm scale-110"
+                        className="w-full h-full transition-all duration-300 transform scale-105"
+                        style={{
+                            objectFit: objectFit,
+                            opacity: backgroundOpacity / 100,
+                            filter: `blur(${backgroundBlur}px)`
+                        }}
                         onError={(e) => e.currentTarget.style.display = 'none'}
                     />
                 )}
+                {/* Gradient Overlay removed or made optional? Keeping standard overlay for readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
             </div>
 
@@ -228,7 +244,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                             }}
                             exit={{ opacity: 0, y: -30, scale: 0.9 }}
                             transition={{ duration: 0.4, ease: 'easeOut' }}
-                            className="text-center w-full px-4"
+                            className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]' : ''}`}
                             dir="rtl"
                         >
                             {showPersian && (
@@ -240,10 +256,10 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                             <span
                                                 key={wIdx}
                                                 className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
-                                                        ? 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)]'
-                                                        : isPast
-                                                            ? 'text-white/70'
-                                                            : 'text-white/50'
+                                                    ? 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)]'
+                                                    : isPast
+                                                        ? 'text-white/70'
+                                                        : 'text-white/50'
                                                     }`}
                                             >
                                                 {word.word}
@@ -278,83 +294,83 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
             {/* Controls Layer - Hidden in viewOnly mode */}
             {!viewOnly && (
-            <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 lg:p-6" dir="ltr">
+                <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 lg:p-6" dir="ltr">
 
-                {/* Progress Bar */}
-                <div
-                    className="w-full h-2 bg-gray-700/50 rounded-full mb-4 cursor-pointer overflow-hidden group"
-                    onClick={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        const pos = (e.clientX - rect.left) / rect.width;
-                        if (audioRef.current && duration) audioRef.current.currentTime = pos * duration;
-                    }}
-                >
+                    {/* Progress Bar */}
                     <div
-                        className="h-full bg-gradient-to-r from-teal-400 to-indigo-500 rounded-full transition-all duration-100"
-                        style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
-                    />
-                </div>
+                        className="w-full h-2 bg-gray-700/50 rounded-full mb-4 cursor-pointer overflow-hidden group"
+                        onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const pos = (e.clientX - rect.left) / rect.width;
+                            if (audioRef.current && duration) audioRef.current.currentTime = pos * duration;
+                        }}
+                    >
+                        <div
+                            className="h-full bg-gradient-to-r from-teal-400 to-indigo-500 rounded-full transition-all duration-100"
+                            style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+                        />
+                    </div>
 
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 lg:gap-4">
-                        {/* Skip Back */}
-                        <button
-                            onClick={() => skip(-10)}
-                            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
-                            title="10 ثانیه عقب"
-                        >
-                            <SkipBack className="w-5 h-5" />
-                        </button>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 lg:gap-4">
+                            {/* Skip Back */}
+                            <button
+                                onClick={() => skip(-10)}
+                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                title="10 ثانیه عقب"
+                            >
+                                <SkipBack className="w-5 h-5" />
+                            </button>
 
-                        {/* Play/Pause */}
-                        <button
-                            onClick={togglePlay}
-                            className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-400 text-black transition-transform hover:scale-105 shadow-lg shadow-teal-500/30"
-                        >
-                            {isPlaying ? <Pause className="w-6 h-6 lg:w-7 lg:h-7 fill-current" /> : <Play className="w-6 h-6 lg:w-7 lg:h-7 fill-current ml-1" />}
-                        </button>
+                            {/* Play/Pause */}
+                            <button
+                                onClick={togglePlay}
+                                className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-400 text-black transition-transform hover:scale-105 shadow-lg shadow-teal-500/30"
+                            >
+                                {isPlaying ? <Pause className="w-6 h-6 lg:w-7 lg:h-7 fill-current" /> : <Play className="w-6 h-6 lg:w-7 lg:h-7 fill-current ml-1" />}
+                            </button>
 
-                        {/* Skip Forward */}
-                        <button
-                            onClick={() => skip(10)}
-                            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
-                            title="10 ثانیه جلو"
-                        >
-                            <SkipForward className="w-5 h-5" />
-                        </button>
+                            {/* Skip Forward */}
+                            <button
+                                onClick={() => skip(10)}
+                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                title="10 ثانیه جلو"
+                            >
+                                <SkipForward className="w-5 h-5" />
+                            </button>
 
-                        <div className="text-sm font-mono text-gray-300 mr-2">
-                            {formatTime(currentTime)} / {formatTime(duration)}
+                            <div className="text-sm font-mono text-gray-300 mr-2">
+                                {formatTime(currentTime)} / {formatTime(duration)}
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 lg:gap-3">
+                            <button
+                                onClick={() => setShowFinglish(!showFinglish)}
+                                className={`p-2 rounded-lg transition-colors border ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                title="نمایش Finglish"
+                            >
+                                <Globe className="w-5 h-5" />
+                            </button>
+
+                            <button
+                                onClick={() => setShowPersian(!showPersian)}
+                                className={`p-2 rounded-lg transition-colors border ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                title="نمایش فارسی"
+                            >
+                                <Type className="w-5 h-5" />
+                            </button>
+
+                            <button
+                                onClick={toggleFullscreen}
+                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                title="تمام صفحه"
+                            >
+                                {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
+                            </button>
                         </div>
                     </div>
-
-                    <div className="flex items-center gap-2 lg:gap-3">
-                        <button
-                            onClick={() => setShowFinglish(!showFinglish)}
-                            className={`p-2 rounded-lg transition-colors border ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                            title="نمایش Finglish"
-                        >
-                            <Globe className="w-5 h-5" />
-                        </button>
-
-                        <button
-                            onClick={() => setShowPersian(!showPersian)}
-                            className={`p-2 rounded-lg transition-colors border ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                            title="نمایش فارسی"
-                        >
-                            <Type className="w-5 h-5" />
-                        </button>
-
-                        <button
-                            onClick={toggleFullscreen}
-                            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
-                            title="تمام صفحه"
-                        >
-                            {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
-                        </button>
-                    </div>
                 </div>
-            </div>
             )}
 
             <audio

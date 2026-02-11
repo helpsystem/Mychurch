@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useLanguage } from './hooks/useLanguage';
 
@@ -140,20 +140,34 @@ const AdminBroadcastPage = lazy(() => import('./pages/AdminBroadcastPage')); // 
 const BroadcastViewerPage = lazy(() => import('./pages/BroadcastViewerPage')); // Broadcast Viewer for Projector
 
 // Wrapper to hide BibleAIChatWidget on AI Helper page and Broadcast Viewer
-const BibleAIChatWidgetWrapper: React.FC = () => {
-  // Check if we're on pages where AI widget should be hidden
-  const isAiHelperPage = window.location.hash.includes('/ai-helper');
-  const isBroadcastViewer = window.location.hash.includes('/broadcast/view');
-  const isBroadcastAdmin = window.location.hash.includes('/admin/broadcast');
+const RouteAwareOverlays: React.FC<{
+  showVerseModal: boolean;
+  setShowVerseModal: (show: boolean) => void;
+}> = ({ showVerseModal, setShowVerseModal }) => {
+  // Use useLocation to verify route changes trigger re-renders
+  const location = useLocation(); // Now works because we are inside HashRouter
+  const hash = location.pathname; // HashRouter puts path in location.pathname
 
-  if (isAiHelperPage || isBroadcastViewer || isBroadcastAdmin) {
-    return null; // Don't show the floating button on these pages
-  }
+  const isAiHelperPage = hash.includes('/ai-helper');
+  const isBroadcast = hash.includes('/broadcast');
+  const isWorship = hash.includes('/worship');
+
+  const shouldHideWidgets = isAiHelperPage || isBroadcast || isWorship;
 
   return (
-    <Suspense fallback={null}>
-      <BibleAIChatWidget />
-    </Suspense>
+    <>
+      {/* Bible AI Chat Widget */}
+      {!shouldHideWidgets && (
+        <Suspense fallback={null}>
+          <BibleAIChatWidget />
+        </Suspense>
+      )}
+
+      {/* Verse Modal */}
+      {showVerseModal && !shouldHideWidgets && (
+        <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />
+      )}
+    </>
   );
 };
 
@@ -320,7 +334,7 @@ function App() {
 
                   {/* 🎬 Broadcast Console - Public (Temporary for Testing) */}
                   <Route path="broadcast" element={<AdminBroadcastPage />} />
-                  
+
                   {/* 🎬 Broadcast Viewer - Public Display for Projector */}
                   <Route path="broadcast/view" element={<BroadcastViewerPage />} />
 
@@ -540,11 +554,11 @@ function App() {
                 </Routes>
               </Suspense>
 
-              {/* Bible AI Chat Widget - Lazy loaded - Hidden on AI Helper page */}
-              <BibleAIChatWidgetWrapper />
-
-              {/* Verse Modal - Show after loading - Inside Router context */}
-              {showVerseModal && <VerseOfTheDayModal onClose={() => setShowVerseModal(false)} />}
+              {/* Overlay Widgets (AI Chat, Verse Modal) - Reactive to Route Changes */}
+              <RouteAwareOverlays
+                showVerseModal={showVerseModal}
+                setShowVerseModal={setShowVerseModal}
+              />
             </ErrorBoundary>
           </HashRouter>
           {/* Floating Audio Player - Shows when audio is playing */}

@@ -8,8 +8,8 @@ $gitBash = "C:\Program Files\Git\bin\bash.exe"
 
 Write-Host "=== Smart Deploy ===" -ForegroundColor Cyan
 
-# Check if Git Bash exists (has rsync)
-if (Test-Path $gitBash) {
+# Check if Git Bash exists (has rsync) - DISABLED due to missing rsync
+if ($false) {
     Write-Host "Using rsync (only uploads changed files)..." -ForegroundColor Green
     
     # Convert Windows path to Unix style for bash

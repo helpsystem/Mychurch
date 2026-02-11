@@ -13,7 +13,9 @@ export enum SlideType {
   SCRIPTURE = 'SCRIPTURE',
   LYRICS = 'LYRICS',
   MEDIA = 'MEDIA',
-  ANNOUNCEMENT = 'ANNOUNCEMENT'
+  ANNOUNCEMENT = 'ANNOUNCEMENT',
+  GENERIC = 'GENERIC',
+  LIVEDATA = 'LIVEDATA'
 }
 
 // =============== SCRIPTURE (آیات کتاب مقدس) ===============
@@ -32,6 +34,7 @@ export interface ScripturePage {
   textSecondary: string[]; // آرایه آیات انگلیسی
   translation?: string;   // ترجمه فارسی: mojdeh, qadim, etc.
   enTranslation?: string; // ترجمه انگلیسی: asv, net, kjv
+  displayMode?: 'list' | 'bubble'; // حالت نمایش: لیستی یا حبابی
 }
 
 export interface SlideContentScripture {
@@ -70,6 +73,11 @@ export interface LyricsDisplayOptions {
   showBackground: boolean;
   backgroundType: 'gradient' | 'image' | 'video';
   backgroundUrl?: string;
+  // New Background Options
+  backgroundOpacity?: number; // 0-100
+  backgroundBlur?: number;    // px
+  textShadow?: boolean;       // Strong text shadow
+  objectFit?: 'cover' | 'contain' | 'fill';
 }
 
 export interface SlideContentLyrics {
@@ -119,13 +127,49 @@ export interface SlideContentAnnouncement {
   eventDate?: string;
 }
 
+// =============== GENERIC (متن و طراحی آزاد) ===============
+
+export interface SlideContentGeneric {
+  title?: string;
+  htmlContent: string;    // محتوای Rich Text
+  background?: {
+    type: 'color' | 'image' | 'video' | 'gradient';
+    value: string;
+    opacity?: number;
+  };
+  layout?: 'title-only' | 'text-only' | 'split-left' | 'split-right' | 'centered';
+}
+
+// =============== LIVE DATA / CHARTS (نمودار زنده) ===============
+
+export interface ChartDataPoint {
+  label: string;
+  value: number;
+  color: string;
+}
+
+export interface SlideContentLiveData {
+  title: string;
+  chartType: 'bar' | 'line' | 'pie' | 'doughnut';
+  data: ChartDataPoint[];
+  showLegend: boolean;
+  showValues: boolean;
+  background?: {
+    type: 'color' | 'image' | 'video' | 'gradient';
+    value: string;
+    opacity?: number;
+  };
+}
+
 // =============== UNIFIED SLIDE ===============
 
 export type SlideContent =
   | SlideContentScripture
   | SlideContentLyrics
   | SlideContentMedia
-  | SlideContentAnnouncement;
+  | SlideContentAnnouncement
+  | SlideContentGeneric
+  | SlideContentLiveData;
 
 export interface Slide {
   id: string;
@@ -217,17 +261,23 @@ export interface PrayerRequest {
 }
 
 export interface BroadcastOverlayConfig {
-  // Layout
+  // Layout & Camera
   layout: BroadcastLayout;
-  pipPosition: PipPosition; // موقعیت دوربین در حالت تصویر در تصویر
+  pipScale: number; // 0.1 to 1.0
+  pipCustomX?: number; // % from left
+  pipCustomY?: number; // % from top
+  pipPosition?: 'top-left' | 'top-center' | 'top-right' | 'center-left' | 'center' | 'center-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+  leaderVideoShape: 'rectangle' | 'circle' | 'square';
+
+  // Streaming
+  youtubeStreamKey?: string;
+  isStreaming?: boolean;
+  streamUrl?: string;
 
   // Branding
   logoUrl: string | null;
   showLogo: boolean;
   churchName?: string;
-
-  // Leader Video Shape
-  leaderVideoShape: 'rectangle' | 'square' | 'circle';
 
   // Lower Thirds (زیرنویس اطلاعات)
   lowerThirds: LowerThirdItem[];
@@ -251,6 +301,11 @@ export interface BroadcastOverlayConfig {
 
   // Amen Badge Overlay
   amenBadge?: AmenBadgeConfig;
+
+  // Drawing / Annotation
+  isDrawingMode?: boolean;
+  drawingColor?: string;
+  drawingBrushSize?: number;
 }
 
 // =============== DEVICE STATUS ===============

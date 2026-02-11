@@ -6,8 +6,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Slide, SlideType, BroadcastSession,
-  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
-  ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig
+  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, ChartDataPoint,
+  ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig, BroadcastOverlayConfig
 } from './types';
 import {
   fetchWorshipSongs, searchSongs, parseLyrics,
@@ -15,7 +15,8 @@ import {
   BROADCAST_TRANSLATIONS
 } from './dataService';
 import {
-  BookOpen, Music, Image, Video, Plus, GripVertical,
+  BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
+  PieChart, BarChart, LineChart, Activity,
   Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
@@ -30,7 +31,7 @@ interface SlideBuilderProps {
   onSlideSelect: (index: number) => void;
 }
 
-type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT';
+type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA';
 
 export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   session,
@@ -44,6 +45,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
   // Modal State
   const [activeModal, setActiveModal] = useState<ModalType>('NONE');
+
+  // Live Data State
+  const [liveDataTitle, setLiveDataTitle] = useState('');
+  const [liveDataChartType, setLiveDataChartType] = useState<'bar' | 'line' | 'pie' | 'doughnut'>('bar');
+  const [liveDataPoints, setLiveDataPoints] = useState<ChartDataPoint[]>([{ label: 'Item 1', value: 10, color: '#3b82f6' }]);
+  const [liveDataShowLegend, setLiveDataShowLegend] = useState(true);
+  const [liveDataShowValues, setLiveDataShowValues] = useState(true);
+  const [liveDataBackgroundType, setLiveDataBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient'>('color');
+  const [liveDataBackgroundValue, setLiveDataBackgroundValue] = useState('#000000');
 
   // Data State
   const [songs, setSongs] = useState<WorshipSong[]>([]);
@@ -95,9 +105,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [announcementLink, setAnnouncementLink] = useState('');
   const [announcementEventDate, setAnnouncementEventDate] = useState('');
 
+  // Generic Slide State
+  const [genericTitle, setGenericTitle] = useState('');
+  const [genericHtmlContent, setGenericHtmlContent] = useState('');
+  const [genericBackgroundType, setGenericBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient'>('color');
+  const [genericBackgroundValue, setGenericBackgroundValue] = useState('#000000');
+  const [genericLayout, setGenericLayout] = useState<'title-only' | 'text-only' | 'split-left' | 'split-right' | 'centered'>('centered');
+
   // Drag State
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
-  
+
   // Edit State
   const [editingSlideIndex, setEditingSlideIndex] = useState<number | null>(null);
 
@@ -130,6 +147,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setAnnouncementImageUrl('');
     setAnnouncementLink('');
     setAnnouncementEventDate('');
+    setGenericTitle('');
+    setGenericHtmlContent('');
+    setGenericBackgroundType('color');
+    setGenericBackgroundValue('#000000');
+    setGenericLayout('centered');
+    setLiveDataTitle('');
+    setLiveDataChartType('bar');
+    setLiveDataPoints([{ label: 'Item 1', value: 10, color: '#3b82f6' }]);
+    setLiveDataShowLegend(true);
+    setLiveDataShowValues(true);
+    setLiveDataBackgroundType('color');
+    setLiveDataBackgroundValue('#000000');
     setEditingSlideIndex(null);
   };
 
@@ -181,7 +210,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const startEditSlide = useCallback((index: number) => {
     const slide = session.slides[index];
     setEditingSlideIndex(index);
-    
+
     if (slide.type === SlideType.LYRICS) {
       const content = slide.content as SlideContentLyrics;
       setLyricsTitle(content.title);
@@ -216,6 +245,29 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         });
       }
       setActiveModal('MEDIA');
+    } else if (slide.type === SlideType.GENERIC) {
+      const content = slide.content as SlideContentGeneric;
+      setGenericTitle(content.title || '');
+      setGenericHtmlContent(content.htmlContent);
+      if (content.background) {
+        setGenericBackgroundType(content.background.type);
+        setGenericBackgroundValue(content.background.value);
+      }
+      setGenericLayout(content.layout || 'centered');
+      setGenericLayout(content.layout || 'centered');
+      setActiveModal('GENERIC');
+    } else if (slide.type === SlideType.LIVEDATA) {
+      const content = slide.content as SlideContentLiveData;
+      setLiveDataTitle(content.title || '');
+      setLiveDataChartType(content.chartType);
+      setLiveDataPoints(content.data);
+      setLiveDataShowLegend(content.showLegend);
+      setLiveDataShowValues(content.showValues);
+      if (content.background) {
+        setLiveDataBackgroundType(content.background.type);
+        setLiveDataBackgroundValue(content.background.value);
+      }
+      setActiveModal('LIVEDATA');
     }
   }, [session.slides]);
 
@@ -255,7 +307,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setSelectedSong(song);
     setLyricsTitle(song.title[lang] || song.title.fa);
     setLyricsChords(song.chord || '');
-    
+
     console.log('🎵 [SlideBuilder] Song selected:', {
       id: song.id,
       title: song.title.fa,
@@ -271,7 +323,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       `/worship/timing/${song.id}_timing.json`,
       `/worship/timing/song_${song.id}_timing.json`
     ];
-    
+
     for (const path of timingPaths) {
       try {
         const timingRes = await fetch(path);
@@ -284,7 +336,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         // Try next path
       }
     }
-    
+
     if (timingData) {
       // Store timing in song object temporarily
       (song as any)._timingData = timingData;
@@ -295,16 +347,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     } else {
       console.log('⚠️ No timing data found for song', song.id);
     }
-    
+
     // Use song.lyrics if available, otherwise extract from timing data
     let lyricsFromTiming = '';
     if (timingData?.lines && Array.isArray(timingData.lines)) {
       lyricsFromTiming = timingData.lines.map((l: any) => l.line || '').join('\n');
     }
-    
+
     const finalLyrics = song.lyrics?.fa || lyricsFromTiming || '';
     setLyricsText(finalLyrics);
-    
+
     console.log('📝 Song selected:', {
       id: song.id,
       title: song.title.fa,
@@ -320,7 +372,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
     const lines = parseLyrics(lyricsText);
     const timingData = (selectedSong as any)?._timingData;
-    
+
     // Extract finglish lines from timing data if available
     let finglishLines: string[] | undefined;
     if (timingData?.lines) {
@@ -332,7 +384,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         return '';
       });
     }
-    
+
     const content: SlideContentLyrics = {
       songId: selectedSong?.id,
       title: lyricsTitle,
@@ -344,7 +396,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       timingData: timingData,
       finglishLines: finglishLines
     };
-    
+
     // If editing, update existing slide
     if (editingSlideIndex !== null) {
       updateSlide(editingSlideIndex, content);
@@ -364,7 +416,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       isAutoPlay: mediaAutoplay,
       displayConfig: mediaDisplayConfig
     };
-    
+
     // If editing, update existing slide
     if (editingSlideIndex !== null) {
       updateSlide(editingSlideIndex, content);
@@ -384,12 +436,79 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       link: announcementLink || undefined,
       eventDate: announcementEventDate || undefined
     };
-    
+
     // If editing, update existing slide
     if (editingSlideIndex !== null) {
       updateSlide(editingSlideIndex, content);
     } else {
       addSlide(SlideType.ANNOUNCEMENT, content);
+    }
+  };
+
+  // Handle Generic Submit
+  const handleGenericSubmit = () => {
+    // Retrieve content or default to title if empty
+    let finalHtmlContent = genericHtmlContent;
+    if (!finalHtmlContent && genericTitle) {
+      finalHtmlContent = `<h1 class="text-6xl font-bold text-center">${genericTitle}</h1>`;
+    }
+
+    if (!finalHtmlContent) return;
+
+    const content: SlideContentGeneric = {
+      title: genericTitle || undefined,
+      htmlContent: finalHtmlContent,
+      background: {
+        type: genericBackgroundType,
+        value: genericBackgroundValue,
+        opacity: 100
+      },
+      layout: genericLayout
+    };
+
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      // Add slide logic
+      const newSlide: Slide = {
+        id: crypto.randomUUID(),
+        type: SlideType.GENERIC,
+        content: content,
+        order: session.slides.length // Add order
+      };
+
+      setSession(prev => ({
+        ...prev,
+        slides: [...prev.slides, newSlide]
+      }));
+    }
+
+    // Close and reset
+    setActiveModal('NONE');
+    resetForms();
+  };
+
+  // Handle Live Data Submit
+  const handleLiveDataSubmit = () => {
+    if (!liveDataTitle || liveDataPoints.length === 0) return;
+
+    const content: SlideContentLiveData = {
+      title: liveDataTitle,
+      chartType: liveDataChartType,
+      data: liveDataPoints,
+      showLegend: liveDataShowLegend,
+      showValues: liveDataShowValues,
+      background: {
+        type: liveDataBackgroundType,
+        value: liveDataBackgroundValue,
+        opacity: 100
+      }
+    };
+
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      addSlide(SlideType.LIVEDATA, content);
     }
   };
 
@@ -476,7 +595,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           )}
           {slide.type === SlideType.MEDIA && (
             <div className="text-center">
-              {(slide.content as SlideContentMedia).mediaType === 'image' && <Image className="w-6 h-6 text-blue-400 mx-auto" />}
+              {(slide.content as SlideContentMedia).mediaType === 'image' && <FileImage className="w-6 h-6 text-blue-400 mx-auto" />}
               {(slide.content as SlideContentMedia).mediaType === 'video' && <Video className="w-6 h-6 text-purple-400 mx-auto" />}
               {(slide.content as SlideContentMedia).mediaType === 'audio' && <Mic className="w-6 h-6 text-green-400 mx-auto" />}
             </div>
@@ -487,6 +606,28 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <p className="text-[10px] text-white truncate">
                 {(slide.content as SlideContentAnnouncement).title}
               </p>
+            </div>
+          )}
+          {slide.type === SlideType.GENERIC && (
+            <div className="text-center">
+              <Edit3 className="w-6 h-6 text-purple-400 mx-auto mb-1" />
+              <p className="text-[10px] text-white truncate">
+                {(slide.content as SlideContentGeneric).title || 'Design'}
+              </p>
+            </div>
+          )}
+          {slide.type === SlideType.LIVEDATA && (
+            <div className="text-center">
+              <PieChart className="w-6 h-6 text-rose-400 mx-auto mb-1" />
+              <p className="text-[10px] text-white truncate">
+                {(slide.content as SlideContentLiveData).title || 'Live Data'}
+              </p>
+            </div>
+          )}
+          {slide.type === SlideType.MEDIA && (slide.content as SlideContentMedia).mediaType === 'image' && (
+            <div className="text-center">
+              <FileImage className="w-6 h-6 text-blue-400 mx-auto mb-1" />
+              <p className="text-[10px] text-white truncate">Image</p>
             </div>
           )}
         </div>
@@ -514,6 +655,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             onClick={(e) => { e.stopPropagation(); moveSlide(index, 'up'); }}
             className="p-1 bg-slate-700 rounded hover:bg-slate-600"
             disabled={index === 0}
+            title={isRTL ? 'بالا' : 'Move Up'}
+            aria-label={isRTL ? 'انتقال به بالا' : 'Move Slide Up'}
           >
             <ChevronUp className="w-3 h-3 text-white" />
           </button>
@@ -521,12 +664,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             onClick={(e) => { e.stopPropagation(); moveSlide(index, 'down'); }}
             className="p-1 bg-slate-700 rounded hover:bg-slate-600"
             disabled={index === session.slides.length - 1}
+            title={isRTL ? 'پایین' : 'Move Down'}
+            aria-label={isRTL ? 'انتقال به پایین' : 'Move Slide Down'}
           >
             <ChevronDown className="w-3 h-3 text-white" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); deleteSlide(index); }}
             className="p-1 bg-red-600/80 rounded hover:bg-red-500"
+            title={isRTL ? 'حذف' : 'Delete'}
+            aria-label={isRTL ? 'حذف اسلاید' : 'Delete Slide'}
           >
             <Trash2 className="w-3 h-3 text-white" />
           </button>
@@ -566,7 +713,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             onClick={() => setActiveModal('MEDIA')}
             className="flex items-center gap-2 px-3 py-2 bg-blue-600/20 border border-blue-600/40 rounded-lg text-blue-400 hover:bg-blue-600/30 transition text-sm"
           >
-            <Image className="w-4 h-4" />
+            <FileImage className="w-4 h-4" />
             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addMedia}</span>
           </button>
           <button
@@ -575,6 +722,24 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           >
             <Megaphone className="w-4 h-4" />
             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addAnnouncement}</span>
+          </button>
+
+          {/* Generic/Rich Text Slide Button */}
+          <button
+            onClick={() => setActiveModal('GENERIC')}
+            className="flex items-center gap-2 px-3 py-2 bg-purple-600/20 border border-purple-600/40 rounded-lg text-purple-400 hover:bg-purple-600/30 transition text-sm col-span-2 justify-center"
+          >
+            <Plus className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'اسلاید آزاد (متن/طراحی)' : 'Free Text / Design'}</span>
+          </button>
+
+          {/* Live Data Slide Button */}
+          <button
+            onClick={() => setActiveModal('LIVEDATA')}
+            className="flex items-center gap-2 px-3 py-2 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-sm col-span-2 justify-center"
+          >
+            <PieChart className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'نمودار زنده / آمار' : 'Live Charts / Stats'}</span>
           </button>
         </div>
       </div>
@@ -629,6 +794,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   onChange={(e) => setBookSearch(e.target.value)}
                   placeholder={isRTL ? 'جستجوی کتاب...' : 'Search book...'}
                   className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                  aria-label={t.book}
                 />
                 <div className="absolute top-full left-0 right-0 bg-slate-900 rounded-lg mt-1 max-h-48 overflow-y-auto z-10 border border-slate-700">
                   {getBibleBooks()
@@ -673,6 +839,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                     setSelectedVerseEnd(1);
                   }}
                   className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                  aria-label={t.chapter}
                 >
                   {Array.from({ length: getBibleBooks().find(b => b.key === selectedBook)?.chapters || 1 }, (_, i) => (
                     <option key={i + 1} value={i + 1}>{i + 1}</option>
@@ -690,6 +857,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   value={selectedVerseStart}
                   onChange={(e) => setSelectedVerseStart(Number(e.target.value))}
                   className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                  aria-label={isRTL ? 'شماره آیه شروع' : 'Start Verse Number'}
                 />
               </div>
               <div>
@@ -703,6 +871,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   value={selectedVerseEnd}
                   onChange={(e) => setSelectedVerseEnd(Number(e.target.value))}
                   className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                  aria-label={isRTL ? 'شماره آیه پایان' : 'End Verse Number'}
                 />
               </div>
             </div>
@@ -846,7 +1015,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </label>
               <div className="flex gap-2">
                 {[
-                  { type: 'image', icon: <Image className="w-4 h-4" />, label: t.image },
+                  { type: 'image', icon: <FileImage className="w-4 h-4" />, label: t.image },
                   { type: 'video', icon: <Video className="w-4 h-4" />, label: t.video },
                   { type: 'audio', icon: <Mic className="w-4 h-4" />, label: t.audio }
                 ].map(({ type, icon, label }) => (
@@ -875,6 +1044,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 accept={mediaType === 'image' ? 'image/*' : mediaType === 'video' ? 'video/*' : 'audio/*'}
                 onChange={handleFileUpload}
                 className="w-full text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-slate-700 file:text-white hover:file:bg-slate-600"
+                aria-label={t.uploadFile}
               />
             </div>
 
@@ -889,6 +1059,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 onChange={(e) => setMediaUrl(e.target.value)}
                 placeholder="https://..."
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                aria-label={t.fileUrl}
               />
             </div>
 
@@ -929,7 +1100,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 <h4 className={`text-sm font-bold text-white mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   📐 {isRTL ? 'تنظیمات نمایش' : 'Display Settings'}
                 </h4>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   {/* Width */}
                   <div>
@@ -943,9 +1114,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.width}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, width: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
+                      aria-label={isRTL ? 'عرض' : 'Width'}
                     />
                   </div>
-                  
+
                   {/* Height */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -958,9 +1130,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.height}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, height: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
+                      aria-label={isRTL ? 'ارتفاع' : 'Height'}
                     />
                   </div>
-                  
+
                   {/* Position */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -970,6 +1143,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.position}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, position: e.target.value as any }))}
                       className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
+                      aria-label={isRTL ? 'موقعیت' : 'Position'}
                     >
                       <option value="center">{isRTL ? 'مرکز' : 'Center'}</option>
                       <option value="top-left">{isRTL ? 'بالا چپ' : 'Top Left'}</option>
@@ -979,7 +1153,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       <option value="custom">{isRTL ? 'سفارشی' : 'Custom'}</option>
                     </select>
                   </div>
-                  
+
                   {/* Object Fit */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -989,6 +1163,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.objectFit}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, objectFit: e.target.value as any }))}
                       className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
+                      aria-label={isRTL ? 'برش تصویر' : 'Fit Mode'}
                     >
                       <option value="cover">{isRTL ? 'پر کردن (Cover)' : 'Cover'}</option>
                       <option value="contain">{isRTL ? 'کامل (Contain)' : 'Contain'}</option>
@@ -996,7 +1171,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       <option value="none">{isRTL ? 'بدون تغییر' : 'None'}</option>
                     </select>
                   </div>
-                  
+
                   {/* Border Radius */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -1009,9 +1184,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.borderRadius}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, borderRadius: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
+                      aria-label={isRTL ? 'گوشه گرد' : 'Border Radius'}
                     />
                   </div>
-                  
+
                   {/* Opacity */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
@@ -1024,10 +1200,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.opacity}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, opacity: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
+                      aria-label={isRTL ? 'شفافیت' : 'Opacity'}
                     />
                   </div>
                 </div>
-                
+
                 {/* Custom Position Controls */}
                 {mediaDisplayConfig.position === 'custom' && (
                   <div className="grid grid-cols-2 gap-4 mt-3 pt-3 border-t border-slate-700">
@@ -1042,6 +1219,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                         value={mediaDisplayConfig.customX}
                         onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, customX: parseInt(e.target.value) }))}
                         className="w-full accent-purple-500"
+                        aria-label="Custom X Position"
                       />
                     </div>
                     <div>
@@ -1055,6 +1233,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                         value={mediaDisplayConfig.customY}
                         onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, customY: parseInt(e.target.value) }))}
                         className="w-full accent-purple-500"
+                        aria-label="Custom Y Position"
                       />
                     </div>
                   </div>
@@ -1085,7 +1264,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       {/* Announcement Modal */}
       {activeModal === 'ANNOUNCEMENT' && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[85vh] overflow-y-auto">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               📢 {t.addAnnouncement}
             </h3>
@@ -1093,7 +1272,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Title */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.title} *
+                {isRTL ? 'عنوان اعلان' : 'Title'}
               </label>
               <input
                 type="text"
@@ -1202,6 +1381,305 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 onClick={handleAnnouncementSubmit}
                 disabled={!announcementTitle}
                 className={`px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.add}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Generic/Design Modal */}
+      {activeModal === 'GENERIC' && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
+            <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              🎨 {isRTL ? 'اسلاید آزاد' : 'Design Slide'}
+            </h3>
+
+            {/* Title */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'عنوان (اختیاری)' : 'Title (Optional)'}
+              </label>
+              <input
+                type="text"
+                value={genericTitle}
+                onChange={(e) => setGenericTitle(e.target.value)}
+                placeholder={isRTL ? 'عنوان اسلاید...' : 'Slide title...'}
+                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              />
+            </div>
+
+            {/* Background Config */}
+            <div className="mb-4 grid grid-cols-2 gap-3">
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'نوع پس‌زمینه' : 'Background Type'}
+                </label>
+                <select
+                  value={genericBackgroundType}
+                  onChange={(e) => setGenericBackgroundType(e.target.value as any)}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                >
+                  <option value="color">Solid Color</option>
+                  <option value="gradient">Gradient</option>
+                  <option value="image">Image URL</option>
+                  <option value="video">Video URL</option>
+                </select>
+              </div>
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'مقدار پس‌زمینه' : 'Background Value'}
+                </label>
+                <input
+                  type="text"
+                  value={genericBackgroundValue}
+                  onChange={(e) => setGenericBackgroundValue(e.target.value)}
+                  placeholder={genericBackgroundType === 'color' ? '#000000' : 'URL or Gradient CSS'}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                />
+              </div>
+            </div>
+
+            {/* HTML Content */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'محتوای HTML' : 'HTML Content'}
+              </label>
+              <textarea
+                value={genericHtmlContent}
+                onChange={(e) => setGenericHtmlContent(e.target.value)}
+                rows={6}
+                placeholder={isRTL ? '<p>متن خود را اینجا بنویسید...</p>' : '<p>Enter your HTML content here...</p>'}
+                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 font-mono text-sm"
+              />
+              <p className="text-xs text-slate-500 mt-1">
+                Supports: &lt;h1&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;img&gt;, style="..."
+              </p>
+            </div>
+
+            {/* Layout */}
+            <div className="mb-6">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'چیدمان' : 'Layout'}
+              </label>
+              <div className="flex gap-2">
+                {['centered', 'title-only', 'text-only', 'split-left', 'split-right'].map(l => (
+                  <button
+                    key={l}
+                    onClick={() => setGenericLayout(l as any)}
+                    className={`px-3 py-1 rounded text-xs ${genericLayout === l ? 'bg-purple-600 text-white' : 'bg-slate-700 text-slate-300'}`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => { setActiveModal('NONE'); resetForms(); }}
+                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.cancel}
+              </button>
+              <button
+                onClick={handleGenericSubmit}
+                disabled={!genericHtmlContent && !genericTitle}
+                className={`px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.add}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Live Data Modal */}
+      {activeModal === 'LIVEDATA' && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
+            <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              📊 {isRTL ? 'نمودار زنده' : 'Live Chart'}
+            </h3>
+
+            {/* Title */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'عنوان نمودار' : 'Chart Title'}
+              </label>
+              <input
+                type="text"
+                value={liveDataTitle}
+                onChange={(e) => setLiveDataTitle(e.target.value)}
+                placeholder={isRTL ? 'عنوان...' : 'Title...'}
+                className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              />
+            </div>
+
+            {/* Chart Config */}
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'نوع نمودار' : 'Chart Type'}
+                </label>
+                <div className="flex gap-2 bg-slate-700 p-1 rounded-lg">
+                  {[
+                    { type: 'bar', icon: BarChart },
+                    { type: 'line', icon: LineChart },
+                    { type: 'pie', icon: PieChart },
+                    { type: 'doughnut', icon: Activity }
+                  ].map(item => (
+                    <button
+                      key={item.type}
+                      onClick={() => setLiveDataChartType(item.type as any)}
+                      className={`flex-1 p-2 rounded flex justify-center ${liveDataChartType === item.type ? 'bg-rose-600 text-white shadow' : 'text-slate-400 hover:text-white'}`}
+                      title={item.type}
+                      aria-label={`${item.type} chart`}
+                    >
+                      <item.icon className="w-5 h-5" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'تنظیمات' : 'Options'}
+                </label>
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={liveDataShowLegend}
+                      onChange={(e) => setLiveDataShowLegend(e.target.checked)}
+                      className="rounded border-slate-600 bg-slate-700 text-rose-600"
+                    />
+                    <span className="text-sm text-slate-300">{isRTL ? 'نمایش راهنما (Legend)' : 'Show Legend'}</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={liveDataShowValues}
+                      onChange={(e) => setLiveDataShowValues(e.target.checked)}
+                      className="rounded border-slate-600 bg-slate-700 text-rose-600"
+                    />
+                    <span className="text-sm text-slate-300">{isRTL ? 'نمایش مقادیر' : 'Show Values'}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* Data Points */}
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'داده‌ها' : 'Data Points'}
+              </label>
+              <div className="space-y-2 mb-2">
+                {liveDataPoints.map((point, index) => (
+                  <div key={index} className="flex gap-2 items-center">
+                    <input
+                      type="color"
+                      value={point.color}
+                      onChange={(e) => {
+                        const newPoints = [...liveDataPoints];
+                        newPoints[index].color = e.target.value;
+                        setLiveDataPoints(newPoints);
+                      }}
+                      className="w-8 h-8 rounded cursor-pointer bg-transparent border-none"
+                      aria-label="Color"
+                    />
+                    <input
+                      type="text"
+                      value={point.label}
+                      onChange={(e) => {
+                        const newPoints = [...liveDataPoints];
+                        newPoints[index].label = e.target.value;
+                        setLiveDataPoints(newPoints);
+                      }}
+                      placeholder="Label"
+                      className="flex-1 bg-slate-700 border border-slate-600 rounded px-2 py-1 text-sm text-white"
+                      aria-label="Data Label"
+                    />
+                    <input
+                      type="number"
+                      value={point.value}
+                      onChange={(e) => {
+                        const newPoints = [...liveDataPoints];
+                        newPoints[index].value = Number(e.target.value);
+                        setLiveDataPoints(newPoints);
+                      }}
+                      placeholder="Value"
+                      className="w-20 bg-slate-700 border border-slate-600 rounded px-2 py-1 text-sm text-white"
+                      aria-label="Data Value"
+                    />
+                    <button
+                      onClick={() => {
+                        const newPoints = [...liveDataPoints];
+                        newPoints.splice(index, 1);
+                        setLiveDataPoints(newPoints);
+                      }}
+                      className="p-1 text-slate-400 hover:text-red-400"
+                      aria-label="Delete Data Point"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => setLiveDataPoints([...liveDataPoints, { label: 'New Item', value: 0, color: '#10b981' }])}
+                className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 text-sm rounded-lg flex items-center justify-center gap-2 transition"
+              >
+                <Plus className="w-4 h-4" />
+                {isRTL ? 'افزودن داده جدید' : 'Add Data Point'}
+              </button>
+            </div>
+
+            {/* Background Config */}
+            <div className="mb-6 grid grid-cols-2 gap-3">
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'نوع پس‌زمینه' : 'Background Type'}
+                </label>
+                <select
+                  value={liveDataBackgroundType}
+                  onChange={(e) => setLiveDataBackgroundType(e.target.value as any)}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                >
+                  <option value="color">Solid Color</option>
+                  <option value="gradient">Gradient</option>
+                  <option value="image">Image URL</option>
+                  <option value="video">Video URL</option>
+                </select>
+              </div>
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'مقدار پس‌زمینه' : 'Background Value'}
+                </label>
+                <input
+                  type="text"
+                  value={liveDataBackgroundValue}
+                  onChange={(e) => setLiveDataBackgroundValue(e.target.value)}
+                  placeholder={liveDataBackgroundType === 'color' ? '#000000' : 'URL or Gradient CSS'}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                />
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => { setActiveModal('NONE'); resetForms(); }}
+                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.cancel}
+              </button>
+              <button
+                onClick={handleLiveDataSubmit}
+                disabled={!liveDataTitle || liveDataPoints.length === 0}
+                className={`px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               >
                 {t.add}
               </button>

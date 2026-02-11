@@ -204,15 +204,16 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [verseCount, setVerseCount] = useState(31);
   const [translation, setTranslation] = useState<'mojdeh' | 'qadim' | 'tafsiri'>('mojdeh');
   const [enTranslation, setEnTranslation] = useState<'asv' | 'net' | 'kjv'>('asv'); // ASV as default - most complete coverage
-  
+
   // Display Options
   const [showFa, setShowFa] = useState(true);
   const [showEn, setShowEn] = useState(true);
+  const [slideMode, setSlideMode] = useState<'list' | 'bubble'>('list');
 
   // Data State
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
   const [loading, setLoading] = useState(false);
-  
+
   // Selected Verses List
   const [selectedVerses, setSelectedVerses] = useState<SelectedVerse[]>([]);
   const [previewVerse, setPreviewVerse] = useState<SelectedVerse | null>(null);
@@ -220,10 +221,10 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   // Filter books by search
   const filteredBooks = searchQuery
     ? bibleBooks.filter(book =>
-        book.name.fa.includes(searchQuery) ||
-        book.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.key.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+      book.name.fa.includes(searchQuery) ||
+      book.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.key.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     : bibleBooks;
 
   const otBooks = filteredBooks.filter(b => b.testament === 'OT');
@@ -232,7 +233,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   // Fetch verses when chapter changes
   const fetchChapterData = useCallback(async () => {
     if (!selectedBook) return;
-    
+
     setLoading(true);
     try {
       const response = await fetch(
@@ -297,23 +298,31 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Add current selection to list
   const addToList = () => {
-    console.log('[ScriptureSelector] addToList called:', { 
-      selectedBook: selectedBook?.key, 
-      versesDataFa: versesData.fa.length, 
+    console.log('[ScriptureSelector] addToList called:', {
+      selectedBook: selectedBook?.key,
+      versesDataFa: versesData.fa.length,
       versesDataEn: versesData.en.length,
       verseStart,
       verseEnd
     });
-    if (!selectedBook || (versesData.fa.length === 0 && versesData.en.length === 0)) return;
+
+    // Remove strict check for data existence to allow adding just the reference
+    if (!selectedBook) return;
 
     const verseNumbers = Array.from(
       { length: verseEnd - verseStart + 1 },
       (_, i) => verseStart + i
     );
 
-    const textFaSlice = versesData.fa.slice(verseStart - 1, verseEnd);
-    const textEnSlice = versesData.en.slice(verseStart - 1, verseEnd);
-    
+    // Use empty array if data is missing (fallback)
+    const textFaSlice = versesData.fa.length > 0
+      ? versesData.fa.slice(verseStart - 1, verseEnd)
+      : verseNumbers.map(() => '');
+
+    const textEnSlice = versesData.en.length > 0
+      ? versesData.en.slice(verseStart - 1, verseEnd)
+      : verseNumbers.map(() => '');
+
     console.log('[ScriptureSelector] Creating verse with:', { textFaSlice, textEnSlice });
 
     const newVerse: SelectedVerse = {
@@ -332,7 +341,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     };
 
     setSelectedVerses(prev => [...prev, newVerse]);
-    
+
     // Reset for next selection
     setVerseStart(verseEnd + 1 > verseCount ? 1 : verseEnd + 1);
     setVerseEnd(verseEnd + 1 > verseCount ? 1 : verseEnd + 1);
@@ -348,28 +357,63 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Add all selected verses as slides
   const handleAddAllSlides = () => {
-    console.log('[ScriptureSelector] handleAddAllSlides - selectedVerses:', selectedVerses);
-    const slides: ScripturePage[] = selectedVerses.map(verse => {
-      const slide = {
-        id: verse.id,
-        book: verse.book.key,
-        bookName: verse.book.name,
-        chapter: verse.chapter,
-        verses: verse.verseStart === verse.verseEnd
-          ? `${verse.verseStart}`
-          : `${verse.verseStart}-${verse.verseEnd}`,
-        verseNumbers: verse.verseNumbers,
-        textPrimary: verse.showFa ? verse.textFa : verse.textEn,
-        textSecondary: verse.showFa && verse.showEn ? verse.textEn : (verse.showEn && !verse.showFa ? verse.textFa : []),
-        translation: verse.translation,
-        enTranslation: verse.enTranslation
+    // Group verses by Book & Chapter
+    const groupedVerses: Record<string, SelectedVerse[]> = {};
+
+    selectedVerses.forEach(verse => {
+      const key = `${verse.book.key}-${verse.chapter}`;
+      if (!groupedVerses[key]) {
+        groupedVerses[key] = [];
+      }
+      groupedVerses[key].push(verse);
+    });
+
+    // Create a slide for EACH group (not each verse)
+    const slides: ScripturePage[] = Object.values(groupedVerses).map(group => {
+      // Sort verses in the group by verseStart
+      const sortedGroup = group.sort((a, b) => a.verseStart - b.verseStart);
+      const first = sortedGroup[0];
+
+      // Combine text arrays
+      const combinedTextFa: string[] = [];
+      const combinedTextEn: string[] = [];
+      const combinedVerseNumbers: number[] = [];
+
+      sortedGroup.forEach(v => {
+        combinedTextFa.push(...v.textFa);
+        combinedTextEn.push(...v.textEn);
+        // Regenerate verse numbers range for this chunk
+        for (let i = v.verseStart; i <= v.verseEnd; i++) {
+          combinedVerseNumbers.push(i);
+        }
+      });
+
+      // Generate verse range string (e.g. "1-3, 5-7")
+      const verseRange = sortedGroup.map(v =>
+        v.verseStart === v.verseEnd ? `${v.verseStart}` : `${v.verseStart}-${v.verseEnd}`
+      ).join(', ');
+
+      const slide: ScripturePage = {
+        id: crypto.randomUUID(),
+        book: first.book.key,
+        bookName: first.book.name,
+        chapter: first.chapter,
+        verses: verseRange,
+        verseNumbers: combinedVerseNumbers,
+        textPrimary: combinedTextFa,
+        textSecondary: combinedTextEn,
+        translation: first.translation,
+        enTranslation: first.enTranslation,
+        displayMode: slideMode
       };
-      console.log('[ScriptureSelector] Created slide:', slide);
+
+      console.log('[ScriptureSelector] Created grouped slide:', slide);
       return slide;
     });
 
     onAddSlides(slides);
-    onClose();
+    setSelectedVerses([]);
+    if (onClose) onClose();
   };
 
   // Check if verse is in selected range
@@ -440,7 +484,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                   placeholder={t.searchBook}
                   className="w-full bg-slate-800 text-white p-3 rounded-xl mb-4 focus:ring-2 focus:ring-indigo-500 border border-slate-700"
                 />
-                
+
                 {/* Old Testament */}
                 {otBooks.length > 0 && (
                   <div className="mb-6">
@@ -600,7 +644,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                 )}
 
                 {/* Preview of Selected Verses */}
-                {!loading && versesData.fa.length > 0 && verseStart > 0 && (
+                {!loading && verseStart > 0 && (
                   <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-emerald-400 font-bold flex items-center gap-2">
@@ -612,8 +656,15 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                       </span>
                     </div>
 
+                    {/* Data Missing Warning */}
+                    {versesData.fa.length === 0 && versesData.en.length === 0 && (
+                      <div className="p-3 bg-amber-900/30 border border-amber-500/30 rounded-lg text-amber-200 text-sm mb-4">
+                        ⚠️ {isRTL ? 'متن آیه دریافت نشد (خطای سرور)، اما می‌توانید آدرس آن را اضافه کنید.' : 'Verse text unavailable (Server Error), but you can still add the reference.'}
+                      </div>
+                    )}
+
                     {/* Persian Text */}
-                    {showFa && (
+                    {showFa && versesData.fa.length > 0 && (
                       <div className="space-y-2 mb-4" dir="rtl">
                         {versesData.fa.slice(verseStart - 1, verseEnd).map((text, idx) => (
                           <div key={idx} className="flex gap-3 items-start">
@@ -639,8 +690,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     {/* Add to List Button */}
                     <button
                       onClick={addToList}
-                      disabled={!showFa && !showEn}
-                      className="mt-4 w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="mt-4 w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"
                     >
                       <Plus className="w-5 h-5" />
                       {t.add}
@@ -674,11 +724,10 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     <div
                       key={verse.id}
                       onClick={() => setPreviewVerse(verse)}
-                      className={`p-3 rounded-xl cursor-pointer transition border ${
-                        previewVerse?.id === verse.id
-                          ? 'bg-indigo-600/20 border-indigo-500/50'
-                          : 'bg-slate-800/50 border-slate-700 hover:bg-slate-800'
-                      }`}
+                      className={`p-3 rounded-xl cursor-pointer transition border ${previewVerse?.id === verse.id
+                        ? 'bg-indigo-600/20 border-indigo-500/50'
+                        : 'bg-slate-800/50 border-slate-700 hover:bg-slate-800'
+                        }`}
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex-1 min-w-0">
@@ -709,20 +758,33 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
               )}
             </div>
 
-            {/* Preview Panel */}
+            {/* Preview Panel Bubble - Shows when a verse is selected/hovered */}
             {previewVerse && (
-              <div className="p-4 bg-slate-800/50 border-t border-slate-700 max-h-[40%] overflow-y-auto">
-                <h4 className="text-emerald-400 font-bold text-sm mb-2">
-                  {isRTL ? previewVerse.book.name.fa : previewVerse.book.name.en} {previewVerse.chapter}:{previewVerse.verseStart === previewVerse.verseEnd ? previewVerse.verseStart : `${previewVerse.verseStart}-${previewVerse.verseEnd}`}
-                </h4>
+              <div className="absolute left-80 top-4 bottom-4 w-72 bg-slate-900 border border-slate-700/50 rounded-r-2xl shadow-2xl z-30 animate-in slide-in-from-left-2 p-4 overflow-y-auto">
+                <div className="flex items-center justify-between mb-3 border-b border-slate-700 pb-2">
+                  <h4 className="text-emerald-400 font-bold text-sm">
+                    {isRTL ? previewVerse.book.name.fa : previewVerse.book.name.en} {previewVerse.chapter}:{previewVerse.verseStart === previewVerse.verseEnd ? previewVerse.verseStart : `${previewVerse.verseStart}-${previewVerse.verseEnd}`}
+                  </h4>
+                  <button onClick={() => setPreviewVerse(null)} className="text-slate-500 hover:text-white">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
                 {previewVerse.showFa && (
-                  <div className="text-white text-sm leading-relaxed font-[Vazirmatn] mb-2" dir="rtl">
-                    {previewVerse.textFa.join(' ')}
+                  <div className="mb-4">
+                    <span className="text-xs text-slate-500 mb-1 block">🇮🇷 {t.mojdeh}</span>
+                    <p className="text-white text-sm leading-8 font-[Vazirmatn] text-right" dir="rtl">
+                      {previewVerse.textFa.join(' ')}
+                    </p>
                   </div>
                 )}
+
                 {previewVerse.showEn && (
-                  <div className="text-slate-400 text-sm leading-relaxed" dir="ltr">
-                    {previewVerse.textEn.join(' ')}
+                  <div>
+                    <span className="text-xs text-slate-500 mb-1 block">🇺🇸 {previewVerse.enTranslation.toUpperCase()}</span>
+                    <p className="text-slate-300 text-sm leading-relaxed text-left" dir="ltr">
+                      {previewVerse.textEn.join(' ')}
+                    </p>
                   </div>
                 )}
               </div>
@@ -730,13 +792,36 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
             {/* Footer Actions */}
             {selectedVerses.length > 0 && (
-              <div className="p-4 bg-slate-800 border-t border-slate-700">
+              <div className="p-4 bg-slate-800 border-t border-slate-700 z-40 relative flex flex-col gap-3">
+                {/* Mode Toggle */}
+                <div className="flex bg-slate-700 rounded-lg p-1">
+                  <button
+                    onClick={() => setSlideMode('list')}
+                    className={`flex-1 py-1.5 px-3 rounded text-sm font-medium transition flex items-center justify-center gap-2 ${slideMode === 'list'
+                      ? 'bg-slate-600 text-white shadow'
+                      : 'text-slate-400 hover:text-white'
+                      }`}
+                  >
+                    📃 {isRTL ? 'لیستی' : 'List'}
+                  </button>
+                  <button
+                    onClick={() => setSlideMode('bubble')}
+                    className={`flex-1 py-1.5 px-3 rounded text-sm font-medium transition flex items-center justify-center gap-2 ${slideMode === 'bubble'
+                      ? 'bg-indigo-600 text-white shadow'
+                      : 'text-slate-400 hover:text-white'
+                      }`}
+                  >
+                    💬 {isRTL ? 'حبابی' : 'Bubble'}
+                  </button>
+                </div>
+
                 <button
                   onClick={handleAddAllSlides}
-                  className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/20"
                 >
                   <Check className="w-5 h-5" />
-                  {t.addAll} ({selectedVerses.length})
+                  {isRTL ? 'ثبت و افزودن به اسلایدها' : 'Save & Add to Slides'}
+                  <span className="bg-white/20 px-2 py-0.5 rounded text-xs ml-1">{selectedVerses.length}</span>
                 </button>
               </div>
             )}

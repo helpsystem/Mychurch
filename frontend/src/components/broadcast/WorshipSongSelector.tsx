@@ -10,10 +10,10 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { 
+import {
   Music, Search, X, Check, ChevronDown, ChevronUp,
   Play, Pause, Volume2, Youtube, FileText, Clock,
-  Eye, EyeOff, Image as ImageIcon, Sparkles
+  Eye, EyeOff, Image as ImageIcon, Sparkles, Upload
 } from 'lucide-react';
 import { WorshipSong, SlideContentLyrics, LyricsLine, LyricsDisplayOptions, AppLanguage } from './types';
 import { fetchWorshipSongs, searchSongs, parseLyrics, BROADCAST_TRANSLATIONS } from './dataService';
@@ -63,7 +63,11 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     showArtist: true,
     showBackground: true,
     backgroundType: 'gradient',
-    backgroundUrl: BACKGROUND_PRESETS[0].value
+    backgroundUrl: BACKGROUND_PRESETS[0].value,
+    backgroundOpacity: 60,
+    backgroundBlur: 0,
+    textShadow: true,
+    objectFit: 'cover'
   });
 
   // UI state
@@ -97,7 +101,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       `/worship/timing/${song.id}_timing.json`,
       `/worship/timing/song_${song.id}_timing.json`
     ];
-    
+
     let loadedTiming = null;
     for (const path of timingPaths) {
       try {
@@ -111,7 +115,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
         // Try next path
       }
     }
-    
+
     if (loadedTiming) {
       setTimingData(loadedTiming);
       console.log('📊 [WorshipSongSelector] Timing data:', {
@@ -126,8 +130,8 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
   // Toggle section expansion
   const toggleSection = (section: string) => {
-    setExpandedSections(prev => 
-      prev.includes(section) 
+    setExpandedSections(prev =>
+      prev.includes(section)
         ? prev.filter(s => s !== section)
         : [...prev, section]
     );
@@ -153,7 +157,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
     const rawLyrics = selectedSong.lyrics?.fa || '';
     let lines = parseLyrics(cleanLyrics(rawLyrics));
-    
+
     // If no lyrics from song, try to extract from timing data
     if (lines.length === 0 && timingData?.lines) {
       console.log('📝 [WorshipSongSelector] Extracting lyrics from timing data');
@@ -163,7 +167,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
         isVerse: true
       }));
     }
-    
+
     console.log('🎵 [WorshipSongSelector] buildSlideContent:', {
       songId: selectedSong.id,
       title: selectedSong.title.fa,
@@ -182,7 +186,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       youtubeId: selectedSong.youtubeId,
       hasTiming: selectedSong.hasTiming || !!timingData,
       timingData,
-      finglishLines: timingData?.lines?.map((l: any) => 
+      finglishLines: timingData?.lines?.map((l: any) =>
         l.words?.map((w: any) => w.finglish || w.word).join(' ')
       )
     };
@@ -195,10 +199,22 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     onClose();
   };
 
+  // Handle Background Image Upload
+  const handleBgImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const objectUrl = URL.createObjectURL(file);
+    setDisplayOptions(prev => ({
+      ...prev,
+      backgroundType: 'image',
+      backgroundUrl: objectUrl
+    }));
+  };
+
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
       <div className="bg-slate-900 rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-slate-700">
-        
+
         {/* Header */}
         <div className="bg-gradient-to-r from-pink-600 to-purple-600 p-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -425,19 +441,97 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
                   {expandedSections.includes('background') && (
                     <div className="p-4 border-t border-slate-700 space-y-4">
+                      {/* Custom Image Upload */}
+                      <div className="flex gap-4 items-center">
+                        <label className="flex-1 cursor-pointer bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg p-3 flex items-center justify-center gap-2 transition group">
+                          <Upload className="w-5 h-5 text-pink-400 group-hover:scale-110 transition" />
+                          <span className="text-slate-300 group-hover:text-white text-sm">
+                            {isRTL ? 'آپلود تصویر زمینه' : 'Upload Background Image'}
+                          </span>
+                          <input type="file" accept="image/*" onChange={handleBgImageUpload} className="hidden" />
+                        </label>
+                      </div>
+
+                      {/* Presets */}
                       <div className="grid grid-cols-3 gap-2">
                         {BACKGROUND_PRESETS.map(bg => (
                           <button
                             key={bg.id}
                             onClick={() => setDisplayOptions(prev => ({ ...prev, backgroundType: 'gradient', backgroundUrl: bg.value }))}
-                            className={`aspect-video rounded-lg bg-gradient-to-br ${bg.value} border-2 transition ${
-                              displayOptions.backgroundUrl === bg.value 
-                                ? 'border-pink-500 ring-2 ring-pink-500/30' 
-                                : 'border-transparent hover:border-slate-500'
-                            }`}
+                            className={`aspect-video rounded-lg bg-gradient-to-br ${bg.value} border-2 transition ${displayOptions.backgroundUrl === bg.value
+                              ? 'border-pink-500 ring-2 ring-pink-500/30'
+                              : 'border-transparent hover:border-slate-500'
+                              }`}
                             title={bg.name}
                           />
                         ))}
+                      </div>
+
+                      {/* Advanced Controls */}
+                      <div className="grid grid-cols-2 gap-4 pt-2 border-t border-slate-700/50">
+                        {/* Opacity */}
+                        <div>
+                          <label className="text-xs text-slate-400 mb-1 block flex justify-between">
+                            <span>{isRTL ? 'شفافیت' : 'Opacity'}</span>
+                            <span>{displayOptions.backgroundOpacity || 60}%</span>
+                          </label>
+                          <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={displayOptions.backgroundOpacity || 60}
+                            onChange={(e) => setDisplayOptions(prev => ({ ...prev, backgroundOpacity: parseInt(e.target.value) }))}
+                            className="w-full accent-pink-500 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+                          />
+                        </div>
+
+                        {/* Blur */}
+                        <div>
+                          <label className="text-xs text-slate-400 mb-1 block flex justify-between">
+                            <span>{isRTL ? 'تاری (Blur)' : 'Blur'}</span>
+                            <span>{displayOptions.backgroundBlur || 0}px</span>
+                          </label>
+                          <input
+                            type="range"
+                            min="0"
+                            max="20"
+                            value={displayOptions.backgroundBlur || 0}
+                            onChange={(e) => setDisplayOptions(prev => ({ ...prev, backgroundBlur: parseInt(e.target.value) }))}
+                            className="w-full accent-purple-500 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+                          />
+                        </div>
+
+                        {/* Shadow */}
+                        <label className="flex items-center gap-2 cursor-pointer mt-2">
+                          <input
+                            type="checkbox"
+                            checked={displayOptions.textShadow}
+                            onChange={(e) => setDisplayOptions(prev => ({ ...prev, textShadow: e.target.checked }))}
+                            className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-pink-500 focus:ring-pink-500"
+                          />
+                          <span className="text-xs text-slate-300">{isRTL ? 'سایه متن قوی (برای خوانایی)' : 'Strong Text Shadow'}</span>
+                        </label>
+
+                        {/* Object Fit */}
+                        {displayOptions.backgroundType === 'image' && (
+                          <div className="col-span-2">
+                            <label className="text-xs text-slate-400 mb-1 block">{isRTL ? 'نحوه نمایش عکس' : 'Image Fit'}</label>
+                            <div className="flex bg-slate-900 rounded-lg p-1">
+                              {['cover', 'contain', 'fill'].map((fit) => (
+                                <button
+                                  key={fit}
+                                  onClick={() => setDisplayOptions(prev => ({ ...prev, objectFit: fit as any }))}
+                                  className={`flex-1 py-1 px-2 rounded text-xs transition capitalize ${displayOptions.objectFit === fit
+                                      ? 'bg-slate-700 text-white shadow'
+                                      : 'text-slate-500 hover:text-slate-300'
+                                    }`}
+                                >
+                                  {fit}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -449,13 +543,35 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                 <h4 className={`text-white font-bold flex items-center gap-2 justify-end ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   👁️ پیش‌نمایش نهایی
                 </h4>
-                
-                <div className={`aspect-video rounded-xl overflow-hidden bg-gradient-to-br ${displayOptions.backgroundUrl || BACKGROUND_PRESETS[0].value} relative`}>
+
+
+                <div className={`aspect-video rounded-xl overflow-hidden relative bg-black`}>
+                  {/* Background Layer */}
+                  {displayOptions.backgroundType === 'image' ? (
+                    <img
+                      src={displayOptions.backgroundUrl}
+                      className={`absolute inset-0 w-full h-full transition-all duration-300`}
+                      style={{
+                        objectFit: displayOptions.objectFit || 'cover',
+                        opacity: (displayOptions.backgroundOpacity || 100) / 100,
+                        filter: `blur(${displayOptions.backgroundBlur || 0}px)`
+                      }}
+                    />
+                  ) : (
+                    <div
+                      className={`absolute inset-0 w-full h-full bg-gradient-to-br ${displayOptions.backgroundUrl}`}
+                      style={{
+                        opacity: (displayOptions.backgroundOpacity || 100) / 100,
+                        filter: `blur(${displayOptions.backgroundBlur || 0}px)`
+                      }}
+                    />
+                  )}
+
                   {/* Overlay for better text readability */}
-                  <div className="absolute inset-0 bg-black/30" />
-                  
+                  <div className="absolute inset-0 bg-black/10" />
+
                   {/* Content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                  <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center ${displayOptions.textShadow ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]' : ''}`}>
                     {displayOptions.showTitle && (
                       <h3 className={`text-2xl font-bold text-white mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                         {selectedSong.title[lang] || selectedSong.title.fa}
@@ -464,7 +580,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     {displayOptions.showArtist && (
                       <p className="text-white/70 text-sm mb-4">{selectedSong.artist}</p>
                     )}
-                    
+
                     <div className="space-y-2 max-h-48 overflow-y-auto">
                       {displayOptions.showFarsiLyrics && (
                         <p className={`text-xl text-white leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`} dir="rtl">
@@ -523,7 +639,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
           >
             {isRTL ? 'انصراف' : 'Cancel'}
           </button>
-          
+
           {step === 'configure' && (
             <button
               onClick={handleConfirm}
