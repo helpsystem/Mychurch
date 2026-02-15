@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
-import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail, Zap, Video, RefreshCw } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Users, Music, Calendar, MicVocal, SlidersHorizontal, LogOut, Eye, Link as LinkIcon, DatabaseZap, BookOpen, MessageCircle, Wand2, Send, Phone, User as UserIcon, Image as ImageIcon, ArrowLeft, Download, History, UserPlus, BarChart2, Globe, Upload, Download as DownloadIcon, Copy, Folder, ImageUp, Check, HelpCircle, HardDrive, Share2, ChevronDown, ChevronRight, MessageSquare, Mail, Zap, Video, RefreshCw, Tv } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTour } from '../hooks/useTour';
@@ -128,6 +128,7 @@ const AdminDashboardPage: React.FC = () => {
     const menuItems = {
         coreContent: [
             { id: 'dashboard', label: t('dashboard'), icon: <LayoutDashboard />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER', 'WORSHIP_LEADER'] },
+            { id: 'broadcast', label: lang === 'fa' ? '🎬 پنل پخش زنده' : '🎬 Broadcast Console', icon: <Tv />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER', 'WORSHIP_LEADER'], externalLink: '/#/admin/broadcast' },
             { id: 'pages', label: t('pages'), icon: <FileText />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'content', label: t('footerLinkContent'), icon: <Settings />, roles: ['MANAGER', 'SUPER_ADMIN', 'LEADER'] },
             { id: 'songs', label: lang === 'fa' ? 'مدیریت سرودها' : 'Songs Management', icon: <Music />, roles: ['MANAGER', 'SUPER_ADMIN', 'WORSHIP_LEADER'] },
@@ -291,6 +292,7 @@ const AdminDashboardPage: React.FC = () => {
                                 value={simulatedRole || ''}
                                 onChange={(e) => setSimulatedRole(e.target.value || null)}
                                 className="w-full bg-gray-800 text-white text-sm rounded-lg px-3 py-2 border border-gray-700 focus:border-blue-500 focus:outline-none"
+                                aria-label={lang === 'fa' ? 'انتخاب نقش برای شبیه‌سازی' : 'Select Role to Simulate'}
                             >
                                 <option value="">
                                     {lang === 'fa' ? '👑 مدیر ارشد (نقش واقعی)' : '👑 Super Admin (Real Role)'}
