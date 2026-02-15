@@ -13,7 +13,7 @@ import { Slide, AppLanguage } from './types';
 
 // Types
 export interface SyncMessage {
-  type: 'slide_change' | 'overlay_toggle' | 'lower_third' | 'play_control' | 'chat' | 'sync_request' | 'sync_response' | 'device_join' | 'device_leave';
+  type: 'slide_change' | 'overlay_toggle' | 'lower_third' | 'play_control' | 'chat' | 'sync_request' | 'sync_response' | 'device_join' | 'device_leave' | 'audio_chunk' | 'transcript';
   payload: any;
   senderId: string;
   senderName: string;
@@ -57,13 +57,14 @@ export interface UseWebSocketSyncReturn {
   sendPlayControl: (action: 'play' | 'pause' | 'stop' | 'seek', time?: number) => void;
   sendChatMessage: (message: string) => void;
   requestSync: () => void;
+  sendAudioChunk: (blob: Blob) => void;
 }
 
 // Generate unique device ID
 const generateDeviceId = () => {
   const stored = localStorage.getItem('broadcast_device_id');
   if (stored) return stored;
-  
+
   const newId = `device_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   localStorage.setItem('broadcast_device_id', newId);
   return newId;
@@ -81,12 +82,12 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
     role = 'viewer',
     autoConnect = false,
   } = options;
-  
+
   const socketRef = useRef<WebSocket | null>(null);
   const deviceId = useRef(generateDeviceId());
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const [state, setState] = useState<SyncState>({
     isConnected: false,
     sessionId: initialSessionId || null,
@@ -95,12 +96,12 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
     lastMessage: null,
     error: null,
   });
-  
+
   // Update state helper
   const updateState = useCallback((updates: Partial<SyncState>) => {
     setState(prev => ({ ...prev, ...updates }));
   }, []);
-  
+
   // Send message through WebSocket
   const sendMessage = useCallback((message: Omit<SyncMessage, 'senderId' | 'senderName' | 'timestamp'>) => {
     if (socketRef.current?.readyState === WebSocket.OPEN) {
@@ -110,41 +111,41 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
         senderName: deviceName,
         timestamp: Date.now(),
       };
-      
+
       socketRef.current.send(JSON.stringify(fullMessage));
     }
   }, [deviceName]);
-  
+
   // Connect to WebSocket
   const connect = useCallback((sessionId: string) => {
     // Close existing connection
     if (socketRef.current) {
       socketRef.current.close();
     }
-    
+
     updateState({ sessionId, error: null });
-    
+
     // Build WebSocket URL
     const wsUrl = process.env.NODE_ENV === 'production'
       ? `wss://${window.location.host}/ws/broadcast-sync`
       : 'ws://localhost:3001/ws/broadcast-sync';
-    
+
     const urlWithParams = `${wsUrl}?sessionId=${sessionId}&deviceId=${deviceId.current}&deviceName=${encodeURIComponent(deviceName)}&role=${role}`;
-    
+
     try {
       const socket = new WebSocket(urlWithParams);
       socketRef.current = socket;
-      
+
       socket.onopen = () => {
         console.log('🔌 WebSocket connected');
         updateState({ isConnected: true, error: null });
-        
+
         // Send join message
         sendMessage({
           type: 'device_join',
           payload: { deviceName, role },
         });
-        
+
         // Start heartbeat
         heartbeatIntervalRef.current = setInterval(() => {
           if (socket.readyState === WebSocket.OPEN) {
@@ -152,11 +153,11 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
           }
         }, 30000);
       };
-      
+
       socket.onmessage = (event) => {
         try {
           const message: SyncMessage = JSON.parse(event.data);
-          
+
           // Handle different message types
           switch (message.type) {
             case 'device_join':
@@ -175,7 +176,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
                 lastMessage: message,
               }));
               break;
-              
+
             case 'device_leave':
               setState(prev => ({
                 ...prev,
@@ -183,12 +184,12 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
                 lastMessage: message,
               }));
               break;
-              
+
             case 'sync_response':
               // Full state sync received
               updateState({ lastMessage: message });
               break;
-              
+
             default:
               updateState({ lastMessage: message });
           }
@@ -196,21 +197,21 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
           console.error('WebSocket message parse error:', err);
         }
       };
-      
+
       socket.onerror = (event) => {
         console.error('WebSocket error:', event);
         updateState({ error: 'Connection error' });
       };
-      
+
       socket.onclose = () => {
         console.log('🔌 WebSocket disconnected');
         updateState({ isConnected: false });
-        
+
         // Clear heartbeat
         if (heartbeatIntervalRef.current) {
           clearInterval(heartbeatIntervalRef.current);
         }
-        
+
         // Auto-reconnect after 5 seconds
         reconnectTimeoutRef.current = setTimeout(() => {
           if (state.sessionId) {
@@ -223,7 +224,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       updateState({ error: (err as Error).message });
     }
   }, [deviceName, role, sendMessage, state.sessionId, updateState]);
-  
+
   // Disconnect
   const disconnect = useCallback(() => {
     // Send leave message
@@ -231,13 +232,13 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       type: 'device_leave',
       payload: {},
     });
-    
+
     // Close socket
     if (socketRef.current) {
       socketRef.current.close();
       socketRef.current = null;
     }
-    
+
     // Clear intervals
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
@@ -245,21 +246,21 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
     if (heartbeatIntervalRef.current) {
       clearInterval(heartbeatIntervalRef.current);
     }
-    
+
     updateState({
       isConnected: false,
       sessionId: null,
       connectedDevices: [],
     });
   }, [sendMessage, updateState]);
-  
+
   // Create new session
   const createSession = useCallback((): string => {
     const newSessionId = generateSessionId();
     connect(newSessionId);
     return newSessionId;
   }, [connect]);
-  
+
   // Send slide change
   const sendSlideChange = useCallback((slideIndex: number, slide: Slide) => {
     sendMessage({
@@ -267,7 +268,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       payload: { slideIndex, slide },
     });
   }, [sendMessage]);
-  
+
   // Send overlay toggle
   const sendOverlayToggle = useCallback((overlayType: string, visible: boolean, data?: any) => {
     sendMessage({
@@ -275,7 +276,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       payload: { overlayType, visible, data },
     });
   }, [sendMessage]);
-  
+
   // Send Lower Third
   const sendLowerThird = useCallback((name: string, title: string, visible: boolean) => {
     sendMessage({
@@ -283,7 +284,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       payload: { name, title, visible },
     });
   }, [sendMessage]);
-  
+
   // Send play control
   const sendPlayControl = useCallback((action: 'play' | 'pause' | 'stop' | 'seek', time?: number) => {
     sendMessage({
@@ -291,7 +292,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       payload: { action, time },
     });
   }, [sendMessage]);
-  
+
   // Send chat message
   const sendChatMessage = useCallback((message: string) => {
     sendMessage({
@@ -299,7 +300,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       payload: { message },
     });
   }, [sendMessage]);
-  
+
   // Request full sync from controller
   const requestSync = useCallback(() => {
     sendMessage({
@@ -307,18 +308,31 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
       payload: {},
     });
   }, [sendMessage]);
-  
+
+  // Send Audio Chunk (Convert Blob to Base64)
+  const sendAudioChunk = useCallback((blob: Blob) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64data = (reader.result as string).split(',')[1];
+      sendMessage({
+        type: 'audio_chunk',
+        payload: base64data // Send base64 string
+      });
+    };
+    reader.readAsDataURL(blob);
+  }, [sendMessage]);
+
   // Auto-connect
   useEffect(() => {
     if (autoConnect && initialSessionId) {
       connect(initialSessionId);
     }
-    
+
     return () => {
       disconnect();
     };
   }, []);
-  
+
   return {
     state,
     connect,
@@ -330,6 +344,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
     sendPlayControl,
     sendChatMessage,
     requestSync,
+    sendAudioChunk
   };
 }
 

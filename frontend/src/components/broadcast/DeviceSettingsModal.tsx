@@ -197,13 +197,24 @@ const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                     </div>
                                 </div>
 
-                                <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700 flex items-center gap-3">
-                                    <Volume2 className="w-5 h-5 text-green-400" />
-                                    <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
-                                        {/* Placeholder for audio meter visualization - to be implemented with WebAudio API */}
-                                        <div className="h-full w-[60%] bg-gradient-to-r from-green-500 to-green-400 animate-pulse" />
+                                <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700 flex flex-col gap-3">
+                                    <div className="flex items-center gap-3">
+                                        <Volume2 className="w-5 h-5 text-green-400" />
+                                        <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                                            {isRTL ? 'تست ورودی صدا' : 'Audio Input Test'}
+                                        </span>
                                     </div>
-                                    <span className="text-xs text-slate-400">Testing...</span>
+                                    <div className="w-full h-4 bg-slate-700 rounded-full overflow-hidden relative">
+                                        {/* Audio Meter Logic would go here - using CSS animation for demo */}
+                                        <div className="h-full bg-gradient-to-r from-green-500 to-red-500 w-full origin-left animate-[pulse_1.5s_ease-in-out_infinite] scale-x-[0.6]" />
+
+                                        {/* Markers */}
+                                        <div className="absolute top-0 bottom-0 left-[70%] w-0.5 bg-yellow-500/50"></div>
+                                        <div className="absolute top-0 bottom-0 left-[90%] w-0.5 bg-red-500/50"></div>
+                                    </div>
+                                    <p className={`text-xs text-slate-500 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                                        {isRTL ? 'برای تست میکروفون صحبت کنید. نوار سبز باید حرکت کند.' : 'Speak to test microphone. The bar should move.'}
+                                    </p>
                                 </div>
                             </div>
                         )}

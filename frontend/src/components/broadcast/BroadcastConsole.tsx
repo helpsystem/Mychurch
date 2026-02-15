@@ -30,6 +30,7 @@ const INITIAL_SESSION: BroadcastSession = {
 const INITIAL_OVERLAY: BroadcastOverlayConfig = {
   layout: 'SLIDES_ONLY',
   pipPosition: 'bottom-right', // موقعیت پیش‌فرض دوربین
+  pipScale: 1,
   logoUrl: null,
   showLogo: false,
   leaderVideoShape: 'rectangle',
@@ -175,9 +176,9 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
           <div className="space-y-4 mb-6">
             {/* Camera Status */}
             <div className={`flex items-center gap-4 p-4 rounded-xl ${cameraStatus === 'granted' ? 'bg-green-500/20 border border-green-500/30' :
-                cameraStatus === 'denied' ? 'bg-yellow-500/20 border border-yellow-500/30' :
-                  cameraStatus === 'error' ? 'bg-red-500/20 border border-red-500/30' :
-                    'bg-slate-700/50 border border-slate-600'
+              cameraStatus === 'denied' ? 'bg-yellow-500/20 border border-yellow-500/30' :
+                cameraStatus === 'error' ? 'bg-red-500/20 border border-red-500/30' :
+                  'bg-slate-700/50 border border-slate-600'
               }`}>
               {cameraStatus === 'granted' ? (
                 <Camera className="w-6 h-6 text-green-400" />
@@ -191,9 +192,9 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
                   {lang === 'fa' ? 'دوربین' : 'Camera'}
                 </p>
                 <p className={`text-sm ${cameraStatus === 'granted' ? 'text-green-400' :
-                    cameraStatus === 'denied' ? 'text-yellow-400' :
-                      cameraStatus === 'error' ? 'text-red-400' :
-                        'text-slate-400'
+                  cameraStatus === 'denied' ? 'text-yellow-400' :
+                    cameraStatus === 'error' ? 'text-red-400' :
+                      'text-slate-400'
                   } ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   {cameraStatus === 'granted' && (lang === 'fa' ? 'متصل' : 'Connected')}
                   {cameraStatus === 'denied' && (lang === 'fa' ? 'غیرفعال' : 'Disabled')}
@@ -205,8 +206,8 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
 
             {/* Microphone Status */}
             <div className={`flex items-center gap-4 p-4 rounded-xl ${micStatus === 'granted' ? 'bg-green-500/20 border border-green-500/30' :
-                micStatus === 'denied' ? 'bg-red-500/20 border border-red-500/30' :
-                  'bg-slate-700/50 border border-slate-600'
+              micStatus === 'denied' ? 'bg-red-500/20 border border-red-500/30' :
+                'bg-slate-700/50 border border-slate-600'
               }`}>
               {micStatus === 'granted' ? (
                 <Mic className="w-6 h-6 text-green-400" />
@@ -220,8 +221,8 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
                   {lang === 'fa' ? 'میکروفون' : 'Microphone'}
                 </p>
                 <p className={`text-sm ${micStatus === 'granted' ? 'text-green-400' :
-                    micStatus === 'denied' ? 'text-red-400' :
-                      'text-slate-400'
+                  micStatus === 'denied' ? 'text-red-400' :
+                    'text-slate-400'
                   } ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                   {micStatus === 'granted' && (lang === 'fa' ? 'متصل' : 'Connected')}
                   {micStatus === 'denied' && (lang === 'fa' ? 'غیرفعال' : 'Disabled')}

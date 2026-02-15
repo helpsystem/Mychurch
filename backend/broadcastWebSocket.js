@@ -14,7 +14,7 @@ const clients = new Map(); // WebSocket -> { sessionId, deviceId, deviceName, ro
  * @param {Server} server - HTTP server instance
  */
 function initBroadcastWebSocket(server) {
-  const wss = new WebSocket.Server({ 
+  const wss = new WebSocket.Server({
     server,
     path: '/ws/broadcast-sync'
   });
@@ -57,10 +57,53 @@ function initBroadcastWebSocket(server) {
     // Broadcast device list to room
     broadcastDeviceList(sessionId);
 
+
     // Handle incoming messages
     ws.on('message', (data) => {
       try {
         const message = JSON.parse(data.toString());
+
+        // Handle audio chunks for AI Transcription
+        if (message.type === 'audio_chunk') {
+          // message.payload should be base64 audio
+          if (message.payload) {
+            const audioBuffer = Buffer.from(message.payload, 'base64');
+
+            // Send to Gemini for transcription
+            // We use a "fire and forget" or callback approach to not block the WS loop
+            // Note: In a real production app, we might want to queue these or use a streaming API.
+            // For now, we process per-chunk (assuming client sends ~3-5s chunks).
+
+            const { transcribeAudio } = require('./services/geminiService');
+
+            transcribeAudio(audioBuffer, 'audio/webm', 'Transcribe this speech to text. Return only the text.')
+              .then(transcript => {
+                if (transcript && transcript.trim()) {
+                  // Broadcast transcript to session
+                  const transcriptMsg = JSON.stringify({
+                    type: 'transcript',
+                    payload: {
+                      text: transcript.trim(),
+                      isFinal: true, // For now, we treat chunks as final segments
+                      timestamp: Date.now()
+                    },
+                    senderId: 'AI_TRANSCRIPTION'
+                  });
+
+                  const room = rooms.get(sender.sessionId);
+                  if (room) {
+                    room.forEach(client => {
+                      if (client.readyState === WebSocket.OPEN) {
+                        client.send(transcriptMsg);
+                      }
+                    });
+                  }
+                }
+              })
+              .catch(err => console.error('Transcription failed:', err));
+          }
+          return;
+        }
 
         // Handle ping/pong
         if (message.type === 'ping') {

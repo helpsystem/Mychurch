@@ -294,7 +294,11 @@ function App() {
                   <Route path="worship-presentation" element={<Layout><WorshipPresentationPage /></Layout>} />
                   <Route path="worship/audio-studio" element={<Layout><AudioStudioPage /></Layout>} />
 
-                  <Route path="presentation-creator" element={<Layout><PresentationCreatorPage /></Layout>} />
+                  <Route path="presentation-creator" element={
+                    <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
+                      <Layout><PresentationCreatorPage /></Layout>
+                    </ProtectedRoute>
+                  } />
                   <Route path="admin/sync-management" element={
                     <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER']}>
                       <Layout><AdminSyncManagementPage /></Layout>
