@@ -63,6 +63,10 @@ function initBroadcastWebSocket(server) {
       try {
         const message = JSON.parse(data.toString());
 
+        // Get sender info immediately
+        const sender = clients.get(ws);
+        if (!sender) return;
+
         // Handle audio chunks for AI Transcription
         if (message.type === 'audio_chunk') {
           // message.payload should be base64 audio
@@ -70,10 +74,6 @@ function initBroadcastWebSocket(server) {
             const audioBuffer = Buffer.from(message.payload, 'base64');
 
             // Send to Gemini for transcription
-            // We use a "fire and forget" or callback approach to not block the WS loop
-            // Note: In a real production app, we might want to queue these or use a streaming API.
-            // For now, we process per-chunk (assuming client sends ~3-5s chunks).
-
             const { transcribeAudio } = require('./services/geminiService');
 
             transcribeAudio(audioBuffer, 'audio/webm', 'Transcribe this speech to text. Return only the text.')
@@ -84,7 +84,7 @@ function initBroadcastWebSocket(server) {
                     type: 'transcript',
                     payload: {
                       text: transcript.trim(),
-                      isFinal: true, // For now, we treat chunks as final segments
+                      isFinal: true,
                       timestamp: Date.now()
                     },
                     senderId: 'AI_TRANSCRIPTION'
@@ -110,10 +110,6 @@ function initBroadcastWebSocket(server) {
           ws.send(JSON.stringify({ type: 'pong', timestamp: Date.now() }));
           return;
         }
-
-        // Get sender info
-        const sender = clients.get(ws);
-        if (!sender) return;
 
         console.log(`📩 Message from ${sender.deviceName}:`, message.type);
 

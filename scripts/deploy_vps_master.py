@@ -15,11 +15,19 @@ BACKEND_REMOTE_PATH = "/root/Mychurch/backend"
 
 def run_command(cmd, cwd=None):
     print(f"🔨 Running: {cmd}")
-    result = subprocess.run(cmd, shell=True, cwd=cwd, text=True, capture_output=True)
-    if result.returncode != 0:
-        print(f"❌ Error: {result.stderr}")
+    try:
+        result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True)
+        stdout = result.stdout.decode('utf-8', errors='replace')
+        stderr = result.stderr.decode('utf-8', errors='replace')
+        
+        if result.returncode != 0:
+            print(f"❌ Error: {stderr}")
+            print(f"Output: {stdout}")
+            return False
+        return True
+    except Exception as e:
+        print(f"❌ Execution Error: {e}")
         return False
-    return True
 
 def upload_directory(sftp, local_dir, remote_dir):
     print(f"📤 Uploading {local_dir} to {remote_dir}...")
@@ -78,21 +86,8 @@ def main():
     backend_dir = os.path.join(os.getcwd(), "backend")
     # Upload specific files or whole dir? backend usually needs package.json, server.js, etc.
     # Let's upload key files
-    files_to_upload = ["server.js", "package.json", "package-lock.json"]
-    
-    # Ensure remote backend dir exists
-    try:
-        sftp.stat(BACKEND_REMOTE_PATH)
-    except FileNotFoundError:
-        print(f"Creating backend dir: {BACKEND_REMOTE_PATH}")
-        sftp.mkdir(BACKEND_REMOTE_PATH)
-
-    for f in files_to_upload:
-        local = os.path.join(backend_dir, f)
-        remote = f"{BACKEND_REMOTE_PATH}/{f}"
-        if os.path.exists(local):
-            print(f"   📄 {f}")
-            sftp.put(local, remote)
+    # Upload entire backend directory (excluding node_modules)
+    upload_directory(sftp, backend_dir, BACKEND_REMOTE_PATH)
             
     # Also upload migrations or other folders if needed
     # For now, simplistic update.

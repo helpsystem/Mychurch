@@ -12,6 +12,7 @@ const router = express.Router();
 const fs = require('fs').promises;
 const path = require('path');
 const multer = require('multer');
+const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 
 // Base paths for broadcast data
 const BROADCAST_BASE = path.join(__dirname, '../../public/broadcast');
@@ -65,7 +66,7 @@ router.get('/configs', async (req, res) => {
   try {
     const files = await fs.readdir(CONFIGS_DIR);
     const configs = [];
-    
+
     for (const file of files) {
       if (file.endsWith('.json')) {
         try {
@@ -82,7 +83,7 @@ router.get('/configs', async (req, res) => {
         }
       }
     }
-    
+
     res.json({ success: true, configs });
   } catch (err) {
     console.error('Error listing configs:', err);
@@ -105,23 +106,23 @@ router.get('/configs/:id', async (req, res) => {
 });
 
 // POST /api/broadcast/configs - Save a new config/template
-router.post('/configs', express.json({ limit: '10mb' }), async (req, res) => {
+router.post('/configs', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'LEADER'), express.json({ limit: '10mb' }), async (req, res) => {
   try {
     const { id, name, config } = req.body;
     if (!id || !name || !config) {
       return res.status(400).json({ success: false, error: 'Missing required fields' });
     }
-    
+
     const data = {
       id,
       name,
       date: new Date().toISOString(),
       config
     };
-    
+
     const filepath = path.join(CONFIGS_DIR, `${id}.json`);
     await fs.writeFile(filepath, JSON.stringify(data, null, 2));
-    
+
     res.json({ success: true, id, message: 'Config saved successfully' });
   } catch (err) {
     console.error('Error saving config:', err);
@@ -130,7 +131,7 @@ router.post('/configs', express.json({ limit: '10mb' }), async (req, res) => {
 });
 
 // DELETE /api/broadcast/configs/:id - Delete a config
-router.delete('/configs/:id', async (req, res) => {
+router.delete('/configs/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'LEADER'), async (req, res) => {
   try {
     const { id } = req.params;
     const filepath = path.join(CONFIGS_DIR, `${id}.json`);
@@ -149,7 +150,7 @@ router.get('/presentations', async (req, res) => {
   try {
     const files = await fs.readdir(PRESENTATIONS_DIR);
     const presentations = [];
-    
+
     for (const file of files) {
       if (file.endsWith('.json')) {
         try {
@@ -167,7 +168,7 @@ router.get('/presentations', async (req, res) => {
         }
       }
     }
-    
+
     res.json({ success: true, presentations });
   } catch (err) {
     console.error('Error listing presentations:', err);
@@ -190,13 +191,13 @@ router.get('/presentations/:id', async (req, res) => {
 });
 
 // POST /api/broadcast/presentations - Save a new presentation
-router.post('/presentations', express.json({ limit: '50mb' }), async (req, res) => {
+router.post('/presentations', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'LEADER'), express.json({ limit: '50mb' }), async (req, res) => {
   try {
     const { id, name, slides } = req.body;
     if (!id || !name || !slides) {
       return res.status(400).json({ success: false, error: 'Missing required fields' });
     }
-    
+
     const data = {
       id,
       name,
@@ -204,10 +205,10 @@ router.post('/presentations', express.json({ limit: '50mb' }), async (req, res) 
       slides,
       slideCount: slides.length
     };
-    
+
     const filepath = path.join(PRESENTATIONS_DIR, `${id}.json`);
     await fs.writeFile(filepath, JSON.stringify(data, null, 2));
-    
+
     res.json({ success: true, id, message: 'Presentation saved successfully' });
   } catch (err) {
     console.error('Error saving presentation:', err);
@@ -216,7 +217,7 @@ router.post('/presentations', express.json({ limit: '50mb' }), async (req, res) 
 });
 
 // DELETE /api/broadcast/presentations/:id - Delete a presentation
-router.delete('/presentations/:id', async (req, res) => {
+router.delete('/presentations/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'LEADER'), async (req, res) => {
   try {
     const { id } = req.params;
     const filepath = path.join(PRESENTATIONS_DIR, `${id}.json`);
@@ -231,15 +232,15 @@ router.delete('/presentations/:id', async (req, res) => {
 // ==================== FILE UPLOADS API ====================
 
 // POST /api/broadcast/upload - Upload a file
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/upload', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'LEADER'), upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No file uploaded' });
     }
-    
+
     // Return the URL to access the file
     const fileUrl = `/broadcast/uploads/${req.file.filename}`;
-    
+
     res.json({
       success: true,
       url: fileUrl,
@@ -259,7 +260,7 @@ router.get('/uploads', async (req, res) => {
   try {
     const files = await fs.readdir(UPLOADS_DIR);
     const uploads = [];
-    
+
     for (const file of files) {
       try {
         const stats = await fs.stat(path.join(UPLOADS_DIR, file));
@@ -273,7 +274,7 @@ router.get('/uploads', async (req, res) => {
         // Skip files that can't be accessed
       }
     }
-    
+
     res.json({ success: true, uploads });
   } catch (err) {
     console.error('Error listing uploads:', err);
@@ -282,7 +283,7 @@ router.get('/uploads', async (req, res) => {
 });
 
 // DELETE /api/broadcast/uploads/:filename - Delete an uploaded file
-router.delete('/uploads/:filename', async (req, res) => {
+router.delete('/uploads/:filename', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'LEADER'), async (req, res) => {
   try {
     const { filename } = req.params;
     const filepath = path.join(UPLOADS_DIR, filename);

@@ -75,16 +75,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
   const [isTranscribing, setIsTranscribing] = useState(false);
   const transcriptTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Audio Capture Hook
-  const { startCapture, stopCapture, isCapturing } = useAudioCapture(
-    mediaStream,
-    useCallback((blob) => {
-      // We use a ref or direct access to the sync object if possible, 
-      // but 'sync' is defined LATER in the component.
-      // We need to move this hook usage AFTER 'sync' is defined.
-      // Let's verify where 'sync' is defined.
-    }, [])
-  );
+
 
   // Camera & Microphone state
   const [isCameraOn, setIsCameraOn] = useState(!!mediaStream?.getVideoTracks().length);
@@ -155,7 +146,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     disconnect: disconnectSync,
     sendSlideChange,
     sendPlayControl,
-    sendAudioChunk
+    sendAudioChunk,
+    sendOverlayToggle
   } = useWebSocketSync({
     isLeader: true,
     onSlideChange: (slideIndex) => {
@@ -164,11 +156,21 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     }
   });
 
-  // Audio Capture Hook
-  const { startCapture, stopCapture, isCapturing } = useAudioCapture(
-    mediaStream,
+  // Audio Capture Hook (AI Transcription)
+  const {
+    startRecording: startLiveTranscribe,
+    stopRecording: stopLiveTranscribe,
+    isRecording: isTranscribingLive,
+    audioLevel: transcribeLevel
+  } = useAudioCapture(
+    selectedAudioDevice,
     useCallback((blob) => {
       if (syncState.isConnected) {
+        // Only send if we are "Live" or if we want to test
+        // sending as 'audio_chunk'
+        // We use the helper from useWebSocketSync
+        // But useWebSocketSync.sendAudioChunk expects a Blob, which fits.
+        // Wait, useWebSocketSync return object has sendAudioChunk.
         sendAudioChunk(blob);
       }
     }, [syncState.isConnected, sendAudioChunk])
@@ -688,16 +690,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     }));
   };
 
-  // Toggle Transcription
-  const toggleTranscription = () => {
-    if (isCapturing) {
-      stopCapture();
-      setIsTranscribing(false);
-    } else {
-      startCapture();
-      setIsTranscribing(true);
-    }
-  };
+
 
   // Prayer Request Handlers
   const handleAddPrayerRequest = () => {
@@ -2610,7 +2603,6 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                         {t.addDonation}
                       </button>
                     </div>
-
                     {/* Donation List */}
                     <div className="space-y-2">
                       {broadcastConfig.donations.map((item) => (
@@ -2623,16 +2615,101 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                             <p className={`text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{item.title}</p>
                           </div>
                           <button
-                            onClick={() => handleShowDonation(item.id)}
+                            onClick={() => {
+                              const isActive = broadcastConfig.activeDonationId === item.id;
+                              setBroadcastConfig(prev => ({
+                                ...prev,
+                                activeDonationId: isActive ? null : item.id,
+                                // If activating, show overlay
+                                showDonation: !isActive
+                              }));
+                              if (!isActive) {
+                                // Send overlay toggle
+                                sendOverlayToggle('donation', true, item);
+                              } else {
+                                sendOverlayToggle('donation', false);
+                              }
+                            }}
                             className={`px-2 py-1 text-xs rounded ${broadcastConfig.activeDonationId === item.id
                               ? 'bg-green-600 text-white'
                               : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                               }`}
                           >
-                            {broadcastConfig.activeDonationId === item.id ? t.showing : t.show}
+                            {broadcastConfig.activeDonationId === item.id ? (isRTL ? 'مخفی کردن' : 'Hide') : (isRTL ? 'نمایش' : 'Show')}
                           </button>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* AI Transcription Section */}
+              <div className="border-b border-slate-800">
+                <button
+                  onClick={() => toggleSection('ai')}
+                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+                >
+                  <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                    ✨ {isRTL ? 'زیرنویس هوشمند (AI)' : 'AI Live Captions'}
+                  </span>
+                  <span className={`text-slate-500 transition-transform ${openSection === 'ai' ? 'rotate-180' : ''}`}>
+                    ▼
+                  </span>
+                </button>
+                {openSection === 'ai' && (
+                  <div className="p-4 pt-0">
+                    <div className="flex flex-col gap-3">
+                      <p className={`text-xs text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {isRTL
+                          ? 'تبدیل گفتار به متن به صورت زنده با استفاده از هوش مصنوعی Gemini 2.0 Flash.'
+                          : 'Real-time speech-to-text using Gemini 2.0 Flash.'}
+                      </p>
+
+                      {/* Audio Level Visualizer */}
+                      {isTranscribingLive && (
+                        <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-green-500 to-red-500 transition-all duration-100"
+                            style={{ width: `${Math.min(transcribeLevel, 100)}%` }}
+                          />
+                        </div>
+                      )}
+
+                      <button
+                        onClick={async () => {
+                          if (isTranscribingLive) {
+                            stopLiveTranscribe();
+                          } else {
+                            try {
+                              await startLiveTranscribe();
+                            } catch (e) {
+                              console.error('Failed to start transcription:', e);
+                            }
+                          }
+                        }}
+                        className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 transition ${isTranscribingLive
+                          ? 'bg-red-600/20 text-red-400 border border-red-600/50 hover:bg-red-600/30'
+                          : 'bg-purple-600 text-white hover:bg-purple-500'
+                          }`}
+                      >
+                        {isTranscribingLive ? (
+                          <>
+                            <MicOff className="w-4 h-4" />
+                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'توقف زیرنویس' : 'Stop Captions'}</span>
+                          </>
+                        ) : (
+                          <>
+                            <Mic className="w-4 h-4" />
+                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'شروع زیرنویس زنده' : 'Start Live Captions'}</span>
+                          </>
+                        )}
+                      </button>
+
+                      <div className="flex items-center justify-between text-xs text-slate-500">
+                        <span>Status: {syncState.isConnected ? '✅ Sync Connected' : '❌ Sync Offline'}</span>
+                        <span>Model: Gemini 2.0 Flash</span>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -2835,171 +2912,177 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       `}</style>
 
         {/* Prayer Credits Roll Modal */}
-        {showPrayerCredits && (
-          <div className="fixed inset-0 z-[100]">
-            <PrayerCreditsRoll
-              prayers={broadcastConfig.prayerRequests}
-              config={broadcastConfig.prayerCreditsConfig || { enabled: true, speed: 5, showCategory: true, sortBy: 'priority' }}
-              onConfigChange={(newConfig) => setBroadcastConfig(prev => ({ ...prev, prayerCreditsConfig: newConfig }))}
-              lang={lang}
-              isEditing={true}
-            />
-            <button
-              onClick={() => setShowPrayerCredits(false)}
-              className="fixed top-4 right-4 z-[101] p-3 bg-red-600 hover:bg-red-500 text-white rounded-full shadow-lg transition"
-              title={isRTL ? 'بستن' : 'Close'}
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-        )}
+        {
+          showPrayerCredits && (
+            <div className="fixed inset-0 z-[100]">
+              <PrayerCreditsRoll
+                prayers={broadcastConfig.prayerRequests}
+                config={broadcastConfig.prayerCreditsConfig || { enabled: true, speed: 5, showCategory: true, sortBy: 'priority' }}
+                onConfigChange={(newConfig) => setBroadcastConfig(prev => ({ ...prev, prayerCreditsConfig: newConfig }))}
+                lang={lang}
+                isEditing={true}
+              />
+              <button
+                onClick={() => setShowPrayerCredits(false)}
+                className="fixed top-4 right-4 z-[101] p-3 bg-red-600 hover:bg-red-500 text-white rounded-full shadow-lg transition"
+                title={isRTL ? 'بستن' : 'Close'}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+          )
+        }
 
         {/* Save/Load Template Modal */}
-        {showTemplateModal && (
-          <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
-            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-white">
-                  {showTemplateModal === 'save' ? '💾 ذخیره تنظیمات' : '📂 بارگذاری تنظیمات'}
-                </h2>
-                <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              {showTemplateModal === 'save' ? (
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm text-slate-400 mb-2">نام تنظیمات (Template Name)</label>
-                    <input
-                      type="text"
-                      value={templateName}
-                      onChange={(e) => setTemplateName(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
-                      placeholder="مثال: صبح یکشنبه"
-                      autoFocus
-                    />
-                  </div>
-                  <button
-                    onClick={handleSaveTemplate}
-                    disabled={!templateName.trim()}
-                    className="w-full py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
-                  >
-                    <Save className="w-5 h-5" />
-                    ذخیره تنظیمات
+        {
+          showTemplateModal && (
+            <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
+              <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-bold text-white">
+                    {showTemplateModal === 'save' ? '💾 ذخیره تنظیمات' : '📂 بارگذاری تنظیمات'}
+                  </h2>
+                  <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
+                    <X className="w-6 h-6" />
                   </button>
                 </div>
-              ) : (
-                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                  {savedTemplates.length === 0 ? (
-                    <p className="text-slate-500 text-center py-8">هیچ تنظیماتی ذخیره نشده است.</p>
-                  ) : (
-                    savedTemplates.map(t => (
-                      <div key={t.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
-                        <div>
-                          <div className="text-white font-medium">{t.name}</div>
-                          <div className="text-xs text-slate-400">{new Date(t.date).toLocaleString('fa-IR')}</div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => handleLoadTemplate(t.id)}
-                            className="px-3 py-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded text-sm transition"
-                          >
-                            بارگذاری
-                          </button>
-                          <button
-                            onClick={() => handleDeleteTemplate(t.id)}
-                            className="p-1.5 text-slate-500 hover:text-red-400 transition"
-                            title="Delete"
-                            aria-label="Delete"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
 
-        {/* Save/Load Presentation Modal */}
-        {showPresentationModal && (
-          <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
-            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-white">
-                  {showPresentationModal === 'save' ? '💾 ذخیره اسلایدها' : '📂 بارگذاری اسلایدها'}
-                </h2>
-                <button onClick={() => setShowPresentationModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              {showPresentationModal === 'save' ? (
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm text-slate-400 mb-2">نام پرزنتیشن</label>
-                    <input
-                      type="text"
-                      value={presentationName}
-                      onChange={(e) => setPresentationName(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
-                      placeholder="مثال: مراسم کریسمس"
-                      autoFocus
-                    />
+                {showTemplateModal === 'save' ? (
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm text-slate-400 mb-2">نام تنظیمات (Template Name)</label>
+                      <input
+                        type="text"
+                        value={templateName}
+                        onChange={(e) => setTemplateName(e.target.value)}
+                        className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
+                        placeholder="مثال: صبح یکشنبه"
+                        autoFocus
+                      />
+                    </div>
+                    <button
+                      onClick={handleSaveTemplate}
+                      disabled={!templateName.trim()}
+                      className="w-full py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
+                    >
+                      <Save className="w-5 h-5" />
+                      ذخیره تنظیمات
+                    </button>
                   </div>
-                  <div className="text-sm text-slate-400">
-                    تعداد اسلاید: {session.slides.length}
-                  </div>
-                  <button
-                    onClick={handleSavePresentation}
-                    disabled={!presentationName.trim()}
-                    className="w-full py-3 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
-                  >
-                    <Save className="w-5 h-5" />
-                    ذخیره فایل
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                  {savedPresentations.length === 0 ? (
-                    <p className="text-slate-500 text-center py-8">هیچ فایلی ذخیره نشده است.</p>
-                  ) : (
-                    savedPresentations.map(p => (
-                      <div key={p.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
-                        <div>
-                          <div className="text-white font-medium">{p.name}</div>
-                          <div className="text-xs text-slate-400">
-                            {new Date(p.date).toLocaleString('fa-IR')} • {p.slideCount} اسلاید
+                ) : (
+                  <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                    {savedTemplates.length === 0 ? (
+                      <p className="text-slate-500 text-center py-8">هیچ تنظیماتی ذخیره نشده است.</p>
+                    ) : (
+                      savedTemplates.map(t => (
+                        <div key={t.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
+                          <div>
+                            <div className="text-white font-medium">{t.name}</div>
+                            <div className="text-xs text-slate-400">{new Date(t.date).toLocaleString('fa-IR')}</div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => handleLoadTemplate(t.id)}
+                              className="px-3 py-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded text-sm transition"
+                            >
+                              بارگذاری
+                            </button>
+                            <button
+                              onClick={() => handleDeleteTemplate(t.id)}
+                              className="p-1.5 text-slate-500 hover:text-red-400 transition"
+                              title="Delete"
+                              aria-label="Delete"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => handleLoadPresentation(p.id)}
-                            className="px-3 py-1.5 bg-purple-600/20 text-purple-400 hover:bg-purple-600 hover:text-white rounded text-sm transition"
-                          >
-                            بارگذاری
-                          </button>
-                          <button
-                            onClick={() => handleDeletePresentation(p.id)}
-                            className="p-1.5 text-slate-500 hover:text-red-400 transition"
-                            title="Delete"
-                            aria-label="Delete"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              )}
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )
+        }
+
+        {/* Save/Load Presentation Modal */}
+        {
+          showPresentationModal && (
+            <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
+              <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-bold text-white">
+                    {showPresentationModal === 'save' ? '💾 ذخیره اسلایدها' : '📂 بارگذاری اسلایدها'}
+                  </h2>
+                  <button onClick={() => setShowPresentationModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {showPresentationModal === 'save' ? (
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm text-slate-400 mb-2">نام پرزنتیشن</label>
+                      <input
+                        type="text"
+                        value={presentationName}
+                        onChange={(e) => setPresentationName(e.target.value)}
+                        className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
+                        placeholder="مثال: مراسم کریسمس"
+                        autoFocus
+                      />
+                    </div>
+                    <div className="text-sm text-slate-400">
+                      تعداد اسلاید: {session.slides.length}
+                    </div>
+                    <button
+                      onClick={handleSavePresentation}
+                      disabled={!presentationName.trim()}
+                      className="w-full py-3 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
+                    >
+                      <Save className="w-5 h-5" />
+                      ذخیره فایل
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                    {savedPresentations.length === 0 ? (
+                      <p className="text-slate-500 text-center py-8">هیچ فایلی ذخیره نشده است.</p>
+                    ) : (
+                      savedPresentations.map(p => (
+                        <div key={p.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
+                          <div>
+                            <div className="text-white font-medium">{p.name}</div>
+                            <div className="text-xs text-slate-400">
+                              {new Date(p.date).toLocaleString('fa-IR')} • {p.slideCount} اسلاید
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => handleLoadPresentation(p.id)}
+                              className="px-3 py-1.5 bg-purple-600/20 text-purple-400 hover:bg-purple-600 hover:text-white rounded text-sm transition"
+                            >
+                              بارگذاری
+                            </button>
+                            <button
+                              onClick={() => handleDeletePresentation(p.id)}
+                              className="p-1.5 text-slate-500 hover:text-red-400 transition"
+                              title="Delete"
+                              aria-label="Delete"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        }
         {/* Save/Load Modal */}
         <SaveLoadModal
           isOpen={showSaveLoadModal}
@@ -3016,6 +3099,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
         />
       </div>
     );
-  };
+  }
+};
 
-  export default LiveConsole;
+export default LiveConsole;
