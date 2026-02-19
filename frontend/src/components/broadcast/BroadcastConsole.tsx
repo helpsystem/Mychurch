@@ -12,11 +12,58 @@
  * - پشتیبانی دوزبانه (فارسی/انگلیسی)
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component, ErrorInfo, ReactNode } from 'react';
 import { BroadcastSession, BroadcastOverlayConfig, AppLanguage } from './types';
 import { SlideBuilder } from './SlideBuilder';
 import { LiveConsole } from './LiveConsole';
 import { Camera, CameraOff, Mic, MicOff, AlertCircle, RefreshCw } from 'lucide-react';
+
+// Error Boundary to catch LiveConsole crashes
+class LiveConsoleErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean; error: Error | null; errorInfo: ErrorInfo | null }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('[LiveConsole ErrorBoundary]', error, errorInfo);
+    this.setState({ errorInfo });
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center bg-slate-950 text-white p-8">
+          <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
+          <h2 className="text-xl font-bold mb-2 text-red-400">LiveConsole Error</h2>
+          <p className="text-slate-300 mb-4 text-center max-w-lg">
+            {this.state.error?.message || 'Unknown error'}
+          </p>
+          <pre className="bg-slate-800 p-4 rounded-lg text-xs text-red-300 max-w-2xl overflow-auto max-h-64 w-full">
+            {this.state.error?.stack}
+          </pre>
+          <pre className="bg-slate-800 p-4 rounded-lg text-xs text-yellow-300 max-w-2xl overflow-auto max-h-32 w-full mt-2">
+            {this.state.errorInfo?.componentStack}
+          </pre>
+          <button
+            onClick={() => this.setState({ hasError: false, error: null, errorInfo: null })}
+            className="mt-4 px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg font-semibold"
+          >
+            تلاش مجدد / Retry
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // Initial States
 const INITIAL_SESSION: BroadcastSession = {
@@ -304,17 +351,19 @@ export const BroadcastConsole: React.FC<BroadcastConsoleProps> = ({ initialLang 
       />
 
       {/* Right Area: Live Console */}
-      <LiveConsole
-        session={session}
-        mediaStream={stream}
-        setMediaStream={setStream}
-        lang={lang}
-        onLangToggle={toggleLang}
-        broadcastConfig={broadcastConfig}
-        setBroadcastConfig={setBroadcastConfig}
-        activeSlideIndex={activeSlideIndex}
-        onSlideChange={setActiveSlideIndex}
-      />
+      <LiveConsoleErrorBoundary>
+        <LiveConsole
+          session={session}
+          mediaStream={stream}
+          setMediaStream={setStream}
+          lang={lang}
+          onLangToggle={toggleLang}
+          broadcastConfig={broadcastConfig}
+          setBroadcastConfig={setBroadcastConfig}
+          activeSlideIndex={activeSlideIndex}
+          onSlideChange={setActiveSlideIndex}
+        />
+      </LiveConsoleErrorBoundary>
     </div>
   );
 };
