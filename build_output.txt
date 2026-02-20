@@ -1,0 +1,118 @@
+﻿[36mvite v6.3.6 [32mbuilding for production...[36m[39m
+node.exe : [baseline-b
+rowser-mapping] The 
+data in this module 
+is over two months 
+old.  To ensure 
+accurate Baseline 
+data, please update: 
+`npm i baseline-browse
+r-mapping@latest -D`
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\SamYar\AppData\Ro
+aming ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ([baseline-   
+ brows...ping@late    
+st -D`:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+transforming...
+[33m../node_modules/r
+eact-hot-toast/dist/in
+dex.mjs (1:0): Module 
+level directives 
+cause errors when 
+bundled, "use client" 
+in "../node_modules/re
+act-hot-toast/dist/ind
+ex.mjs" was 
+ignored.[39m
+[32mΓ£ô[39m 148 modules transformed.
+[31mΓ£ù[39m Build 
+failed in 1.82s
+[31merror during 
+build:
+[31m[vite]: Rollup 
+failed to resolve 
+import "@/components/B
+ilingualBiblePresentat
+ion" from "D:/Windows.
+old/Users/Sami/Desktop
+/Iran Church DC/Git/My
+church/frontend/src/pa
+ges/BilingualPresentat
+ionDemo.tsx".
+This is most likely 
+unintended because it 
+can break your 
+application at 
+runtime.
+If you do want to 
+externalize this 
+module explicitly add 
+it to
+`build.rollupOptions.e
+xternal`[31m
+    at viteLog (file:/
+//D:/Windows.old/Users
+/Sami/Desktop/Iran%20C
+hurch%20DC/Git/Mychurc
+h/node_modules/vite/di
+st/node/chunks/dep-Bu4
+92Fnd.js:46363:15)
+    at onRollupLog (fi
+le:///D:/Windows.old/U
+sers/Sami/Desktop/Iran
+%20Church%20DC/Git/Myc
+hurch/node_modules/vit
+e/dist/node/chunks/dep
+-Bu492Fnd.js:46413:5)
+    at onLog (file:///
+D:/Windows.old/Users/S
+ami/Desktop/Iran%20Chu
+rch%20DC/Git/Mychurch/
+node_modules/vite/dist
+/node/chunks/dep-Bu492
+Fnd.js:46061:7)
+    at file:///D:/Wind
+ows.old/Users/Sami/Des
+ktop/Iran%20Church%20D
+C/Git/Mychurch/node_mo
+dules/rollup/dist/es/s
+hared/node-entry.js:20
+937:32
+    at Object.logger 
+[as onLog] (file:///D:
+/Windows.old/Users/Sam
+i/Desktop/Iran%20Churc
+h%20DC/Git/Mychurch/no
+de_modules/rollup/dist
+/es/shared/node-entry.
+js:22823:9)
+    at ModuleLoader.ha
+ndleInvalidResolvedId 
+(file:///D:/Windows.ol
+d/Users/Sami/Desktop/I
+ran%20Church%20DC/Git/
+Mychurch/node_modules/
+rollup/dist/es/shared/
+node-entry.js:21567:26
+)
+    at file:///D:/Wind
+ows.old/Users/Sami/Des
+ktop/Iran%20Church%20D
+C/Git/Mychurch/node_mo
+dules/rollup/dist/es/s
+hared/node-entry.js:21
+525:26[39m
