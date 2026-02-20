@@ -1386,1504 +1386,1440 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
      * 🖼️ Render Slide Content
      * Handles all slide types including the new Live Data
      */
-    const renderSlideContent = () => {
-      if (!session.slides[activeSlideIndex]) return null;
-      const slide = session.slides[activeSlideIndex];
-      const content = slide.content;
+    // Handle remaining slide types
+    const content = activeSlide.content;
 
-      // Background Layer (if applicable)
-      // NOTE: This is handled by the parent container styles usually, 
-      // but specific slide types might override or add layers.
+    if (activeSlide.type === SlideType.LIVEDATA) {
+      return renderLiveData(content as SlideContentLiveData);
+    }
 
-      if (slide.type === SlideType.LIVEDATA) {
-        return renderLiveData(content as SlideContentLiveData);
-      }
-
-      if (slide.type === SlideType.GENERIC) {
-        const genericContent = content as SlideContentGeneric;
-        return (
+    if (activeSlide.type === SlideType.GENERIC) {
+      const genericContent = content as SlideContentGeneric;
+      return (
+        <div
+          className="w-full h-full flex flex-col p-12 overflow-hidden relative"
+          style={{
+            justifyContent: genericContent.layout === 'centered' ? 'center' : 'flex-start',
+            textAlign: genericContent.layout === 'centered' ? 'center' : 'left',
+          }}
+        >
           <div
-            className="w-full h-full flex flex-col p-12 overflow-hidden relative"
-            style={{
-              justifyContent: genericContent.layout === 'centered' ? 'center' : 'flex-start',
-              textAlign: genericContent.layout === 'centered' ? 'center' : 'left',
-            }}
-          >
-            {/* Background is handled by parent, but we can add overlay if needed */}
-
-            <div
-              className="prose prose-invert max-w-none prose-2xl"
-              dangerouslySetInnerHTML={{ __html: genericContent.htmlContent }}
-              dir={isRTL ? 'rtl' : 'ltr'}
-            />
-          </div>
-        );
-      }
-
-      if (slide.type === SlideType.LYRICS) {
-        return renderLyrics(content as SlideContentLyrics);
-      }
-
-      if (slide.type === SlideType.SCRIPTURE) {
-        return renderScripture(content as SlideContentScripture);
-      }
-
-      if (slide.type === SlideType.ANNOUNCEMENT) {
-        const annContent = content as SlideContentAnnouncement;
-        return (
-          <div className="w-full h-full flex items-center justify-center p-12">
-            <div className="max-w-4xl w-full bg-slate-900/80 backdrop-blur-md rounded-3xl p-8 border border-slate-700 shadow-2xl flex flex-col md:flex-row gap-8 items-center">
-              {annContent.imageUrl && (
-                <img
-                  src={annContent.imageUrl}
-                  alt={annContent.title}
-                  className="w-full md:w-1/2 rounded-xl object-cover aspect-video shadow-lg"
-                />
-              )}
-              <div className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
-                <h2 className={`text-4xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {annContent.title}
-                </h2>
-                <div className={`text-xl text-slate-200 whitespace-pre-wrap ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {annContent.content}
-                </div>
-
-                {annContent.eventDate && (
-                  <div className="mt-6 flex items-center gap-3 text-amber-400">
-                    <Calendar className="w-6 h-6" />
-                    <span className="text-lg font-bold">
-                      {new Date(annContent.eventDate).toLocaleDateString(lang === 'fa' ? 'fa-IR' : 'en-US', {
-                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
-                      })}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        );
-      }
-
-      if (slide.type === SlideType.MEDIA) {
-        const mediaContent = content as SlideContentMedia;
-        // ... existing media logic is handled inside the JSX below for video/image
-        // but if we want to unify it here:
-        if (mediaContent.mediaType === 'image') {
-          return (
-            <img
-              src={mediaContent.url}
-              alt="Slide Media"
-              className="w-full h-full object-contain"
-            />
-          );
-        }
-        return null; // Video is handled separately with ref
-      }
-
-      return null;
-    };
-
-
-
-    return (
-      <div className="flex-1 flex flex-col bg-slate-950 h-full overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-        {/* Device Selector Modal */}
-        <DeviceSettingsModal
-          isOpen={showDeviceSelector}
-          onClose={() => setShowDeviceSelector(false)}
-          videoDevices={videoDevices}
-          audioDevices={audioDevices}
-          selectedVideoDevice={selectedVideoDevice}
-          selectedAudioDevice={selectedAudioDevice}
-          onVideoDeviceChange={setSelectedVideoDevice}
-          onAudioDeviceChange={setSelectedAudioDevice}
-          onRefreshDevices={enumerateDevices}
-          videoResolution={videoResolution}
-          onResolutionChange={setVideoResolution}
-          isMirrored={isMirrored}
-          onMirrorChange={setIsMirrored}
-          isBlur={isBlur}
-          onBlurChange={setIsBlur}
-          isRTL={isRTL}
-        />
-
-
-        {/* Camera/Mic Status Indicator - Fixed Top */}
-        <div className="h-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700 flex items-center justify-center gap-6 text-xs">
-          <button
-            onClick={() => setShowDeviceSelector(true)}
-            className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all cursor-pointer hover:scale-105 ${isCameraOn ? 'bg-green-600/30 text-green-400 border border-green-500/50' : 'bg-red-600/20 text-red-400 border border-red-500/30'
-              }`}
-            title={isRTL ? 'کلیک برای انتخاب دوربین' : 'Click to select camera'}
-          >
-            {isCameraOn ? <Camera className="w-3.5 h-3.5" /> : <CameraOff className="w-3.5 h-3.5" />}
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isCameraOn ? (isRTL ? 'دوربین فعال' : 'Camera ON') : (isRTL ? 'دوربین غیرفعال' : 'Camera OFF')}</span>
-          </button>
-          <button
-            onClick={() => setShowDeviceSelector(true)}
-            className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all cursor-pointer hover:scale-105 ${isMicOn ? 'bg-green-600/30 text-green-400 border border-green-500/50' : 'bg-red-600/20 text-red-400 border border-red-500/30'
-              }`}
-            title={isRTL ? 'کلیک برای انتخاب میکروفون' : 'Click to select microphone'}
-          >
-            {isMicOn ? <Mic className="w-3.5 h-3.5" /> : <MicOff className="w-3.5 h-3.5" />}
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isMicOn ? (isRTL ? 'میکروفون فعال' : 'Mic ON') : (isRTL ? 'میکروفون غیرفعال' : 'Mic OFF')}</span>
-          </button>
-          {isRecording && (
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/40 text-red-300 border border-red-500/50 animate-pulse">
-              <Circle className="w-3 h-3 fill-red-500" />
-              <span>REC {formatTime(recordingTime)}</span>
-            </div>
-          )}
+            className="prose prose-invert max-w-none prose-2xl"
+            dangerouslySetInnerHTML={{ __html: genericContent.htmlContent }}
+            dir={isRTL ? 'rtl' : 'ltr'}
+          />
         </div>
+      );
+    }
 
-        {/* Top Bar */}
-        <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
-          <div className="flex items-center gap-3">
-            <BroadcastStatusBadge isLive={isRecording} viewerCount={isRecording ? 124 : 0} />
-            <div className="h-6 w-px bg-slate-700 mx-1"></div>
-            {/* Settings Button - Admin Only */}
-            {isAdmin && (
-              <button
-                onClick={toggleTranscription}
-                className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${isTranscribing
-                  ? 'bg-red-600/20 text-red-400 animate-pulse border border-red-500/50'
-                  : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                  }`}
-                title={isTranscribing ? "فعال (توقف)" : "ترجمه زنده (فعال‌سازی)"}
-              >
-                {isTranscribing ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
-                <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
-                  {isTranscribing ? 'AI Active' : 'AI Translation'}
-                </span>
-              </button>
-            )}
-            {/* Settings Button - Admin Only */}
-            {isAdmin && (
-              <button
-                onClick={() => setShowSettings(!showSettings)}
-                className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                  }`}
-                title={isRTL ? 'تنظیمات' : 'Settings'}
-              >
-                <Settings className="w-4 h-4" />
-                <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات' : 'Settings'}</span>
-              </button>
-            )}
+    if (activeSlide.type === SlideType.LYRICS) {
+      return renderLyrics(content as SlideContentLyrics);
+    }
 
-            {/* Save/Load Presentations Button */}
-            <button
-              onClick={() => openSaveLoad('presentation')}
-              className="px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 bg-slate-700 text-slate-300 hover:bg-slate-600"
-              title={isRTL ? 'ذخیره/بازیابی اسلایدها' : 'Save/Load Slides'}
-            >
-              <FolderOpen className="w-4 h-4" />
-              <span className={`hidden md:inline ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'اسلایدها' : 'Slides'}</span>
-            </button>
-
-            {/* Language Toggle */}
-            {/* Language Toggle */}
-            {onLangToggle && (
-              <button
-                onClick={onLangToggle}
-                className="px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 bg-slate-700 text-slate-300 hover:bg-slate-600"
-                title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
-              >
-                <span className="font-bold">{lang === 'fa' ? 'FA' : 'EN'}</span>
-              </button>
-            )}
-
-            {/* Open Display Window Button */}
-            <button
-              onClick={() => {
-                const existingWindow = displayWindow && !displayWindow.closed ? displayWindow : null;
-                if (existingWindow) {
-                  existingWindow.focus();
-                } else {
-                  const win = window.open(
-                    `/#/broadcast/view?session=${syncState.sessionId || session.id || 'default'}`,
-                    'BroadcastDisplay',
-                    'width=1280,height=720,menubar=no,toolbar=no,location=no,status=no'
-                  );
-                  setDisplayWindow(win);
-                }
-              }}
-              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${displayWindow && !displayWindow.closed
-                ? 'bg-green-600 text-white animate-pulse'
-                : 'bg-purple-600 text-white hover:bg-purple-500'
-                }`}
-              title={isRTL ? 'باز کردن صفحه نمایش (پروژکتور)' : 'Open Display Window (Projector)'}
-            >
-              <Monitor className="w-4 h-4" />
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
-                {displayWindow && !displayWindow.closed
-                  ? (isRTL ? 'نمایشگر فعال' : 'Display Active')
-                  : (isRTL ? 'نمایشگر' : 'Display')}
-              </span>
-            </button>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Slide Counter */}
-            <span className="text-slate-400 text-sm">
-              {activeSlideIndex + 1} / {session.slides.length}
-            </span>
-
-            {/* === دکمه‌های تنظیمات (Templates) - Admin Only === */}
-            {isAdmin && (
-              <div className="flex items-center gap-1 border-r border-slate-700 pr-3 mr-1">
-                <button
-                  onClick={() => setShowTemplateModal('save')}
-                  className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-purple-600 hover:bg-purple-500 text-white"
-                  title={isRTL ? 'ذخیره تنظیمات' : 'Save Settings'}
-                >
-                  <Settings className="w-3 h-3" />
-                  <Save className="w-3 h-3" />
-                </button>
-                <button
-                  onClick={() => setShowTemplateModal('load')}
-                  className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
-                  title={isRTL ? 'بارگذاری تنظیمات' : 'Load Settings'}
-                >
-                  <Settings className="w-3 h-3" />
-                  <FolderOpen className="w-3 h-3" />
-                </button>
-              </div>
-            )}
-
-            {/* === دکمه‌های پرزنتیشن (Slides) === */}
-            <button
-              onClick={() => setShowPresentationModal('save')}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-blue-600 hover:bg-blue-500 text-white"
-              title={isRTL ? 'ذخیره اسلایدها' : 'Save Slides'}
-            >
-              <Save className="w-4 h-4" />
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ذخیره' : 'Save'}</span>
-            </button>
-            <button
-              onClick={() => setShowPresentationModal('load')}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
-              title={isRTL ? 'بارگذاری اسلایدها' : 'Load Slides'}
-            >
-              <FolderOpen className="w-4 h-4" />
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'بارگذاری' : 'Load'}</span>
-            </button>
+    return null;
+  };
 
 
-          </div>
-        </div>
 
-        {/* Sync Panel (Modal) */}
-        {showSyncPanel && (
-          <div className="absolute inset-0 bg-black/80 z-50 flex items-center justify-center p-6">
-            <div className="bg-slate-900 rounded-xl shadow-2xl border border-slate-700 max-w-md w-full">
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                    <Users className="w-6 h-6 text-green-500" />
-                    Multi-Device Sync
-                  </h3>
-                  <button
-                    onClick={() => setShowSyncPanel(false)}
-                    className="text-slate-400 hover:text-white"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
+  return (
+    <div className="flex-1 flex flex-col bg-slate-950 h-full overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+      {/* Device Selector Modal */}
+      <DeviceSettingsModal
+        isOpen={showDeviceSelector}
+        onClose={() => setShowDeviceSelector(false)}
+        videoDevices={videoDevices}
+        audioDevices={audioDevices}
+        selectedVideoDevice={selectedVideoDevice}
+        selectedAudioDevice={selectedAudioDevice}
+        onVideoDeviceChange={setSelectedVideoDevice}
+        onAudioDeviceChange={setSelectedAudioDevice}
+        onRefreshDevices={enumerateDevices}
+        videoResolution={videoResolution}
+        onResolutionChange={setVideoResolution}
+        isMirrored={isMirrored}
+        onMirrorChange={setIsMirrored}
+        isBlur={isBlur}
+        onBlurChange={setIsBlur}
+        isRTL={isRTL}
+      />
 
-                <div className="space-y-4">
-                  {syncState.isConnected ? (
-                    <>
-                      <div className="bg-green-900/30 border border-green-700/50 rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-green-400 mb-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                          <span className="font-semibold">Connected</span>
-                        </div>
-                        <div className="text-sm text-slate-300 space-y-1">
-                          <p>Session ID: <span className="font-mono text-xs">{syncState.sessionId}</span></p>
-                          <p>Devices: {syncState.connectedDevices.length}</p>
-                          <p>Session: {syncState.sessionId || 'None'}</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={disconnectSync}
-                        className="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-semibold transition"
-                      >
-                        Disconnect
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <div className="bg-slate-800 rounded-lg p-4">
-                        <label className="block text-sm text-slate-300 mb-2">
-                          Session ID (optional)
-                        </label>
-                        <input
-                          type="text"
-                          value={sessionId}
-                          onChange={(e) => setSessionId(e.target.value)}
-                          placeholder="Leave empty to auto-generate"
-                          className="w-full bg-slate-700 text-white px-3 py-2 rounded border border-slate-600 focus:border-green-500 outline-none"
-                        />
-                        <p className="text-xs text-slate-400 mt-2">
-                          Other devices should use the same Session ID to join
-                        </p>
-                      </div>
-                      <button
-                        onClick={handleConnectSync}
-                        className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-lg font-semibold transition"
-                      >
-                        Start Sync
-                      </button>
-                    </>
-                  )}
-                </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-700">
-                  <p className="text-xs text-slate-400">
-                    💡 Tip: Share the Session ID with other devices. Only the Leader can change slides.
-                  </p>
-                </div>
-              </div>
-            </div>
+      {/* Camera/Mic Status Indicator - Fixed Top */}
+      <div className="h-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700 flex items-center justify-center gap-6 text-xs">
+        <button
+          onClick={() => setShowDeviceSelector(true)}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all cursor-pointer hover:scale-105 ${isCameraOn ? 'bg-green-600/30 text-green-400 border border-green-500/50' : 'bg-red-600/20 text-red-400 border border-red-500/30'
+            }`}
+          title={isRTL ? 'کلیک برای انتخاب دوربین' : 'Click to select camera'}
+        >
+          {isCameraOn ? <Camera className="w-3.5 h-3.5" /> : <CameraOff className="w-3.5 h-3.5" />}
+          <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isCameraOn ? (isRTL ? 'دوربین فعال' : 'Camera ON') : (isRTL ? 'دوربین غیرفعال' : 'Camera OFF')}</span>
+        </button>
+        <button
+          onClick={() => setShowDeviceSelector(true)}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all cursor-pointer hover:scale-105 ${isMicOn ? 'bg-green-600/30 text-green-400 border border-green-500/50' : 'bg-red-600/20 text-red-400 border border-red-500/30'
+            }`}
+          title={isRTL ? 'کلیک برای انتخاب میکروفون' : 'Click to select microphone'}
+        >
+          {isMicOn ? <Mic className="w-3.5 h-3.5" /> : <MicOff className="w-3.5 h-3.5" />}
+          <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isMicOn ? (isRTL ? 'میکروفون فعال' : 'Mic ON') : (isRTL ? 'میکروفون غیرفعال' : 'Mic OFF')}</span>
+        </button>
+        {isRecording && (
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/40 text-red-300 border border-red-500/50 animate-pulse">
+            <Circle className="w-3 h-3 fill-red-500" />
+            <span>REC {formatTime(recordingTime)}</span>
           </div>
         )}
+      </div>
 
-        {/* Main Content */}
-        <div className="flex-1 flex">
-          {/* Preview Area with Sidebars */}
-          <div className="flex-1 flex flex-row overflow-hidden">
-            {/* LEFT SIDEBAR */}
-            <div className="hidden xl:flex w-64 flex-col bg-slate-950 border-r border-slate-900 z-30 shrink-0 transition-all duration-300">
-              <div className="p-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-b border-slate-900 flex justify-between items-center">
-                <span>Previous</span>
-                <span className="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">{Math.max(1, activeSlideIndex)}</span>
-              </div>
-              <div className="flex-1 p-4 flex items-center justify-center relative">
-                {renderSlidePreview(session.slides[activeSlideIndex - 1], 'PREV')}
-              </div>
+      {/* Top Bar */}
+      <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
+        <div className="flex items-center gap-3">
+          <BroadcastStatusBadge isLive={isRecording} viewerCount={isRecording ? 124 : 0} />
+          <div className="h-6 w-px bg-slate-700 mx-1"></div>
+          {/* Settings Button - Admin Only */}
+          {isAdmin && (
+            <button
+              onClick={toggleTranscription}
+              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${isTranscribing
+                ? 'bg-red-600/20 text-red-400 animate-pulse border border-red-500/50'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              title={isTranscribing ? "فعال (توقف)" : "ترجمه زنده (فعال‌سازی)"}
+            >
+              {isTranscribing ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
+                {isTranscribing ? 'AI Active' : 'AI Translation'}
+              </span>
+            </button>
+          )}
+          {/* Settings Button - Admin Only */}
+          {isAdmin && (
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
+                ? 'bg-indigo-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              title={isRTL ? 'تنظیمات' : 'Settings'}
+            >
+              <Settings className="w-4 h-4" />
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات' : 'Settings'}</span>
+            </button>
+          )}
+
+          {/* Save/Load Presentations Button */}
+          <button
+            onClick={() => openSaveLoad('presentation')}
+            className="px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 bg-slate-700 text-slate-300 hover:bg-slate-600"
+            title={isRTL ? 'ذخیره/بازیابی اسلایدها' : 'Save/Load Slides'}
+          >
+            <FolderOpen className="w-4 h-4" />
+            <span className={`hidden md:inline ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'اسلایدها' : 'Slides'}</span>
+          </button>
+
+          {/* Language Toggle */}
+          {/* Language Toggle */}
+          {onLangToggle && (
+            <button
+              onClick={onLangToggle}
+              className="px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 bg-slate-700 text-slate-300 hover:bg-slate-600"
+              title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
+            >
+              <span className="font-bold">{lang === 'fa' ? 'FA' : 'EN'}</span>
+            </button>
+          )}
+
+          {/* Open Display Window Button */}
+          <button
+            onClick={() => {
+              const existingWindow = displayWindow && !displayWindow.closed ? displayWindow : null;
+              if (existingWindow) {
+                existingWindow.focus();
+              } else {
+                const win = window.open(
+                  `/#/broadcast/view?session=${syncState.sessionId || session.id || 'default'}`,
+                  'BroadcastDisplay',
+                  'width=1280,height=720,menubar=no,toolbar=no,location=no,status=no'
+                );
+                setDisplayWindow(win);
+              }
+            }}
+            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${displayWindow && !displayWindow.closed
+              ? 'bg-green-600 text-white animate-pulse'
+              : 'bg-purple-600 text-white hover:bg-purple-500'
+              }`}
+            title={isRTL ? 'باز کردن صفحه نمایش (پروژکتور)' : 'Open Display Window (Projector)'}
+          >
+            <Monitor className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
+              {displayWindow && !displayWindow.closed
+                ? (isRTL ? 'نمایشگر فعال' : 'Display Active')
+                : (isRTL ? 'نمایشگر' : 'Display')}
+            </span>
+          </button>
+        </div>
+
+        <div className="flex items-center gap-3">
+          {/* Slide Counter */}
+          <span className="text-slate-400 text-sm">
+            {activeSlideIndex + 1} / {session.slides.length}
+          </span>
+
+          {/* === دکمه‌های تنظیمات (Templates) - Admin Only === */}
+          {isAdmin && (
+            <div className="flex items-center gap-1 border-r border-slate-700 pr-3 mr-1">
+              <button
+                onClick={() => setShowTemplateModal('save')}
+                className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-purple-600 hover:bg-purple-500 text-white"
+                title={isRTL ? 'ذخیره تنظیمات' : 'Save Settings'}
+              >
+                <Settings className="w-3 h-3" />
+                <Save className="w-3 h-3" />
+              </button>
+              <button
+                onClick={() => setShowTemplateModal('load')}
+                className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
+                title={isRTL ? 'بارگذاری تنظیمات' : 'Load Settings'}
+              >
+                <Settings className="w-3 h-3" />
+                <FolderOpen className="w-3 h-3" />
+              </button>
             </div>
+          )}
 
-            {/* CENTER CONTENT */}
-            <div className="flex-1 flex flex-col relative min-w-0 bg-slate-950">
-              {/* Live Preview */}
-              <div className="flex-1 relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-                {/* Slide Content - Always background/main in PIP mode */}
-                <div className={`absolute inset-0 flex items-center justify-center ${broadcastConfig.layout === 'SPLIT' ? 'right-0 w-1/2' :
-                  broadcastConfig.layout === 'FULL_CAM' ? 'z-10' :
-                    '' // For PIP and SLIDES_ONLY - full size
-                  }`}>
-                  {renderSlideContent()}
-                </div>
+          {/* === دکمه‌های پرزنتیشن (Slides) === */}
+          <button
+            onClick={() => setShowPresentationModal('save')}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-blue-600 hover:bg-blue-500 text-white"
+            title={isRTL ? 'ذخیره اسلایدها' : 'Save Slides'}
+          >
+            <Save className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ذخیره' : 'Save'}</span>
+          </button>
+          <button
+            onClick={() => setShowPresentationModal('load')}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
+            title={isRTL ? 'بارگذاری اسلایدها' : 'Load Slides'}
+          >
+            <FolderOpen className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'بارگذاری' : 'Load'}</span>
+          </button>
 
-                {/* Camera Feed - Small overlay in PIP mode */}
-                {broadcastConfig.layout !== 'SLIDES_ONLY' && (
+
+        </div>
+      </div>
+
+      {/* Sync Panel (Modal) */}
+      {showSyncPanel && (
+        <div className="absolute inset-0 bg-black/80 z-50 flex items-center justify-center p-6">
+          <div className="bg-slate-900 rounded-xl shadow-2xl border border-slate-700 max-w-md w-full">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                  <Users className="w-6 h-6 text-green-500" />
+                  Multi-Device Sync
+                </h3>
+                <button
+                  onClick={() => setShowSyncPanel(false)}
+                  className="text-slate-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {syncState.isConnected ? (
                   <>
-                    {mediaStream ? (
-                      <video
-                        ref={videoRef}
-                        autoPlay
-                        muted
-                        playsInline
-                        className={`absolute object-cover ${broadcastConfig.layout === 'PIP'
-                          ? `w-48 h-36 rounded-xl border-2 border-white/20 shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
-                            broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
-                              broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
-                                'bottom-24 right-4' // bottom-right default
-                          } ${broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
-                            broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
-                          }`
-                          : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
-                            : 'inset-0 w-full h-full z-0' // FULL_CAM
-                          }`}
-                        style={{
-                          transform: isMirrored ? 'scaleX(-1)' : undefined,
-                          filter: isBlur ? 'blur(8px)' : undefined
-                        }}
-                      />
-
-
-                    ) : (
-                      /* Camera Placeholder when no stream */
-                      <div
-                        className={`absolute bg-slate-800/90 flex flex-col items-center justify-center border-2 border-dashed border-slate-600 ${broadcastConfig.layout === 'PIP'
-                          ? `w-48 h-36 rounded-xl shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
-                            broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
-                              broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
-                                'bottom-24 right-4'
-                          } ${broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
-                            broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
-                          }`
-                          : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
-                            : 'inset-0 w-full h-full z-0'
-                          }`}
-                      >
-                        <Camera className="w-8 h-8 text-slate-500 mb-2" />
-                        <span className="text-xs text-slate-400 text-center px-2">دوربین غیرفعال</span>
-                        <button
-                          onClick={async () => {
-                            try {
-                              const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-                              if (setMediaStream) setMediaStream(stream);
-                              setIsCameraOn(true);
-                              setIsMicOn(true);
-                            } catch (err) {
-                              console.error('Camera error:', err);
-                              alert('خطا در دسترسی به دوربین');
-                            }
-                          }}
-                          className="mt-2 text-xs bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg"
-                        >
-                          فعال کردن
-                        </button>
+                    <div className="bg-green-900/30 border border-green-700/50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 text-green-400 mb-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <span className="font-semibold">Connected</span>
                       </div>
-                    )}
+                      <div className="text-sm text-slate-300 space-y-1">
+                        <p>Session ID: <span className="font-mono text-xs">{syncState.sessionId}</span></p>
+                        <p>Devices: {syncState.connectedDevices.length}</p>
+                        <p>Session: {syncState.sessionId || 'None'}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={disconnectSync}
+                      className="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-semibold transition"
+                    >
+                      Disconnect
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <div className="bg-slate-800 rounded-lg p-4">
+                      <label className="block text-sm text-slate-300 mb-2">
+                        Session ID (optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={sessionId}
+                        onChange={(e) => setSessionId(e.target.value)}
+                        placeholder="Leave empty to auto-generate"
+                        className="w-full bg-slate-700 text-white px-3 py-2 rounded border border-slate-600 focus:border-green-500 outline-none"
+                      />
+                      <p className="text-xs text-slate-400 mt-2">
+                        Other devices should use the same Session ID to join
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleConnectSync}
+                      className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-lg font-semibold transition"
+                    >
+                      Start Sync
+                    </button>
                   </>
                 )}
+              </div>
 
-                {/* Live Transcript Overlay */}
-                {liveTranscript && (
-                  <div className="absolute bottom-16 left-0 right-0 z-50 flex justify-center pointer-events-none">
-                    <div className="bg-black/60 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg max-w-4xl mx-auto">
-                      <p className={`text-white text-xl font-medium text-center ${isRTL ? 'font-[Vazirmatn]' : ''} drop-shadow-md`}>
-                        {liveTranscript}
-                      </p>
-                    </div>
-                  </div>
-                )}
+              <div className="mt-6 pt-4 border-t border-slate-700">
+                <p className="text-xs text-slate-400">
+                  💡 Tip: Share the Session ID with other devices. Only the Leader can change slides.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
-                {/* Logo */}
-                {broadcastConfig.showLogo && broadcastConfig.logoUrl && (
-                  <img
-                    src={broadcastConfig.logoUrl}
-                    alt="Logo"
-                    className="absolute top-4 left-4 w-16 h-16 object-contain z-20"
-                  />
-                )}
+      {/* Main Content */}
+      <div className="flex-1 flex">
+        {/* Preview Area with Sidebars */}
+        <div className="flex-1 flex flex-row overflow-hidden">
+          {/* LEFT SIDEBAR */}
+          <div className="hidden xl:flex w-64 flex-col bg-slate-950 border-r border-slate-900 z-30 shrink-0 transition-all duration-300">
+            <div className="p-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-b border-slate-900 flex justify-between items-center">
+              <span>Previous</span>
+              <span className="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">{Math.max(1, activeSlideIndex)}</span>
+            </div>
+            <div className="flex-1 p-4 flex items-center justify-center relative">
+              {renderSlidePreview(session.slides[activeSlideIndex - 1], 'PREV')}
+            </div>
+          </div>
 
-                {/* Lower Third */}
-                {broadcastConfig.showLowerThird && activeLowerThird && (
-                  <div className="absolute bottom-20 left-4 right-4 z-20" dir={isRTL ? 'rtl' : 'ltr'}>
-                    <div className="bg-gradient-to-r from-indigo-600/95 via-purple-600/95 to-indigo-600/95 backdrop-blur-lg rounded-xl p-4 border border-white/20 max-w-lg shadow-2xl">
-                      <div className="flex items-center gap-4">
-                        {/* Leader Image */}
-                        {activeLowerThird.imageUrl && (
-                          <div className="relative flex-shrink-0">
-                            <div className="absolute inset-0 bg-white/30 rounded-full blur-lg"></div>
-                            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-xl">
-                              <img
-                                src={activeLowerThird.imageUrl}
-                                alt={activeLowerThird.title}
-                                className="absolute w-full h-full object-cover"
-                                style={{
-                                  transform: `scale(${activeLowerThird.imagePosition?.scale || 1}) translate(${(activeLowerThird.imagePosition?.x || 50) - 50}%, ${(activeLowerThird.imagePosition?.y || 50) - 50}%)`,
-                                  transformOrigin: 'center'
-                                }}
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <div className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
-                          <p className={`text-white font-bold text-lg ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                            {activeLowerThird.title}
-                          </p>
-                          {activeLowerThird.subtitle && (
-                            <p className={`text-white/70 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                              {activeLowerThird.subtitle}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+          {/* CENTER CONTENT */}
+          <div className="flex-1 flex flex-col relative min-w-0 bg-slate-950">
+            {/* Live Preview */}
+            <div className="flex-1 relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+              {/* Slide Content - Always background/main in PIP mode */}
+              <div className={`absolute inset-0 flex items-center justify-center ${broadcastConfig.layout === 'SPLIT' ? 'right-0 w-1/2' :
+                broadcastConfig.layout === 'FULL_CAM' ? 'z-10' :
+                  '' // For PIP and SLIDES_ONLY - full size
+                }`}>
+                {renderSlideContent()}
+              </div>
 
-                {/* Prayer Ticker */}
-                {broadcastConfig.showPrayerTicker && broadcastConfig.prayerRequests.length > 0 && (
-                  <div className="absolute bottom-4 left-0 right-0 bg-black/70 py-2 z-20">
-                    <div className="animate-marquee whitespace-nowrap">
-                      {broadcastConfig.prayerRequests.map(req => (
-                        <span key={req.id} className={`mx-8 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          🙏 {req.name}: {req.content}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
+              {/* Camera Feed - Small overlay in PIP mode */}
+              {broadcastConfig.layout !== 'SLIDES_ONLY' && (
+                <>
+                  {mediaStream ? (
+                    <video
+                      ref={videoRef}
+                      autoPlay
+                      muted
+                      playsInline
+                      className={`absolute object-cover ${broadcastConfig.layout === 'PIP'
+                        ? `w-48 h-36 rounded-xl border-2 border-white/20 shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                          broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
+                            broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
+                              'bottom-24 right-4' // bottom-right default
+                        } ${broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
+                          broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                        }`
+                        : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
+                          : 'inset-0 w-full h-full z-0' // FULL_CAM
+                        }`}
+                      style={{
+                        transform: isMirrored ? 'scaleX(-1)' : undefined,
+                        filter: isBlur ? 'blur(8px)' : undefined
+                      }}
+                    />
 
-                {/* Active Donation */}
-                {activeDonation && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-30">
-                    <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-3xl p-8 text-center max-w-md">
-                      <Gift className="w-16 h-16 text-white mx-auto mb-4" />
-                      <h3 className={`text-2xl font-bold text-white mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {activeDonation.title}
-                      </h3>
-                      <p className={`text-white/80 mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {activeDonation.description}
-                      </p>
-                      {/* QR Code Display */}
-                      <div className="w-48 h-48 bg-white rounded-xl mx-auto flex items-center justify-center overflow-hidden">
-                        {activeDonation.url && activeDonation.url.startsWith('data:image') ? (
-                          <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-2" />
-                        ) : activeDonation.url ? (
-                          <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-2" />
-                        ) : (
-                          <span className="text-slate-500 text-sm">{isRTL ? 'QR کد ندارد' : 'No QR Code'}</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                )}
 
-                {/* Amen Badge Preview */}
-                {broadcastConfig.amenBadge?.show && (
-                  <div
-                    className="absolute z-40"
-                    style={{
-                      left: `${broadcastConfig.amenBadge.position?.x || 50}%`,
-                      top: `${broadcastConfig.amenBadge.position?.y || 90}%`,
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  >
+                  ) : (
+                    /* Camera Placeholder when no stream */
                     <div
-                      className={`
+                      className={`absolute bg-slate-800/90 flex flex-col items-center justify-center border-2 border-dashed border-slate-600 ${broadcastConfig.layout === 'PIP'
+                        ? `w-48 h-36 rounded-xl shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                          broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
+                            broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
+                              'bottom-24 right-4'
+                        } ${broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
+                          broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                        }`
+                        : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
+                          : 'inset-0 w-full h-full z-0'
+                        }`}
+                    >
+                      <Camera className="w-8 h-8 text-slate-500 mb-2" />
+                      <span className="text-xs text-slate-400 text-center px-2">دوربین غیرفعال</span>
+                      <button
+                        onClick={async () => {
+                          try {
+                            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                            if (setMediaStream) setMediaStream(stream);
+                            setIsCameraOn(true);
+                            setIsMicOn(true);
+                          } catch (err) {
+                            console.error('Camera error:', err);
+                            alert('خطا در دسترسی به دوربین');
+                          }
+                        }}
+                        className="mt-2 text-xs bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg"
+                      >
+                        فعال کردن
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {/* Live Transcript Overlay */}
+              {liveTranscript && (
+                <div className="absolute bottom-16 left-0 right-0 z-50 flex justify-center pointer-events-none">
+                  <div className="bg-black/60 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg max-w-4xl mx-auto">
+                    <p className={`text-white text-xl font-medium text-center ${isRTL ? 'font-[Vazirmatn]' : ''} drop-shadow-md`}>
+                      {liveTranscript}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Logo */}
+              {broadcastConfig.showLogo && broadcastConfig.logoUrl && (
+                <img
+                  src={broadcastConfig.logoUrl}
+                  alt="Logo"
+                  className="absolute top-4 left-4 w-16 h-16 object-contain z-20"
+                />
+              )}
+
+              {/* Lower Third */}
+              {broadcastConfig.showLowerThird && activeLowerThird && (
+                <div className="absolute bottom-20 left-4 right-4 z-20" dir={isRTL ? 'rtl' : 'ltr'}>
+                  <div className="bg-gradient-to-r from-indigo-600/95 via-purple-600/95 to-indigo-600/95 backdrop-blur-lg rounded-xl p-4 border border-white/20 max-w-lg shadow-2xl">
+                    <div className="flex items-center gap-4">
+                      {/* Leader Image */}
+                      {activeLowerThird.imageUrl && (
+                        <div className="relative flex-shrink-0">
+                          <div className="absolute inset-0 bg-white/30 rounded-full blur-lg"></div>
+                          <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-xl">
+                            <img
+                              src={activeLowerThird.imageUrl}
+                              alt={activeLowerThird.title}
+                              className="absolute w-full h-full object-cover"
+                              style={{
+                                transform: `scale(${activeLowerThird.imagePosition?.scale || 1}) translate(${(activeLowerThird.imagePosition?.x || 50) - 50}%, ${(activeLowerThird.imagePosition?.y || 50) - 50}%)`,
+                                transformOrigin: 'center'
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <div className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+                        <p className={`text-white font-bold text-lg ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {activeLowerThird.title}
+                        </p>
+                        {activeLowerThird.subtitle && (
+                          <p className={`text-white/70 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                            {activeLowerThird.subtitle}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Prayer Ticker */}
+              {broadcastConfig.showPrayerTicker && broadcastConfig.prayerRequests.length > 0 && (
+                <div className="absolute bottom-4 left-0 right-0 bg-black/70 py-2 z-20">
+                  <div className="animate-marquee whitespace-nowrap">
+                    {broadcastConfig.prayerRequests.map(req => (
+                      <span key={req.id} className={`mx-8 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        🙏 {req.name}: {req.content}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Active Donation */}
+              {activeDonation && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-30">
+                  <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-3xl p-8 text-center max-w-md">
+                    <Gift className="w-16 h-16 text-white mx-auto mb-4" />
+                    <h3 className={`text-2xl font-bold text-white mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {activeDonation.title}
+                    </h3>
+                    <p className={`text-white/80 mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {activeDonation.description}
+                    </p>
+                    {/* QR Code Display */}
+                    <div className="w-48 h-48 bg-white rounded-xl mx-auto flex items-center justify-center overflow-hidden">
+                      {activeDonation.url && activeDonation.url.startsWith('data:image') ? (
+                        <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-2" />
+                      ) : activeDonation.url ? (
+                        <img src={activeDonation.url} alt="QR Code" className="w-full h-full object-contain p-2" />
+                      ) : (
+                        <span className="text-slate-500 text-sm">{isRTL ? 'QR کد ندارد' : 'No QR Code'}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Amen Badge Preview */}
+              {broadcastConfig.amenBadge?.show && (
+                <div
+                  className="absolute z-40"
+                  style={{
+                    left: `${broadcastConfig.amenBadge.position?.x || 50}%`,
+                    top: `${broadcastConfig.amenBadge.position?.y || 90}%`,
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  <div
+                    className={`
                     ${broadcastConfig.amenBadge.size === 'small' ? 'text-lg' : broadcastConfig.amenBadge.size === 'medium' ? 'text-2xl' : 'text-3xl'}
                     px-3 py-1 rounded-lg
                     bg-gradient-to-br from-amber-600/30 via-yellow-500/20 to-amber-700/30
                     backdrop-blur-sm border border-yellow-400/30
                     select-none cursor-move
                   `}
-                      style={{
-                        animation: `heartbeat ${broadcastConfig.amenBadge.animationSpeed === 'slow' ? '2s' : broadcastConfig.amenBadge.animationSpeed === 'normal' ? '1.2s' : '0.7s'} ease-in-out infinite`
-                      }}
-                      title={isRTL ? 'از slider های تنظیمات برای جابجایی استفاده کنید' : 'Use sliders in settings to reposition'}
-                    >
-                      {broadcastConfig.amenBadge.style === 'amen-only' ? (
-                        <span className="font-bold font-[Vazirmatn] text-white" style={{ textShadow: '0 0 10px rgba(255, 215, 0, 0.8)' }}>آمین</span>
-                      ) : broadcastConfig.amenBadge.style === 'cross-only' ? (
+                    style={{
+                      animation: `heartbeat ${broadcastConfig.amenBadge.animationSpeed === 'slow' ? '2s' : broadcastConfig.amenBadge.animationSpeed === 'normal' ? '1.2s' : '0.7s'} ease-in-out infinite`
+                    }}
+                    title={isRTL ? 'از slider های تنظیمات برای جابجایی استفاده کنید' : 'Use sliders in settings to reposition'}
+                  >
+                    {broadcastConfig.amenBadge.style === 'amen-only' ? (
+                      <span className="font-bold font-[Vazirmatn] text-white" style={{ textShadow: '0 0 10px rgba(255, 215, 0, 0.8)' }}>آمین</span>
+                    ) : broadcastConfig.amenBadge.style === 'cross-only' ? (
+                      <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
+                    ) : (
+                      <div className="flex items-center gap-1">
                         <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
-                      ) : (
-                        <div className="flex items-center gap-1">
-                          <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
-                          <span className="font-bold font-[Vazirmatn] text-white" style={{ textShadow: '0 0 10px rgba(255, 215, 0, 0.8)' }}>آمین</span>
-                          <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Controls - Always LTR: Prev on left, Next on right */}
-              <div dir="ltr" className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-center gap-4 px-4">
-                <button
-                  onClick={handlePrev}
-                  disabled={activeSlideIndex === 0 && internalPageIndex === 0}
-                  className="flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white transition"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                  <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.prev}</span>
-                </button>
-
-                <div className={`px-6 py-2 bg-slate-800 rounded-xl text-white font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {activeSlideIndex + 1} / {session.slides.length}
-                </div>
-
-                <button
-                  onClick={handleNext}
-                  disabled={activeSlideIndex >= session.slides.length - 1 && (
-                    liveSlide?.type !== SlideType.SCRIPTURE ||
-                    internalPageIndex === (liveSlide.content as SlideContentScripture).pages.length - 1
-                  )}
-                  className="flex items-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white transition"
-                >
-                  <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.next}</span>
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {/* RIGHT SIDEBAR */}
-            <div className="hidden xl:flex w-64 flex-col bg-slate-950 border-l border-slate-900 z-30 shrink-0 transition-all duration-300">
-              <div className="p-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-b border-slate-900 flex justify-between items-center">
-                <span>Next</span>
-                <span className="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">{Math.min(session.slides.length, activeSlideIndex + 2)}</span>
-              </div>
-              <div className="flex-1 p-4 flex items-center justify-center relative">
-                {renderSlidePreview(session.slides[activeSlideIndex + 1], 'NEXT')}
-              </div>
-            </div>
-          </div>
-
-          {/* Settings Panel */}
-          {showSettings && (
-            <div className="w-80 bg-slate-900 border-l border-slate-800 overflow-y-auto z-30 relative">
-              {/* Layout Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('layout')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    📺 {t.layout}
-                    <HelpTooltip textFa={HELP_TEXTS.layout.fa} textEn={HELP_TEXTS.layout.en} lang={lang} />
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'layout' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'layout' && (
-                  <div className="p-4 pt-0 space-y-4">
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        { id: 'FULL_CAM', label: t.fullCam, icon: '📷' },
-                        { id: 'PIP', label: t.pip, icon: '🖼️' },
-                        { id: 'SPLIT', label: t.split, icon: '✂️' },
-                        { id: 'SLIDES_ONLY', label: t.slidesOnly, icon: '📑' }
-                      ].map(layout => (
-                        <button
-                          key={layout.id}
-                          onClick={() => setBroadcastConfig(prev => ({ ...prev, layout: layout.id as any }))}
-                          className={`p-3 rounded-lg border text-center transition ${broadcastConfig.layout === layout.id
-                            ? 'bg-indigo-600 border-indigo-500 text-white'
-                            : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
-                            }`}
-                        >
-                          <span className="text-2xl block mb-1">{layout.icon}</span>
-                          <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{layout.label}</span>
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* PIP Position Selector - Only show when PIP is selected */}
-                    {broadcastConfig.layout === 'PIP' && (
-                      <div className="mt-4">
-                        <p className={`text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          {isRTL ? '📍 موقعیت دوربین:' : '📍 Camera Position:'}
-                        </p>
-                        <div className="grid grid-cols-2 gap-2">
-                          {[
-                            { id: 'top-left', label: isRTL ? 'بالا چپ' : 'Top Left', icon: '↖️' },
-                            { id: 'top-right', label: isRTL ? 'بالا راست' : 'Top Right', icon: '↗️' },
-                            { id: 'bottom-left', label: isRTL ? 'پایین چپ' : 'Bottom Left', icon: '↙️' },
-                            { id: 'bottom-right', label: isRTL ? 'پایین راست' : 'Bottom Right', icon: '↘️' }
-                          ].map(pos => (
-                            <button
-                              key={pos.id}
-                              onClick={() => setBroadcastConfig(prev => ({ ...prev, pipPosition: pos.id as any }))}
-                              className={`p-2 rounded-lg border text-center transition text-sm ${broadcastConfig.pipPosition === pos.id
-                                ? 'bg-green-600 border-green-500 text-white'
-                                : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
-                                }`}
-                            >
-                              <span className="mr-1">{pos.icon}</span>
-                              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{pos.label}</span>
-                            </button>
-                          ))}
-                        </div>
+                        <span className="font-bold font-[Vazirmatn] text-white" style={{ textShadow: '0 0 10px rgba(255, 215, 0, 0.8)' }}>آمین</span>
+                        <span style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}>✝️</span>
                       </div>
                     )}
                   </div>
-                )}
+                </div>
+              )}
+            </div>
+
+            {/* Controls - Always LTR: Prev on left, Next on right */}
+            <div dir="ltr" className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-center gap-4 px-4">
+              <button
+                onClick={handlePrev}
+                disabled={activeSlideIndex === 0 && internalPageIndex === 0}
+                className="flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white transition"
+              >
+                <ChevronLeft className="w-5 h-5" />
+                <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.prev}</span>
+              </button>
+
+              <div className={`px-6 py-2 bg-slate-800 rounded-xl text-white font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {activeSlideIndex + 1} / {session.slides.length}
               </div>
 
-              {/* Logo Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('logo')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    🖼️ {t.uploadLogo}
-                    <HelpTooltip textFa={HELP_TEXTS.logo.fa} textEn={HELP_TEXTS.logo.en} lang={lang} />
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'logo' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'logo' && (
-                  <div className="p-4 pt-0">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          const reader = new FileReader();
-                          reader.onload = (ev) => {
-                            setBroadcastConfig(prev => ({ ...prev, logoUrl: ev.target?.result as string }));
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }}
-                      className="w-full text-sm text-slate-400 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-slate-700 file:text-white"
-                    />
-                    <label className="flex items-center gap-2 mt-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={broadcastConfig.showLogo}
-                        onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showLogo: e.target.checked }))}
-                        className="accent-indigo-500"
-                      />
-                      <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {t.showLogo}
-                      </span>
-                    </label>
-                  </div>
+              <button
+                onClick={handleNext}
+                disabled={activeSlideIndex >= session.slides.length - 1 && (
+                  liveSlide?.type !== SlideType.SCRIPTURE ||
+                  internalPageIndex === (liveSlide.content as SlideContentScripture).pages.length - 1
                 )}
-              </div>
+                className="flex items-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white transition"
+              >
+                <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.next}</span>
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
 
-              {/* Video Shape Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('videoShape')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    📹 {isRTL ? 'شکل تصویر رهبر' : 'Leader Video Shape'}
-                    <HelpTooltip textFa={HELP_TEXTS.videoShape.fa} textEn={HELP_TEXTS.videoShape.en} lang={lang} />
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'videoShape' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'videoShape' && (
-                  <div className="p-4 pt-0 grid grid-cols-3 gap-2">
+          {/* RIGHT SIDEBAR */}
+          <div className="hidden xl:flex w-64 flex-col bg-slate-950 border-l border-slate-900 z-30 shrink-0 transition-all duration-300">
+            <div className="p-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-b border-slate-900 flex justify-between items-center">
+              <span>Next</span>
+              <span className="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">{Math.min(session.slides.length, activeSlideIndex + 2)}</span>
+            </div>
+            <div className="flex-1 p-4 flex items-center justify-center relative">
+              {renderSlidePreview(session.slides[activeSlideIndex + 1], 'NEXT')}
+            </div>
+          </div>
+        </div>
+
+        {/* Settings Panel */}
+        {showSettings && (
+          <div className="w-80 bg-slate-900 border-l border-slate-800 overflow-y-auto z-30 relative">
+            {/* Layout Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('layout')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  📺 {t.layout}
+                  <HelpTooltip textFa={HELP_TEXTS.layout.fa} textEn={HELP_TEXTS.layout.en} lang={lang} />
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'layout' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'layout' && (
+                <div className="p-4 pt-0 space-y-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {[
-                      { id: 'rectangle', label: isRTL ? 'مستطیل' : 'Rectangle', icon: '▬' },
-                      { id: 'square', label: isRTL ? 'مربع' : 'Square', icon: '◼' },
-                      { id: 'circle', label: isRTL ? 'دایره' : 'Circle', icon: '●' }
-                    ].map(shape => (
+                      { id: 'FULL_CAM', label: t.fullCam, icon: '📷' },
+                      { id: 'PIP', label: t.pip, icon: '🖼️' },
+                      { id: 'SPLIT', label: t.split, icon: '✂️' },
+                      { id: 'SLIDES_ONLY', label: t.slidesOnly, icon: '📑' }
+                    ].map(layout => (
                       <button
-                        key={shape.id}
-                        onClick={() => setBroadcastConfig(prev => ({ ...prev, leaderVideoShape: shape.id as any }))}
-                        className={`p-3 rounded-lg border text-center transition ${broadcastConfig.leaderVideoShape === shape.id
+                        key={layout.id}
+                        onClick={() => setBroadcastConfig(prev => ({ ...prev, layout: layout.id as any }))}
+                        className={`p-3 rounded-lg border text-center transition ${broadcastConfig.layout === layout.id
                           ? 'bg-indigo-600 border-indigo-500 text-white'
                           : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
                           }`}
-                        title={shape.label}
                       >
-                        <span className="text-2xl block mb-1">{shape.icon}</span>
-                        <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{shape.label}</span>
+                        <span className="text-2xl block mb-1">{layout.icon}</span>
+                        <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{layout.label}</span>
                       </button>
                     ))}
                   </div>
-                )}
-              </div>
-              {/* Lower Thirds Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('lowerthird')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    💬 {t.infoOverlay}
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'lowerthird' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'lowerthird' && (
-                  <div className="p-4 pt-0">
-                    {/* Add New */}
-                    <div className="space-y-2 mb-4">
-                      <input
-                        type="text"
-                        value={newLowerThird.title}
-                        onChange={(e) => setNewLowerThird(prev => ({ ...prev, title: e.target.value }))}
-                        placeholder={t.title}
-                        className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      />
-                      <input
-                        type="text"
-                        value={newLowerThird.subtitle}
-                        onChange={(e) => setNewLowerThird(prev => ({ ...prev, subtitle: e.target.value }))}
-                        placeholder={t.subtitle}
-                        className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      />
 
-                      {/* Image Upload for Leader Photo */}
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="text"
-                          value={newLowerThird.imageUrl || ''}
-                          onChange={(e) => setNewLowerThird(prev => ({ ...prev, imageUrl: e.target.value }))}
-                          placeholder={isRTL ? 'لینک عکس رهبر (اختیاری)' : 'Leader photo URL (optional)'}
-                          className={`flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                        />
-                        <label className="flex-shrink-0 cursor-pointer">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) {
-                                const reader = new FileReader();
-                                reader.onload = (evt) => {
-                                  setNewLowerThird(prev => ({ ...prev, imageUrl: evt.target?.result as string }));
-                                };
-                                reader.readAsDataURL(file);
-                              }
-                            }}
-                          />
-                          <span className="flex items-center gap-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 text-sm transition">
-                            <ImageIcon className="w-4 h-4" />
-                          </span>
-                        </label>
+                  {/* PIP Position Selector - Only show when PIP is selected */}
+                  {broadcastConfig.layout === 'PIP' && (
+                    <div className="mt-4">
+                      <p className={`text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {isRTL ? '📍 موقعیت دوربین:' : '📍 Camera Position:'}
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { id: 'top-left', label: isRTL ? 'بالا چپ' : 'Top Left', icon: '↖️' },
+                          { id: 'top-right', label: isRTL ? 'بالا راست' : 'Top Right', icon: '↗️' },
+                          { id: 'bottom-left', label: isRTL ? 'پایین چپ' : 'Bottom Left', icon: '↙️' },
+                          { id: 'bottom-right', label: isRTL ? 'پایین راست' : 'Bottom Right', icon: '↘️' }
+                        ].map(pos => (
+                          <button
+                            key={pos.id}
+                            onClick={() => setBroadcastConfig(prev => ({ ...prev, pipPosition: pos.id as any }))}
+                            className={`p-2 rounded-lg border text-center transition text-sm ${broadcastConfig.pipPosition === pos.id
+                              ? 'bg-green-600 border-green-500 text-white'
+                              : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                              }`}
+                          >
+                            <span className="mr-1">{pos.icon}</span>
+                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{pos.label}</span>
+                          </button>
+                        ))}
                       </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
-                      {/* Preview of selected image with position & zoom controls */}
-                      {newLowerThird.imageUrl && (
-                        <div className="space-y-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
-                          <div className="flex items-center gap-3">
-                            {/* Image Preview with position controls */}
-                            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500 bg-slate-900">
-                              <img
-                                src={newLowerThird.imageUrl}
-                                alt="Preview"
-                                className="absolute w-full h-full object-cover"
-                                style={{
-                                  transform: `scale(${newLowerThird.imagePosition?.scale || 1}) translate(${(newLowerThird.imagePosition?.x || 50) - 50}%, ${(newLowerThird.imagePosition?.y || 50) - 50}%)`,
-                                  transformOrigin: 'center'
-                                }}
+            {/* Logo Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('logo')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  🖼️ {t.uploadLogo}
+                  <HelpTooltip textFa={HELP_TEXTS.logo.fa} textEn={HELP_TEXTS.logo.en} lang={lang} />
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'logo' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'logo' && (
+                <div className="p-4 pt-0">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (ev) => {
+                          setBroadcastConfig(prev => ({ ...prev, logoUrl: ev.target?.result as string }));
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                    className="w-full text-sm text-slate-400 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-slate-700 file:text-white"
+                  />
+                  <label className="flex items-center gap-2 mt-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={broadcastConfig.showLogo}
+                      onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showLogo: e.target.checked }))}
+                      className="accent-indigo-500"
+                    />
+                    <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {t.showLogo}
+                    </span>
+                  </label>
+                </div>
+              )}
+            </div>
+
+            {/* Video Shape Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('videoShape')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  📹 {isRTL ? 'شکل تصویر رهبر' : 'Leader Video Shape'}
+                  <HelpTooltip textFa={HELP_TEXTS.videoShape.fa} textEn={HELP_TEXTS.videoShape.en} lang={lang} />
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'videoShape' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'videoShape' && (
+                <div className="p-4 pt-0 grid grid-cols-3 gap-2">
+                  {[
+                    { id: 'rectangle', label: isRTL ? 'مستطیل' : 'Rectangle', icon: '▬' },
+                    { id: 'square', label: isRTL ? 'مربع' : 'Square', icon: '◼' },
+                    { id: 'circle', label: isRTL ? 'دایره' : 'Circle', icon: '●' }
+                  ].map(shape => (
+                    <button
+                      key={shape.id}
+                      onClick={() => setBroadcastConfig(prev => ({ ...prev, leaderVideoShape: shape.id as any }))}
+                      className={`p-3 rounded-lg border text-center transition ${broadcastConfig.leaderVideoShape === shape.id
+                        ? 'bg-indigo-600 border-indigo-500 text-white'
+                        : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                        }`}
+                      title={shape.label}
+                    >
+                      <span className="text-2xl block mb-1">{shape.icon}</span>
+                      <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{shape.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            {/* Lower Thirds Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('lowerthird')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  💬 {t.infoOverlay}
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'lowerthird' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'lowerthird' && (
+                <div className="p-4 pt-0">
+                  {/* Add New */}
+                  <div className="space-y-2 mb-4">
+                    <input
+                      type="text"
+                      value={newLowerThird.title}
+                      onChange={(e) => setNewLowerThird(prev => ({ ...prev, title: e.target.value }))}
+                      placeholder={t.title}
+                      className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    />
+                    <input
+                      type="text"
+                      value={newLowerThird.subtitle}
+                      onChange={(e) => setNewLowerThird(prev => ({ ...prev, subtitle: e.target.value }))}
+                      placeholder={t.subtitle}
+                      className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    />
+
+                    {/* Image Upload for Leader Photo */}
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={newLowerThird.imageUrl || ''}
+                        onChange={(e) => setNewLowerThird(prev => ({ ...prev, imageUrl: e.target.value }))}
+                        placeholder={isRTL ? 'لینک عکس رهبر (اختیاری)' : 'Leader photo URL (optional)'}
+                        className={`flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      />
+                      <label className="flex-shrink-0 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = (evt) => {
+                                setNewLowerThird(prev => ({ ...prev, imageUrl: evt.target?.result as string }));
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                        <span className="flex items-center gap-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 text-sm transition">
+                          <ImageIcon className="w-4 h-4" />
+                        </span>
+                      </label>
+                    </div>
+
+                    {/* Preview of selected image with position & zoom controls */}
+                    {newLowerThird.imageUrl && (
+                      <div className="space-y-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                        <div className="flex items-center gap-3">
+                          {/* Image Preview with position controls */}
+                          <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500 bg-slate-900">
+                            <img
+                              src={newLowerThird.imageUrl}
+                              alt="Preview"
+                              className="absolute w-full h-full object-cover"
+                              style={{
+                                transform: `scale(${newLowerThird.imagePosition?.scale || 1}) translate(${(newLowerThird.imagePosition?.x || 50) - 50}%, ${(newLowerThird.imagePosition?.y || 50) - 50}%)`,
+                                transformOrigin: 'center'
+                              }}
+                            />
+                          </div>
+                          <div className="flex-1 space-y-2">
+                            <span className={`text-xs text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                              {isRTL ? 'تنظیم موقعیت و زوم' : 'Adjust position & zoom'}
+                            </span>
+                            {/* Zoom Slider */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-500">🔍</span>
+                              <input
+                                type="range"
+                                min="0.5"
+                                max="2"
+                                step="0.1"
+                                value={newLowerThird.imagePosition?.scale || 1}
+                                onChange={(e) => setNewLowerThird(prev => ({
+                                  ...prev,
+                                  imagePosition: {
+                                    x: prev.imagePosition?.x || 50,
+                                    y: prev.imagePosition?.y || 50,
+                                    scale: parseFloat(e.target.value)
+                                  }
+                                }))}
+                                className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                              />
+                              <span className="text-xs text-slate-400 w-8">{((newLowerThird.imagePosition?.scale || 1) * 100).toFixed(0)}%</span>
+                            </div>
+                            {/* Position X */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-500">↔</span>
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={newLowerThird.imagePosition?.x || 50}
+                                onChange={(e) => setNewLowerThird(prev => ({
+                                  ...prev,
+                                  imagePosition: {
+                                    x: parseFloat(e.target.value),
+                                    y: prev.imagePosition?.y || 50,
+                                    scale: prev.imagePosition?.scale || 1
+                                  }
+                                }))}
+                                className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
                               />
                             </div>
-                            <div className="flex-1 space-y-2">
-                              <span className={`text-xs text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                {isRTL ? 'تنظیم موقعیت و زوم' : 'Adjust position & zoom'}
-                              </span>
-                              {/* Zoom Slider */}
-                              <div className="flex items-center gap-2">
-                                <span className="text-xs text-slate-500">🔍</span>
-                                <input
-                                  type="range"
-                                  min="0.5"
-                                  max="2"
-                                  step="0.1"
-                                  value={newLowerThird.imagePosition?.scale || 1}
-                                  onChange={(e) => setNewLowerThird(prev => ({
-                                    ...prev,
-                                    imagePosition: {
-                                      x: prev.imagePosition?.x || 50,
-                                      y: prev.imagePosition?.y || 50,
-                                      scale: parseFloat(e.target.value)
-                                    }
-                                  }))}
-                                  className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
-                                />
-                                <span className="text-xs text-slate-400 w-8">{((newLowerThird.imagePosition?.scale || 1) * 100).toFixed(0)}%</span>
-                              </div>
-                              {/* Position X */}
-                              <div className="flex items-center gap-2">
-                                <span className="text-xs text-slate-500">↔</span>
-                                <input
-                                  type="range"
-                                  min="0"
-                                  max="100"
-                                  value={newLowerThird.imagePosition?.x || 50}
-                                  onChange={(e) => setNewLowerThird(prev => ({
-                                    ...prev,
-                                    imagePosition: {
-                                      x: parseFloat(e.target.value),
-                                      y: prev.imagePosition?.y || 50,
-                                      scale: prev.imagePosition?.scale || 1
-                                    }
-                                  }))}
-                                  className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
-                                />
-                              </div>
-                              {/* Position Y */}
-                              <div className="flex items-center gap-2">
-                                <span className="text-xs text-slate-500">↕</span>
-                                <input
-                                  type="range"
-                                  min="0"
-                                  max="100"
-                                  value={newLowerThird.imagePosition?.y || 50}
-                                  onChange={(e) => setNewLowerThird(prev => ({
-                                    ...prev,
-                                    imagePosition: {
-                                      x: prev.imagePosition?.x || 50,
-                                      y: parseFloat(e.target.value),
-                                      scale: prev.imagePosition?.scale || 1
-                                    }
-                                  }))}
-                                  className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
-                                />
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => setNewLowerThird(prev => ({ ...prev, imageUrl: undefined, imagePosition: undefined }))}
-                              className="text-red-400 hover:text-red-300 p-1"
-                            >
-                              <X className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      <button
-                        onClick={handleAddLowerThird}
-                        className={`w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      >
-                        <Plus className="w-4 h-4 inline mr-1" />
-                        {t.addItem}
-                      </button>
-                    </div>
-
-                    {/* List */}
-                    <div className="space-y-2">
-                      {broadcastConfig.lowerThirds.map((item, i) => (
-                        <div
-                          key={item.id}
-                          className={`flex items-center gap-2 p-2 rounded-lg ${i === broadcastConfig.activeLowerThirdIndex ? 'bg-indigo-600/30 border border-indigo-500' : 'bg-slate-800'
-                            }`}
-                        >
-                          {item.imageUrl && (
-                            <img src={item.imageUrl} alt="" className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-slate-600" />
-                          )}
-                          <button
-                            onClick={() => setBroadcastConfig(prev => ({ ...prev, activeLowerThirdIndex: i }))}
-                            className="flex-1 text-left"
-                          >
-                            <p className={`text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{item.title}</p>
-                            <p className="text-slate-400 text-xs">{item.subtitle}</p>
-                          </button>
-                          <button
-                            onClick={() => handleDeleteLowerThird(item.id)}
-                            className="p-1 hover:bg-red-600/30 rounded"
-                          >
-                            <Trash2 className="w-4 h-4 text-red-400" />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Toggle & Rotation */}
-                    <div className="mt-4 space-y-2">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={broadcastConfig.showLowerThird}
-                          onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showLowerThird: e.target.checked }))}
-                          className="accent-indigo-500"
-                        />
-                        <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          {t.show}
-                        </span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={broadcastConfig.isRotating}
-                          onChange={(e) => setBroadcastConfig(prev => ({ ...prev, isRotating: e.target.checked }))}
-                          className="accent-indigo-500"
-                        />
-                        <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          {t.rotation}
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Prayer Wall Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('prayer')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    🙏 {t.prayerWall}
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'prayer' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'prayer' && (
-                  <div className="p-4 pt-0">
-                    <div className="space-y-2 mb-4">
-                      <input
-                        type="text"
-                        value={newPrayerName}
-                        onChange={(e) => setNewPrayerName(e.target.value)}
-                        placeholder={t.requestNamePlaceholder}
-                        className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      />
-                      <textarea
-                        value={newPrayerContent}
-                        onChange={(e) => setNewPrayerContent(e.target.value)}
-                        placeholder={t.requestContentPlaceholder}
-                        rows={2}
-                        className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      />
-
-                      {/* Category & Priority */}
-                      <div className="grid grid-cols-2 gap-2">
-                        <select
-                          value={newPrayerCategory}
-                          onChange={(e) => setNewPrayerCategory(e.target.value)}
-                          className={`bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                        >
-                          <option value="healing">{isRTL ? '💚 شفا' : '💚 Healing'}</option>
-                          <option value="family">{isRTL ? '👨‍👩‍👧‍👦 خانواده' : '👨‍👩‍👧‍👦 Family'}</option>
-                          <option value="work">{isRTL ? '💼 کار و شغل' : '💼 Work'}</option>
-                          <option value="salvation">{isRTL ? '✝️ نجات' : '✝️ Salvation'}</option>
-                          <option value="guidance">{isRTL ? '🧭 هدایت' : '🧭 Guidance'}</option>
-                          <option value="peace">{isRTL ? '🕊️ آرامش' : '🕊️ Peace'}</option>
-                          <option value="provision">{isRTL ? '🙌 تأمین نیازها' : '🙌 Provision'}</option>
-                          <option value="protection">{isRTL ? '🛡️ محافظت' : '🛡️ Protection'}</option>
-                          <option value="thanksgiving">{isRTL ? '🙏 شکرگزاری' : '🙏 Thanksgiving'}</option>
-                          <option value="other">{isRTL ? '💭 سایر' : '💭 Other'}</option>
-                        </select>
-                        <select
-                          value={newPrayerPriority}
-                          onChange={(e) => setNewPrayerPriority(parseInt(e.target.value))}
-                          className={`bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                        >
-                          <option value={1}>{isRTL ? '⭐ فوری' : '⭐ Urgent'}</option>
-                          <option value={2}>{isRTL ? '🔴 مهم' : '🔴 Important'}</option>
-                          <option value={3}>{isRTL ? '🟡 عادی' : '🟡 Normal'}</option>
-                          <option value={4}>{isRTL ? '🟢 کم اولویت' : '🟢 Low'}</option>
-                        </select>
-                      </div>
-
-                      <button
-                        onClick={handleAddPrayerRequest}
-                        className={`w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      >
-                        <Heart className="w-4 h-4 inline mr-1" />
-                        {t.addRequest}
-                      </button>
-                    </div>
-
-                    {/* Display Mode Controls */}
-                    <div className="space-y-2 mb-3">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={broadcastConfig.showPrayerTicker}
-                          onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showPrayerTicker: e.target.checked }))}
-                          className="accent-purple-500"
-                        />
-                        <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          📜 {isRTL ? 'نمایش زیرنویس' : 'Show Ticker'}
-                        </span>
-                      </label>
-
-                      {/* Credits Roll Button */}
-                      <button
-                        onClick={() => setShowPrayerCredits(true)}
-                        disabled={broadcastConfig.prayerRequests.length === 0}
-                        className={`w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:opacity-90 transition text-sm disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      >
-                        🎬 {isRTL ? 'تیتراژ پایانی (Credits Roll)' : 'Credits Roll'}
-                      </button>
-                    </div>
-
-                    {/* Prayer List */}
-                    <div className="mt-3 space-y-2 max-h-40 overflow-y-auto">
-                      {broadcastConfig.prayerRequests.map((req) => (
-                        <div key={req.id} className="flex items-start gap-2 bg-slate-800 p-2 rounded-lg">
-                          <div className="flex-1">
+                            {/* Position Y */}
                             <div className="flex items-center gap-2">
-                              <p className={`text-white text-xs font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                {req.priority === 1 ? '⭐' : req.priority === 2 ? '🔴' : ''} {req.name}
-                              </p>
-                              {req.category && (
-                                <span className="text-xs text-slate-500">
-                                  {req.category === 'healing' ? '💚' :
-                                    req.category === 'family' ? '👨‍👩‍👧‍👦' :
-                                      req.category === 'salvation' ? '✝️' :
-                                        req.category === 'peace' ? '🕊️' : '💭'}
-                                </span>
-                              )}
+                              <span className="text-xs text-slate-500">↕</span>
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={newLowerThird.imagePosition?.y || 50}
+                                onChange={(e) => setNewLowerThird(prev => ({
+                                  ...prev,
+                                  imagePosition: {
+                                    x: prev.imagePosition?.x || 50,
+                                    y: parseFloat(e.target.value),
+                                    scale: prev.imagePosition?.scale || 1
+                                  }
+                                }))}
+                                className="flex-1 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                              />
                             </div>
-                            <p className={`text-slate-400 text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{req.content}</p>
                           </div>
                           <button
-                            onClick={() => setBroadcastConfig(prev => ({
-                              ...prev,
-                              prayerRequests: prev.prayerRequests.filter(r => r.id !== req.id)
-                            }))}
-                            className="p-1 hover:bg-red-600/30 rounded"
-                          >
-                            <X className="w-3 h-3 text-red-400" />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Donations Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('donations')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    🎁 {t.donations}
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'donations' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'donations' && (
-                  <div className="p-4 pt-0">
-                    <div className="space-y-2 mb-4">
-                      <input
-                        type="text"
-                        value={newDonation.title}
-                        onChange={(e) => setNewDonation(prev => ({ ...prev, title: e.target.value }))}
-                        placeholder={t.donationTitle}
-                        className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      />
-
-                      {/* QR Code Image Upload */}
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="text"
-                          value={newDonation.url || ''}
-                          onChange={(e) => setNewDonation(prev => ({ ...prev, url: e.target.value }))}
-                          placeholder={isRTL ? 'لینک یا آدرس QR Code' : 'QR Code URL or link'}
-                          className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm"
-                        />
-                        <label className="flex-shrink-0 cursor-pointer">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) {
-                                const reader = new FileReader();
-                                reader.onload = (evt) => {
-                                  setNewDonation(prev => ({ ...prev, url: evt.target?.result as string }));
-                                };
-                                reader.readAsDataURL(file);
-                              }
-                            }}
-                          />
-                          <span className="flex items-center gap-1 px-3 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-white text-sm transition">
-                            <ImageIcon className="w-4 h-4" />
-                            <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                              {isRTL ? 'آپلود QR' : 'Upload QR'}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-
-                      {/* QR Preview */}
-                      {newDonation.url && newDonation.url.startsWith('data:image') && (
-                        <div className="flex items-center gap-3 p-2 bg-slate-800/50 rounded-lg border border-green-600/30">
-                          <img src={newDonation.url} alt="QR Preview" className="w-16 h-16 object-contain bg-white rounded" />
-                          <span className={`text-xs text-green-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                            {isRTL ? '✓ تصویر QR آماده است' : '✓ QR image ready'}
-                          </span>
-                          <button
-                            onClick={() => setNewDonation(prev => ({ ...prev, url: '' }))}
-                            className="ml-auto text-red-400 hover:text-red-300 p-1"
+                            onClick={() => setNewLowerThird(prev => ({ ...prev, imageUrl: undefined, imagePosition: undefined }))}
+                            className="text-red-400 hover:text-red-300 p-1"
                           >
                             <X className="w-4 h-4" />
                           </button>
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      <button
-                        onClick={handleAddDonation}
-                        className={`w-full py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      >
-                        <Gift className="w-4 h-4 inline mr-1" />
-                        {t.addDonation}
-                      </button>
-                    </div>
-                    {/* Donation List */}
-                    <div className="space-y-2">
-                      {broadcastConfig.donations.map((item) => (
-                        <div
-                          key={item.id}
-                          className={`flex items-center gap-2 p-2 rounded-lg ${broadcastConfig.activeDonationId === item.id ? 'bg-green-600/30 border border-green-500' : 'bg-slate-800'
-                            }`}
-                        >
-                          <div className="flex-1">
-                            <p className={`text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{item.title}</p>
-                          </div>
-                          <button
-                            onClick={() => {
-                              const isActive = broadcastConfig.activeDonationId === item.id;
-                              setBroadcastConfig(prev => ({
-                                ...prev,
-                                activeDonationId: isActive ? null : item.id,
-                                // If activating, show overlay
-                                showDonation: !isActive
-                              }));
-                              if (!isActive) {
-                                // Send overlay toggle
-                                sendOverlayToggle('donation', true, item);
-                              } else {
-                                sendOverlayToggle('donation', false);
-                              }
-                            }}
-                            className={`px-2 py-1 text-xs rounded ${broadcastConfig.activeDonationId === item.id
-                              ? 'bg-green-600 text-white'
-                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                              }`}
-                          >
-                            {broadcastConfig.activeDonationId === item.id ? (isRTL ? 'مخفی کردن' : 'Hide') : (isRTL ? 'نمایش' : 'Show')}
-                          </button>
-                        </div>
-                      ))}
-                    </div>
+                    <button
+                      onClick={handleAddLowerThird}
+                      className={`w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    >
+                      <Plus className="w-4 h-4 inline mr-1" />
+                      {t.addItem}
+                    </button>
                   </div>
-                )}
-              </div>
 
-              {/* AI Transcription Section */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('ai')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    ✨ {isRTL ? 'زیرنویس هوشمند (AI)' : 'AI Live Captions'}
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'ai' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'ai' && (
-                  <div className="p-4 pt-0">
-                    <div className="flex flex-col gap-3">
-                      <p className={`text-xs text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {isRTL
-                          ? 'تبدیل گفتار به متن به صورت زنده با استفاده از هوش مصنوعی Gemini 2.0 Flash.'
-                          : 'Real-time speech-to-text using Gemini 2.0 Flash.'}
-                      </p>
-
-                      {/* Audio Level Visualizer */}
-                      {isTranscribingLive && (
-                        <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-gradient-to-r from-green-500 to-red-500 transition-all duration-100"
-                            style={{ width: `${Math.min(transcribeLevel, 100)}%` }}
-                          />
-                        </div>
-                      )}
-
-                      <button
-                        onClick={async () => {
-                          if (isTranscribingLive) {
-                            stopLiveTranscribe();
-                          } else {
-                            try {
-                              await startLiveTranscribe();
-                            } catch (e) {
-                              console.error('Failed to start transcription:', e);
-                            }
-                          }
-                        }}
-                        className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 transition ${isTranscribingLive
-                          ? 'bg-red-600/20 text-red-400 border border-red-600/50 hover:bg-red-600/30'
-                          : 'bg-purple-600 text-white hover:bg-purple-500'
+                  {/* List */}
+                  <div className="space-y-2">
+                    {broadcastConfig.lowerThirds.map((item, i) => (
+                      <div
+                        key={item.id}
+                        className={`flex items-center gap-2 p-2 rounded-lg ${i === broadcastConfig.activeLowerThirdIndex ? 'bg-indigo-600/30 border border-indigo-500' : 'bg-slate-800'
                           }`}
                       >
-                        {isTranscribingLive ? (
-                          <>
-                            <MicOff className="w-4 h-4" />
-                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'توقف زیرنویس' : 'Stop Captions'}</span>
-                          </>
-                        ) : (
-                          <>
-                            <Mic className="w-4 h-4" />
-                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'شروع زیرنویس زنده' : 'Start Live Captions'}</span>
-                          </>
+                        {item.imageUrl && (
+                          <img src={item.imageUrl} alt="" className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-slate-600" />
                         )}
-                      </button>
-
-                      <div className="flex items-center justify-between text-xs text-slate-500">
-                        <span>Status: {syncState.isConnected ? '✅ Sync Connected' : '❌ Sync Offline'}</span>
-                        <span>Model: Gemini 2.0 Flash</span>
+                        <button
+                          onClick={() => setBroadcastConfig(prev => ({ ...prev, activeLowerThirdIndex: i }))}
+                          className="flex-1 text-left"
+                        >
+                          <p className={`text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{item.title}</p>
+                          <p className="text-slate-400 text-xs">{item.subtitle}</p>
+                        </button>
+                        <button
+                          onClick={() => handleDeleteLowerThird(item.id)}
+                          className="p-1 hover:bg-red-600/30 rounded"
+                        >
+                          <Trash2 className="w-4 h-4 text-red-400" />
+                        </button>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                )}
-              </div>
 
-              {/* Amen Badge Section - آمین + صلیب */}
-              <div className="border-b border-slate-800">
-                <button
-                  onClick={() => toggleSection('amen')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
-                >
-                  <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    ✝️ {isRTL ? 'آمین + صلیب' : 'Amen Badge'}
-                  </span>
-                  <span className={`text-slate-500 transition-transform ${openSection === 'amen' ? 'rotate-180' : ''}`}>
-                    ▼
-                  </span>
-                </button>
-                {openSection === 'amen' && (
-                  <div className="p-4 pt-0 space-y-4">
-                    {/* Toggle Show */}
+                  {/* Toggle & Rotation */}
+                  <div className="mt-4 space-y-2">
                     <label className="flex items-center gap-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={broadcastConfig.amenBadge?.show || false}
-                        onChange={(e) => setBroadcastConfig(prev => ({
-                          ...prev,
-                          amenBadge: {
-                            ...prev.amenBadge || { position: { x: 50, y: 90 }, style: 'amen-cross', size: 'medium', animationSpeed: 'normal' },
-                            show: e.target.checked
-                          }
-                        }))}
-                        className="accent-yellow-500"
+                        checked={broadcastConfig.showLowerThird}
+                        onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showLowerThird: e.target.checked }))}
+                        className="accent-indigo-500"
                       />
                       <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {isRTL ? 'نمایش آمین' : 'Show Amen Badge'}
+                        {t.show}
+                      </span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={broadcastConfig.isRotating}
+                        onChange={(e) => setBroadcastConfig(prev => ({ ...prev, isRotating: e.target.checked }))}
+                        className="accent-indigo-500"
+                      />
+                      <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {t.rotation}
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Prayer Wall Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('prayer')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  🙏 {t.prayerWall}
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'prayer' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'prayer' && (
+                <div className="p-4 pt-0">
+                  <div className="space-y-2 mb-4">
+                    <input
+                      type="text"
+                      value={newPrayerName}
+                      onChange={(e) => setNewPrayerName(e.target.value)}
+                      placeholder={t.requestNamePlaceholder}
+                      className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    />
+                    <textarea
+                      value={newPrayerContent}
+                      onChange={(e) => setNewPrayerContent(e.target.value)}
+                      placeholder={t.requestContentPlaceholder}
+                      rows={2}
+                      className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    />
+
+                    {/* Category & Priority */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <select
+                        value={newPrayerCategory}
+                        onChange={(e) => setNewPrayerCategory(e.target.value)}
+                        className={`bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      >
+                        <option value="healing">{isRTL ? '💚 شفا' : '💚 Healing'}</option>
+                        <option value="family">{isRTL ? '👨‍👩‍👧‍👦 خانواده' : '👨‍👩‍👧‍👦 Family'}</option>
+                        <option value="work">{isRTL ? '💼 کار و شغل' : '💼 Work'}</option>
+                        <option value="salvation">{isRTL ? '✝️ نجات' : '✝️ Salvation'}</option>
+                        <option value="guidance">{isRTL ? '🧭 هدایت' : '🧭 Guidance'}</option>
+                        <option value="peace">{isRTL ? '🕊️ آرامش' : '🕊️ Peace'}</option>
+                        <option value="provision">{isRTL ? '🙌 تأمین نیازها' : '🙌 Provision'}</option>
+                        <option value="protection">{isRTL ? '🛡️ محافظت' : '🛡️ Protection'}</option>
+                        <option value="thanksgiving">{isRTL ? '🙏 شکرگزاری' : '🙏 Thanksgiving'}</option>
+                        <option value="other">{isRTL ? '💭 سایر' : '💭 Other'}</option>
+                      </select>
+                      <select
+                        value={newPrayerPriority}
+                        onChange={(e) => setNewPrayerPriority(parseInt(e.target.value))}
+                        className={`bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                      >
+                        <option value={1}>{isRTL ? '⭐ فوری' : '⭐ Urgent'}</option>
+                        <option value={2}>{isRTL ? '🔴 مهم' : '🔴 Important'}</option>
+                        <option value={3}>{isRTL ? '🟡 عادی' : '🟡 Normal'}</option>
+                        <option value={4}>{isRTL ? '🟢 کم اولویت' : '🟢 Low'}</option>
+                      </select>
+                    </div>
+
+                    <button
+                      onClick={handleAddPrayerRequest}
+                      className={`w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    >
+                      <Heart className="w-4 h-4 inline mr-1" />
+                      {t.addRequest}
+                    </button>
+                  </div>
+
+                  {/* Display Mode Controls */}
+                  <div className="space-y-2 mb-3">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={broadcastConfig.showPrayerTicker}
+                        onChange={(e) => setBroadcastConfig(prev => ({ ...prev, showPrayerTicker: e.target.checked }))}
+                        className="accent-purple-500"
+                      />
+                      <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        📜 {isRTL ? 'نمایش زیرنویس' : 'Show Ticker'}
                       </span>
                     </label>
 
-                    {/* Style Selection */}
-                    <div>
-                      <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {isRTL ? 'استایل:' : 'Style:'}
-                      </label>
-                      <div className="grid grid-cols-3 gap-2">
-                        {[
-                          { key: 'amen-cross', label: '✝️ آمین ✝️' },
-                          { key: 'amen-only', label: 'آمین' },
-                          { key: 'cross-only', label: '✝️' }
-                        ].map((style) => (
-                          <button
-                            key={style.key}
-                            onClick={() => setBroadcastConfig(prev => ({
-                              ...prev,
-                              amenBadge: { ...prev.amenBadge!, style: style.key as any }
-                            }))}
-                            className={`py-2 px-3 rounded-lg text-sm transition ${broadcastConfig.amenBadge?.style === style.key
-                              ? 'bg-yellow-600 text-white'
-                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                              } font-[Vazirmatn]`}
-                          >
-                            {style.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                    {/* Credits Roll Button */}
+                    <button
+                      onClick={() => setShowPrayerCredits(true)}
+                      disabled={broadcastConfig.prayerRequests.length === 0}
+                      className={`w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:opacity-90 transition text-sm disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    >
+                      🎬 {isRTL ? 'تیتراژ پایانی (Credits Roll)' : 'Credits Roll'}
+                    </button>
+                  </div>
 
-                    {/* Size Selection */}
-                    <div>
-                      <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {isRTL ? 'اندازه:' : 'Size:'}
-                      </label>
-                      <div className="grid grid-cols-3 gap-2">
-                        {[
-                          { key: 'small', label: isRTL ? 'کوچک' : 'Small' },
-                          { key: 'medium', label: isRTL ? 'متوسط' : 'Medium' },
-                          { key: 'large', label: isRTL ? 'بزرگ' : 'Large' }
-                        ].map((size) => (
-                          <button
-                            key={size.key}
-                            onClick={() => setBroadcastConfig(prev => ({
-                              ...prev,
-                              amenBadge: { ...prev.amenBadge!, size: size.key as any }
-                            }))}
-                            className={`py-2 px-3 rounded-lg text-sm transition ${broadcastConfig.amenBadge?.size === size.key
-                              ? 'bg-yellow-600 text-white'
-                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                              } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                          >
-                            {size.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Animation Speed */}
-                    <div>
-                      <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {isRTL ? 'سرعت ضربان:' : 'Heartbeat Speed:'}
-                      </label>
-                      <div className="grid grid-cols-3 gap-2">
-                        {[
-                          { key: 'slow', label: isRTL ? 'آرام' : 'Slow' },
-                          { key: 'normal', label: isRTL ? 'عادی' : 'Normal' },
-                          { key: 'fast', label: isRTL ? 'تند' : 'Fast' }
-                        ].map((speed) => (
-                          <button
-                            key={speed.key}
-                            onClick={() => setBroadcastConfig(prev => ({
-                              ...prev,
-                              amenBadge: { ...prev.amenBadge!, animationSpeed: speed.key as any }
-                            }))}
-                            className={`py-2 px-3 rounded-lg text-sm transition ${broadcastConfig.amenBadge?.animationSpeed === speed.key
-                              ? 'bg-yellow-600 text-white'
-                              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                              } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                          >
-                            {speed.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Position Control */}
-                    <div>
-                      <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {isRTL ? 'موقعیت (در پیش‌نمایش drag کنید):' : 'Position (drag in preview):'}
-                      </label>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div>
-                          <span className="text-xs text-slate-500">X:</span>
-                          <input
-                            type="range"
-                            min="5"
-                            max="95"
-                            value={broadcastConfig.amenBadge?.position?.x || 50}
-                            onChange={(e) => setBroadcastConfig(prev => ({
-                              ...prev,
-                              amenBadge: {
-                                ...prev.amenBadge!,
-                                position: { ...prev.amenBadge!.position, x: parseInt(e.target.value) }
-                              }
-                            }))}
-                            className="w-full accent-yellow-500"
-                          />
+                  {/* Prayer List */}
+                  <div className="mt-3 space-y-2 max-h-40 overflow-y-auto">
+                    {broadcastConfig.prayerRequests.map((req) => (
+                      <div key={req.id} className="flex items-start gap-2 bg-slate-800 p-2 rounded-lg">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <p className={`text-white text-xs font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                              {req.priority === 1 ? '⭐' : req.priority === 2 ? '🔴' : ''} {req.name}
+                            </p>
+                            {req.category && (
+                              <span className="text-xs text-slate-500">
+                                {req.category === 'healing' ? '💚' :
+                                  req.category === 'family' ? '👨‍👩‍👧‍👦' :
+                                    req.category === 'salvation' ? '✝️' :
+                                      req.category === 'peace' ? '🕊️' : '💭'}
+                              </span>
+                            )}
+                          </div>
+                          <p className={`text-slate-400 text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{req.content}</p>
                         </div>
-                        <div>
-                          <span className="text-xs text-slate-500">Y:</span>
-                          <input
-                            type="range"
-                            min="5"
-                            max="95"
-                            value={broadcastConfig.amenBadge?.position?.y || 90}
-                            onChange={(e) => setBroadcastConfig(prev => ({
-                              ...prev,
-                              amenBadge: {
-                                ...prev.amenBadge!,
-                                position: { ...prev.amenBadge!.position, y: parseInt(e.target.value) }
-                              }
-                            }))}
-                            className="w-full accent-yellow-500"
-                          />
+                        <button
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            prayerRequests: prev.prayerRequests.filter(r => r.id !== req.id)
+                          }))}
+                          className="p-1 hover:bg-red-600/30 rounded"
+                        >
+                          <X className="w-3 h-3 text-red-400" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Donations Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('donations')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  🎁 {t.donations}
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'donations' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'donations' && (
+                <div className="p-4 pt-0">
+                  <div className="space-y-2 mb-4">
+                    <input
+                      type="text"
+                      value={newDonation.title}
+                      onChange={(e) => setNewDonation(prev => ({ ...prev, title: e.target.value }))}
+                      placeholder={t.donationTitle}
+                      className={`w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    />
+
+                    {/* QR Code Image Upload */}
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={newDonation.url || ''}
+                        onChange={(e) => setNewDonation(prev => ({ ...prev, url: e.target.value }))}
+                        placeholder={isRTL ? 'لینک یا آدرس QR Code' : 'QR Code URL or link'}
+                        className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm"
+                      />
+                      <label className="flex-shrink-0 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = (evt) => {
+                                setNewDonation(prev => ({ ...prev, url: evt.target?.result as string }));
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                        <span className="flex items-center gap-1 px-3 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-white text-sm transition">
+                          <ImageIcon className="w-4 h-4" />
+                          <span className={`text-xs ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                            {isRTL ? 'آپلود QR' : 'Upload QR'}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+
+                    {/* QR Preview */}
+                    {newDonation.url && newDonation.url.startsWith('data:image') && (
+                      <div className="flex items-center gap-3 p-2 bg-slate-800/50 rounded-lg border border-green-600/30">
+                        <img src={newDonation.url} alt="QR Preview" className="w-16 h-16 object-contain bg-white rounded" />
+                        <span className={`text-xs text-green-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {isRTL ? '✓ تصویر QR آماده است' : '✓ QR image ready'}
+                        </span>
+                        <button
+                          onClick={() => setNewDonation(prev => ({ ...prev, url: '' }))}
+                          className="ml-auto text-red-400 hover:text-red-300 p-1"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={handleAddDonation}
+                      className={`w-full py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                    >
+                      <Gift className="w-4 h-4 inline mr-1" />
+                      {t.addDonation}
+                    </button>
+                  </div>
+                  {/* Donation List */}
+                  <div className="space-y-2">
+                    {broadcastConfig.donations.map((item) => (
+                      <div
+                        key={item.id}
+                        className={`flex items-center gap-2 p-2 rounded-lg ${broadcastConfig.activeDonationId === item.id ? 'bg-green-600/30 border border-green-500' : 'bg-slate-800'
+                          }`}
+                      >
+                        <div className="flex-1">
+                          <p className={`text-white text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{item.title}</p>
                         </div>
+                        <button
+                          onClick={() => {
+                            const isActive = broadcastConfig.activeDonationId === item.id;
+                            setBroadcastConfig(prev => ({
+                              ...prev,
+                              activeDonationId: isActive ? null : item.id,
+                              // If activating, show overlay
+                              showDonation: !isActive
+                            }));
+                            if (!isActive) {
+                              // Send overlay toggle
+                              sendOverlayToggle('donation', true, item);
+                            } else {
+                              sendOverlayToggle('donation', false);
+                            }
+                          }}
+                          className={`px-2 py-1 text-xs rounded ${broadcastConfig.activeDonationId === item.id
+                            ? 'bg-green-600 text-white'
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                            }`}
+                        >
+                          {broadcastConfig.activeDonationId === item.id ? (isRTL ? 'مخفی کردن' : 'Hide') : (isRTL ? 'نمایش' : 'Show')}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* AI Transcription Section */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('ai')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  ✨ {isRTL ? 'زیرنویس هوشمند (AI)' : 'AI Live Captions'}
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'ai' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'ai' && (
+                <div className="p-4 pt-0">
+                  <div className="flex flex-col gap-3">
+                    <p className={`text-xs text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL
+                        ? 'تبدیل گفتار به متن به صورت زنده با استفاده از هوش مصنوعی Gemini 2.0 Flash.'
+                        : 'Real-time speech-to-text using Gemini 2.0 Flash.'}
+                    </p>
+
+                    {/* Audio Level Visualizer */}
+                    {isTranscribingLive && (
+                      <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-green-500 to-red-500 transition-all duration-100"
+                          style={{ width: `${Math.min(transcribeLevel, 100)}%` }}
+                        />
+                      </div>
+                    )}
+
+                    <button
+                      onClick={async () => {
+                        if (isTranscribingLive) {
+                          stopLiveTranscribe();
+                        } else {
+                          try {
+                            await startLiveTranscribe();
+                          } catch (e) {
+                            console.error('Failed to start transcription:', e);
+                          }
+                        }
+                      }}
+                      className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 transition ${isTranscribingLive
+                        ? 'bg-red-600/20 text-red-400 border border-red-600/50 hover:bg-red-600/30'
+                        : 'bg-purple-600 text-white hover:bg-purple-500'
+                        }`}
+                    >
+                      {isTranscribingLive ? (
+                        <>
+                          <MicOff className="w-4 h-4" />
+                          <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'توقف زیرنویس' : 'Stop Captions'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Mic className="w-4 h-4" />
+                          <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'شروع زیرنویس زنده' : 'Start Live Captions'}</span>
+                        </>
+                      )}
+                    </button>
+
+                    <div className="flex items-center justify-between text-xs text-slate-500">
+                      <span>Status: {syncState.isConnected ? '✅ Sync Connected' : '❌ Sync Offline'}</span>
+                      <span>Model: Gemini 2.0 Flash</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Amen Badge Section - آمین + صلیب */}
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => toggleSection('amen')}
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-800/50"
+              >
+                <span className={`text-white font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  ✝️ {isRTL ? 'آمین + صلیب' : 'Amen Badge'}
+                </span>
+                <span className={`text-slate-500 transition-transform ${openSection === 'amen' ? 'rotate-180' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {openSection === 'amen' && (
+                <div className="p-4 pt-0 space-y-4">
+                  {/* Toggle Show */}
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={broadcastConfig.amenBadge?.show || false}
+                      onChange={(e) => setBroadcastConfig(prev => ({
+                        ...prev,
+                        amenBadge: {
+                          ...prev.amenBadge || { position: { x: 50, y: 90 }, style: 'amen-cross', size: 'medium', animationSpeed: 'normal' },
+                          show: e.target.checked
+                        }
+                      }))}
+                      className="accent-yellow-500"
+                    />
+                    <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'نمایش آمین' : 'Show Amen Badge'}
+                    </span>
+                  </label>
+
+                  {/* Style Selection */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'استایل:' : 'Style:'}
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { key: 'amen-cross', label: '✝️ آمین ✝️' },
+                        { key: 'amen-only', label: 'آمین' },
+                        { key: 'cross-only', label: '✝️' }
+                      ].map((style) => (
+                        <button
+                          key={style.key}
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: { ...prev.amenBadge!, style: style.key as any }
+                          }))}
+                          className={`py-2 px-3 rounded-lg text-sm transition ${broadcastConfig.amenBadge?.style === style.key
+                            ? 'bg-yellow-600 text-white'
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                            } font-[Vazirmatn]`}
+                        >
+                          {style.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Size Selection */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'اندازه:' : 'Size:'}
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { key: 'small', label: isRTL ? 'کوچک' : 'Small' },
+                        { key: 'medium', label: isRTL ? 'متوسط' : 'Medium' },
+                        { key: 'large', label: isRTL ? 'بزرگ' : 'Large' }
+                      ].map((size) => (
+                        <button
+                          key={size.key}
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: { ...prev.amenBadge!, size: size.key as any }
+                          }))}
+                          className={`py-2 px-3 rounded-lg text-sm transition ${broadcastConfig.amenBadge?.size === size.key
+                            ? 'bg-yellow-600 text-white'
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                            } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                        >
+                          {size.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Animation Speed */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'سرعت ضربان:' : 'Heartbeat Speed:'}
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { key: 'slow', label: isRTL ? 'آرام' : 'Slow' },
+                        { key: 'normal', label: isRTL ? 'عادی' : 'Normal' },
+                        { key: 'fast', label: isRTL ? 'تند' : 'Fast' }
+                      ].map((speed) => (
+                        <button
+                          key={speed.key}
+                          onClick={() => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: { ...prev.amenBadge!, animationSpeed: speed.key as any }
+                          }))}
+                          className={`py-2 px-3 rounded-lg text-sm transition ${broadcastConfig.amenBadge?.animationSpeed === speed.key
+                            ? 'bg-yellow-600 text-white'
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                            } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                        >
+                          {speed.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Position Control */}
+                  <div>
+                    <label className={`block text-xs text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'موقعیت (در پیش‌نمایش drag کنید):' : 'Position (drag in preview):'}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-xs text-slate-500">X:</span>
+                        <input
+                          type="range"
+                          min="5"
+                          max="95"
+                          value={broadcastConfig.amenBadge?.position?.x || 50}
+                          onChange={(e) => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: {
+                              ...prev.amenBadge!,
+                              position: { ...prev.amenBadge!.position, x: parseInt(e.target.value) }
+                            }
+                          }))}
+                          className="w-full accent-yellow-500"
+                        />
+                      </div>
+                      <div>
+                        <span className="text-xs text-slate-500">Y:</span>
+                        <input
+                          type="range"
+                          min="5"
+                          max="95"
+                          value={broadcastConfig.amenBadge?.position?.y || 90}
+                          onChange={(e) => setBroadcastConfig(prev => ({
+                            ...prev,
+                            amenBadge: {
+                              ...prev.amenBadge!,
+                              position: { ...prev.amenBadge!.position, y: parseInt(e.target.value) }
+                            }
+                          }))}
+                          className="w-full accent-yellow-500"
+                        />
                       </div>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
 
-        {/* CSS for marquee animation */}
-        <style>{`
+      {/* CSS for marquee animation */}
+      <style>{`
         @keyframes marquee {
           0% { transform: translateX(100%); }
           100% { transform: translateX(-100%); }
@@ -2911,195 +2847,195 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
         }
       `}</style>
 
-        {/* Prayer Credits Roll Modal */}
-        {
-          showPrayerCredits && (
-            <div className="fixed inset-0 z-[100]">
-              <PrayerCreditsRoll
-                prayers={broadcastConfig.prayerRequests}
-                config={broadcastConfig.prayerCreditsConfig || { enabled: true, speed: 5, showCategory: true, sortBy: 'priority' }}
-                onConfigChange={(newConfig) => setBroadcastConfig(prev => ({ ...prev, prayerCreditsConfig: newConfig }))}
-                lang={lang}
-                isEditing={true}
-              />
-              <button
-                onClick={() => setShowPrayerCredits(false)}
-                className="fixed top-4 right-4 z-[101] p-3 bg-red-600 hover:bg-red-500 text-white rounded-full shadow-lg transition"
-                title={isRTL ? 'بستن' : 'Close'}
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-          )
-        }
+      {/* Prayer Credits Roll Modal */}
+      {
+        showPrayerCredits && (
+          <div className="fixed inset-0 z-[100]">
+            <PrayerCreditsRoll
+              prayers={broadcastConfig.prayerRequests}
+              config={broadcastConfig.prayerCreditsConfig || { enabled: true, speed: 5, showCategory: true, sortBy: 'priority' }}
+              onConfigChange={(newConfig) => setBroadcastConfig(prev => ({ ...prev, prayerCreditsConfig: newConfig }))}
+              lang={lang}
+              isEditing={true}
+            />
+            <button
+              onClick={() => setShowPrayerCredits(false)}
+              className="fixed top-4 right-4 z-[101] p-3 bg-red-600 hover:bg-red-500 text-white rounded-full shadow-lg transition"
+              title={isRTL ? 'بستن' : 'Close'}
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+        )
+      }
 
-        {/* Save/Load Template Modal */}
-        {
-          showTemplateModal && (
-            <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
-              <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-xl font-bold text-white">
-                    {showTemplateModal === 'save' ? '💾 ذخیره تنظیمات' : '📂 بارگذاری تنظیمات'}
-                  </h2>
-                  <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
-                    <X className="w-6 h-6" />
+      {/* Save/Load Template Modal */}
+      {
+        showTemplateModal && (
+          <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
+            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-white">
+                  {showTemplateModal === 'save' ? '💾 ذخیره تنظیمات' : '📂 بارگذاری تنظیمات'}
+                </h2>
+                <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {showTemplateModal === 'save' ? (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm text-slate-400 mb-2">نام تنظیمات (Template Name)</label>
+                    <input
+                      type="text"
+                      value={templateName}
+                      onChange={(e) => setTemplateName(e.target.value)}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
+                      placeholder="مثال: صبح یکشنبه"
+                      autoFocus
+                    />
+                  </div>
+                  <button
+                    onClick={handleSaveTemplate}
+                    disabled={!templateName.trim()}
+                    className="w-full py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
+                  >
+                    <Save className="w-5 h-5" />
+                    ذخیره تنظیمات
                   </button>
                 </div>
-
-                {showTemplateModal === 'save' ? (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm text-slate-400 mb-2">نام تنظیمات (Template Name)</label>
-                      <input
-                        type="text"
-                        value={templateName}
-                        onChange={(e) => setTemplateName(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
-                        placeholder="مثال: صبح یکشنبه"
-                        autoFocus
-                      />
-                    </div>
-                    <button
-                      onClick={handleSaveTemplate}
-                      disabled={!templateName.trim()}
-                      className="w-full py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
-                    >
-                      <Save className="w-5 h-5" />
-                      ذخیره تنظیمات
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                    {savedTemplates.length === 0 ? (
-                      <p className="text-slate-500 text-center py-8">هیچ تنظیماتی ذخیره نشده است.</p>
-                    ) : (
-                      savedTemplates.map(t => (
-                        <div key={t.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
-                          <div>
-                            <div className="text-white font-medium">{t.name}</div>
-                            <div className="text-xs text-slate-400">{new Date(t.date).toLocaleString('fa-IR')}</div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => handleLoadTemplate(t.id)}
-                              className="px-3 py-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded text-sm transition"
-                            >
-                              بارگذاری
-                            </button>
-                            <button
-                              onClick={() => handleDeleteTemplate(t.id)}
-                              className="p-1.5 text-slate-500 hover:text-red-400 transition"
-                              title="Delete"
-                              aria-label="Delete"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
+              ) : (
+                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                  {savedTemplates.length === 0 ? (
+                    <p className="text-slate-500 text-center py-8">هیچ تنظیماتی ذخیره نشده است.</p>
+                  ) : (
+                    savedTemplates.map(t => (
+                      <div key={t.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
+                        <div>
+                          <div className="text-white font-medium">{t.name}</div>
+                          <div className="text-xs text-slate-400">{new Date(t.date).toLocaleString('fa-IR')}</div>
                         </div>
-                      ))
-                    )}
-                  </div>
-                )}
-              </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleLoadTemplate(t.id)}
+                            className="px-3 py-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded text-sm transition"
+                          >
+                            بارگذاری
+                          </button>
+                          <button
+                            onClick={() => handleDeleteTemplate(t.id)}
+                            className="p-1.5 text-slate-500 hover:text-red-400 transition"
+                            title="Delete"
+                            aria-label="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
             </div>
-          )
-        }
+          </div>
+        )
+      }
 
-        {/* Save/Load Presentation Modal */}
-        {
-          showPresentationModal && (
-            <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
-              <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-xl font-bold text-white">
-                    {showPresentationModal === 'save' ? '💾 ذخیره اسلایدها' : '📂 بارگذاری اسلایدها'}
-                  </h2>
-                  <button onClick={() => setShowPresentationModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
-                    <X className="w-6 h-6" />
+      {/* Save/Load Presentation Modal */}
+      {
+        showPresentationModal && (
+          <div className="absolute inset-0 z-[70] bg-black/80 flex items-center justify-center p-4">
+            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-white">
+                  {showPresentationModal === 'save' ? '💾 ذخیره اسلایدها' : '📂 بارگذاری اسلایدها'}
+                </h2>
+                <button onClick={() => setShowPresentationModal(false)} className="text-slate-400 hover:text-white" aria-label="Close Modal">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {showPresentationModal === 'save' ? (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm text-slate-400 mb-2">نام پرزنتیشن</label>
+                    <input
+                      type="text"
+                      value={presentationName}
+                      onChange={(e) => setPresentationName(e.target.value)}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
+                      placeholder="مثال: مراسم کریسمس"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    تعداد اسلاید: {session.slides.length}
+                  </div>
+                  <button
+                    onClick={handleSavePresentation}
+                    disabled={!presentationName.trim()}
+                    className="w-full py-3 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
+                  >
+                    <Save className="w-5 h-5" />
+                    ذخیره فایل
                   </button>
                 </div>
-
-                {showPresentationModal === 'save' ? (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm text-slate-400 mb-2">نام پرزنتیشن</label>
-                      <input
-                        type="text"
-                        value={presentationName}
-                        onChange={(e) => setPresentationName(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
-                        placeholder="مثال: مراسم کریسمس"
-                        autoFocus
-                      />
-                    </div>
-                    <div className="text-sm text-slate-400">
-                      تعداد اسلاید: {session.slides.length}
-                    </div>
-                    <button
-                      onClick={handleSavePresentation}
-                      disabled={!presentationName.trim()}
-                      className="w-full py-3 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white font-bold transition flex items-center justify-center gap-2"
-                    >
-                      <Save className="w-5 h-5" />
-                      ذخیره فایل
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                    {savedPresentations.length === 0 ? (
-                      <p className="text-slate-500 text-center py-8">هیچ فایلی ذخیره نشده است.</p>
-                    ) : (
-                      savedPresentations.map(p => (
-                        <div key={p.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
-                          <div>
-                            <div className="text-white font-medium">{p.name}</div>
-                            <div className="text-xs text-slate-400">
-                              {new Date(p.date).toLocaleString('fa-IR')} • {p.slideCount} اسلاید
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => handleLoadPresentation(p.id)}
-                              className="px-3 py-1.5 bg-purple-600/20 text-purple-400 hover:bg-purple-600 hover:text-white rounded text-sm transition"
-                            >
-                              بارگذاری
-                            </button>
-                            <button
-                              onClick={() => handleDeletePresentation(p.id)}
-                              className="p-1.5 text-slate-500 hover:text-red-400 transition"
-                              title="Delete"
-                              aria-label="Delete"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+              ) : (
+                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                  {savedPresentations.length === 0 ? (
+                    <p className="text-slate-500 text-center py-8">هیچ فایلی ذخیره نشده است.</p>
+                  ) : (
+                    savedPresentations.map(p => (
+                      <div key={p.id} className="bg-slate-800 hover:bg-slate-700 p-3 rounded-lg flex items-center justify-between transition group">
+                        <div>
+                          <div className="text-white font-medium">{p.name}</div>
+                          <div className="text-xs text-slate-400">
+                            {new Date(p.date).toLocaleString('fa-IR')} • {p.slideCount} اسلاید
                           </div>
                         </div>
-                      ))
-                    )}
-                  </div>
-                )}
-              </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleLoadPresentation(p.id)}
+                            className="px-3 py-1.5 bg-purple-600/20 text-purple-400 hover:bg-purple-600 hover:text-white rounded text-sm transition"
+                          >
+                            بارگذاری
+                          </button>
+                          <button
+                            onClick={() => handleDeletePresentation(p.id)}
+                            className="p-1.5 text-slate-500 hover:text-red-400 transition"
+                            title="Delete"
+                            aria-label="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
             </div>
-          )
-        }
-        {/* Save/Load Modal */}
-        <SaveLoadModal
-          isOpen={showSaveLoadModal}
-          onClose={() => setShowSaveLoadModal(false)}
-          title={saveLoadType === 'template'
-            ? (isRTL ? 'مدیریت قالب‌های پخش' : 'Manage Broadcast Templates')
-            : (isRTL ? 'مدیریت ارائه‌ها' : 'Manage Presentations')}
-          type={saveLoadType}
-          items={savedItems}
-          onSave={handleSaveItem}
-          onLoad={handleLoadItem}
-          onDelete={handleDeleteItem}
-          isRTL={isRTL}
-        />
-      </div>
-    );
-  }
-};
+          </div>
+        )
+      }
+      {/* Save/Load Modal */}
+      <SaveLoadModal
+        isOpen={showSaveLoadModal}
+        onClose={() => setShowSaveLoadModal(false)}
+        title={saveLoadType === 'template'
+          ? (isRTL ? 'مدیریت قالب‌های پخش' : 'Manage Broadcast Templates')
+          : (isRTL ? 'مدیریت ارائه‌ها' : 'Manage Presentations')}
+        type={saveLoadType}
+        items={savedItems}
+        onSave={handleSaveItem}
+        onLoad={handleLoadItem}
+        onDelete={handleDeleteItem}
+        isRTL={isRTL}
+      />
+    </div>
+  );
+}
+
 
 export default LiveConsole;
