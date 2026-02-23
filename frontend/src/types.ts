@@ -59,10 +59,13 @@ export interface ActivityLog {
   details: string;
 }
 
+export type UserRole = 'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN';
+
 export interface User {
   email: string;
-  role: 'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN';
-  permissions: string[];
+  role: UserRole;            // primary role (backward compat)
+  roles: UserRole[];         // all assigned roles (multi-role)
+  permissions: string[];     // computed effective permissions
   profileData: ProfileData;
   invitations: Invitation[];
   activityLog: ActivityLog[];
@@ -86,6 +89,8 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   isSuperAdmin: boolean;
   canEdit: (section: string) => boolean;
+  hasPermission: (permission: string) => boolean;
+  hasRole: (role: UserRole) => boolean;
   login: (email: string, password: string) => Promise<User | null>;
   adminLogin: (email: string, password: string) => Promise<User | null>;
   signup: (name: string, email: string, password: string) => Promise<void>;
@@ -94,7 +99,8 @@ export interface AuthContextType {
   loading: boolean;
   getUsers: () => Promise<User[]>;
   updateUserPermissions: (email: string, permissions: string[]) => Promise<boolean>;
-  updateUserRole: (email: string, role: 'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN') => Promise<boolean>;
+  updateUserRole: (email: string, role: UserRole) => Promise<boolean>;
+  updateUserRoles: (email: string, roles: UserRole[]) => Promise<boolean>;
   createUser: (userData: any) => Promise<User | null>;
   updateUser: (email: string, userData: Partial<User>) => Promise<User | null>;
   updateBillingInfoItem: (field: keyof BillingInfo, value: string) => Promise<User | null>;

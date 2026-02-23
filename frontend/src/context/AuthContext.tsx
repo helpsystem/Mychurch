@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { User, AuthContextType, BillingInfo, CreditCard, ProfileData, Language } from '../types';
+import { User, UserRole, AuthContextType, BillingInfo, CreditCard, ProfileData, Language } from '../types';
 import * as authService from '../lib/auth';
 import { setToken } from '../lib/tokenManager';
 
@@ -75,10 +75,37 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const canEdit = useCallback((section: string) => {
     if (!user) return false;
     if (user.role === 'SUPER_ADMIN') return true;
+    // Check permissions array (now contains computed effective permissions)
+    if (user.permissions && user.permissions.includes('*')) return true;
+    if (user.permissions && user.permissions.includes(section)) return true;
+    // Legacy fallback: MANAGER with section in permissions
     if (user.role === 'MANAGER') {
       return user.permissions.includes(section);
     }
     return false;
+  }, [user]);
+
+  /**
+   * Check if the current user has a specific permission.
+   * Handles wildcard ('*') for SUPER_ADMIN.
+   */
+  const hasPermission = useCallback((permission: string) => {
+    if (!user) return false;
+    if (user.role === 'SUPER_ADMIN') return true;
+    if (user.permissions?.includes('*') || user.permissions?.includes('all')) return true;
+    return user.permissions?.includes(permission) ?? false;
+  }, [user]);
+
+  /**
+   * Check if the current user has a specific role.
+   * Checks both `roles` array (multi-role) and fallback `role` field.
+   */
+  const hasRole = useCallback((role: UserRole) => {
+    if (!user) return false;
+    if (user.roles && Array.isArray(user.roles)) {
+      return user.roles.includes(role);
+    }
+    return user.role === role;
   }, [user]);
 
   const sendMessage = async (toEmail: string, subject: Record<Language, string>, body: Record<Language, string>, methods: ('inbox' | 'email')[]): Promise<boolean> => {
@@ -99,6 +126,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     isAuthenticated: !!user,
     isSuperAdmin: user?.role === 'SUPER_ADMIN',
     canEdit,
+    hasPermission,
+    hasRole,
     login,
     adminLogin,
     signup,
@@ -108,6 +137,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     getUsers: authService.getUsers,
     updateUserPermissions: authService.updateUserPermissions,
     updateUserRole: authService.updateUserRole,
+    updateUserRoles: authService.updateUserRoles,
     createUser,
     updateUser,
     updateBillingInfoItem,

@@ -15,7 +15,8 @@ export enum SlideType {
   MEDIA = 'MEDIA',
   ANNOUNCEMENT = 'ANNOUNCEMENT',
   GENERIC = 'GENERIC',
-  LIVEDATA = 'LIVEDATA'
+  LIVEDATA = 'LIVEDATA',
+  MEETING = 'MEETING'
 }
 
 // =============== SCRIPTURE (آیات کتاب مقدس) ===============
@@ -161,6 +162,13 @@ export interface SlideContentLiveData {
   };
 }
 
+// =============== MEETING (جلسه ویدیویی) ===============
+
+export interface SlideContentMeeting {
+  roomName: string;
+  subject?: string;
+}
+
 // =============== UNIFIED SLIDE ===============
 
 export type SlideContent =
@@ -169,7 +177,8 @@ export type SlideContent =
   | SlideContentMedia
   | SlideContentAnnouncement
   | SlideContentGeneric
-  | SlideContentLiveData;
+  | SlideContentLiveData
+  | SlideContentMeeting;
 
 export interface Slide {
   id: string;

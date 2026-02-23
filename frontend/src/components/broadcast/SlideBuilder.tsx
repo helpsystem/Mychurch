@@ -6,7 +6,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Slide, SlideType, BroadcastSession,
-  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, ChartDataPoint,
+  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, ChartDataPoint,
   ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig, BroadcastOverlayConfig
 } from './types';
 import {
@@ -17,7 +17,7 @@ import {
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
   PieChart, BarChart, LineChart, Activity,
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
@@ -31,7 +31,7 @@ interface SlideBuilderProps {
   onSlideSelect: (index: number) => void;
 }
 
-type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA';
+type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA' | 'MEETING';
 
 export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   session,
@@ -112,6 +112,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [genericBackgroundValue, setGenericBackgroundValue] = useState('#000000');
   const [genericLayout, setGenericLayout] = useState<'title-only' | 'text-only' | 'split-left' | 'split-right' | 'centered'>('centered');
 
+  // Meeting Form State
+  const [meetingRoomName, setMeetingRoomName] = useState(`Mychurch-${Math.floor(Math.random() * 10000)}`);
+  const [meetingSubject, setMeetingSubject] = useState('');
+
   // Drag State
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
@@ -159,6 +163,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setLiveDataShowValues(true);
     setLiveDataBackgroundType('color');
     setLiveDataBackgroundValue('#000000');
+    setMeetingRoomName(`Mychurch-${Math.floor(Math.random() * 10000)}`);
+    setMeetingSubject('');
     setEditingSlideIndex(null);
   };
 
@@ -268,6 +274,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         setLiveDataBackgroundValue(content.background.value);
       }
       setActiveModal('LIVEDATA');
+    } else if (slide.type === SlideType.MEETING) {
+      const content = slide.content as SlideContentMeeting;
+      setMeetingRoomName(content.roomName || '');
+      setMeetingSubject(content.subject || '');
+      setActiveModal('MEETING');
     }
   }, [session.slides]);
 
@@ -512,6 +523,22 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     }
   };
 
+  // Handle Meeting Submit
+  const handleMeetingSubmit = () => {
+    if (!meetingRoomName) return;
+
+    const content: SlideContentMeeting = {
+      roomName: meetingRoomName,
+      subject: meetingSubject
+    };
+
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      addSlide(SlideType.MEETING, content);
+    }
+  };
+
   // Handle Announcement Image Upload
   const handleAnnouncementImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -624,6 +651,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </p>
             </div>
           )}
+          {slide.type === SlideType.MEETING && (
+            <div className="text-center">
+              <PhoneCall className="w-6 h-6 text-emerald-400 mx-auto mb-1" />
+              <p className="text-[10px] text-white truncate">
+                {(slide.content as SlideContentMeeting).subject || 'Meeting'}
+              </p>
+            </div>
+          )}
           {slide.type === SlideType.MEDIA && (slide.content as SlideContentMedia).mediaType === 'image' && (
             <div className="text-center">
               <FileImage className="w-6 h-6 text-blue-400 mx-auto mb-1" />
@@ -727,10 +762,19 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           {/* Generic/Rich Text Slide Button */}
           <button
             onClick={() => setActiveModal('GENERIC')}
-            className="flex items-center gap-2 px-3 py-2 bg-purple-600/20 border border-purple-600/40 rounded-lg text-purple-400 hover:bg-purple-600/30 transition text-sm col-span-2 justify-center"
+            className="flex items-center gap-2 px-3 py-2 bg-purple-600/20 border border-purple-600/40 rounded-lg text-purple-400 hover:bg-purple-600/30 transition text-sm justify-center"
           >
             <Plus className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'اسلاید آزاد (متن/طراحی)' : 'Free Text / Design'}</span>
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'اسلاید آزاد' : 'Design'}</span>
+          </button>
+
+          {/* Meeting Slide Button */}
+          <button
+            onClick={() => setActiveModal('MEETING')}
+            className="flex items-center gap-2 px-3 py-2 bg-emerald-600/20 border border-emerald-600/40 rounded-lg text-emerald-400 hover:bg-emerald-600/30 transition text-sm justify-center"
+          >
+            <PhoneCall className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ارتباط ویدیویی' : 'Video Call'}</span>
           </button>
 
           {/* Live Data Slide Button */}
@@ -1687,8 +1731,75 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           </div>
         </div>
       )}
+
+      {/* Meeting Modal */}
+      {activeModal === 'MEETING' && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6">
+            <h3 className={`text-xl font-bold text-white mb-6 flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              <PhoneCall className="w-6 h-6 text-emerald-400" />
+              {isRTL ? 'ارتباط ویدیویی زنده (یکپارچه)' : 'Live Video Meeting'}
+            </h3>
+
+            <div className="space-y-4 mb-6">
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'شناسه / نام اتاق جلسه' : 'Room ID'}
+                </label>
+                <input
+                  type="text"
+                  value={meetingRoomName}
+                  onChange={(e) => setMeetingRoomName(e.target.value.replace(/[^a-zA-Z0-9-]/g, ''))}
+                  placeholder="e.g. Mychurch-Sunday-Service"
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white font-mono"
+                />
+                <p className={`text-xs text-slate-500 mt-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'فقط حروف انگلیسی، اعداد و خط تیره' : 'Alphanumeric and dashes only.'}
+                </p>
+              </div>
+
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'موضوع / عنوان نمایش داده شده' : 'Meeting Subject'}
+                </label>
+                <input
+                  type="text"
+                  value={meetingSubject}
+                  onChange={(e) => setMeetingSubject(e.target.value)}
+                  placeholder={isRTL ? 'مثال: پرسش و پاسخ' : 'e.g. Q&A Session'}
+                  className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                />
+              </div>
+
+              <div className="bg-emerald-900/20 border border-emerald-800/50 p-3 rounded-lg flex gap-3 mt-4">
+                <Video className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                <p className={`text-sm text-emerald-200/80 leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL
+                    ? 'این اسلاید پلتفرم تماس ویدیویی فوق امن (بر پایه ابری) را مستقیماً داخل کنسول باز می‌کند. مهمانان می‌توانند بدون نیاز به نصب هیچ برنامه‌ای با لینک مخصوص به استودیو متصل شوند و تصاویرشان در پخش زنده نمایش داده خواهد شد.'
+                    : 'This slide launches a secure video meeting directly in the console.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 justify-end mt-6">
+              <button
+                onClick={() => { setActiveModal('NONE'); resetForms(); }}
+                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.cancel}
+              </button>
+              <button
+                onClick={handleMeetingSubmit}
+                disabled={!meetingRoomName}
+                className={`px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.add}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-
 export default SlideBuilder;

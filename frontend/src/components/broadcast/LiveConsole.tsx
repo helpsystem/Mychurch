@@ -8,10 +8,11 @@ import { useAuth } from '../../hooks/useAuth';
 import {
   BroadcastSession, Slide, SlideType, BroadcastOverlayConfig,
   SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement,
-  SlideContentGeneric, SlideContentLiveData,
+  SlideContentGeneric, SlideContentLiveData, SlideContentMeeting,
   LowerThirdItem, PrayerRequest, DonationItem, AppLanguage
 } from './types';
 import { BROADCAST_TRANSLATIONS } from './dataService';
+import { JitsiMeeting } from '@jitsi/react-sdk';
 import { useHybridRecorder } from './hooks/useHybridRecorder';
 import { useWebSocketSync } from './useWebSocketSync';
 import { useAudioCapture } from './hooks/useAudioCapture';
@@ -190,8 +191,27 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
     }
   }, [syncState.lastMessage]);
 
+  const toggleTranscription = useCallback(() => {
+    if (isTranscribingLive || isTranscribing) {
+      stopLiveTranscribe();
+      setIsTranscribing(false);
+      setLiveTranscript('AI Translation Stopped');
+    } else {
+      startLiveTranscribe();
+      setIsTranscribing(true);
+      setLiveTranscript('AI Translation Active...');
+    }
+
+    // Clear the notification after 2 seconds
+    if (transcriptTimeoutRef.current) clearTimeout(transcriptTimeoutRef.current);
+    transcriptTimeoutRef.current = setTimeout(() => {
+      setLiveTranscript('');
+    }, 3000);
+  }, [isTranscribing, isTranscribingLive, startLiveTranscribe, stopLiveTranscribe]);
+
   // State
   const [showSettings, setShowSettings] = useState(false);
+  const [showSystemMenu, setShowSystemMenu] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>('layout');
   const [internalPageIndex, setInternalPageIndex] = useState(0);
   const [isLive, setIsLive] = useState(false);
@@ -1393,6 +1413,50 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       return renderLiveData(content as SlideContentLiveData);
     }
 
+    if (activeSlide.type === SlideType.MEETING) {
+      const meetingContent = content as SlideContentMeeting;
+      return (
+        <div className="w-full h-full flex flex-col bg-slate-950 relative overflow-hidden">
+          {/* Top Indicator */}
+          <div className="absolute top-6 left-6 z-40 bg-black/70 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 flex items-center gap-3 shadow-2xl pointer-events-none">
+            <span className="w-3 h-3 rounded-full bg-red-500 animate-pulse border border-red-400"></span>
+            <span className={`text-white font-medium tracking-wide ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              {meetingContent.subject || (isRTL ? 'ارتباط ویدیویی زنده' : 'Live Video Meeting')}
+            </span>
+          </div>
+
+          <div className="flex-1 w-full bg-black relative">
+            <JitsiMeeting
+              roomName={meetingContent.roomName || 'Mychurch-Studio'}
+              configOverwrite={{
+                startWithAudioMuted: true,
+                startWithVideoMuted: false,
+                disableDeepLinking: true,
+                requireDisplayName: false,
+                prejoinPageEnabled: false,
+                disableModeratorIndicator: true
+              }}
+              interfaceConfigOverwrite={{
+                DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
+                SHOW_CHROME_EXTENSION_BANNER: false,
+                TOOLBAR_BUTTONS: [
+                  'microphone', 'camera', 'desktop', 'fullscreen', 'hangup', 'chat', 'settings'
+                ]
+              }}
+              userInfo={{
+                displayName: isRTL ? 'اتاق فرمان' : 'Control Room'
+              }}
+              getIFrameRef={(iframeRef) => {
+                iframeRef.style.height = '100%';
+                iframeRef.style.width = '100%';
+                iframeRef.style.border = 'none';
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+
     if (activeSlide.type === SlideType.GENERIC) {
       const genericContent = content as SlideContentGeneric;
       return (
@@ -1473,15 +1537,91 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
       </div>
 
       {/* Top Bar */}
-      <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
+      <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4 z-40 relative">
         <div className="flex items-center gap-3">
           <BroadcastStatusBadge isLive={isRecording} viewerCount={isRecording ? 124 : 0} />
           <div className="h-6 w-px bg-slate-700 mx-1"></div>
-          {/* Settings Button - Admin Only */}
+
+          {/* Settings Menu Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setShowSystemMenu(!showSystemMenu)}
+              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 font-medium border border-transparent ${showSystemMenu ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-800 text-slate-200 hover:bg-slate-700 border-slate-700'}`}
+              title={isRTL ? 'تنظیمات سیستم' : 'System Settings'}
+            >
+              <Settings className="w-4 h-4" />
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات سیستم' : 'System Settings'}</span>
+            </button>
+
+            {showSystemMenu && (
+              <div className={`absolute top-full mt-2 w-72 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl z-50 overflow-hidden ${isRTL ? 'right-0' : 'left-0'}`}>
+                {/* Hardware */}
+                <div className="p-2 border-b border-slate-700/50 bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                  <div className={`px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'سخت‌افزار' : 'Hardware'}</div>
+                  <button onClick={() => { setShowDeviceSelector(true); setShowSystemMenu(false); }} className="w-full text-left px-3 py-2.5 flex items-center gap-3 text-sm text-slate-200 hover:bg-slate-700 rounded-lg transition-colors group">
+                    <div className="p-1.5 bg-slate-900 rounded-md group-hover:bg-slate-800 transition-colors border border-slate-700">
+                      {isCameraOn || isMicOn ? <Camera className="w-4 h-4 text-green-400" /> : <CameraOff className="w-4 h-4 text-slate-400" />}
+                    </div>
+                    <span className={`font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'تنظیمات دوربین و میکروفون' : 'Camera & Mic Settings'}</span>
+                  </button>
+                </div>
+
+                {/* Slides / Presentation */}
+                <div className="p-2 border-b border-slate-700/50 hover:bg-slate-800 transition-colors">
+                  <div className={`px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'اسلایدها (Presentation)' : 'Slides'}</div>
+                  <button onClick={() => { setShowPresentationModal('save'); setShowSystemMenu(false); }} className="w-full text-left px-3 py-2.5 flex items-center gap-3 text-sm text-slate-200 hover:bg-slate-700 rounded-lg transition-colors group">
+                    <div className="p-1.5 bg-blue-900/30 rounded-md group-hover:bg-blue-900/50 transition-colors border border-blue-800/30">
+                      <Save className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <span className={`font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'ذخیره اسلایدها' : 'Save Slides'}</span>
+                  </button>
+                  <button onClick={() => { setShowPresentationModal('load'); setShowSystemMenu(false); }} className="w-full text-left px-3 py-2.5 flex items-center gap-3 text-sm text-slate-200 hover:bg-slate-700 rounded-lg transition-colors group mt-1">
+                    <div className="p-1.5 bg-blue-900/30 rounded-md group-hover:bg-blue-900/50 transition-colors border border-blue-800/30">
+                      <FolderOpen className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <span className={`font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'بازیابی اسلایدها' : 'Load Slides'}</span>
+                  </button>
+                </div>
+
+                {/* Templates / Config */}
+                {isAdmin && (
+                  <div className="p-2 border-b border-slate-700/50 hover:bg-slate-800 transition-colors">
+                    <div className={`px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'قالب‌ها (Templates)' : 'Templates'}</div>
+                    <button onClick={() => { setShowTemplateModal('save'); setShowSystemMenu(false); }} className="w-full text-left px-3 py-2.5 flex items-center gap-3 text-sm text-slate-200 hover:bg-slate-700 rounded-lg transition-colors group">
+                      <div className="p-1.5 bg-purple-900/30 rounded-md group-hover:bg-purple-900/50 transition-colors border border-purple-800/30">
+                        <Save className="w-4 h-4 text-purple-400" />
+                      </div>
+                      <span className={`font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'ذخیره تنظیمات قالب' : 'Save Config Template'}</span>
+                    </button>
+                    <button onClick={() => { setShowTemplateModal('load'); setShowSystemMenu(false); }} className="w-full text-left px-3 py-2.5 flex items-center gap-3 text-sm text-slate-200 hover:bg-slate-700 rounded-lg transition-colors group mt-1">
+                      <div className="p-1.5 bg-purple-900/30 rounded-md group-hover:bg-purple-900/50 transition-colors border border-purple-800/30">
+                        <FolderOpen className="w-4 h-4 text-purple-400" />
+                      </div>
+                      <span className={`font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'بازیابی تنظیمات قالب' : 'Load Config Template'}</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Advanced UI Settings */}
+                {isAdmin && (
+                  <div className="p-2 bg-slate-800">
+                    <button onClick={() => { setShowSettings(!showSettings); setShowSystemMenu(false); }} className="w-full text-left px-3 py-2.5 flex items-center gap-3 text-sm text-slate-300 hover:bg-slate-700 rounded-lg transition-colors group">
+                      <div className="p-1.5 bg-slate-900 rounded-md group-hover:bg-slate-800 transition-colors border border-slate-700">
+                        <Settings className="w-4 h-4 text-slate-400" />
+                      </div>
+                      <span className={`font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'تنظیمات پیشرفته نمایش' : 'Advanced Display Settings'}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* AI Transcription - Admin Only */}
           {isAdmin && (
             <button
               onClick={toggleTranscription}
-              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${isTranscribing
+              className={`hidden md:flex px-3 py-1.5 rounded-lg text-sm transition items-center gap-2 ${isTranscribing
                 ? 'bg-red-600/20 text-red-400 animate-pulse border border-red-500/50'
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                 }`}
@@ -1493,32 +1633,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
               </span>
             </button>
           )}
-          {/* Settings Button - Admin Only */}
-          {isAdmin && (
-            <button
-              onClick={() => setShowSettings(!showSettings)}
-              className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${showSettings
-                ? 'bg-indigo-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                }`}
-              title={isRTL ? 'تنظیمات' : 'Settings'}
-            >
-              <Settings className="w-4 h-4" />
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'تنظیمات' : 'Settings'}</span>
-            </button>
-          )}
 
-          {/* Save/Load Presentations Button */}
-          <button
-            onClick={() => openSaveLoad('presentation')}
-            className="px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 bg-slate-700 text-slate-300 hover:bg-slate-600"
-            title={isRTL ? 'ذخیره/بازیابی اسلایدها' : 'Save/Load Slides'}
-          >
-            <FolderOpen className="w-4 h-4" />
-            <span className={`hidden md:inline ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? 'اسلایدها' : 'Slides'}</span>
-          </button>
-
-          {/* Language Toggle */}
           {/* Language Toggle */}
           {onLangToggle && (
             <button
@@ -1529,6 +1644,13 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
               <span className="font-bold">{lang === 'fa' ? 'FA' : 'EN'}</span>
             </button>
           )}
+        </div>
+
+        <div className="flex items-center gap-3 h-full">
+          {/* Slide Counter */}
+          <span className="text-slate-400 text-sm font-medium mr-2">
+            {activeSlideIndex + 1} <span className="text-slate-600">/</span> {session.slides.length}
+          </span>
 
           {/* Open Display Window Button */}
           <button
@@ -1545,68 +1667,19 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 setDisplayWindow(win);
               }
             }}
-            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 ${displayWindow && !displayWindow.closed
-              ? 'bg-green-600 text-white animate-pulse'
-              : 'bg-purple-600 text-white hover:bg-purple-500'
+            className={`px-3 py-1.5 rounded-lg text-sm transition flex items-center gap-2 font-medium shadow-sm ${displayWindow && !displayWindow.closed
+              ? 'bg-green-600 text-white animate-pulse shadow-green-600/20'
+              : 'bg-purple-600 text-white hover:bg-purple-500 shadow-purple-600/20'
               }`}
             title={isRTL ? 'باز کردن صفحه نمایش (پروژکتور)' : 'Open Display Window (Projector)'}
           >
             <Monitor className="w-4 h-4" />
             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
               {displayWindow && !displayWindow.closed
-                ? (isRTL ? 'نمایشگر فعال' : 'Display Active')
+                ? (isRTL ? 'نمایشگر فعال' : 'Display')
                 : (isRTL ? 'نمایشگر' : 'Display')}
             </span>
           </button>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* Slide Counter */}
-          <span className="text-slate-400 text-sm">
-            {activeSlideIndex + 1} / {session.slides.length}
-          </span>
-
-          {/* === دکمه‌های تنظیمات (Templates) - Admin Only === */}
-          {isAdmin && (
-            <div className="flex items-center gap-1 border-r border-slate-700 pr-3 mr-1">
-              <button
-                onClick={() => setShowTemplateModal('save')}
-                className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-purple-600 hover:bg-purple-500 text-white"
-                title={isRTL ? 'ذخیره تنظیمات' : 'Save Settings'}
-              >
-                <Settings className="w-3 h-3" />
-                <Save className="w-3 h-3" />
-              </button>
-              <button
-                onClick={() => setShowTemplateModal('load')}
-                className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
-                title={isRTL ? 'بارگذاری تنظیمات' : 'Load Settings'}
-              >
-                <Settings className="w-3 h-3" />
-                <FolderOpen className="w-3 h-3" />
-              </button>
-            </div>
-          )}
-
-          {/* === دکمه‌های پرزنتیشن (Slides) === */}
-          <button
-            onClick={() => setShowPresentationModal('save')}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-blue-600 hover:bg-blue-500 text-white"
-            title={isRTL ? 'ذخیره اسلایدها' : 'Save Slides'}
-          >
-            <Save className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ذخیره' : 'Save'}</span>
-          </button>
-          <button
-            onClick={() => setShowPresentationModal('load')}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all bg-slate-700 hover:bg-slate-600 text-slate-200"
-            title={isRTL ? 'بارگذاری اسلایدها' : 'Load Slides'}
-          >
-            <FolderOpen className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'بارگذاری' : 'Load'}</span>
-          </button>
-
-
         </div>
       </div>
 

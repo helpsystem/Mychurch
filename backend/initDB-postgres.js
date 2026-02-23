@@ -5,11 +5,13 @@ const queries = [
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role VARCHAR(20) CHECK (role IN ('USER', 'MANAGER', 'SUPER_ADMIN')) NOT NULL,
+    role VARCHAR(20) CHECK (role IN ('USER', 'LEADER', 'WORSHIP_LEADER', 'MANAGER', 'SUPER_ADMIN')) NOT NULL,
+    roles JSONB DEFAULT '[]',
     permissions JSONB DEFAULT '[]',
     profileData JSONB DEFAULT '{}',
     invitations JSONB DEFAULT '[]',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 
   `CREATE TABLE IF NOT EXISTS leaders (
@@ -224,8 +226,8 @@ const initializeDatabase = async () => {
       const bcrypt = require('bcrypt');
       const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'MyChurchSecureAdmin2024!', 10);
       await client.query(
-        'INSERT INTO users (email, password, role, permissions) VALUES ($1, $2, $3, $4)',
-        ['admin@mychurch.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['all'])]
+        'INSERT INTO users (email, password, role, roles, permissions) VALUES ($1, $2, $3, $4, $5)',
+        ['admin@mychurch.com', hashedPassword, 'SUPER_ADMIN', JSON.stringify(['SUPER_ADMIN']), JSON.stringify(['all'])]
       );
       console.log('✅ کاربر admin امن ایجاد شد (admin@mychurch.com / MyChurchSecureAdmin2024!)');
       console.log('⚠️  لطفاً پس از اولین ورود، رمز عبور را تغییر دهید!');

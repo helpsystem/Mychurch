@@ -1,5 +1,5 @@
 import { api } from './api';
-import { User, BillingInfo, CreditCard, ProfileData, ActivityLog, Language } from '../types';
+import { User, UserRole, BillingInfo, CreditCard, ProfileData, ActivityLog, Language } from '../types';
 import { getAuthToken, removeToken } from './tokenManager';
 
 // All paths have been reviewed and corrected to ensure they point to the correct backend endpoints.
@@ -46,8 +46,13 @@ export const updateUserPermissions = async (email: string, permissions: string[]
     return true;
 }
 
-export const updateUserRole = async (email: string, role: 'USER' | 'LEADER' | 'WORSHIP_LEADER' | 'MANAGER' | 'SUPER_ADMIN'): Promise<boolean> => {
+export const updateUserRole = async (email: string, role: UserRole): Promise<boolean> => {
     await api.put<void>(`/api/users/${email}/role`, { role });
+    return true;
+}
+
+export const updateUserRoles = async (email: string, roles: UserRole[]): Promise<boolean> => {
+    await api.put<void>(`/api/users/${email}/roles`, { roles });
     return true;
 }
 

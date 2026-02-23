@@ -8,7 +8,7 @@ const SecurityHeaders: React.FC = () => {
         // Content Security Policy (basic - adjust for production)
         {
           'http-equiv': 'Content-Security-Policy',
-          content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://esm.sh https://fonts.googleapis.com https://www.googletagmanager.com https://www.alhayatgpt.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://esm.sh https://www.alhayatgpt.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://www.alhayatgpt.com; connect-src 'self' http://localhost:* https: wss: data: https://www.alhayatgpt.com; media-src 'self' https: http://localhost:* blob:; frame-src 'self' https://www.youtube.com https://youtube.com https://www.alhayatgpt.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+          content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://esm.sh https://fonts.googleapis.com https://www.googletagmanager.com https://www.alhayatgpt.com https://meet.jit.si https://8x8.vc; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://esm.sh https://www.alhayatgpt.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://www.alhayatgpt.com; connect-src 'self' http://localhost:* https: wss: data: https://www.alhayatgpt.com https://meet.jit.si wss://meet.jit.si; media-src 'self' https: http://localhost:* blob:; frame-src 'self' https://www.youtube.com https://youtube.com https://www.alhayatgpt.com https://meet.jit.si; object-src 'none'; base-uri 'self'; form-action 'self';"
         },
 
 
@@ -28,7 +28,7 @@ const SecurityHeaders: React.FC = () => {
         // Permissions Policy
         {
           'http-equiv': 'Permissions-Policy',
-          content: 'geolocation=(), microphone=(), camera=(), payment=()'
+          content: 'geolocation=(), payment=()'
         },
 
         // Additional security headers

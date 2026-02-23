@@ -47,6 +47,7 @@
     "@google-cloud/speech": "^7.2.1",
     "@google/genai": "^1.29.1",
     "@google/generative-ai": "^0.24.1",
+    "@jitsi/react-sdk": "^1.4.4",
     "@pixi/app": "^7.4.3",
     "@pixi/core": "^7.4.3",
     "@pixi/display": "^7.4.3",

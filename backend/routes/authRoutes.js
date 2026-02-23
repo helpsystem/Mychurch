@@ -4,14 +4,41 @@ const jwt = require('jsonwebtoken');
 const { pool, parseUser } = require('../db-postgres');
 const { authenticateToken } = require('../middleware/auth');
 const { signupRateLimit, loginRateLimit, resetRateLimit } = require('../middleware/rateLimiter');
+const {
+  ROLES,
+  normalizeRoles,
+  getPrimaryRole,
+  computeEffectivePermissions,
+} = require('../config/roles');
 
 const router = express.Router();
 
+/**
+ * Generate JWT token with roles and computed permissions.
+ * The token payload includes:
+ *   - email, name          (identity)
+ *   - role                 (primary role — backward compat)
+ *   - roles                (array of all assigned roles)
+ *   - permissions           (computed effective permissions)
+ */
 const generateToken = (user) => {
   const name = user.profileData && user.profileData.name ? user.profileData.name : null;
   const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-for-development';
+
+  // Parse roles: support both old single `role` and new `roles` array
+  const roles = normalizeRoles(user.roles || user.role);
+  const primaryRole = getPrimaryRole(roles);
+  const customPerms = Array.isArray(user.permissions) ? user.permissions : [];
+  const effectivePermissions = computeEffectivePermissions(roles, customPerms);
+
   return jwt.sign(
-    { email: user.email, role: user.role, name },
+    {
+      email: user.email,
+      role: primaryRole,        // backward compat
+      roles,                    // new: full roles array
+      permissions: effectivePermissions,  // new: computed permissions
+      name,
+    },
     jwtSecret,
     { expiresIn: '24h' }
   );
@@ -157,14 +184,17 @@ router.post('/signup', signupRateLimit, async (req, res) => {
     // Reset rate limit on successful signup
     resetRateLimit(req, 'signup');
 
-    const token = generateToken({ email: email.toLowerCase(), role: 'USER', profileData: { name: name.trim() } });
+    const newUser = {
+      email: email.toLowerCase(),
+      role: 'USER',
+      roles: ['USER'],
+      permissions: [],
+      profileData: { name: name.trim() },
+    };
+    const token = generateToken(newUser);
     res.status(201).json({
       token,
-      user: {
-        email: email.toLowerCase(),
-        role: 'USER',
-        profileData: { name: name.trim() }
-      }
+      user: newUser,
     });
   } catch (error) {
     console.error('Signup Error:', error);
@@ -193,6 +223,13 @@ router.post('/login', loginRateLimit, async (req, res) => {
     }
     user = parseUser(user);
 
+    // Ensure roles array is populated (backward compat with pre-migration data)
+    if (!user.roles || !Array.isArray(user.roles) || user.roles.length === 0) {
+      user.roles = [user.role || 'USER'];
+    }
+    user.role = getPrimaryRole(user.roles);
+    user.permissions = computeEffectivePermissions(user.roles, user.permissions || []);
+
     // Reset rate limit on successful login
     resetRateLimit(req, 'login');
 
@@ -218,8 +255,16 @@ router.post('/admin-login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
-    let user = result.rows[0];
-    if (user.role !== 'SUPER_ADMIN') {
+    let user = parseUser(result.rows[0]);
+
+    // Ensure roles array is populated
+    if (!user.roles || !Array.isArray(user.roles) || user.roles.length === 0) {
+      user.roles = [user.role || 'USER'];
+    }
+    user.role = getPrimaryRole(user.roles);
+
+    // Admin login requires SUPER_ADMIN or MANAGER role
+    if (user.role !== 'SUPER_ADMIN' && user.role !== 'MANAGER') {
       return res.status(403).json({ message: 'Access denied. Admins only.' });
     }
 
@@ -228,12 +273,8 @@ router.post('/admin-login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
-    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-for-development';
-    const token = jwt.sign(
-      { email: user.email, role: user.role },
-      jwtSecret,
-      { expiresIn: '24h' }
-    );
+    user.permissions = computeEffectivePermissions(user.roles, user.permissions || []);
+    const token = generateToken(user);
 
     delete user.password;
     res.json({ token, user });
@@ -253,6 +294,14 @@ router.get('/me', authenticateToken, async (req, res) => {
     }
     let user = result.rows[0];
     user = parseUser(user);
+
+    // Ensure roles array is populated
+    if (!user.roles || !Array.isArray(user.roles) || user.roles.length === 0) {
+      user.roles = [user.role || 'USER'];
+    }
+    user.role = getPrimaryRole(user.roles);
+    user.permissions = computeEffectivePermissions(user.roles, user.permissions || []);
+
     delete user.password;
     res.json({ user });
   } catch (error) {
