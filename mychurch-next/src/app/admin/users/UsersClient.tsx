@@ -101,7 +101,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                                         )}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <span className="text-sm font-medium text-muted-foreground">{user.lastActive}</span>
+                                        <span className="text-sm font-medium text-muted-foreground">{user.last_active || "Never"}</span>
                                     </td>
                                     <td className="px-6 py-4 text-right space-x-2">
                                         <button
