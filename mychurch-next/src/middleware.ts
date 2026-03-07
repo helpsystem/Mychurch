@@ -1,38 +1,56 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse, type NextRequest } from 'next/server';
 
-// Temporary Mock for RBAC checking until Database acts up
-const MOCK_USER_ROLE = "admin"; // Change to "user" or null to test restrictions
+export async function middleware(request: NextRequest) {
+    let supabaseResponse = NextResponse.next({
+        request,
+    });
 
-export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
-
-    // Protect Admin Routes
-    if (pathname.startsWith('/admin')) {
-        if (MOCK_USER_ROLE !== 'admin' && MOCK_USER_ROLE !== 'leader') {
-            // Redirect unauthorized users to home
-            return NextResponse.redirect(new URL('/', request.url));
+    const supabase = createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        {
+            cookies: {
+                getAll() {
+                    return request.cookies.getAll();
+                },
+                setAll(cookiesToSet) {
+                    cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value));
+                    supabaseResponse = NextResponse.next({
+                        request,
+                    });
+                    cookiesToSet.forEach(({ name, value, options }) =>
+                        supabaseResponse.cookies.set(name, value, options)
+                    );
+                },
+            },
         }
+    );
+
+    // Refresh session if expired
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    // Protect routes
+    const pathname = request.nextUrl.pathname;
+    const isProtected = pathname.startsWith('/admin') || (pathname.startsWith('/broadcast') && pathname !== '/broadcast/view');
+
+    if (isProtected && !user) {
+        // Redirect completely out if they have no session
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
     }
 
-    // Protect Broadcast Console Routes
-    if (pathname.startsWith('/broadcast')) {
-        // Specifically allow /broadcast/view for projector without strict admin
-        if (pathname === '/broadcast/view') {
-            return NextResponse.next();
-        }
+    // Detailed Role checking is done strictly within Server Components (e.g. layout.tsx)
+    // using the `requireRole()` pattern, because `pg` cannot be run on Edge.
 
-        if (MOCK_USER_ROLE !== 'admin' && MOCK_USER_ROLE !== 'leader' && MOCK_USER_ROLE !== 'operator') {
-            return NextResponse.redirect(new URL('/', request.url));
-        }
-    }
-
-    return NextResponse.next();
+    return supabaseResponse;
 }
 
 export const config = {
     matcher: [
-        '/admin/:path*',
-        '/broadcast/:path*'
+        '/((?!_next/static|_next/image|favicon.ico|api|images|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|mp3|wav|ogg)$).*)',
     ],
 };

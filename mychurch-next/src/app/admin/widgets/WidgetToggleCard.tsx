@@ -1,0 +1,65 @@
+"use client";
+
+import React, { useTransition } from "react";
+import { DashboardWidget, toggleWidget } from "@/actions/widgets";
+
+export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; icon: React.ReactNode }) {
+    const [isPending, startTransition] = useTransition();
+
+    const handleToggle = () => {
+        startTransition(async () => {
+            const result = await toggleWidget(widget.id, widget.is_active);
+            if (!result.success) {
+                alert('Error updating widget: ' + result.error);
+            }
+        });
+    };
+
+    return (
+        <div className={`glass rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden group ${widget.is_active ? 'border-primary/30 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'border-white/5 opacity-70 grayscale-[0.8]'}`}>
+
+            {/* Active Ambient Glow */}
+            {widget.is_active && (
+                <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full ${widget.color.replace('text-', 'bg-')}/10 blur-[40px] pointer-events-none`} />
+            )}
+
+            <div className="flex items-start justify-between mb-6 relative z-10">
+                <div className={`w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center border border-white/5`}>
+                    {icon}
+                </div>
+
+                {/* Custom Toggle Switch */}
+                <button
+                    onClick={handleToggle}
+                    disabled={isPending}
+                    className={`relative inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 disabled:opacity-50 ${widget.is_active ? 'bg-primary' : 'bg-white/10'}`}
+                    role="switch"
+                    aria-checked={widget.is_active ? "true" : "false"}
+                >
+                    <span className="sr-only">Toggle widget</span>
+                    <span
+                        aria-hidden="true"
+                        className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${widget.is_active ? '-translate-x-7' : 'translate-x-0'}`}
+                    />
+                </button>
+            </div>
+
+            <div className="relative z-10">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{widget.name}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{widget.description}</p>
+                <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-bold font-serif uppercase tracking-wider">
+                    <span className="text-muted-foreground">ID: {widget.id}</span>
+                    <span className={widget.is_active ? 'text-primary' : 'text-muted-foreground'}>
+                        {widget.is_active ? 'ACTIVE' : 'INACTIVE'}
+                    </span>
+                </div>
+            </div>
+
+            {isPending && (
+                <div className="absolute inset-0 bg-background/50 backdrop-blur-sm flex items-center justify-center z-20">
+                    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                </div>
+            )}
+        </div>
+    );
+}

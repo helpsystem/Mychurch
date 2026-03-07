@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import {
     Book, Search, Settings, ChevronRight, ChevronLeft,
-    Volume2, Monitor, Home, Languages, Maximize2
+    Volume2, Monitor, Home, Languages, Maximize2,
+    Type, Contrast, Play, Pause, SkipForward, SkipBack, X
 } from "lucide-react";
 import { type BibleBook } from "@/data/bibleBooks";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useRef, useEffect } from "react";
+import { fetchChapterData, type UnifiedVerse } from "@/actions/bible";
 
 interface BibleReaderProps {
     initialBooks: BibleBook[];
@@ -20,6 +23,22 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
     const [searchQuery, setSearchQuery] = useState("");
     const [translation, setTranslation] = useState("MOJDEH");
 
+    // Accessibility & Sync State
+    const [fontSize, setFontSize] = useState<"md" | "lg" | "xl">("md");
+    const [highContrast, setHighContrast] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
+
+    // Audio Playback State
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [activeVerse, setActiveVerse] = useState<number | null>(null);
+    const verseRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    // Data State
+    const [verses, setVerses] = useState<UnifiedVerse[]>([]);
+    const [audioUrl, setAudioUrl] = useState<string>("");
+    const [isLoading, setIsLoading] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
     const filteredBooks = initialBooks.filter(b =>
         b.name_en.toLowerCase().includes(searchQuery.toLowerCase()) ||
         b.name_fa.includes(searchQuery)
@@ -27,15 +46,104 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
 
     const currentBook = initialBooks.find(b => b.code === selectedBook) || initialBooks[0];
 
-    // Placeholder verses for the UI preview
-    const placeholderVerses = Array.from({ length: 10 }, (_, i) => ({
-        number: i + 1,
-        fa: "در ابتدا خدا آسمانها و زمین را آفرید.",
-        en: "In the beginning God created the heavens and the earth."
-    }));
+    // Load actual data when book/chapter changes
+    useEffect(() => {
+        let isMounted = true;
+
+        async function loadChapter() {
+            setIsLoading(true);
+            setIsPlaying(false);
+            setActiveVerse(null);
+
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current.currentTime = 0;
+            }
+
+            const data = await fetchChapterData(selectedBook, selectedChapter);
+
+            if (isMounted) {
+                if (data) {
+                    setVerses(data.verses);
+                    setAudioUrl(data.audioUrl || "");
+                } else {
+                    setVerses([]);
+                    setAudioUrl("");
+                }
+                setIsLoading(false);
+            }
+        }
+
+        loadChapter();
+        return () => { isMounted = false; };
+    }, [selectedBook, selectedChapter]);
+
+    // Auto-scroll logic when active verse changes
+    useEffect(() => {
+        if (activeVerse !== null && verseRefs.current[activeVerse - 1]) {
+            verseRefs.current[activeVerse - 1]?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }, [activeVerse]);
+
+    // Native Audio Engine Sync Hook
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        const handleTimeUpdate = () => {
+            const currentTime = audio.currentTime;
+
+            // Find the verse that corresponds to the precise audio playback time
+            // We use >= start and < end for precise range targeting
+            const active = verses.find(v => currentTime >= v.start && currentTime < v.end);
+
+            if (active) {
+                if (activeVerse !== active.number) {
+                    setActiveVerse(active.number);
+                }
+            }
+        };
+
+        const handleEnded = () => {
+            setIsPlaying(false);
+            setActiveVerse(null);
+        };
+
+        audio.addEventListener("timeupdate", handleTimeUpdate);
+        audio.addEventListener("ended", handleEnded);
+
+        return () => {
+            audio.removeEventListener("timeupdate", handleTimeUpdate);
+            audio.removeEventListener("ended", handleEnded);
+        };
+    }, [verses, activeVerse]);
+
+    const togglePlay = () => {
+        if (!audioRef.current) return;
+
+        if (isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+        } else {
+            audioRef.current.play();
+            setIsPlaying(true);
+        }
+    };
+
+    const fontClasses = {
+        md: "text-2xl md:text-3xl",
+        lg: "text-3xl md:text-4xl",
+        xl: "text-4xl md:text-5xl font-black leading-loose"
+    };
 
     return (
-        <div className="flex h-[100dvh] w-full bg-background text-foreground overflow-hidden selection:bg-primary/30">
+        <div className={cn(
+            "flex h-[100dvh] w-full overflow-hidden transition-colors duration-500",
+            highContrast ? "bg-black text-yellow-400 selection:bg-yellow-400/30" : "bg-background text-foreground selection:bg-primary/30"
+        )}>
 
             {/* Desktop Sidebar */}
             <aside className={cn(
@@ -159,15 +267,107 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
 
                     {/* Right side actions */}
                     <div className="flex items-center gap-2">
-                        <button className="hidden sm:flex items-center gap-2 px-4 py-2 bg-secondary/50 hover:bg-secondary rounded-xl font-medium text-sm transition-all border border-border/50 shadow-sm text-foreground">
-                            <Volume2 className="w-4 h-4 text-primary" /> پخش صوتی
+                        {/* Audio Element (Hidden) */}
+                        {audioUrl && (
+                            <audio ref={audioRef} src={audioUrl} preload="auto" />
+                        )}
+
+                        {/* Audio Controls */}
+                        {audioUrl && (
+                            <div className="hidden sm:flex items-center gap-1 bg-secondary/50 rounded-xl border border-border/50 p-1">
+                                <button
+                                    onClick={togglePlay}
+                                    className={cn(
+                                        "flex items-center gap-2 px-3 py-1.5 rounded-lg font-bold text-sm transition-all",
+                                        isPlaying ? "bg-red-500/10 text-red-500 hover:bg-red-500/20" : "bg-primary text-primary-foreground hover:bg-primary/90"
+                                    )}
+                                >
+                                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                                    {isPlaying ? "توقف" : "پخش صوتی"}
+                                </button>
+                            </div>
+                        )}
+
+                        <button
+                            onClick={() => setShowSettings(!showSettings)}
+                            className={cn(
+                                "p-2.5 rounded-xl transition-all border shadow-sm",
+                                showSettings ? "bg-primary text-primary-foreground border-primary" : "bg-secondary/50 hover:bg-secondary text-foreground border-border/50"
+                            )}
+                            title="تنظیمات دسترسی پذیری"
+                        >
+                            <Settings className="w-5 h-5" />
                         </button>
 
-                        <button title="Toggle Sidebar" className="p-2.5 rounded-xl hover:bg-secondary text-muted-foreground hover:text-foreground transition-all sm:hidden" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                        <button title="لیست کتاب‌ها" className="p-2.5 rounded-xl bg-secondary/50 hover:bg-secondary text-foreground transition-all border border-border/50 shadow-sm sm:hidden" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                             <Book className="w-5 h-5" />
                         </button>
                     </div>
                 </header>
+
+                {/* Accessibility Settings Panel */}
+                {showSettings && (
+                    <div className="absolute top-16 right-4 sm:right-6 w-80 bg-background/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl z-30 p-5 origin-top-right animate-in fade-in zoom-in-95 duration-200" dir="rtl">
+                        <div className="flex items-center justify-between mb-4 pb-4 border-b border-border/50">
+                            <h3 className="font-bold flex items-center gap-2 text-foreground">
+                                <Settings className="w-4 h-4 text-primary" /> تنظیمات خواندن
+                            </h3>
+                            <button onClick={() => setShowSettings(false)} className="text-muted-foreground hover:text-foreground">
+                                <X className="w-4 h-4" />
+                            </button>
+                        </div>
+
+                        <div className="space-y-6">
+                            {/* Font Size */}
+                            <div className="space-y-3">
+                                <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
+                                    <Type className="w-4 h-4" /> اندازه قلم (فارسی)
+                                </label>
+                                <div className="flex bg-secondary/50 rounded-xl p-1 border border-border/50">
+                                    <button
+                                        onClick={() => setFontSize("md")}
+                                        className={cn("flex-1 py-1.5 text-sm font-medium rounded-lg transition-colors", fontSize === "md" ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground")}
+                                    >
+                                        متوسط
+                                    </button>
+                                    <button
+                                        onClick={() => setFontSize("lg")}
+                                        className={cn("flex-1 py-1.5 text-sm font-medium rounded-lg transition-colors", fontSize === "lg" ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground")}
+                                    >
+                                        بزرگ
+                                    </button>
+                                    <button
+                                        onClick={() => setFontSize("xl")}
+                                        className={cn("flex-1 py-1.5 text-sm font-medium rounded-lg transition-colors", fontSize === "xl" ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground")}
+                                    >
+                                        خیلی بزرگ
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Contrast */}
+                            <div className="space-y-3">
+                                <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
+                                    <Contrast className="w-4 h-4" /> کنتراست تصویر
+                                </label>
+                                <button
+                                    onClick={() => setHighContrast(!highContrast)}
+                                    className={cn(
+                                        "w-full py-2.5 rounded-xl font-bold transition-all border",
+                                        highContrast
+                                            ? "bg-yellow-400 text-black border-yellow-500"
+                                            : "bg-secondary/50 border-border/50 text-foreground hover:bg-secondary"
+                                    )}
+                                >
+                                    {highContrast ? "حالت کنتراست بالا: روشن" : "حالت کنتراست بالا: خاموش"}
+                                </button>
+                                <p className="text-xs text-muted-foreground leading-relaxed">
+                                    حالت کنتراست بالا برای افراد کم‌بینا طراحی شده است تا خواندن متن در طولانی مدت چشم را خسته نکند.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Reader Content */}
                 <div className="flex-1 overflow-y-auto relative z-10 scroll-smooth">
@@ -187,19 +387,55 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
 
                         {/* Verses Container */}
                         <div className="space-y-10 md:space-y-12">
-                            {placeholderVerses.map(verse => (
-                                <div key={verse.number} className="group flex flex-col gap-3 relative hover:bg-secondary/20 p-4 -mx-4 rounded-2xl transition-colors duration-300">
-                                    <div className="absolute top-4 -right-12 text-sm font-bold text-primary/40 group-hover:text-primary transition-colors select-none text-right w-8">
-                                        {verse.number}
-                                    </div>
-                                    <p className="text-2xl md:text-3xl leading-relaxed text-foreground font-medium text-right drop-shadow-sm">
-                                        {verse.fa}
-                                    </p>
-                                    <p className="text-lg md:text-xl leading-relaxed text-muted-foreground/80 font-serif text-left ml-auto w-full md:w-4/5 border-l-2 border-primary/20 pl-4 mt-2">
-                                        {verse.en}
-                                    </p>
+                            {isLoading ? (
+                                <div className="py-20 text-center text-muted-foreground animate-pulse flex flex-col items-center gap-4">
+                                    <Book className="w-12 h-12 opacity-50" />
+                                    <p>در حال بارگذاری کلام خدا...</p>
                                 </div>
-                            ))}
+                            ) : verses.length === 0 ? (
+                                <div className="py-20 text-center text-muted-foreground">
+                                    <p>متاسفانه دیتای این فصل در سرور یافت نشد.</p>
+                                </div>
+                            ) : (
+                                verses.map(verse => {
+                                    const isActive = activeVerse === verse.number;
+
+                                    return (
+                                        <div
+                                            key={verse.number}
+                                            ref={el => { verseRefs.current[verse.number - 1] = el; }}
+                                            className={cn(
+                                                "group flex flex-col gap-3 relative p-4 -mx-4 rounded-2xl transition-all duration-500",
+                                                isActive
+                                                    ? (highContrast ? "bg-yellow-400/20 border border-yellow-400/50" : "bg-primary/10 border border-primary/20 scale-[1.02] shadow-xl shadow-primary/5")
+                                                    : "hover:bg-secondary/20 border border-transparent"
+                                            )}
+                                        >
+                                            <div className={cn(
+                                                "absolute top-4 -right-12 text-sm font-bold transition-colors select-none text-right w-8",
+                                                isActive ? (highContrast ? "text-yellow-400" : "text-primary") : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                                            )}>
+                                                {verse.number}
+                                            </div>
+                                            <p className={cn(
+                                                "text-right drop-shadow-sm font-medium transition-all duration-300",
+                                                fontClasses[fontSize],
+                                                isActive && !highContrast ? "text-primary dark:text-primary-foreground" : "text-foreground"
+                                            )} style={{ lineHeight: fontSize === 'xl' ? '2.5' : '1.8' }}>
+                                                {verse.fa}
+                                            </p>
+                                            <p className={cn(
+                                                "text-lg md:text-xl leading-relaxed font-serif text-left ml-auto w-full md:w-4/5 border-l-2 pl-4 mt-2 transition-colors",
+                                                isActive
+                                                    ? (highContrast ? "text-yellow-400/80 border-yellow-400/50" : "text-foreground/90 border-primary")
+                                                    : "text-muted-foreground/60 border-primary/20"
+                                            )}>
+                                                {verse.en}
+                                            </p>
+                                        </div>
+                                    );
+                                })
+                            )}
                         </div>
 
                         {/* End of Chapter Navigation */}

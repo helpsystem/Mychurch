@@ -2,6 +2,10 @@ export const dictionaries = {
     en: {
         // Navigation
         home: "Home",
+        about: "About Us",
+        contact: "Contact Us",
+        quickLinks: "Quick Links",
+        footerDesc: "The Iranian Christian Church of Washington D.C. is a place for worship, fellowship, and spiritual growth in the Lord Jesus Christ.",
         bible: "Bible",
         worship: "Worship Center",
         sermons: "Sermons",
@@ -64,11 +68,22 @@ export const dictionaries = {
         // Bible Reader
         nextChapter: "Next Chapter",
         prevChapter: "Prev Chapter",
-        audioPlayback: "Audio Playback"
+        audioPlayback: "Audio Playback",
+        // Broadcast layout
+        layout: "Layout",
+        fullCam: "Full Camera",
+        pip: "Picture in Picture",
+        split: "Split Screen",
+        slidesOnly: "Slides Only",
+        noSlides: "No slides matching criteria"
     },
     fa: {
         // Navigation
         home: "خانه",
+        about: "درباره ما",
+        contact: "ارتباط با ما",
+        quickLinks: "دسترسی سریع",
+        footerDesc: "کلیسای ایرانیان مسیحی واشنگتن دی‌سی مکانی است برای پرستش، شراکت و رشد روحانی در خداوند عیسی مسیح.",
         bible: "کتاب مقدس",
         worship: "تیم پرستش",
         sermons: "مواعظ",
@@ -131,7 +146,14 @@ export const dictionaries = {
         // Bible Reader
         nextChapter: "فصل بعدی",
         prevChapter: "فصل قبلی",
-        audioPlayback: "پخش صوتی"
+        audioPlayback: "پخش صوتی",
+        // Broadcast layout
+        layout: "چیدمان",
+        fullCam: "دوربین کامل",
+        pip: "تصویر در تصویر",
+        split: "تقسیم صفحه",
+        slidesOnly: "فقط اسلاید",
+        noSlides: "اسلایدی یافت نشد"
     }
 };
 

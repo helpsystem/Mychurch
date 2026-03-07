@@ -2,17 +2,25 @@
 
 import React, { useState, useMemo } from "react";
 import { Search, Play, FileText, Music, LayoutGrid, Youtube } from "lucide-react";
-import Image from "next/image";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { type WorshipSong } from "@/data/worshipSongs";
+import { type WorshipSong } from "@/actions/worship";
+import dynamic from 'next/dynamic';
 import { cn } from "@/lib/utils";
+
+// Prevent SSR for the KaraokeModal since the Apple Music Lyrics core uses browser APIs like MouseEvent
+const KaraokeModal = dynamic(() => import('./KaraokeModal').then(mod => ({ default: mod.KaraokeModal })), {
+    ssr: false
+});
 
 export default function WorshipArchive({ initialSongs }: { initialSongs: WorshipSong[] }) {
     const { t } = useLanguage();
     const [searchQuery, setSearchQuery] = useState("");
     const [activeLetter, setActiveLetter] = useState<string | null>(null);
     const [selectedAlphabet, setSelectedAlphabet] = useState<string | null>(null); // Added for the new alphabet filter logic
+
+    // Karaoke Modal State
+    const [activeKaraokeSong, setActiveKaraokeSong] = useState<WorshipSong | null>(null);
 
     // Get unique first letters for alphabet filter
     const alphabet = useMemo(() => {
@@ -147,7 +155,10 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
                         <div className="flex items-center gap-2 mt-auto pt-4 border-t border-border/50">
                             {/* Main Action (Karaoke / Play) */}
                             {song.audioUrl && (
-                                <button className="flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary py-3 rounded-xl font-bold text-sm transition-colors border border-primary/20">
+                                <button
+                                    onClick={() => setActiveKaraokeSong(song)}
+                                    className="flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary py-3 rounded-xl font-bold text-sm transition-colors border border-primary/20"
+                                >
                                     <FileText className="w-4 h-4" />
                                     {t.liveText}
                                 </button>
@@ -177,6 +188,13 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
                 )}
             </div>
 
+            {/* Global Modals */}
+            {activeKaraokeSong && (
+                <KaraokeModal
+                    song={activeKaraokeSong}
+                    onClose={() => setActiveKaraokeSong(null)}
+                />
+            )}
         </div>
     );
 }

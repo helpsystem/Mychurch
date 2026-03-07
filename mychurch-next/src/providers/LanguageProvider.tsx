@@ -20,18 +20,6 @@ const LanguageContext = createContext<LanguageContextType>({
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const [language, setLanguageState] = useState<Language>("fa");
 
-    useEffect(() => {
-        // Hydrate from localStorage
-        const stored = localStorage.getItem("preferred-lang") as Language;
-        if (stored === "fa" || stored === "en") {
-            setLanguage(stored);
-        } else {
-            // Default setup based on initial state
-            document.documentElement.lang = "fa";
-            document.documentElement.dir = "rtl";
-        }
-    }, []);
-
     const setLanguage = (lang: Language) => {
         setLanguageState(lang);
         localStorage.setItem("preferred-lang", lang);
@@ -40,6 +28,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
     };
+
+    useEffect(() => {
+        // Hydrate from localStorage
+        const stored = localStorage.getItem("preferred-lang") as Language;
+        if (stored === "fa" || stored === "en") {
+            // eslint-disable-next-line
+            setLanguage(stored);
+        } else {
+            // Default setup based on initial state
+            document.documentElement.lang = "fa";
+            document.documentElement.dir = "rtl";
+        }
+    }, []);
 
     return (
         <LanguageContext.Provider value={{

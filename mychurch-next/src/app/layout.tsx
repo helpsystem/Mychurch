@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/providers/LanguageProvider";
@@ -16,7 +16,23 @@ const vazirmatn = Vazirmatn({
 
 export const metadata: Metadata = {
   title: "MyChurch | Broadcast Console & Platform",
-  description: "Advanced church presentation and media management platform",
+  description: "The Iranian Christian Church of Washington D.C. - Advanced presentation and media management platform",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "MyChurch",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

@@ -101,3 +101,399 @@
     @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
   }
 }
+
+/* ==============================================
+   MyChurch Animation System
+   ============================================== */
+
+/* 1. Page Entry */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Staggered children */
+.stagger>*:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.stagger>*:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.stagger>*:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.stagger>*:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+.stagger>*:nth-child(5) {
+  animation-delay: 240ms;
+}
+
+.stagger>*:nth-child(6) {
+  animation-delay: 300ms;
+}
+
+.stagger>*:nth-child(7) {
+  animation-delay: 360ms;
+}
+
+.stagger>*:nth-child(8) {
+  animation-delay: 420ms;
+}
+
+/* 2. Skeleton Shimmer Loading */
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--muted) 25%, color-mix(in srgb, var(--muted) 60%, var(--border) 40%) 50%, var(--muted) 75%);
+  background-size: 1200px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-text {
+  height: 1em;
+  border-radius: 4px;
+}
+
+.skeleton-title {
+  height: 1.5em;
+  border-radius: 4px;
+  width: 60%;
+}
+
+.skeleton-card {
+  height: 80px;
+  border-radius: var(--radius-lg);
+}
+
+.skeleton-song-row {
+  height: 60px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* 3. Karaoke Lyric Highlight */
+@keyframes karaokeGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 8px var(--primary), 0 0 20px color-mix(in srgb, var(--primary) 50%, transparent);
+  }
+
+  50% {
+    text-shadow: 0 0 16px var(--primary), 0 0 40px color-mix(in srgb, var(--primary) 80%, transparent);
+  }
+}
+
+.karaoke-word {
+  display: inline-block;
+  transition: all 0.2s ease;
+  color: var(--muted-foreground);
+  padding: 0 2px;
+}
+
+.karaoke-word.active {
+  animation: karaokeGlow 0.9s ease-in-out infinite;
+  color: var(--primary);
+  font-weight: 700;
+  transform: scale(1.12);
+}
+
+.karaoke-word.done {
+  color: var(--foreground);
+  opacity: 0.65;
+}
+
+.karaoke-word.upcoming {
+  color: color-mix(in srgb, var(--primary) 40%, var(--muted-foreground));
+}
+
+/* 4. Floating Musical Notes */
+@keyframes floatNote {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.12;
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(8deg);
+    opacity: 0.22;
+  }
+}
+
+.note-float {
+  animation: floatNote 5s ease-in-out infinite;
+}
+
+.note-float:nth-child(2) {
+  animation-delay: -1.5s;
+  animation-duration: 6s;
+}
+
+.note-float:nth-child(3) {
+  animation-delay: -3s;
+  animation-duration: 4.5s;
+}
+
+.note-float:nth-child(4) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+/* 5. Button Lift */
+.btn-lift {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-lift:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* 6. Card Hover Depth */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
+  border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+}
+
+/* 7. Live Broadcast Pulse (red dot) */
+@keyframes livePulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+}
+
+.live-badge {
+  animation: livePulse 1.5s ease-in-out infinite;
+  background: #ef4444;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+
+/* 8. Modal Enter */
+@keyframes modalBackdrop {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-backdrop {
+  animation: modalBackdrop 0.25s ease both;
+}
+
+.modal-content {
+  animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 9. Toast Notification */
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.toast-in {
+  animation: toastIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.toast-out {
+  animation: toastOut 0.3s ease forwards;
+}
+
+/* 10. Table Row Hover */
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+/* 11. Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 99px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 99px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}
+
+/* 12. Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

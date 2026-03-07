@@ -9,6 +9,7 @@ export type UserRow = {
     email: string;
     role: string;
     last_active: string;
+    permissions: Record<string, boolean>;
 };
 
 export async function getUsers(): Promise<UserRow[]> {
@@ -23,7 +24,8 @@ export async function getUsers(): Promise<UserRow[]> {
 
         return (data || []).map(row => ({
             ...row,
-            last_active: new Date(row.last_active).toLocaleString()
+            last_active: new Date(row.last_active).toLocaleString(),
+            permissions: row.permissions || {}
         }));
     } catch (error) {
         console.error("Failed to fetch users:", error);
@@ -45,6 +47,24 @@ export async function updateUserRole(id: number, newRole: string) {
         return true;
     } catch (error) {
         console.error("Failed to update user role:", error);
+        return false;
+    }
+}
+
+export async function updateUserPermissions(id: number, permissions: Record<string, boolean>) {
+    try {
+        const supabase = await createClient();
+        const { error } = await supabase
+            .from('users')
+            .update({ permissions })
+            .eq('id', id);
+
+        if (error) throw error;
+
+        revalidatePath('/admin/users');
+        return true;
+    } catch (error) {
+        console.error("Failed to update user permissions:", error);
         return false;
     }
 }

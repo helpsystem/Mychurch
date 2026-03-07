@@ -3,18 +3,19 @@
 import React from "react";
 import Link from "next/link";
 import {
-  Play, BookOpen, Music, Video, User, Heart, Mic, Phone, Settings, Globe, Users
+  Play, BookOpen, Music, Video, Heart, Mic, Phone, Settings, Globe, Users
 } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
+import { PublicHeader } from "@/components/layout/PublicHeader";
+import { PublicFooter } from "@/components/layout/PublicFooter";
 
 export default function HomePage() {
   const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans">
+    <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
 
       {/* Background Ambience */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
@@ -23,38 +24,13 @@ export default function HomePage() {
         <div className="absolute top-[40%] left-[40%] w-[20%] h-[20%] bg-primary/20 rounded-full blur-[80px] animate-pulse-slow" />
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-10 flex-1 flex flex-col">
 
-        {/* Navigation Bar */}
-        <nav className="fixed top-0 inset-x-0 h-20 bg-background/60 backdrop-blur-xl border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12">
-          {/* Logo / Brand */}
-          <div className="flex items-center gap-4">
-            <div className="w-14 items-center justify-center flex">
-              <Image
-                src="/logo-transparent.png"
-                alt="Church Logo"
-                width={56}
-                height={56}
-                className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-black text-xl tracking-tight leading-none text-foreground uppercase drop-shadow-sm">Iranian Christian Church</span>
-              <span className="text-xs font-bold text-primary tracking-widest uppercase">{t.heroTitle}</span>
-            </div>
-          </div>
+        {/* Unified Navigation Bar */}
+        <PublicHeader />
 
-          <div className="flex items-center gap-4">
-            <LanguageSwitcher />
-            <button className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title="User Menu">
-              <User className="w-5 h-5" />
-            </button>
-          </div>
-        </nav>
-
-        {/* Hero Section */}
         <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[70vh]">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl space-y-6 animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-semibold tracking-widest uppercase shadow-inner">
               <Globe className="w-4 h-4" />
               {t.heroTitle}
@@ -69,11 +45,11 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-4">
-              <Link href="/worship" className="flex items-center gap-3 bg-primary text-primary-foreground font-bold px-8 py-4 rounded-2xl hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 hover:scale-[1.02]">
+              <Link href="/worship" className="btn-lift flex items-center gap-3 bg-primary text-primary-foreground font-bold px-8 py-4 rounded-2xl hover:bg-primary/90 transition-all shadow-xl shadow-primary/20">
                 <Music className="w-5 h-5" />
                 {t.worship}
               </Link>
-              <Link href="/bible" className="flex items-center gap-3 bg-secondary text-foreground font-bold px-8 py-4 rounded-2xl hover:bg-muted transition-all border border-border/10 hover:shadow-lg shadow-black/5 hover:scale-[1.02]">
+              <Link href="/bible" className="btn-lift flex items-center gap-3 bg-secondary text-foreground font-bold px-8 py-4 rounded-2xl hover:bg-muted transition-all border border-border/10 hover:shadow-lg shadow-black/5">
                 <BookOpen className="w-5 h-5 opacity-80" />
                 {t.bible}
               </Link>
@@ -84,19 +60,19 @@ export default function HomePage() {
         {/* Quick Access Grid */}
         <section className="px-6 lg:px-12 max-w-7xl mx-auto pb-24">
           {/* Section Header */}
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
             <div className="w-3 h-10 bg-primary rounded-full shadow-lg shadow-primary/20" />
             <h2 className="text-3xl font-bold">{t.quickAccess}</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
             {[
               { title: t.bible, icon: BookOpen, desc: "Persian & English translations", link: "/bible", color: "from-blue-500/20 to-indigo-500/20", iconColor: "text-blue-500" },
               { title: t.worship, icon: Music, desc: "Live lyrics & chords", link: "/worship", color: "from-purple-500/20 to-pink-500/20", iconColor: "text-purple-500" },
               { title: t.sermons, icon: Video, desc: "Video & audio archives", link: "/sermons", color: "from-emerald-500/20 to-teal-500/20", iconColor: "text-emerald-500" },
               { title: t.broadcast, icon: Mic, desc: "Live service controller", link: "/broadcast", color: "from-red-500/20 to-orange-500/20", iconColor: "text-red-500" },
             ].map((item, i) => (
-              <Link key={i} href={item.link} className="group relative overflow-hidden rounded-3xl bg-secondary/30 backdrop-blur-md border border-border/50 p-6 flex flex-col gap-4 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <Link key={i} href={item.link} className="card-hover animate-fade-in-up group relative overflow-hidden rounded-3xl bg-secondary/30 backdrop-blur-md border border-border/50 p-6 flex flex-col gap-4 hover:shadow-2xl transition-all duration-300">
                 <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full bg-gradient-to-br ${item.color} blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
                 <div className={`w-14 h-14 rounded-2xl bg-background/50 flex items-center justify-center shadow-inner border border-white/5 relative z-10`}>
@@ -162,13 +138,13 @@ export default function HomePage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 stagger">
             {[
               { label: t.statsMembers, value: "12,400+", icon: Users },
               { label: t.statsGroups, value: "150+", icon: Box },
               { label: t.statsCountries, value: "34", icon: Globe }
             ].map((stat, i) => (
-              <div key={i} className="flex-1 bg-secondary/40 backdrop-blur-sm border border-border/50 rounded-3xl p-6 flex flex-col justify-center hover:bg-secondary/60 transition-colors">
+              <div key={i} className="card-hover animate-fade-in-up flex-1 bg-secondary/40 backdrop-blur-sm border border-border/50 rounded-3xl p-6 flex flex-col justify-center hover:bg-secondary/60 transition-colors">
                 <stat.icon className="w-8 h-8 text-primary/50 mb-4" />
                 <div className="text-4xl font-black tracking-tight mb-1">{stat.value}</div>
                 <div className="text-sm font-bold text-muted-foreground tracking-wider uppercase">{stat.label}</div>
@@ -179,6 +155,9 @@ export default function HomePage() {
         </section>
 
       </div>
+
+      {/* Unified Footer */}
+      <PublicFooter />
     </div>
   );
 }

@@ -9,17 +9,28 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@applemusic-like-lyrics/core": "^0.2.0",
+    "@applemusic-like-lyrics/react": "^0.2.0",
+    "@google/generative-ai": "^0.24.1",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.98.0",
     "@types/pg": "^8.18.0",
+    "@types/qrcode": "^1.5.6",
     "clsx": "^2.1.1",
     "framer-motion": "^12.35.0",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
     "pg": "^8.20.0",
+    "qrcode": "^1.5.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-dropzone": "^15.0.0",
+    "react-pageflip": "^2.0.3",
+    "react-photo-album": "^3.5.1",
+    "replicate": "^1.4.0",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
+    "yet-another-react-lightbox": "^3.29.1",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
