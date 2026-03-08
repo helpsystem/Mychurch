@@ -1,9 +1,21 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { ChevronRight, ChevronLeft, Plus, Calendar, MapPin, Clock, Tag } from "lucide-react";
+import React, { useState, useMemo, useEffect } from "react";
+import { ChevronRight, ChevronLeft, Plus, Calendar, MapPin, Clock, Tag, Globe } from "lucide-react";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+
+// =============================
+// Timezone Utilities
+// =============================
+function getLiveTime(timeZone: string) {
+    return new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }).format(new Date());
+}
 
 // =============================
 // Jalali (Persian) Date Engine
@@ -24,37 +36,23 @@ function gregorianToJalali(gy: number, gm: number, gd: number): [number, number,
     return [jy, jm, jd];
 }
 
-function jalaliToGregorian(jy: number, jm: number, jd: number): [number, number, number] {
-    jy += 1595;
-    let days = -355779 + 365 * jy + Math.floor(jy / 33) * 8 + Math.floor(((jy % 33) + 3) / 4) + 78 + jd + (jm < 7 ? (jm - 1) * 31 : (jm - 7) * 30 + 186);
-    let gy = 400 * Math.floor(days / 146097);
-    days %= 146097;
-    if (days > 36524) { gy += 100 * Math.floor(--days / 36524); days %= 36524; if (days >= 365) days++; }
-    gy += 4 * Math.floor(days / 1461);
-    days %= 1461;
-    if (days > 365) { gy += Math.floor((days - 1) / 365); days = (days - 1) % 365; }
-    const gd = days + 1;
-    const sal_a = [0, 31, (gy % 4 === 0 && gy % 100 !== 0) || gy % 400 === 0 ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let gm = 0;
-    let r = gd;
-    for (let i = 1; i <= 12; i++) { if (r <= sal_a[i]) { gm = i; break; } r -= sal_a[i]; }
-    return [gy, gm, r];
-}
-
+const GREGORIAN_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const GREGORIAN_MONTHS_FARSI = ["ژانویه", "فوریه", "مارس", "آوریل", "مه", "ژوئن", "ژوئیه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "دسامبر"];
 const JALALI_MONTHS = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];
-const JALALI_DAYS_SHORT = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
+const DAYS_SHORT = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه"];
 const PERSIAN_NUMS = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 const toPersianNum = (n: number) => String(n).split("").map(d => PERSIAN_NUMS[parseInt(d)] ?? d).join("");
 
 // =============================
-// Sample Church Events
+// Sample Church Events (Migrated to Gregorian)
 // =============================
 interface ChurchEvent {
     id: string;
-    jy: number; jm: number; jd: number;
+    gy: number; gm: number; gd: number;
     title: string;
     titleEn: string;
-    time: string;
+    timeET: string;
+    timeTehran: string;
     location: string;
     type: "worship" | "prayer" | "study" | "special" | "youth";
     color: string;
@@ -75,53 +73,64 @@ const EVENT_LABELS: Record<ChurchEvent["type"], string> = {
     youth: "جوانان",
 };
 
+// Generate sample events for current and next month based on today's date
+const _today = new Date();
+const _y = _today.getFullYear();
+const _m = _today.getMonth() + 1; // 1-12
+
 const SAMPLE_EVENTS: ChurchEvent[] = [
-    { id: "1", jy: 1404, jm: 12, jd: 15, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", time: "11:00 AM", location: "سالن اصلی", type: "worship", color: "" },
-    { id: "2", jy: 1404, jm: 12, jd: 17, title: "دعای بامدادی", titleEn: "Morning Prayer", time: "7:00 AM", location: "اتاق دعا", type: "prayer", color: "" },
-    { id: "3", jy: 1404, jm: 12, jd: 19, title: "مطالعه کتاب مقدس", titleEn: "Bible Study", time: "7:30 PM", location: "سالن فرعی", type: "study", color: "" },
-    { id: "4", jy: 1404, jm: 12, jd: 22, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", time: "11:00 AM", location: "سالن اصلی", type: "worship", color: "" },
-    { id: "5", jy: 1404, jm: 12, jd: 24, title: "جلسه جوانان", titleEn: "Youth Meeting", time: "6:00 PM", location: "سالن جوانان", type: "youth", color: "" },
-    { id: "6", jy: 1404, jm: 12, jd: 29, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", time: "11:00 AM", location: "سالن اصلی", type: "worship", color: "" },
-    { id: "7", jy: 1405, jm: 1, jd: 1, title: "🌸 نوروز مبارک — جشن سال نو", titleEn: "Nowruz Celebration", time: "6:00 PM", location: "سالن اصلی", type: "special", color: "" },
-    { id: "8", jy: 1405, jm: 1, jd: 5, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", time: "11:00 AM", location: "سالن اصلی", type: "worship", color: "" },
-    { id: "9", jy: 1405, jm: 1, jd: 10, title: "دعا برای ایران", titleEn: "Prayer for Iran", time: "8:00 PM", location: "آنلاین", type: "prayer", color: "" },
-    { id: "10", jy: 1405, jm: 1, jd: 12, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", time: "11:00 AM", location: "سالن اصلی", type: "worship", color: "" },
+    { id: "1", gy: _y, gm: _m, gd: 3, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", timeET: "10:30 AM", timeTehran: "19:00", location: "Live Stream / Church", type: "worship", color: "" },
+    { id: "2", gy: _y, gm: _m, gd: 5, title: "دعای بانوان", titleEn: "Women's Prayer", timeET: "8:00 AM", timeTehran: "16:30", location: "Online", type: "prayer", color: "" },
+    { id: "3", gy: _y, gm: _m, gd: 8, title: "مطالعه کتاب مقدس", titleEn: "Bible Study", timeET: "7:00 PM", timeTehran: "03:30 (+1)", location: "Zoom", type: "study", color: "" },
+    { id: "4", gy: _y, gm: _m, gd: 10, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", timeET: "10:30 AM", timeTehran: "19:00", location: "Live Stream / Church", type: "worship", color: "" },
+    { id: "5", gy: _y, gm: _m, gd: 15, title: "شب پرستش جوانان", titleEn: "Youth Worship Night", timeET: "6:00 PM", timeTehran: "02:30 (+1)", location: "Church Setup", type: "youth", color: "" },
+    { id: "6", gy: _y, gm: _m, gd: 17, title: "جلسه پرستشی یکشنبه", titleEn: "Sunday Worship", timeET: "10:30 AM", timeTehran: "19:00", location: "Live Stream / Church", type: "worship", color: "" },
+    { id: "7", gy: _y, gm: _m, gd: 20, title: "دعا برای کلیسای ایران", titleEn: "Prayer for Iran", timeET: "9:00 PM", timeTehran: "05:30 (+1)", location: "Online", type: "prayer", color: "" },
+    { id: "8", gy: _y, gm: _m === 12 ? 1 : _m + 1, gd: 1, title: "جشن ویژه ماهانه", titleEn: "Monthly Celebration", timeET: "10:30 AM", timeTehran: "19:00", location: "Main Hall", type: "special", color: "" },
 ];
 
 // =============================
-// Calendar Component
+// Dual Calendar Component
 // =============================
-export default function PersianCalendarPage() {
+export default function DualCalendarPage() {
     const today = new Date();
-    const [todayJ] = useMemo(() => [gregorianToJalali(today.getFullYear(), today.getMonth() + 1, today.getDate())], []);
+    const [viewYear, setViewYear] = useState(today.getFullYear());
+    const [viewMonth, setViewMonth] = useState(today.getMonth() + 1); // 1-12
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-    const [viewJY, setViewJY] = useState(todayJ[0]);
-    const [viewJM, setViewJM] = useState(todayJ[1]);
-    const [selectedDay, setSelectedDay] = useState<number | null>(null);
+    // Live Clocks
+    const [timeET, setTimeET] = useState("");
+    const [timeTehran, setTimeTehran] = useState("");
 
-    // Compute first day of month and days in month
-    const firstDayGreg = jalaliToGregorian(viewJY, viewJM, 1);
-    const firstDayOfWeek = new Date(firstDayGreg[0], firstDayGreg[1] - 1, firstDayGreg[2]).getDay(); // 0=Sun
-    // Friday=0 in Iranian week (Sat=0 in Persian calendar)
-    // Adjust: Persian week starts Saturday (index 6 in JS)
-    const startOffset = (firstDayOfWeek + 1) % 7;
-    const daysInMonth = viewJM <= 6 ? 31 : viewJM <= 11 ? 30 : 29;
+    useEffect(() => {
+        const updateClocks = () => {
+            setTimeET(getLiveTime('America/New_York'));
+            setTimeTehran(getLiveTime('Asia/Tehran'));
+        };
+        updateClocks();
+        const interval = setInterval(updateClocks, 60000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Compute grid bounds
+    const daysInMonth = new Date(viewYear, viewMonth, 0).getDate();
+    const firstDayOfWeek = new Date(viewYear, viewMonth - 1, 1).getDay(); // 0 = Sunday
 
     const prevMonth = () => {
-        if (viewJM === 1) { setViewJY(y => y - 1); setViewJM(12); }
-        else setViewJM(m => m - 1);
-        setSelectedDay(null);
+        if (viewMonth === 1) { setViewYear(y => y - 1); setViewMonth(12); }
+        else setViewMonth(m => m - 1);
+        setSelectedDate(null);
     };
     const nextMonth = () => {
-        if (viewJM === 12) { setViewJY(y => y + 1); setViewJM(1); }
-        else setViewJM(m => m + 1);
-        setSelectedDay(null);
+        if (viewMonth === 12) { setViewYear(y => y + 1); setViewMonth(1); }
+        else setViewMonth(m => m + 1);
+        setSelectedDate(null);
     };
 
-    const eventsThisMonth = SAMPLE_EVENTS.filter(e => e.jy === viewJY && e.jm === viewJM);
-    const selectedEvents = selectedDay ? eventsThisMonth.filter(e => e.jd === selectedDay) : [];
-    const eventsForDay = (d: number) => eventsThisMonth.filter(e => e.jd === d);
-    const isToday = (d: number) => d === todayJ[2] && viewJY === todayJ[0] && viewJM === todayJ[1];
+    const eventsThisMonth = SAMPLE_EVENTS.filter(e => e.gy === viewYear && e.gm === viewMonth);
+    const selectedEvents = selectedDate ? eventsThisMonth.filter(e => e.gd === selectedDate.getDate()) : [];
+    const eventsForDay = (d: number) => eventsThisMonth.filter(e => e.gd === d);
+    const isToday = (d: number) => d === today.getDate() && viewYear === today.getFullYear() && viewMonth === today.getMonth() + 1;
 
     return (
         <div className="min-h-screen bg-background flex flex-col" dir="rtl">
@@ -133,68 +142,105 @@ export default function PersianCalendarPage() {
                 <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-blue-500/8 rounded-full blur-[120px]" />
             </div>
 
-            <main className="flex-1 relative z-10 pt-32 pb-24 px-4 lg:px-12 max-w-6xl mx-auto w-full">
-                {/* Header */}
-                <div className="mb-10 animate-fade-in-up">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-sm font-bold border border-purple-500/20 mb-4">
-                        <Calendar className="w-4 h-4" /> تقویم کلیسا
+            <main className="flex-1 relative z-10 pt-32 pb-24 px-4 lg:px-12 max-w-7xl mx-auto w-full">
+                {/* Header & Global Timezones */}
+                <div className="mb-10 animate-fade-in-up flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+                    <div>
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-sm font-bold border border-purple-500/20 mb-4">
+                            <Calendar className="w-4 h-4" /> تقویم بین‌المللی کلیسا
+                        </div>
+                        <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 mb-3">
+                            رویدادها و جلسات
+                        </h1>
+                        <p className="text-muted-foreground">با کلیک روی هر روز تقویم، ساعت دقیق جلسات را به تفکیک آمریکا و ایران مشاهده کنید.</p>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 mb-3">
-                        تقویم رویدادها
-                    </h1>
-                    <p className="text-muted-foreground">جلسات پرستشی، مطالعات کتاب مقدس و رویدادهای ویژه کلیسا</p>
+
+                    {/* Live Timezones Banner */}
+                    <div className="flex gap-4 shrink-0">
+                        <div className="glass rounded-2xl p-4 flex flex-col items-center min-w-[120px]">
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest font-mono mb-1 flex items-center gap-1.5">
+                                <Globe className="w-3 h-3" /> US (ET)
+                            </span>
+                            <span className="text-2xl font-black text-primary font-mono" dir="ltr">{timeET || "--:--"}</span>
+                        </div>
+                        <div className="glass rounded-2xl p-4 flex flex-col items-center min-w-[120px]">
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest font-mono mb-1 flex items-center gap-1.5">
+                                <Globe className="w-3 h-3" /> TEHRAN
+                            </span>
+                            <span className="text-2xl font-black text-primary font-mono" dir="ltr">{timeTehran || "--:--"}</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Calendar Grid */}
-                    <div className="lg:col-span-2 glass rounded-3xl p-6 animate-fade-in-up">
+                    {/* Dual Calendar Grid */}
+                    <div className="lg:col-span-2 glass rounded-3xl p-6 md:p-8 animate-fade-in-up">
                         {/* Month Nav */}
-                        <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center justify-between mb-8">
                             <button onClick={nextMonth} className="p-2 rounded-xl hover:bg-secondary transition btn-lift" title="ماه بعد">
-                                <ChevronRight className="w-5 h-5" />
+                                <ChevronRight className="w-6 h-6" />
                             </button>
                             <div className="text-center">
-                                <h2 className="text-2xl font-black">{JALALI_MONTHS[viewJM - 1]}</h2>
-                                <p className="text-sm text-muted-foreground">{toPersianNum(viewJY)} | {firstDayGreg[0]}</p>
+                                <h2 className="text-2xl md:text-3xl font-black flex items-center justify-center gap-2" dir="ltr">
+                                    {GREGORIAN_MONTHS[viewMonth - 1]} <span className="text-primary">{viewYear}</span>
+                                </h2>
+                                <p className="text-sm md:text-base text-muted-foreground font-medium mt-1">
+                                    {GREGORIAN_MONTHS_FARSI[viewMonth - 1]} | تقویم میلادی
+                                </p>
                             </div>
                             <button onClick={prevMonth} className="p-2 rounded-xl hover:bg-secondary transition btn-lift" title="ماه قبل">
-                                <ChevronLeft className="w-5 h-5" />
+                                <ChevronLeft className="w-6 h-6" />
                             </button>
                         </div>
 
                         {/* Day Headers */}
-                        <div className="grid grid-cols-7 mb-2">
-                            {JALALI_DAYS_SHORT.map((d, i) => (
-                                <div key={i} className={`text-center text-xs font-bold py-2 ${i === 6 ? "text-red-400" : "text-muted-foreground"}`}>
+                        <div className="grid grid-cols-7 mb-4">
+                            {DAYS_SHORT.map((d, i) => (
+                                <div key={i} className={`text-center text-xs md:text-sm font-bold py-2 ${i === 0 ? "text-red-400" : "text-muted-foreground"}`}>
                                     {d}
                                 </div>
                             ))}
                         </div>
 
-                        {/* Days Grid */}
-                        <div className="grid grid-cols-7 gap-1">
-                            {Array.from({ length: startOffset }).map((_, i) => (
-                                <div key={`empty-${i}`} />
+                        {/* Days Grid - Starting Sunday */}
+                        <div className="grid grid-cols-7 gap-2 md:gap-3">
+                            {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+                                <div key={`empty-${i}`} className="aspect-square rounded-2xl bg-secondary/10" />
                             ))}
+
                             {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => {
                                 const dayEvents = eventsForDay(day);
                                 const today_ = isToday(day);
-                                const selected = selectedDay === day;
+                                const selected = selectedDate?.getDate() === day && selectedDate?.getMonth() + 1 === viewMonth;
+
+                                // Calculate Dual Date (Jalali equivalent)
+                                const [jy, jm, jd] = gregorianToJalali(viewYear, viewMonth, day);
+
                                 return (
                                     <button
                                         key={day}
-                                        onClick={() => setSelectedDay(selected ? null : day)}
-                                        className={`relative aspect-square flex flex-col items-center justify-start pt-1.5 rounded-xl text-sm font-bold transition-all
-                                            ${today_ ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" : ""}
-                                            ${selected && !today_ ? "bg-secondary ring-2 ring-primary/50" : ""}
-                                            ${!today_ && !selected ? "hover:bg-secondary/60" : ""}
+                                        onClick={() => setSelectedDate(selected ? null : new Date(viewYear, viewMonth - 1, day))}
+                                        className={`relative aspect-square flex flex-col items-center justify-center rounded-2xl transition-all group overflow-hidden border
+                                            ${today_ ? "bg-primary text-primary-foreground border-primary shadow-xl shadow-primary/20" : "bg-secondary/30 border-border/20"}
+                                            ${selected && !today_ ? "ring-2 ring-primary/80 bg-secondary" : ""}
+                                            ${!today_ && !selected ? "hover:bg-secondary/80 hover:border-primary/30" : ""}
                                         `}
                                     >
-                                        <span className={today_ ? "text-base font-black" : ""}>{toPersianNum(day)}</span>
+                                        {/* Gregorian Big Overlay */}
+                                        <span className={`text-xl md:text-2xl font-black z-10 ${today_ ? "text-white" : "text-foreground"}`} dir="ltr">
+                                            {day}
+                                        </span>
+
+                                        {/* Jalali Small Subtext */}
+                                        <span className={`text-[10px] md:text-xs font-medium z-10 ${today_ ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                                            {toPersianNum(jd)} {JALALI_MONTHS[jm - 1]}
+                                        </span>
+
+                                        {/* Event Dots */}
                                         {dayEvents.length > 0 && (
-                                            <div className="flex gap-0.5 mt-0.5 flex-wrap justify-center">
+                                            <div className="absolute bottom-2 left-0 right-0 flex gap-1 justify-center z-10">
                                                 {dayEvents.slice(0, 3).map(e => (
-                                                    <span key={e.id} className={`w-1.5 h-1.5 rounded-full ${EVENT_COLORS[e.type]} ${today_ ? "opacity-70" : ""}`} />
+                                                    <span key={e.id} className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${EVENT_COLORS[e.type]} ${today_ ? "ring-1 ring-background/30" : ""}`} />
                                                 ))}
                                             </div>
                                         )}
@@ -204,9 +250,9 @@ export default function PersianCalendarPage() {
                         </div>
 
                         {/* Legend */}
-                        <div className="flex flex-wrap gap-3 mt-6 pt-4 border-t border-border/20">
+                        <div className="flex flex-wrap items-center justify-center gap-4 mt-8 pt-6 border-t border-border/10">
                             {(Object.keys(EVENT_LABELS) as ChurchEvent["type"][]).map(type => (
-                                <div key={type} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                <div key={type} className="flex items-center gap-2 text-xs md:text-sm font-medium text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-full">
                                     <span className={`w-2.5 h-2.5 rounded-full ${EVENT_COLORS[type]}`} />
                                     {EVENT_LABELS[type]}
                                 </div>
@@ -214,40 +260,77 @@ export default function PersianCalendarPage() {
                         </div>
                     </div>
 
-                    {/* Events Sidebar */}
+                    {/* Events Details Sidebar */}
                     <div className="space-y-4 animate-fade-in-up">
-                        <div className="glass rounded-3xl p-5">
-                            <h3 className="font-black text-lg mb-4 flex items-center gap-2">
-                                {selectedDay ? `رویدادهای ${toPersianNum(selectedDay)} ${JALALI_MONTHS[viewJM - 1]}` : "رویدادهای این ماه"}
-                            </h3>
-                            <div className="space-y-3 max-h-[500px] overflow-y-auto custom-scrollbar">
-                                {(selectedDay ? selectedEvents : eventsThisMonth).length === 0 ? (
-                                    <p className="text-muted-foreground text-sm text-center py-6">رویدادی یافت نشد</p>
+                        <div className="glass rounded-3xl p-6 md:p-8 h-full">
+                            <h3 className="font-black text-xl mb-6 flex flex-col gap-1 border-b border-border/10 pb-4">
+                                {selectedDate ? (
+                                    <>
+                                        <span className="text-primary tracking-wide" dir="ltr">
+                                            {selectedDate.getDate()} {GREGORIAN_MONTHS[selectedDate.getMonth()]}
+                                        </span>
+                                        <span className="text-sm text-muted-foreground font-normal">
+                                            رویدادهای این روز
+                                        </span>
+                                    </>
                                 ) : (
-                                    (selectedDay ? selectedEvents : eventsThisMonth).map(event => (
-                                        <div key={event.id} className="bg-secondary/40 rounded-2xl p-4 hover:bg-secondary/60 transition card-hover border border-border/20">
-                                            <div className="flex items-start gap-3">
-                                                <span className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ${EVENT_COLORS[event.type]}`} />
-                                                <div className="flex-1 min-w-0">
-                                                    <p className="font-bold text-sm leading-tight">{event.title}</p>
-                                                    <p className="text-xs text-muted-foreground mt-0.5 font-serif" dir="ltr">{event.titleEn}</p>
-                                                    <div className="flex flex-wrap gap-2 mt-2">
-                                                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                                            <Clock className="w-3 h-3" />{event.time}
+                                    <>
+                                        <span>رویدادهای این ماه</span>
+                                        <span className="text-sm text-muted-foreground font-normal" dir="ltr">
+                                            {GREGORIAN_MONTHS[viewMonth - 1]} {viewYear}
+                                        </span>
+                                    </>
+                                )}
+                            </h3>
+
+                            <div className="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                                {(selectedDate ? selectedEvents : eventsThisMonth).length === 0 ? (
+                                    <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                                        <Calendar className="w-12 h-12 mb-3 opacity-20" />
+                                        <p className="font-medium">در این تاریخ رویدادی ثبت نشده است.</p>
+                                    </div>
+                                ) : (
+                                    (selectedDate ? selectedEvents : eventsThisMonth).map(event => (
+                                        <div key={event.id} className="relative bg-background/50 backdrop-blur-sm rounded-2xl p-5 hover:bg-secondary/60 transition-all card-hover border border-border/20 group overflow-hidden">
+                                            {/* Type Color Accent line */}
+                                            <div className={`absolute right-0 top-0 bottom-0 w-1 ${EVENT_COLORS[event.type]} opacity-50 group-hover:opacity-100 transition-opacity`} />
+
+                                            <div className="pr-2">
+                                                <div className="flex justify-between items-start mb-1">
+                                                    <p className="font-black text-base md:text-lg leading-tight text-foreground">{event.title}</p>
+                                                    {!selectedDate && (
+                                                        <span className="text-xs font-black text-primary bg-primary/10 px-2 py-1 rounded-lg shrink-0" dir="ltr">
+                                                            {GREGORIAN_MONTHS[event.gm - 1].substring(0, 3)} {event.gd}
                                                         </span>
-                                                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                                            <MapPin className="w-3 h-3" />{event.location}
+                                                    )}
+                                                </div>
+                                                <p className="text-xs text-muted-foreground font-serif tracking-wide mb-3" dir="ltr">{event.titleEn}</p>
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4 bg-secondary/30 p-3 rounded-xl border border-border/10">
+                                                    <div className="flex flex-col gap-1">
+                                                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono">USA (ET)</span>
+                                                        <span className="flex items-center gap-1.5 text-sm font-bold text-foreground" dir="ltr">
+                                                            <Clock className="w-3.5 h-3.5 text-primary" />{event.timeET}
                                                         </span>
                                                     </div>
-                                                    <span className={`inline-flex items-center gap-1 mt-2 text-[10px] font-bold px-2 py-0.5 rounded-full text-white ${EVENT_COLORS[event.type]}`}>
-                                                        <Tag className="w-2.5 h-2.5" />{EVENT_LABELS[event.type]}
+                                                    <div className="flex flex-col gap-1">
+                                                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono">Tehran</span>
+                                                        <span className="flex items-center gap-1.5 text-sm font-bold text-foreground" dir="ltr">
+                                                            <Clock className="w-3.5 h-3.5 text-primary" />{event.timeTehran}
+                                                        </span>
+                                                    </div>
+                                                    <div className="col-span-1 md:col-span-2 pt-2 mt-1 border-t border-border/10">
+                                                        <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                                            <MapPin className="w-3 h-3 text-red-400" />{event.location}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-4 flex justify-end">
+                                                    <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-1 rounded-full text-white shadow-sm ${EVENT_COLORS[event.type]}`}>
+                                                        <Tag className="w-3 h-3" />{EVENT_LABELS[event.type]}
                                                     </span>
                                                 </div>
-                                                {!selectedDay && (
-                                                    <span className="text-xs font-bold text-muted-foreground bg-secondary/80 px-2 py-1 rounded-lg shrink-0">
-                                                        {toPersianNum(event.jd)}
-                                                    </span>
-                                                )}
                                             </div>
                                         </div>
                                     ))

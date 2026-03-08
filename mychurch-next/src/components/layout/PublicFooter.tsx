@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Youtube, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { FooterClock } from "@/components/ui/FooterClock";
 
 export function PublicFooter() {
     const { t } = useLanguage();
@@ -74,9 +75,15 @@ export function PublicFooter() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-muted-foreground font-medium">
-                <p>© {new Date().getFullYear()} Iranian Christian Church of D.C. All rights reserved.</p>
-                <p className="mt-2 md:mt-0 opacity-50">Designed by Saman Abyar</p>
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between text-xs text-muted-foreground font-medium gap-6 pb-2">
+                <p className="order-3 lg:order-1 text-center lg:text-right">© {new Date().getFullYear()} Iranian Christian Church of D.C. All rights reserved.</p>
+
+                {/* Embedded Clock Widget */}
+                <div className="order-1 lg:order-2 shrink-0">
+                    <FooterClock />
+                </div>
+
+                <p className="order-2 lg:order-3 mt-2 md:mt-0 opacity-50 shrink-0">Designed by Saman Abyar</p>
             </div>
         </footer>
     );
