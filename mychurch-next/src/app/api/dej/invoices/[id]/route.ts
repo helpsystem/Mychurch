@@ -7,11 +7,13 @@ const supabase = createClient(
 );
 
 // GET /api/dej/invoices/[id] - Get single invoice
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params;
+
     const { data, error } = await supabase
         .from("dej_invoices")
         .select("*")
-        .eq("id", params.id)
+        .eq("id", id)
         .single();
 
     if (error) return NextResponse.json({ error: error.message }, { status: 404 });
@@ -19,13 +21,14 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 }
 
 // PATCH /api/dej/invoices/[id] - Update invoice (status, fields)
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params;
     const body = await req.json();
 
     const { data, error } = await supabase
         .from("dej_invoices")
         .update(body)
-        .eq("id", params.id)
+        .eq("id", id)
         .select()
         .single();
 
@@ -34,11 +37,13 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 // DELETE /api/dej/invoices/[id] - Delete invoice
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params;
+
     const { error } = await supabase
         .from("dej_invoices")
         .delete()
-        .eq("id", params.id);
+        .eq("id", id);
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json({ success: true });

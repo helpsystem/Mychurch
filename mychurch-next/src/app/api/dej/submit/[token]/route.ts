@@ -7,11 +7,13 @@ const supabase = createClient(
 );
 
 // GET /api/dej/submit/[token] - Validate token and get link details
-export async function GET(req: Request, { params }: { params: { token: string } }) {
+export async function GET(req: Request, context: { params: Promise<{ token: string }> }) {
+    const { token } = await context.params;
+
     const { data, error } = await supabase
         .from("dej_submission_links")
         .select("*")
-        .eq("token", params.token)
+        .eq("token", token)
         .single();
 
     if (error || !data) return NextResponse.json({ error: "Invalid or expired link." }, { status: 404 });
@@ -24,12 +26,14 @@ export async function GET(req: Request, { params }: { params: { token: string } 
 }
 
 // POST /api/dej/submit/[token] - Submit timesheet and create invoice
-export async function POST(req: Request, { params }: { params: { token: string } }) {
+export async function POST(req: Request, context: { params: Promise<{ token: string }> }) {
+    const { token } = await context.params;
+
     // 1. Validate token
     const { data: link, error: linkError } = await supabase
         .from("dej_submission_links")
         .select("*")
-        .eq("token", params.token)
+        .eq("token", token)
         .single();
 
     if (linkError || !link) return NextResponse.json({ error: "Invalid link." }, { status: 404 });
@@ -81,7 +85,7 @@ export async function POST(req: Request, { params }: { params: { token: string }
     await supabase
         .from("dej_submission_links")
         .update({ is_used: true, invoice_id: createdInvoice.id })
-        .eq("token", params.token);
+        .eq("token", token);
 
     return NextResponse.json({ success: true, invoice_id: createdInvoice.id, invoice_number: createdInvoice.invoice_number });
 }

@@ -58,7 +58,7 @@ export default function ViewDejInvoice() {
         </div>
     );
 
-    const status = STATUS_BADGE[invoice.payment_status];
+    const status = STATUS_BADGE[invoice.payment_status] ?? STATUS_BADGE.unpaid;
     const StatusIcon = status.icon;
     const discountAmount = invoice.subtotal * (invoice.discount_percent / 100);
 
