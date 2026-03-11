@@ -1,0 +1,102 @@
+{
+  "book_id": "2JN",
+  "book_name_en": "2 John",
+  "book_name_fa": "دوم یوحنا",
+  "testament": "NT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 13,
+  "chapters": [
+    {
+      "book_id": "2JN",
+      "chapter": 1,
+      "chapter_usfm": "2JN.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The elder to the chosen lady and her children, whom I love in truth; and not only I, but also all who know the truth,"
+        },
+        {
+          "verse": 2,
+          "text": "because of the truth which remains in us and will be with us forever:"
+        },
+        {
+          "verse": 3,
+          "text": "Grace, mercy, and peace will be with us, from God the Father and from Jesus Christ, the Son of the Father, in truth and love."
+        },
+        {
+          "verse": 4,
+          "text": "I was overjoyed to find some of your children walking in truth, just as we have received a commandment to do from the Father."
+        },
+        {
+          "verse": 5,
+          "text": "Now I ask you, lady, not as though I were writing to you a new commandment, but the one which we have had from the beginning, that we love one another."
+        },
+        {
+          "verse": 6,
+          "text": "And this is love, that we walk according to His commandments. This is the commandment, just as you have heard from the beginning, that you are to walk in it."
+        },
+        {
+          "verse": 7,
+          "text": "For many deceivers have gone out into the world, those who do not acknowledge Jesus Christ as coming in the flesh. This is the deceiver and the antichrist."
+        },
+        {
+          "verse": 8,
+          "text": "Watch yourselves, that you do not lose what we have accomplished, but that you may receive a full reward."
+        },
+        {
+          "verse": 9,
+          "text": "Anyone who goes too far and does not remain in the teaching of Christ, does not have God; the one who remains in the teaching has both the Father and the Son."
+        },
+        {
+          "verse": 10,
+          "text": "If anyone comes to you and does not bring this teaching, do not receive him into your house, and do not give him a greeting;"
+        },
+        {
+          "verse": 11,
+          "text": "for the one who gives him a greeting participates in his evil deeds."
+        },
+        {
+          "verse": 12,
+          "text": "Though I have many things to write to you, I do not want to do so with paper and ink; but I hope to come to you and speak face to face, so that your joy may be made complete."
+        },
+        {
+          "verse": 13,
+          "text": "The children of your chosen sister greet you."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Walk According to His Commandments"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/2JN/1-dfa7db60b10512080013f57b91063fbc.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/2JN/1-dfa7db60b10512080013f57b91063fbc.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/2JN/1-107992ca12b2133bde43c694232622a1.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/2JN/1-107992ca12b2133bde43c694232622a1.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "book_id": "OBA",
+  "book_name_en": "Obadiah",
+  "book_name_fa": "عوبدیا",
+  "testament": "OT",
+  "version_id": 3034,
+  "version_abbr": "BSB",
+  "version_name": "Berean Standard Bible",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 21,
+  "chapters": [
+    {
+      "book_id": "OBA",
+      "chapter": 1,
+      "chapter_usfm": "OBA.1",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is the vision of Obadiah:This is what the Lord GOD says about Edom —We have heard a message from the Lordan envoy has been sent among the nationsto say, “Rise up,and let us go to battle against her!”—"
+        },
+        {
+          "verse": 2,
+          "text": "“Behold, I will make you small among the nations;you will be deeply despised."
+        },
+        {
+          "verse": 3,
+          "text": "The pride of your heart has deceived you,O dwellers in the clefts of the rockswhose habitation is the heights,who say in your heart,‘Who can bring me down to the ground?’"
+        },
+        {
+          "verse": 4,
+          "text": "Though you soar like the eagleand make your nest among the stars,even from there I will bring you down,”declares the Lord"
+        },
+        {
+          "verse": 5,
+          "text": "“If thieves came to you,if robbers by night —oh, how you will be ruined —would they not steal only what they wanted?If grape gatherers came to you,would they not leave some gleanings?"
+        },
+        {
+          "verse": 6,
+          "text": "But how Esau will be pillaged,his hidden treasures sought out!"
+        },
+        {
+          "verse": 7,
+          "text": "All the men allied with youwill drive you to the border;the men at peace with youwill deceive and overpower you.Those who eat your breadwill set a trap for youwithout your awareness of it."
+        },
+        {
+          "verse": 8,
+          "text": "In that day, declares the Lordwill I not destroy the wise men of Edomand the men of understandingin the mountains of Esau?"
+        },
+        {
+          "verse": 9,
+          "text": "Then your mighty men, O Teman,will be terrified,so that everyone in the mountains of Esauwill be cut down in the slaughter."
+        },
+        {
+          "verse": 10,
+          "text": "Because of the violence against your brother Jacob,you will be covered with shameand cut off forever."
+        },
+        {
+          "verse": 11,
+          "text": "On the day you stood aloofwhile strangers carried off his wealthand foreigners entered his gateand cast lots for Jerusalem,you were just like one of them."
+        },
+        {
+          "verse": 12,
+          "text": "But you should not gloat in that day,your brother’s day of misfortune,nor rejoice over the people of Judahin the day of their destruction,nor boast proudlyin the day of their distress."
+        },
+        {
+          "verse": 13,
+          "text": "You should not enter the gate of My peoplein the day of their disaster,nor gloat over their afflictionin the day of their disaster,nor loot their wealthin the day of their disaster."
+        },
+        {
+          "verse": 14,
+          "text": "Nor should you stand at the crossroadsto cut off their fugitives,nor deliver up their survivorsin the day of their distress."
+        },
+        {
+          "verse": 15,
+          "text": "For the Day of the Lordfor all the nations.As you have done, it will be done to you;your recompense will return upon your own head."
+        },
+        {
+          "verse": 16,
+          "text": "For as you drank on My holy mountain,so all the nations will drink continually.They will drink and gulp it down;they will be as if they had never existed."
+        },
+        {
+          "verse": 17,
+          "text": "But on Mount Zion there will be deliverance,and it will be holy,and the house of Jacobwill reclaim their possession."
+        },
+        {
+          "verse": 18,
+          "text": "Then the house of Jacob will be a blazing fire,and the house of Joseph a burning flame;but the house of Esau will be stubble —Jacob will set it ablaze and consume it.Therefore no survivor will remainfrom the house of Esau.”For the Lord"
+        },
+        {
+          "verse": 19,
+          "text": "Those from the Negev will possess the mountains of Esau;those from the foothills will possess the land of the Philistines.They will occupy the fields of Ephraim and Samaria,and Benjamin will possess Gilead."
+        },
+        {
+          "verse": 20,
+          "text": "And the exiles of this host of the Israeliteswill possess the land of the Canaanites as far as Zarephath;and the exiles from Jerusalem who are in Sepharadwill possess the cities of the Negev."
+        },
+        {
+          "verse": 21,
+          "text": "The deliverers will ascend Mount Zionto rule over the mountains of Esau.And the kingdom will belong to the Lord"
+        }
+      ],
+      "verse_count": 21,
+      "headings": [
+        {
+          "before_verse": 14,
+          "text": "The Deliverance of Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/OBA/1-e0025a618006c2b064850755d8add1a2.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/OBA/1-e0025a618006c2b064850755d8add1a2.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

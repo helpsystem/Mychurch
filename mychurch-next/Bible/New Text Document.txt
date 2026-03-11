@@ -1,0 +1,24 @@
+خلاصه نهایی
+تعداد
+📚 ترجمه‌ها	24 (8 فارسی + 16 انگلیسی)
+📖 آیه‌ها	469,856
+🔊 لینک صوتی	25,656 (MP3 + HLS)
+💾 حجم کل	1.1 GB
+صوت‌ها:
+ترجمه	پوشش	نسخه‌ها
+🇺🇸 KJV	100% (1189/1189)	The Listener's Bible
+🇺🇸 BSB	✅	Non-drama
+🇺🇸 NIV	✅	4 نسخه: عادی + Dramatized + Anglicised + South Asian
+🇺🇸 NLT	✅	5 نسخه! عادی + Drama + Female + her.BIBLE + Streetlights
+🇺🇸 ESV	✅	2 نسخه: عادی + Dramatized Music
+🇮🇷 NMV	59%	2 نسخه: انگلیسی + فارسی
+🇮🇷 TPV	✅	Today's Farsi + مژده
+🇮🇷 PCB	✅	ترجمۀ معاصر
+فایل‌های خروجی:
+json — JSON هر ترجمه و هر کتاب
+bible_complete.db — SQLite کامل
+all_verses.csv — همه آیه‌ها
+all_audio_links.csv — همه لینک‌های صوتی
+all_headings.csv — عنوان‌ها
+all_footnotes.csv — پاورقی‌ها
+اطلاعات فول هست! ✅

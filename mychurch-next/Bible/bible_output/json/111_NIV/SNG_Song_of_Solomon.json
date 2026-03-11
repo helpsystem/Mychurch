@@ -1,0 +1,1025 @@
+{
+  "book_id": "SNG",
+  "book_name_en": "Song of Solomon",
+  "book_name_fa": "غزل غزلها",
+  "testament": "OT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 8,
+  "total_verses": 117,
+  "chapters": [
+    {
+      "book_id": "SNG",
+      "chapter": 1,
+      "chapter_usfm": "SNG.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Solomon’s Song of Songs."
+        },
+        {
+          "verse": 2,
+          "text": "Let him kiss me with the kisses of his mouth—for your love is more delightful than wine."
+        },
+        {
+          "verse": 3,
+          "text": "Pleasing is the fragrance of your perfumes;your name is like perfume poured out.No wonder the young women love you!"
+        },
+        {
+          "verse": 4,
+          "text": "Take me away with you—let us hurry!Let the king bring me into his chambers.We rejoice and delight in you;we will praise your love more than wine.How right they are to adore you!"
+        },
+        {
+          "verse": 5,
+          "text": "Dark am I, yet lovely,daughters of Jerusalem,dark like the tents of Kedar,like the tent curtains of Solomon."
+        },
+        {
+          "verse": 6,
+          "text": "Do not stare at me because I am dark,because I am darkened by the sun.My mother’s sons were angry with meand made me take care of the vineyards;my own vineyard I had to neglect."
+        },
+        {
+          "verse": 7,
+          "text": "Tell me, you whom I love,where you graze your flockand where you rest your sheep at midday.Why should I be like a veiled womanbeside the flocks of your friends?"
+        },
+        {
+          "verse": 8,
+          "text": "If you do not know, most beautiful of women,follow the tracks of the sheepand graze your young goatsby the tents of the shepherds."
+        },
+        {
+          "verse": 9,
+          "text": "I liken you, my darling, to a mareamong Pharaoh’s chariot horses."
+        },
+        {
+          "verse": 10,
+          "text": "Your cheeks are beautiful with earrings,your neck with strings of jewels."
+        },
+        {
+          "verse": 11,
+          "text": "We will make you earrings of gold,studded with silver."
+        },
+        {
+          "verse": 12,
+          "text": "While the king was at his table,my perfume spread its fragrance."
+        },
+        {
+          "verse": 13,
+          "text": "My beloved is to me a sachet of myrrhresting between my breasts."
+        },
+        {
+          "verse": 14,
+          "text": "My beloved is to me a cluster of henna blossomsfrom the vineyards of En Gedi."
+        },
+        {
+          "verse": 15,
+          "text": "How beautiful you are, my darling!Oh, how beautiful!Your eyes are doves."
+        },
+        {
+          "verse": 16,
+          "text": "How handsome you are, my beloved!Oh, how charming!And our bed is verdant."
+        },
+        {
+          "verse": 17,
+          "text": "The beams of our house are cedars;our rafters are firs."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "She"
+        },
+        {
+          "before_verse": 1,
+          "text": "The main male and female speakers (identified primarily on the basis of the gender of the relevant Hebrew forms) are indicated by the captions"
+        },
+        {
+          "before_verse": 1,
+          "text": "He"
+        },
+        {
+          "before_verse": 1,
+          "text": "and"
+        },
+        {
+          "before_verse": 1,
+          "text": "She"
+        },
+        {
+          "before_verse": 1,
+          "text": "respectively. The words of others are marked"
+        },
+        {
+          "before_verse": 1,
+          "text": "Friends."
+        },
+        {
+          "before_verse": 1,
+          "text": "In some instances the divisions and their captions are debatable."
+        },
+        {
+          "before_verse": 4,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 4,
+          "text": "She"
+        },
+        {
+          "before_verse": 7,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 8,
+          "text": "He"
+        },
+        {
+          "before_verse": 11,
+          "text": "She"
+        },
+        {
+          "before_verse": 14,
+          "text": "He"
+        },
+        {
+          "before_verse": 15,
+          "text": "She"
+        },
+        {
+          "before_verse": 16,
+          "text": "He"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/1-af4a5bf28fa3e99bed55d8712e0c00e6.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/1-af4a5bf28fa3e99bed55d8712e0c00e6.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/1-4287e397fef06c103ff9b2c7bcfc6dfc.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/1-4287e397fef06c103ff9b2c7bcfc6dfc.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/1-4e32a5f01a664da5bfa08c0d644db594.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/1-4e32a5f01a664da5bfa08c0d644db594.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/1-6cfbba19fdc54cee919bff6e37dab12a.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/1-6cfbba19fdc54cee919bff6e37dab12a.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 2,
+      "chapter_usfm": "SNG.2",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I am a rose of Sharon,a lily of the valleys."
+        },
+        {
+          "verse": 2,
+          "text": "Like a lily among thornsis my darling among the young women."
+        },
+        {
+          "verse": 3,
+          "text": "Like an apple tree among the trees of the forestis my beloved among the young men.I delight to sit in his shade,and his fruit is sweet to my taste."
+        },
+        {
+          "verse": 4,
+          "text": "Let him lead me to the banquet hall,and let his banner over me be love."
+        },
+        {
+          "verse": 5,
+          "text": "Strengthen me with raisins,refresh me with apples,for I am faint with love."
+        },
+        {
+          "verse": 6,
+          "text": "His left arm is under my head,and his right arm embraces me."
+        },
+        {
+          "verse": 7,
+          "text": "Daughters of Jerusalem, I charge youby the gazelles and by the does of the field:Do not arouse or awaken loveuntil it so desires."
+        },
+        {
+          "verse": 8,
+          "text": "Listen! My beloved!Look! Here he comes,leaping across the mountains,bounding over the hills."
+        },
+        {
+          "verse": 9,
+          "text": "My beloved is like a gazelle or a young stag.Look! There he stands behind our wall,gazing through the windows,peering through the lattice."
+        },
+        {
+          "verse": 10,
+          "text": "My beloved spoke and said to me,“Arise, my darling,my beautiful one, come with me."
+        },
+        {
+          "verse": 11,
+          "text": "See! The winter is past;the rains are over and gone."
+        },
+        {
+          "verse": 12,
+          "text": "Flowers appear on the earth;the season of singing has come,the cooing of dovesis heard in our land."
+        },
+        {
+          "verse": 13,
+          "text": "The fig tree forms its early fruit;the blossoming vines spread their fragrance.Arise, come, my darling;my beautiful one, come with me.”"
+        },
+        {
+          "verse": 14,
+          "text": "My dove in the clefts of the rock,in the hiding places on the mountainside,show me your face,let me hear your voice;for your voice is sweet,and your face is lovely."
+        },
+        {
+          "verse": 15,
+          "text": "Catch for us the foxes,the little foxesthat ruin the vineyards,our vineyards that are in bloom."
+        },
+        {
+          "verse": 16,
+          "text": "My beloved is mine and I am his;he browses among the lilies."
+        },
+        {
+          "verse": 17,
+          "text": "Until the day breaksand the shadows flee,turn, my beloved,and be like a gazelleor like a young stagon the rugged hills."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Or"
+        },
+        {
+          "before_verse": 1,
+          "text": "He"
+        },
+        {
+          "before_verse": 1,
+          "text": "He"
+        },
+        {
+          "before_verse": 2,
+          "text": "She"
+        },
+        {
+          "before_verse": 13,
+          "text": "He"
+        },
+        {
+          "before_verse": 15,
+          "text": "She"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/2-e01e4cdcbd53049de1cb80b2d16bc8a1.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/2-e01e4cdcbd53049de1cb80b2d16bc8a1.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/2-70796e19690b8eedb57994a1126d3fd7.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/2-70796e19690b8eedb57994a1126d3fd7.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/2-279ec14b9ac91dae1a45fa7e07d90196.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/2-279ec14b9ac91dae1a45fa7e07d90196.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/2-e258411f5cdb421661c5457a5112a720.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/2-e258411f5cdb421661c5457a5112a720.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 3,
+      "chapter_usfm": "SNG.3",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "All night long on my bedI looked for the one my heart loves;I looked for him but did not find him."
+        },
+        {
+          "verse": 2,
+          "text": "I will get up now and go about the city,through its streets and squares;I will search for the one my heart loves.So I looked for him but did not find him."
+        },
+        {
+          "verse": 3,
+          "text": "The watchmen found meas they made their rounds in the city.“Have you seen the one my heart loves?”"
+        },
+        {
+          "verse": 4,
+          "text": "Scarcely had I passed themwhen I found the one my heart loves.I held him and would not let him gotill I had brought him to my mother’s house,to the room of the one who conceived me."
+        },
+        {
+          "verse": 5,
+          "text": "Daughters of Jerusalem, I charge youby the gazelles and by the does of the field:Do not arouse or awaken loveuntil it so desires."
+        },
+        {
+          "verse": 6,
+          "text": "Who is this coming up from the wildernesslike a column of smoke,perfumed with myrrh and incensemade from all the spices of the merchant?"
+        },
+        {
+          "verse": 7,
+          "text": "Look! It is Solomon’s carriage,escorted by sixty warriors,the noblest of Israel,"
+        },
+        {
+          "verse": 8,
+          "text": "all of them wearing the sword,all experienced in battle,each with his sword at his side,prepared for the terrors of the night."
+        },
+        {
+          "verse": 9,
+          "text": "King Solomon made for himself the carriage;he made it of wood from Lebanon."
+        },
+        {
+          "verse": 10,
+          "text": "Its posts he made of silver,its base of gold.Its seat was upholstered with purple,its interior inlaid with love.Daughters of Jerusalem,"
+        },
+        {
+          "verse": 11,
+          "text": "come out,and look, you daughters of Zion.Look on King Solomon wearing a crown,the crown with which his mother crowned himon the day of his wedding,the day his heart rejoiced."
+        }
+      ],
+      "verse_count": 11,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/3-13d3f35159d92f505fa6424bbfc92b51.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/3-13d3f35159d92f505fa6424bbfc92b51.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/3-b104591e893ad52a8573c89aacc02738.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/3-b104591e893ad52a8573c89aacc02738.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/3-8acffbed7cb78139810cf992a52b6965.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/3-8acffbed7cb78139810cf992a52b6965.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/3-05703ad0a59ce78b5e1138fdab3f6e18.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/3-05703ad0a59ce78b5e1138fdab3f6e18.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 4,
+      "chapter_usfm": "SNG.4",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "How beautiful you are, my darling!Oh, how beautiful!Your eyes behind your veil are doves.Your hair is like a flock of goatsdescending from the hills of Gilead."
+        },
+        {
+          "verse": 2,
+          "text": "Your teeth are like a flock of sheep just shorn,coming up from the washing.Each has its twin;not one of them is alone."
+        },
+        {
+          "verse": 3,
+          "text": "Your lips are like a scarlet ribbon;your mouth is lovely.Your temples behind your veilare like the halves of a pomegranate."
+        },
+        {
+          "verse": 4,
+          "text": "Your neck is like the tower of David,built with courses of stone;on it hang a thousand shields,all of them shields of warriors."
+        },
+        {
+          "verse": 5,
+          "text": "Your breasts are like two fawns,like twin fawns of a gazellethat browse among the lilies."
+        },
+        {
+          "verse": 6,
+          "text": "Until the day breaksand the shadows flee,I will go to the mountain of myrrhand to the hill of incense."
+        },
+        {
+          "verse": 7,
+          "text": "You are altogether beautiful, my darling;there is no flaw in you."
+        },
+        {
+          "verse": 8,
+          "text": "Come with me from Lebanon, my bride,come with me from Lebanon.Descend from the crest of Amana,from the top of Senir, the summit of Hermon,from the lions’ densand the mountain haunts of leopards."
+        },
+        {
+          "verse": 9,
+          "text": "You have stolen my heart, my sister, my bride;you have stolen my heartwith one glance of your eyes,with one jewel of your necklace."
+        },
+        {
+          "verse": 10,
+          "text": "How delightful is your love, my sister, my bride!How much more pleasing is your love than wine,and the fragrance of your perfumemore than any spice!"
+        },
+        {
+          "verse": 11,
+          "text": "Your lips drop sweetness as the honeycomb, my bride;milk and honey are under your tongue.The fragrance of your garmentsis like the fragrance of Lebanon."
+        },
+        {
+          "verse": 12,
+          "text": "You are a garden locked up, my sister, my bride;you are a spring enclosed, a sealed fountain."
+        },
+        {
+          "verse": 13,
+          "text": "Your plants are an orchard of pomegranateswith choice fruits,with henna and nard,"
+        },
+        {
+          "verse": 14,
+          "text": "nard and saffron,calamus and cinnamon,with every kind of incense tree,with myrrh and aloesand all the finest spices."
+        },
+        {
+          "verse": 15,
+          "text": "You are a garden fountain,a well of flowing waterstreaming down from Lebanon."
+        },
+        {
+          "verse": 16,
+          "text": "Awake, north wind,and come, south wind!Blow on my garden,that its fragrance may spread everywhere.Let my beloved come into his gardenand taste its choice fruits."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 15,
+          "text": "She"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/4-c7db669cd7a849e11d59d8378837f9aa.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/4-c7db669cd7a849e11d59d8378837f9aa.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/4-ae9f1fa0f7c71aeeb126157a1b1fc401.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/4-ae9f1fa0f7c71aeeb126157a1b1fc401.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/4-a450f43198e54992723b9571486d00c7.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/4-a450f43198e54992723b9571486d00c7.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/4-ed585219de98114c817d7f578422964c.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/4-ed585219de98114c817d7f578422964c.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 5,
+      "chapter_usfm": "SNG.5",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I have come into my garden, my sister, my bride;I have gathered my myrrh with my spice.I have eaten my honeycomb and my honey;I have drunk my wine and my milk.Eat, friends, and drink;drink your fill of love."
+        },
+        {
+          "verse": 2,
+          "text": "I slept but my heart was awake.Listen! My beloved is knocking:“Open to me, my sister, my darling,my dove, my flawless one.My head is drenched with dew,my hair with the dampness of the night.”"
+        },
+        {
+          "verse": 3,
+          "text": "I have taken off my robe—must I put it on again?I have washed my feet—must I soil them again?"
+        },
+        {
+          "verse": 4,
+          "text": "My beloved thrust his hand through the latch-opening;my heart began to pound for him."
+        },
+        {
+          "verse": 5,
+          "text": "I arose to open for my beloved,and my hands dripped with myrrh,my fingers with flowing myrrh,on the handles of the bolt."
+        },
+        {
+          "verse": 6,
+          "text": "I opened for my beloved,but my beloved had left; he was gone.My heart sank at his departure.I looked for him but did not find him.I called him but he did not answer."
+        },
+        {
+          "verse": 7,
+          "text": "The watchmen found meas they made their rounds in the city.They beat me, they bruised me;they took away my cloak,those watchmen of the walls!"
+        },
+        {
+          "verse": 8,
+          "text": "Daughters of Jerusalem, I charge you—if you find my beloved,what will you tell him?Tell him I am faint with love."
+        },
+        {
+          "verse": 9,
+          "text": "How is your beloved better than others,most beautiful of women?How is your beloved better than others,that you so charge us?"
+        },
+        {
+          "verse": 10,
+          "text": "My beloved is radiant and ruddy,outstanding among ten thousand."
+        },
+        {
+          "verse": 11,
+          "text": "His head is purest gold;his hair is wavyand black as a raven."
+        },
+        {
+          "verse": 12,
+          "text": "His eyes are like dovesby the water streams,washed in milk,mounted like jewels."
+        },
+        {
+          "verse": 13,
+          "text": "His cheeks are like beds of spiceyielding perfume.His lips are like liliesdripping with myrrh."
+        },
+        {
+          "verse": 14,
+          "text": "His arms are rods of goldset with topaz.His body is like polished ivorydecorated with lapis lazuli."
+        },
+        {
+          "verse": 15,
+          "text": "His legs are pillars of marbleset on bases of pure gold.His appearance is like Lebanon,choice as its cedars."
+        },
+        {
+          "verse": 16,
+          "text": "His mouth is sweetness itself;he is altogether lovely.This is my beloved, this is my friend,daughters of Jerusalem."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 1,
+          "text": "She"
+        },
+        {
+          "before_verse": 8,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 9,
+          "text": "She"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/5-dbd9e6c9bfe92a9d12ef0cda9598a30c.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/5-dbd9e6c9bfe92a9d12ef0cda9598a30c.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/5-cba19ac89ad347ee300f6e453f78ac99.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/5-cba19ac89ad347ee300f6e453f78ac99.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/5-4ddf490b3fc154854a6633ec7785c378.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/5-4ddf490b3fc154854a6633ec7785c378.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/5-a1be0468b51f981c55d2fbe02edec6c9.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/5-a1be0468b51f981c55d2fbe02edec6c9.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 6,
+      "chapter_usfm": "SNG.6",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Where has your beloved gone,most beautiful of women?Which way did your beloved turn,that we may look for him with you?"
+        },
+        {
+          "verse": 2,
+          "text": "My beloved has gone down to his garden,to the beds of spices,to browse in the gardensand to gather lilies."
+        },
+        {
+          "verse": 3,
+          "text": "I am my beloved’s and my beloved is mine;he browses among the lilies."
+        },
+        {
+          "verse": 4,
+          "text": "You are as beautiful as Tirzah, my darling,as lovely as Jerusalem,as majestic as troops with banners."
+        },
+        {
+          "verse": 5,
+          "text": "Turn your eyes from me;they overwhelm me.Your hair is like a flock of goatsdescending from Gilead."
+        },
+        {
+          "verse": 6,
+          "text": "Your teeth are like a flock of sheepcoming up from the washing.Each has its twin,not one of them is missing."
+        },
+        {
+          "verse": 7,
+          "text": "Your temples behind your veilare like the halves of a pomegranate."
+        },
+        {
+          "verse": 8,
+          "text": "Sixty queens there may be,and eighty concubines,and virgins beyond number;"
+        },
+        {
+          "verse": 9,
+          "text": "but my dove, my perfect one, is unique,the only daughter of her mother,the favorite of the one who bore her.The young women saw her and called her blessed;the queens and concubines praised her."
+        },
+        {
+          "verse": 10,
+          "text": "Who is this that appears like the dawn,fair as the moon, bright as the sun,majestic as the stars in procession?"
+        },
+        {
+          "verse": 11,
+          "text": "I went down to the grove of nut treesto look at the new growth in the valley,to see if the vines had buddedor the pomegranates were in bloom."
+        },
+        {
+          "verse": 12,
+          "text": "Before I realized it,my desire set me among the royal chariots of my people."
+        },
+        {
+          "verse": 13,
+          "text": "Come back, come back, O Shulammite;come back, come back, that we may gaze on you!Why would you gaze on the Shulammiteas on the dance of Mahanaim?"
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "She"
+        },
+        {
+          "before_verse": 3,
+          "text": "He"
+        },
+        {
+          "before_verse": 9,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 10,
+          "text": "He"
+        },
+        {
+          "before_verse": 12,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 13,
+          "text": "He"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/6-9b7e0ef885144c648213ec817c684685.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/6-9b7e0ef885144c648213ec817c684685.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/6-7d3ea5eae288533e81b1be7069a3240b.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/6-7d3ea5eae288533e81b1be7069a3240b.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/6-499843936cee0787c4582cc1e92bb8ea.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/6-499843936cee0787c4582cc1e92bb8ea.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/6-5b4bf7fc486b417d8c4608c8313c3f22.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/6-5b4bf7fc486b417d8c4608c8313c3f22.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 7,
+      "chapter_usfm": "SNG.7",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "How beautiful your sandaled feet,O prince’s daughter!Your graceful legs are like jewels,the work of an artist’s hands."
+        },
+        {
+          "verse": 2,
+          "text": "Your navel is a rounded gobletthat never lacks blended wine.Your waist is a mound of wheatencircled by lilies."
+        },
+        {
+          "verse": 3,
+          "text": "Your breasts are like two fawns,like twin fawns of a gazelle."
+        },
+        {
+          "verse": 4,
+          "text": "Your neck is like an ivory tower.Your eyes are the pools of Heshbonby the gate of Bath Rabbim.Your nose is like the tower of Lebanonlooking toward Damascus."
+        },
+        {
+          "verse": 5,
+          "text": "Your head crowns you like Mount Carmel.Your hair is like royal tapestry;the king is held captive by its tresses."
+        },
+        {
+          "verse": 6,
+          "text": "How beautiful you are and how pleasing,my love, with your delights!"
+        },
+        {
+          "verse": 7,
+          "text": "Your stature is like that of the palm,and your breasts like clusters of fruit."
+        },
+        {
+          "verse": 8,
+          "text": "I said, “I will climb the palm tree;I will take hold of its fruit.”May your breasts be like clusters of grapes on the vine,the fragrance of your breath like apples,"
+        },
+        {
+          "verse": 9,
+          "text": "and your mouth like the best wine.May the wine go straight to my beloved,flowing gently over lips and teeth."
+        },
+        {
+          "verse": 10,
+          "text": "I belong to my beloved,and his desire is for me."
+        },
+        {
+          "verse": 11,
+          "text": "Come, my beloved, let us go to the countryside,let us spend the night in the villages."
+        },
+        {
+          "verse": 12,
+          "text": "Let us go early to the vineyardsto see if the vines have budded,if their blossoms have opened,and if the pomegranates are in bloom—there I will give you my love."
+        },
+        {
+          "verse": 13,
+          "text": "The mandrakes send out their fragrance,and at our door is every delicacy,both new and old,that I have stored up for you, my beloved."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 9,
+          "text": "She"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/7-5e7601d21af1960ecaf89d8dc9e5b16a.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/7-5e7601d21af1960ecaf89d8dc9e5b16a.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/7-86dbef5553711295695a092b72964d96.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/7-86dbef5553711295695a092b72964d96.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/7-1a65bc669ae75d16166ea759355f22e7.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/7-1a65bc669ae75d16166ea759355f22e7.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/7-41c75c5cf299c4f14f5804f2dfdd4c64.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/7-41c75c5cf299c4f14f5804f2dfdd4c64.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 8,
+      "chapter_usfm": "SNG.8",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "If only you were to me like a brother,who was nursed at my mother’s breasts!Then, if I found you outside,I would kiss you,and no one would despise me."
+        },
+        {
+          "verse": 2,
+          "text": "I would lead youand bring you to my mother’s house—she who has taught me.I would give you spiced wine to drink,the nectar of my pomegranates."
+        },
+        {
+          "verse": 3,
+          "text": "His left arm is under my headand his right arm embraces me."
+        },
+        {
+          "verse": 4,
+          "text": "Daughters of Jerusalem, I charge you:Do not arouse or awaken loveuntil it so desires."
+        },
+        {
+          "verse": 5,
+          "text": "Who is this coming up from the wildernessleaning on her beloved?Under the apple tree I roused you;there your mother conceived you,there she who was in labor gave you birth."
+        },
+        {
+          "verse": 6,
+          "text": "Place me like a seal over your heart,like a seal on your arm;for love is as strong as death,its jealousy unyielding as the grave.It burns like blazing fire,like a mighty flame."
+        },
+        {
+          "verse": 7,
+          "text": "Many waters cannot quench love;rivers cannot sweep it away.If one were to giveall the wealth of one’s house for love,it would be utterly scorned."
+        },
+        {
+          "verse": 8,
+          "text": "We have a little sister,and her breasts are not yet grown.What shall we do for our sisteron the day she is spoken for?"
+        },
+        {
+          "verse": 9,
+          "text": "If she is a wall,we will build towers of silver on her.If she is a door,we will enclose her with panels of cedar."
+        },
+        {
+          "verse": 10,
+          "text": "I am a wall,and my breasts are like towers.Thus I have become in his eyeslike one bringing contentment."
+        },
+        {
+          "verse": 11,
+          "text": "Solomon had a vineyard in Baal Hamon;he let out his vineyard to tenants.Each was to bring for its fruita thousand shekels of silver."
+        },
+        {
+          "verse": 12,
+          "text": "But my own vineyard is mine to give;the thousand shekels are for you, Solomon,and two hundred are for those who tend its fruit."
+        },
+        {
+          "verse": 13,
+          "text": "You who dwell in the gardenswith friends in attendance,let me hear your voice!"
+        },
+        {
+          "verse": 14,
+          "text": "Come away, my beloved,and be like a gazelleor like a young stagon the spice-laden mountains."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [
+        {
+          "before_verse": 4,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 5,
+          "text": "She"
+        },
+        {
+          "before_verse": 7,
+          "text": "Friends"
+        },
+        {
+          "before_verse": 9,
+          "text": "She"
+        },
+        {
+          "before_verse": 12,
+          "text": "He"
+        },
+        {
+          "before_verse": 13,
+          "text": "She"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/SNG/8-88374607f740b43d969165894d39f541.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/SNG/8-88374607f740b43d969165894d39f541.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/SNG/8-f93162aea5f3c1baeeb53a3b62801a90.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/SNG/8-f93162aea5f3c1baeeb53a3b62801a90.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/SNG/8-2d95b07e2e6180fb8e71e2f3a95d42b4.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/SNG/8-2d95b07e2e6180fb8e71e2f3a95d42b4.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/SNG/8-3317737351aaff6f61b5f49288949838.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/SNG/8-3317737351aaff6f61b5f49288949838.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

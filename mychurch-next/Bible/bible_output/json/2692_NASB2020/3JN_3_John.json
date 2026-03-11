@@ -1,0 +1,110 @@
+{
+  "book_id": "3JN",
+  "book_name_en": "3 John",
+  "book_name_fa": "سوم یوحنا",
+  "testament": "NT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 15,
+  "chapters": [
+    {
+      "book_id": "3JN",
+      "chapter": 1,
+      "chapter_usfm": "3JN.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The elder to the beloved Gaius, whom I love in truth."
+        },
+        {
+          "verse": 2,
+          "text": "Beloved, I pray that in all respects you may prosper and be in good health, just as your soul prospers."
+        },
+        {
+          "verse": 3,
+          "text": "For I was overjoyed when brothers came and testified to your truth, that is, how you are walking in truth."
+        },
+        {
+          "verse": 4,
+          "text": "I have no greater joy than this, to hear of my children walking in the truth."
+        },
+        {
+          "verse": 5,
+          "text": "Beloved, you are acting faithfully in whatever you accomplish for the brothers and sisters, and especially when they are strangers;"
+        },
+        {
+          "verse": 6,
+          "text": "and they have testified to your love before the church. You will do well to send them on their way in a manner worthy of God."
+        },
+        {
+          "verse": 7,
+          "text": "For they went out for the sake of the Name, accepting nothing from the Gentiles."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore we ought to support such people, so that we may prove to be fellow workers with the truth."
+        },
+        {
+          "verse": 9,
+          "text": "I wrote something to the church; but Diotrephes, who loves to be first among them, does not accept what we say."
+        },
+        {
+          "verse": 10,
+          "text": "For this reason, if I come, I will call attention to his deeds which he does, unjustly accusing us with malicious words; and not satisfied with this, he himself does not receive the brothers either, and he forbids those who want to do so and puts them out of the church."
+        },
+        {
+          "verse": 11,
+          "text": "Beloved, do not imitate what is evil, but what is good. The one who does what is good is of God; the one who does what is evil has not seen God."
+        },
+        {
+          "verse": 12,
+          "text": "Demetrius has received a good testimony from everyone, and from the truth itself; and we testify too, and you know that our testimony is true."
+        },
+        {
+          "verse": 13,
+          "text": "I had many things to write to you, but I do not want to write to you with pen and ink;"
+        },
+        {
+          "verse": 14,
+          "text": "but I hope to see you shortly, and we will speak face to face."
+        },
+        {
+          "verse": 15,
+          "text": "Peace be to you. The friends greet you. Greet the friends by name."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "A Good Report"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/3JN/1-75c4319bce549ee7c48606ff62c230cd.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/3JN/1-75c4319bce549ee7c48606ff62c230cd.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/3JN/1-6430003bf469d2eb84cea5ab5cb47b62.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/3JN/1-6430003bf469d2eb84cea5ab5cb47b62.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

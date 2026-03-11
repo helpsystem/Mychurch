@@ -48,10 +48,11 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             <DynamicWatermark defaultSize={800} defaultPosition="center" defaultOpacity={2} className="-z-10" />
 
             {/* Top Bar */}
-            <div className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between z-20 bg-gradient-to-b from-black/80 to-transparent">
-                <div>
-                    <h2 className="text-2xl font-black text-white drop-shadow-lg" dir="rtl">{song.title.fa}</h2>
-                    {song.artist && <p className="text-white/70 font-medium" dir="rtl">{song.artist}</p>}
+            <div className="absolute top-0 left-0 right-0 p-6 flex items-baseline justify-between z-20 bg-gradient-to-b from-black/80 to-transparent" dir="ltr">
+                <div className="flex flex-col text-left">
+                    <h2 className="text-2xl font-black text-white drop-shadow-lg font-serif">{song.title.en || 'Unknown Title'}</h2>
+                    <h3 className="text-xl text-white/90 drop-shadow-md" dir="rtl">{song.title.fa}</h3>
+                    {song.artist && <p className="text-white/70 font-medium mt-1">{song.artist}</p>}
                 </div>
                 <button
                     onClick={onClose}
@@ -71,7 +72,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             </div>
 
             {/* Bottom Audio Controller */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-center justify-center z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-center justify-center z-20 bg-gradient-to-t from-black via-black/80 to-transparent" dir="ltr">
                 <button
                     onClick={togglePlay}
                     title={isPlaying ? "Pause" : "Play"}

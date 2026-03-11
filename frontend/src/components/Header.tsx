@@ -12,6 +12,7 @@ import { useContent } from '../hooks/useContent';
 import { useLiveTranslation } from '../hooks/useLiveTranslation';
 import Spinner from './Spinner';
 import GlobalSearchModal from './GlobalSearchModal';
+import NewsTicker from './NewsTicker';
 
 const InvitationsDropdown = ({ onClose }: { onClose: () => void }) => {
     const { user, acceptInvitation } = useAuth();
@@ -57,7 +58,7 @@ const InvitationsDropdown = ({ onClose }: { onClose: () => void }) => {
     );
 };
 
-const NavDropdown = ({ title, children }: { title: string; children: React.ReactNode }) => {
+const NavDropdown = ({ title, children, isMega = false }: { title: string; children: React.ReactNode; isMega?: boolean }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
 
@@ -72,20 +73,22 @@ const NavDropdown = ({ title, children }: { title: string; children: React.React
     const handleMouseLeave = () => {
         const timer = setTimeout(() => {
             setIsOpen(false);
-        }, 300); // 300ms delay before closing
+        }, 200); // 200ms delay before closing
         setHoverTimer(timer);
     };
 
     return (
-        <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <button className="font-normal cursor-pointer text-[16px] text-dimWhite hover:text-white flex items-center gap-1 py-2">
+        <div className="relative group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <button className={`font-normal cursor-pointer text-[16px] transition-colors flex items-center gap-1 py-4 ${isOpen ? 'text-white' : 'text-dimWhite hover:text-white'}`}>
                 {title}
                 <ChevronDown size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
             </button>
             {isOpen && (
-                <div className="absolute top-full mt-0 w-48 bg-black-gradient border border-gray-700 rounded-lg shadow-lg z-50 py-2"
+                <div 
+                    className={`absolute mt-0 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl z-50 transform origin-top transition-all duration-200 ease-out ${isMega ? 'left-1/2 -translate-x-1/2 w-[600px] p-6' : 'top-full w-56 flex flex-col p-2'}`}
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}>
+                    onMouseLeave={handleMouseLeave}
+                >
                     {children}
                 </div>
             )}
@@ -186,9 +189,9 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
                         <div key={group.title}>
                             <h3 className="text-gray-500 font-bold text-sm uppercase px-3 mt-4 mb-2">{group.title}</h3>
                             {group.links.map(link => {
-                                if (link.action) {
+                                if ('action' in link && link.action) {
                                     return (
-                                        <button key={link.title} onClick={() => { link.action(); closeMenu(); }} className="w-full flex items-center gap-3 p-3 rounded-lg text-dimWhite hover:bg-gray-800">
+                                        <button key={link.title} onClick={() => { (link.action as any)(); closeMenu(); }} className="w-full flex items-center gap-3 p-3 rounded-lg text-dimWhite hover:bg-gray-800">
                                             {link.icon} {link.title}
                                         </button>
                                     );
@@ -255,7 +258,10 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
 
     return (
         <>
-            <header className="w-full flex py-4 justify-between items-center navbar">
+            <div className="w-full z-[101]">
+                <NewsTicker />
+            </div>
+            <header className="w-full flex py-4 justify-between items-center navbar relative z-[100]">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-3">
                     <img src={content.settings.logoUrl} alt="Church Logo" className="w-10 h-10" />
@@ -263,25 +269,86 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="list-none md:flex hidden justify-center items-center gap-8 flex-1" dir="ltr">
-                    <NavLink to="/" className={({ isActive }) => `font-normal text-[16px] ${isActive ? 'text-white' : 'text-dimWhite'} hover:text-white`}>{t('navHome')}</NavLink>
-                    <NavDropdown title={t('navMinistries')}>
-                        {menuItems.ministries.map(item => <NavLink key={item.to} to={item.to} className="flex gap-3 items-center px-4 py-2 text-dimWhite hover:bg-gray-800 hover:text-white">{item.icon}{item.title}</NavLink>)}
+                <nav className="list-none md:flex hidden justify-center items-center gap-6 flex-1 rtl:gap-8" dir="ltr">
+                    <NavLink to="/" className={({ isActive }) => `font-medium text-[16px] transition-colors py-4 ${isActive ? 'text-white' : 'text-dimWhite hover:text-white'}`}>{t('navHome')}</NavLink>
+                    
+                    {/* Ministries Mega Menu */}
+                    <NavDropdown title={t('navMinistries')} isMega={false}>
+                        {menuItems.ministries.map(item => (
+                            <NavLink key={item.to} to={item.to} className="group flex gap-3 items-center px-4 py-3 rounded-lg text-dimWhite hover:bg-white/5 hover:text-white transition-all">
+                                <span className="bg-white/5 p-2 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition-colors">
+                                    {item.icon}
+                                </span>
+                                <span className="font-medium">{item.title}</span>
+                            </NavLink>
+                        ))}
                     </NavDropdown>
-                    <NavDropdown title={t('navResources')}>
-                        {menuItems.resources.map(item => {
-                            if (item.action) {
-                                return (
-                                    <button key={item.title} onClick={item.action} className="w-full text-left flex gap-3 items-center px-4 py-2 text-dimWhite hover:bg-gray-800 hover:text-white">
-                                        {item.icon}{item.title}
-                                    </button>
-                                );
-                            }
-                            return <NavLink key={item.to} to={item.to!} className="flex gap-3 items-center px-4 py-2 text-dimWhite hover:bg-gray-800 hover:text-white">{item.icon}{item.title}</NavLink>
-                        })}
+
+                    {/* Resources Mega Menu */}
+                    <NavDropdown title={t('navResources')} isMega={true}>
+                        <div className="grid grid-cols-2 gap-x-8 gap-y-2" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                            <div className="space-y-1">
+                                <h4 className={`text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>
+                                    {lang === 'fa' ? 'کلام و آموزش' : 'Study & Word'}
+                                </h4>
+                                {menuItems.resources.slice(0, 6).map((item: any) => {
+                                    if (item.action) {
+                                        return (
+                                            <button key={item.title} onClick={item.action} className={`w-full text-left group flex gap-3 items-center px-3 py-2 rounded-lg text-dimWhite hover:bg-white/5 hover:text-white transition-all ${lang === 'fa' ? 'text-right flex-row-reverse' : ''}`}>
+                                                <span className="text-gray-400 group-hover:text-cyan-400 transition-colors">{item.icon}</span>
+                                                <span className="font-medium text-sm">{item.title}</span>
+                                            </button>
+                                        );
+                                    }
+                                    return (
+                                        <NavLink key={item.to} to={item.to} className={`group flex gap-3 items-center px-3 py-2 rounded-lg text-dimWhite hover:bg-white/5 hover:text-white transition-all ${lang === 'fa' ? 'text-right flex-row-reverse' : ''}`}>
+                                            <span className="text-gray-400 group-hover:text-cyan-400 transition-colors">{item.icon}</span>
+                                            <span className="font-medium text-sm">{item.title}</span>
+                                        </NavLink>
+                                    );
+                                })}
+                            </div>
+
+                            <div className="space-y-1 border-l border-white/5 pl-8 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-8">
+                                <h4 className={`text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>
+                                    {lang === 'fa' ? 'رسانه و ابزارها' : 'Media & Tools'}
+                                </h4>
+                                {menuItems.resources.slice(6).map(item => (
+                                    <NavLink key={item.to} to={item.to!} className={`group flex gap-3 items-center px-3 py-2 rounded-lg text-dimWhite hover:bg-white/5 hover:text-white transition-all ${lang === 'fa' ? 'text-right flex-row-reverse' : ''}`}>
+                                        <span className="text-gray-400 group-hover:text-purple-400 transition-colors">{item.icon}</span>
+                                        <span className="font-medium text-sm">{item.title}</span>
+                                    </NavLink>
+                                ))}
+                            </div>
+                        </div>
+                        
+                        {/* Featured Mega Section (Bottom Banner) */}
+                        <div className="mt-6 pt-4 border-t border-white/5 bg-gradient-to-r from-blue-500/10 to-transparent p-4 rounded-lg flex items-center justify-between" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+                            <div className="flex items-center gap-3">
+                                <div className="bg-blue-500/20 p-2 rounded-full">
+                                    <BrainCircuit className="text-blue-400 w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h5 className="text-white font-semibold text-sm">{lang === 'fa' ? 'AlHayat GPT' : 'AlHayat GPT'}</h5>
+                                    <p className="text-gray-400 text-xs">{lang === 'fa' ? 'دستیار هوشمند شبانه‌روزی شما' : 'Your 24/7 intelligent assistant'}</p>
+                                </div>
+                            </div>
+                            <Link to="/ai-helper" className="text-xs bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition-colors font-semibold">
+                                {lang === 'fa' ? 'شروع گپ' : 'Start Chat'}
+                            </Link>
+                        </div>
                     </NavDropdown>
-                    <NavDropdown title={t('navConnect')}>
-                        {menuItems.connect.map(item => <NavLink key={item.to} to={item.to} className="flex gap-3 items-center px-4 py-2 text-dimWhite hover:bg-gray-800 hover:text-white">{item.icon}{item.title}</NavLink>)}
+
+                    {/* Connect Dropdown */}
+                    <NavDropdown title={t('navConnect')} isMega={false}>
+                        {menuItems.connect.map(item => (
+                            <NavLink key={item.to} to={item.to} className="group flex gap-3 items-center px-4 py-3 rounded-lg text-dimWhite hover:bg-white/5 hover:text-white transition-all">
+                                <span className="text-gray-400 group-hover:text-pink-400 transition-colors">
+                                    {item.icon}
+                                </span>
+                                <span className="font-medium">{item.title}</span>
+                            </NavLink>
+                        ))}
                     </NavDropdown>
                 </nav>
 

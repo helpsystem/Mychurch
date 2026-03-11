@@ -1,0 +1,26 @@
+3x-ui
+3x-ui
+Using pre-generated Xray x25519 Reality keys...
+Stopping 3x-ui to safely edit database...
+Inbound added to database.
+Starting 3x-ui...
+
+==================================================
+        IRAN VLESS+REALITY VPN DETAILS
+==================================================
+IP Address  : 195.250.25.185
+Port        : 8443
+UUID        : 3ed4e362-a82d-4dd8-b23c-2d54897fa569
+Network     : tcp
+Security    : reality
+SNI / Dest  : yahoo.com
+Fingerprint : chrome
+Public Key  : iF_lZjtEYOUyeZNYZAiWxScFK55SS0jOyLBoWhuY3BI
+Short ID    : 249bfe31d5cc6dc5
+Flow        : xtls-rprx-vision
+==================================================
+Paste this string into V2rayNG, Nekobox, or Hiddify:
+
+vless://3ed4e362-a82d-4dd8-b23c-2d54897fa569@195.250.25.185:8443?type=tcp&security=reality&pbk=iF_lZjtEYOUyeZNYZAiWxScFK55SS0jOyLBoWhuY3BI&fp=chrome&sni=yahoo.com&sid=249bfe31d5cc6dc5&spx=%2F&flow=xtls-rprx-vision#Iran_VLESS_Reality
+==================================================
+

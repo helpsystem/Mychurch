@@ -1,0 +1,408 @@
+{
+  "book_id": "JON",
+  "book_name_en": "Jonah",
+  "book_name_fa": "یونس",
+  "testament": "OT",
+  "version_id": 116,
+  "version_abbr": "NLT",
+  "version_name": "New Living Translation",
+  "language": "en",
+  "chapter_count": 4,
+  "total_verses": 48,
+  "chapters": [
+    {
+      "book_id": "JON",
+      "chapter": 1,
+      "chapter_usfm": "JON.1",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The Lord gave this message to Jonah son of Amittai:"
+        },
+        {
+          "verse": 2,
+          "text": "“Get up and go to the great city of Nineveh. Announce my judgment against it because I have seen how wicked its people are.”"
+        },
+        {
+          "verse": 3,
+          "text": "But Jonah got up and went in the opposite direction to get away from the Lord. He went down to the port of Joppa, where he found a ship leaving for Tarshish. He bought a ticket and went on board, hoping to escape from the Lord by sailing to Tarshish."
+        },
+        {
+          "verse": 4,
+          "text": "But the Lord hurled a powerful wind over the sea, causing a violent storm that threatened to break the ship apart."
+        },
+        {
+          "verse": 5,
+          "text": "Fearing for their lives, the desperate sailors shouted to their gods for help and threw the cargo overboard to lighten the ship.But all this time Jonah was sound asleep down in the hold."
+        },
+        {
+          "verse": 6,
+          "text": "So the captain went down after him. “How can you sleep at a time like this?” he shouted. “Get up and pray to your god! Maybe he will pay attention to us and spare our lives.”"
+        },
+        {
+          "verse": 7,
+          "text": "Then the crew cast lots to see which of them had offended the gods and caused the terrible storm. When they did this, the lots identified Jonah as the culprit."
+        },
+        {
+          "verse": 8,
+          "text": "“Why has this awful storm come down on us?” they demanded. “Who are you? What is your line of work? What country are you from? What is your nationality?”"
+        },
+        {
+          "verse": 9,
+          "text": "Jonah answered, “I am a Hebrew, and I worship the Lord, the God of heaven, who made the sea and the land.”"
+        },
+        {
+          "verse": 10,
+          "text": "The sailors were terrified when they heard this, for he had already told them he was running away from the Lord. “Oh, why did you do it?” they groaned."
+        },
+        {
+          "verse": 11,
+          "text": "And since the storm was getting worse all the time, they asked him, “What should we do to you to stop this storm?”"
+        },
+        {
+          "verse": 12,
+          "text": "“Throw me into the sea,” Jonah said, “and it will become calm again. I know that this terrible storm is all my fault.”"
+        },
+        {
+          "verse": 13,
+          "text": "Instead, the sailors rowed even harder to get the ship to the land. But the stormy sea was too violent for them, and they couldn’t make it."
+        },
+        {
+          "verse": 14,
+          "text": "Then they cried out to the Lord, Jonah’s God. “O Lord,” they pleaded, “don’t make us die for this man’s sin. And don’t hold us responsible for his death. O Lord, you have sent this storm upon him for your own good reasons.”"
+        },
+        {
+          "verse": 15,
+          "text": "Then the sailors picked Jonah up and threw him into the raging sea, and the storm stopped at once!"
+        },
+        {
+          "verse": 16,
+          "text": "The sailors were awestruck by the Lord’s great power, and they offered him a sacrifice and vowed to serve him."
+        },
+        {
+          "verse": 17,
+          "text": "Now the Lord had arranged for a great fish to swallow Jonah. And Jonah was inside the fish for three days and three nights."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/JON/1-e8cc1d97425ffef41940bebded5de189.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/JON/1-e8cc1d97425ffef41940bebded5de189.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/JON/1-9806d986946d5f2ec1e68ca43c1c4156.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/JON/1-9806d986946d5f2ec1e68ca43c1c4156.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/JON/1-5fe9312f137085520bc26e146060ecbf.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/JON/1-5fe9312f137085520bc26e146060ecbf.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/JON/1-94850cca19bcbab150e67bf0d34055d4.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/JON/1-94850cca19bcbab150e67bf0d34055d4.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JON",
+      "chapter": 2,
+      "chapter_usfm": "JON.2",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Then Jonah prayed to the Lord his God from inside the fish."
+        },
+        {
+          "verse": 2,
+          "text": "He said,“I cried out to the Lord in my great trouble,and he answered me.I called to you from the land of the dead,and Lord, you heard me!"
+        },
+        {
+          "verse": 3,
+          "text": "You threw me into the ocean depths,and I sank down to the heart of the sea.The mighty waters engulfed me;I was buried beneath your wild and stormy waves."
+        },
+        {
+          "verse": 4,
+          "text": "Then I said, ‘O Lord, you have driven me from your presence.Yet I will look once more toward your holy Temple.’"
+        },
+        {
+          "verse": 5,
+          "text": "“I sank beneath the waves,and the waters closed over me.Seaweed wrapped itself around my head."
+        },
+        {
+          "verse": 6,
+          "text": "I sank down to the very roots of the mountains.I was imprisoned in the earth,whose gates lock shut forever.But you, O Lord my God,snatched me from the jaws of death!"
+        },
+        {
+          "verse": 7,
+          "text": "As my life was slipping away,I remembered the Lord.And my earnest prayer went out to youin your holy Temple."
+        },
+        {
+          "verse": 8,
+          "text": "Those who worship false godsturn their backs on all God’s mercies."
+        },
+        {
+          "verse": 9,
+          "text": "But I will offer sacrifices to you with songs of praise,and I will fulfill all my vows.For my salvation comes from the Lord alone.”"
+        },
+        {
+          "verse": 10,
+          "text": "Then the Lord ordered the fish to spit Jonah out onto the beach."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/JON/2-6f701925ca548ff5f0ccc0922867413d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/JON/2-6f701925ca548ff5f0ccc0922867413d.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/JON/2-6ce9373839c84abb91f7687bd6f7ce2f.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/JON/2-6ce9373839c84abb91f7687bd6f7ce2f.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/JON/2-f9aa8f48374a6e7269a287ead1c142c4.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/JON/2-f9aa8f48374a6e7269a287ead1c142c4.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/JON/2-db07e847e0e2cf6093c3f34e70b815ba.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/JON/2-db07e847e0e2cf6093c3f34e70b815ba.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JON",
+      "chapter": 3,
+      "chapter_usfm": "JON.3",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Then the Lord spoke to Jonah a second time:"
+        },
+        {
+          "verse": 2,
+          "text": "“Get up and go to the great city of Nineveh, and deliver the message I have given you.”"
+        },
+        {
+          "verse": 3,
+          "text": "This time Jonah obeyed the Lord’s command and went to Nineveh, a city so large that it took three days to see it all."
+        },
+        {
+          "verse": 4,
+          "text": "On the day Jonah entered the city, he shouted to the crowds: “Forty days from now Nineveh will be destroyed!”"
+        },
+        {
+          "verse": 5,
+          "text": "The people of Nineveh believed God’s message, and from the greatest to the least, they declared a fast and put on burlap to show their sorrow."
+        },
+        {
+          "verse": 6,
+          "text": "When the king of Nineveh heard what Jonah was saying, he stepped down from his throne and took off his royal robes. He dressed himself in burlap and sat on a heap of ashes."
+        },
+        {
+          "verse": 7,
+          "text": "Then the king and his nobles sent this decree throughout the city:“No one, not even the animals from your herds and flocks, may eat or drink anything at all."
+        },
+        {
+          "verse": 8,
+          "text": "People and animals alike must wear garments of mourning, and everyone must pray earnestly to God. They must turn from their evil ways and stop all their violence."
+        },
+        {
+          "verse": 9,
+          "text": "Who can tell? Perhaps even yet God will change his mind and hold back his fierce anger from destroying us.”"
+        },
+        {
+          "verse": 10,
+          "text": "When God saw what they had done and how they had put a stop to their evil ways, he changed his mind and did not carry out the destruction he had threatened."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/JON/3-5f49fa536c5edb565a84cdec9cc863dd.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/JON/3-5f49fa536c5edb565a84cdec9cc863dd.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/JON/3-d4fd4bab998de48e9eac527e078a8f4b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/JON/3-d4fd4bab998de48e9eac527e078a8f4b.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/JON/3-5fe7a0fbc4fe804d39ad1a401e89d9dc.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/JON/3-5fe7a0fbc4fe804d39ad1a401e89d9dc.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/JON/3-504970fdbfd2efda840531261350fee1.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/JON/3-504970fdbfd2efda840531261350fee1.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JON",
+      "chapter": 4,
+      "chapter_usfm": "JON.4",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This change of plans greatly upset Jonah, and he became very angry."
+        },
+        {
+          "verse": 2,
+          "text": "So he complained to the Lord about it: “Didn’t I say before I left home that you would do this, Lord? That is why I ran away to Tarshish! I knew that you are a merciful and compassionate God, slow to get angry and filled with unfailing love. You are eager to turn back from destroying people."
+        },
+        {
+          "verse": 3,
+          "text": "Just kill me now, Lord! I’d rather be dead than alive if what I predicted will not happen.”"
+        },
+        {
+          "verse": 4,
+          "text": "The Lord replied, “Is it right for you to be angry about this?”"
+        },
+        {
+          "verse": 5,
+          "text": "Then Jonah went out to the east side of the city and made a shelter to sit under as he waited to see what would happen to the city."
+        },
+        {
+          "verse": 6,
+          "text": "And the Lord God arranged for a leafy plant to grow there, and soon it spread its broad leaves over Jonah’s head, shading him from the sun. This eased his discomfort, and Jonah was very grateful for the plant."
+        },
+        {
+          "verse": 7,
+          "text": "But God also arranged for a worm! The next morning at dawn the worm ate through the stem of the plant so that it withered away."
+        },
+        {
+          "verse": 8,
+          "text": "And as the sun grew hot, God arranged for a scorching east wind to blow on Jonah. The sun beat down on his head until he grew faint and wished to die. “Death is certainly better than living like this!” he exclaimed."
+        },
+        {
+          "verse": 9,
+          "text": "Then God said to Jonah, “Is it right for you to be angry because the plant died?”“Yes,” Jonah retorted, “even angry enough to die!”"
+        },
+        {
+          "verse": 10,
+          "text": "Then the Lord said, “You feel sorry about the plant, though you did nothing to put it there. It came quickly and died quickly."
+        },
+        {
+          "verse": 11,
+          "text": "But Nineveh has more than 120,000 people living in spiritual darkness, not to mention all the animals. Shouldn’t I feel sorry for such a great city?”"
+        }
+      ],
+      "verse_count": 11,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 1,
+          "text": "’s Mercy"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/JON/4-91b35d7ffce382a229113a8147f62ef5.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/JON/4-91b35d7ffce382a229113a8147f62ef5.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/JON/4-2c26150c04ddbd5dd99541b57283b175.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/JON/4-2c26150c04ddbd5dd99541b57283b175.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/JON/4-898af37f5a2e24e4cecd34c481e64fc6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/JON/4-898af37f5a2e24e4cecd34c481e64fc6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/JON/4-448bded14a97f736433be20f2a1ce4f5.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/JON/4-448bded14a97f736433be20f2a1ce4f5.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

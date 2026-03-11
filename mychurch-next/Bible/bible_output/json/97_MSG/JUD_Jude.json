@@ -1,0 +1,50 @@
+{
+  "book_id": "JUD",
+  "book_name_en": "Jude",
+  "book_name_fa": "یهودا",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 1,
+  "chapters": [
+    {
+      "book_id": "JUD",
+      "chapter": 1,
+      "chapter_usfm": "JUD.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 8,
+          "text": "This is exactly the same program of these latest infiltrators: dirty sex, rule and rulers thrown out, glory dragged in the mud. The Archangel Michael, who went to the mat with the Devil as they fought over the body of Moses, wouldn’t have dared level him with a blasphemous curse, but said simply, “No you don’t. God will take care of you!” But these people sneer at anything they can’t understand, and by doing whatever they feel like doing—living by animal instinct only—they participate in their own destruction. I’m fed up with them! They’ve gone down Cain’s road; they’ve been sucked into Balaam’s error by greed; they’re canceled out in Korah’s rebellion. These people are eyesores at your love feasts as you worship and eat together. They’re giving you a black eye—carousing shamelessly, grabbing anything that isn’t nailed down. They’re—Puffs of smoke pushed by gusts of wind;late autumn trees stripped clean of leaf and fruit,Doubly dead, pulled up by the roots;wild ocean waves leaving nothing on the beachbut the foam of their shame;Lost stars in outer spaceon their way to the black hole. Enoch, the seventh after Adam, prophesied of them: “Look! The Master comes with thousands of holy angels to bring judgment against them all, convicting each person of every defiling act of shameless sacrilege, of every dirty word they have spewed of their pious filth.” These are the complainers, the bellyachers, grabbing for the biggest piece of the pie, talking big, saying anything they think will get them ahead. But remember, dear friends, that the apostles of our Master, Jesus Christ, told us this would happen: “In the last days there will be people who don’t take these things seriously anymore. They’ll treat them like a joke, and make a religion of their own whims and lusts.” These are the ones who split churches, thinking only of themselves. There’s nothing to them, no sign of the Spirit!* * * But you, dear friends, carefully build yourselves up in this most holy faith by praying in the Holy Spirit, staying right at the center of God’s love, keeping your arms open and outstretched, ready for the mercy of our Master, Jesus Christ. This is the unending life, the real life! Go easy on those who hesitate in the faith. Go after those who take the wrong way. Be tender with sinners, but not soft on sin. The sin itself stinks to high heaven. And now to him who can keep you on your feet, standing tall in his bright presence, fresh and celebrating—to our one God, our only Savior, through Jesus Christ, our Master, be glory, majesty, strength, and rule before all time, and now, and to the end of all time. Yes."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Fight with All You Have in You"
+        },
+        {
+          "before_verse": 1,
+          "text": "Lost Stars in Outer Space"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/JUD/1-8950c9b3c695205cc370af925a573b97.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JUD/1-8950c9b3c695205cc370af925a573b97.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

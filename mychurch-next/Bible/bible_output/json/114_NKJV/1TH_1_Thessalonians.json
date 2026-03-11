@@ -1,0 +1,566 @@
+{
+  "book_id": "1TH",
+  "book_name_en": "1 Thessalonians",
+  "book_name_fa": "اول تسالونیکیان",
+  "testament": "NT",
+  "version_id": 114,
+  "version_abbr": "NKJV",
+  "version_name": "New King James Version",
+  "language": "en",
+  "chapter_count": 5,
+  "total_verses": 89,
+  "chapters": [
+    {
+      "book_id": "1TH",
+      "chapter": 1,
+      "chapter_usfm": "1TH.1",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, Silvanus, and Timothy,To the church of the Thessalonians in God the Father and the Lord Jesus Christ:Grace to you and peace from God our Father and the Lord Jesus Christ."
+        },
+        {
+          "verse": 2,
+          "text": "We give thanks to God always for you all, making mention of you in our prayers,"
+        },
+        {
+          "verse": 3,
+          "text": "remembering without ceasing your work of faith, labor of love, and patience of hope in our Lord Jesus Christ in the sight of our God and Father,"
+        },
+        {
+          "verse": 4,
+          "text": "knowing, beloved brethren, your election by God."
+        },
+        {
+          "verse": 5,
+          "text": "For our gospel did not come to you in word only, but also in power, and in the Holy Spirit and in much assurance, as you know what kind of men we were among you for your sake."
+        },
+        {
+          "verse": 6,
+          "text": "And you became followers of us and of the Lord, having received the word in much affliction, with joy of the Holy Spirit,"
+        },
+        {
+          "verse": 7,
+          "text": "so that you became examples to all in Macedonia and Achaia who believe."
+        },
+        {
+          "verse": 8,
+          "text": "For from you the word of the Lord has sounded forth, not only in Macedonia and Achaia, but also in every place. Your faith toward God has gone out, so that we do not need to say anything."
+        },
+        {
+          "verse": 9,
+          "text": "For they themselves declare concerning us what manner of entry we had to you, and how you turned to God from idols to serve the living and true God,"
+        },
+        {
+          "verse": 10,
+          "text": "and to wait for His Son from heaven, whom He raised from the dead, even Jesus who delivers us from the wrath to come."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Their Good Example"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/1TH/1-ce31f99b9a96dfa041f930f863c83e77.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/1TH/1-ce31f99b9a96dfa041f930f863c83e77.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/1TH/1-056b9d658a3c3565663118d284145f76.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TH/1-056b9d658a3c3565663118d284145f76.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1TH",
+      "chapter": 2,
+      "chapter_usfm": "1TH.2",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "For you yourselves know, brethren, that our coming to you was not in vain."
+        },
+        {
+          "verse": 2,
+          "text": "But even after we had suffered before and were spitefully treated at Philippi, as you know, we were bold in our God to speak to you the gospel of God in much conflict."
+        },
+        {
+          "verse": 3,
+          "text": "For our exhortation did not come from error or uncleanness, nor was it in deceit."
+        },
+        {
+          "verse": 4,
+          "text": "But as we have been approved by God to be entrusted with the gospel, even so we speak, not as pleasing men, but God who tests our hearts."
+        },
+        {
+          "verse": 5,
+          "text": "For neither at any time did we use flattering words, as you know, nor a cloak for covetousness—God is witness."
+        },
+        {
+          "verse": 6,
+          "text": "Nor did we seek glory from men, either from you or from others, when we might have made demands as apostles of Christ."
+        },
+        {
+          "verse": 7,
+          "text": "But we were gentle among you, just as a nursing mother cherishes her own children."
+        },
+        {
+          "verse": 8,
+          "text": "So, affectionately longing for you, we were well pleased to impart to you not only the gospel of God, but also our own lives, because you had become dear to us."
+        },
+        {
+          "verse": 9,
+          "text": "For you remember, brethren, our labor and toil; for laboring night and day, that we might not be a burden to any of you, we preached to you the gospel of God."
+        },
+        {
+          "verse": 10,
+          "text": "You are witnesses, and God also, how devoutly and justly and blamelessly we behaved ourselves among you who believe;"
+        },
+        {
+          "verse": 11,
+          "text": "as you know how we exhorted, and comforted, and charged every one of you, as a father does his own children,"
+        },
+        {
+          "verse": 12,
+          "text": "that you would walk worthy of God who calls you into His own kingdom and glory."
+        },
+        {
+          "verse": 13,
+          "text": "For this reason we also thank God without ceasing, because when you received the word of God which you heard from us, you welcomed it not as the word of men, but as it is in truth, the word of God, which also effectively works in you who believe."
+        },
+        {
+          "verse": 14,
+          "text": "For you, brethren, became imitators of the churches of God which are in Judea in Christ Jesus. For you also suffered the same things from your own countrymen, just as they did from the Judeans,"
+        },
+        {
+          "verse": 15,
+          "text": "who killed both the Lord Jesus and their own prophets, and have persecuted us; and they do not please God and are contrary to all men,"
+        },
+        {
+          "verse": 16,
+          "text": "forbidding us to speak to the Gentiles that they may be saved, so as always to fill up the measure of their sins; but wrath has come upon them to the uttermost."
+        },
+        {
+          "verse": 17,
+          "text": "But we, brethren, having been taken away from you for a short time in presence, not in heart, endeavored more eagerly to see your face with great desire."
+        },
+        {
+          "verse": 18,
+          "text": "Therefore we wanted to come to you—even I, Paul, time and again—but Satan hindered us."
+        },
+        {
+          "verse": 19,
+          "text": "For what is our hope, or joy, or crown of rejoicing? Is it not even you in the presence of our Lord Jesus Christ at His coming?"
+        },
+        {
+          "verse": 20,
+          "text": "For you are our glory and joy."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 12,
+          "text": "Their Conversion"
+        },
+        {
+          "before_verse": 16,
+          "text": "Longing to See Them"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/1TH/2-0874ecbb108d8ea3ce30e595831f948c.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/1TH/2-0874ecbb108d8ea3ce30e595831f948c.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/1TH/2-bddc4b3c5bc65c79dddb538e243ce30e.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TH/2-bddc4b3c5bc65c79dddb538e243ce30e.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1TH",
+      "chapter": 3,
+      "chapter_usfm": "1TH.3",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore, when we could no longer endure it, we thought it good to be left in Athens alone,"
+        },
+        {
+          "verse": 2,
+          "text": "and sent Timothy, our brother and minister of God, and our fellow laborer in the gospel of Christ, to establish you and encourage you concerning your faith,"
+        },
+        {
+          "verse": 3,
+          "text": "that no one should be shaken by these afflictions; for you yourselves know that we are appointed to this."
+        },
+        {
+          "verse": 4,
+          "text": "For, in fact, we told you before when we were with you that we would suffer tribulation, just as it happened, and you know."
+        },
+        {
+          "verse": 5,
+          "text": "For this reason, when I could no longer endure it, I sent to know your faith, lest by some means the tempter had tempted you, and our labor might be in vain."
+        },
+        {
+          "verse": 6,
+          "text": "But now that Timothy has come to us from you, and brought us good news of your faith and love, and that you always have good remembrance of us, greatly desiring to see us, as we also to see you—"
+        },
+        {
+          "verse": 7,
+          "text": "therefore, brethren, in all our affliction and distress we were comforted concerning you by your faith."
+        },
+        {
+          "verse": 8,
+          "text": "For now we live, if you stand fast in the Lord."
+        },
+        {
+          "verse": 9,
+          "text": "For what thanks can we render to God for you, for all the joy with which we rejoice for your sake before our God,"
+        },
+        {
+          "verse": 10,
+          "text": "night and day praying exceedingly that we may see your face and perfect what is lacking in your faith?"
+        },
+        {
+          "verse": 11,
+          "text": "Now may our God and Father Himself, and our Lord Jesus Christ, direct our way to you."
+        },
+        {
+          "verse": 12,
+          "text": "And may the Lord make you increase and abound in love to one another and to all, just as we do to you,"
+        },
+        {
+          "verse": 13,
+          "text": "so that He may establish your hearts blameless in holiness before our God and Father at the coming of our Lord Jesus Christ with all His saints."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 5,
+          "text": "Encouraged by Timothy"
+        },
+        {
+          "before_verse": 10,
+          "text": "Prayer for the Church"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/1TH/3-c00955c9333c1e7d138591be12dcfd6c.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/1TH/3-c00955c9333c1e7d138591be12dcfd6c.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/1TH/3-9b7fb80b6d904f7b850b07af4a2f015f.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TH/3-9b7fb80b6d904f7b850b07af4a2f015f.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1TH",
+      "chapter": 4,
+      "chapter_usfm": "1TH.4",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Finally then, brethren, we urge and exhort in the Lord Jesus that you should abound more and more, just as you received from us how you ought to walk and to please God;"
+        },
+        {
+          "verse": 2,
+          "text": "for you know what commandments we gave you through the Lord Jesus."
+        },
+        {
+          "verse": 3,
+          "text": "For this is the will of God, your sanctification: that you should abstain from sexual immorality;"
+        },
+        {
+          "verse": 4,
+          "text": "that each of you should know how to possess his own vessel in sanctification and honor,"
+        },
+        {
+          "verse": 5,
+          "text": "not in passion of lust, like the Gentiles who do not know God;"
+        },
+        {
+          "verse": 6,
+          "text": "that no one should take advantage of and defraud his brother in this matter, because the Lord is the avenger of all such, as we also forewarned you and testified."
+        },
+        {
+          "verse": 7,
+          "text": "For God did not call us to uncleanness, but in holiness."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore he who rejects this does not reject man, but God, who has also given us His Holy Spirit."
+        },
+        {
+          "verse": 9,
+          "text": "But concerning brotherly love you have no need that I should write to you, for you yourselves are taught by God to love one another;"
+        },
+        {
+          "verse": 10,
+          "text": "and indeed you do so toward all the brethren who are in all Macedonia. But we urge you, brethren, that you increase more and more;"
+        },
+        {
+          "verse": 11,
+          "text": "that you also aspire to lead a quiet life, to mind your own business, and to work with your own hands, as we commanded you,"
+        },
+        {
+          "verse": 12,
+          "text": "that you may walk properly toward those who are outside, and that you may lack nothing."
+        },
+        {
+          "verse": 13,
+          "text": "But I do not want you to be ignorant, brethren, concerning those who have fallen asleep, lest you sorrow as others who have no hope."
+        },
+        {
+          "verse": 14,
+          "text": "For if we believe that Jesus died and rose again, even so God will bring with Him those who sleep in Jesus."
+        },
+        {
+          "verse": 15,
+          "text": "For this we say to you by the word of the Lord, that we who are alive and remain until the coming of the Lord will by no means precede those who are asleep."
+        },
+        {
+          "verse": 16,
+          "text": "For the Lord Himself will descend from heaven with a shout, with the voice of an archangel, and with the trumpet of God. And the dead in Christ will rise first."
+        },
+        {
+          "verse": 17,
+          "text": "Then we who are alive and remain shall be caught up together with them in the clouds to meet the Lord in the air. And thus we shall always be with the Lord."
+        },
+        {
+          "verse": 18,
+          "text": "Therefore comfort one another with these words."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 8,
+          "text": "A Brotherly and Orderly Life"
+        },
+        {
+          "before_verse": 12,
+          "text": "The Comfort of Christ’s Coming"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/1TH/4-1212c7fa6dbe7cd4b233797d3ef2c3ca.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/1TH/4-1212c7fa6dbe7cd4b233797d3ef2c3ca.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/1TH/4-20d5b56da7c42fc2bf3f0f08228279bb.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TH/4-20d5b56da7c42fc2bf3f0f08228279bb.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1TH",
+      "chapter": 5,
+      "chapter_usfm": "1TH.5",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "But concerning the times and the seasons, brethren, you have no need that I should write to you."
+        },
+        {
+          "verse": 2,
+          "text": "For you yourselves know perfectly that the day of the Lord so comes as a thief in the night."
+        },
+        {
+          "verse": 3,
+          "text": "For when they say, “Peace and safety!” then sudden destruction comes upon them, as labor pains upon a pregnant woman. And they shall not escape."
+        },
+        {
+          "verse": 4,
+          "text": "But you, brethren, are not in darkness, so that this Day should overtake you as a thief."
+        },
+        {
+          "verse": 5,
+          "text": "You are all sons of light and sons of the day. We are not of the night nor of darkness."
+        },
+        {
+          "verse": 6,
+          "text": "Therefore let us not sleep, as others do, but let us watch and be sober."
+        },
+        {
+          "verse": 7,
+          "text": "For those who sleep, sleep at night, and those who get drunk are drunk at night."
+        },
+        {
+          "verse": 8,
+          "text": "But let us who are of the day be sober, putting on the breastplate of faith and love, and as a helmet the hope of salvation."
+        },
+        {
+          "verse": 9,
+          "text": "For God did not appoint us to wrath, but to obtain salvation through our Lord Jesus Christ,"
+        },
+        {
+          "verse": 10,
+          "text": "who died for us, that whether we wake or sleep, we should live together with Him."
+        },
+        {
+          "verse": 11,
+          "text": "Therefore comfort each other and edify one another, just as you also are doing."
+        },
+        {
+          "verse": 12,
+          "text": "And we urge you, brethren, to recognize those who labor among you, and are over you in the Lord and admonish you,"
+        },
+        {
+          "verse": 13,
+          "text": "and to esteem them very highly in love for their work’s sake. Be at peace among yourselves."
+        },
+        {
+          "verse": 14,
+          "text": "Now we exhort you, brethren, warn those who are unruly, comfort the fainthearted, uphold the weak, be patient with all."
+        },
+        {
+          "verse": 15,
+          "text": "See that no one renders evil for evil to anyone, but always pursue what is good both for yourselves and for all."
+        },
+        {
+          "verse": 16,
+          "text": "Rejoice always,"
+        },
+        {
+          "verse": 17,
+          "text": "pray without ceasing,"
+        },
+        {
+          "verse": 18,
+          "text": "in everything give thanks; for this is the will of God in Christ Jesus for you."
+        },
+        {
+          "verse": 19,
+          "text": "Do not quench the Spirit."
+        },
+        {
+          "verse": 20,
+          "text": "Do not despise prophecies."
+        },
+        {
+          "verse": 21,
+          "text": "Test all things; hold fast what is good."
+        },
+        {
+          "verse": 22,
+          "text": "Abstain from every form of evil."
+        },
+        {
+          "verse": 23,
+          "text": "Now may the God of peace Himself sanctify you completely; and may your whole spirit, soul, and body be preserved blameless at the coming of our Lord Jesus Christ."
+        },
+        {
+          "verse": 24,
+          "text": "He who calls you is faithful, who also will do it."
+        },
+        {
+          "verse": 25,
+          "text": "Brethren, pray for us."
+        },
+        {
+          "verse": 26,
+          "text": "Greet all the brethren with a holy kiss."
+        },
+        {
+          "verse": 27,
+          "text": "I charge you by the Lord that this epistle be read to all the holy brethren."
+        },
+        {
+          "verse": 28,
+          "text": "The grace of our Lord Jesus Christ be with you. Amen."
+        }
+      ],
+      "verse_count": 28,
+      "headings": [
+        {
+          "before_verse": 11,
+          "text": "Various Exhortations"
+        },
+        {
+          "before_verse": 22,
+          "text": "Blessing and Admonition"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/1TH/5-1ebfadf16c21ff1c8ebef11c5f2e9f6f.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/1TH/5-1ebfadf16c21ff1c8ebef11c5f2e9f6f.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/1TH/5-8856eb4308f9abbe5538b99603fb0d8b.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TH/5-8856eb4308f9abbe5538b99603fb0d8b.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

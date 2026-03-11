@@ -1,0 +1,99 @@
+{
+  "book_id": "TIT",
+  "book_name_en": "Titus",
+  "book_name_fa": "تیتوس",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 3,
+  "chapters": [
+    {
+      "book_id": "TIT",
+      "chapter": 1,
+      "chapter_usfm": "TIT.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "A Good Grip on the Message"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/TIT/1-9a2ce836e4cb2b4d8a95d29fc5f7d603.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/TIT/1-9a2ce836e4cb2b4d8a95d29fc5f7d603.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "TIT",
+      "chapter": 2,
+      "chapter_usfm": "TIT.2",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 15,
+          "text": "Tell them all this. Build up their courage, and discipline them if they get out of line. You’re in charge. Don’t let anyone put you down."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/TIT/2-8e58d5555178e04dcd20692caaa3f8ed.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/TIT/2-8e58d5555178e04dcd20692caaa3f8ed.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "TIT",
+      "chapter": 3,
+      "chapter_usfm": "TIT.3",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Our people have to learn to be diligent in their work so that all necessities are met (especially among the needy) and they don’t end up with nothing to show for their lives."
+        },
+        {
+          "verse": 15,
+          "text": "All here want to be remembered to you. Say hello to our friends in the faith. Grace to all of you."
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/TIT/3-5c11367be85a458d26e76a09589fe3f0.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/TIT/3-5c11367be85a458d26e76a09589fe3f0.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

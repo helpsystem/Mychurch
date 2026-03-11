@@ -1,0 +1,413 @@
+{
+  "book_id": "HAB",
+  "book_name_en": "Habakkuk",
+  "book_name_fa": "حبقوق",
+  "testament": "OT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 56,
+  "chapters": [
+    {
+      "book_id": "HAB",
+      "chapter": 1,
+      "chapter_usfm": "HAB.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The prophecy that Habakkuk the prophet received."
+        },
+        {
+          "verse": 2,
+          "text": "How long, Lord, must I call for help,but you do not listen?Or cry out to you, “Violence!”but you do not save?"
+        },
+        {
+          "verse": 3,
+          "text": "Why do you make me look at injustice?Why do you tolerate wrongdoing?Destruction and violence are before me;there is strife, and conflict abounds."
+        },
+        {
+          "verse": 4,
+          "text": "Therefore the law is paralyzed,and justice never prevails.The wicked hem in the righteous,so that justice is perverted."
+        },
+        {
+          "verse": 5,
+          "text": "“Look at the nations and watch—and be utterly amazed.For I am going to do something in your daysthat you would not believe,even if you were told."
+        },
+        {
+          "verse": 6,
+          "text": "I am raising up the Babylonians,that ruthless and impetuous people,who sweep across the whole earthto seize dwellings not their own."
+        },
+        {
+          "verse": 7,
+          "text": "They are a feared and dreaded people;they are a law to themselvesand promote their own honor."
+        },
+        {
+          "verse": 8,
+          "text": "Their horses are swifter than leopards,fiercer than wolves at dusk.Their cavalry gallops headlong;their horsemen come from afar.They fly like an eagle swooping to devour;"
+        },
+        {
+          "verse": 9,
+          "text": "they all come intent on violence.Their hordes advance like a desert windand gather prisoners like sand."
+        },
+        {
+          "verse": 10,
+          "text": "They mock kingsand scoff at rulers.They laugh at all fortified cities;by building earthen ramps they capture them."
+        },
+        {
+          "verse": 11,
+          "text": "Then they sweep past like the wind and go on—guilty people, whose own strength is their god.”"
+        },
+        {
+          "verse": 12,
+          "text": "Lord, are you not from everlasting?My God, my Holy One, you will never die.You, Lord, have appointed them to execute judgment;you, my Rock, have ordained them to punish."
+        },
+        {
+          "verse": 13,
+          "text": "Your eyes are too pure to look on evil;you cannot tolerate wrongdoing.Why then do you tolerate the treacherous?Why are you silent while the wickedswallow up those more righteous than themselves?"
+        },
+        {
+          "verse": 14,
+          "text": "You have made people like the fish in the sea,like the sea creatures that have no ruler."
+        },
+        {
+          "verse": 15,
+          "text": "The wicked foe pulls all of them up with hooks,he catches them in his net,he gathers them up in his dragnet;and so he rejoices and is glad."
+        },
+        {
+          "verse": 16,
+          "text": "Therefore he sacrifices to his netand burns incense to his dragnet,for by his net he lives in luxuryand enjoys the choicest food."
+        },
+        {
+          "verse": 17,
+          "text": "Is he to keep on emptying his net,destroying nations without mercy?"
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Habakkuk’s Complaint"
+        },
+        {
+          "before_verse": 4,
+          "text": "The"
+        },
+        {
+          "before_verse": 4,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 4,
+          "text": "’s Answer"
+        },
+        {
+          "before_verse": 11,
+          "text": "Habakkuk’s Second Complaint"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HAB/1-d9e2d2859157bb8eccfa8b1c14324963.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HAB/1-d9e2d2859157bb8eccfa8b1c14324963.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HAB/1-1deabc55a727006f9a8503ebb45824ee.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HAB/1-1deabc55a727006f9a8503ebb45824ee.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HAB/1-6186d4073f9d6833b7399f5fc01081a6.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HAB/1-6186d4073f9d6833b7399f5fc01081a6.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HAB/1-801749ea11f83eab2815331ff1d35816.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HAB/1-801749ea11f83eab2815331ff1d35816.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HAB",
+      "chapter": 2,
+      "chapter_usfm": "HAB.2",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I will stand at my watchand station myself on the ramparts;I will look to see what he will say to me,and what answer I am to give to this complaint."
+        },
+        {
+          "verse": 2,
+          "text": "Then the Lord replied:“Write down the revelationand make it plain on tabletsso that a herald may run with it."
+        },
+        {
+          "verse": 3,
+          "text": "For the revelation awaits an appointed time;it speaks of the endand will not prove false.Though it linger, wait for it;it will certainly comeand will not delay."
+        },
+        {
+          "verse": 4,
+          "text": "“See, the enemy is puffed up;his desires are not upright—but the righteous person will live by his faithfulness—"
+        },
+        {
+          "verse": 5,
+          "text": "indeed, wine betrays him;he is arrogant and never at rest.Because he is as greedy as the graveand like death is never satisfied,he gathers to himself all the nationsand takes captive all the peoples."
+        },
+        {
+          "verse": 6,
+          "text": "“Will not all of them taunt him with ridicule and scorn, saying,“ ‘Woe to him who piles up stolen goodsand makes himself wealthy by extortion!How long must this go on?’"
+        },
+        {
+          "verse": 7,
+          "text": "Will not your creditors suddenly arise?Will they not wake up and make you tremble?Then you will become their prey."
+        },
+        {
+          "verse": 8,
+          "text": "Because you have plundered many nations,the peoples who are left will plunder you.For you have shed human blood;you have destroyed lands and cities and everyone in them."
+        },
+        {
+          "verse": 9,
+          "text": "“Woe to him who builds his house by unjust gain,setting his nest on highto escape the clutches of ruin!"
+        },
+        {
+          "verse": 10,
+          "text": "You have plotted the ruin of many peoples,shaming your own house and forfeiting your life."
+        },
+        {
+          "verse": 11,
+          "text": "The stones of the wall will cry out,and the beams of the woodwork will echo it."
+        },
+        {
+          "verse": 12,
+          "text": "“Woe to him who builds a city with bloodshedand establishes a town by injustice!"
+        },
+        {
+          "verse": 13,
+          "text": "Has not the Lord Almighty determinedthat the people’s labor is only fuel for the fire,that the nations exhaust themselves for nothing?"
+        },
+        {
+          "verse": 14,
+          "text": "For the earth will be filled with the knowledge of the glory of the Lordas the waters cover the sea."
+        },
+        {
+          "verse": 15,
+          "text": "“Woe to him who gives drink to his neighbors,pouring it from the wineskin till they are drunk,so that he can gaze on their naked bodies!"
+        },
+        {
+          "verse": 16,
+          "text": "You will be filled with shame instead of glory.Now it is your turn! Drink and let your nakedness be exposed!The cup from the Lord’s right hand is coming around to you,and disgrace will cover your glory."
+        },
+        {
+          "verse": 17,
+          "text": "The violence you have done to Lebanon will overwhelm you,and your destruction of animals will terrify you.For you have shed human blood;you have destroyed lands and cities and everyone in them."
+        },
+        {
+          "verse": 18,
+          "text": "“Of what value is an idol carved by a craftsman?Or an image that teaches lies?For the one who makes it trusts in his own creation;he makes idols that cannot speak."
+        },
+        {
+          "verse": 19,
+          "text": "Woe to him who says to wood, ‘Come to life!’Or to lifeless stone, ‘Wake up!’Can it give guidance?It is covered with gold and silver;there is no breath in it.”"
+        },
+        {
+          "verse": 20,
+          "text": "The Lord is in his holy temple;let all the earth be silent before him."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The"
+        },
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 1,
+          "text": "’s Answer"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HAB/2-bbd529460b39ba50b179291dac4cb696.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HAB/2-bbd529460b39ba50b179291dac4cb696.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HAB/2-83c9205fb5d0e255b166d43b9f76cdab.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HAB/2-83c9205fb5d0e255b166d43b9f76cdab.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HAB/2-1333c3e9e607279be0c3b4786dcaeab8.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HAB/2-1333c3e9e607279be0c3b4786dcaeab8.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HAB/2-ec3d2ba2bcd86216fe02ac4bb873e3fe.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HAB/2-ec3d2ba2bcd86216fe02ac4bb873e3fe.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HAB",
+      "chapter": 3,
+      "chapter_usfm": "HAB.3",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "A prayer of Habakkuk the prophet. On shigionoth."
+        },
+        {
+          "verse": 2,
+          "text": "Lord, I have heard of your fame;I stand in awe of your deeds, Lord.Repeat them in our day,in our time make them known;in wrath remember mercy."
+        },
+        {
+          "verse": 3,
+          "text": "God came from Teman,the Holy One from Mount Paran.His glory covered the heavensand his praise filled the earth."
+        },
+        {
+          "verse": 4,
+          "text": "His splendor was like the sunrise;rays flashed from his hand,where his power was hidden."
+        },
+        {
+          "verse": 5,
+          "text": "Plague went before him;pestilence followed his steps."
+        },
+        {
+          "verse": 6,
+          "text": "He stood, and shook the earth;he looked, and made the nations tremble.The ancient mountains crumbledand the age-old hills collapsed—but he marches on forever."
+        },
+        {
+          "verse": 7,
+          "text": "I saw the tents of Cushan in distress,the dwellings of Midian in anguish."
+        },
+        {
+          "verse": 8,
+          "text": "Were you angry with the rivers, Lord?Was your wrath against the streams?Did you rage against the seawhen you rode your horsesand your chariots to victory?"
+        },
+        {
+          "verse": 9,
+          "text": "You uncovered your bow,you called for many arrows.You split the earth with rivers;"
+        },
+        {
+          "verse": 10,
+          "text": "the mountains saw you and writhed.Torrents of water swept by;the deep roaredand lifted its waves on high."
+        },
+        {
+          "verse": 11,
+          "text": "Sun and moon stood still in the heavensat the glint of your flying arrows,at the lightning of your flashing spear."
+        },
+        {
+          "verse": 12,
+          "text": "In wrath you strode through the earthand in anger you threshed the nations."
+        },
+        {
+          "verse": 13,
+          "text": "You came out to deliver your people,to save your anointed one.You crushed the leader of the land of wickedness,you stripped him from head to foot."
+        },
+        {
+          "verse": 14,
+          "text": "With his own spear you pierced his headwhen his warriors stormed out to scatter us,gloating as though about to devourthe wretched who were in hiding."
+        },
+        {
+          "verse": 15,
+          "text": "You trampled the sea with your horses,churning the great waters."
+        },
+        {
+          "verse": 16,
+          "text": "I heard and my heart pounded,my lips quivered at the sound;decay crept into my bones,and my legs trembled.Yet I will wait patiently for the day of calamityto come on the nation invading us."
+        },
+        {
+          "verse": 17,
+          "text": "Though the fig tree does not budand there are no grapes on the vines,though the olive crop failsand the fields produce no food,though there are no sheep in the penand no cattle in the stalls,"
+        },
+        {
+          "verse": 18,
+          "text": "yet I will rejoice in the Lord,I will be joyful in God my Savior."
+        },
+        {
+          "verse": 19,
+          "text": "The Sovereign Lord is my strength;he makes my feet like the feet of a deer,he enables me to tread on the heights.For the director of music. On my stringed instruments."
+        }
+      ],
+      "verse_count": 19,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HAB/3-52cc074605dbdc31909112919723a608.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HAB/3-52cc074605dbdc31909112919723a608.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HAB/3-76ae838c3ff7c646dc670545cb870a02.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HAB/3-76ae838c3ff7c646dc670545cb870a02.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HAB/3-ff7283ccf392b01b7a93a1cbbe526a3b.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HAB/3-ff7283ccf392b01b7a93a1cbbe526a3b.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HAB/3-7def9a61c077802a3c7271dcb6ca43d9.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HAB/3-7def9a61c077802a3c7271dcb6ca43d9.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

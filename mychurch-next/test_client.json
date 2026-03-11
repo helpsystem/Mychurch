@@ -1,0 +1,47 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "port": 10808,
+            "listen": "127.0.0.1",
+            "protocol": "socks",
+            "settings": {
+                "udp": true
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "samanabyar.online",
+                        "port": 443,
+                        "users": [
+                            {
+                                "id": "45253986-0865-4a0f-93dd-cf79c47ae0d6",
+                                "encryption": "none"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "samanabyar.online"
+                },
+                "wsSettings": {
+                    "path": "/vpn-stream",
+                    "headers": {
+                        "Host": "samanabyar.online"
+                    }
+                }
+            }
+        }
+    ]
+}

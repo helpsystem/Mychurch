@@ -1,0 +1,666 @@
+{
+  "book_id": "SNG",
+  "book_name_en": "Song of Solomon",
+  "book_name_fa": "غزل غزلها",
+  "testament": "OT",
+  "version_id": 1,
+  "version_abbr": "KJV",
+  "version_name": "King James Version",
+  "language": "en",
+  "chapter_count": 8,
+  "total_verses": 117,
+  "chapters": [
+    {
+      "book_id": "SNG",
+      "chapter": 1,
+      "chapter_usfm": "SNG.1",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The song of songs, which is Solomon's."
+        },
+        {
+          "verse": 2,
+          "text": "Let him kiss me with the kisses of his mouth:For thy love is better than wine."
+        },
+        {
+          "verse": 3,
+          "text": "Because of the savour of thy good ointmentsThy name is as ointment poured forth,Therefore do the virgins love thee."
+        },
+        {
+          "verse": 4,
+          "text": "Draw me, we will run after thee:The king hath brought me into his chambers:We will be glad and rejoice in thee,We will remember thy love more than wine:The upright love thee."
+        },
+        {
+          "verse": 5,
+          "text": "I am black, but comely,O ye daughters of Jerusalem,As the tents of Kedar,As the curtains of Solomon."
+        },
+        {
+          "verse": 6,
+          "text": "Look not upon me, because I am black,Because the sun hath looked upon me:My mother's children were angry with me;They made me the keeper of the vineyards; But mine own vineyard have I not kept."
+        },
+        {
+          "verse": 7,
+          "text": "Tell me, O thou whom my soul loveth,Where thou feedest, where thou makest thy flock to rest at noon:For why should I be as one that turneth asideBy the flocks of thy companions?"
+        },
+        {
+          "verse": 8,
+          "text": "If thou know not,O thou fairest among women,Go thy way forth by the footsteps of the flock,And feed thy kidsBeside the shepherds' tents."
+        },
+        {
+          "verse": 9,
+          "text": "I have compared thee, O my love,To a company of horses in Pharaoh's chariots."
+        },
+        {
+          "verse": 10,
+          "text": "Thy cheeks are comely with rows of jewels,Thy neck with chains of gold."
+        },
+        {
+          "verse": 11,
+          "text": "We will make thee borders of goldWith studs of silver."
+        },
+        {
+          "verse": 12,
+          "text": "While the King sitteth at his table,My spikenard sendeth forth the smell thereof."
+        },
+        {
+          "verse": 13,
+          "text": "A bundle of myrrh is my wellbeloved unto me;He shall lie all night betwixt my breasts."
+        },
+        {
+          "verse": 14,
+          "text": "My beloved is unto me as a cluster of camphireIn the vineyards of Engedi."
+        },
+        {
+          "verse": 15,
+          "text": "Behold, thou art fair, my love;Behold, thou art fair;Thou hast doves' eyes."
+        },
+        {
+          "verse": 16,
+          "text": "Behold, thou art fair, my beloved,Yea, pleasant:Also our bed is green."
+        },
+        {
+          "verse": 17,
+          "text": "The beams of our house are cedar, And our rafters of fir."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/1-6e8978c4a4d3c40b2a8e98023061b312.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/1-6e8978c4a4d3c40b2a8e98023061b312.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 2,
+      "chapter_usfm": "SNG.2",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I am the rose of Sharon, And the lily of the valleys."
+        },
+        {
+          "verse": 2,
+          "text": "As the lily among thorns,So is my love among the daughters."
+        },
+        {
+          "verse": 3,
+          "text": "As the apple tree among the trees of the wood,So is my beloved among the sons.I sat down under his shadow with great delight,And his fruit was sweet to my taste."
+        },
+        {
+          "verse": 4,
+          "text": "He brought me to the banqueting house,And his banner over me was love."
+        },
+        {
+          "verse": 5,
+          "text": "Stay me with flagons,Comfort me with apples:For I am sick of love."
+        },
+        {
+          "verse": 6,
+          "text": "His left hand is under my head,And his right hand doth embrace me."
+        },
+        {
+          "verse": 7,
+          "text": "I charge you, O ye daughters of Jerusalem,By the roes, and by the hinds of the field,That ye stir not up, nor awake my love,Till he please."
+        },
+        {
+          "verse": 8,
+          "text": "The voice of my beloved!Behold, he comethLeaping upon the mountains,Skipping upon the hills."
+        },
+        {
+          "verse": 9,
+          "text": "My beloved is like a roeOr a young hart:Behold, he standethBehind our wall,He looketh forth at the windows,Shewing himself through the lattice."
+        },
+        {
+          "verse": 10,
+          "text": "My beloved spake, and said unto me,Rise up, my love, my fair one,And come away."
+        },
+        {
+          "verse": 11,
+          "text": "For, lo, the winter is past,The rain is over and gone;"
+        },
+        {
+          "verse": 12,
+          "text": "The flowers appear on the earth;The time of the singing of birds is come,And the voice of the turtleIs heard in our land;"
+        },
+        {
+          "verse": 13,
+          "text": "The fig tree putteth forth her green figs,And the vines with the tender grapeGive a good smell.Arise, my love, my fair one,and come away."
+        },
+        {
+          "verse": 14,
+          "text": "O my dove, that art in the clefts of the rock,In the secret places of the stairs,Let me see thy countenance,Let me hear thy voice;For sweet is thy voice,And thy countenance is comely."
+        },
+        {
+          "verse": 15,
+          "text": "Take us the foxes,The little foxes,That spoil the vines:For our vines have tender grapes."
+        },
+        {
+          "verse": 16,
+          "text": "My beloved is mine, and I am his:He feedeth among the lilies."
+        },
+        {
+          "verse": 17,
+          "text": "Until the day break,And the shadows flee away,Turn, my beloved, and be thou like a roe or a young hartUpon the mountains of Bether."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/2-84633b42712b76fc3672c3b26d45d41c.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/2-84633b42712b76fc3672c3b26d45d41c.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 3,
+      "chapter_usfm": "SNG.3",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "By night on my bed I sought him whom my soul loveth:I sought him, but I found him not."
+        },
+        {
+          "verse": 2,
+          "text": "I will rise now, and go about the cityIn the streets, and in the broad waysI will seek him whom my soul loveth:I sought him, but I found him not."
+        },
+        {
+          "verse": 3,
+          "text": "The watchmen that go about the city found me: To whom I said,Saw ye him whom my soul loveth?"
+        },
+        {
+          "verse": 4,
+          "text": "It was but a little that I passed from them,But I found him whom my soul loveth:I held him, and would not let him go,Until I had brought him into my mother's house,And into the chamber of her that conceived me."
+        },
+        {
+          "verse": 5,
+          "text": "I charge you, O ye daughters of Jerusalem,By the roes, and by the hinds of the field,That ye stir not up, nor awake my love,Till he please."
+        },
+        {
+          "verse": 6,
+          "text": "Who is this that cometh out of the wildernessLike pillars of smoke,Perfumed with myrrh and frankincense,With all powders of the merchant?"
+        },
+        {
+          "verse": 7,
+          "text": "Behold his bed, which is Solomon's;Threescore valiant men are about it,Of the valiant of Israel."
+        },
+        {
+          "verse": 8,
+          "text": "They all hold swords, Being expert in war:Every man hath his sword upon his thighBecause of fear in the night."
+        },
+        {
+          "verse": 9,
+          "text": "King Solomon made himself a chariotOf the wood of Lebanon."
+        },
+        {
+          "verse": 10,
+          "text": "He made the pillars thereof of silver,The bottom thereof of gold, the covering of it of purple,The midst thereof being paved with love,For the daughters of Jerusalem."
+        },
+        {
+          "verse": 11,
+          "text": "Go forth, O ye daughters of Zion,And behold king SolomonWith the crown wherewith his mother crowned himIn the day of his espousals,And in the day of the gladness of his heart."
+        }
+      ],
+      "verse_count": 11,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/3-2d5d656b91f8d11b5122fc9a9559b07b.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/3-2d5d656b91f8d11b5122fc9a9559b07b.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 4,
+      "chapter_usfm": "SNG.4",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Behold, thou art fair, my love;Behold, thou art fair;Thou hast doves' eyesWithin thy locks:Thy hair is as a flock of goats,That appear from mount Gilead."
+        },
+        {
+          "verse": 2,
+          "text": "Thy teeth are like a flock of sheep that are even shorn,Which came up from the washing;Whereof every one bear twins,And none is barren among them."
+        },
+        {
+          "verse": 3,
+          "text": "Thy lips are like a thread of scarlet,And thy speech is comely:Thy temples are like a piece of a pomegranateWithin thy locks."
+        },
+        {
+          "verse": 4,
+          "text": "Thy neck is like the tower of DavidBuilded for an armoury,Whereon there hang a thousand bucklers,All shields of mighty men."
+        },
+        {
+          "verse": 5,
+          "text": "Thy two breasts are like two young roesThat are twins,Which feed among the lilies."
+        },
+        {
+          "verse": 6,
+          "text": "Until the day break,And the shadows flee away,I will get me to the mountain of myrrh,And to the hill of frankincense."
+        },
+        {
+          "verse": 7,
+          "text": "Thou art all fair, my love; There is no spot in thee."
+        },
+        {
+          "verse": 8,
+          "text": "Come with me from Lebanon, my spouse,With me from Lebanon:Look from the top of Amana,From the top of Shenir and Hermon,From the lions' dens,From the mountains of the leopards."
+        },
+        {
+          "verse": 9,
+          "text": "Thou hast ravished my heart, my sister, my spouse;Thou hast ravished my heart with one of thine eyes,With one chain of thy neck."
+        },
+        {
+          "verse": 10,
+          "text": "How fair is thy love, my sister, my spouse!How much better is thy love than wine!And the smell of thine ointments than all spices!"
+        },
+        {
+          "verse": 11,
+          "text": "Thy lips, O my spouse, drop as the honeycomb:Honey and milk are under thy tongue;And the smell of thy garments is like the smell of Lebanon."
+        },
+        {
+          "verse": 12,
+          "text": "A garden inclosed is my sister, my spouse;A spring shut up, a fountain sealed."
+        },
+        {
+          "verse": 13,
+          "text": "Thy plants are an orchard of pomegranates,With pleasant fruits;Camphire, with spikenard,"
+        },
+        {
+          "verse": 14,
+          "text": "Spikenard and saffron;Calamus and cinnamon,With all trees of frankincense;Myrrh and aloes, with all the chief spices:"
+        },
+        {
+          "verse": 15,
+          "text": "A fountain of gardens,A well of living waters, and streams from Lebanon."
+        },
+        {
+          "verse": 16,
+          "text": "Awake, O north wind;And come, thou south;Blow upon my garden, That the spices thereof may flow out.Let my beloved come into his garden,And eat his pleasant fruits."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/4-5852e828823c20cecfb9e103e78eedae.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/4-5852e828823c20cecfb9e103e78eedae.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 5,
+      "chapter_usfm": "SNG.5",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I am come into my garden, my sister, my spouse:I have gathered my myrrh with my spice;I have eaten my honeycomb with my honey;I have drunk my wine with my milk:Eat, O friends;Drink, yea, drink abundantly, O beloved."
+        },
+        {
+          "verse": 2,
+          "text": "I sleep, but my heart waketh: It is the voice of my beloved that knocketh, saying,Open to me, my sister, my love,My dove, my undefiled:For my head is filled with dew, And my locks with the drops of the night."
+        },
+        {
+          "verse": 3,
+          "text": "I have put off my coat;How shall I put it on?I have washed my feet;How shall I defile them?"
+        },
+        {
+          "verse": 4,
+          "text": "My beloved put in his hand by the hole of the door,And my bowels were moved for him."
+        },
+        {
+          "verse": 5,
+          "text": "I rose up to open to my beloved;And my hands dropped with myrrh,And my fingers with sweet smelling myrrh,Upon the handles of the lock."
+        },
+        {
+          "verse": 6,
+          "text": "I opened to my beloved;But my beloved had withdrawn himself, and was gone:My soul failed when he spake:I sought him, but I could not find him;I called him, but he gave me no answer."
+        },
+        {
+          "verse": 7,
+          "text": "The watchmen that went about the city found me,They smote me, they wounded me;The keepers of the walls took away my veil from me."
+        },
+        {
+          "verse": 8,
+          "text": "I charge you, O daughters of Jerusalem,If ye find my beloved,That ye tell him,that I am sick of love."
+        },
+        {
+          "verse": 9,
+          "text": "What is thy beloved more than another beloved,O thou fairest among women?What is thy beloved more than another beloved,That thou dost so charge us?"
+        },
+        {
+          "verse": 10,
+          "text": "My beloved is white and ruddy,The chiefest among ten thousand."
+        },
+        {
+          "verse": 11,
+          "text": "His head is as the most fine gold,His locks are bushy, And black as a raven."
+        },
+        {
+          "verse": 12,
+          "text": "His eyes are as the eyes of doves by the rivers of waters,Washed with milk, and fitly set."
+        },
+        {
+          "verse": 13,
+          "text": "His cheeks are as a bed of spices, as sweet flowers:His lips like lilies, dropping sweet smelling myrrh."
+        },
+        {
+          "verse": 14,
+          "text": "His hands are as gold rings set with the beryl:His belly is as bright ivory overlaid with sapphires."
+        },
+        {
+          "verse": 15,
+          "text": "His legs are as pillars of marble, set upon sockets of fine gold:His countenance is as Lebanon, excellent as the cedars."
+        },
+        {
+          "verse": 16,
+          "text": "His mouth is most sweet:Yea, he is altogether lovely.This is my beloved, and this is my friend,O daughters of Jerusalem."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/5-34f1b4f72708d2ce4df795aeeea3efe2.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/5-34f1b4f72708d2ce4df795aeeea3efe2.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 6,
+      "chapter_usfm": "SNG.6",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Whither is thy beloved gone,O thou fairest among women?Whither is thy beloved turned aside?That we may seek him with thee."
+        },
+        {
+          "verse": 2,
+          "text": "My beloved is gone down into his garden,To the beds of spices,To feed in the gardens,And to gather lilies."
+        },
+        {
+          "verse": 3,
+          "text": "I am my beloved's, and my beloved is mine:He feedeth among the lilies."
+        },
+        {
+          "verse": 4,
+          "text": "Thou art beautiful, O my love, as Tirzah,Comely as Jerusalem,Terrible as an army with banners."
+        },
+        {
+          "verse": 5,
+          "text": "Turn away thine eyes from me,For they have overcome me:Thy hair is as a flock of goatsThat appear from Gilead."
+        },
+        {
+          "verse": 6,
+          "text": "Thy teeth are as a flock of sheepWhich go up from the washing,Whereof every one beareth twins,And there is not one barren among them."
+        },
+        {
+          "verse": 7,
+          "text": "As a piece of a pomegranate are thy templesWithin thy locks."
+        },
+        {
+          "verse": 8,
+          "text": "There are threescore queens, and fourscore concubines,And virgins without number."
+        },
+        {
+          "verse": 9,
+          "text": "My dove, my undefiled is but one;She is the only one of her mother,She is the choice one of her that bare her.The daughters saw her, and blessed her; Yea, the queens and the concubines, and they praised her."
+        },
+        {
+          "verse": 10,
+          "text": "Who is she that looketh forth as the morning,Fair as the moon, clear as the sun, And terrible as an army with banners?"
+        },
+        {
+          "verse": 11,
+          "text": "I went down into the garden of nutsTo see the fruits of the valley, And to see whether the vine flourished, And the pomegranates budded."
+        },
+        {
+          "verse": 12,
+          "text": "Or ever I was aware,My soul made me like the chariots of Amminadib."
+        },
+        {
+          "verse": 13,
+          "text": "Return, return, O Shulamite;Return, return, that we may look upon thee.What will ye see in the Shulamite?As it were the company of two armies."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/6-0990b2502d30b5105ddad4bff9518516.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/6-0990b2502d30b5105ddad4bff9518516.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 7,
+      "chapter_usfm": "SNG.7",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "How beautiful are thy feet with shoes,O prince's daughter!The joints of thy thighs are like jewels,The work of the hands of a cunning workman."
+        },
+        {
+          "verse": 2,
+          "text": "Thy navel is like a round goblet, Which wanteth not liquor:Thy belly is like an heap of wheatSet about with lilies."
+        },
+        {
+          "verse": 3,
+          "text": "Thy two breasts are like two young roes That are twins."
+        },
+        {
+          "verse": 4,
+          "text": "Thy neck is as a tower of ivory;Thine eyes like the fishpools in Heshbon,By the gate of Bathrabbim:Thy nose is as the tower of LebanonWhich looketh toward Damascus."
+        },
+        {
+          "verse": 5,
+          "text": "Thine head upon thee is like Carmel,And the hair of thine head like purple;The king is held in the galleries."
+        },
+        {
+          "verse": 6,
+          "text": "How fair and how pleasant art thou,O love, for delights!"
+        },
+        {
+          "verse": 7,
+          "text": "This thy stature is like to a palm tree,And thy breasts to clusters of grapes."
+        },
+        {
+          "verse": 8,
+          "text": "I said, I will go up to the palm tree,I will take hold of the boughs thereof:Now also thy breasts shall be as clusters of the vine,And the smell of thy nose like apples;"
+        },
+        {
+          "verse": 9,
+          "text": "And the roof of thy mouth like the best wineFor my beloved, that goeth down sweetly,Causing the lips of those that are asleep to speak."
+        },
+        {
+          "verse": 10,
+          "text": "I am my beloved's,And his desire is toward me."
+        },
+        {
+          "verse": 11,
+          "text": "Come, my beloved,Let us go forth into the field;Let us lodge in the villages."
+        },
+        {
+          "verse": 12,
+          "text": "Let us get up early to the vineyards;Let us see if the vine flourish, Whether the tender grape appear, And the pomegranates bud forth:There will I give thee my loves."
+        },
+        {
+          "verse": 13,
+          "text": "The mandrakes give a smell,And at our gates are all manner of pleasant fruits,New and old, Which I have laid up for thee, O my beloved."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/7-4e9dcc1d984fc82f7158230601c8dbf8.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/7-4e9dcc1d984fc82f7158230601c8dbf8.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 8,
+      "chapter_usfm": "SNG.8",
+      "version_id": 1,
+      "version_abbr": "KJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "O that thou wert as my brother,That sucked the breasts of my mother! When I should find thee without, I would kiss thee;Yea, I should not be despised."
+        },
+        {
+          "verse": 2,
+          "text": "I would lead thee, And bring thee into my mother's house, Who would instruct me:I would cause thee to drink of spiced wineOf the juice of my pomegranate."
+        },
+        {
+          "verse": 3,
+          "text": "His left hand should be under my head,And his right hand should embrace me."
+        },
+        {
+          "verse": 4,
+          "text": "I charge you, O daughters of Jerusalem,That ye stir not up, nor awake my love,Until he please."
+        },
+        {
+          "verse": 5,
+          "text": "Who is this that cometh up from the wilderness,Leaning upon her beloved?I raised thee up under the apple tree:There thy mother brought thee forth:There she brought thee forth that bare thee."
+        },
+        {
+          "verse": 6,
+          "text": "Set me as a seal upon thine heart,As a seal upon thine arm:For love is strong as death;Jealousy is cruel as the grave:The coals thereof are coals of fire, Which hath a most vehement flame."
+        },
+        {
+          "verse": 7,
+          "text": "Many waters cannot quench love,Neither can the floods drown it:If a man would give all the substance of his house for love,It would utterly be contemned."
+        },
+        {
+          "verse": 8,
+          "text": "We have a little sister,And she hath no breasts:What shall we do for our sisterIn the day when she shall be spoken for?"
+        },
+        {
+          "verse": 9,
+          "text": "If she be a wall,We will build upon her a palace of silver:And if she be a door,We will inclose her with boards of cedar."
+        },
+        {
+          "verse": 10,
+          "text": "I am a wall,And my breasts like towers:Then was I in his eyesAs one that found favour."
+        },
+        {
+          "verse": 11,
+          "text": "Solomon had a vineyard at Baalhamon;He let out the vineyard unto keepers;Every one for the fruit thereof was to bring a thousand pieces of silver."
+        },
+        {
+          "verse": 12,
+          "text": "My vineyard, which is mine, is before me:Thou, O Solomon, must have a thousand,And those that keep the fruit thereof two hundred."
+        },
+        {
+          "verse": 13,
+          "text": "Thou that dwellest in the gardens,The companions hearken to thy voice:Cause me to hear it."
+        },
+        {
+          "verse": 14,
+          "text": "Make haste, my beloved,And be thou like to a roeOr to a young hartUpon the mountains of spices."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 8,
+          "title": "The Listener’s Bible®: KJV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/8/32k/SNG/8-a85b95b310fb8af9b405d1a4940ab25b.mp3?version_id=1",
+          "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/8-a85b95b310fb8af9b405d1a4940ab25b.m3u8?version_id=1"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

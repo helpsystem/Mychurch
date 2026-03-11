@@ -1,0 +1,514 @@
+{
+  "book_id": "2TI",
+  "book_name_en": "2 Timothy",
+  "book_name_fa": "دوم تیموتائوس",
+  "testament": "NT",
+  "version_id": 114,
+  "version_abbr": "NKJV",
+  "version_name": "New King James Version",
+  "language": "en",
+  "chapter_count": 4,
+  "total_verses": 83,
+  "chapters": [
+    {
+      "book_id": "2TI",
+      "chapter": 1,
+      "chapter_usfm": "2TI.1",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, an apostle of Jesus Christ by the will of God, according to the promise of life which is in Christ Jesus,"
+        },
+        {
+          "verse": 2,
+          "text": "To Timothy, a beloved son:Grace, mercy, and peace from God the Father and Christ Jesus our Lord."
+        },
+        {
+          "verse": 3,
+          "text": "I thank God, whom I serve with a pure conscience, as my forefathers did, as without ceasing I remember you in my prayers night and day,"
+        },
+        {
+          "verse": 4,
+          "text": "greatly desiring to see you, being mindful of your tears, that I may be filled with joy,"
+        },
+        {
+          "verse": 5,
+          "text": "when I call to remembrance the genuine faith that is in you, which dwelt first in your grandmother Lois and your mother Eunice, and I am persuaded is in you also."
+        },
+        {
+          "verse": 6,
+          "text": "Therefore I remind you to stir up the gift of God which is in you through the laying on of my hands."
+        },
+        {
+          "verse": 7,
+          "text": "For God has not given us a spirit of fear, but of power and of love and of a sound mind."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore do not be ashamed of the testimony of our Lord, nor of me His prisoner, but share with me in the sufferings for the gospel according to the power of God,"
+        },
+        {
+          "verse": 9,
+          "text": "who has saved us and called us with a holy calling, not according to our works, but according to His own purpose and grace which was given to us in Christ Jesus before time began,"
+        },
+        {
+          "verse": 10,
+          "text": "but has now been revealed by the appearing of our Savior Jesus Christ, who has abolished death and brought life and immortality to light through the gospel,"
+        },
+        {
+          "verse": 11,
+          "text": "to which I was appointed a preacher, an apostle, and a teacher of the Gentiles."
+        },
+        {
+          "verse": 12,
+          "text": "For this reason I also suffer these things; nevertheless I am not ashamed, for I know whom I have believed and am persuaded that He is able to keep what I have committed to Him until that Day."
+        },
+        {
+          "verse": 13,
+          "text": "Hold fast the pattern of sound words which you have heard from me, in faith and love which are in Christ Jesus."
+        },
+        {
+          "verse": 14,
+          "text": "That good thing which was committed to you, keep by the Holy Spirit who dwells in us."
+        },
+        {
+          "verse": 15,
+          "text": "This you know, that all those in Asia have turned away from me, among whom are Phygellus and Hermogenes."
+        },
+        {
+          "verse": 16,
+          "text": "The Lord grant mercy to the household of Onesiphorus, for he often refreshed me, and was not ashamed of my chain;"
+        },
+        {
+          "verse": 17,
+          "text": "but when he arrived in Rome, he sought me out very zealously and found me."
+        },
+        {
+          "verse": 18,
+          "text": "The Lord grant to him that he may find mercy from the Lord in that Day—and you know very well how many ways he ministered to me at Ephesus."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 2,
+          "text": "Timothy’s Faith and Heritage"
+        },
+        {
+          "before_verse": 7,
+          "text": "Not Ashamed of the Gospel"
+        },
+        {
+          "before_verse": 12,
+          "text": "Be Loyal to the Faith"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/2TI/1-3fa21b103679e31bcfb492fa2a79bc59.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/2TI/1-3fa21b103679e31bcfb492fa2a79bc59.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/2TI/1-a929e9040aa75c7af896ab4d6aa4f5fc.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/2TI/1-a929e9040aa75c7af896ab4d6aa4f5fc.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TI",
+      "chapter": 2,
+      "chapter_usfm": "2TI.2",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "You therefore, my son, be strong in the grace that is in Christ Jesus."
+        },
+        {
+          "verse": 2,
+          "text": "And the things that you have heard from me among many witnesses, commit these to faithful men who will be able to teach others also."
+        },
+        {
+          "verse": 3,
+          "text": "You therefore must endure hardship as a good soldier of Jesus Christ."
+        },
+        {
+          "verse": 4,
+          "text": "No one engaged in warfare entangles himself with the affairs of this life, that he may please him who enlisted him as a soldier."
+        },
+        {
+          "verse": 5,
+          "text": "And also if anyone competes in athletics, he is not crowned unless he competes according to the rules."
+        },
+        {
+          "verse": 6,
+          "text": "The hardworking farmer must be first to partake of the crops."
+        },
+        {
+          "verse": 7,
+          "text": "Consider what I say, and may the Lord give you understanding in all things."
+        },
+        {
+          "verse": 8,
+          "text": "Remember that Jesus Christ, of the seed of David, was raised from the dead according to my gospel,"
+        },
+        {
+          "verse": 9,
+          "text": "for which I suffer trouble as an evildoer, even to the point of chains; but the word of God is not chained."
+        },
+        {
+          "verse": 10,
+          "text": "Therefore I endure all things for the sake of the elect, that they also may obtain the salvation which is in Christ Jesus with eternal glory."
+        },
+        {
+          "verse": 11,
+          "text": "This is a faithful saying:For if we died with Him,We shall also live with Him."
+        },
+        {
+          "verse": 12,
+          "text": "If we endure,We shall also reign with Him.If we deny Him,He also will deny us."
+        },
+        {
+          "verse": 13,
+          "text": "If we are faithless,He remains faithful;He cannot deny Himself."
+        },
+        {
+          "verse": 14,
+          "text": "Remind them of these things, charging them before the Lord not to strive about words to no profit, to the ruin of the hearers."
+        },
+        {
+          "verse": 15,
+          "text": "Be diligent to present yourself approved to God, a worker who does not need to be ashamed, rightly dividing the word of truth."
+        },
+        {
+          "verse": 16,
+          "text": "But shun profane and idle babblings, for they will increase to more ungodliness."
+        },
+        {
+          "verse": 17,
+          "text": "And their message will spread like cancer. Hymenaeus and Philetus are of this sort,"
+        },
+        {
+          "verse": 18,
+          "text": "who have strayed concerning the truth, saying that the resurrection is already past; and they overthrow the faith of some."
+        },
+        {
+          "verse": 19,
+          "text": "Nevertheless the solid foundation of God stands, having this seal: “The Lord knows those who are His,” and, “Let everyone who names the name of Christ depart from iniquity.”"
+        },
+        {
+          "verse": 20,
+          "text": "But in a great house there are not only vessels of gold and silver, but also of wood and clay, some for honor and some for dishonor."
+        },
+        {
+          "verse": 21,
+          "text": "Therefore if anyone cleanses himself from the latter, he will be a vessel for honor, sanctified and useful for the Master, prepared for every good work."
+        },
+        {
+          "verse": 22,
+          "text": "Flee also youthful lusts; but pursue righteousness, faith, love, peace with those who call on the Lord out of a pure heart."
+        },
+        {
+          "verse": 23,
+          "text": "But avoid foolish and ignorant disputes, knowing that they generate strife."
+        },
+        {
+          "verse": 24,
+          "text": "And a servant of the Lord must not quarrel but be gentle to all, able to teach, patient,"
+        },
+        {
+          "verse": 25,
+          "text": "in humility correcting those who are in opposition, if God perhaps will grant them repentance, so that they may know the truth,"
+        },
+        {
+          "verse": 26,
+          "text": "and that they may come to their senses and escape the snare of the devil, having been taken captive by him to do his will."
+        }
+      ],
+      "verse_count": 26,
+      "headings": [
+        {
+          "before_verse": 13,
+          "text": "Approved and Disapproved Workers"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/2TI/2-49e19560cf572e9ad26a0a4679820809.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/2TI/2-49e19560cf572e9ad26a0a4679820809.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/2TI/2-b9140556161913b14e36e26f7b8df1ed.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/2TI/2-b9140556161913b14e36e26f7b8df1ed.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TI",
+      "chapter": 3,
+      "chapter_usfm": "2TI.3",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "But know this, that in the last days perilous times will come:"
+        },
+        {
+          "verse": 2,
+          "text": "For men will be lovers of themselves, lovers of money, boasters, proud, blasphemers, disobedient to parents, unthankful, unholy,"
+        },
+        {
+          "verse": 3,
+          "text": "unloving, unforgiving, slanderers, without self-control, brutal, despisers of good,"
+        },
+        {
+          "verse": 4,
+          "text": "traitors, headstrong, haughty, lovers of pleasure rather than lovers of God,"
+        },
+        {
+          "verse": 5,
+          "text": "having a form of godliness but denying its power. And from such people turn away!"
+        },
+        {
+          "verse": 6,
+          "text": "For of this sort are those who creep into households and make captives of gullible women loaded down with sins, led away by various lusts,"
+        },
+        {
+          "verse": 7,
+          "text": "always learning and never able to come to the knowledge of the truth."
+        },
+        {
+          "verse": 8,
+          "text": "Now as Jannes and Jambres resisted Moses, so do these also resist the truth: men of corrupt minds, disapproved concerning the faith;"
+        },
+        {
+          "verse": 9,
+          "text": "but they will progress no further, for their folly will be manifest to all, as theirs also was."
+        },
+        {
+          "verse": 10,
+          "text": "But you have carefully followed my doctrine, manner of life, purpose, faith, longsuffering, love, perseverance,"
+        },
+        {
+          "verse": 11,
+          "text": "persecutions, afflictions, which happened to me at Antioch, at Iconium, at Lystra—what persecutions I endured. And out of them all the Lord delivered me."
+        },
+        {
+          "verse": 12,
+          "text": "Yes, and all who desire to live godly in Christ Jesus will suffer persecution."
+        },
+        {
+          "verse": 13,
+          "text": "But evil men and impostors will grow worse and worse, deceiving and being deceived."
+        },
+        {
+          "verse": 14,
+          "text": "But you must continue in the things which you have learned and been assured of, knowing from whom you have learned them,"
+        },
+        {
+          "verse": 15,
+          "text": "and that from childhood you have known the Holy Scriptures, which are able to make you wise for salvation through faith which is in Christ Jesus."
+        },
+        {
+          "verse": 16,
+          "text": "All Scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness,"
+        },
+        {
+          "verse": 17,
+          "text": "that the man of God may be complete, thoroughly equipped for every good work."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 9,
+          "text": "The Man of God and the Word of God"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/2TI/3-d2135442ed07cacbcc36fa749064f31e.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/2TI/3-d2135442ed07cacbcc36fa749064f31e.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/2TI/3-25af914daeece022a6639bbf9b933e6d.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/2TI/3-25af914daeece022a6639bbf9b933e6d.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TI",
+      "chapter": 4,
+      "chapter_usfm": "2TI.4",
+      "version_id": 114,
+      "version_abbr": "NKJV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I charge you therefore before God and the Lord Jesus Christ, who will judge the living and the dead at His appearing and His kingdom:"
+        },
+        {
+          "verse": 2,
+          "text": "Preach the word! Be ready in season and out of season. Convince, rebuke, exhort, with all longsuffering and teaching."
+        },
+        {
+          "verse": 3,
+          "text": "For the time will come when they will not endure sound doctrine, but according to their own desires, because they have itching ears, they will heap up for themselves teachers;"
+        },
+        {
+          "verse": 4,
+          "text": "and they will turn their ears away from the truth, and be turned aside to fables."
+        },
+        {
+          "verse": 5,
+          "text": "But you be watchful in all things, endure afflictions, do the work of an evangelist, fulfill your ministry."
+        },
+        {
+          "verse": 6,
+          "text": "For I am already being poured out as a drink offering, and the time of my departure is at hand."
+        },
+        {
+          "verse": 7,
+          "text": "I have fought the good fight, I have finished the race, I have kept the faith."
+        },
+        {
+          "verse": 8,
+          "text": "Finally, there is laid up for me the crown of righteousness, which the Lord, the righteous Judge, will give to me on that Day, and not to me only but also to all who have loved His appearing."
+        },
+        {
+          "verse": 9,
+          "text": "Be diligent to come to me quickly;"
+        },
+        {
+          "verse": 10,
+          "text": "for Demas has forsaken me, having loved this present world, and has departed for Thessalonica—Crescens for Galatia, Titus for Dalmatia."
+        },
+        {
+          "verse": 11,
+          "text": "Only Luke is with me. Get Mark and bring him with you, for he is useful to me for ministry."
+        },
+        {
+          "verse": 12,
+          "text": "And Tychicus I have sent to Ephesus."
+        },
+        {
+          "verse": 13,
+          "text": "Bring the cloak that I left with Carpus at Troas when you come—and the books, especially the parchments."
+        },
+        {
+          "verse": 14,
+          "text": "Alexander the coppersmith did me much harm. May the Lord repay him according to his works."
+        },
+        {
+          "verse": 15,
+          "text": "You also must beware of him, for he has greatly resisted our words."
+        },
+        {
+          "verse": 16,
+          "text": "At my first defense no one stood with me, but all forsook me. May it not be charged against them."
+        },
+        {
+          "verse": 17,
+          "text": "But the Lord stood with me and strengthened me, so that the message might be preached fully through me, and that all the Gentiles might hear. Also I was delivered out of the mouth of the lion."
+        },
+        {
+          "verse": 18,
+          "text": "And the Lord will deliver me from every evil work and preserve me for His heavenly kingdom. To Him be glory forever and ever. Amen!"
+        },
+        {
+          "verse": 19,
+          "text": "Greet Prisca and Aquila, and the household of Onesiphorus."
+        },
+        {
+          "verse": 20,
+          "text": "Erastus stayed in Corinth, but Trophimus I have left in Miletus sick."
+        },
+        {
+          "verse": 21,
+          "text": "Do your utmost to come before winter.Eubulus greets you, as well as Pudens, Linus, Claudia, and all the brethren."
+        },
+        {
+          "verse": 22,
+          "text": "The Lord Jesus Christ be with your spirit. Grace be with you. Amen."
+        }
+      ],
+      "verse_count": 22,
+      "headings": [
+        {
+          "before_verse": 5,
+          "text": "Paul’s Valedictory"
+        },
+        {
+          "before_verse": 8,
+          "text": "The Abandoned Apostle"
+        },
+        {
+          "before_verse": 16,
+          "text": "The Lord Is Faithful"
+        },
+        {
+          "before_verse": 18,
+          "text": "Come Before Winter"
+        },
+        {
+          "before_verse": 21,
+          "text": "Farewell"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2332,
+          "title": "New King James Version (Tinasha LaRaye)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2332/32k/2TI/4-dbc574c71cc7069028eb0a93016b11e6.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2332/m4a/32k/2TI/4-dbc574c71cc7069028eb0a93016b11e6.m3u8?version_id=114"
+        },
+        {
+          "audio_version_id": 2334,
+          "title": "New King James Version (Simon Bubb)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2334/32k/2TI/4-6d3190b6942623a95eea66a54fd2d4d1.mp3?version_id=114",
+          "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/2TI/4-6d3190b6942623a95eea66a54fd2d4d1.m3u8?version_id=114"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

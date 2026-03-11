@@ -21,7 +21,7 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
     const [selectedChapter, setSelectedChapter] = useState<number>(1);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
-    const [translation, setTranslation] = useState("MOJDEH");
+    const [translation, setTranslation] = useState<"MOJDEH" | "TPV" | "QADIM" | "WP">("MOJDEH");
 
     // Accessibility & Sync State
     const [fontSize, setFontSize] = useState<"md" | "lg" | "xl">("md");
@@ -60,12 +60,20 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                 audioRef.current.currentTime = 0;
             }
 
+            console.log('Force Reloading actions to clear cache');
             const data = await fetchChapterData(selectedBook, selectedChapter);
 
             if (isMounted) {
                 if (data) {
                     setVerses(data.verses);
-                    setAudioUrl(data.audioUrl || "");
+                    
+                    // Route to correct audio base on translation selected
+                    let currentAudio = data.audioUrl; // Primary fallback
+                    if (translation === "TPV" && data.tpvAudioUrl) currentAudio = data.tpvAudioUrl;
+                    if (translation === "MOJDEH" && data.mojdehAudioUrl) currentAudio = data.mojdehAudioUrl;
+                    if (translation === "QADIM" && data.qadimAudioUrl) currentAudio = data.qadimAudioUrl;
+
+                    setAudioUrl(currentAudio || "");
                 } else {
                     setVerses([]);
                     setAudioUrl("");
@@ -76,7 +84,7 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
 
         loadChapter();
         return () => { isMounted = false; };
-    }, [selectedBook, selectedChapter]);
+    }, [selectedBook, selectedChapter, translation]);
 
     // Auto-scroll logic when active verse changes
     useEffect(() => {
@@ -240,20 +248,8 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                         <div className="w-px h-6 bg-border hidden sm:block mx-1" />
 
                         {/* Chapter Navigation Panel */}
-                        <div className="flex items-center bg-secondary/50 rounded-xl border border-border/50 p-1 shadow-sm">
-                            <button
-                                title="Next Chapter"
-                                onClick={() => setSelectedChapter(c => Math.min(currentBook.chapters, c + 1))}
-                                disabled={selectedChapter >= currentBook.chapters}
-                                className="p-2 rounded-lg hover:bg-background hover:shadow-sm disabled:opacity-30 transition-all text-foreground"
-                            >
-                                <ChevronRight className="w-4 h-4" />
-                            </button>
-
-                            <div className="px-4 font-bold text-sm min-w-[5rem] text-center select-none text-foreground">
-                                فصل {selectedChapter}
-                            </div>
-
+                        {/* Chapter Navigation Panel (Force LTR layout to keep Back on left, Next on right) */}
+                        <div className="flex items-center bg-secondary/50 rounded-xl border border-border/50 p-1 shadow-sm" dir="ltr">
                             <button
                                 title="Previous Chapter"
                                 onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
@@ -261,6 +257,19 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                 className="p-2 rounded-lg hover:bg-background hover:shadow-sm disabled:opacity-30 transition-all text-foreground"
                             >
                                 <ChevronLeft className="w-4 h-4" />
+                            </button>
+
+                            <div className="px-4 font-bold text-sm min-w-[5rem] text-center select-none text-foreground" dir="rtl">
+                                فصل <span dir="ltr">{selectedChapter}</span>
+                            </div>
+
+                            <button
+                                title="Next Chapter"
+                                onClick={() => setSelectedChapter(c => Math.min(currentBook.chapters, c + 1))}
+                                disabled={selectedChapter >= currentBook.chapters}
+                                className="p-2 rounded-lg hover:bg-background hover:shadow-sm disabled:opacity-30 transition-all text-foreground"
+                            >
+                                <ChevronRight className="w-4 h-4" />
                             </button>
                         </div>
                     </div>
@@ -345,6 +354,32 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                 </div>
                             </div>
 
+                            {/* Translation Selection */}
+                            <div className="space-y-3">
+                                <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
+                                    <Languages className="w-4 h-4" /> ترجمه فارسی
+                                </label>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {["MOJDEH", "TPV", "QADIM", "WP"].map((t) => (
+                                        <button
+                                            key={t}
+                                            onClick={() => setTranslation(t as any)}
+                                            className={cn(
+                                                "py-2 px-3 text-sm font-bold rounded-xl transition-all border",
+                                                translation === t
+                                                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                                                    : "bg-secondary/50 text-foreground border-border/50 hover:bg-secondary hover:border-border"
+                                            )}
+                                        >
+                                            {t === "MOJDEH" && "مژده برای عصر جدید"}
+                                            {t === "TPV" && "پارسایان (TPV)"}
+                                            {t === "QADIM" && "ترجمه قدیم"}
+                                            {t === "WP" && "ورد پروجکت"}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
                             {/* Contrast */}
                             <div className="space-y-3">
                                 <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
@@ -400,6 +435,12 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                 verses.map(verse => {
                                     const isActive = activeVerse === verse.number;
 
+                                    let displayFaText = verse.fa;
+                                    if (translation === "TPV" && verse.fa_tpv) displayFaText = verse.fa_tpv;
+                                    if (translation === "MOJDEH" && verse.fa_mojdeh) displayFaText = verse.fa_mojdeh;
+                                    if (translation === "QADIM" && verse.fa_qadim) displayFaText = verse.fa_qadim;
+                                    if (translation === "WP" && verse.fa_wp) displayFaText = verse.fa_wp;
+
                                     return (
                                         <div
                                             key={verse.number}
@@ -414,24 +455,26 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                             <div className={cn(
                                                 "absolute top-4 -right-12 text-sm font-bold transition-colors select-none text-right w-8",
                                                 isActive ? (highContrast ? "text-yellow-400" : "text-primary") : "text-muted-foreground/40 group-hover:text-muted-foreground"
-                                            )}>
+                                            )} dir="ltr">
                                                 {verse.number}
                                             </div>
-                                            <p className={cn(
-                                                "text-right drop-shadow-sm font-medium transition-all duration-300",
+                                            <div className="w-full">
+                                                <p className={cn(
+                                                    "text-right drop-shadow-sm font-medium transition-all duration-300 w-full",
                                                 fontClasses[fontSize],
-                                                isActive && !highContrast ? "text-primary dark:text-primary-foreground" : "text-foreground"
-                                            )} style={{ lineHeight: fontSize === 'xl' ? '2.5' : '1.8' }}>
-                                                {verse.fa}
-                                            </p>
-                                            <p className={cn(
-                                                "text-lg md:text-xl leading-relaxed font-serif text-left ml-auto w-full md:w-4/5 border-l-2 pl-4 mt-2 transition-colors",
-                                                isActive
-                                                    ? (highContrast ? "text-yellow-400/80 border-yellow-400/50" : "text-foreground/90 border-primary")
-                                                    : "text-muted-foreground/60 border-primary/20"
-                                            )}>
-                                                {verse.en}
-                                            </p>
+                                                )} dir="rtl" style={{ lineHeight: fontSize === 'xl' ? '2.5' : '1.8' }}>
+                                                    {displayFaText}
+                                                </p>
+                                                <p className={cn(
+                                                    "text-lg md:text-xl leading-relaxed font-serif text-left md:w-[90%] border-l-2 pl-4 mt-6 transition-colors tracking-wide",
+                                                    isActive
+                                                        ? (highContrast ? "text-yellow-400/80 border-yellow-400/50" : "text-foreground/90 border-primary")
+                                                        : "text-muted-foreground/60 border-primary/20",
+                                                    "font-['Times_New_Roman',ui-serif,Georgia]" 
+                                                )} dir="ltr">
+                                                    {verse.en}
+                                                </p>
+                                            </div>
                                         </div>
                                     );
                                 })

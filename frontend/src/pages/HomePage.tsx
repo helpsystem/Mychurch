@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
-import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle, Play, Music } from 'lucide-react';
+import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle, Play, Music, Radio, Clock, Video } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 
 import WeeklySchedule from '../components/WeeklySchedule';
@@ -162,8 +162,8 @@ const LeaderCardHome: React.FC<{ leader: Leader }> = ({ leader }) => {
         <img src={imageUrl} alt={leaderName} className="image-foreground" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      <h4 className={`font-semibold text-white text-[20px] leading-[32px] mb-1 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leaderName}</h4>
-      <p className={`font-normal text-secondary text-[16px] leading-[24px] mb-4 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leaderTitle}</p>
+      <h4 className={`font-semibold text-white text-[20px] leading-[32px] mb-1 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{typeof leaderName === 'string' ? leaderName : (leaderName as any)[lang] || 'Unknown'}</h4>
+      <p className={`font-normal text-secondary text-[16px] leading-[24px] mb-4 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{typeof leaderTitle === 'string' ? leaderTitle : (leaderTitle as any)[lang] || ''}</p>
       <p className={`font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{shortBio || t('noDescription')}</p>
       <Link to="/leaders" className="text-secondary hover:text-white font-semibold mt-auto inline-flex items-center gap-2 group">
         {t('viewProfile')}
@@ -262,6 +262,82 @@ const Stats: React.FC = () => {
   );
 };
 
+// --- New Feature: Countdown Timer ---
+const getNextSunday = () => {
+  const now = new Date();
+  const nextSunday = new Date();
+  nextSunday.setDate(now.getDate() + ((7 - now.getDay()) % 7 || 7));
+  nextSunday.setHours(10, 30, 0, 0); // 10:30 AM Service
+  
+  if (now > nextSunday) {
+      nextSunday.setDate(nextSunday.getDate() + 7);
+  }
+  return nextSunday;
+};
+
+const SmartCountdown: React.FC = () => {
+  const { lang } = useLanguage();
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const targetDate = getNextSunday().getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex justify-center w-full mb-10 z-20 relative">
+      <div className="glass-card flex items-center gap-6 py-4 px-8 rounded-full border border-secondary/30 shadow-[0_0_30px_rgba(0,246,255,0.15)] animate-fade-in-up delay-100">
+        <div className="flex items-center gap-3">
+          <Clock className="w-6 h-6 text-secondary animate-pulse" />
+          <span className="text-white font-medium whitespace-nowrap">
+            {lang === 'fa' ? 'جلسه پرستشی بعدی:' : 'Next Worship Service:'}
+          </span>
+        </div>
+        
+        <div className="flex gap-4 font-mono font-bold text-xl text-gradient">
+            <div className="flex flex-col items-center leading-none">
+                <span>{String(timeLeft.days).padStart(2, '0')}</span>
+                <span className="text-[10px] text-dimWhite uppercase tracking-widest mt-1">{lang === 'fa' ? 'روز' : 'Days'}</span>
+            </div>
+            <span className="text-dimWhite">:</span>
+            <div className="flex flex-col items-center leading-none">
+                <span>{String(timeLeft.hours).padStart(2, '0')}</span>
+                <span className="text-[10px] text-dimWhite uppercase tracking-widest mt-1">{lang === 'fa' ? 'ساعت' : 'Hrs'}</span>
+            </div>
+            <span className="text-dimWhite">:</span>
+            <div className="flex flex-col items-center leading-none">
+                <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
+                <span className="text-[10px] text-dimWhite uppercase tracking-widest mt-1">{lang === 'fa' ? 'دقیقه' : 'Min'}</span>
+            </div>
+            <span className="text-dimWhite">:</span>
+            <div className="flex flex-col items-center leading-none">
+                <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
+                <span className="text-[10px] text-dimWhite uppercase tracking-widest mt-1">{lang === 'fa' ? 'ثانیه' : 'Sec'}</span>
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const HomePage: React.FC = () => {
   const { t, lang } = useLanguage();
   const { content } = useContent();
@@ -297,21 +373,36 @@ const HomePage: React.FC = () => {
       <SEOHead {...seoConfig} />
       <div className="bg-primary w-full overflow-hidden">
         {/* Hero Section */}
-        <div className="flex justify-center items-start min-h-[90vh]">
+        <div className="flex justify-center items-start min-h-[90vh] relative pt-10">
+          
+          {/* Smart Live Banner (Mock logic: displays if it's Sunday 10:30-12:30) */}
+          {new Date().getDay() === 0 && new Date().getHours() >= 10 && new Date().getHours() <= 12 && (
+            <div className="absolute top-0 left-0 w-full z-50">
+                <Link to="/live" className="flex items-center justify-center bg-red-600 hover:bg-red-700 text-white py-3 px-4 transition-colors font-semibold group cursor-pointer shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+                    <Radio className="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0 animate-pulse" />
+                    <span>{lang === 'fa' ? 'اکنون: پخش زنده کلیسای ایرانیان 디സി شروع شد! کلیک کنید.' : 'LIVE NOW: Iranian Church DC Worship Service! Click to join.'}</span>
+                    <ArrowUpRight className="w-4 h-4 ml-2 rtl:mr-2 rtl:ml-0 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </Link>
+            </div>
+          )}
+
           <div className="xl:max-w-[1280px] w-full">
-            <section id="home" className="flex md:flex-row flex-col sm:py-16 py-6 relative items-center">
+            <section id="home" className="flex flex-col sm:py-16 py-6 relative items-center">
               <ParticleCanvas />
+              
+              <SmartCountdown />
 
-              {/* Text Content */}
-              <div className="flex-1 flex justify-center items-start flex-col xl:px-0 sm:px-16 px-6 z-10 animate-fade-in-up">
+              <div className="flex md:flex-row flex-col w-full items-center">
+                  {/* Text Content */}
+                  <div className="flex-1 flex justify-center items-start flex-col xl:px-0 sm:px-16 px-6 z-10 animate-fade-in-up w-full">
 
-                {/* Discount / Welcome Label */}
-                <div className="flex flex-row items-center py-[8px] px-6 bg-glass-gradient rounded-[20px] mb-6 backdrop-blur-md border border-white/10 shadow-lg">
-                  <img src={content.settings.logoUrl} alt="logo" className="w-[32px] h-[32px]" />
-                  <p className="font-normal text-dimWhite text-[16px] leading-[24px] ml-3 rtl:mr-3 rtl:ml-0 uppercase tracking-wider">
-                    {lang === 'fa' ? 'پلتفرم هوشمند کلیسای ایرانیان' : 'AI-Powered Church Platform'}
-                  </p>
-                </div>
+                    {/* Discount / Welcome Label */}
+                    <div className="flex flex-row items-center py-[8px] px-6 bg-glass-gradient rounded-[20px] mb-6 backdrop-blur-md border border-white/10 shadow-lg">
+                      <img src={content.settings.logoUrl} alt="logo" className="w-[32px] h-[32px]" />
+                      <p className="font-normal text-dimWhite text-[16px] leading-[24px] ml-3 rtl:mr-3 rtl:ml-0 uppercase tracking-wider">
+                        {lang === 'fa' ? 'پلتفرم هوشمند کلیسای ایرانیان' : 'AI-Powered Church Platform'}
+                      </p>
+                    </div>
 
                 {/* Main Heading */}
                 <div className="w-full relative">
@@ -346,24 +437,23 @@ const HomePage: React.FC = () => {
                   <Link to="/about" className="glass-button text-white font-semibold py-4 px-8 rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 flex items-center">
                     {lang === 'fa' ? 'درباره پلتفرم' : 'Platform Features'}
                   </Link>
-                </div>
+                  </div>
+
+                  {/* Hero Image / Slider */}
+                  <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative w-full ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10 animate-float`}>
+                    <AIImageSlider
+                      autoPlayInterval={5000}
+                      showNavigationButtons={false}
+                      showIndicators={true}
+                      className="w-full max-w-[650px] relative z-[5] rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10"
+                    />
+
+                    {/* Glow Effects */}
+                    <div className="absolute z-[0] w-[50%] h-[50%] top-0 -right-20 pink__gradient opacity-60" />
+                    <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient opacity-20" />
+                    <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient opacity-60" />
+                  </div>
               </div>
-
-              {/* Hero Image / Slider */}
-              <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10 animate-float`}>
-                <AIImageSlider
-                  autoPlayInterval={5000}
-                  showNavigationButtons={false}
-                  showIndicators={true}
-                  className="w-full max-w-[650px] relative z-[5] rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10"
-                />
-
-                {/* Glow Effects */}
-                <div className="absolute z-[0] w-[50%] h-[50%] top-0 -right-20 pink__gradient opacity-60" />
-                <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient opacity-20" />
-                <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient opacity-60" />
-              </div>
-
             </section>
           </div>
         </div>
@@ -598,28 +688,85 @@ const HomePage: React.FC = () => {
               </div>
             </section>
 
-            {/* Sermons Section */}
-            <section className="flex md:flex-row flex-col-reverse sm:py-16 py-6 reveal-on-scroll">
-              <div className="flex-1 flex justify-center items-start flex-col">
-                <h2 className="font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">{t('sermonsHomeTitle')}</h2>
-                <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[470px] mt-5">{t('sermonsHomeParagraph')}</p>
-                <div className="flex flex-row flex-wrap sm:mt-10 mt-6 gap-4">
-                  <Link to="/sermons" className="group flex items-center gap-2 bg-gradient-to-r from-secondary to-blue-400 hover:from-blue-400 hover:to-secondary text-black font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
-                    <Play className="w-5 h-5" />
-                    <span>{lang === 'fa' ? 'مشاهده موعظه‌ها' : 'Watch Sermons'}</span>
-                  </Link>
-                  <Link to="/worship" className="group flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-white/20">
-                    <Music className="w-5 h-5" />
-                    <span>{lang === 'fa' ? 'سرودها' : 'Worship Songs'}</span>
-                  </Link>
+            {/* Latest Sermon & Interactive Prayer Section */}
+            <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll gap-10">
+              
+              {/* Latest Sermon Player */}
+              <div className="flex-[1.5] w-full glass-card p-8 rounded-2xl relative overflow-hidden group border border-white/10 hover:border-white/30 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                
+                <h2 className="font-semibold xs:text-[40px] text-[32px] text-white leading-tight mb-2">
+                    {lang === 'fa' ? 'آخرین موعظه' : 'Latest Sermon'}
+                </h2>
+                <p className="text-dimWhite mb-8">{lang === 'fa' ? 'گوش دادن به پیام این هفته' : 'Listen to this week\'s message'}</p>
+                
+                <div className="flex flex-col md:flex-row gap-6 items-center">
+                    <div className="w-full md:w-1/3 aspect-square rounded-xl overflow-hidden relative shadow-lg">
+                        <img src="/images/Persian_Christian_choir_singing_bfe3adf8.png" alt="Sermon thumbnail" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Link to="/sermons" className="bg-secondary text-primary rounded-full p-4 transform hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,246,255,0.5)]">
+                                <Play className="w-6 h-6 fill-primary" />
+                            </Link>
+                        </div>
+                    </div>
+                    
+                    <div className="flex-1 w-full flex flex-col justify-center">
+                        <h3 className="text-white text-2xl font-semibold mb-2">{lang === 'fa' ? 'امید در روزهای سخت' : 'Hope in Hard Times'}</h3>
+                        <p className="text-secondary text-sm font-medium mb-4">Pastor Sam • 12 Oct 2025</p>
+                        <p className="text-dimWhite text-sm line-clamp-3 mb-6">
+                            {lang === 'fa' 
+                                ? 'در این موعظه بررسی می‌کنیم که چگونه ایمان ما می‌تواند در طوفان‌های زندگی لنگری محکم باشد...' 
+                                : 'In this message we explore how our faith can be a strong anchor during the storms of life...'}
+                        </p>
+                        
+                        <div className="flex gap-4">
+                            <Link to="/sermons" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition-colors border border-white/10 text-sm font-medium">
+                                <Play className="w-4 h-4" />
+                                {lang === 'fa' ? 'پخش کامل' : 'Play Full Series'}
+                            </Link>
+                        </div>
+                    </div>
                 </div>
               </div>
-              <div className="flex-1 flex justify-center items-center md:ml-10 ml-0 md:mt-0 mt-10 relative rtl:md:mr-10 rtl:md:ml-0">
-                <div className="relative w-full h-80 rounded-xl overflow-hidden">
-                  <img src="/images/Persian_Christian_choir_singing_bfe3adf8.png" alt="" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-30" aria-hidden="true" />
-                  <img src="/images/Persian_Christian_choir_singing_bfe3adf8.png" alt="Sermons Preview" className="relative w-full h-full object-cover z-[5] hover:scale-105 transition-transform duration-500" />
+
+              {/* Interactive Prayer Snippet */}
+              <div className="flex-1 w-full glass-card p-8 rounded-2xl border border-white/10 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl"></div>
+                
+                <div className="flex items-center gap-3 mb-6 relative z-10">
+                    <Heart className="w-8 h-8 text-pink-500 animate-pulse" />
+                    <h3 className="font-semibold text-[24px] text-white">
+                        {lang === 'fa' ? 'دیوار دعا' : 'Prayer Wall'}
+                    </h3>
                 </div>
+                
+                <div className="space-y-4 relative z-10">
+                    <div className="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition-colors border border-white/5 relative group">
+                        <p className="text-dimWhite text-sm mb-3">"{lang === 'fa' ? 'لطفاً برای سلامتی مادرم که در بیمارستان بستری است دعا کنید.' : 'Please pray for my mother\'s health, she is currently in the hospital.'}"</p>
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">Sara M. • 2h ago</span>
+                            <button className="text-xs bg-pink-500/20 text-pink-300 hover:bg-pink-500/40 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1">
+                                <Heart className="w-3 h-3" /> {lang === 'fa' ? 'آمین (۱۴)' : 'Pray (14)'}
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition-colors border border-white/5 relative group">
+                        <p className="text-dimWhite text-sm mb-3">"{lang === 'fa' ? 'دعا برای آرامش و صلح در خاورمیانه و خانواده‌هایی که آسیب دیده‌اند.' : 'Praying for peace in the Middle East and for the families affected.'}"</p>
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">Reza K. • 5h ago</span>
+                            <button className="text-xs bg-pink-500/20 text-pink-300 hover:bg-pink-500/40 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1">
+                                <Heart className="w-3 h-3" /> {lang === 'fa' ? 'آمین (۸۹)' : 'Pray (89)'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <Link to="/prayer-requests" className="block text-center text-sm text-secondary hover:text-white mt-6 transition-colors">
+                    {lang === 'fa' ? 'مشاهده همه و ارسال درخواست ->' : 'View all & Submit Request ->'}
+                </Link>
               </div>
+
             </section>
 
             {/* Testimonials Section */}

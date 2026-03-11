@@ -3,8 +3,9 @@ const { pool, parseJSON } = require('../db-postgres');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
-// GET /api/sermons/live - دریافت پخش زنده فعلی
-router.get('/live', async (req, res) => {
+// GET /api/sermons/live - دریافت پخش زنده فعلی (Public or Auth?)
+// We will secure it with authenticateToken so only logged-in users can see
+router.get('/live', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM sermons WHERE is_live = true LIMIT 1');
     if (result.rows.length === 0) {
@@ -27,7 +28,7 @@ router.get('/live', async (req, res) => {
 });
 
 // GET /api/sermons - دریافت همه خطبات
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM sermons ORDER BY date DESC');
     const sermons = result.rows.map(sermon => ({

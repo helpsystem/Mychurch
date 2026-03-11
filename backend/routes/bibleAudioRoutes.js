@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db-postgres');
+const fs = require('fs').promises;
+const path = require('path');
 
 // دریافت فایل صوتی برای یک کتاب
 router.get('/book/:bookISO', async (req, res) => {
@@ -150,6 +152,29 @@ router.get('/stats', async (req, res) => {
       message: 'Server error',
       error: error.message 
     });
+  }
+});
+
+// GET YouVersion Aligned Audio Data
+router.get('/youversion-alignment/:book/:chapter/:lang', async (req, res) => {
+  try {
+    const { book, chapter, lang } = req.params;
+    const fileName = `${book.toUpperCase()}_${chapter}_${lang.toLowerCase()}_alignment.json`;
+    const filePath = path.join(__dirname, '../../public/data/alignments/youversion', fileName);
+
+    try {
+      const data = await fs.readFile(filePath, 'utf-8');
+      res.json(JSON.parse(data));
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        res.status(404).json({ success: false, message: 'Alignment not found' });
+      } else {
+        throw err;
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching youversion alignment:', error);
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 });
 

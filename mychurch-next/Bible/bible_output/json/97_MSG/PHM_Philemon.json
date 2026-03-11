@@ -1,0 +1,41 @@
+{
+  "book_id": "PHM",
+  "book_name_en": "Philemon",
+  "book_name_fa": "فیلیمون",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "book_id": "PHM",
+      "chapter": 1,
+      "chapter_usfm": "PHM.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "To Call the Slave Your Friend"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/PHM/1-a5abeac5b73ccad0d93c65297c446bb1.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/PHM/1-a5abeac5b73ccad0d93c65297c446bb1.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

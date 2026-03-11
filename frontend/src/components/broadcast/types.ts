@@ -273,6 +273,8 @@ export interface BroadcastOverlayConfig {
   // Layout & Camera
   layout: BroadcastLayout;
   pipScale: number; // 0.1 to 1.0
+  pipSize?: 'small' | 'medium' | 'large';
+  splitRatio?: '50-50' | '70-30' | '30-70';
   pipCustomX?: number; // % from left
   pipCustomY?: number; // % from top
   pipPosition?: 'top-left' | 'top-center' | 'top-right' | 'center-left' | 'center' | 'center-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';

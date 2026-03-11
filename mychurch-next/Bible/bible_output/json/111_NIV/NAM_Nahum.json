@@ -1,0 +1,356 @@
+{
+  "book_id": "NAM",
+  "book_name_en": "Nahum",
+  "book_name_fa": "ناحوم",
+  "testament": "OT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 47,
+  "chapters": [
+    {
+      "book_id": "NAM",
+      "chapter": 1,
+      "chapter_usfm": "NAM.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "A prophecy concerning Nineveh. The book of the vision of Nahum the Elkoshite."
+        },
+        {
+          "verse": 2,
+          "text": "The Lord is a jealous and avenging God;the Lord takes vengeance and is filled with wrath.The Lord takes vengeance on his foesand vents his wrath against his enemies."
+        },
+        {
+          "verse": 3,
+          "text": "The Lord is slow to anger but great in power;the Lord will not leave the guilty unpunished.His way is in the whirlwind and the storm,and clouds are the dust of his feet."
+        },
+        {
+          "verse": 4,
+          "text": "He rebukes the sea and dries it up;he makes all the rivers run dry.Bashan and Carmel witherand the blossoms of Lebanon fade."
+        },
+        {
+          "verse": 5,
+          "text": "The mountains quake before himand the hills melt away.The earth trembles at his presence,the world and all who live in it."
+        },
+        {
+          "verse": 6,
+          "text": "Who can withstand his indignation?Who can endure his fierce anger?His wrath is poured out like fire;the rocks are shattered before him."
+        },
+        {
+          "verse": 7,
+          "text": "The Lord is good,a refuge in times of trouble.He cares for those who trust in him,"
+        },
+        {
+          "verse": 8,
+          "text": "but with an overwhelming floodhe will make an end of Nineveh;he will pursue his foes into the realm of darkness."
+        },
+        {
+          "verse": 9,
+          "text": "Whatever they plot against the Lordhe will bring to an end;trouble will not come a second time."
+        },
+        {
+          "verse": 10,
+          "text": "They will be entangled among thornsand drunk from their wine;they will be consumed like dry stubble."
+        },
+        {
+          "verse": 11,
+          "text": "From you, Nineveh, has one come forthwho plots evil against the Lordand devises wicked plans."
+        },
+        {
+          "verse": 12,
+          "text": "This is what the Lord says:“Although they have allies and are numerous,they will be destroyed and pass away.Although I have afflicted you, Judah,I will afflict you no more."
+        },
+        {
+          "verse": 13,
+          "text": "Now I will break their yoke from your neckand tear your shackles away.”"
+        },
+        {
+          "verse": 14,
+          "text": "The Lord has given a command concerning you, Nineveh:“You will have no descendants to bear your name.I will destroy the images and idolsthat are in the temple of your gods.I will prepare your grave,for you are vile.”"
+        },
+        {
+          "verse": 15,
+          "text": "Look, there on the mountains,the feet of one who brings good news,who proclaims peace!Celebrate your festivals, Judah,and fulfill your vows.No more will the wicked invade you;they will be completely destroyed."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The"
+        },
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 1,
+          "text": "’s Anger Against Nineveh"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/NAM/1-bb5502ee1c3b9bc9e39ac2d67e19a627.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/NAM/1-bb5502ee1c3b9bc9e39ac2d67e19a627.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/NAM/1-689afa98c2939cb5807c38894abdf2e7.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/NAM/1-689afa98c2939cb5807c38894abdf2e7.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/NAM/1-ac47f2fdbad76e5095fc9df5700b0413.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/NAM/1-ac47f2fdbad76e5095fc9df5700b0413.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/NAM/1-5e9470347701c7af0809f1b6f6668041.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/NAM/1-5e9470347701c7af0809f1b6f6668041.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "NAM",
+      "chapter": 2,
+      "chapter_usfm": "NAM.2",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "An attacker advances against you, Nineveh.Guard the fortress,watch the road,brace yourselves,marshal all your strength!"
+        },
+        {
+          "verse": 2,
+          "text": "The Lord will restore the splendor of Jacoblike the splendor of Israel,though destroyers have laid them wasteand have ruined their vines."
+        },
+        {
+          "verse": 3,
+          "text": "The shields of the soldiers are red;the warriors are clad in scarlet.The metal on the chariots flasheson the day they are made ready;the spears of juniper are brandished."
+        },
+        {
+          "verse": 4,
+          "text": "The chariots storm through the streets,rushing back and forth through the squares.They look like flaming torches;they dart about like lightning."
+        },
+        {
+          "verse": 5,
+          "text": "Nineveh summons her picked troops,yet they stumble on their way.They dash to the city wall;the protective shield is put in place."
+        },
+        {
+          "verse": 6,
+          "text": "The river gates are thrown openand the palace collapses."
+        },
+        {
+          "verse": 7,
+          "text": "It is decreed that Ninevehbe exiled and carried away.Her female slaves moan like dovesand beat on their breasts."
+        },
+        {
+          "verse": 8,
+          "text": "Nineveh is like a poolwhose water is draining away.“Stop! Stop!” they cry,but no one turns back."
+        },
+        {
+          "verse": 9,
+          "text": "Plunder the silver!Plunder the gold!The supply is endless,the wealth from all its treasures!"
+        },
+        {
+          "verse": 10,
+          "text": "She is pillaged, plundered, stripped!Hearts melt, knees give way,bodies tremble, every face grows pale."
+        },
+        {
+          "verse": 11,
+          "text": "Where now is the lions’ den,the place where they fed their young,where the lion and lioness went,and the cubs, with nothing to fear?"
+        },
+        {
+          "verse": 12,
+          "text": "The lion killed enough for his cubsand strangled the prey for his mate,filling his lairs with the killand his dens with the prey."
+        },
+        {
+          "verse": 13,
+          "text": "“I am against you,”declares the Lord Almighty.“I will burn up your chariots in smoke,and the sword will devour your young lions.I will leave you no prey on the earth.The voices of your messengerswill no longer be heard.”"
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/NAM/2-0378a0b8a7fb82bd911388f0e65cef15.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/NAM/2-0378a0b8a7fb82bd911388f0e65cef15.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/NAM/2-21e62ca7988fdf14971892d95e587e12.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/NAM/2-21e62ca7988fdf14971892d95e587e12.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/NAM/2-53c85dca9073122c50f11752904b32ac.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/NAM/2-53c85dca9073122c50f11752904b32ac.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/NAM/2-f07ea52d731c59f3831ad8356e913724.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/NAM/2-f07ea52d731c59f3831ad8356e913724.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "NAM",
+      "chapter": 3,
+      "chapter_usfm": "NAM.3",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Woe to the city of blood,full of lies,full of plunder,never without victims!"
+        },
+        {
+          "verse": 2,
+          "text": "The crack of whips,the clatter of wheels,galloping horsesand jolting chariots!"
+        },
+        {
+          "verse": 3,
+          "text": "Charging cavalry,flashing swordsand glittering spears!Many casualties,piles of dead,bodies without number,people stumbling over the corpses—"
+        },
+        {
+          "verse": 4,
+          "text": "all because of the wanton lust of a prostitute,alluring, the mistress of sorceries,who enslaved nations by her prostitutionand peoples by her witchcraft."
+        },
+        {
+          "verse": 5,
+          "text": "“I am against you,” declares the Lord Almighty.“I will lift your skirts over your face.I will show the nations your nakednessand the kingdoms your shame."
+        },
+        {
+          "verse": 6,
+          "text": "I will pelt you with filth,I will treat you with contemptand make you a spectacle."
+        },
+        {
+          "verse": 7,
+          "text": "All who see you will flee from you and say,‘Nineveh is in ruins—who will mourn for her?’Where can I find anyone to comfort you?”"
+        },
+        {
+          "verse": 8,
+          "text": "Are you better than Thebes,situated on the Nile,with water around her?The river was her defense,the waters her wall."
+        },
+        {
+          "verse": 9,
+          "text": "Cush and Egypt were her boundless strength;Put and Libya were among her allies."
+        },
+        {
+          "verse": 10,
+          "text": "Yet she was taken captiveand went into exile.Her infants were dashed to piecesat every street corner.Lots were cast for her nobles,and all her great men were put in chains."
+        },
+        {
+          "verse": 11,
+          "text": "You too will become drunk;you will go into hidingand seek refuge from the enemy."
+        },
+        {
+          "verse": 12,
+          "text": "All your fortresses are like fig treeswith their first ripe fruit;when they are shaken,the figs fall into the mouth of the eater."
+        },
+        {
+          "verse": 13,
+          "text": "Look at your troops—they are all weaklings.The gates of your landare wide open to your enemies;fire has consumed the bars of your gates."
+        },
+        {
+          "verse": 14,
+          "text": "Draw water for the siege,strengthen your defenses!Work the clay,tread the mortar,repair the brickwork!"
+        },
+        {
+          "verse": 15,
+          "text": "There the fire will consume you;the sword will cut you down—they will devour you like a swarm of locusts.Multiply like grasshoppers,multiply like locusts!"
+        },
+        {
+          "verse": 16,
+          "text": "You have increased the number of your merchantstill they are more numerous than the stars in the sky,but like locusts they strip the landand then fly away."
+        },
+        {
+          "verse": 17,
+          "text": "Your guards are like locusts,your officials like swarms of locuststhat settle in the walls on a cold day—but when the sun appears they fly away,and no one knows where."
+        },
+        {
+          "verse": 18,
+          "text": "King of Assyria, your shepherds slumber;your nobles lie down to rest.Your people are scattered on the mountainswith no one to gather them."
+        },
+        {
+          "verse": 19,
+          "text": "Nothing can heal you;your wound is fatal.All who hear the news about youclap their hands at your fall,for who has not feltyour endless cruelty?"
+        }
+      ],
+      "verse_count": 19,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/NAM/3-88a6e5cc63339a43e1dd676c11f121e8.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/NAM/3-88a6e5cc63339a43e1dd676c11f121e8.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/NAM/3-e2b0b4adebab5249e176cddf728a0dca.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/NAM/3-e2b0b4adebab5249e176cddf728a0dca.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/NAM/3-09222dbee6e8f09d7ce89a475ed78e26.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/NAM/3-09222dbee6e8f09d7ce89a475ed78e26.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/NAM/3-baf540128be42f766ba7e515cb6619b4.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/NAM/3-baf540128be42f766ba7e515cb6619b4.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

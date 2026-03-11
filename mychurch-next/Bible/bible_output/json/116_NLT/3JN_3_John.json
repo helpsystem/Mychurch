@@ -1,0 +1,138 @@
+{
+  "book_id": "3JN",
+  "book_name_en": "3 John",
+  "book_name_fa": "سوم یوحنا",
+  "testament": "NT",
+  "version_id": 116,
+  "version_abbr": "NLT",
+  "version_name": "New Living Translation",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 15,
+  "chapters": [
+    {
+      "book_id": "3JN",
+      "chapter": 1,
+      "chapter_usfm": "3JN.1",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This letter is from John, the elder.I am writing to Gaius, my dear friend, whom I love in the truth."
+        },
+        {
+          "verse": 2,
+          "text": "Dear friend, I hope all is well with you and that you are as healthy in body as you are strong in spirit."
+        },
+        {
+          "verse": 3,
+          "text": "Some of the traveling teachers recently returned and made me very happy by telling me about your faithfulness and that you are living according to the truth."
+        },
+        {
+          "verse": 4,
+          "text": "I could have no greater joy than to hear that my children are following the truth."
+        },
+        {
+          "verse": 5,
+          "text": "Dear friend, you are being faithful to God when you care for the traveling teachers who pass through, even though they are strangers to you."
+        },
+        {
+          "verse": 6,
+          "text": "They have told the church here of your loving friendship. Please continue providing for such teachers in a manner that pleases God."
+        },
+        {
+          "verse": 7,
+          "text": "For they are traveling for the Lord, and they accept nothing from people who are not believers."
+        },
+        {
+          "verse": 8,
+          "text": "So we ourselves should support them so that we can be their partners as they teach the truth."
+        },
+        {
+          "verse": 9,
+          "text": "I wrote to the church about this, but Diotrephes, who loves to be the leader, refuses to have anything to do with us."
+        },
+        {
+          "verse": 10,
+          "text": "When I come, I will report some of the things he is doing and the evil accusations he is making against us. Not only does he refuse to welcome the traveling teachers, he also tells others not to help them. And when they do help, he puts them out of the church."
+        },
+        {
+          "verse": 11,
+          "text": "Dear friend, don’t let this bad example influence you. Follow only what is good. Remember that those who do good prove that they are God’s children, and those who do evil prove that they do not know God."
+        },
+        {
+          "verse": 12,
+          "text": "Everyone speaks highly of Demetrius, as does the truth itself. We ourselves can say the same for him, and you know we speak the truth."
+        },
+        {
+          "verse": 13,
+          "text": "I have much more to say to you, but I don’t want to write it with pen and ink."
+        },
+        {
+          "verse": 14,
+          "text": "For I hope to see you soon, and then we will talk face to face."
+        },
+        {
+          "verse": 15,
+          "text": "Peace be with you.Your friends here send you their greetings. Please give my personal greetings to each of our friends there."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 4,
+          "text": "Caring for the Lord’s Workers"
+        },
+        {
+          "before_verse": 12,
+          "text": "Conclusion"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/3JN/1-25e2fd7d5702f4678f32b2716443327e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/3JN/1-25e2fd7d5702f4678f32b2716443327e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/3JN/1-f2e6da13706c394fb917a7d541994d37.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/3JN/1-f2e6da13706c394fb917a7d541994d37.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/3JN/1-79f85b375100dd39cd2fdc6980635d9a.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/3JN/1-79f85b375100dd39cd2fdc6980635d9a.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/3JN/1-3d37cad1794670e5b1e09c63bf8c9906.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/3JN/1-3d37cad1794670e5b1e09c63bf8c9906.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/3JN/1-0ace36fb242c46017cfa430fcc1f4c3f.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/3JN/1-0ace36fb242c46017cfa430fcc1f4c3f.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

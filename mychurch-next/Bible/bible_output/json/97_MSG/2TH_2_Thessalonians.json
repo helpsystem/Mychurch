@@ -1,0 +1,98 @@
+{
+  "book_id": "2TH",
+  "book_name_en": "2 Thessalonians",
+  "book_name_fa": "دوم تسالونیکیان",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 3,
+  "chapters": [
+    {
+      "book_id": "2TH",
+      "chapter": 1,
+      "chapter_usfm": "2TH.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Justice Is on the Way"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TH/1-a371ae88ecf7cb2d603638f951fb0bbc.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TH/1-a371ae88ecf7cb2d603638f951fb0bbc.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TH",
+      "chapter": 2,
+      "chapter_usfm": "2TH.2",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TH/2-74bcae47ccb8b308dc0e88cdb1fd0c5e.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TH/2-74bcae47ccb8b308dc0e88cdb1fd0c5e.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TH",
+      "chapter": 3,
+      "chapter_usfm": "2TH.3",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 16,
+          "text": "May the Master of Peace himself give you the gift of getting along with each other at all times, in all ways. May the Master be truly among you!"
+        },
+        {
+          "verse": 17,
+          "text": "I, Paul, bid you good-bye in my own handwriting. I do this in all my letters, so examine my signature as proof that the letter is genuine."
+        },
+        {
+          "verse": 18,
+          "text": "The incredible grace of our Master, Jesus Christ, be with all of you!"
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TH/3-e04f41c7b61e8fa33b5eb0b09dad31be.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TH/3-e04f41c7b61e8fa33b5eb0b09dad31be.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "book_id": "JUD",
+  "book_name_en": "Jude",
+  "book_name_fa": "یهودا",
+  "testament": "NT",
+  "version_id": 72,
+  "version_abbr": "HCSB",
+  "version_name": "Holman Christian Standard Bible",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 25,
+  "chapters": [
+    {
+      "book_id": "JUD",
+      "chapter": 1,
+      "chapter_usfm": "JUD.1",
+      "version_id": 72,
+      "version_abbr": "HCSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Jude, a slave of Jesus Christ and a brother of James:To those who are the called, loved by God the Father and kept by Jesus Christ."
+        },
+        {
+          "verse": 2,
+          "text": "May mercy, peace, and love be multiplied to you."
+        },
+        {
+          "verse": 3,
+          "text": "Dear friends, although I was eager to write you about the salvation we share, I found it necessary to write and exhort you to contend for the faith that was delivered to the saints once for all."
+        },
+        {
+          "verse": 4,
+          "text": "For some men, who were designated for this judgment long ago, have come in by stealth; they are ungodly, turning the grace of our God into promiscuity and denying Jesus Christ, our only Master and Lord."
+        },
+        {
+          "verse": 5,
+          "text": "Now I want to remind you, though you know all these things: The Lord first saved a people out of Egypt and later destroyed those who did not believe;"
+        },
+        {
+          "verse": 6,
+          "text": "and He has kept, with eternal chains in darkness for the judgment of the great day, the angels who did not keep their own position but deserted their proper dwelling."
+        },
+        {
+          "verse": 7,
+          "text": "In the same way, Sodom and Gomorrah and the cities around them committed sexual immorality and practiced perversions, just as angels did, and serve as an example by undergoing the punishment of eternal fire."
+        },
+        {
+          "verse": 8,
+          "text": "Nevertheless, these dreamers likewise defile their flesh, reject authority, and blaspheme glorious ones."
+        },
+        {
+          "verse": 9,
+          "text": "Yet Michael the archangel, when he was disputing with the Devil in a debate about Moses’ body, did not dare bring an abusive condemnation against him but said, “The Lord rebuke you! ”"
+        },
+        {
+          "verse": 10,
+          "text": "But these people blaspheme anything they don’t understand. What they know by instinct like unreasoning animals — they destroy themselves with these things."
+        },
+        {
+          "verse": 11,
+          "text": "Woe to them! For they have traveled in the way of Cain, have abandoned themselves to the error of Balaam for profit, and have perished in Korah’s rebellion."
+        },
+        {
+          "verse": 12,
+          "text": "These are the ones who are like dangerous reefs at your love feasts. They feast with you, nurturing only themselves without fear. They are waterless clouds carried along by winds; trees in late autumn — fruitless, twice dead, pulled out by the roots;"
+        },
+        {
+          "verse": 13,
+          "text": "wild waves of the sea, foaming up their shameful deeds; wandering stars for whom the blackness of darkness is reserved forever!"
+        },
+        {
+          "verse": 14,
+          "text": "And Enoch, in the seventh generation from Adam, prophesied about them:Look! The Lord comes with thousands of His holy ones"
+        },
+        {
+          "verse": 15,
+          "text": "to execute judgment on alland to convict them of all their ungodly actsthat they have done in an ungodly way,and of all the harsh things ungodly sinnershave said against Him."
+        },
+        {
+          "verse": 16,
+          "text": "These people are discontented grumblers, walking according to their desires; their mouths utter arrogant words, flattering people for their own advantage."
+        },
+        {
+          "verse": 17,
+          "text": "But you, dear friends, remember what was predicted by the apostles of our Lord Jesus Christ;"
+        },
+        {
+          "verse": 18,
+          "text": "they told you, “In the end time there will be scoffers walking according to their own ungodly desires.”"
+        },
+        {
+          "verse": 19,
+          "text": "These people create divisions and are unbelievers, not having the Spirit."
+        },
+        {
+          "verse": 20,
+          "text": "But you, dear friends, as you build yourselves up in your most holy faith and pray in the Holy Spirit,"
+        },
+        {
+          "verse": 21,
+          "text": "keep yourselves in the love of God, expecting the mercy of our Lord Jesus Christ for eternal life."
+        },
+        {
+          "verse": 22,
+          "text": "Have mercy on those who doubt;"
+        },
+        {
+          "verse": 23,
+          "text": "save others by snatching them from the fire; have mercy on others but with fear, hating even the garment defiled by the flesh."
+        },
+        {
+          "verse": 24,
+          "text": "Now to Him who is able to protect you from stumbling and to make you stand in the presence of His glory, blameless and with great joy,"
+        },
+        {
+          "verse": 25,
+          "text": "to the only God our Savior, through Jesus Christ our Lord, be glory, majesty, power, and authority before all time, now and forever. Amen."
+        }
+      ],
+      "verse_count": 25,
+      "headings": [
+        {
+          "before_verse": 2,
+          "text": "Jude’s Purpose in Writing"
+        },
+        {
+          "before_verse": 4,
+          "text": "Apostates: Past and Present"
+        },
+        {
+          "before_verse": 11,
+          "text": "The Apostates’ Doom"
+        },
+        {
+          "before_verse": 19,
+          "text": "Exhortation and Benediction"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 17,
+          "title": "HCSB Audio Old and New Testament",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/17/32k/JUD/1-f4c2187b6b5b8525a03932b14d43354f.mp3?version_id=72",
+          "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/JUD/1-f4c2187b6b5b8525a03932b14d43354f.m3u8?version_id=72"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

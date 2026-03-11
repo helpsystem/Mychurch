@@ -1,0 +1,106 @@
+{
+  "book_id": "2JN",
+  "book_name_en": "2 John",
+  "book_name_fa": "دوم یوحنا",
+  "testament": "NT",
+  "version_id": 59,
+  "version_abbr": "ESV",
+  "version_name": "English Standard Version 2025",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 13,
+  "chapters": [
+    {
+      "book_id": "2JN",
+      "chapter": 1,
+      "chapter_usfm": "2JN.1",
+      "version_id": 59,
+      "version_abbr": "ESV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The elder to the elect lady and her children, whom I love in truth, and not only I, but also all who know the truth,"
+        },
+        {
+          "verse": 2,
+          "text": "because of the truth that abides in us and will be with us forever:"
+        },
+        {
+          "verse": 3,
+          "text": "Grace, mercy, and peace will be with us, from God the Father and from Jesus Christ the Father’s Son, in truth and love."
+        },
+        {
+          "verse": 4,
+          "text": "I rejoiced greatly to find some of your children walking in the truth, just as we were commanded by the Father."
+        },
+        {
+          "verse": 5,
+          "text": "And now I ask you, dear lady—not as though I were writing you a new commandment, but the one we have had from the beginning—that we love one another."
+        },
+        {
+          "verse": 6,
+          "text": "And this is love, that we walk according to his commandments; this is the commandment, just as you have heard from the beginning, so that you should walk in it."
+        },
+        {
+          "verse": 7,
+          "text": "For many deceivers have gone out into the world, those who do not confess the coming of Jesus Christ in the flesh. Such a one is the deceiver and the antichrist."
+        },
+        {
+          "verse": 8,
+          "text": "Watch yourselves, so that you may not lose what we have worked for, but may win a full reward."
+        },
+        {
+          "verse": 9,
+          "text": "Everyone who goes on ahead and does not abide in the teaching of Christ, does not have God. Whoever abides in the teaching has both the Father and the Son."
+        },
+        {
+          "verse": 10,
+          "text": "If anyone comes to you and does not bring this teaching, do not receive him into your house or give him any greeting,"
+        },
+        {
+          "verse": 11,
+          "text": "for whoever greets him takes part in his wicked works."
+        },
+        {
+          "verse": 12,
+          "text": "Though I have much to write to you, I would rather not use paper and ink. Instead I hope to come to you and talk face to face, so that our joy may be complete."
+        },
+        {
+          "verse": 13,
+          "text": "The children of your elect sister greet you."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "Walking in Truth and Love"
+        },
+        {
+          "before_verse": 11,
+          "text": "Final Greetings"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1,
+          "title": "ESV Hear the Word Audio Bible",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1/32k/2JN/1-071831d6bb5a187c3c624a6d80eb3898.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/2JN/1-071831d6bb5a187c3c624a6d80eb3898.m3u8?version_id=59"
+        },
+        {
+          "audio_version_id": 1668,
+          "title": "Living Water Bible - ESV Music Project by Lutheran Bible Translators",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1668/32k/2JN/1-b48c54614bce352d69684fa7969ebab2.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/2JN/1-b48c54614bce352d69684fa7969ebab2.m3u8?version_id=59"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

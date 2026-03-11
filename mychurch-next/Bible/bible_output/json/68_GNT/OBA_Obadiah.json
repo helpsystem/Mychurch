@@ -1,0 +1,146 @@
+{
+  "book_id": "OBA",
+  "book_name_en": "Obadiah",
+  "book_name_fa": "عوبدیا",
+  "testament": "OT",
+  "version_id": 68,
+  "version_abbr": "GNT",
+  "version_name": "Good News Translation",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 21,
+  "chapters": [
+    {
+      "book_id": "OBA",
+      "chapter": 1,
+      "chapter_usfm": "OBA.1",
+      "version_id": 68,
+      "version_abbr": "GNT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is the prophecy of Obadiah—what the Sovereign Lord said about the nation of Edom.The Lord has sent his messenger to the nations,and we have heard his message:“Get ready! Let us go to war against Edom!”"
+        },
+        {
+          "verse": 2,
+          "text": "The Lord says to Edom,“I will make you weak;everyone will despise you."
+        },
+        {
+          "verse": 3,
+          "text": "Your pride has deceived you.Your capital is a fortress of solid rock;your home is high in the mountains,and so you say to yourself,‘Who can ever pull me down?’"
+        },
+        {
+          "verse": 4,
+          "text": "Even though you make your homeas high as an eagle's nest,so that it seems to be among the stars,yet I will pull you down."
+        },
+        {
+          "verse": 5,
+          "text": "“When thieves come at night,they take only what they want.When people gather grapes,they always leave a few.But your enemies have wiped you out completely."
+        },
+        {
+          "verse": 6,
+          "text": "Descendants of Esau, your treasures have been looted."
+        },
+        {
+          "verse": 7,
+          "text": "Your allies have deceived you;they have driven you from your country.People who were at peace with you have now conquered you.Those friends who ate with you have laid a trap for you;they say of you, ‘Where is all that cleverness he had?’"
+        },
+        {
+          "verse": 8,
+          "text": "“On the day I punish Edom,I will destroy their clever menand wipe out all their wisdom."
+        },
+        {
+          "verse": 9,
+          "text": "The fighting men of Teman will be terrified,and every soldier in Edom will be killed."
+        },
+        {
+          "verse": 10,
+          "text": "“Because you robbed and killedyour relatives, the descendants of Jacob,you will be destroyed and dishonored forever."
+        },
+        {
+          "verse": 11,
+          "text": "You stood aside on that daywhen enemies broke down their gates.You were as bad as those strangerswho carried off Jerusalem's wealthand divided it among themselves."
+        },
+        {
+          "verse": 12,
+          "text": "You should not have gloatedover the misfortune of your relatives in Judah.You should not have been gladon the day of their ruin.You should not have laughed at themin their distress."
+        },
+        {
+          "verse": 13,
+          "text": "You should not have entered the city of my peopleto gloat over their sufferingand to seize their richeson the day of their disaster."
+        },
+        {
+          "verse": 14,
+          "text": "You should not have stood at the crossroadsto catch those trying to escape.You should not have handed them over to the enemyon the day of their distress."
+        },
+        {
+          "verse": 15,
+          "text": "“The day is near when I, the Lord,will judge all nations.Edom, what you have donewill be done to you.You will get back what you have given."
+        },
+        {
+          "verse": 16,
+          "text": "My people have drunk a bitter cup of punishmenton my sacred hill.But all the surrounding nations will drinka still more bitter cup of punishment;they will drink it all and vanish away."
+        },
+        {
+          "verse": 17,
+          "text": "“But on Mount Zion some will escape,and it will be a sacred place.The people of Jacob will possessthe land that is theirs by right."
+        },
+        {
+          "verse": 18,
+          "text": "The people of Jacob and of Joseph will be like fire;they will destroy the people of Esauas fire burns stubble.No descendant of Esau will survive.I, the Lord, have spoken."
+        },
+        {
+          "verse": 19,
+          "text": "“People from southern Judah will occupy Edom;those from the western foothills will capture Philistia.Israelites will possess the territory of Ephraim and Samaria;the people of Benjamin will take Gilead."
+        },
+        {
+          "verse": 20,
+          "text": "The army of exiles from northern Israelwill return and conquer Phoenicia as far north as Zarephath.The exiles from Jerusalem who are in Sardiswill capture the towns of southern Judah."
+        },
+        {
+          "verse": 21,
+          "text": "The victorious men of Jerusalemwill attack Edom and rule over it.And the Lord himself will be king.”"
+        }
+      ],
+      "verse_count": 21,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The"
+        },
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 1,
+          "text": "Will Punish Edom"
+        },
+        {
+          "before_verse": 9,
+          "text": "Reasons for Edom's Punishment"
+        },
+        {
+          "before_verse": 14,
+          "text": "God Will Judge the Nations"
+        },
+        {
+          "before_verse": 16,
+          "text": "The Victory of Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 363,
+          "title": "Good News Translation (US Version)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/363/32k/OBA/1-08b6ab34e435b55730c614b70c747b94.mp3?version_id=68",
+          "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/OBA/1-08b6ab34e435b55730c614b70c747b94.m3u8?version_id=68"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

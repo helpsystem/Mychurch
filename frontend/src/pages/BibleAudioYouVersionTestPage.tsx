@@ -26,8 +26,8 @@ const BibleAudioYouVersionTestPage: React.FC = () => {
         setError(null);
         setDebugInfo('Starting to load data...');
 
-        // Load Persian alignment (without leading slash for Vite)
-        const alignmentPath = 'data/alignments/youversion/MAT_1_fa_alignment.json';
+        // Load Persian alignment (from backend API)
+        const alignmentPath = '/api/bible-audio/youversion-alignment/MAT/1/fa';
         setDebugInfo(`Fetching: ${alignmentPath}`);
         
         const responseFa = await fetch(alignmentPath);
@@ -49,7 +49,7 @@ const BibleAudioYouVersionTestPage: React.FC = () => {
 
         // Try to load English alignment (optional)
         try {
-          const responseEn = await fetch('data/alignments/youversion/MAT_1_en_alignment.json');
+          const responseEn = await fetch('/api/bible-audio/youversion-alignment/MAT/1/en');
           if (responseEn.ok) {
             const dataEn = await responseEn.json();
             setAlignmentEn(dataEn);
@@ -167,7 +167,7 @@ const BibleAudioYouVersionTestPage: React.FC = () => {
             <p>📖 <span className="font-semibold">ترجمه:</span> <span className="text-blue-200">هزاره نو (نسخه ۱۱۸)</span></p>
             <p>🔊 <span className="font-semibold">کیفیت:</span> <span className="text-green-300">استودیویی حرفه‌ای</span></p>
             <p>📝 <span className="font-semibold">آیات:</span> <span className="text-yellow-200">{alignmentFa.verses?.length || 0}</span></p>
-            <p>🔤 <span className="font-semibold">کلمات:</span> <span className="text-yellow-200">{alignmentFa.metadata?.word_count || 0}</span></p>
+            <p>🔤 <span className="font-semibold">کلمات:</span> <span className="text-yellow-200">{(alignmentFa.metadata as any)?.word_count || 0}</span></p>
           </div>
         </div>
 

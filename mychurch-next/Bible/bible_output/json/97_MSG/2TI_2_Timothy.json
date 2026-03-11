@@ -1,0 +1,126 @@
+{
+  "book_id": "2TI",
+  "book_name_en": "2 Timothy",
+  "book_name_fa": "دوم تیموتائوس",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 4,
+  "total_verses": 3,
+  "chapters": [
+    {
+      "book_id": "2TI",
+      "chapter": 1,
+      "chapter_usfm": "2TI.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "To Be Bold with God’s Gifts"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TI/1-822f0b77c8854f79535f69e369e6d617.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TI/1-822f0b77c8854f79535f69e369e6d617.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TI",
+      "chapter": 2,
+      "chapter_usfm": "2TI.2",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 19,
+          "text": "Meanwhile, God’s firm foundation is as firm as ever, these sentences engraved on the stones: god knows who belongs to him. steer clear of evil, all you who name god as god. In a well-furnished kitchen there are not only crystal goblets and silver platters, but waste cans and compost buckets—some containers used to serve fine meals, others to take out the garbage. Become the kind of container God can use to present any and every kind of gift to his guests for their blessing. Run away from childish indulgence. Run after mature righteousness—faith, love, peace—joining those who are in honest and serious prayer before God. Refuse to get involved in inane discussions; they always end up in fights. God’s servant must not be argumentative, but a gentle listener and a teacher who keeps cool, working firmly but patiently with those who refuse to obey. You never know how or when God might sober them up with a change of heart and a turning to the truth, enabling them to escape the Devil’s trap, where they are caught and held captive, forced to run his errands."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TI/2-d60ff7055bd1a0fcc167dd7b85bdaebc.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TI/2-d60ff7055bd1a0fcc167dd7b85bdaebc.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TI",
+      "chapter": 3,
+      "chapter_usfm": "2TI.3",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Keep the Message Alive"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TI/3-b9662f9a7d07266d2b2754bff54f5bab.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TI/3-b9662f9a7d07266d2b2754bff54f5bab.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TI",
+      "chapter": 4,
+      "chapter_usfm": "2TI.4",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 21,
+          "text": "Try hard to get here before winter.Eubulus, Pudens, Linus, Claudia, and all your friends here send greetings."
+        },
+        {
+          "verse": 22,
+          "text": "God be with you. Grace be with you."
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/2TI/4-7e90b9bba501f98e088d4688b0d92bac.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TI/4-7e90b9bba501f98e088d4688b0d92bac.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "book_id": "PHM",
+  "book_name_en": "Philemon",
+  "book_name_fa": "فیلیمون",
+  "testament": "NT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 25,
+  "chapters": [
+    {
+      "book_id": "PHM",
+      "chapter": 1,
+      "chapter_usfm": "PHM.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, a prisoner of Christ Jesus, and Timothy our brother,To Philemon our dear friend and fellow worker—"
+        },
+        {
+          "verse": 2,
+          "text": "also to Apphia our sister and Archippus our fellow soldier—and to the church that meets in your home:"
+        },
+        {
+          "verse": 3,
+          "text": "Grace and peace to you from God our Father and the Lord Jesus Christ."
+        },
+        {
+          "verse": 4,
+          "text": "I always thank my God as I remember you in my prayers,"
+        },
+        {
+          "verse": 5,
+          "text": "because I hear about your love for all his holy people and your faith in the Lord Jesus."
+        },
+        {
+          "verse": 6,
+          "text": "I pray that your partnership with us in the faith may be effective in deepening your understanding of every good thing we share for the sake of Christ."
+        },
+        {
+          "verse": 7,
+          "text": "Your love has given me great joy and encouragement, because you, brother, have refreshed the hearts of the Lord’s people."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore, although in Christ I could be bold and order you to do what you ought to do,"
+        },
+        {
+          "verse": 9,
+          "text": "yet I prefer to appeal to you on the basis of love. It is as none other than Paul—an old man and now also a prisoner of Christ Jesus—"
+        },
+        {
+          "verse": 10,
+          "text": "that I appeal to you for my son Onesimus, who became my son while I was in chains."
+        },
+        {
+          "verse": 11,
+          "text": "Formerly he was useless to you, but now he has become useful both to you and to me."
+        },
+        {
+          "verse": 12,
+          "text": "I am sending him—who is my very heart—back to you."
+        },
+        {
+          "verse": 13,
+          "text": "I would have liked to keep him with me so that he could take your place in helping me while I am in chains for the gospel."
+        },
+        {
+          "verse": 14,
+          "text": "But I did not want to do anything without your consent, so that any favor you do would not seem forced but would be voluntary."
+        },
+        {
+          "verse": 15,
+          "text": "Perhaps the reason he was separated from you for a little while was that you might have him back forever—"
+        },
+        {
+          "verse": 16,
+          "text": "no longer as a slave, but better than a slave, as a dear brother. He is very dear to me but even dearer to you, both as a fellow man and as a brother in the Lord."
+        },
+        {
+          "verse": 17,
+          "text": "So if you consider me a partner, welcome him as you would welcome me."
+        },
+        {
+          "verse": 18,
+          "text": "If he has done you any wrong or owes you anything, charge it to me."
+        },
+        {
+          "verse": 19,
+          "text": "I, Paul, am writing this with my own hand. I will pay it back—not to mention that you owe me your very self."
+        },
+        {
+          "verse": 20,
+          "text": "I do wish, brother, that I may have some benefit from you in the Lord; refresh my heart in Christ."
+        },
+        {
+          "verse": 21,
+          "text": "Confident of your obedience, I write to you, knowing that you will do even more than I ask."
+        },
+        {
+          "verse": 22,
+          "text": "And one thing more: Prepare a guest room for me, because I hope to be restored to you in answer to your prayers."
+        },
+        {
+          "verse": 23,
+          "text": "Epaphras, my fellow prisoner in Christ Jesus, sends you greetings."
+        },
+        {
+          "verse": 24,
+          "text": "And so do Mark, Aristarchus, Demas and Luke, my fellow workers."
+        },
+        {
+          "verse": 25,
+          "text": "The grace of the Lord Jesus Christ be with your spirit."
+        }
+      ],
+      "verse_count": 25,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "Thanksgiving and Prayer"
+        },
+        {
+          "before_verse": 7,
+          "text": "Paul’s Plea for Onesimus"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/PHM/1-138e6b789e0522bab6cfb2bfc73d3984.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/PHM/1-138e6b789e0522bab6cfb2bfc73d3984.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/PHM/1-118c5772f26db3f0e9e8f606c3d1deed.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/PHM/1-118c5772f26db3f0e9e8f606c3d1deed.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/PHM/1-d73de08b6fb4fa756b2dede4f12fcf6b.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/PHM/1-d73de08b6fb4fa756b2dede4f12fcf6b.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/PHM/1-85ccc960e4ad23917a434b0036651b79.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/PHM/1-85ccc960e4ad23917a434b0036651b79.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

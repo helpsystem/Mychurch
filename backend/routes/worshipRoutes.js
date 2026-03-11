@@ -68,7 +68,7 @@ const upload = multer({
 
 // GET /api/worship-songs/health-check - بررسی وضعیت کلی سرودها
 // IMPORTANT: This route must be defined BEFORE /:id to avoid matching "health-check" as id
-router.get('/health-check', async (req, res) => {
+router.get('/health-check', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER', 'LEADER'), async (req, res) => {
   try {
     // Use pool instead of supabase client for reliability
     const result = await pool.query(`
@@ -179,7 +179,7 @@ router.get('/health-check', async (req, res) => {
 
 // GET /api/worship-songs/incomplete - دریافت سرودهای ناقص
 // IMPORTANT: This route must be defined BEFORE /:id
-router.get('/incomplete', async (req, res) => {
+router.get('/incomplete', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'), async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT id, title, audiourl, lyrics, timing_data, chords

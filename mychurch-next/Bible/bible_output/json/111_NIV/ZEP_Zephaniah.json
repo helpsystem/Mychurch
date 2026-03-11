@@ -1,0 +1,406 @@
+{
+  "book_id": "ZEP",
+  "book_name_en": "Zephaniah",
+  "book_name_fa": "صفنیا",
+  "testament": "OT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 53,
+  "chapters": [
+    {
+      "book_id": "ZEP",
+      "chapter": 1,
+      "chapter_usfm": "ZEP.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The word of the Lord that came to Zephaniah son of Cushi, the son of Gedaliah, the son of Amariah, the son of Hezekiah, during the reign of Josiah son of Amon king of Judah:"
+        },
+        {
+          "verse": 2,
+          "text": "“I will sweep away everythingfrom the face of the earth,”declares the Lord."
+        },
+        {
+          "verse": 3,
+          "text": "“I will sweep away both man and beast;I will sweep away the birds in the skyand the fish in the sea—and the idols that cause the wicked to stumble.”“When I destroy all mankindon the face of the earth,”declares the Lord,"
+        },
+        {
+          "verse": 4,
+          "text": "“I will stretch out my hand against Judahand against all who live in Jerusalem.I will destroy every remnant of Baal worship in this place,the very names of the idolatrous priests—"
+        },
+        {
+          "verse": 5,
+          "text": "those who bow down on the roofsto worship the starry host,those who bow down and swear by the Lordand who also swear by Molek,"
+        },
+        {
+          "verse": 6,
+          "text": "those who turn back from following the Lordand neither seek the Lord nor inquire of him.”"
+        },
+        {
+          "verse": 7,
+          "text": "Be silent before the Sovereign Lord,for the day of the Lord is near.The Lord has prepared a sacrifice;he has consecrated those he has invited."
+        },
+        {
+          "verse": 8,
+          "text": "“On the day of the Lord’s sacrificeI will punish the officialsand the king’s sonsand all those cladin foreign clothes."
+        },
+        {
+          "verse": 9,
+          "text": "On that day I will punishall who avoid stepping on the threshold,who fill the temple of their godswith violence and deceit."
+        },
+        {
+          "verse": 10,
+          "text": "“On that day,”declares the Lord,“a cry will go up from the Fish Gate,wailing from the New Quarter,and a loud crash from the hills."
+        },
+        {
+          "verse": 11,
+          "text": "Wail, you who live in the market district;all your merchants will be wiped out,all who trade with silver will be destroyed."
+        },
+        {
+          "verse": 12,
+          "text": "At that time I will search Jerusalem with lampsand punish those who are complacent,who are like wine left on its dregs,who think, ‘The Lord will do nothing,either good or bad.’"
+        },
+        {
+          "verse": 13,
+          "text": "Their wealth will be plundered,their houses demolished.Though they build houses,they will not live in them;though they plant vineyards,they will not drink the wine.”"
+        },
+        {
+          "verse": 14,
+          "text": "The great day of the Lord is near—near and coming quickly.The cry on the day of the Lord is bitter;the Mighty Warrior shouts his battle cry."
+        },
+        {
+          "verse": 15,
+          "text": "That day will be a day of wrath—a day of distress and anguish,a day of trouble and ruin,a day of darkness and gloom,a day of clouds and blackness—"
+        },
+        {
+          "verse": 16,
+          "text": "a day of trumpet and battle cryagainst the fortified citiesand against the corner towers."
+        },
+        {
+          "verse": 17,
+          "text": "“I will bring such distress on all peoplethat they will grope about like those who are blind,because they have sinned against the Lord.Their blood will be poured out like dustand their entrails like dung."
+        },
+        {
+          "verse": 18,
+          "text": "Neither their silver nor their goldwill be able to save themon the day of the Lord’s wrath.”In the fire of his jealousythe whole earth will be consumed,for he will make a sudden endof all who live on the earth."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Judgment on the Whole Earth in the Day of the"
+        },
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/ZEP/1-b702d22fa00242322b5ca91ca08378d5.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/ZEP/1-b702d22fa00242322b5ca91ca08378d5.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/ZEP/1-2820a17a24cf9ad73ee3409e6e50a2d2.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/ZEP/1-2820a17a24cf9ad73ee3409e6e50a2d2.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/ZEP/1-01f39b86c14496b333168ebc63c63aa6.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/ZEP/1-01f39b86c14496b333168ebc63c63aa6.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/ZEP/1-12606beff3cf13012a89b96399594c63.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/ZEP/1-12606beff3cf13012a89b96399594c63.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ZEP",
+      "chapter": 2,
+      "chapter_usfm": "ZEP.2",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Gather together, gather yourselves together,you shameful nation,"
+        },
+        {
+          "verse": 2,
+          "text": "before the decree takes effectand that day passes like windblown chaff,before the Lord’s fierce angercomes upon you,before the day of the Lord’s wrathcomes upon you."
+        },
+        {
+          "verse": 3,
+          "text": "Seek the Lord, all you humble of the land,you who do what he commands.Seek righteousness, seek humility;perhaps you will be shelteredon the day of the Lord’s anger."
+        },
+        {
+          "verse": 4,
+          "text": "Gaza will be abandonedand Ashkelon left in ruins.At midday Ashdod will be emptiedand Ekron uprooted."
+        },
+        {
+          "verse": 5,
+          "text": "Woe to you who live by the sea,you Kerethite people;the word of the Lord is against you,Canaan, land of the Philistines.He says, “I will destroy you,and none will be left.”"
+        },
+        {
+          "verse": 6,
+          "text": "The land by the sea will become pastureshaving wells for shepherdsand pens for flocks."
+        },
+        {
+          "verse": 7,
+          "text": "That land will belongto the remnant of the people of Judah;there they will find pasture.In the evening they will lie downin the houses of Ashkelon.The Lord their God will care for them;he will restore their fortunes."
+        },
+        {
+          "verse": 8,
+          "text": "“I have heard the insults of Moaband the taunts of the Ammonites,who insulted my peopleand made threats against their land."
+        },
+        {
+          "verse": 9,
+          "text": "Therefore, as surely as I live,”declares the Lord Almighty,the God of Israel,“surely Moab will become like Sodom,the Ammonites like Gomorrah—a place of weeds and salt pits,a wasteland forever.The remnant of my people will plunder them;the survivors of my nation will inherit their land.”"
+        },
+        {
+          "verse": 10,
+          "text": "This is what they will get in return for their pride,for insulting and mockingthe people of the Lord Almighty."
+        },
+        {
+          "verse": 11,
+          "text": "The Lord will be awesome to themwhen he destroys all the gods of the earth.Distant nations will bow down to him,all of them in their own lands."
+        },
+        {
+          "verse": 12,
+          "text": "“You Cushites, too,will be slain by my sword.”"
+        },
+        {
+          "verse": 13,
+          "text": "He will stretch out his hand against the northand destroy Assyria,leaving Nineveh utterly desolateand dry as the desert."
+        },
+        {
+          "verse": 14,
+          "text": "Flocks and herds will lie down there,creatures of every kind.The desert owl and the screech owlwill roost on her columns.Their hooting will echo through the windows,rubble will fill the doorways,the beams of cedar will be exposed."
+        },
+        {
+          "verse": 15,
+          "text": "This is the city of revelrythat lived in safety.She said to herself,“I am the one! And there is none besides me.”What a ruin she has become,a lair for wild beasts!All who pass by her scoffand shake their fists."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Judah Summoned to Repent"
+        },
+        {
+          "before_verse": 3,
+          "text": "Philistia"
+        },
+        {
+          "before_verse": 7,
+          "text": "Moab and Ammon"
+        },
+        {
+          "before_verse": 11,
+          "text": "Cush"
+        },
+        {
+          "before_verse": 12,
+          "text": "Assyria"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/ZEP/2-301a3bbfdb7bfadd3fddcf0c579c6e21.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/ZEP/2-301a3bbfdb7bfadd3fddcf0c579c6e21.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/ZEP/2-97eb967ea0f279547f54dbbe2e3eebfe.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/ZEP/2-97eb967ea0f279547f54dbbe2e3eebfe.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/ZEP/2-6424ba2201902882646acc5efad6702d.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/ZEP/2-6424ba2201902882646acc5efad6702d.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/ZEP/2-8a13764b62da3fcb057b644dd572ae15.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/ZEP/2-8a13764b62da3fcb057b644dd572ae15.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ZEP",
+      "chapter": 3,
+      "chapter_usfm": "ZEP.3",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Woe to the city of oppressors,rebellious and defiled!"
+        },
+        {
+          "verse": 2,
+          "text": "She obeys no one,she accepts no correction.She does not trust in the Lord,she does not draw near to her God."
+        },
+        {
+          "verse": 3,
+          "text": "Her officials within herare roaring lions;her rulers are evening wolves,who leave nothing for the morning."
+        },
+        {
+          "verse": 4,
+          "text": "Her prophets are unprincipled;they are treacherous people.Her priests profane the sanctuaryand do violence to the law."
+        },
+        {
+          "verse": 5,
+          "text": "The Lord within her is righteous;he does no wrong.Morning by morning he dispenses his justice,and every new day he does not fail,yet the unrighteous know no shame."
+        },
+        {
+          "verse": 6,
+          "text": "“I have destroyed nations;their strongholds are demolished.I have left their streets deserted,with no one passing through.Their cities are laid waste;they are deserted and empty."
+        },
+        {
+          "verse": 7,
+          "text": "Of Jerusalem I thought,‘Surely you will fear meand accept correction!’Then her place of refuge would not be destroyed,nor all my punishments come upon her.But they were still eagerto act corruptly in all they did."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore wait for me,”declares the Lord,“for the day I will stand up to testify.I have decided to assemble the nations,to gather the kingdomsand to pour out my wrath on them—all my fierce anger.The whole world will be consumedby the fire of my jealous anger."
+        },
+        {
+          "verse": 9,
+          "text": "“Then I will purify the lips of the peoples,that all of them may call on the name of the Lordand serve him shoulder to shoulder."
+        },
+        {
+          "verse": 10,
+          "text": "From beyond the rivers of Cushmy worshipers, my scattered people,will bring me offerings."
+        },
+        {
+          "verse": 11,
+          "text": "On that day you, Jerusalem, will not be put to shamefor all the wrongs you have done to me,because I will remove from youyour arrogant boasters.Never again will you be haughtyon my holy hill."
+        },
+        {
+          "verse": 12,
+          "text": "But I will leave within youthe meek and humble.The remnant of Israelwill trust in the name of the Lord."
+        },
+        {
+          "verse": 13,
+          "text": "They will do no wrong;they will tell no lies.A deceitful tonguewill not be found in their mouths.They will eat and lie downand no one will make them afraid.”"
+        },
+        {
+          "verse": 14,
+          "text": "Sing, Daughter Zion;shout aloud, Israel!Be glad and rejoice with all your heart,Daughter Jerusalem!"
+        },
+        {
+          "verse": 15,
+          "text": "The Lord has taken away your punishment,he has turned back your enemy.The Lord, the King of Israel, is with you;never again will you fear any harm."
+        },
+        {
+          "verse": 16,
+          "text": "On that daythey will say to Jerusalem,“Do not fear, Zion;do not let your hands hang limp."
+        },
+        {
+          "verse": 17,
+          "text": "The Lord your God is with you,the Mighty Warrior who saves.He will take great delight in you;in his love he will no longer rebuke you,but will rejoice over you with singing.”"
+        },
+        {
+          "verse": 18,
+          "text": "“I will remove from youall who mourn over the loss of your appointed festivals,which is a burden and reproach for you."
+        },
+        {
+          "verse": 19,
+          "text": "At that time I will dealwith all who oppressed you.I will rescue the lame;I will gather the exiles.I will give them praise and honorin every land where they have suffered shame."
+        },
+        {
+          "verse": 20,
+          "text": "At that time I will gather you;at that time I will bring you home.I will give you honor and praiseamong all the peoples of the earthwhen I restore your fortunesbefore your very eyes,”says the Lord."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 5,
+          "text": "Jerusalem Remains Unrepentant"
+        },
+        {
+          "before_verse": 8,
+          "text": "Restoration of Israel’s Remnant"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/ZEP/3-6a578d9e9ea6510338600c6218dcde81.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/ZEP/3-6a578d9e9ea6510338600c6218dcde81.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/ZEP/3-baf7280e2afbc0ca63f9c12d30c57fb3.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/ZEP/3-baf7280e2afbc0ca63f9c12d30c57fb3.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/ZEP/3-784fdcc85082e5ea171d21a9cd7f1031.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/ZEP/3-784fdcc85082e5ea171d21a9cd7f1031.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/ZEP/3-de137decd85872b02c35232e79a7304d.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/ZEP/3-de137decd85872b02c35232e79a7304d.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

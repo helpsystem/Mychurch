@@ -2,6 +2,7 @@ const express = require('express');
 const { pool } = require('../db-postgres');
 const fs = require('fs').promises;
 const path = require('path');
+const youversionService = require('../services/youversionService');
 // ❌ Supabase disabled - using local PostgreSQL only
 // const supabaseClient = require('../supabase-client');
 const supabaseClient = null; // Disabled
@@ -705,7 +706,18 @@ router.get('/content/:bookKey/:chapter', async (req, res) => {
             englishSource = 'net';
             console.log(`📖 NET: Loaded ${englishVerses.rows.length} verses for ${book.code} ch${chapterNum}`);
           } else {
-            console.log(`⚠️ No English translation available for ${book.code} ch${chapterNum}`);
+            // Final fallback: YouVersion API
+            const youversionVerses = await youversionService.getChapterVerses(book.code, chapterNum, 3034); // BSB or default English
+            if (youversionVerses && youversionVerses.length > 0) {
+              englishVerses.rows = youversionVerses.map(v => ({
+                verse_number: v.verse_number,
+                text_en: v.text
+              }));
+              englishSource = 'youversion';
+              console.log(`📖 YOUVERSION: Loaded ${englishVerses.rows.length} verses from API for ${book.code} ch${chapterNum}`);
+            } else {
+              console.log(`⚠️ No English translation available for ${book.code} ch${chapterNum}`);
+            }
           }
         }
       }

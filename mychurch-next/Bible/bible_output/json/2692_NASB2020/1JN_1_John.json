@@ -1,0 +1,634 @@
+{
+  "book_id": "1JN",
+  "book_name_en": "1 John",
+  "book_name_fa": "اول یوحنا",
+  "testament": "NT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 5,
+  "total_verses": 105,
+  "chapters": [
+    {
+      "book_id": "1JN",
+      "chapter": 1,
+      "chapter_usfm": "1JN.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What was from the beginning, what we have heard, what we have seen with our eyes, what we have looked at and touched with our hands, concerning the Word of Life—"
+        },
+        {
+          "verse": 2,
+          "text": "and the life was revealed, and we have seen and testify and proclaim to you the eternal life, which was with the Father and was revealed to us—"
+        },
+        {
+          "verse": 3,
+          "text": "what we have seen and heard we proclaim to you also, so that you too may have fellowship with us; and indeed our fellowship is with the Father, and with His Son Jesus Christ."
+        },
+        {
+          "verse": 4,
+          "text": "These things we write, so that our joy may be made complete."
+        },
+        {
+          "verse": 5,
+          "text": "This is the message we have heard from Him and announce to you, that God is Light, and in Him there is no darkness at all."
+        },
+        {
+          "verse": 6,
+          "text": "If we say that we have fellowship with Him and yet walk in the darkness, we lie and do not practice the truth;"
+        },
+        {
+          "verse": 7,
+          "text": "but if we walk in the Light as He Himself is in the Light, we have fellowship with one another, and the blood of Jesus His Son cleanses us from all sin."
+        },
+        {
+          "verse": 8,
+          "text": "If we say that we have no sin, we are deceiving ourselves and the truth is not in us."
+        },
+        {
+          "verse": 9,
+          "text": "If we confess our sins, He is faithful and righteous, so that He will forgive us our sins and cleanse us from all unrighteousness."
+        },
+        {
+          "verse": 10,
+          "text": "If we say that we have not sinned, we make Him a liar and His word is not in us."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Incarnate Word"
+        },
+        {
+          "before_verse": 4,
+          "text": "God Is Light"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1JN/1-cb63716277e92844e6d4eb62b05dd143.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1JN/1-cb63716277e92844e6d4eb62b05dd143.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1JN/1-e3ee6182315ffab66ad31b4b59dfaf94.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1JN/1-e3ee6182315ffab66ad31b4b59dfaf94.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1JN",
+      "chapter": 2,
+      "chapter_usfm": "1JN.2",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "My little children, I am writing these things to you so that you may not sin. And if anyone sins, we have an Advocate with the Father, Jesus Christ the righteous;"
+        },
+        {
+          "verse": 2,
+          "text": "and He Himself is the propitiation for our sins; and not for ours only, but also for the sins of the whole world."
+        },
+        {
+          "verse": 3,
+          "text": "By this we know that we have come to know Him, if we keep His commandments."
+        },
+        {
+          "verse": 4,
+          "text": "The one who says, “I have come to know Him,” and does not keep His commandments, is a liar, and the truth is not in him;"
+        },
+        {
+          "verse": 5,
+          "text": "but whoever follows His word, in him the love of God has truly been perfected. By this we know that we are in Him:"
+        },
+        {
+          "verse": 6,
+          "text": "the one who says that he remains in Him ought, himself also, to walk just as He walked."
+        },
+        {
+          "verse": 7,
+          "text": "Beloved, I am not writing a new commandment to you, but an old commandment which you have had from the beginning; the old commandment is the word which you have heard."
+        },
+        {
+          "verse": 8,
+          "text": "On the other hand, I am writing a new commandment to you, which is true in Him and in you, because the darkness is passing away and the true Light is already shining."
+        },
+        {
+          "verse": 9,
+          "text": "The one who says that he is in the Light and yet hates his brother or sister is in the darkness until now."
+        },
+        {
+          "verse": 10,
+          "text": "The one who loves his brother and sister remains in the Light, and there is nothing in him to cause stumbling."
+        },
+        {
+          "verse": 11,
+          "text": "But the one who hates his brother or sister is in the darkness and walks in the darkness, and does not know where he is going because the darkness has blinded his eyes."
+        },
+        {
+          "verse": 12,
+          "text": "I am writing to you, little children, because your sins have been forgiven you on account of His name."
+        },
+        {
+          "verse": 13,
+          "text": "I am writing to you, fathers, because you know Him who has been from the beginning. I am writing to you, young men, because you have overcome the evil one. I have written to you, children, because you know the Father."
+        },
+        {
+          "verse": 14,
+          "text": "I have written to you, fathers, because you know Him who has been from the beginning. I have written to you, young men, because you are strong, and the word of God remains in you, and you have overcome the evil one."
+        },
+        {
+          "verse": 15,
+          "text": "Do not love the world nor the things in the world. If anyone loves the world, the love of the Father is not in him."
+        },
+        {
+          "verse": 16,
+          "text": "For all that is in the world, the lust of the flesh and the lust of the eyes and the boastful pride of life, is not from the Father, but is from the world."
+        },
+        {
+          "verse": 17,
+          "text": "The world is passing away and also its lusts; but the one who does the will of God continues to live forever."
+        },
+        {
+          "verse": 18,
+          "text": "Children, it is the last hour; and just as you heard that antichrist is coming, even now many antichrists have appeared; from this we know that it is the last hour."
+        },
+        {
+          "verse": 19,
+          "text": "They went out from us, but they were not really of us; for if they had been of us, they would have remained with us; but they went out, so that it would be evident that they all are not of us."
+        },
+        {
+          "verse": 20,
+          "text": "But you have an anointing from the Holy One, and you all know."
+        },
+        {
+          "verse": 21,
+          "text": "I have not written to you because you do not know the truth, but because you do know it, and because no lie is of the truth."
+        },
+        {
+          "verse": 22,
+          "text": "Who is the liar except the one who denies that Jesus is the Christ? This is the antichrist, the one who denies the Father and the Son."
+        },
+        {
+          "verse": 23,
+          "text": "Whoever denies the Son does not have the Father; the one who confesses the Son has the Father also."
+        },
+        {
+          "verse": 24,
+          "text": "As for you, see that what you heard from the beginning remains in you. If what you heard from the beginning remains in you, you also will remain in the Son and in the Father."
+        },
+        {
+          "verse": 25,
+          "text": "This is the promise which He Himself made to us: eternal life."
+        },
+        {
+          "verse": 26,
+          "text": "These things I have written to you concerning those who are trying to deceive you."
+        },
+        {
+          "verse": 27,
+          "text": "And as for you, the anointing which you received from Him remains in you, and you have no need for anyone to teach you; but as His anointing teaches you about all things, and is true and is not a lie, and just as it has taught you, you remain in Him."
+        },
+        {
+          "verse": 28,
+          "text": "Now, little children, remain in Him, so that when He appears, we may have confidence and not draw back from Him in shame at His coming."
+        },
+        {
+          "verse": 29,
+          "text": "If you know that He is righteous, you know that everyone who practices righteousness also has been born of Him."
+        }
+      ],
+      "verse_count": 29,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Christ Is Our Advocate"
+        },
+        {
+          "before_verse": 14,
+          "text": "Do Not Love the World"
+        },
+        {
+          "before_verse": 24,
+          "text": "The Promise Is Eternal Life"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1JN/2-26281c9202f05e0a0755f7b887d961a8.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1JN/2-26281c9202f05e0a0755f7b887d961a8.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1JN/2-368c6e228ad5239830fe755072c9df4d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1JN/2-368c6e228ad5239830fe755072c9df4d.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1JN",
+      "chapter": 3,
+      "chapter_usfm": "1JN.3",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "See how great a love the Father has given us, that we would be called children of God; and in fact we are. For this reason the world does not know us: because it did not know Him."
+        },
+        {
+          "verse": 2,
+          "text": "Beloved, now we are children of God, and it has not appeared as yet what we will be. We know that when He appears, we will be like Him, because we will see Him just as He is."
+        },
+        {
+          "verse": 3,
+          "text": "And everyone who has this hope set on Him purifies himself, just as He is pure."
+        },
+        {
+          "verse": 4,
+          "text": "Everyone who practices sin also practices lawlessness; and sin is lawlessness."
+        },
+        {
+          "verse": 5,
+          "text": "You know that He appeared in order to take away sins; and in Him there is no sin."
+        },
+        {
+          "verse": 6,
+          "text": "No one who remains in Him sins continually; no one who sins continually has seen Him or knows Him."
+        },
+        {
+          "verse": 7,
+          "text": "Little children, make sure no one deceives you; the one who practices righteousness is righteous, just as He is righteous;"
+        },
+        {
+          "verse": 8,
+          "text": "the one who practices sin is of the devil; for the devil has been sinning from the beginning. The Son of God appeared for this purpose, to destroy the works of the devil."
+        },
+        {
+          "verse": 9,
+          "text": "No one who has been born of God practices sin, because His seed remains in him; and he cannot sin continually, because he has been born of God."
+        },
+        {
+          "verse": 10,
+          "text": "By this the children of God and the children of the devil are obvious: anyone who does not practice righteousness is not of God, nor the one who does not love his brother and sister."
+        },
+        {
+          "verse": 11,
+          "text": "For this is the message which you have heard from the beginning, that we are to love one another;"
+        },
+        {
+          "verse": 12,
+          "text": "not as Cain, who was of the evil one and murdered his brother. And for what reason did he murder him? Because his own deeds were evil, but his brother’s were righteous."
+        },
+        {
+          "verse": 13,
+          "text": "Do not be surprised, brothers and sisters, if the world hates you."
+        },
+        {
+          "verse": 14,
+          "text": "We know that we have passed out of death into life, because we love the brothers and sisters. The one who does not love remains in death."
+        },
+        {
+          "verse": 15,
+          "text": "Everyone who hates his brother or sister is a murderer, and you know that no murderer has eternal life remaining in him."
+        },
+        {
+          "verse": 16,
+          "text": "We know love by this, that He laid down His life for us; and we ought to lay down our lives for the brothers and sisters."
+        },
+        {
+          "verse": 17,
+          "text": "But whoever has worldly goods and sees his brother or sister in need, and closes his heart against him, how does the love of God remain in him?"
+        },
+        {
+          "verse": 18,
+          "text": "Little children, let’s not love with word or with tongue, but in deed and truth."
+        },
+        {
+          "verse": 19,
+          "text": "We will know by this that we are of the truth, and will set our heart at ease before Him,"
+        },
+        {
+          "verse": 20,
+          "text": "that if our heart condemns us, that God is greater than our heart, and He knows all things."
+        },
+        {
+          "verse": 21,
+          "text": "Beloved, if our heart does not condemn us, we have confidence before God;"
+        },
+        {
+          "verse": 22,
+          "text": "and whatever we ask, we receive from Him, because we keep His commandments and do the things that are pleasing in His sight."
+        },
+        {
+          "verse": 23,
+          "text": "This is His commandment, that we believe in the name of His Son Jesus Christ, and love one another, just as He commanded us."
+        },
+        {
+          "verse": 24,
+          "text": "The one who keeps His commandments remains in Him, and He in him. We know by this that He remains in us, by the Spirit whom He has given us."
+        }
+      ],
+      "verse_count": 24,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Children of God Love One Another"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1JN/3-2292c869ccc20bcbd7370617c878caa8.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1JN/3-2292c869ccc20bcbd7370617c878caa8.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1JN/3-e35b841ef943c86c4f05d444292c6fb9.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1JN/3-e35b841ef943c86c4f05d444292c6fb9.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1JN",
+      "chapter": 4,
+      "chapter_usfm": "1JN.4",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Beloved, do not believe every spirit, but test the spirits to see whether they are from God, because many false prophets have gone out into the world."
+        },
+        {
+          "verse": 2,
+          "text": "By this you know the Spirit of God: every spirit that confesses that Jesus Christ has come in the flesh is from God;"
+        },
+        {
+          "verse": 3,
+          "text": "and every spirit that does not confess Jesus is not from God; this is the spirit of the antichrist, which you have heard is coming, and now it is already in the world."
+        },
+        {
+          "verse": 4,
+          "text": "You are from God, little children, and have overcome them; because greater is He who is in you than he who is in the world."
+        },
+        {
+          "verse": 5,
+          "text": "They are from the world, therefore they speak as from the world, and the world listens to them."
+        },
+        {
+          "verse": 6,
+          "text": "We are from God. The one who knows God listens to us; the one who is not from God does not listen to us. By this we know the spirit of truth and the spirit of error."
+        },
+        {
+          "verse": 7,
+          "text": "Beloved, let’s love one another; for love is from God, and everyone who loves has been born of God and knows God."
+        },
+        {
+          "verse": 8,
+          "text": "The one who does not love does not know God, because God is love."
+        },
+        {
+          "verse": 9,
+          "text": "By this the love of God was revealed in us, that God has sent His only Son into the world so that we may live through Him."
+        },
+        {
+          "verse": 10,
+          "text": "In this is love, not that we loved God, but that He loved us and sent His Son to be the propitiation for our sins."
+        },
+        {
+          "verse": 11,
+          "text": "Beloved, if God so loved us, we also ought to love one another."
+        },
+        {
+          "verse": 12,
+          "text": "No one has ever seen God; if we love one another, God remains in us, and His love is perfected in us."
+        },
+        {
+          "verse": 13,
+          "text": "By this we know that we remain in Him and He in us, because He has given to us of His Spirit."
+        },
+        {
+          "verse": 14,
+          "text": "We have seen and testify that the Father has sent the Son to be the Savior of the world."
+        },
+        {
+          "verse": 15,
+          "text": "Whoever confesses that Jesus is the Son of God, God remains in him, and he in God."
+        },
+        {
+          "verse": 16,
+          "text": "We have come to know and have believed the love which God has for us. God is love, and the one who remains in love remains in God, and God remains in him."
+        },
+        {
+          "verse": 17,
+          "text": "By this, love is perfected with us, so that we may have confidence in the day of judgment; because as He is, we also are in this world."
+        },
+        {
+          "verse": 18,
+          "text": "There is no fear in love, but perfect love drives out fear, because fear involves punishment, and the one who fears is not perfected in love."
+        },
+        {
+          "verse": 19,
+          "text": "We love, because He first loved us."
+        },
+        {
+          "verse": 20,
+          "text": "If someone says, “I love God,” and yet he hates his brother or sister, he is a liar; for the one who does not love his brother and sister whom he has seen, cannot love God, whom he has not seen."
+        },
+        {
+          "verse": 21,
+          "text": "And this commandment we have from Him, that the one who loves God must also love his brother and sister."
+        }
+      ],
+      "verse_count": 21,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Testing the Spirits"
+        },
+        {
+          "before_verse": 6,
+          "text": "God Is Love"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1JN/4-026e7d9751be8487494e7b9d5114de08.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1JN/4-026e7d9751be8487494e7b9d5114de08.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1JN/4-1eddb19b63fb37fdb764a8bc65212166.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1JN/4-1eddb19b63fb37fdb764a8bc65212166.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1JN",
+      "chapter": 5,
+      "chapter_usfm": "1JN.5",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Everyone who believes that Jesus is the Christ has been born of God, and everyone who loves the Father loves the child born of Him."
+        },
+        {
+          "verse": 2,
+          "text": "By this we know that we love the children of God, when we love God and follow His commandments."
+        },
+        {
+          "verse": 3,
+          "text": "For this is the love of God, that we keep His commandments; and His commandments are not burdensome."
+        },
+        {
+          "verse": 4,
+          "text": "For whoever has been born of God overcomes the world; and this is the victory that has overcome the world: our faith."
+        },
+        {
+          "verse": 5,
+          "text": "Who is the one who overcomes the world, but the one who believes that Jesus is the Son of God?"
+        },
+        {
+          "verse": 6,
+          "text": "This is the One who came by water and blood, Jesus Christ; not with the water only, but with the water and with the blood. It is the Spirit who testifies, because the Spirit is the truth."
+        },
+        {
+          "verse": 7,
+          "text": "For there are three that testify:"
+        },
+        {
+          "verse": 8,
+          "text": "the Spirit and the water and the blood; and the three are in agreement."
+        },
+        {
+          "verse": 9,
+          "text": "If we receive the testimony of people, the testimony of God is greater; for the testimony of God is this, that He has testified concerning His Son."
+        },
+        {
+          "verse": 10,
+          "text": "The one who believes in the Son of God has the testimony in himself; the one who does not believe God has made Him a liar, because he has not believed in the testimony that God has given concerning His Son."
+        },
+        {
+          "verse": 11,
+          "text": "And the testimony is this, that God has given us eternal life, and this life is in His Son."
+        },
+        {
+          "verse": 12,
+          "text": "The one who has the Son has the life; the one who does not have the Son of God does not have the life."
+        },
+        {
+          "verse": 13,
+          "text": "These things I have written to you who believe in the name of the Son of God, so that you may know that you have eternal life."
+        },
+        {
+          "verse": 14,
+          "text": "This is the confidence which we have before Him, that, if we ask anything according to His will, He hears us."
+        },
+        {
+          "verse": 15,
+          "text": "And if we know that He hears us in whatever we ask, we know that we have the requests which we have asked from Him."
+        },
+        {
+          "verse": 16,
+          "text": "If anyone sees his brother or sister committing a sin not leading to death, he shall ask and God will, for him, give life to those who commit sin not leading to death. There is sin leading to death; I am not saying that he should ask about that."
+        },
+        {
+          "verse": 17,
+          "text": "All unrighteousness is sin, and there is sin not leading to death."
+        },
+        {
+          "verse": 18,
+          "text": "We know that no one who has been born of God sins; but He who was born of God keeps him, and the evil one does not touch him."
+        },
+        {
+          "verse": 19,
+          "text": "We know that we are of God, and that the whole world lies in the power of the evil one."
+        },
+        {
+          "verse": 20,
+          "text": "And we know that the Son of God has come, and has given us understanding so that we may know Him who is true; and we are in Him who is true, in His Son Jesus Christ. This is the true God and eternal life."
+        },
+        {
+          "verse": 21,
+          "text": "Little children, guard yourselves from idols."
+        }
+      ],
+      "verse_count": 21,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Overcoming the World"
+        },
+        {
+          "before_verse": 12,
+          "text": "This Is Written That You May Know"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1JN/5-9d8a573c97ac8c8d407d485a542b34c8.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1JN/5-9d8a573c97ac8c8d407d485a542b34c8.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1JN/5-d77ae1ed4e317394f62a07314caa377d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1JN/5-d77ae1ed4e317394f62a07314caa377d.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

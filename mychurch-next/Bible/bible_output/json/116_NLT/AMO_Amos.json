@@ -1,0 +1,1131 @@
+{
+  "book_id": "AMO",
+  "book_name_en": "Amos",
+  "book_name_fa": "عاموس",
+  "testament": "OT",
+  "version_id": 116,
+  "version_abbr": "NLT",
+  "version_name": "New Living Translation",
+  "language": "en",
+  "chapter_count": 9,
+  "total_verses": 146,
+  "chapters": [
+    {
+      "book_id": "AMO",
+      "chapter": 1,
+      "chapter_usfm": "AMO.1",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This message was given to Amos, a shepherd from the town of Tekoa in Judah. He received this message in visions two years before the earthquake, when Uzziah was king of Judah and Jeroboam II, the son of Jehoash, was king of Israel."
+        },
+        {
+          "verse": 2,
+          "text": "This is what he saw and heard:“The Lord’s voice will roar from Zionand thunder from Jerusalem!The lush pastures of the shepherds will dry up;the grass on Mount Carmel will wither and die.”"
+        },
+        {
+          "verse": 3,
+          "text": "This is what the Lord says:“The people of Damascus have sinned again and again,and I will not let them go unpunished!They beat down my people in Gileadas grain is threshed with iron sledges."
+        },
+        {
+          "verse": 4,
+          "text": "So I will send down fire on King Hazael’s palace,and the fortresses of King Ben-hadad will be destroyed."
+        },
+        {
+          "verse": 5,
+          "text": "I will break down the gates of Damascusand slaughter the people in the valley of Aven.I will destroy the ruler in Beth-eden,and the people of Aram will go as captives to Kir,”says the Lord."
+        },
+        {
+          "verse": 6,
+          "text": "This is what the Lord says:“The people of Gaza have sinned again and again,and I will not let them go unpunished!They sent whole villages into exile,selling them as slaves to Edom."
+        },
+        {
+          "verse": 7,
+          "text": "So I will send down fire on the walls of Gaza,and all its fortresses will be destroyed."
+        },
+        {
+          "verse": 8,
+          "text": "I will slaughter the people of Ashdodand destroy the king of Ashkelon.Then I will turn to attack Ekron,and the few Philistines still left will be killed,”says the Sovereign Lord."
+        },
+        {
+          "verse": 9,
+          "text": "This is what the Lord says:“The people of Tyre have sinned again and again,and I will not let them go unpunished!They broke their treaty of brotherhood with Israel,selling whole villages as slaves to Edom."
+        },
+        {
+          "verse": 10,
+          "text": "So I will send down fire on the walls of Tyre,and all its fortresses will be destroyed.”"
+        },
+        {
+          "verse": 11,
+          "text": "This is what the Lord says:“The people of Edom have sinned again and again,and I will not let them go unpunished!They chased down their relatives, the Israelites, with swords,showing them no mercy.In their rage, they slashed them continuallyand were unrelenting in their anger."
+        },
+        {
+          "verse": 12,
+          "text": "So I will send down fire on Teman,and the fortresses of Bozrah will be destroyed.”"
+        },
+        {
+          "verse": 13,
+          "text": "This is what the Lord says:“The people of Ammon have sinned again and again,and I will not let them go unpunished!When they attacked Gilead to extend their borders,they ripped open pregnant women with their swords."
+        },
+        {
+          "verse": 14,
+          "text": "So I will send down fire on the walls of Rabbah,and all its fortresses will be destroyed.The battle will come upon them with shouts,like a whirlwind in a mighty storm."
+        },
+        {
+          "verse": 15,
+          "text": "And their king and his princes will go into exile together,”says the Lord."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 2,
+          "text": "God’s Judgment on Israel’s Neighbors"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/1-b769ffe8be791cd167241c8c83725588.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/1-b769ffe8be791cd167241c8c83725588.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/1-0a33b1f6cedba8e69cfdf416bb7ca647.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/1-0a33b1f6cedba8e69cfdf416bb7ca647.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/1-1bd008e6b1468eeb0074699a85531bf5.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/1-1bd008e6b1468eeb0074699a85531bf5.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/1-53529ea3d7a9b1c5bf1b962f497264c2.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/1-53529ea3d7a9b1c5bf1b962f497264c2.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/1-eae9d23648c83d555510fefc0fd3359d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/1-eae9d23648c83d555510fefc0fd3359d.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 2,
+      "chapter_usfm": "AMO.2",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is what the Lord says:“The people of Moab have sinned again and again,and I will not let them go unpunished!They desecrated the bones of Edom’s king,burning them to ashes."
+        },
+        {
+          "verse": 2,
+          "text": "So I will send down fire on the land of Moab,and all the fortresses in Kerioth will be destroyed.The people will fall in the noise of battle,as the warriors shout and the ram’s horn sounds."
+        },
+        {
+          "verse": 3,
+          "text": "And I will destroy their kingand slaughter all their princes,”says the Lord."
+        },
+        {
+          "verse": 4,
+          "text": "This is what the Lord says:“The people of Judah have sinned again and again,and I will not let them go unpunished!They have rejected the instruction of the Lord,refusing to obey his decrees.They have been led astray by the same liesthat deceived their ancestors."
+        },
+        {
+          "verse": 5,
+          "text": "So I will send down fire on Judah,and all the fortresses of Jerusalem will be destroyed.”"
+        },
+        {
+          "verse": 6,
+          "text": "This is what the Lord says:“The people of Israel have sinned again and again,and I will not let them go unpunished!They sell honorable people for silverand poor people for a pair of sandals."
+        },
+        {
+          "verse": 7,
+          "text": "They trample helpless people in the dustand shove the oppressed out of the way.Both father and son sleep with the same woman,corrupting my holy name."
+        },
+        {
+          "verse": 8,
+          "text": "At their religious festivals,they lounge in clothing their debtors put up as security.In the house of their gods,they drink wine bought with unjust fines."
+        },
+        {
+          "verse": 9,
+          "text": "“But as my people watched,I destroyed the Amorites,though they were as tall as cedarsand as strong as oaks.I destroyed the fruit on their branchesand dug out their roots."
+        },
+        {
+          "verse": 10,
+          "text": "It was I who rescued you from Egyptand led you through the desert for forty years,so you could possess the land of the Amorites."
+        },
+        {
+          "verse": 11,
+          "text": "I chose some of your sons to be prophetsand others to be Nazirites.Can you deny this, my people of Israel?”asks the Lord."
+        },
+        {
+          "verse": 12,
+          "text": "“But you caused the Nazirites to sin by making them drink wine,and you commanded the prophets, ‘Shut up!’"
+        },
+        {
+          "verse": 13,
+          "text": "“So I will make you groanlike a wagon loaded down with sheaves of grain."
+        },
+        {
+          "verse": 14,
+          "text": "Your fastest runners will not get away.The strongest among you will become weak.Even mighty warriors will be unable to save themselves."
+        },
+        {
+          "verse": 15,
+          "text": "The archers will not stand their ground.The swiftest runners won’t be fast enough to escape.Even those riding horses won’t be able to save themselves."
+        },
+        {
+          "verse": 16,
+          "text": "On that day the most courageous of your fighting menwill drop their weapons and run for their lives,”says the Lord."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "God’s Judgment on Judah and Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/2-e81ac82ea0d3ee59da448dfe4b2bbe20.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/2-e81ac82ea0d3ee59da448dfe4b2bbe20.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/2-73182c8983ce517611b8e103fed2b012.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/2-73182c8983ce517611b8e103fed2b012.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/2-aa823f9f10d36407a42b040205eebc41.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/2-aa823f9f10d36407a42b040205eebc41.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/2-78cb16fdc2ae8b67b93757b10f41c9b9.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/2-78cb16fdc2ae8b67b93757b10f41c9b9.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/2-5179b9ae8146d2fe532a3a5229ab5b19.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/2-5179b9ae8146d2fe532a3a5229ab5b19.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 3,
+      "chapter_usfm": "AMO.3",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Listen to this message that the Lord has spoken against you, O people of Israel—against the entire family I rescued from Egypt:"
+        },
+        {
+          "verse": 2,
+          "text": "“From among all the families on the earth,I have been intimate with you alone.That is why I must punish youfor all your sins.”"
+        },
+        {
+          "verse": 3,
+          "text": "Can two people walk togetherwithout agreeing on the direction?"
+        },
+        {
+          "verse": 4,
+          "text": "Does a lion ever roar in a thicketwithout first finding a victim?Does a young lion growl in its denwithout first catching its prey?"
+        },
+        {
+          "verse": 5,
+          "text": "Does a bird ever get caught in a trapthat has no bait?Does a trap spring shutwhen there’s nothing to catch?"
+        },
+        {
+          "verse": 6,
+          "text": "When the ram’s horn blows a warning,shouldn’t the people be alarmed?Does disaster come to a cityunless the Lord has planned it?"
+        },
+        {
+          "verse": 7,
+          "text": "Indeed, the Sovereign Lord never does anythinguntil he reveals his plans to his servants the prophets."
+        },
+        {
+          "verse": 8,
+          "text": "The lion has roared—so who isn’t frightened?The Sovereign Lord has spoken—so who can refuse to proclaim his message?"
+        },
+        {
+          "verse": 9,
+          "text": "Announce this to the leaders of Philistiaand to the great ones of Egypt:“Take your seats now on the hills around Samaria,and witness the chaos and oppression in Israel.”"
+        },
+        {
+          "verse": 10,
+          "text": "“My people have forgotten how to do right,”says the Lord.“Their fortresses are filled with wealthtaken by theft and violence."
+        },
+        {
+          "verse": 11,
+          "text": "Therefore,” says the Sovereign Lord,“an enemy is coming!He will surround them and shatter their defenses.Then he will plunder all their fortresses.”"
+        },
+        {
+          "verse": 12,
+          "text": "This is what the Lord says:“A shepherd who tries to rescue a sheep from a lion’s mouthwill recover only two legs or a piece of an ear.So it will be for the Israelites in Samaria lying on luxurious beds,and for the people of Damascus reclining on couches."
+        },
+        {
+          "verse": 13,
+          "text": "“Now listen to this, and announce it throughout all Israel,” says the Lord, the Lord God of Heaven’s Armies."
+        },
+        {
+          "verse": 14,
+          "text": "“On the very day I punish Israel for its sins,I will destroy the pagan altars at Bethel.The horns of the altar will be cut offand fall to the ground."
+        },
+        {
+          "verse": 15,
+          "text": "And I will destroy the beautiful homes of the wealthy—their winter mansions and their summer houses, too—all their palaces filled with ivory,”says the Lord."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 2,
+          "text": "Witnesses against Guilty Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/3-54a45cf065d0f446571fb5d2b11fa4fa.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/3-54a45cf065d0f446571fb5d2b11fa4fa.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/3-285ddb082da23b30953b8ae35c2b9b39.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/3-285ddb082da23b30953b8ae35c2b9b39.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/3-572acf4a4c426c9dc1883b7c6ea4c5b4.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/3-572acf4a4c426c9dc1883b7c6ea4c5b4.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/3-df485c6b0fd590d7354c5e9e34e6f3b6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/3-df485c6b0fd590d7354c5e9e34e6f3b6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/3-f7948b6b7ef05bb5b4d771c03078f307.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/3-f7948b6b7ef05bb5b4d771c03078f307.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 4,
+      "chapter_usfm": "AMO.4",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Listen to me, you fat cowsliving in Samaria,you women who oppress the poorand crush the needy,and who are always calling to your husbands,“Bring us another drink!”"
+        },
+        {
+          "verse": 2,
+          "text": "The Sovereign Lord has sworn this by his holiness:“The time will come when you will be led awaywith hooks in your noses.Every last one of you will be dragged awaylike a fish on a hook!"
+        },
+        {
+          "verse": 3,
+          "text": "You will be led out through the ruins of the wall;you will be thrown from your fortresses,”says the Lord."
+        },
+        {
+          "verse": 4,
+          "text": "“Go ahead and offer sacrifices to the idols at Bethel.Keep on disobeying at Gilgal.Offer sacrifices each morning,and bring your tithes every three days."
+        },
+        {
+          "verse": 5,
+          "text": "Present your bread made with yeastas an offering of thanksgiving.Then give your extra voluntary offeringsso you can brag about it everywhere!This is the kind of thing you Israelites love to do,”says the Sovereign Lord."
+        },
+        {
+          "verse": 6,
+          "text": "“I brought hunger to every cityand famine to every town.But still you would not return to me,”says the Lord."
+        },
+        {
+          "verse": 7,
+          "text": "“I kept the rain from fallingwhen your crops needed it the most.I sent rain on one townbut withheld it from another.Rain fell on one field,while another field withered away."
+        },
+        {
+          "verse": 8,
+          "text": "People staggered from town to town looking for water,but there was never enough.But still you would not return to me,”says the Lord."
+        },
+        {
+          "verse": 9,
+          "text": "“I struck your farms and vineyards with blight and mildew.Locusts devoured all your fig and olive trees.But still you would not return to me,”says the Lord."
+        },
+        {
+          "verse": 10,
+          "text": "“I sent plagues on youlike the plagues I sent on Egypt long ago.I killed your young men in warand led all your horses away.The stench of death filled the air!But still you would not return to me,”says the Lord."
+        },
+        {
+          "verse": 11,
+          "text": "“I destroyed some of your cities,as I destroyed Sodom and Gomorrah.Those of you who survivedwere like charred sticks pulled from a fire.But still you would not return to me,”says the Lord."
+        },
+        {
+          "verse": 12,
+          "text": "“Therefore, I will bring upon you all the disasters I have announced.Prepare to meet your God in judgment, you people of Israel!”"
+        },
+        {
+          "verse": 13,
+          "text": "For the Lord is the one who shaped the mountains,stirs up the winds, and reveals his thoughts to mankind.He turns the light of dawn into darknessand treads on the heights of the earth.The Lord God of Heaven’s Armies is his name!"
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/4-62abd6849c10e6e2669be70eb51c1341.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/4-62abd6849c10e6e2669be70eb51c1341.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/4-0f50df00931d6a12229da919ecbe8952.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/4-0f50df00931d6a12229da919ecbe8952.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/4-7e11a045e24373c9f604039c27b37494.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/4-7e11a045e24373c9f604039c27b37494.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/4-55930d660d81b29994ce65346fb5c0f6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/4-55930d660d81b29994ce65346fb5c0f6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/4-aeead7152485b7474fa920d93c2ce13e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/4-aeead7152485b7474fa920d93c2ce13e.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 5,
+      "chapter_usfm": "AMO.5",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Listen, you people of Israel! Listen to this funeral song I am singing:"
+        },
+        {
+          "verse": 2,
+          "text": "“The virgin Israel has fallen,never to rise again!She lies abandoned on the ground,with no one to help her up.”"
+        },
+        {
+          "verse": 3,
+          "text": "The Sovereign Lord says:“When a city sends a thousand men to battle,only a hundred will return.When a town sends a hundred,only ten will come back alive.”"
+        },
+        {
+          "verse": 4,
+          "text": "Now this is what the Lord says to the family of Israel:“Come back to me and live!"
+        },
+        {
+          "verse": 5,
+          "text": "Don’t worship at the pagan altars at Bethel;don’t go to the shrines at Gilgal or Beersheba.For the people of Gilgal will be dragged off into exile,and the people of Bethel will be reduced to nothing.”"
+        },
+        {
+          "verse": 6,
+          "text": "Come back to the Lord and live!Otherwise, he will roar through Israel like a fire,devouring you completely.Your gods in Bethelwon’t be able to quench the flames."
+        },
+        {
+          "verse": 7,
+          "text": "You twist justice, making it a bitter pill for the oppressed.You treat the righteous like dirt."
+        },
+        {
+          "verse": 8,
+          "text": "It is the Lord who created the stars,the Pleiades and Orion.He turns darkness into morningand day into night.He draws up water from the oceansand pours it down as rain on the land.The Lord is his name!"
+        },
+        {
+          "verse": 9,
+          "text": "With blinding speed and power he destroys the strong,crushing all their defenses."
+        },
+        {
+          "verse": 10,
+          "text": "How you hate honest judges!How you despise people who tell the truth!"
+        },
+        {
+          "verse": 11,
+          "text": "You trample the poor,stealing their grain through taxes and unfair rent.Therefore, though you build beautiful stone houses,you will never live in them.Though you plant lush vineyards,you will never drink wine from them."
+        },
+        {
+          "verse": 12,
+          "text": "For I know the vast number of your sinsand the depth of your rebellions.You oppress good people by taking bribesand deprive the poor of justice in the courts."
+        },
+        {
+          "verse": 13,
+          "text": "So those who are smart keep their mouths shut,for it is an evil time."
+        },
+        {
+          "verse": 14,
+          "text": "Do what is good and run from evilso that you may live!Then the Lord God of Heaven’s Armies will be your helper,just as you have claimed."
+        },
+        {
+          "verse": 15,
+          "text": "Hate evil and love what is good;turn your courts into true halls of justice.Perhaps even yet the Lord God of Heaven’s Armieswill have mercy on the remnant of his people."
+        },
+        {
+          "verse": 16,
+          "text": "Therefore, this is what the Lord, the Lord God of Heaven’s Armies, says:“There will be crying in all the public squaresand mourning in every street.Call for the farmers to weep with you,and summon professional mourners to wail."
+        },
+        {
+          "verse": 17,
+          "text": "There will be wailing in every vineyard,for I will destroy them all,”says the Lord."
+        },
+        {
+          "verse": 18,
+          "text": "What sorrow awaits you who say,“If only the day of the Lord were here!”You have no idea what you are wishing for.That day will bring darkness, not light."
+        },
+        {
+          "verse": 19,
+          "text": "In that day you will be like a man who runs from a lion—only to meet a bear.Escaping from the bear, he leans his hand against a wall in his house—and he’s bitten by a snake."
+        },
+        {
+          "verse": 20,
+          "text": "Yes, the day of the Lord will be dark and hopeless,without a ray of joy or hope."
+        },
+        {
+          "verse": 21,
+          "text": "“I hate all your show and pretense—the hypocrisy of your religious festivals and solemn assemblies."
+        },
+        {
+          "verse": 22,
+          "text": "I will not accept your burnt offerings and grain offerings.I won’t even notice all your choice peace offerings."
+        },
+        {
+          "verse": 23,
+          "text": "Away with your noisy hymns of praise!I will not listen to the music of your harps."
+        },
+        {
+          "verse": 24,
+          "text": "Instead, I want to see a mighty flood of justice,an endless river of righteous living."
+        },
+        {
+          "verse": 25,
+          "text": "“Was it to me you were bringing sacrifices and offerings during the forty years in the wilderness, Israel?"
+        },
+        {
+          "verse": 26,
+          "text": "No, you served your pagan gods—Sakkuth your king god and Kaiwan your star god—the images you made for yourselves."
+        },
+        {
+          "verse": 27,
+          "text": "So I will send you into exile, to a land east of Damascus,” says the Lord, whose name is the God of Heaven’s Armies."
+        }
+      ],
+      "verse_count": 27,
+      "headings": [
+        {
+          "before_verse": 17,
+          "text": "Warning of Coming Judgment"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/5-9ac3eebc1871edaa52b7bb3d0a586b35.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/5-9ac3eebc1871edaa52b7bb3d0a586b35.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/5-b2b83c93ebcda061b962622e3eac5ce6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/5-b2b83c93ebcda061b962622e3eac5ce6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/5-5dad58ed84eba3b5b0dc76f0ff84a204.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/5-5dad58ed84eba3b5b0dc76f0ff84a204.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/5-d48e148f88144e86d7e5251dbfc73077.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/5-d48e148f88144e86d7e5251dbfc73077.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/5-b4b8f25ba53170cf33f6fe7b473cac9e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/5-b4b8f25ba53170cf33f6fe7b473cac9e.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 6,
+      "chapter_usfm": "AMO.6",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What sorrow awaits you who lounge in luxury in Jerusalem,and you who feel secure in Samaria!You are famous and popular in Israel,and people go to you for help."
+        },
+        {
+          "verse": 2,
+          "text": "But go over to Calnehand see what happened there.Then go to the great city of Hamathand down to the Philistine city of Gath.You are no better than they were,and look at how they were destroyed."
+        },
+        {
+          "verse": 3,
+          "text": "You push away every thought of coming disaster,but your actions only bring the day of judgment closer."
+        },
+        {
+          "verse": 4,
+          "text": "How terrible for you who sprawl on ivory bedsand lounge on your couches,eating the meat of tender lambs from the flockand of choice calves fattened in the stall."
+        },
+        {
+          "verse": 5,
+          "text": "You sing trivial songs to the sound of the harpand fancy yourselves to be great musicians like David."
+        },
+        {
+          "verse": 6,
+          "text": "You drink wine by the bowlfuland perfume yourselves with fragrant lotions.You care nothing about the ruin of your nation."
+        },
+        {
+          "verse": 7,
+          "text": "Therefore, you will be the first to be led away as captives.Suddenly, all your parties will end."
+        },
+        {
+          "verse": 8,
+          "text": "The Sovereign Lord has sworn by his own name, and this is what he, the Lord God of Heaven’s Armies, says:“I despise the arrogance of Israel,and I hate their fortresses.I will give this cityand everything in it to their enemies.”"
+        },
+        {
+          "verse": 9,
+          "text": "(If there are ten men left in one house, they will all die."
+        },
+        {
+          "verse": 10,
+          "text": "And when a relative who is responsible to dispose of the dead goes into the house to carry out the bodies, he will ask the last survivor, “Is anyone else with you?” When the person begins to swear, “No, by . . . ,” he will interrupt and say, “Stop! Don’t even mention the name of the Lord.”)"
+        },
+        {
+          "verse": 11,
+          "text": "When the Lord gives the command,homes both great and small will be smashed to pieces."
+        },
+        {
+          "verse": 12,
+          "text": "Can horses gallop over boulders?Can oxen be used to plow them?But that’s how foolish you are when you turn justice into poisonand the sweet fruit of righteousness into bitterness."
+        },
+        {
+          "verse": 13,
+          "text": "And you brag about your conquest of Lo-debar.You boast, “Didn’t we take Karnaim by our own strength?”"
+        },
+        {
+          "verse": 14,
+          "text": "“O people of Israel, I am about to bring an enemy nation against you,”says the Lord God of Heaven’s Armies.“They will oppress you throughout your land—from Lebo-hamath in the northto the Arabah Valley in the south.”"
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/6-174b6c5b534085a252a3c8137a2b2abd.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/6-174b6c5b534085a252a3c8137a2b2abd.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/6-0d11f577f05ca869f5df126a644c1a7e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/6-0d11f577f05ca869f5df126a644c1a7e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/6-dc494b62280a365f35d1eaea11d3d456.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/6-dc494b62280a365f35d1eaea11d3d456.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/6-525643ec629923352eb601dd8f2f817d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/6-525643ec629923352eb601dd8f2f817d.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/6-b3c3218a4580afc01280abb3085254e3.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/6-b3c3218a4580afc01280abb3085254e3.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 7,
+      "chapter_usfm": "AMO.7",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The Sovereign Lord showed me a vision. I saw him preparing to send a vast swarm of locusts over the land. This was after the king’s share had been harvested from the fields and as the main crop was coming up."
+        },
+        {
+          "verse": 2,
+          "text": "In my vision the locusts ate every green plant in sight. Then I said, “O Sovereign Lord, please forgive us or we will not survive, for Israel is so small.”"
+        },
+        {
+          "verse": 3,
+          "text": "So the Lord relented from this plan. “I will not do it,” he said."
+        },
+        {
+          "verse": 4,
+          "text": "Then the Sovereign Lord showed me another vision. I saw him preparing to punish his people with a great fire. The fire had burned up the depths of the sea and was devouring the entire land."
+        },
+        {
+          "verse": 5,
+          "text": "Then I said, “O Sovereign Lord, please stop or we will not survive, for Israel is so small.”"
+        },
+        {
+          "verse": 6,
+          "text": "Then the Lord relented from this plan, too. “I will not do that either,” said the Sovereign Lord."
+        },
+        {
+          "verse": 7,
+          "text": "Then he showed me another vision. I saw the Lord standing beside a wall that had been built using a plumb line. He was using a plumb line to see if it was still straight."
+        },
+        {
+          "verse": 8,
+          "text": "And the Lord said to me, “Amos, what do you see?”I answered, “A plumb line.”And the Lord replied, “I will test my people with this plumb line. I will no longer ignore all their sins."
+        },
+        {
+          "verse": 9,
+          "text": "The pagan shrines of your ancestors will be ruined, and the temples of Israel will be destroyed; I will bring the dynasty of King Jeroboam to a sudden end.”"
+        },
+        {
+          "verse": 10,
+          "text": "Then Amaziah, the priest of Bethel, sent a message to Jeroboam, king of Israel: “Amos is hatching a plot against you right here on your very doorstep! What he is saying is intolerable."
+        },
+        {
+          "verse": 11,
+          "text": "He is saying, ‘Jeroboam will soon be killed, and the people of Israel will be sent away into exile.’”"
+        },
+        {
+          "verse": 12,
+          "text": "Then Amaziah sent orders to Amos: “Get out of here, you prophet! Go on back to the land of Judah, and earn your living by prophesying there!"
+        },
+        {
+          "verse": 13,
+          "text": "Don’t bother us with your prophecies here in Bethel. This is the king’s sanctuary and the national place of worship!”"
+        },
+        {
+          "verse": 14,
+          "text": "But Amos replied, “I’m not a professional prophet, and I was never trained to be one. I’m just a shepherd, and I take care of sycamore-fig trees."
+        },
+        {
+          "verse": 15,
+          "text": "But the Lord called me away from my flock and told me, ‘Go and prophesy to my people in Israel.’"
+        },
+        {
+          "verse": 16,
+          "text": "Now then, listen to this message from the Lord:“You say,‘Don’t prophesy against Israel.Stop preaching against my people.’"
+        },
+        {
+          "verse": 17,
+          "text": "But this is what the Lord says:‘Your wife will become a prostitute in this city,and your sons and daughters will be killed.Your land will be divided up,and you yourself will die in a foreign land.And the people of Israel will certainly become captives in exile,far from their homeland.’”"
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "A Vision of Fire"
+        },
+        {
+          "before_verse": 6,
+          "text": "A Vision of a Plumb Line"
+        },
+        {
+          "before_verse": 9,
+          "text": "Amos and Amaziah"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/7-698a9be28480b5de7718c1bf39afb49f.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/7-698a9be28480b5de7718c1bf39afb49f.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/7-04effca19338ed6a241eae6970799937.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/7-04effca19338ed6a241eae6970799937.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/7-20691b693901d0623123f6644af40a68.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/7-20691b693901d0623123f6644af40a68.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/7-5af3f8a47b9c9c83c543bad8ebc13bf2.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/7-5af3f8a47b9c9c83c543bad8ebc13bf2.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/7-a3a52b7138ac21c8132552c58840a5b5.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/7-a3a52b7138ac21c8132552c58840a5b5.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 8,
+      "chapter_usfm": "AMO.8",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Then the Sovereign Lord showed me another vision. In it I saw a basket filled with ripe fruit."
+        },
+        {
+          "verse": 2,
+          "text": "“What do you see, Amos?” he asked.I replied, “A basket full of ripe fruit.”Then the Lord said, “Like this fruit, Israel is ripe for punishment! I will not delay their punishment again."
+        },
+        {
+          "verse": 3,
+          "text": "In that day the singing in the temple will turn to wailing. Dead bodies will be scattered everywhere. They will be carried out of the city in silence. I, the Sovereign Lord, have spoken!”"
+        },
+        {
+          "verse": 4,
+          "text": "Listen to this, you who rob the poorand trample down the needy!"
+        },
+        {
+          "verse": 5,
+          "text": "You can’t wait for the Sabbath day to be overand the religious festivals to endso you can get back to cheating the helpless.You measure out grain with dishonest measuresand cheat the buyer with dishonest scales."
+        },
+        {
+          "verse": 6,
+          "text": "And you mix the grain you sellwith chaff swept from the floor.Then you enslave poor peoplefor one piece of silver or a pair of sandals."
+        },
+        {
+          "verse": 7,
+          "text": "Now the Lord has sworn this oathby his own name, the Pride of Israel:“I will never forgetthe wicked things you have done!"
+        },
+        {
+          "verse": 8,
+          "text": "The earth will tremble for your deeds,and everyone will mourn.The ground will rise like the Nile River at floodtime;it will heave up, then sink again."
+        },
+        {
+          "verse": 9,
+          "text": "“In that day,” says the Sovereign Lord,“I will make the sun go down at noonand darken the earth while it is still day."
+        },
+        {
+          "verse": 10,
+          "text": "I will turn your celebrations into times of mourningand your singing into weeping.You will wear funeral clothesand shave your heads to show your sorrow—as if your only son had died.How very bitter that day will be!"
+        },
+        {
+          "verse": 11,
+          "text": "“The time is surely coming,” says the Sovereign Lord,“when I will send a famine on the land—not a famine of bread or waterbut of hearing the words of the Lord."
+        },
+        {
+          "verse": 12,
+          "text": "People will stagger from sea to seaand wander from border to bordersearching for the word of the Lord,but they will not find it."
+        },
+        {
+          "verse": 13,
+          "text": "Beautiful girls and strong young menwill grow faint in that day,thirsting for the Lord’s word."
+        },
+        {
+          "verse": 14,
+          "text": "And those who swear by the shameful idols of Samaria—who take oaths in the name of the god of Danand make vows in the name of the god of Beersheba—they will all fall down,never to rise again.”"
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/8-ebe7b0d3fb8faf187c5f943807c80250.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/8-ebe7b0d3fb8faf187c5f943807c80250.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/8-fc120854a74076d7df3ec12b43c58499.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/8-fc120854a74076d7df3ec12b43c58499.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/8-9ac87fef0cc0fb7a353feb340f263ea4.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/8-9ac87fef0cc0fb7a353feb340f263ea4.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/8-53dd5cf8f11b6a964936bc872e357165.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/8-53dd5cf8f11b6a964936bc872e357165.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/8-f223a2792550cee9f5ec2bc849712f2f.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/8-f223a2792550cee9f5ec2bc849712f2f.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 9,
+      "chapter_usfm": "AMO.9",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Then I saw a vision of the Lord standing beside the altar. He said,“Strike the tops of the Temple columns,so that the foundation will shake.Bring down the roofon the heads of the people below.I will kill with the sword those who survive.No one will escape!"
+        },
+        {
+          "verse": 2,
+          "text": "“Even if they dig down to the place of the dead,I will reach down and pull them up.Even if they climb up into the heavens,I will bring them down."
+        },
+        {
+          "verse": 3,
+          "text": "Even if they hide at the very top of Mount Carmel,I will search them out and capture them.Even if they hide at the bottom of the ocean,I will send the sea serpent after them to bite them."
+        },
+        {
+          "verse": 4,
+          "text": "Even if their enemies drive them into exile,I will command the sword to kill them there.I am determined to bring disaster upon themand not to help them.”"
+        },
+        {
+          "verse": 5,
+          "text": "The Lord, the Lord of Heaven’s Armies,touches the land and it melts,and all its people mourn.The ground rises like the Nile River at floodtime,and then it sinks again."
+        },
+        {
+          "verse": 6,
+          "text": "The Lord’s home reaches up to the heavens,while its foundation is on the earth.He draws up water from the oceansand pours it down as rain on the land.The Lord is his name!"
+        },
+        {
+          "verse": 7,
+          "text": "“Are you Israelites more important to methan the Ethiopians?” asks the Lord.“I brought Israel out of Egypt,but I also brought the Philistines from Creteand led the Arameans out of Kir."
+        },
+        {
+          "verse": 8,
+          "text": "“I, the Sovereign Lord,am watching this sinful nation of Israel.I will destroy itfrom the face of the earth.But I will never completely destroy the family of Israel,”says the Lord."
+        },
+        {
+          "verse": 9,
+          "text": "“For I will give the commandand will shake Israel along with the other nationsas grain is shaken in a sieve,yet not one true kernel will be lost."
+        },
+        {
+          "verse": 10,
+          "text": "But all the sinners will die by the sword—all those who say, ‘Nothing bad will happen to us.’"
+        },
+        {
+          "verse": 11,
+          "text": "“In that day I will restore the fallen house of David.I will repair its damaged walls.From the ruins I will rebuild itand restore its former glory."
+        },
+        {
+          "verse": 12,
+          "text": "And Israel will possess what is left of Edomand all the nations I have called to be mine.”The Lord has spoken,and he will do these things."
+        },
+        {
+          "verse": 13,
+          "text": "“The time will come,” says the Lord,“when the grain and grapes will grow fasterthan they can be harvested.Then the terraced vineyards on the hills of Israelwill drip with sweet wine!"
+        },
+        {
+          "verse": 14,
+          "text": "I will bring my exiled people of Israelback from distant lands,and they will rebuild their ruined citiesand live in them again.They will plant vineyards and gardens;they will eat their crops and drink their wine."
+        },
+        {
+          "verse": 15,
+          "text": "I will firmly plant them therein their own land.They will never again be uprootedfrom the land I have given them,”says the Lord your God."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 10,
+          "text": "A Promise of Restoration"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/AMO/9-61f8e3feac74d178d54251435143b2f0.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/AMO/9-61f8e3feac74d178d54251435143b2f0.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/AMO/9-96b85769086ae2c2774eebce2c18fa71.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/AMO/9-96b85769086ae2c2774eebce2c18fa71.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/AMO/9-297bc56c3774fbcd8fee839e56ac9fc9.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/AMO/9-297bc56c3774fbcd8fee839e56ac9fc9.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/AMO/9-e4fae31c41ab5b5af899b05c00a137f6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/AMO/9-e4fae31c41ab5b5af899b05c00a137f6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/AMO/9-504150bd11b91d65ac62f3d2644eb136.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/AMO/9-504150bd11b91d65ac62f3d2644eb136.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

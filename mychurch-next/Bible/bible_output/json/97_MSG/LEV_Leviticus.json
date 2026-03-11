@@ -1,0 +1,1063 @@
+{
+  "book_id": "LEV",
+  "book_name_en": "Leviticus",
+  "book_name_fa": "لاویان",
+  "testament": "OT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 27,
+  "total_verses": 97,
+  "chapters": [
+    {
+      "book_id": "LEV",
+      "chapter": 1,
+      "chapter_usfm": "LEV.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/1-a42ad2980c35fd97ae49ee71ac78b6eb.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/1-a42ad2980c35fd97ae49ee71ac78b6eb.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 2,
+      "chapter_usfm": "LEV.2",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 4,
+          "text": "“When you present a Grain-Offering of oven-baked loaves, use fine flour, mixed with oil but no yeast. Or present wafers made without yeast and spread with oil. “If you bring a Grain-Offering cooked on a griddle, use fine flour mixed with oil but without yeast. Crumble it and pour oil on it—it’s a Grain-Offering."
+        },
+        {
+          "verse": 7,
+          "text": "“If you bring a Grain-Offering deep-fried in a pan, make it of fine flour with oil. “Bring the Grain-Offering you make from these ingredients and present it to the priest. He will bring it to the Altar, break off a memorial piece from the Grain-Offering, and burn it on the Altar: a Fire-Gift, a pleasing fragrance to God. The rest of the Grain-Offering is for Aaron and his sons—a most holy part of the gifts to God. “All the Grain-Offerings that you present to God must be made without yeast; you must never burn any yeast or honey as a Fire-Gift to God. You may offer them to God as an offering of firstfruits but not on the Altar as a pleasing fragrance. Season every presentation of your Grain-Offering with salt. Don’t leave the salt of the covenant with your God out of your Grain-Offerings. Present all your offerings with salt. “If you present a Grain-Offering of firstfruits to God, bring crushed heads of the new grain roasted. Put oil and incense on it—it’s a Grain-Offering. The priest will burn some of the mixed grain and oil with all the incense as a memorial—a Fire-Gift to God.”"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/2-a67c9ff230df7d811be159d5da545d73.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/2-a67c9ff230df7d811be159d5da545d73.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 3,
+      "chapter_usfm": "LEV.3",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/3-dc0402eb1869e5e6de3510f7db611c89.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/3-dc0402eb1869e5e6de3510f7db611c89.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 4,
+      "chapter_usfm": "LEV.4",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/4-e4fbc912cdd4c7127739f8549f0a4f62.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/4-e4fbc912cdd4c7127739f8549f0a4f62.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 5,
+      "chapter_usfm": "LEV.5",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“If you sin by not stepping up and offering yourself as a witness to something you’ve heard or seen in cases of wrongdoing, you’ll be held responsible."
+        },
+        {
+          "verse": 2,
+          "text": "“Or if you touch anything ritually unclean, like the carcass of an unclean animal, wild or domestic, or a dead reptile, and you weren’t aware of it at the time, but you’re contaminated and you’re guilty;"
+        },
+        {
+          "verse": 3,
+          "text": "“Or if you touch human uncleanness, any sort of ritually contaminating uncleanness, and you’re not aware of it at the time, but later you realize it and you’re guilty;"
+        },
+        {
+          "verse": 4,
+          "text": "“Or if you impulsively swear to do something, whether good or bad—some rash oath that just pops out—and you aren’t aware of what you’ve done at the time, but later you come to realize it and you’re guilty in any of these cases; “When you are guilty, immediately confess the sin that you’ve committed and bring as your penalty to God for the sin you have committed a female lamb or goat from the flock for an Absolution-Offering.“In this way, the priest will make atonement for your sin. “If you can’t afford a lamb, bring as your penalty to God for the sin you have committed two doves or two pigeons, one for the Absolution-Offering and the other for the Whole-Burnt-Offering. Bring them to the priest who will first offer the one for the Absolution-Offering: He’ll wring its neck but not sever it, splash some of the blood of the Absolution-Offering against the Altar, and squeeze the rest of it out at the base. It’s an Absolution-Offering. He’ll then take the second bird and offer it as a Whole-Burnt-Offering, following the procedures step-by-step.“In this way, the priest will make atonement for your sin and you’re forgiven. “If you cannot afford the two doves or pigeons, bring two quarts of fine flour for your Absolution-Offering. Don’t put oil or incense on it—it’s an Absolution-Offering. Bring it to the priest; he’ll take a handful from it as a memorial and burn it on the Altar with the gifts for God. It’s an Absolution-Offering."
+        },
+        {
+          "verse": 13,
+          "text": "“The priest will make atonement for you and any of these sins you’ve committed and you’re forgiven. The rest of the offering belongs to the priest, the same as with the Grain-Offering.” God spoke to Moses: “When a person betrays his trust and unknowingly sins by straying against any of the holy things of God, he is to bring as his penalty to God a ram without any defect from the flock, the value of the ram assessed in shekels, according to the Sanctuary shekel for a Compensation-Offering. He is to make additional compensation for the sin he has committed against any holy thing by adding twenty percent to the ram and giving it to the priest.“Thus the priest will make atonement for him with the ram of the Compensation-Offering and he’s forgiven. “If anyone sins by breaking any of the commandments of God which must not be broken, but without being aware of it at the time, the moment he does realize his guilt he is held responsible. He is to bring to the priest a ram without any defect, assessed at the value of the Compensation-Offering. “Thus the priest will make atonement for him for his error that he was unaware of and he’s forgiven. It is a Compensation-Offering; he was surely guilty before God.”"
+        }
+      ],
+      "verse_count": 5,
+      "headings": [
+        {
+          "before_verse": 13,
+          "text": "Compensation-Offering"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/5-58be22a19e88cb477a5b6ac2eedada90.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/5-58be22a19e88cb477a5b6ac2eedada90.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 6,
+      "chapter_usfm": "LEV.6",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 7,
+          "text": "“Thus the priest will make atonement for him before God and he’s forgiven of any of the things that one does that bring guilt.” God spoke to Moses: “Command Aaron and his sons. Tell them, These are the instructions for the Whole-Burnt-Offering. Leave the Whole-Burnt-Offering on the Altar hearth through the night until morning, with the fire kept burning on the Altar. Then dress in your linen clothes with linen underwear next to your body. Remove the ashes remaining from the Whole-Burnt-Offering and place them beside the Altar. Then change clothes and carry the ashes outside the camp to a clean place. Meanwhile keep the fire on the Altar burning; it must not go out. Replenish the wood for the fire every morning, arrange the Whole-Burnt-Offering on it, and burn the fat of the Peace-Offering on top of it all. Keep the fire burning on the Altar continuously. It must not go out.* * * “These are the instructions for the Grain-Offering. Aaron’s sons are to present it to God in front of the Altar. The priest takes a handful of the fine flour of the Grain-Offering with its oil and all its incense and burns this as a memorial on the Altar, a pleasing fragrance to God. Aaron and his sons eat the rest of it. It is unraised bread and so eaten in a holy place—in the Courtyard of the Tent of Meeting. They must not bake it with yeast. I have designated it as their share of the gifts presented to me. It is very holy, like the Absolution-Offering and the Compensation-Offering. Any male descendant among Aaron’s sons may eat it. This is a fixed rule regarding God’s gifts, stretching down the generations. Anyone who touches these offerings must be holy.”* * * God spoke to Moses: “This is the offering which Aaron and his sons each are to present to God on the day he is anointed: two quarts of fine flour as a regular Grain-Offering, half in the morning and half in the evening. Prepare it with oil on a griddle. Bring it well-mixed and then present it crumbled in pieces as a pleasing fragrance to God. Aaron’s son who is anointed to succeed him offers it to God—this is a fixed rule. The whole thing is burned. Every Grain-Offering of a priest is burned completely; it must not be eaten.”* * * God spoke to Moses: “Tell Aaron and his sons, These are the instructions for the Absolution-Offering. Slaughter the Absolution-Offering in the place where the Whole-Burnt-Offering is slaughtered before God—the offering is most holy. The priest in charge eats it in a holy place, the Courtyard of the Tent of Meeting. Anyone who touches any of the meat must be holy. A garment that gets blood spattered on it must be washed in a holy place. Break the clay pot in which the meat was cooked. If it was cooked in a bronze pot, scour it and rinse it with water. Any male among the priestly families may eat it; it is most holy. But any Absolution-Offering whose blood is brought into the Tent of Meeting to make atonement in the Sanctuary must not be eaten, it has to be burned.”* * *"
+        }
+      ],
+      "verse_count": 1,
+      "headings": [
+        {
+          "before_verse": 7,
+          "text": "Further Instructions"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/6-38fb48a8204f49afb130233f38f1baff.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/6-38fb48a8204f49afb130233f38f1baff.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 7,
+      "chapter_usfm": "LEV.7",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/7-d50f4068c66d2d6379ec530459a9c4b5.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/7-d50f4068c66d2d6379ec530459a9c4b5.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 8,
+      "chapter_usfm": "LEV.8",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Moses addressed the congregation: “This is what God has commanded to be done.” Moses brought Aaron and his sons forward and washed them with water. He put the tunic on Aaron and tied it around him with a sash. Then he put the robe on him and placed the Ephod on him. He fastened the Ephod with a woven belt, making it snug. He put the Breastpiece on him and put the Urim and Thummim in the pouch of the Breastpiece. He placed the turban on his head with the gold plate fixed to the front of it, the holy crown, just as God had commanded Moses. Then Moses took the anointing oil and anointed The Dwelling and everything that was in it, consecrating them. He sprinkled some of the oil on the Altar seven times, anointing the Altar and all its utensils, the Washbasin and its stand, consecrating them. He poured some of the anointing oil on Aaron’s head, anointing him and thus consecrating him."
+        },
+        {
+          "verse": 13,
+          "text": "Moses brought Aaron’s sons forward and put tunics on them, belted them with sashes, and put caps on them, just as God had commanded Moses. Moses brought out the bull for the Absolution-Offering. Aaron and his sons placed their hands on its head. Moses slaughtered the bull and purified the Altar by smearing the blood on each of the horns of the Altar with his finger. He poured out the rest of the blood at the base of the Altar. He consecrated it so atonement could be made on it. Moses took all the fat on the entrails and the lobe of liver and the two kidneys with their fat and burned it all on the Altar. The bull with its hide and meat and guts he burned outside the camp, just as God had commanded Moses. Moses presented the ram for the Whole-Burnt-Offering. Aaron and his sons laid their hands on the head of the ram. Moses slaughtered it and splashed the blood against all sides of the Altar. He cut the ram up into pieces and then burned the head, the pieces, and the fat. He washed the entrails and the legs with water and then burned the whole ram on the Altar. It was a Whole-Burnt-Offering, a pleasing fragrance—a gift to God, just as God had commanded Moses. Moses then presented the second ram, the ram for the Ordination-Offering. Aaron and his sons laid their hands on the ram’s head. Moses slaughtered it and smeared some of its blood on the lobe of Aaron’s right ear, on the thumb of his right hand, and on the big toe of his right foot. Then Aaron’s sons were brought forward and Moses smeared some of the blood on the lobes of their right ears, on the thumbs of their right hands, and on the big toes of their right feet. Moses threw the remaining blood against each side of the Altar. He took the fat, the fat tail, all the fat that was on the entrails, the lobe of the liver, the two kidneys with their fat, and the right thigh. From the basket of unraised bread that was in the presence of God he took one loaf of the unraised bread made with oil and one wafer. He placed these on the fat portions and the right thigh. He put all this in the hands of Aaron and his sons who waved them before God as a Wave-Offering. Then Moses took it all back from their hands and burned them on the Altar on top of the Whole-Burnt-Offering. These were the Ordination-Offerings, a pleasing fragrance to God, a gift to God. Then Moses took the breast and raised it up as a Wave-Offering before God; it was Moses’ portion from the Ordination-Offering ram, just as God had commanded Moses."
+        },
+        {
+          "verse": 30,
+          "text": "Moses took some of the anointing oil and some of the blood from the Altar and sprinkled Aaron and his garments, and his sons and their garments, consecrating Aaron and his garments and his sons and their garments. Moses spoke to Aaron and his sons: “Boil the meat at the entrance of the Tent of Meeting and eat it there with the bread from the basket of ordination, just as I commanded, saying, ‘Aaron and his sons are to eat it.’ Burn up the leftovers from the meat and bread. Don’t leave through the entrance of the Tent of Meeting for the seven days that will complete your ordination. Your ordination will last seven days. God commanded what has been done this day in order to make atonement for you. Stay at the entrance of the Tent of Meeting day and night for seven days. Be sure to do what God requires, lest you die. This is what I have been commanded.”"
+        },
+        {
+          "verse": 36,
+          "text": "Aaron and his sons did everything that God had commanded by Moses."
+        }
+      ],
+      "verse_count": 4,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/8-dec23ba86813a5b852a13004ac7022aa.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/8-dec23ba86813a5b852a13004ac7022aa.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 9,
+      "chapter_usfm": "LEV.9",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 7,
+          "text": "Moses instructed Aaron, “Approach the Altar and sacrifice your Absolution-Offering and your Whole-Burnt-Offering. Make atonement for yourself and for the people. Sacrifice the offering that is for the people and make atonement for them, just as God commanded.” Aaron approached the Altar and slaughtered the calf as an Absolution-Offering for himself. Aaron’s sons brought the blood to him. He dipped his finger in the blood and smeared some of it on the horns of the Altar. He poured out the rest of the blood at the base of the Altar. He burned the fat, the kidneys, and the lobe of the liver from the Absolution-Offering on the Altar, just as God had commanded Moses. He burned the meat and the skin outside the camp. Then he slaughtered the Whole-Burnt-Offering. Aaron’s sons handed him the blood and he threw it against each side of the Altar. They handed him the pieces and the head and he burned these on the Altar. He washed the entrails and the legs and burned them on top of the Whole-Burnt-Offering on the Altar. Next Aaron presented the offerings of the people. He took the male goat, the Absolution-Offering for the people, slaughtered it, and offered it as an Absolution-Offering just as he did with the first offering. He presented the Whole-Burnt-Offering following the same procedures. He presented the Grain-Offering by taking a handful of it and burning it on the Altar along with the morning Whole-Burnt-Offering. He slaughtered the bull and the ram, the people’s Peace-Offerings. Aaron’s sons handed him the blood and he threw it against each side of the Altar. The fat pieces from the bull and the ram—the fat tail and the fat that covers the kidney and the lobe of the liver—they laid on the breasts and Aaron burned it on the Altar. Aaron waved the breasts and the right thigh before God as a Wave-Offering, just as God commanded. Aaron lifted his hands over the people and blessed them. Having completed the rituals of the Absolution-Offering, the Whole-Burnt-Offering, and the Peace-Offering, he came down from the Altar. Moses and Aaron entered the Tent of Meeting. When they came out they blessed the people and the Glory of God appeared to all the people. Fire blazed out from God and consumed the Whole-Burnt-Offering and the fat pieces on the Altar. When all the people saw it happen they cheered loudly and then fell down, bowing in reverence."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/9-43739deaad255f7ffab2dc6e821fd82c.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/9-43739deaad255f7ffab2dc6e821fd82c.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 10,
+      "chapter_usfm": "LEV.10",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Moses said to Aaron, “This is what God meant when he said,To the one who comes near me,I will show myself holy;Before all the people,I will show my glory.”Aaron was silent. Moses called for Mishael and Elzaphan, sons of Uzziel, Aaron’s uncle. He said, “Come. Carry your dead cousins outside the camp, away from the Sanctuary.” They came and carried them off, outside the camp, just as Moses had directed. Moses then said to Aaron and his remaining sons, Eleazar and Ithamar, “No mourning rituals for you—unkempt hair, torn clothes—or you’ll also die and God will be angry with the whole congregation. Your relatives—all the People of Israel, in fact—will do the mourning over those God has destroyed by fire. And don’t leave the entrance to the Tent of Meeting lest you die, because God’s anointing oil is on you.”They did just as Moses said.* * * God instructed Aaron: “When you enter the Tent of Meeting, don’t drink wine or strong drink, neither you nor your sons, lest you die. This is a fixed rule down through the generations. Distinguish between the holy and the common, between the ritually clean and unclean. Teach the People of Israel all the decrees that God has spoken to them through Moses.” Moses spoke to Aaron and his surviving sons, Eleazar and Ithamar, “Take the leftovers of the Grain-Offering from the Fire-Gifts for God and eat beside the Altar that which has been prepared without yeast, for it is most holy. Eat it in the Holy Place because it is your portion and the portion of your sons from the Fire-Gifts for God. This is what God commanded me. Also, you and your sons and daughters are to eat the breast of the Wave-Offering and the thigh of the Contribution-Offering in a clean place. They are provided as your portion and the portion of your children from the Peace-Offerings presented by the People of Israel. Bring the thigh of the Contribution-Offering and the breast of the Wave-Offering and the fat pieces of the Fire-Gifts and lift them up as a Wave-Offering. This will be the regular share for you and your children as ordered by God.” When Moses looked into the matter of the goat of the Absolution-Offering, he found that it had been burned up. He became angry with Eleazar and Ithamar, Aaron’s remaining sons, and asked, “Why didn’t you eat the Absolution-Offering in the Holy Place since it is most holy? The offering was given to you for taking away the guilt of the community by making atonement for them before God. Since its blood was not taken into the Holy Place, you should have eaten the goat in the Sanctuary as I commanded.”"
+        },
+        {
+          "verse": 19,
+          "text": "Aaron replied to Moses, “Look. They sacrificed their Absolution-Offering and Whole-Burnt-Offering before God today, and you see what has happened to me—I’ve lost two sons. Do you think God would have been pleased if I had gone ahead and eaten the Absolution-Offering today?”"
+        },
+        {
+          "verse": 20,
+          "text": "When Moses heard this response, he accepted it."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/10-659367a59addba47b5351459221c614f.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/10-659367a59addba47b5351459221c614f.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 11,
+      "chapter_usfm": "LEV.11",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 26,
+          "text": "“Every animal that has a split hoof that’s not completely divided, or that doesn’t chew the cud is unclean for you; if you touch the carcass of any of them you become unclean. “Every four-footed animal that goes on its paws is unclean for you; if you touch its carcass you are unclean until evening. If you pick up its carcass you must wash your clothes and are unclean until evening. They are unclean for you. “Among the creatures that crawl on the ground, the following are unclean for you: weasel, rat, all lizards, gecko, monitor lizard, wall lizard, skink, chameleon. Among the crawling creatures, these are unclean for you. If you touch them when they are dead, you are ritually unclean until evening. When one of them dies and falls on something, that becomes unclean no matter what it’s used for, whether it’s made of wood, cloth, hide, or sackcloth. Put it in the water—it’s unclean until evening, and then it’s clean. If one of these dead creatures falls into a clay pot, everything in the pot is unclean and you must break the pot. Any food that could be eaten but has water on it from such a pot is unclean, and any liquid that could be drunk from it is unclean. Anything that one of these carcasses falls on is unclean—an oven or cooking pot must be broken up; they’re unclean and must be treated as unclean. A spring, though, or a cistern for collecting water remains clean, but if you touch one of these carcasses you’re ritually unclean. If a carcass falls on any seeds that are to be planted, they remain clean. But if water has been put on the seed and a carcass falls on it, you must treat it as unclean. “If an animal that you are permitted to eat dies, anyone who touches the carcass is ritually unclean until evening. If you eat some of the carcass you must wash your clothes and you are unclean until evening. If you pick up the carcass you must wash your clothes and are unclean until evening. “Creatures that crawl on the ground are detestable and not to be eaten. Don’t eat creatures that crawl on the ground, whether on their belly or on all fours or on many feet—they are detestable. Don’t make yourselves unclean or be defiled by them, because I am your God. “Make yourselves holy for I am holy. Don’t make yourselves ritually unclean by any creature that crawls on the ground. I am God who brought you up out of the land of Egypt. Be holy because I am holy. “These are the instructions on animals, birds, fish, and creatures that crawl on the ground. You have to distinguish between the ritually unclean and the clean, between living creatures that can be eaten and those that cannot be eaten.”"
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/11-251e7236a065f9b9355387ced6e96fdc.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/11-251e7236a065f9b9355387ced6e96fdc.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 12,
+      "chapter_usfm": "LEV.12",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 8,
+          "text": "“If she can’t afford a lamb, she can bring two doves or two pigeons, one for the Whole-Burnt-Offering and one for the Absolution-Offering. The priest will make atonement for her and she will be clean.”"
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/12-5189f32fb87510fe51da3551adbf8c59.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/12-5189f32fb87510fe51da3551adbf8c59.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 13,
+      "chapter_usfm": "LEV.13",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 59,
+          "text": "“These are the instructions regarding a spot of serious fungus in clothing of wool or linen, woven or knitted material, or any article of leather, for pronouncing them clean or unclean.”* * *"
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/13-0457f8b38c1700224af62cec3083d01d.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/13-0457f8b38c1700224af62cec3083d01d.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 14,
+      "chapter_usfm": "LEV.14",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 32,
+          "text": "These are the instructions to be followed for anyone who has a serious skin disease and cannot afford the regular offerings for his cleansing.* * * God spoke to Moses and Aaron: “When you enter the land of Canaan, which I’m giving to you as a possession, and I put a serious fungus in a house in the land of your possession, the householder is to go and tell the priest, ‘I have some kind of fungus in my house.’ The priest is to order the house vacated until he can come to examine the fungus, so that nothing in the house is declared unclean. When the priest comes and examines the house, if the fungus on the walls of the house has greenish or rusty swelling that appears to go deeper than the surface of the wall, the priest is to walk out the door and shut the house up for seven days. On the seventh day he is to come back and conduct another examination; if the fungus has spread in the walls of the house, he is to order that the stones affected by the fungus be torn out and thrown in a garbage dump outside the city. He is to make sure the entire inside of the house is scraped and the plaster that is removed be taken away to the garbage dump outside the city. Then he is to replace the stones and replaster the house. “If the fungus breaks out again in the house after the stones have been torn out and the house has been scraped and plastered, the priest is to come and conduct an examination; if the fungus has spread, it is a malignant fungus. The house is unclean. The house has to be demolished—its stones, wood, and plaster are to be removed to the garbage dump outside the city. Anyone who enters the house while it is closed up is unclean until evening. Anyone who sleeps or eats in the house must wash his clothes. “But if when the priest comes and conducts his examination, he finds that the fungus has not spread after the house has been replastered, the priest is to declare that the house is clean; the fungus is cured. He then is to purify the house by taking two birds, some cedar wood, scarlet thread, and hyssop. He will slaughter one bird over fresh water in a clay pot. Then he will take the cedar wood, the hyssop, the scarlet thread, and the living bird, dip them in the blood of the killed bird and the fresh water and sprinkle the house seven times, cleansing the house with the blood of the bird, the fresh water, the living bird, the cedar wood, the hyssop, and the scarlet thread. Last of all, he will let the living bird loose outside the city in the open field. He has made atonement for the house; the house is clean. “These are the procedures to be followed for every kind of serious skin disease or itch, for mildew or fungus on clothing or in a house, and for a swelling or blister or shiny spot in order to determine when it is unclean and when it is clean. These are the procedures regarding infectious skin diseases and mildew and fungus.”"
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/14-6f64e01ded55eec5ed42f27ffbad71e0.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/14-6f64e01ded55eec5ed42f27ffbad71e0.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 15,
+      "chapter_usfm": "LEV.15",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 12,
+          "text": "“If a pottery container is touched by someone with a discharge, you must break it; a wooden article is to be rinsed in water. “When a person with a discharge is cleansed from it, he is to count off seven days for his cleansing, wash his clothes, and bathe in running water. Then he is clean. On the eighth day he is to take two doves or two pigeons and come before God at the entrance of the Tent of Meeting and give them to the priest. The priest then offers one as an Absolution-Offering and one as a Whole-Burnt-Offering and makes atonement for him in the presence of God because of his discharge. “When a man has an emission of semen, he must bathe his entire body in water; he remains unclean until evening. Every piece of clothing and everything made of leather which gets semen on it must be washed with water; it remains unclean until evening. When a man sleeps with a woman and has an emission of semen, both are to wash in water; they remain unclean until evening. “When a woman has a discharge of blood, the impurity of her menstrual period lasts seven days. Anyone who touches her is unclean until evening. Everything on which she lies or sits during her period is unclean. Anyone who touches her bed or anything on which she sits must wash his clothes and bathe in water; he remains unclean until evening."
+        },
+        {
+          "verse": 24,
+          "text": "“If a man sleeps with her and her menstrual blood gets on him, he is unclean for seven days and every bed on which he lies becomes unclean. “If a woman has a discharge of blood for many days, but not at the time of her monthly period, or has a discharge that continues beyond the time of her period, she is unclean the same as during the time of her period. Every bed on which she lies during the time of the discharge and everything on which she sits becomes unclean the same as in her monthly period. Anyone who touches these things becomes unclean and must wash his clothes and bathe in water; he remains unclean until evening. “When she is cleansed from her discharge, she is to count off seven days; then she is clean. On the eighth day she is to take two doves or two pigeons and bring them to the priest at the entrance to the Tent of Meeting. The priest will offer one for an Absolution-Offering and the other for a Whole-Burnt-Offering. The priest will make atonement for her in the presence of God because of the discharge that made her unclean."
+        },
+        {
+          "verse": 31,
+          "text": "“You are responsible for keeping the People of Israel separate from that which makes them ritually unclean, lest they die in their unclean condition by defiling my Dwelling which is among them. “These are the procedures to follow for a man with a discharge or an emission of semen that makes him unclean, and for a woman in her menstrual period—any man or woman with a discharge and also for a man who sleeps with a woman who is unclean.”"
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/15-209e84813f2826e21520f8dbc07459aa.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/15-209e84813f2826e21520f8dbc07459aa.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 16,
+      "chapter_usfm": "LEV.16",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 32,
+          "text": "“The priest who is anointed and ordained to succeed his father is to make the atonement:He puts on the sacred linen garments;"
+        },
+        {
+          "verse": 33,
+          "text": "He purges the Holy of Holies by making atonement;He purges the Tent of Meeting and the Altar by making atonement;He makes atonement for the priests and all the congregation."
+        },
+        {
+          "verse": 34,
+          "text": "“This is a perpetual ordinance for you: Once a year atonement is to be made for all the sins of the People of Israel.”And Aaron did it, just as God commanded Moses."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/16-1e3f354eda22908b77fd3a858b7b5e9b.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/16-1e3f354eda22908b77fd3a858b7b5e9b.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 17,
+      "chapter_usfm": "LEV.17",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/17-2460d27e44774951da68d7901ae6cb22.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/17-2460d27e44774951da68d7901ae6cb22.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 18,
+      "chapter_usfm": "LEV.18",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 6,
+          "text": "“Don’t have sex with a close relative. I am God."
+        },
+        {
+          "verse": 7,
+          "text": "“Don’t violate your father by having sex with your mother. She is your mother. Don’t have sex with her."
+        },
+        {
+          "verse": 8,
+          "text": "“Don’t have sex with your father’s wife. That violates your father."
+        },
+        {
+          "verse": 9,
+          "text": "“Don’t have sex with your sister, whether she’s your father’s daughter or your mother’s, whether she was born in the same house or elsewhere."
+        },
+        {
+          "verse": 10,
+          "text": "“Don’t have sex with your son’s daughter or your daughter’s daughter. That would violate your own body."
+        },
+        {
+          "verse": 11,
+          "text": "“Don’t have sex with the daughter of your father’s wife born to your father. She is your sister."
+        },
+        {
+          "verse": 12,
+          "text": "“Don’t have sex with your father’s sister; she is your aunt, closely related to your father."
+        },
+        {
+          "verse": 13,
+          "text": "“Don’t have sex with your mother’s sister; she is your aunt, closely related to your mother."
+        },
+        {
+          "verse": 14,
+          "text": "“Don’t violate your father’s brother, your uncle, by having sex with his wife. She is your aunt."
+        },
+        {
+          "verse": 15,
+          "text": "“Don’t have sex with your daughter-in-law. She is your son’s wife; don’t have sex with her."
+        },
+        {
+          "verse": 16,
+          "text": "“Don’t have sex with your brother’s wife; that would violate your brother."
+        },
+        {
+          "verse": 17,
+          "text": "“Don’t have sex with both a woman and her daughter. And don’t have sex with her granddaughters either. They are her close relatives. That is wicked."
+        },
+        {
+          "verse": 18,
+          "text": "“Don’t marry your wife’s sister as a rival wife and have sex with her while your wife is living."
+        },
+        {
+          "verse": 19,
+          "text": "“Don’t have sex with a woman during the time of her menstrual period when she is unclean."
+        },
+        {
+          "verse": 20,
+          "text": "“Don’t have sex with your neighbor’s wife and violate yourself by her."
+        },
+        {
+          "verse": 21,
+          "text": "“Don’t give any of your children to be burned in sacrifice to the god Molech—an act of sheer blasphemy of your God. I am God."
+        },
+        {
+          "verse": 22,
+          "text": "“Don’t have sex with a man as one does with a woman. That is abhorrent."
+        },
+        {
+          "verse": 23,
+          "text": "“Don’t have sex with an animal and violate yourself by it.“A woman must not have sex with an animal. That is perverse. “Don’t pollute yourself in any of these ways. This is how the nations became polluted, the ones that I am going to drive out of the land before you. Even the land itself became polluted and I punished it for its iniquities—the land vomited up its inhabitants. You must keep my decrees and laws—natives and foreigners both. You must not do any of these abhorrent things. The people who lived in this land before you arrived did all these things and polluted the land. And if you pollute it, the land will vomit you up just as it vomited up the nations that preceded you. “Those who do any of these abhorrent things will be cut off from their people. Keep to what I tell you; don’t engage in any of the abhorrent acts that were practiced before you came. Don’t pollute yourselves with them. I am God, your God.”"
+        }
+      ],
+      "verse_count": 18,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/18-3e6079e38dc7027cf0eddd0964af68a6.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/18-3e6079e38dc7027cf0eddd0964af68a6.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 19,
+      "chapter_usfm": "LEV.19",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "“Every one of you must respect his mother and father.“Keep my Sabbaths. I am God, your God."
+        },
+        {
+          "verse": 4,
+          "text": "“Don’t take up with no-god idols. Don’t make gods of cast metal. I am God, your God. “When you sacrifice a Peace-Offering to God, do it as you’ve been taught so it is acceptable. Eat it on the day you sacrifice it and the day following. Whatever is left until the third day is to be burned up. If it is eaten on the third day it is polluted meat and not acceptable. Whoever eats it will be held responsible because he has violated what is holy to God. That person will be cut off from his people. “When you harvest your land, don’t harvest right up to the edges of your field or gather the gleanings from the harvest. Don’t strip your vineyard bare or go back and pick up the fallen grapes. Leave them for the poor and the foreigner. I am God, your God."
+        },
+        {
+          "verse": 11,
+          "text": "“Don’t steal.“Don’t lie.“Don’t deceive anyone."
+        },
+        {
+          "verse": 12,
+          "text": "“Don’t swear falsely using my name, violating the name of your God. I am God."
+        },
+        {
+          "verse": 13,
+          "text": "“Don’t exploit your friend or rob him.“Don’t hold back the wages of a hired hand overnight."
+        },
+        {
+          "verse": 14,
+          "text": "“Don’t curse the deaf; don’t put a stumbling block in front of the blind; fear your God. I am God."
+        },
+        {
+          "verse": 15,
+          "text": "“Don’t pervert justice. Don’t show favoritism to either the poor or the great. Judge on the basis of what is right."
+        },
+        {
+          "verse": 16,
+          "text": "“Don’t spread gossip and rumors.“Don’t just stand by when your neighbor’s life is in danger. I am God."
+        },
+        {
+          "verse": 17,
+          "text": "“Don’t secretly hate your neighbor. If you have something against him, get it out into the open; otherwise you are an accomplice in his guilt."
+        },
+        {
+          "verse": 18,
+          "text": "“Don’t seek revenge or carry a grudge against any of your people.“Love your neighbor as yourself. I am God."
+        },
+        {
+          "verse": 19,
+          "text": "“Keep my decrees.“Don’t mate two different kinds of animals.“Don’t plant your fields with two kinds of seed.“Don’t wear clothes woven of two kinds of material. “If a man has sex with a slave girl who is engaged to another man but has not yet been ransomed or given her freedom, there must be an investigation. But they aren’t to be put to death because she wasn’t free. The man must bring a Compensation-Offering to God at the entrance to the Tent of Meeting, a ram of compensation. The priest will perform the ritual of atonement for him before God with the ram of compensation for the sin he has committed. Then he will stand forgiven of the sin he committed. “When you enter the land and plant any kind of fruit tree, don’t eat the fruit for three years; consider it inedible. By the fourth year its fruit is holy, an offering of praise to God. Beginning in the fifth year you can eat its fruit; you’ll have richer harvests this way. I am God, your God."
+        },
+        {
+          "verse": 26,
+          "text": "“Don’t eat meat with blood in it.“Don’t practice divination or sorcery."
+        },
+        {
+          "verse": 27,
+          "text": "“Don’t cut the hair on the sides of your head or trim your beard."
+        },
+        {
+          "verse": 28,
+          "text": "“Don’t gash your bodies on behalf of the dead.“Don’t tattoo yourselves. I am God."
+        },
+        {
+          "verse": 29,
+          "text": "“Don’t violate your daughter by making her a whore—the whole country would soon become a brothel, filled with sordid sex."
+        },
+        {
+          "verse": 30,
+          "text": "“Keep my Sabbaths and revere my Sanctuary: I am God."
+        },
+        {
+          "verse": 31,
+          "text": "“Don’t dabble in the occult or traffic with mediums; you’ll pollute your souls. I am God, your God."
+        },
+        {
+          "verse": 32,
+          "text": "“Show respect to the aged; honor the presence of an elder; fear your God. I am God. “When a foreigner lives with you in your land, don’t take advantage of him. Treat the foreigner the same as a native. Love him like one of your own. Remember that you were once foreigners in Egypt. I am God, your God. “Don’t cheat when measuring length, weight, or quantity. Use honest scales and weights and measures. I am God, your God. I brought you out of Egypt."
+        },
+        {
+          "verse": 37,
+          "text": "“Keep all my decrees and all my laws. Yes, do them. I am God.”* * *"
+        }
+      ],
+      "verse_count": 19,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "God"
+        },
+        {
+          "before_verse": 1,
+          "text": ", Your God”"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/19-2fa1ce678745b8da8f8a1c415b457a05.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/19-2fa1ce678745b8da8f8a1c415b457a05.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 20,
+      "chapter_usfm": "LEV.20",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 6,
+          "text": "“I will resolutely reject persons who dabble in the occult or traffic with mediums, prostituting themselves in their practices. I will cut them off from their people. “Set yourselves apart for a holy life. Live a holy life, because I am God, your God. Do what I tell you; live the way I tell you. I am the God who makes you holy."
+        },
+        {
+          "verse": 9,
+          "text": "“Any and every person who curses his father or mother must be put to death. By cursing his father or mother he is responsible for his own death."
+        },
+        {
+          "verse": 10,
+          "text": "“If a man commits adultery with another man’s wife—the wife, say, of his neighbor—both the man and the woman, the adulterer and adulteress, must be put to death."
+        },
+        {
+          "verse": 11,
+          "text": "“If a man has sex with his father’s wife, he has violated his father. Both the man and woman must be put to death; they are responsible for their own deaths."
+        },
+        {
+          "verse": 12,
+          "text": "“If a man has sex with his daughter-in-law, both of them must be put to death. What they have done is perverse. And they are responsible for their own deaths."
+        },
+        {
+          "verse": 13,
+          "text": "“If a man has sex with a man as one does with a woman, both of them have done what is abhorrent. They must be put to death; they are responsible for their own deaths."
+        },
+        {
+          "verse": 14,
+          "text": "“If a man marries both a woman and her mother, that’s wicked. All three of them must be burned at the stake, purging the wickedness from the community."
+        },
+        {
+          "verse": 15,
+          "text": "“If a man has sex with an animal, he must be put to death and you must kill the animal."
+        },
+        {
+          "verse": 16,
+          "text": "“If a woman has sex with an animal, you must kill both the woman and the animal. They must be put to death. And they are responsible for their deaths."
+        },
+        {
+          "verse": 17,
+          "text": "“If a man marries his sister, the daughter of either his father or mother, and they have sex, that’s a disgrace. They must be publicly cut off from their people. He has violated his sister and will be held responsible."
+        },
+        {
+          "verse": 18,
+          "text": "“If a man sleeps with a woman during her period and has sex with her, he has uncovered her flow and she has uncovered her flow of blood—both of them must be cut off from their people."
+        },
+        {
+          "verse": 19,
+          "text": "“Don’t have sex with your aunt on either your mother’s or father’s side. That violates a close relative. Both of you are held responsible."
+        },
+        {
+          "verse": 20,
+          "text": "“If a man has sex with his aunt, he has dishonored his uncle. They will be held responsible and die childless."
+        },
+        {
+          "verse": 21,
+          "text": "“If a man marries his brother’s wife, it’s a defilement. He has shamed his brother. They will be childless. “Do what I tell you, all my decrees and laws; live by them so that the land where I’m bringing you won’t vomit you out. You simply must not live like the nations I’m driving out before you. They did all these things and I hated every minute of it. “I’ve told you, remember, that you will possess their land that I’m giving to you as an inheritance, a land flowing with milk and honey. I am God, your God, who has distinguished you from the nations. So live like it: Distinguish between ritually clean and unclean animals and birds. Don’t pollute yourselves with any animal or bird or crawling thing which I have marked out as unclean for you. Live holy lives before me because I, God, am holy. I have distinguished you from the nations to be my very own."
+        },
+        {
+          "verse": 27,
+          "text": "“A man or woman who is a medium or sorcerer among you must be put to death. You must kill them by stoning. They’re responsible for their own deaths.”"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/20-baee0242ce378f08d47e83756c33451e.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/20-baee0242ce378f08d47e83756c33451e.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 21,
+      "chapter_usfm": "LEV.21",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 9,
+          "text": "“If a priest’s daughter defiles herself in prostitution, she disgraces her father. She must be burned at the stake. “The high priest, the one among his brothers who has received the anointing oil poured on his head and been ordained to wear the priestly vestments, must not let his hair go wild and tangled nor wear ragged and torn clothes. He must not enter a room where there is a dead body. He must not ritually contaminate himself, even for his father or mother; and he must neither abandon nor desecrate the Sanctuary of his God because of the dedication of the anointing oil which is upon him. I am God. “He is to marry a young virgin, not a widow, not a divorcee, not a cult prostitute—he is only to marry a virgin from his own people. He must not defile his descendants among his people because I am God who makes him holy.” God spoke to Moses: “Tell Aaron, None of your descendants, in any generation to come, who has a defect of any kind may present as an offering the food of his God. That means anyone who is blind or lame, disfigured or deformed, crippled in foot or hand, hunchbacked or dwarfed, who has anything wrong with his eyes, who has running sores or damaged testicles. No descendant of Aaron the priest who has any defect is to offer gifts to God; he has a defect and so must not offer the food of his God. He may eat the food of his God, both the most holy and the holy, but because of his defect he must not go near the curtain or approach the Altar. It would desecrate my Sanctuary. I am God who makes them holy.”"
+        },
+        {
+          "verse": 24,
+          "text": "Moses delivered this message to Aaron, his sons, and to all the People of Israel.* * *"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/21-fdab123fe808b9efc360c744764592c7.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/21-fdab123fe808b9efc360c744764592c7.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 22,
+      "chapter_usfm": "LEV.22",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "“Tell them, From now on, if any of your descendants approaches in a state of ritual uncleanness the holy offerings that the Israelites consecrate to God, he will be cut off from my presence. I am God. “Each and every one of Aaron’s descendants who has an infectious skin disease or a discharge may not eat any of the holy offerings until he is clean. Also, if he touches anything defiled by a corpse, or has an emission of semen, or is contaminated by touching a crawling creature, or touches a person who is contaminated for whatever reason—a person who touches any such thing will be ritually unclean until evening and may not eat any of the holy offerings unless he has washed well with water. After the sun goes down he is clean and may go ahead and eat the holy offerings; they are his food. But he must not contaminate himself by eating anything found dead or torn by wild animals. I am God."
+        },
+        {
+          "verse": 9,
+          "text": "“The priests must observe my instructions lest they become guilty and die by treating the offerings with irreverence. I am God who makes them holy. “No layperson may eat anything set apart as holy. Nor may a priest’s guest or his hired hand eat anything holy. But if a priest buys a slave, the slave may eat of it; also the slaves born in his house may eat his food. If a priest’s daughter marries a layperson, she may no longer eat from the holy contributions. But if the priest’s daughter is widowed or divorced and without children and returns to her father’s household as before, she may eat of her father’s food. But no layperson may eat of it."
+        },
+        {
+          "verse": 14,
+          "text": "“If anyone eats from a holy offering accidentally, he must give back the holy offering to the priest and add twenty percent to it. “The priests must not treat with irreverence the holy offerings of the Israelites that they contribute to God lest they desecrate themselves and make themselves guilty when they eat the holy offerings. I am God who makes them holy.”* * * God spoke to Moses: “Tell Aaron and his sons and all the People of Israel, Each and every one of you, whether native born or foreigner, who presents a Whole-Burnt-Offering to God to fulfill a vow or as a Freewill-Offering, must make sure that it is a male without defect from cattle, sheep, or goats for it to be acceptable. Don’t try slipping in some creature that has a defect—it won’t be accepted. Whenever anyone brings an offering from cattle or sheep as a Peace-Offering to God to fulfill a vow or as a Freewill-Offering, it has to be perfect, without defect, to be acceptable. Don’t try giving God an animal that is blind, crippled, mutilated, an animal with running sores, a rash, or mange. Don’t place any of these on the Altar as a gift to God. You may, though, offer an ox or sheep that is deformed or stunted as a Freewill-Offering, but it is not acceptable in fulfilling a vow. Don’t offer to God an animal with bruised, crushed, torn, or cut-off testicles. Don’t do this in your own land but don’t accept them from foreigners and present them as food for your God either. Because of deformities and defects they will not be acceptable.” God spoke to Moses: “When a calf or lamb or goat is born, it is to stay with its mother for seven days. After the eighth day, it is acceptable as an offering, a gift to God. Don’t slaughter both a cow or ewe and its young on the same day. When you sacrifice a Thanksgiving-Offering to God, do it right so it will be acceptable. Eat it on the same day; don’t leave any leftovers until morning. I am God."
+        },
+        {
+          "verse": 31,
+          "text": "“Do what I tell you; live what I tell you. I am God. “Don’t desecrate my holy name. I insist on being treated with holy reverence among the People of Israel. I am God who makes you holy and brought you out of Egypt to be your God. I am God.”"
+        }
+      ],
+      "verse_count": 4,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/22-8d617ef93a824cb3f9820d1e744ec19e.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/22-8d617ef93a824cb3f9820d1e744ec19e.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 23,
+      "chapter_usfm": "LEV.23",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "“Work six days. The seventh day is a Sabbath, a day of total and complete rest, a sacred assembly. Don’t do any work. Wherever you live, it is a Sabbath to God."
+        },
+        {
+          "verse": 4,
+          "text": "“These are the appointed feasts of God, the sacred assemblies which you are to announce at the times set for them:"
+        },
+        {
+          "verse": 5,
+          "text": "“God’s Passover, beginning at sundown on the fourteenth day of the first month. “God’s Feast of Unraised Bread, on the fifteenth day of this same month. You are to eat unraised bread for seven days. Hold a sacred assembly on the first day; don’t do any regular work. Offer Fire-Gifts to God for seven days. On the seventh day hold a sacred assembly; don’t do any regular work.” God spoke to Moses: “Tell the People of Israel, When you arrive at the land that I am giving you and reap its harvest, bring to the priest a sheaf of the first grain that you harvest. He will wave the sheaf before God for acceptance on your behalf; on the morning after Sabbath, the priest will wave it. On the same day that you wave the sheaf, offer a year-old male lamb without defect for a Whole-Burnt-Offering to God and with it the Grain-Offering of four quarts of fine flour mixed with oil—a Fire-Gift to God, a pleasing fragrance—and also a Drink-Offering of a quart of wine. Don’t eat any bread or roasted or fresh grain until you have presented this offering to your God. This is a perpetual decree for all your generations to come, wherever you live. “Count seven full weeks from the morning after the Sabbath when you brought the sheaf as a Wave-Offering, fifty days until the morning of the seventh Sabbath. Then present a new Grain-Offering to God. Bring from wherever you are living two loaves of bread made from four quarts of fine flour and baked with yeast as a Wave-Offering of the first ripe grain to God. In addition to the bread, offer seven yearling male lambs without defect, plus one bull and two rams. They will be a Whole-Burnt-Offering to God together with their Grain-Offerings and Drink-Offerings—offered as Fire-Gifts, a pleasing fragrance to God. Offer one male goat for an Absolution-Offering and two yearling lambs for a Peace-Offering. The priest will wave the two lambs before God as a Wave-Offering, together with the bread of the first ripe grain. They are sacred offerings to God for the priest. Proclaim the day as a sacred assembly. Don’t do any ordinary work. It is a perpetual decree wherever you live down through your generations."
+        },
+        {
+          "verse": 22,
+          "text": "“When you reap the harvest of your land, don’t reap the corners of your field or gather the gleanings. Leave them for the poor and the foreigners. I am God, your God.” God said to Moses: “Tell the People of Israel, On the first day of the seventh month, set aside a day of rest, a sacred assembly—mark it with loud blasts on the ram’s horn. Don’t do any ordinary work. Offer a Fire-Gift to God.” God said to Moses: “The tenth day of the seventh month is the Day of Atonement. Hold a sacred assembly, fast, and offer a Fire-Gift to God. Don’t work on that day because it is a day of atonement to make atonement for you before your God. Anyone who doesn’t fast on that day must be cut off from his people. I will destroy from among his people anyone who works on that day. Don’t do any work that day—none. This is a perpetual decree for all the generations to come, wherever you happen to be living. It is a Sabbath of complete and total rest, a fast day. Observe your Sabbath from the evening of the ninth day of the month until the following evening.” God said to Moses: “Tell the People of Israel, God’s Feast of Booths begins on the fifteenth day of the seventh month. It lasts seven days. The first day is a sacred assembly; don’t do any ordinary work. Offer Fire-Gifts to God for seven days. On the eighth day hold a sacred assembly and offer a gift to God. It is a solemn convocation. Don’t do any ordinary work. “These are the appointed feasts of God which you will decree as sacred assemblies for presenting Fire-Gifts to God: the Whole-Burnt-Offerings, Grain-Offerings, sacrifices, and Drink-Offerings assigned to each day. These are in addition to offerings for God’s Sabbaths and also in addition to other gifts connected with whatever you have vowed and all the Freewill-Offerings you give to God. “So, summing up: On the fifteenth day of the seventh month, after you have brought your crops in from your fields, celebrate the Feast of God for seven days. The first day is a complete rest and the eighth day is a complete rest. On the first day, pick the best fruit from the best trees; take fronds of palm trees and branches of leafy trees and from willows by the brook and celebrate in the presence of your God for seven days—yes, for seven full days celebrate it as a festival to God. Every year from now on, celebrate it in the seventh month. Live in booths for seven days—every son and daughter of Israel is to move into booths so that your descendants will know that I made the People of Israel live in booths when I brought them out of the land of Egypt. I am God, your God.”"
+        },
+        {
+          "verse": 44,
+          "text": "Moses posted the calendar for the annual appointed feasts of God which Israel was to celebrate."
+        }
+      ],
+      "verse_count": 5,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/23-f5664f6c7d38c25a1c0e77cb94e61f44.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/23-f5664f6c7d38c25a1c0e77cb94e61f44.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 24,
+      "chapter_usfm": "LEV.24",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Moses then spoke to the People of Israel. They brought the blasphemer outside the camp and stoned him. The People of Israel followed the orders God had given Moses."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/24-cc5ff476c6c818bfb298763ac354f8aa.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/24-cc5ff476c6c818bfb298763ac354f8aa.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 25,
+      "chapter_usfm": "LEV.25",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 13,
+          "text": "“In this year of Jubilee everyone returns home to his family property. “If you sell or buy property from one of your countrymen, don’t cheat him. Calculate the purchase price on the basis of the number of years since the Jubilee. He is obliged to set the sale price on the basis of the number of harvests remaining until the next Jubilee. The more years left, the more money; you can raise the price. But the fewer years left, the less money; decrease the price. What you are buying and selling in fact is the number of crops you’re going to harvest. Don’t cheat each other. Fear your God. I am God, your God. “Keep my decrees and observe my laws and you will live secure in the land. The land will yield its fruit; you will have all you can eat and will live safe and secure. Do I hear you ask, ‘What are we going to eat in the seventh year if we don’t plant or harvest?’ I assure you, I will send such a blessing in the sixth year that the land will yield enough for three years. While you plant in the eighth year, you will eat from the old crop and continue until the harvest of the ninth year comes in. “The land cannot be sold permanently because the land is mine and you are foreigners—you’re my tenants. You must provide for the right of redemption for any of the land that you own. “If one of your brothers becomes poor and has to sell any of his land, his nearest relative is to come and buy back what his brother sold. If a man has no one to redeem it but he later prospers and earns enough for its redemption, he is to calculate the value since he sold it and refund the balance to the man to whom he sold it; he can then go back to his own land. If he doesn’t get together enough money to repay him, what he sold remains in the possession of the buyer until the year of Jubilee. In the Jubilee it will be returned and he can go back and live on his land. “If a man sells a house in a walled city, he retains the right to buy it back for a full year after the sale. At any time during that year he can redeem it. But if it is not redeemed before the full year has passed, it becomes the permanent possession of the buyer and his descendants. It is not returned in the Jubilee. However, houses in unwalled villages are treated the same as fields. They can be redeemed and have to be returned at the Jubilee. “As to the Levitical cities, houses in the cities owned by the Levites are always subject to redemption. Levitical property is always redeemable if it is sold in a town that they hold and reverts to them in the Jubilee, because the houses in the towns of the Levites are their property among the People of Israel. The pastures belonging to their cities may not be sold; they are their permanent possession. “If one of your brothers becomes indigent and cannot support himself, help him, the same as you would a foreigner or a guest so that he can continue to live in your neighborhood. Don’t gouge him with interest charges; out of reverence for your God help your brother to continue to live with you in the neighborhood. Don’t take advantage of his plight by running up big interest charges on his loans, and don’t give him food for profit. I am your God who brought you out of Egypt to give you the land of Canaan and to be your God. “If one of your brothers becomes indigent and has to sell himself to you, don’t make him work as a slave. Treat him as a hired hand or a guest among you. He will work for you until the Jubilee, after which he and his children are set free to go back to his clan and his ancestral land. Because the People of Israel are my servants whom I brought out of Egypt, they must never be sold as slaves. Don’t tyrannize them; fear your God. “The male and female slaves which you have are to come from the surrounding nations; you are permitted to buy slaves from them. You may also buy the children of foreign workers who are living among you temporarily and from their clans which are living among you and have been born in your land. They become your property. You may will them to your children as property and make them slaves for life. But you must not tyrannize your brother Israelites. “If a foreigner or temporary resident among you becomes rich and one of your brothers becomes poor and sells himself to the foreigner who lives among you or to a member of the foreigner’s clan, he still has the right of redemption after he has sold himself. One of his relatives may buy him back. An uncle or cousin or any close relative of his extended family may redeem him. Or, if he gets the money together, he can redeem himself. What happens then is that he and his owner count out the time from the year he sold himself to the year of Jubilee; the buy-back price is set according to the wages of a hired hand for that number of years. If many years remain before the Jubilee, he must pay back a larger share of his purchase price, but if only a few years remain until the Jubilee, he is to calculate his redemption price accordingly. He is to be treated as a man hired from year to year. You must make sure that his owner does not tyrannize him. “If he is not redeemed in any of these ways, he goes free in the year of Jubilee, he and his children, because the People of Israel are my servants, my servants whom I brought out of Egypt. I am God, your God.* * *"
+        }
+      ],
+      "verse_count": 1,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "God"
+        },
+        {
+          "before_verse": 1,
+          "text": "”"
+        },
+        {
+          "before_verse": 1,
+          "text": "“The Fiftieth Year Is Your Jubilee Year”"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/25-72edac3d12ac961f8b8363ee0c39f9f8.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/25-72edac3d12ac961f8b8363ee0c39f9f8.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 26,
+      "chapter_usfm": "LEV.26",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Don’t make idols for yourselves; don’t set up an image or a sacred pillar for yourselves, and don’t place a carved stone in your land that you can bow down to in worship. I am God, your God."
+        },
+        {
+          "verse": 2,
+          "text": "“Keep my Sabbaths; treat my Sanctuary with reverence. I am God. “If you live by my decrees and obediently keep my commandments, I will send the rains in their seasons, the ground will yield its crops and the trees of the field their fruit. You will thresh until the grape harvest and the grape harvest will continue until planting time; you’ll have more than enough to eat and will live safe and secure in your land. “I’ll make the country a place of peace—you’ll be able to go to sleep at night without fear; I’ll get rid of the wild beasts; I’ll eliminate war. You’ll chase out your enemies and defeat them: Five of you will chase a hundred, and a hundred of you will chase ten thousand and do away with them. I’ll give you my full attention: I’ll make sure you prosper, make sure you grow in numbers, and keep my covenant with you in good working order. You’ll still be eating from last year’s harvest when you have to clean out the barns to make room for the new crops. “I’ll set up my residence in your neighborhood; I won’t avoid or shun you; I’ll stroll through your streets. I’ll be your God; you’ll be my people. I am God, your personal God who rescued you from Egypt so that you would no longer be slaves to the Egyptians. I ripped off the harness of your slavery so that you can move about freely. “But if you refuse to obey me and won’t observe my commandments, despising my decrees and holding my laws in contempt by your disobedience, making a shambles of my covenant, I’ll step in and pour on the trouble: debilitating disease, high fevers, blindness, your life leaking out bit by bit. You’ll plant seed but your enemies will eat the crops. I’ll turn my back on you and stand by while your enemies defeat you. People who hate you will govern you. You’ll run scared even when there’s no one chasing you. “And if none of this works in getting your attention, I’ll discipline you seven times over for your sins. I’ll break your strong pride: I’ll make the skies above you like a sheet of tin and the ground under you like cast iron. No matter how hard you work, nothing will come of it: No crops out of the ground, no fruit off the trees. “If you defy me and refuse to listen, your punishment will be seven times more than your sins: I’ll set wild animals on you; they’ll rob you of your children, kill your cattle, and decimate your numbers until you’ll think you are living in a ghost town. “And if even this doesn’t work and you refuse my discipline and continue your defiance, then it will be my turn to defy you. I, yes I, will punish you for your sins seven times over: I’ll let war loose on you, avenging your breaking of the covenant; when you huddle in your cities for protection, I’ll send a deadly epidemic on you and you’ll be helpless before your enemies; when I cut off your bread supply, ten women will bake bread in one oven and ration it out. You’ll eat, but barely—no one will get enough. “And if this—even this!—doesn’t work and you still won’t listen, still defy me, I’ll have had enough and in hot anger will defy you, punishing you for your sins seven times over: famine will be so severe that you’ll end up cooking and eating your sons in stews and your daughters in barbecues; I’ll smash your sex-and-religion shrines and all the paraphernalia that goes with them, and then stack your corpses and the idol-corpses in the same piles—I’ll abhor you; I’ll turn your cities into rubble; I’ll clean out your sanctuaries; I’ll hold my nose at the “pleasing aroma” of your sacrifices. I’ll turn your land into a lifeless moonscape—your enemies who come in to take over will be shocked at what they see. I’ll scatter you all over the world and keep after you with the point of my sword in your backs. There’ll be nothing left in your land, nothing going on in your cities. With you gone and dispersed in the countries of your enemies, the land, empty of you, will finally get a break and enjoy its Sabbath years. All the time it’s left there empty, the land will get rest, the Sabbaths it never got when you lived there. “As for those among you still alive, I’ll give them over to fearful timidity—even the rustle of a leaf will throw them into a panic. They’ll run here and there, back and forth, as if running for their lives even though no one is after them, tripping and falling over one another in total confusion. You won’t stand a chance against an enemy. You’ll perish among the nations; the land of your enemies will eat you up. Any who are left will slowly rot away in the enemy lands. Rot. And all because of their sins, their sins compounded by their ancestors’ sins. “On the other hand, if they confess their sins and the sins of their ancestors, their treacherous betrayal, the defiance that set off my defiance that sent them off into enemy lands; if by some chance they soften their hard hearts and make amends for their sin, I’ll remember my covenant with Jacob, I’ll remember my covenant with Isaac, and, yes, I’ll remember my covenant with Abraham. And I’ll remember the land. “The land will be empty of them and enjoy its Sabbaths while they’re gone. They’ll pay for their sins because they refused my laws and treated my decrees with contempt. But in spite of their behavior, while they are among their enemies I won’t reject or abhor or destroy them completely. I won’t break my covenant with them: I am God, their God. For their sake I will remember the covenant with their ancestors whom I, with all the nations watching, brought out of Egypt in order to be their God. I am God.”"
+        },
+        {
+          "verse": 46,
+          "text": "These are the decrees, laws, and instructions that God established between himself and the People of Israel through Moses at Mount Sinai."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [
+        {
+          "before_verse": 2,
+          "text": "“If You Live by My Decrees . . . ”"
+        },
+        {
+          "before_verse": 2,
+          "text": "“But If You Refuse to Obey Me . . . ”"
+        },
+        {
+          "before_verse": 2,
+          "text": "“On the Other Hand, If They Confess . . . ”"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/26-3c427bbf7331177b5b0fe68507502d46.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/26-3c427bbf7331177b5b0fe68507502d46.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "LEV",
+      "chapter": 27,
+      "chapter_usfm": "LEV.27",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 28,
+          "text": "“But nothing that a man irrevocably devotes to God from what belongs to him, whether human or animal or family land, may be either sold or bought back. Everything devoted is holy to the highest degree; it’s God’s inalienable property."
+        },
+        {
+          "verse": 29,
+          "text": "“No human who has been devoted to destruction can be redeemed. He must be put to death.* * * “A tenth of the land’s produce, whether grain from the ground or fruit from the trees, is God’s. It is holy to God. If a man buys back any of the tenth he has given, he must add twenty percent to it. A tenth of the entire herd and flock, every tenth animal that passes under the shepherd’s rod, is holy to God. He is not permitted to pick out the good from the bad or make a substitution. If he dishonestly makes a substitution, both animals, the original and the substitute, become the possession of the Sanctuary and cannot be redeemed.”"
+        },
+        {
+          "verse": 34,
+          "text": "These are the commandments that God gave to Moses on Mount Sinai for the People of Israel."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/LEV/27-693672a15185e420224af9d2a067f7bc.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/LEV/27-693672a15185e420224af9d2a067f7bc.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

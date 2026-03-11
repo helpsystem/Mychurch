@@ -1,0 +1,106 @@
+{
+  "book_id": "3JN",
+  "book_name_en": "3 John",
+  "book_name_fa": "سوم یوحنا",
+  "testament": "NT",
+  "version_id": 72,
+  "version_abbr": "HCSB",
+  "version_name": "Holman Christian Standard Bible",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 14,
+  "chapters": [
+    {
+      "book_id": "3JN",
+      "chapter": 1,
+      "chapter_usfm": "3JN.1",
+      "version_id": 72,
+      "version_abbr": "HCSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The Elder: To my dear friend Gaius: I love you in the truth."
+        },
+        {
+          "verse": 2,
+          "text": "Dear friend, I pray that you may prosper in every way and be in good health physically just as you are spiritually."
+        },
+        {
+          "verse": 3,
+          "text": "For I was very glad when some brothers came and testified to your faithfulness to the truth — how you are walking in the truth."
+        },
+        {
+          "verse": 4,
+          "text": "I have no greater joy than this: to hear that my children are walking in the truth."
+        },
+        {
+          "verse": 5,
+          "text": "Dear friend, you are showing faithfulness by whatever you do for the brothers, especially when they are strangers."
+        },
+        {
+          "verse": 6,
+          "text": "They have testified to your love in front of the church. You will do well to send them on their journey in a manner worthy of God,"
+        },
+        {
+          "verse": 7,
+          "text": "since they set out for the sake of the Name, accepting nothing from pagans."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore, we ought to support such men so that we can be coworkers with the truth."
+        },
+        {
+          "verse": 9,
+          "text": "I wrote something to the church, but Diotrephes, who loves to have first place among them, does not receive us."
+        },
+        {
+          "verse": 10,
+          "text": "This is why, if I come, I will remind him of the works he is doing, slandering us with malicious words. And he is not satisfied with that! He not only refuses to welcome the brothers himself, but he even stops those who want to do so and expels them from the church."
+        },
+        {
+          "verse": 11,
+          "text": "Dear friend, do not imitate what is evil, but what is good. The one who does good is of God; the one who does evil has not seen God."
+        },
+        {
+          "verse": 12,
+          "text": "Demetrius has a good testimony from everyone, and from the truth itself. And we also testify for him, and you know that our testimony is true."
+        },
+        {
+          "verse": 13,
+          "text": "I have many things to write you, but I don’t want to write to you with pen and ink."
+        },
+        {
+          "verse": 14,
+          "text": "I hope to see you soon, and we will talk face to face. Peace be with you. The friends send you greetings. Greet the friends by name."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [
+        {
+          "before_verse": 4,
+          "text": "Gaius Commended"
+        },
+        {
+          "before_verse": 8,
+          "text": "Diotrephes and Demetrius"
+        },
+        {
+          "before_verse": 12,
+          "text": "Farewell"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 17,
+          "title": "HCSB Audio Old and New Testament",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/17/32k/3JN/1-e3c3ba74f851fdb3286f76e296e198d7.mp3?version_id=72",
+          "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/3JN/1-e3c3ba74f851fdb3286f76e296e198d7.m3u8?version_id=72"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "book_id": "2TH",
+  "book_name_en": "2 Thessalonians",
+  "book_name_fa": "دوم تسالونیکیان",
+  "testament": "NT",
+  "version_id": 59,
+  "version_abbr": "ESV",
+  "version_name": "English Standard Version 2025",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 47,
+  "chapters": [
+    {
+      "book_id": "2TH",
+      "chapter": 1,
+      "chapter_usfm": "2TH.1",
+      "version_id": 59,
+      "version_abbr": "ESV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, Silvanus, and Timothy,To the church of the Thessalonians in God our Father and the Lord Jesus Christ:"
+        },
+        {
+          "verse": 2,
+          "text": "Grace to you and peace from God our Father and the Lord Jesus Christ."
+        },
+        {
+          "verse": 3,
+          "text": "We ought always to give thanks to God for you, brothers, as is right, because your faith is growing abundantly, and the love of every one of you for one another is increasing."
+        },
+        {
+          "verse": 4,
+          "text": "Therefore we ourselves boast about you in the churches of God for your steadfastness and faith in all your persecutions and in the afflictions that you are enduring."
+        },
+        {
+          "verse": 5,
+          "text": "This is evidence of the righteous judgment of God, that you may be considered worthy of the kingdom of God, for which you are also suffering—"
+        },
+        {
+          "verse": 6,
+          "text": "since indeed God considers it just to repay with affliction those who afflict you,"
+        },
+        {
+          "verse": 7,
+          "text": "and to grant relief to you who are afflicted as well as to us, when the Lord Jesus is revealed from heaven with his mighty angels"
+        },
+        {
+          "verse": 8,
+          "text": "in flaming fire, inflicting vengeance on those who do not know God and on those who do not obey the gospel of our Lord Jesus."
+        },
+        {
+          "verse": 9,
+          "text": "They will suffer the punishment of eternal destruction, away from the presence of the Lord and from the glory of his might,"
+        },
+        {
+          "verse": 10,
+          "text": "when he comes on that day to be glorified in his saints, and to be marveled at among all who have believed, because our testimony to you was believed."
+        },
+        {
+          "verse": 11,
+          "text": "To this end we always pray for you, that our God may make you worthy of his calling and may fulfill every resolve for good and every work of faith by his power,"
+        },
+        {
+          "verse": 12,
+          "text": "so that the name of our Lord Jesus may be glorified in you, and you in him, according to the grace of our God and the Lord Jesus Christ."
+        }
+      ],
+      "verse_count": 12,
+      "headings": [
+        {
+          "before_verse": 2,
+          "text": "Thanksgiving"
+        },
+        {
+          "before_verse": 4,
+          "text": "The Judgment at Christ’s Coming"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1,
+          "title": "ESV Hear the Word Audio Bible",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1/32k/2TH/1-f5565c4681b23ad24837de0fae67e5c8.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/2TH/1-f5565c4681b23ad24837de0fae67e5c8.m3u8?version_id=59"
+        },
+        {
+          "audio_version_id": 1668,
+          "title": "Living Water Bible - ESV Music Project by Lutheran Bible Translators",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1668/32k/2TH/1-a61958dad2c86c46ff1b55028226ccc7.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/2TH/1-a61958dad2c86c46ff1b55028226ccc7.m3u8?version_id=59"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TH",
+      "chapter": 2,
+      "chapter_usfm": "2TH.2",
+      "version_id": 59,
+      "version_abbr": "ESV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now concerning the coming of our Lord Jesus Christ and our being gathered together to him, we ask you, brothers,"
+        },
+        {
+          "verse": 2,
+          "text": "not to be quickly shaken in mind or alarmed, either by a spirit or a spoken word, or a letter seeming to be from us, to the effect that the day of the Lord has come."
+        },
+        {
+          "verse": 3,
+          "text": "Let no one deceive you in any way. For that day will not come, unless the rebellion comes first, and the man of lawlessness is revealed, the son of destruction,"
+        },
+        {
+          "verse": 4,
+          "text": "who opposes and exalts himself against every so-called god or object of worship, so that he takes his seat in the temple of God, proclaiming himself to be God."
+        },
+        {
+          "verse": 5,
+          "text": "Do you not remember that when I was still with you I told you these things?"
+        },
+        {
+          "verse": 6,
+          "text": "And you know what is restraining him now so that he may be revealed in his time."
+        },
+        {
+          "verse": 7,
+          "text": "For the mystery of lawlessness is already at work. Only he who now restrains it will do so until he is out of the way."
+        },
+        {
+          "verse": 8,
+          "text": "And then the lawless one will be revealed, whom the Lord Jesus will kill with the breath of his mouth and bring to nothing by the appearance of his coming."
+        },
+        {
+          "verse": 9,
+          "text": "The coming of the lawless one is by the activity of Satan with all power and false signs and wonders,"
+        },
+        {
+          "verse": 10,
+          "text": "and with all wicked deception for those who are perishing, because they refused to love the truth and so be saved."
+        },
+        {
+          "verse": 11,
+          "text": "Therefore God sends them a strong delusion, so that they may believe what is false,"
+        },
+        {
+          "verse": 12,
+          "text": "in order that all may be condemned who did not believe the truth but had pleasure in unrighteousness."
+        },
+        {
+          "verse": 13,
+          "text": "But we ought always to give thanks to God for you, brothers beloved by the Lord, because God chose you as the firstfruits to be saved, through sanctification by the Spirit and belief in the truth."
+        },
+        {
+          "verse": 14,
+          "text": "To this he called you through our gospel, so that you may obtain the glory of our Lord Jesus Christ."
+        },
+        {
+          "verse": 15,
+          "text": "So then, brothers, stand firm and hold to the traditions that you were taught by us, either by our spoken word or by our letter."
+        },
+        {
+          "verse": 16,
+          "text": "Now may our Lord Jesus Christ himself, and God our Father, who loved us and gave us eternal comfort and good hope through grace,"
+        },
+        {
+          "verse": 17,
+          "text": "comfort your hearts and establish them in every good work and word."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 12,
+          "text": "Stand Firm"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1,
+          "title": "ESV Hear the Word Audio Bible",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1/32k/2TH/2-696c64292a6d5fa26fcecaadf392ba3c.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/2TH/2-696c64292a6d5fa26fcecaadf392ba3c.m3u8?version_id=59"
+        },
+        {
+          "audio_version_id": 1668,
+          "title": "Living Water Bible - ESV Music Project by Lutheran Bible Translators",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1668/32k/2TH/2-db72f86ee9bb3ccf9570d0c724a8b73b.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/2TH/2-db72f86ee9bb3ccf9570d0c724a8b73b.m3u8?version_id=59"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "2TH",
+      "chapter": 3,
+      "chapter_usfm": "2TH.3",
+      "version_id": 59,
+      "version_abbr": "ESV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Finally, brothers, pray for us, that the word of the Lord may speed ahead and be honored, as happened among you,"
+        },
+        {
+          "verse": 2,
+          "text": "and that we may be delivered from wicked and evil men. For not all have faith."
+        },
+        {
+          "verse": 3,
+          "text": "But the Lord is faithful. He will establish you and guard you against the evil one."
+        },
+        {
+          "verse": 4,
+          "text": "And we have confidence in the Lord about you, that you are doing and will do the things that we command."
+        },
+        {
+          "verse": 5,
+          "text": "May the Lord direct your hearts to the love of God and to the steadfastness of Christ."
+        },
+        {
+          "verse": 6,
+          "text": "Now we command you, brothers, in the name of our Lord Jesus Christ, that you keep away from any brother who is walking in idleness and not in accord with the tradition that you received from us."
+        },
+        {
+          "verse": 7,
+          "text": "For you yourselves know how you ought to imitate us, because we were not idle when we were with you,"
+        },
+        {
+          "verse": 8,
+          "text": "nor did we eat anyone’s bread without paying for it, but with toil and labor we worked night and day, that we might not be a burden to any of you."
+        },
+        {
+          "verse": 9,
+          "text": "It was not because we do not have that right, but to give you in ourselves an example to imitate."
+        },
+        {
+          "verse": 10,
+          "text": "For even when we were with you, we would give you this command: If anyone is not willing to work, let him not eat."
+        },
+        {
+          "verse": 11,
+          "text": "For we hear that some among you walk in idleness, not busy at work, but busybodies."
+        },
+        {
+          "verse": 12,
+          "text": "Now such persons we command and encourage in the Lord Jesus Christ to do their work quietly and to earn their own living."
+        },
+        {
+          "verse": 13,
+          "text": "As for you, brothers, do not grow weary in doing good."
+        },
+        {
+          "verse": 14,
+          "text": "If anyone does not obey what we say in this letter, take note of that person, and have nothing to do with him, that he may be ashamed."
+        },
+        {
+          "verse": 15,
+          "text": "Do not regard him as an enemy, but warn him as a brother."
+        },
+        {
+          "verse": 16,
+          "text": "Now may the Lord of peace himself give you peace at all times in every way. The Lord be with you all."
+        },
+        {
+          "verse": 17,
+          "text": "I, Paul, write this greeting with my own hand. This is the sign of genuineness in every letter of mine; it is the way I write."
+        },
+        {
+          "verse": 18,
+          "text": "The grace of our Lord Jesus Christ be with you all."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 5,
+          "text": "Warning Against Idleness"
+        },
+        {
+          "before_verse": 15,
+          "text": "Benediction"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1,
+          "title": "ESV Hear the Word Audio Bible",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1/32k/2TH/3-b3bf9cdaec0f6165e2b0fd8eabde8844.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/2TH/3-b3bf9cdaec0f6165e2b0fd8eabde8844.m3u8?version_id=59"
+        },
+        {
+          "audio_version_id": 1668,
+          "title": "Living Water Bible - ESV Music Project by Lutheran Bible Translators",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1668/32k/2TH/3-4a6418b5192c570b28fe20be39c98211.mp3?version_id=59",
+          "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/2TH/3-4a6418b5192c570b28fe20be39c98211.m3u8?version_id=59"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,2362 @@
+{
+  "book_id": "1CO",
+  "book_name_en": "1 Corinthians",
+  "book_name_fa": "اول قرنتیان",
+  "testament": "NT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 16,
+  "total_verses": 437,
+  "chapters": [
+    {
+      "book_id": "1CO",
+      "chapter": 1,
+      "chapter_usfm": "1CO.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, called as an apostle of Jesus Christ by the will of God, and our brother Sosthenes,"
+        },
+        {
+          "verse": 2,
+          "text": "To the church of God which is in Corinth, to those who have been sanctified in Christ Jesus, saints by calling, with all who in every place call on the name of our Lord Jesus Christ, their Lord and ours:"
+        },
+        {
+          "verse": 3,
+          "text": "Grace to you and peace from God our Father and the Lord Jesus Christ."
+        },
+        {
+          "verse": 4,
+          "text": "I thank my God always concerning you for the grace of God which was given you in Christ Jesus,"
+        },
+        {
+          "verse": 5,
+          "text": "that in everything you were enriched in Him, in all speech and all knowledge,"
+        },
+        {
+          "verse": 6,
+          "text": "just as the testimony concerning Christ was confirmed in you,"
+        },
+        {
+          "verse": 7,
+          "text": "so that you are not lacking in any gift, as you eagerly await the revelation of our Lord Jesus Christ,"
+        },
+        {
+          "verse": 8,
+          "text": "who will also confirm you to the end, blameless on the day of our Lord Jesus Christ."
+        },
+        {
+          "verse": 9,
+          "text": "God is faithful, through whom you were called into fellowship with His Son, Jesus Christ our Lord."
+        },
+        {
+          "verse": 10,
+          "text": "Now I urge you, brothers and sisters, by the name of our Lord Jesus Christ, that you all agree and that there be no divisions among you, but that you be made complete in the same mind and in the same judgment."
+        },
+        {
+          "verse": 11,
+          "text": "For I have been informed concerning you, my brothers and sisters, by Chloe’s people, that there are quarrels among you."
+        },
+        {
+          "verse": 12,
+          "text": "Now I mean this, that each one of you is saying, “I am with Paul,” or “I am with Apollos,” or “I am with Cephas,” or “I am with Christ.”"
+        },
+        {
+          "verse": 13,
+          "text": "Has Christ been divided? Paul was not crucified for you, was he? Or were you baptized in the name of Paul?"
+        },
+        {
+          "verse": 14,
+          "text": "I am thankful that I baptized none of you except Crispus and Gaius,"
+        },
+        {
+          "verse": 15,
+          "text": "so that no one would say you were baptized in my name!"
+        },
+        {
+          "verse": 16,
+          "text": "But I did baptize the household of Stephanas also; beyond that, I do not know if I baptized anyone else."
+        },
+        {
+          "verse": 17,
+          "text": "For Christ did not send me to baptize, but to preach the gospel, not with cleverness of speech, so that the cross of Christ would not be made of no effect."
+        },
+        {
+          "verse": 18,
+          "text": "For the word of the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God."
+        },
+        {
+          "verse": 19,
+          "text": "For it is written:“I will destroy the wisdom of the wise,And the understanding of those who have understanding, I will confound.”"
+        },
+        {
+          "verse": 20,
+          "text": "Where is the wise person? Where is the scribe? Where is the debater of this age? Has God not made foolish the wisdom of the world?"
+        },
+        {
+          "verse": 21,
+          "text": "For since in the wisdom of God the world through its wisdom did not come to know God, God was pleased through the foolishness of the message preached to save those who believe."
+        },
+        {
+          "verse": 22,
+          "text": "For indeed Jews ask for signs and Greeks search for wisdom;"
+        },
+        {
+          "verse": 23,
+          "text": "but we preach Christ crucified, to Jews a stumbling block, and to Gentiles foolishness,"
+        },
+        {
+          "verse": 24,
+          "text": "but to those who are the called, both Jews and Greeks, Christ the power of God and the wisdom of God."
+        },
+        {
+          "verse": 25,
+          "text": "For the foolishness of God is wiser than mankind, and the weakness of God is stronger than mankind."
+        },
+        {
+          "verse": 26,
+          "text": "For consider your calling, brothers and sisters, that there were not many wise according to the flesh, not many mighty, not many noble;"
+        },
+        {
+          "verse": 27,
+          "text": "but God has chosen the foolish things of the world to shame the wise, and God has chosen the weak things of the world to shame the things which are strong,"
+        },
+        {
+          "verse": 28,
+          "text": "and the insignificant things of the world and the despised God has chosen, the things that are not, so that He may nullify the things that are,"
+        },
+        {
+          "verse": 29,
+          "text": "so that no human may boast before God."
+        },
+        {
+          "verse": 30,
+          "text": "But it is due to Him that you are in Christ Jesus, who became to us wisdom from God, and righteousness and sanctification, and redemption,"
+        },
+        {
+          "verse": 31,
+          "text": "so that, just as it is written: “Let the one who boasts, boast in the Lord.”"
+        }
+      ],
+      "verse_count": 31,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Appeal to Unity"
+        },
+        {
+          "before_verse": 17,
+          "text": "The Wisdom of God"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/1-4bc9ca2c11cd84c8f04b6e6a206cc20d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/1-4bc9ca2c11cd84c8f04b6e6a206cc20d.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/1-b4f98389772e9ce03de5ac1e158376a2.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/1-b4f98389772e9ce03de5ac1e158376a2.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 2,
+      "chapter_usfm": "1CO.2",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "And when I came to you, brothers and sisters, I did not come as someone superior in speaking ability or wisdom, as I proclaimed to you the testimony of God."
+        },
+        {
+          "verse": 2,
+          "text": "For I determined to know nothing among you except Jesus Christ, and Him crucified."
+        },
+        {
+          "verse": 3,
+          "text": "I also was with you in weakness and fear, and in great trembling,"
+        },
+        {
+          "verse": 4,
+          "text": "and my message and my preaching were not in persuasive words of wisdom, but in demonstration of the Spirit and of power,"
+        },
+        {
+          "verse": 5,
+          "text": "so that your faith would not rest on the wisdom of mankind, but on the power of God."
+        },
+        {
+          "verse": 6,
+          "text": "Yet we do speak wisdom among those who are mature; a wisdom, however, not of this age nor of the rulers of this age, who are passing away;"
+        },
+        {
+          "verse": 7,
+          "text": "but we speak God’s wisdom in a mystery, the hidden wisdom which God predestined before the ages to our glory;"
+        },
+        {
+          "verse": 8,
+          "text": "the wisdom which none of the rulers of this age has understood; for if they had understood it, they would not have crucified the Lord of glory;"
+        },
+        {
+          "verse": 9,
+          "text": "but just as it is written:“Things which eye has not seen and ear has not heard,And which have not entered the human heart,All that God has prepared for those who love Him.”"
+        },
+        {
+          "verse": 10,
+          "text": "For to us God revealed them through the Spirit; for the Spirit searches all things, even the depths of God."
+        },
+        {
+          "verse": 11,
+          "text": "For who among people knows the thoughts of a person except the spirit of the person that is in him? So also the thoughts of God no one knows, except the Spirit of God."
+        },
+        {
+          "verse": 12,
+          "text": "Now we have not received the spirit of the world, but the Spirit who is from God, so that we may know the things freely given to us by God."
+        },
+        {
+          "verse": 13,
+          "text": "We also speak these things, not in words taught by human wisdom, but in those taught by the Spirit, combining spiritual thoughts with spiritual words."
+        },
+        {
+          "verse": 14,
+          "text": "But a natural person does not accept the things of the Spirit of God, for they are foolishness to him; and he cannot understand them, because they are spiritually discerned."
+        },
+        {
+          "verse": 15,
+          "text": "But the one who is spiritual discerns all things, yet he himself is discerned by no one."
+        },
+        {
+          "verse": 16,
+          "text": "For who has known the mind of the Lord, that he will instruct Him? But we have the mind of Christ."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Paul’s Reliance upon the Spirit"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/2-eb90b9b76e4adec59c0dbdff00d54386.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/2-eb90b9b76e4adec59c0dbdff00d54386.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/2-4c09775bad59b1b02e59872bdff1a08d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/2-4c09775bad59b1b02e59872bdff1a08d.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 3,
+      "chapter_usfm": "1CO.3",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "And I, brothers and sisters, could not speak to you as spiritual people, but only as fleshly, as to infants in Christ."
+        },
+        {
+          "verse": 2,
+          "text": "I gave you milk to drink, not solid food; for you were not yet able to consume it. But even now you are not yet able,"
+        },
+        {
+          "verse": 3,
+          "text": "for you are still fleshly. For since there is jealousy and strife among you, are you not fleshly, and are you not walking like ordinary people?"
+        },
+        {
+          "verse": 4,
+          "text": "For when one person says, “I am with Paul,” and another, “I am with Apollos,” are you not ordinary people?"
+        },
+        {
+          "verse": 5,
+          "text": "What then is Apollos? And what is Paul? Servants through whom you believed, even as the Lord gave opportunity to each one."
+        },
+        {
+          "verse": 6,
+          "text": "I planted, Apollos watered, but God was causing the growth."
+        },
+        {
+          "verse": 7,
+          "text": "So then neither the one who plants nor the one who waters is anything, but God who causes the growth."
+        },
+        {
+          "verse": 8,
+          "text": "Now the one who plants and the one who waters are one; but each will receive his own reward according to his own labor."
+        },
+        {
+          "verse": 9,
+          "text": "For we are God’s fellow workers; you are God’s field, God’s building."
+        },
+        {
+          "verse": 10,
+          "text": "According to the grace of God which was given to me, like a wise master builder I laid a foundation, and another is building on it. But each person must be careful how he builds on it."
+        },
+        {
+          "verse": 11,
+          "text": "For no one can lay a foundation other than the one which is laid, which is Jesus Christ."
+        },
+        {
+          "verse": 12,
+          "text": "Now if anyone builds on the foundation with gold, silver, precious stones, wood, hay, or straw,"
+        },
+        {
+          "verse": 13,
+          "text": "each one’s work will become evident; for the day will show it because it is to be revealed with fire, and the fire itself will test the quality of each one’s work."
+        },
+        {
+          "verse": 14,
+          "text": "If anyone’s work which he has built on it remains, he will receive a reward."
+        },
+        {
+          "verse": 15,
+          "text": "If anyone’s work is burned up, he will suffer loss; but he himself will be saved, yet only so as through fire."
+        },
+        {
+          "verse": 16,
+          "text": "Do you not know that you are a temple of God and that the Spirit of God dwells in you?"
+        },
+        {
+          "verse": 17,
+          "text": "If anyone destroys the temple of God, God will destroy that person; for the temple of God is holy, and that is what you are."
+        },
+        {
+          "verse": 18,
+          "text": "Take care that no one deceives himself. If anyone among you thinks that he is wise in this age, he must become foolish, so that he may become wise."
+        },
+        {
+          "verse": 19,
+          "text": "For the wisdom of this world is foolishness in the sight of God. For it is written: “He is the one who catches the wise by their craftiness”;"
+        },
+        {
+          "verse": 20,
+          "text": "and again, “The Lord knows the thoughts of the wise, that they are useless.”"
+        },
+        {
+          "verse": 21,
+          "text": "So then, no one is to be boasting in people. For all things belong to you,"
+        },
+        {
+          "verse": 22,
+          "text": "whether Paul or Apollos or Cephas, or the world or life or death, or things present or things to come; all things belong to you,"
+        },
+        {
+          "verse": 23,
+          "text": "and you belong to Christ, and Christ belongs to God."
+        }
+      ],
+      "verse_count": 23,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Foundations for Living"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/3-4efcbf6d4126970361a7d3f8652d7d7f.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/3-4efcbf6d4126970361a7d3f8652d7d7f.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/3-e8db1c89e5e80e01a6aaed3d41f4d2f3.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/3-e8db1c89e5e80e01a6aaed3d41f4d2f3.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 4,
+      "chapter_usfm": "1CO.4",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is the way any person is to regard us: as servants of Christ and stewards of the mysteries of God."
+        },
+        {
+          "verse": 2,
+          "text": "In this case, moreover, it is required of stewards that one be found trustworthy."
+        },
+        {
+          "verse": 3,
+          "text": "But to me it is an insignificant matter that I would be examined by you, or by any human court; in fact, I do not even examine myself."
+        },
+        {
+          "verse": 4,
+          "text": "For I am not aware of anything against myself; however I am not vindicated by this, but the one who examines me is the Lord."
+        },
+        {
+          "verse": 5,
+          "text": "Therefore do not go on passing judgment before the time, but wait until the Lord comes, who will both bring to light the things hidden in the darkness and disclose the motives of human hearts; and then praise will come to each person from God."
+        },
+        {
+          "verse": 6,
+          "text": "Now these things, brothers and sisters, I have figuratively applied to myself and Apollos on your account, so that in us you may learn not to exceed what is written, so that no one of you will become arrogant in behalf of one against the other."
+        },
+        {
+          "verse": 7,
+          "text": "For who considers you as superior? What do you have that you did not receive? And if you did receive it, why do you boast as if you had not received it?"
+        },
+        {
+          "verse": 8,
+          "text": "You are already filled, you have already become rich, you have become kings without us; and indeed, I wish that you had become kings so that we also might reign with you!"
+        },
+        {
+          "verse": 9,
+          "text": "For I think, God has exhibited us, the apostles, last of all as men condemned to death, because we have become a spectacle to the world, both to angels and to mankind."
+        },
+        {
+          "verse": 10,
+          "text": "We are fools on account of Christ, but you are prudent in Christ! We are weak, but you are strong! You are distinguished, but we are without honor!"
+        },
+        {
+          "verse": 11,
+          "text": "Up to this present hour we are both hungry and thirsty, and are poorly clothed and roughly treated and homeless;"
+        },
+        {
+          "verse": 12,
+          "text": "and we labor, working with our own hands; when we are verbally abused, we bless; when we are persecuted, we endure it;"
+        },
+        {
+          "verse": 13,
+          "text": "when we are slandered, we reply as friends; we have become as the scum of the world, the dregs of all things, even until now."
+        },
+        {
+          "verse": 14,
+          "text": "I do not write these things to shame you, but to admonish you as my beloved children."
+        },
+        {
+          "verse": 15,
+          "text": "For if you were to have countless tutors in Christ, yet you would not have many fathers, for in Christ Jesus I became your father through the gospel."
+        },
+        {
+          "verse": 16,
+          "text": "Therefore I urge you, be imitators of me."
+        },
+        {
+          "verse": 17,
+          "text": "For this reason I have sent to you Timothy, who is my beloved and faithful child in the Lord, and he will remind you of my ways which are in Christ, just as I teach everywhere in every church."
+        },
+        {
+          "verse": 18,
+          "text": "Now some have become arrogant, as though I were not coming to you."
+        },
+        {
+          "verse": 19,
+          "text": "But I will come to you soon, if the Lord wills, and I shall find out, not the words of those who are arrogant, but their power."
+        },
+        {
+          "verse": 20,
+          "text": "For the kingdom of God is not in words, but in power."
+        },
+        {
+          "verse": 21,
+          "text": "What do you desire? That I come to you with a rod, or with love and a spirit of gentleness?"
+        }
+      ],
+      "verse_count": 21,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Servants of Christ"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/4-fe88fdec74d6daa4eb7dbdee8d23c872.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/4-fe88fdec74d6daa4eb7dbdee8d23c872.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/4-20ed2f6c3373cfc51a1c1fa7dc507c22.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/4-20ed2f6c3373cfc51a1c1fa7dc507c22.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 5,
+      "chapter_usfm": "1CO.5",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "It is actually reported that there is sexual immorality among you, and sexual immorality of such a kind as does not exist even among the Gentiles, namely, that someone has his father’s wife."
+        },
+        {
+          "verse": 2,
+          "text": "You have become arrogant and have not mourned instead, so that the one who had done this deed would be removed from your midst."
+        },
+        {
+          "verse": 3,
+          "text": "For I, on my part, though absent in body but present in spirit, have already judged him who has so committed this, as though I were present."
+        },
+        {
+          "verse": 4,
+          "text": "In the name of our Lord Jesus, when you are assembled, and I with you in spirit, with the power of our Lord Jesus,"
+        },
+        {
+          "verse": 5,
+          "text": "I have decided to turn such a person over to Satan for the destruction of his body, so that his spirit may be saved on the day of the Lord."
+        },
+        {
+          "verse": 6,
+          "text": "Your boasting is not good. Do you not know that a little leaven leavens the whole lump of dough?"
+        },
+        {
+          "verse": 7,
+          "text": "Clean out the old leaven so that you may be a new lump, just as you are in fact unleavened. For Christ our Passover also has been sacrificed."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore let’s celebrate the feast, not with old leaven, nor with the leaven of malice and wickedness, but with the unleavened bread of sincerity and truth."
+        },
+        {
+          "verse": 9,
+          "text": "I wrote to you in my letter not to associate with sexually immoral people;"
+        },
+        {
+          "verse": 10,
+          "text": "I did not at all mean with the sexually immoral people of this world, or with the greedy and swindlers, or with idolaters, for then you would have to leave the world."
+        },
+        {
+          "verse": 11,
+          "text": "But actually, I wrote to you not to associate with any so-called brother if he is a sexually immoral person, or a greedy person, or an idolater, or is verbally abusive, or habitually drunk, or a swindler—not even to eat with such a person."
+        },
+        {
+          "verse": 12,
+          "text": "For what business of mine is it to judge outsiders? Do you not judge those who are within the church?"
+        },
+        {
+          "verse": 13,
+          "text": "But those who are outside, God judges. Remove the evil person from among yourselves."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Sexual Immorality Rebuked"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/5-aa905bcdd6827a8e20f3d77361f36cae.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/5-aa905bcdd6827a8e20f3d77361f36cae.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/5-31d9c84f97d1dff09dee5082451b3102.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/5-31d9c84f97d1dff09dee5082451b3102.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 6,
+      "chapter_usfm": "1CO.6",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Does any one of you, when he has a case against his neighbor, dare to go to law before the unrighteous and not before the saints?"
+        },
+        {
+          "verse": 2,
+          "text": "Or do you not know that the saints will judge the world? If the world is judged by you, are you not competent to form the smallest law courts?"
+        },
+        {
+          "verse": 3,
+          "text": "Do you not know that we will judge angels? How much more matters of this life?"
+        },
+        {
+          "verse": 4,
+          "text": "So if you have law courts dealing with matters of this life, do you appoint them as judges who are of no account in the church?"
+        },
+        {
+          "verse": 5,
+          "text": "I say this to your shame. Is it so, that there is not among you anyone wise who will be able to decide between his brothers and sisters,"
+        },
+        {
+          "verse": 6,
+          "text": "but brother goes to law with brother, and that before unbelievers?"
+        },
+        {
+          "verse": 7,
+          "text": "Actually, then, it is already a defeat for you, that you have lawsuits with one another. Why not rather suffer the wrong? Why not rather be defrauded?"
+        },
+        {
+          "verse": 8,
+          "text": "On the contrary, you yourselves do wrong and defraud. And this to your brothers and sisters!"
+        },
+        {
+          "verse": 9,
+          "text": "Or do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived; neither the sexually immoral, nor idolaters, nor adulterers, nor homosexuals,"
+        },
+        {
+          "verse": 10,
+          "text": "nor thieves, nor the greedy, nor those habitually drunk, nor verbal abusers, nor swindlers, will inherit the kingdom of God."
+        },
+        {
+          "verse": 11,
+          "text": "Such were some of you; but you were washed, but you were sanctified, but you were justified in the name of the Lord Jesus Christ and in the Spirit of our God."
+        },
+        {
+          "verse": 12,
+          "text": "All things are permitted for me, but not all things are of benefit. All things are permitted for me, but I will not be mastered by anything."
+        },
+        {
+          "verse": 13,
+          "text": "Food is for the stomach and the stomach is for food, however God will do away with both of them. But the body is not for sexual immorality, but for the Lord, and the Lord is for the body."
+        },
+        {
+          "verse": 14,
+          "text": "Now God has not only raised the Lord, but will also raise us up through His power."
+        },
+        {
+          "verse": 15,
+          "text": "Do you not know that your bodies are parts of Christ? Shall I then take away the parts of Christ and make them parts of a prostitute? Far from it!"
+        },
+        {
+          "verse": 16,
+          "text": "Or do you not know that the one who joins himself to a prostitute is one body with her? For He says, “The two shall become one flesh.”"
+        },
+        {
+          "verse": 17,
+          "text": "But the one who joins himself to the Lord is one spirit with Him."
+        },
+        {
+          "verse": 18,
+          "text": "Flee sexual immorality. Every other sin that a person commits is outside the body, but the sexually immoral person sins against his own body."
+        },
+        {
+          "verse": 19,
+          "text": "Or do you not know that your body is a temple of the Holy Spirit within you, whom you have from God, and that you are not your own?"
+        },
+        {
+          "verse": 20,
+          "text": "For you have been bought for a price: therefore glorify God in your body."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Lawsuits Discouraged"
+        },
+        {
+          "before_verse": 11,
+          "text": "The Body Is the Lord’s"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/6-7f6327d590eb3268bb02e1c4e3c85bca.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/6-7f6327d590eb3268bb02e1c4e3c85bca.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/6-23d6442a981daa991b7b629c2155a48f.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/6-23d6442a981daa991b7b629c2155a48f.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 7,
+      "chapter_usfm": "1CO.7",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now concerning the things about which you wrote, it is good for a man not to touch a woman."
+        },
+        {
+          "verse": 2,
+          "text": "But because of sexual immoralities, each man is to have his own wife, and each woman is to have her own husband."
+        },
+        {
+          "verse": 3,
+          "text": "The husband must fulfill his duty to his wife, and likewise the wife also to her husband."
+        },
+        {
+          "verse": 4,
+          "text": "The wife does not have authority over her own body, but the husband does; and likewise the husband also does not have authority over his own body, but the wife does."
+        },
+        {
+          "verse": 5,
+          "text": "Stop depriving one another, except by agreement for a time so that you may devote yourselves to prayer, and come together again so that Satan will not tempt you because of your lack of self-control."
+        },
+        {
+          "verse": 6,
+          "text": "But this I say by way of concession, not of command."
+        },
+        {
+          "verse": 7,
+          "text": "Yet I wish that all men were even as I myself am. However, each has his own gift from God, one in this way, and another in that."
+        },
+        {
+          "verse": 8,
+          "text": "But I say to the unmarried and to widows that it is good for them if they remain even as I."
+        },
+        {
+          "verse": 9,
+          "text": "But if they do not have self-control, let them marry; for it is better to marry than to burn with passion."
+        },
+        {
+          "verse": 10,
+          "text": "But to the married I give instructions, not I, but the Lord, that the wife is not to leave her husband"
+        },
+        {
+          "verse": 11,
+          "text": "(but if she does leave, she must remain unmarried, or else be reconciled to her husband), and that the husband is not to divorce his wife."
+        },
+        {
+          "verse": 12,
+          "text": "But to the rest I say, not the Lord, that if any brother has an unbelieving wife, and she consents to live with him, he must not divorce her."
+        },
+        {
+          "verse": 13,
+          "text": "And if any woman has an unbelieving husband, and he consents to live with her, she must not divorce her husband."
+        },
+        {
+          "verse": 14,
+          "text": "For the unbelieving husband is sanctified through his wife, and the unbelieving wife is sanctified through her believing husband; for otherwise your children are unclean, but now they are holy."
+        },
+        {
+          "verse": 15,
+          "text": "Yet if the unbelieving one is leaving, let him leave; the brother or the sister is not under bondage in such cases, but God has called us in peace."
+        },
+        {
+          "verse": 16,
+          "text": "For how do you know, wife, whether you will save your husband? Or how do you know, husband, whether you will save your wife?"
+        },
+        {
+          "verse": 17,
+          "text": "Only, as the Lord has assigned to each one, as God has called each, in this way let him walk. And so I direct in all the churches."
+        },
+        {
+          "verse": 18,
+          "text": "Was any man called when he was already circumcised? He is not to become uncircumcised. Has anyone been called in uncircumcision? He is not to be circumcised."
+        },
+        {
+          "verse": 19,
+          "text": "Circumcision is nothing, and uncircumcision is nothing, but what matters is the keeping of the commandments of God."
+        },
+        {
+          "verse": 20,
+          "text": "Each person is to remain in that state in which he was called."
+        },
+        {
+          "verse": 21,
+          "text": "Were you called as a slave? Do not let it concern you. But if you are also able to become free, take advantage of that."
+        },
+        {
+          "verse": 22,
+          "text": "For the one who was called in the Lord as a slave, is the Lord’s freed person; likewise the one who was called as free, is Christ’s slave."
+        },
+        {
+          "verse": 23,
+          "text": "You were bought for a price; do not become slaves of people."
+        },
+        {
+          "verse": 24,
+          "text": "Brothers and sisters, each one is to remain with God in that condition in which he was called."
+        },
+        {
+          "verse": 25,
+          "text": "Now concerning virgins, I have no command of the Lord, but I am offering direction as one who by the mercy of the Lord is trustworthy."
+        },
+        {
+          "verse": 26,
+          "text": "I think, then, that this is good in view of the present distress, that it is good for a man to remain as he is."
+        },
+        {
+          "verse": 27,
+          "text": "Are you bound to a wife? Do not seek to be released. Are you released from a wife? Do not seek a wife."
+        },
+        {
+          "verse": 28,
+          "text": "But if you marry, you have not sinned; and if a virgin marries, she has not sinned. Yet such people as yourselves will have trouble in this life, and I am trying to spare you."
+        },
+        {
+          "verse": 29,
+          "text": "But this I say, brothers, the time has been shortened, so that from now on those who have wives should be as though they had none;"
+        },
+        {
+          "verse": 30,
+          "text": "and those who weep, as though they did not weep; and those who rejoice, as though they did not rejoice; and those who buy, as though they did not possess;"
+        },
+        {
+          "verse": 31,
+          "text": "and those who use the world, as though they did not make full use of it; for the present form of this world is passing away."
+        },
+        {
+          "verse": 32,
+          "text": "But I want you to be free from concern. One who is unmarried is concerned about the things of the Lord, how he may please the Lord;"
+        },
+        {
+          "verse": 33,
+          "text": "but one who is married is concerned about the things of the world, how he may please his wife,"
+        },
+        {
+          "verse": 34,
+          "text": "and his interests are divided. The woman who is unmarried, and the virgin, is concerned about the things of the Lord, that she may be holy both in body and spirit; but one who is married is concerned about the things of the world, how she may please her husband."
+        },
+        {
+          "verse": 35,
+          "text": "I say this for your own benefit, not to put a restraint on you, but to promote what is appropriate and to secure undistracted devotion to the Lord."
+        },
+        {
+          "verse": 36,
+          "text": "But if anyone thinks that he is acting dishonorably toward his virgin, if she is past her youth and it ought to be so, let him do what he wishes, he is not sinning; let them marry."
+        },
+        {
+          "verse": 37,
+          "text": "But the one who stands firm in his heart, if he is not under constraint, but has authority over his own will, and has decided this in his own heart, to keep his own virgin, he will do well."
+        },
+        {
+          "verse": 38,
+          "text": "So then, both the one who gives his own virgin in marriage does well, and the one who does not give her in marriage will do better."
+        },
+        {
+          "verse": 39,
+          "text": "A wife is bound as long as her husband lives; but if her husband dies, she is free to be married to whom she wishes, only in the Lord."
+        },
+        {
+          "verse": 40,
+          "text": "But in my opinion she is happier if she remains as she is; and I think that I also have the Spirit of God."
+        }
+      ],
+      "verse_count": 40,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Teaching on Marriage"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/7-e85a11f584af44b4c5dd61d0f203cb52.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/7-e85a11f584af44b4c5dd61d0f203cb52.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/7-6af4f540c7d0ee175384f03d97ab7f0a.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/7-6af4f540c7d0ee175384f03d97ab7f0a.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 8,
+      "chapter_usfm": "1CO.8",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now concerning food sacrificed to idols, we know that we all have knowledge. Knowledge makes one conceited, but love edifies people."
+        },
+        {
+          "verse": 2,
+          "text": "If anyone thinks that he knows anything, he has not yet known as he ought to know;"
+        },
+        {
+          "verse": 3,
+          "text": "but if anyone loves God, he is known by Him."
+        },
+        {
+          "verse": 4,
+          "text": "Therefore, concerning the eating of food sacrificed to idols, we know that an idol is nothing at all in the world, and that there is no God but one."
+        },
+        {
+          "verse": 5,
+          "text": "For even if there are so-called gods whether in heaven or on earth, as indeed there are many gods and many lords,"
+        },
+        {
+          "verse": 6,
+          "text": "yet for us there is only one God, the Father, from whom are all things, and we exist for Him; and one Lord, Jesus Christ, by whom are all things, and we exist through Him."
+        },
+        {
+          "verse": 7,
+          "text": "However, not all people have this knowledge; but some, being accustomed to the idol until now, eat food as if it were sacrificed to an idol; and their conscience, being weak, is defiled."
+        },
+        {
+          "verse": 8,
+          "text": "Now food will not bring us close to God; we are neither the worse if we do not eat, nor the better if we do eat."
+        },
+        {
+          "verse": 9,
+          "text": "But take care that this freedom of yours does not somehow become a stumbling block to the weak."
+        },
+        {
+          "verse": 10,
+          "text": "For if someone sees you, the one who has knowledge, dining in an idol’s temple, will his conscience, if he is weak, not be strengthened to eat things sacrificed to idols?"
+        },
+        {
+          "verse": 11,
+          "text": "For through your knowledge the one who is weak is ruined, the brother or sister for whose sake Christ died."
+        },
+        {
+          "verse": 12,
+          "text": "And so, by sinning against the brothers and sisters and wounding their conscience when it is weak, you sin against Christ."
+        },
+        {
+          "verse": 13,
+          "text": "Therefore, if food causes my brother to sin, I will never eat meat again, so that I will not cause my brother to sin."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Take Care with Your Liberty"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/8-ab335c2efb0d40be1ef840616a527d62.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/8-ab335c2efb0d40be1ef840616a527d62.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/8-53fd6c6b1b87095e69d66ec8660727b2.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/8-53fd6c6b1b87095e69d66ec8660727b2.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 9,
+      "chapter_usfm": "1CO.9",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Am I not free? Am I not an apostle? Have I not seen Jesus our Lord? Are you not my work in the Lord?"
+        },
+        {
+          "verse": 2,
+          "text": "If I am not an apostle to others, at least I am to you; for you are the seal of my apostleship in the Lord."
+        },
+        {
+          "verse": 3,
+          "text": "My defense to those who examine me is this:"
+        },
+        {
+          "verse": 4,
+          "text": "Do we not have a right to eat and drink?"
+        },
+        {
+          "verse": 5,
+          "text": "Do we not have a right to take along a believing wife, even as the rest of the apostles and the brothers of the Lord, and Cephas?"
+        },
+        {
+          "verse": 6,
+          "text": "Or do only Barnabas and I have no right to refrain from working?"
+        },
+        {
+          "verse": 7,
+          "text": "Who at any time serves as a soldier at his own expense? Who plants a vineyard and does not eat its fruit? Or who tends a flock and does not consume some of the milk of the flock?"
+        },
+        {
+          "verse": 8,
+          "text": "I am not just asserting these things according to human judgment, am I? Or does the Law not say these things as well?"
+        },
+        {
+          "verse": 9,
+          "text": "For it is written in the Law of Moses: “You shall not muzzle the ox while it is threshing.” God is not concerned about oxen, is He?"
+        },
+        {
+          "verse": 10,
+          "text": "Or is He speaking entirely for our sake? Yes, it was written for our sake, because the plowman ought to plow in hope, and the thresher to thresh in hope of sharing in the crops."
+        },
+        {
+          "verse": 11,
+          "text": "If we sowed spiritual things in you, is it too much if we reap material things from you?"
+        },
+        {
+          "verse": 12,
+          "text": "If others share the right over you, do we not more? Nevertheless, we did not use this right, but we endure all things so that we will cause no hindrance to the gospel of Christ."
+        },
+        {
+          "verse": 13,
+          "text": "Do you not know that those who perform sacred services eat the food of the temple, and those who attend regularly to the altar have their share from the altar?"
+        },
+        {
+          "verse": 14,
+          "text": "So also the Lord directed those who proclaim the gospel to get their living from the gospel."
+        },
+        {
+          "verse": 15,
+          "text": "But I have used none of these things. And I have not written these things so that it will be done so in my case; for it would be better for me to die than that. No one shall make my boast an empty one!"
+        },
+        {
+          "verse": 16,
+          "text": "For if I preach the gospel, I have nothing to boast about, for I am under compulsion; for woe to me if I do not preach the gospel."
+        },
+        {
+          "verse": 17,
+          "text": "For if I do this voluntarily, I have a reward; but if against my will, I have been entrusted with a commission nonetheless."
+        },
+        {
+          "verse": 18,
+          "text": "What, then, is my reward? That, when I preach the gospel, I may offer the gospel without charge, so as not to make full use of my right in the gospel."
+        },
+        {
+          "verse": 19,
+          "text": "For though I am free from all people, I have made myself a slave to all, so that I may gain more."
+        },
+        {
+          "verse": 20,
+          "text": "To the Jews I became as a Jew, so that I might gain Jews; to those who are under the Law, I became as one under the Law, though not being under the Law myself, so that I might gain those who are under the Law;"
+        },
+        {
+          "verse": 21,
+          "text": "to those who are without the Law, I became as one without the Law, though not being without the law of God but under the law of Christ, so that I might gain those who are without the Law."
+        },
+        {
+          "verse": 22,
+          "text": "To the weak I became weak, that I might gain the weak; I have become all things to all people, so that I may by all means save some."
+        },
+        {
+          "verse": 23,
+          "text": "I do all things for the sake of the gospel, so that I may become a fellow partaker of it."
+        },
+        {
+          "verse": 24,
+          "text": "Do you not know that those who run in a race all run, but only one receives the prize? Run in such a way that you may win."
+        },
+        {
+          "verse": 25,
+          "text": "Everyone who competes in the games exercises self-control in all things. So they do it to obtain a perishable wreath, but we an imperishable."
+        },
+        {
+          "verse": 26,
+          "text": "Therefore I run in such a way as not to run aimlessly; I box in such a way, as to avoid hitting air;"
+        },
+        {
+          "verse": 27,
+          "text": "but I strictly discipline my body and make it my slave, so that, after I have preached to others, I myself will not be disqualified."
+        }
+      ],
+      "verse_count": 27,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Paul’s Use of Freedom"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/9-f4a78427c8f6a1fac61e90f01bee1cbc.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/9-f4a78427c8f6a1fac61e90f01bee1cbc.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/9-648dae065e7137bb5e2d5139041f0c38.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/9-648dae065e7137bb5e2d5139041f0c38.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 10,
+      "chapter_usfm": "1CO.10",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "For I do not want you to be unaware, brothers and sisters, that our fathers were all under the cloud and they all passed through the sea;"
+        },
+        {
+          "verse": 2,
+          "text": "and they all were baptized into Moses in the cloud and in the sea;"
+        },
+        {
+          "verse": 3,
+          "text": "and they all ate the same spiritual food,"
+        },
+        {
+          "verse": 4,
+          "text": "and all drank the same spiritual drink, for they were drinking from a spiritual rock which followed them; and the rock was Christ."
+        },
+        {
+          "verse": 5,
+          "text": "Nevertheless, with most of them God was not pleased; for their dead bodies were spread out in the wilderness."
+        },
+        {
+          "verse": 6,
+          "text": "Now these things happened as examples for us, so that we would not crave evil things as they indeed craved them."
+        },
+        {
+          "verse": 7,
+          "text": "Do not be idolaters, as some of them were; as it is written: “The people sat down to eat and to drink, and rose up to play.”"
+        },
+        {
+          "verse": 8,
+          "text": "Nor are we to commit sexual immorality, as some of them did, and twenty-three thousand fell in one day."
+        },
+        {
+          "verse": 9,
+          "text": "Nor are we to put the Lord to the test, as some of them did, and were killed by the snakes."
+        },
+        {
+          "verse": 10,
+          "text": "Nor grumble, as some of them did, and were killed by the destroyer."
+        },
+        {
+          "verse": 11,
+          "text": "Now these things happened to them as an example, and they were written for our instruction, upon whom the ends of the ages have come."
+        },
+        {
+          "verse": 12,
+          "text": "Therefore let the one who thinks he stands watch out that he does not fall."
+        },
+        {
+          "verse": 13,
+          "text": "No temptation has overtaken you except something common to mankind; and God is faithful, so He will not allow you to be tempted beyond what you are able, but with the temptation will provide the way of escape also, so that you will be able to endure it."
+        },
+        {
+          "verse": 14,
+          "text": "Therefore, my beloved, flee from idolatry."
+        },
+        {
+          "verse": 15,
+          "text": "I speak as to wise people; you then, judge what I say."
+        },
+        {
+          "verse": 16,
+          "text": "Is the cup of blessing which we bless not a sharing in the blood of Christ? Is the bread which we break not a sharing in the body of Christ?"
+        },
+        {
+          "verse": 17,
+          "text": "Since there is one loaf, we who are many are one body; for we all partake of the one loaf."
+        },
+        {
+          "verse": 18,
+          "text": "Look at the people of Israel; are those who eat the sacrifices not partners in the altar?"
+        },
+        {
+          "verse": 19,
+          "text": "What do I mean then? That food sacrificed to idols is anything, or that an idol is anything?"
+        },
+        {
+          "verse": 20,
+          "text": "No, but I say that things which the Gentiles sacrifice, they sacrifice to demons and not to God; and I do not want you to become partners with demons."
+        },
+        {
+          "verse": 21,
+          "text": "You cannot drink the cup of the Lord and the cup of demons; you cannot partake of the table of the Lord and the table of demons."
+        },
+        {
+          "verse": 22,
+          "text": "Or do we provoke the Lord to jealousy? We are not stronger than He, are we?"
+        },
+        {
+          "verse": 23,
+          "text": "All things are permitted, but not all things are of benefit. All things are permitted, but not all things build people up."
+        },
+        {
+          "verse": 24,
+          "text": "No one is to seek his own advantage, but rather that of his neighbor."
+        },
+        {
+          "verse": 25,
+          "text": "Eat anything that is sold in the meat market without asking questions, for the sake of conscience;"
+        },
+        {
+          "verse": 26,
+          "text": "for the earth is the Lord’s, and all it contains."
+        },
+        {
+          "verse": 27,
+          "text": "If one of the unbelievers invites you and you want to go, eat anything that is set before you without asking questions, for the sake of conscience."
+        },
+        {
+          "verse": 28,
+          "text": "But if anyone says to you, “This is meat sacrificed to idols,” do not eat it, for the sake of that one who informed you and for the sake of conscience."
+        },
+        {
+          "verse": 29,
+          "text": "Now by “conscience” I do not mean your own, but the other person’s; for why is my freedom judged by another’s conscience?"
+        },
+        {
+          "verse": 30,
+          "text": "If I partake with thankfulness, why am I slandered about that for which I give thanks?"
+        },
+        {
+          "verse": 31,
+          "text": "Therefore, whether you eat or drink, or whatever you do, do all things for the glory of God."
+        },
+        {
+          "verse": 32,
+          "text": "Do not offend Jews or Greeks, or the church of God;"
+        },
+        {
+          "verse": 33,
+          "text": "just as I also please everyone in all things, not seeking my own benefit but the benefit of the many, so that they may be saved."
+        }
+      ],
+      "verse_count": 33,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Avoid Israel’s Mistakes"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/10-0d5a72f1d7f0b7927bbdfcf5cc456313.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/10-0d5a72f1d7f0b7927bbdfcf5cc456313.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/10-4bf2a726a36945000621c85b65d3caec.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/10-4bf2a726a36945000621c85b65d3caec.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 11,
+      "chapter_usfm": "1CO.11",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Be imitators of me, just as I also am of Christ."
+        },
+        {
+          "verse": 2,
+          "text": "Now I praise you because you remember me in everything and hold firmly to the traditions, just as I handed them down to you."
+        },
+        {
+          "verse": 3,
+          "text": "But I want you to understand that Christ is the head of every man, and the man is the head of a woman, and God is the head of Christ."
+        },
+        {
+          "verse": 4,
+          "text": "Every man who has something on his head while praying or prophesying disgraces his head."
+        },
+        {
+          "verse": 5,
+          "text": "But every woman who has her head uncovered while praying or prophesying disgraces her head, for it is one and the same as the woman whose head is shaved."
+        },
+        {
+          "verse": 6,
+          "text": "For if a woman does not cover her head, have her also cut her hair off; however, if it is disgraceful for a woman to have her hair cut off or her head shaved, have her cover her head."
+        },
+        {
+          "verse": 7,
+          "text": "For a man should not have his head covered, since he is the image and glory of God; but the woman is the glory of man."
+        },
+        {
+          "verse": 8,
+          "text": "For man does not originate from woman, but woman from man;"
+        },
+        {
+          "verse": 9,
+          "text": "for indeed man was not created for the woman’s sake, but woman for the man’s sake."
+        },
+        {
+          "verse": 10,
+          "text": "Therefore the woman should have a symbol of authority on her head, because of the angels."
+        },
+        {
+          "verse": 11,
+          "text": "However, in the Lord, neither is woman independent of man, nor is man independent of woman."
+        },
+        {
+          "verse": 12,
+          "text": "For as the woman originated from the man, so also the man has his birth through the woman; and all things originate from God."
+        },
+        {
+          "verse": 13,
+          "text": "Judge for yourselves: is it proper for a woman to pray to God with her head uncovered?"
+        },
+        {
+          "verse": 14,
+          "text": "Does even nature itself not teach you that if a man has long hair, it is a dishonor to him,"
+        },
+        {
+          "verse": 15,
+          "text": "but if a woman has long hair, it is a glory to her? For her hair is given to her as a covering."
+        },
+        {
+          "verse": 16,
+          "text": "But if anyone is inclined to be contentious, we have no such practice, nor have the churches of God."
+        },
+        {
+          "verse": 17,
+          "text": "Now in giving this next instruction I do not praise you, because you come together not for the better, but for the worse."
+        },
+        {
+          "verse": 18,
+          "text": "For, in the first place, when you come together as a church, I hear that divisions exist among you; and in part I believe it."
+        },
+        {
+          "verse": 19,
+          "text": "For there also have to be factions among you, so that those who are approved may become evident among you."
+        },
+        {
+          "verse": 20,
+          "text": "Therefore when you come together it is not to eat the Lord’s Supper,"
+        },
+        {
+          "verse": 21,
+          "text": "for when you eat, each one takes his own supper first; and one goes hungry while another gets drunk."
+        },
+        {
+          "verse": 22,
+          "text": "What! Do you not have houses in which to eat and drink? Or do you despise the church of God and shame those who have nothing? What am I to say to you? Shall I praise you? In this I do not praise you."
+        },
+        {
+          "verse": 23,
+          "text": "For I received from the Lord that which I also delivered to you, that the Lord Jesus, on the night when He was betrayed, took bread;"
+        },
+        {
+          "verse": 24,
+          "text": "and when He had given thanks, He broke it and said, “This is My body, which is for you; do this in remembrance of Me.”"
+        },
+        {
+          "verse": 25,
+          "text": "In the same way He also took the cup after supper, saying, “This cup is the new covenant in My blood; do this, as often as you drink it, in remembrance of Me.”"
+        },
+        {
+          "verse": 26,
+          "text": "For as often as you eat this bread and drink the cup, you proclaim the Lord’s death until He comes."
+        },
+        {
+          "verse": 27,
+          "text": "Therefore whoever eats the bread or drinks the cup of the Lord in an unworthy way, shall be guilty of the body and the blood of the Lord."
+        },
+        {
+          "verse": 28,
+          "text": "But a person must examine himself, and in so doing he is to eat of the bread and drink of the cup."
+        },
+        {
+          "verse": 29,
+          "text": "For the one who eats and drinks, eats and drinks judgment to himself if he does not properly recognize the body."
+        },
+        {
+          "verse": 30,
+          "text": "For this reason many among you are weak and sick, and a number are asleep."
+        },
+        {
+          "verse": 31,
+          "text": "But if we judged ourselves rightly, we would not be judged."
+        },
+        {
+          "verse": 32,
+          "text": "But when we are judged, we are disciplined by the Lord so that we will not be condemned along with the world."
+        },
+        {
+          "verse": 33,
+          "text": "So then, my brothers and sisters, when you come together to eat, wait for one another."
+        },
+        {
+          "verse": 34,
+          "text": "If anyone is hungry, have him eat at home, so that you do not come together for judgment. As to the remaining matters, I will give instructions when I come."
+        }
+      ],
+      "verse_count": 34,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Christian Order"
+        },
+        {
+          "before_verse": 22,
+          "text": "The Lord’s Supper"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/11-29646f51d51a732f7319e0a48d33512f.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/11-29646f51d51a732f7319e0a48d33512f.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/11-2f736a2ed467cb28c760087b03fbd3fd.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/11-2f736a2ed467cb28c760087b03fbd3fd.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 12,
+      "chapter_usfm": "1CO.12",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now concerning spiritual gifts, brothers and sisters, I do not want you to be unaware."
+        },
+        {
+          "verse": 2,
+          "text": "You know that when you were pagans, you were led astray to the mute idols, however you were led."
+        },
+        {
+          "verse": 3,
+          "text": "Therefore I make known to you that no one speaking by the Spirit of God says, “Jesus is accursed”; and no one can say, “Jesus is Lord,” except by the Holy Spirit."
+        },
+        {
+          "verse": 4,
+          "text": "Now there are varieties of gifts, but the same Spirit."
+        },
+        {
+          "verse": 5,
+          "text": "And there are varieties of ministries, and the same Lord."
+        },
+        {
+          "verse": 6,
+          "text": "There are varieties of effects, but the same God who works all things in all persons."
+        },
+        {
+          "verse": 7,
+          "text": "But to each one is given the manifestation of the Spirit for the common good."
+        },
+        {
+          "verse": 8,
+          "text": "For to one is given the word of wisdom through the Spirit, and to another the word of knowledge according to the same Spirit;"
+        },
+        {
+          "verse": 9,
+          "text": "to another faith by the same Spirit, and to another gifts of healing by the one Spirit,"
+        },
+        {
+          "verse": 10,
+          "text": "and to another the effecting of miracles, and to another prophecy, and to another the distinguishing of spirits, to another various kinds of tongues, and to another the interpretation of tongues."
+        },
+        {
+          "verse": 11,
+          "text": "But one and the same Spirit works all these things, distributing to each one individually just as He wills."
+        },
+        {
+          "verse": 12,
+          "text": "For just as the body is one and yet has many parts, and all the parts of the body, though they are many, are one body, so also is Christ."
+        },
+        {
+          "verse": 13,
+          "text": "For by one Spirit we were all baptized into one body, whether Jews or Greeks, whether slaves or free, and we were all made to drink of one Spirit."
+        },
+        {
+          "verse": 14,
+          "text": "For the body is not one part, but many."
+        },
+        {
+          "verse": 15,
+          "text": "If the foot says, “Because I am not a hand, I am not a part of the body,” it is not for this reason any less a part of the body."
+        },
+        {
+          "verse": 16,
+          "text": "And if the ear says, “Because I am not an eye, I am not a part of the body,” it is not for this reason any less a part of the body."
+        },
+        {
+          "verse": 17,
+          "text": "If the whole body were an eye, where would the hearing be? If the whole body were hearing, where would the sense of smell be?"
+        },
+        {
+          "verse": 18,
+          "text": "But now God has arranged the parts, each one of them in the body, just as He desired."
+        },
+        {
+          "verse": 19,
+          "text": "If they were all one part, where would the body be?"
+        },
+        {
+          "verse": 20,
+          "text": "But now there are many parts, but one body."
+        },
+        {
+          "verse": 21,
+          "text": "And the eye cannot say to the hand, “I have no need of you”; or again, the head to the feet, “I have no need of you.”"
+        },
+        {
+          "verse": 22,
+          "text": "On the contrary, it is much truer that the parts of the body which seem to be weaker are necessary;"
+        },
+        {
+          "verse": 23,
+          "text": "and those parts of the body which we consider less honorable, on these we bestow greater honor, and our less presentable parts become much more presentable,"
+        },
+        {
+          "verse": 24,
+          "text": "whereas our more presentable parts have no need of it. But God has so composed the body, giving more abundant honor to that part which lacked,"
+        },
+        {
+          "verse": 25,
+          "text": "so that there may be no division in the body, but that the parts may have the same care for one another."
+        },
+        {
+          "verse": 26,
+          "text": "And if one part of the body suffers, all the parts suffer with it; if a part is honored, all the parts rejoice with it."
+        },
+        {
+          "verse": 27,
+          "text": "Now you are Christ’s body, and individually parts of it."
+        },
+        {
+          "verse": 28,
+          "text": "And God has appointed in the church, first apostles, second prophets, third teachers, then miracles, then gifts of healings, helps, administrations, and various kinds of tongues."
+        },
+        {
+          "verse": 29,
+          "text": "All are not apostles, are they? All are not prophets, are they? All are not teachers, are they? All are not workers of miracles, are they?"
+        },
+        {
+          "verse": 30,
+          "text": "All do not have gifts of healings, do they? All do not speak with tongues, do they? All do not interpret, do they?"
+        },
+        {
+          "verse": 31,
+          "text": "But earnestly desire the greater gifts. And yet, I am going to show you a far better way."
+        }
+      ],
+      "verse_count": 31,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Use of Spiritual Gifts"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/12-17b752852a55d86f2686849830564d6e.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/12-17b752852a55d86f2686849830564d6e.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/12-953daedc0ecc1eef2b2b172b53c95a12.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/12-953daedc0ecc1eef2b2b172b53c95a12.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 13,
+      "chapter_usfm": "1CO.13",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "If I speak with the tongues of mankind and of angels, but do not have love, I have become a noisy gong or a clanging cymbal."
+        },
+        {
+          "verse": 2,
+          "text": "If I have the gift of prophecy and know all mysteries and all knowledge, and if I have all faith so as to remove mountains, but do not have love, I am nothing."
+        },
+        {
+          "verse": 3,
+          "text": "And if I give away all my possessions to charity, and if I surrender my body so that I may glory, but do not have love, it does me no good."
+        },
+        {
+          "verse": 4,
+          "text": "Love is patient, love is kind, it is not jealous; love does not brag, it is not arrogant."
+        },
+        {
+          "verse": 5,
+          "text": "It does not act disgracefully, it does not seek its own benefit; it is not provoked, does not keep an account of a wrong suffered,"
+        },
+        {
+          "verse": 6,
+          "text": "it does not rejoice in unrighteousness, but rejoices with the truth;"
+        },
+        {
+          "verse": 7,
+          "text": "it keeps every confidence, it believes all things, hopes all things, endures all things."
+        },
+        {
+          "verse": 8,
+          "text": "Love never fails; but if there are gifts of prophecy, they will be done away with; if there are tongues, they will cease; if there is knowledge, it will be done away with."
+        },
+        {
+          "verse": 9,
+          "text": "For we know in part and prophesy in part;"
+        },
+        {
+          "verse": 10,
+          "text": "but when the perfect comes, the partial will be done away with."
+        },
+        {
+          "verse": 11,
+          "text": "When I was a child, I used to speak like a child, think like a child, reason like a child; when I became a man, I did away with childish things."
+        },
+        {
+          "verse": 12,
+          "text": "For now we see in a mirror dimly, but then face to face; now I know in part, but then I will know fully, just as I also have been fully known."
+        },
+        {
+          "verse": 13,
+          "text": "But now faith, hope, and love remain, these three; but the greatest of these is love."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Excellence of Love"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/13-7f04823ce44bf89aa7192412ec8cb0bb.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/13-7f04823ce44bf89aa7192412ec8cb0bb.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/13-1b125c6046d3cf44aed9c79f4a131e91.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/13-1b125c6046d3cf44aed9c79f4a131e91.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 14,
+      "chapter_usfm": "1CO.14",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Pursue love, yet earnestly desire spiritual gifts, but especially that you may prophesy."
+        },
+        {
+          "verse": 2,
+          "text": "For the one who speaks in a tongue does not speak to people, but to God; for no one understands, but in his spirit he speaks mysteries."
+        },
+        {
+          "verse": 3,
+          "text": "But the one who prophesies speaks to people for edification, exhortation, and consolation."
+        },
+        {
+          "verse": 4,
+          "text": "The one who speaks in a tongue edifies himself; but the one who prophesies edifies the church."
+        },
+        {
+          "verse": 5,
+          "text": "Now I wish that you all spoke in tongues, but rather that you would prophesy; and greater is the one who prophesies than the one who speaks in tongues, unless he interprets, so that the church may receive edification."
+        },
+        {
+          "verse": 6,
+          "text": "But now, brothers and sisters, if I come to you speaking in tongues, how will I benefit you unless I speak to you either by way of revelation, or of knowledge, or of prophecy, or of teaching?"
+        },
+        {
+          "verse": 7,
+          "text": "Yet even lifeless instruments, whether flute or harp, in producing a sound, if they do not produce a distinction in the tones, how will it be known what is played on the flute or on the harp?"
+        },
+        {
+          "verse": 8,
+          "text": "For if the trumpet produces an indistinct sound, who will prepare himself for battle?"
+        },
+        {
+          "verse": 9,
+          "text": "So you too, unless you produce intelligible speech by the tongue, how will it be known what is spoken? For you will just be talking to the air."
+        },
+        {
+          "verse": 10,
+          "text": "There are, perhaps, a great many kinds of languages in the world, and none is incapable of meaning."
+        },
+        {
+          "verse": 11,
+          "text": "So if I do not know the meaning of the language, I will be unintelligible to the one who speaks, and the one who speaks will be unintelligible to me."
+        },
+        {
+          "verse": 12,
+          "text": "So you too, since you are eager to possess spiritual gifts, strive to excel for the edification of the church."
+        },
+        {
+          "verse": 13,
+          "text": "Therefore, one who speaks in a tongue is to pray that he may interpret."
+        },
+        {
+          "verse": 14,
+          "text": "For if I pray in a tongue, my spirit prays, but my mind is unproductive."
+        },
+        {
+          "verse": 15,
+          "text": "What is the outcome then? I will pray with the spirit, but I will pray with the mind also; I will sing with the spirit, but I will sing with the mind also."
+        },
+        {
+          "verse": 16,
+          "text": "For otherwise, if you bless God in the spirit only, how will the one who occupies the place of the outsider know to say the “Amen” at your giving of thanks, since he does not understand what you are saying?"
+        },
+        {
+          "verse": 17,
+          "text": "For you are giving thanks well enough, but the other person is not edified."
+        },
+        {
+          "verse": 18,
+          "text": "I thank God, I speak in tongues more than you all;"
+        },
+        {
+          "verse": 19,
+          "text": "nevertheless, in church I prefer to speak five words with my mind so that I may instruct others also, rather than ten thousand words in a tongue."
+        },
+        {
+          "verse": 20,
+          "text": "Brothers and sisters, do not be children in your thinking; yet in evil be infants, but in your thinking be mature."
+        },
+        {
+          "verse": 21,
+          "text": "In the Law it is written: “By men of strange tongues and by the lips of strangers I will speak to this people, and even so they will not listen to Me,” says the Lord."
+        },
+        {
+          "verse": 22,
+          "text": "So then, tongues are for a sign, not to those who believe but to unbelievers; but prophecy is not for unbelievers, but for those who believe."
+        },
+        {
+          "verse": 23,
+          "text": "Therefore if the whole church gathers together and all the people speak in tongues, and outsiders or unbelievers enter, will they not say that you are insane?"
+        },
+        {
+          "verse": 24,
+          "text": "But if all prophesy, and an unbeliever or an outsider enters, he is convicted by all, he is called to account by all;"
+        },
+        {
+          "verse": 25,
+          "text": "the secrets of his heart are disclosed; and so he will fall on his face and worship God, declaring that God is certainly among you."
+        },
+        {
+          "verse": 26,
+          "text": "What is the outcome then, brothers and sisters? When you assemble, each one has a psalm, has a teaching, has a revelation, has a tongue, has an interpretation. All things are to be done for edification."
+        },
+        {
+          "verse": 27,
+          "text": "If anyone speaks in a tongue, it must be by two or at the most three, and each one in turn, and one is to interpret;"
+        },
+        {
+          "verse": 28,
+          "text": "but if there is no interpreter, he is to keep silent in church; and have him speak to himself and to God."
+        },
+        {
+          "verse": 29,
+          "text": "Have two or three prophets speak, and have the others pass judgment."
+        },
+        {
+          "verse": 30,
+          "text": "But if a revelation is made to another who is seated, then the first one is to keep silent."
+        },
+        {
+          "verse": 31,
+          "text": "For you can all prophesy one by one, so that all may learn and all may be exhorted;"
+        },
+        {
+          "verse": 32,
+          "text": "and the spirits of prophets are subject to prophets;"
+        },
+        {
+          "verse": 33,
+          "text": "for God is not a God of confusion, but of peace. As in all the churches of the saints,"
+        },
+        {
+          "verse": 34,
+          "text": "the women are to keep silent in the churches; for they are not permitted to speak, but are to subject themselves, just as the Law also says."
+        },
+        {
+          "verse": 35,
+          "text": "If they desire to learn anything, let them ask their own husbands at home; for it is improper for a woman to speak in church."
+        },
+        {
+          "verse": 36,
+          "text": "Or was it from you that the word of God first went out? Or has it come to you only?"
+        },
+        {
+          "verse": 37,
+          "text": "If anyone thinks that he is a prophet or spiritual, let him recognize that the things which I write to you are the Lord’s commandment."
+        },
+        {
+          "verse": 38,
+          "text": "But if anyone does not recognize this, he is not recognized."
+        },
+        {
+          "verse": 39,
+          "text": "Therefore, my brothers and sisters, earnestly desire to prophesy, and do not forbid speaking in tongues."
+        },
+        {
+          "verse": 40,
+          "text": "But all things must be done properly and in an orderly way."
+        }
+      ],
+      "verse_count": 40,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Prophecy a Superior Gift"
+        },
+        {
+          "before_verse": 19,
+          "text": "Instruction for the Church"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/14-b0172c5a746cb6205a7e510947544bed.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/14-b0172c5a746cb6205a7e510947544bed.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/14-c14708e2358b0497c5c3ccabe3eeb836.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/14-c14708e2358b0497c5c3ccabe3eeb836.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 15,
+      "chapter_usfm": "1CO.15",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now I make known to you, brothers and sisters, the gospel which I preached to you, which you also received, in which you also stand,"
+        },
+        {
+          "verse": 2,
+          "text": "by which you also are saved, if you hold firmly to the word which I preached to you, unless you believed in vain."
+        },
+        {
+          "verse": 3,
+          "text": "For I handed down to you as of first importance what I also received, that Christ died for our sins according to the Scriptures,"
+        },
+        {
+          "verse": 4,
+          "text": "and that He was buried, and that He was raised on the third day according to the Scriptures,"
+        },
+        {
+          "verse": 5,
+          "text": "and that He appeared to Cephas, then to the twelve."
+        },
+        {
+          "verse": 6,
+          "text": "After that He appeared to more than five hundred brothers and sisters at one time, most of whom remain until now, but some have fallen asleep;"
+        },
+        {
+          "verse": 7,
+          "text": "then He appeared to James, then to all the apostles;"
+        },
+        {
+          "verse": 8,
+          "text": "and last of all, as to one untimely born, He appeared to me also."
+        },
+        {
+          "verse": 9,
+          "text": "For I am the least of the apostles, and not fit to be called an apostle, because I persecuted the church of God."
+        },
+        {
+          "verse": 10,
+          "text": "But by the grace of God I am what I am, and His grace toward me did not prove vain; but I labored even more than all of them, yet not I, but the grace of God with me."
+        },
+        {
+          "verse": 11,
+          "text": "Whether then it was I or they, so we preach and so you believed."
+        },
+        {
+          "verse": 12,
+          "text": "Now if Christ is preached, that He has been raised from the dead, how do some among you say that there is no resurrection of the dead?"
+        },
+        {
+          "verse": 13,
+          "text": "But if there is no resurrection of the dead, then not even Christ has been raised;"
+        },
+        {
+          "verse": 14,
+          "text": "and if Christ has not been raised, then our preaching is in vain, your faith also is in vain."
+        },
+        {
+          "verse": 15,
+          "text": "Moreover, we are even found to be false witnesses of God, because we testified against God that He raised Christ, whom He did not raise, if in fact the dead are not raised."
+        },
+        {
+          "verse": 16,
+          "text": "For if the dead are not raised, then not even Christ has been raised;"
+        },
+        {
+          "verse": 17,
+          "text": "and if Christ has not been raised, your faith is worthless; you are still in your sins."
+        },
+        {
+          "verse": 18,
+          "text": "Then also those who have fallen asleep in Christ have perished."
+        },
+        {
+          "verse": 19,
+          "text": "If we have hoped in Christ only in this life, we are of all people most to be pitied."
+        },
+        {
+          "verse": 20,
+          "text": "But the fact is, Christ has been raised from the dead, the first fruits of those who are asleep."
+        },
+        {
+          "verse": 21,
+          "text": "For since by a man death came, by a Man also came the resurrection of the dead."
+        },
+        {
+          "verse": 22,
+          "text": "For as in Adam all die, so also in Christ all will be made alive."
+        },
+        {
+          "verse": 23,
+          "text": "But each in his own order: Christ the first fruits, after that those who are Christ’s at His coming,"
+        },
+        {
+          "verse": 24,
+          "text": "then comes the end, when He hands over the kingdom to our God and Father, when He has abolished all rule and all authority and power."
+        },
+        {
+          "verse": 25,
+          "text": "For He must reign until He has put all His enemies under His feet."
+        },
+        {
+          "verse": 26,
+          "text": "The last enemy that will be abolished is death."
+        },
+        {
+          "verse": 27,
+          "text": "For He has put all things in subjection under His feet. But when He says, “All things are put in subjection,” it is clear that this excludes the Father who put all things in subjection to Him."
+        },
+        {
+          "verse": 28,
+          "text": "When all things are subjected to Him, then the Son Himself will also be subjected to the One who subjected all things to Him, so that God may be all in all."
+        },
+        {
+          "verse": 29,
+          "text": "For otherwise, what will those do who are baptized for the dead? If the dead are not raised at all, why then are they baptized for them?"
+        },
+        {
+          "verse": 30,
+          "text": "Why are we also in danger every hour?"
+        },
+        {
+          "verse": 31,
+          "text": "I affirm, brothers and sisters, by the boasting in you which I have in Christ Jesus our Lord, that I die daily."
+        },
+        {
+          "verse": 32,
+          "text": "If from human motives I fought with wild beasts at Ephesus, what good is it to me? If the dead are not raised, let’s eat and drink, for tomorrow we die."
+        },
+        {
+          "verse": 33,
+          "text": "Do not be deceived: “Bad company corrupts good morals.”"
+        },
+        {
+          "verse": 34,
+          "text": "Sober up morally and stop sinning, for some have no knowledge of God. I say this to your shame."
+        },
+        {
+          "verse": 35,
+          "text": "But someone will say, “How are the dead raised? And with what kind of body do they come?”"
+        },
+        {
+          "verse": 36,
+          "text": "You fool! That which you sow does not come to life unless it dies;"
+        },
+        {
+          "verse": 37,
+          "text": "and that which you sow, you do not sow the body which is to be, but a bare grain, perhaps of wheat or of something else."
+        },
+        {
+          "verse": 38,
+          "text": "But God gives it a body just as He wished, and to each of the seeds a body of its own."
+        },
+        {
+          "verse": 39,
+          "text": "All flesh is not the same flesh, but there is one flesh of mankind, another flesh of animals, another flesh of birds, and another of fish."
+        },
+        {
+          "verse": 40,
+          "text": "There are also heavenly bodies and earthly bodies, but the glory of the heavenly is one, and the glory of the earthly is another."
+        },
+        {
+          "verse": 41,
+          "text": "There is one glory of the sun, another glory of the moon, and another glory of the stars; for star differs from star in glory."
+        },
+        {
+          "verse": 42,
+          "text": "So also is the resurrection of the dead. It is sown a perishable body, it is raised an imperishable body;"
+        },
+        {
+          "verse": 43,
+          "text": "it is sown in dishonor, it is raised in glory; it is sown in weakness, it is raised in power;"
+        },
+        {
+          "verse": 44,
+          "text": "it is sown a natural body, it is raised a spiritual body. If there is a natural body, there is also a spiritual body."
+        },
+        {
+          "verse": 45,
+          "text": "So also it is written: “The first man, Adam, became a living person.” The last Adam was a life-giving spirit."
+        },
+        {
+          "verse": 46,
+          "text": "However, the spiritual is not first, but the natural; then the spiritual."
+        },
+        {
+          "verse": 47,
+          "text": "The first man is from the earth, earthy; the second Man is from heaven."
+        },
+        {
+          "verse": 48,
+          "text": "As is the earthy one, so also are those who are earthy; and as is the heavenly One, so also are those who are heavenly."
+        },
+        {
+          "verse": 49,
+          "text": "Just as we have borne the image of the earthy, we will also bear the image of the heavenly."
+        },
+        {
+          "verse": 50,
+          "text": "Now I say this, brothers and sisters, that flesh and blood cannot inherit the kingdom of God; nor does the perishable inherit the imperishable."
+        },
+        {
+          "verse": 51,
+          "text": "Behold, I am telling you a mystery; we will not all sleep, but we will all be changed,"
+        },
+        {
+          "verse": 52,
+          "text": "in a moment, in the twinkling of an eye, at the last trumpet; for the trumpet will sound, and the dead will be raised imperishable, and we will be changed."
+        },
+        {
+          "verse": 53,
+          "text": "For this perishable must put on the imperishable, and this mortal must put on immortality."
+        },
+        {
+          "verse": 54,
+          "text": "But when this perishable puts on the imperishable, and this mortal puts on immortality, then will come about the saying that is written: “Death has been swallowed up in victory."
+        },
+        {
+          "verse": 55,
+          "text": "Where, O Death, is your victory? Where, O Death, is your sting?”"
+        },
+        {
+          "verse": 56,
+          "text": "The sting of death is sin, and the power of sin is the Law;"
+        },
+        {
+          "verse": 57,
+          "text": "but thanks be to God, who gives us the victory through our Lord Jesus Christ."
+        },
+        {
+          "verse": 58,
+          "text": "Therefore, my beloved brothers and sisters, be firm, immovable, always excelling in the work of the Lord, knowing that your labor is not in vain in the Lord."
+        }
+      ],
+      "verse_count": 58,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Fact of Christ’s Resurrection"
+        },
+        {
+          "before_verse": 19,
+          "text": "The Order of Resurrection"
+        },
+        {
+          "before_verse": 49,
+          "text": "The Mystery of Resurrection"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/15-ae82e14e4eac957b9806731a082a0a04.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/15-ae82e14e4eac957b9806731a082a0a04.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/15-5e934473fdddc7467fa57566e13963aa.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/15-5e934473fdddc7467fa57566e13963aa.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CO",
+      "chapter": 16,
+      "chapter_usfm": "1CO.16",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now concerning the collection for the saints, as I directed the churches of Galatia, so you are to do as well."
+        },
+        {
+          "verse": 2,
+          "text": "On the first day of every week, each of you is to put aside and save as he may prosper, so that no collections need to be made when I come."
+        },
+        {
+          "verse": 3,
+          "text": "When I arrive, whomever you approve, I will send them with letters to take your gift to Jerusalem;"
+        },
+        {
+          "verse": 4,
+          "text": "and if it is appropriate for me to go also, they will go with me."
+        },
+        {
+          "verse": 5,
+          "text": "But I will come to you after I go through Macedonia; for I am going through Macedonia,"
+        },
+        {
+          "verse": 6,
+          "text": "and perhaps I will stay with you or even spend the winter, so that you may send me on my way wherever I go."
+        },
+        {
+          "verse": 7,
+          "text": "For I do not want to see you now just in passing; for I hope to remain with you for some time, if the Lord permits."
+        },
+        {
+          "verse": 8,
+          "text": "But I will remain in Ephesus until Pentecost;"
+        },
+        {
+          "verse": 9,
+          "text": "for a wide door for effective service has opened to me, and there are many adversaries."
+        },
+        {
+          "verse": 10,
+          "text": "Now if Timothy comes, see that he has no reason to be afraid while among you, for he is doing the Lord’s work, as I also am."
+        },
+        {
+          "verse": 11,
+          "text": "So do not look down on him, anyone. But send him on his way in peace, so that he may come to me; for I expect him with the brothers."
+        },
+        {
+          "verse": 12,
+          "text": "Now concerning our brother Apollos, I strongly encouraged him to come to you with the brothers; and it was not at all his desire to come now, but he will come when he has the opportunity."
+        },
+        {
+          "verse": 13,
+          "text": "Be on the alert, stand firm in the faith, act like men, be strong."
+        },
+        {
+          "verse": 14,
+          "text": "All that you do must be done in love."
+        },
+        {
+          "verse": 15,
+          "text": "Now I urge you, brothers and sisters: you know the household of Stephanas, that they are the first fruits of Achaia, and that they have devoted themselves to ministry to the saints;"
+        },
+        {
+          "verse": 16,
+          "text": "I urge that you also be subject to such as these and to everyone who helps in the work and labors."
+        },
+        {
+          "verse": 17,
+          "text": "I rejoice over the coming of Stephanas, Fortunatus, and Achaicus, because they have supplied what was lacking on your part."
+        },
+        {
+          "verse": 18,
+          "text": "For they have refreshed my spirit and yours. Therefore acknowledge such men."
+        },
+        {
+          "verse": 19,
+          "text": "The churches of Asia greet you. Aquila and Prisca greet you heartily in the Lord, with the church that is in their house."
+        },
+        {
+          "verse": 20,
+          "text": "All the brothers and sisters greet you. Greet one another with a holy kiss."
+        },
+        {
+          "verse": 21,
+          "text": "The greeting is in my own hand—that of Paul."
+        },
+        {
+          "verse": 22,
+          "text": "If anyone does not love the Lord, he is to be accursed. Maranatha!"
+        },
+        {
+          "verse": 23,
+          "text": "The grace of the Lord Jesus be with you."
+        },
+        {
+          "verse": 24,
+          "text": "My love be with you all in Christ Jesus. Amen."
+        }
+      ],
+      "verse_count": 24,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Instructions and Greetings"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/1CO/16-9bcdbcd531c7bff92a7c900d553cd01a.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/1CO/16-9bcdbcd531c7bff92a7c900d553cd01a.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/1CO/16-90ccc39c9c5ab15ddf8e8d5f5977db00.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/1CO/16-90ccc39c9c5ab15ddf8e8d5f5977db00.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -78,8 +78,6 @@ const BilingualPresentationDemo = lazy(() => import('./pages/BilingualPresentati
 const BilingualPresentationSample = lazy(() => import('./pages/BilingualPresentationSample'));
 const BilingualPresentationDynamic = lazy(() => import('./pages/BilingualPresentationDynamic'));
 const BibleAudioPlayer = lazy(() => import('./pages/BibleAudioPlayer'));
-const TTSDemo = lazy(() => import('./pages/TTSDemo'));
-const HuggingFaceTTSDemo = lazy(() => import('./pages/HuggingFaceTTSDemo'));
 const WorshipSongViewerPage = lazy(() => import('./pages/WorshipSongViewerPage'));
 const WorshipPresentationPage = lazy(() => import('./pages/WorshipPresentationPage'));
 const AnnouncementsPage = lazy(() => import('./pages/AnnouncementsPage'));
@@ -89,7 +87,6 @@ const DailyDevotionalPage = lazy(() => import('./pages/DailyDevotionalPage'));
 const WordprojectBibleReader = lazy(() => import('./components/WordprojectBibleReader'));
 const NotificationCenterPage = lazy(() => import('./pages/NotificationCenterPage'));
 const DailyMessagesPage = lazy(() => import('./pages/DailyMessagesPage'));
-const TailwindDemoPage = lazy(() => import('./pages/TailwindDemoPage'));
 const TTSUsageDashboard = lazy(() => import('./pages/TTSUsageDashboard'));
 const BibleAIChatWidget = lazy(() => import('./components/BibleAIChatWidget'));
 const BibleAdminUpload = lazy(() => import('./pages/BibleAdminUpload'));
@@ -118,19 +115,13 @@ const AdvancedAudioSync = lazy(() => import('./components/AdvancedAudioSync')); 
 const AdminToolsPage = lazy(() => import('./pages/AdminToolsPage')); // Admin Tools Dashboard
 const AITestPage = lazy(() => import('./pages/AITestPage')); // AI Test Page
 const BackupPage = lazy(() => import('./pages/BackupPage')); // Backup Management
-const BibleSyncTestPage = lazy(() => import('./pages/BibleSyncTestPage')); // Bible Sync Test
 const BillingPage = lazy(() => import('./pages/BillingPage')); // Billing Page
 const EnvironmentPage = lazy(() => import('./pages/EnvironmentPage')); // Environment Settings
 const ImageStudioPage = lazy(() => import('./pages/ImageStudioPage')); // AI Image Studio
-const ModernBibleTestPage = lazy(() => import('./pages/ModernBibleTestPage')); // Modern Bible Test
 const SimpleWorshipPage = lazy(() => import('./pages/SimpleWorshipPage')); // Simple Worship
 const StoragePage = lazy(() => import('./pages/StoragePage')); // Storage Management
-const VirtualRealityPage = lazy(() => import('./pages/VirtualRealityPage')); // VR Experience
 const WorshipSongsArchive = lazy(() => import('./pages/WorshipSongsArchive')); // Songs Archive
-const WorshipSyncTestPage = lazy(() => import('./pages/WorshipSyncTestPage')); // Worship Sync Test
 const AdminWorshipManager = lazy(() => import('./pages/admin/AdminWorshipManager')); // Admin Worship Manager
-const KaraokeTestPage = lazy(() => import('./pages/KaraokeTestPage')); // Karaoke Worship Player Test
-const SimpleKaraokeTest = lazy(() => import('./pages/SimpleKaraokeTest')); // Simple Karaoke Test
 const AdminAudioProcessorPage = lazy(() => import('./pages/AdminAudioProcessorPage')); // AI Audio Processor with Gemini
 const AdvancedWorshipDemoPage = lazy(() => import('./pages/AdvancedWorshipDemoPage'));
 const AudioStudioPage = lazy(() => import('./pages/AudioStudioPage')); // AI Audio Studio V3
@@ -325,10 +316,7 @@ function App() {
                   <Route path="announcements" element={<Layout><AnnouncementsPage /></Layout>} />
                   <Route path="calendar" element={<Layout><CalendarPage /></Layout>} />
                   <Route path="persian-calendar" element={<Layout><PersianCalendarPage /></Layout>} />
-                  <Route path="tts-demo" element={<Layout><TTSDemo /></Layout>} />
-                  <Route path="huggingface-tts" element={<Layout><HuggingFaceTTSDemo /></Layout>} />
                   <Route path="admin/tts-usage" element={<Layout><TTSUsageDashboard /></Layout>} />
-                  <Route path="tailwind-demo" element={<Layout><TailwindDemoPage /></Layout>} />
                   <Route path="page/:slug" element={<Layout><CustomPageRenderer /></Layout>} />
                   <Route path="admin/worship-health" element={
                     <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER']}>
@@ -456,8 +444,14 @@ function App() {
                   />
 
                   {/* Test route outside Layout */}
-
-                  <Route path="presentation" element={<PresentationPage />} />
+                  <Route
+                    path="presentation"
+                    element={
+                      <ProtectedRoute roles={['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER', 'LEADER']}>
+                        <PresentationPage />
+                      </ProtectedRoute>
+                    }
+                  />
                   <Route
                     path="/admin/tools"
                     element={
@@ -479,8 +473,6 @@ function App() {
                   <Route path="bible/unified" element={<Layout><BibleUnifiedPage /></Layout>} />
                   <Route path="bible/unified-pro" element={<Layout><BibleUnifiedPro /></Layout>} />
                   <Route path="bible/viewer" element={<Layout><BibleViewer /></Layout>} />
-                  <Route path="bible/sync-test" element={<Layout><BibleSyncTestPage /></Layout>} />
-                  <Route path="bible/modern-test" element={<Layout><ModernBibleTestPage /></Layout>} />
                   <Route path="bible/audio-player" element={<Layout><BibleAudioPlayer /></Layout>} />
                   <Route
                     path="bible/admin-upload"
@@ -494,7 +486,6 @@ function App() {
                   {/* Worship Additional Routes */}
                   <Route path="worship/simple" element={<Layout><SimpleWorshipPage /></Layout>} />
                   <Route path="worship/archive" element={<Layout><WorshipSongsArchive /></Layout>} />
-                  <Route path="worship/sync-test" element={<Layout><WorshipSyncTestPage /></Layout>} />
                   <Route path="worship/advanced-demo" element={<Layout><AdvancedWorshipDemoPage /></Layout>} />
                   <Route path="worship/version-demo" element={<Layout><VersionDemoPage /></Layout>} />
 
@@ -551,11 +542,8 @@ function App() {
                   {/* AI & Tools Routes */}
                   <Route path="ai-test" element={<Layout><AITestPage /></Layout>} />
                   <Route path="image-studio" element={<Layout><ImageStudioPage /></Layout>} />
-                  <Route path="vr" element={<Layout><VirtualRealityPage /></Layout>} />
 
                   {/* Karaoke Worship Player Test Page */}
-                  <Route path="karaoke-test" element={<KaraokeTestPage />} />
-                  <Route path="karaoke-simple" element={<SimpleKaraokeTest />} />
 
                   {/* 404 Not Found - Must be last */}
                   <Route path="*" element={<Layout><NotFoundPage /></Layout>} />

@@ -1,0 +1,53 @@
+{
+  "book_id": "HAB",
+  "book_name_en": "Habakkuk",
+  "book_name_fa": "حبقوق",
+  "testament": "OT",
+  "version_id": 3950,
+  "version_abbr": "PES",
+  "version_name": "Bandari Bible - Korpu",
+  "language": "fa",
+  "chapter_count": 3,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "book_id": "HAB",
+      "chapter": 1,
+      "chapter_usfm": "HAB.1",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    },
+    {
+      "book_id": "HAB",
+      "chapter": 2,
+      "chapter_usfm": "HAB.2",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    },
+    {
+      "book_id": "HAB",
+      "chapter": 3,
+      "chapter_usfm": "HAB.3",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    }
+  ]
+}

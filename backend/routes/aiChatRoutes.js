@@ -6,12 +6,13 @@
 const express = require('express');
 const router = express.Router();
 const bibleAIService = require('../services/bibleAIService');
+const { authenticateToken } = require('../middleware/auth');
 
 /**
  * POST /api/ai-chat/ask
  * Ask a question to the Bible AI Assistant
  */
-router.post('/ask', async (req, res) => {
+router.post('/ask', authenticateToken, async (req, res) => {
   try {
     const { question, language = 'fa' } = req.body;
     
@@ -31,7 +32,7 @@ router.post('/ask', async (req, res) => {
  * GET /api/ai-chat/daily-verse
  * Get today's devotional verse
  */
-router.get('/daily-verse', async (req, res) => {
+router.get('/daily-verse', authenticateToken, async (req, res) => {
   try {
     const { language = 'fa' } = req.query;
     
@@ -69,7 +70,7 @@ router.get('/daily-verse', async (req, res) => {
  * POST /api/ai-chat/search
  * Search verses by keyword
  */
-router.post('/search', async (req, res) => {
+router.post('/search', authenticateToken, async (req, res) => {
   try {
     const { query, language = 'fa', limit = 5 } = req.body;
     
@@ -89,7 +90,7 @@ router.post('/search', async (req, res) => {
  * GET /api/ai-chat/verse/:reference
  * Get verse by reference (e.g., "John 3:16")
  */
-router.get('/verse/:reference', async (req, res) => {
+router.get('/verse/:reference', authenticateToken, async (req, res) => {
   try {
     const { reference } = req.params;
     const { language = 'fa' } = req.query;
@@ -117,7 +118,7 @@ router.get('/verse/:reference', async (req, res) => {
  * GET /api/ai-chat/context/:bookCode/:chapter/:verse
  * Get context around a verse
  */
-router.get('/context/:bookCode/:chapter/:verse', async (req, res) => {
+router.get('/context/:bookCode/:chapter/:verse', authenticateToken, async (req, res) => {
   try {
     const { bookCode, chapter, verse } = req.params;
     const { contextSize = 2 } = req.query;
@@ -140,7 +141,7 @@ router.get('/context/:bookCode/:chapter/:verse', async (req, res) => {
  * POST /api/ai-chat/cross-references
  * Get cross-references for keywords
  */
-router.post('/cross-references', async (req, res) => {
+router.post('/cross-references', authenticateToken, async (req, res) => {
   try {
     const { keywords, language = 'fa', limit = 3 } = req.body;
     

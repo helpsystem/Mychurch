@@ -1,0 +1,829 @@
+{
+  "book_id": "AMO",
+  "book_name_en": "Amos",
+  "book_name_fa": "عاموس",
+  "testament": "OT",
+  "version_id": 3034,
+  "version_abbr": "BSB",
+  "version_name": "Berean Standard Bible",
+  "language": "en",
+  "chapter_count": 9,
+  "total_verses": 146,
+  "chapters": [
+    {
+      "book_id": "AMO",
+      "chapter": 1,
+      "chapter_usfm": "AMO.1",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "These are the words of Amos, who was among the sheepherders of Tekoa— what he saw concerning Israel two years before the earthquake, in the days when Uzziah was king of Judah and Jeroboam son of Jehoash was king of Israel."
+        },
+        {
+          "verse": 2,
+          "text": "He said:“The Lordand raises His voice from Jerusalem;the pastures of the shepherds mourn,and the summit of Carmel withers.”"
+        },
+        {
+          "verse": 3,
+          "text": "This is what the Lord“For three transgressions of Damascus, even four,I will not revoke My judgment,because they threshed Gileadwith sledges of iron."
+        },
+        {
+          "verse": 4,
+          "text": "So I will send fire upon the house of Hazaelto consume the citadels of Ben-hadad."
+        },
+        {
+          "verse": 5,
+          "text": "I will break down the gates of Damascus;I will cut off the ruler from the Valley of Avenand the one who wields the scepter in Beth-eden.The people of Aram will be exiled to Kir,”says the Lord"
+        },
+        {
+          "verse": 6,
+          "text": "This is what the Lord“For three transgressions of Gaza, even four,I will not revoke My judgment,because they exiled a whole population,delivering them up to Edom."
+        },
+        {
+          "verse": 7,
+          "text": "So I will send fire upon the walls of Gaza,to consume its citadels."
+        },
+        {
+          "verse": 8,
+          "text": "I will cut off the ruler of Ashdodand the one who wields the scepter in Ashkelon.I will turn My hand against Ekron,and the remnant of the Philistines will perish,”says the Lord GOD."
+        },
+        {
+          "verse": 9,
+          "text": "This is what the Lord“For three transgressions of Tyre, even four,I will not revoke My judgment,because they delivered up a whole congregation of exiles to Edomand broke a covenant of brotherhood."
+        },
+        {
+          "verse": 10,
+          "text": "So I will send fire upon the walls of Tyreto consume its citadels.”"
+        },
+        {
+          "verse": 11,
+          "text": "This is what the Lord“For three transgressions of Edom, even four,I will not revoke My judgment,because he pursued his brother with the swordand stifled all compassion;his anger raged continually,and his fury flamed incessantly."
+        },
+        {
+          "verse": 12,
+          "text": "So I will send fire upon Temanto consume the citadels of Bozrah.”"
+        },
+        {
+          "verse": 13,
+          "text": "This is what the Lord“For three transgressions of the Ammonites, even four,I will not revoke My judgment,because they ripped open the pregnant women of Gileadin order to enlarge their territory."
+        },
+        {
+          "verse": 14,
+          "text": "So I will kindle a fire in the walls of Rabbahto consume its citadelsamid war cries on the day of battleand a violent wind on the day of tempest."
+        },
+        {
+          "verse": 15,
+          "text": "Their king will go into exile —he and his princes together,”says the Lord"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/1-537a7e2ea1b01e754d36f086991e78b7.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/1-537a7e2ea1b01e754d36f086991e78b7.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 2,
+      "chapter_usfm": "AMO.2",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is what the Lord“For three transgressions of Moab, even four,I will not revoke My judgment,because he burned to limethe bones of Edom’s king."
+        },
+        {
+          "verse": 2,
+          "text": "So I will send fire against Moabto consume the citadels of Kerioth.Moab will die in tumult,amid war cries and the sound of the ram’s horn."
+        },
+        {
+          "verse": 3,
+          "text": "I will cut off the ruler of Moaband kill all the officials with him,”says the Lord"
+        },
+        {
+          "verse": 4,
+          "text": "This is what the Lord“For three transgressions of Judah, even four,I will not revoke My judgment,because they reject the Law of the Lordand fail to keep His statutes;they are led astray by the liesin which their fathers walked."
+        },
+        {
+          "verse": 5,
+          "text": "So I will send fire upon Judahto consume the citadels of Jerusalem.”"
+        },
+        {
+          "verse": 6,
+          "text": "This is what the Lord“For three transgressions of Israel, even four,I will not revoke My judgment,because they sell the righteous for silverand the needy for a pair of sandals."
+        },
+        {
+          "verse": 7,
+          "text": "They trample on the heads of the pooras on the dust of the earth;they push the needy out of their way.A man and his fatherhave relations with the same girland so profane My holy name."
+        },
+        {
+          "verse": 8,
+          "text": "They lie down beside every altaron garments taken in pledge.And in the house of their God,they drink wine obtained through fines."
+        },
+        {
+          "verse": 9,
+          "text": "Yet it was I who destroyedthe Amorite before them,though his height was like that of the cedars,and he was as strong as the oaks.Yet I destroyed his fruit aboveand his roots below."
+        },
+        {
+          "verse": 10,
+          "text": "And I brought you up from the land of Egyptand led you forty years in the wilderness,that you might take possessionof the land of the Amorite."
+        },
+        {
+          "verse": 11,
+          "text": "I raised up prophets from your sonsand Nazirites from your young men.Is this not true,O children of Israel?”declares the Lord"
+        },
+        {
+          "verse": 12,
+          "text": "“But you made the Nazirites drink wineand commanded the prophets not to prophesy."
+        },
+        {
+          "verse": 13,
+          "text": "Behold, I am about to crush you in your placeas with a cart full of grain."
+        },
+        {
+          "verse": 14,
+          "text": "Escape will fail the swift,the strong will not prevail by his strength,and the mighty will not save his life."
+        },
+        {
+          "verse": 15,
+          "text": "The archer will not stand his ground,the fleet of foot will not escape,and the horseman will not save his life."
+        },
+        {
+          "verse": 16,
+          "text": "Even the bravest of mighty menwill flee naked on that day,”declares the Lord"
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/2-65cede1507192c1994f62e193a131608.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/2-65cede1507192c1994f62e193a131608.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 3,
+      "chapter_usfm": "AMO.3",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hear this word that the Lord"
+        },
+        {
+          "verse": 2,
+          "text": "“Only you have I knownfrom all the families of the earth;therefore I will punish youfor all your iniquities.”"
+        },
+        {
+          "verse": 3,
+          "text": "Can two walk togetherwithout agreeing where to go?"
+        },
+        {
+          "verse": 4,
+          "text": "Does a lion roar in the forestwhen he has no prey?Does a young lion growl in his denif he has caught nothing?"
+        },
+        {
+          "verse": 5,
+          "text": "Does a bird land in a snarewhere no bait has been set?Does a trap spring from the groundwhen it has nothing to catch?"
+        },
+        {
+          "verse": 6,
+          "text": "If a ram’s horn sounds in a city,do the people not tremble?If calamity comes to a city,has not the Lord"
+        },
+        {
+          "verse": 7,
+          "text": "Surely the Lord GOD does nothingwithout revealing His planto His servants the prophets."
+        },
+        {
+          "verse": 8,
+          "text": "The lion has roared —who will not fear?The Lord GOD has spoken —who will not prophesy?"
+        },
+        {
+          "verse": 9,
+          "text": "Proclaim to the citadels of Ashdodand to the citadels of Egypt:“Assemble on the mountains of Samaria;see the great unrest in the cityand the acts of oppression in her midst.”"
+        },
+        {
+          "verse": 10,
+          "text": "“For they know not how to do right,”declares the Lord“They store up violence and destructionin their citadels.”"
+        },
+        {
+          "verse": 11,
+          "text": "Therefore this is what the Lord GOD says:“An enemy will surround the land;he will pull down your strongholdsand plunder your citadels.”"
+        },
+        {
+          "verse": 12,
+          "text": "This is what the Lord“As the shepherd snatches from the mouth of the liontwo legs or a piece of an ear,so the Israelites dwelling in Samaria will be rescuedhaving just the corner of a bedor the cushion of a couch."
+        },
+        {
+          "verse": 13,
+          "text": "Hear and testify against the house of Jacob,declares the Lord GOD, the God of Hosts."
+        },
+        {
+          "verse": 14,
+          "text": "On the day I punish Israel for their transgressions,I will visit destruction on the altars of Bethel;the horns of the altar will be cut off,and they will fall to the ground."
+        },
+        {
+          "verse": 15,
+          "text": "I will tear down the winter housealong with the summer house;the houses of ivory will also perish,and the great houses will come to an end,”declares the Lord"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/3-4a8652f6bdc73e43d09b5e8e2df6150f.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/3-4a8652f6bdc73e43d09b5e8e2df6150f.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 4,
+      "chapter_usfm": "AMO.4",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hear this word,you cows of Bashan on Mount Samaria,you women who oppress the poorand crush the needy,who say to your husbands,“Bring us more to drink.”"
+        },
+        {
+          "verse": 2,
+          "text": "The Lord GOD has sworn by His holiness:“Behold, the days are comingwhen you will be taken away with hooks,and your posterity with fishhooks."
+        },
+        {
+          "verse": 3,
+          "text": "You will go out through broken walls,each one straight ahead of her,and you will be cast out toward Harmon,”declares the Lord"
+        },
+        {
+          "verse": 4,
+          "text": "“Go to Bethel and transgress;rebel even more at Gilgal!Bring your sacrifices every morning,your tithes every three days."
+        },
+        {
+          "verse": 5,
+          "text": "Offer leavened bread as a thank offering,and loudly proclaim your freewill offerings.For that is what you children of Israel love to do,”declares the Lord GOD."
+        },
+        {
+          "verse": 6,
+          "text": "“I afflicted all your cities with cleanness of teethand all your towns with lack of bread,yet you did not return to Me,”declares the Lord"
+        },
+        {
+          "verse": 7,
+          "text": "“I also withheld the rain from youwhen the harvest was three months away.I sent rain on one citybut withheld it from another.One field received rain;another without rain withered."
+        },
+        {
+          "verse": 8,
+          "text": "People staggered from city to cityfor water to drink,but they were not satisfied;yet you did not return to Me,”declares the Lord"
+        },
+        {
+          "verse": 9,
+          "text": "“I struck you with blight and mildewin your growing gardens and vineyards;the locust devoured your fig and olive trees,yet you did not return to Me,”declares the Lord"
+        },
+        {
+          "verse": 10,
+          "text": "“I sent plagues among youlike those of Egypt;I killed your young men with the sword,along with your captured horses.I filled your nostrils with the stench of your camp,yet you did not return to Me,”declares the Lord"
+        },
+        {
+          "verse": 11,
+          "text": "“Some of you I overthrewas I overthrew Sodom and Gomorrah,and you were like a firebrand snatched from a blaze,yet you did not return to Me,”declares the Lord"
+        },
+        {
+          "verse": 12,
+          "text": "“Therefore, that is what I will doto you, O Israel,and since I will do this to you,prepare to meet your God, O Israel!"
+        },
+        {
+          "verse": 13,
+          "text": "For behold, He who forms the mountains,who creates the windand reveals His thoughts to man,who turns the dawn to darknessand strides on the heights of the earth—the Lord"
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/4-f520d860b94f6a63b7c25b7227baf590.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/4-f520d860b94f6a63b7c25b7227baf590.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 5,
+      "chapter_usfm": "AMO.5",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hear this word, O house of Israel, this lamentation I take up against you:"
+        },
+        {
+          "verse": 2,
+          "text": "“Fallen is Virgin Israel,never to rise again.She lies abandoned on her land,with no one to raise her up.”"
+        },
+        {
+          "verse": 3,
+          "text": "This is what the Lord GOD says:“The city that marches out a thousand strongwill have but a hundred left,and the one that marches out a hundred strongwill have but ten left in the house of Israel.”"
+        },
+        {
+          "verse": 4,
+          "text": "For this is what the Lord“Seek Me and live!"
+        },
+        {
+          "verse": 5,
+          "text": "Do not seek Bethel or go to Gilgal;do not journey to Beersheba,for Gilgal will surely go into exile,and Bethel will come to nothing."
+        },
+        {
+          "verse": 6,
+          "text": "Seek the Lordor He will sweep like fire through the house of Joseph;it will devour everything,with no one at Bethel to extinguish it."
+        },
+        {
+          "verse": 7,
+          "text": "There are those who turn justice into wormwoodand cast righteousness to the ground."
+        },
+        {
+          "verse": 8,
+          "text": "He who made the Pleiades and Orion,who turns darkness into dawnand darkens day into night,who summons the waters of the seaand pours them over the face of the earth —the Lord"
+        },
+        {
+          "verse": 9,
+          "text": "He flashes destruction on the strong,so that fury comes upon the stronghold."
+        },
+        {
+          "verse": 10,
+          "text": "There are those who hate the one who reproves in the gateand despise him who speaks with integrity."
+        },
+        {
+          "verse": 11,
+          "text": "Therefore, because you trample on the poorand exact from him a tax of grain,you will never livein the stone houses you have built;you will never drink the winefrom the lush vineyards you have planted."
+        },
+        {
+          "verse": 12,
+          "text": "For I know that your transgressions are manyand your sins are numerous.You oppress the righteous by taking bribes;you deprive the poor of justice in the gate."
+        },
+        {
+          "verse": 13,
+          "text": "Therefore, the prudent keep silent in such times,for the days are evil."
+        },
+        {
+          "verse": 14,
+          "text": "Seek good, not evil,so that you may live.And the Lordwill be with you, as you have claimed."
+        },
+        {
+          "verse": 15,
+          "text": "Hate evil and love good;establish justice in the gate.Perhaps the Lordwill be gracious to the remnant of Joseph.”"
+        },
+        {
+          "verse": 16,
+          "text": "Therefore this is what the Lord“There will be wailing in all the public squaresand cries of ‘Alas! Alas!’ in all the streets.The farmer will be summoned to mourn,and the mourners to wail."
+        },
+        {
+          "verse": 17,
+          "text": "There will be wailing in all the vineyards,for I will pass through your midst,”says the Lord"
+        },
+        {
+          "verse": 18,
+          "text": "Woe to you who long for the Day of the LordWhat will the Day of the LordIt will be darkness and not light."
+        },
+        {
+          "verse": 19,
+          "text": "It will be like a man who flees from a lion,only to encounter a bear,or who enters his house and rests his hand against the wall,only to be bitten by a snake."
+        },
+        {
+          "verse": 20,
+          "text": "Will not the Day of the Lordbe darkness and not light,even gloom with no brightness in it?"
+        },
+        {
+          "verse": 21,
+          "text": "“I hate, I despise your feasts!I cannot stand the stench of your solemn assemblies."
+        },
+        {
+          "verse": 22,
+          "text": "Even though you offer Me burnt offerings and grain offerings,I will not accept them;for your peace offerings of fattened cattleI will have no regard."
+        },
+        {
+          "verse": 23,
+          "text": "Take away from Me the noise of your songs!I will not listen to the music of your harps."
+        },
+        {
+          "verse": 24,
+          "text": "But let justice roll on like a river,and righteousness like an ever-flowing stream."
+        },
+        {
+          "verse": 25,
+          "text": "Did you bring Me sacrifices and offeringsforty years in the wilderness, O house of Israel?"
+        },
+        {
+          "verse": 26,
+          "text": "You have taken along Sakkuth your kingand Kaiwan your star god,the idols you made for yourselves."
+        },
+        {
+          "verse": 27,
+          "text": "Therefore I will send you into exile beyond Damascus,”says the Lord"
+        }
+      ],
+      "verse_count": 27,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "A Call to Repentance"
+        },
+        {
+          "before_verse": 15,
+          "text": "Woe to Rebellious Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/5-238d4fc0d59bf5f31a31815b48cb8b43.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/5-238d4fc0d59bf5f31a31815b48cb8b43.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 6,
+      "chapter_usfm": "AMO.6",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Woe to those at ease in Zionand those secure on Mount Samaria,the distinguished ones of the foremost nation,to whom the house of Israel comes."
+        },
+        {
+          "verse": 2,
+          "text": "Cross over to Calneh and see;go from there to the great Hamath;then go down to Gath of the Philistines.Are you better than these kingdoms?Is their territory larger than yours?"
+        },
+        {
+          "verse": 3,
+          "text": "You dismiss the day of calamityand bring near a reign of violence."
+        },
+        {
+          "verse": 4,
+          "text": "You lie on beds inlaid with ivory,and lounge upon your couches.You dine on lambs from the flockand calves from the stall."
+        },
+        {
+          "verse": 5,
+          "text": "You improvise songs on the harp like Davidand invent your own musical instruments."
+        },
+        {
+          "verse": 6,
+          "text": "You drink wine by the bowlfuland anoint yourselves with the finest oils,but you fail to grieveover the ruin of Joseph."
+        },
+        {
+          "verse": 7,
+          "text": "Therefore, you will now go into exileas the first of the captives,and your feasting and loungingwill come to an end."
+        },
+        {
+          "verse": 8,
+          "text": "The Lord GOD has sworn by Himself— the Lord“I abhor Jacob’s prideand detest his citadels,so I will deliver up the cityand everything in it.”"
+        },
+        {
+          "verse": 9,
+          "text": "And if there are ten men left in one house, they too will die."
+        },
+        {
+          "verse": 10,
+          "text": "And when the relative who is to burn the bodies picks them up to remove them from the house, he will call to one inside, “Is anyone else with you?”“None,” that person will answer.“Silence,” the relative will retort, “for the name of the Lord"
+        },
+        {
+          "verse": 11,
+          "text": "For the Lord“The great house will be smashed to pieces,and the small house to rubble.”"
+        },
+        {
+          "verse": 12,
+          "text": "“Do horses gallop on the cliffs?Does one plow the sea with oxen?But you have turned justice into poisonand the fruit of righteousness into wormwood—"
+        },
+        {
+          "verse": 13,
+          "text": "you who rejoice in Lo-debar and say,‘Did we not take Karnaim by our own strength?’"
+        },
+        {
+          "verse": 14,
+          "text": "For behold, I will raise up a nationagainst you, O house of Israel,”declares the Lord“and they will oppress youfrom Lebo-hamath to the Brook of the Arabah.”"
+        }
+      ],
+      "verse_count": 14,
+      "headings": [
+        {
+          "before_verse": 7,
+          "text": "The Pride of Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/6-4ecb9f87d700cd0b91a3d10f52daabae.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/6-4ecb9f87d700cd0b91a3d10f52daabae.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 7,
+      "chapter_usfm": "AMO.7",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is what the Lord GOD showed me: He was preparing swarms of locusts just after the king’s harvest, as the late spring crop was coming up."
+        },
+        {
+          "verse": 2,
+          "text": "And when the locusts had eaten every green plant in the land, I said, “Lord GOD, please forgive! How will Jacob survive, since he is so small?”"
+        },
+        {
+          "verse": 3,
+          "text": "So the Lord"
+        },
+        {
+          "verse": 4,
+          "text": "This is what the Lord GOD showed me: The Lord GOD was calling for judgment by fire. It consumed the great deep and devoured the land."
+        },
+        {
+          "verse": 5,
+          "text": "Then I said, “Lord GOD, please stop! How will Jacob survive, since he is so small?”"
+        },
+        {
+          "verse": 6,
+          "text": "So the Lord"
+        },
+        {
+          "verse": 7,
+          "text": "This is what He showed me: Behold, the Lord was standing by a wall true to plumb, with a plumb line in His hand."
+        },
+        {
+          "verse": 8,
+          "text": "“Amos, what do you see?” asked the Lord“A plumb line,” I replied.“Behold,” said the Lord, “I am setting a plumb line among My people Israel; I will no longer spare them:"
+        },
+        {
+          "verse": 9,
+          "text": "The high places of Isaac will be deserted,and the sanctuaries of Israel will be laid waste;and I will rise up against the house of Jeroboamwith My sword.”"
+        },
+        {
+          "verse": 10,
+          "text": "Then Amaziah the priest of Bethel sent word to Jeroboam king of Israel, saying, “Amos has conspired against you in the midst of the house of Israel. The land cannot bear all his words,"
+        },
+        {
+          "verse": 11,
+          "text": "for this is what Amos has said:‘Jeroboam will die by the sword,and Israel will surely go into exile,away from their homeland.’”"
+        },
+        {
+          "verse": 12,
+          "text": "And Amaziah said to Amos, “Go away, you seer! Flee to the land of Judah; earn your bread there and do your prophesying there."
+        },
+        {
+          "verse": 13,
+          "text": "But never prophesy at Bethel again, because it is the sanctuary of the king and the temple of the kingdom.”"
+        },
+        {
+          "verse": 14,
+          "text": "“I was not a prophet,” Amos replied, “nor was I the son of a prophet; rather, I was a herdsman and a tender of sycamore-fig trees."
+        },
+        {
+          "verse": 15,
+          "text": "But the Lord"
+        },
+        {
+          "verse": 16,
+          "text": "Now, therefore, hear the word of the Lord‘Do not prophesy against Israel;do not preach against the house of Isaac.’"
+        },
+        {
+          "verse": 17,
+          "text": "Therefore this is what the Lord‘Your wife will become a prostitute in the city,and your sons and daughters will fall by the sword.Your land will be divided by a measuring line,and you yourself will die on pagan soil.And Israel will surely go into exile,away from their homeland.’”"
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 9,
+          "text": "Amaziah Accuses Amos"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/7-3a0f567589574f0f83e7b3d26f0ab142.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/7-3a0f567589574f0f83e7b3d26f0ab142.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 8,
+      "chapter_usfm": "AMO.8",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is what the Lord GOD showed me: I saw a basket of summer fruit."
+        },
+        {
+          "verse": 2,
+          "text": "“Amos, what do you see?” He asked.“A basket of summer fruit,” I replied.So the Lord"
+        },
+        {
+          "verse": 3,
+          "text": "“In that day,” declares the Lord GOD, “the songs of the temple will turn to wailing. Many will be the corpses, strewn in silence everywhere!”"
+        },
+        {
+          "verse": 4,
+          "text": "Hear this, you who trample the needy,who do away with the poor of the land,"
+        },
+        {
+          "verse": 5,
+          "text": "asking, “When will the New Moon be over,that we may sell grain?When will the Sabbath end,that we may market wheat?Let us reduce the ephah and increase the shekel;let us cheat with dishonest scales."
+        },
+        {
+          "verse": 6,
+          "text": "Let us buy the poor with silverand the needy for a pair of sandals,selling even the chaff with the wheat!”"
+        },
+        {
+          "verse": 7,
+          "text": "The Lord“I will never forget any of their deeds."
+        },
+        {
+          "verse": 8,
+          "text": "Will not the land quake for this,and all its dwellers mourn?All of it will swell like the Nile;it will surge and then subsidelike the Nile in Egypt."
+        },
+        {
+          "verse": 9,
+          "text": "And in that day,declares the Lord GOD,I will make the sun go down at noon,and I will darken the earth in the daytime."
+        },
+        {
+          "verse": 10,
+          "text": "I will turn your feasts into mourningand all your songs into lamentation.I will cause everyone to wear sackclothand every head to be shaved.I will make it like a time of mourning for an only son,and its outcome like a bitter day."
+        },
+        {
+          "verse": 11,
+          "text": "Behold, the days are coming,declares the Lord GOD,when I will send a famine on the land —not a famine of bread or a thirst for water,but a famine of hearing the words of the Lord"
+        },
+        {
+          "verse": 12,
+          "text": "People will stagger from sea to seaand roam from north to east,seeking the word of the Lordbut they will not find it."
+        },
+        {
+          "verse": 13,
+          "text": "In that day the lovely young women —the young men as well —will faint from thirst."
+        },
+        {
+          "verse": 14,
+          "text": "Those who swear by the guilt of Samariaand say, ‘As surely as your god lives, O Dan,’or, ‘As surely as the way of Beersheba lives’—they will fall, never to rise again.”"
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/8-b0364bb621a3c21fa0f050424e01a35b.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/8-b0364bb621a3c21fa0f050424e01a35b.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "AMO",
+      "chapter": 9,
+      "chapter_usfm": "AMO.9",
+      "version_id": 3034,
+      "version_abbr": "BSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I saw the Lord standing beside the altar, and He said:“Strike the tops of the pillarsso that the thresholds shake.Topple them on the heads of all the people,and I will kill the rest with the sword.None of those who flee will get away;none of the fugitives will escape."
+        },
+        {
+          "verse": 2,
+          "text": "Though they dig down to Sheol,from there My hand will take them;and though they climb up to heaven,from there I will pull them down."
+        },
+        {
+          "verse": 3,
+          "text": "Though they hide themselves atop Carmel,there I will track them and seize them;and though they hide from Me at the bottom of the sea,there I will command the serpent to bite them."
+        },
+        {
+          "verse": 4,
+          "text": "Though they are driven by their enemies into captivity,there I will command the sword to slay them.I will fix My eyes upon themfor harm and not for good.”"
+        },
+        {
+          "verse": 5,
+          "text": "The Lord GOD of Hosts,He who touches the earth and it melts,and all its dwellers mourn —all the land rises like the Nile,then sinks like the river of Egypt —"
+        },
+        {
+          "verse": 6,
+          "text": "He builds His upper rooms in the heavensand founds His vault upon the earth.He summons the waters of the seaand pours them over the face of the earth.The Lord"
+        },
+        {
+          "verse": 7,
+          "text": "“Are you not like the Cushites to Me,O children of Israel?”declares the Lord“Did I not bring Israelup from the land of Egypt,the Philistines from Caphtor,and the Arameans from Kir?"
+        },
+        {
+          "verse": 8,
+          "text": "Surely the eyes of the Lord GODare on the sinful kingdom,and I will destroy it from the face of the earth.Yet I will not utterly destroy the house of Jacob,”declares the Lord"
+        },
+        {
+          "verse": 9,
+          "text": "“For surely I will give the command,and I will shake the house of Israelamong all the nationsas grain is sifted in a sieve;but not a pebble will reach the ground."
+        },
+        {
+          "verse": 10,
+          "text": "All the sinners among My peoplewill die by the sword —all those who say,‘Disaster will never draw near or confront us.’”"
+        },
+        {
+          "verse": 11,
+          "text": "“In that day I will restorethe fallen tent of David.I will repair its gaps, restore its ruins,and rebuild it as in the days of old,"
+        },
+        {
+          "verse": 12,
+          "text": "that they may possess the remnant of Edomand all the nations that bear My name,”declares the Lord"
+        },
+        {
+          "verse": 13,
+          "text": "“Behold, the days are coming,”declares the Lord“when the plowman will overtake the reaperand the treader of grapes, the sower of seed.The mountains will drip with sweet wine,with which all the hills will flow."
+        },
+        {
+          "verse": 14,
+          "text": "I will restore My people Israel from captivity;they will rebuild and inhabit the ruined cities.They will plant vineyards and drink their wine;they will make gardens and eat their fruit."
+        },
+        {
+          "verse": 15,
+          "text": "I will firmly plant them in their own land,never again to be uprootedfrom the land that I have given them,”says the Lord"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 10,
+          "text": "A Promise of Restoration"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1804,
+          "title": "Berean Standard Audio Bible - (Non-drama)",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1804/32k/AMO/9-da43781e87b811d15e4cc6dead066dae.mp3?version_id=3034",
+          "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/AMO/9-da43781e87b811d15e4cc6dead066dae.m3u8?version_id=3034"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

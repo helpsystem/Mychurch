@@ -185,8 +185,65 @@ async function getCrossReferences(keywords, language = 'fa', limit = 3) {
  */
 async function callAIProvider(prompt, language = 'fa') {
   const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+  const LOCAL_AI_URL = process.env.LOCAL_AI_URL; // e.g. http://127.0.0.1:11434/v1/chat/completions
+  const LOCAL_AI_MODEL = process.env.LOCAL_AI_MODEL || 'llama3';
 
-  // 1. Try OpenRouter First
+  // 1. Try Local AI First (If Configured)
+  if (LOCAL_AI_URL) {
+    console.log(`Trying Local AI at ${LOCAL_AI_URL} with model ${LOCAL_AI_MODEL}...`);
+    try {
+      const result = await new Promise((resolve, reject) => {
+        const requestData = JSON.stringify({
+          model: LOCAL_AI_MODEL,
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.7
+        });
+
+        const url = new URL(LOCAL_AI_URL);
+        const requestModule = url.protocol === 'https:' ? require('https') : require('http');
+
+        const options = {
+          hostname: url.hostname,
+          port: url.port,
+          path: url.pathname,
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(requestData) },
+          timeout: 30000 // Local AI might be slower
+        };
+
+        const req = requestModule.request(options, (res) => {
+          let data = '';
+          res.on('data', chunk => data += chunk);
+          res.on('end', () => {
+            try {
+              const response = JSON.parse(data);
+              if (response.choices && response.choices[0]?.message?.content) {
+                resolve(response.choices[0].message.content);
+              } else {
+                resolve(null);
+              }
+            } catch (e) {
+              console.error('Local AI Parse Error:', e);
+              resolve(null);
+            }
+          });
+        });
+        req.on('error', (e) => {
+          console.error('Local AI Req Error:', e.message);
+          resolve(null);
+        });
+        req.on('timeout', () => { req.destroy(); resolve(null); });
+        req.write(requestData);
+        req.end();
+      });
+
+      if (result) return result;
+    } catch (err) {
+      console.error('Local AI exception, falling back...', err.message);
+    }
+  }
+
+  // 2. Try OpenRouter Next
   if (OPENROUTER_API_KEY) {
     return new Promise((resolve, reject) => {
       const requestData = JSON.stringify({
@@ -329,32 +386,36 @@ async function generateAIResponse(userQuestion, language = 'fa') {
     });
   }
 
-  // Step 3: Create prompt for Gemini
+  // Step 3: Create prompt for Gemini / Local AI
   const prompt = language === 'fa'
-    ? `شما یک راهنمای معنوی مسیحی هستید که بر اساس کتاب مقدس پاسخ می‌دهید.
+    ? `شما یک شبان و راهنمای معنوی مسیحی متخصص در الهیات هستید.
+منحصراً از دیدگاه کتاب مقدس و بر مبنای الهیات ارتدوکس مسیحی پاسخ دهید.
 
 سوال کاربر: "${userQuestion}"
 ${versesContext}
 
-لطفاً:
-1. با توجه به آیات بالا، پاسخی روشن و دلسوزانه به سوال بدهید
-2. تفسیر مختصری از آیات ارائه کنید
-3. راهنمایی عملی برای زندگی روزمره بدهید
-4. با محبت مسیحی و احترام پاسخ دهید
+دستورالعمل‌ها:
+1. با محبت، فیض و حقیقت که در شخصیت عیسی مسیح یافت می‌شود پاسخ دهید.
+2. از آیات ذکر شده به شکل مستقیم استفاده کنید و زمینه تاریخی و الهیاتی آنها را توضیح دهید.
+3. در صورت نیاز، کاربردهای عملی برای زندگی ایماندارانه امروز ارائه دهید.
+4. اگر سوال شامل مفاهیم پیچیده است، آن را با زبانی ساده، اما عمیق توضیح دهید.
+5. پاسخ باید روشن، بدون سوگیری فرقه‌ای خاص (صرفاً کتاب مقدسی) و حداکثر در 400 کلمه باشد.
 
-پاسخ شما (حداکثر 300 کلمه):`
-    : `You are a Christian spiritual guide who answers based on the Bible.
+پاسخ شما:`
+    : `You are a pastor and Christian spiritual guide specializing in theology.
+Answer exclusively from a biblical worldview and orthodox Christian theology.
 
 User's question: "${userQuestion}"
 ${versesContext}
 
-Please:
-1. Provide a clear and compassionate answer based on the verses above
-2. Offer brief interpretation of the verses
-3. Give practical guidance for daily life
-4. Respond with Christian love and respect
+Instructions:
+1. Respond with the love, grace, and truth found in Jesus Christ.
+2. Directly apply the provided verses, explaining their historical and theological context.
+3. Provide practical, modern-day applications for a faithful life.
+4. If the question involves complex concepts, explain them simply yet profoundly.
+5. Ensure the response is clear, non-denominational (strictly biblical), and max 400 words.
 
-Your response (max 300 words):`;
+Your response:`;
 
   // Step 4: Try to get AI response from OpenRouter/Gemini
   let aiAnswer = await callAIProvider(prompt, language);
@@ -375,8 +436,8 @@ Your response (max 300 words):`;
       chapter: v.chapter_number,
       verse: v.verse_number
     })),
-    hasAI: !!(process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY),
-    source: aiAnswer ? (process.env.OPENROUTER_API_KEY ? 'openrouter' : 'gemini') : 'fallback'
+    hasAI: !!(process.env.LOCAL_AI_URL || process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY),
+    source: aiAnswer ? (process.env.LOCAL_AI_URL ? 'local_ai' : (process.env.OPENROUTER_API_KEY ? 'openrouter' : 'gemini')) : 'fallback'
   };
 }
 

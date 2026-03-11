@@ -1,0 +1,412 @@
+{
+  "book_id": "JON",
+  "book_name_en": "Jonah",
+  "book_name_fa": "یونس",
+  "testament": "OT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 4,
+  "total_verses": 48,
+  "chapters": [
+    {
+      "book_id": "JON",
+      "chapter": 1,
+      "chapter_usfm": "JON.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The word of the Lord came to Jonah son of Amittai:"
+        },
+        {
+          "verse": 2,
+          "text": "“Go to the great city of Nineveh and preach against it, because its wickedness has come up before me.”"
+        },
+        {
+          "verse": 3,
+          "text": "But Jonah ran away from the Lord and headed for Tarshish. He went down to Joppa, where he found a ship bound for that port. After paying the fare, he went aboard and sailed for Tarshish to flee from the Lord."
+        },
+        {
+          "verse": 4,
+          "text": "Then the Lord sent a great wind on the sea, and such a violent storm arose that the ship threatened to break up."
+        },
+        {
+          "verse": 5,
+          "text": "All the sailors were afraid and each cried out to his own god. And they threw the cargo into the sea to lighten the ship.But Jonah had gone below deck, where he lay down and fell into a deep sleep."
+        },
+        {
+          "verse": 6,
+          "text": "The captain went to him and said, “How can you sleep? Get up and call on your god! Maybe he will take notice of us so that we will not perish.”"
+        },
+        {
+          "verse": 7,
+          "text": "Then the sailors said to each other, “Come, let us cast lots to find out who is responsible for this calamity.” They cast lots and the lot fell on Jonah."
+        },
+        {
+          "verse": 8,
+          "text": "So they asked him, “Tell us, who is responsible for making all this trouble for us? What kind of work do you do? Where do you come from? What is your country? From what people are you?”"
+        },
+        {
+          "verse": 9,
+          "text": "He answered, “I am a Hebrew and I worship the Lord, the God of heaven, who made the sea and the dry land.”"
+        },
+        {
+          "verse": 10,
+          "text": "This terrified them and they asked, “What have you done?” (They knew he was running away from the Lord, because he had already told them so.)"
+        },
+        {
+          "verse": 11,
+          "text": "The sea was getting rougher and rougher. So they asked him, “What should we do to you to make the sea calm down for us?”"
+        },
+        {
+          "verse": 12,
+          "text": "“Pick me up and throw me into the sea,” he replied, “and it will become calm. I know that it is my fault that this great storm has come upon you.”"
+        },
+        {
+          "verse": 13,
+          "text": "Instead, the men did their best to row back to land. But they could not, for the sea grew even wilder than before."
+        },
+        {
+          "verse": 14,
+          "text": "Then they cried out to the Lord, “Please, Lord, do not let us die for taking this man’s life. Do not hold us accountable for killing an innocent man, for you, Lord, have done as you pleased.”"
+        },
+        {
+          "verse": 15,
+          "text": "Then they took Jonah and threw him overboard, and the raging sea grew calm."
+        },
+        {
+          "verse": 16,
+          "text": "At this the men greatly feared the Lord, and they offered a sacrifice to the Lord and made vows to him."
+        },
+        {
+          "verse": 17,
+          "text": "Now the Lord provided a huge fish to swallow Jonah, and Jonah was in the belly of the fish three days and three nights."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 16,
+          "text": "Jonah’s Prayer"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/JON/1-48abb264fe67363e36676c2b886134ac.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/JON/1-48abb264fe67363e36676c2b886134ac.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/JON/1-60eff1eab41c6570b8debe601373864f.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/JON/1-60eff1eab41c6570b8debe601373864f.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/JON/1-1e9a191a4e3cf6887844e848ad3e656c.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/JON/1-1e9a191a4e3cf6887844e848ad3e656c.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/JON/1-cfdeb356d00ac91bcc46c32e1ed0e820.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/JON/1-cfdeb356d00ac91bcc46c32e1ed0e820.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JON",
+      "chapter": 2,
+      "chapter_usfm": "JON.2",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "From inside the fish Jonah prayed to the Lord his God."
+        },
+        {
+          "verse": 2,
+          "text": "He said:“In my distress I called to the Lord,and he answered me.From deep in the realm of the dead I called for help,and you listened to my cry."
+        },
+        {
+          "verse": 3,
+          "text": "You hurled me into the depths,into the very heart of the seas,and the currents swirled about me;all your waves and breakersswept over me."
+        },
+        {
+          "verse": 4,
+          "text": "I said, ‘I have been banishedfrom your sight;yet I will look againtoward your holy temple.’"
+        },
+        {
+          "verse": 5,
+          "text": "The engulfing waters threatened me,the deep surrounded me;seaweed was wrapped around my head."
+        },
+        {
+          "verse": 6,
+          "text": "To the roots of the mountains I sank down;the earth beneath barred me in forever.But you, Lord my God,brought my life up from the pit."
+        },
+        {
+          "verse": 7,
+          "text": "“When my life was ebbing away,I remembered you, Lord,and my prayer rose to you,to your holy temple."
+        },
+        {
+          "verse": 8,
+          "text": "“Those who cling to worthless idolsturn away from God’s love for them."
+        },
+        {
+          "verse": 9,
+          "text": "But I, with shouts of grateful praise,will sacrifice to you.What I have vowed I will make good.I will say, ‘Salvation comes from the Lord.’ ”"
+        },
+        {
+          "verse": 10,
+          "text": "And the Lord commanded the fish, and it vomited Jonah onto dry land."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/JON/2-fa1a87ed6e2a8bb27520f93dc421c8c3.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/JON/2-fa1a87ed6e2a8bb27520f93dc421c8c3.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/JON/2-d2099fdda01bdf5a9583ee145ce4e29b.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/JON/2-d2099fdda01bdf5a9583ee145ce4e29b.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/JON/2-f0a7db7735bf4cdfd9b5555fb2181780.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/JON/2-f0a7db7735bf4cdfd9b5555fb2181780.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/JON/2-fb341bd0ac48a2452e6a24cd1b9b70e5.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/JON/2-fb341bd0ac48a2452e6a24cd1b9b70e5.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JON",
+      "chapter": 3,
+      "chapter_usfm": "JON.3",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Then the word of the Lord came to Jonah a second time:"
+        },
+        {
+          "verse": 2,
+          "text": "“Go to the great city of Nineveh and proclaim to it the message I give you.”"
+        },
+        {
+          "verse": 3,
+          "text": "Jonah obeyed the word of the Lord and went to Nineveh. Now Nineveh was a very large city; it took three days to go through it."
+        },
+        {
+          "verse": 4,
+          "text": "Jonah began by going a day’s journey into the city, proclaiming, “Forty more days and Nineveh will be overthrown.”"
+        },
+        {
+          "verse": 5,
+          "text": "The Ninevites believed God. A fast was proclaimed, and all of them, from the greatest to the least, put on sackcloth."
+        },
+        {
+          "verse": 6,
+          "text": "When Jonah’s warning reached the king of Nineveh, he rose from his throne, took off his royal robes, covered himself with sackcloth and sat down in the dust."
+        },
+        {
+          "verse": 7,
+          "text": "This is the proclamation he issued in Nineveh:“By the decree of the king and his nobles:Do not let people or animals, herds or flocks, taste anything; do not let them eat or drink."
+        },
+        {
+          "verse": 8,
+          "text": "But let people and animals be covered with sackcloth. Let everyone call urgently on God. Let them give up their evil ways and their violence."
+        },
+        {
+          "verse": 9,
+          "text": "Who knows? God may yet relent and with compassion turn from his fierce anger so that we will not perish.”"
+        },
+        {
+          "verse": 10,
+          "text": "When God saw what they did and how they turned from their evil ways, he relented and did not bring on them the destruction he had threatened."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/JON/3-932d77f0e3f3f6f2615dc29c8495c281.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/JON/3-932d77f0e3f3f6f2615dc29c8495c281.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/JON/3-67d8c5314e1a0f0548defe87fb3f3244.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/JON/3-67d8c5314e1a0f0548defe87fb3f3244.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/JON/3-0e232d31ed69d91aa1905be9c5b40c48.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/JON/3-0e232d31ed69d91aa1905be9c5b40c48.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/JON/3-071789ba9d9e800d435eee9c3566b0aa.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/JON/3-071789ba9d9e800d435eee9c3566b0aa.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JON",
+      "chapter": 4,
+      "chapter_usfm": "JON.4",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "But to Jonah this seemed very wrong, and he became angry."
+        },
+        {
+          "verse": 2,
+          "text": "He prayed to the Lord, “Isn’t this what I said, Lord, when I was still at home? That is what I tried to forestall by fleeing to Tarshish. I knew that you are a gracious and compassionate God, slow to anger and abounding in love, a God who relents from sending calamity."
+        },
+        {
+          "verse": 3,
+          "text": "Now, Lord, take away my life, for it is better for me to die than to live.”"
+        },
+        {
+          "verse": 4,
+          "text": "But the Lord replied, “Is it right for you to be angry?”"
+        },
+        {
+          "verse": 5,
+          "text": "Jonah had gone out and sat down at a place east of the city. There he made himself a shelter, sat in its shade and waited to see what would happen to the city."
+        },
+        {
+          "verse": 6,
+          "text": "Then the Lord God provided a leafy plant and made it grow up over Jonah to give shade for his head to ease his discomfort, and Jonah was very happy about the plant."
+        },
+        {
+          "verse": 7,
+          "text": "But at dawn the next day God provided a worm, which chewed the plant so that it withered."
+        },
+        {
+          "verse": 8,
+          "text": "When the sun rose, God provided a scorching east wind, and the sun blazed on Jonah’s head so that he grew faint. He wanted to die, and said, “It would be better for me to die than to live.”"
+        },
+        {
+          "verse": 9,
+          "text": "But God said to Jonah, “Is it right for you to be angry about the plant?”“It is,” he said. “And I’m so angry I wish I were dead.”"
+        },
+        {
+          "verse": 10,
+          "text": "But the Lord said, “You have been concerned about this plant, though you did not tend it or make it grow. It sprang up overnight and died overnight."
+        },
+        {
+          "verse": 11,
+          "text": "And should I not have concern for the great city of Nineveh, in which there are more than a hundred and twenty thousand people who cannot tell their right hand from their left—and also many animals?”"
+        }
+      ],
+      "verse_count": 11,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 1,
+          "text": "’s Compassion"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/JON/4-e6452ebf6856fc79893402945669259e.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/JON/4-e6452ebf6856fc79893402945669259e.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/JON/4-5ee2c91d74b17b379926caabc21bb4b2.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/JON/4-5ee2c91d74b17b379926caabc21bb4b2.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/JON/4-f56b38cc3bebe17e87c02745c4abcc72.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/JON/4-f56b38cc3bebe17e87c02745c4abcc72.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/JON/4-5feabd28d5e4ace8b63a14e08065b842.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/JON/4-5feabd28d5e4ace8b63a14e08065b842.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

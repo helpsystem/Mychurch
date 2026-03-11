@@ -1387,7 +1387,7 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
 
       // Hide scales for Pie/Doughnut
       if (content.chartType === 'pie' || content.chartType === 'doughnut') {
-        delete options.scales;
+        (options as any).scales = undefined;
       }
 
       return (
@@ -1444,7 +1444,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                 ]
               }}
               userInfo={{
-                displayName: isRTL ? 'اتاق فرمان' : 'Control Room'
+                displayName: isRTL ? 'اتاق فرمان' : 'Control Room',
+                email: 'admin@mychurch.local'
               }}
               getIFrameRef={(iframeRef) => {
                 iframeRef.style.height = '100%';
@@ -1779,7 +1780,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             {/* Live Preview */}
             <div className="flex-1 relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
               {/* Slide Content - Always background/main in PIP mode */}
-              <div className={`absolute inset-0 flex items-center justify-center ${broadcastConfig.layout === 'SPLIT' ? 'right-0 w-1/2' :
+              <div className={`absolute inset-0 flex items-center justify-center ${broadcastConfig.layout === 'SPLIT'
+                ? `right-0 ${broadcastConfig.splitRatio === '70-30' ? 'w-[70%]' : broadcastConfig.splitRatio === '30-70' ? 'w-[30%]' : 'w-1/2'}` :
                 broadcastConfig.layout === 'FULL_CAM' ? 'z-10' :
                   '' // For PIP and SLIDES_ONLY - full size
                 }`}>
@@ -1795,15 +1797,15 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                       autoPlay
                       muted
                       playsInline
-                      className={`absolute object-cover ${broadcastConfig.layout === 'PIP'
-                        ? `w-48 h-36 rounded-xl border-2 border-white/20 shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                      className={`absolute object-cover transition-all duration-500 ease-in-out ${broadcastConfig.layout === 'PIP'
+                        ? `${broadcastConfig.pipSize === 'small' ? 'w-32 h-24' : broadcastConfig.pipSize === 'large' ? 'w-72 h-56' : 'w-48 h-36'} rounded-xl border-2 border-white/20 shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
                           broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
                             broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
                               'bottom-24 right-4' // bottom-right default
-                        } ${broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
-                          broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                        } ${broadcastConfig.leaderVideoShape === 'circle' ? (broadcastConfig.pipSize === 'small' ? 'rounded-full w-24 h-24' : broadcastConfig.pipSize === 'large' ? 'rounded-full w-56 h-56' : 'rounded-full w-36 h-36') :
+                          broadcastConfig.leaderVideoShape === 'square' ? (broadcastConfig.pipSize === 'small' ? 'w-24 h-24' : broadcastConfig.pipSize === 'large' ? 'w-56 h-56' : 'w-36 h-36') : ''
                         }`
-                        : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
+                        : broadcastConfig.layout === 'SPLIT' ? `inset-0 ${broadcastConfig.splitRatio === '70-30' ? 'w-[30%]' : broadcastConfig.splitRatio === '30-70' ? 'w-[70%]' : 'w-1/2'}`
                           : 'inset-0 w-full h-full z-0' // FULL_CAM
                         }`}
                       style={{
@@ -1816,15 +1818,15 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                   ) : (
                     /* Camera Placeholder when no stream */
                     <div
-                      className={`absolute bg-slate-800/90 flex flex-col items-center justify-center border-2 border-dashed border-slate-600 ${broadcastConfig.layout === 'PIP'
-                        ? `w-48 h-36 rounded-xl shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
+                      className={`absolute bg-slate-800/90 flex flex-col items-center justify-center border-2 border-dashed border-slate-600 transition-all duration-500 ease-in-out ${broadcastConfig.layout === 'PIP'
+                        ? `${broadcastConfig.pipSize === 'small' ? 'w-32 h-24' : broadcastConfig.pipSize === 'large' ? 'w-72 h-56' : 'w-48 h-36'} rounded-xl shadow-2xl z-20 ${broadcastConfig.pipPosition === 'top-left' ? 'top-4 left-4' :
                           broadcastConfig.pipPosition === 'top-right' ? 'top-4 right-4' :
                             broadcastConfig.pipPosition === 'bottom-left' ? 'bottom-24 left-4' :
                               'bottom-24 right-4'
-                        } ${broadcastConfig.leaderVideoShape === 'circle' ? 'rounded-full w-36 h-36' :
-                          broadcastConfig.leaderVideoShape === 'square' ? 'w-36 h-36' : ''
+                        } ${broadcastConfig.leaderVideoShape === 'circle' ? (broadcastConfig.pipSize === 'small' ? 'rounded-full w-24 h-24' : broadcastConfig.pipSize === 'large' ? 'rounded-full w-56 h-56' : 'rounded-full w-36 h-36') :
+                          broadcastConfig.leaderVideoShape === 'square' ? (broadcastConfig.pipSize === 'small' ? 'w-24 h-24' : broadcastConfig.pipSize === 'large' ? 'w-56 h-56' : 'w-36 h-36') : ''
                         }`
-                        : broadcastConfig.layout === 'SPLIT' ? 'inset-0 w-1/2'
+                        : broadcastConfig.layout === 'SPLIT' ? `inset-0 ${broadcastConfig.splitRatio === '70-30' ? 'w-[30%]' : broadcastConfig.splitRatio === '30-70' ? 'w-[70%]' : 'w-1/2'}`
                           : 'inset-0 w-full h-full z-0'
                         }`}
                     >
@@ -2066,9 +2068,36 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                     ))}
                   </div>
 
+                  {/* PIP Size Selector - Only show when PIP is selected */}
+                  {broadcastConfig.layout === 'PIP' && (
+                    <div className="mt-4 border-t border-slate-800 pt-4">
+                      <p className={`text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {isRTL ? '📐 اندازه دوربین:' : '📐 Camera Size:'}
+                      </p>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { id: 'small', label: isRTL ? 'کوچک' : 'Small' },
+                          { id: 'medium', label: isRTL ? 'متوسط' : 'Medium' },
+                          { id: 'large', label: isRTL ? 'بزرگ' : 'Large' }
+                        ].map(size => (
+                          <button
+                            key={size.id}
+                            onClick={() => setBroadcastConfig(prev => ({ ...prev, pipSize: size.id as any }))}
+                            className={`p-2 rounded-lg border text-center transition text-xs ${broadcastConfig.pipSize === size.id || (!broadcastConfig.pipSize && size.id === 'medium')
+                              ? 'bg-green-600 border-green-500 text-white'
+                              : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                              }`}
+                          >
+                            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{size.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* PIP Position Selector - Only show when PIP is selected */}
                   {broadcastConfig.layout === 'PIP' && (
-                    <div className="mt-4">
+                    <div className="mt-4 border-t border-slate-800 pt-4">
                       <p className={`text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                         {isRTL ? '📍 موقعیت دوربین:' : '📍 Camera Position:'}
                       </p>
@@ -2082,13 +2111,40 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
                           <button
                             key={pos.id}
                             onClick={() => setBroadcastConfig(prev => ({ ...prev, pipPosition: pos.id as any }))}
-                            className={`p-2 rounded-lg border text-center transition text-sm ${broadcastConfig.pipPosition === pos.id
+                            className={`p-2 rounded-lg border text-center transition text-sm ${broadcastConfig.pipPosition === pos.id || (!broadcastConfig.pipPosition && pos.id === 'bottom-right')
                               ? 'bg-green-600 border-green-500 text-white'
                               : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
                               }`}
                           >
                             <span className="mr-1">{pos.icon}</span>
                             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{pos.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Split Ratio Selector - Only show when SPLIT is selected */}
+                  {broadcastConfig.layout === 'SPLIT' && (
+                    <div className="mt-4 border-t border-slate-800 pt-4">
+                      <p className={`text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                        {isRTL ? '⚖️ نسبت تصویر (دوربین/اسلاید):' : '⚖️ Split Ratio (Cam/Slides):'}
+                      </p>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { id: '70-30', label: '30 / 70' },
+                          { id: '50-50', label: '50 / 50' },
+                          { id: '30-70', label: '70 / 30' }
+                        ].map(ratio => (
+                          <button
+                            key={ratio.id}
+                            onClick={() => setBroadcastConfig(prev => ({ ...prev, splitRatio: ratio.id as any }))}
+                            className={`p-2 rounded-lg border text-center transition text-xs font-mono font-bold ${broadcastConfig.splitRatio === ratio.id || (!broadcastConfig.splitRatio && ratio.id === '50-50')
+                              ? 'bg-blue-600 border-blue-500 text-white'
+                              : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                              }`}
+                          >
+                            <span>{ratio.label}</span>
                           </button>
                         ))}
                       </div>

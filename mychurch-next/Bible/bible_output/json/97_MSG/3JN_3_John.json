@@ -1,0 +1,50 @@
+{
+  "book_id": "3JN",
+  "book_name_en": "3 John",
+  "book_name_fa": "سوم یوحنا",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 2,
+  "chapters": [
+    {
+      "book_id": "3JN",
+      "chapter": 1,
+      "chapter_usfm": "3JN.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 11,
+          "text": "Friend, don’t go along with evil. Model the good. The person who does good does God’s work. The person who does evil falsifies God, doesn’t know the first thing about God."
+        },
+        {
+          "verse": 12,
+          "text": "Everyone has a good word for Demetrius—the Truth itself stands up for Demetrius! We concur, and you know we don’t hand out endorsements lightly. I have a lot more things to tell you, but I’d rather not use pen and ink. I hope to be there soon in person and have a heart-to-heart talk.Peace to you. The friends here say hello. Greet our friends there by name."
+        }
+      ],
+      "verse_count": 2,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Model the Good"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/3JN/1-3a32761202861c00b375a9f18b7605e8.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/3JN/1-3a32761202861c00b375a9f18b7605e8.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

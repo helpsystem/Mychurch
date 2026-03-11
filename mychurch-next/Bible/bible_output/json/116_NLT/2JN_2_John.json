@@ -1,0 +1,130 @@
+{
+  "book_id": "2JN",
+  "book_name_en": "2 John",
+  "book_name_fa": "دوم یوحنا",
+  "testament": "NT",
+  "version_id": 116,
+  "version_abbr": "NLT",
+  "version_name": "New Living Translation",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 13,
+  "chapters": [
+    {
+      "book_id": "2JN",
+      "chapter": 1,
+      "chapter_usfm": "2JN.1",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This letter is from John, the elder.I am writing to the chosen lady and to her children, whom I love in the truth—as does everyone else who knows the truth—"
+        },
+        {
+          "verse": 2,
+          "text": "because the truth lives in us and will be with us forever."
+        },
+        {
+          "verse": 3,
+          "text": "Grace, mercy, and peace, which come from God the Father and from Jesus Christ—the Son of the Father—will continue to be with us who live in truth and love."
+        },
+        {
+          "verse": 4,
+          "text": "How happy I was to meet some of your children and find them living according to the truth, just as the Father commanded."
+        },
+        {
+          "verse": 5,
+          "text": "I am writing to remind you, dear friends, that we should love one another. This is not a new commandment, but one we have had from the beginning."
+        },
+        {
+          "verse": 6,
+          "text": "Love means doing what God has commanded us, and he has commanded us to love one another, just as you heard from the beginning."
+        },
+        {
+          "verse": 7,
+          "text": "I say this because many deceivers have gone out into the world. They deny that Jesus Christ came in a real body. Such a person is a deceiver and an antichrist."
+        },
+        {
+          "verse": 8,
+          "text": "Watch out that you do not lose what we have worked so hard to achieve. Be diligent so that you receive your full reward."
+        },
+        {
+          "verse": 9,
+          "text": "Anyone who wanders away from this teaching has no relationship with God. But anyone who remains in the teaching of Christ has a relationship with both the Father and the Son."
+        },
+        {
+          "verse": 10,
+          "text": "If anyone comes to your meeting and does not teach the truth about Christ, don’t invite that person into your home or give any kind of encouragement."
+        },
+        {
+          "verse": 11,
+          "text": "Anyone who encourages such people becomes a partner in their evil work."
+        },
+        {
+          "verse": 12,
+          "text": "I have much more to say to you, but I don’t want to do it with paper and ink. For I hope to visit you soon and talk with you face to face. Then our joy will be complete."
+        },
+        {
+          "verse": 13,
+          "text": "Greetings from the children of your sister, chosen by God."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "Live in the Truth"
+        },
+        {
+          "before_verse": 11,
+          "text": "Conclusion"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/2JN/1-b146e993057b744000f2879bbd49c717.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/2JN/1-b146e993057b744000f2879bbd49c717.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/2JN/1-fb434455474291dfc16f8c6a28e29338.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/2JN/1-fb434455474291dfc16f8c6a28e29338.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/2JN/1-d21f5650fd4fb22fce503b7b2554103e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/2JN/1-d21f5650fd4fb22fce503b7b2554103e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/2JN/1-8b23ff1bf0198d09618ee5f18ea101f2.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/2JN/1-8b23ff1bf0198d09618ee5f18ea101f2.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/2JN/1-433666b4b2556fe7d6651a8b546dfc0b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/2JN/1-433666b4b2556fe7d6651a8b546dfc0b.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

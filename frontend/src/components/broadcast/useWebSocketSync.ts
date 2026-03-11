@@ -87,6 +87,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
   const deviceId = useRef(generateDeviceId());
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const reconnectAttemptsRef = useRef(0);
 
   const [state, setState] = useState<SyncState>({
     isConnected: false,
@@ -138,6 +139,7 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
 
       socket.onopen = () => {
         console.log('🔌 WebSocket connected');
+        reconnectAttemptsRef.current = 0; // Reset reconnect attempts on success
         updateState({ isConnected: true, error: null });
 
         // Send join message
@@ -212,12 +214,17 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}): UseWebS
           clearInterval(heartbeatIntervalRef.current);
         }
 
-        // Auto-reconnect after 5 seconds
+        // Auto-reconnect with exponential backoff
+        let delay = Math.min(1000 * Math.pow(2, reconnectAttemptsRef.current), 30000); // Max 30s
+        if (reconnectAttemptsRef.current === 0) delay = 5000; // First attempt is always 5s for smooth UI fallback
+
         reconnectTimeoutRef.current = setTimeout(() => {
           if (state.sessionId) {
+            reconnectAttemptsRef.current += 1;
+            console.log(`🔌 Attempting reconnect ${reconnectAttemptsRef.current} after ${delay}ms...`);
             connect(state.sessionId);
           }
-        }, 5000);
+        }, delay);
       };
     } catch (err) {
       console.error('WebSocket connection error:', err);

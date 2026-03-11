@@ -1,0 +1,1638 @@
+{
+  "book_id": "ECC",
+  "book_name_en": "Ecclesiastes",
+  "book_name_fa": "جامعه",
+  "testament": "OT",
+  "version_id": 116,
+  "version_abbr": "NLT",
+  "version_name": "New Living Translation",
+  "language": "en",
+  "chapter_count": 12,
+  "total_verses": 222,
+  "chapters": [
+    {
+      "book_id": "ECC",
+      "chapter": 1,
+      "chapter_usfm": "ECC.1",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "These are the words of the Teacher, King David’s son, who ruled in Jerusalem."
+        },
+        {
+          "verse": 2,
+          "text": "“Everything is meaningless,” says the Teacher, “completely meaningless!”"
+        },
+        {
+          "verse": 3,
+          "text": "What do people get for all their hard work under the sun?"
+        },
+        {
+          "verse": 4,
+          "text": "Generations come and generations go, but the earth never changes."
+        },
+        {
+          "verse": 5,
+          "text": "The sun rises and the sun sets, then hurries around to rise again."
+        },
+        {
+          "verse": 6,
+          "text": "The wind blows south, and then turns north. Around and around it goes, blowing in circles."
+        },
+        {
+          "verse": 7,
+          "text": "Rivers run into the sea, but the sea is never full. Then the water returns again to the rivers and flows out again to the sea."
+        },
+        {
+          "verse": 8,
+          "text": "Everything is wearisome beyond description. No matter how much we see, we are never satisfied. No matter how much we hear, we are not content."
+        },
+        {
+          "verse": 9,
+          "text": "History merely repeats itself. It has all been done before. Nothing under the sun is truly new."
+        },
+        {
+          "verse": 10,
+          "text": "Sometimes people say, “Here is something new!” But actually it is old; nothing is ever truly new."
+        },
+        {
+          "verse": 11,
+          "text": "We don’t remember what happened in the past, and in future generations, no one will remember what we are doing now."
+        },
+        {
+          "verse": 12,
+          "text": "I, the Teacher, was king of Israel, and I lived in Jerusalem."
+        },
+        {
+          "verse": 13,
+          "text": "I devoted myself to search for understanding and to explore by wisdom everything being done under heaven. I soon discovered that God has dealt a tragic existence to the human race."
+        },
+        {
+          "verse": 14,
+          "text": "I observed everything going on under the sun, and really, it is all meaningless—like chasing the wind."
+        },
+        {
+          "verse": 15,
+          "text": "What is wrong cannot be made right.What is missing cannot be recovered."
+        },
+        {
+          "verse": 16,
+          "text": "I said to myself, “Look, I am wiser than any of the kings who ruled in Jerusalem before me. I have greater wisdom and knowledge than any of them.”"
+        },
+        {
+          "verse": 17,
+          "text": "So I set out to learn everything from wisdom to madness and folly. But I learned firsthand that pursuing all this is like chasing the wind."
+        },
+        {
+          "verse": 18,
+          "text": "The greater my wisdom, the greater my grief.To increase knowledge only increases sorrow."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Everything Is Meaningless"
+        },
+        {
+          "before_verse": 11,
+          "text": "The Teacher Speaks: The Futility of Wisdom"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/1-5a3e7bc5521f5c12e4233f9cb02b8c8a.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/1-5a3e7bc5521f5c12e4233f9cb02b8c8a.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/1-cf7675744f9ebbdb4e2777f7f0c398ed.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/1-cf7675744f9ebbdb4e2777f7f0c398ed.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/1-57b42524905ffca81dae9e69629db83f.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/1-57b42524905ffca81dae9e69629db83f.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/1-746fa0dec5f50fcfa107f6adccc460f6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/1-746fa0dec5f50fcfa107f6adccc460f6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/1-e02da9a1f7e75b7477f72a6c644299dc.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/1-e02da9a1f7e75b7477f72a6c644299dc.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 2,
+      "chapter_usfm": "ECC.2",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I said to myself, “Come on, let’s try pleasure. Let’s look for the ‘good things’ in life.” But I found that this, too, was meaningless."
+        },
+        {
+          "verse": 2,
+          "text": "So I said, “Laughter is silly. What good does it do to seek pleasure?”"
+        },
+        {
+          "verse": 3,
+          "text": "After much thought, I decided to cheer myself with wine. And while still seeking wisdom, I clutched at foolishness. In this way, I tried to experience the only happiness most people find during their brief life in this world."
+        },
+        {
+          "verse": 4,
+          "text": "I also tried to find meaning by building huge homes for myself and by planting beautiful vineyards."
+        },
+        {
+          "verse": 5,
+          "text": "I made gardens and parks, filling them with all kinds of fruit trees."
+        },
+        {
+          "verse": 6,
+          "text": "I built reservoirs to collect the water to irrigate my many flourishing groves."
+        },
+        {
+          "verse": 7,
+          "text": "I bought slaves, both men and women, and others were born into my household. I also owned large herds and flocks, more than any of the kings who had lived in Jerusalem before me."
+        },
+        {
+          "verse": 8,
+          "text": "I collected great sums of silver and gold, the treasure of many kings and provinces. I hired wonderful singers, both men and women, and had many beautiful concubines. I had everything a man could desire!"
+        },
+        {
+          "verse": 9,
+          "text": "So I became greater than all who had lived in Jerusalem before me, and my wisdom never failed me."
+        },
+        {
+          "verse": 10,
+          "text": "Anything I wanted, I would take. I denied myself no pleasure. I even found great pleasure in hard work, a reward for all my labors."
+        },
+        {
+          "verse": 11,
+          "text": "But as I looked at everything I had worked so hard to accomplish, it was all so meaningless—like chasing the wind. There was nothing really worthwhile anywhere."
+        },
+        {
+          "verse": 12,
+          "text": "So I decided to compare wisdom with foolishness and madness (for who can do this better than I, the king?)."
+        },
+        {
+          "verse": 13,
+          "text": "I thought, “Wisdom is better than foolishness, just as light is better than darkness."
+        },
+        {
+          "verse": 14,
+          "text": "For the wise can see where they are going, but fools walk in the dark.” Yet I saw that the wise and the foolish share the same fate."
+        },
+        {
+          "verse": 15,
+          "text": "Both will die. So I said to myself, “Since I will end up the same as the fool, what’s the value of all my wisdom? This is all so meaningless!”"
+        },
+        {
+          "verse": 16,
+          "text": "For the wise and the foolish both die. The wise will not be remembered any longer than the fool. In the days to come, both will be forgotten."
+        },
+        {
+          "verse": 17,
+          "text": "So I came to hate life because everything done here under the sun is so troubling. Everything is meaningless—like chasing the wind."
+        },
+        {
+          "verse": 18,
+          "text": "I came to hate all my hard work here on earth, for I must leave to others everything I have earned."
+        },
+        {
+          "verse": 19,
+          "text": "And who can tell whether my successors will be wise or foolish? Yet they will control everything I have gained by my skill and hard work under the sun. How meaningless!"
+        },
+        {
+          "verse": 20,
+          "text": "So I gave up in despair, questioning the value of all my hard work in this world."
+        },
+        {
+          "verse": 21,
+          "text": "Some people work wisely with knowledge and skill, then must leave the fruit of their efforts to someone who hasn’t worked for it. This, too, is meaningless, a great tragedy."
+        },
+        {
+          "verse": 22,
+          "text": "So what do people get in this life for all their hard work and anxiety?"
+        },
+        {
+          "verse": 23,
+          "text": "Their days of labor are filled with pain and grief; even at night their minds cannot rest. It is all meaningless."
+        },
+        {
+          "verse": 24,
+          "text": "So I decided there is nothing better than to enjoy food and drink and to find satisfaction in work. Then I realized that these pleasures are from the hand of God."
+        },
+        {
+          "verse": 25,
+          "text": "For who can eat or enjoy anything apart from him?"
+        },
+        {
+          "verse": 26,
+          "text": "God gives wisdom, knowledge, and joy to those who please him. But if a sinner becomes wealthy, God takes the wealth away and gives it to those who please him. This, too, is meaningless—like chasing the wind."
+        }
+      ],
+      "verse_count": 26,
+      "headings": [
+        {
+          "before_verse": 11,
+          "text": "The Wise and the Foolish"
+        },
+        {
+          "before_verse": 17,
+          "text": "The Futility of Work"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/2-3a304ab006232ea5106a7b03ae5a3892.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/2-3a304ab006232ea5106a7b03ae5a3892.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/2-c3a443d2fea6d6325c0a609510f97807.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/2-c3a443d2fea6d6325c0a609510f97807.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/2-66d58501293aca45b4644e7fe28ca955.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/2-66d58501293aca45b4644e7fe28ca955.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/2-a18a6980ca0f38168aec4b57bc163769.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/2-a18a6980ca0f38168aec4b57bc163769.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/2-990437f6d6097a4d708692eec54d44b9.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/2-990437f6d6097a4d708692eec54d44b9.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 3,
+      "chapter_usfm": "ECC.3",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "For everything there is a season,a time for every activity under heaven."
+        },
+        {
+          "verse": 2,
+          "text": "A time to be born and a time to die.A time to plant and a time to harvest."
+        },
+        {
+          "verse": 3,
+          "text": "A time to kill and a time to heal.A time to tear down and a time to build up."
+        },
+        {
+          "verse": 4,
+          "text": "A time to cry and a time to laugh.A time to grieve and a time to dance."
+        },
+        {
+          "verse": 5,
+          "text": "A time to scatter stones and a time to gather stones.A time to embrace and a time to turn away."
+        },
+        {
+          "verse": 6,
+          "text": "A time to search and a time to quit searching.A time to keep and a time to throw away."
+        },
+        {
+          "verse": 7,
+          "text": "A time to tear and a time to mend.A time to be quiet and a time to speak."
+        },
+        {
+          "verse": 8,
+          "text": "A time to love and a time to hate.A time for war and a time for peace."
+        },
+        {
+          "verse": 9,
+          "text": "What do people really get for all their hard work?"
+        },
+        {
+          "verse": 10,
+          "text": "I have seen the burden God has placed on us all."
+        },
+        {
+          "verse": 11,
+          "text": "Yet God has made everything beautiful for its own time. He has planted eternity in the human heart, but even so, people cannot see the whole scope of God’s work from beginning to end."
+        },
+        {
+          "verse": 12,
+          "text": "So I concluded there is nothing better than to be happy and enjoy ourselves as long as we can."
+        },
+        {
+          "verse": 13,
+          "text": "And people should eat and drink and enjoy the fruits of their labor, for these are gifts from God."
+        },
+        {
+          "verse": 14,
+          "text": "And I know that whatever God does is final. Nothing can be added to it or taken from it. God’s purpose is that people should fear him."
+        },
+        {
+          "verse": 15,
+          "text": "What is happening now has happened before, and what will happen in the future has happened before, because God makes the same things happen over and over again."
+        },
+        {
+          "verse": 16,
+          "text": "I also noticed that under the sun there is evil in the courtroom. Yes, even the courts of law are corrupt!"
+        },
+        {
+          "verse": 17,
+          "text": "I said to myself, “In due season God will judge everyone, both good and bad, for all their deeds.”"
+        },
+        {
+          "verse": 18,
+          "text": "I also thought about the human condition—how God proves to people that they are like animals."
+        },
+        {
+          "verse": 19,
+          "text": "For people and animals share the same fate—both breathe and both must die. So people have no real advantage over the animals. How meaningless!"
+        },
+        {
+          "verse": 20,
+          "text": "Both go to the same place—they came from dust and they return to dust."
+        },
+        {
+          "verse": 21,
+          "text": "For who can prove that the human spirit goes up and the spirit of animals goes down into the earth?"
+        },
+        {
+          "verse": 22,
+          "text": "So I saw that there is nothing better for people than to be happy in their work. That is our lot in life. And no one can bring us back to see what happens after we die."
+        }
+      ],
+      "verse_count": 22,
+      "headings": [
+        {
+          "before_verse": 15,
+          "text": "The Injustices of Life"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/3-1ac79f7772353aae80e06b10ac1dd587.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/3-1ac79f7772353aae80e06b10ac1dd587.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/3-fda39d1c717535b2151b44c63c6f8502.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/3-fda39d1c717535b2151b44c63c6f8502.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/3-03f2509385292dd0113856317f12265e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/3-03f2509385292dd0113856317f12265e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/3-18225957c46851bb76a381bb8b01abe0.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/3-18225957c46851bb76a381bb8b01abe0.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/3-29dc741416c0743aecfcf20c25490924.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/3-29dc741416c0743aecfcf20c25490924.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 4,
+      "chapter_usfm": "ECC.4",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Again, I observed all the oppression that takes place under the sun. I saw the tears of the oppressed, with no one to comfort them. The oppressors have great power, and their victims are helpless."
+        },
+        {
+          "verse": 2,
+          "text": "So I concluded that the dead are better off than the living."
+        },
+        {
+          "verse": 3,
+          "text": "But most fortunate of all are those who are not yet born. For they have not seen all the evil that is done under the sun."
+        },
+        {
+          "verse": 4,
+          "text": "Then I observed that most people are motivated to success because they envy their neighbors. But this, too, is meaningless—like chasing the wind."
+        },
+        {
+          "verse": 5,
+          "text": "“Fools fold their idle hands,leading them to ruin.”"
+        },
+        {
+          "verse": 6,
+          "text": "And yet,“Better to have one handful with quietnessthan two handfuls with hard workand chasing the wind.”"
+        },
+        {
+          "verse": 7,
+          "text": "I observed yet another example of something meaningless under the sun."
+        },
+        {
+          "verse": 8,
+          "text": "This is the case of a man who is all alone, without a child or a brother, yet who works hard to gain as much wealth as he can. But then he asks himself, “Who am I working for? Why am I giving up so much pleasure now?” It is all so meaningless and depressing."
+        },
+        {
+          "verse": 9,
+          "text": "Two people are better off than one, for they can help each other succeed."
+        },
+        {
+          "verse": 10,
+          "text": "If one person falls, the other can reach out and help. But someone who falls alone is in real trouble."
+        },
+        {
+          "verse": 11,
+          "text": "Likewise, two people lying close together can keep each other warm. But how can one be warm alone?"
+        },
+        {
+          "verse": 12,
+          "text": "A person standing alone can be attacked and defeated, but two can stand back-to-back and conquer. Three are even better, for a triple-braided cord is not easily broken."
+        },
+        {
+          "verse": 13,
+          "text": "It is better to be a poor but wise youth than an old and foolish king who refuses all advice."
+        },
+        {
+          "verse": 14,
+          "text": "Such a youth could rise from poverty and succeed. He might even become king, though he has been in prison."
+        },
+        {
+          "verse": 15,
+          "text": "But then everyone rushes to the side of yet another youth who replaces him."
+        },
+        {
+          "verse": 16,
+          "text": "Endless crowds stand around him, but then another generation grows up and rejects him, too. So it is all meaningless—like chasing the wind."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 6,
+          "text": "The Advantages of Companionship"
+        },
+        {
+          "before_verse": 12,
+          "text": "The Futility of Political Power"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/4-0645b7391f0aa05d9da60e471d36a73b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/4-0645b7391f0aa05d9da60e471d36a73b.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/4-202bd37ec9de31dd0a8c7add541282c5.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/4-202bd37ec9de31dd0a8c7add541282c5.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/4-b86006b001c65b3bcad468a3d3bf3990.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/4-b86006b001c65b3bcad468a3d3bf3990.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/4-d169a9aa613bdbfb6faf940a3b5da88c.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/4-d169a9aa613bdbfb6faf940a3b5da88c.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/4-d7b6af8323a73c4eb916f9a84442c404.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/4-d7b6af8323a73c4eb916f9a84442c404.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 5,
+      "chapter_usfm": "ECC.5",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "As you enter the house of God, keep your ears open and your mouth shut. It is evil to make mindless offerings to God."
+        },
+        {
+          "verse": 2,
+          "text": "Don’t make rash promises, and don’t be hasty in bringing matters before God. After all, God is in heaven, and you are here on earth. So let your words be few."
+        },
+        {
+          "verse": 3,
+          "text": "Too much activity gives you restless dreams; too many words make you a fool."
+        },
+        {
+          "verse": 4,
+          "text": "When you make a promise to God, don’t delay in following through, for God takes no pleasure in fools. Keep all the promises you make to him."
+        },
+        {
+          "verse": 5,
+          "text": "It is better to say nothing than to make a promise and not keep it."
+        },
+        {
+          "verse": 6,
+          "text": "Don’t let your mouth make you sin. And don’t defend yourself by telling the Temple messenger that the promise you made was a mistake. That would make God angry, and he might wipe out everything you have achieved."
+        },
+        {
+          "verse": 7,
+          "text": "Talk is cheap, like daydreams and other useless activities. Fear God instead."
+        },
+        {
+          "verse": 8,
+          "text": "Don’t be surprised if you see a poor person being oppressed by the powerful and if justice is being miscarried throughout the land. For every official is under orders from higher up, and matters of justice get lost in red tape and bureaucracy."
+        },
+        {
+          "verse": 9,
+          "text": "Even the king milks the land for his own profit!"
+        },
+        {
+          "verse": 10,
+          "text": "Those who love money will never have enough. How meaningless to think that wealth brings true happiness!"
+        },
+        {
+          "verse": 11,
+          "text": "The more you have, the more people come to help you spend it. So what good is wealth—except perhaps to watch it slip through your fingers!"
+        },
+        {
+          "verse": 12,
+          "text": "People who work hard sleep well, whether they eat little or much. But the rich seldom get a good night’s sleep."
+        },
+        {
+          "verse": 13,
+          "text": "There is another serious problem I have seen under the sun. Hoarding riches harms the saver."
+        },
+        {
+          "verse": 14,
+          "text": "Money is put into risky investments that turn sour, and everything is lost. In the end, there is nothing left to pass on to one’s children."
+        },
+        {
+          "verse": 15,
+          "text": "We all come to the end of our lives as naked and empty-handed as on the day we were born. We can’t take our riches with us."
+        },
+        {
+          "verse": 16,
+          "text": "And this, too, is a very serious problem. People leave this world no better off than when they came. All their hard work is for nothing—like working for the wind."
+        },
+        {
+          "verse": 17,
+          "text": "Throughout their lives, they live under a cloud—frustrated, discouraged, and angry."
+        },
+        {
+          "verse": 18,
+          "text": "Even so, I have noticed one thing, at least, that is good. It is good for people to eat, drink, and enjoy their work under the sun during the short life God has given them, and to accept their lot in life."
+        },
+        {
+          "verse": 19,
+          "text": "And it is a good thing to receive wealth from God and the good health to enjoy it. To enjoy your work and accept your lot in life—this is indeed a gift from God."
+        },
+        {
+          "verse": 20,
+          "text": "God keeps such people so busy enjoying life that they take no time to brood over the past."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 7,
+          "text": "The Futility of Wealth"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/5-c29ea2e1100fa2fb3f115b7015573250.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/5-c29ea2e1100fa2fb3f115b7015573250.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/5-7dbc465beacccaf0b86ae026fa2cf907.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/5-7dbc465beacccaf0b86ae026fa2cf907.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/5-d6c582b96eb1e86a2f6caaca2a7962fd.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/5-d6c582b96eb1e86a2f6caaca2a7962fd.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/5-cd9ce7df2758f734c09121b8270ea2b8.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/5-cd9ce7df2758f734c09121b8270ea2b8.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/5-6df3485f415531eff65280a2878e7c75.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/5-6df3485f415531eff65280a2878e7c75.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 6,
+      "chapter_usfm": "ECC.6",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "There is another serious tragedy I have seen under the sun, and it weighs heavily on humanity."
+        },
+        {
+          "verse": 2,
+          "text": "God gives some people great wealth and honor and everything they could ever want, but then he doesn’t give them the chance to enjoy these things. They die, and someone else, even a stranger, ends up enjoying their wealth! This is meaningless—a sickening tragedy."
+        },
+        {
+          "verse": 3,
+          "text": "A man might have a hundred children and live to be very old. But if he finds no satisfaction in life and doesn’t even get a decent burial, it would have been better for him to be born dead."
+        },
+        {
+          "verse": 4,
+          "text": "His birth would have been meaningless, and he would have ended in darkness. He wouldn’t even have had a name,"
+        },
+        {
+          "verse": 5,
+          "text": "and he would never have seen the sun or known of its existence. Yet he would have had more peace than in growing up to be an unhappy man."
+        },
+        {
+          "verse": 6,
+          "text": "He might live a thousand years twice over but still not find contentment. And since he must die like everyone else—well, what’s the use?"
+        },
+        {
+          "verse": 7,
+          "text": "All people spend their lives scratching for food, but they never seem to have enough."
+        },
+        {
+          "verse": 8,
+          "text": "So are wise people really better off than fools? Do poor people gain anything by being wise and knowing how to act in front of others?"
+        },
+        {
+          "verse": 9,
+          "text": "Enjoy what you have rather than desiring what you don’t have. Just dreaming about nice things is meaningless—like chasing the wind."
+        },
+        {
+          "verse": 10,
+          "text": "Everything has already been decided. It was known long ago what each person would be. So there’s no use arguing with God about your destiny."
+        },
+        {
+          "verse": 11,
+          "text": "The more words you speak, the less they mean. So what good are they?"
+        },
+        {
+          "verse": 12,
+          "text": "In the few days of our meaningless lives, who knows how our days can best be spent? Our lives are like a shadow. Who can tell what will happen on this earth after we are gone?"
+        }
+      ],
+      "verse_count": 12,
+      "headings": [
+        {
+          "before_verse": 9,
+          "text": "The Future—Determined and Unknown"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/6-98360fd5c2057162a3eb0037ed488d3e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/6-98360fd5c2057162a3eb0037ed488d3e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/6-1c95dfe7ab473c4317ad62ec82016001.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/6-1c95dfe7ab473c4317ad62ec82016001.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/6-94dc43207c4cf7d5ab348169d92c7a24.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/6-94dc43207c4cf7d5ab348169d92c7a24.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/6-150247beffffc22616af932ac8aa4f31.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/6-150247beffffc22616af932ac8aa4f31.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/6-679372b6cfa6dd81cee0b5e099ffe3be.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/6-679372b6cfa6dd81cee0b5e099ffe3be.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 7,
+      "chapter_usfm": "ECC.7",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "A good reputation is more valuable than costly perfume.And the day you die is better than the day you are born."
+        },
+        {
+          "verse": 2,
+          "text": "Better to spend your time at funerals than at parties.After all, everyone dies—so the living should take this to heart."
+        },
+        {
+          "verse": 3,
+          "text": "Sorrow is better than laughter,for sadness has a refining influence on us."
+        },
+        {
+          "verse": 4,
+          "text": "A wise person thinks a lot about death,while a fool thinks only about having a good time."
+        },
+        {
+          "verse": 5,
+          "text": "Better to be criticized by a wise personthan to be praised by a fool."
+        },
+        {
+          "verse": 6,
+          "text": "A fool’s laughter is quickly gone,like thorns crackling in a fire.This also is meaningless."
+        },
+        {
+          "verse": 7,
+          "text": "Extortion turns wise people into fools,and bribes corrupt the heart."
+        },
+        {
+          "verse": 8,
+          "text": "Finishing is better than starting.Patience is better than pride."
+        },
+        {
+          "verse": 9,
+          "text": "Control your temper,for anger labels you a fool."
+        },
+        {
+          "verse": 10,
+          "text": "Don’t long for “the good old days.”This is not wise."
+        },
+        {
+          "verse": 11,
+          "text": "Wisdom is even better when you have money.Both are a benefit as you go through life."
+        },
+        {
+          "verse": 12,
+          "text": "Wisdom and money can get you almost anything,but only wisdom can save your life."
+        },
+        {
+          "verse": 13,
+          "text": "Accept the way God does things,for who can straighten what he has made crooked?"
+        },
+        {
+          "verse": 14,
+          "text": "Enjoy prosperity while you can,but when hard times strike, realize that both come from God.Remember that nothing is certain in this life."
+        },
+        {
+          "verse": 15,
+          "text": "I have seen everything in this meaningless life, including the death of good young people and the long life of wicked people."
+        },
+        {
+          "verse": 16,
+          "text": "So don’t be too good or too wise! Why destroy yourself?"
+        },
+        {
+          "verse": 17,
+          "text": "On the other hand, don’t be too wicked either. Don’t be a fool! Why die before your time?"
+        },
+        {
+          "verse": 18,
+          "text": "Pay attention to these instructions, for anyone who fears God will avoid both extremes."
+        },
+        {
+          "verse": 19,
+          "text": "One wise person is stronger than ten leading citizens of a town!"
+        },
+        {
+          "verse": 20,
+          "text": "Not a single person on earth is always good and never sins."
+        },
+        {
+          "verse": 21,
+          "text": "Don’t eavesdrop on others—you may hear your servant curse you."
+        },
+        {
+          "verse": 22,
+          "text": "For you know how often you yourself have cursed others."
+        },
+        {
+          "verse": 23,
+          "text": "I have always tried my best to let wisdom guide my thoughts and actions. I said to myself, “I am determined to be wise.” But it didn’t work."
+        },
+        {
+          "verse": 24,
+          "text": "Wisdom is always distant and difficult to find."
+        },
+        {
+          "verse": 25,
+          "text": "I searched everywhere, determined to find wisdom and to understand the reason for things. I was determined to prove to myself that wickedness is stupid and that foolishness is madness."
+        },
+        {
+          "verse": 26,
+          "text": "I discovered that a seductive woman is a trap more bitter than death. Her passion is a snare, and her soft hands are chains. Those who are pleasing to God will escape her, but sinners will be caught in her snare."
+        },
+        {
+          "verse": 27,
+          "text": "“This is my conclusion,” says the Teacher. “I discovered this after looking at the matter from every possible angle."
+        },
+        {
+          "verse": 28,
+          "text": "Though I have searched repeatedly, I have not found what I was looking for. Only one out of a thousand men is virtuous, but not one woman!"
+        },
+        {
+          "verse": 29,
+          "text": "But I did find this: God created people to be virtuous, but they have each turned to follow their own downward path.”"
+        }
+      ],
+      "verse_count": 29,
+      "headings": [
+        {
+          "before_verse": 14,
+          "text": "The Limits of Human Wisdom"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/7-12f051719c1d4cb0e3d341fee0a4e8cf.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/7-12f051719c1d4cb0e3d341fee0a4e8cf.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/7-56cbecc0fd66b8bf3724ad099d182ebb.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/7-56cbecc0fd66b8bf3724ad099d182ebb.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/7-517a9b7edf25832599a95d8956082607.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/7-517a9b7edf25832599a95d8956082607.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/7-13cc8b828971ccd6a4bc53572583026f.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/7-13cc8b828971ccd6a4bc53572583026f.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/7-6105547dcce2c000a05849e3cea3afa4.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/7-6105547dcce2c000a05849e3cea3afa4.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 8,
+      "chapter_usfm": "ECC.8",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "How wonderful to be wise,to analyze and interpret things.Wisdom lights up a person’s face,softening its harshness."
+        },
+        {
+          "verse": 2,
+          "text": "Obey the king since you vowed to God that you would."
+        },
+        {
+          "verse": 3,
+          "text": "Don’t try to avoid doing your duty, and don’t stand with those who plot evil, for the king can do whatever he wants."
+        },
+        {
+          "verse": 4,
+          "text": "His command is backed by great power. No one can resist or question it."
+        },
+        {
+          "verse": 5,
+          "text": "Those who obey him will not be punished. Those who are wise will find a time and a way to do what is right,"
+        },
+        {
+          "verse": 6,
+          "text": "for there is a time and a way for everything, even when a person is in trouble."
+        },
+        {
+          "verse": 7,
+          "text": "Indeed, how can people avoid what they don’t know is going to happen?"
+        },
+        {
+          "verse": 8,
+          "text": "None of us can hold back our spirit from departing. None of us has the power to prevent the day of our death. There is no escaping that obligation, that dark battle. And in the face of death, wickedness will certainly not rescue the wicked."
+        },
+        {
+          "verse": 9,
+          "text": "I have thought deeply about all that goes on here under the sun, where people have the power to hurt each other."
+        },
+        {
+          "verse": 10,
+          "text": "I have seen wicked people buried with honor. Yet they were the very ones who frequented the Temple and are now praised in the same city where they committed their crimes! This, too, is meaningless."
+        },
+        {
+          "verse": 11,
+          "text": "When a crime is not punished quickly, people feel it is safe to do wrong."
+        },
+        {
+          "verse": 12,
+          "text": "But even though a person sins a hundred times and still lives a long time, I know that those who fear God will be better off."
+        },
+        {
+          "verse": 13,
+          "text": "The wicked will not prosper, for they do not fear God. Their days will never grow long like the evening shadows."
+        },
+        {
+          "verse": 14,
+          "text": "And this is not all that is meaningless in our world. In this life, good people are often treated as though they were wicked, and wicked people are often treated as though they were good. This is so meaningless!"
+        },
+        {
+          "verse": 15,
+          "text": "So I recommend having fun, because there is nothing better for people in this world than to eat, drink, and enjoy life. That way they will experience some happiness along with all the hard work God gives them under the sun."
+        },
+        {
+          "verse": 16,
+          "text": "In my search for wisdom and in my observation of people’s burdens here on earth, I discovered that there is ceaseless activity, day and night."
+        },
+        {
+          "verse": 17,
+          "text": "I realized that no one can discover everything God is doing under the sun. Not even the wisest people discover everything, no matter what they claim."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Obedience to the King"
+        },
+        {
+          "before_verse": 8,
+          "text": "The Wicked and the Righteous"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/8-6bc6a789ce30fd1f79aa46a7ae5fc0c2.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/8-6bc6a789ce30fd1f79aa46a7ae5fc0c2.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/8-c8a94949ab864791477eda5f102b4132.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/8-c8a94949ab864791477eda5f102b4132.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/8-c8b4d64891972ef68a39e90f29f1463b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/8-c8b4d64891972ef68a39e90f29f1463b.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/8-ee23ba977ec88ba923e10d534dd11018.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/8-ee23ba977ec88ba923e10d534dd11018.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/8-6e14cfdc4dc7f3d5699f4024014dff0b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/8-6e14cfdc4dc7f3d5699f4024014dff0b.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 9,
+      "chapter_usfm": "ECC.9",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This, too, I carefully explored: Even though the actions of godly and wise people are in God’s hands, no one knows whether God will show them favor."
+        },
+        {
+          "verse": 2,
+          "text": "The same destiny ultimately awaits everyone, whether righteous or wicked, good or bad, ceremonially clean or unclean, religious or irreligious. Good people receive the same treatment as sinners, and people who make promises to God are treated like people who don’t."
+        },
+        {
+          "verse": 3,
+          "text": "It seems so wrong that everyone under the sun suffers the same fate. Already twisted by evil, people choose their own mad course, for they have no hope. There is nothing ahead but death anyway."
+        },
+        {
+          "verse": 4,
+          "text": "There is hope only for the living. As they say, “It’s better to be a live dog than a dead lion!”"
+        },
+        {
+          "verse": 5,
+          "text": "The living at least know they will die, but the dead know nothing. They have no further reward, nor are they remembered."
+        },
+        {
+          "verse": 6,
+          "text": "Whatever they did in their lifetime—loving, hating, envying—is all long gone. They no longer play a part in anything here on earth."
+        },
+        {
+          "verse": 7,
+          "text": "So go ahead. Eat your food with joy, and drink your wine with a happy heart, for God approves of this!"
+        },
+        {
+          "verse": 8,
+          "text": "Wear fine clothes, with a splash of cologne!"
+        },
+        {
+          "verse": 9,
+          "text": "Live happily with the woman you love through all the meaningless days of life that God has given you under the sun. The wife God gives you is your reward for all your earthly toil."
+        },
+        {
+          "verse": 10,
+          "text": "Whatever you do, do well. For when you go to the grave, there will be no work or planning or knowledge or wisdom."
+        },
+        {
+          "verse": 11,
+          "text": "I have observed something else under the sun. The fastest runner doesn’t always win the race, and the strongest warrior doesn’t always win the battle. The wise sometimes go hungry, and the skillful are not necessarily wealthy. And those who are educated don’t always lead successful lives. It is all decided by chance, by being in the right place at the right time."
+        },
+        {
+          "verse": 12,
+          "text": "People can never predict when hard times might come. Like fish in a net or birds in a trap, people are caught by sudden tragedy."
+        },
+        {
+          "verse": 13,
+          "text": "Here is another bit of wisdom that has impressed me as I have watched the way our world works."
+        },
+        {
+          "verse": 14,
+          "text": "There was a small town with only a few people, and a great king came with his army and besieged it."
+        },
+        {
+          "verse": 15,
+          "text": "A poor, wise man knew how to save the town, and so it was rescued. But afterward no one thought to thank him."
+        },
+        {
+          "verse": 16,
+          "text": "So even though wisdom is better than strength, those who are wise will be despised if they are poor. What they say will not be appreciated for long."
+        },
+        {
+          "verse": 17,
+          "text": "Better to hear the quiet words of a wise personthan the shouts of a foolish king."
+        },
+        {
+          "verse": 18,
+          "text": "Better to have wisdom than weapons of war,but one sinner can destroy much that is good."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 12,
+          "text": "Thoughts on Wisdom and Folly"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/9-67da3e4378b0a960ed402419887c114e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/9-67da3e4378b0a960ed402419887c114e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/9-bb16fa76ab82e869960029ba30ad9642.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/9-bb16fa76ab82e869960029ba30ad9642.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/9-e861298bfa0e104abcdd07fee6c6031b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/9-e861298bfa0e104abcdd07fee6c6031b.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/9-aadc6c0dd16318ffab82ac6eea7c17f5.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/9-aadc6c0dd16318ffab82ac6eea7c17f5.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/9-eea130cf6aafb6ca3990dadc3318759d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/9-eea130cf6aafb6ca3990dadc3318759d.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 10,
+      "chapter_usfm": "ECC.10",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "As dead flies cause even a bottle of perfume to stink,so a little foolishness spoils great wisdom and honor."
+        },
+        {
+          "verse": 2,
+          "text": "A wise person chooses the right road;a fool takes the wrong one."
+        },
+        {
+          "verse": 3,
+          "text": "You can identify foolsjust by the way they walk down the street!"
+        },
+        {
+          "verse": 4,
+          "text": "If your boss is angry at you, don’t quit!A quiet spirit can overcome even great mistakes."
+        },
+        {
+          "verse": 5,
+          "text": "There is another evil I have seen under the sun. Kings and rulers make a grave mistake"
+        },
+        {
+          "verse": 6,
+          "text": "when they give great authority to foolish people and low positions to people of proven worth."
+        },
+        {
+          "verse": 7,
+          "text": "I have even seen servants riding horseback like princes—and princes walking like servants!"
+        },
+        {
+          "verse": 8,
+          "text": "When you dig a well,you might fall in.When you demolish an old wall,you could be bitten by a snake."
+        },
+        {
+          "verse": 9,
+          "text": "When you work in a quarry,stones might fall and crush you.When you chop wood,there is danger with each stroke of your ax."
+        },
+        {
+          "verse": 10,
+          "text": "Using a dull ax requires great strength,so sharpen the blade.That’s the value of wisdom;it helps you succeed."
+        },
+        {
+          "verse": 11,
+          "text": "If a snake bites before you charm it,what’s the use of being a snake charmer?"
+        },
+        {
+          "verse": 12,
+          "text": "Wise words bring approval,but fools are destroyed by their own words."
+        },
+        {
+          "verse": 13,
+          "text": "Fools base their thoughts on foolish assumptions,so their conclusions will be wicked madness;"
+        },
+        {
+          "verse": 14,
+          "text": "they chatter on and on.No one really knows what is going to happen;no one can predict the future."
+        },
+        {
+          "verse": 15,
+          "text": "Fools are so exhausted by a little workthat they can’t even find their way home."
+        },
+        {
+          "verse": 16,
+          "text": "What sorrow for the land ruled by a servant,the land whose leaders feast in the morning."
+        },
+        {
+          "verse": 17,
+          "text": "Happy is the land whose king is a noble leaderand whose leaders feast at the proper timeto gain strength for their work, not to get drunk."
+        },
+        {
+          "verse": 18,
+          "text": "Laziness leads to a sagging roof;idleness leads to a leaky house."
+        },
+        {
+          "verse": 19,
+          "text": "A party gives laughter,wine gives happiness,and money gives everything!"
+        },
+        {
+          "verse": 20,
+          "text": "Never make light of the king, even in your thoughts.And don’t make fun of the powerful, even in your own bedroom.For a little bird might deliver your messageand tell them what you said."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 4,
+          "text": "The Ironies of Life"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/10-f6430e7b34fe4b28b6a74b2737f25a11.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/10-f6430e7b34fe4b28b6a74b2737f25a11.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/10-44bddc6ce24b819e5ad2e403b1fd7fde.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/10-44bddc6ce24b819e5ad2e403b1fd7fde.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/10-c8bc0a377214601b1165730ae21d1631.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/10-c8bc0a377214601b1165730ae21d1631.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/10-38ff3f7fca55e0b11a6eb105d4ab5e35.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/10-38ff3f7fca55e0b11a6eb105d4ab5e35.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/10-4e0c81aef3b44dfabef8518d6bc548bf.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/10-4e0c81aef3b44dfabef8518d6bc548bf.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 11,
+      "chapter_usfm": "ECC.11",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Send your grain across the seas,and in time, profits will flow back to you."
+        },
+        {
+          "verse": 2,
+          "text": "But divide your investments among many places,for you do not know what risks might lie ahead."
+        },
+        {
+          "verse": 3,
+          "text": "When clouds are heavy, the rains come down.Whether a tree falls north or south, it stays where it falls."
+        },
+        {
+          "verse": 4,
+          "text": "Farmers who wait for perfect weather never plant.If they watch every cloud, they never harvest."
+        },
+        {
+          "verse": 5,
+          "text": "Just as you cannot understand the path of the wind or the mystery of a tiny baby growing in its mother’s womb, so you cannot understand the activity of God, who does all things."
+        },
+        {
+          "verse": 6,
+          "text": "Plant your seed in the morning and keep busy all afternoon, for you don’t know if profit will come from one activity or another—or maybe both."
+        },
+        {
+          "verse": 7,
+          "text": "Light is sweet; how pleasant to see a new day dawning."
+        },
+        {
+          "verse": 8,
+          "text": "When people live to be very old, let them rejoice in every day of life. But let them also remember there will be many dark days. Everything still to come is meaningless."
+        },
+        {
+          "verse": 9,
+          "text": "Young people, it’s wonderful to be young! Enjoy every minute of it. Do everything you want to do; take it all in. But remember that you must give an account to God for everything you do."
+        },
+        {
+          "verse": 10,
+          "text": "So refuse to worry, and keep your body healthy. But remember that youth, with a whole life before you, is meaningless."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [
+        {
+          "before_verse": 6,
+          "text": "Advice for Young and Old"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/11-339c368f07cc34b661867bda0dbf526e.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/11-339c368f07cc34b661867bda0dbf526e.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/11-d28051a6f5718d522d643c1c79ce5b58.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/11-d28051a6f5718d522d643c1c79ce5b58.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/11-1c90c61751ad140e4ecc561222ef3e11.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/11-1c90c61751ad140e4ecc561222ef3e11.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/11-d668b25b121deeb6c4b5a93999b1054d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/11-d668b25b121deeb6c4b5a93999b1054d.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/11-eda34596a36ae085691c57f68424fddc.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/11-eda34596a36ae085691c57f68424fddc.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "ECC",
+      "chapter": 12,
+      "chapter_usfm": "ECC.12",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Don’t let the excitement of youth cause you to forget your Creator. Honor him in your youth before you grow old and say, “Life is not pleasant anymore.”"
+        },
+        {
+          "verse": 2,
+          "text": "Remember him before the light of the sun, moon, and stars is dim to your old eyes, and rain clouds continually darken your sky."
+        },
+        {
+          "verse": 3,
+          "text": "Remember him before your legs—the guards of your house—start to tremble; and before your shoulders—the strong men—stoop. Remember him before your teeth—your few remaining servants—stop grinding; and before your eyes—the women looking through the windows—see dimly."
+        },
+        {
+          "verse": 4,
+          "text": "Remember him before the door to life’s opportunities is closed and the sound of work fades. Now you rise at the first chirping of the birds, but then all their sounds will grow faint."
+        },
+        {
+          "verse": 5,
+          "text": "Remember him before you become fearful of falling and worry about danger in the streets; before your hair turns white like an almond tree in bloom, and you drag along without energy like a dying grasshopper, and the caperberry no longer inspires sexual desire. Remember him before you near the grave, your everlasting home, when the mourners will weep at your funeral."
+        },
+        {
+          "verse": 6,
+          "text": "Yes, remember your Creator now while you are young, before the silver cord of life snaps and the golden bowl is broken. Don’t wait until the water jar is smashed at the spring and the pulley is broken at the well."
+        },
+        {
+          "verse": 7,
+          "text": "For then the dust will return to the earth, and the spirit will return to God who gave it."
+        },
+        {
+          "verse": 8,
+          "text": "“Everything is meaningless,” says the Teacher, “completely meaningless.”"
+        },
+        {
+          "verse": 9,
+          "text": "Keep this in mind: The Teacher was considered wise, and he taught the people everything he knew. He listened carefully to many proverbs, studying and classifying them."
+        },
+        {
+          "verse": 10,
+          "text": "The Teacher sought to find just the right words to express truths clearly."
+        },
+        {
+          "verse": 11,
+          "text": "The words of the wise are like cattle prods—painful but helpful. Their collected sayings are like a nail-studded stick with which a shepherd drives the sheep."
+        },
+        {
+          "verse": 12,
+          "text": "But, my child, let me give you some further advice: Be careful, for writing books is endless, and much study wears you out."
+        },
+        {
+          "verse": 13,
+          "text": "That’s the whole story. Here now is my final conclusion: Fear God and obey his commands, for this is everyone’s duty."
+        },
+        {
+          "verse": 14,
+          "text": "God will judge us for everything we do, including every secret thing, whether good or bad."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [
+        {
+          "before_verse": 7,
+          "text": "Concluding Thoughts about the Teacher"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/ECC/12-a274ee855ed1ed5e1e907713284edfef.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/ECC/12-a274ee855ed1ed5e1e907713284edfef.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/ECC/12-2567c44ce2f31d90178b2b878967a823.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/ECC/12-2567c44ce2f31d90178b2b878967a823.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/ECC/12-197b656f7e5bc8cd93679f54186e4531.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/ECC/12-197b656f7e5bc8cd93679f54186e4531.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/ECC/12-fc44d5f1da92e488927ffa03e36dba03.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/ECC/12-fc44d5f1da92e488927ffa03e36dba03.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/ECC/12-b8f5f1c26139e21af9d9821caa381713.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/ECC/12-b8f5f1c26139e21af9d9821caa381713.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

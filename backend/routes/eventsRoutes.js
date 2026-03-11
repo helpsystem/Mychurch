@@ -4,7 +4,7 @@ const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
 // GET /api/events - دریافت همه رویدادها
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM events ORDER BY date DESC');
     const events = result.rows.map(event => ({

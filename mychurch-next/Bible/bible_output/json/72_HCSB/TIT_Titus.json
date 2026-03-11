@@ -1,0 +1,277 @@
+{
+  "book_id": "TIT",
+  "book_name_en": "Titus",
+  "book_name_fa": "تیتوس",
+  "testament": "NT",
+  "version_id": 72,
+  "version_abbr": "HCSB",
+  "version_name": "Holman Christian Standard Bible",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 46,
+  "chapters": [
+    {
+      "book_id": "TIT",
+      "chapter": 1,
+      "chapter_usfm": "TIT.1",
+      "version_id": 72,
+      "version_abbr": "HCSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, a slave of God and an apostle of Jesus Christ, to build up the faith of God’s elect and their knowledge of the truth that leads to godliness,"
+        },
+        {
+          "verse": 2,
+          "text": "in the hope of eternal life that God, who cannot lie, promised before time began."
+        },
+        {
+          "verse": 3,
+          "text": "In His own time He has revealed His message in the proclamation that I was entrusted with by the command of God our Savior:"
+        },
+        {
+          "verse": 4,
+          "text": "To Titus, my true son in our common faith.Grace and peace from God the Father and Christ Jesus our Savior."
+        },
+        {
+          "verse": 5,
+          "text": "The reason I left you in Crete was to set right what was left undone and, as I directed you, to appoint elders in every town:"
+        },
+        {
+          "verse": 6,
+          "text": "one who is blameless, the husband of one wife, having faithful children not accused of wildness or rebellion."
+        },
+        {
+          "verse": 7,
+          "text": "For an overseer, as God’s administrator, must be blameless, not arrogant, not hot-tempered, not addicted to wine, not a bully, not greedy for money,"
+        },
+        {
+          "verse": 8,
+          "text": "but hospitable, loving what is good, sensible, righteous, holy, self-controlled,"
+        },
+        {
+          "verse": 9,
+          "text": "holding to the faithful message as taught, so that he will be able both to encourage with sound teaching and to refute those who contradict it."
+        },
+        {
+          "verse": 10,
+          "text": "For there are also many rebellious people, full of empty talk and deception, especially those from Judaism."
+        },
+        {
+          "verse": 11,
+          "text": "It is necessary to silence them; they overthrow whole households by teaching what they shouldn’t in order to get money dishonestly."
+        },
+        {
+          "verse": 12,
+          "text": "One of their very own prophets said,Cretans are always liars, evil beasts, lazy gluttons."
+        },
+        {
+          "verse": 13,
+          "text": "This testimony is true. So, rebuke them sharply, that they may be sound in the faith"
+        },
+        {
+          "verse": 14,
+          "text": "and may not pay attention to Jewish myths and the commands of men who reject the truth."
+        },
+        {
+          "verse": 15,
+          "text": "To the pure, everything is pure, but to those who are defiled and unbelieving nothing is pure; in fact, both their mind and conscience are defiled."
+        },
+        {
+          "verse": 16,
+          "text": "They profess to know God, but they deny Him by their works. They are detestable, disobedient, and disqualified for any good work."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 4,
+          "text": "Titus’s Ministry in Crete"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 17,
+          "title": "HCSB Audio Old and New Testament",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/17/32k/TIT/1-5dd6a585693c49ab52b58e9c1aa43f0f.mp3?version_id=72",
+          "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/TIT/1-5dd6a585693c49ab52b58e9c1aa43f0f.m3u8?version_id=72"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "TIT",
+      "chapter": 2,
+      "chapter_usfm": "TIT.2",
+      "version_id": 72,
+      "version_abbr": "HCSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "But you must say the things that are consistent with sound teaching."
+        },
+        {
+          "verse": 2,
+          "text": "Older men are to be level headed, worthy of respect, sensible, and sound in faith, love, and endurance."
+        },
+        {
+          "verse": 3,
+          "text": "In the same way, older women are to be reverent in behavior, not slanderers, not addicted to much wine. They are to teach what is good,"
+        },
+        {
+          "verse": 4,
+          "text": "so they may encourage the young women to love their husbands and to love their children,"
+        },
+        {
+          "verse": 5,
+          "text": "to be self-controlled, pure, homemakers, kind, and submissive to their husbands, so that God’s message will not be slandered."
+        },
+        {
+          "verse": 6,
+          "text": "In the same way, encourage the young men to be self-controlled"
+        },
+        {
+          "verse": 7,
+          "text": "in everything. Make yourself an example of good works with integrity and dignity in your teaching."
+        },
+        {
+          "verse": 8,
+          "text": "Your message is to be sound beyond reproach, so that the opponent will be ashamed, having nothing bad to say about us."
+        },
+        {
+          "verse": 9,
+          "text": "Slaves are to be submissive to their masters in everything, and to be well-pleasing, not talking back"
+        },
+        {
+          "verse": 10,
+          "text": "or stealing, but demonstrating utter faithfulness, so that they may adorn the teaching of God our Savior in everything."
+        },
+        {
+          "verse": 11,
+          "text": "For the grace of God has appeared with salvation for all people,"
+        },
+        {
+          "verse": 12,
+          "text": "instructing us to deny godlessness and worldly lusts and to live in a sensible, righteous, and godly way in the present age,"
+        },
+        {
+          "verse": 13,
+          "text": "while we wait for the blessed hope and appearing of the glory of our great God and Savior, Jesus Christ."
+        },
+        {
+          "verse": 14,
+          "text": "He gave Himself for us to redeem us from all lawlessness and to cleanse for Himself a people for His own possession, eager to do good works."
+        },
+        {
+          "verse": 15,
+          "text": "Say these things, and encourage and rebuke with all authority. Let no one disregard you."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 17,
+          "title": "HCSB Audio Old and New Testament",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/17/32k/TIT/2-7d8490a83ee87b9d894a263f47f13ecb.mp3?version_id=72",
+          "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/TIT/2-7d8490a83ee87b9d894a263f47f13ecb.m3u8?version_id=72"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "TIT",
+      "chapter": 3,
+      "chapter_usfm": "TIT.3",
+      "version_id": 72,
+      "version_abbr": "HCSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Remind them to be submissive to rulers and authorities, to obey, to be ready for every good work,"
+        },
+        {
+          "verse": 2,
+          "text": "to slander no one, to avoid fighting, and to be kind, always showing gentleness to all people."
+        },
+        {
+          "verse": 3,
+          "text": "For we too were once foolish, disobedient, deceived, enslaved by various passions and pleasures, living in malice and envy, hateful, detesting one another."
+        },
+        {
+          "verse": 4,
+          "text": "But when the kindness of God our Savior and His lovefor mankind appeared,"
+        },
+        {
+          "verse": 5,
+          "text": "He saved us —not by works of righteousness that we had done, but according to His mercy —through the washing of regeneration and renewal by the Holy Spirit."
+        },
+        {
+          "verse": 6,
+          "text": "He poured out this Spirit on us abundantly through Jesus Christ our Savior"
+        },
+        {
+          "verse": 7,
+          "text": "so that, having been justified by His grace, we may become heirs with the hope of eternal life."
+        },
+        {
+          "verse": 8,
+          "text": "This saying is trustworthy. I want you to insist on these things, so that those who have believed God might be careful to devote themselves to good works. These are good and profitable for everyone."
+        },
+        {
+          "verse": 9,
+          "text": "But avoid foolish debates, genealogies, quarrels, and disputes about the law, for they are unprofitable and worthless."
+        },
+        {
+          "verse": 10,
+          "text": "Reject a divisive person after a first and second warning,"
+        },
+        {
+          "verse": 11,
+          "text": "knowing that such a person is perverted and sins, being self-condemned."
+        },
+        {
+          "verse": 12,
+          "text": "When I send Artemas or Tychicus to you, make every effort to come to me in Nicopolis, for I have decided to spend the winter there."
+        },
+        {
+          "verse": 13,
+          "text": "Diligently help Zenas the lawyer and Apollos on their journey, so that they will lack nothing."
+        },
+        {
+          "verse": 14,
+          "text": "And our people must also learn to devote themselves to good works for cases of urgent need, so that they will not be unfruitful."
+        },
+        {
+          "verse": 15,
+          "text": "All those who are with me greet you. Greet those who love us in the faith. Grace be with all of you."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 11,
+          "text": "Final Instructions and Closing"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 17,
+          "title": "HCSB Audio Old and New Testament",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/17/32k/TIT/3-2a7ad03afa5c51a8eb051afec9ca6896.mp3?version_id=72",
+          "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/TIT/3-2a7ad03afa5c51a8eb051afec9ca6896.m3u8?version_id=72"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

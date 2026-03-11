@@ -94,8 +94,8 @@ export function AppleMusicLyrics({ timepoints, currentTimeMs, className = "" }: 
             .amll-lyric-line {
                 font-family: var(--font-vazirmatn), sans-serif !important;
                 font-weight: 800 !important;
-                direction: rtl !important;
                 text-align: center !important;
+                /* direction: rtl !important; removed per user request to keep player standard LTR */
             }
         `}} />
         </div>

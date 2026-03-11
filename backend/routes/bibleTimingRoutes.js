@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 
 // مسیرها
 const PUBLIC_DIR = path.join(__dirname, '..', '..', 'public');
@@ -103,7 +104,7 @@ function generateSimpleTiming(bookKey, chapterNum, verses, audioDuration = null)
  * POST /api/bible-timing/generate/:bookKey/:chapter
  * تولید فایل timing برای یک فصل
  */
-router.post('/generate/:bookKey/:chapter', async (req, res) => {
+router.post('/generate/:bookKey/:chapter', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'), async (req, res) => {
   try {
     const { bookKey, chapter } = req.params;
     const { verses, audioDuration } = req.body;
@@ -205,7 +206,7 @@ router.get('/check/:bookKey/:chapter', (req, res) => {
  * DELETE /api/bible-timing/delete/:bookKey/:chapter
  * حذف فایل timing
  */
-router.delete('/delete/:bookKey/:chapter', (req, res) => {
+router.delete('/delete/:bookKey/:chapter', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), (req, res) => {
   try {
     const { bookKey, chapter } = req.params;
     const filename = `${bookKey.toUpperCase()}_${chapter}_timing.json`;
@@ -282,7 +283,7 @@ router.get('/list', (req, res) => {
  * POST /api/bible-timing/batch-generate
  * تولید timing برای چند فصل به صورت batch
  */
-router.post('/batch-generate', async (req, res) => {
+router.post('/batch-generate', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'), async (req, res) => {
   try {
     const { chapters } = req.body; // Array of { bookKey, chapter, verses }
     

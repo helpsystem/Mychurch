@@ -1,0 +1,1484 @@
+{
+  "book_id": "HOS",
+  "book_name_en": "Hosea",
+  "book_name_fa": "هوشع",
+  "testament": "OT",
+  "version_id": 111,
+  "version_abbr": "NIV",
+  "version_name": "New International Version",
+  "language": "en",
+  "chapter_count": 14,
+  "total_verses": 197,
+  "chapters": [
+    {
+      "book_id": "HOS",
+      "chapter": 1,
+      "chapter_usfm": "HOS.1",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The word of the Lord that came to Hosea son of Beeri during the reigns of Uzziah, Jotham, Ahaz and Hezekiah, kings of Judah, and during the reign of Jeroboam son of Jehoash king of Israel:"
+        },
+        {
+          "verse": 2,
+          "text": "When the Lord began to speak through Hosea, the Lord said to him, “Go, marry a promiscuous woman and have children with her, for like an adulterous wife this land is guilty of unfaithfulness to the Lord.”"
+        },
+        {
+          "verse": 3,
+          "text": "So he married Gomer daughter of Diblaim, and she conceived and bore him a son."
+        },
+        {
+          "verse": 4,
+          "text": "Then the Lord said to Hosea, “Call him Jezreel, because I will soon punish the house of Jehu for the massacre at Jezreel, and I will put an end to the kingdom of Israel."
+        },
+        {
+          "verse": 5,
+          "text": "In that day I will break Israel’s bow in the Valley of Jezreel.”"
+        },
+        {
+          "verse": 6,
+          "text": "Gomer conceived again and gave birth to a daughter. Then the Lord said to Hosea, “Call her Lo-Ruhamah (which means “not loved”), for I will no longer show love to Israel, that I should at all forgive them."
+        },
+        {
+          "verse": 7,
+          "text": "Yet I will show love to Judah; and I will save them—not by bow, sword or battle, or by horses and horsemen, but I, the Lord their God, will save them.”"
+        },
+        {
+          "verse": 8,
+          "text": "After she had weaned Lo-Ruhamah, Gomer had another son."
+        },
+        {
+          "verse": 9,
+          "text": "Then the Lord said, “Call him Lo-Ammi (which means “not my people”), for you are not my people, and I am not your God."
+        },
+        {
+          "verse": 10,
+          "text": "“Yet the Israelites will be like the sand on the seashore, which cannot be measured or counted. In the place where it was said to them, ‘You are not my people,’ they will be called ‘children of the living God.’"
+        },
+        {
+          "verse": 11,
+          "text": "The people of Judah and the people of Israel will come together; they will appoint one leader and will come up out of the land, for great will be the day of Jezreel."
+        }
+      ],
+      "verse_count": 11,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Hosea’s Wife and Children"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/1-d4d3ca0f02343fe29fe767494ef0704d.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/1-d4d3ca0f02343fe29fe767494ef0704d.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/1-ab224594d0ba102a784614ae9dd26229.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/1-ab224594d0ba102a784614ae9dd26229.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/1-f93f5c2142709e31190a966a47eecd33.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/1-f93f5c2142709e31190a966a47eecd33.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/1-dc341f3550773de4422a16659a508fb3.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/1-dc341f3550773de4422a16659a508fb3.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 2,
+      "chapter_usfm": "HOS.2",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Say of your brothers, ‘My people,’ and of your sisters, ‘My loved one.’"
+        },
+        {
+          "verse": 2,
+          "text": "“Rebuke your mother, rebuke her,for she is not my wife,and I am not her husband.Let her remove the adulterous look from her faceand the unfaithfulness from between her breasts."
+        },
+        {
+          "verse": 3,
+          "text": "Otherwise I will strip her nakedand make her as bare as on the day she was born;I will make her like a desert,turn her into a parched land,and slay her with thirst."
+        },
+        {
+          "verse": 4,
+          "text": "I will not show my love to her children,because they are the children of adultery."
+        },
+        {
+          "verse": 5,
+          "text": "Their mother has been unfaithfuland has conceived them in disgrace.She said, ‘I will go after my lovers,who give me my food and my water,my wool and my linen, my olive oil and my drink.’"
+        },
+        {
+          "verse": 6,
+          "text": "Therefore I will block her path with thornbushes;I will wall her in so that she cannot find her way."
+        },
+        {
+          "verse": 7,
+          "text": "She will chase after her lovers but not catch them;she will look for them but not find them.Then she will say,‘I will go back to my husband as at first,for then I was better off than now.’"
+        },
+        {
+          "verse": 8,
+          "text": "She has not acknowledged that I was the onewho gave her the grain, the new wine and oil,who lavished on her the silver and gold—which they used for Baal."
+        },
+        {
+          "verse": 9,
+          "text": "“Therefore I will take away my grain when it ripens,and my new wine when it is ready.I will take back my wool and my linen,intended to cover her naked body."
+        },
+        {
+          "verse": 10,
+          "text": "So now I will expose her lewdnessbefore the eyes of her lovers;no one will take her out of my hands."
+        },
+        {
+          "verse": 11,
+          "text": "I will stop all her celebrations:her yearly festivals, her New Moons,her Sabbath days—all her appointed festivals."
+        },
+        {
+          "verse": 12,
+          "text": "I will ruin her vines and her fig trees,which she said were her pay from her lovers;I will make them a thicket,and wild animals will devour them."
+        },
+        {
+          "verse": 13,
+          "text": "I will punish her for the daysshe burned incense to the Baals;she decked herself with rings and jewelry,and went after her lovers,but me she forgot,”declares the Lord."
+        },
+        {
+          "verse": 14,
+          "text": "“Therefore I am now going to allure her;I will lead her into the wildernessand speak tenderly to her."
+        },
+        {
+          "verse": 15,
+          "text": "There I will give her back her vineyards,and will make the Valley of Achor a door of hope.There she will respond as in the days of her youth,as in the day she came up out of Egypt."
+        },
+        {
+          "verse": 16,
+          "text": "“In that day,” declares the Lord,“you will call me ‘my husband’;you will no longer call me ‘my master.’"
+        },
+        {
+          "verse": 17,
+          "text": "I will remove the names of the Baals from her lips;no longer will their names be invoked."
+        },
+        {
+          "verse": 18,
+          "text": "In that day I will make a covenant for themwith the beasts of the field, the birds in the skyand the creatures that move along the ground.Bow and sword and battleI will abolish from the land,so that all may lie down in safety."
+        },
+        {
+          "verse": 19,
+          "text": "I will betroth you to me forever;I will betroth you in righteousness and justice,in love and compassion."
+        },
+        {
+          "verse": 20,
+          "text": "I will betroth you in faithfulness,and you will acknowledge the Lord."
+        },
+        {
+          "verse": 21,
+          "text": "“In that day I will respond,”declares the Lord—“I will respond to the skies,and they will respond to the earth;"
+        },
+        {
+          "verse": 22,
+          "text": "and the earth will respond to the grain,the new wine and the olive oil,and they will respond to Jezreel."
+        },
+        {
+          "verse": 23,
+          "text": "I will plant her for myself in the land;I will show my love to the one I called ‘Not my loved one.’I will say to those called ‘Not my people,’ ‘You are my people’;and they will say, ‘You are my God.’ ”"
+        }
+      ],
+      "verse_count": 23,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Israel Punished and Restored"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/2-7c533da35fd007d084aa7a58bb608a41.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/2-7c533da35fd007d084aa7a58bb608a41.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/2-4c414026db2ba4640a0ebfe82c15db7d.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/2-4c414026db2ba4640a0ebfe82c15db7d.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/2-9dafd98af61166e8736a82fc931c037a.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/2-9dafd98af61166e8736a82fc931c037a.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/2-0ca1191aea2f75b0561a2fd97666093f.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/2-0ca1191aea2f75b0561a2fd97666093f.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 3,
+      "chapter_usfm": "HOS.3",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The Lord said to me, “Go, show your love to your wife again, though she is loved by another man and is an adulteress. Love her as the Lord loves the Israelites, though they turn to other gods and love the sacred raisin cakes.”"
+        },
+        {
+          "verse": 2,
+          "text": "So I bought her for fifteen shekels of silver and about a homer and a lethek of barley."
+        },
+        {
+          "verse": 3,
+          "text": "Then I told her, “You are to live with me many days; you must not be a prostitute or be intimate with any man, and I will behave the same way toward you.”"
+        },
+        {
+          "verse": 4,
+          "text": "For the Israelites will live many days without king or prince, without sacrifice or sacred stones, without ephod or household gods."
+        },
+        {
+          "verse": 5,
+          "text": "Afterward the Israelites will return and seek the Lord their God and David their king. They will come trembling to the Lord and to his blessings in the last days."
+        }
+      ],
+      "verse_count": 5,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/3-25d00244f6b4555bccd9f4a60ecc092f.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/3-25d00244f6b4555bccd9f4a60ecc092f.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/3-ce324907de18c6cb8fee0c8ddab3d2a6.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/3-ce324907de18c6cb8fee0c8ddab3d2a6.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/3-f06dad6d4b5b43929a486a6bcbffe6b9.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/3-f06dad6d4b5b43929a486a6bcbffe6b9.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/3-37b954fb18c65bc7bef588236ed894ee.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/3-37b954fb18c65bc7bef588236ed894ee.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 4,
+      "chapter_usfm": "HOS.4",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hear the word of the Lord, you Israelites,because the Lord has a charge to bringagainst you who live in the land:“There is no faithfulness, no love,no acknowledgment of God in the land."
+        },
+        {
+          "verse": 2,
+          "text": "There is only cursing, lying and murder,stealing and adultery;they break all bounds,and bloodshed follows bloodshed."
+        },
+        {
+          "verse": 3,
+          "text": "Because of this the land dries up,and all who live in it waste away;the beasts of the field, the birds in the skyand the fish in the sea are swept away."
+        },
+        {
+          "verse": 4,
+          "text": "“But let no one bring a charge,let no one accuse another,for your people are like thosewho bring charges against a priest."
+        },
+        {
+          "verse": 5,
+          "text": "You stumble day and night,and the prophets stumble with you.So I will destroy your mother—"
+        },
+        {
+          "verse": 6,
+          "text": "my people are destroyed from lack of knowledge.“Because you have rejected knowledge,I also reject you as my priests;because you have ignored the law of your God,I also will ignore your children."
+        },
+        {
+          "verse": 7,
+          "text": "The more priests there were,the more they sinned against me;they exchanged their glorious God for something disgraceful."
+        },
+        {
+          "verse": 8,
+          "text": "They feed on the sins of my peopleand relish their wickedness."
+        },
+        {
+          "verse": 9,
+          "text": "And it will be: Like people, like priests.I will punish both of them for their waysand repay them for their deeds."
+        },
+        {
+          "verse": 10,
+          "text": "“They will eat but not have enough;they will engage in prostitution but not flourish,because they have deserted the Lordto give themselves"
+        },
+        {
+          "verse": 11,
+          "text": "to prostitution;old wine and new winetake away their understanding."
+        },
+        {
+          "verse": 12,
+          "text": "My people consult a wooden idol,and a diviner’s rod speaks to them.A spirit of prostitution leads them astray;they are unfaithful to their God."
+        },
+        {
+          "verse": 13,
+          "text": "They sacrifice on the mountaintopsand burn offerings on the hills,under oak, poplar and terebinth,where the shade is pleasant.Therefore your daughters turn to prostitutionand your daughters-in-law to adultery."
+        },
+        {
+          "verse": 14,
+          "text": "“I will not punish your daughterswhen they turn to prostitution,nor your daughters-in-lawwhen they commit adultery,because the men themselves consort with harlotsand sacrifice with shrine prostitutes—a people without understanding will come to ruin!"
+        },
+        {
+          "verse": 15,
+          "text": "“Though you, Israel, commit adultery,do not let Judah become guilty.“Do not go to Gilgal;do not go up to Beth Aven.And do not swear, ‘As surely as the Lord lives!’"
+        },
+        {
+          "verse": 16,
+          "text": "The Israelites are stubborn,like a stubborn heifer.How then can the Lord pasture themlike lambs in a meadow?"
+        },
+        {
+          "verse": 17,
+          "text": "Ephraim is joined to idols;leave him alone!"
+        },
+        {
+          "verse": 18,
+          "text": "Even when their drinks are gone,they continue their prostitution;their rulers dearly love shameful ways."
+        },
+        {
+          "verse": 19,
+          "text": "A whirlwind will sweep them away,and their sacrifices will bring them shame."
+        }
+      ],
+      "verse_count": 19,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/4-80aafe511532443f4641af9bf83a32da.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/4-80aafe511532443f4641af9bf83a32da.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/4-a3e90e761c39cb515d061f5d239d7528.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/4-a3e90e761c39cb515d061f5d239d7528.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/4-c2cdace4957ec18c522f7765fe60e504.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/4-c2cdace4957ec18c522f7765fe60e504.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/4-68e6f602ffcf55d225b0f0e22686e57c.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/4-68e6f602ffcf55d225b0f0e22686e57c.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 5,
+      "chapter_usfm": "HOS.5",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Hear this, you priests!Pay attention, you Israelites!Listen, royal house!This judgment is against you:You have been a snare at Mizpah,a net spread out on Tabor."
+        },
+        {
+          "verse": 2,
+          "text": "The rebels are knee-deep in slaughter.I will discipline all of them."
+        },
+        {
+          "verse": 3,
+          "text": "I know all about Ephraim;Israel is not hidden from me.Ephraim, you have now turned to prostitution;Israel is corrupt."
+        },
+        {
+          "verse": 4,
+          "text": "“Their deeds do not permit themto return to their God.A spirit of prostitution is in their heart;they do not acknowledge the Lord."
+        },
+        {
+          "verse": 5,
+          "text": "Israel’s arrogance testifies against them;the Israelites, even Ephraim, stumble in their sin;Judah also stumbles with them."
+        },
+        {
+          "verse": 6,
+          "text": "When they go with their flocks and herdsto seek the Lord,they will not find him;he has withdrawn himself from them."
+        },
+        {
+          "verse": 7,
+          "text": "They are unfaithful to the Lord;they give birth to illegitimate children.When they celebrate their New Moon feasts,he will devour their fields."
+        },
+        {
+          "verse": 8,
+          "text": "“Sound the trumpet in Gibeah,the horn in Ramah.Raise the battle cry in Beth Aven;lead on, Benjamin."
+        },
+        {
+          "verse": 9,
+          "text": "Ephraim will be laid wasteon the day of reckoning.Among the tribes of IsraelI proclaim what is certain."
+        },
+        {
+          "verse": 10,
+          "text": "Judah’s leaders are like thosewho move boundary stones.I will pour out my wrath on themlike a flood of water."
+        },
+        {
+          "verse": 11,
+          "text": "Ephraim is oppressed,trampled in judgment,intent on pursuing idols."
+        },
+        {
+          "verse": 12,
+          "text": "I am like a moth to Ephraim,like rot to the people of Judah."
+        },
+        {
+          "verse": 13,
+          "text": "“When Ephraim saw his sickness,and Judah his sores,then Ephraim turned to Assyria,and sent to the great king for help.But he is not able to cure you,not able to heal your sores."
+        },
+        {
+          "verse": 14,
+          "text": "For I will be like a lion to Ephraim,like a great lion to Judah.I will tear them to pieces and go away;I will carry them off, with no one to rescue them."
+        },
+        {
+          "verse": 15,
+          "text": "Then I will return to my lairuntil they have borne their guiltand seek my face—in their miserythey will earnestly seek me.”"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/5-b6011c416f94d4bd05566dc7c15c106e.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/5-b6011c416f94d4bd05566dc7c15c106e.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/5-769d024aa814a20fd50440b52ef46378.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/5-769d024aa814a20fd50440b52ef46378.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/5-777774e88acd3b5cb77a7f9dc5318b2b.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/5-777774e88acd3b5cb77a7f9dc5318b2b.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/5-be6cb7181d61aa2199318e6ef990d961.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/5-be6cb7181d61aa2199318e6ef990d961.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 6,
+      "chapter_usfm": "HOS.6",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Come, let us return to the Lord.He has torn us to piecesbut he will heal us;he has injured usbut he will bind up our wounds."
+        },
+        {
+          "verse": 2,
+          "text": "After two days he will revive us;on the third day he will restore us,that we may live in his presence."
+        },
+        {
+          "verse": 3,
+          "text": "Let us acknowledge the Lord;let us press on to acknowledge him.As surely as the sun rises,he will appear;he will come to us like the winter rains,like the spring rains that water the earth.”"
+        },
+        {
+          "verse": 4,
+          "text": "“What can I do with you, Ephraim?What can I do with you, Judah?Your love is like the morning mist,like the early dew that disappears."
+        },
+        {
+          "verse": 5,
+          "text": "Therefore I cut you in pieces with my prophets,I killed you with the words of my mouth—then my judgments go forth like the sun."
+        },
+        {
+          "verse": 6,
+          "text": "For I desire mercy, not sacrifice,and acknowledgment of God rather than burnt offerings."
+        },
+        {
+          "verse": 7,
+          "text": "As at Adam, they have broken the covenant;they were unfaithful to me there."
+        },
+        {
+          "verse": 8,
+          "text": "Gilead is a city of evildoers,stained with footprints of blood."
+        },
+        {
+          "verse": 9,
+          "text": "As marauders lie in ambush for a victim,so do bands of priests;they murder on the road to Shechem,carrying out their wicked schemes."
+        },
+        {
+          "verse": 10,
+          "text": "I have seen a horrible thing in Israel:There Ephraim is given to prostitution,Israel is defiled."
+        },
+        {
+          "verse": 11,
+          "text": "“Also for you, Judah,a harvest is appointed.“Whenever I would restore the fortunes of my people,"
+        }
+      ],
+      "verse_count": 11,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/6-a12544b294ab387ba120ffd4eb929b3f.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/6-a12544b294ab387ba120ffd4eb929b3f.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/6-e55e53039d1f9878ac7ff4d822997391.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/6-e55e53039d1f9878ac7ff4d822997391.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/6-2baaaa783a6ba143307715e635218cbb.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/6-2baaaa783a6ba143307715e635218cbb.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/6-5defc27b79b370fa7fe5b31ea44d7db6.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/6-5defc27b79b370fa7fe5b31ea44d7db6.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 7,
+      "chapter_usfm": "HOS.7",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "whenever I would heal Israel,the sins of Ephraim are exposedand the crimes of Samaria revealed.They practice deceit,thieves break into houses,bandits rob in the streets;"
+        },
+        {
+          "verse": 2,
+          "text": "but they do not realizethat I remember all their evil deeds.Their sins engulf them;they are always before me."
+        },
+        {
+          "verse": 3,
+          "text": "“They delight the king with their wickedness,the princes with their lies."
+        },
+        {
+          "verse": 4,
+          "text": "They are all adulterers,burning like an ovenwhose fire the baker need not stirfrom the kneading of the dough till it rises."
+        },
+        {
+          "verse": 5,
+          "text": "On the day of the festival of our kingthe princes become inflamed with wine,and he joins hands with the mockers."
+        },
+        {
+          "verse": 6,
+          "text": "Their hearts are like an oven;they approach him with intrigue.Their passion smolders all night;in the morning it blazes like a flaming fire."
+        },
+        {
+          "verse": 7,
+          "text": "All of them are hot as an oven;they devour their rulers.All their kings fall,and none of them calls on me."
+        },
+        {
+          "verse": 8,
+          "text": "“Ephraim mixes with the nations;Ephraim is a flat loaf not turned over."
+        },
+        {
+          "verse": 9,
+          "text": "Foreigners sap his strength,but he does not realize it.His hair is sprinkled with gray,but he does not notice."
+        },
+        {
+          "verse": 10,
+          "text": "Israel’s arrogance testifies against him,but despite all thishe does not return to the Lord his Godor search for him."
+        },
+        {
+          "verse": 11,
+          "text": "“Ephraim is like a dove,easily deceived and senseless—now calling to Egypt,now turning to Assyria."
+        },
+        {
+          "verse": 12,
+          "text": "When they go, I will throw my net over them;I will pull them down like the birds in the sky.When I hear them flocking together,I will catch them."
+        },
+        {
+          "verse": 13,
+          "text": "Woe to them,because they have strayed from me!Destruction to them,because they have rebelled against me!I long to redeem thembut they speak about me falsely."
+        },
+        {
+          "verse": 14,
+          "text": "They do not cry out to me from their heartsbut wail on their beds.They slash themselves, appealing to their godsfor grain and new wine,but they turn away from me."
+        },
+        {
+          "verse": 15,
+          "text": "I trained them and strengthened their arms,but they plot evil against me."
+        },
+        {
+          "verse": 16,
+          "text": "They do not turn to the Most High;they are like a faulty bow.Their leaders will fall by the swordbecause of their insolent words.For this they will be ridiculedin the land of Egypt."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/7-f943bdcec23cb78534a097acc9e91691.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/7-f943bdcec23cb78534a097acc9e91691.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/7-f93c287f4612e7b0f2d06805ba4fa6e2.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/7-f93c287f4612e7b0f2d06805ba4fa6e2.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/7-b5c8ba9aef57b02535d57983a8e47881.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/7-b5c8ba9aef57b02535d57983a8e47881.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/7-f9236999944def1d38a3577f088b329e.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/7-f9236999944def1d38a3577f088b329e.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 8,
+      "chapter_usfm": "HOS.8",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Put the trumpet to your lips!An eagle is over the house of the Lordbecause the people have broken my covenantand rebelled against my law."
+        },
+        {
+          "verse": 2,
+          "text": "Israel cries out to me,‘Our God, we acknowledge you!’"
+        },
+        {
+          "verse": 3,
+          "text": "But Israel has rejected what is good;an enemy will pursue him."
+        },
+        {
+          "verse": 4,
+          "text": "They set up kings without my consent;they choose princes without my approval.With their silver and goldthey make idols for themselvesto their own destruction."
+        },
+        {
+          "verse": 5,
+          "text": "Samaria, throw out your calf-idol!My anger burns against them.How long will they be incapable of purity?"
+        },
+        {
+          "verse": 6,
+          "text": "They are from Israel!This calf—a metalworker has made it;it is not God.It will be broken in pieces,that calf of Samaria."
+        },
+        {
+          "verse": 7,
+          "text": "“They sow the windand reap the whirlwind.The stalk has no head;it will produce no flour.Were it to yield grain,foreigners would swallow it up."
+        },
+        {
+          "verse": 8,
+          "text": "Israel is swallowed up;now she is among the nationslike something no one wants."
+        },
+        {
+          "verse": 9,
+          "text": "For they have gone up to Assyrialike a wild donkey wandering alone.Ephraim has sold herself to lovers."
+        },
+        {
+          "verse": 10,
+          "text": "Although they have sold themselves among the nations,I will now gather them together.They will begin to waste awayunder the oppression of the mighty king."
+        },
+        {
+          "verse": 11,
+          "text": "“Though Ephraim built many altars for sin offerings,these have become altars for sinning."
+        },
+        {
+          "verse": 12,
+          "text": "I wrote for them the many things of my law,but they regarded them as something foreign."
+        },
+        {
+          "verse": 13,
+          "text": "Though they offer sacrifices as gifts to me,and though they eat the meat,the Lord is not pleased with them.Now he will remember their wickednessand punish their sins:They will return to Egypt."
+        },
+        {
+          "verse": 14,
+          "text": "Israel has forgotten their Makerand built palaces;Judah has fortified many towns.But I will send fire on their citiesthat will consume their fortresses.”"
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/8-a362d4e8c67f14a41a1c2c3fd42f55fb.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/8-a362d4e8c67f14a41a1c2c3fd42f55fb.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/8-f7e8e369401f3baee098e0c8ff04c955.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/8-f7e8e369401f3baee098e0c8ff04c955.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/8-925638da7e04bd655c33de7c0dc50ac8.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/8-925638da7e04bd655c33de7c0dc50ac8.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/8-69cdc757426cc38d308e2cc277c240e9.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/8-69cdc757426cc38d308e2cc277c240e9.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 9,
+      "chapter_usfm": "HOS.9",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Do not rejoice, Israel;do not be jubilant like the other nations.For you have been unfaithful to your God;you love the wages of a prostituteat every threshing floor."
+        },
+        {
+          "verse": 2,
+          "text": "Threshing floors and winepresses will not feed the people;the new wine will fail them."
+        },
+        {
+          "verse": 3,
+          "text": "They will not remain in the Lord’s land;Ephraim will return to Egyptand eat unclean food in Assyria."
+        },
+        {
+          "verse": 4,
+          "text": "They will not pour out wine offerings to the Lord,nor will their sacrifices please him.Such sacrifices will be to them like the bread of mourners;all who eat them will be unclean.This food will be for themselves;it will not come into the temple of the Lord."
+        },
+        {
+          "verse": 5,
+          "text": "What will you do on the day of your appointed festivals,on the feast days of the Lord?"
+        },
+        {
+          "verse": 6,
+          "text": "Even if they escape from destruction,Egypt will gather them,and Memphis will bury them.Their treasures of silver will be taken over by briers,and thorns will overrun their tents."
+        },
+        {
+          "verse": 7,
+          "text": "The days of punishment are coming,the days of reckoning are at hand.Let Israel know this.Because your sins are so manyand your hostility so great,the prophet is considered a fool,the inspired person a maniac."
+        },
+        {
+          "verse": 8,
+          "text": "The prophet, along with my God,is the watchman over Ephraim,yet snares await him on all his paths,and hostility in the house of his God."
+        },
+        {
+          "verse": 9,
+          "text": "They have sunk deep into corruption,as in the days of Gibeah.God will remember their wickednessand punish them for their sins."
+        },
+        {
+          "verse": 10,
+          "text": "“When I found Israel,it was like finding grapes in the desert;when I saw your ancestors,it was like seeing the early fruit on the fig tree.But when they came to Baal Peor,they consecrated themselves to that shameful idoland became as vile as the thing they loved."
+        },
+        {
+          "verse": 11,
+          "text": "Ephraim’s glory will fly away like a bird—no birth, no pregnancy, no conception."
+        },
+        {
+          "verse": 12,
+          "text": "Even if they rear children,I will bereave them of every one.Woe to themwhen I turn away from them!"
+        },
+        {
+          "verse": 13,
+          "text": "I have seen Ephraim, like Tyre,planted in a pleasant place.But Ephraim will bring outtheir children to the slayer.”"
+        },
+        {
+          "verse": 14,
+          "text": "Give them, Lord—what will you give them?Give them wombs that miscarryand breasts that are dry."
+        },
+        {
+          "verse": 15,
+          "text": "“Because of all their wickedness in Gilgal,I hated them there.Because of their sinful deeds,I will drive them out of my house.I will no longer love them;all their leaders are rebellious."
+        },
+        {
+          "verse": 16,
+          "text": "Ephraim is blighted,their root is withered,they yield no fruit.Even if they bear children,I will slay their cherished offspring.”"
+        },
+        {
+          "verse": 17,
+          "text": "My God will reject thembecause they have not obeyed him;they will be wanderers among the nations."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/9-f121783e9ae2b4e1dacbe4d7baefe206.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/9-f121783e9ae2b4e1dacbe4d7baefe206.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/9-2f7d64d2a5c154eea3f3661e998a6eed.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/9-2f7d64d2a5c154eea3f3661e998a6eed.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/9-09db1645439d4f2e0df327bd77abebb0.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/9-09db1645439d4f2e0df327bd77abebb0.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/9-6b33787fd3e6203549f4ac8064b68aa7.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/9-6b33787fd3e6203549f4ac8064b68aa7.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 10,
+      "chapter_usfm": "HOS.10",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Israel was a spreading vine;he brought forth fruit for himself.As his fruit increased,he built more altars;as his land prospered,he adorned his sacred stones."
+        },
+        {
+          "verse": 2,
+          "text": "Their heart is deceitful,and now they must bear their guilt.The Lord will demolish their altarsand destroy their sacred stones."
+        },
+        {
+          "verse": 3,
+          "text": "Then they will say, “We have no kingbecause we did not revere the Lord.But even if we had a king,what could he do for us?”"
+        },
+        {
+          "verse": 4,
+          "text": "They make many promises,take false oathsand make agreements;therefore lawsuits spring uplike poisonous weeds in a plowed field."
+        },
+        {
+          "verse": 5,
+          "text": "The people who live in Samaria fearfor the calf-idol of Beth Aven.Its people will mourn over it,and so will its idolatrous priests,those who had rejoiced over its splendor,because it is taken from them into exile."
+        },
+        {
+          "verse": 6,
+          "text": "It will be carried to Assyriaas tribute for the great king.Ephraim will be disgraced;Israel will be ashamed of its foreign alliances."
+        },
+        {
+          "verse": 7,
+          "text": "Samaria’s king will be destroyed,swept away like a twig on the surface of the waters."
+        },
+        {
+          "verse": 8,
+          "text": "The high places of wickedness will be destroyed—it is the sin of Israel.Thorns and thistles will grow upand cover their altars.Then they will say to the mountains, “Cover us!”and to the hills, “Fall on us!”"
+        },
+        {
+          "verse": 9,
+          "text": "“Since the days of Gibeah, you have sinned, Israel,and there you have remained.Will not war again overtakethe evildoers in Gibeah?"
+        },
+        {
+          "verse": 10,
+          "text": "When I please, I will punish them;nations will be gathered against themto put them in bonds for their double sin."
+        },
+        {
+          "verse": 11,
+          "text": "Ephraim is a trained heiferthat loves to thresh;so I will put a yokeon her fair neck.I will drive Ephraim,Judah must plow,and Jacob must break up the ground."
+        },
+        {
+          "verse": 12,
+          "text": "Sow righteousness for yourselves,reap the fruit of unfailing love,and break up your unplowed ground;for it is time to seek the Lord,until he comesand showers his righteousness on you."
+        },
+        {
+          "verse": 13,
+          "text": "But you have planted wickedness,you have reaped evil,you have eaten the fruit of deception.Because you have depended on your own strengthand on your many warriors,"
+        },
+        {
+          "verse": 14,
+          "text": "the roar of battle will rise against your people,so that all your fortresses will be devastated—as Shalman devastated Beth Arbel on the day of battle,when mothers were dashed to the ground with their children."
+        },
+        {
+          "verse": 15,
+          "text": "So will it happen to you, Bethel,because your wickedness is great.When that day dawns,the king of Israel will be completely destroyed."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/10-a18a65a4d0b00e07e7b6c9f1217246e3.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/10-a18a65a4d0b00e07e7b6c9f1217246e3.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/10-d0b44d4202bab5ebc1ce14dfb8d46e7f.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/10-d0b44d4202bab5ebc1ce14dfb8d46e7f.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/10-eb91c7c5300ef33a644db5a8d6fd613e.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/10-eb91c7c5300ef33a644db5a8d6fd613e.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/10-fdf856cbf7d42b3b48b16384ca6aa407.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/10-fdf856cbf7d42b3b48b16384ca6aa407.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 11,
+      "chapter_usfm": "HOS.11",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“When Israel was a child, I loved him,and out of Egypt I called my son."
+        },
+        {
+          "verse": 2,
+          "text": "But the more they were called,the more they went away from me.They sacrificed to the Baalsand they burned incense to images."
+        },
+        {
+          "verse": 3,
+          "text": "It was I who taught Ephraim to walk,taking them by the arms;but they did not realizeit was I who healed them."
+        },
+        {
+          "verse": 4,
+          "text": "I led them with cords of human kindness,with ties of love.To them I was like one who liftsa little child to the cheek,and I bent down to feed them."
+        },
+        {
+          "verse": 5,
+          "text": "“Will they not return to Egyptand will not Assyria rule over thembecause they refuse to repent?"
+        },
+        {
+          "verse": 6,
+          "text": "A sword will flash in their cities;it will devour their false prophetsand put an end to their plans."
+        },
+        {
+          "verse": 7,
+          "text": "My people are determined to turn from me.Even though they call me God Most High,I will by no means exalt them."
+        },
+        {
+          "verse": 8,
+          "text": "“How can I give you up, Ephraim?How can I hand you over, Israel?How can I treat you like Admah?How can I make you like Zeboyim?My heart is changed within me;all my compassion is aroused."
+        },
+        {
+          "verse": 9,
+          "text": "I will not carry out my fierce anger,nor will I devastate Ephraim again.For I am God, and not a man—the Holy One among you.I will not come against their cities."
+        },
+        {
+          "verse": 10,
+          "text": "They will follow the Lord;he will roar like a lion.When he roars,his children will come trembling from the west."
+        },
+        {
+          "verse": 11,
+          "text": "They will come from Egypt,trembling like sparrows,from Assyria, fluttering like doves.I will settle them in their homes,”declares the Lord."
+        },
+        {
+          "verse": 12,
+          "text": "Ephraim has surrounded me with lies,Israel with deceit.And Judah is unruly against God,even against the faithful Holy One."
+        }
+      ],
+      "verse_count": 12,
+      "headings": [
+        {
+          "before_verse": 11,
+          "text": "Israel’s Sin"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/11-017c57514b247fa37fd6cdaa18cf3640.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/11-017c57514b247fa37fd6cdaa18cf3640.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/11-3148abb5c8f2dae618f86d840b5d76c3.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/11-3148abb5c8f2dae618f86d840b5d76c3.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/11-302e09630aed7b82808ef9fbd1e94a90.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/11-302e09630aed7b82808ef9fbd1e94a90.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/11-235e9666e4b9de386b1ef24bf7381fed.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/11-235e9666e4b9de386b1ef24bf7381fed.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 12,
+      "chapter_usfm": "HOS.12",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Ephraim feeds on the wind;he pursues the east wind all dayand multiplies lies and violence.He makes a treaty with Assyriaand sends olive oil to Egypt."
+        },
+        {
+          "verse": 2,
+          "text": "The Lord has a charge to bring against Judah;he will punish Jacob according to his waysand repay him according to his deeds."
+        },
+        {
+          "verse": 3,
+          "text": "In the womb he grasped his brother’s heel;as a man he struggled with God."
+        },
+        {
+          "verse": 4,
+          "text": "He struggled with the angel and overcame him;he wept and begged for his favor.He found him at Betheland talked with him there—"
+        },
+        {
+          "verse": 5,
+          "text": "the Lord God Almighty,the Lord is his name!"
+        },
+        {
+          "verse": 6,
+          "text": "But you must return to your God;maintain love and justice,and wait for your God always."
+        },
+        {
+          "verse": 7,
+          "text": "The merchant uses dishonest scalesand loves to defraud."
+        },
+        {
+          "verse": 8,
+          "text": "Ephraim boasts,“I am very rich; I have become wealthy.With all my wealth they will not find in meany iniquity or sin.”"
+        },
+        {
+          "verse": 9,
+          "text": "“I have been the Lord your Godever since you came out of Egypt;I will make you live in tents again,as in the days of your appointed festivals."
+        },
+        {
+          "verse": 10,
+          "text": "I spoke to the prophets,gave them many visionsand told parables through them.”"
+        },
+        {
+          "verse": 11,
+          "text": "Is Gilead wicked?Its people are worthless!Do they sacrifice bulls in Gilgal?Their altars will be like piles of stoneson a plowed field."
+        },
+        {
+          "verse": 12,
+          "text": "Jacob fled to the country of Aram;Israel served to get a wife,and to pay for her he tended sheep."
+        },
+        {
+          "verse": 13,
+          "text": "The Lord used a prophet to bring Israel up from Egypt,by a prophet he cared for him."
+        },
+        {
+          "verse": 14,
+          "text": "But Ephraim has aroused his bitter anger;his Lord will leave on him the guilt of his bloodshedand will repay him for his contempt."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/12-e7bdf50f471be0ef75610001ef41a1d6.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/12-e7bdf50f471be0ef75610001ef41a1d6.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/12-69628ff3cbeacf1ee9561259e249431e.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/12-69628ff3cbeacf1ee9561259e249431e.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/12-7a23c0ea4ccff85b84b2ed916b535b88.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/12-7a23c0ea4ccff85b84b2ed916b535b88.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/12-b97a272f867a13dcd88f1f3032528d9a.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/12-b97a272f867a13dcd88f1f3032528d9a.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 13,
+      "chapter_usfm": "HOS.13",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "When Ephraim spoke, people trembled;he was exalted in Israel.But he became guilty of Baal worship and died."
+        },
+        {
+          "verse": 2,
+          "text": "Now they sin more and more;they make idols for themselves from their silver,cleverly fashioned images,all of them the work of craftsmen.It is said of these people,“They offer human sacrifices!They kiss calf-idols!”"
+        },
+        {
+          "verse": 3,
+          "text": "Therefore they will be like the morning mist,like the early dew that disappears,like chaff swirling from a threshing floor,like smoke escaping through a window."
+        },
+        {
+          "verse": 4,
+          "text": "“But I have been the Lord your Godever since you came out of Egypt.You shall acknowledge no God but me,no Savior except me."
+        },
+        {
+          "verse": 5,
+          "text": "I cared for you in the wilderness,in the land of burning heat."
+        },
+        {
+          "verse": 6,
+          "text": "When I fed them, they were satisfied;when they were satisfied, they became proud;then they forgot me."
+        },
+        {
+          "verse": 7,
+          "text": "So I will be like a lion to them,like a leopard I will lurk by the path."
+        },
+        {
+          "verse": 8,
+          "text": "Like a bear robbed of her cubs,I will attack them and rip them open;like a lion I will devour them—a wild animal will tear them apart."
+        },
+        {
+          "verse": 9,
+          "text": "“You are destroyed, Israel,because you are against me, against your helper."
+        },
+        {
+          "verse": 10,
+          "text": "Where is your king, that he may save you?Where are your rulers in all your towns,of whom you said,‘Give me a king and princes’?"
+        },
+        {
+          "verse": 11,
+          "text": "So in my anger I gave you a king,and in my wrath I took him away."
+        },
+        {
+          "verse": 12,
+          "text": "The guilt of Ephraim is stored up,his sins are kept on record."
+        },
+        {
+          "verse": 13,
+          "text": "Pains as of a woman in childbirth come to him,but he is a child without wisdom;when the time arrives,he doesn’t have the sense to come out of the womb."
+        },
+        {
+          "verse": 14,
+          "text": "“I will deliver this people from the power of the grave;I will redeem them from death.Where, O death, are your plagues?Where, O grave, is your destruction?“I will have no compassion,"
+        },
+        {
+          "verse": 15,
+          "text": "even though he thrives among his brothers.An east wind from the Lord will come,blowing in from the desert;his spring will failand his well dry up.His storehouse will be plunderedof all its treasures."
+        },
+        {
+          "verse": 16,
+          "text": "The people of Samaria must bear their guilt,because they have rebelled against their God.They will fall by the sword;their little ones will be dashed to the ground,their pregnant women ripped open.”"
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Lord"
+        },
+        {
+          "before_verse": 1,
+          "text": "’s Anger Against Israel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/13-896965a8cb1942c9a405b301adef3f32.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/13-896965a8cb1942c9a405b301adef3f32.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/13-4524d8bc0f8548eb2d6f0cc49a91029c.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/13-4524d8bc0f8548eb2d6f0cc49a91029c.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/13-e11d35decba3f5c6fab926145561e094.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/13-e11d35decba3f5c6fab926145561e094.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/13-bbc2d6d431faf530ca7558ca3c7b01ce.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/13-bbc2d6d431faf530ca7558ca3c7b01ce.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HOS",
+      "chapter": 14,
+      "chapter_usfm": "HOS.14",
+      "version_id": 111,
+      "version_abbr": "NIV",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Return, Israel, to the Lord your God.Your sins have been your downfall!"
+        },
+        {
+          "verse": 2,
+          "text": "Take words with youand return to the Lord.Say to him:“Forgive all our sinsand receive us graciously,that we may offer the fruit of our lips."
+        },
+        {
+          "verse": 3,
+          "text": "Assyria cannot save us;we will not mount warhorses.We will never again say ‘Our gods’to what our own hands have made,for in you the fatherless find compassion.”"
+        },
+        {
+          "verse": 4,
+          "text": "“I will heal their waywardnessand love them freely,for my anger has turned away from them."
+        },
+        {
+          "verse": 5,
+          "text": "I will be like the dew to Israel;he will blossom like a lily.Like a cedar of Lebanonhe will send down his roots;"
+        },
+        {
+          "verse": 6,
+          "text": "his young shoots will grow.His splendor will be like an olive tree,his fragrance like a cedar of Lebanon."
+        },
+        {
+          "verse": 7,
+          "text": "People will dwell again in his shade;they will flourish like the grain,they will blossom like the vine—Israel’s fame will be like the wine of Lebanon."
+        },
+        {
+          "verse": 8,
+          "text": "Ephraim, what more have I to do with idols?I will answer him and care for him.I am like a flourishing juniper;your fruitfulness comes from me.”"
+        },
+        {
+          "verse": 9,
+          "text": "Who is wise? Let them realize these things.Who is discerning? Let them understand.The ways of the Lord are right;the righteous walk in them,but the rebellious stumble in them."
+        }
+      ],
+      "verse_count": 9,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 3,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/3/32k/HOS/14-7844b0bdcb61ce75e85dabb1651f5a57.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/3/m4a/32k/HOS/14-7844b0bdcb61ce75e85dabb1651f5a57.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 670,
+          "title": "New International Version™  (Anglicised), Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/670/32k/HOS/14-b88fac122a4ec48c70af5747935ef46d.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/670/m4a/32k/HOS/14-b88fac122a4ec48c70af5747935ef46d.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 2319,
+          "title": "Holy Bible, New International Version™ (Anglicised), South Asian Audio Edition",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2319/32k/HOS/14-0a96dc3a702db220613dc6b45b334133.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/2319/m4a/32k/HOS/14-0a96dc3a702db220613dc6b45b334133.m3u8?version_id=111"
+        },
+        {
+          "audio_version_id": 706,
+          "title": "The Listener’s Bible®: NIV Edition",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/706/32k/HOS/14-f8bcd540434588a577c6b03101d31ac1.mp3?version_id=111",
+          "hls_url": "https://audio-hls.youversionapi.com/706/m4a/32k/HOS/14-f8bcd540434588a577c6b03101d31ac1.m3u8?version_id=111"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

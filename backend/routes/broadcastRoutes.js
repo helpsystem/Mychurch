@@ -62,7 +62,7 @@ const upload = multer({
 // ==================== CONFIG (Templates) API ====================
 
 // GET /api/broadcast/configs - List all saved configs/templates
-router.get('/configs', async (req, res) => {
+router.get('/configs', authenticateToken, async (req, res) => {
   try {
     const files = await fs.readdir(CONFIGS_DIR);
     const configs = [];
@@ -92,7 +92,7 @@ router.get('/configs', async (req, res) => {
 });
 
 // GET /api/broadcast/configs/:id - Load a specific config
-router.get('/configs/:id', async (req, res) => {
+router.get('/configs/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const filepath = path.join(CONFIGS_DIR, `${id}.json`);
@@ -146,7 +146,7 @@ router.delete('/configs/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', '
 // ==================== PRESENTATIONS (Slides) API ====================
 
 // GET /api/broadcast/presentations - List all saved presentations
-router.get('/presentations', async (req, res) => {
+router.get('/presentations', authenticateToken, async (req, res) => {
   try {
     const files = await fs.readdir(PRESENTATIONS_DIR);
     const presentations = [];
@@ -177,7 +177,7 @@ router.get('/presentations', async (req, res) => {
 });
 
 // GET /api/broadcast/presentations/:id - Load a specific presentation
-router.get('/presentations/:id', async (req, res) => {
+router.get('/presentations/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const filepath = path.join(PRESENTATIONS_DIR, `${id}.json`);
@@ -256,7 +256,7 @@ router.post('/upload', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER
 });
 
 // GET /api/broadcast/uploads - List all uploaded files
-router.get('/uploads', async (req, res) => {
+router.get('/uploads', authenticateToken, async (req, res) => {
   try {
     const files = await fs.readdir(UPLOADS_DIR);
     const uploads = [];

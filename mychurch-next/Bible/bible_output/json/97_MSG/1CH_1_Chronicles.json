@@ -1,0 +1,1164 @@
+{
+  "book_id": "1CH",
+  "book_name_en": "1 Chronicles",
+  "book_name_fa": "اول تواریخ",
+  "testament": "OT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 29,
+  "total_verses": 98,
+  "chapters": [
+    {
+      "book_id": "1CH",
+      "chapter": 1,
+      "chapter_usfm": "1CH.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Japheth had Gomer, Magog, Madai, Javan, Tubal, Meshech, and Tiras."
+        },
+        {
+          "verse": 6,
+          "text": "Gomer had Ashkenaz, Riphath, and Togarmah."
+        },
+        {
+          "verse": 7,
+          "text": "Javan had Elisha, Tarshish, Kittim, and Rodanim."
+        },
+        {
+          "verse": 8,
+          "text": "Ham had Cush, Mizraim, Put, and Canaan."
+        },
+        {
+          "verse": 9,
+          "text": "Cush had Seba, Havilah, Sabta, Raamah, and Sabteca.Raamah had Sheba and Dedan."
+        },
+        {
+          "verse": 10,
+          "text": "Cush had Nimrod, the first great hero on earth. Mizraim was ancestor to the Ludim, the Anamim, the Lehabim, the Naphtuhim, the Pathrusim, the Casluhim, and the Caphtorim from whom the Philistines descended. Canaan had Sidon (his firstborn) and Heth, and was ancestor to the Jebusites, the Amorites, the Girgashites, the Hivites, the Arkites, the Sinites, the Arvadites, the Zemarites, and the Hamathites."
+        },
+        {
+          "verse": 17,
+          "text": "Shem had Elam, Asshur, Arphaxad, Lud, Aram, Uz, Hul, Gether, and Meshech. Arphaxad had Shelah and Shelah had Eber. Eber had two sons: Peleg (Division) because in his time the earth was divided up; his brother was Joktan. Joktan had Almodad, Sheleph, Hazarmaveth, Jerah, Hadoram, Uzal, Diklah, Ebal, Abimael, Sheba, Ophir, Havilah, and Jobab—all sons of Joktan. The three main branches in summary: Shem, Arphaxad, Shelah, Eber, Peleg, Reu, Serug, Nahor, Terah, and Abram (Abraham). And Abraham had Isaac and Ishmael. Abraham’s family tree developed along these lines: Ishmael had Nebaioth (his firstborn), then Kedar, Adbeel, Mibsam, Mishma, Dumah, Massa, Hadad, Tema, Jetur, Naphish, and Kedemah—the Ishmael branch. Keturah, Abraham’s concubine, gave birth to Zimran, Jokshan, Medan, Midian, Ishbak, and Shuah. Then Jokshan had Sheba and Dedan. And Midian had Ephah, Epher, Hanoch, Abida, and Eldaah. These made up the Keturah branch. Abraham had Isaac, and Isaac had Esau and Israel (Jacob). Esau had Eliphaz, Reuel, Jeush, Jalam, and Korah. Eliphaz had Teman, Omar, Zepho, Gatam, Kenaz, Timna, and Amalek. And Reuel had Nahath, Zerah, Shammah, and Mizzah. Seir then had Lotan, Shobal, Zibeon, Anah, Dishon, Ezer, and Dishan. Lotan had Hori and Homam. Timna was Lotan’s sister. Shobal had Alian, Manahath, Ebal, Shepho, and Onam. Zibeon had Aiah and Anah. Anah had Dishon. Dishon had Hemdan, Eshban, Ithran, and Keran. Ezer had Bilhan, Zaavan, and Akan. And Dishan had Uz and Aran. A list of the kings who ruled in the country of Edom before Israel had a king:Bela son of Beor; his city was Dinhabah.Bela died; Jobab son of Zerah from Bozrah was the next king.Jobab died; Husham from the country of the Temanites was the next king.Husham died; Hadad son of Bedad, who defeated Midian in the country of Moab, was the next king; his city was Avith.Hadad died; Samlah from Masrekah was the next king.Samlah died; Shaul from Rehoboth-by-the-River was the next king.Shaul died; Baal-Hanan son of Acbor was the next king.Baal-Hanan died; Hadad was the next king; his city was Pau and his wife was Mehetabel daughter of Matred, the daughter of Me-Zahab.Last of all Hadad died. The chieftains of Edom after that were Chief Timna, Chief Alvah, Chief Jetheth, Chief Oholibamah, Chief Elah, Chief Pinon, Chief Kenaz, Chief Teman, Chief Mibzar, Chief Magdiel, and Chief Iram. These were the chieftains of Edom."
+        }
+      ],
+      "verse_count": 7,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Japheth Branch"
+        },
+        {
+          "before_verse": 7,
+          "text": "The Ham Branch"
+        },
+        {
+          "before_verse": 10,
+          "text": "The Shem Branch"
+        },
+        {
+          "before_verse": 17,
+          "text": "The Family of Abraham"
+        },
+        {
+          "before_verse": 17,
+          "text": "The Edomite King List"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/1-9be143339abc2abbf9e044fbbdca5129.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/1-9be143339abc2abbf9e044fbbdca5129.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 2,
+      "chapter_usfm": "1CH.2",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 27,
+          "text": "The sons of Ram, Jerahmeel’s firstborn: Maaz, Jamin, and Eker. The sons of Onam: Shammai and Jada.The sons of Shammai: Nadab and Abishur. Abishur’s wife was Abihail; she gave birth to Ahban and Molid."
+        },
+        {
+          "verse": 30,
+          "text": "Nadab had Seled and Appaim. Seled died leaving no sons."
+        },
+        {
+          "verse": 31,
+          "text": "Appaim had Ishi; Ishi had Sheshan; and Sheshan had Ahlai."
+        },
+        {
+          "verse": 32,
+          "text": "Jada, Shammai’s brother, had Jether and Jonathan. Jether died leaving no sons."
+        },
+        {
+          "verse": 33,
+          "text": "Jonathan had Peleth and Zaza.This is the family tree of the sons of Jerahmeel.* * * Sheshan had no sons, only daughters. But Sheshan had an Egyptian servant, Jarha. Sheshan married his daughter to Jarha and she gave birth to Attai. Attai had Nathan, Nathan had Zabad, Zabad had Ephlal, Ephlal had Obed, Obed had Jehu, Jehu had Azariah, Azariah had Helez, Helez had Eleasah, Eleasah had Sismai, Sismai had Shallum, Shallum had Jekamiah, and Jekamiah had Elishama.* * *"
+        },
+        {
+          "verse": 42,
+          "text": "Jerahmeel’s brother Caleb had a son, his firstborn, named Mesha; Mesha had Ziph; Ziph’s son was Mareshah the father of Hebron. The sons of Hebron: Korah, Tappuah, Rekem, and Shema. Shema had Raham the father of Jorkeam; Rekem had Shammai."
+        },
+        {
+          "verse": 45,
+          "text": "Shammai’s son was Maon and Maon was the father of Beth Zur."
+        },
+        {
+          "verse": 46,
+          "text": "Caleb’s concubine Ephah gave birth to Haran, Moza, and Gazez; Haran had Gazez."
+        },
+        {
+          "verse": 47,
+          "text": "The sons of Jahdai: Regem, Jotham, Geshan, Pelet, Ephah, and Shaaph. Another concubine of Caleb, Maacah, gave birth to Sheber and Tirhanah. She also bore Shaaph the father of Madmannah and Sheva the father of Macbenah and Gibea. Caleb’s daughter was Acsah. These made up the Caleb branch of the family tree. The sons of Hur, Ephrathah’s firstborn: Shobal who had Kiriath Jearim, Salma who had Bethlehem, and Hareph father of Beth Gader. The family of Shobal, father of Kiriath Jearim: Haroeh, half of the population of Manahath, the families of Kiriath Jearim, the Ithrites, the Puthites, the Shumathites, and the Mishraites. The Zorathites and Eshtaolites also came from this line. The sons of Salma: Bethlehem, the Netophathites, Atroth Beth Joab, half of the Manahathites, the Zorites, and the families of Sopherim who lived at Jabez—the Tirathites, the Shimeathites, and the Sucathites. They made up the Kenites who came from Hammath the father of the house of Recab."
+        }
+      ],
+      "verse_count": 9,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Family of Caleb"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Family of Jerahmeel"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/2-6fccc9593310403a1c1ac6c29b6a9268.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/2-6fccc9593310403a1c1ac6c29b6a9268.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 3,
+      "chapter_usfm": "1CH.3",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 15,
+          "text": "Josiah’s firstborn was Johanan, followed by Jehoiakim, then Zedekiah, and finally Shallum."
+        },
+        {
+          "verse": 16,
+          "text": "Jehoiakim’s sons were Jeconiah (Jehoiachin) and Zedekiah. The sons of Jeconiah born while he was captive in Babylon: Shealtiel, Malkiram, Pedaiah, Shenazzar, Jekamiah, Hoshama, and Nedabiah. Pedaiah had Zerubbabel and Shimei; Zerubbabel had Meshullam and Hananiah. Shelomith was their sister. And then five more—Hashubah, Ohel, Berekiah, Hasadiah, and Jushab-Hesed."
+        },
+        {
+          "verse": 21,
+          "text": "Hananiah’s sons were Pelatiah and Jeshaiah. There were also sons of Rephaiah, sons of Arnan, sons of Obadiah, and sons of Shecaniah."
+        },
+        {
+          "verse": 22,
+          "text": "Shecaniah had Shemaiah who in his turn had Hattush, Igal, Bariah, Neariah, and Shaphat—six of them."
+        },
+        {
+          "verse": 23,
+          "text": "Neariah had three sons: Elioenai, Hizkiah, and Azrikam."
+        },
+        {
+          "verse": 24,
+          "text": "And Elioenai had seven sons: Hodaviah, Eliashib, Pelaiah, Akkub, Johanan, Delaiah, and Anani."
+        }
+      ],
+      "verse_count": 6,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/3-e36f9c2ca54e25dc1527b3d229116d5b.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/3-e36f9c2ca54e25dc1527b3d229116d5b.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 4,
+      "chapter_usfm": "1CH.4",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 13,
+          "text": "The sons of Kenaz: Othniel and Seraiah.The sons of Othniel: Hathath and Meonothai."
+        },
+        {
+          "verse": 14,
+          "text": "Meonothai had Ophrah; Seraiah had Joab, the founder of Ge Harashim (Colony of Artisans)."
+        },
+        {
+          "verse": 15,
+          "text": "The sons of Caleb son of Jephunneh: Iru, Elah, and Naam.The son of Elah: Kenaz."
+        },
+        {
+          "verse": 16,
+          "text": "The sons of Jehallelel: Ziph, Ziphah, Tiria, and Asarel. The sons of Ezrah: Jether, Mered, Epher, and Jalon. One of Mered’s wives, Pharaoh’s daughter Bithiah, gave birth to Miriam, Shammai, and Ishbah the father of Eshtemoa. His Judean wife gave birth to Jered father of Gedor, Heber father of Soco, and Jekuthiel father of Zanoah."
+        },
+        {
+          "verse": 19,
+          "text": "The sons of Hodiah’s wife, Naham’s sister: the father of Keilah the Garmite, and Eshtemoa the Maacathite."
+        },
+        {
+          "verse": 20,
+          "text": "The sons of Shimon: Amnon, Rinnah, Ben-Hanan, and Tilon.The sons of Ishi: Zoheth and Ben-Zoheth. The sons of Shelah son of Judah: Er the father of Lecah, Laadah the father of Mareshah and the family of linen workers at Beth Ashbea, Jokim, the men of Cozeba, and Joash and Saraph, who ruled in Moab and Jashubi Lehem. (These records are from very old traditions.) They were the potters who lived at Netaim and Gederah, resident potters who worked for the king. The Simeon family tree: Nemuel, Jamin, Jarib, Zerah, and Shaul; Shaul had Shallum, Shallum had Mibsam, and Mibsam had Mishma."
+        },
+        {
+          "verse": 26,
+          "text": "The sons of Mishma: Hammuel had Zaccur and Zaccur had Shimei. Shimei had sixteen sons and six daughters, but his brothers were not nearly as prolific and never became a large family like Judah. They lived in Beersheba, Moladah, Hazar Shual, Bilhah, Ezem, Tolad, Bethuel, Hormah, Ziklag, Beth Marcaboth, Hazar Susim, Beth Biri, and Shaaraim. They lived in these towns until David became king. Other settlements in the vicinity were the five towns of Etam, Ain, Rimmon, Token, and Ashan, and all the villages around these towns as far as Baalath. These were their settlements. And they kept good family records. Meshobab; Jamlech; Joshah the son of Amaziah; Joel; Jehu the son of Joshibiah, the son of Seraiah, the son of Asiel; Elioenai; Jaakobah; Jeshohaiah; Asaiah; Adiel; Jesimiel; Benaiah; and Ziza the son of Shiphi, the son of Allon, the son of Jedaiah, the son of Shimri, the son of Shemaiah—all these were the leaders in their families. They prospered and increased in numbers so that they had to go as far as Gedor (Gerar) to the east of the valley looking for pasture for their flocks. And they found it—lush pasture, lots of elbow room, peaceful and quiet. Some Hamites had lived there in former times. But the men in these family trees came when Hezekiah was king of Judah and attacked the Hamites, tearing down their tents and houses. There was nothing left of them, as you can see today. Then they moved in and took over because of the great pastureland. Five hundred of these Simeonites went on and invaded the hill country of Seir, led by Pelatiah, Neariah, Rephaiah, and Uzziel, the sons of Ishi. They killed all the escaped Amalekites who were still around. And they still live there."
+        }
+      ],
+      "verse_count": 7,
+      "headings": [
+        {
+          "before_verse": 20,
+          "text": "The Family of Simeon"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/4-9617f39ba02dd5ab9ae9d1775967b4e4.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/4-9617f39ba02dd5ab9ae9d1775967b4e4.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 5,
+      "chapter_usfm": "1CH.5",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "The sons of Reuben, firstborn of Israel: Hanoch, Pallu, Hezron, and Carmi. The descendants of Joel: Shemaiah his son, Gog his son, Shimei his son, Micah his son, Reaiah his son, Baal his son, and Beerah his son, whom Tiglath-Pileser king of Assyria took into exile. Beerah was the prince of the Reubenites. Beerah’s brothers are listed in the family tree by families: first Jeiel, followed by Zechariah: then Bela son of Azaz, the son of Shema, the son of Joel. Joel lived in the area from Aroer to Nebo and Baal Meon. His family occupied the land up to the edge of the desert that goes all the way to the Euphrates River, since their growing herds of livestock spilled out of Gilead. During Saul’s reign they fought and defeated the Hagrites; they then took over their tents and lived in them on the eastern frontier of Gilead.* * * The family of Gad were their neighbors in Bashan, as far as Salecah: Joel was the chief, Shapham the second-in-command, and then Janai, the judge in Bashan. Their brothers, by families, were Michael, Meshullam, Sheba, Jorai, Jacan, Zia, and Eber—seven in all. These were the sons of Abihail son of Huri, the son of Jaroah, the son of Gilead, the son of Michael, the son of Jeshishai, the son of Jahdo, the son of Buz. Ahi son of Abdiel, the son of Guni, was head of their family."
+        },
+        {
+          "verse": 16,
+          "text": "The family of Gad lived in Gilead and Bashan, including the outlying villages and extending as far as the pastures of Sharon."
+        },
+        {
+          "verse": 17,
+          "text": "They were all written into the official family tree during the reigns of Jotham king of Judah and Jeroboam king of Israel.* * * The families of Reuben, Gad, and the half-tribe of Manasseh had 44,760 men trained for war—physically fit and skilled in handling shield, sword, and bow. They fought against the Hagrites, Jetur, Naphish, and Nodab. God helped them as they fought. God handed the Hagrites and all their allies over to them, because they cried out to him during the battle. God answered their prayers because they trusted him. They plundered the Hagrite herds and flocks: 50,000 camels, 250,000 sheep, and 2,000 donkeys. They also captured 100,000 people. Many were killed, because the battle was God’s. They lived in that country until the exile.* * * The half-tribe of Manasseh had a large population. They occupied the land from Bashan to Baal Hermon, that is, to Senir (Mount Hermon). The heads of their families were Epher, Ishi, Eliel, Azriel, Jeremiah, Hodaviah, and Jahdiel—brave warriors, famous, and heads of their families. But they were not faithful to the God of their ancestors. They took up with the ungodly gods of the peoples of the land whom God had gotten rid of before they arrived. So the God of Israel stirred up the spirit of Pul king of Assyria (Tiglath-Pileser king of Assyria) to take the families of Reuben, Gad, and the half-tribe of Manasseh into exile. He deported them to Halah, Habor, Hara, and the river of Gozan. They’ve been there ever since."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/5-40dca8ad2adecee60191f96cf399011c.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/5-40dca8ad2adecee60191f96cf399011c.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 6,
+      "chapter_usfm": "1CH.6",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 15,
+          "text": "Jehozadak went off to exile when God used Nebuchadnezzar to take Judah and Jerusalem into exile.* * * The sons of Levi were Gershon, Kohath, and Merari. These are the names of the sons of Gershon: Libni and Shimei. The sons of Kohath were Amram, Izhar, Hebron, and Uzziel. The sons of Merari were Mahli and Mushi. These are the Levitical clans according to families: the sons of Gershon were Libni his son, Jehath his son, Zimmah his son, Joah his son, Iddo his son, Zerah his son, and Jeatherai his son. The sons of Kohath were Amminadab his son, Korah his son, Assir his son, Elkanah his son, Ebiasaph his son, Assir his son, Tahath his son, Uriel his son, Uzziah his son, and Shaul his son. The sons of Elkanah were Amasai and Ahimoth, Elkanah his son, Zophai his son, Nahath his son, Eliab his son, Jeroham his son, and Elkanah his son. The sons of Samuel were Joel his firstborn son and Abijah his second. The sons of Merari were Mahli, Libni his son, Shimei his son, Uzzah his son, Shimea his son, Haggiah his son, and Asaiah his son. These are the persons David appointed to lead the singing in the house of God after the Chest was placed there. They were the ministers of music in the place of worship, which was the Tent of Meeting until Solomon built The Temple of God in Jerusalem. As they carried out their work, they followed the instructions given to them. These are the persons, together with their sons, who served by preparing for and directing worship: from the family of the Kohathites was Heman the choirmaster, the son of Joel, the son of Samuel, the son of Elkanah, the son of Jeroham, the son of Eliel, the son of Toah, the son of Zuph, the son of Elkanah, the son of Mahath, the son of Amasai, the son of Elkanah, the son of Joel, the son of Azariah, the son of Zephaniah, the son of Tahath, the son of Assir, the son of Ebiasaph, the son of Korah, the son of Izhar, the son of Kohath, the son of Levi, the son of Israel. Heman’s associate Asaph stood at his right hand. Asaph was the son of Berekiah, the son of Shimea, the son of Michael, the son of Baaseiah, the son of Malkijah, the son of Ethni, the son of Zerah, the son of Adaiah, the son of Ethan, the son of Zimmah, the son of Shimei, the son of Jahath, the son of Gershon, the son of Levi. Of the sons of Merari, the associates who stood at his left hand, was Ethan the son of Kishi, the son of Abdi, the son of Malluch, the son of Hashabiah, the son of Amaziah, the son of Hilkiah, the son of Amzi, the son of Bani, the son of Shemer, the son of Mahli, the son of Mushi, the son of Merari, the son of Levi."
+        },
+        {
+          "verse": 48,
+          "text": "The rest of the Levites were assigned to all the other work in the place of worship, the house of God.* * *"
+        },
+        {
+          "verse": 49,
+          "text": "Aaron and his sons offered the sacrifices on the Altar of Burnt Offering and the Altar of Incense; they were in charge of all the work surrounding the Holy of Holies. They made atonement for Israel following the instructions commanded by Moses, servant of God. These are the sons of Aaron: Eleazar his son, Phinehas his son, Abishua his son, Bukki his son, Uzzi his son, Zerahiah his son, Meraioth his son, Amariah his son, Ahitub his son, Zadok his son, and Ahimaaz his son. And these are the places where the priestly families were assigned to live. The first assignment went by lot to the sons of Aaron of the Kohathite family; they were given Hebron in the land of Judah and all the neighboring pastures. Caleb the son of Jephunneh got the fields and villages around the city. The family of Aaron was also given the cities of refuge, with pastures included: Hebron, Libnah, Jattir, Eshtemoa, Hilen, Debir, Ashan, and Beth Shemesh. They were also given Geba from the tribe of Benjamin, Alemeth, and Anathoth, all with pastures included. In all, thirteen cities were distributed among the Kohathite families. The rest of the Kohathites were given another ten cities, distributed by lot from the half-tribe of Manasseh. The sons of Gershon were given, family by family, thirteen cities from the tribes of Issachar, Asher, Naphtali, and Manasseh in Bashan. The sons of Merari, family by family, were assigned by lot twelve cities from the tribes of Reuben, Gad, and Zebulun. The sons of Israel gave the Levites both the cities and their pastures. They also distributed by lot cities from the tribes of Judah, Simeon, and Benjamin. Some of the Kohath families were given their cities from the tribe of Ephraim, cities of refuge: Shechem in the hill country of Ephraim, Gezer, Jokmeam, Beth Horon, Aijalon, and Gath Rimmon—all with their pastures. The rest of the sons of Kohath were given Aner and Bileam with their pastures from the half-tribe of Manasseh. The sons of Gershon were given, family by family, from the half-tribe of Manasseh, Golan in Bashan and Ashtaroth; from the tribe of Issachar, Kedesh, Daberath, Ramoth, and Anem; from the tribe of Asher, Mashal, Abdon, Hukok, and Rehob; from the tribe of Naphtali, Kedesh in Galilee, Hammon, and Kiriathaim. The rest of the sons of Merari got Rimmono and Tabor from the tribe of Zebulun; Bezer in the desert, Jahzah, Kedemoth, and Mephaath from the tribe of Reuben to the east of the Jordan; and Ramoth in Gilead, Mahanaim, Heshbon, and Jazer from the tribe of Gad. Pastures were included in all these towns."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [
+        {
+          "before_verse": 15,
+          "text": "David’s Worship Leaders"
+        },
+        {
+          "before_verse": 49,
+          "text": "The Priestly Cities"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/6-c7e451e4023be4301908f179ad586678.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/6-c7e451e4023be4301908f179ad586678.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 7,
+      "chapter_usfm": "1CH.7",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 13,
+          "text": "The sons of Naphtali were Jahziel, Guni, Jezer, and Shallum; they are listed under the maternal line of Bilhah, their grandfather’s concubine. Manasseh’s sons, born of his Aramean concubine, were Asriel and Makir the father of Gilead. Makir got his wife from the Huppites and Shuppites. His sister’s name was Maacah. Another son, Zelophehad, had only daughters. Makir’s wife Maacah bore a son whom she named Peresh; his brother’s name was Sheresh and his sons were Ulam and Rakem. Ulam’s son was Bedan. This accounts for the sons of Gilead son of Makir, the son of Manasseh. His sister Hammoleketh gave birth to Ishdod, Abiezer, and Mahlah. The sons of Shemida were Ahian, Shechem, Likhi, and Aniam. The sons of Ephraim were Shuthelah, Bered his son, Tahath his son, Eleadah his son, Tahath his son, Zabad his son, Shuthelah his son, and Ezer and Elead, cattle-rustlers, killed on one of their raids by the natives of Gath. Their father Ephraim grieved a long time and his family gathered to give him comfort. Then he slept with his wife again. She conceived and produced a son. He named him Beriah (Unlucky), because of the bad luck that had come to his family. His daughter was Sheerah. She built Lower and Upper Beth Horon and Uzzen Sheerah. Rephah was Ephraim’s son and also Resheph; Telah was his son, Tahan his son, Ladan his son, Ammihud his son, Elishama his son, Nun his son, and Joshua his son. They occupied Bethel and the neighboring country from Naaran on the east to Gezer and its villages on the west, along with Shechem and its villages, and extending as far as Ayyah and its villages. Stretched along the borders of Manasseh were Beth Shan, Taanach, Megiddo, and Dor, together with their satellite villages. The families descended from Joseph son of Israel lived in all these places. The sons of Asher were Imnah, Ishvah, Ishvi, and Beriah; Serah was their sister. The sons of Beriah were Heber and Malkiel, who had Birzaith. Heber had Japhlet, Shomer, Hotham, and Shua their sister. Japhlet had Pasach, Bimhal, and Ashvath. His brother Shomer had Rohgah, Hubbah, and Aram. His brother Helem had Zophah, Imna, Shelesh, and Amal. Zophah had Suah, Harnepher, Shual, Beri, Imrah, Bezer, Hod, Shamma, Shilshah, Ithran, and Beera. Jether had Jephunneh, Pispah, and Ara. Ulla had Arah, Hanniel, and Rizia. These were Asher’s sons, all of them responsible, excellent in character, and brave in battle—good leaders. They listed 26,000 combat-ready men in their family tree."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Family of Benjamin"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Family of Naphtali"
+        },
+        {
+          "before_verse": 13,
+          "text": "The Family of Manasseh"
+        },
+        {
+          "before_verse": 13,
+          "text": "The Family of Ephraim"
+        },
+        {
+          "before_verse": 13,
+          "text": "The Family of Asher"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/7-a66e9e73256b32d955796657f49cd593.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/7-a66e9e73256b32d955796657f49cd593.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 8,
+      "chapter_usfm": "1CH.8",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/8-d8fa7b48ecbc3a62e7e0075f28171b8b.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/8-d8fa7b48ecbc3a62e7e0075f28171b8b.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 9,
+      "chapter_usfm": "1CH.9",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is the complete family tree for all Israel, recorded in the Royal Annals of the Kings of Israel and Judah at the time they were exiled to Babylon because of their unbelieving and disobedient lives."
+        },
+        {
+          "verse": 2,
+          "text": "The first Israelites to return from exile to their homes and cities were the priests, the Levites, and the temple support staff. Returning to Jerusalem from the families of Judah, Benjamin, Ephraim, and Manasseh were the following: Uthai son of Ammihud, the son of Omri, the son of Imri, the son of Bani, from the line of Perez son of Judah; from the Shilonites were Asaiah the firstborn and his sons; from the family of Zerah there was Jeuel. There were 690 in the Judah group. From the family of Benjamin were Sallu son of Meshullam, the son of Hodaviah, the son of Hassenuah, and Ibneiah son of Jeroham, and Elah son of Uzzi, the son of Micri, and Meshullam son of Shephatiah, the son of Reuel, the son of Ibnijah. There were 956 in the Benjamin group. All these named were heads of families. From the company of priests there were Jedaiah; Jehoiarib; Jakin; Azariah son of Hilkiah, the son of Meshullam, the son of Zadok, the son of Meraioth, the son of Ahitub, who was in charge of taking care of the house of God; Adaiah son of Jeroham, the son of Pashhur, the son of Malkijah; also Maasai son of Adiel, the son of Jahzerah, the son of Meshullam, the son of Meshillemith, the son of Immer. The priests, all of them heads of families, numbered 1,760, skilled and seasoned servants in the work of worshiping God. From the Levites were Shemaiah son of Hasshub, the son of Azrikam, the son of Hashabiah, a Merarite; then Bakbakkar, Heresh, Galal, Mattaniah son of Mica, the son of Zicri, the son of Asaph; also Obadiah son of Shemaiah, the son of Galal, the son of Jeduthun; and finally Berekiah son of Asa, the son of Elkanah, who lived in the villages of the Netophathites. The security guards were Shallum, Akkub, Talmon, Ahiman, and their brothers. Shallum was the chief and up to now the security guard at the King’s Gate on the east. They also served as security guards at the camps of Levite families. Shallum son of Kore, the son of Ebiasaph, the son of Korah, along with his brothers in the Korahite family, were in charge of the services of worship as doorkeepers of the Tent, as their ancestors had guarded the entrance to the camp of God. In the early days, Phinehas son of Eleazar was in charge of the security guards—God be with him! Now Zechariah son of Meshelemiah was the security guard at the entrance of the Tent of Meeting. The number of those who had been chosen to be security guards was 212—they were officially registered in their own camps. David and Samuel the seer handpicked them for their dependability. They and their sons had the permanent responsibility for guarding the gates of God’s house, the house of worship; the main security guards were posted at the four entrances, east, west, north, and south; their brothers in the villages were scheduled to give them relief weekly—the four main security guards were responsible for round-the-clock surveillance. Being Levites, they were responsible for the security of all supplies and valuables in the house of God. They kept watch all through the night and had the key to open the doors each morning. Some were in charge of the articles used in The Temple worship—they counted them both when they brought them in and when they took them out. Others were in charge of supplies in the sanctuary—flour, wine, oil, incense, and spices. And some of the priests were assigned to mixing the oils for the perfume. The Levite Mattithiah, the firstborn son of Shallum the Korahite, was responsible for baking the bread for the services of worship. Some of the brothers, sons of the Kohathites, were assigned to preparing the bread set out on the table each Sabbath. And then there were the musicians, all heads of Levite families. They had permanent living quarters in The Temple; because they were on twenty-four-hour duty, they were exempt from all other duties. These were the heads of Levite families as designated in their family tree. They lived in Jerusalem. Jeiel the father of Gibeon lived at Gibeon; his wife was Maacah. His firstborn son was Abdon, followed by Zur, Kish, Baal, Ner, Nadab, Gedor, Ahio, Zechariah, and Mikloth. Mikloth had Shimeam. They lived in the same neighborhood as their relatives in Jerusalem. Ner had Kish, Kish had Saul, Saul had Jonathan, Malki-Shua, Abinadab, and Esh-Baal. Merib-Baal was the son of Jonathan and Merib-Baal had Micah. Micah’s sons were Pithon, Melech, and Tahrea. Ahaz had Jarah, Jarah had Alemeth, Azmaveth, and Zimri; Zimri had Moza, Moza had Binea, Rephaiah was his son, Eleasah was his son, and Azel was his son. Azel had six sons: Azrikam, Bokeru, Ishmael, Sheariah, Obadiah, and Hanan—the sons of Azel.* * *"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Back-from-Exile Community in Jerusalem"
+        },
+        {
+          "before_verse": 2,
+          "text": "The Family of Saul"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/9-f7afa2e2f26d4e0f18bacd453675630f.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/9-f7afa2e2f26d4e0f18bacd453675630f.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 10,
+      "chapter_usfm": "1CH.10",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/10-5ec73e95f157dd9ec431428e3fc877a0.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/10-5ec73e95f157dd9ec431428e3fc877a0.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 11,
+      "chapter_usfm": "1CH.11",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "David’s Mighty Men"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/11-2d9f5874b3d178d572f53f316155f8bf.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/11-2d9f5874b3d178d572f53f316155f8bf.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 12,
+      "chapter_usfm": "1CH.12",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 18,
+          "text": "Just then Amasai chief of the Thirty, moved by God’s Spirit, said,We’re on your side, O David,We’re committed, O son of Jesse;All is well, yes, all is well with you,And all’s well with whoever helps you.Yes, for your God has helped and does help you.So David took them on and assigned them a place under the chiefs of the raiders."
+        },
+        {
+          "verse": 19,
+          "text": "Some from the tribe of Manasseh also defected to David when he started out with the Philistines to go to war against Saul. In the end, they didn’t actually fight because the Philistine leaders, after talking it over, sent them home, saying, “We can’t trust them with our lives—they’ll betray us to their master Saul.” The men from Manasseh who defected to David at Ziklag were Adnah, Jozabad, Jediael, Michael, Jozabad, Elihu, and Zillethai, all leaders among the families of Manasseh. They helped David in his raids against the desert bandits; they were all stalwart fighters and good leaders among his raiders. Hardly a day went by without men showing up to help—it wasn’t long before his band seemed as large as God’s own army!* * * Here are the statistics on the battle-seasoned warriors who came down from the north to David at Hebron to hand over Saul’s kingdom, in accord with God’s word: from Judah, carrying shield and spear, 6,800 battle-ready; from Simeon, 7,100 stalwart fighters; from Levi, 4,600, which included Jehoiada leader of the family of Aaron, bringing 3,700 men and the young and stalwart Zadok with twenty-two leaders from his family; from Benjamin, Saul’s family, 3,000, most of whom had stuck it out with Saul until now; from Ephraim, 20,800, fierce fighters and famous in their hometowns; from the half-tribe of Manasseh, 18,000 elected to come and make David king; from Issachar, men who understood both the times and Israel’s duties, 200 leaders with their families; from Zebulun, 50,000 well-equipped veteran warriors, unswervingly loyal; from Naphtali, 1,000 chiefs leading 37,000 men heavily armed; from Dan, 28,600 battle-ready men; from Asher, 40,000 veterans, battle-ready; and from East of Jordan, men from Reuben, Gad, and the half-tribe of Manasseh, heavily armed, 120,000. All these soldiers came to David at Hebron, ready to fight if necessary; they were both united and determined to make David king over all Israel. And everyone else in Israel was of the same mind—“Make David king!” They were with David for three days of feasting celebration, with food and drink supplied by their families. Neighbors ranging from as far north as Issachar, Zebulun, and Naphtali arrived with donkeys, camels, mules, and oxen loaded down with food for the party: flour, fig cakes, raisin cakes, wine, oil, cattle, and sheep—joy in Israel!"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/12-257b501a98bea58d8a2d8cfc73330415.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/12-257b501a98bea58d8a2d8cfc73330415.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 13,
+      "chapter_usfm": "1CH.13",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/13-209e970dfb4723339a7516528739e9ff.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/13-209e970dfb4723339a7516528739e9ff.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 14,
+      "chapter_usfm": "1CH.14",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 10,
+          "text": "David prayed to God: “Is this the right time to attack the Philistines? Will you give me the victory?” God answered, “Attack; I’ll give you the victory.” David attacked at Baal Perazim and slaughtered them. David said, “God exploded my enemies, as water explodes from a burst pipe.” That’s how the place got its name, Baal Perazim (Baal-Explosion). The Philistines left their gods behind and David ordered that they be burned up. And then the Philistines were back at it again, plundering in the valley. David again prayed to God. God answered, “This time don’t attack head-on; circle around and come at them out of the balsam grove. When you hear a sound like shuffling feet in the tops of the balsams, attack; God will be two steps ahead of you, slaughtering the Philistines.”"
+        },
+        {
+          "verse": 16,
+          "text": "David did exactly as God commanded, slaughtering Philistines all the way from Gibeon to Gezer."
+        },
+        {
+          "verse": 17,
+          "text": "David was soon famous all over the place, far and near; and God put the fear of God into the godless nations."
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/14-afe638b996b564d8623e0feedebd2aaa.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/14-afe638b996b564d8623e0feedebd2aaa.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 15,
+      "chapter_usfm": "1CH.15",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 16,
+          "text": "David ordered the heads of the Levites to assign their relatives to sing in the choir, accompanied by a well-equipped marching band, and fill the air with joyful sound. The Levites assigned Heman son of Joel, and from his family, Asaph son of Berekiah, then Ethan son of Kushaiah from the family of Merari, and after them in the second rank their brothers Zechariah, Jaaziel, Shemiramoth, Jehiel, Unni, Eliab, Benaiah, Maaseiah, Mattithiah, Eliphelehu, Mikneiah, Obed-Edom, and Jeiel as security guards. The members of the choir and marching band were: Heman, Asaph, and Ethan with bronze cymbals; Zechariah, Aziel, Shemiramoth, Jehiel, Unni, Eliab, Maaseiah, and Benaiah with lyres carrying the melody; Mattithiah, Eliphelehu, Mikneiah, Obed-Edom, Jeiel, and Azaziah with harps filling in the harmony; Kenaniah, the Levite in charge of music, a very gifted musician, was music director. Berekiah and Elkanah were porters for the Chest. The priests Shebaniah, Joshaphat, Nethanel, Amasai, Zechariah, Benaiah, and Eliezer blew the trumpets before the Chest of God. Obed-Edom and Jehiah were also porters for the Chest. Now they were ready. David, the elders of Israel, and the commanders of thousands started out to get the Chest of the Covenant of God and bring it up from the house of Obed-Edom. And they went rejoicing. Because God helped the Levites, strengthening them as they carried the Chest of the Covenant of God, they paused to worship by sacrificing seven bulls and seven rams. They were all dressed in elegant linen—David, the Levites carrying the Chest, the choir and band, and Kenaniah who was directing the music. David also wore a linen prayer shawl (called an ephod). On they came, all Israel on parade bringing up the Chest of the Covenant of God, shouting and cheering, playing every kind of brass and percussion and string instrument."
+        },
+        {
+          "verse": 29,
+          "text": "When the Chest of the Covenant of God entered the City of David, Michal, Saul’s daughter, was watching from a window. When she saw King David dancing ecstatically she was filled with contempt.* * *"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/15-6350c0cbaadac5804232bf6719084133.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/15-6350c0cbaadac5804232bf6719084133.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 16,
+      "chapter_usfm": "1CH.16",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 7,
+          "text": "That was the day that David inaugurated regular worship of praise to God, led by Asaph and his company. Thank God! Call out his Name!Tell the whole world who he is and what he’s done!Sing to him! Play songs for him!Broadcast all his wonders!Revel in his holy Name, God-seekers, be jubilant!Study God and his strength,seek his presence day and night;Remember all the wonders he performed,the miracles and judgments that came out of his mouth.Seed of Israel his servant!Children of Jacob, his first choice!He is God, our God;wherever you go you come on his judgments and decisions.He keeps his commitments across thousandsof generations, the covenant he commanded,The same one he made with Abraham,the very one he swore to Isaac;He posted it in big block letters to Jacob,this eternal covenant with Israel:“I give you the land of Canaan,this is your inheritance;Even though you’re not much to look at,a few straggling strangers.” They wandered from country to country,camped out in one kingdom after another;But he didn’t let anyone push them around,he stood up for them against bully-kings:“Don’t you dare touch my anointed ones,don’t lay a hand on my prophets.” Sing to God, everyone and everything!Get out his salvation news every day!Publish his glory among the godless nations,his wonders to all races and religions.And why? Because God is great—well worth praising!No god or goddess comes close in honor.All the popular gods are stuff and nonsense,but God made the cosmos!Splendor and majesty flow out of him,strength and joy fill his place. Shout Bravo! to God, families of the peoples,in awe of the Glory, in awe of the Strength: Bravo!Shout Bravo! to his famous Name,lift high an offering and enter his presence!Stand resplendent in his robes of holiness! God is serious business, take him seriously;he’s put the earth in place and it’s not moving.So let Heaven rejoice, let Earth be jubilant,and pass the word among the nations, “God reigns!”Let Ocean, all teeming with life, bellow,let Field and all its creatures shake the rafters;Then the trees in the forest will add their applauseto all who are pleased and present before God—he’s on his way to set things right! Give thanks to God—he is goodand his love never quits.Say, “Save us, Savior God,round us up and get us out of these godless places,So we can give thanks to your holy Name,and bask in your life of praise.”Blessed be God, the God of Israel,from everlasting to everlasting.Then everybody said, “Yes! Amen!” and “Praise God!”* * * David left Asaph and his coworkers with the Chest of the Covenant of God and in charge of the work of worship; they were responsible for the needs of worship around the clock. He also assigned Obed-Edom and his sixty-eight relatives to help them. Obed-Edom son of Jeduthun and Hosah were in charge of the security guards. The priest Zadok and his family of priests were assigned to the Tent of God at the sacred mound at Gibeon to make sure that the services of morning and evening worship were conducted daily, complete with Whole-Burnt-Offerings offered on the Altar of Burnt Offering, as ordered in the Law of God, which was the norm for Israel. With them were Heman, Jeduthun, and others specifically named, with the job description: “Give thanks to God, for his love never quits!” Heman and Jeduthun were also well equipped with trumpets, cymbals, and other instruments for accompanying sacred songs. The sons of Jeduthun formed the security guard."
+        },
+        {
+          "verse": 43,
+          "text": "Arrangements completed, the people all left for home. And David went home to bless his family."
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/16-beb3c746b154d923a256c41d3d48a34a.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/16-beb3c746b154d923a256c41d3d48a34a.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 17,
+      "chapter_usfm": "1CH.17",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "After the king had made himself at home, he said to Nathan the prophet, “Look at this: Here I am comfortable in a luxurious palace of cedar and the Chest of the Covenant of God sits under a tent.”"
+        },
+        {
+          "verse": 2,
+          "text": "Nathan told David, “Whatever is on your heart, go and do it; God is with you.” But that night, the word of God came to Nathan, saying, “Go and tell my servant David, This is God’s word on the matter: You will not build me a ‘house’ to live in. Why, I haven’t lived in a ‘house’ from the time I brought up the children of Israel from Egypt till now; I’ve gone from one tent and makeshift shelter to another. In all my travels with all Israel, did I ever say to any of the leaders I commanded to shepherd Israel, ‘Why haven’t you built me a house of cedar?’ “So here is what you are to tell my servant David: The God-of-the-Angel-Armies has this word for you: I took you from the pasture, tagging after sheep, and made you prince over my people Israel. I was with you everywhere you went and mowed your enemies down before you; and now I’m about to make you famous, ranked with the great names on earth. I’m going to set aside a place for my people Israel and plant them there so they’ll have their own home and not be knocked around anymore; nor will evil nations afflict them as they always have, even during the days I set judges over my people Israel. And finally, I’m going to conquer all your enemies. “And now I’m telling you this: God himself will build you a house! When your life is complete and you’re buried with your ancestors, then I’ll raise up your child to succeed you, a child from your own body, and I’ll firmly establish his rule. He will build a house to honor me, and I will guarantee his kingdom’s rule forever. I’ll be a father to him, and he’ll be a son to me. I will never remove my gracious love from him as I did from the one who preceded you. I will set him over my house and my kingdom forever; his throne will always be there, rock solid.”"
+        },
+        {
+          "verse": 15,
+          "text": "Nathan gave David a complete and accurate report of everything he heard and saw in the vision. King David went in, took his place before God, and prayed:Who am I, my Master God, and what is my family, that you have brought me to this place in life? But that’s nothing compared to what’s coming, for you’ve also spoken of my family far into the future, given me a glimpse into tomorrow and looked on me, Master God, as a Somebody. What’s left for David to say to this—to your honoring your servant, even though you know me, just as I am? O God, out of the goodness of your heart, you’ve taken your servant to do this great thing and put your great work on display. There’s none like you, God, no God but you, nothing to compare with what we’ve heard with our own ears. And who is like your people, like Israel, a nation unique on earth, whom God set out to redeem as his own people (and became most famous for it), performing great and fearsome acts, throwing out nations and their gods left and right as you saved your people from Egypt? You established for yourself a people—your very own Israel!—your people forever. And you, God, became their God.So now, great God, this word that you have spoken to me and my family, guarantee it forever! Do exactly what you’ve promised! Then your reputation will be confirmed and flourish always as people exclaim, “The God-of-the-Angel-Armies, the God over Israel, is Israel’s God!” And the house of your servant David will remain rock solid under your watchful presence. You, my God, have told me plainly, “I will build you a house.” That’s how I was able to find the courage to pray this prayer to you. God, being the God you are, you have spoken all these wonderful words to me. As if that weren’t enough, you’ve blessed my family so that it will continue in your presence always. Because you have blessed it, God, it’s really blessed—blessed for good!"
+        }
+      ],
+      "verse_count": 3,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/17-2c48682c96254a288098952736a7793e.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/17-2c48682c96254a288098952736a7793e.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 18,
+      "chapter_usfm": "1CH.18",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "In the days that followed, David struck hard at the Philistines, bringing them to their knees, captured Gath, and took control of the surrounding countryside."
+        },
+        {
+          "verse": 2,
+          "text": "He also fought and defeated Moab. The Moabites came under David’s rule and paid regular tribute. On his way to restore his sovereignty at the Euphrates River, David defeated Hadadezer king of Zobah (over toward Hamath). David captured a thousand chariots, seven thousand cavalry, and twenty thousand infantry from him. He hamstrung all the chariot horses, but saved back a hundred. When the Arameans from Damascus came to the aid of Hadadezer king of Zobah, David killed twenty-two thousand of them. David set up a puppet government in Aram-Damascus. The Arameans became subjects of David and were forced to bring tribute. God gave victory to David wherever he marched. David plundered the gold shields that belonged to the servants of Hadadezer and brought them to Jerusalem. He also looted Tebah and Cun, cities of Hadadezer, of a huge quantity of bronze that Solomon later used to make the Great Bronze Sea, the Pillars, and bronze equipment in The Temple. Tou king of Hamath heard that David had struck down the entire army of Hadadezer king of Zobah. He sent his son Hadoram to King David to greet and congratulate him for fighting and defeating Hadadezer. Tou and Hadadezer were old enemies. Hadoram brought David various things made of silver, gold, and bronze. King David consecrated these things along with the silver and gold that he had plundered from other nations: Edom, Moab, the Ammonites, the Philistines, and Amalek. Abishai son of Zeruiah fought and defeated the Edomites in the Valley of Salt—eighteen thousand of them. He set up a puppet government in Edom and the Edomites became subjects under David. God gave David victory wherever he marched.* * * Thus David ruled over all of Israel. He ruled well, fair and evenhanded in all his duties and relationships.Joab son of Zeruiah was head of the army;Jehoshaphat son of Ahilud was in charge of public records;Zadok son of Ahitub and Abimelech son of Abiathar were priests;Shavsha was secretary;Benaiah son of Jehoiada was over the special forces, the Kerethites and Pelethites;And David’s sons held high positions, close to the king.* * *"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/18-6ee1ecee38188780edc67cae1d3f3fd6.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/18-6ee1ecee38188780edc67cae1d3f3fd6.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 19,
+      "chapter_usfm": "1CH.19",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 4,
+          "text": "So Hanun seized David’s men, shaved them clean, cut off their robes halfway up their buttocks, and sent them packing."
+        },
+        {
+          "verse": 5,
+          "text": "When this was all reported to David, he sent someone to meet them, for they were seriously humiliated. The king told them, “Stay in Jericho until your beards grow out; only then come back.” When it dawned on the Ammonites that as far as David was concerned, they stank to high heaven, they hired, at a cost of a thousand talents of silver (thirty-seven and a half tons!), chariots and horsemen from the Arameans of Naharaim, Maacah, and Zobah—thirty-two thousand chariots and drivers; plus the king of Maacah with his troops who came and set up camp at Medeba; the Ammonites, too, were mobilized from their cities and got ready for battle."
+        },
+        {
+          "verse": 8,
+          "text": "When David heard this, he dispatched Joab with his strongest fighters in full force. The Ammonites marched out and spread out in battle formation at the city gate; the kings who had come as allies took up a position in the open fields. When Joab saw that he had two fronts to fight, before and behind, he took his pick of the best of Israel and deployed them to confront the Arameans. The rest of the army he put under the command of Abishai, his brother, and deployed them to deal with the Ammonites. Then he said, “If the Arameans are too much for me, you help me; and if the Ammonites prove too much for you, I’ll come and help you. Courage! We’ll fight might and main for our people and for the cities of our God. And God will do whatever he sees needs doing!” But when Joab and his soldiers moved in to fight the Arameans, they ran off in full retreat. Then the Ammonites, seeing the Arameans run for dear life, took to their heels and ran from Abishai into the city.So Joab withdrew from the Ammonites and returned to Jerusalem."
+        },
+        {
+          "verse": 16,
+          "text": "When the Arameans saw how badly they’d been beaten by Israel, they picked up the pieces and regrouped; they sent for the Arameans who were across the river; Shophach, commander of Hadadezer’s army, led them. When all this was reported to David, he mustered all Israel, crossed the Jordan, advanced, and prepared to fight. The Arameans went into battle formation, ready for David, and the fight was on. But the Arameans again scattered before Israel. David killed seven thousand chariot drivers and forty thousand infantry. He also killed Shophach, the army commander. When all the kings who were vassals of Hadadezer saw that they had been routed by Israel, they made peace with David and served him. The Arameans were afraid to help the Ammonites ever again.* * *"
+        }
+      ],
+      "verse_count": 4,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/19-b50fb75477df1b83d3402a84030826f5.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/19-b50fb75477df1b83d3402a84030826f5.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 20,
+      "chapter_usfm": "1CH.20",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/20-c4f7ecd5bc8b21cfb856f65b41286b52.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/20-c4f7ecd5bc8b21cfb856f65b41286b52.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 21,
+      "chapter_usfm": "1CH.21",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Joab resisted: “May God multiply his people by hundreds! Don’t they all belong to my master the king? But why on earth would you do a thing like this—why risk getting Israel into trouble with God?” But David wouldn’t take no for an answer, so Joab went off and did it—canvassed the country and then came back to Jerusalem and reported the results of the census: There were 1,100,000 fighting men; of that total, Judah accounted for 470,000. Joab, disgusted by the command—it, in fact, turned his stomach!—protested by leaving Levi and Benjamin out of the census-taking. And God, offended by the whole thing, punished Israel."
+        },
+        {
+          "verse": 8,
+          "text": "Then David prayed, “I have sinned badly in what I have just done, substituting statistics for trust; forgive my sin—I’ve been really stupid.” God answered by speaking to Gad, David’s pastor: “Go and give David this message: ‘God’s word: You have your choice of three punishments; choose one and I’ll do the rest.’” Gad delivered the message to David: “Do you want three years of famine, three months of running from your enemies while they chase you down, or three days of the sword of God—an epidemic unleashed on the country by an angel of God? Think it over and make up your mind. What shall I tell the One who sent me?”"
+        },
+        {
+          "verse": 13,
+          "text": "David told Gad, “They’re all terrible! But I’d rather be punished by God whose mercy is great, than fall into human hands.” So God unleashed an epidemic in Israel—seventy thousand Israelites died. God then sent the angel to Jerusalem but when he saw the destruction about to begin, he compassionately changed his mind and ordered the death angel, “Enough’s enough! Pull back!” The angel of God had just reached the threshing floor of Araunah the Jebusite. David looked up and saw the angel hovering between earth and sky, sword drawn and about to strike Jerusalem. David and the elders bowed in prayer and covered themselves with rough burlap."
+        },
+        {
+          "verse": 17,
+          "text": "David prayed, “Please! I’m the one who sinned; I’m the one at fault. But these sheep, what did they do wrong? Punish me, not them, me and my family; don’t take it out on them.” The angel of God ordered Gad to tell David to go and build an altar to God on the threshing floor of Araunah the Jebusite. David did what Gad told him in obedience to God’s command. Meanwhile Araunah had quit threshing the wheat and was watching the angel; his four sons took cover and hid. David came up to Araunah. When Araunah saw David, he left the threshing floor and bowed deeply before David, honoring the king."
+        },
+        {
+          "verse": 22,
+          "text": "David said to Araunah, “Give me the site of the threshing floor so I can build an altar to God. Charge me the market price; we’re going to put an end to this disaster.”"
+        },
+        {
+          "verse": 23,
+          "text": "“O Master, my king,” said Araunah, “just take it; do whatever you want with it! Look, here’s an ox for the burnt offering and threshing paddles for the fuel and wheat for the meal offering—it’s all yours!” David replied to Araunah, “No. I’m buying it from you, and at the full market price. I’m not going to offer God sacrifices that are no sacrifice.” So David bought the place from Araunah for six hundred shekels of gold. He built an altar to God there and sacrificed Whole-Burnt-Offerings and Peace-Offerings. He called out to God and God answered by striking the altar of Whole-Burnt-Offering with lightning. Then God told the angel to put his sword back into its scabbard. And that’s the story of what happened when David saw that God answered him on the threshing floor of Araunah the Jebusite at the time he offered the sacrifice.* * *"
+        },
+        {
+          "verse": 29,
+          "text": "At this time the Tabernacle that Moses had constructed in the desert, and with it the Altar of Burnt Offering, were set up at the worship center at Gibeon. But David, terrified by the angel’s sword, wouldn’t go there to pray to God anymore. So David declared, “From now on, this is the site for the worship of God; this is the place for Israel’s Altar of Burnt Offering.”"
+        }
+      ],
+      "verse_count": 7,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/21-4e2e18671997ed1c8055912605d2e38c.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/21-4e2e18671997ed1c8055912605d2e38c.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 22,
+      "chapter_usfm": "1CH.22",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/22-104d525e1ad0a22fecb5a3f747677834.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/22-104d525e1ad0a22fecb5a3f747677834.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 23,
+      "chapter_usfm": "1CH.23",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "When David got to be an old man, he made his son Solomon king over Israel. At the same time he brought together all the leaders of Israel, the priests, and the Levites. The Levites thirty years and older were counted; the total was thirty-eight thousand. David sorted them into work groups: “Twenty-four thousand are in charge of administering worship in the sanctuary; six thousand are officials and judges; four thousand are security guards; and four thousand are to serve in the orchestra, praising God with instruments that I have provided for praise.”"
+        },
+        {
+          "verse": 6,
+          "text": "David then divided the Levites into groupings named after the sons of Levi: Gershon, Kohath, and Merari. The Gershonites: Ladan and Shimei. The three sons of Ladan: Jehiel, Zetham, and Joel. The three sons of Shimei: Shelomoth, Haziel, and Haran, all heads of the families of Ladan. The four sons of Shimei: Jahath, Ziza, Jeush, and Beriah. Jahath came first, followed by Ziza. Jeush and Beriah did not have many sons so they were counted as one family with one task. The four sons of Kohath: Amram, Izhar, Hebron, and Uzziel. The sons of Amram: Aaron and Moses. Aaron was especially ordained to work in the Holy of Holies, to burn incense before God, to serve God and bless his Name always. This was a permanent appointment for Aaron and his sons. Moses and his sons were counted in the tribe of Levi. The sons of Moses: Gershom and Eliezer. Shubael was the first son of Gershom. Rehabiah was the first and only son of Eliezer; but though Eliezer had no other sons, Rehabiah had many sons. Shelomith was the first son of Izhar. Hebron had four sons: Jeriah, Amariah, Jahaziel, and Jekameam. Uzziel had two sons: Micah and Isshiah. The sons of Merari: Mahli and Mushi. The sons of Mahli: Eleazar and Kish. Eleazar died without any sons, only daughters. Their cousins, the sons of Kish, married the daughters. Mushi had three sons: Mahli, Eder, and Jerimoth."
+        },
+        {
+          "verse": 24,
+          "text": "These are the sons of Levi twenty years and older, divided up according to families and heads of families and listed in the work groups that took care of the worship in the sanctuary of God. David said, “Now that the God of Israel has given rest to his people and made Jerusalem his permanent home, the Levites no longer have to carry the Tabernacle and all the furniture required for the work of worship.” These last words of David referred only to Levites twenty years old and above. From now on the assigned work of the Levites was to assist Aaron’s sons in the work of worship in God’s house: maintain courtyards and closets, keep the furniture and utensils of worship clean, take care of any extra work needed in the work of worship, and provide bread for the table and flour for the Meal Offerings and the unraised wafers—all baking and mixing, all measuring and weighing. Also they were to be present for morning prayers, thanking and praising God, for evening prayers, and at the service of Whole-Burnt-Offerings to God on Sabbath, at New Moons, and at all festivals. They were on regular duty to serve God according to their assignment and the required number."
+        },
+        {
+          "verse": 32,
+          "text": "In short, the Levites, with the sons of Aaron as their companions in the ministry of holy worship, were responsible for everything that had to do with worship: the place and times and ordering of worship."
+        }
+      ],
+      "verse_count": 4,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/23-ee9a9027f218da46cdc2e279b7834262.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/23-ee9a9027f218da46cdc2e279b7834262.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 24,
+      "chapter_usfm": "1CH.24",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 6,
+          "text": "The secretary Shemaiah son of Nethanel, a Levite, wrote down their names in the presence of the king, the officials, Zadok the priest, Ahimelech son of Abiathar, and the leaders of the priestly and Levitical families. They took turns: One family was selected from Eleazar and then one from Ithamar. The first lot fell to Jehoiarib,the second to Jedaiah,the third to Harim,the fourth to Seorim,the fifth to Malkijah,the sixth to Mijamin,the seventh to Hakkoz,the eighth to Abijah,the ninth to Jeshua,the tenth to Shecaniah,the eleventh to Eliashib,the twelfth to Jakim,the thirteenth to Huppah,the fourteenth to Jeshebeab,the fifteenth to Bilgah,the sixteenth to Immer,the seventeenth to Hezir,the eighteenth to Happizzez,the nineteenth to Pethahiah,the twentieth to Jehezkel,the twenty-first to Jakin,the twenty-second to Gamul,the twenty-third to Delaiah,and the twenty-fourth to Maaziah."
+        },
+        {
+          "verse": 19,
+          "text": "They served in this appointed order when they entered The Temple of God, following the procedures laid down by their ancestor Aaron as God, the God of Israel, had commanded him."
+        },
+        {
+          "verse": 20,
+          "text": "The rest of the Levites are as follows:From the sons of Amram: Shubael; from the sons of Shubael: Jehdeiah."
+        },
+        {
+          "verse": 21,
+          "text": "Concerning Rehabiah: from his sons, Isshiah was the first."
+        },
+        {
+          "verse": 22,
+          "text": "From the Izharites: Shelomoth; from the sons of Shelomoth: Jahath."
+        },
+        {
+          "verse": 23,
+          "text": "The sons of Hebron: Jeriah the first, Amariah the second, Jahaziel the third, and Jekameam the fourth. The son of Uzziel: Micah, and from the sons of Micah: Shamir. The brother of Micah was Isshiah, and from the sons of Isshiah: Zechariah. The sons of Merari: Mahli and Mushi. The son of Jaaziah: Beno. The sons of Merari from Jaaziah: Beno, Shoham, Zaccur, and Ibri."
+        },
+        {
+          "verse": 28,
+          "text": "From Mahli: Eleazar, who had no sons."
+        },
+        {
+          "verse": 29,
+          "text": "From Kish: Jerahmeel, the son of Kish. And from the sons of Mushi: Mahli, Eder, and Jerimoth.These were the Levites by their families. They also cast lots, the same as their kindred the sons of Aaron had done, in the presence of David the king, Zadok, Ahimelech, and the leaders of the priestly and Levitical families. The families of the oldest and youngest brothers were treated the same."
+        }
+      ],
+      "verse_count": 8,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/24-629870862a9add8a6c8cce1fc13bc52d.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/24-629870862a9add8a6c8cce1fc13bc52d.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 25,
+      "chapter_usfm": "1CH.25",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 8,
+          "text": "They drew names at random to see who would do what. Nobody, whether young or old, teacher or student, was given preference or advantage over another. The first name from Asaph’s family was Joseph and his twelve sons and brothers; second, Gedaliah and his twelve sons and brothers; third, Zaccur and his twelve sons and brothers; fourth, Izri and his twelve sons and brothers; fifth, Nethaniah and his twelve sons and brothers; sixth, Bukkiah and his twelve sons and brothers; seventh, Jesarelah and his twelve sons and brothers; eighth, Jeshaiah and his twelve sons and brothers; ninth, Mattaniah and his twelve sons and brothers; tenth, Shimei and his twelve sons and brothers; eleventh, Azarel and his twelve sons and brothers; twelfth, Hashabiah and his twelve sons and brothers; thirteenth, Shubael and his twelve sons and brothers; fourteenth, Mattithiah and his twelve sons and brothers; fifteenth, Jerimoth and his twelve sons and brothers; sixteenth, Hananiah and his twelve sons and brothers; seventeenth, Joshbekashah and his twelve sons and brothers; eighteenth, Hanani and his twelve sons and brothers; nineteenth, Mallothi and his twelve sons and brothers; twentieth, Eliathah and his twelve sons and brothers; twenty-first, Hothir and his twelve sons and brothers; twenty-second, Giddalti and his twelve sons and brothers; twenty-third, Mahazioth and his twelve sons and brothers; twenty-fourth, Romamti-Ezer and his twelve sons and brothers."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/25-6acff2f2f8603528b330a33640f6e026.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/25-6acff2f2f8603528b330a33640f6e026.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 26,
+      "chapter_usfm": "1CH.26",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 19,
+          "text": "These are the teams of security guards from the sons of Korah and Merari. Other Levites were put in charge of the financial affairs of The Temple of God. From the family of Ladan (all Gershonites) came Jehieli, and the sons of Jehieli, Zetham and his brother Joel. They supervised the finances of the sanctuary of God. From the Amramites, the Izharites, the Hebronites, and the Uzzielites: Shubael, descended from Gershom the son of Moses, was the chief financial officer. His relatives through Eliezer: his son Rehabiah, his son Jeshaiah, his son Joram, his son Zicri, and his son Shelomith. Shelomith and his relatives were in charge of valuables consecrated by David the king, family heads, and various generals and commanders from the army. They dedicated the plunder that they had gotten in war to the work of the worship of God. In addition, everything that had been dedicated by Samuel the seer, Saul son of Kish, Abner son of Ner, and Joab son of Zeruiah—anything that had been dedicated, ever, was the responsibility of Shelomith and his family. From the family of the Izharites, Kenaniah and sons were appointed as officials and judges responsible for affairs outside the work of worship and sanctuary. From the family of the Hebronites, Hashabiah and his relatives—1,700 well-qualified men—were responsible for administration of matters related to the worship of God and the king’s work in the territory west of the Jordan. According to the family tree of the Hebronites, Jeriah held pride of place. In the fortieth year of David’s reign (his last), the Hebron family tree was researched and outstanding men were found at Jazer in Gilead, namely, Jeriah and 2,700 men of his extended family: David the king made them responsible for administration of matters related to the worship of God and the work of the king in the territory east of the Jordan—the Reubenites, the Gadites, and the half-tribe of Manasseh."
+        }
+      ],
+      "verse_count": 1,
+      "headings": [
+        {
+          "before_verse": 19,
+          "text": "Financial Affairs: Accountants and Bookkeepers"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/26-f459896efe9b967f2481b631a0088b47.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/26-f459896efe9b967f2481b631a0088b47.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 27,
+      "chapter_usfm": "1CH.27",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Here is the listing of the sons of Israel by family heads, commanders and captains, and other officers who served the king in everything military. Army divisions were on duty a month at a time for the twelve months of the year. Each division comprised 24,000 men. First division, first month: Jashobeam son of Zabdiel was in charge with 24,000 men. He came from the line of Perez. He was over all the army officers during the first month."
+        },
+        {
+          "verse": 4,
+          "text": "The division for the second month: Dodai the Ahohite was in charge: 24,000 men; Mikloth was the leader of his division. Commander for the third month: Benaiah son of Jehoiada the priest with 24,000 men. This was the same Benaiah who was a Mighty Man among the Thirty and their chief. His son Ammizabad was in charge of the division."
+        },
+        {
+          "verse": 7,
+          "text": "Fourth division for the fourth month: Asahel brother of Joab; his son Zebadiah succeeded him: 24,000 men."
+        },
+        {
+          "verse": 8,
+          "text": "Fifth division, fifth month: commander Shamhuth the Izrahite: 24,000 men."
+        },
+        {
+          "verse": 9,
+          "text": "Sixth division, sixth month: Ira son of Ikkesh the Tekoite: 24,000 men."
+        },
+        {
+          "verse": 10,
+          "text": "Seventh division, seventh month: Helez the Pelonite, an Ephraimite: 24,000 men."
+        },
+        {
+          "verse": 11,
+          "text": "Eighth division, eighth month: Sibbecai the Hushathite, a Zerahite: 24,000 men."
+        },
+        {
+          "verse": 12,
+          "text": "Ninth division, ninth month: Abiezer the Anathothite, a Benjaminite: 24,000 men."
+        },
+        {
+          "verse": 13,
+          "text": "Tenth division, tenth month: Maharai the Netophathite, a Zerahite: 24,000 men."
+        },
+        {
+          "verse": 14,
+          "text": "Eleventh division, eleventh month: Benaiah the Pirathomite, an Ephraimite: 24,000 men."
+        },
+        {
+          "verse": 15,
+          "text": "Twelfth division, twelfth month: Heldai the Netophathite from the family of Othniel: 24,000 men. Administrators of the affairs of the tribes:for Reuben: Eliezer son of Zicri;for Simeon: Shephatiah son of Maacah;for Levi: Hashabiah son of Kemuel;for Aaron: Zadok;for Judah: Elihu, David’s brother;for Issachar: Omri son of Michael;for Zebulun: Ishmaiah son of Obadiah;for Naphtali: Jerimoth son of Azriel;for Ephraim: Hoshea son of Azaziah;for one half-tribe of Manasseh: Joel son of Pedaiah;for the half-tribe of Manasseh in Gilead: Iddo son of Zechariah;for Benjamin: Jaasiel son of Abner;for Dan: Azarel son of Jeroham.These are the administrative officers assigned to the tribes of Israel. David didn’t keep a count of men under the age of twenty, because God had promised to give Israel a population as numerous as the stars in the sky. Joab son of Zeruiah started out counting the men, but he never finished. God’s anger broke out on Israel because of the counting. As it turned out, the numbers were never entered into the court records of King David."
+        },
+        {
+          "verse": 25,
+          "text": "The king’s storage facilities were supervised by Azmaveth son of Adiel. Jonathan son of Uzziah was responsible for the warehouses in the outlying areas."
+        },
+        {
+          "verse": 26,
+          "text": "Ezri son of Kelub was in charge of the field workers on the farms."
+        },
+        {
+          "verse": 27,
+          "text": "Shimei the Ramathite was in charge of the vineyards and Zabdi the Shiphmite was in charge of grapes for the wine vats."
+        },
+        {
+          "verse": 28,
+          "text": "Baal-Hanan the Gederite was in charge of the olive and sycamore-fig trees in the western hills, and Joash was in charge of the olive oil."
+        },
+        {
+          "verse": 29,
+          "text": "Shitrai the Sharonite was in charge of herds grazing in Sharon and Shaphat son of Adlai was in charge of herds in the valley. Obil the Ishmaelite was in charge of the camels, Jehdeiah the Meronothite was in charge of the donkeys, and Jaziz the Hagrite was in charge of the flocks.These were the ones responsible for taking care of King David’s property."
+        },
+        {
+          "verse": 32,
+          "text": "Jonathan, David’s uncle, a wise and literate counselor, and Jehiel son of Hacmoni, were responsible for raising the king’s sons. Ahithophel was the king’s counselor; Hushai the Arkite was the king’s friend. Ahithophel was later replaced by Jehoiada son of Benaiah and by Abiathar.Joab was commander of the king’s army."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 15,
+          "text": "Tribal Administrators"
+        },
+        {
+          "before_verse": 15,
+          "text": "Supply Officers"
+        },
+        {
+          "before_verse": 29,
+          "text": "David’s Counselors"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/27-18bc75a0e46ec6a4c0eb96280f6e229f.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/27-18bc75a0e46ec6a4c0eb96280f6e229f.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 28,
+      "chapter_usfm": "1CH.28",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "David called together all the leaders of Israel—tribal administrators, heads of various governmental operations, military commanders and captains, stewards in charge of the property and livestock belonging to the king and his sons—everyone who held responsible positions in the kingdom. King David stood tall and spoke: “Listen to me, my people: I fully intended to build a permanent structure for the Chest of the Covenant of God, God’s footstool. But when I got ready to build it, God said to me, ‘You may not build a house to honor me—you’ve done too much fighting—killed too many people.’ God chose me out of my family to be king over Israel forever. First he chose Judah as the lead tribe, then he narrowed it down to my family, and finally he picked me from my father’s sons, pleased to make me the king over all Israel. And then from all my sons—and God gave me many!—he chose my son Solomon to sit on the throne of God’s rule over Israel. He went on to say, ‘Your son Solomon will build my house and my courts: I have chosen him to be my royal adopted son; and I will be to him a father. I will guarantee that his kingdom will last if he continues to be as strong-minded in doing what I command and carrying out my decisions as he is doing now.’"
+        },
+        {
+          "verse": 8,
+          "text": "“And now, in this public place, all Israel looking on and God listening in, as God’s people, obey and study every last one of the commandments of your God so that you can make the most of living in this good land and pass it on intact to your children, insuring a good future. “And you, Solomon my son, get to know well your father’s God; serve him with a whole heart and eager mind, for God examines every heart and sees through every motive. If you seek him, he’ll make sure you find him, but if you abandon him, he’ll leave you for good. Look sharp now! God has chosen you to build his holy house. Be brave, determined! And do it!” Then David presented his son Solomon with the plans for The Temple complex: porch, storerooms, meeting rooms, and the place for atoning sacrifice. He turned over the plans for everything that God’s Spirit had brought to his mind: the design of the courtyards, the arrangements of rooms, and the closets for storing all the holy things. He gave him his plan for organizing the Levites and priests in their work of leading and ordering worship in the house of God, and for caring for the liturgical furnishings. He provided exact specifications for how much gold and silver was needed for each article used in the services of worship: the gold and silver Lampstands and lamps, the gold tables for consecrated bread, the silver tables, the gold forks, the bowls and the jars, and the Incense Altar. And he gave him the plan for sculpting the cherubs with their wings outstretched over the Chest of the Covenant of God—the cherubim throne. “Here are the blueprints for the whole project as God gave me to understand it,” David said. David continued to address Solomon: “Take charge! Take heart! Don’t be anxious or get discouraged. God, my God, is with you in this; he won’t walk off and leave you in the lurch. He’s at your side until every last detail is completed for conducting the worship of God. You have all the priests and Levites standing ready to pitch in, and skillful craftsmen and artisans of every kind ready to go to work. Both leaders and people are ready. Just say the word.”"
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/28-2826e36498b1d1679c09dafe868a2459.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/28-2826e36498b1d1679c09dafe868a2459.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "1CH",
+      "chapter": 29,
+      "chapter_usfm": "1CH.29",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 9,
+          "text": "And the people were full of a sense of celebration—all that giving! And all given willingly, freely! King David was exuberant. David blessed God in full view of the entire congregation:Blessed are you, God of Israel, our fatherfrom of old and forever.To you, O God, belong the greatness and the might,the glory, the victory, the majesty, the splendor;Yes! Everything in heaven, everything on earth;the kingdom all yours! You’ve raised yourself high over all.Riches and glory come from you,you’re ruler over all;You hold strength and power in the palm of your handto build up and strengthen all.And here we are, O God, our God, giving thanks to you,praising your splendid Name. “But me—who am I, and who are these my people, that we should presume to be giving something to you? Everything comes from you; all we’re doing is giving back what we’ve been given from your generous hand. As far as you’re concerned, we’re homeless, shiftless wanderers like our ancestors, our lives mere shadows, hardly anything to us. God, our God, all these materials—these piles of stuff for building a house of worship for you, honoring your Holy Name—it all came from you! It was all yours in the first place! I know, dear God, that you care nothing for the surface—you want us, our true selves—and so I have given from the heart, honestly and happily. And now see all these people doing the same, giving freely, willingly—what a joy! O God, God of our fathers Abraham, Isaac, and Israel, keep this generous spirit alive forever in these people always, keep their hearts set firmly in you. And give my son Solomon an uncluttered and focused heart so that he can obey what you command, live by your directions and counsel, and carry through with building The Temple for which I have provided.”"
+        },
+        {
+          "verse": 20,
+          "text": "David then addressed the congregation: “Bless God, your God!” And they did it, blessed God, the God of their ancestors, and worshiped reverently in the presence of God and the king. The very next day they butchered the sacrificial animals and offered in the worship of Israel to God a thousand bulls, a thousand rams, a thousand sheep, and in addition drink offerings and many other sacrifices. They feasted all day, eating and drinking before God, exuberant with joy. Then they ceremonially reenacted Solomon’s coronation, anointing David’s son before God as their leader, and Zadok as priest. Solomon sat on the throne of God as king in place of David his father. And everything went well; all Israel obeyed him. All the leaders of the people, including all the sons of King David, accepted Solomon as their king and promised their loyalty. Solomon rode high on a crest of popular acclaim—it was all God’s doing. God gave him position and honor beyond any king in Israel before him.* * * David son of Jesse ruled over all Israel. He was king for forty years. He ruled from Hebron seven years and from Jerusalem thirty-three. He died at a ripe old age, full of days, wealth, and glory. His son Solomon ruled after him. The history of David the king, from start to finish, is written in the chronicles of Samuel the seer, Nathan the prophet, and Gad the seer, including a full account of his rule, his exploits, and the times through which he and Israel and the surrounding kingdoms passed."
+        }
+      ],
+      "verse_count": 2,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/1CH/29-2fe03e2c980b36c6e93c60ceb0116ed3.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CH/29-2fe03e2c980b36c6e93c60ceb0116ed3.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

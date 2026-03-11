@@ -1,0 +1,98 @@
+{
+  "book_id": "2JN",
+  "book_name_en": "2 John",
+  "book_name_fa": "دوم یوحنا",
+  "testament": "NT",
+  "version_id": 1713,
+  "version_abbr": "CSB",
+  "version_name": "Christian Standard Bible",
+  "language": "en",
+  "chapter_count": 1,
+  "total_verses": 13,
+  "chapters": [
+    {
+      "book_id": "2JN",
+      "chapter": 1,
+      "chapter_usfm": "2JN.1",
+      "version_id": 1713,
+      "version_abbr": "CSB",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The elder:To the elect lady and her children, whom I love in the truth — and not only I, but also all who know the truth —"
+        },
+        {
+          "verse": 2,
+          "text": "because of the truth that remains in us and will be with us forever."
+        },
+        {
+          "verse": 3,
+          "text": "Grace, mercy, and peace will be with us from God the Father and from Jesus Christ, the Son of the Father, in truth and love."
+        },
+        {
+          "verse": 4,
+          "text": "I was very glad to find some of your children walking in truth, in keeping with a command we have received from the Father."
+        },
+        {
+          "verse": 5,
+          "text": "So now I ask you, dear lady — not as if I were writing you a new command, but one we have had from the beginning — that we love one another."
+        },
+        {
+          "verse": 6,
+          "text": "This is love: that we walk according to his commands. This is the command as you have heard it from the beginning: that you walk in love."
+        },
+        {
+          "verse": 7,
+          "text": "Many deceivers have gone out into the world; they do not confess the coming of Jesus Christ in the flesh. This is the deceiver and the antichrist."
+        },
+        {
+          "verse": 8,
+          "text": "Watch yourselves so that you don’t lose what we have worked for, but that you may receive a full reward."
+        },
+        {
+          "verse": 9,
+          "text": "Anyone who does not remain in Christ’s teaching but goes beyond it does not have God. The one who remains in that teaching, this one has both the Father and the Son."
+        },
+        {
+          "verse": 10,
+          "text": "If anyone comes to you and does not bring this teaching, do not receive him into your home, and do not greet him;"
+        },
+        {
+          "verse": 11,
+          "text": "for the one who greets him shares in his evil works."
+        },
+        {
+          "verse": 12,
+          "text": "Though I have many things to write to you, I don’t want to use paper and ink. Instead, I hope to come to you and talk face to face so that our joy may be complete."
+        },
+        {
+          "verse": 13,
+          "text": "The children of your elect sister send you greetings."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "Truth and Deception"
+        },
+        {
+          "before_verse": 11,
+          "text": "Farewell"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 476,
+          "title": "CSB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/476/32k/2JN/1-bd7b06182407f65bb2573d5ca905968a.mp3?version_id=1713",
+          "hls_url": "https://audio-hls.youversionapi.com/476/m4a/32k/2JN/1-bd7b06182407f65bb2573d5ca905968a.m3u8?version_id=1713"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

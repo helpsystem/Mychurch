@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { User, Globe, Shield } from "lucide-react";
+import { User, Shield } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { createClient } from "@/utils/supabase/client";
@@ -42,7 +42,7 @@ export function PublicHeader() {
                 </div>
             </Link>
 
-            <div className="hidden md:flex items-center gap-8 font-medium">
+            <div className="hidden md:flex items-center gap-6 font-medium">
                 <Link href="/" className="hover:text-primary transition-colors cursor-pointer">
                     {t?.home || "خانه"}
                 </Link>
@@ -54,6 +54,13 @@ export function PublicHeader() {
                 </Link>
                 <Link href="/sermons" className="hover:text-primary transition-colors cursor-pointer">
                     {t?.sermons || "موعظه‌ها"}
+                </Link>
+                <Link href="/bible" className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors cursor-pointer font-bold relative group">
+                    📖 کتاب مقدس
+                    <span className="absolute -top-2 -right-3 text-[9px] bg-amber-400 text-black font-black px-1.5 rounded-full">NEW</span>
+                </Link>
+                <Link href="/documents" className="hover:text-primary transition-colors cursor-pointer">
+                    مدارک رسمی
                 </Link>
                 <Link href="/contact" className="hover:text-primary transition-colors cursor-pointer">
                     {t?.contact || "تماس"}

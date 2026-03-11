@@ -1,0 +1,1062 @@
+{
+  "book_id": "SNG",
+  "book_name_en": "Song of Solomon",
+  "book_name_fa": "غزل غزلها",
+  "testament": "OT",
+  "version_id": 116,
+  "version_abbr": "NLT",
+  "version_name": "New Living Translation",
+  "language": "en",
+  "chapter_count": 8,
+  "total_verses": 117,
+  "chapters": [
+    {
+      "book_id": "SNG",
+      "chapter": 1,
+      "chapter_usfm": "SNG.1",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "This is Solomon’s song of songs, more wonderful than any other."
+        },
+        {
+          "verse": 2,
+          "text": "Kiss me and kiss me again,for your love is sweeter than wine."
+        },
+        {
+          "verse": 3,
+          "text": "How pleasing is your fragrance;your name is like the spreading fragrance of scented oils.No wonder all the young women love you!"
+        },
+        {
+          "verse": 4,
+          "text": "Take me with you; come, let’s run!The king has brought me into his bedroom.How happy we are for you, O king.We praise your love even more than wine.How right they are to adore you."
+        },
+        {
+          "verse": 5,
+          "text": "I am dark but beautiful,O women of Jerusalem—dark as the tents of Kedar,dark as the curtains of Solomon’s tents."
+        },
+        {
+          "verse": 6,
+          "text": "Don’t stare at me because I am dark—the sun has darkened my skin.My brothers were angry with me;they forced me to care for their vineyards,so I couldn’t care for myself—my own vineyard."
+        },
+        {
+          "verse": 7,
+          "text": "Tell me, my love, where are you leading your flock today?Where will you rest your sheep at noon?For why should I wander like a prostituteamong your friends and their flocks?"
+        },
+        {
+          "verse": 8,
+          "text": "If you don’t know, O most beautiful woman,follow the trail of my flock,and graze your young goats by the shepherds’ tents."
+        },
+        {
+          "verse": 9,
+          "text": "You are as exciting, my darling,as a mare among Pharaoh’s stallions."
+        },
+        {
+          "verse": 10,
+          "text": "How lovely are your cheeks;your earrings set them afire!How lovely is your neck,enhanced by a string of jewels."
+        },
+        {
+          "verse": 11,
+          "text": "We will make for you earrings of goldand beads of silver."
+        },
+        {
+          "verse": 12,
+          "text": "The king is lying on his couch,enchanted by the fragrance of my perfume."
+        },
+        {
+          "verse": 13,
+          "text": "My lover is like a sachet of myrrhlying between my breasts."
+        },
+        {
+          "verse": 14,
+          "text": "He is like a bouquet of sweet henna blossomsfrom the vineyards of En-gedi."
+        },
+        {
+          "verse": 15,
+          "text": "How beautiful you are, my darling,how beautiful!Your eyes are like doves."
+        },
+        {
+          "verse": 16,
+          "text": "You are so handsome, my love,pleasing beyond words!The soft grass is our bed;"
+        },
+        {
+          "verse": 17,
+          "text": "fragrant cedar branches are the beams of our house,and pleasant smelling firs are the rafters."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 1,
+          "text": "1:1"
+        },
+        {
+          "before_verse": 1,
+          "text": "The headings identifying the speakers are not in the original text, though the Hebrew usually gives clues by means of the gender of the person speaking."
+        },
+        {
+          "before_verse": 4,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 4,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 7,
+          "text": "Young Man"
+        },
+        {
+          "before_verse": 11,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 14,
+          "text": "Young Man"
+        },
+        {
+          "before_verse": 15,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/1-f460625f3fd9392f545126c0d8d8a29b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/1-f460625f3fd9392f545126c0d8d8a29b.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/1-93da758014aa23d47cc7d885ca09867a.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/1-93da758014aa23d47cc7d885ca09867a.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/1-42e2d4fff4427359d0b9f16a6b844402.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/1-42e2d4fff4427359d0b9f16a6b844402.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/1-a88808c94fe39fe4d438dd48c243d5ed.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/1-a88808c94fe39fe4d438dd48c243d5ed.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/1-3254ecc65b2786e28cd034a54efca72d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/1-3254ecc65b2786e28cd034a54efca72d.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 2,
+      "chapter_usfm": "SNG.2",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I am the spring crocus blooming on the Sharon Plain,the lily of the valley."
+        },
+        {
+          "verse": 2,
+          "text": "Like a lily among thistlesis my darling among young women."
+        },
+        {
+          "verse": 3,
+          "text": "Like the finest apple tree in the orchardis my lover among other young men.I sit in his delightful shadeand taste his delicious fruit."
+        },
+        {
+          "verse": 4,
+          "text": "He escorts me to the banquet hall;it’s obvious how much he loves me."
+        },
+        {
+          "verse": 5,
+          "text": "Strengthen me with raisin cakes,refresh me with apples,for I am weak with love."
+        },
+        {
+          "verse": 6,
+          "text": "His left arm is under my head,and his right arm embraces me."
+        },
+        {
+          "verse": 7,
+          "text": "Promise me, O women of Jerusalem,by the gazelles and wild deer,not to awaken love until the time is right."
+        },
+        {
+          "verse": 8,
+          "text": "Ah, I hear my lover coming!He is leaping over the mountains,bounding over the hills."
+        },
+        {
+          "verse": 9,
+          "text": "My lover is like a swift gazelleor a young stag.Look, there he is behind the wall,looking through the window,peering into the room."
+        },
+        {
+          "verse": 10,
+          "text": "My lover said to me,“Rise up, my darling!Come away with me, my fair one!"
+        },
+        {
+          "verse": 11,
+          "text": "Look, the winter is past,and the rains are over and gone."
+        },
+        {
+          "verse": 12,
+          "text": "The flowers are springing up,the season of singing birds has come,and the cooing of turtledoves fills the air."
+        },
+        {
+          "verse": 13,
+          "text": "The fig trees are forming young fruit,and the fragrant grapevines are blossoming.Rise up, my darling!Come away with me, my fair one!”"
+        },
+        {
+          "verse": 14,
+          "text": "My dove is hiding behind the rocks,behind an outcrop on the cliff.Let me see your face;let me hear your voice.For your voice is pleasant,and your face is lovely."
+        },
+        {
+          "verse": 15,
+          "text": "Catch all the foxes,those little foxes,before they ruin the vineyard of love,for the grapevines are blossoming!"
+        },
+        {
+          "verse": 16,
+          "text": "My lover is mine, and I am his.He browses among the lilies."
+        },
+        {
+          "verse": 17,
+          "text": "Before the dawn breezes blowand the night shadows flee,return to me, my love, like a gazelleor a young stag on the rugged mountains."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Young Man"
+        },
+        {
+          "before_verse": 2,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 13,
+          "text": "Young Man"
+        },
+        {
+          "before_verse": 14,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 15,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/2-84895fa3619afb5ffc804d280166db77.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/2-84895fa3619afb5ffc804d280166db77.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/2-dfadda7ecc8234a7fc1f8c1e9b216839.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/2-dfadda7ecc8234a7fc1f8c1e9b216839.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/2-fbeac4f1b8c409a26c5e1080709af029.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/2-fbeac4f1b8c409a26c5e1080709af029.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/2-1ebafbb3099a7ae01a70249a91aa176c.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/2-1ebafbb3099a7ae01a70249a91aa176c.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/2-a1a913804bfc820305103ee72a4f595d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/2-a1a913804bfc820305103ee72a4f595d.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 3,
+      "chapter_usfm": "SNG.3",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "One night as I lay in bed, I yearned for my lover.I yearned for him, but he did not come."
+        },
+        {
+          "verse": 2,
+          "text": "So I said to myself, “I will get up and roam the city,searching in all its streets and squares.I will search for the one I love.”So I searched everywhere but did not find him."
+        },
+        {
+          "verse": 3,
+          "text": "The watchmen stopped me as they made their rounds,and I asked, “Have you seen the one I love?”"
+        },
+        {
+          "verse": 4,
+          "text": "Then scarcely had I left themwhen I found my love!I caught and held him tightly,then I brought him to my mother’s house,into my mother’s bed, where I had been conceived."
+        },
+        {
+          "verse": 5,
+          "text": "Promise me, O women of Jerusalem,by the gazelles and wild deer,not to awaken love until the time is right."
+        },
+        {
+          "verse": 6,
+          "text": "Who is this sweeping in from the wildernesslike a cloud of smoke?Who is it, fragrant with myrrh and frankincenseand every kind of spice?"
+        },
+        {
+          "verse": 7,
+          "text": "Look, it is Solomon’s carriage,surrounded by sixty heroic men,the best of Israel’s soldiers."
+        },
+        {
+          "verse": 8,
+          "text": "They are all skilled swordsmen,experienced warriors.Each wears a sword on his thigh,ready to defend the king against an attack in the night."
+        },
+        {
+          "verse": 9,
+          "text": "King Solomon’s carriage is builtof wood imported from Lebanon."
+        },
+        {
+          "verse": 10,
+          "text": "Its posts are silver,its canopy gold;its cushions are purple.It was decorated with loveby the young women of Jerusalem."
+        },
+        {
+          "verse": 11,
+          "text": "Come out to see King Solomon,young women of Jerusalem.He wears the crown his mother gave him on his wedding day,his most joyous day."
+        }
+      ],
+      "verse_count": 11,
+      "headings": [
+        {
+          "before_verse": 5,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 10,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/3-2d6bd654eac5148bd3ec9ebdb3558dd6.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/3-2d6bd654eac5148bd3ec9ebdb3558dd6.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/3-6996cd8a60e4c05beb97de2bb2aeb78a.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/3-6996cd8a60e4c05beb97de2bb2aeb78a.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/3-9fd458bb0cd371add84b871c90a701df.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/3-9fd458bb0cd371add84b871c90a701df.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/3-208c2bf68d24c24042fbf5c921a3673b.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/3-208c2bf68d24c24042fbf5c921a3673b.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/3-539f10347fb57f2137004e97c3a62419.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/3-539f10347fb57f2137004e97c3a62419.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 4,
+      "chapter_usfm": "SNG.4",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "You are beautiful, my darling,beautiful beyond words.Your eyes are like dovesbehind your veil.Your hair falls in waves,like a flock of goats winding down the slopes of Gilead."
+        },
+        {
+          "verse": 2,
+          "text": "Your teeth are as white as sheep,recently shorn and freshly washed.Your smile is flawless,each tooth matched with its twin."
+        },
+        {
+          "verse": 3,
+          "text": "Your lips are like scarlet ribbon;your mouth is inviting.Your cheeks are like rosy pomegranatesbehind your veil."
+        },
+        {
+          "verse": 4,
+          "text": "Your neck is as beautiful as the tower of David,jeweled with the shields of a thousand heroes."
+        },
+        {
+          "verse": 5,
+          "text": "Your breasts are like two fawns,twin fawns of a gazelle grazing among the lilies."
+        },
+        {
+          "verse": 6,
+          "text": "Before the dawn breezes blowand the night shadows flee,I will hurry to the mountain of myrrhand to the hill of frankincense."
+        },
+        {
+          "verse": 7,
+          "text": "You are altogether beautiful, my darling,beautiful in every way."
+        },
+        {
+          "verse": 8,
+          "text": "Come with me from Lebanon, my bride,come with me from Lebanon.Come down from Mount Amana,from the peaks of Senir and Hermon,where the lions have their densand leopards live among the hills."
+        },
+        {
+          "verse": 9,
+          "text": "You have captured my heart,my treasure, my bride.You hold it hostage with one glance of your eyes,with a single jewel of your necklace."
+        },
+        {
+          "verse": 10,
+          "text": "Your love delights me,my treasure, my bride.Your love is better than wine,your perfume more fragrant than spices."
+        },
+        {
+          "verse": 11,
+          "text": "Your lips are as sweet as nectar, my bride.Honey and milk are under your tongue.Your clothes are scentedlike the cedars of Lebanon."
+        },
+        {
+          "verse": 12,
+          "text": "You are my private garden, my treasure, my bride,a secluded spring, a hidden fountain."
+        },
+        {
+          "verse": 13,
+          "text": "Your thighs shelter a paradise of pomegranateswith rare spices—henna with nard,"
+        },
+        {
+          "verse": 14,
+          "text": "nard and saffron,fragrant calamus and cinnamon,with all the trees of frankincense, myrrh, and aloes,and every other lovely spice."
+        },
+        {
+          "verse": 15,
+          "text": "You are a garden fountain,a well of fresh waterstreaming down from Lebanon’s mountains."
+        },
+        {
+          "verse": 16,
+          "text": "Awake, north wind!Rise up, south wind!Blow on my gardenand spread its fragrance all around.Come into your garden, my love;taste its finest fruits."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 15,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/4-70c2bc5fbdf1f62b7f6dfde21a39ca93.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/4-70c2bc5fbdf1f62b7f6dfde21a39ca93.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/4-7f117b357bfccb6ec34b5ab64eb03307.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/4-7f117b357bfccb6ec34b5ab64eb03307.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/4-7e7195c6bbbc53d479376cd7ff6d6ffa.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/4-7e7195c6bbbc53d479376cd7ff6d6ffa.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/4-8fbb671ccf9a0c5da90cc3e7c3581ce4.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/4-8fbb671ccf9a0c5da90cc3e7c3581ce4.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/4-f95895a8d4bdd82c1e1d080130eb3c91.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/4-f95895a8d4bdd82c1e1d080130eb3c91.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 5,
+      "chapter_usfm": "SNG.5",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I have entered my garden, my treasure, my bride!I gather myrrh with my spicesand eat honeycomb with my honey.I drink wine with my milk.Oh, lover and beloved, eat and drink!Yes, drink deeply of your love!"
+        },
+        {
+          "verse": 2,
+          "text": "I slept, but my heart was awake,when I heard my lover knocking and calling:“Open to me, my treasure, my darling,my dove, my perfect one.My head is drenched with dew,my hair with the dampness of the night.”"
+        },
+        {
+          "verse": 3,
+          "text": "But I responded,“I have taken off my robe.Should I get dressed again?I have washed my feet.Should I get them soiled?”"
+        },
+        {
+          "verse": 4,
+          "text": "My lover tried to unlatch the door,and my heart thrilled within me."
+        },
+        {
+          "verse": 5,
+          "text": "I jumped up to open the door for my love,and my hands dripped with perfume.My fingers dripped with lovely myrrhas I pulled back the bolt."
+        },
+        {
+          "verse": 6,
+          "text": "I opened to my lover,but he was gone!My heart sank.I searched for himbut could not find him anywhere.I called to him,but there was no reply."
+        },
+        {
+          "verse": 7,
+          "text": "The night watchmen found meas they made their rounds.They beat and bruised meand stripped off my veil,those watchmen on the walls."
+        },
+        {
+          "verse": 8,
+          "text": "Make this promise, O women of Jerusalem—If you find my lover,tell him I am weak with love."
+        },
+        {
+          "verse": 9,
+          "text": "Why is your lover better than all others,O woman of rare beauty?What makes your lover so specialthat we must promise this?"
+        },
+        {
+          "verse": 10,
+          "text": "My lover is dark and dazzling,better than ten thousand others!"
+        },
+        {
+          "verse": 11,
+          "text": "His head is finest gold,his wavy hair is black as a raven."
+        },
+        {
+          "verse": 12,
+          "text": "His eyes sparkle like dovesbeside springs of water;they are set like jewelswashed in milk."
+        },
+        {
+          "verse": 13,
+          "text": "His cheeks are like gardens of spicesgiving off fragrance.His lips are like lilies,perfumed with myrrh."
+        },
+        {
+          "verse": 14,
+          "text": "His arms are like rounded bars of gold,set with beryl.His body is like bright ivory,glowing with lapis lazuli."
+        },
+        {
+          "verse": 15,
+          "text": "His legs are like marble pillarsset in sockets of finest gold.His posture is stately,like the noble cedars of Lebanon."
+        },
+        {
+          "verse": 16,
+          "text": "His mouth is sweetness itself;he is desirable in every way.Such, O women of Jerusalem,is my lover, my friend."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 1,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 8,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 9,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/5-fe3ff4c1b058bb4e9fd429ee60e827a3.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/5-fe3ff4c1b058bb4e9fd429ee60e827a3.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/5-fca807e097639e19ce981f0f19451508.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/5-fca807e097639e19ce981f0f19451508.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/5-61b21c937639c1ef219f34ceea0017e9.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/5-61b21c937639c1ef219f34ceea0017e9.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/5-f0b7df6ec96551dbaf8849e0ff6ac0bc.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/5-f0b7df6ec96551dbaf8849e0ff6ac0bc.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/5-de94ca5882a7cbc826397a71d87085ae.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/5-de94ca5882a7cbc826397a71d87085ae.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 6,
+      "chapter_usfm": "SNG.6",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Where has your lover gone,O woman of rare beauty?Which way did he turnso we can help you find him?"
+        },
+        {
+          "verse": 2,
+          "text": "My lover has gone down to his garden,to his spice beds,to browse in the gardensand gather the lilies."
+        },
+        {
+          "verse": 3,
+          "text": "I am my lover’s, and my lover is mine.He browses among the lilies."
+        },
+        {
+          "verse": 4,
+          "text": "You are beautiful, my darling,like the lovely city of Tirzah.Yes, as beautiful as Jerusalem,as majestic as an army with billowing banners."
+        },
+        {
+          "verse": 5,
+          "text": "Turn your eyes away,for they overpower me.Your hair falls in waves,like a flock of goats winding down the slopes of Gilead."
+        },
+        {
+          "verse": 6,
+          "text": "Your teeth are as white as sheepthat are freshly washed.Your smile is flawless,each tooth matched with its twin."
+        },
+        {
+          "verse": 7,
+          "text": "Your cheeks are like rosy pomegranatesbehind your veil."
+        },
+        {
+          "verse": 8,
+          "text": "Even among sixty queensand eighty concubinesand countless young women,"
+        },
+        {
+          "verse": 9,
+          "text": "I would still choose my dove, my perfect one—the favorite of her mother,dearly loved by the one who bore her.The young women see her and praise her;even queens and royal concubines sing her praises:"
+        },
+        {
+          "verse": 10,
+          "text": "“Who is this, arising like the dawn,as fair as the moon,as bright as the sun,as majestic as an army with billowing banners?”"
+        },
+        {
+          "verse": 11,
+          "text": "I went down to the grove of walnut treesand out to the valley to see the new spring growth,to see whether the grapevines had buddedor the pomegranates were in bloom."
+        },
+        {
+          "verse": 12,
+          "text": "Before I realized it,my strong desires had taken me to the chariot of a noble man."
+        },
+        {
+          "verse": 13,
+          "text": "Return, return to us, O maid of Shulam.Come back, come back, that we may see you again.Why do you stare at this young woman of Shulam,as she moves so gracefully between two lines of dancers?"
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 3,
+          "text": "Young Man"
+        },
+        {
+          "before_verse": 10,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 12,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 13,
+          "text": "Young Man"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/6-b001b58b73f6f8af53c161833094385c.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/6-b001b58b73f6f8af53c161833094385c.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/6-3830b7a9e6f7770f10c0b87c459fab84.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/6-3830b7a9e6f7770f10c0b87c459fab84.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/6-d62c6004fd4f45943dfac00da063bc59.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/6-d62c6004fd4f45943dfac00da063bc59.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/6-8468b567afe79e03ee775a6105e4ac46.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/6-8468b567afe79e03ee775a6105e4ac46.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/6-257636618cb71ee1b1ac8167e06700e3.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/6-257636618cb71ee1b1ac8167e06700e3.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 7,
+      "chapter_usfm": "SNG.7",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "How beautiful are your sandaled feet,O queenly maiden.Your rounded thighs are like jewels,the work of a skilled craftsman."
+        },
+        {
+          "verse": 2,
+          "text": "Your navel is perfectly formedlike a goblet filled with mixed wine.Between your thighs lies a mound of wheatbordered with lilies."
+        },
+        {
+          "verse": 3,
+          "text": "Your breasts are like two fawns,twin fawns of a gazelle."
+        },
+        {
+          "verse": 4,
+          "text": "Your neck is as beautiful as an ivory tower.Your eyes are like the sparkling pools in Heshbonby the gate of Bath-rabbim.Your nose is as fine as the tower of Lebanonoverlooking Damascus."
+        },
+        {
+          "verse": 5,
+          "text": "Your head is as majestic as Mount Carmel,and the sheen of your hair radiates royalty.The king is held captive by its tresses."
+        },
+        {
+          "verse": 6,
+          "text": "Oh, how beautiful you are!How pleasing, my love, how full of delights!"
+        },
+        {
+          "verse": 7,
+          "text": "You are slender like a palm tree,and your breasts are like its clusters of fruit."
+        },
+        {
+          "verse": 8,
+          "text": "I said, “I will climb the palm treeand take hold of its fruit.”May your breasts be like grape clusters,and the fragrance of your breath like apples."
+        },
+        {
+          "verse": 9,
+          "text": "May your kisses be as exciting as the best wine—Yes, wine that goes down smoothly for my lover,flowing gently over lips and teeth."
+        },
+        {
+          "verse": 10,
+          "text": "I am my lover’s,and he claims me as his own."
+        },
+        {
+          "verse": 11,
+          "text": "Come, my love, let us go out to the fieldsand spend the night among the wildflowers."
+        },
+        {
+          "verse": 12,
+          "text": "Let us get up early and go to the vineyardsto see if the grapevines have budded,if the blossoms have opened,and if the pomegranates have bloomed.There I will give you my love."
+        },
+        {
+          "verse": 13,
+          "text": "There the mandrakes give off their fragrance,and the finest fruits are at our door,new delights as well as old,which I have saved for you, my lover."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 9,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/7-0b623d993791e7f1cd7f01b7226afaf9.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/7-0b623d993791e7f1cd7f01b7226afaf9.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/7-3d35686d97c1728ea328d8c3b03902cb.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/7-3d35686d97c1728ea328d8c3b03902cb.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/7-9b0d494ab4975d8c666ef1c594e9df17.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/7-9b0d494ab4975d8c666ef1c594e9df17.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/7-cbc9bd3019f19d53fdcfc50cf9d08065.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/7-cbc9bd3019f19d53fdcfc50cf9d08065.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/7-f9804bc75982542aa2c588e29325bad2.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/7-f9804bc75982542aa2c588e29325bad2.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 8,
+      "chapter_usfm": "SNG.8",
+      "version_id": 116,
+      "version_abbr": "NLT",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Oh, I wish you were my brother,who nursed at my mother’s breasts.Then I could kiss you no matter who was watching,and no one would criticize me."
+        },
+        {
+          "verse": 2,
+          "text": "I would bring you to my childhood home,and there you would teach me.I would give you spiced wine to drink,my sweet pomegranate wine."
+        },
+        {
+          "verse": 3,
+          "text": "Your left arm would be under my head,and your right arm would embrace me."
+        },
+        {
+          "verse": 4,
+          "text": "Promise me, O women of Jerusalem,not to awaken love until the time is right."
+        },
+        {
+          "verse": 5,
+          "text": "Who is this sweeping in from the desert,leaning on her lover?I aroused you under the apple tree,where your mother gave you birth,where in great pain she delivered you."
+        },
+        {
+          "verse": 6,
+          "text": "Place me like a seal over your heart,like a seal on your arm.For love is as strong as death,its jealousy as enduring as the grave.Love flashes like fire,the brightest kind of flame."
+        },
+        {
+          "verse": 7,
+          "text": "Many waters cannot quench love,nor can rivers drown it.If a man tried to buy lovewith all his wealth,his offer would be utterly scorned."
+        },
+        {
+          "verse": 8,
+          "text": "We have a little sistertoo young to have breasts.What will we do for our sisterif someone asks to marry her?"
+        },
+        {
+          "verse": 9,
+          "text": "If she is a virgin, like a wall,we will protect her with a silver tower.But if she is promiscuous, like a swinging door,we will block her door with a cedar bar."
+        },
+        {
+          "verse": 10,
+          "text": "I was a virgin, like a wall;now my breasts are like towers.When my lover looks at me,he is delighted with what he sees."
+        },
+        {
+          "verse": 11,
+          "text": "Solomon has a vineyard at Baal-hamon,which he leases out to tenant farmers.Each of them pays a thousand pieces of silverfor harvesting its fruit."
+        },
+        {
+          "verse": 12,
+          "text": "But my vineyard is mine to give,and Solomon need not pay a thousand pieces of silver.But I will give two hundred piecesto those who care for its vines."
+        },
+        {
+          "verse": 13,
+          "text": "O my darling, lingering in the gardens,your companions are fortunate to hear your voice.Let me hear it, too!"
+        },
+        {
+          "verse": 14,
+          "text": "Come away, my love! Be like a gazelleor a young stag on the mountains of spices."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [
+        {
+          "before_verse": 4,
+          "text": "Young Women of Jerusalem"
+        },
+        {
+          "before_verse": 5,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 7,
+          "text": "The Young Woman’s Brothers"
+        },
+        {
+          "before_verse": 9,
+          "text": "Young Woman"
+        },
+        {
+          "before_verse": 12,
+          "text": "Young Man"
+        },
+        {
+          "before_verse": 13,
+          "text": "Young Woman"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 1920,
+          "title": "Holy Bible, New Living Translation audiobook",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1920/32k/SNG/8-aa87173f7412a03288704b77b6644606.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1920/m4a/32k/SNG/8-aa87173f7412a03288704b77b6644606.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 6,
+          "title": "NLT Holy Sanctuary Audio Bible",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/6/32k/SNG/8-ad4dda5a92adb4900db3076edf7c9322.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/6/m4a/32k/SNG/8-ad4dda5a92adb4900db3076edf7c9322.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1392,
+          "title": "Courage For Life Female-Voiced New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1392/32k/SNG/8-84e783f5bdbabcee71a715942f150be2.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1392/m4a/32k/SNG/8-84e783f5bdbabcee71a715942f150be2.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1914,
+          "title": "her.BIBLE, NLT (female narrators)",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1914/32k/SNG/8-9947b73594558bad20b5ac464432cd06.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1914/m4a/32k/SNG/8-9947b73594558bad20b5ac464432cd06.m3u8?version_id=116"
+        },
+        {
+          "audio_version_id": 1430,
+          "title": "Streetlights New Living Translation",
+          "dramatized": true,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/1430/32k/SNG/8-8e0a3d62a84676fd5fdbaea447c2591d.mp3?version_id=116",
+          "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/SNG/8-8e0a3d62a84676fd5fdbaea447c2591d.m3u8?version_id=116"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

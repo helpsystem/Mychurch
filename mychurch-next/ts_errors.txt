@@ -1,0 +1,19 @@
+next.config.ts(8,3): error TS2353: Object literal may only specify known properties, and 'eslint' does not exist in type 'NextConfig'.
+src/app/documents/page.tsx(487,11): error TS2552: Cannot find name 'language'. Did you mean 'Languages'?
+src/app/documents/page.tsx(994,38): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1071,42): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1101,44): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1179,42): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1187,42): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1197,44): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1334,114): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1339,88): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1347,34): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1353,72): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1480,76): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1485,75): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1490,45): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1496,49): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1503,60): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1513,77): error TS2304: Cannot find name 'inputCls'.
+src/app/documents/page.tsx(1520,64): error TS2304: Cannot find name 'inputCls'.

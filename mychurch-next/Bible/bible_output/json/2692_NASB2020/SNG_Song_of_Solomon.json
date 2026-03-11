@@ -1,0 +1,934 @@
+{
+  "book_id": "SNG",
+  "book_name_en": "Song of Solomon",
+  "book_name_fa": "غزل غزلها",
+  "testament": "OT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 8,
+  "total_verses": 117,
+  "chapters": [
+    {
+      "book_id": "SNG",
+      "chapter": 1,
+      "chapter_usfm": "SNG.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The Song of Songs, which is Solomon’s."
+        },
+        {
+          "verse": 2,
+          "text": "¶“May he kiss me with the kisses of his mouth!For your love is sweeter than wine."
+        },
+        {
+          "verse": 3,
+          "text": "“Your oils have a pleasing fragrance,Your name is like purified oil;Therefore the young women love you."
+        },
+        {
+          "verse": 4,
+          "text": "“Draw me after you and let’s run together!The king has brought me into his chambers.”“We will rejoice in you and be joyful;We will praise your love more than wine.Rightly do they love you.”"
+        },
+        {
+          "verse": 5,
+          "text": "¶“I am black and beautiful,You daughters of Jerusalem,Like the tents of Kedar,Like the curtains of Solomon."
+        },
+        {
+          "verse": 6,
+          "text": "“Do not stare at me because I am dark,For the sun has tanned me.My mother’s sons were angry with me;They made me caretaker of the vineyards, But I have not taken care of my own vineyard."
+        },
+        {
+          "verse": 7,
+          "text": "“Tell me, you whom my soul loves,Where do you pasture your flock,Where do you have it lie down at noon?For why should I be like one who veils herselfBeside the flocks of your companions?”"
+        },
+        {
+          "verse": 8,
+          "text": "¶“If you yourself do not know,Most beautiful among women,Go out on the trail of the flock,And pasture your young goatsBy the tents of the shepherds."
+        },
+        {
+          "verse": 9,
+          "text": "¶“To me, my darling, you are likeMy mare among the chariots of Pharaoh."
+        },
+        {
+          "verse": 10,
+          "text": "“Your cheeks are delightful with jewelry,Your neck with strings of beads.”"
+        },
+        {
+          "verse": 11,
+          "text": "¶“We will make for you jewelry of goldWith beads of silver.”"
+        },
+        {
+          "verse": 12,
+          "text": "¶“While the king was at his table,My perfume gave forth its fragrance."
+        },
+        {
+          "verse": 13,
+          "text": "“My beloved is to me a pouch of myrrhWhich lies all night between my breasts."
+        },
+        {
+          "verse": 14,
+          "text": "“My beloved is to me a cluster of henna blossomsIn the vineyards of Engedi.”"
+        },
+        {
+          "verse": 15,
+          "text": "¶“How beautiful you are, my darling, How beautiful you are!Your eyes are like doves.”"
+        },
+        {
+          "verse": 16,
+          "text": "¶“How handsome you are, my beloved, And so delightful!Indeed, our bed is luxuriant!"
+        },
+        {
+          "verse": 17,
+          "text": "“The beams of our house are cedars,Our rafters, junipers."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Young Shulammite Bride and Jerusalem’s Daughters"
+        },
+        {
+          "before_verse": 1,
+          "text": "1:2"
+        },
+        {
+          "before_verse": 1,
+          "text": "The speaker identifications are not from the Hebrew text nor the Septuagint, but reflect an ancient tradition which appears in some manuscripts."
+        },
+        {
+          "before_verse": 1,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 4,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 4,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 7,
+          "text": "Solomon, the Lover, Speaks"
+        },
+        {
+          "before_verse": 10,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 11,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 14,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 15,
+          "text": "The Bride"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/1-06f6e24e21022a49c64f8c5615e0cf9f.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/1-06f6e24e21022a49c64f8c5615e0cf9f.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/1-50cec835618e1a8ff03fe29c202b04f6.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/1-50cec835618e1a8ff03fe29c202b04f6.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 2,
+      "chapter_usfm": "SNG.2",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“I am the rose of Sharon,The lily of the valleys.”"
+        },
+        {
+          "verse": 2,
+          "text": "¶“Like a lily among the thorns,So is my darling among the young women.”"
+        },
+        {
+          "verse": 3,
+          "text": "¶“Like an apple tree among the trees of the forest,So is my beloved among the young men.In his shade I took great delight and sat down,And his fruit was sweet to my taste."
+        },
+        {
+          "verse": 4,
+          "text": "“He has brought me to his banquet hall,And his banner over me is love."
+        },
+        {
+          "verse": 5,
+          "text": "“Refresh me with raisin cakes,Sustain me with apples,Because I am lovesick."
+        },
+        {
+          "verse": 6,
+          "text": "“His left hand is under my head,And his right hand embraces me.”"
+        },
+        {
+          "verse": 7,
+          "text": "¶“Swear to me, you daughters of Jerusalem,By the gazelles or by the does of the field,That you will not disturb or awaken my loveUntil she pleases.”"
+        },
+        {
+          "verse": 8,
+          "text": "¶“Listen! My beloved!Behold, he is coming,Leaping on the mountains,Jumping on the hills!"
+        },
+        {
+          "verse": 9,
+          "text": "“My beloved is like a gazelle or a young stag.Behold, he is standing behind our wall,He is looking through the windows,He is peering through the lattice."
+        },
+        {
+          "verse": 10,
+          "text": "¶“My beloved responded and said to me,‘Arise, my darling, my beautiful one,And come along."
+        },
+        {
+          "verse": 11,
+          "text": "‘For behold, the winter is past,The rain is over and gone."
+        },
+        {
+          "verse": 12,
+          "text": "‘The blossoms have already appeared in the land;The time has arrived for pruning the vines,And the voice of the turtledove has been heard in our land."
+        },
+        {
+          "verse": 13,
+          "text": "‘The fig tree has ripened its fruit,And the vines in blossom have given forth their fragrance.Arise, my darling, my beautiful one,And come along!’ ”"
+        },
+        {
+          "verse": 14,
+          "text": "¶“My dove, in the clefts of the rock,In the hiding place of the mountain pathway,Let me see how you look,Let me hear your voice;For your voice is pleasant,And you look delightful.”"
+        },
+        {
+          "verse": 15,
+          "text": "¶“Catch the foxes for us,The little foxes that are ruining the vineyards,While our vineyards are in blossom.”"
+        },
+        {
+          "verse": 16,
+          "text": "¶“My beloved is mine, and I am his;He pastures his flock among the lilies."
+        },
+        {
+          "verse": 17,
+          "text": "“Until the cool of the day, when the shadows flee,Turn, my beloved, and be like a gazelleOr a young stag on the mountains of Bether.”"
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Bride’s Admiration"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 2,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 6,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 7,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 13,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 14,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 15,
+          "text": "The Bride"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/2-c8ba83e953b8db7a535978473b2c858b.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/2-c8ba83e953b8db7a535978473b2c858b.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/2-230f30cd11bf90568d6bbf677e18fba2.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/2-230f30cd11bf90568d6bbf677e18fba2.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 3,
+      "chapter_usfm": "SNG.3",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“On my bed night after night I sought himWhom my soul loves;I sought him but did not find him."
+        },
+        {
+          "verse": 2,
+          "text": "‘I must arise now and go around in the city;In the streets and in the public squares I must seek him whom my soul loves.’I sought him but did not find him."
+        },
+        {
+          "verse": 3,
+          "text": "“The watchmen who make the rounds in the city found me, And I said, ‘Have you seen him whom my soul loves?’"
+        },
+        {
+          "verse": 4,
+          "text": "“Hardly had I left themWhen I found him whom my soul loves;I held on to him and would not let him goUntil I had brought him to my mother’s house,And into the room of her who conceived me.”"
+        },
+        {
+          "verse": 5,
+          "text": "¶“Swear to me, you daughters of Jerusalem,By the gazelles or by the does of the field,That you will not disturb or awaken my loveUntil she pleases.”"
+        },
+        {
+          "verse": 6,
+          "text": "¶“What is this coming up from the wildernessLike columns of smoke,Perfumed with myrrh and frankincense,With all the scented powders of the merchant?"
+        },
+        {
+          "verse": 7,
+          "text": "“Behold, it is the traveling couch of Solomon;Sixty warriors around it,Of the warriors of Israel."
+        },
+        {
+          "verse": 8,
+          "text": "“All of them are wielders of the sword,Expert in war;Each man has his sword at his side, Guarding against the terrors of the night."
+        },
+        {
+          "verse": 9,
+          "text": "“King Solomon has made for himself a sedan chairFrom the timber of Lebanon."
+        },
+        {
+          "verse": 10,
+          "text": "“He made its posts of silver,Its back of gold And its seat of purple fabric, With its interior lovingly inlaidBy the daughters of Jerusalem."
+        },
+        {
+          "verse": 11,
+          "text": "“Go out, you daughters of Zion,And look at King Solomon with the crownWith which his mother has crowned himOn the day of his wedding,And on the day of the joy of his heart.”"
+        }
+      ],
+      "verse_count": 11,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Bride’s Troubled Dream"
+        },
+        {
+          "before_verse": 4,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 5,
+          "text": "Solomon’s Wedding Day"
+        },
+        {
+          "before_verse": 5,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 6,
+          "text": "The Chorus"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/3-e72bd6f3e4face827a08490c5d7a263d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/3-e72bd6f3e4face827a08490c5d7a263d.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/3-2a6eff6ffa44ab5d0c7b574f737c18d5.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/3-2a6eff6ffa44ab5d0c7b574f737c18d5.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 4,
+      "chapter_usfm": "SNG.4",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“How beautiful you are, my darling, How beautiful you are!Your eyes are like doves behind your veil;Your hair is like a flock of goatsThat have descended from Mount Gilead."
+        },
+        {
+          "verse": 2,
+          "text": "“Your teeth are like a flock of newly shorn sheepWhich have come up from their watering place,All of which bear twins,And not one among them has lost her young."
+        },
+        {
+          "verse": 3,
+          "text": "“Your lips are like a scarlet thread,And your mouth is beautiful.Your temples are like a slice of a pomegranateBehind your veil."
+        },
+        {
+          "verse": 4,
+          "text": "“Your neck is like the tower of David,Built with layers of stonesOn which are hung a thousand shields,All the round shields of the warriors."
+        },
+        {
+          "verse": 5,
+          "text": "“Your two breasts are like two fawns,Twins of a gazelleThat graze among the lilies."
+        },
+        {
+          "verse": 6,
+          "text": "“Until the cool of the dayWhen the shadows flee,I will go my way to the mountain of myrrhAnd to the hill of frankincense."
+        },
+        {
+          "verse": 7,
+          "text": "¶“You are altogether beautiful, my darling,And there is no blemish on you."
+        },
+        {
+          "verse": 8,
+          "text": "“Come with me from Lebanon, my bride,You shall come with me from Lebanon.You shall come down from the summit of Amana,From the summit of Senir and Hermon,From the dens of lions,From the mountains of leopards."
+        },
+        {
+          "verse": 9,
+          "text": "“You have enchanted my heart, my sister, my bride;You have enchanted my heart with a single glance of your eyes,With a single strand of your necklace."
+        },
+        {
+          "verse": 10,
+          "text": "“How beautiful is your love, my sister, my bride!How much sweeter is your love than wine,And the fragrance of your oilsThan that of all kinds of balsam oils!"
+        },
+        {
+          "verse": 11,
+          "text": "“Your lips drip honey, my bride;Honey and milk are under your tongue,And the fragrance of your garments is like the fragrance of Lebanon."
+        },
+        {
+          "verse": 12,
+          "text": "“A locked garden is my sister, my bride,A locked spring, a sealed fountain."
+        },
+        {
+          "verse": 13,
+          "text": "“Your branches are an orchard of pomegranatesWith delicious fruits, henna with nard plants,"
+        },
+        {
+          "verse": 14,
+          "text": "Nard and saffron, spice reed and cinnamon,With all the trees of frankincense,Myrrh, and aloes, along with all the finest balsam oils."
+        },
+        {
+          "verse": 15,
+          "text": "“You are a garden spring,A well of fresh water,And flowing streams from Lebanon.”"
+        },
+        {
+          "verse": 16,
+          "text": "¶“Awake, north wind,And come, wind of the south; Make my garden breathe out fragrance,May its balsam oils flow.May my beloved come into his gardenAnd eat its delicious fruits!”"
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Solomon’s Love Expressed"
+        },
+        {
+          "before_verse": 15,
+          "text": "The Bride"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/4-4d66218cb842aaafc861264761430275.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/4-4d66218cb842aaafc861264761430275.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/4-ed7b21192789714e9bedf4e29b76d6bf.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/4-ed7b21192789714e9bedf4e29b76d6bf.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 5,
+      "chapter_usfm": "SNG.5",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“I have come into my garden, my sister, my bride;I have gathered my myrrh along with my balsam.I have eaten my honeycomb with my honey;I have drunk my wine with my milk.Eat, friends;Drink and drink deeply, lovers.”"
+        },
+        {
+          "verse": 2,
+          "text": "¶“I was asleep but my heart was awake.A voice! My beloved was knocking:‘Open to me, my sister, my darling,My dove, my perfect one!For my head is drenched with dew,My locks with the dew drops of the night.’"
+        },
+        {
+          "verse": 3,
+          "text": "“I have taken off my dress,How can I put it on again?I have washed my feet,How can I dirty them again?"
+        },
+        {
+          "verse": 4,
+          "text": "“My beloved extended his hand through the opening,And my feelings were stirred for him."
+        },
+        {
+          "verse": 5,
+          "text": "“I arose to open to my beloved;And my hands dripped with myrrh,And my fingers with drops of myrrh,On the handles of the bolt."
+        },
+        {
+          "verse": 6,
+          "text": "“I opened to my beloved,But my beloved had turned away and had gone!My heart went out to him as he spoke.I searched for him but I did not find him;I called him but he did not answer me."
+        },
+        {
+          "verse": 7,
+          "text": "“The watchmen who make the rounds in the city found me,They struck me and wounded me;The guards of the walls took my shawl away from me."
+        },
+        {
+          "verse": 8,
+          "text": "“Swear to me, you daughters of Jerusalem,If you find my beloved,As to what you will tell him:For I am lovesick.”"
+        },
+        {
+          "verse": 9,
+          "text": "¶“What kind of beloved is your beloved,O most beautiful among women? What kind of beloved is your beloved,That you make us swear in this way?”"
+        },
+        {
+          "verse": 10,
+          "text": "¶“My beloved is dazzling and reddish,Outstanding among ten thousand."
+        },
+        {
+          "verse": 11,
+          "text": "“His head is like gold, pure gold;His locks are like clusters of dates And black as a raven."
+        },
+        {
+          "verse": 12,
+          "text": "“His eyes are like dovesBeside streams of water,Bathed in milk, And perched in their setting."
+        },
+        {
+          "verse": 13,
+          "text": "“His cheeks are like a bed of balsam, Banks of herbal spices;His lips are liliesDripping with drops of myrrh."
+        },
+        {
+          "verse": 14,
+          "text": "“His hands are rods of goldSet with topaz;His abdomen is panels of ivoryCovered with sapphires."
+        },
+        {
+          "verse": 15,
+          "text": "“His thighs are pillars of alabasterSet on pedestals of pure gold;His appearance is like Lebanon,Choice as the cedars."
+        },
+        {
+          "verse": 16,
+          "text": "“His mouth is full of sweetness.And he is wholly desirable.This is my beloved and this is my friend,You daughters of Jerusalem.”"
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Torment of Separation"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 8,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 9,
+          "text": "Admiration by the Bride"
+        },
+        {
+          "before_verse": 9,
+          "text": "The Bride"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/5-4d49bbe0cce77000e999c421e86b6ea1.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/5-4d49bbe0cce77000e999c421e86b6ea1.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/5-1bacf28121b36008a6aa0f9965355b25.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/5-1bacf28121b36008a6aa0f9965355b25.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 6,
+      "chapter_usfm": "SNG.6",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Where has your beloved gone,O most beautiful among women?Where has your beloved turned,That we may seek him with you?”"
+        },
+        {
+          "verse": 2,
+          "text": "¶“My beloved has gone down to his garden,To the beds of balsam,To pasture his flock in the gardensAnd gather lilies."
+        },
+        {
+          "verse": 3,
+          "text": "“I am my beloved’s and my beloved is mine,He who pastures his flock among the lilies.”"
+        },
+        {
+          "verse": 4,
+          "text": "¶“You are as beautiful as Tirzah, my darling,As lovely as Jerusalem,As awesome as an army with banners."
+        },
+        {
+          "verse": 5,
+          "text": "“Turn your eyes away from me,For they have confused me;Your hair is like a flock of goatsThat have descended from Gilead."
+        },
+        {
+          "verse": 6,
+          "text": "“Your teeth are like a flock of ewesThat have come up from their watering place,All of which bear twins,And not one among them has lost her young."
+        },
+        {
+          "verse": 7,
+          "text": "“Your temples are like a slice of a pomegranateBehind your veil."
+        },
+        {
+          "verse": 8,
+          "text": "“There are sixty queens and eighty concubines,And young women without number;"
+        },
+        {
+          "verse": 9,
+          "text": "But my dove, my perfect one, is unique:She is her mother’s only daughter;She is the pure child of the one who gave birth to her.The young women saw her and called her blessed,The queens and the concubines also, and they praised her, saying,"
+        },
+        {
+          "verse": 10,
+          "text": "¶‘Who is this who looks down like the dawn,As beautiful as the full moon,As pure as the sun,As awesome as an army with banners?’"
+        },
+        {
+          "verse": 11,
+          "text": "“I went down to the orchard of nut treesTo see the plants of the valley,To see whether the vine had grown Or the pomegranates had bloomed."
+        },
+        {
+          "verse": 12,
+          "text": "“Before I was aware, my soul set me Over the chariots of my noble people.”"
+        },
+        {
+          "verse": 13,
+          "text": "¶“Come back, come back, O Shulammite;Come back, come back, so that we may look at you!”“Why should you look at the Shulammite,As at the dance of the two armies?"
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Mutual Delight in Each Other"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 1,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 3,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 12,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 13,
+          "text": "The Groom"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/6-81cbde67c46d4dc6cda924519400faf0.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/6-81cbde67c46d4dc6cda924519400faf0.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/6-ee4a6a0566270c334de66307494b7274.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/6-ee4a6a0566270c334de66307494b7274.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 7,
+      "chapter_usfm": "SNG.7",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“How beautiful are your feet in sandals, Prince’s daughter!The curves of your hips are like jewels,The work of the hands of an artist."
+        },
+        {
+          "verse": 2,
+          "text": "“Your navel is like a round goblet That never lacks mixed wine;Your belly is like a heap of wheat, Surrounded with lilies."
+        },
+        {
+          "verse": 3,
+          "text": "“Your two breasts are like two fawns,Twins of a gazelle."
+        },
+        {
+          "verse": 4,
+          "text": "“Your neck is like a tower of ivory,Your eyes like the pools in HeshbonBy the gate of Bath-rabbim;Your nose is like the tower of Lebanon,Which looks toward Damascus."
+        },
+        {
+          "verse": 5,
+          "text": "“Your head crowns you like Carmel,And the flowing hair of your head is like purple threads; The king is captivated by your tresses."
+        },
+        {
+          "verse": 6,
+          "text": "“How beautiful and how delightful you are, My love, with all your delights!"
+        },
+        {
+          "verse": 7,
+          "text": "“Your stature is like a palm tree,And your breasts are like its clusters."
+        },
+        {
+          "verse": 8,
+          "text": "“I said, ‘I will climb the palm tree,I will grasp its fruit stalks.’Oh, may your breasts be like clusters of the vine,And the fragrance of your breath like apples,"
+        },
+        {
+          "verse": 9,
+          "text": "And your mouth like the best wine!”“It goes down smoothly for my beloved,Flowing gently through the lips of those who are asleep."
+        },
+        {
+          "verse": 10,
+          "text": "¶“I am my beloved’s,And his desire is for me."
+        },
+        {
+          "verse": 11,
+          "text": "“Come, my beloved, let’s go out to the country,Let’s spend the night in the villages."
+        },
+        {
+          "verse": 12,
+          "text": "“Let’s rise early and go to the vineyards;Let’s see whether the vine has grown And its buds have opened, And whether the pomegranates have bloomed.There I will give you my love."
+        },
+        {
+          "verse": 13,
+          "text": "“The mandrakes have given forth fragrance;And over our doors are all delicious fruits,New as well as old, Which I have saved for you, my beloved."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Admiration by the Groom"
+        },
+        {
+          "before_verse": 9,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 9,
+          "text": "The Union of Love"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/7-da3f4fd61577be04429744eb1e73f536.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/7-da3f4fd61577be04429744eb1e73f536.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/7-41d67a3ed303e15bdeff720638a7ab80.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/7-41d67a3ed303e15bdeff720638a7ab80.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "SNG",
+      "chapter": 8,
+      "chapter_usfm": "SNG.8",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "“Oh that you were like a brother to meWho nursed at my mother’s breasts. If I found you outdoors, I would kiss you;No one would despise me, either."
+        },
+        {
+          "verse": 2,
+          "text": "“I would lead you and bring youInto the house of my mother, who used to instruct me;I would give you spiced wine to drink from the juice of my pomegranates."
+        },
+        {
+          "verse": 3,
+          "text": "“Let his left hand be under my head,And his right hand embrace me.”"
+        },
+        {
+          "verse": 4,
+          "text": "¶“Swear to me, you daughters of Jerusalem: Do not disturb or awaken my loveUntil she pleases.”"
+        },
+        {
+          "verse": 5,
+          "text": "¶“Who is this coming up from the wilderness,Leaning on her beloved?”“Beneath the apple tree I awakened you;There your mother went into labor with you,There she was in labor and gave birth to you."
+        },
+        {
+          "verse": 6,
+          "text": "“Put me like a seal over your heart,Like a seal on your arm.For love is as strong as death, Jealousy is as severe as Sheol;Its flames are flames of fire, The flame of the Lord."
+        },
+        {
+          "verse": 7,
+          "text": "“Many waters cannot quench love,Nor will rivers flood over it;If a man were to give all the riches of his house for love,It would be utterly despised.”"
+        },
+        {
+          "verse": 8,
+          "text": "¶“We have a little sister,And she has no breasts;What shall we do for our sisterOn the day when she is spoken for?"
+        },
+        {
+          "verse": 9,
+          "text": "“If she is a wall,We will build on her a battlement of silver;But if she is a door,We will barricade her with planks of cedar.”"
+        },
+        {
+          "verse": 10,
+          "text": "¶“I was a wall, and my breasts were like towers;Then I became in his eyes as one who finds peace."
+        },
+        {
+          "verse": 11,
+          "text": "“Solomon had a vineyard at Baal-hamon;He entrusted the vineyard to caretakers.Each one was to bring a thousand shekels of silver for its fruit."
+        },
+        {
+          "verse": 12,
+          "text": "“My very own vineyard is at my disposal;The thousand shekels are for you, Solomon,And two hundred are for those who take care of its fruit.”"
+        },
+        {
+          "verse": 13,
+          "text": "¶“You who sit in the gardens: My companions are listening for your voice—Let me hear it!”"
+        },
+        {
+          "verse": 14,
+          "text": "¶“Hurry, my beloved,And be like a gazelle or a young stagOn the mountains of balsam trees!”"
+        }
+      ],
+      "verse_count": 14,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Lovers Speak"
+        },
+        {
+          "before_verse": 3,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 4,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 5,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 7,
+          "text": "The Chorus"
+        },
+        {
+          "before_verse": 9,
+          "text": "The Bride"
+        },
+        {
+          "before_verse": 12,
+          "text": "The Groom"
+        },
+        {
+          "before_verse": 13,
+          "text": "The Bride"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/SNG/8-1f71b5a3f85fe64efd41adc258598591.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/SNG/8-1f71b5a3f85fe64efd41adc258598591.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/SNG/8-c3086c50d43f01694603ec3cb7c5831d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/SNG/8-c3086c50d43f01694603ec3cb7c5831d.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

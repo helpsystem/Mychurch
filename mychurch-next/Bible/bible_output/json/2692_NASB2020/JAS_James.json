@@ -1,0 +1,638 @@
+{
+  "book_id": "JAS",
+  "book_name_en": "James",
+  "book_name_fa": "یعقوب",
+  "testament": "NT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 5,
+  "total_verses": 108,
+  "chapters": [
+    {
+      "book_id": "JAS",
+      "chapter": 1,
+      "chapter_usfm": "JAS.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "James, a bond-servant of God and of the Lord Jesus Christ, To the twelve tribes who are dispersed abroad: Greetings."
+        },
+        {
+          "verse": 2,
+          "text": "Consider it all joy, my brothers and sisters, when you encounter various trials,"
+        },
+        {
+          "verse": 3,
+          "text": "knowing that the testing of your faith produces endurance."
+        },
+        {
+          "verse": 4,
+          "text": "And let endurance have its perfect result, so that you may be perfect and complete, lacking in nothing."
+        },
+        {
+          "verse": 5,
+          "text": "But if any of you lacks wisdom, let him ask of God, who gives to all generously and without reproach, and it will be given to him."
+        },
+        {
+          "verse": 6,
+          "text": "But he must ask in faith without any doubting, for the one who doubts is like the surf of the sea, driven and tossed by the wind."
+        },
+        {
+          "verse": 7,
+          "text": "For that person ought not to expect that he will receive anything from the Lord,"
+        },
+        {
+          "verse": 8,
+          "text": "being a double-minded man, unstable in all his ways."
+        },
+        {
+          "verse": 9,
+          "text": "Now the brother or sister of humble circumstances is to glory in his high position;"
+        },
+        {
+          "verse": 10,
+          "text": "but the rich person is to glory in his humiliation, because like flowering grass he will pass away."
+        },
+        {
+          "verse": 11,
+          "text": "For the sun rises with its scorching heat and withers the grass; and its flower falls off and the beauty of its appearance is destroyed; so also the rich person, in the midst of his pursuits, will die out."
+        },
+        {
+          "verse": 12,
+          "text": "Blessed is a man who perseveres under trial; for once he has been approved, he will receive the crown of life which the Lord has promised to those who love Him."
+        },
+        {
+          "verse": 13,
+          "text": "No one is to say when he is tempted, “I am being tempted by God”; for God cannot be tempted by evil, and He Himself does not tempt anyone."
+        },
+        {
+          "verse": 14,
+          "text": "But each one is tempted when he is carried away and enticed by his own lust."
+        },
+        {
+          "verse": 15,
+          "text": "Then when lust has conceived, it gives birth to sin; and sin, when it has run its course, brings forth death."
+        },
+        {
+          "verse": 16,
+          "text": "Do not be deceived, my beloved brothers and sisters."
+        },
+        {
+          "verse": 17,
+          "text": "Every good thing given and every perfect gift is from above, coming down from the Father of lights, with whom there is no variation or shifting shadow."
+        },
+        {
+          "verse": 18,
+          "text": "In the exercise of His will He gave us birth by the word of truth, so that we would be a kind of first fruits among His creatures."
+        },
+        {
+          "verse": 19,
+          "text": "You know this, my beloved brothers and sisters. Now everyone must be quick to hear, slow to speak, and slow to anger;"
+        },
+        {
+          "verse": 20,
+          "text": "for a man’s anger does not bring about the righteousness of God."
+        },
+        {
+          "verse": 21,
+          "text": "Therefore, ridding yourselves of all filthiness and all that remains of wickedness, in humility receive the word implanted, which is able to save your souls."
+        },
+        {
+          "verse": 22,
+          "text": "But prove yourselves doers of the word, and not just hearers who deceive themselves."
+        },
+        {
+          "verse": 23,
+          "text": "For if anyone is a hearer of the word and not a doer, he is like a man who looks at his natural face in a mirror;"
+        },
+        {
+          "verse": 24,
+          "text": "for once he has looked at himself and gone away, he has immediately forgotten what kind of person he was."
+        },
+        {
+          "verse": 25,
+          "text": "But one who has looked intently at the perfect law, the law of freedom, and has continued in it, not having become a forgetful hearer but an active doer, this person will be blessed in what he does."
+        },
+        {
+          "verse": 26,
+          "text": "If anyone thinks himself to be religious, yet does not bridle his tongue but deceives his own heart, this person’s religion is worthless."
+        },
+        {
+          "verse": 27,
+          "text": "Pure and undefiled religion in the sight of our God and Father is this: to visit orphans and widows in their distress, and to keep oneself unstained by the world."
+        }
+      ],
+      "verse_count": 27,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Testing of Your Faith"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/JAS/1-0aaf74d651ecf4f89faa578a00729be3.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/JAS/1-0aaf74d651ecf4f89faa578a00729be3.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/JAS/1-919a9d4b1c258526717b8eb4defad860.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/JAS/1-919a9d4b1c258526717b8eb4defad860.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JAS",
+      "chapter": 2,
+      "chapter_usfm": "JAS.2",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "My brothers and sisters, do not hold your faith in our glorious Lord Jesus Christ with an attitude of personal favoritism."
+        },
+        {
+          "verse": 2,
+          "text": "For if a man comes into your assembly with a gold ring and is dressed in bright clothes, and a poor man in dirty clothes also comes in,"
+        },
+        {
+          "verse": 3,
+          "text": "and you pay special attention to the one who is wearing the bright clothes, and say, “You sit here in a good place,” and you say to the poor man, “You stand over there, or sit down by my footstool,”"
+        },
+        {
+          "verse": 4,
+          "text": "have you not made distinctions among yourselves, and become judges with evil motives?"
+        },
+        {
+          "verse": 5,
+          "text": "Listen, my beloved brothers and sisters: did God not choose the poor of this world to be rich in faith and heirs of the kingdom which He promised to those who love Him?"
+        },
+        {
+          "verse": 6,
+          "text": "But you have dishonored the poor man. Is it not the rich who oppress you and personally drag you into court?"
+        },
+        {
+          "verse": 7,
+          "text": "Do they not blaspheme the good name by which you have been called?"
+        },
+        {
+          "verse": 8,
+          "text": "If, however, you are fulfilling the royal law according to the Scripture, “You shall love your neighbor as yourself,” you are doing well."
+        },
+        {
+          "verse": 9,
+          "text": "But if you show partiality, you are committing sin and are convicted by the Law as violators."
+        },
+        {
+          "verse": 10,
+          "text": "For whoever keeps the whole Law, yet stumbles in one point, has become guilty of all."
+        },
+        {
+          "verse": 11,
+          "text": "For He who said, “Do not commit adultery,” also said, “Do not murder.” Now if you do not commit adultery, but do murder, you have become a violator of the Law."
+        },
+        {
+          "verse": 12,
+          "text": "So speak, and so act, as those who are to be judged by the law of freedom."
+        },
+        {
+          "verse": 13,
+          "text": "For judgment will be merciless to one who has shown no mercy; mercy triumphs over judgment."
+        },
+        {
+          "verse": 14,
+          "text": "What use is it, my brothers and sisters, if someone says he has faith, but he has no works? Can that faith save him?"
+        },
+        {
+          "verse": 15,
+          "text": "If a brother or sister is without clothing and in need of daily food,"
+        },
+        {
+          "verse": 16,
+          "text": "and one of you says to them, “Go in peace, be warmed and be filled,” yet you do not give them what is necessary for their body, what use is that?"
+        },
+        {
+          "verse": 17,
+          "text": "In the same way, faith also, if it has no works, is dead, being by itself."
+        },
+        {
+          "verse": 18,
+          "text": "But someone may well say, “You have faith and I have works; show me your faith without the works, and I will show you my faith by my works.”"
+        },
+        {
+          "verse": 19,
+          "text": "You believe that God is one. You do well; the demons also believe, and shudder."
+        },
+        {
+          "verse": 20,
+          "text": "But are you willing to acknowledge, you foolish person, that faith without works is useless?"
+        },
+        {
+          "verse": 21,
+          "text": "Was our father Abraham not justified by works when he offered up his son Isaac on the altar?"
+        },
+        {
+          "verse": 22,
+          "text": "You see that faith was working with his works, and as a result of the works, faith was perfected;"
+        },
+        {
+          "verse": 23,
+          "text": "and the Scripture was fulfilled which says, “And Abraham believed God, and it was credited to him as righteousness,” and he was called a friend of God."
+        },
+        {
+          "verse": 24,
+          "text": "You see that a person is justified by works and not by faith alone."
+        },
+        {
+          "verse": 25,
+          "text": "In the same way, was Rahab the prostitute not justified by works also when she received the messengers and sent them out by another way?"
+        },
+        {
+          "verse": 26,
+          "text": "For just as the body without the spirit is dead, so also faith without works is dead."
+        }
+      ],
+      "verse_count": 26,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Sin of Partiality"
+        },
+        {
+          "before_verse": 13,
+          "text": "Faith and Works"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/JAS/2-16ea0572f5096a7d335db1e55c896426.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/JAS/2-16ea0572f5096a7d335db1e55c896426.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/JAS/2-c8b6d5bc910e7fc1471c7703e40983db.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/JAS/2-c8b6d5bc910e7fc1471c7703e40983db.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JAS",
+      "chapter": 3,
+      "chapter_usfm": "JAS.3",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Do not become teachers in large numbers, my brothers, since you know that we who are teachers will incur a stricter judgment."
+        },
+        {
+          "verse": 2,
+          "text": "For we all stumble in many ways. If anyone does not stumble in what he says, he is a perfect man, able to rein in the whole body as well."
+        },
+        {
+          "verse": 3,
+          "text": "Now if we put the bits into the horses’ mouths so that they will obey us, we direct their whole body as well."
+        },
+        {
+          "verse": 4,
+          "text": "Look at the ships too: though they are so large and are driven by strong winds, they are nevertheless directed by a very small rudder wherever the inclination of the pilot determines."
+        },
+        {
+          "verse": 5,
+          "text": "So also the tongue is a small part of the body, and yet it boasts of great things. See how great a forest is set aflame by such a small fire!"
+        },
+        {
+          "verse": 6,
+          "text": "And the tongue is a fire, the very world of unrighteousness; the tongue is set among our body’s parts as that which defiles the whole body and sets on fire the course of our life, and is set on fire by hell."
+        },
+        {
+          "verse": 7,
+          "text": "For every species of beasts and birds, of reptiles and creatures of the sea, is tamed and has been tamed by the human race."
+        },
+        {
+          "verse": 8,
+          "text": "But no one among mankind can tame the tongue; it is a restless evil, full of deadly poison."
+        },
+        {
+          "verse": 9,
+          "text": "With it we bless our Lord and Father, and with it we curse people, who have been made in the likeness of God;"
+        },
+        {
+          "verse": 10,
+          "text": "from the same mouth come both blessing and cursing. My brothers and sisters, these things should not be this way."
+        },
+        {
+          "verse": 11,
+          "text": "Does a spring send out from the same opening both fresh and bitter water?"
+        },
+        {
+          "verse": 12,
+          "text": "Can a fig tree, my brothers and sisters, bear olives, or a vine bear figs? Nor can salt water produce fresh."
+        },
+        {
+          "verse": 13,
+          "text": "Who among you is wise and understanding? Let him show by his good behavior his deeds in the gentleness of wisdom."
+        },
+        {
+          "verse": 14,
+          "text": "But if you have bitter jealousy and selfish ambition in your heart, do not be arrogant and so lie against the truth."
+        },
+        {
+          "verse": 15,
+          "text": "This wisdom is not that which comes down from above, but is earthly, natural, demonic."
+        },
+        {
+          "verse": 16,
+          "text": "For where jealousy and selfish ambition exist, there is disorder and every evil thing."
+        },
+        {
+          "verse": 17,
+          "text": "But the wisdom from above is first pure, then peace-loving, gentle, reasonable, full of mercy and good fruits, impartial, free of hypocrisy."
+        },
+        {
+          "verse": 18,
+          "text": "And the fruit of righteousness is sown in peace by those who make peace."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Tongue Is a Fire"
+        },
+        {
+          "before_verse": 12,
+          "text": "Wisdom from Above"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/JAS/3-b5700f785537e2d6b5be0de79746e07c.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/JAS/3-b5700f785537e2d6b5be0de79746e07c.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/JAS/3-442100d379b7e47d417213087a6f1be9.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/JAS/3-442100d379b7e47d417213087a6f1be9.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JAS",
+      "chapter": 4,
+      "chapter_usfm": "JAS.4",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What is the source of quarrels and conflicts among you? Is the source not your pleasures that wage war in your body’s parts?"
+        },
+        {
+          "verse": 2,
+          "text": "You lust and do not have, so you commit murder. And you are envious and cannot obtain, so you fight and quarrel. You do not have because you do not ask."
+        },
+        {
+          "verse": 3,
+          "text": "You ask and do not receive, because you ask with the wrong motives, so that you may spend what you request on your pleasures."
+        },
+        {
+          "verse": 4,
+          "text": "You adulteresses, do you not know that friendship with the world is hostility toward God? Therefore whoever wants to be a friend of the world makes himself an enemy of God."
+        },
+        {
+          "verse": 5,
+          "text": "Or do you think that the Scripture says to no purpose, “He jealously desires the Spirit whom He has made to dwell in us”?"
+        },
+        {
+          "verse": 6,
+          "text": "But He gives a greater grace. Therefore it says, “God is opposed to the proud, but gives grace to the humble.”"
+        },
+        {
+          "verse": 7,
+          "text": "Submit therefore to God. But resist the devil, and he will flee from you."
+        },
+        {
+          "verse": 8,
+          "text": "Come close to God and He will come close to you. Cleanse your hands, you sinners; and purify your hearts, you double-minded."
+        },
+        {
+          "verse": 9,
+          "text": "Be miserable, and mourn, and weep; let your laughter be turned into mourning, and your joy into gloom."
+        },
+        {
+          "verse": 10,
+          "text": "Humble yourselves in the presence of the Lord, and He will exalt you."
+        },
+        {
+          "verse": 11,
+          "text": "Do not speak against one another, brothers and sisters. The one who speaks against a brother or sister, or judges his brother or sister, speaks against the law and judges the law; but if you judge the law, you are not a doer of the law but a judge of it."
+        },
+        {
+          "verse": 12,
+          "text": "There is only one Lawgiver and Judge, the One who is able to save and to destroy; but who are you, judging your neighbor?"
+        },
+        {
+          "verse": 13,
+          "text": "Come now, you who say, “Today or tomorrow we will go to such and such a city, and spend a year there and engage in business and make a profit.”"
+        },
+        {
+          "verse": 14,
+          "text": "Yet you do not know what your life will be like tomorrow. For you are just a vapor that appears for a little while, and then vanishes away."
+        },
+        {
+          "verse": 15,
+          "text": "Instead, you ought to say, “If the Lord wills, we will live and also do this or that.”"
+        },
+        {
+          "verse": 16,
+          "text": "But as it is, you boast in your arrogance; all such boasting is evil."
+        },
+        {
+          "verse": 17,
+          "text": "So for one who knows the right thing to do and does not do it, for him it is sin."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Things to Avoid"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/JAS/4-908991dbfdcb07ac7b96eb04c7520979.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/JAS/4-908991dbfdcb07ac7b96eb04c7520979.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/JAS/4-62b252a1e33c184d9ea8ba3d808263e9.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/JAS/4-62b252a1e33c184d9ea8ba3d808263e9.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "JAS",
+      "chapter": 5,
+      "chapter_usfm": "JAS.5",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Come now, you rich people, weep and howl for your miseries which are coming upon you."
+        },
+        {
+          "verse": 2,
+          "text": "Your riches have rotted and your garments have become moth-eaten."
+        },
+        {
+          "verse": 3,
+          "text": "Your gold and your silver have corroded, and their corrosion will serve as a testimony against you and will consume your flesh like fire. It is in the last days that you have stored up your treasure!"
+        },
+        {
+          "verse": 4,
+          "text": "Behold, the pay of the laborers who mowed your fields, and which has been withheld by you, cries out against you; and the outcry of those who did the harvesting has reached the ears of the Lord of armies."
+        },
+        {
+          "verse": 5,
+          "text": "You have lived for pleasure on the earth and lived luxuriously; you have fattened your hearts in a day of slaughter."
+        },
+        {
+          "verse": 6,
+          "text": "You have condemned and put to death the righteous person; he offers you no resistance."
+        },
+        {
+          "verse": 7,
+          "text": "Therefore be patient, brothers and sisters, until the coming of the Lord. The farmer waits for the precious produce of the soil, being patient about it, until it gets the early and late rains."
+        },
+        {
+          "verse": 8,
+          "text": "You too be patient; strengthen your hearts, for the coming of the Lord is near."
+        },
+        {
+          "verse": 9,
+          "text": "Do not complain, brothers and sisters, against one another, so that you may not be judged; behold, the Judge is standing right at the door."
+        },
+        {
+          "verse": 10,
+          "text": "As an example, brothers and sisters, of suffering and patience, take the prophets who spoke in the name of the Lord."
+        },
+        {
+          "verse": 11,
+          "text": "We count those blessed who endured. You have heard of the endurance of Job and have seen the outcome of the Lord’s dealings, that the Lord is full of compassion and is merciful."
+        },
+        {
+          "verse": 12,
+          "text": "But above all, my brothers and sisters, do not swear, either by heaven or by earth or with any other oath; but your yes is to be yes, and your no, no, so that you do not fall under judgment."
+        },
+        {
+          "verse": 13,
+          "text": "Is anyone among you suffering? Then he must pray. Is anyone cheerful? He is to sing praises."
+        },
+        {
+          "verse": 14,
+          "text": "Is anyone among you sick? Then he must call for the elders of the church and they are to pray over him, anointing him with oil in the name of the Lord;"
+        },
+        {
+          "verse": 15,
+          "text": "and the prayer of faith will restore the one who is sick, and the Lord will raise him up, and if he has committed sins, they will be forgiven him."
+        },
+        {
+          "verse": 16,
+          "text": "Therefore, confess your sins to one another, and pray for one another so that you may be healed. A prayer of a righteous person, when it is brought about, can accomplish much."
+        },
+        {
+          "verse": 17,
+          "text": "Elijah was a man with a nature like ours, and he prayed earnestly that it would not rain, and it did not rain on the earth for three years and six months."
+        },
+        {
+          "verse": 18,
+          "text": "Then he prayed again, and the sky poured rain and the earth produced its fruit."
+        },
+        {
+          "verse": 19,
+          "text": "My brothers and sisters, if anyone among you strays from the truth and someone turns him back,"
+        },
+        {
+          "verse": 20,
+          "text": "let him know that the one who has turned a sinner from the error of his way will save his soul from death and cover a multitude of sins."
+        }
+      ],
+      "verse_count": 20,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Misuse of Riches"
+        },
+        {
+          "before_verse": 6,
+          "text": "Exhortation"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/JAS/5-3f32e06497187eed2436787edc88ab9b.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/JAS/5-3f32e06497187eed2436787edc88ab9b.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/JAS/5-4fef4bde1375431868206814cd520c3e.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/JAS/5-4fef4bde1375431868206814cd520c3e.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,846 @@
+{
+  "book_id": "GAL",
+  "book_name_en": "Galatians",
+  "book_name_fa": "غلاطیان",
+  "testament": "NT",
+  "version_id": 2692,
+  "version_abbr": "NASB2020",
+  "version_name": "NASB 2020",
+  "language": "en",
+  "chapter_count": 6,
+  "total_verses": 149,
+  "chapters": [
+    {
+      "book_id": "GAL",
+      "chapter": 1,
+      "chapter_usfm": "GAL.1",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Paul, an apostle (not sent from men nor through human agency, but through Jesus Christ and God the Father, who raised Him from the dead),"
+        },
+        {
+          "verse": 2,
+          "text": "and all the brothers who are with me, To the churches of Galatia:"
+        },
+        {
+          "verse": 3,
+          "text": "Grace to you and peace from God the Father and our Lord Jesus Christ,"
+        },
+        {
+          "verse": 4,
+          "text": "who gave Himself for our sins so that He might rescue us from this present evil age, according to the will of our God and Father,"
+        },
+        {
+          "verse": 5,
+          "text": "to whom be the glory forevermore. Amen."
+        },
+        {
+          "verse": 6,
+          "text": "I am amazed that you are so quickly deserting Him who called you by the grace of Christ, for a different gospel,"
+        },
+        {
+          "verse": 7,
+          "text": "which is not just another account; but there are some who are disturbing you and want to distort the gospel of Christ."
+        },
+        {
+          "verse": 8,
+          "text": "But even if we, or an angel from heaven, should preach to you a gospel contrary to what we have preached to you, he is to be accursed!"
+        },
+        {
+          "verse": 9,
+          "text": "As we have said before, even now I say again: if anyone is preaching to you a gospel contrary to what you received, he is to be accursed!"
+        },
+        {
+          "verse": 10,
+          "text": "For am I now seeking the favor of people, or of God? Or am I striving to please people? If I were still trying to please people, I would not be a bond-servant of Christ."
+        },
+        {
+          "verse": 11,
+          "text": "For I would have you know, brothers and sisters, that the gospel which was preached by me is not of human invention."
+        },
+        {
+          "verse": 12,
+          "text": "For I neither received it from man, nor was I taught it, but I received it through a revelation of Jesus Christ."
+        },
+        {
+          "verse": 13,
+          "text": "For you have heard of my former way of life in Judaism, how I used to persecute the church of God beyond measure and tried to destroy it;"
+        },
+        {
+          "verse": 14,
+          "text": "and I was advancing in Judaism beyond many of my contemporaries among my countrymen, being more extremely zealous for my ancestral traditions."
+        },
+        {
+          "verse": 15,
+          "text": "But when He who had set me apart even from my mother’s womb and called me through His grace was pleased"
+        },
+        {
+          "verse": 16,
+          "text": "to reveal His Son in me so that I might preach Him among the Gentiles, I did not immediately consult with flesh and blood,"
+        },
+        {
+          "verse": 17,
+          "text": "nor did I go up to Jerusalem to those who were apostles before me; but I went away to Arabia, and returned once more to Damascus."
+        },
+        {
+          "verse": 18,
+          "text": "Then three years later I went up to Jerusalem to become acquainted with Cephas, and stayed with him for fifteen days."
+        },
+        {
+          "verse": 19,
+          "text": "But I did not see another one of the apostles except James, the Lord’s brother."
+        },
+        {
+          "verse": 20,
+          "text": "(Now in what I am writing to you, I assure you before God that I am not lying.)"
+        },
+        {
+          "verse": 21,
+          "text": "Then I went into the regions of Syria and Cilicia."
+        },
+        {
+          "verse": 22,
+          "text": "I was still unknown by sight to the churches of Judea which are in Christ;"
+        },
+        {
+          "verse": 23,
+          "text": "but they only kept hearing, “The man who once persecuted us is now preaching the faith which he once tried to destroy.”"
+        },
+        {
+          "verse": 24,
+          "text": "And they were glorifying God because of me."
+        }
+      ],
+      "verse_count": 24,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Introduction"
+        },
+        {
+          "before_verse": 5,
+          "text": "Distortion of the Gospel"
+        },
+        {
+          "before_verse": 10,
+          "text": "Paul Defends His Ministry"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/GAL/1-d04a4585f518cb3c69fd26b21172a08c.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/GAL/1-d04a4585f518cb3c69fd26b21172a08c.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/GAL/1-13f29e02dc49d12e240eb0a8dfa5c73d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/GAL/1-13f29e02dc49d12e240eb0a8dfa5c73d.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "GAL",
+      "chapter": 2,
+      "chapter_usfm": "GAL.2",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Then after an interval of fourteen years I went up again to Jerusalem with Barnabas, taking Titus along also."
+        },
+        {
+          "verse": 2,
+          "text": "It was because of a revelation that I went up; and I submitted to them the gospel which I preach among the Gentiles, but I did so in private to those who were of reputation, for fear that somehow I might be running, or had run, in vain."
+        },
+        {
+          "verse": 3,
+          "text": "But not even Titus, who was with me, though he was a Greek, was compelled to be circumcised."
+        },
+        {
+          "verse": 4,
+          "text": "Yet it was a concern because of the false brothers secretly brought in, who had sneaked in to spy on our freedom which we have in Christ Jesus, in order to enslave us."
+        },
+        {
+          "verse": 5,
+          "text": "But we did not yield in subjection to them, even for an hour, so that the truth of the gospel would remain with you."
+        },
+        {
+          "verse": 6,
+          "text": "But from those who were of considerable repute (what they were makes no difference to me; God shows no favoritism)—well, those who were of repute contributed nothing to me."
+        },
+        {
+          "verse": 7,
+          "text": "But on the contrary, seeing that I had been entrusted with the gospel to the uncircumcised, just as Peter had been to the circumcised"
+        },
+        {
+          "verse": 8,
+          "text": "(for He who was at work for Peter in his apostleship to the circumcised was at work for me also to the Gentiles),"
+        },
+        {
+          "verse": 9,
+          "text": "and recognizing the grace that had been given to me, James and Cephas and John, who were reputed to be pillars, gave to me and Barnabas the right hand of fellowship, so that we might go to the Gentiles, and they to the circumcised."
+        },
+        {
+          "verse": 10,
+          "text": "They only asked us to remember the poor—the very thing I also was eager to do."
+        },
+        {
+          "verse": 11,
+          "text": "But when Cephas came to Antioch, I opposed him to his face, because he stood condemned."
+        },
+        {
+          "verse": 12,
+          "text": "For prior to the coming of some men from James, he used to eat with the Gentiles; but when they came, he began to withdraw and separate himself, fearing those from the circumcision."
+        },
+        {
+          "verse": 13,
+          "text": "The rest of the Jews joined him in hypocrisy, with the result that even Barnabas was carried away by their hypocrisy."
+        },
+        {
+          "verse": 14,
+          "text": "But when I saw that they were not straightforward about the truth of the gospel, I said to Cephas in the presence of all, “If you, being a Jew, live like the Gentiles and not like the Jews, how is it that you compel the Gentiles to live like Jews?"
+        },
+        {
+          "verse": 15,
+          "text": "“We are Jews by nature and not sinners from the Gentiles;"
+        },
+        {
+          "verse": 16,
+          "text": "nevertheless, knowing that a person is not justified by works of the Law but through faith in Christ Jesus, even we have believed in Christ Jesus, so that we may be justified by faith in Christ and not by works of the Law; since by works of the Law no flesh will be justified."
+        },
+        {
+          "verse": 17,
+          "text": "But if, while seeking to be justified in Christ, we ourselves have also been found sinners, is Christ then a servant of sin? Far from it!"
+        },
+        {
+          "verse": 18,
+          "text": "For if I rebuild what I have once destroyed, I prove myself to be a wrongdoer."
+        },
+        {
+          "verse": 19,
+          "text": "For through the Law I died to the Law, so that I might live for God."
+        },
+        {
+          "verse": 20,
+          "text": "I have been crucified with Christ; and it is no longer I who live, but Christ lives in me; and the life which I now live in the flesh I live by faith in the Son of God, who loved me and gave Himself up for me."
+        },
+        {
+          "verse": 21,
+          "text": "I do not nullify the grace of God, for if righteousness comes through the Law, then Christ died needlessly.”"
+        }
+      ],
+      "verse_count": 21,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Council at Jerusalem"
+        },
+        {
+          "before_verse": 10,
+          "text": "Peter (Cephas) Opposed by Paul"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/GAL/2-2a0aee2cc931cbac8d860f6e52dfdab8.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/GAL/2-2a0aee2cc931cbac8d860f6e52dfdab8.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/GAL/2-82246798d6ede6e3286ede0ceebb8bb0.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/GAL/2-82246798d6ede6e3286ede0ceebb8bb0.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "GAL",
+      "chapter": 3,
+      "chapter_usfm": "GAL.3",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "You foolish Galatians, who has bewitched you, before whose eyes Jesus Christ was publicly portrayed as crucified?"
+        },
+        {
+          "verse": 2,
+          "text": "This is the only thing I want to find out from you: did you receive the Spirit by works of the Law, or by hearing with faith?"
+        },
+        {
+          "verse": 3,
+          "text": "Are you so foolish? Having begun by the Spirit, are you now being perfected by the flesh?"
+        },
+        {
+          "verse": 4,
+          "text": "Did you suffer so many things in vain—if indeed it was in vain?"
+        },
+        {
+          "verse": 5,
+          "text": "So then, does He who provides you with the Spirit and works miracles among you, do it by works of the Law, or by hearing with faith?"
+        },
+        {
+          "verse": 6,
+          "text": "Just as Abraham believed God, and it was credited to him as righteousness."
+        },
+        {
+          "verse": 7,
+          "text": "Therefore, recognize that it is those who are of faith who are sons of Abraham."
+        },
+        {
+          "verse": 8,
+          "text": "The Scripture, foreseeing that God would justify the Gentiles by faith, preached the gospel beforehand to Abraham, saying, “All the nations will be blessed in you.”"
+        },
+        {
+          "verse": 9,
+          "text": "So then, those who are of faith are blessed with Abraham, the believer."
+        },
+        {
+          "verse": 10,
+          "text": "For all who are of works of the Law are under a curse; for it is written: “Cursed is everyone who does not abide by all the things written in the book of the Law, to do them.”"
+        },
+        {
+          "verse": 11,
+          "text": "Now, that no one is justified by the Law before God is evident; for, “the righteous one will live by faith.”"
+        },
+        {
+          "verse": 12,
+          "text": "However, the Law is not of faith; on the contrary, “The person who performs them will live by them.”"
+        },
+        {
+          "verse": 13,
+          "text": "Christ redeemed us from the curse of the Law, having become a curse for us—for it is written: “Cursed is everyone who hangs on a tree”—"
+        },
+        {
+          "verse": 14,
+          "text": "in order that in Christ Jesus the blessing of Abraham would come to the Gentiles, so that we would receive the promise of the Spirit through faith."
+        },
+        {
+          "verse": 15,
+          "text": "Brothers and sisters, I speak in terms of human relations: even though it is only a man’s covenant, yet when it has been ratified, no one sets it aside or adds conditions to it."
+        },
+        {
+          "verse": 16,
+          "text": "Now the promises were spoken to Abraham and to his seed. He does not say, “And to seeds,” as one would in referring to many, but rather as in referring to one, “And to your seed,” that is, Christ."
+        },
+        {
+          "verse": 17,
+          "text": "What I am saying is this: the Law, which came 430 years later, does not invalidate a covenant previously ratified by God, so as to nullify the promise."
+        },
+        {
+          "verse": 18,
+          "text": "For if the inheritance is based on law, it is no longer based on a promise; but God has granted it to Abraham by means of a promise."
+        },
+        {
+          "verse": 19,
+          "text": "Why the Law then? It was added on account of the violations, having been ordered through angels at the hand of a mediator, until the Seed would come to whom the promise had been made."
+        },
+        {
+          "verse": 20,
+          "text": "Now a mediator is not for one party only; but God is only one."
+        },
+        {
+          "verse": 21,
+          "text": "Is the Law then contrary to the promises of God? Far from it! For if a law had been given that was able to impart life, then righteousness would indeed have been based on law."
+        },
+        {
+          "verse": 22,
+          "text": "But the Scripture has confined everyone under sin, so that the promise by faith in Jesus Christ might be given to those who believe."
+        },
+        {
+          "verse": 23,
+          "text": "But before faith came, we were kept in custody under the Law, being confined for the faith that was destined to be revealed."
+        },
+        {
+          "verse": 24,
+          "text": "Therefore the Law has become our guardian to lead us to Christ, so that we may be justified by faith."
+        },
+        {
+          "verse": 25,
+          "text": "But now that faith has come, we are no longer under a guardian."
+        },
+        {
+          "verse": 26,
+          "text": "For you are all sons and daughters of God through faith in Christ Jesus."
+        },
+        {
+          "verse": 27,
+          "text": "For all of you who were baptized into Christ have clothed yourselves with Christ."
+        },
+        {
+          "verse": 28,
+          "text": "There is neither Jew nor Greek, there is neither slave nor free, there is neither male nor female; for you are all one in Christ Jesus."
+        },
+        {
+          "verse": 29,
+          "text": "And if you belong to Christ, then you are Abraham’s descendants, heirs according to promise."
+        }
+      ],
+      "verse_count": 29,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Faith Brings Righteousness"
+        },
+        {
+          "before_verse": 14,
+          "text": "Intent of the Law"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/GAL/3-1b34f906b3e51f7debf88f216ea33c05.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/GAL/3-1b34f906b3e51f7debf88f216ea33c05.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/GAL/3-488bfdabbf7b3a33fd39be45d250dd6f.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/GAL/3-488bfdabbf7b3a33fd39be45d250dd6f.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "GAL",
+      "chapter": 4,
+      "chapter_usfm": "GAL.4",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Now I say, as long as the heir is a child, he does not differ at all from a slave, although he is owner of everything,"
+        },
+        {
+          "verse": 2,
+          "text": "but he is under guardians and managers until the date set by the father."
+        },
+        {
+          "verse": 3,
+          "text": "So we too, when we were children, were held in bondage under the elementary principles of the world."
+        },
+        {
+          "verse": 4,
+          "text": "But when the fullness of the time came, God sent His Son, born of a woman, born under the Law,"
+        },
+        {
+          "verse": 5,
+          "text": "so that He might redeem those who were under the Law, that we might receive the adoption as sons and daughters."
+        },
+        {
+          "verse": 6,
+          "text": "Because you are sons, God has sent the Spirit of His Son into our hearts, crying out, “Abba! Father!”"
+        },
+        {
+          "verse": 7,
+          "text": "Therefore you are no longer a slave, but a son; and if a son, then an heir through God."
+        },
+        {
+          "verse": 8,
+          "text": "However at that time, when you did not know God, you were slaves to those which by nature are not gods."
+        },
+        {
+          "verse": 9,
+          "text": "But now that you have come to know God, or rather to be known by God, how is it that you turn back again to the weak and worthless elementary principles, to which you want to be enslaved all over again?"
+        },
+        {
+          "verse": 10,
+          "text": "You meticulously observe days and months and seasons and years."
+        },
+        {
+          "verse": 11,
+          "text": "I fear for you, that perhaps I have labored over you in vain."
+        },
+        {
+          "verse": 12,
+          "text": "I beg of you, brothers and sisters, become as I am, for I also have become as you are. You have done me no wrong;"
+        },
+        {
+          "verse": 13,
+          "text": "but you know that it was because of a bodily illness that I preached the gospel to you the first time;"
+        },
+        {
+          "verse": 14,
+          "text": "and you did not despise that which was a trial to you in my bodily condition, nor express contempt, but you received me as an angel of God, as Christ Jesus Himself."
+        },
+        {
+          "verse": 15,
+          "text": "Where then is that sense of blessing you had? For I testify about you that, if possible, you would have torn out your eyes and given them to me."
+        },
+        {
+          "verse": 16,
+          "text": "So have I become your enemy by telling you the truth?"
+        },
+        {
+          "verse": 17,
+          "text": "They eagerly seek you, not in a commendable way, but they want to shut you out so that you will seek them."
+        },
+        {
+          "verse": 18,
+          "text": "But it is good always to be eagerly sought in a commendable way, and not only when I am present with you."
+        },
+        {
+          "verse": 19,
+          "text": "My children, with whom I am again in labor until Christ is formed in you—"
+        },
+        {
+          "verse": 20,
+          "text": "but I could wish to be present with you now and to change my tone of voice, for I am at a loss about you!"
+        },
+        {
+          "verse": 21,
+          "text": "Tell me, you who want to be under law, do you not listen to the Law?"
+        },
+        {
+          "verse": 22,
+          "text": "For it is written that Abraham had two sons, one by the slave woman and one by the free woman."
+        },
+        {
+          "verse": 23,
+          "text": "But the son by the slave woman was born according to the flesh, and the son by the free woman through the promise."
+        },
+        {
+          "verse": 24,
+          "text": "This is speaking allegorically, for these women are two covenants: one coming from Mount Sinai giving birth to children who are to be slaves; she is Hagar."
+        },
+        {
+          "verse": 25,
+          "text": "Now this Hagar is Mount Sinai in Arabia and corresponds to the present Jerusalem, for she is enslaved with her children."
+        },
+        {
+          "verse": 26,
+          "text": "But the Jerusalem above is free; she is our mother."
+        },
+        {
+          "verse": 27,
+          "text": "For it is written:“Rejoice, infertile one, you who do not give birth;Break forth and shout, you who are not in labor;For the children of the desolate one are more numerousThan those of the one who has a husband.”"
+        },
+        {
+          "verse": 28,
+          "text": "And you, brothers and sisters, like Isaac, are children of promise."
+        },
+        {
+          "verse": 29,
+          "text": "But as at that time the son who was born according to the flesh persecuted the one who was born according to the Spirit, so it is even now."
+        },
+        {
+          "verse": 30,
+          "text": "But what does the Scripture say?“Drive out the slave woman and her son,For the son of the slave woman shall not be an heir with the son of the free woman.”"
+        },
+        {
+          "verse": 31,
+          "text": "So then, brothers and sisters, we are not children of a slave woman, but of the free woman."
+        }
+      ],
+      "verse_count": 31,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Sonship in Christ"
+        },
+        {
+          "before_verse": 20,
+          "text": "Slave and Free"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/GAL/4-767f2c99430585128beea92e16494052.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/GAL/4-767f2c99430585128beea92e16494052.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/GAL/4-f421e91eca508540504e67149f993215.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/GAL/4-f421e91eca508540504e67149f993215.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "GAL",
+      "chapter": 5,
+      "chapter_usfm": "GAL.5",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "It was for freedom that Christ set us free; therefore keep standing firm and do not be subject again to a yoke of slavery."
+        },
+        {
+          "verse": 2,
+          "text": "Look! I, Paul, tell you that if you have yourselves circumcised, Christ will be of no benefit to you."
+        },
+        {
+          "verse": 3,
+          "text": "And I testify again to every man who has himself circumcised, that he is obligated to keep the whole Law."
+        },
+        {
+          "verse": 4,
+          "text": "You have been severed from Christ, you who are seeking to be justified by the Law; you have fallen from grace."
+        },
+        {
+          "verse": 5,
+          "text": "For we, through the Spirit, by faith, are waiting for the hope of righteousness."
+        },
+        {
+          "verse": 6,
+          "text": "For in Christ Jesus neither circumcision nor uncircumcision means anything, but faith working through love."
+        },
+        {
+          "verse": 7,
+          "text": "You were running well; who hindered you from obeying the truth?"
+        },
+        {
+          "verse": 8,
+          "text": "This persuasion did not come from Him who calls you."
+        },
+        {
+          "verse": 9,
+          "text": "A little leaven leavens the whole lump of dough."
+        },
+        {
+          "verse": 10,
+          "text": "I have confidence in you in the Lord, that you will adopt no other view; but the one who is disturbing you will bear the punishment, whoever he is."
+        },
+        {
+          "verse": 11,
+          "text": "But as for me, brothers and sisters, if I still preach circumcision, why am I still persecuted? Then the stumbling block of the cross has been eliminated."
+        },
+        {
+          "verse": 12,
+          "text": "I wish that those who are troubling you would even emasculate themselves."
+        },
+        {
+          "verse": 13,
+          "text": "For you were called to freedom, brothers and sisters; only do not turn your freedom into an opportunity for the flesh, but serve one another through love."
+        },
+        {
+          "verse": 14,
+          "text": "For the whole Law is fulfilled in one word, in the statement, “You shall love your neighbor as yourself.”"
+        },
+        {
+          "verse": 15,
+          "text": "But if you bite and devour one another, take care that you are not consumed by one another."
+        },
+        {
+          "verse": 16,
+          "text": "But I say, walk by the Spirit, and you will not carry out the desire of the flesh."
+        },
+        {
+          "verse": 17,
+          "text": "For the desire of the flesh is against the Spirit, and the Spirit against the flesh; for these are in opposition to one another, in order to keep you from doing whatever you want."
+        },
+        {
+          "verse": 18,
+          "text": "But if you are led by the Spirit, you are not under the Law."
+        },
+        {
+          "verse": 19,
+          "text": "Now the deeds of the flesh are evident, which are: sexual immorality, impurity, indecent behavior,"
+        },
+        {
+          "verse": 20,
+          "text": "idolatry, witchcraft, hostilities, strife, jealousy, outbursts of anger, selfish ambition, dissensions, factions,"
+        },
+        {
+          "verse": 21,
+          "text": "envy, drunkenness, carousing, and things like these, of which I forewarn you, just as I have forewarned you, that those who practice such things will not inherit the kingdom of God."
+        },
+        {
+          "verse": 22,
+          "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness,"
+        },
+        {
+          "verse": 23,
+          "text": "gentleness, self-control; against such things there is no law."
+        },
+        {
+          "verse": 24,
+          "text": "Now those who belong to Christ Jesus crucified the flesh with its passions and desires."
+        },
+        {
+          "verse": 25,
+          "text": "If we live by the Spirit, let’s follow the Spirit as well."
+        },
+        {
+          "verse": 26,
+          "text": "Let’s not become boastful, challenging one another, envying one another."
+        }
+      ],
+      "verse_count": 26,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Follow the Spirit"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/GAL/5-d7f1900e6be5c440fac75fc3265cee2a.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/GAL/5-d7f1900e6be5c440fac75fc3265cee2a.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/GAL/5-27a810522efe8dd5166b520fb2baae2f.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/GAL/5-27a810522efe8dd5166b520fb2baae2f.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "GAL",
+      "chapter": 6,
+      "chapter_usfm": "GAL.6",
+      "version_id": 2692,
+      "version_abbr": "NASB2020",
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Brothers and sisters, even if a person is caught in any wrongdoing, you who are spiritual are to restore such a person in a spirit of gentleness; each one looking to yourself, so that you are not tempted as well."
+        },
+        {
+          "verse": 2,
+          "text": "Bear one another’s burdens, and thereby fulfill the law of Christ."
+        },
+        {
+          "verse": 3,
+          "text": "For if anyone thinks that he is something when he is nothing, he deceives himself."
+        },
+        {
+          "verse": 4,
+          "text": "But each one must examine his own work, and then he will have reason for boasting, but to himself alone, and not to another."
+        },
+        {
+          "verse": 5,
+          "text": "For each one will bear his own load."
+        },
+        {
+          "verse": 6,
+          "text": "The one who is taught the word is to share all good things with the one who teaches him."
+        },
+        {
+          "verse": 7,
+          "text": "Do not be deceived, God is not mocked; for whatever a person sows, this he will also reap."
+        },
+        {
+          "verse": 8,
+          "text": "For the one who sows to his own flesh will reap destruction from the flesh, but the one who sows to the Spirit will reap eternal life from the Spirit."
+        },
+        {
+          "verse": 9,
+          "text": "Let’s not become discouraged in doing good, for in due time we will reap, if we do not become weary."
+        },
+        {
+          "verse": 10,
+          "text": "So then, while we have opportunity, let’s do good to all people, and especially to those who are of the household of the faith."
+        },
+        {
+          "verse": 11,
+          "text": "See with what large letters I have written to you with my own hand!"
+        },
+        {
+          "verse": 12,
+          "text": "All who want to make a good showing in the flesh try to compel you to be circumcised, simply so that they will not be persecuted for the cross of Christ."
+        },
+        {
+          "verse": 13,
+          "text": "For those who are circumcised do not even keep the Law themselves, but they want to have you circumcised so that they may boast in your flesh."
+        },
+        {
+          "verse": 14,
+          "text": "But far be it from me to boast, except in the cross of our Lord Jesus Christ, through which the world has been crucified to me, and I to the world."
+        },
+        {
+          "verse": 15,
+          "text": "For neither is circumcision anything, nor uncircumcision, but a new creation."
+        },
+        {
+          "verse": 16,
+          "text": "And all who will follow this rule, peace and mercy be upon them, and upon the Israel of God."
+        },
+        {
+          "verse": 17,
+          "text": "From now on let no one cause trouble for me, for I bear on my body the marks of Jesus."
+        },
+        {
+          "verse": 18,
+          "text": "The grace of our Lord Jesus Christ be with your spirit, brothers and sisters. Amen."
+        }
+      ],
+      "verse_count": 18,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Bear One Another’s Burdens"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 2468,
+          "title": "New American Standard Bible - NASB",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2468/32k/GAL/6-3a07b1b8696a7b645938c888d1df547d.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2468/m4a/32k/GAL/6-3a07b1b8696a7b645938c888d1df547d.m3u8?version_id=2692"
+        },
+        {
+          "audio_version_id": 2929,
+          "title": "Music Bible",
+          "dramatized": true,
+          "timing_available": false,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/2929/32k/GAL/6-c0eb575560839584803769a516cd46b6.mp3?version_id=2692",
+          "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/GAL/6-c0eb575560839584803769a516cd46b6.m3u8?version_id=2692"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+{
+  "book_id": "HEB",
+  "book_name_en": "Hebrews",
+  "book_name_fa": "عبرانیان",
+  "testament": "NT",
+  "version_id": 97,
+  "version_abbr": "MSG",
+  "version_name": "The Message",
+  "language": "en",
+  "chapter_count": 13,
+  "total_verses": 18,
+  "chapters": [
+    {
+      "book_id": "HEB",
+      "chapter": 1,
+      "chapter_usfm": "HEB.1",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 7,
+          "text": "Regarding angels he says,The messengers are winds,the servants are tongues of fire. But he says to the Son,You’re God, and on the throne for good;your rule makes everything right.You love it when things are right;you hate it when things are wrong.That is why God, your God,poured fragrant oil on your head,Marking you out as king,far above your dear companions. And again to the Son,You, Master, started it all, laid earth’s foundations,then crafted the stars in the sky.Earth and sky will wear out, but not you;they become threadbare like an old coat;You’ll fold them up like a worn-out cloak,and lay them away on the shelf.But you’ll stay the same, year after year;you’ll never fade, you’ll never wear out."
+        },
+        {
+          "verse": 13,
+          "text": "And did he ever say anything like this to an angel?Sit alongside me here on my throneUntil I make your enemies a stool for your feet."
+        },
+        {
+          "verse": 14,
+          "text": "Isn’t it obvious that all angels are sent to help out with those lined up to receive salvation?"
+        }
+      ],
+      "verse_count": 3,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Son Is Higher than Angels"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/1-a917e3a9828972cabea98928767c282b.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/1-a917e3a9828972cabea98928767c282b.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 2,
+      "chapter_usfm": "HEB.2",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The Salvation Pioneer"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/2-1be0a3c3da0c3bb8360ab7fd3ee8cc7e.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/2-1be0a3c3da0c3bb8360ab7fd3ee8cc7e.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 3,
+      "chapter_usfm": "HEB.3",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/3-627d29bcc19fd51072795960d9d60164.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/3-627d29bcc19fd51072795960d9d60164.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 4,
+      "chapter_usfm": "HEB.4",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "The High Priest Who Cried Out in Pain"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/4-53cda1da73aa09aa4a60675b61c1fae8.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/4-53cda1da73aa09aa4a60675b61c1fae8.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 5,
+      "chapter_usfm": "HEB.5",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Re-Crucifying Jesus"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/5-87bf3217bfacf533756b62d9c321c4ff.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/5-87bf3217bfacf533756b62d9c321c4ff.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 6,
+      "chapter_usfm": "HEB.6",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "God Gave His Word"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/6-4ac95976b3fab5d87248f86defe1ab57.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/6-4ac95976b3fab5d87248f86defe1ab57.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 7,
+      "chapter_usfm": "HEB.7",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "A Permanent Priesthood"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/7-a6946c95b2c16acf31556545963b05d1.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/7-a6946c95b2c16acf31556545963b05d1.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 8,
+      "chapter_usfm": "HEB.8",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/8-4b8f59fbca2603927cb67a0caf924344.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/8-4b8f59fbca2603927cb67a0caf924344.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 9,
+      "chapter_usfm": "HEB.9",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Pointing to the Realities of Heaven"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/9-268cba5415a204d1e4acf9c0a8112754.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/9-268cba5415a204d1e4acf9c0a8112754.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 10,
+      "chapter_usfm": "HEB.10",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "Don’t Throw It All Away"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/10-acfce9b19a4fecb863c980d6ddc2c36c.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/10-acfce9b19a4fecb863c980d6ddc2c36c.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 11,
+      "chapter_usfm": "HEB.11",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 3,
+          "text": "By faith, we see the world called into existence by God’s word, what we see created by what we don’t see."
+        },
+        {
+          "verse": 4,
+          "text": "By an act of faith, Abel brought a better sacrifice to God than Cain. It was what he believed, not what he brought, that made the difference. That’s what God noticed and approved as righteous. After all these centuries, that belief continues to catch our notice. By an act of faith, Enoch skipped death completely. “They looked all over and couldn’t find him because God had taken him.” We know on the basis of reliable testimony that before he was taken “he pleased God.” It’s impossible to please God apart from faith. And why? Because anyone who wants to approach God must believe both that he exists and that he cares enough to respond to those who seek him."
+        },
+        {
+          "verse": 7,
+          "text": "By faith, Noah built a ship in the middle of dry land. He was warned about something he couldn’t see, and acted on what he was told. The result? His family was saved. His act of faith drew a sharp line between the evil of the unbelieving world and the rightness of the believing world. As a result, Noah became intimate with God. By an act of faith, Abraham said yes to God’s call to travel to an unknown place that would become his home. When he left he had no idea where he was going. By an act of faith he lived in the country promised him, lived as a stranger camping in tents. Isaac and Jacob did the same, living under the same promise. Abraham did it by keeping his eye on an unseen city with real, eternal foundations—the City designed and built by God. By faith, barren Sarah was able to become pregnant, old woman as she was at the time, because she believed the One who made a promise would do what he said. That’s how it happened that from one man’s dead and shriveled loins there are now people numbering into the millions.* * * Each one of these people of faith died not yet having in hand what was promised, but still believing. How did they do it? They saw it way off in the distance, waved their greeting, and accepted the fact that they were transients in this world. People who live this way make it plain that they are looking for their true home. If they were homesick for the old country, they could have gone back any time they wanted. But they were after a far better country than that—heaven country. You can see why God is so proud of them, and has a City waiting for them. By faith, Abraham, at the time of testing, offered Isaac back to God. Acting in faith, he was as ready to return the promised son, his only son, as he had been to receive him—and this after he had already been told, “Your descendants shall come from Isaac.” Abraham figured that if God wanted to, he could raise the dead. In a sense, that’s what happened when he received Isaac back, alive from off the altar."
+        },
+        {
+          "verse": 20,
+          "text": "By an act of faith, Isaac reached into the future as he blessed Jacob and Esau."
+        },
+        {
+          "verse": 21,
+          "text": "By an act of faith, Jacob on his deathbed blessed each of Joseph’s sons in turn, blessing them with God’s blessing, not his own—as he bowed worshipfully upon his staff."
+        },
+        {
+          "verse": 22,
+          "text": "By an act of faith, Joseph, while dying, prophesied the exodus of Israel, and made arrangements for his own burial."
+        },
+        {
+          "verse": 23,
+          "text": "By an act of faith, Moses’ parents hid him away for three months after his birth. They saw the child’s beauty, and they braved the king’s decree. By faith, Moses, when grown, refused the privileges of the Egyptian royal house. He chose a hard life with God’s people rather than an opportunistic soft life of sin with the oppressors. He valued suffering in the Messiah’s camp far greater than Egyptian wealth because he was looking ahead, anticipating the payoff. By an act of faith, he turned his heel on Egypt, indifferent to the king’s blind rage. He had his eye on the One no eye can see, and kept right on going. By an act of faith, he kept the Passover Feast and sprinkled Passover blood on each house so that the destroyer of the firstborn wouldn’t touch them."
+        },
+        {
+          "verse": 29,
+          "text": "By an act of faith, Israel walked through the Red Sea on dry ground. The Egyptians tried it and drowned."
+        },
+        {
+          "verse": 30,
+          "text": "By faith, the Israelites marched around the walls of Jericho for seven days, and the walls fell flat."
+        },
+        {
+          "verse": 31,
+          "text": "By an act of faith, Rahab, the Jericho harlot, welcomed the spies and escaped the destruction that came on those who refused to trust God.* * * I could go on and on, but I’ve run out of time. There are so many more—Gideon, Barak, Samson, Jephthah, David, Samuel, the prophets. . . . Through acts of faith, they toppled kingdoms, made justice work, took the promises for themselves. They were protected from lions, fires, and sword thrusts, turned disadvantage to advantage, won battles, routed alien armies. Women received their loved ones back from the dead. There were those who, under torture, refused to give in and go free, preferring something better: resurrection. Others braved abuse and whips, and, yes, chains and dungeons. We have stories of those who were stoned, sawed in two, murdered in cold blood; stories of vagrants wandering the earth in animal skins, homeless, friendless, powerless—the world didn’t deserve them!—making their way as best they could on the cruel edges of the world. Not one of these people, even though their lives of faith were exemplary, got their hands on what was promised. God had a better plan for us: that their faith and our faith would come together to make one completed whole, their lives of faith not complete apart from ours."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/11-81edfb95ad881bad494468b95bd8bc82.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/11-81edfb95ad881bad494468b95bd8bc82.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 12,
+      "chapter_usfm": "HEB.12",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [
+        {
+          "before_verse": 1,
+          "text": "An Unshakable Kingdom"
+        }
+      ],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/12-a64984654502669223fc9355c414d31f.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/12-a64984654502669223fc9355c414d31f.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    },
+    {
+      "book_id": "HEB",
+      "chapter": 13,
+      "chapter_usfm": "HEB.13",
+      "version_id": 97,
+      "version_abbr": "MSG",
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Don’t be lured away from him by the latest speculations about him. The grace of Christ is the only good ground for life. Products named after Christ don’t seem to do much for those who buy them. The altar from which God gives us the gift of himself is not for exploitation by insiders who grab and loot. In the old system, the animals are killed and the bodies disposed of outside the camp. The blood is then brought inside to the altar as a sacrifice for sin. It’s the same with Jesus. He was crucified outside the city gates—that is where he poured out the sacrificial blood that was brought to God’s altar to cleanse his people. So let’s go outside, where Jesus is, where the action is—not trying to be privileged insiders, but taking our share in the abuse of Jesus. This “insider world” is not our home. We have our eyes peeled for the City about to come. Let’s take our place outside with Jesus, no longer pouring out the sacrificial blood of animals but pouring out sacrificial praises from our lips to God in Jesus’ name.* * *"
+        },
+        {
+          "verse": 16,
+          "text": "Make sure you don’t take things for granted and go slack in working for the common good; share what you have with others. God takes particular pleasure in acts of worship—a different kind of “sacrifice”—that take place in kitchen and workplace and on the streets."
+        },
+        {
+          "verse": 17,
+          "text": "Be responsive to your pastoral leaders. Listen to their counsel. They are alert to the condition of your lives and work under the strict supervision of God. Contribute to the joy of their leadership, not its drudgery. Why would you want to make things harder for them? Pray for us. We have no doubts about what we’re doing or why, but it’s hard going and we need your prayers. All we care about is living well before God. Pray that we may be together soon.May God, who puts all things together,makes all things whole,Who made a lasting mark through the sacrifice of Jesus,the sacrifice of blood that sealed the eternal covenant,Who led Jesus, our Great Shepherd,up and alive from the dead,Now put you together, provide youwith everything you need to please him,Make us into what gives him most pleasure,by means of the sacrifice of Jesus, the Messiah.All glory to Jesus forever and always!Oh, yes, yes, yes. Friends, please take what I’ve written most seriously. I’ve kept this as brief as possible; I haven’t piled on a lot of extras. You’ll be glad to know that Timothy has been let out of prison. If he leaves soon, I’ll come with him and get to see you myself."
+        },
+        {
+          "verse": 24,
+          "text": "Say hello to your pastoral leaders and all the congregations. Everyone here in Italy wants to be remembered to you."
+        },
+        {
+          "verse": 25,
+          "text": "Grace be with you, every one."
+        }
+      ],
+      "verse_count": 5,
+      "headings": [],
+      "footnotes": [],
+      "audio": [
+        {
+          "audio_version_id": 85,
+          "title": "The Message",
+          "dramatized": false,
+          "timing_available": true,
+          "mp3_url": "https://audio-bible-cdn.youversionapi.com/85/32k/HEB/13-7c45aed9ae22aec8032f38760a29bb2c.mp3?version_id=97",
+          "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/13-7c45aed9ae22aec8032f38760a29bb2c.m3u8?version_id=97"
+        }
+      ],
+      "has_audio": true
+    }
+  ]
+}

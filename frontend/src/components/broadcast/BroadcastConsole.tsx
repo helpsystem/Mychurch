@@ -78,6 +78,8 @@ const INITIAL_OVERLAY: BroadcastOverlayConfig = {
   layout: 'SLIDES_ONLY',
   pipPosition: 'bottom-right', // موقعیت پیش‌فرض دوربین
   pipScale: 1,
+  pipSize: 'medium',
+  splitRatio: '50-50',
   logoUrl: null,
   showLogo: false,
   leaderVideoShape: 'rectangle',

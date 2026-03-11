@@ -1,0 +1,66 @@
+{
+  "book_id": "MAL",
+  "book_name_en": "Malachi",
+  "book_name_fa": "ملاکی",
+  "testament": "OT",
+  "version_id": 3950,
+  "version_abbr": "PES",
+  "version_name": "Bandari Bible - Korpu",
+  "language": "fa",
+  "chapter_count": 4,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "book_id": "MAL",
+      "chapter": 1,
+      "chapter_usfm": "MAL.1",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    },
+    {
+      "book_id": "MAL",
+      "chapter": 2,
+      "chapter_usfm": "MAL.2",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    },
+    {
+      "book_id": "MAL",
+      "chapter": 3,
+      "chapter_usfm": "MAL.3",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    },
+    {
+      "book_id": "MAL",
+      "chapter": 4,
+      "chapter_usfm": "MAL.4",
+      "version_id": 3950,
+      "version_abbr": "PES",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "audio": [],
+      "has_audio": false
+    }
+  ]
+}

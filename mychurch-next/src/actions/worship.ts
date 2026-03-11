@@ -1,9 +1,18 @@
-"use server"
-import { createClient } from '@/utils/supabase/server';
+"use server";
+
+import { Pool } from 'pg';
 import { revalidatePath } from 'next/cache';
 
+// Reusing same connection logic from the Bible action
+const connectionString = 'postgresql://mychurch_user:MyChurch2024Secure!@samanabyar.online:5433/mychurch';
+
+const pool = new Pool({
+    connectionString,
+    ssl: { rejectUnauthorized: false }, 
+});
+
 export interface WorshipSong {
-    id: string;
+    id: string; // Will map to mapping_id in DB
     title: { fa: string; en?: string };
     artist?: string;
     youtubeId?: string;
@@ -14,82 +23,82 @@ export interface WorshipSong {
     updatedAt?: string;
 }
 
-// Maps a row from PostgreSQL to our frontend interface
-function mapDbToSong(row: any): WorshipSong {
-    return {
-        id: row.id,
-        title: { fa: row.title_fa, en: row.title_en || undefined },
-        artist: row.artist || undefined,
-        youtubeId: row.youtube_id || undefined,
-        audioUrl: row.audio_url || undefined,
-        lyrics: { fa: row.lyrics_fa || undefined, en: row.lyrics_en || undefined },
-        timepoints: row.timepoints || [],
-        createdAt: row.created_at,
-        updatedAt: row.updated_at
-    };
-}
+// Maps our new unified structure to the frontend WorshipSong type
+function mapUnifiedDbToSong(rows: any[]): WorshipSong[] {
+    // The database has individual rows per lyric line per song.  
+    // We group them by unique `mapping_id` to form a complete song structure.
+    
+    const songMap = new Map<string, any>();
 
-// Maps our frontend interface to a PostgreSQL row
-function mapSongToDb(song: WorshipSong): any {
-    return {
-        // If it's a new song from UI, it might have a temporary 'temp-' id. Leave undefined for DB sequence
-        id: song.id.startsWith('temp-') || song.id.startsWith('new-') ? undefined : song.id,
-        title_fa: song.title.fa,
-        title_en: song.title.en,
-        artist: song.artist,
-        youtube_id: song.youtubeId,
-        audio_url: song.audioUrl,
-        lyrics_fa: song.lyrics?.fa,
-        lyrics_en: song.lyrics?.en,
-        timepoints: song.timepoints || []
-    };
+    for (const row of rows) {
+        if (!songMap.has(row.mapping_id)) {
+            songMap.set(row.mapping_id, {
+                id: row.mapping_id || row.id.toString(),
+                title: { fa: row.title_fa || "سرود بدون نام", en: row.title_en || "" },
+                artist: row.artist || "",
+                youtubeId: row.youtube_id || "",
+                audioUrl: row.audio_url || "",
+                lyrics: { fa: "", en: "" }, // Will append below
+                timepoints: [], // Format to match Apple Music Player: { word: string, start_time: number, end_time: number }
+                createdAt: new Date().toISOString() // Temporary static date since it wasn't captured in scrape
+            });
+        }
+
+        const song = songMap.get(row.mapping_id);
+
+        // Append lyrics line by line using standard array joining later, or just string concatenation based on the UI expectation.
+        // Frontend Apple UI expects \n breaks
+        if (song.lyrics.fa && row.lyric_fa) song.lyrics.fa += "\n" + row.lyric_fa;
+        else if (row.lyric_fa) song.lyrics.fa = row.lyric_fa;
+
+        if (song.lyrics.en && row.lyric_en) song.lyrics.en += "\n" + row.lyric_en;
+        else if (row.lyric_en) song.lyrics.en = row.lyric_en;
+
+        // Map timepoints if they exist (From LRC parsing)
+        if (row.start_time !== undefined && row.end_time !== undefined) {
+             song.timepoints.push({
+                 word: row.lyric_fa || row.lyric_en || "", // Apple player triggers off words usually, we'll map the whole line here
+                 start_time: row.start_time,
+                 end_time: row.end_time
+             });
+        }
+    }
+
+    return Array.from(songMap.values());
 }
 
 export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
-    const supabase = await createClient();
-    const { data, error } = await supabase.from('worship_songs')
-        .select('*')
-        .order('created_at', { ascending: false });
+    try {
+        const query = `
+            SELECT * FROM unified_worship_songs
+            ORDER BY mapping_id ASC, line_order ASC;
+        `;
+        
+        const { rows } = await pool.query(query);
 
-    if (error) {
-        console.error("Error fetching worship songs:", error);
+        if (rows.length === 0) {
+            console.warn(`[Worship Action DB] No worship songs found in PostgreSQL.`);
+            return [];
+        }
+
+        return mapUnifiedDbToSong(rows);
+
+    } catch (error) {
+        console.error(`[Worship Action DB] Global error fetching songs:`, error);
         return [];
     }
-
-    return data.map(mapDbToSong);
 }
 
+// Note: Legacy save/delete Supabase logic removed since lyrics are now parsed directly from TSV sources globally. 
+// If editing functionality is required later, it should insert/update line-by-line into unified_worship_songs.
 export async function saveWorshipSong(song: WorshipSong) {
-    const supabase = await createClient();
-    const dbData = mapSongToDb(song);
-
-    try {
-        if (dbData.id) {
-            // Update
-            const { error } = await supabase.from('worship_songs').update(dbData).eq('id', dbData.id);
-            if (error) throw error;
-        } else {
-            // Insert
-            const { error } = await supabase.from('worship_songs').insert(dbData);
-            if (error) throw error;
-        }
-    } catch (error) {
-        console.error("Error saving worship song:", error);
-        throw new Error("Failed to save song");
-    }
-
-    revalidatePath('/admin/worship');
-    revalidatePath('/broadcast/builder');
+      console.warn("Saving to DB is currently disabled for Unified Worship Songs layout.");
+      revalidatePath('/admin/worship');
+      revalidatePath('/broadcast/builder');
 }
 
 export async function deleteWorshipSong(id: string) {
-    const supabase = await createClient();
-    const { error } = await supabase.from('worship_songs').delete().eq('id', id);
-    if (error) {
-        console.error("Error deleting worship song:", error);
-        throw new Error("Failed to delete song");
-    }
-
-    revalidatePath('/admin/worship');
-    revalidatePath('/broadcast/builder');
+     console.warn("Deleting from DB is currently disabled for Unified Worship Songs layout.");
+     revalidatePath('/admin/worship');
+     revalidatePath('/broadcast/builder');
 }
