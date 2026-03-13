@@ -1,38 +1,60 @@
 import path from "path";
-import sqlite3 from "sqlite3";
-import { promisify } from "util";
+import fs from "fs";
+import initSqlJs from "sql.js";
+import type { Database } from "sql.js";
 
 const DB_PATH = path.join(process.cwd(), "Bible", "bible_output", "bible_complete.db");
 
 // Create a singleton DB connection for reuse
-let _db: sqlite3.Database | null = null;
+let _db: Database | null = null;
+let _initPromise: Promise<Database> | null = null;
 
-function getDb(): sqlite3.Database {
-  if (!_db) {
-    _db = new sqlite3.Database(DB_PATH, sqlite3.OPEN_READONLY, (err) => {
-      if (err) {
-        console.error("[bibleDb] Failed to open database:", err.message);
-        _db = null;
+async function getDbAsync(): Promise<Database> {
+  if (_db) return _db;
+  
+  if (!_initPromise) {
+    _initPromise = (async () => {
+      try {
+        const SQL = await initSqlJs({
+          locateFile: file => path.join(process.cwd(), "public", "wasm", file)
+        });
+        const fileBuffer = fs.readFileSync(DB_PATH);
+        _db = new SQL.Database(fileBuffer);
+        return _db;
+      } catch (err: any) {
+        console.error("[bibleDb] Failed to open database using sql.js:", err.message);
+        throw err;
       }
-    });
+    })();
   }
-  return _db!;
+  
+  return _initPromise;
 }
 
-export function dbAll<T = Record<string, unknown>>(sql: string, params: unknown[] = []): Promise<T[]> {
-  return new Promise((resolve, reject) => {
-    getDb().all(sql, params, (err, rows) => {
-      if (err) reject(err);
-      else resolve(rows as T[]);
-    });
-  });
+export async function dbAll<T = Record<string, unknown>>(sqlRaw: string, params: unknown[] = []): Promise<T[]> {
+  const db = await getDbAsync();
+  
+  // sql.js uses ?1, ?2 instead of standard ? for prepared statements, but also supports arrays passed to exec/prepare
+  const stmt = db.prepare(sqlRaw);
+  stmt.bind(params as any[]);
+  
+  const results: T[] = [];
+  while (stmt.step()) {
+    results.push(stmt.getAsObject() as unknown as T);
+  }
+  stmt.free();
+  return results;
 }
 
-export function dbGet<T = Record<string, unknown>>(sql: string, params: unknown[] = []): Promise<T | undefined> {
-  return new Promise((resolve, reject) => {
-    getDb().get(sql, params, (err, row) => {
-      if (err) reject(err);
-      else resolve(row as T | undefined);
-    });
-  });
+export async function dbGet<T = Record<string, unknown>>(sqlRaw: string, params: unknown[] = []): Promise<T | undefined> {
+  const db = await getDbAsync();
+  const stmt = db.prepare(sqlRaw);
+  stmt.bind(params as any[]);
+  
+  let result: T | undefined = undefined;
+  if (stmt.step()) {
+    result = stmt.getAsObject() as unknown as T;
+  }
+  stmt.free();
+  return result;
 }

@@ -668,8 +668,8 @@ export interface DocHistoryItem {
 
 
 // ─── Invoice Document ─────────────────────────────────────────────────────────
-export function InvoiceDoc({ invoiceTo, invoiceName, invoiceDate, invoiceItems, invoiceTotalAmount, invoiceWallet, invoiceNo, church, lang, isPdf }: {
-  invoiceTo: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
+export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate, invoiceItems, invoiceTotalAmount, invoiceWallet, invoiceNotes, invoiceNo, church, lang, isPdf }: {
+  invoiceTo: string; invoiceAddress?: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNotes?: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
 }) {
   const isRtl = lang === "fa";
   // The layout direction relies on the language
@@ -712,6 +712,7 @@ export function InvoiceDoc({ invoiceTo, invoiceName, invoiceDate, invoiceItems, 
         <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1 border-b border-slate-200 pb-1 w-fit">{isRtl ? "صورتحساب به:" : "Bill To:"}</p>
           <p className="font-black text-xl text-slate-900 mt-2">{invoiceTo}</p>
+          {invoiceAddress && <p className="text-sm text-slate-600 mt-1">{invoiceAddress}</p>}
         </div>
         <div className={isRtl ? "text-left" : "text-right"}>
           <div className={`grid grid-cols-2 gap-2 text-sm ${isRtl ? "justify-start" : "justify-end"} bg-slate-50/80 p-4 rounded-xl border border-slate-100`}>
@@ -754,6 +755,13 @@ export function InvoiceDoc({ invoiceTo, invoiceName, invoiceDate, invoiceItems, 
             </tfoot>
           </table>
         </div>
+
+        {invoiceNotes && (
+          <div className="mt-8 pt-6 border-t border-slate-200" dir={dirClass}>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 w-fit">{isRtl ? "توضیحات:" : "Notes / Description:"}</p>
+            <p className="text-sm text-slate-700 whitespace-pre-wrap">{invoiceNotes}</p>
+          </div>
+        )}
 
         {invoiceWallet && (
           <div className="mt-8 pt-6 border-t border-dashed border-slate-200" dir={dirClass}>
@@ -880,10 +888,13 @@ export default function ChurchDocumentsPage() {
   const [receiptNo, setReceiptNo] = useState(() => String(Math.floor(Math.random() * 90000 + 10000)));
 
   // Invoice state
+  const [invoiceLang, setInvoiceLang] = useState<"en" | "fa">("en");
   const [invoiceTo, setInvoiceTo] = useState("DEJ TV");
+  const [invoiceAddress, setInvoiceAddress] = useState("");
   const [invoiceName, setInvoiceName] = useState("");
   const [invoiceDate, setInvoiceDate] = useState(new Date().toISOString().split("T")[0]);
   const [invoiceWallet, setInvoiceWallet] = useState("");
+  const [invoiceNotes, setInvoiceNotes] = useState("");
   const [invoiceItems, setInvoiceItems] = useState([{ id: crypto.randomUUID(), description: "", total: 0 }]);
   const [aiInvoiceInput, setAiInvoiceInput] = useState("");
   const [invoiceNo, setInvoiceNo] = useState(() => String(Math.floor(Math.random() * 90000 + 10000)));
@@ -1808,15 +1819,25 @@ export default function ChurchDocumentsPage() {
             <div className="lg:col-span-4 space-y-6">
               <div className="glass border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-full pointer-events-none" />
-                <h3 className="font-black text-lg mb-6 flex items-center gap-2 text-purple-400">
-                  <DollarSign className="w-5 h-5" /> {isRtl ? "فرم ساز فاکتور الکترونیک" : "Invoice Generator Form"}
-                </h3>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="font-black text-lg flex items-center gap-2 text-purple-400">
+                    <DollarSign className="w-5 h-5" /> {isRtl ? "فرم ساز فاکتور الکترونیک" : "Invoice Generator Form"}
+                  </h3>
+                  <div className="flex glass rounded-xl p-1 border border-white/10">
+                    {(["en", "fa"] as const).map(l => (
+                      <button key={l} onClick={() => setInvoiceLang(l)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${invoiceLang === l ? "bg-purple-500 text-white" : "text-muted-foreground hover:text-white"}`}>
+                        {l === "en" ? "EN" : "فا"}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 <div className="space-y-4 relative z-10">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "صورتحساب به" : "Bill To"}</label>
-                      <input value={invoiceTo} onChange={e => setInvoiceTo(e.target.value)} placeholder="DEJ TV" className={inputCls} />
+                      <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "صورتحساب به (نام سازمان)" : "Bill To (Organization)"}</label>
+                      <input value={invoiceTo} onChange={e => setInvoiceTo(e.target.value)} placeholder="Wait, you said DEJ TV?" className={inputCls} />
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "تاریخ فاکتور" : "Invoice Date"}</label>
@@ -1824,7 +1845,16 @@ export default function ChurchDocumentsPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "نام شخص / سازمان (پیمانکار)" : "Name of Freelancer / Orgnization"}</label>
+                    <label className="text-xs text-muted-foreground mb-1 flex items-center gap-1"><MapPin className="w-3 h-3" />{isRtl ? "آدرس سازمان (صورتحساب به)" : "Bill To Address"}</label>
+                    <AddressInput
+                      value={invoiceAddress}
+                      onChange={setInvoiceAddress}
+                      placeholder={isRtl ? "آدرس صورتحساب (شروع به تایپ کنید...)" : "Start typing address..."}
+                      className={inputCls}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "نام شخص / سازمان (پیمانکار)" : "Name of Freelancer / Organization"}</label>
                     <input value={invoiceName} onChange={e => setInvoiceName(e.target.value)} placeholder="John Doe" className={inputCls} />
                   </div>
 
@@ -1868,90 +1898,8 @@ export default function ChurchDocumentsPage() {
                   </div>
 
                   <div className="pt-4 border-t border-white/10">
-                    <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "کیف پول تتر (اختیاری)" : "Tether Wallet (TRC20 - Optional)"}</label>
-                    <input dir="ltr" value={invoiceWallet} onChange={e => setInvoiceWallet(e.target.value)} placeholder="T..." className={`${inputCls} font-mono text-xs`} />
-                  </div>
-
-                  <button onClick={handlePrintInvoice} className="w-full mt-4 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-3 rounded-xl font-black text-sm shadow-xl shadow-purple-500/20 hover:scale-[1.02] transition-transform">
-                    <Printer className="w-4 h-4" /> {isRtl ? "پیش‌نمایش و چاپ فاکتور" : "Preview & Print Invoice"}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-8 flex justify-center sticky top-28 print:static">
-              <div className="bg-white p-2 rounded-xl shadow-2xl scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-top border border-white/20 transition-transform">
-                <div ref={invoiceRef}>
-                  <InvoiceDoc invoiceTo={invoiceTo} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNo={invoiceNo} church={church} lang={editLang} />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ══ INVOICE TAB ══ */}
-        {activeTab === "invoice" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-4 space-y-6">
-              <div className="glass border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-full pointer-events-none" />
-                <h3 className="font-black text-lg mb-6 flex items-center gap-2 text-purple-400">
-                  <DollarSign className="w-5 h-5" /> {isRtl ? "فرم ساز فاکتور الکترونیک" : "Invoice Generator Form"}
-                </h3>
-
-                <div className="space-y-4 relative z-10">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "صورتحساب به" : "Bill To"}</label>
-                      <input value={invoiceTo} onChange={e => setInvoiceTo(e.target.value)} placeholder="DEJ TV" className={inputCls} />
-                    </div>
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "تاریخ فاکتور" : "Invoice Date"}</label>
-                      <input type="date" value={invoiceDate} onChange={e => setInvoiceDate(e.target.value)} className={inputCls} />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "نام شخص / سازمان (پیمانکار)" : "Name of Freelancer / Orgnization"}</label>
-                    <input value={invoiceName} onChange={e => setInvoiceName(e.target.value)} placeholder="John Doe" className={inputCls} />
-                  </div>
-
-                  <div className="pt-4 border-t border-white/10">
-                    <div className="flex items-center justify-between mb-2">
-                       <label className="text-xs text-muted-foreground font-bold uppercase tracking-widest">{isRtl ? "استخراج با هوش مصنوعی" : "AI Smart Parser"}</label>
-                    </div>
-                    <div className="relative">
-                       <textarea 
-                           value={aiInvoiceInput} onChange={e => setAiInvoiceInput(e.target.value)}
-                           className={`${inputCls} pr-12`} rows={3}
-                           placeholder={isRtl ? "لیست کارها را اینجا پیست کنید (مثال: ۲ تا ویدیو جمعا ۱۰۰ دلار)" : "Paste list of works here..."}
-                       ></textarea>
-                       <div className="absolute top-6 right-2">
-                           <AIButton label="" onClick={handleGenerateInvoice} loading={loadingInvoiceGen} disabled={!aiInvoiceInput.trim()} icon={<Sparkles className="w-4 h-4 text-purple-400"/>} />
-                       </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-white/10">
-                    <div className="flex items-center justify-between mb-2">
-                       <label className="text-xs text-muted-foreground">{isRtl ? "اقلام فاکتور" : "Invoice Items"}</label>
-                       <button onClick={handleAddInvoiceItem} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80">
-                         <Plus className="w-3.5 h-3.5"/> {isRtl ? "افزودن" : "Add Row"}
-                       </button>
-                    </div>
-                    <div className="space-y-2">
-                      {invoiceItems.map(item => (
-                        <div key={item.id} className="flex gap-2 items-center bg-white/5 p-2 rounded-xl">
-                           <input value={item.description} onChange={e => handleInvoiceItemChange(item.id, "description", e.target.value)} placeholder="Description" className="flex-1 bg-transparent text-sm min-w-0 outline-none px-2" />
-                           <div className="text-muted-foreground text-sm">$</div>
-                           <input type="number" dir="ltr" value={item.total || ""} onChange={e => handleInvoiceItemChange(item.id, "total", e.target.value)} placeholder="0.00" className="w-20 bg-transparent text-sm outline-none px-2 font-mono text-primary font-bold" />
-                           <button onClick={() => handleRemoveInvoiceItem(item.id)} className="p-1 text-red-400 hover:bg-white/10 rounded-md shrink-0"><Trash2 className="w-3.5 h-3.5"/></button>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex justify-between items-center mt-3 px-2">
-                      <span className="text-sm font-bold text-muted-foreground">{isRtl ? "جمع هزینه:" : "Total Amount:"}</span>
-                      <span className="text-xl font-black text-purple-400 font-mono tracking-tighter">${invoiceTotalAmount.toLocaleString()}</span>
-                    </div>
+                    <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "توضیحات فاکتور (اختیاری)" : "Invoice Notes (Optional)"}</label>
+                    <textarea value={invoiceNotes} onChange={e => setInvoiceNotes(e.target.value)} rows={2} className={`${inputCls} resize-none`} placeholder={isRtl ? "توضیحات اضافه برای مشتری..." : "Additional notes for the client..."} />
                   </div>
 
                   <div className="pt-4 border-t border-white/10">
@@ -1986,7 +1934,7 @@ export default function ChurchDocumentsPage() {
             <div className="lg:col-span-8 flex justify-center sticky top-28 print:static">
               <div className="bg-white p-2 rounded-xl shadow-2xl scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-top border border-white/20 transition-transform">
                 <div ref={invoiceRef}>
-                  <InvoiceDoc invoiceTo={invoiceTo} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNo={invoiceNo} church={church} lang={editLang} />
+                  <InvoiceDoc invoiceTo={invoiceTo} invoiceAddress={invoiceAddress} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNotes={invoiceNotes} invoiceNo={invoiceNo} church={church} lang={invoiceLang} />
                 </div>
               </div>
             </div>
