@@ -17,7 +17,6 @@ const vazirmatn = Vazirmatn({
 export const metadata: Metadata = {
   title: "MyChurch | Broadcast Console & Platform",
   description: "The Iranian Christian Church of Washington D.C. - Advanced presentation and media management platform",
-  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

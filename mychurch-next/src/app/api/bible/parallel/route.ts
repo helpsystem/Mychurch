@@ -36,18 +36,31 @@ export async function GET(req: Request) {
       ),
     ]);
 
-    // Audio - prefer the English version's audio
-    const audio = await dbAll<{
-      audio_version_id: number;
-      title: string;
-      dramatized: number;
-      mp3_url: string;
-      hls_url: string;
-    }>(
-      `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
-       WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
-      [vEn.version_id, bookId.toUpperCase(), chapterNum]
-    );
+    // Audio - fetch for both English and Farsi versions
+    const [audioEn, audioFa] = await Promise.all([
+      dbAll<{
+        audio_version_id: number;
+        title: string;
+        dramatized: number;
+        mp3_url: string;
+        hls_url: string;
+      }>(
+        `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
+         WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
+        [vEn.version_id, bookId.toUpperCase(), chapterNum]
+      ),
+      dbAll<{
+        audio_version_id: number;
+        title: string;
+        dramatized: number;
+        mp3_url: string;
+        hls_url: string;
+      }>(
+        `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
+         WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
+        [vFa.version_id, bookId.toUpperCase(), chapterNum]
+      )
+    ]);
 
     // Build a map for fast lookup of Farsi verses by verse_num
     const faMap = new Map(faVerses.map((v) => [v.verse_num, v.text]));
@@ -65,7 +78,8 @@ export async function GET(req: Request) {
       book: bookId.toUpperCase(),
       chapter: chapterNum,
       parallel,
-      audio,
+      audioEn,
+      audioFa,
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";
