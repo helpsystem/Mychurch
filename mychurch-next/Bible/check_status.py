@@ -1,7 +1,7 @@
 import json, sqlite3, os
 
-db = r'C:\Users\SamYar\Desktop\Bible\bible_output\bible_complete.db'
-conn = sqlite3.connect(db)
+db_path = os.path.join(os.path.dirname(__file__), 'bible_output', 'bible_complete.db')
+conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
 print('=== VERSIONS IN DATABASE ===')
@@ -32,7 +32,8 @@ else:
 conn.close()
 
 total_size = 0
-for root, dirs, files in os.walk(r'C:\Users\SamYar\Desktop\Bible\bible_output'):
+out_dir = os.path.join(os.path.dirname(__file__), 'bible_output')
+for root, dirs, files in os.walk(out_dir):
     for f in files:
         total_size += os.path.getsize(os.path.join(root, f))
 print(f'\nDisk usage: {total_size/1024/1024:.1f} MB')

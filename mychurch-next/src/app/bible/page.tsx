@@ -318,7 +318,7 @@ export default function BibleReaderPage() {
             {/* Chapter Title — always LTR wrapper, but Farsi subtitle is RTL */}
             <div className="mb-10 text-center" dir="ltr">
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-1">{currentBook?.book_name_en}</p>
-              <h1 className="text-5xl font-black tracking-tight">Chapter {selectedChapter}</h1>
+              <h1 className="text-3xl font-black tracking-tight">Chapter {selectedChapter}</h1>
               {currentBook?.book_name_fa && (
                 <p className="font-[Vazirmatn] mt-2 text-lg text-muted-foreground" dir="rtl">
                   {currentBook.book_name_fa} — باب {selectedChapter}

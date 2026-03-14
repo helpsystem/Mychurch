@@ -467,11 +467,26 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
       </div>
 
       <div className="mt-auto pt-6 border-t-2 border-slate-900 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
+        {/* Signatory block */}
         <div className="space-y-3">
           <div className="space-y-1">
-             <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{isRtl ? "تایید شده توسط" : "Authorized By"}</div>
-             <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 2}px`, fontFamily: design.fontFamily }}>{church.signatoryName}</div>
-             <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px`, fontFamily: design.fontFamily }}>{church.signatoryTitle}</div>
+            <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{isRtl ? "تایید شده توسط" : "Authorized By"}</div>
+            <div 
+              className="font-black text-slate-900 tracking-tight" 
+              style={{ 
+                fontSize: `${design.bodySize + 2}px`, 
+                fontFamily: isRtl ? 'Vazirmatn, sans-serif' : design.fontFamily,
+                direction: isRtl ? 'rtl' : 'ltr'
+              }}
+            >{church.signatoryName}</div>
+            <div 
+              className="text-blue-600 font-bold tracking-widest" 
+              style={{ 
+                fontSize: `${design.bodySize - 2}px`, 
+                fontFamily: isRtl ? 'Vazirmatn, sans-serif' : design.fontFamily,
+                direction: isRtl ? 'rtl' : 'ltr'
+              }}
+            >{church.signatoryTitle}</div>
           </div>
 
           {church.signatureImage && (
@@ -485,18 +500,21 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
             </div>
           )}
 
-          <div className="text-[8px] text-slate-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-widest">
-            This document is officially generated and verified by the Iranian Christian Church of Washington DC.
+          <div className="text-[8px] text-slate-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-widest" dir="ltr">
+            {isRtl
+              ? "این سند به طور رسمی توسط کلیسای ایرانیان مسیحی واشنگتن دی‌سی صادر و تأیید شده است."
+              : "This document is officially generated and verified by the Iranian Christian Church of Washington DC."
+            }
           </div>
         </div>
 
         {church.showVerifyQR && (
-          <div className="flex flex-col items-end gap-1 text-right">
-             <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                <DocumentQR data={`VERIFY:${refNo}:${dateStr}:${church.ein}`} />
-             </div>
-             <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
-             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{refNo}</div>
+          <div className={`flex flex-col gap-1 ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
+            <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+              <DocumentQR data={`VERIFY:${refNo}:${dateStr}:${church.ein}`} />
+            </div>
+            <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest">{isRtl ? 'اسکن برای تایید' : 'Scan to Verify'}</div>
+            <div className="text-[7px] font-mono uppercase text-slate-400">{refNo}</div>
           </div>
         )}
       </div>
