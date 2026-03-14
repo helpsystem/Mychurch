@@ -344,114 +344,68 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
   }
 
   return (
-    <div className={`mb-6 relative z-10 ${theme === "minimal" ? "" : ""}`} style={{ ...digitStyle, paddingBottom: `${design.headerPadding / 2}px` }}>
-      {theme === "modern" && (
-        <div className="relative" dir={isRtl ? "rtl" : "ltr"}>
-          <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex justify-between items-start border-b-2 border-gray-100 pb-4">
-            <div className="flex items-center gap-4">
-              <div className="relative shrink-0">
-                <div className="absolute inset-0 bg-blue-600/10 rounded-2xl blur-xl" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={church.logo} alt="Logo" className="object-contain relative z-10" style={{ height: `${design.logoSize}px`, width: "auto" }} />
-              </div>
-              <div className={isRtl ? "text-right" : "text-left"}>
-                <h1 className="text-gray-900 tracking-tight leading-tight" style={{ fontSize: `${design.titleSize}px`, fontWeight: design.isBoldTitle ? 900 : 400, fontFamily: design.fontFamily }}>{name}</h1>
-                <p className="text-[10px] uppercase font-bold text-blue-600 tracking-[0.2em]">{church.denomination}</p>
-                <div className="text-[10px] text-gray-500 mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5">
-                  <span className="flex items-center gap-1.5 whitespace-nowrap"><MapPin className="w-3 h-3 text-blue-500"/> {church.address}</span>
-                  <span className="flex items-center gap-1.5 whitespace-nowrap"><Phone className="w-3 h-3 text-blue-500"/> {church.phone}</span>
-                  <span className="flex items-center gap-1.5 whitespace-nowrap"><Mail className="w-3 h-3 text-blue-500"/> {church.email}</span>
-                  <span className="flex items-center gap-1.5 whitespace-nowrap"><Globe className="w-3 h-3 text-blue-500"/> {church.web}</span>
-                </div>
-              </div>
+    <div className={`mb-10 relative z-10`} style={{ ...digitStyle, paddingBottom: `${design.headerPadding / 2}px` }} dir="ltr">
+      {/* Decorative Top Bar */}
+      <div className="absolute -top-[20mm] -left-[20mm] -right-[20mm] h-4 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 shadow-sm" />
+      
+      <div className="flex justify-between items-start pt-6">
+         {/* Left Side: Logo & Name */}
+         <div className="flex items-center gap-6">
+            <div className="relative shrink-0">
+              <div className="absolute inset-0 bg-blue-600/5 rounded-2xl blur-xl" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={church.logo} alt="Logo" className="object-contain relative z-10 drop-shadow-sm" style={{ height: `${design.logoSize}px`, width: "auto" }} />
             </div>
-            <div className={isRtl ? "text-left pt-1" : "text-right pt-1"}>
-              <div className="text-xs font-black text-gray-900 mb-1">{date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</div>
-              <div className="inline-block px-2 py-0.5 bg-gray-50 border border-gray-100 rounded-md">
-                <div className="text-[9px] text-gray-400 uppercase tracking-tighter font-bold">Ref: <span className="text-gray-900">{docRef}</span></div>
-              </div>
-              <div className="text-[8px] text-gray-400 mt-1 font-mono uppercase">EIN {church.ein}</div>
+            
+            <div className="flex flex-col border-l-2 border-slate-200 pl-5 py-1">
+              <h1 className="text-slate-900 tracking-tighter leading-none" style={{ fontSize: `${design.titleSize}px`, fontWeight: 900, fontFamily: design.fontFamily }}>{name}</h1>
+              <p className="text-[11px] uppercase font-black text-blue-700 tracking-[0.25em] mt-1.5">{church.denomination}</p>
             </div>
-          </div>
-        </div>
-      )}
+         </div>
 
-      {theme === "classic" && (
-        <div className="relative border-2 border-double border-gray-900 p-4 text-center bg-[#fdfdfd]" dir={isRtl ? "rtl" : "ltr"}>
-          <div className={`absolute top-2 ${isRtl ? "left-2" : "right-2"} w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center opacity-30 rotate-12`}>
-            <div className="text-[6px] font-serif font-bold uppercase tracking-tighter leading-none">Official<br/>Seal</div>
-          </div>
-          <div className="space-y-2">
-             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={church.logo} alt="Logo" className="mx-auto mb-1 drop-shadow-sm" style={{ height: `${design.logoSize}px`, width: "auto" }} />
-            <h1 className="text-gray-900 uppercase tracking-tight" style={{ fontSize: `${design.titleSize}px`, fontWeight: design.isBoldTitle ? 900 : 400, fontFamily: design.fontFamily }}>{name}</h1>
-            <div className="w-32 h-0.5 bg-gray-300 mx-auto" />
-            <p className="text-[10px] font-serif italic text-gray-600 max-w-lg mx-auto leading-tight">
-              {church.address} • Tel: {church.phone} • Website: {church.web}
-            </p>
-            <div className="flex justify-between items-center text-[9px] text-gray-400 font-serif border-t border-gray-100 pt-2 px-6">
-              <span className="uppercase tracking-widest font-bold">EIN {church.ein}</span>
-              <span className="text-gray-900 font-bold">{date || "N/A"}</span>
-              <span className="uppercase tracking-widest font-bold">Index: {docRef}</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {theme === "elegant" && (
-        <div className="relative border-b-8 border-double border-yellow-600/30 pb-8 bg-gradient-to-b from-white to-gray-50/50">
-          <div className="flex justify-between items-center">
-            <div className="space-y-2">
-              <h1 className="text-4xl font-serif italic font-light text-gray-950 leading-none">{name}</h1>
-              <div className="flex items-center gap-2 text-[11px] text-yellow-800 font-bold uppercase tracking-[0.2em] opacity-80">
-                <div className="h-px w-8 bg-yellow-600/40" />
-                FOUNDED ON FAITH
-                <div className="h-px w-8 bg-yellow-600/40" />
+         {/* Right Side: Contact Info & Meta */}
+         <div className="text-right flex flex-col justify-between items-end h-full py-1">
+            <div className="space-y-1 text-[10px] text-slate-500 font-medium">
+              <div className="flex items-center justify-end gap-2 text-slate-700 font-bold">
+                {church.address} <MapPin className="w-3.5 h-3.5 text-blue-600"/>
               </div>
-              <div className="text-[11px] text-gray-600 font-serif space-y-0.5">
-                <p>{church.address}</p>
-                <p className="flex gap-4"><span>{church.phone}</span><span>{church.email}</span></p>
+              <div className="flex items-center justify-end gap-4">
+                <span className="flex items-center gap-1.5">{church.web} <Globe className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5">{church.email} <Mail className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5">{church.phone} <Phone className="w-3 h-3 text-slate-400"/></span>
               </div>
             </div>
-            <div className="text-right">
-               <div className="relative mb-4 group">
-                 <div className="absolute -inset-2 bg-yellow-500/5 rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-opacity" />
-                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                 <img src={church.logo} alt="Logo" className="w-20 h-20 ml-auto object-contain relative transition-transform hover:scale-105" />
-               </div>
-               <div className="text-xs text-gray-500 font-serif italic mb-1">{date}</div>
-               <div className="text-[9px] px-3 py-1 bg-yellow-50 border border-yellow-200/50 rounded-full inline-block font-bold text-yellow-900 tracking-wider">
-                 REGISTRY: {docRef}
-               </div>
-            </div>
-          </div>
-        </div>
-      )}
 
-      {theme === "minimal" && (
-        <div className="flex border-l-[6px] border-black pl-8 py-4 justify-between items-end backdrop-blur-sm">
-          <div>
-            <h1 className="text-2xl font-black text-black tracking-tighter uppercase">{name}</h1>
-            <div className="text-xs font-bold text-gray-400 mt-1 flex gap-3">
-              <span>{church.web}</span>
-              <span>•</span>
-              <span>{church.address}</span>
+            <div className="mt-4 flex items-center gap-4 text-xs">
+              <div className="text-right uppercase tracking-widest font-bold text-slate-400">
+                <span className="text-[9px] block text-slate-400">Date</span>
+                <span className="text-slate-900">{date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+              </div>
+              
+              <div className="w-px h-8 bg-slate-200" />
+              
+              <div className="text-right uppercase tracking-widest font-bold text-slate-400">
+                <span className="text-[9px] block text-slate-400">Reference No.</span>
+                <span className="text-blue-700">{docRef || "N/A"}</span>
+              </div>
             </div>
-          </div>
-          <div className="text-right text-[10px] text-gray-400 font-mono space-y-1">
-            <div className="font-black text-black">REFERENCE-{docRef}</div>
-            <div className="font-bold">{date}</div>
-          </div>
-        </div>
-      )}
+         </div>
+      </div>
+      
+      {/* Bottom Separator */}
+      <div className="mt-8 flex items-center gap-4">
+        <div className="h-px bg-slate-200 flex-1" />
+        <div className="text-[8px] font-mono text-slate-300 uppercase tracking-widest px-2">Official Document // EIN: {church.ein}</div>
+        <div className="h-px bg-slate-200 flex-1" />
+      </div>
     </div>
   );
 }
 
 
 
-// ─── Letter Print View ────────────────────────────────────────────────────────
+
+
 export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, recipientName, refNo, pageNum, totalPages, church }: {
   bodyEn: string; bodyFa: string; editLang: "en" | "fa"; to: string; toAddress?: string;
   subject: string; recipientName: string; refNo: string; pageNum?: number; totalPages?: number;
@@ -463,20 +417,36 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
   return (
-    <div className={`${paperClass} bg-white text-black p-[20mm] flex flex-col font-serif text-sm relative border border-gray-100 overflow-hidden shadow-2xl mx-auto`} style={{ fontVariantNumeric: "tabular-nums" }}>
+    <div className={`${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-hidden shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
+      {/* Decorative Abstract Shapes */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+
        {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
       <Letterhead church={church} lang={editLang} docRef={refNo} date={dateStr} />
 
-      <div className="mb-6 space-y-1 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
-        {recipientName && <div className="flex gap-2"><span className="font-bold w-24 shrink-0">{isRtl ? "گیرنده:" : "Attention:"}</span>{recipientName}</div>}
-        {to && <div className="flex gap-2"><span className="font-bold w-24 shrink-0">{isRtl ? "به:" : "To:"}</span>{to}</div>}
-        {toAddress && <div className="flex gap-2"><span className="font-bold w-24 shrink-0">{isRtl ? "آدرس:" : "Address:"}</span>{toAddress}</div>}
-        {subject && <div className="flex gap-2 mt-4"><span className="font-bold w-24 shrink-0">{isRtl ? "موضوع:" : "Subject:"}</span><span className="font-black border-b border-gray-900 leading-tight">{subject}</span></div>}
+      <div className="mb-8 space-y-2 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
+        {recipientName && <div className="flex items-start gap-4">
+          <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
+          <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1">{recipientName}</span>
+        </div>}
+        {to && <div className="flex items-start gap-4">
+          <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "به:" : "To:"}</span>
+          <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{to}</span>
+        </div>}
+        {toAddress && <div className="flex items-start gap-4">
+          <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "آدرس:" : "Address:"}</span>
+          <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{toAddress}</span>
+        </div>}
+        {subject && <div className="flex items-start gap-4 mt-6">
+          <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "موضوع:" : "Re  Subject:"}</span>
+          <span className="font-black text-slate-900 text-lg uppercase tracking-tight leading-tight">{subject}</span>
+        </div>}
       </div>
 
       <div 
-        className={`flex-1 leading-relaxed text-justify whitespace-pre-wrap mb-8 relative z-10`} 
+        className={`flex-1 leading-relaxed text-justify whitespace-pre-wrap mb-10 relative z-10 text-slate-800`} 
         dir={isRtl ? "rtl" : "ltr"}
         style={{ 
           fontSize: `${design.bodySize}px`, 
@@ -487,40 +457,43 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         {(editLang === "en" ? bodyEn : bodyFa) || "..."}
       </div>
 
-      <div className="mt-auto pt-6 border-t border-gray-100 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
+      <div className="mt-auto pt-6 border-t-2 border-slate-900 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
         <div className="space-y-3">
-          <div className="space-y-0.5">
-            <div className="font-bold" style={{ fontSize: `${design.bodySize + 2}px`, fontFamily: design.fontFamily }}>{church.signatoryName}</div>
-            <div className="text-gray-500 italic" style={{ fontSize: `${design.bodySize - 2}px`, fontFamily: design.fontFamily }}>{church.signatoryTitle}</div>
+          <div className="space-y-1">
+             <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{isRtl ? "تایید شده توسط" : "Authorized By"}</div>
+             <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 2}px`, fontFamily: design.fontFamily }}>{church.signatoryName}</div>
+             <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px`, fontFamily: design.fontFamily }}>{church.signatoryTitle}</div>
           </div>
 
           {church.signatureImage && (
-            <div className="h-12 w-40 relative">
+            <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={church.signatureImage}
                 alt="Signature"
-                className="h-full object-contain mix-blend-multiply opacity-90 hover:opacity-100"
+                className="h-full object-contain mix-blend-multiply opacity-95"
               />
             </div>
           )}
 
-          <div className="text-[9px] text-gray-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-tight">
+          <div className="text-[8px] text-slate-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-widest">
             This document is officially generated and verified by the Iranian Christian Church of Washington DC.
-            Any unauthorized alteration renders this document null and void.
           </div>
         </div>
 
         {church.showVerifyQR && (
-          <div className="flex flex-col items-center gap-1">
-            <DocumentQR data={`VERIFY:${refNo}:${dateStr}:${church.ein}`} />
-            <span className="text-[8px] text-gray-400 font-sans">SCAN TO VERIFY</span>
+          <div className="flex flex-col items-end gap-1 text-right">
+             <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+                <DocumentQR data={`VERIFY:${refNo}:${dateStr}:${church.ein}`} />
+             </div>
+             <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
+             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{refNo}</div>
           </div>
         )}
       </div>
 
-      <div className={`absolute bottom-4 ${isRtl ? "left-10" : "right-10"} text-[9px] text-gray-300 font-sans`}>
-        Page {pageNum || 1} of {totalPages || 1}
+      <div className={`absolute bottom-6 font-mono font-bold ${isRtl ? "left-10" : "right-10"} text-[10px] text-slate-300`}>
+        PAGE {pageNum || 1} / {totalPages || 1}
       </div>
     </div>
   );
@@ -538,109 +511,132 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   const dateStr = receipt.date as string || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
   return (
-    <div className={`${paperClass} bg-white text-black p-[15mm] font-serif text-sm border border-gray-100 relative overflow-hidden flex flex-col`} style={{ fontVariantNumeric: "tabular-nums" }}>
+    <div className={`${paperClass} bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-hidden flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
+      {/* Decorative Abstract Shapes */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+      
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
       <Letterhead church={church} lang="en" docRef={`RCP-${receiptNo}`} date={dateStr} />
 
-      <div className="text-center my-6 relative z-10 flex flex-col items-center">
-        <h2 className="uppercase tracking-[0.25em] border-y-4 border-gray-900 px-10 py-3 bg-white relative font-black" style={{ fontSize: `${design.titleSize - 4}px`, fontFamily: design.fontFamily }}>
-          {isInKind ? "In-Kind Donation Receipt" : "Official Contribution Receipt"}
-        </h2>
-        <div className="mt-2 px-3 py-1 bg-green-50 text-green-700 rounded-full border border-green-200 text-[8px] font-black uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
-          <Check className="w-2.5 h-2.5" /> Status: Authenticated & Verified
+      <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
+        <div>
+           <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize - 2}px`, fontFamily: design.fontFamily }}>
+             {isInKind ? "In-Kind Donation Receipt" : "Official Charitable Contribution"}
+           </h2>
+           <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">US IRS Section 501(c)(3) Compliant</p>
+        </div>
+        <div className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-md border border-emerald-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+          <Check className="w-3 h-3 stroke-[3]" /> Authenticated
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mb-6 relative z-10" style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
-        <div className="space-y-2 p-4 bg-gray-50/70 border border-gray-100 rounded-xl shadow-sm">
-          <div className="text-[9px] text-blue-600 uppercase font-black tracking-widest border-b border-blue-100 pb-1 mb-1 inline-block">Donor Profile</div>
-          <div className="flex gap-2"><b>Name:</b> <span className="text-gray-800">{receipt.donorName as string || "—"}</span></div>
-          <div className="flex gap-2"><b>Address:</b> <span className="text-gray-800">{receipt.donorAddress as string || "—"}</span></div>
+      <div className="grid grid-cols-2 gap-8 mb-10 relative z-10" style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
+        <div className="space-y-3">
+          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Donor Information</div>
+          <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+            <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{receipt.donorName as string || "—"}</div>
+            <div className="text-slate-600 font-medium">{receipt.donorAddress as string || "—"}</div>
+          </div>
         </div>
-        <div className="space-y-2 p-4 bg-gray-50/70 border border-gray-100 rounded-xl shadow-sm">
-          <div className="text-[9px] text-blue-600 uppercase font-black tracking-widest border-b border-blue-100 pb-1 mb-1 inline-block">Transaction Details</div>
-          <div className="flex justify-between"><b>Receipt No:</b> <span className="font-mono text-gray-900 font-bold">{receiptNo}</span></div>
-          <div className="flex justify-between"><b>Date Issued:</b> <span className="text-gray-900">{dateStr}</span></div>
-          <div className="flex justify-between"><b>Church EIN:</b> <span className="text-gray-900">{church.ein}</span></div>
+        <div className="space-y-3">
+          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Transaction Details</div>
+          <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
+            <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Receipt No</span>
+              <span className="font-mono font-black text-slate-900">{receiptNo}</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
+              <span className="font-bold text-slate-900">{dateStr}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Organization EIN</span>
+              <span className="font-mono font-bold text-slate-900">{church.ein}</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="flex-1 relative z-10" style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-          <table className="w-full text-left border-collapse">
+        <div className="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
+          <table className="w-full text-left border-collapse bg-white">
             <thead>
-              <tr className="bg-gray-50 border-b-2 border-gray-900 text-[9px] uppercase tracking-widest text-gray-600">
-                <th className="px-4 py-3">{isInKind ? "Item / Description" : "Purpose of Gift"}</th>
-                <th className="px-4 py-3 text-right">{isInKind ? "Qty" : ""}</th>
-                <th className="px-4 py-3 text-right">Value (USD)</th>
+              <tr className="bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em]">
+                <th className="px-6 py-4 font-black">{isInKind ? "Item / Description" : "Purpose of Gift"}</th>
+                <th className="px-6 py-4 text-right font-black w-24">{isInKind ? "Qty" : ""}</th>
+                <th className="px-6 py-4 text-right font-black w-40">Value (USD)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 italic font-medium">
+            <tbody className="divide-y divide-slate-100">
               {isInKind ? (
                 inKindItems.filter(i => i.name).map((item, idx) => (
-                  <tr key={idx} className="group hover:bg-gray-50/50 transition-colors">
-                    <td className="px-4 py-3 text-gray-800">{item.name}</td>
-                    <td className="px-4 py-3 text-right font-bold text-gray-600">{item.qty}</td>
-                    <td className="px-4 py-3 text-right font-black text-gray-900">${(item.value * item.qty).toLocaleString()}</td>
+                  <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                    <td className="px-6 py-4 font-bold text-slate-800">{item.name}</td>
+                    <td className="px-6 py-4 text-right font-mono text-slate-500">{item.qty}</td>
+                    <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${(item.value * item.qty).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                   </tr>
                 ))
               ) : (
-                <tr className="bg-white">
-                  <td className="px-4 py-4 font-bold text-gray-900">General Church Offering / Tithe</td>
-                  <td className="px-4 py-4 text-right">1</td>
-                  <td className="px-4 py-4 text-right font-black text-blue-600" style={{ fontSize: `${design.bodySize + 2}px` }}>${Number(receipt.amount || 0).toLocaleString()}</td>
+                <tr>
+                  <td className="px-6 py-5 font-bold text-slate-800">General Church Offering / Tithe</td>
+                  <td className="px-6 py-5 text-right font-mono text-slate-500">1</td>
+                  <td className="px-6 py-5 text-right font-mono font-black text-slate-900">${Number(receipt.amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 </tr>
               )}
             </tbody>
             <tfoot>
-              <tr className="bg-gray-900 text-white">
-                <td colSpan={2} className="px-4 py-3 font-black uppercase tracking-widest text-[9px]">Grand Total Charitable Contribution</td>
-                <td className="px-4 py-3 text-right font-black" style={{ fontSize: `${design.bodySize + 4}px` }}>
-                  ${(isInKind ? total : Number(receipt.amount || 0)).toLocaleString()}
+              <tr className="bg-slate-50 border-t-[3px] border-slate-900">
+                <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500">Grand Total Contribution</td>
+                <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 6}px` }}>
+                  ${(isInKind ? total : Number(receipt.amount || 0)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </td>
               </tr>
             </tfoot>
           </table>
         </div>
 
-        <div className="mt-4 p-4 bg-blue-50/40 border border-blue-100 rounded-xl italic text-blue-900/70 text-[9px] leading-relaxed relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-2 opacity-5 scale-125"><Building2 className="w-8 h-8" /></div>
-          The Iranian Christian Church of Washington DC is a qualified 501(c)(3) non-profit organization.
-          No goods or services were provided in exchange for this contribution. Contributions are tax-deductible to the extent allowed by law.
+        <div className="mt-8 p-5 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl text-blue-900 text-[11px] font-medium leading-relaxed relative flex gap-4 items-start">
+          <Building2 className="w-6 h-6 shrink-0 text-blue-600/50 mt-1" />
+          <p>
+            The Iranian Christian Church of Washington DC is a qualified 501(c)(3) tax-exempt organization. 
+            <span className="font-bold"> No goods or services were provided in exchange for this contribution.</span> Contributions are tax-deductible to the extent allowed by United States federal law. Please retain this letter for your tax records.
+          </p>
         </div>
       </div>
 
-      <div className="mt-8 flex justify-between items-end relative z-10 border-t border-gray-100 pt-6">
+      <div className="mt-8 flex justify-between items-end relative z-10 border-t-2 border-slate-900 pt-6">
         <div className="space-y-3">
-          <div className="space-y-0.5">
-            <div className="font-black text-gray-900 uppercase tracking-tighter" style={{ fontSize: `${design.bodySize + 2}px`, fontFamily: design.fontFamily }}>{church.signatoryName}</div>
-            <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px`, fontFamily: design.fontFamily }}>{church.signatoryTitle}</div>
+          <div className="space-y-1">
+             <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
+             <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 2}px`, fontFamily: design.fontFamily }}>{church.signatoryName}</div>
+             <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px`, fontFamily: design.fontFamily }}>{church.signatoryTitle}</div>
           </div>
 
           {church.signatureImage && (
-            <div className="h-16 w-48 relative group">
-               <div className="absolute inset-0 bg-gray-950/5 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
                {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={church.signatureImage}
                 alt="Signature"
-                className="h-full object-contain mix-blend-multiply opacity-95 relative z-10 drop-shadow-sm"
+                className="h-full object-contain mix-blend-multiply opacity-95 relative z-10"
               />
             </div>
           )}
 
-          <div className="text-[8px] text-gray-400 font-black uppercase tracking-[0.3em] flex items-center gap-2">
-            <div className="w-3 h-px bg-gray-200" />
-            VALIDATED AUTHORITY
-            <div className="w-3 h-px bg-gray-200" />
+          <div className="text-[8px] text-slate-400 font-black uppercase tracking-[0.2em] flex items-center gap-2">
+            VALIDATED ELECTRONIC SIGNATURE
           </div>
         </div>
 
         {church.showVerifyQR && (
-          <div className="flex flex-col items-center gap-2 p-4 bg-white border border-gray-200 rounded-3xl shadow-lg">
-            <DocumentQR data={`RECEIPT:${receiptNo}:${church.ein}:${total || receipt.amount}`} />
-            <span className="text-[8px] text-blue-600 font-black uppercase tracking-tighter bg-blue-50 px-2 py-0.5 rounded-full">Secure Auth Code</span>
+          <div className="flex flex-col items-end gap-1 text-right">
+             <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+                <DocumentQR data={`RECEIPT:${receiptNo}:${church.ein}:${total || receipt.amount}`} />
+             </div>
+             <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
+             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{receiptNo}</div>
           </div>
         )}
       </div>
@@ -671,84 +667,82 @@ export interface DocHistoryItem {
 export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate, invoiceItems, invoiceTotalAmount, invoiceWallet, invoiceNotes, invoiceNo, church, lang, isPdf }: {
   invoiceTo: string; invoiceAddress?: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNotes?: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
 }) {
-  const isRtl = lang === "fa";
-  // The layout direction relies on the language
-  const dirClass = isRtl ? "rtl" : "ltr";
   const paperClass = isPdf ? "w-full min-h-[1056px]" : (PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.A4);
   const design = church.designEn; 
 
   return (
-    <div className={`${paperClass} bg-white text-slate-800 p-[15mm] flex flex-col font-sans text-sm relative overflow-hidden mx-auto print:shadow-none ${isPdf ? "" : "shadow-xl border border-slate-200"}`} style={{ fontVariantNumeric: "tabular-nums" }}>
-      {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
+    <div className={`${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-hidden mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
+      {/* Decorative Abstract Shapes */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       
-      {/* Decorative header element */}
-      <div className={`absolute top-0 ${isRtl ? "left-0" : "right-0"} w-48 h-48 bg-purple-50 rounded-full -mt-24 ${isRtl ? "-ml-24" : "-mr-24"} z-0`}></div>
+      {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <div className="flex justify-between items-start border-b-2 border-purple-500 pb-6 mb-8 relative z-10" dir={dirClass}>
-        <div className="flex items-center gap-4">
-           {church.logo ? (
-             <img src={church.logo} alt="Logo" className="w-16 h-16 object-contain" />
-           ) : (
-             <div className="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                <DollarSign className="w-8 h-8" />
-             </div>
-           )}
-           <div>
-             <h1 className="text-3xl font-black text-purple-900 tracking-tight">
-               {isRtl ? "فاکتور الکترونیکی" : "Invoice"}
-             </h1>
-             <p className="text-sm text-purple-600 mt-1 uppercase font-bold tracking-widest" dir="ltr">
-               INV-{invoiceNo}
-             </p>
-           </div>
+      <Letterhead church={church} lang="en" docRef={`INV-${invoiceNo}`} date={new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} />
+
+      <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
+        <div>
+           <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px`, fontFamily: design.fontFamily }}>
+             Official Invoice
+           </h2>
+           <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">For Services Rendered / Goods Provided</p>
         </div>
-        <div className={isRtl ? "text-left" : "text-right"}>
-          <h2 className="text-2xl font-black text-slate-900">{church.nameEn}</h2>
-          <p className="text-xs text-slate-500 mt-1 max-w-[200px] leading-tight flex-wrap">{church.address}</p>
+        <div className="px-3 py-1 bg-amber-50 text-amber-700 rounded-md border border-amber-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+          <DollarSign className="w-3 h-3 stroke-[3]" /> Payment Due
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 mb-8 relative z-10" dir={dirClass}>
-        <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1 border-b border-slate-200 pb-1 w-fit">{isRtl ? "صورتحساب به:" : "Bill To:"}</p>
-          <p className="font-black text-xl text-slate-900 mt-2">{invoiceTo}</p>
-          {invoiceAddress && <p className="text-sm text-slate-600 mt-1">{invoiceAddress}</p>}
+      <div className="grid grid-cols-2 gap-8 mb-10 relative z-10">
+        <div className="space-y-3">
+          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Billed To</div>
+          <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+            <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{invoiceTo}</div>
+            {invoiceName && <div className="text-slate-700 font-bold">{invoiceName}</div>}
+            {invoiceAddress && <div className="text-slate-600 font-medium">{invoiceAddress}</div>}
+          </div>
         </div>
-        <div className={isRtl ? "text-left" : "text-right"}>
-          <div className={`grid grid-cols-2 gap-2 text-sm ${isRtl ? "justify-start" : "justify-end"} bg-slate-50/80 p-4 rounded-xl border border-slate-100`}>
-            <p className="font-bold text-slate-400 uppercase">{isRtl ? "تاریخ:" : "Date:"}</p>
-            <p className="font-bold text-slate-900">{new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
-            <p className="font-bold text-slate-400 uppercase">{isRtl ? "نام:" : "Name:"}</p>
-            <p className="font-bold text-slate-900">{invoiceName}</p>
+        <div className="space-y-3">
+          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Invoice Details</div>
+          <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
+            <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Invoice No</span>
+              <span className="font-mono font-black text-slate-900">{invoiceNo}</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
+              <span className="font-bold text-slate-900">{new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Amount Due</span>
+              <span className="font-mono font-black text-blue-700">${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 relative z-10" dir={dirClass}>
-        <div className="rounded-xl overflow-hidden border border-slate-200">
-          <table className="w-full text-base border-collapse">
+      <div className="flex-1 relative z-10">
+        <div className="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
+          <table className="w-full text-left border-collapse bg-white">
             <thead>
-              <tr className="bg-slate-100 text-slate-700 text-xs">
-                <th className={`py-3 px-4 ${isRtl ? "text-right" : "text-left"} font-black uppercase tracking-widest w-16 border-b border-slate-200`}>{isRtl ? "ردیف" : "No"}</th>
-                <th className={`py-3 px-4 ${isRtl ? "text-right" : "text-left"} font-black uppercase tracking-widest border-b border-slate-200`}>{isRtl ? "شرح" : "Description"}</th>
-                <th className={`py-3 px-4 ${isRtl ? "text-left" : "text-right"} font-black uppercase tracking-widest border-b border-slate-200`}>{isRtl ? "مبلغ" : "Total"}</th>
+              <tr className="bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em]">
+                <th className="px-6 py-4 font-black w-16">No.</th>
+                <th className="px-6 py-4 font-black">Description of Service / Items</th>
+                <th className="px-6 py-4 text-right font-black w-40">Amount (USD)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 font-medium">
+            <tbody className="divide-y divide-slate-100">
               {invoiceItems.map((item, index) => (
-                <tr key={item.id} className={index % 2 === 0 ? "bg-white" : "bg-slate-50/30"}>
-                  <td className="py-4 px-4 text-slate-400 font-mono text-xs">{index + 1}</td>
-                  <td className="py-4 px-4 text-slate-900">{item.description}</td>
-                  <td className={`py-4 px-4 ${isRtl ? "text-left" : "text-right"} text-slate-900 font-bold`} dir="ltr">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <tr key={item.id} className="hover:bg-slate-50 transition-colors">
+                  <td className="px-6 py-4 font-mono font-bold text-slate-400">{String(index + 1).padStart(2, '0')}</td>
+                  <td className="px-6 py-4 font-bold text-slate-800">{item.description}</td>
+                  <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
-              <tr className="border-t-2 border-slate-900 bg-slate-50">
-                <td colSpan={2} className={`py-5 px-4 ${isRtl ? "text-left" : "text-right"} font-black text-slate-900 text-xl uppercase tracking-widest`}>
-                  {isRtl ? "جمع کل" : "Total Due"}
-                </td>
-                <td className={`py-5 px-4 ${isRtl ? "text-left" : "text-right"} font-black text-purple-700 text-2xl bg-purple-50 border-l border-slate-200`} dir="ltr">
+              <tr className="bg-slate-50 border-t-[3px] border-slate-900">
+                <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500 text-right">Total Balance Due</td>
+                <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50 text-2xl">
                   ${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </td>
               </tr>
@@ -757,33 +751,36 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         </div>
 
         {invoiceNotes && (
-          <div className="mt-8 pt-6 border-t border-slate-200" dir={dirClass}>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 w-fit">{isRtl ? "توضیحات:" : "Notes / Description:"}</p>
-            <p className="text-sm text-slate-700 whitespace-pre-wrap">{invoiceNotes}</p>
+          <div className="mt-8 pt-6 border-t-2 border-slate-100">
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Notes & Instructions</p>
+            <p className="text-sm font-medium text-slate-700 whitespace-pre-wrap leading-relaxed border-l-4 border-slate-200 pl-4">{invoiceNotes}</p>
           </div>
         )}
 
         {invoiceWallet && (
-          <div className="mt-8 pt-6 border-t border-dashed border-slate-200" dir={dirClass}>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"/>
-              {isRtl ? "کیف پول تتر:" : "Wallet Tether (TRC20):"}
+          <div className="mt-8 pt-6 border-t-2 border-dashed border-slate-200">
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
+              Cryptocurrency Payment Address (USDT TRC-20)
             </p>
-            <p className="font-mono text-sm break-all bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-600 shadow-inner" dir="ltr">
+            <p className="font-mono text-sm break-all font-bold bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-700 shadow-inner">
               {invoiceWallet}
             </p>
           </div>
         )}
       </div>
 
-      <div className="mt-8 flex justify-between items-end relative z-10 border-t border-slate-100 pt-6">
-          <div className="text-[10px] text-slate-400 uppercase tracking-widest max-w-[250px] leading-tight">
-            Generated via {church.nameEn} Document System. Thank you for your business.
+      <div className="mt-12 pt-6 border-t-2 border-slate-900 flex justify-between items-end relative z-10">
+          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest max-w-[250px] leading-relaxed">
+            Payment is due upon receipt. Generated via {church.nameEn} billing system.
           </div>
           {church.showVerifyQR && (
-            <div className="flex flex-col items-center gap-1">
-              <DocumentQR data={typeof window !== "undefined" ? window.location.origin + `/documents/view/INV-${invoiceNo}` : `INV-${invoiceNo}`} />
-              <span className="text-[8px] text-slate-400 font-mono tracking-widest uppercase bg-slate-100 px-2 py-0.5 rounded-full">Scan to Verify</span>
+            <div className="flex flex-col items-end gap-1 text-right">
+             <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+                <DocumentQR data={`INV-${invoiceNo}:${invoiceTotalAmount}`} />
+             </div>
+             <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Pay</div>
+             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{invoiceNo}</div>
             </div>
           )}
       </div>
