@@ -380,7 +380,7 @@ const HomePage: React.FC = () => {
             <div className="absolute top-0 left-0 w-full z-50">
                 <Link to="/live" className="flex items-center justify-center bg-red-600 hover:bg-red-700 text-white py-3 px-4 transition-colors font-semibold group cursor-pointer shadow-[0_0_20px_rgba(220,38,38,0.5)]">
                     <Radio className="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0 animate-pulse" />
-                    <span>{lang === 'fa' ? 'اکنون: پخش زنده کلیسای ایرانیان 디സി شروع شد! کلیک کنید.' : 'LIVE NOW: Iranian Church DC Worship Service! Click to join.'}</span>
+                    <span>{lang === 'fa' ? 'اکنون: پخش زنده کلیسای ایرانیان 디سی شروع شد! کلیک کنید.' : 'LIVE NOW: Iranian Church DC Worship Service! Click to join.'}</span>
                     <ArrowUpRight className="w-4 h-4 ml-2 rtl:mr-2 rtl:ml-0 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Link>
             </div>
@@ -438,6 +438,7 @@ const HomePage: React.FC = () => {
                     {lang === 'fa' ? 'درباره پلتفرم' : 'Platform Features'}
                   </Link>
                   </div>
+                  </div> {/* Closing Text Content div */}
 
                   {/* Hero Image / Slider */}
                   <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative w-full ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10 animate-float`}>
