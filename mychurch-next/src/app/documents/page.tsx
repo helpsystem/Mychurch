@@ -12,7 +12,7 @@ import {
   Languages, Loader2, Sparkles, Hash, ChevronDown, Save,
   Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy
 } from "lucide-react";
-import QRCode from "qrcode";
+import { QRCodeSVG } from "qrcode.react";
 
 
 export interface DocumentDesign {
@@ -97,19 +97,25 @@ function formatDigits(text: string) {
 const SITE_URL = typeof window !== "undefined" ? window.location.origin : "https://samanabyar.online";
 
 function DocumentQR({ data }: { data: string }) {
-  const [qrSrc, setQrSrc] = useState<string>("");
+  // If data looks like a reference number, generate a verify URL; otherwise use as-is
+  const url = data.startsWith("http") ? data : `${SITE_URL}/verify/${encodeURIComponent(data)}`;
 
-  useEffect(() => {
-    // If data looks like a reference number, generate a verify URL; otherwise use as-is
-    const url = data.startsWith("http") ? data : `${SITE_URL}/verify/${encodeURIComponent(data)}`;
-    QRCode.toDataURL(url, { margin: 1, width: 120, errorCorrectionLevel: "M", color: { dark: "#000000", light: "#ffffff00" } })
-      .then((src: string) => setQrSrc(src))
-      .catch((err: Error) => console.error("QR Error", err));
-  }, [data]);
-
-  if (!qrSrc) return null;
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={qrSrc} alt="Verify QR" className="w-20 h-20" />;
+  return (
+    <QRCodeSVG 
+      value={url} 
+      size={80} // corresponds to w-20 h-20
+      level="M" 
+      bgColor="#ffffff00" 
+      fgColor="#000000"
+      marginSize={1}
+      imageSettings={{
+        src: "/logo-transparent.png",
+        height: 20,
+        width: 20,
+        excavate: true,
+      }}
+    />
+  );
 }
 
 // ─── Component: Watermark ─────────────────────────────────────────────────────

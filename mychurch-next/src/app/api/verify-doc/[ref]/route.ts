@@ -8,9 +8,10 @@ const supabase = createClient(
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { ref: string } }
+  { params }: { params: Promise<{ ref: string }> }
 ) {
-  const ref = decodeURIComponent(params.ref).trim().toUpperCase();
+  const resolvedParams = await params;
+  const ref = decodeURIComponent(resolvedParams.ref).trim().toUpperCase();
 
   try {
     // Check receipts first

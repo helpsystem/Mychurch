@@ -9,7 +9,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
-  webpack: (config, { isServer }) => {
+  webpack: (config: any, { isServer }: { isServer: boolean }) => {
     if (isServer) {
       // Fixes npm packages that depend on `fs` module
       config.resolve.fallback = {
