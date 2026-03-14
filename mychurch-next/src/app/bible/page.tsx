@@ -172,9 +172,9 @@ export default function BibleReaderPage() {
       <PublicHeader />
       <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} onEnded={() => setIsPlaying(false)} />
 
-      {/* ── Top Toolbar — always LTR ── */}
-      <div className="sticky top-16 z-40 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 shadow-lg" dir="ltr">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center gap-3">
+      {/* ── Top Toolbar — flex-nowrap with horizontal scroll on mobile ── */}
+      <div className="sticky top-16 z-40 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 py-3 shadow-lg" dir="ltr">
+        <div className="max-w-6xl mx-auto px-4 flex items-center gap-3 overflow-x-auto hide-scrollbar pb-1 md:pb-0 md:flex-wrap">
 
           {/* Book Picker */}
           <div className="relative">
@@ -292,23 +292,23 @@ export default function BibleReaderPage() {
           </select>
 
           {/* Reading Mode Switcher & Font Controls */}
-          <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1" dir="ltr">
+          <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1 shrink-0" dir="ltr">
             <button onClick={() => setReadingMode("en")} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${readingMode === "en" ? "bg-blue-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>EN</button>
             <button onClick={() => setReadingMode("fa")} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${readingMode === "fa" ? "bg-purple-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>FA</button>
             <button onClick={() => setReadingMode("parallel")} className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${readingMode === "parallel" ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>
               <Columns2 className="w-3 h-3" /> EN|FA
             </button>
             
-            <div className="w-px h-5 bg-white/20 mx-1"></div>
+            <div className="w-px h-5 bg-white/20 mx-1 shrink-0"></div>
             
-            <button onClick={() => setFontSize(f => Math.max(12, f - 2))} className="px-2 py-1.5 rounded-lg text-xs font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10" title="Decrease font size">A-</button>
-            <button onClick={() => setFontSize(f => Math.min(48, f + 2))} className="px-2 py-1.5 rounded-lg text-sm font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10" title="Increase font size">A+</button>
+            <button onClick={() => setFontSize(f => Math.max(12, f - 2))} className="px-2 py-1.5 rounded-lg text-xs font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10 shrink-0" title="Decrease font size">A-</button>
+            <button onClick={() => setFontSize(f => Math.min(48, f + 2))} className="px-2 py-1.5 rounded-lg text-sm font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10 shrink-0" title="Increase font size">A+</button>
           </div>
         </div>
       </div>
 
       {/* ── Main Reader ── */}
-      <main className="flex-1 pb-44 px-4 max-w-5xl w-full mx-auto pt-10" dir="ltr">
+      <main className="flex-1 pb-60 px-4 max-w-5xl w-full mx-auto pt-8" dir="ltr">
         {loading ? (
           <div className="flex items-center justify-center py-32">
             <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
@@ -390,12 +390,12 @@ export default function BibleReaderPage() {
         )}
       </main>
 
-      {/* ── Sticky Audio Player — always LTR ── */}
+      {/* ── Sticky Audio Player — always LTR, hover above Mobile Bottom Nav ── */}
       {audioTracks.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-2xl border-t border-white/10 px-4 py-3 shadow-2xl" dir="ltr">
-          <div className="max-w-5xl mx-auto flex flex-col gap-2" dir="ltr">
+        <div className="fixed bottom-20 md:bottom-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-2xl border-y md:border-b-0 md:border-t border-white/10 px-4 py-3 shadow-2xl" dir="ltr">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center gap-3 md:gap-6" dir="ltr">
             {/* Row 1: icon | title/subtitle | play btn */}
-            <div className="flex items-center gap-4" dir="ltr">
+            <div className="flex items-center gap-4 flex-1" dir="ltr">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg flex-shrink-0">
                 <Music2 className="w-5 h-5 text-white" />
               </div>
@@ -406,31 +406,36 @@ export default function BibleReaderPage() {
               <button
                 onClick={togglePlay}
                 aria-label={isPlaying ? "Pause" : "Play"}
-                className="w-11 h-11 rounded-full bg-blue-500 hover:bg-blue-400 flex items-center justify-center shadow-xl shadow-blue-500/30 transition-all hover:scale-105"
+                className="w-11 h-11 shrink-0 rounded-full bg-blue-500 hover:bg-blue-400 flex items-center justify-center shadow-xl shadow-blue-500/30 transition-all hover:scale-105"
               >
                 {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white ml-0.5" />}
               </button>
             </div>
 
             {/* Row 2: seekbar — always LTR */}
-            <div className="flex items-center gap-3 text-xs text-muted-foreground" dir="ltr">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground flex-1 w-full" dir="ltr">
               <span className="w-9 text-right tabular-nums">{formatTime(audioProgress)}</span>
-              <input
-                type="range"
-                min={0}
-                max={audioDuration || 100}
-                value={audioProgress}
-                onChange={handleSeek}
-                aria-label="Audio playback progress"
-                className="flex-1 h-1 accent-blue-500 cursor-pointer"
-                dir="ltr"
-              />
+              <div className="relative flex-1 h-3 flex items-center group touch-none mx-2">
+                <input
+                  type="range"
+                  min={0}
+                  max={audioDuration || 100}
+                  value={audioProgress}
+                  onChange={handleSeek}
+                  aria-label="Audio playback progress"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                  dir="ltr"
+                />
+                <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full pointer-events-none" style={{ width: `${(audioProgress / (audioDuration || 1)) * 100}%` }} />
+                </div>
+              </div>
               <span className="w-9 tabular-nums">{formatTime(audioDuration)}</span>
             </div>
 
             {/* Row 3: Track variants */}
             {audioTracks.length > 1 && (
-              <div className="flex gap-2 flex-wrap" dir="ltr">
+              <div className="flex gap-2 flex-wrap items-center justify-center md:hidden" dir="ltr">
                 {audioTracks.map((t, i) => (
                   <button
                     key={i}
@@ -448,7 +453,7 @@ export default function BibleReaderPage() {
 
       {/* ── Bottom Chapter Nav — Prev LEFT, Next RIGHT, always LTR ── */}
       <div
-        className={`fixed ${audioTracks.length > 0 ? "bottom-32" : "bottom-6"} left-0 right-0 z-40 flex items-center justify-center gap-3 pointer-events-none`}
+        className={`fixed ${audioTracks.length > 0 ? "bottom-52 md:bottom-24" : "bottom-24 md:bottom-6"} left-0 right-0 z-40 flex items-center justify-center gap-2 md:gap-3 pointer-events-none transition-all duration-500`}
         dir="ltr"
       >
         {/* Prev (left) */}
