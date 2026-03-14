@@ -34,6 +34,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+import { MobileNavigation } from "@/components/layout/MobileNavigation";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,6 +48,7 @@ export default function RootLayout({
       >
         <LanguageProvider>
           {children}
+          <MobileNavigation />
         </LanguageProvider>
       </body>
     </html>
