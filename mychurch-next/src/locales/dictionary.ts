@@ -64,6 +64,9 @@ export const dictionaries = {
         play: "Play",
         youtube: "YouTube",
         presentation: "Presentation",
+        playAll: "Play All",
+        shuffle: "Shuffle",
+        songsFound: "songs",
 
         // Bible Reader
         nextChapter: "Next Chapter",
@@ -142,6 +145,9 @@ export const dictionaries = {
         play: "پخش",
         youtube: "یوتیوب",
         presentation: "ارائه",
+        playAll: "پخش همه",
+        shuffle: "تصادفی",
+        songsFound: "سرود",
 
         // Bible Reader
         nextChapter: "فصل بعدی",

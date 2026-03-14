@@ -3,13 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import {
-  Play, BookOpen, Music, Video, Heart, Mic, Phone, Settings, Globe, Users
+  Play, BookOpen, Music, Video, Heart, Mic, Phone, Settings, Globe, Users, Clock
 } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+import { WorldClock } from "@/components/ui/WorldClock";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -152,6 +153,18 @@ export default function HomePage() {
             ))}
           </div>
 
+        </section>
+
+        {/* World Clocks */}
+        <section className="px-6 lg:px-12 max-w-7xl mx-auto pb-24">
+          <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
+            <div className="w-3 h-10 bg-primary rounded-full shadow-lg shadow-primary/20" />
+            <div>
+              <h2 className="text-3xl font-bold">World Time</h2>
+              <p className="text-muted-foreground text-sm font-medium">Washington D.C. & Tehran</p>
+            </div>
+          </div>
+          <WorldClock />
         </section>
 
       </div>

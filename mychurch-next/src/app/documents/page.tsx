@@ -94,19 +94,22 @@ function formatDigits(text: string) {
 }
 
 // ─── Component: QR Code ──────────────────────────────────────────────────────
+const SITE_URL = typeof window !== "undefined" ? window.location.origin : "https://samanabyar.online";
+
 function DocumentQR({ data }: { data: string }) {
   const [qrSrc, setQrSrc] = useState<string>("");
 
   useEffect(() => {
-    QRCode.toDataURL(data, { margin: 1, width: 80, color: { dark: "#000000", light: "#ffffff00" } })
-      .then((url: string) => setQrSrc(url))
+    // If data looks like a reference number, generate a verify URL; otherwise use as-is
+    const url = data.startsWith("http") ? data : `${SITE_URL}/verify/${encodeURIComponent(data)}`;
+    QRCode.toDataURL(url, { margin: 1, width: 120, errorCorrectionLevel: "M", color: { dark: "#000000", light: "#ffffff00" } })
+      .then((src: string) => setQrSrc(src))
       .catch((err: Error) => console.error("QR Error", err));
   }, [data]);
 
-
   if (!qrSrc) return null;
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={qrSrc} alt="Verify QR" className="w-16 h-16 grayscale opacity-80" />;
+  return <img src={qrSrc} alt="Verify QR" className="w-20 h-20" />;
 }
 
 // ─── Component: Watermark ─────────────────────────────────────────────────────
