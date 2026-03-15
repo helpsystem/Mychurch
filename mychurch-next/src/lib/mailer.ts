@@ -1,6 +1,14 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: "smtp.resend.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "resend",
+    pass: process.env.RESEND_API_KEY,
+  },
+});
 
 export interface MailOptions {
   to: string | string[];
@@ -16,21 +24,14 @@ const DEFAULT_FROM = process.env.MAIL_FROM || "Iranian Christian Church DC <nore
 export async function sendMail(options: MailOptions) {
   const { from, to, subject, text, html, replyTo } = options;
   
-  const payload: any = {
+  const info = await transporter.sendMail({
     from: from ?? DEFAULT_FROM,
-    to: Array.isArray(to) ? to : [to],
+    to: Array.isArray(to) ? to.join(", ") : to,
     subject: subject,
+    text: text,
+    html: html,
     replyTo: replyTo,
-  };
+  });
 
-  if (html) {
-    payload.html = html;
-  } else if (text) {
-    payload.text = text;
-  }
-
-  const { data, error } = await resend.emails.send(payload);
-
-  if (error) throw new Error(error.message);
-  return data;
+  return info;
 }
