@@ -308,7 +308,7 @@ export default function BibleReaderPage() {
       </div>
 
       {/* ── Main Reader ── */}
-      <main className="flex-1 pb-60 px-4 max-w-5xl w-full mx-auto pt-20" dir="ltr">
+      <main className="flex-1 pb-60 px-4 max-w-5xl w-full mx-auto pt-32" dir="ltr">
         {loading ? (
           <div className="flex items-center justify-center py-32">
             <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
