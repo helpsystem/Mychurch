@@ -25,7 +25,7 @@ export function PublicHeader() {
     }, []);
 
     return (
-        <nav className="fixed top-0 inset-x-0 h-20 bg-background/60 backdrop-blur-xl border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12">
+        <nav className="fixed top-0 inset-x-0 h-20 glass-strong border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12 shadow-lg shadow-black/10">
             <Link href="/" className="flex items-center gap-4 group">
                 <div className="w-14 items-center justify-center flex">
                     <Image

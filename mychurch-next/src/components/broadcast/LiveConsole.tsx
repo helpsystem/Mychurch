@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { cn } from "@/lib/utils";
+import { PageVisuals } from "@/components/ui/PageVisuals";
 
 // Sub-components
 import { BroadcastSidebar } from "./BroadcastSidebar";
@@ -28,6 +29,7 @@ export default function LiveConsole() {
 
     return (
         <div className="flex flex-col h-[100dvh] w-full bg-neutral-950 text-foreground overflow-hidden font-sans selection:bg-primary/30">
+            <PageVisuals soft />
             {/* Top Navigation / Status Bar */}
             <header className="h-16 px-6 border-b border-border/10 flex items-center justify-between bg-neutral-900 shrink-0 z-10 w-full shadow-md">
                 <div className="flex items-center gap-4">

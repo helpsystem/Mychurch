@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { UserPlus, Lock, Mail, Loader2, User, ArrowRight, CheckCircle } from "lucide-react";
 import { signUp } from "@/actions/auth";
+import { PageVisuals } from "@/components/ui/PageVisuals";
 
 export default function SignupPage() {
     const [isPending, startTransition] = useTransition();
@@ -30,9 +31,9 @@ export default function SignupPage() {
     if (isSuccess) {
         return (
             <div className="min-h-[100dvh] w-full flex items-center justify-center bg-neutral-950 font-sans relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] opacity-50 pointer-events-none" />
+                <PageVisuals />
                 <div className="relative z-10 w-full max-w-md p-6 animate-in fade-in zoom-in duration-500">
-                    <div className="bg-neutral-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-8 shadow-2xl text-center">
+                    <div className="glass-strong rounded-3xl p-8 shadow-2xl text-center">
                         <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center border border-emerald-500/30 mb-6 mx-auto shadow-lg shadow-emerald-500/10">
                             <CheckCircle className="w-10 h-10 text-emerald-400" />
                         </div>
@@ -56,11 +57,10 @@ export default function SignupPage() {
 
     return (
         <div className="min-h-[100dvh] w-full flex items-center justify-center bg-neutral-950 font-sans relative overflow-hidden selection:bg-primary/30">
-            {/* Ambient Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] opacity-50 pointer-events-none" />
+            <PageVisuals />
             
             <div className="relative z-10 w-full max-w-md p-6">
-                <div className="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <div className="glass-strong rounded-3xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-700">
 
                     {/* Logo & Header */}
                     <div className="flex flex-col items-center mb-8">

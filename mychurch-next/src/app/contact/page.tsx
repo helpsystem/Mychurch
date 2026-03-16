@@ -5,6 +5,7 @@ import Image from "next/image";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { PageVisuals } from "@/components/ui/PageVisuals";
 import {
     MapPin, Phone, Mail, Clock, Send, MessageSquare, Heart, Users
 } from "lucide-react";
@@ -28,11 +29,7 @@ export default function ContactPage() {
         <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
             <PublicHeader />
 
-            {/* Ambient background */}
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
-                <div className="absolute top-[20%] right-[10%] w-[35%] h-[40%] bg-orange-500/5 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[10%] left-[20%] w-[35%] h-[40%] bg-red-500/5 rounded-full blur-[120px]" />
-            </div>
+            <PageVisuals soft />
 
             <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-7xl mx-auto w-full">
                 {/* Header */}

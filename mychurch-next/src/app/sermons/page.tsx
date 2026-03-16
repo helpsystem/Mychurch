@@ -7,6 +7,7 @@ import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { Play, Calendar, Search, Filter } from "lucide-react";
+import { PageVisuals } from "@/components/ui/PageVisuals";
 
 export default function SermonsPage() {
     const { t } = useLanguage();
@@ -27,10 +28,7 @@ export default function SermonsPage() {
         <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
             <PublicHeader />
 
-            {/* Ambient background */}
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
-                <div className="absolute top-[10%] left-[10%] w-[40%] h-[40%] bg-purple-500/5 rounded-full blur-[120px]" />
-            </div>
+            <PageVisuals soft />
 
             <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-7xl mx-auto w-full">
                 {/* Header Section */}

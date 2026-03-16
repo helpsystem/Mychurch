@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LogIn, Lock, Mail, Loader2 } from "lucide-react";
 import { login } from "@/actions/auth";
+import { PageVisuals } from "@/components/ui/PageVisuals";
 
 export default function LoginPage() {
     const [isPending, startTransition] = useTransition();
@@ -26,12 +27,10 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-[100dvh] w-full flex items-center justify-center bg-neutral-950 font-sans relative overflow-hidden selection:bg-primary/30">
-            {/* Ambient Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] opacity-50 pointer-events-none" />
-            <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+            <PageVisuals />
 
             <div className="relative z-10 w-full max-w-md p-6">
-                <div className="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <div className="glass-strong rounded-3xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-700">
 
                     {/* Logo & Header */}
                     <div className="flex flex-col items-center mb-8">

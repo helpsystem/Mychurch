@@ -11,7 +11,8 @@ export function PublicFooter() {
     const { t } = useLanguage();
 
     return (
-        <footer className="border-t border-white/5 bg-background/50 backdrop-blur-3xl pt-16 pb-8">
+        <footer className="border-t border-white/5 glass-strong pt-16 pb-8 relative overflow-hidden">
+            <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" aria-hidden="true" />
             <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
                 {/* Brand */}
                 <div className="col-span-1 md:col-span-2 space-y-6">

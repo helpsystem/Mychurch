@@ -8,6 +8,7 @@ import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { Users, Heart, Globe, BookOpen } from "lucide-react";
+import { PageVisuals } from "@/components/ui/PageVisuals";
 
 const Flipbook = dynamic(() => import("@/components/ui/Flipbook").then(m => ({ default: m.Flipbook })), { ssr: false });
 
@@ -18,11 +19,7 @@ export default function AboutPage() {
         <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
             <PublicHeader />
 
-            {/* Background Ambience */}
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
-                <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-blue-500/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[20%] left-[20%] w-[30%] h-[30%] bg-indigo-500/10 rounded-full blur-[120px]" />
-            </div>
+            <PageVisuals soft />
 
             <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-7xl mx-auto w-full">
                 {/* Header */}
