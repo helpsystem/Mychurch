@@ -52,6 +52,27 @@ export async function signUp(formData: FormData) {
         return { success: false, error: error.message };
     }
 
+    // [New] Synchronize with the 'users' table for RBAC
+    try {
+        console.log(`[Auth] 🔄 Syncing ${email} to users table...`);
+        const { error: syncError } = await supabase
+            .from('users')
+            .upsert({
+                email: email,
+                full_name: fullName,
+                role: 'User', // Default role for new signups
+                updated_at: new Date()
+            }, { onConflict: 'email' });
+            
+        if (syncError) {
+            console.warn(`[Auth] ⚠️ DB Sync Warning: ${syncError.message}`);
+        } else {
+            console.log(`[Auth] ✅ User ${email} synced to database.`);
+        }
+    } catch (syncExc) {
+        console.error("[Auth] ❌ DB Sync Exception:", syncExc);
+    }
+
     // Send Welcome Email immediately via Resend fallback
     try {
         console.log(`[Auth] 📧 Sending welcome email to: ${email}`);
