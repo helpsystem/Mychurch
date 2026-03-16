@@ -1,5 +1,3 @@
-"use client";
-
 /**
  * 🎬 Broadcast Slide Builder
  * ساخت و مدیریت اسلایدهای پخش زنده
@@ -10,7 +8,7 @@ import {
   Slide, SlideType, BroadcastSession,
   SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, ChartDataPoint,
   ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig, BroadcastOverlayConfig
-} from '@/types/broadcast';
+} from './types';
 import {
   fetchWorshipSongs, searchSongs, parseLyrics,
   getBibleBooks, searchScripture, fetchBibleVerse,
@@ -42,18 +40,6 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   activeSlideIndex,
   onSlideSelect
 }) => {
-  if (!session) {
-    return (
-      <div className="flex items-center justify-center h-full bg-slate-900 text-white p-8">
-        <div className="text-center">
-          <Activity className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
-          <p className="text-xl font-bold font-[Vazirmatn]">در حال بارگذاری جلسه...</p>
-          <p className="text-slate-400 mt-2">Initializing session...</p>
-        </div>
-      </div>
-    );
-  }
-
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
 

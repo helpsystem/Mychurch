@@ -2,6 +2,7 @@
 
 import React, { useState, useTransition } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { LogIn, Lock, Mail, Loader2 } from "lucide-react";
 import { login } from "@/actions/auth";
 
@@ -107,7 +108,16 @@ export default function LoginPage() {
                         </button>
                     </form>
 
-                    <div className="mt-8 text-center text-xs text-muted-foreground/60 font-medium">
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-muted-foreground font-[Vazirmatn]">
+                            حساب کاربری ندارید؟ / Don't have an account?{" "}
+                            <Link href="/signup" className="text-primary hover:text-primary/80 font-bold transition-colors">
+                                ثبت‌نام / Sign Up
+                            </Link>
+                        </p>
+                    </div>
+
+                    <div className="mt-8 text-center text-xs text-muted-foreground/60 font-medium border-t border-white/5 pt-6">
                         <p>© {new Date().getFullYear()} Iranian Christian Church of D.C.</p>
                         <p className="mt-1">Secured by Supabase Auth</p>
                     </div>

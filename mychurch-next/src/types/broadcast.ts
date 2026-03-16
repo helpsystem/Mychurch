@@ -1,5 +1,26 @@
 // mychurch-next/src/types/broadcast.ts
 
+export type AppLanguage = 'fa' | 'en';
+
+export interface BibleBook {
+    key: string;
+    name: { fa: string; en: string; };
+    chapters: number;
+    testament: 'OT' | 'NT';
+}
+
+export interface WorshipSong {
+    id: number;
+    title: { fa: string; en: string; [key: string]: string };
+    artist?: { fa: string; en: string; [key: string]: string };
+    lyrics?: { fa?: string; en?: string; };
+    chord?: string;
+    youtubeId?: string;
+    audioUrl?: string;
+    hasTiming?: boolean;
+    mode?: string;
+}
+
 export enum SlideType {
     SCRIPTURE = 'SCRIPTURE',
     LYRICS = 'LYRICS',
@@ -22,6 +43,9 @@ export interface ScripturePage {
     translation?: string;
     enTranslation?: string;
     displayMode?: 'list' | 'bubble';
+    glassPopupEnabled?: boolean;
+    popupLabelFa?: string;
+    popupLabelEn?: string;
 }
 
 export interface SlideContentScripture {
@@ -54,13 +78,17 @@ export interface LyricsDisplayOptions {
 export interface SlideContentLyrics {
     songId?: number;
     title: string;
+    titleFa?: string;
+    titleEn?: string;
     lines: LyricsLine[];
+    lyricsEnLines?: string[];
     chords?: string;
     audioUrl?: string;
     youtubeId?: string;
-    timingData?: Record<string, unknown> | null;
+    timingData?: any;
     finglishLines?: string[];
     hasTiming?: boolean;
+    glassPopupEnabled?: boolean;
     displayOptions?: LyricsDisplayOptions;
 }
 

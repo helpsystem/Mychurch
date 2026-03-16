@@ -42,15 +42,10 @@ export default function BibleReaderPage() {
   const [readingMode, setReadingMode] = useState<ReadingMode>("parallel");
   const [fontSize, setFontSize] = useState(18);
 
-  const [verses, setVerses] = useState<BibleVerse[]>([]);
-  const [headings, setHeadings] = useState<Heading[]>([]);
-  const [faVerses, setFaVerses] = useState<BibleVerse[]>([]);
-  const [parallelVerses, setParallelVerses] = useState<ParallelVerse[]>([]);
-  const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
+  const [selectedVerses, setSelectedVerses] = useState<ParallelVerse[]>([]);
   const [loading, setLoading] = useState(false);
   const [bookSearch, setBookSearch] = useState("");
   const [showBookList, setShowBookList] = useState(false);
-  const [highlightedVerse, setHighlightedVerse] = useState<number | null>(null);
   const [currentBook, setCurrentBook] = useState<BibleBook | null>(null);
 
   // Audio
@@ -59,6 +54,38 @@ export default function BibleReaderPage() {
   const [selectedTrackIdx, setSelectedTrackIdx] = useState(0);
   const [audioProgress, setAudioProgress] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
+
+  // --- Selection Logic ---
+  const toggleVerseSelection = (v: any) => {
+    setSelectedVerses(prev => {
+      const exists = prev.find(item => item.verse_num === v.verse_num);
+      if (exists) return prev.filter(item => item.verse_num !== v.verse_num);
+      return [...prev, v].sort((a, b) => a.verse_num - b.verse_num);
+    });
+  };
+
+  const copySelected = () => {
+    const text = selectedVerses.map(v => {
+      const content = readingMode === 'parallel' ? `${v.en} | ${v.fa}` : (readingMode === 'fa' ? v.fa : v.en);
+      return `(${v.verse_num}) ${content}`;
+    }).join('\n');
+    navigator.clipboard.writeText(text).then(() => {
+      alert(language === 'fa' ? "آیات کپی شدند" : "Verses copied to clipboard");
+      setSelectedVerses([]);
+    });
+  };
+
+  const shareSelected = () => {
+    const text = selectedVerses.map(v => {
+      const content = readingMode === 'parallel' ? `${v.en} | ${v.fa}` : (readingMode === 'fa' ? v.fa : v.en);
+      return `(${v.verse_num}) ${content}`;
+    }).join('\n');
+    if (navigator.share) {
+      navigator.share({ title: 'Mychurch Bible', text }).catch(console.error);
+    } else {
+      copySelected();
+    }
+  };
 
   // Load versions
   useEffect(() => {
@@ -80,6 +107,12 @@ export default function BibleReaderPage() {
       .catch(console.error);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedVersionEn]);
+
+  const [verses, setVerses] = useState<BibleVerse[]>([]);
+  const [faVerses, setFaVerses] = useState<BibleVerse[]>([]);
+  const [headings, setHeadings] = useState<Heading[]>([]);
+  const [parallelVerses, setParallelVerses] = useState<ParallelVerse[]>([]);
+  const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
 
   // Load chapter
   const loadChapter = useCallback(async () => {
@@ -104,7 +137,7 @@ export default function BibleReaderPage() {
         setVerses(d.verses || []);
         setHeadings(d.headings || []);
         setAudioTracks(d.audio || []);
-        setCurrentBook({ book_name_en: d.bookNameEn, book_name_fa: d.bookNameFa, chapter_count: d.chapterCount, book_id: selectedBook } as BibleBook);
+        setCurrentBook(prev => prev ? { ...prev, book_id: selectedBook, book_name_en: d.bookNameEn, book_name_fa: d.bookNameFa, chapter_count: d.chapterCount } : { book_id: selectedBook, book_name_en: d.bookNameEn, book_name_fa: d.bookNameFa, chapter_count: d.chapterCount, testament: '', book_order: 0 } as BibleBook);
       }
     } catch (e) {
       console.error(e);
@@ -116,7 +149,6 @@ export default function BibleReaderPage() {
   useEffect(() => {
     loadChapter();
     setIsPlaying(false);
-    setHighlightedVerse(null);
   }, [loadChapter]);
 
   // Audio
@@ -172,9 +204,9 @@ export default function BibleReaderPage() {
       <PublicHeader />
       <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} onEnded={() => setIsPlaying(false)} />
 
-      {/* ── Top Toolbar — flex-nowrap with horizontal scroll on mobile ── */}
+      {/* ── Top Toolbar — Responsive wrapping for mobile ── */}
       <div className="sticky top-16 z-40 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 py-3 shadow-lg" dir="ltr">
-        <div className="max-w-6xl mx-auto px-4 flex items-center gap-3 overflow-x-auto hide-scrollbar pb-1 md:pb-0 md:flex-wrap">
+        <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center gap-2 md:gap-3">
 
           {/* Book Picker */}
           <div className="relative">
@@ -279,12 +311,12 @@ export default function BibleReaderPage() {
           </div>
 
           {/* English version selector */}
-          <select value={selectedVersionEn} onChange={e => setSelectedVersionEn(e.target.value)} aria-label="English Bible version" className="max-w-[120px] bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm font-bold outline-none focus:border-blue-500/50 cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white">
+          <select value={selectedVersionEn} onChange={e => setSelectedVersionEn(e.target.value)} aria-label="English Bible version" className="max-w-[100px] md:max-w-[120px] bg-white/5 border border-white/10 rounded-xl px-2 md:px-3 py-2.5 text-sm font-bold outline-none focus:border-blue-500/50 cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white">
             {englishVersions.map(v => <option key={v.abbr} value={v.abbr} title={v.name} className="bg-zinc-900 text-white">{v.hasAudio ? '🔊 ' : ''}{v.abbr}</option>)}
           </select>
 
           {/* Farsi version selector */}
-          <select value={selectedVersionFa} onChange={e => setSelectedVersionFa(e.target.value)} aria-label="Farsi Bible version" className={`font-[Vazirmatn] max-w-[200px] truncate bg-white/5 border rounded-xl px-3 py-2.5 text-sm font-bold outline-none cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white ${persianVersions.length === 0 ? 'border-red-500/30 text-red-400' : 'border-purple-500/30 focus:border-purple-500'}`} dir="rtl">
+          <select value={selectedVersionFa} onChange={e => setSelectedVersionFa(e.target.value)} aria-label="Farsi Bible version" className={`font-[Vazirmatn] max-w-[140px] md:max-w-[200px] truncate bg-white/5 border rounded-xl px-2 md:px-3 py-2.5 text-sm font-bold outline-none cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white ${persianVersions.length === 0 ? 'border-red-500/30 text-red-100' : 'border-purple-500/30 focus:border-purple-500'}`} dir="rtl">
             {persianVersions.length === 0
               ? <option value="" className="bg-zinc-900 text-white">— ترجمه‌ای یافت نشد —</option>
               : persianVersions.map(v => <option key={v.abbr} value={v.abbr} className="bg-zinc-900 text-white">{v.name} {v.hasAudio ? '🔊' : ''}</option>)
@@ -308,7 +340,7 @@ export default function BibleReaderPage() {
       </div>
 
       {/* ── Main Reader ── */}
-      <main className="flex-1 pb-60 px-4 max-w-5xl w-full mx-auto pt-48 relative" dir="ltr">
+      <main className="flex-1 pb-60 px-4 max-w-5xl w-full mx-auto pt-44 md:pt-32 relative" dir="ltr">
         {loading ? (
           <div className="flex items-center justify-center py-32">
             <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
@@ -329,66 +361,97 @@ export default function BibleReaderPage() {
             {/* ── English Single ── */}
             {readingMode === "en" && (
               <div className="space-y-1 prose prose-invert max-w-none" dir="ltr" style={{ fontSize: `${fontSize}px`, lineHeight: 1.8 }}>
-                {verses.map(v => (
-                  <span key={v.verse_num}>
-                    {headingMap.has(v.verse_num) && (
-                      <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(v.verse_num)}</h3>
-                    )}
-                    <span
-                      dir="ltr"
-                      className={`cursor-pointer rounded transition-colors ${highlightedVerse === v.verse_num ? "bg-yellow-400/20 text-yellow-200" : "hover:bg-white/5"}`}
-                      onClick={() => setHighlightedVerse(n => n === v.verse_num ? null : v.verse_num)}
-                    >
-                      <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{v.verse_num}</sup>
-                      {v.text}{" "}
+                {verses.map((v: any) => {
+                  const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
+                  return (
+                    <span key={v.verse_num}>
+                      {headingMap.has(v.verse_num) && (
+                        <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(v.verse_num)}</h3>
+                      )}
+                      <span
+                        dir="ltr"
+                        className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`}
+                        onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: v.text, fa: null })}
+                      >
+                        <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{v.verse_num}</sup>
+                        {v.text}{" "}
+                      </span>
                     </span>
-                  </span>
-                ))}
+                  );
+                })}
               </div>
             )}
 
             {/* ── Farsi Single ── */}
             {readingMode === "fa" && (
-              <div className="space-y-1" dir="rtl" style={{ fontSize: `${fontSize}px`, lineHeight: 2.0 }}>
-                {faVerses.map(v => (
-                  <span key={v.verse_num}
-                    className={`font-[Vazirmatn] cursor-pointer rounded transition-colors inline ${highlightedVerse === v.verse_num ? "bg-yellow-400/20 text-yellow-200" : "hover:bg-white/5"}`}
-                    onClick={() => setHighlightedVerse(n => n === v.verse_num ? null : v.verse_num)}
-                  >
-                    <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{v.verse_num}</sup>
-                    {v.text}{" "}
-                  </span>
-                ))}
+              <div className="space-y-1 text-right font-[Vazirmatn]" dir="rtl" style={{ fontSize: `${fontSize}px`, lineHeight: 2.2 }}>
+                {faVerses.length === 0 ? (
+                  <div className="text-center py-20 text-zinc-500">— ترجمه‌ای یافت نشد —</div>
+                ) : (
+                  faVerses.map((v: any) => {
+                    const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
+                    return (
+                      <span
+                        key={v.verse_num}
+                        className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`}
+                        onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: null, fa: v.text })}
+                      >
+                        <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{v.verse_num}</sup>
+                        {v.text}{" "}
+                      </span>
+                    );
+                  })
+                )}
               </div>
             )}
 
             {/* ── Parallel (EN left | FA right) ── */}
             {readingMode === "parallel" && (
-              <div className="space-y-3">
-                {/* Column headers */}
-                <div className="grid grid-cols-2 gap-4 pb-3 border-b border-white/10" dir="ltr">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-blue-400">{selectedVersionEn} — English</div>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-purple-400 text-right" dir="rtl">{selectedVersionFa} — فارسی</div>
-                </div>
-                {parallelVerses.map(v => (
-                  <div key={v.verse_num} className="grid grid-cols-2 gap-4 p-4 rounded-xl border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-all" dir="ltr">
-                    {/* English — always LTR */}
-                    <div className="leading-relaxed" dir="ltr" style={{ fontSize: `${fontSize}px` }}>
-                      <sup className="text-[0.6em] font-black text-blue-400/70 mr-1">{v.verse_num}</sup>
-                      {v.en}
+              <div className="space-y-6">
+                {parallelVerses.map(v => {
+                  const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
+                  return (
+                    <div
+                      key={v.verse_num}
+                      className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${isSelected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5"}`}
+                      onClick={() => toggleVerseSelection(v)}
+                    >
+                      <div className="flex gap-3" dir="ltr">
+                        <span className="text-xs font-black text-blue-500/60 mt-1 shrink-0">{v.verse_num}</span>
+                        <p className="text-zinc-100 leading-relaxed font-sans" style={{ fontSize: `${fontSize}px` }}>{v.en}</p>
+                      </div>
+                      <div className="flex gap-3 text-right" dir="rtl">
+                        <span className="text-xs font-black text-purple-500/60 mt-1 shrink-0">{v.verse_num}</span>
+                        <p className="text-zinc-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${fontSize + 2}px` }}>{v.fa}</p>
+                      </div>
                     </div>
-                    {/* Farsi — RTL inside its own column */}
-                    <div className="font-[Vazirmatn] leading-loose text-right" dir="rtl" style={{ fontSize: `${fontSize}px` }}>
-                      <sup className="text-[0.6em] font-black text-purple-400/70 ml-1">{v.verse_num}</sup>
-                      {v.fa ?? <span className="text-muted-foreground text-xs">—</span>}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </>
         )}
       </main>
+
+      {/* ── Contextual Action Bar ── */}
+      <div 
+        className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] transition-all duration-500 cubic-bezier(0.175, 0.885, 0.32, 1.275) ${selectedVerses.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"}`}
+      >
+        <div className="bg-amber-500 text-black px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-6 font-bold">
+          <span className="text-sm font-black border-r border-black/20 pr-4">
+            {selectedVerses.length} {language === 'fa' ? "آیه انتخاب شد" : "verses selected"}
+          </span>
+          <button onClick={copySelected} className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+            <span>📋</span> {language === 'fa' ? "کپی" : "Copy"}
+          </button>
+          <button onClick={shareSelected} className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+            <span>🔗</span> {language === 'fa' ? "اشتراک" : "Share"}
+          </button>
+          <button onClick={() => setSelectedVerses([])} className="ml-2 text-black/50 hover:text-black">
+            ✕
+          </button>
+        </div>
+      </div>
 
       {/* ── Sticky Audio Player — always LTR, hover above Mobile Bottom Nav ── */}
       {audioTracks.length > 0 && (
