@@ -37,7 +37,7 @@ export function PublicHeader() {
                     />
                 </div>
                 <div className="flex flex-col">
-                    <span className="font-black text-xl tracking-tight leading-none text-foreground uppercase drop-shadow-sm group-hover:text-primary transition-colors">Iranian Christian Church</span>
+                    <span className="font-black text-xl tracking-tight leading-none text-gradient uppercase drop-shadow-sm group-hover:opacity-90 transition-all">Iranian Christian Church</span>
                     <span className="text-xs font-bold text-primary tracking-widest uppercase">{t.heroTitle || "Of Washington D.C."}</span>
                 </div>
             </Link>

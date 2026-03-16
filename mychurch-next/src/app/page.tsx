@@ -33,7 +33,7 @@ export default function HomePage() {
               {t.heroTitle}
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 leading-[1.1] pb-2 drop-shadow-sm">
+            <h1 className="text-5xl md:text-7xl font-black text-gradient neon-glow leading-[1.1] pb-2 drop-shadow-sm">
               {t.heroTitle}
             </h1>
 
