@@ -11,6 +11,7 @@ import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { WorldClock } from "@/components/ui/WorldClock";
+import { Spotlight } from "@/components/ui/Spotlight";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -20,6 +21,9 @@ export default function HomePage() {
 
       {/* Background Ambience */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
+        <div className="absolute inset-0 bg-noise opacity-[0.18]" />
+        <Spotlight className="-top-56 left-0 md:left-24" fill="var(--primary)" />
+        <Spotlight className="top-28 right-0 md:right-20 rotate-180 opacity-60" fill="var(--ring)" />
         <div className="absolute top-[10%] right-[10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[10%] left-[10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px]" />
         <div className="absolute top-[40%] left-[40%] w-[20%] h-[20%] bg-primary/20 rounded-full blur-[80px] animate-pulse-slow" />
