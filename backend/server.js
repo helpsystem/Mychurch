@@ -59,6 +59,8 @@ const geminiAudioTimingRoutes = require('./routes/geminiAudioTiming');
 const audioSyncRoutes = require('./routes/audioSyncRoutes');
 const storageRoutes = require('./routes/storageRoutes');
 const communicationsRoutes = require('./routes/communicationsRoutes');
+const bibleUnifiedRoutes = require('./routes/bibleUnified');
+const letterRoutes = require('./routes/letterRoutes');
 
 // Try to load HiDrive routes
 let hidriveRoutes;
@@ -533,15 +535,18 @@ const startServer = async () => {
     console.error('⚠️ Failed to start Background Sync Worker:', error.message);
   }
 
-  // ✨ Initialize database FIRST (await it!)
-  await initializeDatabaseAsync();
+  // ✨ Initialize database FIRST (await it!) - Optional in dev if no DATABASE_URL
+  if (process.env.DATABASE_URL || process.env.SUPABASE_URL) {
+    await initializeDatabaseAsync();
+  } else {
+    console.warn('⚠️ Skipping database initialization: No database connection found in .env');
+  }
 
   // THEN create HTTP server
   const server = http.createServer(app);
 
-  // Initialize WebSocket for broadcast sync
+  // Initialize WebSocket for broadcast sync (Now uses Socket.IO)
   initBroadcastWebSocket(server);
-  console.log('🔌 Broadcast WebSocket server initialized');
 
   // Start HTTP server
   server.listen(PORT, '0.0.0.0', () => {
@@ -569,7 +574,7 @@ const startServer = async () => {
     console.log('  📖✨ /api/daily-content/* - Daily scripture content');
     console.log('  🖼️ /api/daily-images/* - Daily AI-generated images');
     console.log('  📮 /api/notifications/* - Multi-channel notifications');
-    console.log('  🔌 ws://localhost:${PORT}/ws/broadcast-sync - Broadcast WebSocket');
+    console.log(`  🔌 http://localhost:${PORT} - Broadcast Socket.IO`);
     console.log('  ❤️ /api/health - Health check');
   });
 };

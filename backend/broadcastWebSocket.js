@@ -1,210 +1,225 @@
-// Broadcast WebSocket Sync Server
+// 🔌 Broadcast WebSocket Server (Socket.IO version)
 // Real-time synchronization for broadcast console and viewer devices
 
-const WebSocket = require('ws');
+const { Server } = require('socket.io');
 
-// Session rooms - stores connected clients by sessionId
-const rooms = new Map(); // sessionId -> Set<WebSocket>
-
-// Client metadata - stores info for each connection
-const clients = new Map(); // WebSocket -> { sessionId, deviceId, deviceName, role }
+// Track sessions and devices
+const sessions = new Map();
 
 /**
- * Initialize WebSocket server for broadcast sync
+ * Get or create session info
+ */
+function getSession(sessionId) {
+  if (!sessions.has(sessionId)) {
+    sessions.set(sessionId, {
+      id: sessionId,
+      devices: new Set(),
+      leader: null,
+      currentSlide: 0,
+      createdAt: new Date()
+    });
+  }
+  return sessions.get(sessionId);
+}
+
+/**
+ * Initialize Socket.IO for broadcast sync
  * @param {Server} server - HTTP server instance
  */
 function initBroadcastWebSocket(server) {
-  const wss = new WebSocket.Server({
-    server,
-    path: '/ws/broadcast-sync'
+  const io = new Server(server, {
+    cors: {
+      origin: "*", // Adjust in production
+      methods: ["GET", "POST"]
+    }
   });
 
-  console.log('🔌 Broadcast WebSocket server initialized at /ws/broadcast-sync');
+  console.log('🔌 Broadcast Socket.IO server initialized');
 
-  wss.on('connection', (ws, req) => {
-    // Parse connection parameters
-    const url = new URL(req.url, `http://${req.headers.host}`);
-    const sessionId = url.searchParams.get('sessionId');
-    const deviceId = url.searchParams.get('deviceId');
-    const deviceName = url.searchParams.get('deviceName') || 'Unknown Device';
-    const role = url.searchParams.get('role') || 'viewer';
+  io.on('connection', (socket) => {
+    console.log(`[Socket] ✅ Client connected: ${socket.id}`);
 
-    if (!sessionId || !deviceId) {
-      console.error('❌ WebSocket connection rejected: missing sessionId or deviceId');
-      ws.close(1008, 'Missing required parameters');
-      return;
-    }
+    /**
+     * Join a broadcast session
+     */
+    socket.on('join_session', (data) => {
+      const { sessionId, isLeader, deviceInfo, deviceId } = data;
+      if (!sessionId) {
+        console.error('❌ join_session missing sessionId');
+        return;
+      }
 
-    console.log(`🔌 New connection: ${deviceName} (${role}) to session ${sessionId}`);
+      const session = getSession(sessionId);
+      
+      // Add device to session
+      socket.join(sessionId);
+      session.devices.add(socket.id);
+      
+      // If specified as leader, try to take the lead
+      if (isLeader && !session.leader) {
+        session.leader = socket.id;
+      }
+      
+      console.log(`[Session] Device ${socket.id} joined ${sessionId} (${isLeader ? 'Leader' : 'Viewer'})`);
+      
+      // Notify all devices in session about device count
+      io.to(sessionId).emit('devices_update', {
+        count: session.devices.size
+      });
+      
+      // Send current slide to new joiner
+      socket.emit('slide_change', {
+        slideIndex: session.currentSlide,
+        timestamp: Date.now()
+      });
 
-    // Store client metadata
-    clients.set(ws, { sessionId, deviceId, deviceName, role });
+      // Broadcast device list for backward compatibility with some components
+      broadcastDeviceList(io, sessionId);
+    });
 
-    // Add to room
-    if (!rooms.has(sessionId)) {
-      rooms.set(sessionId, new Set());
-    }
-    rooms.get(sessionId).add(ws);
+    /**
+     * Slide change (from Leader)
+     */
+    socket.on('slide_change', (data) => {
+      const { sessionId, slideIndex, timestamp } = data;
+      const session = getSession(sessionId);
+      
+      // If no leader is assigned yet, the first one to send a slide change becomes leader
+      if (!session.leader) {
+        session.leader = socket.id;
+      }
 
-    // Send welcome message
-    ws.send(JSON.stringify({
-      type: 'connected',
-      sessionId,
-      deviceId,
-      timestamp: Date.now()
-    }));
+      // Verify sender is leader (optional, depends on security preference)
+      // if (session.leader !== socket.id) {
+      //   console.warn(`[Session] Unauthorized slide change from ${socket.id}`);
+      //   return;
+      // }
+      
+      // Update session state
+      session.currentSlide = slideIndex;
+      
+      // Broadcast to all OTHER devices in the session
+      socket.to(sessionId).emit('slide_change', {
+        slideIndex,
+        timestamp: timestamp || Date.now()
+      });
+      
+      console.log(`[Session] Slide changed to ${slideIndex} in ${sessionId}`);
+    });
 
-    // Broadcast device list to room
-    broadcastDeviceList(sessionId);
+    /**
+     * Play control (from Leader)
+     */
+    socket.on('play_control', (data) => {
+      const { sessionId, action, timestamp } = data;
+      const session = getSession(sessionId);
+      
+      // Broadcast to all OTHER devices
+      socket.to(sessionId).emit('play_control', {
+        action,
+        timestamp: timestamp || Date.now()
+      });
+      
+      console.log(`[Session] Play control '${action}' in ${sessionId}`);
+    });
 
+    /**
+     * Handle audio chunks for AI Transcription
+     */
+    socket.on('audio_chunk', (data) => {
+      const { sessionId, payload } = data;
+      if (!payload) return;
 
-    // Handle incoming messages
-    ws.on('message', (data) => {
+      const audioBuffer = Buffer.from(payload, 'base64');
+
+      // Send to Gemini for transcription
       try {
-        const message = JSON.parse(data.toString());
-
-        // Get sender info immediately
-        const sender = clients.get(ws);
-        if (!sender) return;
-
-        // Handle audio chunks for AI Transcription
-        if (message.type === 'audio_chunk') {
-          // message.payload should be base64 audio
-          if (message.payload) {
-            const audioBuffer = Buffer.from(message.payload, 'base64');
-
-            // Send to Gemini for transcription
-            const { transcribeAudio } = require('./services/geminiService');
-
-            transcribeAudio(audioBuffer, 'audio/webm', 'Transcribe this speech to text. Return only the text.')
-              .then(transcript => {
-                if (transcript && transcript.trim()) {
-                  // Broadcast transcript to session
-                  const transcriptMsg = JSON.stringify({
-                    type: 'transcript',
-                    payload: {
-                      text: transcript.trim(),
-                      isFinal: true,
-                      timestamp: Date.now()
-                    },
-                    senderId: 'AI_TRANSCRIPTION'
-                  });
-
-                  const room = rooms.get(sender.sessionId);
-                  if (room) {
-                    room.forEach(client => {
-                      if (client.readyState === WebSocket.OPEN) {
-                        client.send(transcriptMsg);
-                      }
-                    });
-                  }
-                }
-              })
-              .catch(err => console.error('Transcription failed:', err));
-          }
-          return;
-        }
-
-        // Handle ping/pong
-        if (message.type === 'ping') {
-          ws.send(JSON.stringify({ type: 'pong', timestamp: Date.now() }));
-          return;
-        }
-
-        console.log(`📩 Message from ${sender.deviceName}:`, message.type);
-
-        // Broadcast to all other clients in the same session
-        const room = rooms.get(sender.sessionId);
-        if (room) {
-          const broadcast = JSON.stringify({
-            ...message,
-            senderId: sender.deviceId,
-            senderName: sender.deviceName,
-            timestamp: Date.now()
-          });
-
-          room.forEach(client => {
-            // Don't send back to sender
-            if (client !== ws && client.readyState === WebSocket.OPEN) {
-              client.send(broadcast);
+        const { transcribeAudio } = require('./services/geminiService');
+        transcribeAudio(audioBuffer, 'audio/webm', 'Transcribe this speech to text. Return only the text.')
+          .then(transcript => {
+            if (transcript && transcript.trim()) {
+              io.to(sessionId).emit('transcript', {
+                text: transcript.trim(),
+                isFinal: true,
+                timestamp: Date.now(),
+                senderId: 'AI_TRANSCRIPTION'
+              });
             }
+          })
+          .catch(err => console.error('Transcription failed:', err));
+      } catch (err) {
+        console.error('Gemini service not available:', err.message);
+      }
+    });
+
+    /**
+     * Ping/Pong
+     */
+    socket.on('ping', (timestamp) => {
+      socket.emit('pong', timestamp);
+    });
+
+    /**
+     * Disconnect
+     */
+    socket.on('disconnect', () => {
+      console.log(`[Socket] ❌ Client disconnected: ${socket.id}`);
+      
+      // Remove from all sessions
+      sessions.forEach((session, sessionId) => {
+        if (session.devices.has(socket.id)) {
+          session.devices.delete(socket.id);
+          
+          // If leader left, promote another device or clear leader
+          if (session.leader === socket.id) {
+            session.leader = session.devices.size > 0 ? Array.from(session.devices)[0] : null;
+            if (session.leader) console.log(`[Session] New leader for ${sessionId}: ${session.leader}`);
+          }
+          
+          // Update device count
+          io.to(sessionId).emit('devices_update', {
+            count: session.devices.size
           });
 
-          // Log important events
-          if (message.type === 'slide_change') {
-            console.log(`📺 Slide changed to index ${message.payload?.slideIndex} in session ${sender.sessionId}`);
+          // Broadcast device list
+          broadcastDeviceList(io, sessionId);
+          
+          // Delete empty sessions after some time
+          if (session.devices.size === 0) {
+            setTimeout(() => {
+              if (session.devices.size === 0) {
+                sessions.delete(sessionId);
+                console.log(`[Session] Removed empty session: ${sessionId}`);
+              }
+            }, 60000); // Wait 1 minute before cleanup
           }
         }
-      } catch (err) {
-        console.error('❌ Error handling WebSocket message:', err);
-      }
-    });
-
-    // Handle disconnect
-    ws.on('close', () => {
-      const client = clients.get(ws);
-      if (client) {
-        console.log(`🔌 Disconnected: ${client.deviceName} from session ${client.sessionId}`);
-
-        // Remove from room
-        const room = rooms.get(client.sessionId);
-        if (room) {
-          room.delete(ws);
-          if (room.size === 0) {
-            rooms.delete(client.sessionId);
-            console.log(`🗑️ Session ${client.sessionId} room deleted (no clients)`);
-          } else {
-            // Broadcast updated device list
-            broadcastDeviceList(client.sessionId);
-          }
-        }
-
-        // Remove client metadata
-        clients.delete(ws);
-      }
-    });
-
-    // Handle errors
-    ws.on('error', (err) => {
-      console.error('❌ WebSocket error:', err);
+      });
     });
   });
 
-  /**
-   * Broadcast list of connected devices to all clients in a session
-   */
-  function broadcastDeviceList(sessionId) {
-    const room = rooms.get(sessionId);
-    if (!room) return;
-
-    const devices = [];
-    room.forEach(client => {
-      const meta = clients.get(client);
-      if (meta) {
-        devices.push({
-          deviceId: meta.deviceId,
-          deviceName: meta.deviceName,
-          role: meta.role
-        });
-      }
-    });
-
-    const message = JSON.stringify({
-      type: 'device_list',
-      payload: { devices },
-      timestamp: Date.now()
-    });
-
-    room.forEach(client => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
-
-    console.log(`📋 Broadcasted device list for session ${sessionId}: ${devices.length} devices`);
-  }
-
-  return wss;
+  return io;
 }
+
+/**
+ * Broadcast list of connected devices (Shim for compatibility)
+ */
+function broadcastDeviceList(io, sessionId) {
+  const session = sessions.get(sessionId);
+  if (!session) return;
+
+  const devices = Array.from(session.devices).map(id => ({
+    deviceId: id,
+    deviceName: 'Socket Device',
+    role: session.leader === id ? 'leader' : 'viewer'
+  }));
+
+  io.to(sessionId).emit('device_list', {
+    devices,
+    timestamp: Date.now()
+  });
+}
+
+module.exports = { initBroadcastWebSocket };
 
 module.exports = { initBroadcastWebSocket };
