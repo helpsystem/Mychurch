@@ -40,7 +40,7 @@ const DEFAULT_CHURCH = {
   denomination: "Persian Evangelical Church – 501(c)(3)",
   letterheadTheme: "modern", // modern, classic, elegant, minimal, custom
   customHeaderImage: "",
-  paperSize: "Letter", // A4, Letter, A5
+  paperSize: "A4", // Default to A4 as requested
   watermarkOpacity: 0.03, // 0 to 1
   showWatermark: true,
   signatureImage: "",
@@ -72,7 +72,7 @@ const DEFAULT_CHURCH = {
 
 const PAPER_SIZES = {
   A4: "w-[210mm] min-h-[297mm]",
-  Letter: "w-[215.9mm] min-h-[279.4mm]",
+  Letter: "w-[215.9mm] min-h-[279.4mm]", // Official Letter size: 8.5 x 11 in
   A5: "w-[148mm] min-h-[210mm]",
 };
 
@@ -132,6 +132,34 @@ function Watermark({ logo, opacity }: { logo: string; opacity: number }) {
     </div>
   );
 }
+
+// ─── Component: Document Security Wrapper ─────────────────────────────────────
+function DocumentSecurity({ children, isLocked = true }: { children: React.ReactNode; isLocked?: boolean }) {
+  if (!isLocked) return <>{children}</>;
+
+  return (
+    <div 
+      className="relative select-none print:select-auto group w-full h-full"
+      onContextMenu={(e) => e.preventDefault()}
+      style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
+    >
+      {/* Invisible Guard Layer to prevent mouse interactions with text */}
+      <div className="absolute inset-0 z-[100] cursor-default bg-transparent" />
+      
+      {/* Repeating Anti-Copy Watermark (Visible only on some captures/scans) */}
+      <div className="absolute inset-0 z-[50] pointer-events-none opacity-[0.03] overflow-hidden select-none flex flex-wrap gap-20 p-10 rotate-12">
+        {Array.from({ length: 40 }).map((_, i) => (
+          <span key={i} className="text-slate-900 font-bold text-2xl tracking-tighter whitespace-nowrap">
+            OFFICIAL DOCUMENT - COPY PROHIBITED - MYCHURCH BROADCAST SYSTEM
+          </span>
+        ))}
+      </div>
+
+      {children}
+    </div>
+  );
+}
+
 // ─── US Address Suggestions (Mock – replace with Google Places API) ───────────
 const US_ADDRESS_SUGGESTIONS = [
   "USCIS – Washington Field Office, 2675 Prosprity Ave, Fairfax, VA 22031",
@@ -426,6 +454,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
   return (
+    <DocumentSecurity>
     <div className={`${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-hidden shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -523,6 +552,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         PAGE {pageNum || 1} / {totalPages || 1}
       </div>
     </div>
+    </DocumentSecurity>
   );
 }
 
@@ -538,6 +568,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   const dateStr = receipt.date as string || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
   return (
+    <DocumentSecurity>
     <div className={`${paperClass} bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-hidden flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -668,6 +699,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         )}
       </div>
     </div>
+    </DocumentSecurity>
   );
 }
 
@@ -698,6 +730,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
   const design = church.designEn; 
 
   return (
+    <DocumentSecurity>
     <div className={`${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-hidden mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -705,71 +738,81 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
       
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
+      <div className="page-container flex justify-end text-[10px] text-slate-400 mb-2">
+        Page <span className="page mx-1">1</span> of <span className="pages mx-1">1</span>
+      </div>
+
       <Letterhead church={church} lang="en" docRef={`INV-${invoiceNo}`} date={new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} />
 
       <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
         <div>
-           <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px`, fontFamily: design.fontFamily }}>
+           <h2 className="uppercase tracking-[0.1em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px`, fontFamily: design.fontFamily }}>
              Official Invoice
            </h2>
-           <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">For Services Rendered / Goods Provided</p>
+           <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">For Services Rendered / Ministry Support</p>
         </div>
         <div className="px-3 py-1 bg-amber-50 text-amber-700 rounded-md border border-amber-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
           <DollarSign className="w-3 h-3 stroke-[3]" /> Payment Due
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 mb-10 relative z-10">
+      <div className="grid grid-cols-2 gap-10 mb-10 relative z-10">
         <div className="space-y-3">
-          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Billed To</div>
-          <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-            <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{invoiceTo}</div>
-            {invoiceName && <div className="text-slate-700 font-bold">{invoiceName}</div>}
-            {invoiceAddress && <div className="text-slate-600 font-medium">{invoiceAddress}</div>}
+          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Client / Billed To</div>
+          <div className="p-0 space-y-1">
+            <div className="font-black text-xl text-slate-900 leading-tight">{invoiceTo}</div>
+            {invoiceName && <div className="text-slate-700 font-bold text-sm">{invoiceName}</div>}
+            {invoiceAddress && <div className="text-slate-500 font-medium text-xs leading-relaxed max-w-[200px]">{invoiceAddress}</div>}
           </div>
         </div>
         <div className="space-y-3">
-          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Invoice Details</div>
-          <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
-            <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Invoice No</span>
-              <span className="font-mono font-black text-slate-900">{invoiceNo}</span>
-            </div>
-            <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
-              <span className="font-bold text-slate-900">{new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+          <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Organization / Info</div>
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center">
+              <span className="text-slate-400 font-bold text-[10px] uppercase">Invoice No</span>
+              <span className="font-mono font-black text-slate-900 text-xs">{invoiceNo}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Amount Due</span>
-              <span className="font-mono font-black text-blue-700">${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              <span className="text-slate-400 font-bold text-[10px] uppercase">Date Issued</span>
+              <span className="font-bold text-slate-900 text-xs">{new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+            </div>
+            <div className="flex justify-between items-center pt-2 border-t border-slate-100">
+              <span className="text-slate-900 font-black text-[10px] uppercase">Total Due</span>
+              <span className="font-mono font-black text-blue-700 text-lg">${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="flex-1 relative z-10">
-        <div className="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-          <table className="w-full text-left border-collapse bg-white">
+        <div className="overflow-hidden">
+          <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em]">
-                <th className="px-6 py-4 font-black w-16">No.</th>
-                <th className="px-6 py-4 font-black">Description of Service / Items</th>
-                <th className="px-6 py-4 text-right font-black w-40">Amount (USD)</th>
+              <tr className="border-b-2 border-slate-200">
+                <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 w-12">Qty</th>
+                <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Description</th>
+                <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Price</th>
+                <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Subtotal</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {invoiceItems.map((item, index) => (
-                <tr key={item.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4 font-mono font-bold text-slate-400">{String(index + 1).padStart(2, '0')}</td>
-                  <td className="px-6 py-4 font-bold text-slate-800">{item.description}</td>
-                  <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <tr key={item.id} className="group">
+                  <td className="py-5 font-mono text-slate-400 text-xs">01</td>
+                  <td className="py-5">
+                    <div className="font-bold text-slate-800">{item.description}</div>
+                    <div className="text-[10px] text-slate-400 mt-0.5">Professional Services / Church Ministry</div>
+                  </td>
+                  <td className="py-5 text-right font-mono text-slate-500 text-xs">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                  <td className="py-5 text-right font-mono font-black text-slate-900">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
-              <tr className="bg-slate-50 border-t-[3px] border-slate-900">
-                <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500 text-right">Total Balance Due</td>
-                <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50 text-2xl">
+              <tr>
+                <td colSpan={2} className="py-8"></td>
+                <td className="py-8 border-t-2 border-slate-100 text-right font-bold text-slate-400 text-[10px] uppercase tracking-widest">Grand Total</td>
+                <td className="py-8 border-t-2 border-slate-100 text-right font-black font-mono text-blue-700 text-2xl">
                   ${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </td>
               </tr>
@@ -777,41 +820,49 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
           </table>
         </div>
 
-        {invoiceNotes && (
-          <div className="mt-8 pt-6 border-t-2 border-slate-100">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Notes & Instructions</p>
-            <p className="text-sm font-medium text-slate-700 whitespace-pre-wrap leading-relaxed border-l-4 border-slate-200 pl-4">{invoiceNotes}</p>
+        <div className="mt-4 grid grid-cols-2 gap-10">
+          <div>
+            {invoiceNotes && (
+              <div className="space-y-2">
+                <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em]">Notes & Policy</p>
+                <p className="text-[11px] font-medium text-slate-500 leading-relaxed italic">{invoiceNotes}</p>
+              </div>
+            )}
           </div>
-        )}
-
-        {invoiceWallet && (
-          <div className="mt-8 pt-6 border-t-2 border-dashed border-slate-200">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
-              Cryptocurrency Payment Address (USDT TRC-20)
-            </p>
-            <p className="font-mono text-sm break-all font-bold bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-700 shadow-inner">
-              {invoiceWallet}
-            </p>
+          <div>
+             {invoiceWallet && (
+              <div className="space-y-2">
+                <p className="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                  <Package className="w-3 h-3" /> Payment Instructions (TRC-20)
+                </p>
+                <p className="font-mono text-[10px] break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
+                  {invoiceWallet}
+                </p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
-      <div className="mt-12 pt-6 border-t-2 border-slate-900 flex justify-between items-end relative z-10">
-          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest max-w-[250px] leading-relaxed">
-            Payment is due upon receipt. Generated via {church.nameEn} billing system.
-          </div>
-          {church.showVerifyQR && (
-            <div className="flex flex-col items-end gap-1 text-right">
-             <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                <DocumentQR data={`INV-${invoiceNo}:${invoiceTotalAmount}`} />
-             </div>
-             <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Pay</div>
-             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{invoiceNo}</div>
-            </div>
-          )}
+      <div className="mt-10 pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10">
+        <div>
+          <span>Generated by MyChurch Broadcast Console © 2026</span>
+          <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
+        </div>
+        <span>Secure ID: {crypto.randomUUID().slice(0, 18).toUpperCase()}</span>
       </div>
+
+      {church.showVerifyQR && (
+        <div className="absolute bottom-10 right-10 flex flex-col items-end gap-1 text-right z-20">
+          <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
+            <DocumentQR data={`INV-${invoiceNo}:${invoiceTotalAmount}`} />
+          </div>
+          <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
+          <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{invoiceNo}</div>
+        </div>
+      )}
     </div>
+    </DocumentSecurity>
   );
 }
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1377,10 +1428,11 @@ export default function ChurchDocumentsPage() {
                       <div>
                         <label className="text-xs text-muted-foreground mb-2 block">{isRtl ? "اندازه کاغذ" : "Paper Size"}</label>
                         <div className="flex gap-2">
-                          {(["A4", "Letter", "A5"] as const).map(size => (
+                          {(["A4", "Letter"] as const).map(size => (
                             <button
                               key={size}
                               onClick={() => setSettingsDraft(s => ({ ...s, paperSize: size }))}
+                              title={size}
                               className={`flex-1 py-2 rounded-lg border font-bold text-xs transition-all ${
                                 settingsDraft.paperSize === size ? "bg-primary text-primary-foreground border-primary" : "glass border-white/10 text-muted-foreground"
                               }`}
@@ -1388,6 +1440,10 @@ export default function ChurchDocumentsPage() {
                               {size}
                             </button>
                           ))}
+                        </div>
+                        <div className="mt-1 flex justify-between">
+                          <span className="text-[9px] text-muted-foreground">{settingsDraft.paperSize === "A4" ? "210 x 297 mm" : "215.9 x 279.4 mm"}</span>
+                          <span className="text-[9px] text-muted-foreground uppercase">{settingsDraft.paperSize === "A4" ? "ISO 216" : "US Letter"}</span>
                         </div>
                       </div>
                       <div>
@@ -1452,14 +1508,34 @@ export default function ChurchDocumentsPage() {
               </div>
 
 
-              <div className="flex gap-3 mt-6 pt-5 border-t border-white/10">
-                <button onClick={() => { setChurch(settingsDraft); setShowSettings(false); }}
-                  className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-xl py-3 font-bold hover:opacity-90 transition-all">
-                  <Save className="w-4 h-4" />{isRtl ? "ذخیره و اعمال تغییرات" : "Save & Apply Changes"}
+              <div className="flex items-center justify-between gap-4 mt-6 pt-5 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (confirm(isRtl ? "آیا از بازنشانی تنظیمات به حالت پیش‌فرض اطمینان دارید؟" : "Are you sure you want to reset all settings to defaults?")) {
+                      setSettingsDraft(DEFAULT_CHURCH);
+                    }
+                  }}
+                  title={isRtl ? "بازنشانی به پیش‌فرض" : "Reset to Defaults"}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-red-500/30 text-red-400 text-sm font-bold hover:bg-red-500/10 transition-all"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  {isRtl ? "بازنشانی پیش‌فرض" : "Restore Defaults"}
                 </button>
-                <button onClick={() => setShowSettings(false)} className="glass border border-white/10 rounded-xl px-6 py-3 font-bold hover:border-white/20">
-                  {isRtl ? "انصراف" : "Cancel"}
-                </button>
+
+                <div className="flex gap-3">
+                  <button type="button" onClick={() => setShowSettings(false)} className="glass border border-white/10 rounded-xl px-6 py-2.5 text-sm font-bold hover:border-white/20 transition-all">
+                    {isRtl ? "انصراف" : "Cancel"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setChurch(settingsDraft); setShowSettings(false); }}
+                    className="flex items-center gap-2 bg-primary text-primary-foreground rounded-xl px-8 py-2.5 text-sm font-black shadow-lg shadow-primary/25 hover:scale-105 active:scale-95 transition-all"
+                  >
+                    <Save className="w-4 h-4" />
+                    {isRtl ? "ذخیره تنظیمات" : "Save Changes"}
+                  </button>
+                </div>
               </div>
             </div>
           </div>

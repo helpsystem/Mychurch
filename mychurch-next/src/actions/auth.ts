@@ -23,8 +23,25 @@ export async function login(formData: FormData) {
         return { success: false, error: error.message };
     }
 
+    const { data: authUserData } = await supabase.auth.getUser();
+    const loggedInEmail = authUserData.user?.email;
+
+    let role: string | null = null;
+    if (loggedInEmail) {
+        const { data: roleData } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', loggedInEmail)
+            .maybeSingle();
+        role = roleData?.role || null;
+    }
+
     revalidatePath("/", "layout");
-    redirect("/admin");
+    if (role === 'Admin' || role === 'Leader' || role === 'Operator') {
+        redirect("/admin");
+    }
+
+    redirect("/profile");
 }
 
 export async function signUp(formData: FormData) {
@@ -59,6 +76,7 @@ export async function signUp(formData: FormData) {
             .from('users')
             .upsert({
                 email: email,
+                name: fullName,
                 full_name: fullName,
                 role: 'User', // Default role for new signups
                 updated_at: new Date()

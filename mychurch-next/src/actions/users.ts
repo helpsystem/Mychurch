@@ -22,11 +22,21 @@ export async function getUsers(): Promise<UserRow[]> {
 
         if (error) throw error;
 
-        return (data || []).map(row => ({
-            ...row,
-            last_active: new Date(row.last_active).toLocaleString(),
-            permissions: row.permissions || {}
-        }));
+        return (data || []).map((row: any) => {
+            const displayName = row.name || row.full_name || (row.email ? row.email.split('@')[0] : 'Unknown User');
+            const lastActiveDate = row.last_active ? new Date(row.last_active) : null;
+
+            return {
+                id: row.id,
+                name: displayName,
+                email: row.email || '',
+                role: row.role || 'User',
+                last_active: lastActiveDate && !Number.isNaN(lastActiveDate.getTime())
+                    ? lastActiveDate.toLocaleString()
+                    : 'Never',
+                permissions: row.permissions || {}
+            } satisfies UserRow;
+        });
     } catch (error) {
         console.error("Failed to fetch users:", error);
         return [];

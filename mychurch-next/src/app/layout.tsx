@@ -42,7 +42,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className="dark" suppressHydrationWarning>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              try {
+                const storedTheme = localStorage.getItem("theme");
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                const isDark = storedTheme ? storedTheme === "dark" : prefersDark;
+                document.documentElement.classList.toggle("dark", isDark);
+              } catch {
+                document.documentElement.classList.add("dark");
+              }
+            })();`,
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${vazirmatn.variable} antialiased bg-background text-foreground font-vazirmatn`}
       >

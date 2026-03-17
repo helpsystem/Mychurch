@@ -14,27 +14,32 @@ export interface GalleryImage {
 }
 
 export async function fetchGalleryImages(): Promise<GalleryImage[]> {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-        .from("gallery_images")
-        .select("*")
-        .order("uploaded_at", { ascending: false });
+    try {
+        const supabase = await createClient();
+        const { data, error } = await supabase
+            .from("gallery_images")
+            .select("*")
+            .order("uploaded_at", { ascending: false });
 
-    if (error || !data) {
-        console.error("[gallery] Error fetching gallery images:", error);
+        if (error || !data) {
+            console.error("[gallery] Error fetching gallery images:", error);
+            return [];
+        }
+
+        return data.map(row => ({
+            id: row.id,
+            src: row.src,
+            width: row.width || 800,
+            height: row.height || 600,
+            title: row.title || undefined,
+            description: row.description || undefined,
+            category: row.category || undefined,
+            uploaded_at: row.uploaded_at,
+        }));
+    } catch (e) {
+        console.error("[gallery] Critical failure in fetchGalleryImages:", e);
         return [];
     }
-
-    return data.map(row => ({
-        id: row.id,
-        src: row.src,
-        width: row.width || 800,
-        height: row.height || 600,
-        title: row.title || undefined,
-        description: row.description || undefined,
-        category: row.category || undefined,
-        uploaded_at: row.uploaded_at,
-    }));
 }
 
 export async function deleteGalleryImage(id: string) {

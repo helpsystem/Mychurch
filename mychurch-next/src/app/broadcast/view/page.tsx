@@ -41,7 +41,7 @@ const stripChordMarkers = (text: string): string => {
 
 function ViewerContent() {
     const searchParams = useSearchParams();
-    const sessionId = searchParams.get('session') || 'default';
+    const sessionId = (searchParams && searchParams.get('session')) || 'default';
     const broadcastChannelRef = useRef<BroadcastChannel | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -588,7 +588,11 @@ function ViewerContent() {
     };
 
     return (
-        <div className="w-screen h-screen bg-black overflow-hidden relative select-none" style={{ userSelect: 'none', cursor: 'none' }}>
+        <div 
+            className="w-screen h-screen bg-black overflow-hidden relative select-none" 
+            style={{ userSelect: 'none', cursor: 'none', WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none" }}
+            onContextMenu={(e) => e.preventDefault()}
+        >
             {!state.connected && !state.currentSlide && (
                 <div className="absolute top-6 left-6 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-xl z-50 shadow-2xl animate-pulse border-2 border-red-400 font-[Vazirmatn]">
                     <div className="flex items-center gap-2">

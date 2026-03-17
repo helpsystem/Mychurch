@@ -208,7 +208,9 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         <div
             ref={containerRef}
             dir="rtl"
-            className={`relative overflow-hidden bg-black text-white font-sans ${isFullscreen ? 'h-screen w-screen' : 'w-full aspect-video rounded-2xl shadow-2xl'}`}
+            onContextMenu={(e) => e.preventDefault()}
+            className={`relative overflow-hidden bg-black text-white font-sans select-none ${isFullscreen ? 'h-screen w-screen' : 'w-full aspect-video rounded-2xl shadow-2xl'}`}
+            style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
         >
             {/* Background - with fallback gradient */}
             <div className="absolute inset-0 z-0">

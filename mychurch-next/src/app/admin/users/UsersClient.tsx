@@ -91,7 +91,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
     const filteredUsers = useMemo(() => {
         if (!searchQuery) return initialUsers;
         const q = searchQuery.toLowerCase();
-        return initialUsers.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+        return initialUsers.filter(u => (u.name || "").toLowerCase().includes(q) || (u.email || "").toLowerCase().includes(q));
     }, [initialUsers, searchQuery]);
 
     const activeUser = initialUsers.find(u => u.id === permissionsModalUserId);
@@ -142,7 +142,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-muted-foreground border border-border/10">
-                                                {user.name.charAt(0)}
+                                                {(user.name || "?").charAt(0)}
                                             </div>
                                             <div>
                                                 <div className="font-bold">{user.name}</div>
@@ -238,7 +238,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                         <div className="p-6 border-b border-border/10 flex justify-between items-start bg-neutral-950/50">
                             <div className="flex gap-4 items-center">
                                 <div className="w-14 h-14 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-xl text-primary border border-border/10 shadow-inner">
-                                    {activeUser.name.charAt(0)}
+                                    {(activeUser.name || "?").charAt(0)}
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold flex items-center gap-2">

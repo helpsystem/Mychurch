@@ -746,8 +746,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
   return (
     <div
-      className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-full overflow-hidden"
+      className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-full overflow-hidden select-none"
       dir={isRTL ? 'rtl' : 'ltr'}
+      onContextMenu={(e) => e.preventDefault()}
+      style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
     >
       {/* Header */}
       <div className="p-4 border-b border-slate-800">
