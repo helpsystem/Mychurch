@@ -77,7 +77,6 @@ export async function signUp(formData: FormData) {
             .upsert({
                 email: email,
                 name: fullName,
-                full_name: fullName,
                 role: 'User', // Default role for new signups
                 updated_at: new Date()
             }, { onConflict: 'email' });

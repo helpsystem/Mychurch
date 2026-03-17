@@ -34,7 +34,7 @@ else {
 
 # Step 3: Run the build and PM2 process directly via SSH
 Write-Host "`n[3/3] 📦 Installing and Building Next.js on VPS..." -ForegroundColor Yellow
-$deployCmd = "cd $VPS_NEXT_PATH && npm install && npm run build && if pm2 show mychurch-next > /dev/null; then pm2 restart mychurch-next; else pm2 start npm --name `"mychurch-next`" -- start; fi && pm2 save"
+$deployCmd = "cd $VPS_NEXT_PATH && npm install && npm run build && if pm2 show mychurch-next > /dev/null 2>&1; then pm2 restart mychurch-next --update-env; else pm2 start npm --name 'mychurch-next' -- start; fi && pm2 save"
 
 ssh $VPS_USER@$VPS_HOST $deployCmd
 
