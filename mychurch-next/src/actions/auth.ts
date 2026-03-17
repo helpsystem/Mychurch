@@ -86,6 +86,21 @@ export async function signUp(formData: FormData) {
         return { success: false, error: error.message };
     }
 
+    // Force a verification email resend to avoid missing initial delivery.
+    const { error: resendError } = await supabase.auth.resend({
+        type: "signup",
+        email,
+        options: {
+            emailRedirectTo: `${siteUrl}/api/auth/callback`,
+        },
+    });
+
+    if (resendError) {
+        console.warn(`[Auth] ⚠️ Verification resend warning for ${email}: ${resendError.message}`);
+    } else {
+        console.log(`[Auth] ✅ Verification email re-sent to: ${email}`);
+    }
+
     // [New] Synchronize with the 'users' table for RBAC
     try {
         console.log(`[Auth] 🔄 Syncing ${email} to users table...`);
@@ -111,8 +126,7 @@ export async function signUp(formData: FormData) {
     try {
         console.log(`[Auth] 📧 Sending welcome email to: ${email}`);
         const loginUrl = `${siteUrl}/login`;
-        const logoUrl = `${siteUrl}/images/email/logo-premium.png`;
-        const heroUrl = `${siteUrl}/images/email/jesus-hero.png`;
+        const logoUrl = `${siteUrl}/logo-transparent.png`;
         const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
         
         const mailInfo = await sendMail({
@@ -139,10 +153,9 @@ ${supportEmail}
                     <style>
                         body { margin: 0; padding: 0; background: #f5f7fb; color: #111827; font-family: Arial, Helvetica, sans-serif; }
                         .wrap { width: 100%; padding: 24px 10px; }
-                        .card { max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
-                        .hero { width: 100%; display: block; }
+                        .card { max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
                         .content { padding: 24px; }
-                        .logo { width: 52px; height: 52px; margin-bottom: 14px; }
+                        .logo { width: 36px; height: 36px; margin-bottom: 12px; }
                         .fa-title { font-size: 24px; font-weight: 700; margin: 0 0 6px; color: #111827; }
                         .en-title { font-size: 14px; font-weight: 600; margin: 0 0 16px; color: #4b5563; }
                         .fa-text { font-size: 15px; line-height: 1.9; margin: 0 0 10px; color: #1f2937; }
@@ -155,7 +168,6 @@ ${supportEmail}
                 <body>
                     <div class="wrap" dir="rtl">
                         <div class="card">
-                            <img src="${heroUrl}" alt="Welcome" class="hero" />
                             <div class="content">
                                 <img src="${logoUrl}" alt="Iranian Christian Church DC" class="logo" />
                                 
