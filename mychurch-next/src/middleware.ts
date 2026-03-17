@@ -39,6 +39,13 @@ export async function middleware(request: NextRequest) {
     if (isProtected && !user) {
         // Redirect completely out if they have no session
         const url = request.nextUrl.clone();
+        
+        // Ensure redirect uses correct protocol behind proxy
+        const proto = request.headers.get('x-forwarded-proto') || 'http';
+        if (proto === 'https') {
+            url.protocol = 'https:';
+        }
+        
         url.pathname = '/login';
         return NextResponse.redirect(url);
     }

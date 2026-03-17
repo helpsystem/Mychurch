@@ -1,12 +1,9 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   typescript: {
     // Skip type checking on VPS build (low RAM — OOM prevention)
     ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
@@ -21,7 +18,6 @@ const nextConfig = {
     }
     return config;
   },
-  turbopack: {},
 };
 
 export default nextConfig;
