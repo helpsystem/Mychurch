@@ -2,6 +2,23 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { createClient as createAdminClient } from "@supabase/supabase-js";
 
+function resolvePublicSiteUrl() {
+    const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
+    const fallback = "https://samanabyar.online";
+
+    if (!raw) return fallback;
+
+    try {
+        const parsed = new URL(raw.startsWith("http") ? raw : `https://${raw}`);
+        const host = parsed.hostname.toLowerCase();
+        const isLocal = host === "localhost" || host === "127.0.0.1" || host.endsWith(".local");
+        if (isLocal) return fallback;
+        return parsed.origin;
+    } catch {
+        return fallback;
+    }
+}
+
 export async function POST(req: Request) {
     try {
         // Auth check - only Admin can invite users
@@ -26,10 +43,12 @@ export async function POST(req: Request) {
 
         // Use admin client to invite user
         const adminClient = createAdminClient(supabaseUrl!, serviceRoleKey);
+        const siteUrl = resolvePublicSiteUrl();
 
         // Send invitation email via Supabase Auth
         const { data: inviteData, error: inviteError } = await adminClient.auth.admin.inviteUserByEmail(email, {
-            data: { name, role }
+            data: { name, role },
+            redirectTo: `${siteUrl}/api/auth/callback`
         });
 
         if (inviteError) {
