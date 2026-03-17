@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
+  },
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
     if (isServer) {
       // Fixes npm packages that depend on `fs` module
