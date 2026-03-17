@@ -4,7 +4,6 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { sendMail } from "@/lib/mailer";
-import path from "path";
 
 function resolvePublicSiteUrl() {
     const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
@@ -112,23 +111,25 @@ export async function signUp(formData: FormData) {
     try {
         console.log(`[Auth] 📧 Sending welcome email to: ${email}`);
         const loginUrl = `${siteUrl}/login`;
+        const logoUrl = `${siteUrl}/images/email/logo-premium.png`;
+        const heroUrl = `${siteUrl}/images/email/jesus-hero.png`;
+        const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
         
         const mailInfo = await sendMail({
             to: email,
-            subject: "به کلیسای متی خوش آمدید | Welcome to MyChurch",
-            attachments: [
-                {
-                    filename: 'jesus-hero.png',
-                    path: path.join(process.cwd(), "public/images/email/jesus-hero.png"),
-                    cid: 'jesus-hero'
-                },
-                {
-                    filename: 'logo-transparent.png',
-                    path: path.join(process.cwd(), "public/logo-transparent.png"),
-                    cid: 'logo-premium'
-                }
+            subject: "تایید حساب کاربری | Account Verification - Iranian Christian Church DC",
+            replyTo: supportEmail,
+            text: `سلام ${fullName} عزیز،
 
-            ],
+ثبت‌نام شما در Iranian Christian Church DC انجام شد.
+برای فعال‌سازی حساب، ایمیل تایید Supabase را باز کنید و روی لینک تایید بزنید.
+
+ورود به سایت:
+${loginUrl}
+
+در صورت عدم دریافت ایمیل تایید، پوشه Spam/Junk را بررسی کنید یا با ما تماس بگیرید:
+${supportEmail}
+`,
             html: `
                 <!DOCTYPE html>
                 <html lang="fa" dir="rtl">
@@ -136,55 +137,50 @@ export async function signUp(formData: FormData) {
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <style>
-                        body { margin: 0; padding: 0; background-color: #f3f4f6; color: #111827; font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-                        .body-wrap { width: 100%; padding: 28px 12px; }
-                        .container { max-width: 620px; margin: 0 auto; background-color: #ffffff; border-radius: 20px; overflow: hidden; border: 1px solid #e5e7eb; }
-                        .hero-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-                        .content { padding: 30px 24px; }
-                        .logo { width: 58px; height: 58px; margin-bottom: 20px; }
-                        .header-fa { font-size: 28px; font-weight: 800; color: #111827; margin: 0 0 6px 0; text-align: right; }
-                        .header-en { font-size: 16px; font-weight: 600; color: #4b5563; margin: 0 0 18px 0; text-align: left; }
-                        .lead-fa { font-size: 16px; line-height: 1.9; color: #1f2937; margin: 0 0 12px 0; text-align: right; }
-                        .lead-en { font-size: 14px; line-height: 1.7; color: #4b5563; margin: 0 0 22px 0; text-align: left; }
-                        .note { border: 1px solid #dbeafe; background: #eff6ff; border-radius: 12px; padding: 12px; margin: 14px 0 22px; color: #1e3a8a; font-size: 13px; }
-                        .cta-wrap { text-align: center; margin: 24px 0 14px; }
-                        .cta-button { display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 14px; }
-                        .footer { padding: 18px 24px; background: #f9fafb; text-align: center; border-top: 1px solid #e5e7eb; }
-                        .footer-text { font-size: 12px; color: #6b7280; margin: 2px 0; }
+                        body { margin: 0; padding: 0; background: #f5f7fb; color: #111827; font-family: Arial, Helvetica, sans-serif; }
+                        .wrap { width: 100%; padding: 24px 10px; }
+                        .card { max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
+                        .hero { width: 100%; display: block; }
+                        .content { padding: 24px; }
+                        .logo { width: 52px; height: 52px; margin-bottom: 14px; }
+                        .fa-title { font-size: 24px; font-weight: 700; margin: 0 0 6px; color: #111827; }
+                        .en-title { font-size: 14px; font-weight: 600; margin: 0 0 16px; color: #4b5563; }
+                        .fa-text { font-size: 15px; line-height: 1.9; margin: 0 0 10px; color: #1f2937; }
+                        .en-text { font-size: 14px; line-height: 1.7; margin: 0 0 18px; color: #4b5563; }
+                        .cta { display: inline-block; padding: 12px 20px; border-radius: 10px; background: #2563eb; color: #ffffff !important; text-decoration: none; font-weight: 700; }
+                        .meta { margin-top: 16px; font-size: 12px; color: #6b7280; line-height: 1.8; }
+                        .footer { border-top: 1px solid #e5e7eb; background: #f9fafb; padding: 14px 20px; font-size: 12px; color: #6b7280; }
                     </style>
                 </head>
                 <body>
-                    <div class="body-wrap" dir="rtl">
-                        <div class="container">
-                            <img src="cid:jesus-hero" alt="Welcome" class="hero-image">
+                    <div class="wrap" dir="rtl">
+                        <div class="card">
+                            <img src="${heroUrl}" alt="Welcome" class="hero" />
                             <div class="content">
-                                <img src="cid:logo-premium" alt="MyChurch" class="logo">
+                                <img src="${logoUrl}" alt="Iranian Christian Church DC" class="logo" />
                                 
-                                <h1 class="header-fa">به کلیسای متی خوش آمدید</h1>
-                                <h2 class="header-en" dir="ltr">Welcome to MyChurch</h2>
+                                <h1 class="fa-title">به خانواده کلیسای ایرانی واشنگتن خوش آمدید</h1>
+                                <h2 class="en-title" dir="ltr">Welcome to Iranian Christian Church D.C.</h2>
                                 
-                                <div class="lead-fa">
+                                <p class="fa-text">
                                     سلام <strong>${fullName}</strong> عزیز،<br/>
-                                    ثبت‌نام شما انجام شد. ایمیل تأیید حساب از طرف Supabase برای شما ارسال می‌شود.
-                                    بعد از تأیید، از دکمه زیر وارد حساب خود شوید.
-                                </div>
+                                    ثبت‌نام شما انجام شد. برای فعال شدن حساب، ایمیل تایید Supabase را باز کنید و لینک تایید را بزنید.
+                                </p>
                                 
-                                <div class="lead-en" dir="ltr">
-                                    Dear ${fullName}, your account has been created successfully.
-                                    Please confirm your email using the verification mail sent by Supabase, then sign in from the button below.
-                                </div>
+                                <p class="en-text" dir="ltr">
+                                    Dear ${fullName}, your account was created successfully.
+                                    Please confirm your email using the verification message sent by Supabase.
+                                </p>
 
-                                <div class="note" dir="ltr">If verification email doesn't arrive, check spam/junk folder or contact support.</div>
+                                <a href="${loginUrl}" class="cta">ورود به حساب / Sign In</a>
 
-                                <div class="cta-wrap">
-                                    <a href="${loginUrl}" class="cta-button">ورود به حساب / Sign In</a>
+                                <div class="meta" dir="ltr">
+                                    Website: ${siteUrl}<br/>
+                                    Support: ${supportEmail}<br/>
+                                    If verification email doesn't arrive, check Spam/Junk.
                                 </div>
                             </div>
-                            <div class="footer">
-                                <p class="footer-text">Iranian Christian Church D.C.</p>
-                                <p class="footer-text">© ${new Date().getFullYear()} All Rights Reserved</p>
-                                <p class="footer-text" dir="ltr">${siteUrl}</p>
-                            </div>
+                            <div class="footer">© ${new Date().getFullYear()} Iranian Christian Church D.C. — ${siteUrl}</div>
                         </div>
                     </div>
                 </body>

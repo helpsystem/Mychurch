@@ -4,10 +4,21 @@ import { createClient } from "@/utils/supabase/server";
 export async function GET(request: Request) {
     const requestUrl = new URL(request.url);
     const code = requestUrl.searchParams.get("code");
-    const next = requestUrl.searchParams.get("next") || "/profile";
+    const tokenHash = requestUrl.searchParams.get("token_hash");
+    const type = requestUrl.searchParams.get("type");
+    const nextParam = requestUrl.searchParams.get("next");
+    const next = nextParam && nextParam.startsWith("/") ? nextParam : "/profile";
+
+    const supabase = await createClient();
+
+    if (tokenHash && type) {
+        await supabase.auth.verifyOtp({
+            token_hash: tokenHash,
+            type: type as "signup" | "invite" | "magiclink" | "recovery" | "email_change",
+        });
+    }
 
     if (code) {
-        const supabase = await createClient();
         await supabase.auth.exchangeCodeForSession(code);
     }
 
