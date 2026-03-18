@@ -474,7 +474,7 @@ const HomePage: React.FC = () => {
                     <div className="absolute z-[0] w-[50%] h-[50%] top-0 -right-20 pink__gradient opacity-60" />
                     <div className="absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 white__gradient opacity-20" />
                     <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient opacity-60" />
-                  </div>
+                  </motion.div>
               </div>
             </section>
           </div>
