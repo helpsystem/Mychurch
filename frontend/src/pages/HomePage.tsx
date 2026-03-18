@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { ArrowUpRight, Quote, Sparkles, Heart, Users, Calendar, Book, MessageCircle, Play, Music, Radio, Clock, Video } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
+import { motion } from 'framer-motion';
 
 import WeeklySchedule from '../components/WeeklySchedule';
 import { Leader } from '../types';
@@ -405,7 +406,12 @@ const HomePage: React.FC = () => {
                     </div>
 
                 {/* Main Heading */}
-                <div className="w-full relative">
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="w-full relative"
+                >
                   <h1 className="font-bold ss:text-[72px] text-[52px] text-white ss:leading-[90px] leading-[70px] tracking-tight mb-4">
                     {lang === 'fa' ? (
                       <>
@@ -419,17 +425,27 @@ const HomePage: React.FC = () => {
                       </>
                     )}
                   </h1>
-                </div>
+                </motion.div>
 
                 {/* Description */}
-                <p className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[520px] mt-4 mb-8 text-justify opacity-0 animate-fade-in-delay">
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="font-normal text-dimWhite text-[18px] leading-[30.8px] max-w-[520px] mt-4 mb-8 text-justify"
+                >
                   {lang === 'fa'
                     ? 'با قدرت هوش مصنوعی Gemini، تجربه‌ای شخصی‌سازی شده برای اعضای جامعه. گفتگوی صوتی زنده، یادگیری هوشمند کتاب مقدس و ارتباطی نوین را تجربه کنید.'
                     : 'Powered by Google Gemini AI for a personalized community experience. Experience real-time voice chat, intelligent Bible study, and seamless connection.'}
-                </p>
+                </motion.p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-row flex-wrap gap-4 opacity-0 animate-fade-in-delay-2">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  className="flex flex-row flex-wrap gap-4"
+                >
                   <Link to="/ai-helper" className="bg-blue-gradient text-primary font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 flex items-center">
                     {lang === 'fa' ? 'تجربه هوش مصنوعی' : 'Try AI Experience'}
                     <Sparkles className="ml-2 w-5 h-5 rtl:mr-2 rtl:ml-0" />
@@ -437,11 +453,16 @@ const HomePage: React.FC = () => {
                   <Link to="/about" className="glass-button text-white font-semibold py-4 px-8 rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 flex items-center">
                     {lang === 'fa' ? 'درباره پلتفرم' : 'Platform Features'}
                   </Link>
-                  </div>
+                  </motion.div>
                   </div> {/* Closing Text Content div */}
 
                   {/* Hero Image / Slider */}
-                  <div className={`flex-1 flex justify-center items-center md:my-0 my-10 relative w-full ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10 animate-float`}>
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, delay: 0.4 }}
+                    className={`flex-1 flex justify-center items-center md:my-0 my-10 relative w-full ${lang === 'fa' ? 'md:ml-10 ml-0' : 'md:mr-10 mr-0'} z-10 animate-float`}
+                  >
                     <AIImageSlider
                       autoPlayInterval={5000}
                       showNavigationButtons={false}

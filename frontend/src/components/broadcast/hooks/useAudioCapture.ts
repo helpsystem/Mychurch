@@ -99,13 +99,21 @@ export const useAudioCapture = (
             streamRef.current = null;
         }
 
+        if (analyserRef.current) {
+            analyserRef.current.disconnect();
+            analyserRef.current = null;
+        }
+
         if (audioContextRef.current) {
-            audioContextRef.current.close();
+            if (audioContextRef.current.state !== 'closed') {
+                audioContextRef.current.close();
+            }
             audioContextRef.current = null;
         }
 
         if (requestFrameRef.current) {
             cancelAnimationFrame(requestFrameRef.current);
+            requestFrameRef.current = null;
         }
 
         setIsRecording(false);

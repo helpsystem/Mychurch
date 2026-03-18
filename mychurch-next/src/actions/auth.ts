@@ -4,6 +4,8 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { sendMail } from "@/lib/mailer";
+import path from "path";
+import fs from "fs";
 
 function resolvePublicSiteUrl() {
     const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
@@ -126,13 +128,25 @@ export async function signUp(formData: FormData) {
     try {
         console.log(`[Auth] 📧 Sending welcome email to: ${email}`);
         const loginUrl = `${siteUrl}/login`;
-        const logoUrl = `${siteUrl}/logo-transparent.png`;
         const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
         
+        // Setup CID Attachments
+        const logoPath = path.join(process.cwd(), "public/logo-transparent.png");
+        const heroPath = path.join(process.cwd(), "public/images/email/jesus-hero.png");
+        
+        const attachments = [];
+        if (fs.existsSync(heroPath)) {
+            attachments.push({ filename: 'jesus-hero.png', path: heroPath, cid: 'jesus-hero' });
+        }
+        if (fs.existsSync(logoPath)) {
+            attachments.push({ filename: 'logo-transparent.png', path: logoPath, cid: 'logo-premium' });
+        }
+
         const mailInfo = await sendMail({
             to: email,
             subject: "تایید حساب کاربری | Account Verification - Iranian Christian Church DC",
             replyTo: supportEmail,
+            attachments: attachments.length > 0 ? attachments : undefined,
             text: `سلام ${fullName} عزیز،
 
 ثبت‌نام شما در Iranian Christian Church DC انجام شد.
@@ -151,25 +165,30 @@ ${supportEmail}
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <style>
-                        body { margin: 0; padding: 0; background: #f5f7fb; color: #111827; font-family: Arial, Helvetica, sans-serif; }
-                        .wrap { width: 100%; padding: 24px 10px; }
-                        .card { max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
-                        .content { padding: 24px; }
-                        .logo { width: 36px; height: 36px; margin-bottom: 12px; }
-                        .fa-title { font-size: 24px; font-weight: 700; margin: 0 0 6px; color: #111827; }
-                        .en-title { font-size: 14px; font-weight: 600; margin: 0 0 16px; color: #4b5563; }
-                        .fa-text { font-size: 15px; line-height: 1.9; margin: 0 0 10px; color: #1f2937; }
-                        .en-text { font-size: 14px; line-height: 1.7; margin: 0 0 18px; color: #4b5563; }
-                        .cta { display: inline-block; padding: 12px 20px; border-radius: 10px; background: #2563eb; color: #ffffff !important; text-decoration: none; font-weight: 700; }
-                        .meta { margin-top: 16px; font-size: 12px; color: #6b7280; line-height: 1.8; }
-                        .footer { border-top: 1px solid #e5e7eb; background: #f9fafb; padding: 14px 20px; font-size: 12px; color: #6b7280; }
+                        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+                        body { margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: 'Vazirmatn', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+                        .wrap { width: 100%; padding: 40px 10px; background-color: #0c0a09; }
+                        .card { max-width: 600px; margin: 0 auto; background-color: #1c1917; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+                        .hero { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+                        .content { padding: 40px; }
+                        .logo { width: 56px; height: 56px; margin-bottom: 24px; filter: drop-shadow(0 0 10px rgba(186,149,92,0.4)); }
+                        .fa-title { font-size: 26px; font-weight: 900; margin: 0 0 8px; color: #ba955c; }
+                        .en-title { font-size: 15px; font-weight: 600; margin: 0 0 24px; color: #a8a29e; font-family: sans-serif; letter-spacing: -0.01em; }
+                        .fa-text { font-size: 16px; line-height: 1.9; margin: 0 0 16px; color: #e7e5e4; }
+                        .en-text { font-size: 14px; line-height: 1.7; margin: 0 0 24px; color: #a8a29e; font-family: sans-serif; font-style: italic; }
+                        .note { border: 1px solid rgba(186,149,92,0.3); background: rgba(186,149,92,0.1); border-radius: 12px; padding: 16px; margin: 20px 0 30px; color: #d6d3d1; font-size: 14px; text-align: right; }
+                        .cta-wrap { text-align: center; margin: 30px 0 10px; }
+                        .cta { display: inline-block; padding: 14px 28px; border-radius: 12px; background: #ba955c; color: #000000 !important; text-decoration: none; font-weight: 900; font-size: 15px; }
+                        .meta { margin-top: 24px; font-size: 12px; color: #78716c; line-height: 1.8; text-align: center; }
+                        .footer { border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2); padding: 20px; font-size: 12px; color: #78716c; text-align: center; }
                     </style>
                 </head>
                 <body>
                     <div class="wrap" dir="rtl">
                         <div class="card">
+                            ${fs.existsSync(heroPath) ? '<img src="cid:jesus-hero" alt="Welcome to Church" class="hero" />' : ''}
                             <div class="content">
-                                <img src="${logoUrl}" alt="Iranian Christian Church DC" class="logo" />
+                                ${fs.existsSync(logoPath) ? '<img src="cid:logo-premium" alt="Iranian Christian Church DC" class="logo" />' : ''}
                                 
                                 <h1 class="fa-title">به خانواده کلیسای ایرانی واشنگتن خوش آمدید</h1>
                                 <h2 class="en-title" dir="ltr">Welcome to Iranian Christian Church D.C.</h2>
@@ -184,12 +203,17 @@ ${supportEmail}
                                     Please confirm your email using the verification message sent by Supabase.
                                 </p>
 
-                                <a href="${loginUrl}" class="cta">ورود به حساب / Sign In</a>
+                                <div class="note">
+                                    <strong>توجه / Note:</strong> در صورتی که ایمیل تاییدیه (Verification Email) را دریافت نکردید، لطفاً پوشه <strong>Spam</strong> یا <strong>Junk</strong> خود را بررسی کنید.
+                                </div>
+
+                                <div class="cta-wrap">
+                                    <a href="${loginUrl}" class="cta">ورود به حساب / Sign In</a>
+                                </div>
 
                                 <div class="meta" dir="ltr">
                                     Website: ${siteUrl}<br/>
-                                    Support: ${supportEmail}<br/>
-                                    If verification email doesn't arrive, check Spam/Junk.
+                                    Support: ${supportEmail}
                                 </div>
                             </div>
                             <div class="footer">© ${new Date().getFullYear()} Iranian Christian Church D.C. — ${siteUrl}</div>

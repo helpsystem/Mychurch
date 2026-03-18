@@ -1,0 +1,431 @@
+﻿commit 17317ae4f0191314ca481727055de76e10764fa4
+Author: helpsystem <help.system@ymail.com>
+Date:   Mon Mar 16 23:22:55 2026 -0400
+
+    fix signup verification resend and simplify email layout/logo
+
+diff --git a/mychurch-next/src/actions/auth.ts b/mychurch-next/src/actions/auth.ts
+index d32f8a2..72ec81a 100644
+--- a/mychurch-next/src/actions/auth.ts
++++ b/mychurch-next/src/actions/auth.ts
+@@ -86,6 +86,21 @@ export async function signUp(formData: FormData) {
+         return { success: false, error: error.message };
+     }
+ 
++    // Force a verification email resend to avoid missing initial delivery.
++    const { error: resendError } = await supabase.auth.resend({
++        type: "signup",
++        email,
++        options: {
++            emailRedirectTo: `${siteUrl}/api/auth/callback`,
++        },
++    });
++
++    if (resendError) {
++        console.warn(`[Auth] ΓÜá∩╕Å Verification resend warning for ${email}: ${resendError.message}`);
++    } else {
++        console.log(`[Auth] Γ£à Verification email re-sent to: ${email}`);
++    }
++
+     // [New] Synchronize with the 'users' table for RBAC
+     try {
+         console.log(`[Auth] ≡ƒöä Syncing ${email} to users table...`);
+@@ -111,8 +126,7 @@ export async function signUp(formData: FormData) {
+     try {
+         console.log(`[Auth] ≡ƒôº Sending welcome email to: ${email}`);
+         const loginUrl = `${siteUrl}/login`;
+-        const logoUrl = `${siteUrl}/images/email/logo-premium.png`;
+-        const heroUrl = `${siteUrl}/images/email/jesus-hero.png`;
++        const logoUrl = `${siteUrl}/logo-transparent.png`;
+         const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
+         
+         const mailInfo = await sendMail({
+@@ -139,10 +153,9 @@ ${supportEmail}
+                     <style>
+                         body { margin: 0; padding: 0; background: #f5f7fb; color: #111827; font-family: Arial, Helvetica, sans-serif; }
+                         .wrap { width: 100%; padding: 24px 10px; }
+-                        .card { max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
+-                        .hero { width: 100%; display: block; }
++                        .card { max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
+                         .content { padding: 24px; }
+-                        .logo { width: 52px; height: 52px; margin-bottom: 14px; }
++                        .logo { width: 36px; height: 36px; margin-bottom: 12px; }
+                         .fa-title { font-size: 24px; font-weight: 700; margin: 0 0 6px; color: #111827; }
+                         .en-title { font-size: 14px; font-weight: 600; margin: 0 0 16px; color: #4b5563; }
+                         .fa-text { font-size: 15px; line-height: 1.9; margin: 0 0 10px; color: #1f2937; }
+@@ -155,7 +168,6 @@ ${supportEmail}
+                 <body>
+                     <div class="wrap" dir="rtl">
+                         <div class="card">
+-                            <img src="${heroUrl}" alt="Welcome" class="hero" />
+                             <div class="content">
+                                 <img src="${logoUrl}" alt="Iranian Christian Church DC" class="logo" />
+                                 
+
+commit 774d2392dbd8be2a67fd61582cc390600cbfe477
+Author: helpsystem <help.system@ymail.com>
+Date:   Mon Mar 16 23:13:21 2026 -0400
+
+    fix email verification callback and improve welcome email branding
+
+diff --git a/mychurch-next/src/actions/auth.ts b/mychurch-next/src/actions/auth.ts
+index 291e01d..d32f8a2 100644
+--- a/mychurch-next/src/actions/auth.ts
++++ b/mychurch-next/src/actions/auth.ts
+@@ -4,7 +4,6 @@ import { createClient } from "@/utils/supabase/server";
+ import { revalidatePath } from "next/cache";
+ import { redirect } from "next/navigation";
+ import { sendMail } from "@/lib/mailer";
+-import path from "path";
+ 
+ function resolvePublicSiteUrl() {
+     const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
+@@ -112,23 +111,25 @@ export async function signUp(formData: FormData) {
+     try {
+         console.log(`[Auth] ≡ƒôº Sending welcome email to: ${email}`);
+         const loginUrl = `${siteUrl}/login`;
++        const logoUrl = `${siteUrl}/images/email/logo-premium.png`;
++        const heroUrl = `${siteUrl}/images/email/jesus-hero.png`;
++        const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
+         
+         const mailInfo = await sendMail({
+             to: email,
+-            subject: "╪¿┘ç ┌⌐┘ä█î╪│╪º█î ┘à╪¬█î ╪«┘ê╪┤ ╪ó┘à╪»█î╪» | Welcome to MyChurch",
+-            attachments: [
+-                {
+-                    filename: 'jesus-hero.png',
+-                    path: path.join(process.cwd(), "public/images/email/jesus-hero.png"),
+-                    cid: 'jesus-hero'
+-                },
+-                {
+-                    filename: 'logo-transparent.png',
+-                    path: path.join(process.cwd(), "public/logo-transparent.png"),
+-                    cid: 'logo-premium'
+-                }
+-
+-            ],
++            subject: "╪¬╪º█î█î╪» ╪¡╪│╪º╪¿ ┌⌐╪º╪▒╪¿╪▒█î | Account Verification - Iranian Christian Church DC",
++            replyTo: supportEmail,
++            text: `╪│┘ä╪º┘à ${fullName} ╪╣╪▓█î╪▓╪î
++
++╪½╪¿╪¬ΓÇî┘å╪º┘à ╪┤┘à╪º ╪»╪▒ Iranian Christian Church DC ╪º┘å╪¼╪º┘à ╪┤╪».
++╪¿╪▒╪º█î ┘ü╪╣╪º┘äΓÇî╪│╪º╪▓█î ╪¡╪│╪º╪¿╪î ╪º█î┘à█î┘ä ╪¬╪º█î█î╪» Supabase ╪▒╪º ╪¿╪º╪▓ ┌⌐┘å█î╪» ┘ê ╪▒┘ê█î ┘ä█î┘å┌⌐ ╪¬╪º█î█î╪» ╪¿╪▓┘å█î╪».
++
++┘ê╪▒┘ê╪» ╪¿┘ç ╪│╪º█î╪¬:
++${loginUrl}
++
++╪»╪▒ ╪╡┘ê╪▒╪¬ ╪╣╪»┘à ╪»╪▒█î╪º┘ü╪¬ ╪º█î┘à█î┘ä ╪¬╪º█î█î╪»╪î ┘╛┘ê╪┤┘ç Spam/Junk ╪▒╪º ╪¿╪▒╪▒╪│█î ┌⌐┘å█î╪» █î╪º ╪¿╪º ┘à╪º ╪¬┘à╪º╪│ ╪¿┌»█î╪▒█î╪»:
++${supportEmail}
++`,
+             html: `
+                 <!DOCTYPE html>
+                 <html lang="fa" dir="rtl">
+@@ -136,55 +137,50 @@ export async function signUp(formData: FormData) {
+                     <meta charset="UTF-8">
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                     <style>
+-                        body { margin: 0; padding: 0; background-color: #f3f4f6; color: #111827; font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+-                        .body-wrap { width: 100%; padding: 28px 12px; }
+-                        .container { max-width: 620px; margin: 0 auto; background-color: #ffffff; border-radius: 20px; overflow: hidden; border: 1px solid #e5e7eb; }
+-                        .hero-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+-                        .content { padding: 30px 24px; }
+-                        .logo { width: 58px; height: 58px; margin-bottom: 20px; }
+-                        .header-fa { font-size: 28px; font-weight: 800; color: #111827; margin: 0 0 6px 0; text-align: right; }
+-                        .header-en { font-size: 16px; font-weight: 600; color: #4b5563; margin: 0 0 18px 0; text-align: left; }
+-                        .lead-fa { font-size: 16px; line-height: 1.9; color: #1f2937; margin: 0 0 12px 0; text-align: right; }
+-                        .lead-en { font-size: 14px; line-height: 1.7; color: #4b5563; margin: 0 0 22px 0; text-align: left; }
+-                        .note { border: 1px solid #dbeafe; background: #eff6ff; border-radius: 12px; padding: 12px; margin: 14px 0 22px; color: #1e3a8a; font-size: 13px; }
+-                        .cta-wrap { text-align: center; margin: 24px 0 14px; }
+-                        .cta-button { display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 14px; }
+-                        .footer { padding: 18px 24px; background: #f9fafb; text-align: center; border-top: 1px solid #e5e7eb; }
+-                        .footer-text { font-size: 12px; color: #6b7280; margin: 2px 0; }
++                        body { margin: 0; padding: 0; background: #f5f7fb; color: #111827; font-family: Arial, Helvetica, sans-serif; }
++                        .wrap { width: 100%; padding: 24px 10px; }
++                        .card { max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
++                        .hero { width: 100%; display: block; }
++                        .content { padding: 24px; }
++                        .logo { width: 52px; height: 52px; margin-bottom: 14px; }
++                        .fa-title { font-size: 24px; font-weight: 700; margin: 0 0 6px; color: #111827; }
++                        .en-title { font-size: 14px; font-weight: 600; margin: 0 0 16px; color: #4b5563; }
++                        .fa-text { font-size: 15px; line-height: 1.9; margin: 0 0 10px; color: #1f2937; }
++                        .en-text { font-size: 14px; line-height: 1.7; margin: 0 0 18px; color: #4b5563; }
++                        .cta { display: inline-block; padding: 12px 20px; border-radius: 10px; background: #2563eb; color: #ffffff !important; text-decoration: none; font-weight: 700; }
++                        .meta { margin-top: 16px; font-size: 12px; color: #6b7280; line-height: 1.8; }
++                        .footer { border-top: 1px solid #e5e7eb; background: #f9fafb; padding: 14px 20px; font-size: 12px; color: #6b7280; }
+                     </style>
+                 </head>
+                 <body>
+-                    <div class="body-wrap" dir="rtl">
+-                        <div class="container">
+-                            <img src="cid:jesus-hero" alt="Welcome" class="hero-image">
++                    <div class="wrap" dir="rtl">
++                        <div class="card">
++                            <img src="${heroUrl}" alt="Welcome" class="hero" />
+                             <div class="content">
+-                                <img src="cid:logo-premium" alt="MyChurch" class="logo">
++                                <img src="${logoUrl}" alt="Iranian Christian Church DC" class="logo" />
+                                 
+-                                <h1 class="header-fa">╪¿┘ç ┌⌐┘ä█î╪│╪º█î ┘à╪¬█î ╪«┘ê╪┤ ╪ó┘à╪»█î╪»</h1>
+-                                <h2 class="header-en" dir="ltr">Welcome to MyChurch</h2>
++                                <h1 class="fa-title">╪¿┘ç ╪«╪º┘å┘ê╪º╪»┘ç ┌⌐┘ä█î╪│╪º█î ╪º█î╪▒╪º┘å█î ┘ê╪º╪┤┘å┌»╪¬┘å ╪«┘ê╪┤ ╪ó┘à╪»█î╪»</h1>
++                                <h2 class="en-title" dir="ltr">Welcome to Iranian Christian Church D.C.</h2>
+                                 
+-                                <div class="lead-fa">
++                                <p class="fa-text">
+                                     ╪│┘ä╪º┘à <strong>${fullName}</strong> ╪╣╪▓█î╪▓╪î<br/>
+-                                    ╪½╪¿╪¬ΓÇî┘å╪º┘à ╪┤┘à╪º ╪º┘å╪¼╪º┘à ╪┤╪». ╪º█î┘à█î┘ä ╪¬╪ú█î█î╪» ╪¡╪│╪º╪¿ ╪º╪▓ ╪╖╪▒┘ü Supabase ╪¿╪▒╪º█î ╪┤┘à╪º ╪º╪▒╪│╪º┘ä ┘à█îΓÇî╪┤┘ê╪».
+-                                    ╪¿╪╣╪» ╪º╪▓ ╪¬╪ú█î█î╪»╪î ╪º╪▓ ╪»┌⌐┘à┘ç ╪▓█î╪▒ ┘ê╪º╪▒╪» ╪¡╪│╪º╪¿ ╪«┘ê╪» ╪┤┘ê█î╪».
+-                                </div>
++                                    ╪½╪¿╪¬ΓÇî┘å╪º┘à ╪┤┘à╪º ╪º┘å╪¼╪º┘à ╪┤╪». ╪¿╪▒╪º█î ┘ü╪╣╪º┘ä ╪┤╪»┘å ╪¡╪│╪º╪¿╪î ╪º█î┘à█î┘ä ╪¬╪º█î█î╪» Supabase ╪▒╪º ╪¿╪º╪▓ ┌⌐┘å█î╪» ┘ê ┘ä█î┘å┌⌐ ╪¬╪º█î█î╪» ╪▒╪º ╪¿╪▓┘å█î╪».
++                                </p>
+                                 
+-                                <div class="lead-en" dir="ltr">
+-                                    Dear ${fullName}, your account has been created successfully.
+-                                    Please confirm your email using the verification mail sent by Supabase, then sign in from the button below.
+-                                </div>
++                                <p class="en-text" dir="ltr">
++                                    Dear ${fullName}, your account was created successfully.
++                                    Please confirm your email using the verification message sent by Supabase.
++                                </p>
+ 
+-                                <div class="note" dir="ltr">If verification email doesn't arrive, check spam/junk folder or contact support.</div>
++                                <a href="${loginUrl}" class="cta">┘ê╪▒┘ê╪» ╪¿┘ç ╪¡╪│╪º╪¿ / Sign In</a>
+ 
+-                                <div class="cta-wrap">
+-                                    <a href="${loginUrl}" class="cta-button">┘ê╪▒┘ê╪» ╪¿┘ç ╪¡╪│╪º╪¿ / Sign In</a>
++                                <div class="meta" dir="ltr">
++                                    Website: ${siteUrl}<br/>
++                                    Support: ${supportEmail}<br/>
++                                    If verification email doesn't arrive, check Spam/Junk.
+                                 </div>
+                             </div>
+-                            <div class="footer">
+-                                <p class="footer-text">Iranian Christian Church D.C.</p>
+-                                <p class="footer-text">┬⌐ ${new Date().getFullYear()} All Rights Reserved</p>
+-                                <p class="footer-text" dir="ltr">${siteUrl}</p>
+-                            </div>
++                            <div class="footer">┬⌐ ${new Date().getFullYear()} Iranian Christian Church D.C. ΓÇö ${siteUrl}</div>
+                         </div>
+                     </div>
+                 </body>
+diff --git a/mychurch-next/src/app/api/auth/callback/route.ts b/mychurch-next/src/app/api/auth/callback/route.ts
+index 2bdc97d..a95ca4d 100644
+--- a/mychurch-next/src/app/api/auth/callback/route.ts
++++ b/mychurch-next/src/app/api/auth/callback/route.ts
+@@ -4,10 +4,21 @@ import { createClient } from "@/utils/supabase/server";
+ export async function GET(request: Request) {
+     const requestUrl = new URL(request.url);
+     const code = requestUrl.searchParams.get("code");
+-    const next = requestUrl.searchParams.get("next") || "/profile";
++    const tokenHash = requestUrl.searchParams.get("token_hash");
++    const type = requestUrl.searchParams.get("type");
++    const nextParam = requestUrl.searchParams.get("next");
++    const next = nextParam && nextParam.startsWith("/") ? nextParam : "/profile";
++
++    const supabase = await createClient();
++
++    if (tokenHash && type) {
++        await supabase.auth.verifyOtp({
++            token_hash: tokenHash,
++            type: type as "signup" | "invite" | "magiclink" | "recovery" | "email_change",
++        });
++    }
+ 
+     if (code) {
+-        const supabase = await createClient();
+         await supabase.auth.exchangeCodeForSession(code);
+     }
+ 
+
+commit 21715f214c3b31c684082c268fb8cfb5e2361eda
+Author: helpsystem <help.system@ymail.com>
+Date:   Mon Mar 16 23:05:18 2026 -0400
+
+    improve signup email UI and force live auth redirect URLs
+
+diff --git a/mychurch-next/src/actions/auth.ts b/mychurch-next/src/actions/auth.ts
+index 9651926..291e01d 100644
+--- a/mychurch-next/src/actions/auth.ts
++++ b/mychurch-next/src/actions/auth.ts
+@@ -6,6 +6,23 @@ import { redirect } from "next/navigation";
+ import { sendMail } from "@/lib/mailer";
+ import path from "path";
+ 
++function resolvePublicSiteUrl() {
++    const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
++    const fallback = "https://samanabyar.online";
++
++    if (!raw) return fallback;
++
++    try {
++        const parsed = new URL(raw.startsWith("http") ? raw : `https://${raw}`);
++        const host = parsed.hostname.toLowerCase();
++        const isLocal = host === "localhost" || host === "127.0.0.1" || host.endsWith(".local");
++        if (isLocal) return fallback;
++        return parsed.origin;
++    } catch {
++        return fallback;
++    }
++}
++
+ 
+ export async function login(formData: FormData) {
+     const supabase = await createClient();
+@@ -46,6 +63,7 @@ export async function login(formData: FormData) {
+ 
+ export async function signUp(formData: FormData) {
+     const supabase = await createClient();
++    const siteUrl = resolvePublicSiteUrl();
+ 
+     const email = formData.get("email") as string;
+     const password = formData.get("password") as string;
+@@ -61,7 +79,7 @@ export async function signUp(formData: FormData) {
+             data: {
+                 full_name: fullName,
+             },
+-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://samanabyar.online'}/api/auth/callback`,
++            emailRedirectTo: `${siteUrl}/api/auth/callback`,
+         },
+     });
+ 
+@@ -93,7 +111,7 @@ export async function signUp(formData: FormData) {
+     // Send Welcome Email immediately via Resend fallback
+     try {
+         console.log(`[Auth] ≡ƒôº Sending welcome email to: ${email}`);
+-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://samanabyar.online';
++        const loginUrl = `${siteUrl}/login`;
+         
+         const mailInfo = await sendMail({
+             to: email,
+@@ -112,30 +130,27 @@ export async function signUp(formData: FormData) {
+ 
+             ],
+             html: `
+-
+                 <!DOCTYPE html>
+                 <html lang="fa" dir="rtl">
+                 <head>
+                     <meta charset="UTF-8">
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                     <style>
+-                        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+-                        body { margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: 'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+-                        .body-wrap { background-color: #0c0a09; width: 100%; padding: 40px 0; }
+-                        .container { max-width: 600px; margin: 0 auto; background-color: #1c1917; border-radius: 32px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
++                        body { margin: 0; padding: 0; background-color: #f3f4f6; color: #111827; font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
++                        .body-wrap { width: 100%; padding: 28px 12px; }
++                        .container { max-width: 620px; margin: 0 auto; background-color: #ffffff; border-radius: 20px; overflow: hidden; border: 1px solid #e5e7eb; }
+                         .hero-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+-                        .content { padding: 48px; }
+-                        .logo { width: 64px; height: 64px; margin-bottom: 32px; filter: drop-shadow(0 0 10px rgba(186,149,92,0.3)); }
+-                        .header-farsi { font-size: 32px; font-weight: 900; color: #ba955c; margin: 0 0 8px 0; text-align: right; line-height: 1.2; }
+-                        .header-english { font-size: 20px; font-weight: 700; color: #e7e5e4; margin: 0 0 32px 0; text-align: left; line-height: 1.2; letter-spacing: -0.02em; }
+-                        .message-farsi { font-size: 18px; line-height: 1.8; color: #d6d3d1; margin-bottom: 24px; text-align: right; }
+-                        .message-english { font-size: 16px; line-height: 1.6; color: #a8a29e; margin-bottom: 40px; text-align: left; font-style: italic; }
+-                        .cta-wrap { text-align: center; margin-bottom: 40px; }
+-                        .cta-button { display: inline-block; background-color: #ba955c; color: #000000; padding: 18px 36px; border-radius: 16px; font-weight: 900; text-decoration: none; font-size: 18px; transition: transform 0.2s; }
+-                        .footer { padding: 32px 48px; background-color: rgba(0,0,0,0.2); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+-                        .footer-text { font-size: 12px; color: #78716c; margin: 4px 0; }
+-                        .social-links { margin-top: 20px; }
+-                        .social-link { color: #ba955c; text-decoration: none; font-weight: bold; margin: 0 10px; font-size: 14px; }
++                        .content { padding: 30px 24px; }
++                        .logo { width: 58px; height: 58px; margin-bottom: 20px; }
++                        .header-fa { font-size: 28px; font-weight: 800; color: #111827; margin: 0 0 6px 0; text-align: right; }
++                        .header-en { font-size: 16px; font-weight: 600; color: #4b5563; margin: 0 0 18px 0; text-align: left; }
++                        .lead-fa { font-size: 16px; line-height: 1.9; color: #1f2937; margin: 0 0 12px 0; text-align: right; }
++                        .lead-en { font-size: 14px; line-height: 1.7; color: #4b5563; margin: 0 0 22px 0; text-align: left; }
++                        .note { border: 1px solid #dbeafe; background: #eff6ff; border-radius: 12px; padding: 12px; margin: 14px 0 22px; color: #1e3a8a; font-size: 13px; }
++                        .cta-wrap { text-align: center; margin: 24px 0 14px; }
++                        .cta-button { display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 14px; }
++                        .footer { padding: 18px 24px; background: #f9fafb; text-align: center; border-top: 1px solid #e5e7eb; }
++                        .footer-text { font-size: 12px; color: #6b7280; margin: 2px 0; }
+                     </style>
+                 </head>
+                 <body>
+@@ -145,31 +160,30 @@ export async function signUp(formData: FormData) {
+                             <div class="content">
+                                 <img src="cid:logo-premium" alt="MyChurch" class="logo">
+                                 
+-                                <h1 class="header-farsi">╪¿┘ç ┌⌐┘ä█î╪│╪º█î ┘à╪¬█î ╪«┘ê╪┤ ╪ó┘à╪»█î╪»</h1>
+-                                <h2 class="header-english" dir="ltr">Welcome Home to MyChurch</h2>
++                                <h1 class="header-fa">╪¿┘ç ┌⌐┘ä█î╪│╪º█î ┘à╪¬█î ╪«┘ê╪┤ ╪ó┘à╪»█î╪»</h1>
++                                <h2 class="header-en" dir="ltr">Welcome to MyChurch</h2>
+                                 
+-                                <div class="message-farsi">
+-                                    <p>╪│┘ä╪º┘à <strong>${fullName}</strong> ╪╣╪▓█î╪▓╪î</p>
+-                                    <p>╪¿╪│█î╪º╪▒ ╪«┘ê╪┤╪¡╪º┘ä█î┘à ┌⌐┘ç ╪┤┘à╪º ╪¿┘ç ╪¼┘à╪╣ ╪╡┘à█î┘à█î ┘à╪º ┘╛█î┘ê╪│╪¬█î╪». ┘à╪º ╪¿╪º┘ê╪▒ ╪»╪º╪▒█î┘à ┌⌐┘ç ┌⌐┘ä█î╪│╪º █î┌⌐ ╪«╪º┘å┘ê╪º╪»┘ç ╪º╪│╪¬ ┘ê ┘ç╪▒ ╪╣╪╢┘ê ╪¼╪»█î╪»╪î ┘ç╪»█î┘çΓÇî╪º█î ╪º╪▓ ╪¼╪º┘å╪¿ ╪«╪»╪º┘ê┘å╪» ╪¿╪▒╪º█î ╪º█î┘å ╪«╪º┘å┘ê╪º╪»┘ç ╪º╪│╪¬.</p>
+-                                    <p>┘ä╪╖┘ü╪º┘ï ╪¿╪º ┌⌐┘ä█î┌⌐ ╪¿╪▒ ╪▒┘ê█î ╪»┌⌐┘à┘ç ╪▓█î╪▒╪î ╪º█î┘à█î┘ä ╪«┘ê╪» ╪▒╪º ╪¬╪º█î█î╪» ┌⌐┘å█î╪» ╪¬╪º ╪»╪│╪¬╪▒╪│█î ┌⌐╪º┘à┘ä ╪¿┘ç ╪¬┘à╪º┘à█î ╪º┘à┌⌐╪º┘å╪º╪¬ ┘╛┘ä╪¬┘ü╪▒┘à ╪¿╪▒╪º█î ╪┤┘à╪º ┘ü╪╣╪º┘ä ╪┤┘ê╪».</p>
++                                <div class="lead-fa">
++                                    ╪│┘ä╪º┘à <strong>${fullName}</strong> ╪╣╪▓█î╪▓╪î<br/>
++                                    ╪½╪¿╪¬ΓÇî┘å╪º┘à ╪┤┘à╪º ╪º┘å╪¼╪º┘à ╪┤╪». ╪º█î┘à█î┘ä ╪¬╪ú█î█î╪» ╪¡╪│╪º╪¿ ╪º╪▓ ╪╖╪▒┘ü Supabase ╪¿╪▒╪º█î ╪┤┘à╪º ╪º╪▒╪│╪º┘ä ┘à█îΓÇî╪┤┘ê╪».
++                                    ╪¿╪╣╪» ╪º╪▓ ╪¬╪ú█î█î╪»╪î ╪º╪▓ ╪»┌⌐┘à┘ç ╪▓█î╪▒ ┘ê╪º╪▒╪» ╪¡╪│╪º╪¿ ╪«┘ê╪» ╪┤┘ê█î╪».
+                                 </div>
+                                 
+-                                <div class="message-english" dir="ltr">
+-                                    <p>Dear ${fullName},</p>
+-                                    <p>We are thrilled to have you join our community. We believe the church is a family, and every new member is a gift from God. Please verify your account to unlock full access to our platform.</p>
++                                <div class="lead-en" dir="ltr">
++                                    Dear ${fullName}, your account has been created successfully.
++                                    Please confirm your email using the verification mail sent by Supabase, then sign in from the button below.
+                                 </div>
+ 
++                                <div class="note" dir="ltr">If verification email doesn't arrive, check spam/junk folder or contact support.</div>
++
+                                 <div class="cta-wrap">
+-                                    <a href="${siteUrl}/api/auth/callback" class="cta-button">╪¬╪º█î█î╪» ╪¡╪│╪º╪¿ ┌⌐╪º╪▒╪¿╪▒█î / Verify Account</a>
++                                    <a href="${loginUrl}" class="cta-button">┘ê╪▒┘ê╪» ╪¿┘ç ╪¡╪│╪º╪¿ / Sign In</a>
+                                 </div>
+                             </div>
+                             <div class="footer">
+                                 <p class="footer-text">Iranian Christian Church D.C.</p>
+                                 <p class="footer-text">┬⌐ ${new Date().getFullYear()} All Rights Reserved</p>
+-                                <div class="social-links">
+-                                    <a href="https://samanabyar.online" class="social-link">Website</a>
+-                                    <a href="#" class="social-link">Instagram</a>
+-                                </div>
++                                <p class="footer-text" dir="ltr">${siteUrl}</p>
+                             </div>
+                         </div>
+                     </div>
+diff --git a/mychurch-next/src/app/api/admin/invite-user/route.ts b/mychurch-next/src/app/api/admin/invite-user/route.ts
+index b33c63e..14dc7bb 100644
+--- a/mychurch-next/src/app/api/admin/invite-user/route.ts
++++ b/mychurch-next/src/app/api/admin/invite-user/route.ts
+@@ -2,6 +2,23 @@ import { NextResponse } from "next/server";
+ import { createClient } from "@/utils/supabase/server";
+ import { createClient as createAdminClient } from "@supabase/supabase-js";
+ 
++function resolvePublicSiteUrl() {
++    const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
++    const fallback = "https://samanabyar.online";
++
++    if (!raw) return fallback;
++
++    try {
++        const parsed = new URL(raw.startsWith("http") ? raw : `https://${raw}`);
++        const host = parsed.hostname.toLowerCase();
++        const isLocal = host === "localhost" || host === "127.0.0.1" || host.endsWith(".local");
++        if (isLocal) return fallback;
++        return parsed.origin;
++    } catch {
++        return fallback;
++    }
++}
++
+ export async function POST(req: Request) {
+     try {
+         // Auth check - only Admin can invite users
+@@ -26,10 +43,12 @@ export async function POST(req: Request) {
+ 
+         // Use admin client to invite user
+         const adminClient = createAdminClient(supabaseUrl!, serviceRoleKey);
++        const siteUrl = resolvePublicSiteUrl();
+ 
+         // Send invitation email via Supabase Auth
+         const { data: inviteData, error: inviteError } = await adminClient.auth.admin.inviteUserByEmail(email, {
+-            data: { name, role }
++            data: { name, role },
++            redirectTo: `${siteUrl}/api/auth/callback`
+         });
+ 
+         if (inviteError) {
