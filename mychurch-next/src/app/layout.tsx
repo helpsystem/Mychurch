@@ -23,6 +23,7 @@ export const viewport: Viewport = {
 };
 
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
+import { GlobalPopupWrapper } from "@/components/widgets/GlobalPopupWrapper";
 
 export default function RootLayout({
   children,
@@ -62,6 +63,7 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
           <MobileNavigation />
+          <GlobalPopupWrapper />
         </LanguageProvider>
       </body>
     </html>

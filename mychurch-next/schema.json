@@ -1,0 +1,31 @@
+{
+  "worship_songs": [
+    "id",
+    "title_fa",
+    "title_en",
+    "artist",
+    "youtube_id",
+    "audio_url",
+    "lyrics_fa",
+    "lyrics_en",
+    "created_at",
+    "updated_at",
+    "timepoints"
+  ],
+  "church_worship_songs": [
+    "id",
+    "title_fa",
+    "title_en",
+    "artist",
+    "youtube_id",
+    "audio_url",
+    "video_url",
+    "lyrics_fa",
+    "lyrics_en",
+    "chords",
+    "category",
+    "timepoints",
+    "created_at",
+    "updated_at"
+  ]
+}

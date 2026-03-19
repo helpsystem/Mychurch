@@ -51,6 +51,16 @@ export async function getWatermarkConfig(): Promise<any> {
     }
 }
 
+export async function getGlobalPopupStatus(): Promise<boolean> {
+    try {
+        const { rows } = await query("SELECT is_active FROM widgets WHERE id = 'w_global_popup'");
+        return rows[0]?.is_active || false;
+    } catch (error) {
+        console.error('[Action] Error fetching global popup status:', error);
+        return false;
+    }
+}
+
 export async function updateWidgetConfig(id: string, config: any): Promise<boolean> {
     try {
         await query('UPDATE widgets SET config = $1, updated_at = NOW() WHERE id = $2', [config, id]);

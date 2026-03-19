@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
+import { query } from "@/lib/db";
 
 export async function POST(req: Request) {
     try {
@@ -25,19 +26,21 @@ export async function POST(req: Request) {
             lyrics_en: (song.lyrics?.en || song.lyrics_en || '').trim() || null,
         }));
 
-        // Insert in batches of 50
-        const BATCH_SIZE = 50;
+        // Insert one by one (or batch if written using postgres UNNEST, but simple loop is fine for admin uploads)
         let inserted = 0;
         let errors = 0;
 
-        for (let i = 0; i < rows.length; i += BATCH_SIZE) {
-            const batch = rows.slice(i, i + BATCH_SIZE);
-            const { error } = await supabase.from('worship_songs').insert(batch);
-            if (error) {
-                console.error('[Import] Batch error:', error.message);
-                errors += batch.length;
-            } else {
-                inserted += batch.length;
+        for (const song of rows) {
+            try {
+                await query(
+                    `INSERT INTO church_worship_songs (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en)
+                     VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+                    [song.title_fa, song.title_en, song.artist, song.youtube_id, song.audio_url, song.lyrics_fa, song.lyrics_en]
+                );
+                inserted++;
+            } catch (error: any) {
+                console.error('[Import] Error inserting song:', song.title_fa, error.message);
+                errors++;
             }
         }
 
