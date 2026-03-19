@@ -10,6 +10,8 @@ export const dictionaries = {
         worship: "Worship Center",
         sermons: "Sermons",
         broadcast: "Broadcast Console",
+        gallery: "Gallery",
+        documents: "Official Documents",
 
         // Home Page
         heroTitle: "Global Online Platform",
@@ -22,6 +24,12 @@ export const dictionaries = {
         dailyVerseText: "God is spirit, and his worshipers must worship in the Spirit and in truth.",
         dailyVerseRef: "John 4:24",
         readMore: "Read More",
+        descBible: "Persian & English translations",
+        descWorship: "Live lyrics & chords",
+        descSermons: "Video & audio archives",
+        descBroadcast: "Live service controller",
+        worldTimeTitle: "World Time",
+        worldTimeSubtitle: "Washington D.C. & Tehran",
 
         // Broadcast Console
         broadcastConsole: "BROADCAST CONSOLE",
@@ -120,6 +128,8 @@ export const dictionaries = {
         worship: "تیم پرستش",
         sermons: "مواعظ",
         broadcast: "کنسول پخش",
+        gallery: "گالری",
+        documents: "مدارک رسمی",
 
         // Home Page
         heroTitle: "پلتفرم آنلاین جهانی",
@@ -132,6 +142,12 @@ export const dictionaries = {
         dailyVerseText: "خدا روح است و هر که او را می‌پرستد، باید به روح و راستی بپرستد.",
         dailyVerseRef: "یوحنا ۴:۲۴",
         readMore: "بیشتر بخوانید",
+        descBible: "ترجمه‌های فارسی و انگلیسی",
+        descWorship: "متن زنده و آکورد سرودها",
+        descSermons: "آرشیو صوتی و تصویری",
+        descBroadcast: "کنترلر پخش زنده مراسم",
+        worldTimeTitle: "ساعت جهانی",
+        worldTimeSubtitle: "واشنگتن دی‌سی و تهران",
 
         // Broadcast Console
         broadcastConsole: "کنسول پخش",

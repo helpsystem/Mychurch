@@ -9,6 +9,7 @@ export default function WorshipAdminClient() {
     const [songs, setSongs] = useState<WorshipSong[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
+    const [filter, setFilter] = useState<"all" | "audio" | "timing" | "missing_lyrics">("all");
 
     // Editor State
     const [editingSong, setEditingSong] = useState<WorshipSong | null>(null);
@@ -189,11 +190,19 @@ export default function WorshipAdminClient() {
     };
     // --- End AI Handlers ---
 
-    const filteredSongs = songs.filter(s =>
-        s.title_fa.includes(search) ||
+    const filteredSongs = songs.filter(s => {
+        const matchSearch = s.title_fa.includes(search) ||
         (s.title_en && s.title_en.toLowerCase().includes(search.toLowerCase())) ||
-        (s.artist && s.artist.includes(search))
-    );
+        (s.artist && s.artist.includes(search));
+
+        if (!matchSearch) return false;
+
+        if (filter === "audio") return !!s.audio_url;
+        if (filter === "timing") return s.timepoints && s.timepoints.length > 5;
+        if (filter === "missing_lyrics") return !s.lyrics_fa;
+
+        return true;
+    });
 
     return (
         <div className="max-w-7xl mx-auto p-6" dir="rtl">
@@ -395,11 +404,19 @@ export default function WorshipAdminClient() {
                     <input
                         type="text"
                         title="جستجو"
-                        placeholder="جستجوی سرود بر اساس نام یا خواننده..."
+                        placeholder="جستجوی سرود بر اساس نام، فینگلیش یا خواننده..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         className="bg-transparent border-none outline-none w-full font-medium"
                     />
+                </div>
+                
+                {/* 🎛 Instant Filter Chips */}
+                <div className="flex items-center gap-2 p-3 bg-card border-b border-border/50 overflow-x-auto hide-scrollbar">
+                    <button onClick={() => setFilter("all")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "all" ? "bg-primary text-primary-foreground shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>همه سرودها</button>
+                    <button onClick={() => setFilter("audio")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "audio" ? "bg-blue-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>🎵 دارای فایل صوتی</button>
+                    <button onClick={() => setFilter("timing")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "timing" ? "bg-emerald-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⭐ کارائوکه فعال</button>
+                    <button onClick={() => setFilter("missing_lyrics")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "missing_lyrics" ? "bg-yellow-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⚠️ بدون متن فارسی</button>
                 </div>
 
                 <div className="overflow-x-auto">

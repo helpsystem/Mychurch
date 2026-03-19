@@ -13,8 +13,10 @@ interface Timepoint {
 interface SongTimingEditorProps {
     songId: string;
     songTitleFa: string;
+    songTitleEn?: string;
     songArtist?: string;
     lyricsFa?: string;
+    lyricsEn?: string;
     youtubeId?: string;
     audioUrl?: string;
     existingTimepoints?: Timepoint[];
@@ -23,14 +25,17 @@ interface SongTimingEditorProps {
 export default function SongTimingEditor({
     songId,
     songTitleFa,
+    songTitleEn,
     songArtist,
     lyricsFa,
+    lyricsEn,
     youtubeId,
     audioUrl,
     existingTimepoints = []
 }: SongTimingEditorProps) {
     // Words parsed from lyrics
     const [words, setWords] = useState<string[]>([]);
+    const [wordsEn, setWordsEn] = useState<string[]>([]);
     const [timepoints, setTimepoints] = useState<Timepoint[]>([]);
     const [currentWordIndex, setCurrentWordIndex] = useState(-1);
 
@@ -45,19 +50,21 @@ export default function SongTimingEditor({
 
     // Parse lyrics into words on mount
     useEffect(() => {
-        if (!lyricsFa) return;
-        // Split by whitespace and newlines, filter empty
-        const parsed = lyricsFa
-            .split(/[\s\n]+/)
-            .map(w => w.trim())
-            .filter(w => w.length > 0);
-        setWords(parsed);
+        if (lyricsFa) {
+            const parsedFa = lyricsFa.split(/[\s\n]+/).map(w => w.trim()).filter(w => w.length > 0);
+            setWords(parsedFa);
+        }
+        
+        if (lyricsEn) {
+            const parsedEn = lyricsEn.split(/[\s\n]+/).map(w => w.trim()).filter(w => w.length > 0);
+            setWordsEn(parsedEn);
+        }
 
         // Load existing timepoints if available
         if (existingTimepoints.length > 0) {
             setTimepoints(existingTimepoints);
         }
-    }, [lyricsFa, existingTimepoints]);
+    }, [lyricsFa, lyricsEn, existingTimepoints]);
 
     // Cleanup audio on unmount
     useEffect(() => {
@@ -173,7 +180,11 @@ export default function SongTimingEditor({
                 </Link>
                 <div>
                     <h1 className="text-2xl font-black">{songTitleFa}</h1>
-                    {songArtist && <p className="text-muted-foreground text-sm">{songArtist}</p>}
+                    {(songArtist || songTitleEn) && (
+                        <p className="text-muted-foreground text-sm font-serif" dir="ltr">
+                            {songArtist} {songArtist && songTitleEn ? " - " : ""} {songTitleEn}
+                        </p>
+                    )}
                 </div>
             </div>
 
@@ -267,27 +278,36 @@ export default function SongTimingEditor({
                     <h3 className="text-sm font-bold text-muted-foreground mb-6 flex items-center gap-2">
                         <Music className="w-4 h-4 text-primary" /> متن سرود
                     </h3>
-                    <div className="flex flex-wrap gap-2.5 text-[1.4rem] leading-loose font-[Vazirmatn]">
+                    <div className="flex flex-wrap gap-2.5 leading-loose font-[Vazirmatn] items-end">
                         {words.map((word, i) => {
                             const isCurrent = i === currentWordIndex;
                             const isMarked = timepoints[i] !== undefined;
+                            const wordEn = wordsEn[i] || "";
 
                             return (
                                 <span
                                     key={i}
                                     className={cn(
-                                        "inline-block px-3 py-1.5 rounded-xl transition-all duration-200 cursor-default select-none border",
-                                        isCurrent && "bg-primary text-primary-foreground scale-110 shadow-lg font-black border-primary translate-y-[-2px]",
+                                        "inline-flex flex-col items-center justify-center min-w-[3rem] px-4 py-3 rounded-2xl transition-all duration-300 cursor-default select-none border border-transparent",
+                                        isCurrent && "bg-gradient-to-br from-primary to-blue-600 text-white shadow-xl shadow-primary/30 scale-[1.15] z-10 font-black translate-y-[-4px]",
                                         isMarked && !isCurrent && "bg-primary/10 text-primary font-bold border-primary/20",
-                                        !isMarked && !isCurrent && "bg-secondary/40 text-muted-foreground border-transparent hover:bg-secondary/80"
+                                        !isMarked && !isCurrent && "bg-secondary/20 text-foreground/60 hover:bg-secondary/50"
                                     )}
                                     title={timepoints[i] ? `${timepoints[i].time}s` : ""}
                                 >
-                                    {word}
+                                    <span className="text-[1.5rem] leading-none mb-1.5">{word}</span>
+                                    {wordEn && (
+                                        <span className={cn(
+                                            "text-xs font-serif tracking-wider",
+                                            isCurrent ? "text-white/90" : "text-muted-foreground/70"
+                                        )} dir="ltr">
+                                            {wordEn}
+                                        </span>
+                                    )}
                                     {timepoints[i] && (
                                         <span className={cn(
-                                            "block text-[10px] text-center font-mono mt-0.5 tracking-wider",
-                                            isCurrent ? "opacity-90" : "opacity-50"
+                                            "block text-[10px] text-center font-mono mt-1 tracking-wider",
+                                            isCurrent ? "opacity-90 text-white" : "opacity-50 text-muted-foreground"
                                         )}>
                                             {timepoints[i].time.toFixed(1)}s
                                         </span>

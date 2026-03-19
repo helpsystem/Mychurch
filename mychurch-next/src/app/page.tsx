@@ -73,10 +73,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
             {[
-              { title: t.bible, icon: BookOpen, desc: "Persian & English translations", link: "/bible", color: "from-blue-500/20 to-indigo-500/20", iconColor: "text-blue-500" },
-              { title: t.worship, icon: Music, desc: "Live lyrics & chords", link: "/worship", color: "from-purple-500/20 to-pink-500/20", iconColor: "text-purple-500" },
-              { title: t.sermons, icon: Video, desc: "Video & audio archives", link: "/sermons", color: "from-emerald-500/20 to-teal-500/20", iconColor: "text-emerald-500" },
-              { title: t.broadcast, icon: Mic, desc: "Live service controller", link: "/broadcast", color: "from-red-500/20 to-orange-500/20", iconColor: "text-red-500" },
+              { title: t.bible, icon: BookOpen, desc: t.descBible, link: "/bible", color: "from-blue-500/20 to-indigo-500/20", iconColor: "text-blue-500" },
+              { title: t.worship, icon: Music, desc: t.descWorship, link: "/worship", color: "from-purple-500/20 to-pink-500/20", iconColor: "text-purple-500" },
+              { title: t.sermons, icon: Video, desc: t.descSermons, link: "/sermons", color: "from-emerald-500/20 to-teal-500/20", iconColor: "text-emerald-500" },
+              { title: t.broadcast, icon: Mic, desc: t.descBroadcast, link: "/broadcast", color: "from-red-500/20 to-orange-500/20", iconColor: "text-red-500" },
             ].map((item, i) => (
               <Link key={i} href={item.link} className="card-hover animate-fade-in-up group relative overflow-hidden rounded-3xl bg-secondary/30 backdrop-blur-md border border-border/50 p-6 flex flex-col gap-4 hover:shadow-2xl transition-all duration-300">
                 <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full bg-gradient-to-br ${item.color} blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -165,8 +165,8 @@ export default function HomePage() {
           <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
             <div className="w-3 h-10 bg-primary rounded-full shadow-lg shadow-primary/20" />
             <div>
-              <h2 className="text-3xl font-bold">World Time</h2>
-              <p className="text-muted-foreground text-sm font-medium">Washington D.C. & Tehran</p>
+              <h2 className="text-3xl font-bold">{t.worldTimeTitle}</h2>
+              <p className="text-muted-foreground text-sm font-medium">{t.worldTimeSubtitle}</p>
             </div>
           </div>
           <WorldClock />

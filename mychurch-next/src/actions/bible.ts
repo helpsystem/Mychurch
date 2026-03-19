@@ -116,21 +116,36 @@ async function fetchEnglishVerses(bookCode: string, ch: number): Promise<Record<
 }
 
 
+export async function initBibleSyncColumns() {
+    try {
+        await pool.query(`
+            ALTER TABLE unified_bible_verses 
+            ADD COLUMN IF NOT EXISTS audio_start FLOAT, 
+            ADD COLUMN IF NOT EXISTS audio_end FLOAT;
+        `);
+        console.log('[Bible/DB] Sync columns verified.');
+    } catch (e) {
+        console.error('[Bible/DB] Error verifying sync columns:', e);
+    }
+}
+
 // ─── Load Persian translations from local DB ──────────────────────────────────
 async function loadPersianFromDb(book: string, ch: number) {
     try {
         const { rows } = await pool.query(
-            `SELECT verse, fa_tpv, fa_mojdeh, fa_qadim, fa_wp FROM unified_bible_verses
+            `SELECT verse, fa_tpv, fa_mojdeh, fa_qadim, fa_wp, audio_start, audio_end FROM unified_bible_verses
              WHERE book_code=$1 AND chapter=$2 ORDER BY verse`,
             [book, ch]
         );
-        const fa: Record<number, { fa_tpv: string; fa_mojdeh: string; fa_qadim: string; fa_wp: string }> = {};
+        const fa: Record<number, { fa_tpv: string; fa_mojdeh: string; fa_qadim: string; fa_wp: string; audio_start: number; audio_end: number; }> = {};
         rows.forEach(r => {
             fa[r.verse] = {
                 fa_tpv:    r.fa_tpv    || '',
                 fa_mojdeh: r.fa_mojdeh || '',
                 fa_qadim:  r.fa_qadim  || '',
                 fa_wp:     r.fa_wp     || '',
+                audio_start: r.audio_start || 0,
+                audio_end:   r.audio_end || 0,
             };
         });
         return fa;
@@ -198,7 +213,7 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
     }
 
     const verses: UnifiedVerse[] = Array.from(allNums).sort((a, b) => a - b).map(n => {
-        const fa = faRaw[n] || { fa_tpv: '', fa_mojdeh: '', fa_qadim: '', fa_wp: '' };
+        const fa = faRaw[n] || { fa_tpv: '', fa_mojdeh: '', fa_qadim: '', fa_wp: '', audio_start: 0, audio_end: 0 };
         return {
             number:    n,
             fa:        fa.fa_mojdeh || fa.fa_tpv || fa.fa_qadim || fa.fa_wp || '',
@@ -207,7 +222,8 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
             fa_tpv:    fa.fa_tpv    || '',
             fa_qadim:  fa.fa_qadim  || '',
             fa_wp:     fa.fa_wp     || '',
-            start: 0, end: 0,
+            start:     fa.audio_start || 0, 
+            end:       fa.audio_end || 0,
         };
     });
 
@@ -220,4 +236,162 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
 
     MEM.set(key, { d: result, exp: Date.now() + TTL });
     return result;
+}
+
+// ─── Gemini Multimodal AI Auto-Sync ───────────────────────────────────────────
+export async function syncBibleChapterAudioAI(bookCode: string, chapterNum: number): Promise<{ success: boolean; message?: string }> {
+    try {
+        await initBibleSyncColumns();
+
+        // 1. Fetch chapter text from DB
+        const textVerseMap = await loadPersianFromDb(bookCode, chapterNum);
+        if (Object.keys(textVerseMap).length === 0) {
+            return { success: false, message: "هیچ متنی برای این باب در دیتابیس یافت نشد." };
+        }
+
+        // Construct a structured prompt representing the chapter
+        let chapterText = "";
+        const verseKeys = Object.keys(textVerseMap).map(Number).sort((a, b) => a - b);
+        for (const vNum of verseKeys) {
+            const vObj = textVerseMap[vNum];
+            const textFa = vObj.fa_mojdeh || vObj.fa_tpv || vObj.fa_qadim || vObj.fa_wp || "";
+            if (textFa) {
+                chapterText += `[Verse ${vNum}] ${textFa}\n`;
+            }
+        }
+
+        // 2. Fetch the actual Audio file via WebDAV URL (TPV version)
+        const audioUrl = AUDIO_TPV(bookCode, chapterNum);
+        console.log(`[Bible Sync] Downloading Audio from WebDAV: ${audioUrl}`);
+        
+        let audioBase64 = "";
+        try {
+            const audioRes = await fetch(audioUrl);
+            if (!audioRes.ok) throw new Error("Audio file not found or inaccessible (404/403)");
+            const arrayBuffer = await audioRes.arrayBuffer();
+            audioBase64 = Buffer.from(arrayBuffer).toString('base64');
+        } catch (downloadErr: any) {
+            console.error("[Bible Sync] Audio Download Failed", downloadErr);
+            return { success: false, message: "فایل صوتی این باب در سرور WebDAV وجود ندارد یا قابل دانلود نیست." };
+        }
+
+        // 3. Ping Gemini 2.5 Flash API via REST
+        const promptText = `
+Transcribe this Bible reading.
+Analyze the structure carefully based on the provided text references:
+1. If you detect a Book Title, create a line with type 'book_title'.
+2. If you detect a Chapter Title, create a line with type 'chapter_title'.
+3. For Verses, create a line with type 'verse'. IMPORTANT: Extract the exact verse number (e.g., '1', '12') and put it in the 'label' field.
+4. For general text, use type 'text'.
+
+Group words into these structural lines.
+CRITICAL: Provide highly accurate timestamps for every single word, down to the hundredth of a second (0.01s), to ensure perfect synchronization with the audio.
+
+Text Reference to match against:
+${chapterText}
+
+Respond strictly in valid JSON format matching this schema:
+{
+  "lines": [
+    {
+      "type": "verse",
+      "label": "1",
+      "content": "در آغاز، خدا آسمان‌ها و زمین را آفرید.",
+      "words": [
+        { "word": "در", "start_time": 0.5, "end_time": 0.8 },
+        { "word": "آغاز", "start_time": 0.81, "end_time": 1.2 }
+      ]
+    }
+  ]
+}
+NO MARKDOWN. JUST RAW JSON.
+        `;
+
+        const body = {
+            contents: [{ 
+                role: "user", 
+                parts: [
+                    { inlineData: { mimeType: "audio/mpeg", data: audioBase64 } },
+                    { text: promptText }
+                ] 
+            }],
+            generationConfig: { temperature: 0.1 } 
+        };
+
+        const DIRECT_API_KEY = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6IpDe6-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
+        const API_URL = `https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=${DIRECT_API_KEY}`;
+
+        console.log(`[Bible Sync] Pinging Gemini 2.5 Flash...`);
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+             console.error("[Bible Sync] Gemini API Error:", errText);
+             return { success: false, message: "خطا در ارتباط با هوش مصنوعی گوگل." };
+        }
+
+        const data = await response.json();
+        if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
+             return { success: false, message: "هوش مصنوعی دیتایی برنگرداند." };
+        }
+
+        let cleanJson = data.candidates[0].content.parts[0].text.trim();
+        if (cleanJson.startsWith('```json')) cleanJson = cleanJson.substring(7);
+        if (cleanJson.startsWith('```')) cleanJson = cleanJson.substring(3);
+        if (cleanJson.endsWith('```')) cleanJson = cleanJson.slice(0, -3);
+
+        const aiData = JSON.parse(cleanJson);
+        const lines = aiData.lines;
+
+        if (!lines || !Array.isArray(lines)) {
+            return { success: false, message: "ساختار JSON برگشتی معتبر نیست." };
+        }
+
+        // 4. Update the Database
+        const client = await pool.connect();
+        try {
+            await client.query('BEGIN');
+            
+            let updatedCount = 0;
+            for (const line of lines) {
+                if (line.type === 'verse' && line.label) {
+                    const vNum = parseInt(line.label, 10);
+                    if (!isNaN(vNum) && line.words && line.words.length > 0) {
+                        const start = line.words[0].start_time;
+                        const end = line.words[line.words.length - 1].end_time;
+                        
+                        await client.query(`
+                            UPDATE unified_bible_verses
+                            SET audio_start = $1, audio_end = $2
+                            WHERE book_code = $3 AND chapter = $4 AND verse = $5
+                        `, [start, end, bookCode, chapterNum, vNum]);
+                        
+                        updatedCount++;
+                    }
+                }
+            }
+            
+            await client.query('COMMIT');
+            
+            // Invalidate Memory Cache for this chapter
+            MEM.delete(`${bookCode}:${chapterNum}`);
+            
+            console.log(`[Bible Sync] Successfully synced ${updatedCount} verses for ${bookCode} ${chapterNum}.`);
+            return { success: true, message: `تایم لاین صوتی ${updatedCount} آیه با موفقیت ثبت شد.` };
+            
+        } catch (dbErr) {
+            await client.query('ROLLBACK');
+            throw dbErr;
+        } finally {
+            client.release();
+        }
+
+    } catch (e: any) {
+        console.error('[Bible Sync] Error:', e);
+        return { success: false, message: `خطای سرور: ${e.message}` };
+    }
 }
