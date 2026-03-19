@@ -11,9 +11,9 @@ export function PublicFooter() {
     const { t } = useLanguage();
 
     return (
-        <footer className="border-t border-white/5 glass-strong pt-16 pb-8 relative overflow-hidden">
+        <footer className="border-t border-white/5 glass-strong pt-16 pb-32 relative overflow-hidden">
             <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" aria-hidden="true" />
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
                 {/* Brand */}
                 <div className="col-span-1 md:col-span-2 space-y-6">
                     <div className="flex items-center gap-4">
@@ -76,7 +76,7 @@ export function PublicFooter() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between text-xs text-muted-foreground font-medium gap-6 pb-2">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between text-xs text-muted-foreground font-medium gap-6 pb-6 relative z-10">
                 <p className="order-3 lg:order-1 text-center lg:text-right">© {new Date().getFullYear()} Iranian Christian Church of D.C. All rights reserved.</p>
 
                 {/* Embedded Clock Widget */}

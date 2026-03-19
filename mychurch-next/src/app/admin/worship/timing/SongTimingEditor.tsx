@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { ArrowLeft, Play, Pause, RotateCcw, Save, Music, Loader2, CheckCircle, SkipBack, SkipForward } from "lucide-react";
+import { ArrowLeft, Play, Pause, RotateCcw, Save, Music, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils"; // Tailwind merge util
 
 interface Timepoint {
     time: number;
@@ -15,6 +16,7 @@ interface SongTimingEditorProps {
     songArtist?: string;
     lyricsFa?: string;
     youtubeId?: string;
+    audioUrl?: string;
     existingTimepoints?: Timepoint[];
 }
 
@@ -24,6 +26,7 @@ export default function SongTimingEditor({
     songArtist,
     lyricsFa,
     youtubeId,
+    audioUrl,
     existingTimepoints = []
 }: SongTimingEditorProps) {
     // Words parsed from lyrics
@@ -31,11 +34,10 @@ export default function SongTimingEditor({
     const [timepoints, setTimepoints] = useState<Timepoint[]>([]);
     const [currentWordIndex, setCurrentWordIndex] = useState(-1);
 
-    // Timer state
-    const [isRunning, setIsRunning] = useState(false);
-    const [elapsedTime, setElapsedTime] = useState(0);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
-    const startTimeRef = useRef<number>(0);
+    // Audio & Timer state
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
 
     // Save state
     const [isSaving, setIsSaving] = useState(false);
@@ -57,52 +59,65 @@ export default function SongTimingEditor({
         }
     }, [lyricsFa, existingTimepoints]);
 
-    // Timer logic
-    const startTimer = useCallback(() => {
-        startTimeRef.current = Date.now() - elapsedTime * 1000;
-        intervalRef.current = setInterval(() => {
-            setElapsedTime((Date.now() - startTimeRef.current) / 1000);
-        }, 50);
-        setIsRunning(true);
-    }, [elapsedTime]);
-
-    const pauseTimer = useCallback(() => {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        setIsRunning(false);
+    // Cleanup audio on unmount
+    useEffect(() => {
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+            }
+        };
     }, []);
 
-    const resetTimer = useCallback(() => {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        setIsRunning(false);
-        setElapsedTime(0);
+    // Audio Controls
+    const togglePlay = () => {
+        if (!audioRef.current) return;
+        if (isPlaying) {
+            audioRef.current.pause();
+        } else {
+            audioRef.current.play();
+        }
+    };
+
+    const resetAudio = useCallback(() => {
+        if (!audioRef.current) return;
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setIsPlaying(false);
+        setCurrentTime(0);
         setCurrentWordIndex(-1);
         setTimepoints([]);
         setSaved(false);
     }, []);
 
-    // Spacebar handler — tap to mark current word's time
+    // Spacebar handler — tap to mark current word's time accurately
     const handleSpacebar = useCallback((e: KeyboardEvent) => {
-        if (e.code !== "Space") return;
+        if (e.code !== "Space" || e.target instanceof HTMLButtonElement) return;
         e.preventDefault();
 
-        if (!isRunning) {
-            startTimer();
+        if (!audioRef.current) return;
+
+        if (!isPlaying) {
+            audioRef.current.play();
             return;
         }
 
         const nextIndex = currentWordIndex + 1;
         if (nextIndex >= words.length) {
-            pauseTimer();
+            audioRef.current.pause();
             return;
         }
 
         setCurrentWordIndex(nextIndex);
+        
+        // Use EXACT audio current time for perfect sync
+        const exactTime = parseFloat(audioRef.current.currentTime.toFixed(2));
+        
         setTimepoints(prev => {
             const updated = [...prev];
-            updated[nextIndex] = { time: parseFloat(elapsedTime.toFixed(2)), word: words[nextIndex] };
+            updated[nextIndex] = { time: exactTime, word: words[nextIndex] };
             return updated;
         });
-    }, [isRunning, currentWordIndex, words, elapsedTime, startTimer, pauseTimer]);
+    }, [isPlaying, currentWordIndex, words]);
 
     useEffect(() => {
         window.addEventListener("keydown", handleSpacebar);
@@ -117,7 +132,7 @@ export default function SongTimingEditor({
             const res = await fetch(`/api/admin/worship/${songId}/timing`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ timepoints }),
+                body: JSON.stringify({ timepoints: timepoints.filter(Boolean) }),
             });
             if (!res.ok) throw new Error("Failed to save");
             setSaved(true);
@@ -138,7 +153,19 @@ export default function SongTimingEditor({
     const progress = words.length > 0 ? (markedCount / words.length) * 100 : 0;
 
     return (
-        <div className="min-h-screen bg-background p-6 space-y-6" dir="rtl">
+        <div className="min-h-[100dvh] bg-background p-6 space-y-6" dir="rtl">
+            {/* Audio Element Hidden */}
+            {audioUrl && (
+                <audio 
+                    ref={audioRef} 
+                    src={audioUrl} 
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
+                    onEnded={() => setIsPlaying(false)}
+                />
+            )}
+
             {/* Header */}
             <div className="flex items-center gap-4">
                 <Link href="/admin/worship" className="p-2 hover:bg-secondary rounded-xl transition">
@@ -150,95 +177,120 @@ export default function SongTimingEditor({
                 </div>
             </div>
 
-            {/* Instructions Banner */}
-            <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex items-start gap-3">
-                <div className="text-2xl">⌨️</div>
-                <div>
-                    <p className="font-bold text-foreground">نحوه استفاده:</p>
-                    <p className="text-sm text-muted-foreground mt-1">
-                        دکمه <kbd className="bg-border/30 border border-border px-2 py-0.5 rounded text-xs font-mono">Space</kbd> را برای شروع تایمر فشار دهید.
-                        سپس با هر بار فشار Space، زمان کلمه بعدی ثبت می‌شود.
-                        در آخر دکمه «ذخیره» را بزنید.
-                    </p>
+            {/* Error Missing Audio */}
+            {!audioUrl && (
+                <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 flex items-center gap-4">
+                    <AlertCircle className="w-8 h-8 text-red-500" />
+                    <div>
+                        <h2 className="text-red-500 font-bold text-lg">خطا: فایل صوتی یافت نشد</h2>
+                        <p className="text-muted-foreground mt-1">این سرود فاقد لینک `audioUrl` می‌باشد. برای استفاده از استودیو کارائوکه، ابتدا باید فایل صوتی این سرود را در صفحه قبل ثبت کنید.</p>
+                    </div>
                 </div>
-            </div>
+            )}
+
+            {/* Instructions Banner */}
+            {audioUrl && (
+                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex items-start gap-3">
+                    <div className="text-2xl">⌨️</div>
+                    <div>
+                        <p className="font-bold text-foreground">نحوه استفاده از استودیو:</p>
+                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                            دکمه <kbd className="bg-border/30 border border-border px-2 py-0.5 rounded text-xs font-mono">Space</kbd> را برای پخش آهنگ فشار دهید.
+                            سپس با هر بار شنیدن کلمه بعدی، دقیقا در همان لحظه مجددا `Space` را فشار دهید تا سینک شود.
+                            در آخر دکمه «ذخیره تایمینگ» را بزنید.
+                        </p>
+                    </div>
+                </div>
+            )}
 
             {/* Timer & Controls */}
-            <div className="bg-card border border-border/20 rounded-2xl p-6">
-                {/* Big Timer Display */}
-                <div className="text-center mb-6">
-                    <div className="text-6xl font-mono font-black text-primary tabular-nums">
-                        {formatTime(elapsedTime)}
+            {audioUrl && (
+                <div className="bg-card border border-border/20 rounded-2xl p-6 shadow-sm">
+                    {/* Big Timer Display */}
+                    <div className="text-center mb-6">
+                        <div className="text-6xl font-mono font-black text-primary tabular-nums tracking-wider drop-shadow-sm">
+                            {formatTime(currentTime)}
+                        </div>
+                        <div className="mt-2 text-sm text-muted-foreground font-medium">
+                            {markedCount} از {words.length} کلمه سینک شد
+                        </div>
+                        {/* Progress bar */}
+                        <div className="mt-4 h-2.5 bg-secondary rounded-full overflow-hidden mx-auto max-w-sm border border-border/30">
+                            <div
+                                className="h-full bg-gradient-to-r from-primary to-blue-500 rounded-full transition-all duration-300"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
                     </div>
-                    <div className="mt-2 text-sm text-muted-foreground">
-                        {markedCount} / {words.length} کلمه ثبت شد
+
+                    {/* Control Buttons */}
+                    <div className="flex items-center justify-center gap-4">
+                        <button
+                            onClick={resetAudio}
+                            className="p-3.5 rounded-xl border border-border/30 hover:bg-secondary transition text-muted-foreground hover:text-foreground"
+                            title="شروع مجدد از صفر"
+                        >
+                            <RotateCcw className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={togglePlay}
+                            className={cn(
+                                "flex items-center gap-2 px-10 py-3.5 rounded-xl font-black text-lg transition-all shadow-lg active:scale-95",
+                                isPlaying 
+                                    ? "bg-rose-500 text-white hover:bg-rose-600 shadow-rose-500/20" 
+                                    : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-primary/20"
+                            )}
+                        >
+                            {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current" />}
+                            {isPlaying ? "توقف" : "پخش"}
+                        </button>
+                        <button
+                            onClick={handleSave}
+                            disabled={isSaving || markedCount === 0}
+                            className="flex items-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-500 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/20"
+                            title="ذخیره روی دیتابیس بیدرنگ"
+                        >
+                            {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : saved ? <CheckCircle className="w-5 h-5" /> : <Save className="w-5 h-5" />}
+                            {saved ? "ذخیره شد!" : "ذخیره"}
+                        </button>
                     </div>
-                    {/* Progress bar */}
-                    <div className="mt-3 h-2 bg-secondary rounded-full overflow-hidden mx-auto max-w-xs">
-                        <div
-                            className="h-full bg-primary rounded-full transition-all duration-300"
-                            style={{ width: `${progress}%` }}
-                        />
-                    </div>
+
+                    <p className="text-center text-xs text-muted-foreground mt-4 opacity-70">
+                        یا <kbd className="bg-border/30 border border-border px-1.5 py-0.5 rounded text-xs font-mono shadow-sm">Space</kbd> برای شروع/ثبت کلمه بعد
+                    </p>
                 </div>
+            )}
 
-                {/* Control Buttons */}
-                <div className="flex items-center justify-center gap-3">
-                    <button
-                        onClick={resetTimer}
-                        className="p-3 rounded-xl border border-border/30 hover:bg-secondary transition"
-                        title="ریست"
-                    >
-                        <RotateCcw className="w-5 h-5" />
-                    </button>
-                    <button
-                        onClick={isRunning ? pauseTimer : startTimer}
-                        className="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition shadow-lg"
-                    >
-                        {isRunning ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                        {isRunning ? "توقف" : "شروع"}
-                    </button>
-                    <button
-                        onClick={handleSave}
-                        disabled={isSaving || markedCount === 0}
-                        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-500 transition disabled:opacity-50"
-                        title="ذخیره"
-                    >
-                        {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-                        {saved ? "ذخیره شد!" : "ذخیره"}
-                    </button>
-                </div>
-
-                <p className="text-center text-xs text-muted-foreground mt-3">
-                    یا <kbd className="bg-border/30 border border-border px-1.5 py-0.5 rounded text-xs font-mono">Space</kbd> برای شروع/ثبت کلمه بعد
-                </p>
-            </div>
-
-            {/* Words Display */}
+            {/* Words Display Grid */}
             {words.length > 0 ? (
-                <div className="bg-card border border-border/20 rounded-2xl p-6">
-                    <h3 className="text-sm font-bold text-muted-foreground mb-4 flex items-center gap-2">
-                        <Music className="w-4 h-4" /> متن سرود
+                <div className="bg-card border border-border/20 rounded-2xl p-8 shadow-sm">
+                    <h3 className="text-sm font-bold text-muted-foreground mb-6 flex items-center gap-2">
+                        <Music className="w-4 h-4 text-primary" /> متن سرود
                     </h3>
-                    <div className="flex flex-wrap gap-2 text-xl leading-loose font-[Vazirmatn]">
+                    <div className="flex flex-wrap gap-2.5 text-[1.4rem] leading-loose font-[Vazirmatn]">
                         {words.map((word, i) => {
                             const isCurrent = i === currentWordIndex;
                             const isMarked = timepoints[i] !== undefined;
-                            const isPast = i < currentWordIndex;
 
                             return (
                                 <span
                                     key={i}
-                                    className={`inline-block px-2 py-1 rounded-xl transition-all duration-200 cursor-default
-                                        ${isCurrent ? "bg-primary text-primary-foreground scale-125 shadow-lg font-bold" : ""}
-                                        ${isMarked && !isCurrent ? "bg-primary/20 text-primary" : ""}
-                                        ${!isMarked && !isCurrent ? "bg-secondary/50 text-muted-foreground" : ""}
-                                    `}
+                                    className={cn(
+                                        "inline-block px-3 py-1.5 rounded-xl transition-all duration-200 cursor-default select-none border",
+                                        isCurrent && "bg-primary text-primary-foreground scale-110 shadow-lg font-black border-primary translate-y-[-2px]",
+                                        isMarked && !isCurrent && "bg-primary/10 text-primary font-bold border-primary/20",
+                                        !isMarked && !isCurrent && "bg-secondary/40 text-muted-foreground border-transparent hover:bg-secondary/80"
+                                    )}
                                     title={timepoints[i] ? `${timepoints[i].time}s` : ""}
                                 >
                                     {word}
                                     {timepoints[i] && (
-                                        <span className="block text-[9px] text-center opacity-60 font-mono">{timepoints[i].time}s</span>
+                                        <span className={cn(
+                                            "block text-[10px] text-center font-mono mt-0.5 tracking-wider",
+                                            isCurrent ? "opacity-90" : "opacity-50"
+                                        )}>
+                                            {timepoints[i].time.toFixed(1)}s
+                                        </span>
                                     )}
                                 </span>
                             );
@@ -255,9 +307,9 @@ export default function SongTimingEditor({
 
             {/* Timepoints Preview */}
             {timepoints.length > 0 && (
-                <div className="bg-card border border-border/20 rounded-2xl p-6">
-                    <h3 className="text-sm font-bold text-muted-foreground mb-3">پیش‌نمایش JSON تایمینگ</h3>
-                    <pre className="text-xs bg-secondary/50 rounded-xl p-4 overflow-auto max-h-48 font-mono text-left" dir="ltr">
+                <div className="bg-card border border-border/20 rounded-2xl p-6 transition-all">
+                    <h3 className="text-sm font-bold text-muted-foreground mb-3">پیش‌نمایش JSON دیتابیس</h3>
+                    <pre className="text-xs bg-black/50 text-emerald-400 rounded-xl p-4 overflow-auto max-h-48 font-mono text-left border border-white/5 shadow-inner" dir="ltr">
                         {JSON.stringify(timepoints.filter(Boolean), null, 2)}
                     </pre>
                 </div>

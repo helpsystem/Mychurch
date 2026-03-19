@@ -93,8 +93,9 @@ export interface AuthContextType {
   hasRole: (role: UserRole) => boolean;
   login: (email: string, password: string) => Promise<User | null>;
   adminLogin: (email: string, password: string) => Promise<User | null>;
-  signup: (name: string, email: string, password: string) => Promise<void>;
+  signup: (name: string, email: string, password: string, phone?: string, captchaToken?: string, website?: string) => Promise<void>;
   verifyEmail: (token: string) => Promise<User | null>;
+  verifyOtp: (email: string, token: string) => Promise<User | null>;
   logout: () => void;
   loading: boolean;
   getUsers: () => Promise<User[]>;

@@ -125,6 +125,39 @@
       0 0 18px color-mix(in srgb, var(--ring) 45%, transparent),
       0 0 28px color-mix(in srgb, var(--primary) 30%, transparent);
   }
+
+  .cyberpunk-gradient {
+    background: linear-gradient(135deg, 
+      color-mix(in srgb, var(--primary) 20%, #000) 0%, 
+      #09090b 50%, 
+      color-mix(in srgb, var(--secondary) 20%, #000) 100%
+    );
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 @keyframes spotlight {

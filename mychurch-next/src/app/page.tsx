@@ -12,6 +12,9 @@ import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { WorldClock } from "@/components/ui/WorldClock";
 import { PageVisuals } from "@/components/ui/PageVisuals";
+import { Vortex } from "@/components/ui/aceternity/vortex";
+import { Spotlight } from "@/components/ui/Spotlight";
+import { FloatingNav } from "@/components/ui/aceternity/floating-nav";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -20,15 +23,19 @@ export default function HomePage() {
     <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
 
       <PageVisuals />
+      <FloatingNav />
 
       <div className="relative z-10 flex-1 flex flex-col">
 
         {/* Unified Navigation Bar */}
         <PublicHeader />
 
-        <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[70vh]">
-          <div className="max-w-3xl space-y-6 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-semibold tracking-widest uppercase shadow-inner">
+        <div className="w-full relative overflow-hidden">
+          <Vortex particleCount={250} className="w-full flex items-center justify-center">
+            <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[85vh]">
+              <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="currentColor" />
+              <div className="max-w-3xl space-y-6 animate-fade-in-up relative z-10 bg-background/40 dark:bg-black/40 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/30 text-sm font-semibold tracking-widest uppercase shadow-inner">
               <Globe className="w-4 h-4" />
               {t.heroTitle}
             </div>
@@ -51,11 +58,13 @@ export default function HomePage() {
                 {t.bible}
               </Link>
             </div>
-          </div>
-        </header>
+            </div>
+          </header>
+        </Vortex>
+      </div>
 
-        {/* Quick Access Grid */}
-        <section className="px-6 lg:px-12 max-w-7xl mx-auto pb-24">
+      {/* Quick Access Grid */}
+      <section className="px-6 lg:px-12 max-w-7xl mx-auto pb-24 relative z-10">
           {/* Section Header */}
           <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
             <div className="w-3 h-10 bg-primary rounded-full shadow-lg shadow-primary/20" />

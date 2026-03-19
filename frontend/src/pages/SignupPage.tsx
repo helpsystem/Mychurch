@@ -17,10 +17,13 @@ const SignupPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [phone, setPhone] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [signupSuccess, setSignupSuccess] = useState(false);
+  const [showOtp, setShowOtp] = useState(false);
+  const [otp, setOtp] = useState('');
   
   // Anti-spam state
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -28,7 +31,7 @@ const SignupPage: React.FC = () => {
   const [honeypotValue, setHoneypotValue] = useState('');
   const [rateLimited, setRateLimited] = useState(false);
 
-  const { signup, loading } = useAuth();
+  const { signup, verifyOtp, loading } = useAuth();
   const { t, lang } = useLanguage();
   const navigate = useNavigate();
 
@@ -85,9 +88,8 @@ const SignupPage: React.FC = () => {
     }
     
     try {
-      // @ts-ignore - Fix signup parameter mismatch later
-      await signup(name.trim(), email.toLowerCase(), password, captchaToken, honeypotValue);
-      setSignupSuccess(true);
+      await signup(name.trim(), email.toLowerCase(), password, phone.trim(), captchaToken, honeypotValue);
+      setShowOtp(true);
     } catch (err: any) {
       const errorData = err.response?.data;
       
@@ -123,6 +125,23 @@ const SignupPage: React.FC = () => {
     }
   };
 
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
+    if (!verifyOtp) {
+       setError("System error: OTP verification handler missing.");
+       return;
+    }
+
+    try {
+      await verifyOtp(email.toLowerCase(), otp);
+      setSignupSuccess(true);
+    } catch (err: any) {
+      setError(err.message || "Invalid verification code.");
+    }
+  };
+
   const inputStyles = "w-full px-3 py-2 text-white bg-transparent border-b-2 border-white/50 focus:border-white transition-colors duration-300 ease-in-out outline-none placeholder:text-gray-400";
 
   return (
@@ -151,6 +170,46 @@ const SignupPage: React.FC = () => {
                             {t('goToLogin')}
                         </Link>
                   </div>
+                ) : showOtp ? (
+                   <div className="text-center">
+                     <h1 className="text-3xl font-bold mb-4">{t('verifyEmailTitle') || 'Verify Your Account'}</h1>
+                     <p className="text-dimWhite mb-6">
+                        {t('verifyEmailDescription') || 'We sent a 6-digit verification code to your email. Please enter it below.'}
+                     </p>
+                     
+                     <form onSubmit={handleVerifyOtp} className="space-y-6">
+                        <div>
+                           <label htmlFor="otp" className="block text-sm font-medium text-dimWhite mb-1">
+                              Verification Code
+                           </label>
+                           <input
+                             id="otp"
+                             type="text"
+                             value={otp}
+                             onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                             required
+                             placeholder="123456"
+                             className={`${inputStyles} text-center tracking-widest text-2xl font-mono`}
+                             dir="ltr"
+                           />
+                        </div>
+
+                        {error && (
+                           <div className="text-sm text-center p-3 rounded-md flex items-center gap-2 text-red-400 bg-red-900/20">
+                               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+                               <p className="break-words">{error}</p>
+                           </div>
+                        )}
+
+                        <button
+                          type="submit"
+                          disabled={loading || otp.length < 6}
+                          className="w-full flex justify-center py-3 px-4 font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none disabled:opacity-50 transition-opacity"
+                        >
+                          {loading ? <Spinner size="5" /> : (t('verifyButton') || 'Verify Account')}
+                        </button>
+                     </form>
+                   </div>
                 ) : (
                   <>
                     <div className="text-center mb-6">
@@ -179,6 +238,17 @@ const SignupPage: React.FC = () => {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
+                          className={inputStyles}
+                          dir="ltr"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-dimWhite mb-1">{t('phone') || 'Phone Number'}</label>
+                        <input
+                          id="phone"
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
                           className={inputStyles}
                           dir="ltr"
                         />

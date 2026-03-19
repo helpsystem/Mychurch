@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { getPresentations } from "@/actions/presentations";
+import { BroadcastSession } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { cn } from "@/lib/utils";
 import { PageVisuals } from "@/components/ui/PageVisuals";
@@ -19,7 +21,32 @@ export default function LiveConsole() {
     const { t } = useLanguage();
     const isLive = useBroadcastStore(state => state.isLive);
     const setIsLive = useBroadcastStore(state => state.setIsLive);
+    const setSlides = useBroadcastStore(state => state.setSlides);
+    const setSessionId = useBroadcastStore(state => state.setSessionId);
     const { initRemoteSync, disconnectSync, isConnected } = useBroadcastStore();
+
+    const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
+    const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
+    const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
+
+    const handleOpenLoadModal = async () => {
+        setIsLoadModalOpen(true);
+        setIsLoadingSessions(true);
+        try {
+            const sessions = await getPresentations();
+            setSavedSessions(sessions);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setIsLoadingSessions(false);
+        }
+    };
+
+    const handleLoadSession = (session: BroadcastSession) => {
+        setSessionId(session.id);
+        setSlides(session.slides);
+        setIsLoadModalOpen(false);
+    };
 
     useEffect(() => {
         // Automatically start listening for Remote Control (iPad) commands via Supabase Realtime
@@ -101,12 +128,63 @@ export default function LiveConsole() {
                         <Link href="/broadcast/builder" className="px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20" title="Builder">
                             <Edit3 className="w-4 h-4" /> {t.slideBuilder || 'Slide Builder'}
                         </Link>
+                        <button onClick={handleOpenLoadModal} className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm">
+                            <CloudDownload className="w-4 h-4" /> Cloud Load
+                        </button>
                     </div>
                 </main>
 
                 {/* Right Panel */}
                 <BroadcastProperties />
             </div>
+
+            {/* Cloud Load Modal */}
+            {isLoadModalOpen && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-neutral-900 border border-border/10 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[80vh] font-[Vazirmatn]">
+                        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/20">
+                            <h2 className="text-xl font-bold flex items-center gap-2"><CloudDownload className="text-indigo-500" /> Load Presentation</h2>
+                            <button onClick={() => setIsLoadModalOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X className="w-5 h-5" /></button>
+                        </div>
+                        <div className="p-6 overflow-y-auto flex-1">
+                            {isLoadingSessions ? (
+                                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                                    <Loader2 className="w-8 h-8 animate-spin mb-4 text-indigo-500" />
+                                    Loading from PostgreSQL...
+                                </div>
+                            ) : savedSessions.length === 0 ? (
+                                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground text-center">
+                                    <FileJson className="w-12 h-12 mb-4 opacity-20" />
+                                    <p>No saved presentations found.</p>
+                                    <p className="text-sm">Create one in the Slide Builder first.</p>
+                                </div>
+                            ) : (
+                                <div className="grid gap-4">
+                                    {savedSessions.map(session => (
+                                        <button 
+                                            key={session.id} 
+                                            onClick={() => handleLoadSession(session)}
+                                            className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-all text-left group"
+                                        >
+                                            <div>
+                                                <h3 className="font-bold text-lg text-white group-hover:text-indigo-400 transition-colors">{session.title}</h3>
+                                                <p className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
+                                                    <span>{new Date(session.date).toLocaleDateString()}</span>
+                                                    <span>•</span>
+                                                    <span>{session.slides?.length || 0} Slides</span>
+                                                </p>
+                                            </div>
+                                            <div className="text-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <Play className="w-6 h-6" />
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

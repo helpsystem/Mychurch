@@ -153,18 +153,18 @@ const LeaderCardHome: React.FC<{ leader: Leader }> = ({ leader }) => {
     : (leader.bio?.[lang] || '');
 
   const imageUrl = leader.imageUrl || DEFAULT_AVATAR_URL;
-  const leaderName = leader.name?.[lang] || leader.name || 'Unknown';
-  const leaderTitle = leader.title?.[lang] || leader.title || '';
+  const leaderName = typeof leader.name === 'string' ? leader.name : (leader.name as any)?.[lang] || 'Unknown';
+  const leaderTitle = typeof leader.title === 'string' ? leader.title : (leader.title as any)?.[lang] || '';
 
   return (
-    <div className="flex flex-col p-6 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 feature-card interactive-card-glow hover:scale-105 transition-all duration-300">
+    <div className="flex flex-col p-6 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 glass interactive-card-glow hover:scale-105 transition-all duration-300">
       <div className="w-full h-60 mb-4 rounded-[10px] overflow-hidden image-container relative group">
         <img src={imageUrl} alt="" className="image-background" aria-hidden="true" />
         <img src={imageUrl} alt={leaderName} className="image-foreground" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      <h4 className={`font-semibold text-white text-[20px] leading-[32px] mb-1 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{typeof leaderName === 'string' ? leaderName : (leaderName as any)[lang] || 'Unknown'}</h4>
-      <p className={`font-normal text-secondary text-[16px] leading-[24px] mb-4 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{typeof leaderTitle === 'string' ? leaderTitle : (leaderTitle as any)[lang] || ''}</p>
+      <h4 className={`font-semibold text-white text-[20px] leading-[32px] mb-1 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leaderName}</h4>
+      <p className={`font-normal text-secondary text-[16px] leading-[24px] mb-4 ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{leaderTitle}</p>
       <p className={`font-normal text-dimWhite text-[16px] leading-[24px] mb-4 flex-grow ${lang === 'fa' ? 'text-right' : 'text-left'}`}>{shortBio || t('noDescription')}</p>
       <Link to="/leaders" className="text-secondary hover:text-white font-semibold mt-auto inline-flex items-center gap-2 group">
         {t('viewProfile')}
@@ -194,7 +194,7 @@ const LeadersSection: React.FC = () => {
   if (leaders.length === 0) {
     return (
       <section className="sm:py-16 py-6 flex justify-center items-center flex-col relative reveal-on-scroll">
-        <div className="w-full flex flex-col items-center justify-center p-8 glass-card rounded-[20px]">
+        <div className="w-full flex flex-col items-center justify-center p-8 glass rounded-[20px]">
           <Users className="w-16 h-16 text-dimWhite mb-4" />
           <p className="text-dimWhite text-lg text-center">
             {lang === 'fa' ? 'اطلاعات رهبران در حال حاضر در دسترس نیست' : 'Leader information is currently unavailable'}
@@ -250,7 +250,7 @@ const Stats: React.FC = () => {
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
-          <div key={stat.id} className={`flex-1 flex justify-start items-center flex-col m-3 glass-card hover:scale-105 transition-all duration-300`}>
+          <div key={stat.id} className={`flex-1 flex justify-start items-center flex-col p-6 m-3 glass rounded-[20px] hover:scale-105 transition-all duration-300`}>
             <div className="w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-secondary to-blue-400 flex items-center justify-center pulse-animation">
               <Icon className="w-8 h-8 text-black" />
             </div>
@@ -305,7 +305,7 @@ const SmartCountdown: React.FC = () => {
 
   return (
     <div className="flex justify-center w-full mb-10 z-20 relative">
-      <div className="glass-card flex items-center gap-6 py-4 px-8 rounded-full border border-secondary/30 shadow-[0_0_30px_rgba(0,246,255,0.15)] animate-fade-in-up delay-100">
+      <div className="glass flex items-center gap-6 py-4 px-8 rounded-full border border-secondary/30 shadow-[0_0_30px_rgba(0,246,255,0.15)] animate-fade-in-up delay-100">
         <div className="flex items-center gap-3">
           <Clock className="w-6 h-6 text-secondary animate-pulse" />
           <span className="text-white font-medium whitespace-nowrap">
@@ -486,7 +486,7 @@ const HomePage: React.FC = () => {
             {/* Quick Access Cards */}
             <section className="sm:py-16 py-6 reveal-on-scroll">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Link to="/bible" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                <Link to="/bible" className="group glass p-6 rounded-[20px] interactive-card-glow text-center hover:scale-105 transition-all duration-300">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
                     <Book className="w-8 h-8 text-white" />
                   </div>
@@ -494,7 +494,7 @@ const HomePage: React.FC = () => {
                   <p className="text-dimWhite text-sm">{lang === 'fa' ? 'خواندن و مطالعه کلام خدا' : 'Read and study God\'s Word'}</p>
                 </Link>
 
-                <Link to="/sermons" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                <Link to="/sermons" className="group glass p-6 rounded-[20px] interactive-card-glow text-center hover:scale-105 transition-all duration-300">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
                     <MessageCircle className="w-8 h-8 text-white" />
                   </div>
@@ -502,7 +502,7 @@ const HomePage: React.FC = () => {
                   <p className="text-dimWhite text-sm">{lang === 'fa' ? 'گوش دادن به موعظه‌های هفتگی' : 'Listen to weekly messages'}</p>
                 </Link>
 
-                <Link to="/events" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                <Link to="/events" className="group glass p-6 rounded-[20px] interactive-card-glow text-center hover:scale-105 transition-all duration-300">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
                     <Calendar className="w-8 h-8 text-white" />
                   </div>
@@ -510,7 +510,7 @@ const HomePage: React.FC = () => {
                   <p className="text-dimWhite text-sm">{lang === 'fa' ? 'برنامه‌های کلیسا و رویدادها' : 'Church programs and events'}</p>
                 </Link>
 
-                <Link to="/prayer-requests" className="group glass-card interactive-card-glow text-center hover:scale-105 transition-all duration-300">
+                <Link to="/prayer-requests" className="group glass p-6 rounded-[20px] interactive-card-glow text-center hover:scale-105 transition-all duration-300">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center group-hover:rotate-12 transition-transform">
                     <Heart className="w-8 h-8 text-white" />
                   </div>
@@ -570,7 +570,7 @@ const HomePage: React.FC = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Feature 1 */}
-                <div className="glass-card p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
+                <div className="glass p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
                     <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 text-blue-400 group-hover:scale-110 transition-transform">
                         <MessageCircle className="w-7 h-7" />
                     </div>
@@ -585,7 +585,7 @@ const HomePage: React.FC = () => {
                 </div>
 
                 {/* Feature 2 */}
-                <div className="glass-card p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
+                <div className="glass p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
                     <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 text-purple-400 group-hover:scale-110 transition-transform">
                         <Music className="w-7 h-7" />
                     </div>
@@ -600,7 +600,7 @@ const HomePage: React.FC = () => {
                 </div>
 
                 {/* Feature 3 */}
-                <div className="glass-card p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
+                <div className="glass p-6 rounded-[20px] hover:bg-white/5 transition-all duration-300 border border-white/10 group">
                     <div className="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center mb-4 text-green-400 group-hover:scale-110 transition-transform">
                         <Book className="w-7 h-7" />
                     </div>
@@ -714,7 +714,7 @@ const HomePage: React.FC = () => {
             <section className="flex md:flex-row flex-col sm:py-16 py-6 reveal-on-scroll gap-10">
               
               {/* Latest Sermon Player */}
-              <div className="flex-[1.5] w-full glass-card p-8 rounded-2xl relative overflow-hidden group border border-white/10 hover:border-white/30 transition-all duration-500">
+              <div className="flex-[1.5] w-full glass p-8 rounded-2xl relative overflow-hidden group hover:border-white/30 transition-all duration-500">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
                 
                 <h2 className="font-semibold xs:text-[40px] text-[32px] text-white leading-tight mb-2">
@@ -752,7 +752,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Interactive Prayer Snippet */}
-              <div className="flex-1 w-full glass-card p-8 rounded-2xl border border-white/10 relative overflow-hidden">
+              <div className="flex-1 w-full glass p-8 rounded-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl"></div>
                 
                 <div className="flex items-center gap-3 mb-6 relative z-10">

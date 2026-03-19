@@ -6,10 +6,12 @@ import { useReactToPrint } from "react-to-print";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { emailDocument } from "@/actions/documentMailer";
+import { toast } from "sonner";
 import {
   FileText, Printer, Plus, Building2, CreditCard, Package,
   FileSignature, Check, DollarSign, X, Settings, Wand2,
-  Languages, Loader2, Sparkles, Hash, ChevronDown, Save,
+  Languages, Loader2, Sparkles, Hash, ChevronDown, Save, Send,
   Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy
 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";

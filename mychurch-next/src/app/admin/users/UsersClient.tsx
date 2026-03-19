@@ -111,8 +111,9 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                 </button>
             </div>
 
-            <div className="bg-neutral-900 border border-border/10 rounded-2xl overflow-hidden shadow-sm">
-                <div className="p-4 border-b border-border/10 flex items-center gap-4 bg-neutral-950/50">
+            <div className="glass-strong border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
+                <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" />
+                <div className="p-4 border-b border-white/10 flex items-center gap-4 bg-black/20 relative z-10">
                     <div className="relative flex-1 max-w-sm">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <input
@@ -125,10 +126,10 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto relative z-10">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-neutral-950 border-b border-border/10">
+                            <tr className="bg-black/20 border-b border-white/10">
                                 <th className="px-6 py-4 text-xs font-bold text-muted-foreground uppercase tracking-wider">User</th>
                                 <th className="px-6 py-4 text-xs font-bold text-muted-foreground uppercase tracking-wider">Role</th>
                                 <th className="px-6 py-4 text-xs font-bold text-muted-foreground uppercase tracking-wider">Permissions</th>
@@ -232,10 +233,11 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
 
             {/* Granular Permissions Modal */}
             {permissionsModalUserId && activeUser && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <div className="bg-neutral-900 border border-border/10 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+                    <div className="glass-strong border border-white/10 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] relative">
+                        <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" />
                         {/* Modal Header */}
-                        <div className="p-6 border-b border-border/10 flex justify-between items-start bg-neutral-950/50">
+                        <div className="p-6 border-b border-white/10 flex justify-between items-start bg-black/20 relative z-10">
                             <div className="flex gap-4 items-center">
                                 <div className="w-14 h-14 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-xl text-primary border border-border/10 shadow-inner">
                                     {(activeUser.name || "?").charAt(0)}
@@ -254,7 +256,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                         </div>
 
                         {/* Modal Body */}
-                        <div className="p-6 overflow-y-auto custom-scrollbar flex-1 relative">
+                        <div className="p-6 overflow-y-auto custom-scrollbar flex-1 relative z-10">
                             <div className="mb-6 flex items-center justify-between">
                                 <div>
                                     <h4 className="text-sm font-bold text-foreground">Granular Access Control</h4>
@@ -289,10 +291,10 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                         </div>
 
                         {/* Modal Footer */}
-                        <div className="p-6 border-t border-border/10 bg-neutral-950/50 flex justify-end gap-3">
+                        <div className="p-6 border-t border-white/10 bg-black/30 flex justify-end gap-3 relative z-10">
                             <button
                                 onClick={() => setPermissionsModalUserId(null)}
-                                className="px-6 py-2.5 rounded-xl font-bold bg-neutral-800 hover:bg-neutral-700 text-white transition"
+                                className="px-6 py-2.5 rounded-xl font-bold hover:bg-white/5 text-white transition"
                             >
                                 Cancel
                             </button>
@@ -315,9 +317,10 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
 
             {/* Invite User Modal */}
             {showInviteModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <div className="bg-neutral-900 border border-border/10 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl">
-                        <div className="p-6 border-b border-border/10 flex justify-between items-center bg-neutral-950/50">
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+                    <div className="glass-strong border border-white/10 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl relative">
+                        <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" />
+                        <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/20 relative z-10">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
                                     <UserPlus className="w-5 h-5 text-blue-400" />
@@ -332,7 +335,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                             </button>
                         </div>
 
-                        <form onSubmit={handleInvite} className="p-6 space-y-4">
+                        <form onSubmit={handleInvite} className="p-6 space-y-4 relative z-10">
                             {inviteSuccess && (
                                 <div className="flex items-center gap-2 p-3 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-bold">
                                     <Check className="w-4 h-4" /> {inviteSuccess}

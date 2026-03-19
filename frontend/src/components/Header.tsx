@@ -35,7 +35,7 @@ const InvitationsDropdown = ({ onClose }: { onClose: () => void }) => {
     }, [onClose]);
 
     return (
-        <div ref={dropdownRef} className="absolute top-full mt-2 right-0 w-72 bg-black-gradient border border-gray-700 rounded-lg shadow-lg z-50 p-4">
+        <div ref={dropdownRef} className="absolute top-full mt-2 right-0 w-72 glass-strong rounded-lg shadow-lg z-50 p-4">
             <h3 className="text-white font-semibold mb-2">{t('notifications')}</h3>
             <div className="space-y-2">
                 {pendingInvites.length > 0 ? (
@@ -85,7 +85,7 @@ const NavDropdown = ({ title, children, isMega = false }: { title: string; child
             </button>
             {isOpen && (
                 <div 
-                    className={`absolute mt-0 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl z-50 transform origin-top transition-all duration-200 ease-out ${isMega ? 'left-1/2 -translate-x-1/2 w-[600px] p-6' : 'top-full w-56 flex flex-col p-2'}`}
+                    className={`absolute mt-0 glass-strong border border-white/10 rounded-xl shadow-2xl z-50 transform origin-top transition-all duration-200 ease-out ${isMega ? 'left-1/2 -translate-x-1/2 w-[600px] p-6' : 'top-full w-56 flex flex-col p-2'}`}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
@@ -165,7 +165,7 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
 
             {/* Mobile Menu Sidebar */}
             <div 
-                className={`fixed inset-0 bg-primary z-50 p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : (lang === 'fa' ? 'translate-x-full' : '-translate-x-full')}`}
+                className={`fixed inset-0 glass-strong bg-black/90 z-50 p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : (lang === 'fa' ? 'translate-x-full' : '-translate-x-full')}`}
                 style={{ touchAction: isMenuOpen ? 'auto' : 'none', pointerEvents: isMenuOpen ? 'auto' : 'none' }}
             >
                 <div className="flex justify-between items-center mb-8">
@@ -381,8 +381,8 @@ const Header = ({ onOpenVerseModal }: { onOpenVerseModal: () => void }) => {
                                     <img src={getProfilePictureUrl(user)} alt="profile" className="w-8 h-8 rounded-full object-cover border-2 border-dimWhite" />
                                 </button>
                                 {isProfileOpen && (
-                                    <div className="absolute top-full mt-2 right-0 w-48 bg-black-gradient border border-gray-700 rounded-lg shadow-lg z-50 py-2">
-                                        <Link to="/profile" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-2 text-dimWhite hover:bg-gray-800 hover:text-white"><UserIcon size={16} /> {t('profile')}</Link>
+                                    <div className="absolute top-full mt-2 right-0 w-48 glass-strong rounded-lg shadow-lg z-50 py-2">
+                                        <Link to="/profile" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-2 text-dimWhite hover:bg-white/10 hover:text-white"><UserIcon size={16} /> {t('profile')}</Link>
                                         {(user?.role === 'SUPER_ADMIN' || user?.role === 'MANAGER') && (
                                             <Link to="/admin" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-2 text-dimWhite hover:bg-gray-800 hover:text-white"><LayoutDashboard size={16} /> {t('dashboard')}</Link>
                                         )}

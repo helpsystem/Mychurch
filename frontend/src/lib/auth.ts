@@ -1,40 +1,154 @@
 import { api } from './api';
 import { User, UserRole, BillingInfo, CreditCard, ProfileData, ActivityLog, Language } from '../types';
 import { getAuthToken, removeToken } from './tokenManager';
+import { supabase } from './supabaseClient'; // Ensure supabase client is imported
 
-// All paths have been reviewed and corrected to ensure they point to the correct backend endpoints.
+// -----------------------------------------------------
+// SUPABASE AUTHENTICATION INTEGRATION (New Option A Flow)
+// -----------------------------------------------------
 
-export const signup = async (signupData: { name: string; email: string; password: string; captchaToken?: string; website?: string; }): Promise<void> => {
-    await api.post('/api/auth/signup', signupData);
+/**
+ * Sign up a new user using Supabase Auth.
+ * Captures email, password, name, and phone.
+ */
+export const signup = async (signupData: { name: string; email: string; password: string; phone?: string; captchaToken?: string; website?: string; }): Promise<void> => {
+    const { data, error } = await supabase.auth.signUp({
+        email: signupData.email,
+        password: signupData.password,
+        options: {
+            data: {
+                full_name: signupData.name, // Save name in metadata
+                phone: signupData.phone,    // Save phone in metadata
+            }
+        }
+    });
+
+    if (error) {
+        throw new Error(error.message);
+    }
+    
+    // Note: User is not fully signed in until they verify OTP.
+};
+
+/**
+ * Verify OTP sent to the user's email during signup.
+ */
+export const verifyOtp = async (email: string, token: string): Promise<{ user: User, token: string }> => {
+    const { data, error } = await supabase.auth.verifyOtp({
+        email,
+        token,
+        type: 'signup' // or 'email' depending on Supabase configuration
+    });
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    if (!data.session) {
+        throw new Error("Verification succeeded, but no session returned.");
+    }
+
+    if (!data.user) {
+        throw new Error("Verification succeeded, but no user data returned.");
+    }
+
+    // Adapt Supabase user to our internal User format for the context
+    const user: User = {
+        email: data.user.email || '',
+        id: data.user.id,
+        role: 'USER', // Default mapping
+        roles: ['USER'],
+        permissions: [],
+        profileData: {
+            name: data.user.user_metadata?.full_name || '',
+            phone: data.user.user_metadata?.phone || '',
+            billingInfo: { name: '', company: '', email: '', vat: '' },
+            creditCards: []
+        }
+    };
+    
+    return { user, token: data.session.access_token };
 };
 
 export const verifyEmail = async (token: string): Promise<{ user: User, token: string }> => {
+    // This was the old magic link method. If magic links are still used somewhere, keep this.
+    // Otherwise it could be removed in favor of verifyOtp.
     return api.post('/api/auth/verify-email', { token });
 };
 
+/**
+ * Log in an existing user using Supabase Auth.
+ */
 export const login = async (loginData: { email: string; password: string; }): Promise<{ user: User, token: string }> => {
-    return api.post('/api/auth/login', loginData);
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email: loginData.email,
+        password: loginData.password,
+    });
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    if (!data.session) {
+        throw new Error("Login succeeded, but no session returned.");
+    }
+
+    if (!data.user) {
+        throw new Error("Login succeeded, but no user data returned.");
+    }
+
+    // Fetch user details from our public.users table or adapt from metadata
+    // For now, mapping from metadata to match expected signature:
+    const user: User = {
+        email: data.user.email || '',
+        id: data.user.id,
+        role: 'USER',
+        roles: ['USER'],
+        permissions: [],
+        profileData: {
+             name: data.user.user_metadata?.full_name || '',
+             phone: data.user.user_metadata?.phone || '',
+             billingInfo: { name: '', company: '', email: '', vat: '' },
+             creditCards: []
+        }
+    };
+
+    return { user, token: data.session.access_token };
 };
 
 export const adminLogin = async (loginData: { email: string; password: string; }): Promise<{ user: User, token: string }> => {
     return api.post('/api/auth/admin-login', loginData);
 };
 
-export const logout = () => {
+export const logout = async () => {
+    await supabase.auth.signOut();
     removeToken();
 };
 
 export const fetchCurrentUser = async (): Promise<User | null> => {
-    const token = getAuthToken();
-    if (!token) return null;
-    try {
-        const data = await api.get<{ user: User }>('/api/auth/me');
-        return data.user;
-    } catch (error) {
-        console.error("Failed to fetch current user, token might be invalid.", error);
+    const { data: { session }, error } = await supabase.auth.getSession();
+    
+    if (error || !session) {
         removeToken();
         return null;
     }
+
+    const { user: supaUser } = session;
+
+    const user: User = {
+        email: supaUser.email || '',
+        id: supaUser.id,
+        role: 'USER',
+        roles: ['USER'],
+        permissions: [],
+        profileData: {
+             name: supaUser.user_metadata?.full_name || '',
+             phone: supaUser.user_metadata?.phone || '',
+             billingInfo: { name: '', company: '', email: '', vat: '' },
+             creditCards: []
+        }
+    };
+    return user;
 };
 
 export const getUsers = async (): Promise<User[]> => {

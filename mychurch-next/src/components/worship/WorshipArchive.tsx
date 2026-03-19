@@ -54,11 +54,11 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
   });
 
   const playSong = useCallback((song: WorshipSong, playlist: WorshipSong[]) => {
-    if (!song.audioUrl) return;
+    if (!song.audio_url) return;
     const index = playlist.findIndex(s => s.id === song.id);
     setPlayer(p => ({ ...p, song, index, playlist, isPlaying: true, progress: 0 }));
     if (audioRef.current) {
-      audioRef.current.src = song.audioUrl;
+      audioRef.current.src = song.audio_url;
       audioRef.current.play().catch(console.error);
     }
   }, []);
@@ -85,7 +85,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
   }, [player, playSong]);
 
   const playAll = (shuffle = false) => {
-    const songs = [...filteredSongs].filter(s => s.audioUrl);
+    const songs = [...filteredSongs].filter(s => s.audio_url);
     if (!songs.length) return;
     const list = shuffle ? songs.sort(() => Math.random() - 0.5) : songs;
     playSong(list[0], list);
@@ -95,7 +95,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
   const alphabet = useMemo(() => {
     const letters = new Set<string>();
     initialSongs.forEach(song => {
-      const c = song.title.fa.trim().charAt(0);
+      const c = song.title_fa?.trim().charAt(0);
       if (c) letters.add(c);
     });
     return Array.from(letters).sort();
@@ -112,12 +112,12 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(s =>
-        s.title.fa.includes(searchQuery) ||
-        s.title.en?.toLowerCase().includes(q) ||
+        s.title_fa?.includes(searchQuery) ||
+        s.title_en?.toLowerCase().includes(q) ||
         s.artist?.toLowerCase().includes(q)
       );
     } else {
-      if (selectedAlphabet) result = result.filter(s => s.title.fa.trim().startsWith(selectedAlphabet));
+      if (selectedAlphabet) result = result.filter(s => s.title_fa?.trim().startsWith(selectedAlphabet));
       if (selectedArtist !== "all") result = result.filter(s => s.artist === selectedArtist);
     }
     return result;
@@ -319,14 +319,14 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
             <div className="flex items-center gap-3">
               {/* Thumbnail */}
               <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-primary/30 to-blue-600/30 shrink-0 flex items-center justify-center">
-                {player.song.youtubeId
-                  ? <img src={`https://img.youtube.com/vi/${player.song.youtubeId}/default.jpg`} alt="" className="w-full h-full object-cover" />
+                {player.song.youtube_id
+                  ? <img src={`https://img.youtube.com/vi/${player.song.youtube_id}/default.jpg`} alt="" className="w-full h-full object-cover" />
                   : <Music className="w-5 h-5 text-primary/80" />}
               </div>
 
               {/* Song Info */}
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm truncate" dir="rtl">{player.song.title.fa}</p>
+                <p className="font-bold text-sm truncate" dir="rtl">{player.song.title_fa}</p>
                 <p className="text-xs text-muted-foreground truncate">{player.song.artist}</p>
               </div>
 
@@ -384,14 +384,14 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }
 
       {/* Thumbnail */}
       <div className="w-full h-36 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 overflow-hidden relative flex flex-col justify-end p-4 border border-border/30">
-        {song.youtubeId && (
-          <img src={`https://img.youtube.com/vi/${song.youtubeId}/hqdefault.jpg`} alt=""
+        {song.youtube_id && (
+          <img src={`https://img.youtube.com/vi/${song.youtube_id}/hqdefault.jpg`} alt=""
             className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-        <h3 className="relative font-bold text-lg text-foreground truncate drop-shadow-md" dir="rtl">{song.title.fa}</h3>
-        {song.title.en && <p className="relative text-xs text-muted-foreground/80 mt-0.5">{song.title.en}</p>}
+        <h3 className="relative font-bold text-lg text-foreground truncate drop-shadow-md" dir="rtl">{song.title_fa}</h3>
+        {song.title_en && <p className="relative text-xs text-muted-foreground/80 mt-0.5">{song.title_en}</p>}
       </div>
 
       {/* Artist */}
@@ -402,7 +402,7 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }
 
       {/* Actions */}
       <div className="flex items-center gap-2 mt-auto pt-3 border-t border-border/50">
-        {song.audioUrl && (
+        {song.audio_url && (
           <button
             onClick={onPlay}
             className={cn(
@@ -413,10 +413,10 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }
             )}
           >
             {isCurrentlyPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            {isCurrentlyPlaying ? "متوقف" : (song.audioUrl ? "پخش" : "—")}
+            {isCurrentlyPlaying ? "متوقف" : (song.audio_url ? "پخش" : "—")}
           </button>
         )}
-        {song.audioUrl && (
+        {song.audio_url && (
           <button
             onClick={onKaraoke}
             title="Live Lyrics"
@@ -425,9 +425,9 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }
             <Mic className="w-4 h-4" />
           </button>
         )}
-        {song.youtubeId && (
+        {song.youtube_id && (
           <button
-            onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtubeId}`, '_blank')}
+            onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtube_id}`, '_blank')}
             title="YouTube"
             className="flex items-center justify-center bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 py-2.5 px-3 rounded-xl transition-all"
           >
@@ -451,34 +451,34 @@ function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, 
     )}>
       {/* Number / state */}
       <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-primary/20 to-blue-600/20 shrink-0 flex items-center justify-center">
-        {song.youtubeId
-          ? <img src={`https://img.youtube.com/vi/${song.youtubeId}/default.jpg`} alt="" className="w-full h-full object-cover" />
+        {song.youtube_id
+          ? <img src={`https://img.youtube.com/vi/${song.youtube_id}/default.jpg`} alt="" className="w-full h-full object-cover" />
           : <span className="text-xs font-black text-muted-foreground">{index + 1}</span>}
       </div>
 
       {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="font-bold truncate" dir="rtl">{song.title.fa}</p>
+        <p className="font-bold truncate" dir="rtl">{song.title_fa}</p>
         <p className="text-xs text-muted-foreground truncate">{song.artist || "ناشناس"}</p>
       </div>
 
       {/* Controls */}
       <div className="flex items-center gap-2 shrink-0">
-        {song.audioUrl && (
+        {song.audio_url && (
           <button title="Play" onClick={onPlay}
             className={cn("w-9 h-9 rounded-full flex items-center justify-center transition-all", isCurrentlyPlaying ? "bg-primary text-primary-foreground" : "bg-secondary hover:bg-primary/20 border border-border/40")}
           >
             {isCurrentlyPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           </button>
         )}
-        {song.audioUrl && (
+        {song.audio_url && (
           <button title="Live Lyrics" onClick={onKaraoke}
             className="w-9 h-9 rounded-full flex items-center justify-center bg-secondary hover:bg-purple-500/20 border border-border/40 text-muted-foreground hover:text-purple-500 transition-all">
             <Mic className="w-4 h-4" />
           </button>
         )}
-        {song.youtubeId && (
-          <button title="YouTube" onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtubeId}`, '_blank')}
+        {song.youtube_id && (
+          <button title="YouTube" onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtube_id}`, '_blank')}
             className="w-9 h-9 rounded-full flex items-center justify-center bg-secondary hover:bg-red-500/20 border border-border/40 text-muted-foreground hover:text-red-500 transition-all">
             <Youtube className="w-4 h-4" />
           </button>

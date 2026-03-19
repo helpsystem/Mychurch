@@ -97,12 +97,26 @@ function AnalogClock({ hours, minutes, seconds, color }: { hours: number; minute
 }
 
 function ClockWidget({ tz }: { tz: TZClock }) {
-  const [time, setTime] = useState(() => getTimeInZone(tz.timezone));
+  const [time, setTime] = useState<{hours: number, minutes: number, seconds: number, digital: string, dateStr: string, isPM: boolean} | null>(null);
 
   useEffect(() => {
+    setTime(getTimeInZone(tz.timezone));
     const id = setInterval(() => setTime(getTimeInZone(tz.timezone)), 1000);
     return () => clearInterval(id);
   }, [tz.timezone]);
+
+  if (!time) {
+    return (
+      <div className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm animate-pulse">
+        <div className="w-[120px] h-[120px] rounded-full bg-white/10" />
+        <div className="h-8 w-24 bg-white/10 rounded mt-2" />
+        <div className="w-full flex flex-col items-center gap-2 mt-4">
+          <div className="h-4 w-28 bg-white/10 rounded" />
+          <div className="h-3 w-20 bg-white/10 rounded" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/8 transition-all">
