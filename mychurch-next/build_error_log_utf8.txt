@@ -1,0 +1,118 @@
+﻿node.exe : ΓÜá 
+`eslint` configuration 
+in next.config.ts is 
+no longer supported. 
+See more info here: htt
+ps://nextjs.org/docs/ap
+p/api-reference/cli/nex
+t#next-lint-options
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Users\SamYar\AppDat
+a\Roaming ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (ΓÜá `eslint`    
+ co...xt-lint-optio    
+ns:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+ΓÜá Invalid 
+next.config.ts options 
+detected: 
+ΓÜá     Unrecognized 
+key(s) in object: 
+'eslint'
+ΓÜá See more info 
+here: https://nextjs.or
+g/docs/messages/invalid
+-next-config
+ΓÜá Warning: Next.js 
+inferred your 
+workspace root, but it 
+may not be correct.
+ We detected multiple 
+lockfiles and selected 
+the directory of D:\Win
+dows.old\Users\Sami\pac
+kage-lock.json as the 
+root directory.
+ To silence this 
+warning, set 
+`turbopack.root` in 
+your Next.js config, 
+or consider removing 
+one of the lockfiles 
+if it's not needed.
+   See https://nextjs.o
+rg/docs/app/api-referen
+ce/config/next-config-j
+s/turbopack#root-direct
+ory for more 
+information.
+ Detected additional 
+lockfiles: 
+   * D:\Windows.old\Use
+rs\Sami\Desktop\Iran 
+Church DC\Git\Mychurch\
+mychurch-next\package-l
+ock.json
+   * D:\Windows.old\Use
+rs\Sami\Desktop\Iran 
+Church DC\Git\Mychurch\
+package-lock.json
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+ΓÜá The "middleware" 
+file convention is 
+deprecated. Please use 
+"proxy" instead. Learn 
+more: https://nextjs.or
+g/docs/messages/middlew
+are-to-proxy
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 3.1s
+  Skipping validation of types
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/36) ...
+  Generating static pages using 15 workers (9/36) 
+  Generating static pages using 15 workers (18/36) 
+Error occurred 
+prerendering page 
+"/documents". Read 
+more: https://nextjs.or
+g/docs/messages/prerend
+er-error
+ReferenceError: 
+inputCls is not defined
+    at aa (D:\Windows.o
+ld\Users\Sami\Desktop\I
+ran Church DC\Git\Mychu
+rch\mychurch-next\.next
+\server\chunks\ssr\3d86
+0_Iran Church DC_Git_My
+church_mychurch-next_sr
+c_app_documents_page_ts
+x_e768e416._.js:97:3970
+2) {
+  digest: '1653351213'
+}
+Export encountered an 
+error on 
+/documents/page: 
+/documents, exiting 
+the build.
+Γ¿» Next.js build 
+worker exited with 
+code: 1 and signal: 
+null
