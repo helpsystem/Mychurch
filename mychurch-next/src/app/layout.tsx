@@ -1,18 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/providers/LanguageProvider";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const vazirmatn = Vazirmatn({
-  variable: "--font-vazirmatn",
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   title: "MyChurch | Broadcast Console & Platform",
@@ -44,6 +32,11 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head>
+        {/* Runtime Google Fonts to prevent Next.js build crash on VPN drop */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+        
         <script
           dangerouslySetInnerHTML={{
             __html: `(() => {
@@ -58,10 +51,14 @@ export default function RootLayout({
             })();`,
           }}
         />
+        <style dangerouslySetInnerHTML={{ __html: `
+          :root {
+            --font-inter: 'Inter', sans-serif;
+            --font-vazirmatn: 'Vazirmatn', sans-serif;
+          }
+        `}} />
       </head>
-      <body
-        className={`${inter.variable} ${vazirmatn.variable} antialiased bg-background text-foreground font-vazirmatn`}
-      >
+      <body className={`antialiased bg-background text-foreground`} style={{ fontFamily: 'var(--font-vazirmatn)' }}>
         <LanguageProvider>
           {children}
           <MobileNavigation />
