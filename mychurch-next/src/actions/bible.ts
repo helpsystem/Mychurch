@@ -1,21 +1,16 @@
 "use server";
 
 /**
- * Bible data service — Hybrid with official YouVersion SDK
+ * Bible data service — Hybrid strategy
  *
  * Strategy:
  *  1. ⚡ Memory cache (ultra-fast, 24h TTL)
- *  2. 🌐 YouVersion SDK → BSB English (always fresh, official)
- *  3. 🗄️  PostgreSQL → Persian translations (already imported: MOJDEH, TPV, QADIM, WP)
+ *  2. 🌐 YouVersion REST API → BSB English (always fresh)
+ *  3. 🗄️  PostgreSQL → Persian translations (MOJDEH, TPV, QADIM, WP)
  *  4. 💾  Auto-patches English into DB for future fallback
- *
- * Note: KJV is copyright-restricted on this key. BSB (Berean Standard Bible)
- * is an excellent modern open-license alternative used by YouVersion itself.
  */
 
 import { Pool } from 'pg';
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { ApiClient, BibleClient } = require('@youversion/platform-core');
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 export interface UnifiedVerse {
@@ -46,12 +41,9 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false },
 });
 
-// ─── YouVersion SDK setup ─────────────────────────────────────────────────────
-const apiClient = new ApiClient({ appKey: 'mQSt6AbhCy2oUMbqw7AXWdjtpBEgErqZxrjgvG5AmaExT834' });
-const bibleClient = new BibleClient(apiClient);
-
 // BSB = Berean Standard Bible (ID 3034) - open license, excellent modern translation
 const BSB_ID = 3034;
+const YV_APP_KEY = 'mQSt6AbhCy2oUMbqw7AXWdjtpBEgErqZxrjgvG5AmaExT834';
 
 // ─── Audio templates ──────────────────────────────────────────────────────────
 const AUDIO_TPV = (code: string, ch: number) =>
@@ -72,40 +64,27 @@ const USFM = [
 const MEM = new Map<string, { d: ChapterData; exp: number }>();
 const TTL = 24 * 3600 * 1000;
 
-// ─── Fetch English chapter from YouVersion BSB (single API call) ────────────
+// ─── Fetch English chapter from YouVersion REST API (no SDK) ────────────────
 async function fetchEnglishVerses(bookCode: string, ch: number): Promise<Record<number, string>> {
     try {
-        // Fetch the whole chapter as HTML — much faster than per-verse calls
-        const chapterPassage = await bibleClient.getPassage(BSB_ID, `${bookCode}.${ch}`, 'html');
-        const html: string = chapterPassage?.content || '';
+        // Fetch via direct REST API call — no SDK dependency required
+        const apiRes = await fetch(
+            `https://nodejs.bible.com/api/bible/passage?id=${BSB_ID}&reference=${bookCode}.${ch}&format=html`,
+            { headers: { 'X-YouVersion-App-Platform': 'web', 'X-YouVersion-App-Key': YV_APP_KEY } }
+        );
+        if (!apiRes.ok) return {};
+        const apiJson = await apiRes.json().catch(() => null);
+        const html: string = apiJson?.html || apiJson?.content || '';
         if (!html) return {};
 
-        // Parse verse spans: <span class="yv-v" v="1">text...</span>
-        // or strip all HTML for plain text per verse number
+        // Parse verse spans from YouVersion HTML — format: <span v="N">text</span>
         const verseMap: Record<number, string> = {};
-
-        // Match verse markers and capture text between them
-        // YouVersion HTML format: <span ... v="N">text</span>
         const verseRegex = /v="(\d+)"[^>]*>([\s\S]*?)(?=v="\d+"|<\/div>|$)/g;
         let match;
         while ((match = verseRegex.exec(html)) !== null) {
             const vNum = parseInt(match[1]);
-            // Strip remaining HTML tags and clean up whitespace
             const text = match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-            if (text && vNum > 0) {
-                verseMap[vNum] = text;
-            }
-        }
-
-        // If regex didn't match (unexpected format), fall back to strip-all approach
-        if (Object.keys(verseMap).length === 0) {
-            // Try to get plain text version as fallback
-            const plainPassage = await bibleClient.getPassage(BSB_ID, `${bookCode}.${ch}`, 'text');
-            const plainText: string = (plainPassage?.content || '').trim();
-            if (plainText) {
-                // Mark as verse 1 with full chapter text (will merge in DB later)
-                verseMap[0] = plainText;
-            }
+            if (text && vNum > 0) verseMap[vNum] = text;
         }
 
         return verseMap;
