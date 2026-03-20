@@ -102,7 +102,7 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
             return;
         }
         // use 'hasSeenPopupSession' instead of 'hasSeenNowruz2026' to apply generically
-        const hasSeen = localStorage.getItem("hasSeenPopupSession");
+        const hasSeen = sessionStorage.getItem("hasSeenPopupSession");
         if (!hasSeen && title) {
             const timer = setTimeout(() => setIsVisible(true), 1500);
             
@@ -128,7 +128,7 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
         if (timerSeconds > 0) {
             const timeout = setTimeout(() => {
                 setIsVisible(false);
-                localStorage.setItem("hasSeenPopupSession", "true");
+                sessionStorage.setItem("hasSeenPopupSession", "true");
             }, timerSeconds * 1000);
             return () => clearTimeout(timeout);
         }
@@ -137,7 +137,7 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
     const handleClose = () => {
         if (isPreview) return; // Don't close preview
         setIsVisible(false);
-        localStorage.setItem("hasSeenPopupSession", "true");
+        sessionStorage.setItem("hasSeenPopupSession", "true");
     };
 
     if (!isVisible) return null;
