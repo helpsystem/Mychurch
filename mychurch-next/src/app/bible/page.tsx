@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Book, Music2, ChevronLeft, ChevronRight, Play, Pause,
-  Columns2, Search, Loader2, List, Languages
+  Columns2, Search, Loader2, List, Languages, X
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -46,6 +47,7 @@ export default function BibleReaderPage() {
   const [loading, setLoading] = useState(false);
   const [bookSearch, setBookSearch] = useState("");
   const [showBookList, setShowBookList] = useState(false);
+  const [showChapterGrid, setShowChapterGrid] = useState(false);
   const [currentBook, setCurrentBook] = useState<BibleBook | null>(null);
 
   // Audio
@@ -301,13 +303,33 @@ export default function BibleReaderPage() {
             )}
           </div>
 
-          {/* Chapter Nav — LTR: Prev ‹ [num] › Next */}
+          {/* Chapter Selector — Grid Trigger */}
           <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl overflow-hidden" dir="ltr">
-            <button onClick={prevChapter} className="p-2.5 hover:bg-white/10 transition-colors" aria-label="Previous chapter"><ChevronLeft className="w-4 h-4" /></button>
-            <select value={selectedChapter} onChange={e => setSelectedChapter(Number(e.target.value))} aria-label="Select chapter" className="bg-transparent text-sm font-bold px-2 py-2 outline-none appearance-none cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white">
-              {Array.from({ length: currentBook?.chapter_count ?? 1 }, (_, i) => i + 1).map(c => <option key={c} value={c} className="bg-zinc-900 text-white">{c}</option>)}
-            </select>
-            <button onClick={nextChapter} className="p-2.5 hover:bg-white/10 transition-colors" aria-label="Next chapter"><ChevronRight className="w-4 h-4" /></button>
+            <button 
+              onClick={prevChapter} 
+              disabled={selectedChapter <= 1}
+              className="p-2.5 hover:bg-white/10 transition-colors disabled:opacity-20" 
+              aria-label="Previous chapter"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            
+            <button 
+              onClick={() => setShowChapterGrid(true)}
+              className="bg-white/5 hover:bg-white/10 text-sm font-bold px-4 py-2 transition-all border-x border-white/5 flex items-center gap-2"
+            >
+              <span className="text-blue-400">Ch.</span>
+              <span>{selectedChapter}</span>
+            </button>
+
+            <button 
+              onClick={nextChapter} 
+              disabled={selectedChapter >= (currentBook?.chapter_count ?? 1)}
+              className="p-2.5 hover:bg-white/10 transition-colors disabled:opacity-20" 
+              aria-label="Next chapter"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
 
           {/* English version selector */}
@@ -546,6 +568,72 @@ export default function BibleReaderPage() {
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
+
+      {/* ── Chapter Grid Overlay ── */}
+      <AnimatePresence>
+        {showChapterGrid && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+            onClick={() => setShowChapterGrid(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              className="bg-zinc-900/90 border border-white/20 rounded-[2.5rem] p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl relative custom-scrollbar"
+              onClick={e => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setShowChapterGrid(false)}
+                className="absolute top-6 right-6 p-2 hover:bg-white/10 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5 text-zinc-400" />
+              </button>
+
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-black tracking-tighter mb-1 uppercase opacity-30">Select Chapter</h2>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="h-px w-8 bg-blue-500/50"></span>
+                  <p className="text-lg font-bold text-blue-400">
+                    {language === 'fa' ? currentBook?.book_name_fa : currentBook?.book_name_en}
+                  </p>
+                  <span className="h-px w-8 bg-blue-500/50"></span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
+                {Array.from({ length: currentBook?.chapter_count ?? 1 }, (_, i) => i + 1).map(chapNum => (
+                  <motion.button
+                    key={chapNum}
+                    whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 130, 246, 0.2)" }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setSelectedChapter(chapNum);
+                      setShowChapterGrid(false);
+                    }}
+                    className={`aspect-square flex items-center justify-center text-lg font-black rounded-2xl transition-all border ${
+                      selectedChapter === chapNum 
+                        ? "bg-blue-600 border-blue-400 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]" 
+                        : "bg-white/5 border-white/10 text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {chapNum}
+                  </motion.button>
+                ))}
+              </div>
+
+              <div className="mt-10 pt-6 border-t border-white/5 text-center">
+                <p className="text-xs text-zinc-500 font-medium tracking-widest uppercase">
+                  {currentBook?.chapter_count} Chapters in total
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
