@@ -163,7 +163,7 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                         </div>
                     </motion.div>
 
-                    <style dangerouslySetInnerHTML={{__html: \`
+                    <style dangerouslySetInnerHTML={{__html: `
                         @keyframes fall {
                             0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }
                             10% { opacity: 1; }
@@ -175,7 +175,7 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                             animation-timing-function: linear;
                             animation-iteration-count: infinite;
                         }
-                    \`}} />
+                    `}} />
                 </div>
             )}
         </AnimatePresence>

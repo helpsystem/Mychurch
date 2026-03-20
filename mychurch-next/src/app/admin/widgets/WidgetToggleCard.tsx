@@ -3,7 +3,7 @@
 import React, { useTransition, useState } from "react";
 import { DashboardWidget, toggleWidget } from "@/actions/widgets";
 import { Settings } from "lucide-react";
-import { GlobalPopupSettingsModal } from "./GlobalPopupSettingsModal";
+import { WidgetSettingsModal } from "./WidgetSettingsModal";
 
 export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; icon: React.ReactNode }) {
     const [isPending, startTransition] = useTransition();
@@ -32,16 +32,14 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* Settings Button (Only for specific widgets like w_global_popup) */}
-                    {widget.id === 'w_global_popup' && (
-                        <button 
-                            onClick={() => setShowSettings(true)}
-                            className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-colors border border-white/5"
-                            title="تنظیمات محتوا"
-                        >
-                            <Settings className="w-4 h-4" />
-                        </button>
-                    )}
+                    {/* Settings Button (Available for all widgets) */}
+                    <button 
+                        onClick={() => setShowSettings(true)}
+                        className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-colors border border-white/5"
+                        title="تنظیمات محتوا"
+                    >
+                        <Settings className="w-4 h-4" />
+                    </button>
 
                     {/* Custom Toggle Switch */}
                     <button
@@ -78,7 +76,7 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
             )}
 
             {showSettings && (
-                <GlobalPopupSettingsModal widget={widget} onClose={() => setShowSettings(false)} />
+                <WidgetSettingsModal widget={widget} onClose={() => setShowSettings(false)} />
             )}
         </div>
     );
