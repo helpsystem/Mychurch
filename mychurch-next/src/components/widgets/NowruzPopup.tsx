@@ -56,12 +56,12 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
     const themeColor = config.themeColor || "primary";
     const imageFitClass = config.imageFit === "contain" ? "object-contain" : (config.imageFit === "fill" ? "object-fill" : "object-cover");
     
-    // Map heights
+    // Map heights (responsive: smaller on mobile)
     const heightMap: Record<string, string> = {
-        sm: "h-40",
-        md: "h-64",
-        lg: "h-80",
-        xl: "h-96"
+        sm: "h-32 md:h-40",
+        md: "h-48 md:h-64",
+        lg: "h-56 md:h-80",
+        xl: "h-64 md:h-96"
     };
     const imageHeightClass = heightMap[config.imageHeight || "md"];
 
@@ -180,7 +180,7 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                 />
 
                 {effect !== 'none' && (
-                    <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-70">
+                    <div className={`absolute inset-0 pointer-events-none overflow-hidden opacity-90 z-[60] ${effect === 'sparkles' || effect === 'snow' ? 'mix-blend-screen' : 'mix-blend-normal'}`}>
                         {petals.map((petal) => {
                             if (effect === 'blossoms') {
                                 return (
@@ -212,11 +212,11 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                 )}
 
                 <motion.div 
-                    initial={activeAnimation.initial} 
-                    animate={activeAnimation.animate} 
+                    initial={activeAnimation.initial}
+                    animate={activeAnimation.animate}
                     exit={activeAnimation.exit}
                     transition={activeAnimation.transition}
-                    className={`relative w-full max-w-lg bg-background border border-white/10 overflow-hidden rounded-[2rem] shadow-2xl ${activeTheme.shadow} ${isPreview ? 'scale-90 transform-origin-center max-h-full overflow-y-auto custom-scrollbar' : ''}`}
+                    className={`relative z-20 w-[95%] sm:w-full max-w-lg bg-background border border-white/10 overflow-hidden rounded-[2rem] shadow-2xl ${activeTheme.shadow} ${isPreview ? 'scale-90 transform-origin-center max-h-[90vh] overflow-y-auto custom-scrollbar' : 'max-h-[85vh] overflow-y-auto custom-scrollbar'}`}
                     dir={isEn ? "ltr" : "rtl"}
                 >
                     <div className={`relative w-full ${imageHeightClass} shrink-0 transition-all duration-300 flex items-center justify-center`} style={{ backgroundColor: config.imageBgColor || '#000000' }}>
