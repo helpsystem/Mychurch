@@ -27,6 +27,11 @@ export function FloatingNav() {
       href: '/sermons',
     },
     {
+      title: 'Worship / پرستش',
+      icon: <Music className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: '/worship',
+    },
+    {
       title: 'Bible / کتاب مقدس',
       icon: <BookOpen className="h-full w-full text-neutral-500 dark:text-amber-400" />,
       href: '/bible',
