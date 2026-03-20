@@ -21,7 +21,7 @@ export default async function WidgetsAdminPage() {
     const widgets = await getWidgets();
 
     return (
-        <div className="flex-1 p-8 font-vazirmatn bg-background h-screen overflow-y-auto">
+        <div className="flex-1 p-4 md:p-8 font-vazirmatn bg-background h-screen overflow-y-auto">
             <div className="max-w-6xl mx-auto space-y-8">
 
                 {/* Header Section */}
@@ -33,15 +33,15 @@ export default async function WidgetsAdminPage() {
                             </div>
                             <h1 className="text-3xl font-black text-foreground" dir="rtl">اکوسیستم ویجت‌ها</h1>
                         </div>
-                        <p className="text-muted-foreground font-medium pr-14" dir="rtl">
+                        <p className="text-muted-foreground font-medium mt-2 md:mt-0 md:pr-14 text-sm md:text-base leading-relaxed" dir="rtl">
                             مدیریت و پیکربندی ابزارهای یکپارچه سیستم. ویجت‌های غیرفعال از دید عموم مخفی می‌شوند.
                         </p>
                     </div>
                 </div>
 
                 {/* Warning Banner */}
-                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 flex gap-4" dir="rtl">
-                    <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 shrink-0">
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 md:p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center" dir="rtl">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 shrink-0">
                         <ShieldAlert className="w-6 h-6" />
                     </div>
                     <div>
