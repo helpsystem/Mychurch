@@ -13,7 +13,6 @@ export interface DashboardWidget {
     config?: Record<string, any>;
 }
 
-// Alias for backward compat
 export type Widget = DashboardWidget;
 
 export async function getWidgets(): Promise<DashboardWidget[]> {
@@ -30,7 +29,6 @@ export async function toggleWidget(id: string, currentStatus: boolean): Promise<
     try {
         await query('UPDATE widgets SET is_active = $1, updated_at = NOW() WHERE id = $2', [!currentStatus, id]);
 
-        // Revalidate paths that might rely on widgets
         revalidatePath('/', 'layout');
         revalidatePath('/admin/widgets');
 
@@ -51,13 +49,16 @@ export async function getWatermarkConfig(): Promise<any> {
     }
 }
 
-export async function getGlobalPopupStatus(): Promise<boolean> {
+export async function getGlobalPopupData(): Promise<{ isActive: boolean, config: any }> {
     try {
-        const { rows } = await query("SELECT is_active FROM widgets WHERE id = 'w_global_popup'");
-        return rows[0]?.is_active || false;
+        const { rows } = await query("SELECT is_active, config FROM widgets WHERE id = 'w_global_popup'");
+        return {
+            isActive: rows[0]?.is_active || false,
+            config: rows[0]?.config || {}
+        };
     } catch (error) {
-        console.error('[Action] Error fetching global popup status:', error);
-        return false;
+        console.error('[Action] Error fetching global popup data:', error);
+        return { isActive: false, config: {} };
     }
 }
 
@@ -65,7 +66,6 @@ export async function updateWidgetConfig(id: string, config: any): Promise<boole
     try {
         await query('UPDATE widgets SET config = $1, updated_at = NOW() WHERE id = $2', [config, id]);
 
-        // Revalidate paths
         revalidatePath('/', 'layout');
         revalidatePath('/admin/widgets');
 

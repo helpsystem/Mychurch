@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useTransition } from "react";
+import React, { useTransition, useState } from "react";
 import { DashboardWidget, toggleWidget } from "@/actions/widgets";
+import { Settings } from "lucide-react";
+import { GlobalPopupSettingsModal } from "./GlobalPopupSettingsModal";
 
 export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; icon: React.ReactNode }) {
     const [isPending, startTransition] = useTransition();
+    const [showSettings, setShowSettings] = useState(false);
 
     const handleToggle = () => {
         startTransition(async () => {
@@ -28,20 +31,33 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
                     {icon}
                 </div>
 
-                {/* Custom Toggle Switch */}
-                <button
-                    onClick={handleToggle}
-                    disabled={isPending}
-                    className={`relative inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 disabled:opacity-50 ${widget.is_active ? 'bg-primary' : 'bg-white/10'}`}
-                    role="switch"
-                    aria-checked={widget.is_active ? "true" : "false"}
-                >
-                    <span className="sr-only">Toggle widget</span>
-                    <span
-                        aria-hidden="true"
-                        className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${widget.is_active ? '-translate-x-7' : 'translate-x-0'}`}
-                    />
-                </button>
+                <div className="flex items-center gap-3">
+                    {/* Settings Button (Only for specific widgets like w_global_popup) */}
+                    {widget.id === 'w_global_popup' && (
+                        <button 
+                            onClick={() => setShowSettings(true)}
+                            className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-colors border border-white/5"
+                            title="تنظیمات محتوا"
+                        >
+                            <Settings className="w-4 h-4" />
+                        </button>
+                    )}
+
+                    {/* Custom Toggle Switch */}
+                    <button
+                        onClick={handleToggle}
+                        disabled={isPending}
+                        className={`relative inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 disabled:opacity-50 ${widget.is_active ? 'bg-primary' : 'bg-white/10'}`}
+                        role="switch"
+                        aria-checked={widget.is_active ? "true" : "false"}
+                    >
+                        <span className="sr-only">Toggle widget</span>
+                        <span
+                            aria-hidden="true"
+                            className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${widget.is_active ? '-translate-x-7' : 'translate-x-0'}`}
+                        />
+                    </button>
+                </div>
             </div>
 
             <div className="relative z-10">
@@ -59,6 +75,10 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
                 <div className="absolute inset-0 bg-background/50 backdrop-blur-sm flex items-center justify-center z-20">
                     <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                 </div>
+            )}
+
+            {showSettings && (
+                <GlobalPopupSettingsModal widget={widget} onClose={() => setShowSettings(false)} />
             )}
         </div>
     );

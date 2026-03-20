@@ -1,11 +1,11 @@
 import React from "react";
-import { getGlobalPopupStatus } from "@/actions/widgets";
+import { getGlobalPopupData } from "@/actions/widgets";
 import { NowruzPopup } from "./NowruzPopup";
 
 export async function GlobalPopupWrapper() {
-    const isPopupActive = await getGlobalPopupStatus();
+    const { isActive, config } = await getGlobalPopupData();
     
-    if (!isPopupActive) return null;
+    if (!isActive) return null;
 
-    return <NowruzPopup />;
+    return <NowruzPopup config={config} />;
 }
