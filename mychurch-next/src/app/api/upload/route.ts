@@ -23,7 +23,7 @@ export async function POST(request: Request) {
         }
 
         // Generate unique filename
-        const filename = `watermark-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
+        const filename = `media-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
         const path = join(uploadsDir, filename);
 
         await writeFile(path, buffer);
