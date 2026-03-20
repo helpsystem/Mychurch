@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { FloatingDock } from '@/components/ui/floating-dock';
-import { Home, Info, Image as ImageIcon, Video, BookOpen, FileText, Phone } from 'lucide-react';
+import { Home, Info, Image as ImageIcon, Video, BookOpen, FileText, Phone, Music } from 'lucide-react';
 
 export function FloatingNav() {
   const links = [
