@@ -1,0 +1,53 @@
+import { NextResponse } from 'next/server';
+import { fetchChapterData } from '@/actions/bible';
+
+export const dynamic = 'force-dynamic';
+
+export async function GET(
+    request: Request,
+    { params }: { params: { book: string; chapter: string } }
+) {
+    try {
+        const { book, chapter } = params;
+        const chapterNum = parseInt(chapter, 10);
+
+        if (isNaN(chapterNum)) {
+            return NextResponse.json({ success: false, error: 'Invalid chapter number' }, { status: 400 });
+        }
+
+        const data = await fetchChapterData(book, chapterNum);
+
+        if (!data) {
+            return NextResponse.json({ success: false, error: 'Chapter not found' }, { status: 404 });
+        }
+
+        // dataService.ts expects data.verses.fa and data.verses.en to be arrays of strings
+        // where index 0 is verse 1.
+        
+        // Find the maximum verse number to size the array properly
+        const maxVerse = data.verses.reduce((max, v) => Math.max(max, v.number), 0);
+        
+        const faVerses: string[] = new Array(maxVerse).fill('');
+        const enVerses: string[] = new Array(maxVerse).fill('');
+
+        data.verses.forEach(v => {
+            // Arrays are 0-indexed, verse numbers are 1-indexed
+            if (v.number > 0) {
+                faVerses[v.number - 1] = v.fa || '';
+                enVerses[v.number - 1] = v.en || '';
+            }
+        });
+
+        return NextResponse.json({
+            success: true,
+            verses: {
+                fa: faVerses,
+                en: enVerses
+            }
+        });
+
+    } catch (error) {
+        console.error('Error in /api/bible/content:', error);
+        return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
+    }
+}

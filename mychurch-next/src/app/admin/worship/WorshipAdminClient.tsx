@@ -205,7 +205,7 @@ export default function WorshipAdminClient() {
     });
 
     return (
-        <div className="max-w-7xl mx-auto p-6" dir="rtl">
+        <div className="max-w-7xl mx-auto p-2 md:p-6" dir="rtl">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h1 className="text-3xl font-black text-foreground mb-2">مدیریت سرودهای پرستشی</h1>
