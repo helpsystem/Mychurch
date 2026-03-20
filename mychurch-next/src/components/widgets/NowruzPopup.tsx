@@ -65,6 +65,9 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
     };
     const imageHeightClass = heightMap[config.imageHeight || "md"];
 
+    // Ensure backwards compatibility with old uploads in database
+    const displayUrl = config.imageUrl?.startsWith('/uploads/') ? config.imageUrl.replace('/uploads/', '/api/serve/') : config.imageUrl;
+
     const colors = {
         emerald: { text: "text-emerald-500", shadow: "shadow-emerald-500/20", glow: "shadow-[0_0_15px_rgba(16,185,129,0.8)]", confetti: "bg-emerald-300" },
         primary: { text: "text-primary", shadow: "shadow-primary/20", glow: "shadow-[0_0_15px_rgba(var(--primary),0.8)]", confetti: "bg-primary/50" },
@@ -220,14 +223,17 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                     dir={isEn ? "ltr" : "rtl"}
                 >
                     <div className={`relative w-full ${imageHeightClass} shrink-0 transition-all duration-300 flex items-center justify-center`} style={{ backgroundColor: config.imageBgColor || '#000000' }}>
-                        {imageUrl && (
-                            <Image 
-                                src={imageUrl} 
-                                alt={title} 
-                                fill 
-                                className={`${imageFitClass} object-center opacity-80 transition-all duration-300`}
-                                unoptimized
+                        {displayUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img 
+                                src={displayUrl} 
+                                alt="Popup Media" 
+                                className={`absolute inset-0 w-full h-full ${imageFitClass} z-0`}
                             />
+                        ) : (
+                            // Fallback if displayUrl is empty, though imageUrl has a default
+                            // This block was previously for Image component, now it's just an empty fallback
+                            null
                         )}
                         <button 
                             onClick={handleClose}

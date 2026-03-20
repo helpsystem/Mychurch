@@ -28,8 +28,8 @@ export async function POST(request: Request) {
 
         await writeFile(path, buffer);
 
-        // Return the public URL
-        return NextResponse.json({ success: true, url: `/uploads/${filename}` });
+        // Return the API Serving URL
+        return NextResponse.json({ success: true, url: `/api/serve/${filename}` });
     } catch (error) {
         console.error('Error uploading file:', error);
         return NextResponse.json({ success: false, error: 'Upload failed' }, { status: 500 });
