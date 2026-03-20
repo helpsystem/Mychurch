@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     description: "تصاویر و خاطرات رویدادهای کلیسای ایرانیان مسیحی واشنگتن دی‌سی",
 };
 
+export const dynamic = 'force-dynamic';
+
 // Fallback demo photos when DB is empty, so the page always looks great
 const DEMO_PHOTOS = [
     { id: "d1", src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600", width: 800, height: 600, title: "کوه‌های سر به فلک کشیده", category: "طبیعت" },
