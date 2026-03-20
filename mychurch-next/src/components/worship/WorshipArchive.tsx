@@ -17,6 +17,11 @@ const KaraokeModal = dynamic(
   { ssr: false }
 );
 
+const SongDetailsModal = dynamic(
+  () => import('./SongDetailsModal').then(mod => ({ default: mod.SongDetailsModal })),
+  { ssr: false }
+);
+
 // ─── Global Audio Player State ─────────────────────────────────────────────
 type PlayState = {
   song: WorshipSong | null;
@@ -44,8 +49,9 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showArtistFilter, setShowArtistFilter] = useState(false);
 
-  // ── Karaoke
+  // ── Karaoke & Details
   const [activeKaraokeSong, setActiveKaraokeSong] = useState<WorshipSong | null>(null);
+  const [detailsSong, setDetailsSong] = useState<WorshipSong | null>(null);
 
   // ── Audio Player
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -262,6 +268,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
               isCurrentSong={player.song?.id === song.id}
               onPlay={() => playSong(song, filteredSongs)}
               onKaraoke={() => setActiveKaraokeSong(song)}
+              onViewDetails={() => setDetailsSong(song)}
             />
           )) : <EmptyState />}
         </div>
@@ -276,6 +283,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
               isCurrentSong={player.song?.id === song.id}
               onPlay={() => playSong(song, filteredSongs)}
               onKaraoke={() => setActiveKaraokeSong(song)}
+              onViewDetails={() => setDetailsSong(song)}
             />
           )) : <EmptyState />}
         </div>
@@ -284,6 +292,11 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       {/* ── Karaoke Modal */}
       {activeKaraokeSong && (
         <KaraokeModal song={activeKaraokeSong} onClose={() => setActiveKaraokeSong(null)} />
+      )}
+
+      {/* ── Details Modal */}
+      {detailsSong && (
+        <SongDetailsModal song={detailsSong} onClose={() => setDetailsSong(null)} />
       )}
 
       {/* ── Global Audio Player Bar */}
@@ -358,12 +371,13 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
 }
 
 // ─── Song Card (Grid) ──────────────────────────────────────────────────────
-function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }: {
+function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, onViewDetails }: {
   song: WorshipSong;
   isCurrentlyPlaying: boolean;
   isCurrentSong: boolean;
   onPlay: () => void;
   onKaraoke: () => void;
+  onViewDetails: () => void;
 }) {
   return (
     <div className={cn(
@@ -402,18 +416,26 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }
 
       {/* Actions */}
       <div className="flex items-center gap-2 mt-auto pt-3 border-t border-border/50">
+        <button
+            onClick={onViewDetails}
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all bg-secondary hover:bg-white/10 text-foreground border border-white/10"
+        >
+            <FileText className="w-4 h-4" />
+            نمایش
+        </button>
+
         {song.audio_url && (
           <button
             onClick={onPlay}
+            title={isCurrentlyPlaying ? "متوقف" : "پخش"}
             className={cn(
-              "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all",
+              "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl font-bold text-sm transition-all",
               isCurrentlyPlaying
                 ? "bg-primary/20 text-primary border border-primary/30"
                 : "bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20"
             )}
           >
             {isCurrentlyPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            {isCurrentlyPlaying ? "متوقف" : (song.audio_url ? "پخش" : "—")}
           </button>
         )}
         {song.audio_url && (
@@ -440,9 +462,9 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }
 }
 
 // ─── Song List Item ────────────────────────────────────────────────────────
-function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke }: {
+function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, onViewDetails }: {
   song: WorshipSong; index: number; isCurrentlyPlaying: boolean; isCurrentSong: boolean;
-  onPlay: () => void; onKaraoke: () => void;
+  onPlay: () => void; onKaraoke: () => void; onViewDetails: () => void;
 }) {
   return (
     <div className={cn(
@@ -464,6 +486,11 @@ function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, 
 
       {/* Controls */}
       <div className="flex items-center gap-2 shrink-0">
+        <button title="مساهده کامل" onClick={onViewDetails}
+          className="w-9 h-9 rounded-full flex items-center justify-center bg-secondary hover:bg-white/10 border border-border/40 text-muted-foreground hover:text-foreground transition-all">
+          <FileText className="w-4 h-4" />
+        </button>
+
         {song.audio_url && (
           <button title="Play" onClick={onPlay}
             className={cn("w-9 h-9 rounded-full flex items-center justify-center transition-all", isCurrentlyPlaying ? "bg-primary text-primary-foreground" : "bg-secondary hover:bg-primary/20 border border-border/40")}

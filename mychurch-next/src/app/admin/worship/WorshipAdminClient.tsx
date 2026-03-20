@@ -448,8 +448,8 @@ export default function WorshipAdminClient() {
                                             <td className="p-4 text-muted-foreground">{song.artist || '-'}</td>
                                             <td className="p-4">
                                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                                    {song.youtube_id && <Youtube className="w-4 h-4 text-red-500" title="دارای ویدیو یوتیوب" />}
-                                                    {song.audio_url && <Music className="w-4 h-4 text-blue-500" title="دارای فایل صوتی محلی" />}
+                                                    {song.youtube_id && <span title="دارای ویدیو یوتیوب"><Youtube className="w-4 h-4 text-red-500" /></span>}
+                                                    {song.audio_url && <span title="دارای فایل صوتی محلی"><Music className="w-4 h-4 text-blue-500" /></span>}
                                                     {(!song.youtube_id && !song.audio_url) && '-'}
                                                 </div>
                                             </td>

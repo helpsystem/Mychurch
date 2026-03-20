@@ -16,9 +16,15 @@ interface PopupConfig {
     subMessageFa?: string; subMessageEn?: string;
     buttonTextFa?: string; buttonTextEn?: string;
     buttonLink?: string;
+    themeColor?: "emerald" | "blue" | "rose" | "amber" | "purple" | "primary";
+    showConfetti?: boolean;
+    overlayOpacity?: "light" | "medium" | "dark" | "heavy";
+    position?: "center" | "top" | "bottom";
+    animationStyle?: "spring" | "fade" | "slideUp";
+    autoCloseTimer?: number;
 }
 
-export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
+export function NowruzPopup({ config = {}, isPreview = false }: { config?: PopupConfig, isPreview?: boolean }) {
     const { language } = useLanguage();
     const isEn = language === 'en';
     const alignClass = isEn ? 'text-left' : 'text-center';
@@ -35,17 +41,72 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
     const buttonText = (isEn ? config.buttonTextEn : config.buttonTextFa) || (isEn ? "Enter" : "ورود");
     const buttonLink = config.buttonLink || "";
 
-    // If it's the Nowruz default, render petals. If it's highly generic, maybe skip petals. 
-    // We can infer it's Nowruz if the title contains "نوروز" or "Nowruz" to keep the easter egg alive.
+    // Infer Nowruz strictly for fallback
     const isNowruz = title.includes("نوروز") || title.toLowerCase().includes("nowruz");
+    const showConfetti = config.showConfetti !== undefined ? config.showConfetti : isNowruz;
+
+    const themeColor = config.themeColor || "primary";
+    const colors = {
+        emerald: { text: "text-emerald-500", shadow: "shadow-emerald-500/20", glow: "shadow-[0_0_15px_rgba(16,185,129,0.8)]", confetti: "bg-emerald-300" },
+        primary: { text: "text-primary", shadow: "shadow-primary/20", glow: "shadow-[0_0_15px_rgba(var(--primary),0.8)]", confetti: "bg-primary/50" },
+        blue: { text: "text-blue-500", shadow: "shadow-blue-500/20", glow: "shadow-[0_0_15px_rgba(59,130,246,0.8)]", confetti: "bg-blue-300" },
+        rose: { text: "text-rose-500", shadow: "shadow-rose-500/20", glow: "shadow-[0_0_15px_rgba(244,63,94,0.8)]", confetti: "bg-rose-300" },
+        purple: { text: "text-purple-500", shadow: "shadow-purple-500/20", glow: "shadow-[0_0_15px_rgba(168,85,247,0.8)]", confetti: "bg-purple-300" },
+        amber: { text: "text-amber-500", shadow: "shadow-amber-500/20", glow: "shadow-[0_0_15px_rgba(245,158,11,0.8)]", confetti: "bg-amber-300" }
+    };
+    const activeTheme = colors[themeColor] || colors.primary;
+
+    const overlayOpacity = config.overlayOpacity || "medium";
+    const opacities = {
+        light: "bg-black/40 backdrop-blur-sm",
+        medium: "bg-black/60 backdrop-blur-md",
+        dark: "bg-black/80 backdrop-blur-lg",
+        heavy: "bg-black/95 backdrop-blur-2xl"
+    };
+    const activeOverlay = opacities[overlayOpacity];
+
+    const positionValue = config.position || "center";
+    const positionClasses = {
+        center: "items-center justify-center p-4",
+        top: "items-start justify-center pt-10 px-4",
+        bottom: "items-end justify-center pb-10 px-4"
+    };
+    const activePosition = positionClasses[positionValue];
+
+    const animStyle = config.animationStyle || "spring";
+    const animations: Record<string, any> = {
+        spring: {
+            initial: { opacity: 0, scale: 0.8, y: 50 },
+            animate: { opacity: 1, scale: 1, y: 0 },
+            exit: { opacity: 0, scale: 0.9, y: 30 },
+            transition: { type: "spring", damping: 25, stiffness: 300 }
+        },
+        fade: {
+            initial: { opacity: 0, scale: 0.95 },
+            animate: { opacity: 1, scale: 1 },
+            exit: { opacity: 0, scale: 0.95 },
+            transition: { duration: 0.3 }
+        },
+        slideUp: {
+            initial: { opacity: 0, y: 150 },
+            animate: { opacity: 1, y: 0 },
+            exit: { opacity: 0, y: 150 },
+            transition: { type: "spring", damping: 30, stiffness: 400 }
+        }
+    };
+    const activeAnimation = animations[animStyle];
 
     useEffect(() => {
+        if (isPreview) {
+            setIsVisible(true);
+            return;
+        }
         // use 'hasSeenPopupSession' instead of 'hasSeenNowruz2026' to apply generically
         const hasSeen = localStorage.getItem("hasSeenPopupSession");
         if (!hasSeen && title) {
             const timer = setTimeout(() => setIsVisible(true), 1500);
             
-            if (isNowruz) {
+            if (showConfetti) {
                 const generatedPetals = Array.from({ length: 15 }).map((_, i) => ({
                     id: i,
                     left: (Math.random() * 100) + "%",
@@ -58,9 +119,23 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
             
             return () => clearTimeout(timer);
         }
-    }, [config, title, isNowruz]);
+    }, [config, title, showConfetti, isPreview]);
+
+    // Auto-close handling
+    useEffect(() => {
+        if (!isVisible || isPreview) return;
+        const timerSeconds = config.autoCloseTimer ? Number(config.autoCloseTimer) : 0;
+        if (timerSeconds > 0) {
+            const timeout = setTimeout(() => {
+                setIsVisible(false);
+                localStorage.setItem("hasSeenPopupSession", "true");
+            }, timerSeconds * 1000);
+            return () => clearTimeout(timeout);
+        }
+    }, [isVisible, isPreview, config.autoCloseTimer]);
 
     const handleClose = () => {
+        if (isPreview) return; // Don't close preview
         setIsVisible(false);
         localStorage.setItem("hasSeenPopupSession", "true");
     };
@@ -71,21 +146,21 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
 
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
+            <div className={isPreview ? `relative w-full h-[600px] flex ${activePosition} bg-black/40 rounded-3xl overflow-hidden` : `fixed inset-0 z-[99999] flex ${activePosition}`}>
                 <motion.div 
                     initial={{ opacity: 0 }} 
                     animate={{ opacity: 1 }} 
                     exit={{ opacity: 0 }} 
-                    className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                    className={`absolute inset-0 ${activeOverlay} cursor-pointer`}
                     onClick={handleClose}
                 />
 
-                {isNowruz && (
+                {showConfetti && (
                     <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-60">
                         {petals.map((petal) => (
                             <div 
                                 key={petal.id}
-                                className="absolute -top-10 w-4 h-4 rounded-full bg-pink-300 blur-[1px] shadow-[0_0_10px_rgba(255,182,193,0.8)] animate-fall"
+                                className={`absolute -top-10 w-4 h-4 rounded-full ${activeTheme.confetti} blur-[1px] ${activeTheme.glow} animate-fall`}
                                 style={{
                                     left: petal.left,
                                     animationDuration: petal.animationDuration,
@@ -98,14 +173,14 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                 )}
 
                 <motion.div 
-                    initial={{ opacity: 0, scale: 0.8, y: 50 }} 
-                    animate={{ opacity: 1, scale: 1, y: 0 }} 
-                    exit={{ opacity: 0, scale: 0.9, y: 30 }}
-                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                    className="relative w-full max-w-lg bg-background border border-white/10 overflow-hidden rounded-[2rem] shadow-2xl shadow-primary/20"
+                    initial={activeAnimation.initial} 
+                    animate={activeAnimation.animate} 
+                    exit={activeAnimation.exit}
+                    transition={activeAnimation.transition}
+                    className={`relative w-full max-w-lg bg-background border border-white/10 overflow-hidden rounded-[2rem] shadow-2xl ${activeTheme.shadow} ${isPreview ? 'scale-90 transform-origin-center max-h-full overflow-y-auto custom-scrollbar' : ''}`}
                     dir={isEn ? "ltr" : "rtl"}
                 >
-                    <div className="relative h-64 w-full bg-black">
+                    <div className="relative h-64 w-full bg-black shrink-0">
                         {imageUrl && (
                             <Image 
                                 src={imageUrl} 
@@ -133,7 +208,7 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                                 transition={{ delay: 0.3 }}
                                 className="text-5xl mb-2 -mt-4 text-emerald-500 drop-shadow-sm text-center"
                             >
-                                🌱
+                                {isNowruz ? "🌱" : "✨"}
                             </motion.div>
                         )}
                         
@@ -142,7 +217,7 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                                 initial={{ y: 20, opacity: 0 }} 
                                 animate={{ y: 0, opacity: 1 }} 
                                 transition={{ delay: 0.4 }}
-                                className={`text-4xl font-black text-primary mb-6 drop-shadow-sm ${isEn ? 'font-serif' : 'font-vazirmatn text-center'}`}
+                                className={`text-4xl font-black ${activeTheme.text} mb-6 drop-shadow-sm ${isEn ? 'font-serif' : 'font-vazirmatn text-center'}`}
                             >
                                 {title}
                             </motion.h1>
@@ -167,7 +242,7 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                             className="space-y-3"
                         >
                             {message && (
-                                <p className="text-xl font-black text-rose-500">
+                                <p className={`text-xl font-black ${activeTheme.text}`}>
                                     {message}
                                 </p>
                             )}
@@ -207,7 +282,7 @@ export function NowruzPopup({ config = {} }: { config?: PopupConfig }) {
                     </div>
                 </motion.div>
 
-                {isNowruz && (
+                {showConfetti && (
                     <style dangerouslySetInnerHTML={{__html: `
                         @keyframes fall {
                             0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }

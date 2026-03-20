@@ -50,8 +50,8 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             {/* Top Bar */}
             <div className="absolute top-0 left-0 right-0 p-6 flex items-baseline justify-between z-20 bg-gradient-to-b from-black/80 to-transparent" dir="ltr">
                 <div className="flex flex-col text-left">
-                    <h2 className="text-2xl font-black text-white drop-shadow-lg font-serif">{song.title.en || 'Unknown Title'}</h2>
-                    <h3 className="text-xl text-white/90 drop-shadow-md" dir="rtl">{song.title.fa}</h3>
+                    <h2 className="text-2xl font-black text-white drop-shadow-lg font-serif">{song.title_en || 'Unknown Title'}</h2>
+                    <h3 className="text-xl text-white/90 drop-shadow-md" dir="rtl">{song.title_fa}</h3>
                     {song.artist && <p className="text-white/70 font-medium mt-1">{song.artist}</p>}
                 </div>
                 <button
@@ -66,7 +66,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             {/* Apple Music Lyrics Engine */}
             <div className="w-full h-[70vh] max-w-5xl mx-auto px-4 mt-20">
                 <AppleMusicLyrics
-                    timepoints={song.timepoints || []}
+                    timepoints={(song.timepoints as any) || []}
                     currentTimeMs={currentTimeMs}
                 />
             </div>
@@ -81,10 +81,10 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
                     {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
                 </button>
 
-                {song.audioUrl && (
+                {song.audio_url && (
                     <audio
                         ref={audioRef}
-                        src={song.audioUrl}
+                        src={song.audio_url}
                         onTimeUpdate={handleTimeUpdate}
                         onPlay={() => setIsPlaying(true)}
                         onPause={() => setIsPlaying(false)}
