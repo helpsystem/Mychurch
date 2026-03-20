@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useTransition, useState } from "react";
+import React, { useTransition, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { DashboardWidget, toggleWidget } from "@/actions/widgets";
 import { Settings } from "lucide-react";
 import { WidgetSettingsModal } from "./WidgetSettingsModal";
@@ -8,6 +9,9 @@ import { WidgetSettingsModal } from "./WidgetSettingsModal";
 export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; icon: React.ReactNode }) {
     const [isPending, startTransition] = useTransition();
     const [showSettings, setShowSettings] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
 
     const handleToggle = () => {
         startTransition(async () => {
@@ -75,8 +79,9 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
                 </div>
             )}
 
-            {showSettings && (
-                <WidgetSettingsModal widget={widget} onClose={() => setShowSettings(false)} />
+            {showSettings && mounted && createPortal(
+                <WidgetSettingsModal widget={widget} onClose={() => setShowSettings(false)} />,
+                document.body
             )}
         </div>
     );

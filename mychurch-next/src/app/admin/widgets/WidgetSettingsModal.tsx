@@ -19,9 +19,15 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [titleEn, setTitleEn] = useState(config.titleEn || "Important Announcement");
     
     const [imageUrl, setImageUrl] = useState(config.imageUrl || "/images/nowruz-bg.png");
+    const [imageFit, setImageFit] = useState<any>(config.imageFit || "cover");
+    const [imageHeight, setImageHeight] = useState<any>(config.imageHeight || "md");
+    const [imageBgColor, setImageBgColor] = useState<string>(config.imageBgColor || "#000000");
+    const [particleDensity, setParticleDensity] = useState<any>(config.particleDensity || "medium");
     
+    const [badge1Icon, setBadge1Icon] = useState(config.badge1Icon || "🌿");
     const [badge1Fa, setBadge1Fa] = useState(config.badge1Fa || "");
     const [badge1En, setBadge1En] = useState(config.badge1En || "");
+    const [badge2Icon, setBadge2Icon] = useState(config.badge2Icon || "✨");
     const [badge2Fa, setBadge2Fa] = useState(config.badge2Fa || "");
     const [badge2En, setBadge2En] = useState(config.badge2En || "");
     
@@ -41,10 +47,12 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     // Advanced Styling States
     const [themeColor, setThemeColor] = useState<any>(config.themeColor || "primary");
     const [overlayOpacity, setOverlayOpacity] = useState<any>(config.overlayOpacity || "medium");
-    const [showConfetti, setShowConfetti] = useState<boolean>(config.showConfetti !== undefined ? config.showConfetti : false);
+    const [particleEffect, setParticleEffect] = useState<any>(config.particleEffect || (config.showConfetti ? 'confetti' : 'none'));
     const [position, setPosition] = useState<any>(config.position || "center");
     const [animationStyle, setAnimationStyle] = useState<any>(config.animationStyle || "spring");
     const [autoCloseTimer, setAutoCloseTimer] = useState<number | ''>(config.autoCloseTimer || '');
+    const [customPresets, setCustomPresets] = useState<any[]>(config.customPresets || []);
+    const [newPresetName, setNewPresetName] = useState("");
 
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
@@ -86,13 +94,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             if (widget.id === 'w_global_popup') {
                 newConfig = { 
                     titleFa, titleEn, 
-                    imageUrl, 
-                    themeColor, overlayOpacity, showConfetti,
+                    imageUrl, imageFit, imageHeight, imageBgColor,
+                    themeColor, overlayOpacity, particleEffect, particleDensity,
                     position, animationStyle, autoCloseTimer,
-                    badge1Fa, badge1En, badge2Fa, badge2En, 
+                    badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En, 
                     messageFa, messageEn, 
                     subMessageFa, subMessageEn, 
-                    buttonTextFa, buttonTextEn, buttonLink
+                    buttonTextFa, buttonTextEn, buttonLink,
+                    customPresets
                 };
             } else {
                 try {
@@ -123,7 +132,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setImageUrl("/images/nowruz-bg.png");
             setThemeColor("emerald");
             setOverlayOpacity("medium");
-            setShowConfetti(true);
+            setParticleEffect("blossoms");
             setPosition("center");
             setAnimationStyle("spring");
             setAutoCloseTimer('');
@@ -144,7 +153,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setImageUrl("https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop");
             setThemeColor("blue");
             setOverlayOpacity("dark");
-            setShowConfetti(false);
+            setParticleEffect("sparkles");
             setPosition("center");
             setAnimationStyle("fade");
             setAutoCloseTimer('');
@@ -160,8 +169,44 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setButtonTextEn("View Schedule");
             setButtonLink("/about");
         } else if (presetName === 'empty') {
-            setTitleFa(""); setTitleEn(""); setImageUrl(""); setBadge1Fa(""); setBadge1En(""); setBadge2Fa(""); setBadge2En(""); setMessageFa(""); setMessageEn(""); setSubMessageFa(""); setSubMessageEn(""); setButtonTextFa(""); setButtonTextEn(""); setButtonLink(""); setShowConfetti(false); setThemeColor("primary"); setOverlayOpacity("medium"); setPosition("center"); setAnimationStyle("spring"); setAutoCloseTimer('');
+            setTitleFa(""); setTitleEn(""); setImageUrl(""); setBadge1Fa(""); setBadge1En(""); setBadge2Fa(""); setBadge2En(""); setMessageFa(""); setMessageEn(""); setSubMessageFa(""); setSubMessageEn(""); setButtonTextFa(""); setButtonTextEn(""); setButtonLink(""); setParticleEffect("none"); setThemeColor("primary"); setOverlayOpacity("medium"); setPosition("center"); setAnimationStyle("spring"); setAutoCloseTimer('');
         }
+    };
+
+    const handleSaveCustomPreset = () => {
+        if (!newPresetName.trim()) return alert("لطفا نامی برای قالب وارد کنید");
+        const newPreset = {
+            name: newPresetName.trim(),
+            settings: {
+                titleFa, titleEn, imageUrl, imageFit, imageHeight, imageBgColor, themeColor, overlayOpacity, particleEffect, particleDensity,
+                position, animationStyle, autoCloseTimer, badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
+                messageFa, messageEn, subMessageFa, subMessageEn, buttonTextFa, buttonTextEn, buttonLink
+            }
+        };
+        setCustomPresets([...customPresets, newPreset]);
+        setNewPresetName("");
+        alert("قالب با موفقیت موقتاً در لیست اضافه شد. برای ذخیره نهایی تنظیمات ابزار را ذخیره کنید.");
+    };
+
+    const loadCustomPreset = (preset: any) => {
+        const s = preset.settings;
+        setTitleFa(s.titleFa || ""); setTitleEn(s.titleEn || ""); setImageUrl(s.imageUrl || "");
+        setImageFit(s.imageFit || "cover"); setImageHeight(s.imageHeight || "md");
+        setImageBgColor(s.imageBgColor || "#000000");
+        setThemeColor(s.themeColor || "primary"); setOverlayOpacity(s.overlayOpacity || "medium");
+        setParticleEffect(s.particleEffect || "none"); setParticleDensity(s.particleDensity || "medium");
+        setPosition(s.position || "center");
+        setAnimationStyle(s.animationStyle || "spring"); setAutoCloseTimer(s.autoCloseTimer || '');
+        setBadge1Fa(s.badge1Fa || ""); setBadge1En(s.badge1En || ""); setBadge2Fa(s.badge2Fa || ""); setBadge2En(s.badge2En || "");
+        setMessageFa(s.messageFa || ""); setMessageEn(s.messageEn || ""); setSubMessageFa(s.subMessageFa || ""); setSubMessageEn(s.subMessageEn || "");
+        setButtonTextFa(s.buttonTextFa || ""); setButtonTextEn(s.buttonTextEn || ""); setButtonLink(s.buttonLink || "");
+    };
+
+    const deleteCustomPreset = (idx: number) => {
+        if (!confirm("آیا از حذف این قالب اطمینان دارید؟")) return;
+        const updated = [...customPresets];
+        updated.splice(idx, 1);
+        setCustomPresets(updated);
     };
 
     const DualField = ({ 
@@ -257,9 +302,9 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                 </h3>
                                 <div className="flex-1 relative rounded-[2rem] overflow-hidden border border-white/10 flex items-center justify-center bg-gradient-to-br from-blue-900/10 to-purple-900/10">
                                     <NowruzPopup isPreview config={{
-                                        titleFa, titleEn, imageUrl, badge1Fa, badge1En, badge2Fa, badge2En,
+                                        titleFa, titleEn, imageUrl, imageFit, imageHeight, imageBgColor, badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
                                         messageFa, messageEn, subMessageFa, subMessageEn, buttonTextFa, buttonTextEn, buttonLink,
-                                        themeColor, overlayOpacity, showConfetti, position, animationStyle, autoCloseTimer: Number(autoCloseTimer) || 0
+                                        themeColor, overlayOpacity, particleEffect, particleDensity, position, animationStyle, autoCloseTimer: Number(autoCloseTimer) || 0
                                     }} />
                                     {/* Abstract decor for preview bounds */}
                                     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/50 to-transparent pointer-events-none" />
@@ -274,9 +319,33 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                         <FolderOpen className="w-4 h-4 text-primary" /> قالب‌های آماده (Presets)
                                     </h4>
                                     <div className="flex flex-wrap items-center gap-2">
-                                        <button onClick={() => applyPreset('nowruz')} className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-xl text-sm font-bold transition-all">🌱 قالب نوروز</button>
-                                        <button onClick={() => applyPreset('welcome')} className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/20 px-4 py-2 rounded-xl text-sm font-bold transition-all">👋 قالب خوش‌آمدگویی</button>
-                                        <button onClick={() => applyPreset('empty')} className="bg-white/5 hover:bg-white/10 text-muted-foreground border border-white/5 px-4 py-2 rounded-xl text-sm font-bold transition-all mr-auto">خالی‌کردن همه</button>
+                                        <button onClick={() => applyPreset('nowruz')} className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-xl text-sm font-bold transition-all shrink-0">🌱 قالب نوروز</button>
+                                        <button onClick={() => applyPreset('welcome')} className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/20 px-4 py-2 rounded-xl text-sm font-bold transition-all shrink-0">👋 قالب خوش‌آمدگویی</button>
+                                        
+                                        {/* Dynamic Presets */}
+                                        {customPresets.map((preset, idx) => (
+                                            <div key={idx} className="flex items-center group shrink-0">
+                                                <button onClick={() => loadCustomPreset(preset)} className="bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 border border-purple-500/20 border-l-0 px-3 py-2 rounded-r-xl text-sm font-bold transition-all truncate max-w-[150px]">
+                                                    🔮 {preset.name}
+                                                </button>
+                                                <button onClick={() => deleteCustomPreset(idx)} className="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/20 px-2 py-2 rounded-l-xl text-xs transition-all" title="حذف">
+                                                    <X className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                        ))}
+
+                                        <button onClick={() => applyPreset('empty')} className="bg-white/5 hover:bg-white/10 text-muted-foreground border border-white/5 px-4 py-2 rounded-xl text-sm font-bold transition-all mr-auto shrink-0">خالی‌کردن همه</button>
+                                    </div>
+                                    <div className="mt-4 pt-3 border-t border-white/5 flex gap-2 w-full">
+                                        <input 
+                                            value={newPresetName} 
+                                            onChange={(e) => setNewPresetName(e.target.value)} 
+                                            placeholder="نام قالب سفارشی جدید..." 
+                                            className="flex-1 bg-background/50 border border-white/5 rounded-xl px-3 py-1.5 text-sm outline-none focus:border-primary"
+                                        />
+                                        <button onClick={handleSaveCustomPreset} className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/20 px-4 py-1.5 rounded-xl text-sm font-bold transition-all shrink-0 whitespace-nowrap">
+                                            + ذخیره طرح در قالب‌ها
+                                        </button>
                                     </div>
                                 </div>
 
@@ -305,10 +374,37 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                     className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm" dir="ltr"
                                 />
                                 {imageUrl && (
-                                    <div className="mt-3 relative h-32 w-full rounded-xl overflow-hidden border border-white/10 opacity-70">
-                                        <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                    <div className="mt-3 relative w-full rounded-xl overflow-hidden border border-white/10 opacity-70 flex items-center justify-center" style={{ backgroundColor: imageBgColor, height: imageHeight === 'sm' ? '160px' : imageHeight === 'md' ? '256px' : imageHeight === 'lg' ? '320px' : '384px' }}>
+                                        <img src={imageUrl} alt="Preview" className={`w-full h-full ${imageFit === 'contain' ? 'object-contain' : imageFit === 'fill' ? 'object-fill' : 'object-cover'} object-center`} />
                                     </div>
                                 )}
+                                
+                                <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-white/5">
+                                    <div className="bg-black/20 p-3 rounded-xl border border-white/5">
+                                        <label className="block text-xs font-bold text-foreground mb-2 text-center text-blue-400">نحوه نمایش عکس (Image Fit)</label>
+                                        <select title="Image Fit" value={imageFit} onChange={(e) => setImageFit(e.target.value)} className="w-full bg-secondary border border-white/5 rounded-lg px-2 py-1.5 text-xs text-center focus:border-primary outline-none">
+                                            <option value="cover">پوشش کامل (برش‌خورده / Cover)</option>
+                                            <option value="contain">نمایش کامل (بدون برش / Contain)</option>
+                                            <option value="fill">کشش عکس (Fill)</option>
+                                        </select>
+                                    </div>
+                                    <div className="bg-black/20 p-3 rounded-xl border border-white/5">
+                                        <label className="block text-xs font-bold text-foreground mb-2 text-center text-emerald-400">ارتفاع بخش عکس (Height)</label>
+                                        <select title="Image Height" value={imageHeight} onChange={(e) => setImageHeight(e.target.value)} className="w-full bg-secondary border border-white/5 rounded-lg px-2 py-1.5 text-xs text-center focus:border-primary outline-none">
+                                            <option value="sm">کوچک</option>
+                                            <option value="md">متوسط (پیش‌فرض)</option>
+                                            <option value="lg">بزرگ</option>
+                                            <option value="xl">بسیار بزرگ</option>
+                                        </select>
+                                    </div>
+                                    <div className="bg-black/20 p-3 rounded-xl border border-white/5">
+                                        <label className="block text-xs font-bold text-foreground mb-2 text-center text-purple-400">رنگ پس‌زمینه (Background)</label>
+                                        <div className="flex items-center gap-1 bg-secondary border border-white/5 rounded-lg h-[30px] pr-1 overflow-hidden" dir="ltr">
+                                            <input type="color" value={imageBgColor} onChange={(e) => setImageBgColor(e.target.value)} className="w-8 h-8 cursor-pointer rounded border-[3px] border-secondary outline-none p-0 shrink-0" />
+                                            <input type="text" value={imageBgColor} onChange={(e) => setImageBgColor(e.target.value)} className="w-full bg-transparent text-xs text-center focus:outline-none uppercase font-mono tracking-wider" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
                             {/* Advanced Style Options */}
@@ -363,11 +459,24 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center focus:outline-none focus:border-primary transition-colors text-emerald-400 font-mono" dir="ltr" 
                                         />
                                     </div>
-                                    <div className="col-span-2 mt-2">
-                                        <label className="flex items-center gap-3 bg-secondary/30 p-4 rounded-xl border border-white/5 cursor-pointer hover:bg-white/5 transition">
-                                            <input type="checkbox" checked={showConfetti} onChange={(e) => setShowConfetti(e.target.checked)} className="w-5 h-5 accent-primary rounded" />
-                                            <span className="font-bold">نمایش انیمیشن پارتیکل‌ها (Particle Effects)</span>
-                                        </label>
+                                    <div className="col-span-2 md:col-span-1">
+                                        <label className="block text-sm text-foreground mb-2 bg-black/20 p-2 rounded-lg text-center" htmlFor="particleSelect">افکت ذرات معلق (Particles)</label>
+                                        <select id="particleSelect" title="Particle Effect" value={particleEffect} onChange={(e) => setParticleEffect(e.target.value)} className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center custom-select font-bold">
+                                            <option value="none" className="font-normal text-muted-foreground">بدون افکت (None)</option>
+                                            <option value="blossoms" className="text-pink-400">🌸 شکوفه‌های بهاری (Spring Blossoms)</option>
+                                            <option value="sparkles" className="text-amber-400">✨ ستاره‌های درخشان (Sparkles)</option>
+                                            <option value="confetti" className="text-emerald-400">🎉 کاغذ رنگی (Confetti)</option>
+                                            <option value="snow" className="text-blue-300">❄️ بارش برف (Snow)</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-span-2 md:col-span-1">
+                                        <label className="block text-sm text-foreground mb-2 bg-black/20 p-2 rounded-lg text-center" htmlFor="particleDensitySelect">تراکم ذرات (Density)</label>
+                                        <select id="particleDensitySelect" title="Particle Density" value={particleDensity} onChange={(e) => setParticleDensity(e.target.value)} className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center custom-select font-bold">
+                                            <option value="light" className="text-muted-foreground">کم (Light)</option>
+                                            <option value="medium" className="text-foreground">متوسط (Medium)</option>
+                                            <option value="heavy" className="text-emerald-400">زیاد (Heavy)</option>
+                                            <option value="insane" className="text-rose-400">جنون‌آمیز (Insane!)</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -378,9 +487,21 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                             
                             <DualField label="توضیحات تکمیلی" faValue={subMessageFa} enValue={subMessageEn} setFaValue={setSubMessageFa} setEnValue={setSubMessageEn} isTextarea placeholderFa="با آرزوی برکت..." placeholderEn="Wishing blessings..." />
                             
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <DualField label="بج / نوار ۱ (اختیاری)" faValue={badge1Fa} enValue={badge1En} setFaValue={setBadge1Fa} setEnValue={setBadge1En} placeholderFa="مثال: ۱ فروردین" placeholderEn="March 20" />
-                                <DualField label="بج / نوار ۲ (اختیاری)" faValue={badge2Fa} enValue={badge2En} setFaValue={setBadge2Fa} setEnValue={setBadge2En} placeholderFa="۲۵۸۵ شاهنشاهی" placeholderEn="Persian Year 2585" />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/5 border border-white/10 rounded-2xl p-4">
+                                <div className="space-y-3">
+                                    <DualField label="بج ۱ (نوار هشدار اول)" faValue={badge1Fa} enValue={badge1En} setFaValue={setBadge1Fa} setEnValue={setBadge1En} placeholderFa="مثال: ۱ فروردین" placeholderEn="March 20" />
+                                    <div className="flex gap-2 items-center px-1">
+                                       <span className="text-xs text-muted-foreground mr-2 px-2 py-1 bg-black/40 border border-white/10 rounded-md">آیکن بج ۱:</span>
+                                       <input value={badge1Icon} onChange={(e) => setBadge1Icon(e.target.value)} placeholder="🌿" className="w-16 bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-center font-bold focus:outline-none focus:border-primary" />
+                                    </div>
+                                </div>
+                                <div className="space-y-3">
+                                    <DualField label="بج ۲ (نوار هشدار دوم)" faValue={badge2Fa} enValue={badge2En} setFaValue={setBadge2Fa} setEnValue={setBadge2En} placeholderFa="۲۵۸۵ شاهنشاهی" placeholderEn="Persian Year 2585" />
+                                    <div className="flex gap-2 items-center px-1">
+                                       <span className="text-xs text-muted-foreground mr-2 px-2 py-1 bg-black/40 border border-white/10 rounded-md">آیکن بج ۲:</span>
+                                       <input value={badge2Icon} onChange={(e) => setBadge2Icon(e.target.value)} placeholder="✨" className="w-16 bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-center font-bold focus:outline-none focus:border-primary" />
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-4">

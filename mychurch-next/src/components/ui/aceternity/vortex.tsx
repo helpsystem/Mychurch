@@ -32,6 +32,8 @@ export function Vortex({
       vy: number;
       radius: number;
       color: string;
+      rotation: number;
+      vRotation: number;
     }> = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -40,15 +42,18 @@ export function Vortex({
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
-        color: Math.random() > 0.5 ? 'rgba(168, 85, 247, 0.5)' : 'rgba(6, 182, 212, 0.5)',
+        radius: Math.random() * 1.5 + 1.5,
+        color: Math.random() > 0.5 ? 'rgba(168, 85, 247, 0.8)' : 'rgba(6, 182, 212, 0.8)',
+        rotation: (Math.random() - 0.5) * 0.5, // Start with a slight random tilt
+        vRotation: (Math.random() - 0.5) * 0.01, // Very slow elegant rotation
       });
     }
 
-    function animate() {
+      let animationFrameId: number;
+
+      function animate() {
       if (!ctx || !canvas) return;
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, i) => {
         particle.x += particle.vx;
@@ -57,10 +62,29 @@ export function Vortex({
         if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
+        particle.rotation += particle.vRotation;
+
+        ctx.save();
+        ctx.translate(particle.x, particle.y);
+        ctx.rotate(particle.rotation);
+        
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.fill();
+        // A crisp, elegant cross shape
+        const size = particle.radius * 2.2;
+        
+        ctx.moveTo(0, -size);
+        ctx.lineTo(0, size * 1.5);
+        ctx.moveTo(-size * 1.2, -size * 0.1);
+        ctx.lineTo(size * 1.2, -size * 0.1);
+        
+        ctx.strokeStyle = particle.color;
+        ctx.lineWidth = 1.6; // Sleek and crisp
+        ctx.lineCap = 'round';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = particle.color;
+        
+        ctx.stroke();
+        ctx.restore();
 
         // Connect nearby particles
         particles.slice(i + 1).forEach((p2) => {
@@ -72,14 +96,14 @@ export function Vortex({
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.2 * (1 - distance / 100)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(168, 85, 247, ${0.25 * (1 - distance / 100)})`;
+            ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         });
       });
 
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     }
 
     animate();
@@ -93,6 +117,7 @@ export function Vortex({
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [particleCount]);
 

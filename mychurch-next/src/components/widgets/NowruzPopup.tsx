@@ -10,18 +10,24 @@ import Link from "next/link";
 interface PopupConfig {
     titleFa?: string; titleEn?: string;
     imageUrl?: string;
-    badge1Fa?: string; badge1En?: string;
-    badge2Fa?: string; badge2En?: string;
+    imageFit?: "cover" | "contain" | "fill";
+    imageHeight?: "sm" | "md" | "lg" | "xl";
+    imageBgColor?: string;
+    particleDensity?: "light" | "medium" | "heavy" | "insane";
+    badge1Icon?: string; badge1Fa?: string; badge1En?: string;
+    badge2Icon?: string; badge2Fa?: string; badge2En?: string;
     messageFa?: string; messageEn?: string;
     subMessageFa?: string; subMessageEn?: string;
     buttonTextFa?: string; buttonTextEn?: string;
     buttonLink?: string;
     themeColor?: "emerald" | "blue" | "rose" | "amber" | "purple" | "primary";
-    showConfetti?: boolean;
+    showConfetti?: boolean; // Legacy fallback
+    particleEffect?: "none" | "confetti" | "blossoms" | "sparkles" | "snow";
     overlayOpacity?: "light" | "medium" | "dark" | "heavy";
     position?: "center" | "top" | "bottom";
     animationStyle?: "spring" | "fade" | "slideUp";
     autoCloseTimer?: number;
+    customPresets?: any[];
 }
 
 export function NowruzPopup({ config = {}, isPreview = false }: { config?: PopupConfig, isPreview?: boolean }) {
@@ -43,9 +49,22 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
 
     // Infer Nowruz strictly for fallback
     const isNowruz = title.includes("نوروز") || title.toLowerCase().includes("nowruz");
-    const showConfetti = config.showConfetti !== undefined ? config.showConfetti : isNowruz;
+    
+    // Resolve which effect to show. Priority: explicit particleEffect -> legacy showConfetti -> inferred Nowruz
+    const effect = config.particleEffect || (config.showConfetti || (config.showConfetti === undefined && isNowruz) ? 'confetti' : 'none');
 
     const themeColor = config.themeColor || "primary";
+    const imageFitClass = config.imageFit === "contain" ? "object-contain" : (config.imageFit === "fill" ? "object-fill" : "object-cover");
+    
+    // Map heights
+    const heightMap: Record<string, string> = {
+        sm: "h-40",
+        md: "h-64",
+        lg: "h-80",
+        xl: "h-96"
+    };
+    const imageHeightClass = heightMap[config.imageHeight || "md"];
+
     const colors = {
         emerald: { text: "text-emerald-500", shadow: "shadow-emerald-500/20", glow: "shadow-[0_0_15px_rgba(16,185,129,0.8)]", confetti: "bg-emerald-300" },
         primary: { text: "text-primary", shadow: "shadow-primary/20", glow: "shadow-[0_0_15px_rgba(var(--primary),0.8)]", confetti: "bg-primary/50" },
@@ -106,20 +125,25 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
         if (!hasSeen && title) {
             const timer = setTimeout(() => setIsVisible(true), 1500);
             
-            if (showConfetti) {
-                const generatedPetals = Array.from({ length: 15 }).map((_, i) => ({
+            if (effect !== 'none') {
+                const baseCount = effect === 'snow' ? 30 : effect === 'sparkles' ? 25 : 18;
+                const multiplier = config.particleDensity === 'light' ? 0.3 : config.particleDensity === 'heavy' ? 2 : config.particleDensity === 'insane' ? 4 : 1;
+                const count = Math.floor(baseCount * multiplier);
+                
+                const generatedPetals = Array.from({ length: count }).map((_, i) => ({
                     id: i,
                     left: (Math.random() * 100) + "%",
-                    animationDuration: (5 + Math.random() * 5) + "s",
+                    top: effect === 'sparkles' ? `${Math.random() * 100}%` : '-10%',
+                    animationDuration: (effect === 'snow' ? 8 + Math.random() * 7 : effect === 'sparkles' ? 1.5 + Math.random() * 2 : 5 + Math.random() * 5) + "s",
                     animationDelay: (Math.random() * 5) + "s",
-                    transform: "rotate(" + (Math.random() * 360) + "deg) scale(" + (0.5 + Math.random() * 0.7) + ")"
+                    transform: "rotate(" + (Math.random() * 360) + "deg) scale(" + (0.5 + Math.random() * (effect === 'snow' ? 0.3 : 0.7)) + ")"
                 }));
                 setPetals(generatedPetals);
             }
             
             return () => clearTimeout(timer);
         }
-    }, [config, title, showConfetti, isPreview]);
+    }, [config, title, effect, isPreview]);
 
     // Auto-close handling
     useEffect(() => {
@@ -155,20 +179,35 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                     onClick={handleClose}
                 />
 
-                {showConfetti && (
-                    <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-60">
-                        {petals.map((petal) => (
-                            <div 
-                                key={petal.id}
-                                className={`absolute -top-10 w-4 h-4 rounded-full ${activeTheme.confetti} blur-[1px] ${activeTheme.glow} animate-fall`}
-                                style={{
-                                    left: petal.left,
-                                    animationDuration: petal.animationDuration,
-                                    animationDelay: petal.animationDelay,
-                                    transform: petal.transform
-                                }}
-                            />
-                        ))}
+                {effect !== 'none' && (
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-70">
+                        {petals.map((petal) => {
+                            if (effect === 'blossoms') {
+                                return (
+                                    <div key={petal.id} className="absolute w-5 h-5 bg-gradient-to-br from-pink-200 to-rose-300 shadow-[0_0_15px_rgba(244,114,182,0.8)] animate-fall" 
+                                        style={{ left: petal.left, top: petal.top, borderRadius: '100% 0 100% 0', animationDuration: petal.animationDuration, animationDelay: petal.animationDelay, transform: petal.transform }} />
+                                );
+                            } else if (effect === 'sparkles') {
+                                // Shimmering Star SVG
+                                return (
+                                    <div key={petal.id} className="absolute text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.9)] animate-sparkle" 
+                                        style={{ left: petal.left, top: petal.top, animationDuration: petal.animationDuration, animationDelay: petal.animationDelay }}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
+                                    </div>
+                                );
+                            } else if (effect === 'snow') {
+                                return (
+                                    <div key={petal.id} className="absolute w-3 h-3 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-snow" 
+                                        style={{ left: petal.left, top: petal.top, animationDuration: petal.animationDuration, animationDelay: petal.animationDelay, transform: petal.transform }} />
+                                );
+                            } else {
+                                // Confetti
+                                return (
+                                    <div key={petal.id} className={`absolute w-3 h-4 rounded-sm ${activeTheme.confetti} blur-[1px] ${activeTheme.glow} animate-fall`} 
+                                        style={{ left: petal.left, top: petal.top, animationDuration: petal.animationDuration, animationDelay: petal.animationDelay, transform: petal.transform }} />
+                                );
+                            }
+                        })}
                     </div>
                 )}
 
@@ -180,13 +219,13 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                     className={`relative w-full max-w-lg bg-background border border-white/10 overflow-hidden rounded-[2rem] shadow-2xl ${activeTheme.shadow} ${isPreview ? 'scale-90 transform-origin-center max-h-full overflow-y-auto custom-scrollbar' : ''}`}
                     dir={isEn ? "ltr" : "rtl"}
                 >
-                    <div className="relative h-64 w-full bg-black shrink-0">
+                    <div className={`relative w-full ${imageHeightClass} shrink-0 transition-all duration-300 flex items-center justify-center`} style={{ backgroundColor: config.imageBgColor || '#000000' }}>
                         {imageUrl && (
                             <Image 
                                 src={imageUrl} 
                                 alt={title} 
                                 fill 
-                                className="object-cover object-center opacity-80"
+                                className={`${imageFitClass} object-center opacity-80 transition-all duration-300`}
                                 unoptimized
                             />
                         )}
@@ -282,7 +321,7 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                     </div>
                 </motion.div>
 
-                {showConfetti && (
+                {effect !== 'none' && (
                     <style dangerouslySetInnerHTML={{__html: `
                         @keyframes fall {
                             0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }
@@ -290,9 +329,29 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                             90% { opacity: 1; }
                             100% { transform: translateY(110vh) rotate(360deg) scale(0.5); opacity: 0; }
                         }
+                        @keyframes snow {
+                            0% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+                            10% { opacity: 0.9; }
+                            100% { transform: translateY(110vh) scale(0.6); opacity: 0; }
+                        }
+                        @keyframes sparkle {
+                            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+                            50% { transform: scale(1.2) rotate(90deg); opacity: 1; filter: brightness(1.5); }
+                            100% { transform: scale(0) rotate(180deg); opacity: 0; }
+                        }
                         .animate-fall {
                             animation-name: fall;
                             animation-timing-function: linear;
+                            animation-iteration-count: infinite;
+                        }
+                        .animate-snow {
+                            animation-name: snow;
+                            animation-timing-function: linear;
+                            animation-iteration-count: infinite;
+                        }
+                        .animate-sparkle {
+                            animation-name: sparkle;
+                            animation-timing-function: ease-in-out;
                             animation-iteration-count: infinite;
                         }
                     `}} />

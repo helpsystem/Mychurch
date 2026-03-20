@@ -13,7 +13,6 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import { WorldClock } from "@/components/ui/WorldClock";
 import { PageVisuals } from "@/components/ui/PageVisuals";
 import { Vortex } from "@/components/ui/aceternity/vortex";
-import { Spotlight } from "@/components/ui/Spotlight";
 import { FloatingNav } from "@/components/ui/aceternity/floating-nav";
 
 export default function HomePage() {
@@ -31,10 +30,9 @@ export default function HomePage() {
         <PublicHeader />
 
         <div className="w-full relative overflow-hidden">
-          <Vortex particleCount={250} className="w-full flex items-center justify-center">
-            <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[85vh]">
-              <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="currentColor" />
-              <div className="max-w-3xl space-y-6 animate-fade-in-up relative z-10 bg-background/40 dark:bg-black/40 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl">
+            <Vortex particleCount={250} className="w-full flex items-center justify-center">
+              <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[85vh]">
+                <div className="max-w-3xl space-y-6 animate-fade-in-up relative z-10 bg-background/40 dark:bg-black/40 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/30 text-sm font-semibold tracking-widest uppercase shadow-inner">
               <Globe className="w-4 h-4" />
               {t.heroTitle}
