@@ -213,7 +213,10 @@ export default function BibleReaderPage() {
           {/* Book Picker */}
           <div className="relative">
             <button
-              onClick={() => setShowBookList(v => !v)}
+              onClick={() => {
+                setShowBookList(v => !v);
+                if (!showBookList) setShowChapterGrid(false);
+              }}
               className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold transition-all"
             >
               <Book className="w-4 h-4 text-blue-400" />
@@ -315,7 +318,10 @@ export default function BibleReaderPage() {
             </button>
             
             <button 
-              onClick={() => setShowChapterGrid(true)}
+              onClick={() => {
+                setShowChapterGrid(true);
+                setShowBookList(false);
+              }}
               className="bg-white/5 hover:bg-white/10 text-sm font-bold px-4 py-2 transition-all border-x border-white/5 flex items-center gap-2"
             >
               <span className="text-blue-400">Ch.</span>
@@ -604,7 +610,7 @@ export default function BibleReaderPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
+              <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 sm:gap-3">
                 {Array.from({ length: currentBook?.chapter_count ?? 1 }, (_, i) => i + 1).map(chapNum => (
                   <motion.button
                     key={chapNum}
