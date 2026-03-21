@@ -65,8 +65,16 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
     };
     const imageHeightClass = heightMap[config.imageHeight || "md"];
 
-    // Ensure backwards compatibility with old uploads in database
-    const displayUrl = config.imageUrl?.startsWith('/uploads/') ? config.imageUrl.replace('/uploads/', '/api/serve/') : config.imageUrl;
+    // Ensure robust URL resolution for various path types
+    const displayUrl = React.useMemo(() => {
+        if (!config.imageUrl) return "/images/nowruz-bg.png";
+        if (config.imageUrl.startsWith('http') || config.imageUrl.startsWith('data:')) return config.imageUrl;
+        if (config.imageUrl.startsWith('/api/serve/')) return config.imageUrl;
+        if (config.imageUrl.startsWith('/uploads/')) return config.imageUrl.replace('/uploads/', '/api/serve/');
+        if (config.imageUrl.startsWith('/images/')) return config.imageUrl;
+        if (!config.imageUrl.startsWith('/')) return `/api/serve/${config.imageUrl}`;
+        return config.imageUrl;
+    }, [config.imageUrl]);
 
     const colors = {
         emerald: { text: "text-emerald-500", shadow: "shadow-emerald-500/20", glow: "shadow-[0_0_15px_rgba(16,185,129,0.8)]", confetti: "bg-emerald-300" },

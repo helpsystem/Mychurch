@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BookOpen, PlayCircle, Menu, X, Image as ImageIcon, FileText, Phone, User, Shield } from "lucide-react";
+import { Home, BookOpen, PlayCircle, Menu, X, Image as ImageIcon, FileText, Phone, User, Shield, Info, Music } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { createClient } from "@/utils/supabase/client";
 import { Session } from "@supabase/supabase-js";
@@ -46,13 +46,17 @@ export function MobileNavigation() {
   const navItems = [
     { label: t?.home || "خانه", path: "/", icon: Home },
     { label: "کتاب مقدس", path: "/bible", icon: BookOpen },
+    { label: "پرستش", path: "/worship", icon: Music },
     { label: t?.sermons || "موعظه‌ها", path: "/sermons", icon: PlayCircle },
   ];
 
   const moreLinks = [
+    { label: "درباره ما", path: "/about", icon: Info },
     { label: "گالری", path: "/gallery", icon: ImageIcon },
     { label: "مدارک", path: "/documents", icon: FileText },
+    { label: "حساب و کتاب", path: "/dej", icon: FileText }, // Or a generic calculator icon if available
     { label: t?.contact || "تماس", path: "/contact", icon: Phone },
+    { label: "پشتیبانی", path: "/profile/support", icon: Shield },
   ];
 
   return (
