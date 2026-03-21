@@ -340,7 +340,8 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
               {/* Song Info */}
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-sm truncate" dir="rtl">{player.song.title_fa}</p>
-                <p className="text-xs text-muted-foreground truncate">{player.song.artist}</p>
+                <p className="text-[10px] uppercase tracking-wider text-primary/70 font-black mb-0.5">خواننده</p>
+                <p className="text-xs text-muted-foreground truncate font-bold">{player.song.artist || "نامشخص"}</p>
               </div>
 
               {/* Transport */}
@@ -408,10 +409,12 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
         {song.title_en && <p className="relative text-xs text-muted-foreground/80 mt-0.5">{song.title_en}</p>}
       </div>
 
-      {/* Artist */}
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-        <Music className="w-3.5 h-3.5 text-primary shrink-0" />
-        <span className="font-medium truncate">{song.artist || "ناشناس"}</span>
+      <div className="flex flex-col gap-1">
+        <span className="text-[10px] uppercase tracking-widest text-primary/60 font-black">خواننده:</span>
+        <div className="flex items-center gap-2 text-sm text-foreground/80">
+          <Music className="w-3.5 h-3.5 text-primary shrink-0" />
+          <span className="font-bold truncate">{song.artist || "ناشناس"}</span>
+        </div>
       </div>
 
       {/* Actions */}
@@ -478,10 +481,12 @@ function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, 
           : <span className="text-xs font-black text-muted-foreground">{index + 1}</span>}
       </div>
 
-      {/* Info */}
       <div className="flex-1 min-w-0">
         <p className="font-bold truncate" dir="rtl">{song.title_fa}</p>
-        <p className="text-xs text-muted-foreground truncate">{song.artist || "ناشناس"}</p>
+        <div className="flex items-center gap-1 mt-0.5">
+          <span className="text-[9px] uppercase font-black text-primary/50">خواننده:</span>
+          <p className="text-xs text-muted-foreground truncate font-bold">{song.artist || "ناشناس"}</p>
+        </div>
       </div>
 
       {/* Controls */}

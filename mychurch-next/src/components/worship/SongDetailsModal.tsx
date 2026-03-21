@@ -39,11 +39,14 @@ export function SongDetailsModal({ song, onClose }: Props) {
                     <div>
                         <h2 className="text-3xl font-black text-foreground">{song.title_fa}</h2>
                         {song.title_en && <h3 className="text-lg text-muted-foreground font-serif mt-1" dir="ltr">{song.title_en}</h3>}
-                        <div className="flex items-center gap-4 mt-3">
+                        <div className="flex flex-col gap-1 mt-4">
                             {song.artist && (
-                                <span className="flex items-center gap-1.5 text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                                    <Music className="w-4 h-4" /> {song.artist}
-                                </span>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[10px] uppercase tracking-widest text-primary/70 font-black">نام خواننده / گروه:</span>
+                                    <span className="flex items-center gap-2 text-lg font-bold text-foreground bg-primary/5 px-4 py-2 rounded-2xl border border-primary/20 w-fit">
+                                        <Music className="w-5 h-5 text-primary" /> {song.artist}
+                                    </span>
+                                </div>
                             )}
                             {song.youtube_id && (
                                 <a href={`https://youtube.com/watch?v=${song.youtube_id}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-sm font-bold text-red-500 bg-red-500/10 hover:bg-red-500/20 px-3 py-1 rounded-full border border-red-500/20 transition-colors">
