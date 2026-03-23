@@ -532,6 +532,7 @@ export default function SongTimingEditor({
                             title={songTitleFa}
                             audioSrc={audioUrl || ""}
                             timingData={currentTiming}
+                            onClose={() => setShowPreview(false)}
                         />
                     </div>
                 </div>

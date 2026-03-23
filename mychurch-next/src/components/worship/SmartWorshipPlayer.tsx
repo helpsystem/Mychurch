@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TranscriptData, LineSegment, SystemTimingV2 } from '@/types/worship-sync';
 
@@ -11,6 +11,7 @@ interface SmartWorshipPlayerProps {
     viewOnly?: boolean; // حالت فقط نمایش - بدون کنترل
     externalCurrentTime?: number; // زمان جاری از بیرون (برای سینک)
     onTimeUpdate?: (time: number) => void; // callback برای گزارش زمان به parent
+    onClose?: () => void; // اختیاری - برای بستن پلیر از parent
     translations?: {
         finglish?: string[];
         english?: string[];
@@ -30,6 +31,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     viewOnly = false,
     externalCurrentTime,
     onTimeUpdate,
+    onClose,
     translations,
     // Defaults
     backgroundOpacity = 60,
@@ -404,7 +406,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
             <audio
                 ref={audioRef}
-                src={audioSrc}
+                src={audioSrc ? encodeURI(audioSrc) : ''}
                 onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
                 onEnded={() => setIsPlaying(false)}
                 onError={() => setAudioError(true)}
@@ -415,9 +417,24 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             {/* Audio Error Message */}
             {audioError && (
                 <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/80">
-                    <div className="text-center text-red-400">
+                    <div className="text-center text-red-400 relative">
+                        {onClose && (
+                            <button
+                                onClick={onClose}
+                                title="بستن"
+                                className="absolute -top-10 -right-4 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        )}
                         <p className="text-xl mb-2">❌ خطا در بارگذاری فایل صوتی</p>
-                        <p className="text-sm text-gray-400">{audioSrc}</p>
+                        <p className="text-sm text-gray-400 max-w-xs break-all">{audioSrc}</p>
+                        <button
+                            onClick={() => setAudioError(false)}
+                            className="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
+                        >
+                            رد شدن
+                        </button>
                     </div>
                 </div>
             )}
