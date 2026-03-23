@@ -107,11 +107,11 @@ export function AnimatedError({
 
       {/* Title */}
       <div className="space-y-1">
-        <h3 className="text-lg font-black text-slate-100 tracking-tight">
+        <h3 className="text-lg font-black text-foreground tracking-tight">
           {title ?? t.title}
         </h3>
         {errorMsg && (
-          <p className="text-sm text-slate-400 max-w-md leading-relaxed">
+          <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
             {errorMsg}
           </p>
         )}
@@ -120,10 +120,10 @@ export function AnimatedError({
       {/* Code block */}
       {code && (
         <details className="w-full max-w-lg text-left">
-          <summary className="text-xs font-bold uppercase tracking-widest text-slate-500 cursor-pointer hover:text-slate-300 transition-colors">
+          <summary className="text-xs font-bold uppercase tracking-widest text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
             {t.codeLbl}
           </summary>
-          <pre className="mt-2 p-3 bg-black/40 rounded-xl border border-white/10 text-xs text-red-300 overflow-x-auto font-mono whitespace-pre-wrap">
+          <pre className="mt-2 p-3 bg-secondary/50 rounded-xl border border-border text-xs text-red-500 dark:text-red-300 overflow-x-auto font-mono whitespace-pre-wrap">
             {code}
           </pre>
         </details>
@@ -142,7 +142,7 @@ export function AnimatedError({
         )}
 
         {reportState === "sent" ? (
-          <div className="flex items-center gap-2 text-emerald-400 text-sm font-bold animate-in fade-in duration-300">
+          <div className="flex items-center gap-2 text-emerald-500 font-bold animate-in fade-in duration-300">
             <CheckCircle className="w-4 h-4" />
             {t.sent}
           </div>
@@ -150,7 +150,7 @@ export function AnimatedError({
           <button
             onClick={handleReport}
             disabled={reportState === "sending"}
-            className="flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-300 text-sm font-bold rounded-xl transition-all disabled:opacity-50"
+            className="flex items-center gap-2 px-5 py-2.5 bg-secondary hover:bg-secondary/80 border border-border text-foreground/80 text-sm font-bold rounded-xl transition-all disabled:opacity-50"
           >
             <Send className="w-4 h-4" />
             {reportState === "sending" ? t.sending : t.report}
@@ -161,7 +161,7 @@ export function AnimatedError({
           <button
             onClick={onDismiss}
             aria-label={t.dismiss}
-            className="flex items-center gap-1.5 px-4 py-2.5 text-slate-500 hover:text-slate-300 text-sm font-bold rounded-xl hover:bg-white/5 transition-all"
+            className="flex items-center gap-1.5 px-4 py-2.5 text-muted-foreground hover:text-foreground text-sm font-bold rounded-xl hover:bg-secondary/50 transition-all"
           >
             <X className="w-4 h-4" />
             {t.dismiss}
@@ -170,7 +170,7 @@ export function AnimatedError({
       </div>
 
       {reportState === "sent" && (
-        <p className="text-xs text-slate-500 animate-in fade-in duration-300">
+        <p className="text-xs text-muted-foreground animate-in fade-in duration-300">
           {t.reportedMsg}
         </p>
       )}
@@ -184,7 +184,7 @@ export function AnimatedError({
   if (variant === "toast") {
     return (
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] w-full max-w-sm px-4">
-        <div className="bg-zinc-900/95 backdrop-blur-xl border border-red-500/30 rounded-2xl p-4 shadow-2xl shadow-red-500/10">
+        <div className="bg-background/95 backdrop-blur-xl border border-red-500/30 rounded-2xl p-4 shadow-2xl shadow-red-500/10">
           {content}
         </div>
       </div>

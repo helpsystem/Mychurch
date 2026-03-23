@@ -19,7 +19,26 @@ export async function GET(request: Request) {
     }
 
     if (code) {
-        await supabase.auth.exchangeCodeForSession(code);
+        const { data } = await supabase.auth.exchangeCodeForSession(code);
+        const user = data?.user;
+
+        if (user) {
+            // Synchronize with the 'users' table for RBAC using Admin Client
+            try {
+                const { createAdminClient } = await import("@/utils/supabase/server");
+                const adminSupabase = await createAdminClient();
+                await adminSupabase
+                    .from('users')
+                    .upsert({
+                        email: user.email,
+                        name: user.user_metadata?.full_name || user.email?.split('@')[0],
+                        role: 'User', // Default role for new signups
+                        updated_at: new Date().toISOString()
+                    }, { onConflict: 'email' });
+            } catch (syncError) {
+                console.error("[AuthCallback] DB Sync Error:", syncError);
+            }
+        }
     }
 
     return NextResponse.redirect(new URL(next, requestUrl.origin));

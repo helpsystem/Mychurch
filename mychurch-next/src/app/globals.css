@@ -86,8 +86,35 @@
     font-family: var(--font-vazirmatn), var(--font-inter), sans-serif;
   }
 
+  /* ── Ensure form inputs always have readable text ─────────────────── */
+  input, textarea, select {
+    color: var(--foreground);
+    background-color: transparent;
+  }
+
+  /* Autofill override — browsers set yellow bg which breaks dark themes */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--foreground) !important;
+    -webkit-box-shadow: 0 0 0 1000px #09090b inset !important;
+    box-shadow: 0 0 0 1000px #09090b inset !important;
+    caret-color: var(--primary) !important;
+  }
+
+  /* Placeholder contrast */
+  ::placeholder {
+    color: color-mix(in srgb, var(--muted-foreground) 55%, transparent);
+    opacity: 1;
+  }
+
   [dir="ltr"] body {
     font-family: var(--font-inter), var(--font-vazirmatn), sans-serif;
+  }
+
+  /* Utility to hide elements when a modal is open */
+  body.modal-open .hide-on-modal-open {
+    display: none !important;
   }
 }
 

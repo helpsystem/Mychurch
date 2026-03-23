@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export default async function SongTimingPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
     const { rows } = await query(
-        "SELECT id, title_fa, title_en, artist, lyrics_fa, lyrics_en, youtube_id, audio_url, timepoints FROM church_worship_songs WHERE id = $1",
+        "SELECT id, title_fa, title_en, artist, lyrics_fa, lyrics_en, youtube_id, audio_url, timepoints, timing_data, category FROM church_worship_songs WHERE id = $1",
         [resolvedParams.id]
     );
 
@@ -28,6 +28,8 @@ export default async function SongTimingPage({ params }: { params: Promise<{ id:
             youtubeId={song.youtube_id}
             audioUrl={song.audio_url}
             existingTimepoints={song.timepoints || []}
+            timingData={song.timing_data}
+            category={song.category}
         />
     );
 }

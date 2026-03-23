@@ -8,9 +8,10 @@ import {
 } from "lucide-react";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { type WorshipSong } from "@/actions/worship";
+import { type WorshipSong, toggleLikeWorshipSong } from "@/actions/worship";
 import dynamic from 'next/dynamic';
 import { cn } from "@/lib/utils";
+import { createClient } from "@/utils/supabase/client";
 
 const KaraokeModal = dynamic(
   () => import('./KaraokeModal').then(mod => ({ default: mod.KaraokeModal })),
@@ -41,6 +42,11 @@ function formatTime(s: number) {
 
 export default function WorshipArchive({ initialSongs }: { initialSongs: WorshipSong[] }) {
   const { t } = useLanguage();
+  const [songs, setSongs] = useState<WorshipSong[]>(initialSongs);
+
+  // ── Auth & User State
+  const [user, setUser] = useState<any>(null);
+  const [likedSongs, setLikedSongs] = useState<Set<string>>(new Set());
 
   // ── Filters
   const [searchQuery, setSearchQuery] = useState("");
@@ -58,6 +64,49 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
   const [player, setPlayer] = useState<PlayState>({
     song: null, index: -1, playlist: [], isPlaying: false, progress: 0, duration: 0
   });
+
+  // ── Effects
+  React.useEffect(() => {
+    const init = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+
+      if (user) {
+        const { data: likes } = await supabase
+          .from('user_likes')
+          .select('song_id')
+          .eq('user_id', user.id);
+        
+        if (likes) {
+          setLikedSongs(new Set(likes.map(l => l.song_id)));
+        }
+      }
+    };
+    init();
+  }, []);
+
+  const handleToggleLike = async (songId: string) => {
+    if (!user) {
+      alert("لطفاً برای لایک کردن ابتدا وارد حساب خود شوید / Please login to like");
+      return;
+    }
+
+    const { success, liked, count } = await toggleLikeWorshipSong(songId, user.id);
+    if (success) {
+      setLikedSongs(prev => {
+        const next = new Set(prev);
+        if (liked) next.add(songId);
+        else next.delete(songId);
+        return next;
+      });
+
+      // Update the song count in local state
+      setSongs(prev => prev.map(s => 
+        s.id === songId ? { ...s, likes_count: count } : s
+      ));
+    }
+  };
 
   const playSong = useCallback((song: WorshipSong, playlist: WorshipSong[]) => {
     if (!song.audio_url) return;
@@ -91,30 +140,30 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
   }, [player, playSong]);
 
   const playAll = (shuffle = false) => {
-    const songs = [...filteredSongs].filter(s => s.audio_url);
-    if (!songs.length) return;
-    const list = shuffle ? songs.sort(() => Math.random() - 0.5) : songs;
+    const songsToPlay = [...filteredSongs].filter(s => s.audio_url);
+    if (!songsToPlay.length) return;
+    const list = shuffle ? songsToPlay.sort(() => Math.random() - 0.5) : songsToPlay;
     playSong(list[0], list);
   };
 
   // ── Derived Data
   const alphabet = useMemo(() => {
     const letters = new Set<string>();
-    initialSongs.forEach(song => {
+    songs.forEach(song => {
       const c = song.title_fa?.trim().charAt(0);
       if (c) letters.add(c);
     });
     return Array.from(letters).sort();
-  }, [initialSongs]);
+  }, [songs]);
 
   const artists = useMemo(() => {
     const set = new Set<string>();
-    initialSongs.forEach(s => { if (s.artist) set.add(s.artist); });
+    songs.forEach(s => { if (s.artist) set.add(s.artist); });
     return Array.from(set).sort();
-  }, [initialSongs]);
+  }, [songs]);
 
   const filteredSongs = useMemo(() => {
-    let result = initialSongs;
+    let result = songs;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(s =>
@@ -127,11 +176,11 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       if (selectedArtist !== "all") result = result.filter(s => s.artist === selectedArtist);
     }
     return result;
-  }, [initialSongs, searchQuery, selectedAlphabet, selectedArtist]);
+  }, [songs, searchQuery, selectedAlphabet, selectedArtist]);
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-10 lg:px-12 relative z-10 pb-36">
+    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-10 lg:px-12 relative z-[70] pb-36">
       <DynamicWatermark defaultSize={600} defaultPosition="center" defaultOpacity={2} className="-z-10" />
 
       {/* ── Header */}
@@ -264,6 +313,8 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
             <SongCard
               key={song.id}
               song={song}
+              isLiked={likedSongs.has(song.id)}
+              onToggleLike={() => handleToggleLike(song.id)}
               isCurrentlyPlaying={player.song?.id === song.id && player.isPlaying}
               isCurrentSong={player.song?.id === song.id}
               onPlay={() => playSong(song, filteredSongs)}
@@ -279,6 +330,8 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
               key={song.id}
               song={song}
               index={i}
+              isLiked={likedSongs.has(song.id)}
+              onToggleLike={() => handleToggleLike(song.id)}
               isCurrentlyPlaying={player.song?.id === song.id && player.isPlaying}
               isCurrentSong={player.song?.id === song.id}
               onPlay={() => playSong(song, filteredSongs)}
@@ -296,7 +349,19 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
 
       {/* ── Details Modal */}
       {detailsSong && (
-        <SongDetailsModal song={detailsSong} onClose={() => setDetailsSong(null)} />
+        <SongDetailsModal
+          song={detailsSong}
+          onClose={() => setDetailsSong(null)}
+          initialLiked={likedSongs.has(detailsSong.id)}
+          onLikeChange={(songId, liked, count) => {
+            setLikedSongs(prev => {
+              const next = new Set(prev);
+              if (liked) next.add(songId); else next.delete(songId);
+              return next;
+            });
+            setSongs(prev => prev.map(s => s.id === songId ? { ...s, likes_count: count } : s));
+          }}
+        />
       )}
 
       {/* ── Global Audio Player Bar */}
@@ -372,14 +437,18 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
 }
 
 // ─── Song Card (Grid) ──────────────────────────────────────────────────────
-function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, onViewDetails }: {
+function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, onViewDetails, isLiked, onToggleLike }: {
   song: WorshipSong;
   isCurrentlyPlaying: boolean;
   isCurrentSong: boolean;
+  isLiked: boolean;
   onPlay: () => void;
   onKaraoke: () => void;
   onViewDetails: () => void;
+  onToggleLike: () => void;
 }) {
+  const isNew = song.created_at && (new Date().getTime() - new Date(song.created_at).getTime()) < 7 * 24 * 60 * 60 * 1000;
+
   return (
     <div className={cn(
       "group relative overflow-hidden rounded-3xl bg-secondary/30 border backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1 p-5 flex flex-col gap-4",
@@ -387,13 +456,20 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
     )}>
       {/* Now Playing */}
       {isCurrentlyPlaying && (
-        <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-primary px-3 py-1 rounded-full text-primary-foreground text-[10px] font-black shadow-lg">
+        <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 bg-primary px-3 py-1 rounded-full text-primary-foreground text-[10px] font-black shadow-lg">
           <div className="flex items-end gap-0.5 h-3">
             {[0, 100, 200].map(d => (
               <div key={d} className="w-1 bg-current rounded-full animate-bounce" style={{ height: '100%', animationDelay: `${d}ms` }} />
             ))}
           </div>
           در حال پخش
+        </div>
+      )}
+
+      {/* New Badge */}
+      {isNew && (
+        <div className="absolute top-4 right-4 z-20 bg-emerald-500 text-black px-3 py-1 rounded-full text-[10px] font-black shadow-lg animate-pulse">
+          جدید / NEW
         </div>
       )}
 
@@ -420,6 +496,18 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
       {/* Actions */}
       <div className="flex items-center gap-2 mt-auto pt-3 border-t border-border/50">
         <button
+            onClick={onToggleLike}
+            title={isLiked ? "Unlike" : "Like"}
+            className={cn(
+              "flex items-center gap-1.5 py-2 px-3 rounded-xl font-bold text-xs transition-all",
+              isLiked ? "bg-pink-500/20 text-pink-500 border border-pink-500/30" : "bg-secondary hover:bg-white/10 text-muted-foreground border border-white/10"
+            )}
+        >
+            <Heart className={cn("w-4 h-4", isLiked && "fill-current")} />
+            {song.likes_count || 0}
+        </button>
+
+        <button
             onClick={onViewDetails}
             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all bg-secondary hover:bg-white/10 text-foreground border border-white/10"
         >
@@ -427,33 +515,21 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
             نمایش
         </button>
 
+        {/* Combined Play + Live Lyrics button */}
         {song.audio_url && (
           <button
-            onClick={onPlay}
-            title={isCurrentlyPlaying ? "متوقف" : "پخش"}
-            className={cn(
-              "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl font-bold text-sm transition-all",
-              isCurrentlyPlaying
-                ? "bg-primary/20 text-primary border border-primary/30"
-                : "bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20"
-            )}
+            onClick={onViewDetails}
+            title="پخش + Live Lyrics"
+            className="flex items-center justify-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-500 border border-purple-500/20 py-2.5 px-3 rounded-xl font-bold text-xs transition-all"
           >
-            {isCurrentlyPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </button>
-        )}
-        {song.audio_url && (
-          <button
-            onClick={onKaraoke}
-            title="Live Lyrics"
-            className="flex items-center justify-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-500 border border-purple-500/20 py-2.5 px-3 rounded-xl font-bold text-sm transition-all"
-          >
-            <Mic className="w-4 h-4" />
+            <Play className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Live</span>
           </button>
         )}
         {song.youtube_id && (
           <button
-            onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtube_id}`, '_blank')}
-            title="YouTube"
+            onClick={onViewDetails}
+            title="پخش یوتیوب داخل مودال"
             className="flex items-center justify-center bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 py-2.5 px-3 rounded-xl transition-all"
           >
             <Youtube className="w-4 h-4" />
@@ -465,9 +541,10 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
 }
 
 // ─── Song List Item ────────────────────────────────────────────────────────
-function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, onViewDetails }: {
+function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, onViewDetails, isLiked, onToggleLike }: {
   song: WorshipSong; index: number; isCurrentlyPlaying: boolean; isCurrentSong: boolean;
-  onPlay: () => void; onKaraoke: () => void; onViewDetails: () => void;
+  isLiked: boolean; onPlay: () => void; onKaraoke: () => void; onViewDetails: () => void;
+  onToggleLike: () => void;
 }) {
   return (
     <div className={cn(
@@ -491,27 +568,31 @@ function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, 
 
       {/* Controls */}
       <div className="flex items-center gap-2 shrink-0">
-        <button title="مساهده کامل" onClick={onViewDetails}
-          className="w-9 h-9 rounded-full flex items-center justify-center bg-secondary hover:bg-white/10 border border-border/40 text-muted-foreground hover:text-foreground transition-all">
+        <button title="Like" onClick={onToggleLike}
+          className={cn("w-9 h-9 rounded-full flex items-center justify-center transition-all", isLiked ? "bg-pink-500/20 text-pink-500 border border-pink-500/30" : "bg-secondary hover:bg-white/10 border border-border/40 text-muted-foreground")}>
+          <Heart className={cn("w-4 h-4", isLiked && "fill-current")} />
+        </button>
+
+        <button title="مشاهده کامل" onClick={onViewDetails}
+          className={cn(
+            "w-9 h-9 rounded-full flex items-center justify-center border transition-all",
+            "bg-secondary border-border/40 text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30"
+          )}>
           <FileText className="w-4 h-4" />
         </button>
 
+        {/* Unified Live button for List view */}
         {song.audio_url && (
-          <button title="Play" onClick={onPlay}
-            className={cn("w-9 h-9 rounded-full flex items-center justify-center transition-all", isCurrentlyPlaying ? "bg-primary text-primary-foreground" : "bg-secondary hover:bg-primary/20 border border-border/40")}
-          >
-            {isCurrentlyPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          <button title="پخش + Live Lyrics" onClick={onViewDetails}
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-500 transition-all font-bold text-[10px]">
+            Live
           </button>
         )}
-        {song.audio_url && (
-          <button title="Live Lyrics" onClick={onKaraoke}
-            className="w-9 h-9 rounded-full flex items-center justify-center bg-secondary hover:bg-purple-500/20 border border-border/40 text-muted-foreground hover:text-purple-500 transition-all">
-            <Mic className="w-4 h-4" />
-          </button>
-        )}
+
+        {/* Unified YouTube button for List view */}
         {song.youtube_id && (
-          <button title="YouTube" onClick={() => window.open(`https://www.youtube.com/watch?v=${song.youtube_id}`, '_blank')}
-            className="w-9 h-9 rounded-full flex items-center justify-center bg-secondary hover:bg-red-500/20 border border-border/40 text-muted-foreground hover:text-red-500 transition-all">
+          <button title="پخش یوتیوب داخل مودال" onClick={onViewDetails}
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-500 transition-all">
             <Youtube className="w-4 h-4" />
           </button>
         )}

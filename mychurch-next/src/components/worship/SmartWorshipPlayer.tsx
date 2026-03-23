@@ -40,10 +40,12 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [showFinglish, setShowFinglish] = useState(true);
     const [showPersian, setShowPersian] = useState(true);
+    const [showFinglish, setShowFinglish] = useState(true);
+    const [showEnglish, setShowEnglish] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [audioError, setAudioError] = useState(false);
+    const [syncDelay, setSyncDelay] = useState(0); // For live timing correction
 
     // Normalized data handling
     const [lines, setLines] = useState<LineSegment[]>([]);
@@ -66,6 +68,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             const converted: LineSegment[] = timingData.lines.map(l => ({
                 type: 'lyric',
                 content: l.line,
+                translations: l.translations,
                 words: l.words.map(w => ({
                     word: w.word,
                     start_time: w.start,
@@ -81,30 +84,35 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         }
     }, [timingData]);
 
-    // Handle Finglish retrieval
-    const getFinglishForLine = (index: number) => {
-        // 1. Check explicit translations prop (from Studio)
-        if (translations?.finglish?.[index]) {
-            return translations.finglish[index];
+    // Handle Translation retrieval
+    const getTranslationForLine = (index: number, lang: 'finglish' | 'english' | 'persian') => {
+        // 1. Check explicit translations prop
+        if (translations?.[lang]?.[index]) {
+            return translations[lang]![index];
         }
 
-        // 2. Check SystemV2 embedded finglish
-        if ('version' in timingData && timingData.lines[index]) {
+        // 2. Check Line array embedded translation (compatible with both V2 and TranscriptData thanks to normalization)
+        const line = lines[index];
+        if (line?.translations?.[lang]) {
+            return line.translations[lang];
+        }
+
+        // 3. Fallback for legacy SystemV2 word-level finglish
+        if (lang === 'finglish' && 'version' in timingData && timingData.lines[index]) {
             const words = timingData.lines[index].words;
             const finglishLine = words.map(w => w.finglish).filter(Boolean).join(' ');
             if (finglishLine.trim()) return finglishLine;
         }
 
-        return null; // No finglish found
+        return null;
     };
 
     // Sync Loop - use externalCurrentTime if in viewOnly mode
     useEffect(() => {
-        // در حالت viewOnly از زمان خارجی استفاده کن
-        if (viewOnly && externalCurrentTime !== undefined) {
-            setCurrentTime(externalCurrentTime);
-            return;
-        }
+        const timeToSet = viewOnly && externalCurrentTime !== undefined ? externalCurrentTime : (audioRef.current?.currentTime || 0);
+        setCurrentTime(timeToSet);
+
+        if (viewOnly) return; 
 
         const audio = audioRef.current;
         if (!audio) return;
@@ -132,6 +140,9 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             }
         };
     }, [isPlaying, onTimeUpdate, viewOnly, externalCurrentTime]);
+
+    // Calculate effective time for highlighting
+    const effectiveTime = Math.max(0, currentTime - syncDelay);
 
     const togglePlay = () => {
         if (audioRef.current) {
@@ -250,10 +261,10 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                             dir="rtl"
                         >
                             {showPersian && (
-                                <div className="font-bold text-4xl lg:text-6xl text-white drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed">
+                                <div className="font-[Vazirmatn] font-black text-4xl lg:text-6xl text-white drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed">
                                     {lines[displayLineIndex].words.map((word, wIdx) => {
-                                        const isActive = currentTime >= word.start_time && currentTime <= word.end_time;
-                                        const isPast = currentTime > word.end_time;
+                                        const isActive = effectiveTime >= word.start_time && effectiveTime <= word.end_time;
+                                        const isPast = effectiveTime > word.end_time;
                                         return (
                                             <span
                                                 key={wIdx}
@@ -271,27 +282,26 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 </div>
                             )}
 
-                            {showFinglish && getFinglishForLine(displayLineIndex) && (
-                                <p className="font-mono mt-6 text-xl lg:text-3xl text-teal-200/80 tracking-wider" dir="ltr">
-                                    {getFinglishForLine(displayLineIndex)}
-                                </p>
+                            {showFinglish && getTranslationForLine(displayLineIndex, 'finglish') && (
+                                <div className="mt-4 lg:mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                    <p className="font-mono text-xl lg:text-3xl text-teal-400 font-bold drop-shadow-md tracking-wider uppercase opacity-90" dir="ltr">
+                                        {getTranslationForLine(displayLineIndex, 'finglish')}
+                                    </p>
+                                </div>
+                            )}
+
+                            {showEnglish && getTranslationForLine(displayLineIndex, 'english') && (
+                                <div className="mt-2 lg:mt-4 animate-in fade-in slide-in-from-bottom-1 duration-700">
+                                    <p className="font-sans text-lg lg:text-2xl text-indigo-300 font-medium drop-shadow-sm tracking-wide italic opacity-80" dir="ltr">
+                                        {getTranslationForLine(displayLineIndex, 'english')}
+                                    </p>
+                                </div>
                             )}
                         </motion.div>
                     )}
                 </AnimatePresence>
 
-                {/* Show waiting message if before lyrics start */}
-                {lines.length > 0 && currentTime < (lines[0]?.words[0]?.start_time || 0) - 3 && (
-                    <div className="absolute bottom-32 text-center text-white/50 text-lg">
-                        <p>🎵 سرود به زودی شروع می‌شود...</p>
-                        <button
-                            onClick={skipToLyrics}
-                            className="mt-2 px-4 py-2 bg-teal-600/50 hover:bg-teal-500/70 rounded-lg text-sm transition-colors"
-                        >
-                            پرش به شروع سرود
-                        </button>
-                    </div>
-                )}
+
             </div>
 
             {/* Controls Layer - Hidden in viewOnly mode */}
@@ -300,7 +310,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
                     {/* Progress Bar */}
                     <div
-                        className="w-full h-2 bg-gray-700/50 rounded-full mb-4 cursor-pointer overflow-hidden group"
+                        className="w-full h-2 bg-slate-700/60 rounded-full mb-4 cursor-pointer overflow-hidden group shadow-inner"
                         onClick={(e) => {
                             const rect = e.currentTarget.getBoundingClientRect();
                             const pos = (e.clientX - rect.left) / rect.width;
@@ -308,7 +318,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                         }}
                     >
                         <div
-                            className="h-full bg-gradient-to-r from-teal-400 to-indigo-500 rounded-full transition-all duration-100"
+                            className="h-full bg-gradient-to-r from-teal-400 via-emerald-400 to-indigo-500 rounded-full transition-all duration-100 shadow-[0_0_10px_rgba(45,212,191,0.5)]"
                             style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
                         />
                     </div>
@@ -316,9 +326,9 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 lg:gap-4">
                             {/* Skip Back */}
-                            <button
+                             <button
                                 onClick={() => skip(-10)}
-                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
                                 title="10 ثانیه عقب"
                             >
                                 <SkipBack className="w-5 h-5" />
@@ -333,35 +343,52 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                             </button>
 
                             {/* Skip Forward */}
-                            <button
+                             <button
                                 onClick={() => skip(10)}
-                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
                                 title="10 ثانیه جلو"
                             >
                                 <SkipForward className="w-5 h-5" />
                             </button>
 
-                            <div className="text-sm font-mono text-gray-300 mr-2">
+                             <div className="text-sm font-mono text-slate-300 mr-2">
                                 {formatTime(currentTime)} / {formatTime(duration)}
+                            </div>
+
+                            {/* Sync Offset Controls */}
+                            <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-black/40 rounded-full border border-white/10 ml-4 font-mono text-xs">
+                                <button onClick={() => setSyncDelay(d => d - 0.1)} className="hover:text-teal-400">-0.1s</button>
+                                <span className={syncDelay !== 0 ? 'text-yellow-400' : 'text-gray-400'}>Offset: {syncDelay.toFixed(1)}s</span>
+                                <button onClick={() => setSyncDelay(d => d + 0.1)} className="hover:text-teal-400">+0.1s</button>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-2 lg:gap-3">
                             <button
-                                onClick={() => setShowFinglish(!showFinglish)}
-                                className={`p-2 rounded-lg transition-colors border ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                title="نمایش Finglish"
+                                onClick={() => setShowPersian(!showPersian)}
+                                className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                title="نمایش متن اصلی (فارسی)"
                             >
-                                <Globe className="w-5 h-5" />
+                                FA
                             </button>
 
                             <button
-                                onClick={() => setShowPersian(!showPersian)}
-                                className={`p-2 rounded-lg transition-colors border ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                title="نمایش فارسی"
+                                onClick={() => setShowFinglish(!showFinglish)}
+                                className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                title="نمایش فینگلیش"
                             >
-                                <Type className="w-5 h-5" />
+                                FN
                             </button>
+
+                            <button
+                                onClick={() => setShowEnglish(!showEnglish)}
+                                className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showEnglish ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                title="نمایش ترجمه انگلیسی"
+                            >
+                                EN
+                            </button>
+
+                            <div className="w-px h-6 bg-gray-700 mx-1"></div>
 
                             <button
                                 onClick={toggleFullscreen}
@@ -397,6 +424,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         </div>
     );
 };
+export default SmartWorshipPlayer;
 
 function formatTime(seconds: number) {
     if (!seconds) return "0:00";

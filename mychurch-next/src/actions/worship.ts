@@ -13,7 +13,10 @@ export interface WorshipSong {
     lyrics_fa?: string;
     lyrics_en?: string;
     chords?: string;
+    category?: string;
+    likes_count?: number;
     timepoints?: Array<{ time: number; lyricFA: string; lyricEN?: string }>;
+    timing_data?: import('@/types/worship-sync').SystemTimingV2 | null;
     created_at?: Date;
 }
 
@@ -30,8 +33,17 @@ export async function initializeWorshipDB() {
                 lyrics_fa TEXT,
                 lyrics_en TEXT,
                 chords TEXT,
+                category VARCHAR(255),
+                likes_count INTEGER DEFAULT 0,
                 timepoints JSONB,
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            );
+
+            CREATE TABLE IF NOT EXISTS user_likes (
+                user_id UUID,
+                song_id UUID REFERENCES church_worship_songs(id) ON DELETE CASCADE,
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                PRIMARY KEY (user_id, song_id)
             );
         `);
         console.log('[Action] Worship DB initialized');
@@ -44,26 +56,23 @@ export async function getWorshipSongs(): Promise<WorshipSong[]> {
     try {
         await initializeWorshipDB();
         const { rows } = await query("SELECT * FROM church_worship_songs ORDER BY title_fa ASC");
-        return rows.map(r => ({ ...r, created_at: new Date(r.created_at) }));
+        return rows.map(r => ({ 
+            ...r, 
+            created_at: new Date(r.created_at),
+            likes_count: r.likes_count || 0 
+        }));
     } catch (e) {
         console.error('Error fetching worship songs', e);
-        // Fallback for UI skeleton testing
-        return [{
-            id: 'mock-1',
-            title_fa: 'عیسی نام تو',
-            title_en: 'Jesus Your Name',
-            artist: 'گروه پرستش',
-            lyrics_fa: 'عیسی نام تو زیباست\nآرامش بخش جانهاست'
-        }];
+        return [];
     }
 }
 
 export async function createWorshipSong(data: Partial<WorshipSong>): Promise<{ success: boolean; id?: string }> {
     try {
         const { rows } = await query(
-            `INSERT INTO church_worship_songs (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, chords, timepoints)
+            `INSERT INTO church_worship_songs (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, chords, category)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
-            [data.title_fa, data.title_en, data.artist, data.youtube_id, data.audio_url, data.lyrics_fa, data.lyrics_en, data.chords, data.timepoints ? JSON.stringify(data.timepoints) : null]
+            [data.title_fa, data.title_en, data.artist, data.youtube_id, data.audio_url, data.lyrics_fa, data.lyrics_en, data.chords, data.category]
         );
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
@@ -78,9 +87,9 @@ export async function updateWorshipSong(id: string, data: Partial<WorshipSong>):
     try {
         await query(
             `UPDATE church_worship_songs 
-             SET title_fa = $1, title_en = $2, artist = $3, youtube_id = $4, audio_url = $5, lyrics_fa = $6, lyrics_en = $7, chords = $8, timepoints = $9
-             WHERE id = $10`,
-            [data.title_fa, data.title_en, data.artist, data.youtube_id, data.audio_url, data.lyrics_fa, data.lyrics_en, data.chords, data.timepoints ? JSON.stringify(data.timepoints) : null, id]
+             SET title_fa = $1, title_en = $2, artist = $3, youtube_id = $4, audio_url = $5, lyrics_fa = $6, lyrics_en = $7, chords = $8, category = $9, timepoints = $10
+             WHERE id = $11`,
+            [data.title_fa, data.title_en, data.artist, data.youtube_id, data.audio_url, data.lyrics_fa, data.lyrics_en, data.chords, data.category, data.timepoints ? JSON.stringify(data.timepoints) : null, id]
         );
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
@@ -103,12 +112,51 @@ export async function deleteWorshipSong(id: string): Promise<{ success: boolean 
     }
 }
 
+export async function toggleLikeWorshipSong(songId: string, userId: string): Promise<{ success: boolean; liked: boolean; count: number }> {
+    try {
+        const { rows: existingLike } = await query(
+            "SELECT 1 FROM user_likes WHERE user_id = $1 AND song_id = $2",
+            [userId, songId]
+        );
+
+        if (existingLike.length > 0) {
+            await query("DELETE FROM user_likes WHERE user_id = $1 AND song_id = $2", [userId, songId]);
+            const { rows } = await query(
+                "UPDATE worship_songs SET likes_count = GREATEST(0, likes_count - 1) WHERE id = $1 RETURNING likes_count",
+                [songId]
+            );
+            revalidatePath('/worship');
+            return { success: true, liked: false, count: rows[0].likes_count || 0 };
+        } else {
+            await query("INSERT INTO user_likes (user_id, song_id) VALUES ($1, $2)", [userId, songId]);
+            const { rows } = await query(
+                "UPDATE worship_songs SET likes_count = likes_count + 1 WHERE id = $1 RETURNING likes_count",
+                [songId]
+            );
+            revalidatePath('/worship');
+            return { success: true, liked: true, count: rows[0].likes_count || 0 };
+        }
+    } catch (e) {
+        console.error('Error toggling like', e);
+        return { success: false, liked: false, count: 0 };
+    }
+}
+
 export async function extractWorshipSongAI(id: string): Promise<{ success: boolean; message?: string }> {
+    console.log(`[AI-Wizard] Starting extraction for ID: ${id}`);
     try {
         const { rows } = await query("SELECT * FROM church_worship_songs WHERE id = $1", [id]);
         const song = rows[0];
-        if (!song || !song.lyrics_fa) return { success: false, message: "متن فارسی یافت نشد" };
-
+        if (!song) {
+            console.error(`[AI-Wizard] Song not found for ID: ${id}`);
+            return { success: false, message: "سرود یافت نشد" };
+        }
+        if (!song.lyrics_fa) {
+            console.error(`[AI-Wizard] Missing lyrics_fa for song: ${id}`);
+            return { success: false, message: "متن فارسی یافت نشد" };
+        }
+        
+        console.log(`[AI-Wizard] Processing song: ${song.title_fa}`);
         let audioPart = null;
         if (song.audio_url) {
             try {
@@ -131,81 +179,208 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                             data: base64Audio
                         }
                     };
+                } else if (filePath.startsWith('http')) {
+                    // Fetch external audio if it's a full URL
+                    const res = await fetch(filePath);
+                    const buffer = await res.arrayBuffer();
+                    const base64Audio = Buffer.from(buffer).toString('base64');
+                    audioPart = {
+                        inlineData: {
+                            mimeType: "audio/mpeg", // Assumption
+                            data: base64Audio
+                        }
+                    };
                 }
             } catch (e) {
                 console.error("Audio read error", e);
             }
         }
 
-        const promptText = `
-You are a bilingual worship pastor and expert in music theory. I will provide you with the Farsi lyrics of a Persian worship song.
-Please provide the following data based strictly on the provided Farsi lyrics:
-1. "translation_en": An accurate and poetic English translation of the entire song.
-2. "chords": Typical standard worship guitar/piano chords that fit this song.
-3. "category": Identify the main biblical theme.
-4. "timepoints": For Karaoke synchronicity, create a JSON array mapping EACH WORD from the Farsi lyrics to an exact time point (in seconds). ${audioPart ? 'Please listen to the provided audio file to align this perfectly.' : 'Since no audio is provided, estimate based on a standard 120 BPM flowing worship song.'}
-    Output array format: [{ "time": 0.0, "word": "word1" }]. Cover at least 20 words.
+        const prompt = `
+            Transcribe and analyze this worship song. 
+            CRITICAL REQUIREMENTS:
+            1. Group words into natural lyric lines/stanzas in the 'lines' array. Set type to 'lyric'.
+            2. For EVERY line, provide:
+               - 'persian': Exact Persian/Farsi lyrics (CLEAN - no chords, no labels like [Verse]).
+               - 'english': Accurate English translation.
+               - 'finglish': Transliteration of the Persian lyrics into Latin alphabet (Finglish).
+            3. Provide highly accurate timestamps for every single word in the 'words' array, down to the hundredth of a second (0.01s).
+            4. The 'content' field should contain the Finglish version for primary identification.
+            5. Also provide:
+               - 'lyrics_fa_clean': The entire Persian lyrics, formatted nicely, with NO chords or extra characters.
+               - 'translation_en': Full English translation.
+               - 'chords': Standard worship chords (only if detectable).
+               - 'category': The main theme (e.g. Worship, Praise, Cross, Grace).
+        
+            Song Title: "${song.title_fa}"
+            Farsi Lyrics:
+            ${song.lyrics_fa}
+        `;
 
-Song Title: "${song.title_fa}"
-Farsi Lyrics:
-${song.lyrics_fa.substring(0, 1000)}
-
-Respond strictly in valid JSON format matching this schema:
-{"translation_en": "...", "chords": "...", "category": "...", "timepoints": [{"time": 1.2, "word": "word1"}]}
-NO MARKDOWN. JUST RAW JSON.
-`;
-
-        const parts: any[] = [{ text: promptText }];
+        const parts: any[] = [
+            { text: prompt }
+        ];
         if (audioPart) parts.unshift(audioPart);
 
-        const body = {
-            contents: [{ role: "user", parts }],
-            generationConfig: { temperature: 0.2 } // Lower temperature for timing accuracy
-        };
 
-        const DIRECT_API_KEY = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6IpDe6-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
-        const API_URL = `https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=${DIRECT_API_KEY}`;
+        const { GoogleGenAI, Type } = await import('@google/genai');
+        const DIRECT_API_KEY = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6IpDe2-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
+        const ai = new GoogleGenAI({ apiKey: DIRECT_API_KEY });
 
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
+        console.log(`[AI-Wizard] Calling Gemini for: ${song.title_fa} (Audio: ${!!audioPart})`);
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: [{ parts }],
+            config: {
+                temperature: 0.1,
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: Type.OBJECT,
+                        properties: {
+                            lyrics_fa_clean: { type: Type.STRING },
+                            translation_en: { type: Type.STRING },
+                            chords: { type: Type.STRING },
+                            category: { type: Type.STRING },
+                            timing_data: {
+                            type: Type.OBJECT,
+                            properties: {
+                                lines: {
+                                    type: Type.ARRAY,
+                                    items: {
+                                        type: Type.OBJECT,
+                                        properties: {
+                                            type: { type: Type.STRING, enum: ['lyric'] },
+                                            content: { type: Type.STRING },
+                                            translations: {
+                                                type: Type.OBJECT,
+                                                properties: {
+                                                    persian: { type: Type.STRING },
+                                                    english: { type: Type.STRING },
+                                                    finglish: { type: Type.STRING }
+                                                },
+                                                required: ['persian', 'english', 'finglish']
+                                            },
+                                            words: {
+                                                type: Type.ARRAY,
+                                                items: {
+                                                    type: Type.OBJECT,
+                                                    properties: {
+                                                        word: { type: Type.STRING },
+                                                        start: { type: Type.NUMBER },
+                                                        end: { type: Type.NUMBER }
+                                                    },
+                                                    required: ['word', 'start', 'end']
+                                                }
+                                            }
+                                        },
+                                        required: ['content', 'words', 'type', 'translations']
+                                    }
+                                }
+                            },
+                            required: ['lines']
+                        }
+                    },
+                    required: ['lyrics_fa_clean', 'translation_en', 'chords', 'category', 'timing_data']
+                }
+            }
         });
 
-        if (!response.ok) throw new Error(await response.text());
-
-        const data = await response.json();
-        if (!data.candidates) throw new Error("No output returned");
-        const responseText = data.candidates[0].content.parts[0].text.trim();
+        const responseText = response.text;
+        if (!responseText) throw new Error("No output returned");
         
-        let cleanJson = responseText;
-        if (cleanJson.startsWith('```json')) cleanJson = cleanJson.substring(7);
-        if (cleanJson.startsWith('```')) cleanJson = cleanJson.substring(3);
-        if (cleanJson.endsWith('```')) cleanJson = cleanJson.slice(0, -3);
-        
-        const aiData = JSON.parse(cleanJson);
+        const aiData = JSON.parse(responseText);
 
+        console.log(`[AI-Wizard] AI returned data. Updating DB...`);
         await query(`
             UPDATE church_worship_songs
-            SET lyrics_en = COALESCE(lyrics_en, $1),
-                chords = COALESCE(chords, $2),
-                category = COALESCE(category, $3),
-                timepoints = COALESCE(timepoints, $4)
-            WHERE id = $5
+            SET lyrics_fa = $1,
+                lyrics_en = CASE WHEN lyrics_en IS NULL OR lyrics_en = '' THEN $2 ELSE lyrics_en END,
+                chords = CASE WHEN chords IS NULL OR chords = '' THEN $3 ELSE chords END,
+                category = CASE WHEN category IS NULL OR category = '' THEN $4 ELSE category END,
+                timing_data = CASE WHEN timing_data IS NULL OR (timing_data::text = '{}' OR timing_data::text = 'null') THEN $5 ELSE timing_data END
+            WHERE id = $6
         `, [
+            aiData.lyrics_fa_clean || null,
             aiData.translation_en || null,
             aiData.chords || null,
             aiData.category || null,
-            aiData.timepoints ? JSON.stringify(aiData.timepoints) : null,
+            aiData.timing_data ? JSON.stringify(aiData.timing_data) : null,
             id
         ]);
         
+        console.log(`[AI-Wizard] Successfully updated song: ${song.title_fa}`);        
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
 
         return { success: true };
     } catch (e: any) {
         console.error('Error extracting worship AI', e);
+        return { success: false, message: e.message };
+    }
+}
+
+export async function getWorshipEnrichmentStats() {
+    try {
+        const { rows } = await query(`
+            SELECT 
+                COUNT(*) as total,
+                COUNT(*) FILTER (WHERE audio_url IS NULL OR audio_url = '') as missing_audio,
+                COUNT(*) FILTER (WHERE lyrics_fa IS NULL OR lyrics_fa = '') as missing_lyrics,
+                COUNT(*) FILTER (WHERE timing_data IS NULL OR (timing_data::text = '{}' OR timing_data::text = 'null')) as missing_timing
+            FROM church_worship_songs
+        `);
+        return rows[0];
+    } catch (e) {
+        console.error('Error fetching enrichment stats', e);
+        return { total: 0, missing_audio: 0, missing_lyrics: 0, missing_timing: 0 };
+    }
+}
+
+export async function scanMissingAudio() {
+    try {
+        const fs = require('fs');
+        const path = require('path');
+        const audioDir = path.join(process.cwd(), 'public', 'worship', 'audio', 'kalameh');
+        
+        if (!fs.existsSync(audioDir)) return { success: false, message: "پوشه صوتی یافت نشد" };
+        
+        const files = fs.readdirSync(audioDir).filter((f: string) => f.endsWith('.mp3') || f.endsWith('.m4a'));
+        const { rows: songs } = await query("SELECT id, title_fa FROM church_worship_songs WHERE audio_url IS NULL OR audio_url = ''");
+        
+        const suggestions: Array<{ songId: string; title: string; fileName: string; score: number }> = [];
+        
+        // Simple fuzzy matching
+        for (const song of songs) {
+            const cleanTitle = song.title_fa.replace(/[0-9]/g, '').trim();
+            for (const file of files) {
+                const cleanFile = file.replace(/[0-9]/g, '').replace('.mp3', '').replace('.m4a', '').trim();
+                if (cleanFile.includes(cleanTitle) || cleanTitle.includes(cleanFile)) {
+                    suggestions.push({
+                        songId: song.id,
+                        title: song.title_fa,
+                        fileName: file,
+                        score: 0.8 // Rough match
+                    });
+                    break; // Take first match for now
+                }
+            }
+        }
+        
+        return { success: true, suggestions };
+    } catch (e: any) {
+        console.error('Error scanning audio', e);
+        return { success: false, message: e.message };
+    }
+}
+
+export async function linkWorshipAudio(songId: string, fileName: string) {
+    try {
+        const audioUrl = `/worship/audio/kalameh/${fileName}`;
+        await query("UPDATE church_worship_songs SET audio_url = $1 WHERE id = $2", [audioUrl, songId]);
+        revalidatePath('/admin/worship');
+        return { success: true };
+    } catch (e: any) {
+        console.error('Error linking audio', e);
         return { success: false, message: e.message };
     }
 }

@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { sendMail } from "@/lib/mailer";
@@ -103,10 +103,11 @@ export async function signUp(formData: FormData) {
         console.log(`[Auth] ✅ Verification email re-sent to: ${email}`);
     }
 
-    // [New] Synchronize with the 'users' table for RBAC
+    // [New] Synchronize with the 'users' table for RBAC using Admin Client to bypass RLS
     try {
-        console.log(`[Auth] 🔄 Syncing ${email} to users table...`);
-        const { error: syncError } = await supabase
+        console.log(`[Auth] 🔄 Syncing ${email} to users table via Admin Client...`);
+        const adminSupabase = await createAdminClient();
+        const { error: syncError } = await adminSupabase
             .from('users')
             .upsert({
                 email: email,

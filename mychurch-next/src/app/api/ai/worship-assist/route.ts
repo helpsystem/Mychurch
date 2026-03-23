@@ -50,6 +50,15 @@ Only output the chord chart, nothing else.
 Song Title: ${titleFA || "Unknown"}
 Persian Lyrics:
 ${lyricsFA}`;
+        } else if (mode === "clean") {
+            prompt = `You are a text cleaner for worship song databases.
+Remove all chords (e.g. [Am], G, C), section labels (e.g. Verse 1, Chorus), and any non-lyric metadata from the following Persian worship song text.
+Keep only the clean Persian lyrics, formatted with clear stanza breaks.
+Only output the clean text, nothing else.
+
+Song Title: ${titleFA || "Unknown"}
+Raw Text:
+${lyricsFA}`;
         } else {
             return NextResponse.json({ error: "Invalid mode. Use 'translate' or 'chords'." }, { status: 400 });
         }

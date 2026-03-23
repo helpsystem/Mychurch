@@ -25,6 +25,38 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  async headers() {
+    return [
+      {
+        // اعمال هدرهای ضد دانلود برای تمام فایل‌های صوتی محلی
+        source: '/worship/audio/:path*',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'audio/mpeg',
+          },
+          {
+            key: 'Content-Disposition',
+            value: 'inline',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ],
+      },
+      {
+        // در صورت استفاده از فولدر فایل‌های عمومی دیگر
+        source: '/files/:path*',
+        headers: [
+          {
+            key: 'Content-Disposition',
+            value: 'inline',
+          }
+        ]
+      }
+    ];
+  },
 };
 
 export default nextConfig;

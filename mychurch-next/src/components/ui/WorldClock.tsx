@@ -77,7 +77,7 @@ function AnalogClock({ hours, minutes, seconds, color }: { hours: number; minute
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="drop-shadow-lg">
       {/* Face */}
-      <circle cx={cx} cy={cy} r={r} fill="white" fillOpacity={0.04} stroke={color} strokeWidth={2} strokeOpacity={0.4} />
+      <circle cx={cx} cy={cy} r={r} fill="currentColor" fillOpacity={0.05} stroke={color} strokeWidth={2} strokeOpacity={0.4} className="text-foreground" />
       {/* Ticks */}
       {ticks.map((t, i) => (
         <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
@@ -91,7 +91,7 @@ function AnalogClock({ hours, minutes, seconds, color }: { hours: number; minute
       <line x1={cx} y1={cy} x2={secEnd.x} y2={secEnd.y} stroke="#f43f5e" strokeWidth={1.5} strokeLinecap="round" />
       {/* Center dot */}
       <circle cx={cx} cy={cy} r={4} fill={color} fillOpacity={0.9} />
-      <circle cx={cx} cy={cy} r={2} fill="white" fillOpacity={0.8} />
+      <circle cx={cx} cy={cy} r={2} fill="currentColor" fillOpacity={0.8} className="text-background" />
     </svg>
   );
 }
@@ -107,19 +107,19 @@ function ClockWidget({ tz }: { tz: TZClock }) {
 
   if (!time) {
     return (
-      <div className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm animate-pulse">
-        <div className="w-[120px] h-[120px] rounded-full bg-white/10" />
-        <div className="h-8 w-24 bg-white/10 rounded mt-2" />
+      <div className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-card border border-border backdrop-blur-sm animate-pulse">
+        <div className="w-[120px] h-[120px] rounded-full bg-secondary" />
+        <div className="h-8 w-24 bg-secondary rounded mt-2" />
         <div className="w-full flex flex-col items-center gap-2 mt-4">
-          <div className="h-4 w-28 bg-white/10 rounded" />
-          <div className="h-3 w-20 bg-white/10 rounded" />
+          <div className="h-4 w-28 bg-secondary rounded" />
+          <div className="h-3 w-20 bg-secondary rounded" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/8 transition-all">
+    <div className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-card border border-border backdrop-blur-sm hover:bg-secondary/30 transition-all shadow-sm">
       {/* Analog */}
       <AnalogClock hours={time.hours} minutes={time.minutes} seconds={time.seconds} color={tz.color} />
 
@@ -130,9 +130,9 @@ function ClockWidget({ tz }: { tz: TZClock }) {
 
       {/* Labels */}
       <div className="text-center">
-        <p className="font-bold text-white/90 text-sm">{tz.label}</p>
-        <p className="font-[Vazirmatn] text-white/60 text-xs">{tz.labelFa}</p>
-        <p className="text-white/30 text-[10px] mt-1 font-mono">{time.dateStr}</p>
+        <p className="font-bold text-foreground/90 text-sm">{tz.label}</p>
+        <p className="font-[Vazirmatn] text-muted-foreground text-xs">{tz.labelFa}</p>
+        <p className="text-muted-foreground/30 text-[10px] mt-1 font-mono">{time.dateStr}</p>
       </div>
     </div>
   );

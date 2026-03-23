@@ -3,6 +3,7 @@ export type WordSegment = {
     start_time: number;
     end_time: number;
     finglish?: string | null;
+    english?: string | null;
 };
 
 export type LineType = 'book_title' | 'chapter_title' | 'verse' | 'text' | 'lyric';
@@ -11,6 +12,11 @@ export type LineSegment = {
     type: LineType;
     label?: string; // e.g., "1", "2" for verses
     content: string;
+    translations?: {
+        persian?: string | null;
+        english?: string | null;
+        finglish?: string | null;
+    };
     words: WordSegment[];
 };
 
@@ -25,12 +31,18 @@ export type SystemWordV2 = {
     start: number;
     end: number;
     finglish?: string | null;
+    english?: string | null;
 };
 
 export type SystemLineV2 = {
     line: string;
     start: number;
     end: number;
+    translations?: {
+        persian?: string | null;
+        english?: string | null;
+        finglish?: string | null;
+    };
     words: SystemWordV2[];
 };
 

@@ -26,4 +26,19 @@ export async function createClient() {
             },
         }
     );
+}export async function createAdminClient() {
+    return createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!, // Use service role for admin tasks
+        {
+            cookies: {
+                getAll() {
+                    return []; // No cookies needed for service role
+                },
+                setAll() {
+                    // No cookies needed for service role
+                },
+            },
+        }
+    );
 }
