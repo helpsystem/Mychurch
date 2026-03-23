@@ -8,7 +8,7 @@ import {
 import { WorshipSong, Sermon } from '../types';
 
 interface MediaItem {
-  id: number;
+  id: number | string;
   title: { en: string; fa: string };
   artist?: string;
   speaker?: string;
@@ -471,6 +471,8 @@ const UniversalMediaPlayer: React.FC<UniversalMediaPlayerProps> = ({
                       value={isMuted ? 0 : volume}
                       onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
                       className="w-16 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                      title={lang === 'fa' ? 'میزان صدا' : 'Volume'}
+                      aria-label="Volume slider"
                     />
                   </div>
                 )}

@@ -242,42 +242,64 @@ router.get('/incomplete', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANA
 router.get('/', async (req, res) => {
   try {
     // بهینه‌سازی: فقط فیلدهای لازم را SELECT کن (نه lyrics که خیلی بزرگ است)
+    const user_id = req.user?.id;
     const result = await pool.query(`
       SELECT 
-        id, title, artist, youtubeid, audiourl, videourl, 
-        category, tags, copyright, 
-        presentation_file_url, pdf_file_url, sheet_music_url,
-        chords, notation, notes, attachments,
-        timing_data IS NOT NULL as has_timing,
-        timing_updated_at,
-        created_at
-      FROM worship_songs 
-      ORDER BY created_at DESC
-    `);
+        s.id, 
+        s.title_fa, 
+        s.title_en, 
+        s.artist, 
+        s.youtube_id, 
+        s.audio_url, 
+        s.video_url as videourl, 
+        s.category, 
+        s.tags, 
+        s.copyright, 
+        s.presentation_file_url, 
+        s.pdf_file_url, 
+        s.sheet_music_url, 
+        s.chords, 
+        s.notation, 
+        s.notes, 
+        s.attachments, 
+        s.finglish_lyrics,
+        s.likes_count,
+        s.is_new,
+        s.is_archived,
+        s.timing_data IS NOT NULL as has_timing, 
+        s.timing_updated_at, 
+        s.created_at,
+        EXISTS(SELECT 1 FROM user_likes WHERE user_id = $1 AND song_id = s.id) as is_liked
+      FROM worship_songs s
+      ORDER BY s.created_at DESC
+    `, [user_id || -1]);
 
     const worshipSongs = result.rows.map(song => ({
       id: song.id,
-      title: parseJSON(song.title, {}),
+      title: { fa: song.title_fa, en: song.title_en },
       artist: song.artist,
-      youtubeId: song.youtubeid,
-      audioUrl: convertToProxyURL(song.audiourl), // Convert to proxy URL
+      youtubeId: song.youtube_id,
+      audioUrl: song.audio_url,
       videoUrl: song.videourl,
-      category: song.category || 'worship',
+      category: song.category,
       tags: parseJSON(song.tags, []),
       copyright: song.copyright,
-      presentationFileUrl: convertToProxyURL(song.presentation_file_url),
-      pdfFileUrl: convertToProxyURL(song.pdf_file_url),
-      sheetMusicUrl: convertToProxyURL(song.sheet_music_url),
+      presentationFileUrl: song.presentation_file_url,
+      pdfFileUrl: song.pdf_file_url,
+      sheetMusicUrl: song.sheet_music_url,
       chords: song.chords,
       notation: song.notation,
       notes: song.notes,
       attachments: parseJSON(song.attachments, []),
+      finglishLyrics: song.finglish_lyrics,
+      likesCount: song.likes_count,
+      isLiked: song.is_liked,
+      isNew: song.is_new,
+      isArchived: song.is_archived,
       hasTiming: song.has_timing,
-      timingUpdatedAt: song.timing_updated_at
-      // lyrics و timingData رو حذف کردیم چون خیلی بزرگ هستند
-      // برای دریافت این دو از GET /api/worship-songs/:id استفاده می‌شود
+      timingUpdatedAt: song.timing_updated_at,
+      createdAt: song.created_at
     }));
-
     res.json(worshipSongs);
   } catch (error) {
     console.error('Fetch Worship Songs Error:', error);
@@ -298,12 +320,12 @@ router.get('/:id', async (req, res) => {
     const song = result.rows[0];
     res.json({
       id: song.id,
-      title: parseJSON(song.title, {}),
+      title: { fa: song.title_fa, en: song.title_en },
       artist: song.artist,
-      youtubeId: song.youtubeid,
-      lyrics: parseJSON(song.lyrics, {}),
-      audioUrl: convertToProxyURL(song.audiourl), // Convert to proxy URL
-      videoUrl: song.videourl,
+      youtubeId: song.youtube_id,
+      lyrics: { fa: song.lyrics_fa, en: song.lyrics_en },
+      audioUrl: convertToProxyURL(song.audio_url),
+      videoUrl: song.video_url,
       category: song.category || 'worship',
       tags: parseJSON(song.tags, []),
       copyright: song.copyright,
@@ -314,6 +336,10 @@ router.get('/:id', async (req, res) => {
       notation: song.notation,
       notes: song.notes,
       attachments: parseJSON(song.attachments, []),
+      finglishLyrics: song.finglish_lyrics,
+      likesCount: song.likes_count,
+      isNew: song.is_new,
+      isArchived: song.is_archived,
       timingData: parseJSON(song.timing_data, null),
       timingUpdatedAt: song.timing_updated_at,
       hasTiming: !!song.timing_data,
@@ -337,23 +363,29 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
   try {
     // Insert worship song
     const result = await pool.query(
-      `INSERT INTO worship_songs (title, artist, youtubeId, lyrics, audioUrl, videoUrl, presentation_file_url, pdf_file_url, sheet_music_url, auto_sync_enabled, processing_status) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+      `INSERT INTO worship_songs (
+        title_fa, title_en, artist, youtube_id, 
+        lyrics_fa, lyrics_en, audiourl, video_url, 
+        presentation_file_url, pdf_file_url, sheet_music_url, 
+        auto_sync_enabled, processing_status
+      ) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`,
       [
-        JSON.stringify(title),
+        title.fa || '',
+        title.en || '',
         artist,
         youtubeId,
-        JSON.stringify(lyrics || {}),
+        lyrics?.fa || '',
+        lyrics?.en || '',
         audioUrl || null,
         videoUrl || null,
         presentationFileUrl || null,
         pdfFileUrl || null,
         sheetMusicUrl || null,
-        autoSync !== false, // Default true
-        'not_processed'
+        autoSync || false,
+        'pending'
       ]
     );
-
     const newSong = result.rows[0];
 
     // 🚀 AUTO-SYNC: Queue for background processing if audio and lyrics exist
@@ -373,18 +405,17 @@ router.post('/', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), as
         console.log(`✅ Queued worship song ${newSong.id} for auto-sync`);
       } catch (queueError) {
         console.error('Failed to queue song for sync:', queueError);
-        // Don't fail the request, just log the error
       }
     }
 
     res.status(201).json({
       id: newSong.id,
-      title: parseJSON(newSong.title, {}),
+      title: { fa: newSong.title_fa, en: newSong.title_en },
       artist: newSong.artist,
-      youtubeId: newSong.youtubeid,
-      lyrics: parseJSON(newSong.lyrics, {}),
-      audioUrl: newSong.audiourl,
-      videoUrl: newSong.videourl,
+      youtubeId: newSong.youtube_id,
+      lyrics: { fa: newSong.lyrics_fa, en: newSong.lyrics_en },
+      audioUrl: newSong.audio_url,
+      videoUrl: newSong.video_url,
       presentationFileUrl: newSong.presentation_file_url,
       pdfFileUrl: newSong.pdf_file_url,
       sheetMusicUrl: newSong.sheet_music_url,
@@ -404,23 +435,26 @@ router.put('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), 
 
   try {
     const result = await pool.query(
-      `UPDATE worship_songs SET title = $1, artist = $2, youtubeId = $3, lyrics = $4, audioUrl = $5, videoUrl = $6,
-       presentation_file_url = $7, pdf_file_url = $8, sheet_music_url = $9
-       WHERE id = $10 RETURNING *`,
+      `UPDATE worship_songs SET 
+         title_fa = $1, title_en = $2, artist = $3, youtube_id = $4, 
+         lyrics_fa = $5, lyrics_en = $6, audiourl = $7, video_url = $8,
+         presentation_file_url = $9, pdf_file_url = $10, sheet_music_url = $11
+       WHERE id = $12 RETURNING *`,
       [
-        JSON.stringify(title),
+        title.fa || '',
+        title.en || '',
         artist,
         youtubeId,
-        JSON.stringify(lyrics || {}),
+        lyrics?.fa || '',
+        lyrics?.en || '',
         audioUrl,
         videoUrl,
-        presentationFileUrl || null,
-        pdfFileUrl || null,
-        sheetMusicUrl || null,
+        presentationFileUrl,
+        pdfFileUrl,
+        sheetMusicUrl,
         id
       ]
     );
-
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Worship song not found.' });
     }
@@ -428,12 +462,12 @@ router.put('/:id', authenticateToken, authorizeRoles('SUPER_ADMIN', 'MANAGER'), 
     const updatedSong = result.rows[0];
     res.json({
       id: updatedSong.id,
-      title: parseJSON(updatedSong.title, {}),
+      title: { fa: updatedSong.title_fa, en: updatedSong.title_en },
       artist: updatedSong.artist,
-      youtubeId: updatedSong.youtubeid,
-      lyrics: parseJSON(updatedSong.lyrics, {}),
-      audioUrl: updatedSong.audiourl,
-      videoUrl: updatedSong.videourl,
+      youtubeId: updatedSong.youtube_id,
+      lyrics: { fa: updatedSong.lyrics_fa, en: updatedSong.lyrics_en },
+      audioUrl: updatedSong.audio_url,
+      videoUrl: updatedSong.video_url,
       presentationFileUrl: updatedSong.presentation_file_url,
       pdfFileUrl: updatedSong.pdf_file_url,
       sheetMusicUrl: updatedSong.sheet_music_url

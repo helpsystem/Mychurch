@@ -52,19 +52,28 @@ export const verifyOtp = async (email: string, token: string): Promise<{ user: U
         throw new Error("Verification succeeded, but no user data returned.");
     }
 
-    // Adapt Supabase user to our internal User format for the context
+    // Fetch full user details from public.users table
+    const { data: dbUser } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', data.user.email)
+        .single();
+
     const user: User = {
         email: data.user.email || '',
-        id: data.user.id,
-        role: 'USER', // Default mapping
-        roles: ['USER'],
-        permissions: [],
+        role: dbUser?.role || 'USER',
+        roles: dbUser?.roles || ['USER'],
+        permissions: dbUser?.permissions || [],
         profileData: {
-            name: data.user.user_metadata?.full_name || '',
-            phone: data.user.user_metadata?.phone || '',
-            billingInfo: { name: '', company: '', email: '', vat: '' },
-            creditCards: []
-        }
+            name: dbUser?.name || data.user.user_metadata?.full_name || '',
+            phone: dbUser?.phone || data.user.user_metadata?.phone || '',
+            whatsappNumber: dbUser?.whatsappNumber || '',
+            billingInfo: dbUser?.billingInfo || { name: '', company: '', email: '', vat: '' },
+            creditCards: dbUser?.creditCards || []
+        },
+        invitations: dbUser?.invitations || [],
+        activityLog: [],
+        messages: dbUser?.messages || []
     };
     
     return { user, token: data.session.access_token };
@@ -97,20 +106,28 @@ export const login = async (loginData: { email: string; password: string; }): Pr
         throw new Error("Login succeeded, but no user data returned.");
     }
 
-    // Fetch user details from our public.users table or adapt from metadata
-    // For now, mapping from metadata to match expected signature:
+    // Fetch full user details from public.users table
+    const { data: dbUser } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', data.user.email)
+        .single();
+
     const user: User = {
         email: data.user.email || '',
-        id: data.user.id,
-        role: 'USER',
-        roles: ['USER'],
-        permissions: [],
+        role: dbUser?.role || 'USER',
+        roles: dbUser?.roles || ['USER'],
+        permissions: dbUser?.permissions || [],
         profileData: {
-             name: data.user.user_metadata?.full_name || '',
-             phone: data.user.user_metadata?.phone || '',
-             billingInfo: { name: '', company: '', email: '', vat: '' },
+             name: dbUser?.name || data.user.user_metadata?.full_name || '',
+             phone: dbUser?.phone || data.user.user_metadata?.phone || '',
+             whatsappNumber: dbUser?.whatsappNumber || '',
+             billingInfo: dbUser?.billingInfo || { name: '', company: '', email: '', vat: '' },
              creditCards: []
-        }
+        },
+        invitations: dbUser?.invitations || [],
+        activityLog: [],
+        messages: dbUser?.messages || []
     };
 
     return { user, token: data.session.access_token };
@@ -135,18 +152,52 @@ export const fetchCurrentUser = async (): Promise<User | null> => {
 
     const { user: supaUser } = session;
 
+    // Fetch full user details from public.users table
+    // We match by email since the public.users table might not have the Supabase ID yet
+    const { data: dbUser, error: dbError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', supaUser.email)
+        .single();
+
+    if (dbError || !dbUser) {
+        console.warn("User session exists in Supabase Auth, but not found in public.users table:", dbError?.message);
+        // Fallback to metadata for basic info
+        return {
+            email: supaUser.email || '',
+            role: 'USER',
+            roles: ['USER'],
+            permissions: [],
+            profileData: {
+                 name: supaUser.user_metadata?.full_name || '',
+                 phone: supaUser.user_metadata?.phone || '',
+                 billingInfo: { name: '', company: '', email: '', vat: '' },
+                 creditCards: []
+            },
+            invitations: [],
+            activityLog: [],
+            messages: []
+        };
+    }
+
     const user: User = {
-        email: supaUser.email || '',
-        id: supaUser.id,
-        role: 'USER',
-        roles: ['USER'],
-        permissions: [],
+        email: dbUser.email,
+        role: dbUser.role || 'USER',
+        roles: Array.isArray(dbUser.roles) ? dbUser.roles : [dbUser.role || 'USER'],
+        permissions: Array.isArray(dbUser.permissions) ? dbUser.permissions : [],
         profileData: {
-             name: supaUser.user_metadata?.full_name || '',
-             phone: supaUser.user_metadata?.phone || '',
-             billingInfo: { name: '', company: '', email: '', vat: '' },
-             creditCards: []
-        }
+            name: dbUser.name || dbUser.profileData?.name || '',
+            phone: dbUser.phone || dbUser.profileData?.phone || '',
+            whatsappNumber: dbUser.whatsappNumber || dbUser.profileData?.whatsappNumber || '',
+            gender: dbUser.gender || dbUser.profileData?.gender || 'neutral',
+            imageUrl: dbUser.imageUrl || dbUser.profileData?.imageUrl || '',
+            billingInfo: dbUser.billingInfo || dbUser.profileData?.billingInfo || { name: '', company: '', email: '', vat: '' },
+            creditCards: dbUser.creditCards || dbUser.profileData?.creditCards || [],
+            signature: dbUser.signature || dbUser.profileData?.signature
+        },
+        invitations: dbUser.invitations || [],
+        activityLog: [],
+        messages: dbUser.messages || []
     };
     return user;
 };

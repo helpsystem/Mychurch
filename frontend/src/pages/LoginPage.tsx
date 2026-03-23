@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const { login, loading } = useAuth();
+  const { login, loginWithGoogle, loading } = useAuth();
   const { t, lang } = useLanguage();
   const navigate = useNavigate();
 
@@ -139,7 +139,29 @@ const LoginPage: React.FC = () => {
                       {loading ? <Spinner size="5" /> : t('login')}
                     </button>
                   </div>
+
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                      <div className="w-full border-t border-white/20"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-2 bg-transparent text-gray-400 backdrop-blur-sm">{t('or') || 'OR'}</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <button
+                      type="button"
+                      onClick={loginWithGoogle}
+                      disabled={loading}
+                      className="w-full flex items-center justify-center gap-3 py-3 px-4 font-medium text-[16px] text-black bg-white rounded-[10px] outline-none hover:bg-gray-100 transition-colors disabled:opacity-50"
+                    >
+                      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" className="w-5 h-5" />
+                      {t('continueWithGoogle') || 'Continue with Google'}
+                    </button>
+                  </div>
                 </form>
+
 
                 <p className="mt-6 text-center text-sm text-dimWhite">
                   {t('loginPrompt')}{' '}

@@ -92,6 +92,7 @@ export interface AuthContextType {
   hasPermission: (permission: string) => boolean;
   hasRole: (role: UserRole) => boolean;
   login: (email: string, password: string) => Promise<User | null>;
+  loginWithGoogle: () => Promise<void>;
   adminLogin: (email: string, password: string) => Promise<User | null>;
   signup: (name: string, email: string, password: string, phone?: string, captchaToken?: string, website?: string) => Promise<void>;
   verifyEmail: (token: string) => Promise<User | null>;
@@ -146,7 +147,7 @@ export interface Sermon {
 }
 
 export interface WorshipSong {
-  id: number;
+  id: string; // UUID from database
   title: Record<Language, string>;
   artist: string;
   youtubeId: string;
@@ -156,10 +157,17 @@ export interface WorshipSong {
   presentationFileUrl?: string;
   pdfFileUrl?: string;
   sheetMusicUrl?: string;
+  chords?: string;
+  notation?: string;
+  notes?: string;
+  finglishLyrics?: string;
+  likesCount?: number;
+  isLiked?: boolean;
+  isNew?: boolean;
+  isArchived?: boolean;
   timepoints?: Array<{ time: number; word: string }>;
-  notes?: string;  // ✅ Sheet music notes, musical instructions
-  description?: string;  // ✅ Song description, background, usage
-  attachments?: Array<{  // ✅ Attached files (PDF, PowerPoint, etc.)
+  description?: string;
+  attachments?: Array<{
     name: string;
     url: string;
     size?: string;

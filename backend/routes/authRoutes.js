@@ -95,7 +95,7 @@ const checkHoneypot = (honeypotValue) => {
 
 // -------------------- SIGNUP --------------------
 router.post('/signup', signupRateLimit, async (req, res) => {
-  const { name, email, password, captchaToken, website } = req.body;
+  const { name, email, password, phone, captchaToken, website } = req.body;
 
   // Basic field validation
   if (!name || !email || !password) {
@@ -159,27 +159,40 @@ router.post('/signup', signupRateLimit, async (req, res) => {
   }
 
   try {
-    const result = await pool.query('SELECT email FROM users WHERE email = $1', [email.toLowerCase()]);
-    const existingUsers = result.rows;
-    if (existingUsers.length > 0) {
-      return res.status(409).json({
-        message: 'Email already in use.',
-        field: 'email'
-      });
-    }
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email.toLowerCase()]);
+    const existingUser = result.rows[0];
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const profileData = JSON.stringify({
       name: name.trim(),
+      phone: phone?.trim() || '',
       billingInfo: {},
       creditCards: [],
       imageUrl: `https://i.pravatar.cc/150?u=${email.toLowerCase()}`
     });
 
-    await pool.query(
-      'INSERT INTO users (email, password, role, permissions, profileData, invitations) VALUES ($1, $2, $3, $4, $5, $6)',
-      [email.toLowerCase(), hashedPassword, 'USER', '[]', profileData, '[]']
-    );
+    if (existingUser) {
+      // If user exists and was created by the Supabase trigger (identifiable by dummy password)
+      // or if we just want to allow re-registration/sync for the same email
+      if (existingUser.password === 'managed-by-supabase-auth') {
+        console.log(`[Auth] Syncing existing Supabase-triggered user: ${email}`);
+        await pool.query(
+          'UPDATE users SET password = $1, profileData = $2 WHERE email = $3',
+          [hashedPassword, profileData, email.toLowerCase()]
+        );
+      } else {
+        return res.status(409).json({
+          message: 'Email already in use.',
+          field: 'email'
+        });
+      }
+    } else {
+      // Normal signup (local-first or trigger hadn't fired yet)
+      await pool.query(
+        'INSERT INTO users (email, password, role, permissions, profileData, invitations) VALUES ($1, $2, $3, $4, $5, $6)',
+        [email.toLowerCase(), hashedPassword, 'USER', '[]', profileData, '[]']
+      );
+    }
 
     // Reset rate limit on successful signup
     resetRateLimit(req, 'signup');

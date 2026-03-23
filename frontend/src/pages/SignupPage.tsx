@@ -31,7 +31,7 @@ const SignupPage: React.FC = () => {
   const [honeypotValue, setHoneypotValue] = useState('');
   const [rateLimited, setRateLimited] = useState(false);
 
-  const { signup, verifyOtp, loading } = useAuth();
+  const { signup, loginWithGoogle, verifyOtp, loading } = useAuth();
   const { t, lang } = useLanguage();
   const navigate = useNavigate();
 
@@ -174,21 +174,21 @@ const SignupPage: React.FC = () => {
                    <div className="text-center">
                      <h1 className="text-3xl font-bold mb-4">{t('verifyEmailTitle') || 'Verify Your Account'}</h1>
                      <p className="text-dimWhite mb-6">
-                        {t('verifyEmailDescription') || 'We sent a 6-digit verification code to your email. Please enter it below.'}
+                        {t('verifyEmailDescription') || 'We sent a verification code to your email. Please enter it below.'}
                      </p>
                      
                      <form onSubmit={handleVerifyOtp} className="space-y-6">
                         <div>
                            <label htmlFor="otp" className="block text-sm font-medium text-dimWhite mb-1">
-                              Verification Code
+                               {t('verificationCode') || 'Verification Code'}
                            </label>
                            <input
                              id="otp"
                              type="text"
                              value={otp}
-                             onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                             onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 8))}
                              required
-                             placeholder="123456"
+                             placeholder="12345678"
                              className={`${inputStyles} text-center tracking-widest text-2xl font-mono`}
                              dir="ltr"
                            />
@@ -344,6 +344,27 @@ const SignupPage: React.FC = () => {
                         >
                           {loading ? <Spinner size="5" /> : t('signup')}
                         </button>
+
+                        <div className="relative my-6">
+                          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div className="w-full border-t border-white/20"></div>
+                          </div>
+                          <div className="relative flex justify-center text-sm">
+                            <span className="px-2 bg-transparent text-gray-400 backdrop-blur-sm">{t('or') || 'OR'}</span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <button
+                            type="button"
+                            onClick={loginWithGoogle}
+                            disabled={loading}
+                            className="w-full flex items-center justify-center gap-3 py-3 px-4 font-medium text-[16px] text-black bg-white rounded-[10px] outline-none hover:bg-gray-100 transition-colors disabled:opacity-50"
+                          >
+                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" className="w-5 h-5" />
+                            {t('continueWithGoogle') || 'Continue with Google'}
+                          </button>
+                        </div>
                         
                         {!captchaVerified && !loading && (
                           <div className="text-center text-xs text-gray-400 mt-2">

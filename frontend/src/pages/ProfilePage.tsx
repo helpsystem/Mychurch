@@ -155,6 +155,7 @@ const ProfilePage: React.FC = () => {
     const [formData, setFormData] = useState({
         name: user?.profileData?.name || '',
         gender: user?.profileData?.gender || 'neutral',
+        phone: user?.profileData?.phone || '',
         whatsappNumber: user?.profileData?.whatsappNumber || '',
         signature: user?.profileData?.signature || { en: '', fa: '' },
     });
@@ -225,7 +226,13 @@ const ProfilePage: React.FC = () => {
     const handleEditToggle = () => {
         if (isEditing) {
             // Reset form if canceling
-            setFormData({ name: user.profileData?.name || '', gender: user.profileData?.gender || 'neutral', whatsappNumber: user.profileData?.whatsappNumber || '', signature: user.profileData?.signature || { en: '', fa: '' } });
+            setFormData({ 
+                name: user.profileData?.name || '', 
+                gender: user.profileData?.gender || 'neutral', 
+                phone: user.profileData?.phone || '',
+                whatsappNumber: user.profileData?.whatsappNumber || '', 
+                signature: user.profileData?.signature || { en: '', fa: '' } 
+            });
             setImageFile(null);
             setImagePreview(null);
         }
@@ -269,10 +276,12 @@ const ProfilePage: React.FC = () => {
             const dataToUpdate: Partial<ProfileData> = {
                 name: formData.name,
                 gender: formData.gender,
+                phone: formData.phone,
                 whatsappNumber: formData.whatsappNumber,
                 imageUrl: finalImageUrl,
                 signature: formData.signature,
             };
+
 
             // Step 3: Update the user's profile with all data.
             await updateProfileData(dataToUpdate);
@@ -361,6 +370,15 @@ const ProfilePage: React.FC = () => {
                                         ))}
                                     </div>
                                 </div>
+                                 <div className="bg-primary p-4 rounded-lg border border-gray-700">
+                                    <label className="text-sm font-medium text-dimWhite mb-1">{t('phone') || 'Phone Number'}</label>
+                                    <input
+                                        type="tel"
+                                        value={formData.phone}
+                                        onChange={(e) => setFormData(p => ({ ...p, phone: e.target.value }))}
+                                        className="w-full bg-transparent text-lg text-white focus:outline-none"
+                                    />
+                                </div>
                                 <div className="bg-primary p-4 rounded-lg border border-gray-700">
                                     <label className="text-sm font-medium text-dimWhite mb-1">{t('whatsAppNumber')}</label>
                                     <input
@@ -371,6 +389,7 @@ const ProfilePage: React.FC = () => {
                                         className="w-full bg-transparent text-lg text-white focus:outline-none"
                                     />
                                 </div>
+
                                 {isLeader && (
                                     <div className="mt-4 pt-4 border-t border-gray-700 space-y-4">
                                         <div>

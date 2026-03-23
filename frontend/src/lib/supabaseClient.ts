@@ -17,7 +17,7 @@ const getSupabaseClient = (): SupabaseClient => {
                 persistSession: true,
                 storageKey: 'iranian-church-auth',
                 autoRefreshToken: true,
-                detectSessionInUrl: false
+                detectSessionInUrl: true
             }
         });
     }

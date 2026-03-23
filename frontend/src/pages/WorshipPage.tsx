@@ -4,7 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
 import { WorshipSong } from '../types';
 import { useContent } from '../hooks/useContent';
-import { Youtube, FileText, FileMusic, Play, Mic, ExternalLink, Presentation, Music2, Shuffle, PlayCircle, SkipBack, SkipForward } from 'lucide-react';
+import { Youtube, FileText, FileMusic, Play, Mic, ExternalLink, Presentation, Music2, Shuffle, PlayCircle, SkipBack, SkipForward, Heart } from 'lucide-react';
 import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
 import UniversalMediaPlayer from '../components/UniversalMediaPlayer';
 import AudioPlayerWithLyrics from '../components/AudioPlayerWithLyrics';
@@ -99,6 +99,12 @@ const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void; onKar
             <Play size={48} className="text-white drop-shadow-lg" />
           </div>
         )}
+        {/* New Badge */}
+        {song.isNew && (
+          <div className="absolute top-2 left-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg z-10 animate-pulse">
+            {lang === 'fa' ? 'جدید' : 'NEW'}
+          </div>
+        )}
       </div>
 
       {/* Song Info */}
@@ -164,6 +170,31 @@ const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void; onKar
             </button>
           )}
 
+          {/* Like Button */}
+          <button
+            onClick={async (e) => {
+              e.stopPropagation();
+              try {
+                const response = await fetch(`/api/worship-songs/songs/${song.id}/toggle-like`, {
+                  method: 'POST',
+                  headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                const data = await response.json();
+                if (data.success) {
+                   // Local state management or reload - for now, just a visual feedback
+                   window.dispatchEvent(new CustomEvent('worship-refresh'));
+                }
+              } catch (err) {
+                console.error('Like failed:', err);
+              }
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg transition-all text-xs font-medium"
+            title={lang === 'fa' ? 'لایک' : 'Like'}
+          >
+            <Heart size={14} className={song.isLiked ? "text-pink-500 fill-current" : "text-pink-500 opacity-70"} />
+            <span className="text-white">{song.likesCount || 0}</span>
+          </button>
+
           {/* PowerPoint Download */}
           {(song as any).presentationFileUrl && (
             <a
@@ -210,7 +241,8 @@ const WorshipPage: React.FC = () => {
   } = useAudioPlayer();
 
   // Check if user is admin or leader
-  const isAdminOrLeader = user && ['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'].includes(user.role);
+  const isAdminOrLeader = !!(user && ['SUPER_ADMIN', 'MANAGER', 'WORSHIP_LEADER'].includes(user.role));
+
 
   const [selectedSongIndex, setSelectedSongIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -834,7 +866,7 @@ const WorshipPage: React.FC = () => {
 
             <div className="flex items-center gap-3">
               <button
-                onClick={() => setSelectedSongIndex(Math.max(0, selectedSongIndex - 1))}
+                onClick={() => setSelectedSongIndex(selectedSongIndex !== null ? Math.max(0, selectedSongIndex - 1) : 0)}
                 disabled={selectedSongIndex === 0}
                 className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg disabled:opacity-40"
               >
@@ -842,10 +874,11 @@ const WorshipPage: React.FC = () => {
               </button>
 
               <select
-                value={selectedSongIndex}
+                value={selectedSongIndex ?? 0}
                 onChange={(e) => setSelectedSongIndex(Number(e.target.value))}
                 className="bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-600"
                 dir={lang === 'fa' ? 'rtl' : 'ltr'}
+                title={lang === 'fa' ? 'انتخاب سرود' : 'Select Song'}
               >
                 {songs.map((song, index) => (
                   <option key={song.id} value={index}>
@@ -855,7 +888,7 @@ const WorshipPage: React.FC = () => {
               </select>
 
               <button
-                onClick={() => setSelectedSongIndex(Math.min(songs.length - 1, selectedSongIndex + 1))}
+                onClick={() => setSelectedSongIndex(selectedSongIndex !== null ? Math.min(songs.length - 1, selectedSongIndex + 1) : 0)}
                 disabled={selectedSongIndex === songs.length - 1}
                 className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg disabled:opacity-40"
               >
@@ -865,7 +898,7 @@ const WorshipPage: React.FC = () => {
           </div>
 
           {/* محتوا */}
-          {songs[selectedSongIndex] && (
+          {selectedSongIndex !== null && songs[selectedSongIndex] && (
             <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
               <h1 className="text-5xl font-bold mb-4">{songs[selectedSongIndex].title?.[lang]}</h1>
               <p className="text-2xl text-gray-400 mb-8">{songs[selectedSongIndex].artist}</p>

@@ -2,13 +2,13 @@ import React, { createContext, useState, useEffect, ReactNode, useCallback } fro
 import { User, UserRole, AuthContextType, BillingInfo, CreditCard, ProfileData, Language } from '../types';
 import * as authService from '../lib/auth';
 import { setToken } from '../lib/tokenManager';
+import { supabase } from '../lib/supabaseClient';
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const checkLoggedIn = async () => {
       setLoading(true);
@@ -22,7 +22,28 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
     };
     checkLoggedIn();
+
+    // Listen for auth state changes (for OAuth redirects)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log(`[Auth] Supabase Event: ${event}`);
+      if (session) {
+        try {
+          // Sync with our backend when token is present from OAuth
+          const currentUser = await authService.fetchCurrentUser();
+          setUser(currentUser);
+        } catch (error) {
+          console.error("OAuth Sync failed:", error);
+        }
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
+
 
   const handleAuthAction = useCallback(async (action: Promise<{ user: User, token: string }>) => {
     try {
@@ -50,6 +71,24 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = (email: string, password: string) => handleAuthAction(authService.login({ email, password }));
+  
+  const loginWithGoogle = async () => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+      if (error) throw error;
+    } catch (error) {
+      console.error("Google login failed:", error);
+      setLoading(false);
+      throw error;
+    }
+  };
+
   const adminLogin = (email: string, password: string) => handleAuthAction(authService.adminLogin({ email, password }));
 
   const signup = async (name: string, email: string, password: string, phone?: string, captchaToken?: string, website?: string): Promise<void> => {
@@ -130,6 +169,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     hasPermission,
     hasRole,
     login,
+    loginWithGoogle,
     adminLogin,
     signup,
     verifyEmail,
