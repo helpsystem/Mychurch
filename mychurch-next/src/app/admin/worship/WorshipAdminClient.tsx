@@ -656,9 +656,10 @@ export default function WorshipAdminClient() {
                     <div className="w-full max-w-5xl h-[80vh] bg-black/40 rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative">
                         <SmartWorshipPlayer 
                             timingData={previewSong.timing_data as any} 
-                            audioSrc={previewSong.audio_url || ""}
+                            audioSrc={previewSong.audio_url ? encodeURI(previewSong.audio_url) : ""}
                             title={previewSong.title_fa}
                             viewOnly={true}
+                            onClose={() => setPreviewSong(null)}
                         />
                         
                         {/* Audio fallback message if no URL */}
