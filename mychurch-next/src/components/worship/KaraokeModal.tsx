@@ -84,7 +84,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
                 {song.audio_url && (
                     <audio
                         ref={audioRef}
-                        src={song.audio_url}
+                        src={encodeURI(song.audio_url)}
                         onTimeUpdate={handleTimeUpdate}
                         onPlay={() => setIsPlaying(true)}
                         onPause={() => setIsPlaying(false)}

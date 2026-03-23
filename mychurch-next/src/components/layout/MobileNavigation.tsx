@@ -65,7 +65,6 @@ export function MobileNavigation() {
     { label: "درباره ما", path: "/about", icon: Info },
     { label: "گالری", path: "/gallery", icon: ImageIcon },
     { label: "مدارک", path: "/documents", icon: FileText },
-    { label: "حساب و کتاب", path: "/dej", icon: FileText }, // Or a generic calculator icon if available
     { label: t?.contact || "تماس", path: "/contact", icon: Phone },
     { label: "پشتیبانی", path: "/profile/support", icon: Shield },
   ];

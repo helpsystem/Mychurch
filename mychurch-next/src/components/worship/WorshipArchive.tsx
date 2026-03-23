@@ -113,7 +113,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
     const index = playlist.findIndex(s => s.id === song.id);
     setPlayer(p => ({ ...p, song, index, playlist, isPlaying: true, progress: 0 }));
     if (audioRef.current) {
-      audioRef.current.src = song.audio_url;
+      audioRef.current.src = encodeURI(song.audio_url);
       audioRef.current.play().catch(console.error);
     }
   }, []);
@@ -180,7 +180,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-10 lg:px-12 relative z-[70] pb-36">
+    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-10 lg:px-12 relative z-10 pb-36">
       <DynamicWatermark defaultSize={600} defaultPosition="center" defaultOpacity={2} className="-z-10" />
 
       {/* ── Header */}
