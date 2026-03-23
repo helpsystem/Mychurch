@@ -224,12 +224,13 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
 
 
         const { GoogleGenAI, Type } = await import('@google/genai');
-        const DIRECT_API_KEY = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6IpDe2-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
+        const DIRECT_API_KEY = process.env.GEMINI_API_KEY;
+        if (!DIRECT_API_KEY) throw new Error("GEMINI_API_KEY is not set");
         const ai = new GoogleGenAI({ apiKey: DIRECT_API_KEY });
 
         console.log(`[AI-Wizard] Calling Gemini for: ${song.title_fa} (Audio: ${!!audioPart})`);
         const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-2.0-flash',
             contents: [{ parts }],
             config: {
                 temperature: 0.1,
