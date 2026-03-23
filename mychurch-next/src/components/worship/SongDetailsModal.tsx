@@ -259,7 +259,8 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                 timingData={song.timing_data} 
                 audioSrc={song.audio_url ? encodeURI(song.audio_url) : ""} 
                 viewOnly={true}
-                externalCurrentTime={currentTime} 
+                externalCurrentTime={currentTime}
+                onClose={() => setShowLiveLyrics(false)}
               />
             </div>
           </div>
@@ -441,6 +442,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                       setFocusMode(prev => prev === "media" ? "lyrics" : prev);
                     }
                   }}
+                  onClose={() => handleSetFocusMode(null)}
                   backgroundImage={song.youtube_id
                     ? `https://img.youtube.com/vi/${song.youtube_id}/hqdefault.jpg`
                     : undefined

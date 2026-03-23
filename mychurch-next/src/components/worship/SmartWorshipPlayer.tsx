@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward, X } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward, X, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TranscriptData, LineSegment, SystemTimingV2 } from '@/types/worship-sync';
 
@@ -416,18 +416,20 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
             {/* Audio Error Message */}
             {audioError && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/80">
-                    <div className="text-center text-red-400 relative">
-                        {onClose && (
-                            <button
-                                onClick={onClose}
-                                title="بستن"
-                                className="absolute -top-10 -right-4 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
-                        )}
-                        <p className="text-xl mb-2">❌ خطا در بارگذاری فایل صوتی</p>
+                <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+                    {onClose && (
+                        <button
+                            onClick={onClose}
+                            title="بستن"
+                            className="absolute top-4 right-4 z-[60] p-3 bg-white/10 hover:bg-white/20 hover:text-red-400 text-white rounded-full transition-all"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                    )}
+                    <div className="text-center text-red-400 relative z-[50]">
+                        <p className="text-xl mb-2 flex items-center justify-center gap-2">
+                            <AlertCircle className="w-6 h-6" /> خطا در بارگذاری فایل صوتی
+                        </p>
                         <p className="text-sm text-gray-400 max-w-xs break-all">{audioSrc}</p>
                         <button
                             onClick={() => setAudioError(false)}
