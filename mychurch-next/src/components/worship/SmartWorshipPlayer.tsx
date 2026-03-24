@@ -26,13 +26,22 @@ interface SmartWorshipPlayerProps {
 
 export const getSafeAudioUrl = (url: string | undefined): string => {
     if (!url) return '';
+    
+    // Convert old local URLs to HiDrive proxy URL
     if (url.includes('worship/audio/kalameh/')) {
         let filename = url.split('/').pop() || '';
         if (filename) {
             filename = encodeURI(decodeURIComponent(filename));
-            return `https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/worship/audio/kalameh/${filename}`;
+            const hidriveUrl = `https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/worship/audio/kalameh/${filename}`;
+            return `/api/worship-audio?url=${encodeURIComponent(hidriveUrl)}`;
         }
     }
+    
+    // If it's already an IONOS HiDrive URL, we must proxy it to avoid 401 Unauthorized
+    if (url.includes('webdav.hidrive.ionos.com')) {
+        return `/api/worship-audio?url=${encodeURIComponent(url)}`;
+    }
+    
     return encodeURI(decodeURI(url));
 };
 
