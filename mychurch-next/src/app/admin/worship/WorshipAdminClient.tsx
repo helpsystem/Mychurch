@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
     Plus, Search, Edit2, Trash2, Youtube, Music, Clock,
     Sparkles, Languages, Loader2, Save, X, Upload, CheckCircle,
-    Database, Guitar, Eraser, Play, Eye, Zap
+    Database, Guitar, Eraser, Play, Eye, Zap, Type
 } from "lucide-react";
 import { 
     type WorshipSong,
@@ -420,8 +420,24 @@ export default function WorshipAdminClient() {
                                 />
                             </div>
 
+                            {/* Finglish Lyrics */}
+                            <div className="space-y-2 mt-4">
+                                <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
+                                    <Type className="w-4 h-4 text-orange-400" />
+                                    فینگلیش (Finglish)
+                                </label>
+                                <textarea
+                                    rows={7}
+                                    value={editingSong.lyrics_finglish || ''}
+                                    onChange={e => setEditingSong({ ...editingSong, lyrics_finglish: e.target.value })}
+                                    className="w-full bg-secondary/50 text-foreground border border-orange-500/20 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 outline-none resize-none leading-relaxed font-mono placeholder-muted-foreground"
+                                    dir="ltr"
+                                    placeholder="Shabane man toyi..."
+                                />
+                            </div>
+
                             {/* AI Action Buttons */}
-                            <div className="grid grid-cols-2 gap-3">
+                            <div className="grid grid-cols-2 gap-3 mt-4">
                                 <button
                                     type="button"
                                     onClick={handleAiTranslate}
