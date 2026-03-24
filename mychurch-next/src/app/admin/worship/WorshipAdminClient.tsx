@@ -394,13 +394,13 @@ export default function WorshipAdminClient() {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-muted-foreground flex items-center gap-1"><Music className="w-4 h-4 text-blue-500" /> لینک فایل صوتی (Audio)</label>
+                                    <label className="text-sm font-bold text-muted-foreground flex items-center gap-1"><Music className="w-4 h-4 text-blue-500" /> لینک فایل صوتی (مسیر سرور یا لینک HiDrive)</label>
                                     <input
                                         value={editingSong.audio_url || ''}
                                         onChange={e => setEditingSong({ ...editingSong, audio_url: e.target.value })}
                                         className="w-full bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary outline-none placeholder-muted-foreground"
                                         dir="ltr"
-                                        placeholder="/worship/audio/123.mp3"
+                                        placeholder="https://webdav.hidrive.ionos.com/.../song.mp3"
                                     />
                                 </div>
                             </div>
@@ -656,7 +656,7 @@ export default function WorshipAdminClient() {
                     <div className="w-full max-w-5xl h-[80vh] bg-black/40 rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative">
                         <SmartWorshipPlayer 
                             timingData={previewSong.timing_data as any} 
-                            audioSrc={previewSong.audio_url ? encodeURI(previewSong.audio_url) : ""}
+                            audioSrc={previewSong.audio_url ? encodeURI(decodeURI(previewSong.audio_url)) : ""}
                             title={previewSong.title_fa}
                             viewOnly={true}
                             onClose={() => setPreviewSong(null)}

@@ -406,7 +406,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
             <audio
                 ref={audioRef}
-                src={audioSrc ? encodeURI(audioSrc) : ''}
+                src={audioSrc ? encodeURI(decodeURI(audioSrc)) : ''}
                 onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
                 onEnded={() => setIsPlaying(false)}
                 onError={() => setAudioError(true)}

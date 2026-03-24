@@ -113,7 +113,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
     const index = playlist.findIndex(s => s.id === song.id);
     setPlayer(p => ({ ...p, song, index, playlist, isPlaying: true, progress: 0 }));
     if (audioRef.current) {
-      audioRef.current.src = encodeURI(song.audio_url);
+      audioRef.current.src = encodeURI(decodeURI(song.audio_url));
       audioRef.current.play().catch(console.error);
     }
   }, []);
