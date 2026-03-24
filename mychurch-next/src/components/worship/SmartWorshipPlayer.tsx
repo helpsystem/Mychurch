@@ -24,6 +24,18 @@ interface SmartWorshipPlayerProps {
     objectFit?: 'cover' | 'contain' | 'fill';
 }
 
+export const getSafeAudioUrl = (url: string | undefined): string => {
+    if (!url) return '';
+    if (url.includes('worship/audio/kalameh/')) {
+        let filename = url.split('/').pop() || '';
+        if (filename) {
+            filename = encodeURI(decodeURIComponent(filename));
+            return `https://webdav.hidrive.ionos.com/users/adminchurch/mychurch/worship/audio/kalameh/${filename}`;
+        }
+    }
+    return encodeURI(decodeURI(url));
+};
+
 export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     timingData,
     audioSrc,
@@ -406,7 +418,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
             <audio
                 ref={audioRef}
-                src={audioSrc ? encodeURI(decodeURI(audioSrc)) : ''}
+                src={getSafeAudioUrl(audioSrc)}
                 onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
                 onEnded={() => setIsPlaying(false)}
                 onError={() => setAudioError(true)}
@@ -430,7 +442,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                         <p className="text-xl mb-2 flex items-center justify-center gap-2">
                             <AlertCircle className="w-6 h-6" /> خطا در بارگذاری فایل صوتی
                         </p>
-                        <p className="text-sm text-gray-400 max-w-xs break-all">{audioSrc}</p>
+                        <p className="text-sm opacity-80 mb-4 truncate max-w-sm mx-auto" dir="ltr">{getSafeAudioUrl(audioSrc)}</p>
                         <button
                             onClick={() => setAudioError(false)}
                             className="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"

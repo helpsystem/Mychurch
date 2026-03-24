@@ -5,6 +5,7 @@ import { X, Play, Pause } from "lucide-react";
 import { type WorshipSong } from "@/actions/worship";
 import { AppleMusicLyrics } from "./AppleMusicLyrics";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
+import { getSafeAudioUrl } from "./SmartWorshipPlayer";
 
 export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: () => void }) {
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -84,7 +85,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
                 {song.audio_url && (
                     <audio
                         ref={audioRef}
-                        src={encodeURI(decodeURI(song.audio_url))}
+                        src={getSafeAudioUrl(song.audio_url)}
                         onTimeUpdate={handleTimeUpdate}
                         onPlay={() => setIsPlaying(true)}
                         onPause={() => setIsPlaying(false)}

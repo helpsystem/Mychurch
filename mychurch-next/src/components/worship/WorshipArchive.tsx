@@ -12,6 +12,7 @@ import { type WorshipSong, toggleLikeWorshipSong } from "@/actions/worship";
 import dynamic from 'next/dynamic';
 import { cn } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
+import { getSafeAudioUrl } from "./SmartWorshipPlayer";
 
 const KaraokeModal = dynamic(
   () => import('./KaraokeModal').then(mod => ({ default: mod.KaraokeModal })),
@@ -113,7 +114,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
     const index = playlist.findIndex(s => s.id === song.id);
     setPlayer(p => ({ ...p, song, index, playlist, isPlaying: true, progress: 0 }));
     if (audioRef.current) {
-      audioRef.current.src = encodeURI(decodeURI(song.audio_url));
+      audioRef.current.src = getSafeAudioUrl(song.audio_url);
       audioRef.current.play().catch(console.error);
     }
   }, []);

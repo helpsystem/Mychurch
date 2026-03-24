@@ -9,7 +9,7 @@ import { type WorshipSong, toggleLikeWorshipSong } from "@/actions/worship";
 import { createClient } from "@/utils/supabase/client";
 import { cn } from "@/lib/utils";
 import { SongSectionsAccordion } from "./SongSectionsAccordion";
-import { SmartWorshipPlayer } from "./SmartWorshipPlayer";
+import { SmartWorshipPlayer, getSafeAudioUrl } from "./SmartWorshipPlayer";
 
 interface Props {
   song: WorshipSong;
@@ -257,7 +257,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
             <div className="flex-1 w-full relative">
               <SmartWorshipPlayer 
                 timingData={song.timing_data} 
-                audioSrc={song.audio_url ? encodeURI(decodeURI(song.audio_url)) : ""} 
+                audioSrc={song.audio_url ? getSafeAudioUrl(song.audio_url) : ""} 
                 viewOnly={true}
                 externalCurrentTime={currentTime}
                 onClose={() => setShowLiveLyrics(false)}
@@ -349,7 +349,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
             )}>
               <div className="flex items-center gap-3">
                 <div className="flex-1 min-w-0">
-                  <audio ref={audioRef} src={encodeURI(decodeURI(song.audio_url))} className={cn("w-full transition-all", focusMode === "media" ? "h-6" : "h-8")}
+                  <audio ref={audioRef} src={song.audio_url ? getSafeAudioUrl(song.audio_url) : ""} className={cn("w-full transition-all", focusMode === "media" ? "h-6" : "h-8")}
                     onPlay={() => { startTimeSync(); setIsPlaying(true); }} onPause={() => { stopTimeSync(); setIsPlaying(false); }} onEnded={() => { stopTimeSync(); setIsPlaying(false); }}
                     controls preload="metadata" controlsList="nodownload" />
                 </div>
@@ -434,7 +434,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
               {focusMode === "lyrics" && song.timing_data ? (
                 <SmartWorshipPlayer
                   timingData={song.timing_data}
-                  audioSrc={song.audio_url ? encodeURI(decodeURI(song.audio_url)) : ""}
+                  audioSrc={song.audio_url ? getSafeAudioUrl(song.audio_url) : ""}
                   onTimeUpdate={(t) => {
                     // If karaoke is playing, stop YouTube (mutual exclusion)
                     if (t > 0) {
