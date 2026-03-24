@@ -181,7 +181,11 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                     };
                 } else if (filePath.startsWith('http')) {
                     // Fetch external audio if it's a full URL
-                    const res = await fetch(filePath);
+                    const safeUrl = encodeURI(decodeURI(filePath));
+                    console.log(`[AI-Wizard] Fetching external audio: ${safeUrl}`);
+                    const res = await fetch(safeUrl);
+                    if (!res.ok) throw new Error(`Fetch failed: ${res.statusText}`);
+                    
                     const buffer = await res.arrayBuffer();
                     const base64Audio = Buffer.from(buffer).toString('base64');
                     audioPart = {
