@@ -36,8 +36,12 @@ export const getSafeAudioUrl = (url: string | undefined): string => {
         return `/api/worship-audio?url=${encodeURIComponent(url)}`;
     }
     
+    // Normalize: trim whitespace and strip any spaces/encoded-spaces right before .mp3
+    // This acts as a safety net even if the DB still has a trailing space
+    let normalized = url.trim().replace(/(?:\s|%20)+\.mp3$/i, '.mp3');
+    
     // For local files, simply encode the URI properly
-    return encodeURI(decodeURI(url));
+    return encodeURI(decodeURI(normalized));
 };
 
 export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
