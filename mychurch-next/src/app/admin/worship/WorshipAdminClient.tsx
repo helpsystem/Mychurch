@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
     Plus, Search, Edit2, Trash2, Youtube, Music, Clock,
     Sparkles, Languages, Loader2, Save, X, Upload, CheckCircle,
-    Database, Guitar, Eraser, Play, Eye, Zap, Type
+    Database, Guitar, Eraser, Play, Eye, Zap, Type, Download, Link as LinkIcon
 } from "lucide-react";
 import { 
     type WorshipSong,
@@ -14,6 +14,7 @@ import {
     deleteWorshipSong, 
     extractWorshipSongAI
 } from "@/actions/worship";
+import { uploadToHiDrive, moveExternalToInternal } from "@/actions/hidrive";
 import { migrateLegacyWorshipData } from "@/actions/migration";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
 import BulkEnrichmentModal from "./BulkEnrichmentModal";
@@ -28,6 +29,8 @@ export default function WorshipAdminClient() {
     // Editor State
     const [editingSong, setEditingSong] = useState<WorshipSong | null>(null);
     const [isSaving, setIsSaving] = useState(false);
+    const [isConverting, setIsConverting] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
 
     // Import State
     const [isImporting, setIsImporting] = useState(false);
@@ -143,6 +146,7 @@ export default function WorshipAdminClient() {
             youtube_id: "",
             audio_url: "",
             lyrics_fa: "",
+            lyrics_finglish: "",
             lyrics_en: "",
             chords: ""
         });
@@ -230,7 +234,51 @@ export default function WorshipAdminClient() {
         }
     };
     
-    // Server Action Master AI Extractor
+    const handleConvertToInternal = async () => {
+        if (!editingSong?.audio_url || !editingSong.audio_url.startsWith('http')) {
+            alert("لینک خارجی معتیر یافت نشد.");
+            return;
+        }
+        setIsConverting(true);
+        try {
+            const res = await moveExternalToInternal(editingSong.audio_url, editingSong.title_fa);
+            if (res.success && res.url) {
+                setEditingSong(prev => prev ? { ...prev, audio_url: res.url! } : prev);
+                alert("✨ فایل با موفقیت به استوریج داخلی منتقل شد!");
+            } else {
+                throw new Error(res.error);
+            }
+        } catch (err: any) {
+            alert("خطا در انتقال فایل: " + err.message);
+        } finally {
+            setIsConverting(false);
+        }
+    };
+
+    const handleAudioFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file || !editingSong) return;
+
+        setIsUploading(true);
+        try {
+            const reader = new FileReader();
+            reader.onload = async () => {
+                const buffer = Buffer.from(reader.result as ArrayBuffer);
+                const res = await uploadToHiDrive(buffer, file.name);
+                if (res.success && res.url) {
+                    setEditingSong(prev => prev ? { ...prev, audio_url: res.url! } : prev);
+                    alert("✨ فایل با موفقیت آپلود شد!");
+                } else {
+                    alert("خطا در آپلود: " + res.error);
+                }
+                setIsUploading(false);
+            };
+            reader.readAsArrayBuffer(file);
+        } catch (err: any) {
+            alert("خطا در خواندن فایل: " + err.message);
+            setIsUploading(false);
+        }
+    };
     const handleExtractRowAI = async (id: string) => {
         // Removed native window.confirm to prevent browser blocking issues
         setProcessingAiId(id);
@@ -372,39 +420,67 @@ export default function WorshipAdminClient() {
                                 </div>
                             </div>
 
-                            {/* Artist / YouTube / Audio row */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {/* Artist, Audio & Video Links */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-muted-foreground">خواننده / گروه</label>
                                     <input
                                         value={editingSong.artist || ''}
                                         onChange={e => setEditingSong({ ...editingSong, artist: e.target.value })}
-                                        className="w-full bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary outline-none placeholder-muted-foreground"
+                                        className="w-full bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary outline-none placeholder-muted-foreground"
                                         placeholder="مثال: پرستندگان"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-muted-foreground flex items-center gap-1"><Youtube className="w-4 h-4 text-red-500" /> شناسه یوتیوب</label>
+                                    <label className="text-sm font-bold text-muted-foreground flex items-center gap-1">
+                                        <Youtube className="w-4 h-4 text-red-500" /> لینک ویدیو (YouTube ID)
+                                    </label>
                                     <input
+                                        type="text"
                                         value={editingSong.youtube_id || ''}
-                                        onChange={e => setEditingSong({ ...editingSong, youtube_id: e.target.value })}
-                                        className="w-full bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary outline-none placeholder-muted-foreground"
-                                        dir="ltr"
+                                        onChange={(e) => setEditingSong({ ...editingSong, youtube_id: e.target.value })}
+                                        className="w-full bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary outline-none"
                                         placeholder="e.g. dQw4w9WgXcQ"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-muted-foreground flex items-center gap-1"><Music className="w-4 h-4 text-blue-500" /> لینک فایل صوتی (مسیر سرور یا لینک HiDrive)</label>
-                                    <input
-                                        value={editingSong.audio_url || ''}
-                                        onChange={e => setEditingSong({ ...editingSong, audio_url: e.target.value })}
-                                        className="w-full bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary outline-none placeholder-muted-foreground"
-                                        dir="ltr"
-                                        placeholder="https://webdav.hidrive.ionos.com/.../song.mp3"
                                     />
                                 </div>
                             </div>
 
+                            <div className="space-y-2 mt-4">
+                                <label className="block text-sm font-bold text-muted-foreground flex items-center gap-1">
+                                    <Music className="w-4 h-4 text-blue-500" /> لینک فایل صوتی
+                                </label>
+                                <div className="space-y-2">
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            value={editingSong.audio_url || ''}
+                                            onChange={(e) => setEditingSong({ ...editingSong, audio_url: e.target.value })}
+                                            className="flex-1 bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary outline-none dir-ltr"
+                                            dir="ltr"
+                                            placeholder="https://webdav.hidrive.ionos.com/.../song.mp3"
+                                        />
+                                        {editingSong.audio_url?.startsWith('http') && (
+                                            <button
+                                                type="button"
+                                                onClick={handleConvertToInternal}
+                                                disabled={isConverting}
+                                                className="px-3 bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 rounded-xl border border-amber-500/30 transition flex items-center gap-1.5 whitespace-nowrap text-xs font-bold"
+                                                title="انتقال لینک خارجی به استوریج داخلی ما"
+                                            >
+                                                {isConverting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+                                                انتقال به استوریج
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <label className={`flex-1 flex items-center justify-center gap-2 bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 border border-blue-500/30 py-2 rounded-xl text-xs font-bold cursor-pointer transition ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}>
+                                            {isUploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                                            {isUploading ? 'در حال آپلود...' : 'آپلود فایل صوتی مستقیم (HiDrive)'}
+                                            <input type="file" accept="audio/*" className="hidden" onChange={handleAudioFileUpload} disabled={isUploading} />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                             {/* Persian Lyrics */}
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
@@ -545,64 +621,63 @@ export default function WorshipAdminClient() {
                 </div>
 
                 <div className="overflow-x-auto">
-                    <table className="w-full text-right">
+                    <table className="w-full text-right border-collapse table-fixed">
                         <thead>
-                            <tr className="border-b border-border/50 text-muted-foreground text-sm">
-                                <th className="p-4 font-bold">نام سرود</th>
-                                <th className="p-4 font-bold">خواننده</th>
-                                <th className="p-4 font-bold">مدیا</th>
-                                <th className="p-4 font-bold">وضعیت AI / تایمینگ</th>
-                                <th className="p-4 font-bold text-left">عملیات</th>
+                            <tr className="bg-secondary/30 border-b border-border/10">
+                                <th className="p-4 text-xs font-black uppercase tracking-wider text-muted-foreground w-[35%]">عنوان سرود</th>
+                                <th className="p-4 text-xs font-black uppercase tracking-wider text-muted-foreground w-[15%]">هنرمند</th>
+                                <th className="p-4 text-xs font-black uppercase tracking-wider text-muted-foreground w-[10%]">رسانه</th>
+                                <th className="p-4 text-xs font-black uppercase tracking-wider text-muted-foreground w-[25%]">وضعیت محتوا</th>
+                                <th className="p-4 text-xs font-black uppercase tracking-wider text-muted-foreground w-[15%] text-left">عملیات</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-border/50">
+                        <tbody className="divide-y divide-border/5">
                             {isLoading ? (
                                 <tr><td colSpan={5} className="p-8 text-center text-muted-foreground"><Loader2 className="w-8 h-8 animate-spin mx-auto mb-2" />در حال بارگذاری...</td></tr>
                             ) : filteredSongs.length === 0 ? (
                                 <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">هیچ سرودی یافت نشد.</td></tr>
                             ) : (
-                                filteredSongs.map(song => {
-                                    const timingData = song.timing_data as any;
+                                filteredSongs.map((song) => {
+                                    const timingData = (song.timing_data as any) || {};
                                     const hasTiming = timingData?.lines?.length > 0;
-                                    const hasFinglish = timingData?.lines?.some((l: any) => l.translations?.finglish);
-                                    const hasEnglish = timingData?.lines?.some((l: any) => l.translations?.english) || song.lyrics_en;
+                                    const hasFinglishField = !!song.lyrics_finglish;
+                                    const hasEnglishField = !!song.lyrics_en;
                                     
                                     return (
-                                        <tr key={song.id} className="hover:bg-secondary/20 transition-colors group">
-                                            <td className="p-4">
-                                                <div className="font-bold text-foreground">{song.title_fa}</div>
-                                                {song.title_en && <div className="text-xs text-muted-foreground font-serif" dir="ltr">{song.title_en}</div>}
+                                        <tr key={song.id} className="hover:bg-secondary/20 transition-colors group border-b border-border/10">
+                                            <td className="p-4 align-top w-[35%]">
+                                                <div className="font-bold text-foreground break-words">{song.title_fa}</div>
+                                                {song.title_en && <div className="text-xs text-muted-foreground font-serif mt-1 opacity-70 truncate" dir="ltr">{song.title_en}</div>}
                                             </td>
-                                            <td className="p-4 text-muted-foreground">{song.artist || '-'}</td>
-                                            <td className="p-4">
+                                            <td className="p-4 align-top text-muted-foreground w-[15%] overflow-hidden">
+                                                <div className="break-all">{song.artist || '-'}</div>
+                                            </td>
+                                            <td className="p-4 align-top w-[10%]">
                                                 <div className="flex items-center gap-2 text-muted-foreground">
                                                     {song.youtube_id && <span title="دارای ویدیو یوتیوب"><Youtube className="w-4 h-4 text-red-500" /></span>}
                                                     {song.audio_url && <span title="دارای فایل صوتی محلی"><Music className="w-4 h-4 text-blue-500" /></span>}
                                                     {(!song.youtube_id && !song.audio_url) && '-'}
                                                 </div>
                                             </td>
-                                            <td className="p-4">
+                                            <td className="p-4 align-top w-[25%]">
                                                 <div className="flex items-center gap-1.5 flex-wrap">
                                                     {song.lyrics_fa ? (
-                                                        <span className="inline-flex items-center px-2 py-1 rounded bg-green-500/10 text-green-500 text-xs font-bold border border-green-500/20" title="متن فارسی ثبت شده">فارسی ✓</span>
+                                                        <span className="inline-flex items-center px-2 py-1 rounded bg-green-500/10 text-green-500 text-[10px] font-bold border border-green-500/20" title="متن فارسی ثبت شده">فارسی ✓</span>
                                                     ) : (
-                                                        <span className="inline-flex items-center px-2 py-1 rounded bg-yellow-500/10 text-yellow-500 text-xs font-bold border border-yellow-500/20" title="نیاز به ثبت متن فارسی">بدون متن</span>
+                                                        <span className="inline-flex items-center px-2 py-1 rounded bg-yellow-500/10 text-yellow-500 text-[10px] font-bold border border-yellow-500/20" title="نیاز به ثبت متن فارسی">بدون متن</span>
                                                     )}
-                                                    {song.lyrics_en && (
-                                                        <span className="inline-flex items-center px-2 py-1 rounded bg-blue-500/10 text-blue-500 text-xs font-bold border border-blue-500/20" title="دارای ترجمه انگلیسی">EN ✓</span>
+                                                    {hasEnglishField && (
+                                                        <span className="inline-flex items-center px-2 py-1 rounded bg-blue-500/10 text-blue-500 text-[10px] font-bold border border-blue-500/20" title="دارای ترجمه انگلیسی">EN ✓</span>
                                                     )}
                                                     {hasTiming ? (
-                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-xs font-bold border border-emerald-500/20" title="کارائوکه تایمینگ فعال است">
-                                                            <Clock className="w-3 h-3" /> {timingData.lines.length} خط سینک
+                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-[10px] font-bold border border-emerald-500/20" title="کارائوکه تایمینگ فعال است">
+                                                            <Clock className="w-3 h-3" /> {timingData.lines.length} خط
                                                         </span>
                                                     ) : (
-                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-rose-500/10 text-rose-500 text-xs font-bold border border-rose-500/20" title="فاقد تایمینگ سینک شده"><Clock className="w-3 h-3" /> تایم ✗</span>
+                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-rose-500/10 text-rose-500 text-[10px] font-bold border border-rose-500/20" title="فاقد تایمینگ سینک شده"><Clock className="w-3 h-3" /> تایم ✗</span>
                                                     )}
-                                                    {hasFinglish && (
-                                                        <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-teal-500/10 text-teal-400 text-[10px] font-black border border-teal-500/20 uppercase">Finglish</span>
-                                                    )}
-                                                    {hasEnglish && (
-                                                        <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 text-[10px] font-black border border-indigo-500/20 uppercase">English</span>
+                                                    {hasFinglishField && (
+                                                        <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-orange-500/10 text-orange-400 text-[10px] font-black border border-orange-500/20 uppercase">Finglish ✓</span>
                                                     )}
                                                 </div>
                                             </td>

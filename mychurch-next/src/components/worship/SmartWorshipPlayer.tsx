@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward, X, AlertCircle } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward, X, AlertCircle, Volume2, VolumeX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TranscriptData, LineSegment, SystemTimingV2 } from '@/types/worship-sync';
 
@@ -62,6 +62,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [volume, setVolume] = useState(1);
+    const [isMuted, setIsMuted] = useState(false);
     const [showPersian, setShowPersian] = useState(true);
     const [showFinglish, setShowFinglish] = useState(true);
     const [showEnglish, setShowEnglish] = useState(false);
@@ -282,7 +284,10 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                             className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]' : ''}`}
                             dir="rtl"
                         >
-                            {showPersian && (
+                            {/* Primary Language Block (Synchronized Words) */}
+                            {((showPersian && !getTranslationForLine(displayLineIndex, 'persian')) || 
+                              (showFinglish && !getTranslationForLine(displayLineIndex, 'finglish')) ||
+                              (!showPersian && !showFinglish && !showEnglish)) && (
                                 <div className="font-[Vazirmatn] font-black text-4xl lg:text-6xl text-white drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed">
                                     {lines[displayLineIndex].words.map((word, wIdx) => {
                                         const isActive = effectiveTime >= word.start_time && effectiveTime <= word.end_time;
@@ -301,6 +306,15 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                             </span>
                                         );
                                     })}
+                                </div>
+                            )}
+
+                            {/* Persian Translation Block (If primary is not Persian or forced) */}
+                            {showPersian && getTranslationForLine(displayLineIndex, 'persian') && (
+                                <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                    <p className="font-[Vazirmatn] font-bold text-3xl lg:text-5xl text-white drop-shadow-lg leading-relaxed">
+                                        {getTranslationForLine(displayLineIndex, 'persian')}
+                                    </p>
                                 </div>
                             )}
 
@@ -345,80 +359,133 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                         />
                     </div>
 
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 lg:gap-4">
-                            {/* Skip Back */}
-                             <button
-                                onClick={() => skip(-10)}
-                                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                                title="10 ثانیه عقب"
-                            >
-                                <SkipBack className="w-5 h-5" />
-                            </button>
-
-                            {/* Play/Pause */}
-                            <button
-                                onClick={togglePlay}
-                                className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-400 text-black transition-transform hover:scale-105 shadow-lg shadow-teal-500/30"
-                            >
-                                {isPlaying ? <Pause className="w-6 h-6 lg:w-7 lg:h-7 fill-current" /> : <Play className="w-6 h-6 lg:w-7 lg:h-7 fill-current ml-1" />}
-                            </button>
-
-                            {/* Skip Forward */}
-                             <button
-                                onClick={() => skip(10)}
-                                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                                title="10 ثانیه جلو"
-                            >
-                                <SkipForward className="w-5 h-5" />
-                            </button>
-
-                             <div className="text-sm font-mono text-slate-300 mr-2">
-                                {formatTime(currentTime)} / {formatTime(duration)}
+                    <div className="flex flex-col gap-3 p-4 pb-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
+                        {/* Row 1: Seek Bar */}
+                        <div className="flex items-center gap-3 w-full group/seek">
+                            <span className="text-[10px] font-mono text-slate-400 w-10 text-left tabular-nums">{formatTime(currentTime)}</span>
+                            <div className="relative flex-1 h-1.5 flex items-center">
+                                <input
+                                    type="range"
+                                    min={0}
+                                    max={duration || 100}
+                                    step={0.1}
+                                    value={currentTime}
+                                    onChange={(e) => {
+                                        const time = parseFloat(e.target.value);
+                                        if (audioRef.current) audioRef.current.currentTime = time;
+                                        setCurrentTime(time);
+                                    }}
+                                    className="absolute inset-0 w-full h-full appearance-none bg-white/10 rounded-full cursor-pointer overflow-hidden accent-teal-500 hover:accent-teal-400 group-hover/seek:h-2 transition-all outline-none"
+                                    title="تغییر زمان پخش"
+                                />
+                                <div 
+                                    className="absolute left-0 top-0 bottom-0 bg-teal-500 rounded-l-full pointer-events-none group-hover/seek:bg-teal-400"
+                                    style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
+                                />
                             </div>
-
-                            {/* Sync Offset Controls */}
-                            <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-black/40 rounded-full border border-white/10 ml-4 font-mono text-xs">
-                                <button onClick={() => setSyncDelay(d => d - 0.1)} className="hover:text-teal-400">-0.1s</button>
-                                <span className={syncDelay !== 0 ? 'text-yellow-400' : 'text-gray-400'}>Offset: {syncDelay.toFixed(1)}s</span>
-                                <button onClick={() => setSyncDelay(d => d + 0.1)} className="hover:text-teal-400">+0.1s</button>
-                            </div>
+                            <span className="text-[10px] font-mono text-slate-400 w-10 text-right tabular-nums">{formatTime(duration)}</span>
                         </div>
 
-                        <div className="flex items-center gap-2 lg:gap-3">
-                            <button
-                                onClick={() => setShowPersian(!showPersian)}
-                                className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                title="نمایش متن اصلی (فارسی)"
-                            >
-                                FA
-                            </button>
+                        {/* Row 2: Controls */}
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2 lg:gap-4">
+                                {/* Skip Back */}
+                                <button
+                                    onClick={() => skip(-10)}
+                                    className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                                    title="10 ثانیه عقب"
+                                >
+                                    <SkipBack className="w-5 h-5" />
+                                </button>
 
-                            <button
-                                onClick={() => setShowFinglish(!showFinglish)}
-                                className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                title="نمایش فینگلیش"
-                            >
-                                FN
-                            </button>
+                                {/* Play/Pause */}
+                                <button
+                                    onClick={togglePlay}
+                                    className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-400 text-black transition-transform hover:scale-105 shadow-lg shadow-teal-500/30"
+                                    title={isPlaying ? "توقف" : "پخش"}
+                                >
+                                    {isPlaying ? <Pause className="w-6 h-6 lg:w-7 lg:h-7 fill-current" /> : <Play className="w-6 h-6 lg:w-7 lg:h-7 fill-current ml-1" />}
+                                </button>
 
-                            <button
-                                onClick={() => setShowEnglish(!showEnglish)}
-                                className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showEnglish ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                title="نمایش ترجمه انگلیسی"
-                            >
-                                EN
-                            </button>
+                                {/* Skip Forward */}
+                                <button
+                                    onClick={() => skip(10)}
+                                    className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                                    title="10 ثانیه جلو"
+                                >
+                                    <SkipForward className="w-5 h-5" />
+                                </button>
 
-                            <div className="w-px h-6 bg-gray-700 mx-1"></div>
+                                {/* Sync Offset Controls */}
+                                <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10 ml-4 font-mono text-xs">
+                                    <button onClick={() => setSyncDelay(d => d - 0.1)} className="hover:text-teal-400" title="تأخیر کمتر">-0.1s</button>
+                                    <span className={syncDelay !== 0 ? 'text-yellow-400' : 'text-gray-400'}>{syncDelay.toFixed(1)}s</span>
+                                    <button onClick={() => setSyncDelay(d => d + 0.1)} className="hover:text-teal-400" title="تأخیر بیشتر">+0.1s</button>
+                                </div>
+                            </div>
 
-                            <button
-                                onClick={toggleFullscreen}
-                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
-                                title="تمام صفحه"
-                            >
-                                {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
-                            </button>
+                            <div className="flex items-center gap-2 lg:gap-3">
+                                {/* Volume Control */}
+                                <div className="flex items-center gap-2 mr-4 group/vol">
+                                    <button 
+                                        onClick={() => setIsMuted(!isMuted)}
+                                        className="p-2 text-slate-400 hover:text-white transition-colors"
+                                        title={isMuted ? "وصل صدا" : "قطع صدا"}
+                                    >
+                                        {isMuted || volume === 0 ? <VolumeX className="w-5 h-5 text-red-400" /> : <Volume2 className="w-5 h-5" />}
+                                    </button>
+                                    <div className="w-0 group-hover/vol:w-24 overflow-hidden transition-all duration-300 flex items-center h-6">
+                                        <input 
+                                            type="range"
+                                            min={0}
+                                            max={1}
+                                            step={0.01}
+                                            value={isMuted ? 0 : volume}
+                                            onChange={(e) => {
+                                                const v = parseFloat(e.target.value);
+                                                setVolume(v);
+                                                if (audioRef.current) audioRef.current.volume = v;
+                                                if (v > 0) setIsMuted(false);
+                                            }}
+                                            className="w-full h-1 appearance-none bg-white/20 rounded-full cursor-pointer accent-teal-500"
+                                            title="میزان صدا"
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setShowPersian(!showPersian)}
+                                    className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                    title="نمایش متن اصلی (فارسی)"
+                                >
+                                    FA
+                                </button>
+
+                                <button
+                                    onClick={() => setShowFinglish(!showFinglish)}
+                                    className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                    title="نمایش فینگلیش"
+                                >
+                                    FN
+                                </button>
+
+                                <button
+                                    onClick={() => setShowEnglish(!showEnglish)}
+                                    className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showEnglish ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
+                                    title="نمایش ترجمه انگلیسی"
+                                >
+                                    EN
+                                </button>
+
+                                <div className="w-px h-6 bg-gray-700 mx-1"></div>
+
+                                <button
+                                    onClick={toggleFullscreen}
+                                    className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                    title="تمام صفحه"
+                                >
+                                    {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -427,11 +494,15 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             <audio
                 ref={audioRef}
                 src={getSafeAudioUrl(audioSrc)}
-                onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+                onLoadedMetadata={(e) => {
+                    setDuration(e.currentTarget.duration);
+                    e.currentTarget.volume = volume;
+                }}
                 onEnded={() => setIsPlaying(false)}
                 onError={() => setAudioError(true)}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                muted={isMuted}
             />
 
             {/* Audio Error Message */}

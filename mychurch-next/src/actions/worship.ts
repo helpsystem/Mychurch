@@ -214,6 +214,7 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             4. The 'content' field should contain the Finglish version for primary identification.
             5. Also provide:
                - 'lyrics_fa_clean': The entire Persian lyrics, formatted nicely, with NO chords or extra characters.
+               - 'lyrics_finglish_clean': The entire Finglish version of the Persian lyrics (transliteration).
                - 'translation_en': Full English translation.
                - 'chords': Standard worship chords (only if detectable).
                - 'category': The main theme (e.g. Worship, Praise, Cross, Grace).
@@ -245,6 +246,7 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                     type: Type.OBJECT,
                         properties: {
                             lyrics_fa_clean: { type: Type.STRING },
+                            lyrics_finglish_clean: { type: Type.STRING },
                             translation_en: { type: Type.STRING },
                             chords: { type: Type.STRING },
                             category: { type: Type.STRING },
@@ -287,7 +289,7 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                             required: ['lines']
                         }
                     },
-                    required: ['lyrics_fa_clean', 'translation_en', 'chords', 'category', 'timing_data']
+                    required: ['lyrics_fa_clean', 'lyrics_finglish_clean', 'translation_en', 'chords', 'category', 'timing_data']
                 }
             }
         });
@@ -301,13 +303,15 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         await query(`
             UPDATE church_worship_songs
             SET lyrics_fa = $1,
-                lyrics_en = CASE WHEN lyrics_en IS NULL OR lyrics_en = '' THEN $2 ELSE lyrics_en END,
-                chords = CASE WHEN chords IS NULL OR chords = '' THEN $3 ELSE chords END,
-                category = CASE WHEN category IS NULL OR category = '' THEN $4 ELSE category END,
-                timing_data = CASE WHEN timing_data IS NULL OR (timing_data::text = '{}' OR timing_data::text = 'null') THEN $5 ELSE timing_data END
-            WHERE id = $6
+                lyrics_finglish = CASE WHEN lyrics_finglish IS NULL OR lyrics_finglish = '' THEN $2 ELSE lyrics_finglish END,
+                lyrics_en = CASE WHEN lyrics_en IS NULL OR lyrics_en = '' THEN $3 ELSE lyrics_en END,
+                chords = CASE WHEN chords IS NULL OR chords = '' THEN $4 ELSE chords END,
+                category = CASE WHEN category IS NULL OR category = '' THEN $5 ELSE category END,
+                timing_data = CASE WHEN timing_data IS NULL OR (timing_data::text = '{}' OR timing_data::text = 'null') THEN $6 ELSE timing_data END
+            WHERE id = $7
         `, [
             aiData.lyrics_fa_clean || null,
+            aiData.lyrics_finglish_clean || null,
             aiData.translation_en || null,
             aiData.chords || null,
             aiData.category || null,
