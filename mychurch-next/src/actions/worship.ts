@@ -202,129 +202,77 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             }
         }
 
+        const { getAIConfig } = await import("./ai-config");
+        const aiConfig = await getAIConfig();
+
         const prompt = `
-            Transcribe and analyze this worship song. 
+            Analyze this worship song in depth and extract structured data.
             CRITICAL REQUIREMENTS:
-            1. Group words into natural lyric lines/stanzas in the 'lines' array. Set type to 'lyric'.
-            2. For EVERY line, provide:
+            1. Transcribe the audio (if present) and align it with the provided Persian lyrics.
+            2. Group words into natural lyric lines/stanzas in the 'lines' array. Set type to 'lyric'.
+            3. For EVERY line, provide:
                - 'persian': Exact Persian/Farsi lyrics (CLEAN - no chords, no labels like [Verse]).
                - 'english': Accurate English translation.
-               - 'finglish': Transliteration of the Persian lyrics into Latin alphabet (Finglish).
-            3. Provide highly accurate timestamps for every single word in the 'words' array, down to the hundredth of a second (0.01s).
-            4. The 'content' field should contain the Finglish version for primary identification.
-            5. Also provide:
+               - 'finglish': Transliterate the Persian lyrics to Finglish (Latin alphabet) for pronunciation.
+            4. Provide highly accurate timestamps for every single word in the 'words' array, down to the hundredth of a second (0.01s).
+            5. The 'content' field should contain the Finglish version for primary identification.
+            6. Identify song structure (Verses, Chorus, Bridge) and mark lines accordingly if possible.
+            7. Also provide:
                - 'lyrics_fa_clean': The entire Persian lyrics, formatted nicely, with NO chords or extra characters.
-               - 'lyrics_finglish_clean': The entire Finglish version of the Persian lyrics (transliteration).
+               - 'lyrics_finglish_clean': The entire Finglish version of the Persian lyrics (Latin alphabet transliteration).
                - 'translation_en': Full English translation.
                - 'chords': Standard worship chords (only if detectable).
-               - 'category': The main theme (e.g. Worship, Praise, Cross, Grace).
+               - 'category': The main theme (e.g. Worship, Praise, Cross, Grace, Holy Spirit).
+               - 'musical_metadata': Any detected tempo (BPM), key, or mood (e.g. "Slow Worship", "Upbeat Praise").
         
             Song Title: "${song.title_fa}"
-            Farsi Lyrics:
+            Farsi Lyrics Reference:
             ${song.lyrics_fa}
         `;
 
-        const parts: any[] = [
-            { text: prompt }
-        ];
+        const parts: any[] = [{ text: prompt }];
         if (audioPart) parts.unshift(audioPart);
 
-
-        const { GoogleGenerativeAI, SchemaType } = await import('@google/generative-ai');
-        const DIRECT_API_KEY = process.env.GEMINI_API_KEY;
-        if (!DIRECT_API_KEY) throw new Error("GEMINI_API_KEY is not set");
-        const genAI = new GoogleGenerativeAI(DIRECT_API_KEY);
-
         let responseText = "";
-        let retryWith15 = false;
-
-        try {
-            console.log(`[AI-Wizard] Calling Gemini 2.0 Flash for: ${song.title_fa} (Audio: ${!!audioPart})`);
-            const model20 = genAI.getGenerativeModel({ 
-                model: 'gemini-2.0-flash',
-                generationConfig: {
-                    temperature: 0.1,
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: SchemaType.OBJECT,
-                        properties: {
-                            lyrics_fa_clean: { type: SchemaType.STRING },
-                            lyrics_finglish_clean: { type: SchemaType.STRING },
-                            translation_en: { type: SchemaType.STRING },
-                            chords: { type: SchemaType.STRING },
-                            category: { type: SchemaType.STRING },
-                            timing_data: {
-                                type: SchemaType.OBJECT,
-                                properties: {
-                                    lines: {
-                                        type: SchemaType.ARRAY,
-                                        items: {
-                                            type: SchemaType.OBJECT,
-                                            properties: {
-                                                type: { type: SchemaType.STRING },
-                                                content: { type: SchemaType.STRING },
-                                                translations: {
-                                                    type: SchemaType.OBJECT,
-                                                    properties: {
-                                                        persian: { type: SchemaType.STRING },
-                                                        english: { type: SchemaType.STRING },
-                                                        finglish: { type: SchemaType.STRING }
-                                                    },
-                                                    required: ['persian', 'english', 'finglish']
-                                                },
-                                                words: {
-                                                    type: SchemaType.ARRAY,
-                                                    items: {
-                                                        type: SchemaType.OBJECT,
-                                                        properties: {
-                                                            word: { type: SchemaType.STRING },
-                                                            start: { type: SchemaType.NUMBER },
-                                                            end: { type: SchemaType.NUMBER }
-                                                        },
-                                                        required: ['word', 'start', 'end']
-                                                    }
-                                                }
-                                            },
-                                            required: ['content', 'words', 'type', 'translations']
-                                        }
-                                    }
-                                },
-                                required: ['lines']
-                            }
-                        },
-                        required: ['lyrics_fa_clean', 'lyrics_finglish_clean', 'translation_en', 'chords', 'category', 'timing_data']
-                    }
+        
+        if (aiConfig.active_provider === 'vertex' && aiConfig.vertex_project_id) {
+            console.log(`[AI-Wizard] Calling Vertex AI (Project: ${aiConfig.vertex_project_id})`);
+            const { VertexAI } = await import('@google-cloud/vertexai');
+            const vertexAI = new VertexAI({
+                project: aiConfig.vertex_project_id,
+                location: aiConfig.vertex_region || 'us-central1',
+                googleAuthOptions: {
+                    credentials: aiConfig.vertex_service_account
                 }
             });
-            const result = await model20.generateContent(parts);
-            responseText = result.response.text();
-        } catch (e: any) {
-            console.warn(`[AI-Wizard] Gemini 2.0 failed or quota exceeded: ${e.message}`);
-            if (e.message?.includes('429') || e.message?.includes('quota') || e.message?.includes('limit')) {
-                retryWith15 = true;
-            } else {
-                throw e; // Other errors
-            }
-        }
-
-        if (retryWith15 || !responseText) {
-            console.log(`[AI-Wizard] Retrying with Gemini 1.5 Flash (Fallback)...`);
-            try {
-                const model15 = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-                const result15 = await model15.generateContent(parts);
-                responseText = result15.response.text();
-            } catch (fallbackError: any) {
-                console.error(`[AI-Wizard] Fallback also failed: ${fallbackError.message}`);
-                if (fallbackError.message?.includes('429')) {
-                    if (fallbackError.message?.includes('limit: 0')) {
-                        return { 
-                            success: false, 
-                            message: "⚠️ سهمیه (Quota) هوش مصنوعی شما تمام شده یا غیرفعال است (Limit: 0). لطفاً در Google AI Studio وضعیت Billing یا API Key خود را چک کنید." 
-                        };
+            const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const result = await model.generateContent({
+                contents: [{ role: 'user', parts }]
+            });
+            const response = await result.response;
+            responseText = response.candidates?.[0].content.parts[0].text || "";
+        } else {
+            console.log(`[AI-Wizard] Calling Gemini AI Studio (Standard fallback)`);
+            const { GoogleGenerativeAI } = await import('@google/generative-ai');
+            const apiKey = aiConfig.gemini_api_key || process.env.GEMINI_API_KEY;
+            if (!apiKey) throw new Error("Gemini API key not configured in settings or env.");
+            const genAI = new GoogleGenerativeAI(apiKey);
+            
+            const modelNames = ['gemini-2.0-flash', 'gemini-1.5-flash'];
+            for (const modelName of modelNames) {
+                try {
+                    console.log(`[AI-Wizard] Attempting ${modelName}...`);
+                    const model = genAI.getGenerativeModel({ model: modelName });
+                    const result = await model.generateContent(parts);
+                    responseText = result.response.text();
+                    if (responseText) break;
+                } catch (e: any) {
+                    if (e.message?.includes('429')) {
+                        console.warn(`[AI-Wizard] ${modelName} quota hit, trying next...`);
+                        continue;
                     }
-                    return { success: false, message: "⚠️ محدودیت ظرفیت هوش مصنوعی. لطفاً لحظاتی دیگر تلاش کنید." };
+                    throw e;
                 }
-                throw fallbackError;
             }
         }
 

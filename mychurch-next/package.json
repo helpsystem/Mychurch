@@ -11,6 +11,7 @@
   "dependencies": {
     "@applemusic-like-lyrics/core": "^0.2.0",
     "@applemusic-like-lyrics/react": "^0.2.0",
+    "@google-cloud/vertexai": "^1.10.3",
     "@google/genai": "^1.46.0",
     "@google/generative-ai": "^0.24.1",
     "@pixi/filter-bulge-pinch": "^5.1.1",
