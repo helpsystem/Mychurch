@@ -230,74 +230,107 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         if (audioPart) parts.unshift(audioPart);
 
 
-        const { GoogleGenAI, Type } = await import('@google/genai');
+        const { GoogleGenerativeAI, SchemaType } = await import('@google/generative-ai');
         const DIRECT_API_KEY = process.env.GEMINI_API_KEY;
         if (!DIRECT_API_KEY) throw new Error("GEMINI_API_KEY is not set");
-        const ai = new GoogleGenAI({ apiKey: DIRECT_API_KEY });
+        const genAI = new GoogleGenerativeAI(DIRECT_API_KEY);
 
-        console.log(`[AI-Wizard] Calling Gemini for: ${song.title_fa} (Audio: ${!!audioPart})`);
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.0-flash',
-            contents: [{ parts }],
-            config: {
-                temperature: 0.1,
-                responseMimeType: "application/json",
-                responseSchema: {
-                    type: Type.OBJECT,
+        let responseText = "";
+        let retryWith15 = false;
+
+        try {
+            console.log(`[AI-Wizard] Calling Gemini 2.0 Flash for: ${song.title_fa} (Audio: ${!!audioPart})`);
+            const model20 = genAI.getGenerativeModel({ 
+                model: 'gemini-2.0-flash',
+                generationConfig: {
+                    temperature: 0.1,
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: SchemaType.OBJECT,
                         properties: {
-                            lyrics_fa_clean: { type: Type.STRING },
-                            lyrics_finglish_clean: { type: Type.STRING },
-                            translation_en: { type: Type.STRING },
-                            chords: { type: Type.STRING },
-                            category: { type: Type.STRING },
+                            lyrics_fa_clean: { type: SchemaType.STRING },
+                            lyrics_finglish_clean: { type: SchemaType.STRING },
+                            translation_en: { type: SchemaType.STRING },
+                            chords: { type: SchemaType.STRING },
+                            category: { type: SchemaType.STRING },
                             timing_data: {
-                            type: Type.OBJECT,
-                            properties: {
-                                lines: {
-                                    type: Type.ARRAY,
-                                    items: {
-                                        type: Type.OBJECT,
-                                        properties: {
-                                            type: { type: Type.STRING, enum: ['lyric'] },
-                                            content: { type: Type.STRING },
-                                            translations: {
-                                                type: Type.OBJECT,
-                                                properties: {
-                                                    persian: { type: Type.STRING },
-                                                    english: { type: Type.STRING },
-                                                    finglish: { type: Type.STRING }
-                                                },
-                                                required: ['persian', 'english', 'finglish']
-                                            },
-                                            words: {
-                                                type: Type.ARRAY,
-                                                items: {
-                                                    type: Type.OBJECT,
+                                type: SchemaType.OBJECT,
+                                properties: {
+                                    lines: {
+                                        type: SchemaType.ARRAY,
+                                        items: {
+                                            type: SchemaType.OBJECT,
+                                            properties: {
+                                                type: { type: SchemaType.STRING },
+                                                content: { type: SchemaType.STRING },
+                                                translations: {
+                                                    type: SchemaType.OBJECT,
                                                     properties: {
-                                                        word: { type: Type.STRING },
-                                                        start: { type: Type.NUMBER },
-                                                        end: { type: Type.NUMBER }
+                                                        persian: { type: SchemaType.STRING },
+                                                        english: { type: SchemaType.STRING },
+                                                        finglish: { type: SchemaType.STRING }
                                                     },
-                                                    required: ['word', 'start', 'end']
+                                                    required: ['persian', 'english', 'finglish']
+                                                },
+                                                words: {
+                                                    type: SchemaType.ARRAY,
+                                                    items: {
+                                                        type: SchemaType.OBJECT,
+                                                        properties: {
+                                                            word: { type: SchemaType.STRING },
+                                                            start: { type: SchemaType.NUMBER },
+                                                            end: { type: SchemaType.NUMBER }
+                                                        },
+                                                        required: ['word', 'start', 'end']
+                                                    }
                                                 }
-                                            }
-                                        },
-                                        required: ['content', 'words', 'type', 'translations']
+                                            },
+                                            required: ['content', 'words', 'type', 'translations']
+                                        }
                                     }
-                                }
-                            },
-                            required: ['lines']
-                        }
-                    },
-                    required: ['lyrics_fa_clean', 'lyrics_finglish_clean', 'translation_en', 'chords', 'category', 'timing_data']
+                                },
+                                required: ['lines']
+                            }
+                        },
+                        required: ['lyrics_fa_clean', 'lyrics_finglish_clean', 'translation_en', 'chords', 'category', 'timing_data']
+                    }
                 }
+            });
+            const result = await model20.generateContent(parts);
+            responseText = result.response.text();
+        } catch (e: any) {
+            console.warn(`[AI-Wizard] Gemini 2.0 failed or quota exceeded: ${e.message}`);
+            if (e.message?.includes('429') || e.message?.includes('quota') || e.message?.includes('limit')) {
+                retryWith15 = true;
+            } else {
+                throw e; // Other errors
             }
-        });
+        }
 
-        const responseText = response.text;
-        if (!responseText) throw new Error("No output returned");
+        if (retryWith15 || !responseText) {
+            console.log(`[AI-Wizard] Retrying with Gemini 1.5 Flash (Fallback)...`);
+            try {
+                const model15 = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+                const result15 = await model15.generateContent(parts);
+                responseText = result15.response.text();
+            } catch (fallbackError: any) {
+                console.error(`[AI-Wizard] Fallback also failed: ${fallbackError.message}`);
+                if (fallbackError.message?.includes('429')) {
+                    if (fallbackError.message?.includes('limit: 0')) {
+                        return { 
+                            success: false, 
+                            message: "⚠️ سهمیه (Quota) هوش مصنوعی شما تمام شده یا غیرفعال است (Limit: 0). لطفاً در Google AI Studio وضعیت Billing یا API Key خود را چک کنید." 
+                        };
+                    }
+                    return { success: false, message: "⚠️ محدودیت ظرفیت هوش مصنوعی. لطفاً لحظاتی دیگر تلاش کنید." };
+                }
+                throw fallbackError;
+            }
+        }
+
+        if (!responseText) throw new Error("No output returned from AI");
         
-        const aiData = JSON.parse(responseText);
+        const aiData = JSON.parse(responseText.replace(/```json\n?|\n?```/g, ''));
 
         console.log(`[AI-Wizard] AI returned data. Updating DB...`);
         await query(`
@@ -310,9 +343,9 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                 timing_data = CASE WHEN timing_data IS NULL OR (timing_data::text = '{}' OR timing_data::text = 'null') THEN $6 ELSE timing_data END
             WHERE id = $7
         `, [
-            aiData.lyrics_fa_clean || null,
-            aiData.lyrics_finglish_clean || null,
-            aiData.translation_en || null,
+            aiData.lyrics_fa_clean || aiData.lyrics_fa || null,
+            aiData.lyrics_finglish_clean || aiData.lyrics_finglish || null,
+            aiData.translation_en || aiData.lyrics_en || null,
             aiData.chords || null,
             aiData.category || null,
             aiData.timing_data ? JSON.stringify(aiData.timing_data) : null,
@@ -322,7 +355,6 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         console.log(`[AI-Wizard] Successfully updated song: ${song.title_fa}`);        
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
-
         return { success: true };
     } catch (e: any) {
         console.error('Error extracting worship AI', e);
