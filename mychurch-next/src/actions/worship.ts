@@ -148,7 +148,7 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
     console.log(`[AI-Wizard] Starting extraction for ID: ${id}`);
     try {
         const { rows } = await query("SELECT * FROM church_worship_songs WHERE id = $1", [id]);
-        const song = rows[0];
+        const song: WorshipSong = rows[0];
         if (!song) {
             console.error(`[AI-Wizard] Song not found for ID: ${id}`);
             return { success: false, message: "سرود یافت نشد" };
@@ -165,10 +165,17 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                 const fs = require('fs');
                 const path = require('path');
                 let filePath = song.audio_url;
-                if (filePath.startsWith('/')) {
+                
+                // Resolve common URL patterns to local paths
+                if (filePath.startsWith('/api/serve/')) {
+                    const filename = filePath.split('/').pop();
+                    filePath = path.join(process.cwd(), 'public', 'uploads', filename);
+                } else if (filePath.startsWith('/')) {
                     filePath = path.join(process.cwd(), 'public', filePath);
                 }
+
                 if (fs.existsSync(filePath)) {
+                    console.log(`[AI-Wizard] Loading local audio: ${filePath}`);
                     const audioBuffer = fs.readFileSync(filePath);
                     const base64Audio = audioBuffer.toString('base64');
                     let mimeType = "audio/mpeg";
@@ -182,23 +189,22 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                         }
                     };
                 } else if (filePath.startsWith('http')) {
-                    // Fetch external audio if it's a full URL
                     const safeUrl = encodeURI(decodeURI(filePath));
                     console.log(`[AI-Wizard] Fetching external audio: ${safeUrl}`);
                     const res = await fetch(safeUrl);
-                    if (!res.ok) throw new Error(`Fetch failed: ${res.statusText}`);
-                    
-                    const buffer = await res.arrayBuffer();
-                    const base64Audio = Buffer.from(buffer).toString('base64');
-                    audioPart = {
-                        inlineData: {
-                            mimeType: "audio/mpeg", // Assumption
-                            data: base64Audio
-                        }
-                    };
+                    if (res.ok) {
+                        const buffer = await res.arrayBuffer();
+                        const base64Audio = Buffer.from(buffer).toString('base64');
+                        audioPart = {
+                            inlineData: {
+                                mimeType: "audio/mpeg",
+                                data: base64Audio
+                            }
+                        };
+                    }
                 }
             } catch (e) {
-                console.error("Audio read error", e);
+                console.error("[AI-Wizard] Audio read error", e);
             }
         }
 
@@ -206,24 +212,50 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         const aiConfig = await getAIConfig();
 
         const prompt = `
-            Analyze this worship song in depth and extract structured data.
-            CRITICAL REQUIREMENTS:
-            1. Transcribe the audio (if present) and align it with the provided Persian lyrics.
-            2. Group words into natural lyric lines/stanzas in the 'lines' array. Set type to 'lyric'.
-            3. For EVERY line, provide:
-               - 'persian': Exact Persian/Farsi lyrics (CLEAN - no chords, no labels like [Verse]).
-               - 'english': Accurate English translation.
-               - 'finglish': Transliterate the Persian lyrics to Finglish (Latin alphabet) for pronunciation.
-            4. Provide highly accurate timestamps for every single word in the 'words' array, down to the hundredth of a second (0.01s).
-            5. The 'content' field should contain the Finglish version for primary identification.
-            6. Identify song structure (Verses, Chorus, Bridge) and mark lines accordingly if possible.
-            7. Also provide:
-               - 'lyrics_fa_clean': The entire Persian lyrics, formatted nicely, with NO chords or extra characters.
-               - 'lyrics_finglish_clean': The entire Finglish version of the Persian lyrics (Latin alphabet transliteration).
-               - 'translation_en': Full English translation.
-               - 'chords': Standard worship chords (only if detectable).
-               - 'category': The main theme (e.g. Worship, Praise, Cross, Grace, Holy Spirit).
-               - 'musical_metadata': Any detected tempo (BPM), key, or mood (e.g. "Slow Worship", "Upbeat Praise").
+            Analyze this Farsi worship song and provide structured metadata and precise timing.
+            
+            OUTPUT FORMAT (JSON):
+            {
+              "lyrics_fa_clean": "Clean Farsi lyrics without chords/labels",
+              "lyrics_finglish_clean": "Full Latin transliteration of Farsi lyrics",
+              "translation_en": "Full English translation",
+              "chords": "Standard chords if detectable",
+              "category": "Main theme (Worship, Praise, etc.)",
+              "musical_metadata": { "bpm": 120, "key": "G Major", "mood": "Slow Worship" },
+              "timing_data": {
+                "songId": ${id},
+                "version": "2.0",
+                "totalDuration": 0, 
+                "lines": [
+                  {
+                    "line": "FARSI VERSION OF LINE (Persian script)",
+                    "start": 0.00,
+                    "end": 0.00,
+                    "translations": { 
+                      "persian": "FARSI VERSION (Persian script)", 
+                      "english": "English translation", 
+                      "finglish": "FINGLISH VERSION (Latin script)" 
+                    },
+                    "words": [
+                       { 
+                         "word": "FARSIWORD", 
+                         "start": 0.00, 
+                         "end": 0.00, 
+                         "finglish": "FINGLISHWORD", 
+                         "english": "Englishword" 
+                       }
+                    ]
+                  }
+                ]
+              }
+            }
+
+            CRITICAL MAPPING RULES:
+            - 'line' and 'word' MUST be in FARSI (Persian script). This is what shows on the main screen.
+            - 'translations.persian' MUST be in FARSI (Persian script).
+            - 'translations.finglish' and 'words[].finglish' MUST be in FINGLISH (Latin script).
+            - 'lyrics_finglish_clean' MUST be the full Latin transliterated lyrics.
+            - Word-level timestamps must be aligned with the audio (if provided).
         
             Song Title: "${song.title_fa}"
             Farsi Lyrics Reference:
@@ -231,7 +263,7 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         `;
 
         const parts: any[] = [{ text: prompt }];
-        if (audioPart) parts.unshift(audioPart);
+        if (audioPart) parts.push(audioPart);
 
         let responseText = "";
         
@@ -241,71 +273,52 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             const vertexAI = new VertexAI({
                 project: aiConfig.vertex_project_id,
                 location: aiConfig.vertex_region || 'us-central1',
-                googleAuthOptions: {
-                    credentials: aiConfig.vertex_service_account
-                }
+                googleAuthOptions: { credentials: aiConfig.vertex_service_account }
             });
             const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-            const result = await model.generateContent({
-                contents: [{ role: 'user', parts }]
-            });
+            const result = await model.generateContent({ contents: [{ role: 'user', parts }] });
             const response = await result.response;
             responseText = response.candidates?.[0].content.parts[0].text || "";
         } else {
-            console.log(`[AI-Wizard] Calling Gemini AI Studio (Standard fallback)`);
             const { GoogleGenerativeAI } = await import('@google/generative-ai');
             const apiKey = aiConfig.gemini_api_key || process.env.GEMINI_API_KEY;
-            if (!apiKey) throw new Error("Gemini API key not configured in settings or env.");
+            if (!apiKey) throw new Error("Gemini API key not configured.");
             const genAI = new GoogleGenerativeAI(apiKey);
-            
-            const modelNames = ['gemini-2.0-flash', 'gemini-1.5-flash'];
-            for (const modelName of modelNames) {
-                try {
-                    console.log(`[AI-Wizard] Attempting ${modelName}...`);
-                    const model = genAI.getGenerativeModel({ model: modelName });
-                    const result = await model.generateContent(parts);
-                    responseText = result.response.text();
-                    if (responseText) break;
-                } catch (e: any) {
-                    if (e.message?.includes('429')) {
-                        console.warn(`[AI-Wizard] ${modelName} quota hit, trying next...`);
-                        continue;
-                    }
-                    throw e;
-                }
-            }
+            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const result = await model.generateContent(parts);
+            responseText = result.response.text();
         }
 
         if (!responseText) throw new Error("No output returned from AI");
-        
         const aiData = JSON.parse(responseText.replace(/```json\n?|\n?```/g, ''));
 
-        console.log(`[AI-Wizard] AI returned data. Updating DB...`);
+        console.log(`[AI-Wizard] Updating DB for ${song.title_fa}...`);
         await query(`
             UPDATE church_worship_songs
             SET lyrics_fa = $1,
-                lyrics_finglish = CASE WHEN lyrics_finglish IS NULL OR lyrics_finglish = '' THEN $2 ELSE lyrics_finglish END,
-                lyrics_en = CASE WHEN lyrics_en IS NULL OR lyrics_en = '' THEN $3 ELSE lyrics_en END,
-                chords = CASE WHEN chords IS NULL OR chords = '' THEN $4 ELSE chords END,
-                category = CASE WHEN category IS NULL OR category = '' THEN $5 ELSE category END,
-                timing_data = CASE WHEN timing_data IS NULL OR (timing_data::text = '{}' OR timing_data::text = 'null') THEN $6 ELSE timing_data END
-            WHERE id = $7
+                lyrics_finglish = $2,
+                lyrics_en = $3,
+                chords = $4,
+                category = $5,
+                musical_metadata = $6,
+                timing_data = $7
+            WHERE id = $8
         `, [
-            aiData.lyrics_fa_clean || aiData.lyrics_fa || null,
-            aiData.lyrics_finglish_clean || aiData.lyrics_finglish || null,
-            aiData.translation_en || aiData.lyrics_en || null,
-            aiData.chords || null,
-            aiData.category || null,
+            aiData.lyrics_fa_clean || aiData.lyrics_fa || song.lyrics_fa,
+            aiData.lyrics_finglish_clean || aiData.lyrics_finglish || song.lyrics_finglish,
+            aiData.translation_en || aiData.lyrics_en || song.lyrics_en,
+            aiData.chords || song.chords,
+            aiData.category || song.category,
+            aiData.musical_metadata ? JSON.stringify(aiData.musical_metadata) : null,
             aiData.timing_data ? JSON.stringify(aiData.timing_data) : null,
             id
         ]);
         
-        console.log(`[AI-Wizard] Successfully updated song: ${song.title_fa}`);        
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
         return { success: true };
     } catch (e: any) {
-        console.error('Error extracting worship AI', e);
+        console.error('[AI-Wizard] Error:', e);
         return { success: false, message: e.message };
     }
 }
