@@ -64,7 +64,7 @@ export const useWebSocketSync = (options: WebSocketSyncOptions = {}) => {
    * اتصال به سرور WebSocket
    */
   const connect = useCallback((newSessionId?: string) => {
-    const targetSessionId = newSessionId || state.sessionId || `session-${Date.now()}`;
+    const targetSessionId = newSessionId || sessionId || `session-${Date.now()}`;
 
     if (socketRef.current?.connected) {
       console.log('[WebSocket] Already connected');
@@ -88,7 +88,7 @@ export const useWebSocketSync = (options: WebSocketSyncOptions = {}) => {
         // Join session room
         socket.emit('join_session', {
           sessionId: targetSessionId,
-          isLeader: state.isLeader,
+          isLeader,
           deviceInfo: {
             userAgent: navigator.userAgent,
             timestamp: Date.now()
@@ -117,7 +117,7 @@ export const useWebSocketSync = (options: WebSocketSyncOptions = {}) => {
 
       // Slide change from other devices
       socket.on('slide_change', (data: { slideIndex: number; timestamp: number }) => {
-        if (!state.isLeader) {
+        if (!isLeader) {
           console.log(`[WebSocket] 📊 Slide change received: ${data.slideIndex}`);
           onSlideChange?.(data.slideIndex);
         }
@@ -125,7 +125,7 @@ export const useWebSocketSync = (options: WebSocketSyncOptions = {}) => {
 
       // Play control from leader
       socket.on('play_control', (data: { action: 'play' | 'pause' | 'stop' }) => {
-        if (!state.isLeader) {
+        if (!isLeader) {
           console.log(`[WebSocket] ▶️ Play control: ${data.action}`);
           onPlayControl?.(data.action);
         }
@@ -146,7 +146,7 @@ export const useWebSocketSync = (options: WebSocketSyncOptions = {}) => {
     } catch (error) {
       console.error('[WebSocket] Connection failed:', error);
     }
-  }, [serverUrl, state.isLeader, state.sessionId, onSlideChange, onPlayControl]);
+  }, [serverUrl, isLeader, sessionId, onSlideChange, onPlayControl]);
 
   /**
    * قطع اتصال
@@ -217,12 +217,14 @@ export const useWebSocketSync = (options: WebSocketSyncOptions = {}) => {
   useEffect(() => {
     if (sessionId) {
       connect(sessionId);
+    } else {
+      disconnect();
     }
 
     return () => {
       disconnect();
     };
-  }, []); // Only on mount/unmount
+  }, [sessionId, connect, disconnect]);
 
   // Periodic ping
   useEffect(() => {

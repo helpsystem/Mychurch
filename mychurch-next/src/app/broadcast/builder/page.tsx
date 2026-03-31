@@ -8,12 +8,9 @@ export const dynamic = "force-dynamic";
 export default async function SlideBuilderPage({
     searchParams,
 }: {
-    searchParams: { id?: string };
+    searchParams: { id?: string } | Promise<{ id?: string }>;
 }) {
-    // 1. Await search params in Next 15+ 
-    // In some Next.js versions searchParams is a Promise. We'll handle sync object here to be safe,
-    // assuming it might be wrapped.
-    const resolvedParams = await searchParams;
+    const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams;
     const id = resolvedParams?.id;
 
     let initialSession: BroadcastSession;

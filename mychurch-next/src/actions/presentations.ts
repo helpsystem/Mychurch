@@ -3,11 +3,30 @@
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { BroadcastSession } from "@/types/broadcast";
+import { requireRole } from "@/utils/rbac";
 
 // Fallback in-memory storage for offline testing
 let mockPresentations: BroadcastSession[] = [];
 
+function normalizeSession(input: BroadcastSession): BroadcastSession {
+    const normalizedDate = input.date instanceof Date ? input.date : new Date(input.date);
+    const safeStatus = ['draft', 'ready', 'live', 'ended'].includes(input.status)
+        ? input.status
+        : 'draft';
+
+    return {
+        ...input,
+        title: (input.title || '').trim().slice(0, 255),
+        hostName: input.hostName?.trim().slice(0, 255),
+        date: normalizedDate,
+        slides: Array.isArray(input.slides) ? input.slides : [],
+        status: safeStatus,
+    };
+}
+
 export async function getPresentations(): Promise<BroadcastSession[]> {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
     try {
         // Ensure table exists on first run
         await query(`
@@ -39,6 +58,8 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
 }
 
 export async function getPresentationById(id: string): Promise<BroadcastSession | null> {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
     try {
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
@@ -59,6 +80,13 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
 }
 
 export async function savePresentation(session: BroadcastSession): Promise<{ success: boolean; error?: string }> {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
+    const safeSession = normalizeSession(session);
+    if (!safeSession.id || !safeSession.title) {
+        return { success: false, error: "Invalid presentation payload" };
+    }
+
     try {
         await query(`
             INSERT INTO presentations (id, title, date, host_name, slides_json, status, created_at)
@@ -70,41 +98,43 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
                 slides_json = EXCLUDED.slides_json,
                 status = EXCLUDED.status;
         `, [
-            session.id, 
-            session.title, 
-            session.date.toISOString(), 
-            session.hostName || null, 
-            JSON.stringify(session.slides), 
-            session.status
+            safeSession.id,
+            safeSession.title,
+            safeSession.date.toISOString(),
+            safeSession.hostName || null,
+            JSON.stringify(safeSession.slides),
+            safeSession.status
         ]);
         
         revalidatePath('/admin/presentations');
         revalidatePath('/broadcast');
         
         // Also save to mock array
-        const index = mockPresentations.findIndex(p => p.id === session.id);
-        if (index > -1) mockPresentations[index] = session;
-        else mockPresentations.push(session);
+        const index = mockPresentations.findIndex(p => p.id === safeSession.id);
+        if (index > -1) mockPresentations[index] = safeSession;
+        else mockPresentations.push(safeSession);
 
         return { success: true };
     } catch (error) {
-        console.error('[Action] Database unreachable, saved to mock memory.');
-        const index = mockPresentations.findIndex(p => p.id === session.id);
-        if (index > -1) mockPresentations[index] = session;
-        else mockPresentations.push(session);
-        return { success: true };
+        console.error('[Action] Failed to save presentation:', error);
+        return { success: false, error: 'Failed to save presentation.' };
     }
 }
 
 export async function deletePresentation(id: string): Promise<{ success: boolean; error?: string }> {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
+    if (!id || id.length > 255) {
+        return { success: false, error: "Invalid presentation id" };
+    }
+
     try {
         await query('DELETE FROM presentations WHERE id = $1', [id]);
         revalidatePath('/admin/presentations');
         mockPresentations = mockPresentations.filter(p => p.id !== id);
         return { success: true };
     } catch (error) {
-        console.error('[Action] Database unreachable, deleted from mock memory.');
-        mockPresentations = mockPresentations.filter(p => p.id !== id);
-        return { success: true };
+        console.error('[Action] Failed to delete presentation:', error);
+        return { success: false, error: 'Failed to delete presentation.' };
     }
 }

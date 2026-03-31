@@ -18,6 +18,65 @@ interface NextApiResponseWithSocket {
   end: () => void;
 }
 
+const MAX_SESSION_ID_LENGTH = 120;
+const ALLOWED_PLAY_ACTIONS = new Set(['play', 'pause', 'stop']);
+const RATE_WINDOW_MS = 10_000;
+const MAX_EVENTS_PER_WINDOW = 180;
+const MIN_SLIDE_CHANGE_INTERVAL_MS = 100;
+const MIN_PLAY_CONTROL_INTERVAL_MS = 100;
+
+type SocketRateState = {
+  windowStart: number;
+  totalEvents: number;
+  lastSlideChangeAt: number;
+  lastPlayControlAt: number;
+};
+
+const socketRateMap = new Map<string, SocketRateState>();
+
+function normalizeSessionId(input: unknown): string | null {
+  if (typeof input !== 'string') return null;
+  const trimmed = input.trim();
+  if (!trimmed || trimmed.length > MAX_SESSION_ID_LENGTH) return null;
+  if (!/^[a-zA-Z0-9_-]+$/.test(trimmed)) return null;
+  return trimmed;
+}
+
+function normalizeSlideIndex(input: unknown): number | null {
+  if (typeof input !== 'number' || !Number.isFinite(input)) return null;
+  const idx = Math.floor(input);
+  if (idx < 0 || idx > 5000) return null;
+  return idx;
+}
+
+function getSocketRateState(socketId: string): SocketRateState {
+  const now = Date.now();
+  const existing = socketRateMap.get(socketId);
+  if (!existing) {
+    const initial: SocketRateState = {
+      windowStart: now,
+      totalEvents: 0,
+      lastSlideChangeAt: 0,
+      lastPlayControlAt: 0,
+    };
+    socketRateMap.set(socketId, initial);
+    return initial;
+  }
+
+  if (now - existing.windowStart > RATE_WINDOW_MS) {
+    existing.windowStart = now;
+    existing.totalEvents = 0;
+  }
+
+  return existing;
+}
+
+function allowSocketEvent(socketId: string): boolean {
+  const state = getSocketRateState(socketId);
+  state.totalEvents += 1;
+  return state.totalEvents <= MAX_EVENTS_PER_WINDOW;
+}
+
 // Track sessions and devices in memory (Global variable for this module)
 const sessions = new Map<string, any>();
 
@@ -44,11 +103,12 @@ export default function handler(req: NextApiRequest, res: any) {
   }
 
   console.log('[SocketIO] Initializing server...');
+  const allowedOrigin = process.env.NEXT_PUBLIC_SITE_URL || true;
   const io = new IOServer(response.socket.server, {
     path: '/api/socket',
     addTrailingSlash: false,
     cors: {
-      origin: '*',
+      origin: allowedOrigin,
       methods: ['GET', 'POST']
     }
   });
@@ -62,7 +122,10 @@ export default function handler(req: NextApiRequest, res: any) {
      * Join a broadcast session
      */
     socket.on('join_session', (data: { sessionId: string; isLeader: boolean }) => {
-      const { sessionId, isLeader } = data;
+      if (!allowSocketEvent(socket.id)) return;
+
+      const sessionId = normalizeSessionId(data?.sessionId);
+      const isLeader = Boolean(data?.isLeader);
       if (!sessionId) return;
 
       const session = getOrCreateSession(sessionId);
@@ -92,7 +155,17 @@ export default function handler(req: NextApiRequest, res: any) {
      * Slide change (from Leader)
      */
     socket.on('slide_change', (data: { sessionId: string; slideIndex: number; timestamp: number }) => {
-      const { sessionId, slideIndex, timestamp } = data;
+      if (!allowSocketEvent(socket.id)) return;
+
+      const sessionId = normalizeSessionId(data?.sessionId);
+      const slideIndex = normalizeSlideIndex(data?.slideIndex);
+      const timestamp = typeof data?.timestamp === 'number' ? data.timestamp : Date.now();
+      if (!sessionId || slideIndex === null) return;
+
+      const rateState = getSocketRateState(socket.id);
+      if (Date.now() - rateState.lastSlideChangeAt < MIN_SLIDE_CHANGE_INTERVAL_MS) return;
+      rateState.lastSlideChangeAt = Date.now();
+
       const session = getOrCreateSession(sessionId);
       
       session.currentSlide = slideIndex;
@@ -111,7 +184,17 @@ export default function handler(req: NextApiRequest, res: any) {
      * Play control
      */
     socket.on('play_control', (data: { sessionId: string; action: string; timestamp: number }) => {
-      const { sessionId, action, timestamp } = data;
+      if (!allowSocketEvent(socket.id)) return;
+
+      const sessionId = normalizeSessionId(data?.sessionId);
+      const action = typeof data?.action === 'string' ? data.action : '';
+      const timestamp = typeof data?.timestamp === 'number' ? data.timestamp : Date.now();
+      if (!sessionId || !ALLOWED_PLAY_ACTIONS.has(action)) return;
+
+      const rateState = getSocketRateState(socket.id);
+      if (Date.now() - rateState.lastPlayControlAt < MIN_PLAY_CONTROL_INTERVAL_MS) return;
+      rateState.lastPlayControlAt = Date.now();
+
       socket.to(sessionId).emit('play_control', {
         action,
         timestamp: timestamp || Date.now()
@@ -122,6 +205,7 @@ export default function handler(req: NextApiRequest, res: any) {
      * Ping/Pong for latency
      */
     socket.on('ping', (timestamp: number) => {
+      if (!allowSocketEvent(socket.id)) return;
       socket.emit('pong', timestamp);
     });
 
@@ -130,6 +214,7 @@ export default function handler(req: NextApiRequest, res: any) {
      */
     socket.on('disconnect', () => {
       console.log(`[Socket] ❌ Client disconnected: ${socket.id}`);
+      socketRateMap.delete(socket.id);
       
       sessions.forEach((session, sessionId) => {
         if (session.devices.has(socket.id)) {

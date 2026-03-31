@@ -42,6 +42,7 @@ const stripChordMarkers = (text: string): string => {
 function ViewerContent() {
     const searchParams = useSearchParams();
     const sessionId = (searchParams && searchParams.get('session')) || 'default';
+    const viewerToken = (searchParams && searchParams.get('token')) || '';
     const broadcastChannelRef = useRef<BroadcastChannel | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -112,6 +113,34 @@ function ViewerContent() {
         audioCurrentTime: 0
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
+    const [tokenState, setTokenState] = useState<"checking" | "valid" | "invalid">("checking");
+
+    useEffect(() => {
+        let isMounted = true;
+
+        const validateToken = async () => {
+            if (!viewerToken) {
+                if (isMounted) setTokenState("invalid");
+                return;
+            }
+
+            try {
+                const res = await fetch(
+                    `/api/broadcast/viewer-token?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(viewerToken)}`,
+                    { cache: 'no-store' }
+                );
+                if (!isMounted) return;
+                setTokenState(res.ok ? "valid" : "invalid");
+            } catch {
+                if (isMounted) setTokenState("invalid");
+            }
+        };
+
+        void validateToken();
+        return () => {
+            isMounted = false;
+        };
+    }, [sessionId, viewerToken]);
 
     useEffect(() => {
         setShowGlassPopup(false);
@@ -119,7 +148,7 @@ function ViewerContent() {
 
     // WebSocket sync (for cross-device communication)
     const { state: syncState } = useWebSocketSync({
-        sessionId,
+        sessionId: tokenState === "valid" ? sessionId : undefined,
         isLeader: false,
         onSlideChange: (index) => {
             // WebSocket implementation might be simpler, handling it in useEffect below
@@ -128,6 +157,8 @@ function ViewerContent() {
 
     // BroadcastChannel for same-browser communication (more reliable for local use)
     useEffect(() => {
+        if (tokenState !== "valid") return;
+
         const channelName = `broadcast-console-${sessionId}`;
         const channel = new BroadcastChannel(channelName);
         broadcastChannelRef.current = channel;
@@ -188,7 +219,7 @@ function ViewerContent() {
         return () => {
             channel.close();
         };
-    }, [sessionId]);
+    }, [sessionId, tokenState]);
 
     // Response to WebSocket sync state change
     useEffect(() => {
@@ -593,6 +624,17 @@ function ViewerContent() {
             style={{ userSelect: 'none', cursor: 'none', WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none" }}
             onContextMenu={(e) => e.preventDefault()}
         >
+            {tokenState === "checking" && (
+                <div className="absolute inset-0 z-[80] bg-black/90 text-white flex items-center justify-center text-3xl font-[Vazirmatn]">
+                    در حال بررسی دسترسی Viewer...
+                </div>
+            )}
+            {tokenState === "invalid" && (
+                <div className="absolute inset-0 z-[80] bg-black text-red-400 flex flex-col items-center justify-center gap-4 font-[Vazirmatn]">
+                    <div className="text-4xl font-bold">دسترسی نامعتبر</div>
+                    <div className="text-xl text-red-300">لینک Viewer منقضی شده یا معتبر نیست.</div>
+                </div>
+            )}
             {!state.connected && !state.currentSlide && (
                 <div className="absolute top-6 left-6 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-xl z-50 shadow-2xl animate-pulse border-2 border-red-400 font-[Vazirmatn]">
                     <div className="flex items-center gap-2">

@@ -10,6 +10,7 @@ import { BroadcastSession } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { cn } from "@/lib/utils";
 import { PageVisuals } from "@/components/ui/PageVisuals";
+import { toast } from "sonner";
 
 // Sub-components
 import { BroadcastSidebar } from "./BroadcastSidebar";
@@ -23,11 +24,13 @@ export default function LiveConsole() {
     const setIsLive = useBroadcastStore(state => state.setIsLive);
     const setSlides = useBroadcastStore(state => state.setSlides);
     const setSessionId = useBroadcastStore(state => state.setSessionId);
+    const sessionId = useBroadcastStore(state => state.sessionId);
     const { initRemoteSync, disconnectSync, isConnected } = useBroadcastStore();
 
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
+    const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);
 
     const handleOpenLoadModal = async () => {
         setIsLoadModalOpen(true);
@@ -46,6 +49,35 @@ export default function LiveConsole() {
         setSessionId(session.id);
         setSlides(session.slides);
         setIsLoadModalOpen(false);
+    };
+
+    const handleCopyViewerLink = async () => {
+        if (!sessionId) {
+            toast.error("ابتدا یک جلسه را Cloud Load کنید.");
+            return;
+        }
+
+        setIsGeneratingViewerLink(true);
+        try {
+            const res = await fetch('/api/broadcast/viewer-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId }),
+            });
+
+            const data = await res.json();
+            if (!res.ok || !data?.token) {
+                throw new Error(data?.error || 'Failed to generate token');
+            }
+
+            const viewerUrl = `${window.location.origin}/broadcast/view?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(data.token)}`;
+            await navigator.clipboard.writeText(viewerUrl);
+            toast.success("لینک امن Viewer کپی شد");
+        } catch (error: any) {
+            toast.error(error?.message || "خطا در ساخت لینک امن Viewer");
+        } finally {
+            setIsGeneratingViewerLink(false);
+        }
     };
 
     useEffect(() => {
@@ -130,6 +162,13 @@ export default function LiveConsole() {
                         </Link>
                         <button onClick={handleOpenLoadModal} className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm">
                             <CloudDownload className="w-4 h-4" /> Cloud Load
+                        </button>
+                        <button
+                            onClick={handleCopyViewerLink}
+                            disabled={!sessionId || isGeneratingViewerLink}
+                            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm"
+                        >
+                            {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} Viewer Link
                         </button>
                     </div>
                 </main>

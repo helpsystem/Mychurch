@@ -274,7 +274,6 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         setGenericBackgroundValue(content.background.value);
       }
       setGenericLayout(content.layout || 'centered');
-      setGenericLayout(content.layout || 'centered');
       setActiveModal('GENERIC');
     } else if (slide.type === SlideType.LIVEDATA) {
       const content = slide.content as SlideContentLiveData;
