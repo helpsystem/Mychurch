@@ -33,13 +33,25 @@ export function DynamicWatermark({
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        // Fetch initial config
-        getWatermarkConfig().then(res => {
-            if (res) setConfig(res as WatermarkConfigState);
-            setIsLoaded(true);
-        }).catch(() => {
-            setIsLoaded(true);
-        });
+        let isMounted = true;
+
+        // Fetch initial config with defensive guards for both sync and async failures.
+        const loadInitialConfig = async () => {
+            try {
+                const res = await getWatermarkConfig();
+                if (isMounted && res) {
+                    setConfig(res as WatermarkConfigState);
+                }
+            } catch {
+                // Keep defaults when remote config cannot be loaded.
+            } finally {
+                if (isMounted) {
+                    setIsLoaded(true);
+                }
+            }
+        };
+
+        loadInitialConfig();
 
         // Subscribe to real-time changes
         const supabase = createClient();
@@ -61,6 +73,7 @@ export function DynamicWatermark({
             .subscribe();
 
         return () => {
+            isMounted = false;
             supabase.removeChannel(channel);
         };
     }, []);

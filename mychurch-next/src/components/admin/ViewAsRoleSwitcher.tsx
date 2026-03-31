@@ -18,23 +18,35 @@ export default function ViewAsRoleSwitcher({ realRole }: { realRole: string }) {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const saved = localStorage.getItem(LS_KEY);
-        if (saved && saved !== realRole) setViewAs(saved);
+        try {
+            const saved = localStorage.getItem(LS_KEY);
+            if (saved && saved !== realRole) setViewAs(saved);
+        } catch {
+            setViewAs(null);
+        }
     }, [realRole]);
 
     const handleSelect = (role: string) => {
-        if (role === realRole) {
-            localStorage.removeItem(LS_KEY);
+        try {
+            if (role === realRole) {
+                localStorage.removeItem(LS_KEY);
+                setViewAs(null);
+            } else {
+                localStorage.setItem(LS_KEY, role);
+                setViewAs(role);
+            }
+        } catch {
             setViewAs(null);
-        } else {
-            localStorage.setItem(LS_KEY, role);
-            setViewAs(role);
         }
         setOpen(false);
     };
 
     const clearImpersonation = () => {
-        localStorage.removeItem(LS_KEY);
+        try {
+            localStorage.removeItem(LS_KEY);
+        } catch {
+            // no-op
+        }
         setViewAs(null);
     };
 
