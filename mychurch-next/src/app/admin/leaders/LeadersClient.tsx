@@ -14,9 +14,9 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
         if (confirm("آیا از حذف این رهبر اطمینان دارید؟")) {
             startTransition(async () => {
                 const res = await deleteLeader(id);
-                if (res.success || true) { // allow mock deletion for UX preview
+                if (res.success) {
                     setLeaders(leaders.filter(l => l.id !== id));
-                    toast.error("رهبر با موفقیت حذف شد.");
+                    toast.success("رهبر با موفقیت حذف شد.");
                 } else {
                     toast.error("خطا در ارتباط با دیتابیس.");
                 }

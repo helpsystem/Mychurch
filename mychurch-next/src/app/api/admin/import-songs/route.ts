@@ -4,11 +4,26 @@ import { query } from "@/lib/db";
 
 export async function POST(req: Request) {
     try {
+        // ===== Security Check: Admin Role Required =====
         const supabase = await createClient();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
         if (authError || !user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
+
+        const { data: userRecord } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', user.email)
+            .single();
+
+        if (!userRecord || userRecord.role !== 'Admin') {
+            return NextResponse.json(
+                { error: "Forbidden: Admin access required" },
+                { status: 403 }
+            );
+        }
+        // ===== End Security Check =====
 
         const { songs } = await req.json();
 

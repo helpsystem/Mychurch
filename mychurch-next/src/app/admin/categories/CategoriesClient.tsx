@@ -14,9 +14,9 @@ export default function CategoriesClient({ initialCategories }: { initialCategor
         if (confirm("آیا از حذف این دسته‌بندی اطمینان دارید؟")) {
             startTransition(async () => {
                 const res = await deleteCategory(id);
-                if (res.success || true) {
+                if (res.success) {
                     setCategories(categories.filter(c => c.id !== id));
-                    toast.error("دسته‌بندی حذف شد.");
+                    toast.success("دسته‌بندی با موفقیت حذف شد.");
                 } else {
                     toast.error("خطا رخ داد.");
                 }

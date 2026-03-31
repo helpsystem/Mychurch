@@ -59,22 +59,38 @@ export async function initializeTicketsDB() {
 let mockTickets: SupportTicket[] = [];
 let mockMessages: TicketMessage[] = [];
 
-export async function getTickets(statusFilter?: string): Promise<SupportTicket[]> {
+export async function getTickets(statusFilter?: string, userEmail?: string): Promise<SupportTicket[]> {
     try {
         await initializeTicketsDB();
         
-        let q = 'SELECT * FROM support_tickets ORDER BY created_at DESC';
+        let q = 'SELECT * FROM support_tickets';
         const params: any[] = [];
         
-        if (statusFilter && statusFilter !== 'all') {
-            q = 'SELECT * FROM support_tickets WHERE status = $1 ORDER BY created_at DESC';
+        // If userEmail is provided, filter to only that user's tickets
+        if (userEmail) {
+            q += ' WHERE user_email = $1';
+            params.push(userEmail);
+            
+            if (statusFilter && statusFilter !== 'all') {
+                q += ' AND status = $2';
+                params.push(statusFilter);
+            }
+        } else if (statusFilter && statusFilter !== 'all') {
+            // Admin view - filter by status
+            q += ' WHERE status = $1';
             params.push(statusFilter);
         }
+        
+        q += ' ORDER BY created_at DESC';
         
         const { rows } = await query(q, params);
         return rows.map(r => ({ ...r, created_at: new Date(r.created_at) }));
     } catch (e) {
-        console.error('Database reachable, using ticket fallback.', e);
+        console.error('Database error, using ticket fallback.', e);
+        // Return mock tickets filtered by user if provided
+        if (userEmail) {
+            return mockTickets.filter(t => t.user_email === userEmail);
+        }
         if (statusFilter && statusFilter !== 'all') {
             return mockTickets.filter(t => t.status === statusFilter);
         }

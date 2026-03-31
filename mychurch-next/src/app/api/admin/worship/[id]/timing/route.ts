@@ -62,6 +62,26 @@ export async function GET(
         const { id } = await params;
         const supabase = await createClient();
 
+        // ===== Security Check: Admin Role Required =====
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const { data: userRecord } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', user.email)
+            .single();
+
+        if (!userRecord || userRecord.role !== 'Admin') {
+            return NextResponse.json(
+                { error: "Forbidden: Admin access required" },
+                { status: 403 }
+            );
+        }
+        // ===== End Security Check =====
+
         const { data, error } = await supabase
             .from("church_worship_songs")
             .select("timepoints, timing_data, lyrics_fa, lyrics_fa_clean, lyrics_finglish")

@@ -10,7 +10,7 @@ export interface BibleBook {
 }
 
 export interface WorshipSong {
-    id: number;
+    id: number | string;
     title: { fa: string; en: string; [key: string]: string };
     artist?: { fa: string; en: string; [key: string]: string };
     lyrics?: { fa?: string; en?: string; };
@@ -19,6 +19,7 @@ export interface WorshipSong {
     audioUrl?: string;
     hasTiming?: boolean;
     mode?: string;
+    timing_data?: import('./worship-sync').SystemTimingV2 | null;
 }
 
 export enum SlideType {
@@ -76,7 +77,7 @@ export interface LyricsDisplayOptions {
 }
 
 export interface SlideContentLyrics {
-    songId?: number;
+    songId?: number | string;
     title: string;
     titleFa?: string;
     titleEn?: string;

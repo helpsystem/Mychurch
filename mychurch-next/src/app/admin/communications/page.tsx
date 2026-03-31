@@ -19,7 +19,7 @@ export default function CommunicationsPage() {
         const res = await createAnnouncement(newsData as any);
         setIsSubmitting(false);
 
-        if (res.success || true) { // allow mock success for dev UI
+        if (res.success) {
             toast.success("اطلاعیه با موفقیت در سایت منتشر شد! (Announcement successfully published)");
             setNewsData({ title: "", content: "", priority: "normal", status: "published" });
         } else {
@@ -33,7 +33,7 @@ export default function CommunicationsPage() {
         const res = await sendMassEmail(emailData.subject, emailData.body);
         setIsSubmitting(false);
 
-        if (res.success || true) {
+        if (res.success) {
             toast.success("ایمیل گروهی با موفقیت در صف ارسال قرار گرفت. (Mass email dispatched)");
             setEmailData({ subject: "", body: "" });
         } else {

@@ -7,6 +7,7 @@ import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { emailDocument } from "@/actions/documentMailer";
+import { deleteDocument, getDocuments, saveDocument } from "@/actions/documents";
 import { toast } from "sonner";
 import {
   FileText, Printer, Plus, Building2, CreditCard, Package,
@@ -890,6 +891,123 @@ export default function ChurchDocumentsPage() {
   const [docHistory, setDocHistory] = useState<DocHistoryItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const mapDbDocumentToHistory = (doc: any): DocHistoryItem => {
+    const content = doc?.document_content && typeof doc.document_content === "object" ? doc.document_content : {};
+    const docType: DocHistoryItem["type"] =
+      content.type === "inkind"
+        ? "inkind"
+        : doc.document_type === "letter"
+          ? "letter"
+          : doc.document_type === "invoice"
+            ? "invoice"
+            : "receipt";
+
+    return {
+      id: doc.id,
+      type: docType,
+      date:
+        content.date ||
+        new Date(doc.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+      timestamp: new Date(doc.created_at).getTime(),
+      refNo: content.refNo || `DOC-${String(doc.id).slice(0, 8).toUpperCase()}`,
+      recipient: doc.recipient_name || content.recipient || "Unspecified",
+      subject: doc.title || content.subject || "No Subject",
+      bodyEn: content.bodyEn,
+      bodyFa: content.bodyFa,
+      amount: content.amount,
+      donorName: content.donorName,
+      donorAddress: content.donorAddress,
+      inKindItems: content.inKindItems,
+      invoiceItems: content.invoiceItems,
+      invoiceWallet: content.invoiceWallet,
+    };
+  };
+
+  const loadDocumentHistory = useCallback(async () => {
+    const result = await getDocuments(1, 200);
+
+    if (result.error) {
+      const savedHistory = localStorage.getItem("church_doc_history");
+      if (savedHistory) {
+        try {
+          setDocHistory(JSON.parse(savedHistory));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      return;
+    }
+
+    const mapped = (result.data?.documents || []).map(mapDbDocumentToHistory);
+    setDocHistory(mapped);
+  }, []);
+
+  const persistHistoryItem = useCallback(async (item: DocHistoryItem) => {
+    const documentType = item.type === "letter" ? "letter" : item.type === "invoice" ? "invoice" : "receipt";
+
+    const result = await saveDocument(
+      {
+        document_type: documentType,
+        title: item.subject || "No Subject",
+        description: `Reference: ${item.refNo}`,
+        template_name: selectedTpl?.id,
+        document_content: item,
+        recipient_name: item.recipient,
+        recipient_address: item.donorAddress,
+        tags: [item.type],
+        is_draft: false,
+      },
+      false
+    );
+
+    if (result.error) {
+      toast.error(isRtl ? "ذخیره در دیتابیس انجام نشد" : "Failed to save in database");
+      return null;
+    }
+
+    return (result.data as any)?.id || null;
+  }, [isRtl, selectedTpl?.id]);
+
+  const addHistoryItem = useCallback(async (item: DocHistoryItem) => {
+    setDocHistory(prev => [item, ...prev]);
+
+    const savedId = await persistHistoryItem(item);
+    if (savedId) {
+      setDocHistory(prev => prev.map(i => (i.id === item.id ? { ...i, id: savedId } : i)));
+    }
+  }, [persistHistoryItem]);
+
+  const handleDeleteHistoryItem = useCallback(async (item: DocHistoryItem) => {
+    const result = await deleteDocument(item.id);
+    setDocHistory(prev => prev.filter(i => i.id !== item.id));
+
+    if (result.error) {
+      toast.error(isRtl ? "این مورد فقط محلی حذف شد" : "Deleted locally only");
+      return;
+    }
+
+    toast.success(isRtl ? "حذف شد" : "Deleted");
+  }, [isRtl]);
+
+  const handleClearHistory = useCallback(async () => {
+    const current = [...docHistory];
+    let failed = 0;
+
+    for (const item of current) {
+      const result = await deleteDocument(item.id);
+      if (result.error) failed += 1;
+    }
+
+    setDocHistory([]);
+
+    if (failed > 0) {
+      toast.error(isRtl ? "بخشی از حذف‌ها فقط محلی انجام شد" : "Some entries were deleted locally only");
+      return;
+    }
+
+    toast.success(isRtl ? "تاریخچه پاک شد" : "History cleared");
+  }, [docHistory, isRtl]);
+
   // Persistence: Load
   useEffect(() => {
     const savedSettings = localStorage.getItem("church_settings");
@@ -901,10 +1019,7 @@ export default function ChurchDocumentsPage() {
       } catch (e) { console.error("Error loading church settings", e); }
     }
 
-    const savedHistory = localStorage.getItem("church_doc_history");
-    if (savedHistory) {
-        try { setDocHistory(JSON.parse(savedHistory)); } catch (e) { console.error(e); }
-    }
+    void loadDocumentHistory();
 
     const savedTemplates = localStorage.getItem("mychurch_doc_templates");
     if (savedTemplates) {
@@ -1040,7 +1155,7 @@ export default function ChurchDocumentsPage() {
       invoiceItems: invoiceItems,
       invoiceWallet: invoiceWallet,
     };
-    setDocHistory(prev => [newItem, ...prev]);
+    void addHistoryItem(newItem);
     onPrintInvoice();
   };
 
@@ -1057,7 +1172,7 @@ export default function ChurchDocumentsPage() {
       bodyEn,
       bodyFa,
     };
-    setDocHistory(prev => [newItem, ...prev]);
+    void addHistoryItem(newItem);
     onPrintLetter();
   };
 
@@ -1076,7 +1191,7 @@ export default function ChurchDocumentsPage() {
       donorAddress: receipt.donorAddress as string,
       inKindItems: activeTab === "inkind" ? inKindItems : undefined,
     };
-    setDocHistory(prev => [newItem, ...prev]);
+    void addHistoryItem(newItem);
     handlePrintReceiptNative();
   };
 
@@ -1760,7 +1875,7 @@ export default function ChurchDocumentsPage() {
                       timestamp: Date.now(), refNo: docNumber, recipient: recipientName || letterTo || "Unspecified",
                       subject: letterSubject || "No Subject", bodyEn, bodyFa
                     };
-                    setDocHistory(prev => [newItem, ...prev]);
+                     void addHistoryItem(newItem);
                     alert(isRtl ? "در تاریخچه ذخیره شد" : "Saved to History");
                   }} className="glass border border-white/10 px-4 py-2.5 rounded-xl text-sm font-bold hover:border-white/20 transition-all">
                     {isRtl ? "فقط ذخیره در تاریخچه" : "Just Save to History"}
@@ -1884,7 +1999,7 @@ export default function ChurchDocumentsPage() {
                      donorAddress: receipt.donorAddress as string,
                      inKindItems: activeTab === "inkind" ? inKindItems : undefined,
                    };
-                   setDocHistory(prev => [newItem, ...prev]);
+                   void addHistoryItem(newItem);
                    alert(isRtl ? "در تاریخچه ذخیره شد" : "Saved to History");
                 }} className="glass border border-white/10 px-4 py-3 rounded-xl text-sm font-bold hover:border-white/20 transition-all">
                   {isRtl ? "فقط ذخیره" : "Archive Only"}
@@ -2019,11 +2134,7 @@ export default function ChurchDocumentsPage() {
                           refNo: `INV-${invoiceNo}`, recipient: invoiceTo, subject: `Invoice for ${invoiceName}`,
                           amount: invoiceTotalAmount, invoiceItems: invoiceItems, invoiceWallet: invoiceWallet,
                         };
-                        setDocHistory(prev => {
-                          const updated = [newItem, ...prev];
-                          localStorage.setItem("church_doc_history", JSON.stringify(updated));
-                          return updated;
-                        });
+                        void addHistoryItem(newItem);
                         alert(isRtl ? "در تاریخچه ذخیره شد" : "Saved to History");
                     }} className="glass border border-white/10 px-4 py-3 rounded-xl text-sm font-bold hover:border-white/20 transition-all">
                       {isRtl ? "فقط ذخیره" : "Archive"}
@@ -2068,7 +2179,7 @@ export default function ChurchDocumentsPage() {
                    <button onClick={() => setHistoryCat("invoice")} className={`px-4 py-1.5 rounded-full border transition-all ${historyCat === "invoice" ? "bg-purple-500 border-purple-500 text-white" : "glass border-white/10 text-muted-foreground hover:border-white/20"}`}>{isRtl ? "فاکتورها" : "Invoices"}</button>
                  </div>
                  
-                 <button onClick={() => { if(confirm(isRtl ? "آیا از پاکسازی کل تاریخچه اطمینان دارید؟" : "Are you sure you want to clear all history?")) { setDocHistory([]); localStorage.removeItem("church_doc_history"); } }} 
+                  <button onClick={() => { if(confirm(isRtl ? "آیا از پاکسازی کل تاریخچه اطمینان دارید؟" : "Are you sure you want to clear all history?")) { void handleClearHistory(); } }} 
                     className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1.5 px-3 py-2 rounded-xl hover:bg-red-500/10 transition-all">
                     <Trash2 className="w-3.5 h-3.5" /> {isRtl ? "پاکسازی تاریخچه" : "Clear All History"}
                  </button>
@@ -2136,7 +2247,7 @@ export default function ChurchDocumentsPage() {
                               </button>
                               {isAdmin && (
                                 <button
-                                  onClick={() => { if(confirm(isRtl ? "حذف شود؟" : "Delete?")) { setDocHistory(prev => { const updated = prev.filter(i => i.id !== item.id); localStorage.setItem("church_doc_history", JSON.stringify(updated)); return updated; }); } }}
+                                  onClick={() => { if(confirm(isRtl ? "حذف شود؟" : "Delete?")) { void handleDeleteHistoryItem(item); } }}
                                   title={isRtl ? "حذف" : "Delete"}
                                   className="p-2.5 rounded-xl glass border border-white/10 text-red-500 hover:bg-red-500/20 transition-all shadow-lg"
                                 >

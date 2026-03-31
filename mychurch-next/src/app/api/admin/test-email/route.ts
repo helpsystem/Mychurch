@@ -1,9 +1,34 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
 import { sendMail } from "@/lib/mailer";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // POST /api/admin/test-email — Send a test email to verify Resend config
+// 🔒 ADMIN ONLY - Requires Admin role to prevent email relay abuse
 export async function POST(req: Request) {
   try {
+    // ===== Security Check: Admin Role Required =====
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { data: userRecord } = await supabase
+      .from('users')
+      .select('role')
+      .eq('email', user.email)
+      .single();
+
+    if (!userRecord || userRecord.role !== 'Admin') {
+      return NextResponse.json(
+        { error: "Forbidden: Admin access required" },
+        { status: 403 }
+      );
+    }
+    // ===== End Security Check =====
+
     if (!process.env.RESEND_API_KEY) {
       return NextResponse.json(
         { error: "RESEND_API_KEY environment variable is not set." },
@@ -12,7 +37,11 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json().catch(() => ({}));
-    const to = body.to || "sam@iranianchurchdc.com";
+    const to = typeof body.to === "string" ? body.to.trim() : user.email;
+
+    if (!to || to.length > 254 || !EMAIL_REGEX.test(to)) {
+      return NextResponse.json({ error: "Invalid recipient email" }, { status: 400 });
+    }
 
     const data = await sendMail({
       to,

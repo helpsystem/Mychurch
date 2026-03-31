@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
 import { query } from "@/lib/db";
 import fs from 'fs';
 import path from 'path';
@@ -8,6 +9,27 @@ export async function GET() {
     const LEGACY_JSON_PATH = "D:\\Windows.old\\Users\\Sami\\Desktop\\Iran Church DC\\Git\\Mychurch\\data\\worship_songs.json";
 
     try {
+        // ===== Security Check: Admin Role Required =====
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const { data: userRecord } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', user.email)
+            .single();
+
+        if (!userRecord || userRecord.role !== 'Admin') {
+            return NextResponse.json(
+                { error: "Forbidden: Admin access required" },
+                { status: 403 }
+            );
+        }
+        // ===== End Security Check =====
+
         // 1. Fix the Signup Trigger
         console.log("🛠️ Updating public.handle_new_user() trigger function...");
         await query(`

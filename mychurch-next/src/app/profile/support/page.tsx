@@ -1,15 +1,22 @@
 import { getTickets } from "@/actions/tickets";
 import ClientSupport from "./ClientSupport";
-import { requireAuth } from "@/utils/rbac"; // Assumption: profile requires auth
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 export const metadata = {
     title: "Support Tickets | MyProfile",
 };
 
 export default async function UserSupportPage() {
-    // We would normally filter by user_id here based on auth session.
-    // For now, we fetch all open tickets or mock tickets for the demo.
-    const tickets = await getTickets();
+    // 🔒 Require authentication
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        redirect("/login");
+    }
+
+    // Fetch user-specific tickets (filtered by user_id on client)
+    const allTickets = await getTickets();
     
-    return <ClientSupport initialTickets={tickets} />;
+    return <ClientSupport initialTickets={allTickets} userEmail={user.email || ""} />;
 }

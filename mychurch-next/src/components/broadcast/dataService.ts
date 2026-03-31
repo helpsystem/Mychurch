@@ -18,7 +18,21 @@ export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
     // اول سعی کن از API بگیری
     const response = await fetch('/api/worship-songs');
     if (response.ok) {
-      return await response.json();
+      const dbSongs = await response.json();
+      
+      // Map DB schema to UI Legacy schema
+      return dbSongs.map((s: any) => ({
+        id: s.id,
+        title: { fa: s.title_fa || '', en: s.title_en || '' },
+        artist: { fa: s.artist || '', en: s.artist || '' },
+        lyrics: { fa: s.lyrics_fa || '', en: s.lyrics_en, finglish: s.lyrics_finglish },
+        chord: s.chords,
+        youtubeId: s.youtube_id,
+        audioUrl: s.audio_url,
+        hasTiming: !!s.timing_data,
+        timing_data: s.timing_data,
+        category: s.category
+      }));
     }
   } catch (error) {
     console.log('API unavailable, using local JSON');
@@ -45,9 +59,9 @@ export function searchSongs(songs: WorshipSong[], query: string): WorshipSong[] 
 
   const q = query.toLowerCase();
   return songs.filter(song =>
-    song.title.fa.toLowerCase().includes(q) ||
-    song.title.en?.toLowerCase().includes(q) ||
-    song.artist?.toLowerCase().includes(q)
+    song.title?.fa?.toLowerCase().includes(q) ||
+    song.title?.en?.toLowerCase().includes(q) ||
+    (typeof song.artist === 'string' ? (song.artist as string).toLowerCase().includes(q) : song.artist?.fa?.toLowerCase().includes(q))
   ).slice(0, 20);
 }
 

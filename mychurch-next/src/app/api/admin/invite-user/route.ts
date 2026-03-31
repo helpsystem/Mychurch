@@ -21,14 +21,31 @@ function resolvePublicSiteUrl() {
 
 export async function POST(req: Request) {
     try {
-        // Auth check - only Admin can invite users
+        // ===== Security Check: Admin Role Required =====
         const supabase = await createClient();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
         if (authError || !user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const { email, role = "User", name = "" } = await req.json();
+        const { data: userRecord } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', user.email)
+            .single();
+
+        if (!userRecord || userRecord.role !== 'Admin') {
+            return NextResponse.json(
+                { error: "Forbidden: Admin access required" },
+                { status: 403 }
+            );
+        }
+        // ===== End Security Check =====
+
+        const { email, name = "" } = await req.json();
+        // ⚠️ Fixed: role is NO LONGER accepted from client - always default to 'User'
+        // Only Admin can promote users via direct DB updates or separate endpoint
+        const role = "User";
 
         if (!email) {
             return NextResponse.json({ error: "Email is required" }, { status: 400 });

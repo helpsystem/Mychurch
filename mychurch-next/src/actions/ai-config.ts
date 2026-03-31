@@ -1,5 +1,6 @@
 "use server";
 
+import { query } from "@/lib/db";
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 
@@ -14,15 +15,25 @@ export interface AIConfig {
 }
 
 export async function getAIConfig(): Promise<AIConfig> {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-        .from('church_ai_settings')
-        .select('*')
-        .eq('id', 'default')
-        .single();
-    
-    if (error || !data) {
-        // Fallback to env if not in DB (first time)
+    try {
+        const { rows } = await query("SELECT * FROM church_ai_settings WHERE id = 'default'");
+        const data = rows[0];
+        
+        if (!data) {
+            // Fallback to env if not in DB (first time)
+            return {
+                id: 'default',
+                active_provider: 'studio',
+                gemini_api_key: process.env.GEMINI_API_KEY || null,
+                vertex_project_id: null,
+                vertex_region: 'us-central1',
+                vertex_service_account: null
+            };
+        }
+        
+        return data as AIConfig;
+    } catch (e) {
+        console.error('[AIConfig] Error fetching config:', e);
         return {
             id: 'default',
             active_provider: 'studio',
@@ -32,8 +43,6 @@ export async function getAIConfig(): Promise<AIConfig> {
             vertex_service_account: null
         };
     }
-    
-    return data as AIConfig;
 }
 
 export async function updateAIConfig(config: Partial<AIConfig>) {

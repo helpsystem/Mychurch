@@ -27,9 +27,12 @@ async function setupAdmin() {
     
     if (!user) {
         console.log("📝 User not found in Auth. Creating account...");
+        // 🔒 Generate a secure random password instead of hardcoding
+        const randomPassword = Math.random().toString(36).slice(-12) + 'Aa1!';
+        
         const { data: newUser, error: createError } = await supabase.auth.admin.createUser({
             email: email,
-            password: "AdminPassword123!", // Hardcoded for initial setup, user can reset
+            password: randomPassword,
             email_confirm: true,
             user_metadata: { full_name: "System Admin" }
         });
@@ -40,6 +43,10 @@ async function setupAdmin() {
         }
         user = newUser.user;
         console.log("✅ Auth user created successfully.");
+        console.log("⚠️  CRITICAL: Please save this temporary password securely:");
+        console.log(`   📧 Email: ${email}`);
+        console.log(`   🔑 Temporary Password: ${randomPassword}`);
+        console.log("   User should change password on first login.\n");
     } else {
         console.log("ℹ️ User already exists in Auth.");
     }
@@ -60,9 +67,7 @@ async function setupAdmin() {
     } else {
         console.log("✅ ROLE: 'Admin' assigned in users table.");
         console.log("\n✨ SUCCESS: Admin setup complete.");
-        console.log(`📧 Email: ${email}`);
-        console.log(`🔑 Initial Password: AdminPassword123!`);
-        console.log("⚠️ Please change your password after the first login.");
+        console.log("🔐 Password Policy: Admin must change password on first login.");
     }
 }
 

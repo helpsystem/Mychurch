@@ -22,7 +22,6 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
     const [showInviteModal, setShowInviteModal] = useState(false);
     const [inviteEmail, setInviteEmail] = useState("");
     const [inviteName, setInviteName] = useState("");
-    const [inviteRole, setInviteRole] = useState("User");
     const [isInviting, setIsInviting] = useState(false);
     const [inviteSuccess, setInviteSuccess] = useState("");
 
@@ -54,7 +53,7 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
             const res = await fetch('/api/admin/invite-user', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: inviteEmail, name: inviteName, role: inviteRole }),
+                body: JSON.stringify({ email: inviteEmail, name: inviteName }),
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error);
@@ -368,20 +367,8 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                                     className="w-full bg-neutral-950 border border-border/20 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition"
                                 />
                             </div>
-                            <div className="space-y-1.5">
-                                <label htmlFor="invite-role" className="text-sm font-bold text-muted-foreground">نقش</label>
-                                <select
-                                    id="invite-role"
-                                    title="انتخاب نقش"
-                                    value={inviteRole}
-                                    onChange={e => setInviteRole(e.target.value)}
-                                    className="w-full bg-neutral-950 border border-border/20 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition"
-                                >
-                                    <option value="Admin">Admin — دسترسی کامل</option>
-                                    <option value="Leader">Leader — رهبر گروه</option>
-                                    <option value="Operator">Operator — اپراتور</option>
-                                    <option value="User">User — کاربر عادی</option>
-                                </select>
+                            <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 px-4 py-3 text-xs text-blue-300">
+                                دعوت اولیه همیشه با نقش User انجام می‌شود و ارتقا نقش فقط از پنل دسترسی‌ها قابل انجام است.
                             </div>
                             <div className="flex gap-3 pt-2">
                                 <button type="button" onClick={() => setShowInviteModal(false)} className="flex-1 py-2.5 rounded-xl font-bold bg-neutral-800 hover:bg-neutral-700 text-white transition">

@@ -42,7 +42,7 @@ export default function PresentationsClient({ initialPresentations }: { initialP
         if (confirm(t.deleteConfirm || "Are you sure?")) {
             startTransition(async () => {
                 const res = await deletePresentation(id);
-                if (res.success || true) {
+                if (res.success) {
                     setPresentations(presentations.filter(p => p.id !== id));
                     toast.success(t.presentationDeleted || "Deleted");
                 } else {

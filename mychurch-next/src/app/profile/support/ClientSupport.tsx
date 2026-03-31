@@ -5,7 +5,7 @@ import { SupportTicket, TicketMessage, createTicket } from "@/actions/tickets";
 import { MessageCircle, Plus, Send, Clock, User, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-export default function ClientSupport({ initialTickets }: { initialTickets: SupportTicket[] }) {
+export default function ClientSupport({ initialTickets, userEmail }: { initialTickets: SupportTicket[], userEmail: string }) {
     const [tickets, setTickets] = useState<SupportTicket[]>(initialTickets);
     const [activeTicket, setActiveTicket] = useState<SupportTicket | null>(null);
     const [isCreating, setIsCreating] = useState(false);
@@ -13,23 +13,32 @@ export default function ClientSupport({ initialTickets }: { initialTickets: Supp
     // New Ticket State
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [userName, setUserName] = useState("");
     const [isPending, startTransition] = useTransition();
 
     const handleCreate = (e: React.FormEvent) => {
         e.preventDefault();
         startTransition(async () => {
+            // 🔒 Use authenticated user data from session
             const res = await createTicket(
-                { subject, user_id: 'user_123', user_name: 'کاربر دمو', user_email: 'demo@example.com' }, 
+                { 
+                    subject, 
+                    user_id: userEmail, // Use email as unique ID (prevents spoofing)
+                    user_name: userName || userEmail.split('@')[0],
+                    user_email: userEmail 
+                }, 
                 message
             );
             if (res.success) {
                 toast.success("تیکت پشتیبانی ایجاد شد.");
                 setIsCreating(false);
-                setSubject(""); setMessage("");
+                setSubject(""); 
+                setMessage("");
+                setUserName("");
                 // Mock push to UI
                 setTickets([{
                     id: res.id || crypto.randomUUID(),
-                    subject, status: 'open', created_at: new Date(), user_id: '123', assigned_leader_id: null
+                    subject, status: 'open', created_at: new Date(), user_id: userEmail, assigned_leader_id: null
                 }, ...tickets]);
             } else {
                 toast.error("خطا در ایجاد تیکت");

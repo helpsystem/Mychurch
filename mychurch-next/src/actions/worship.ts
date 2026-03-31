@@ -217,45 +217,33 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             OUTPUT FORMAT (JSON):
             {
               "lyrics_fa_clean": "Clean Farsi lyrics without chords/labels",
-              "lyrics_finglish_clean": "Full Latin transliteration of Farsi lyrics",
+              "lyrics_finglish_clean": "Full Latin transliteration",
               "translation_en": "Full English translation",
               "chords": "Standard chords if detectable",
               "category": "Main theme (Worship, Praise, etc.)",
-              "musical_metadata": { "bpm": 120, "key": "G Major", "mood": "Slow Worship" },
-              "timing_data": {
-                "songId": ${id},
-                "version": "2.0",
+              "compact_timing_data": {
+                "songId": "${id}",
                 "totalDuration": 0, 
                 "lines": [
-                  {
-                    "line": "FARSI VERSION OF LINE (Persian script)",
-                    "start": 0.00,
-                    "end": 0.00,
-                    "translations": { 
-                      "persian": "FARSI VERSION (Persian script)", 
-                      "english": "English translation", 
-                      "finglish": "FINGLISH VERSION (Latin script)" 
-                    },
-                    "words": [
-                       { 
-                         "word": "FARSIWORD", 
-                         "start": 0.00, 
-                         "end": 0.00, 
-                         "finglish": "FINGLISHWORD", 
-                         "english": "Englishword" 
-                       }
+                  [
+                    "FARSI VERSION OF LINE",
+                    "FINGLISH VERSION",
+                    "English translation",
+                    0.00, // start time
+                    0.00, // end time
+                    [
+                       ["FARSIWORD", 0.00, 0.00]
                     ]
-                  }
+                  ]
                 ]
               }
-            }
+            };
 
-            CRITICAL MAPPING RULES:
-            - 'line' and 'word' MUST be in FARSI (Persian script). This is what shows on the main screen.
-            - 'translations.persian' MUST be in FARSI (Persian script).
-            - 'translations.finglish' and 'words[].finglish' MUST be in FINGLISH (Latin script).
-            - 'lyrics_finglish_clean' MUST be the full Latin transliterated lyrics.
-            - Word-level timestamps must be aligned with the audio (if provided).
+            STRICT MAPPING RULES:
+            - You MUST USE THIS COMPACT ARRAY FORMAT for lines and words to save space. Do NOT use object keys for lines and words!
+            - lines[]: [ farsi_line, finglish_line, english_line, start_time, end_time, words_array ]
+            - words[]: [ farsi_word, start_time, end_time ]
+            - NO EXTRA TEXT. JUST THE MINIFIED JSON.
         
             Song Title: "${song.title_fa}"
             Farsi Lyrics Reference:
@@ -268,29 +256,89 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         let responseText = "";
         
         if (aiConfig.active_provider === 'vertex' && aiConfig.vertex_project_id) {
-            console.log(`[AI-Wizard] Calling Vertex AI (Project: ${aiConfig.vertex_project_id})`);
-            const { VertexAI } = await import('@google-cloud/vertexai');
-            const vertexAI = new VertexAI({
-                project: aiConfig.vertex_project_id,
-                location: aiConfig.vertex_region || 'us-central1',
-                googleAuthOptions: { credentials: aiConfig.vertex_service_account }
-            });
-            const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-            const result = await model.generateContent({ contents: [{ role: 'user', parts }] });
-            const response = await result.response;
-            responseText = response.candidates?.[0].content.parts[0].text || "";
-        } else {
+            try {
+                console.log(`[AI-Wizard] Calling Vertex AI (Project: ${aiConfig.vertex_project_id})`);
+                const { VertexAI } = await import('@google-cloud/vertexai');
+                const vertexAI = new VertexAI({
+                    project: aiConfig.vertex_project_id,
+                    location: aiConfig.vertex_region || 'us-central1',
+                    googleAuthOptions: { credentials: aiConfig.vertex_service_account }
+                });
+                // Using 1.5-flash-001 which is widely available in us-central1
+                const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-flash-001' });
+                const result = await model.generateContent({ contents: [{ role: 'user', parts }] });
+                const response = await result.response;
+                responseText = response.candidates?.[0].content.parts[0].text || "";
+            } catch (e) {
+                console.error("[AI-Wizard] Vertex AI failed, falling back to Gemini Studio:", e);
+                // Fallback will happen naturally if responseText is empty
+            }
+        }
+
+        if (!responseText) {
+            console.log(`[AI-Wizard] Calling Gemini AI Studio (gemini-2.0-flash)`);
             const { GoogleGenerativeAI } = await import('@google/generative-ai');
-            const apiKey = aiConfig.gemini_api_key || process.env.GEMINI_API_KEY;
+            const apiKey = process.env.GEMINI_API_KEY || aiConfig.gemini_api_key;
             if (!apiKey) throw new Error("Gemini API key not configured.");
             const genAI = new GoogleGenerativeAI(apiKey);
-            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const model = genAI.getGenerativeModel({ 
+                model: 'gemini-2.0-flash',
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    maxOutputTokens: 8192,
+                }
+            });
             const result = await model.generateContent(parts);
             responseText = result.response.text();
         }
 
         if (!responseText) throw new Error("No output returned from AI");
-        const aiData = JSON.parse(responseText.replace(/```json\n?|\n?```/g, ''));
+        let aiData;
+        try {
+            // More robust stripping of markdown and extra whitespace
+            let cleanedText = responseText.trim();
+            if (cleanedText.startsWith('```json')) cleanedText = cleanedText.substring(7);
+            if (cleanedText.startsWith('```')) cleanedText = cleanedText.substring(3);
+            if (cleanedText.endsWith('```')) cleanedText = cleanedText.substring(0, cleanedText.length - 3);
+            cleanedText = cleanedText.trim();
+            aiData = JSON.parse(cleanedText);
+        } catch (e) {
+            console.error("[AI-Wizard] JSON Parse Error. Writing raw response to tmp/raw_ai_output.json");
+            const fs = await import('fs');
+            fs.writeFileSync('tmp/raw_ai_output.json', responseText);
+            throw e;
+        }
+
+        let timingData = null;
+        if (aiData.compact_timing_data && Array.isArray(aiData.compact_timing_data.lines)) {
+            timingData = {
+                songId: aiData.compact_timing_data.songId,
+                version: "2.0",
+                totalDuration: aiData.compact_timing_data.totalDuration || 0,
+                lines: aiData.compact_timing_data.lines.filter((l: any) => Array.isArray(l)).map((l: any) => ({
+                    line: l[0],
+                    start: l[3],
+                    end: l[4],
+                    translations: {
+                        finglish: l[1],
+                        english: l[2]
+                    },
+                    words: (l[5] || []).filter((w: any) => Array.isArray(w)).map((w: any, index: number) => {
+                        // Estimate finglish word by splitting the lines finglish version by space,
+                        // this isn't perfect but saves massive tokens from the AI.
+                        const finglishWords = l[1] ? l[1].split(' ') : [];
+                        return {
+                            word: w[0],
+                            finglish: finglishWords[index] || null,
+                            start: w[1],
+                            end: w[2]
+                        };
+                    })
+                }))
+            };
+        } else {
+            timingData = aiData.timing_data || null;
+        }
 
         console.log(`[AI-Wizard] Updating DB for ${song.title_fa}...`);
         await query(`
@@ -300,26 +348,28 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                 lyrics_en = $3,
                 chords = $4,
                 category = $5,
-                musical_metadata = $6,
-                timing_data = $7
-            WHERE id = $8
+                timing_data = $6
+            WHERE id = $7
         `, [
             aiData.lyrics_fa_clean || aiData.lyrics_fa || song.lyrics_fa,
             aiData.lyrics_finglish_clean || aiData.lyrics_finglish || song.lyrics_finglish,
             aiData.translation_en || aiData.lyrics_en || song.lyrics_en,
             aiData.chords || song.chords,
             aiData.category || song.category,
-            aiData.musical_metadata ? JSON.stringify(aiData.musical_metadata) : null,
-            aiData.timing_data ? JSON.stringify(aiData.timing_data) : null,
+            timingData ? JSON.stringify(timingData) : null,
             id
         ]);
+        try {
+            const { revalidatePath } = await import('next/cache');
+            revalidatePath('/worship');
+        } catch (e: any) {
+            console.log("[AI-Wizard] Skipped revalidatePath (likely running in standalone script)");
+        }
         
-        revalidatePath('/worship');
-        revalidatePath('/admin/worship');
         return { success: true };
-    } catch (e: any) {
-        console.error('[AI-Wizard] Error:', e);
-        return { success: false, message: e.message };
+    } catch (error: any) {
+        console.error('[AI-Wizard] Error extractWorshipSongAI:', error);
+        return { success: false, message: error.message };
     }
 }
 

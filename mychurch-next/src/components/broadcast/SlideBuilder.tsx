@@ -348,25 +348,30 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     });
 
     // Load timing data if available
-    let timingData = null;
-    // Always try to load timing data regardless of hasTiming flag
-    const timingPaths = [
-      `/worship/data/timings/song_${song.id}_timing.json`,
-      `/worship/timing/${song.id}_timing.json`,
-      `/worship/timing/song_${song.id}_timing.json`
-    ];
+    let timingData = song.timing_data || null;
 
-    for (const path of timingPaths) {
-      try {
-        const timingRes = await fetch(path);
-        if (timingRes.ok) {
-          timingData = await timingRes.json();
-          console.log('✅ Loaded timing from:', path);
-          break;
+    if (!timingData) {
+      // Always try to load timing data regardless of hasTiming flag
+      const timingPaths = [
+        `/worship/data/timings/song_${song.id}_timing.json`,
+        `/worship/timing/${song.id}_timing.json`,
+        `/worship/timing/song_${song.id}_timing.json`
+      ];
+
+      for (const path of timingPaths) {
+        try {
+          const timingRes = await fetch(path);
+          if (timingRes.ok) {
+            timingData = await timingRes.json();
+            console.log('✅ Loaded timing from:', path);
+            break;
+          }
+        } catch (err) {
+          // Try next path
         }
-      } catch (err) {
-        // Try next path
       }
+    } else {
+        console.log('✅ Loaded timing directly from database');
     }
 
     if (timingData) {
