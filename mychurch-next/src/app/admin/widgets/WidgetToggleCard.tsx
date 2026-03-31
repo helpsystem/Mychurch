@@ -23,7 +23,7 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
     };
 
     return (
-        <div className={`glass rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden group ${widget.is_active ? 'border-primary/30 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'border-white/5 opacity-70 grayscale-[0.8]'}`}>
+        <div className={`glass rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden group ${widget.is_active ? 'border-primary/30 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'border-white/20 opacity-90 grayscale-[0.2]'}`}>
 
             {/* Active Ambient Glow */}
             {widget.is_active && (
@@ -37,9 +37,9 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
 
                 <div className="flex items-center gap-3">
                     {/* Settings Button (Available for all widgets) */}
-                    <button 
+                    <button
                         onClick={() => setShowSettings(true)}
-                        className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-colors border border-white/5"
+                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-colors border border-white/15"
                         title="تنظیمات محتوا"
                     >
                         <Settings className="w-4 h-4" />
@@ -63,11 +63,11 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
             </div>
 
             <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{widget.name}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{widget.description}</p>
+                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">{widget.name}</h3>
+                <p className="text-white/80 text-sm leading-relaxed">{widget.description}</p>
                 <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-bold font-serif uppercase tracking-wider">
-                    <span className="text-muted-foreground">ID: {widget.id}</span>
-                    <span className={widget.is_active ? 'text-primary' : 'text-muted-foreground'}>
+                    <span className="text-white/80">ID: {widget.id}</span>
+                    <span className={widget.is_active ? 'text-primary' : 'text-white/80'}>
                         {widget.is_active ? 'ACTIVE' : 'INACTIVE'}
                     </span>
                 </div>

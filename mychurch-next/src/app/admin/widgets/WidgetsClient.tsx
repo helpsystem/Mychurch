@@ -32,11 +32,11 @@ export default function WidgetsClient({ initialWidgets }: { initialWidgets: Widg
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-black flex items-center gap-3">
+                    <h2 className="text-2xl font-black flex items-center gap-3 text-white">
                         <LayoutTemplate className="w-8 h-8 text-primary" />
                         Widget Management
                     </h2>
-                    <p className="text-muted-foreground mt-1">Control active extensions and 3rd-party integrations globally.</p>
+                    <p className="text-white/80 mt-1">Control active extensions and 3rd-party integrations globally.</p>
                 </div>
             </div>
 
@@ -47,46 +47,46 @@ export default function WidgetsClient({ initialWidgets }: { initialWidgets: Widg
                         <div
                             key={widget.id}
                             className={cn(
-                                "relative bg-neutral-900 border rounded-2xl p-6 transition-all duration-300",
-                                widget.is_active ? "border-primary/30 shadow-[0_0_20px_rgba(59,130,246,0.05)]" : "border-border/10 opacity-70"
+                                "relative bg-neutral-900 border rounded-2xl p-5 sm:p-6 transition-all duration-300",
+                                widget.is_active ? "border-primary/40 shadow-[0_0_22px_rgba(59,130,246,0.10)]" : "border-white/20 opacity-90"
                             )}
                         >
                             <div className="flex items-start justify-between mb-4">
-                                <div className={cn("p-3 rounded-xl bg-neutral-950 shadow-inner", widget.color)}>
+                                <div className={cn("p-3 rounded-xl bg-neutral-950 shadow-inner border border-white/10", widget.color)}>
                                     <IconComponent className="w-6 h-6" />
                                 </div>
                                 <button
                                     onClick={() => handleToggle(widget.id, widget.is_active)}
                                     disabled={isPending}
-                                    className="text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50"
+                                    className="text-white/75 hover:text-white transition-colors disabled:opacity-50"
                                 >
                                     {widget.is_active ? (
                                         <ToggleRight className="w-8 h-8 text-primary" />
                                     ) : (
-                                        <ToggleLeft className="w-8 h-8" />
+                                        <ToggleLeft className="w-8 h-8 text-white/80" />
                                     )}
                                 </button>
                             </div>
 
-                            <h3 className="font-bold text-lg mb-2">{widget.name}</h3>
-                            <p className="text-sm text-muted-foreground line-clamp-2 min-h-[40px] leading-relaxed">
+                            <h3 className="font-bold text-lg mb-2 text-white">{widget.name}</h3>
+                            <p className="text-sm text-white/80 line-clamp-2 min-h-[40px] leading-relaxed">
                                 {widget.description}
                             </p>
 
-                            <div className="mt-6 pt-4 border-t border-border/10 flex items-center justify-between">
+                            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
                                 <span className={cn(
                                     "text-xs font-bold uppercase tracking-widest px-2 py-1 rounded flex items-center gap-1.5",
-                                    widget.is_active ? "bg-primary/10 text-primary" : "bg-neutral-800 text-muted-foreground"
+                                    widget.is_active ? "bg-primary/20 text-primary-foreground border border-primary/40" : "bg-neutral-800 text-white/80 border border-white/15"
                                 )}>
                                     {widget.is_active ? (
                                         <><div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> Active</>
                                     ) : (
-                                        <><div className="w-1.5 h-1.5 rounded-full bg-neutral-500" /> Offline</>
+                                        <><div className="w-1.5 h-1.5 rounded-full bg-white/60" /> Offline</>
                                     )}
                                 </span>
 
                                 <button
-                                    className="p-2 rounded-lg bg-neutral-950 hover:bg-neutral-800 transition-colors text-muted-foreground hover:text-foreground border border-border/5"
+                                    className="p-2 rounded-lg bg-neutral-950 hover:bg-neutral-800 transition-colors text-white/80 hover:text-white border border-white/15"
                                     title="Settings"
                                     onClick={() => {
                                         if (widget.id === 'w_watermark') {
@@ -104,7 +104,7 @@ export default function WidgetsClient({ initialWidgets }: { initialWidgets: Widg
                 })}
 
                 {/* Add New Widget Placeholder */}
-                <button className="bg-neutral-900/50 border border-dashed border-border/30 rounded-2xl p-6 flex flex-col items-center justify-center text-muted-foreground hover:bg-neutral-800 hover:text-foreground hover:border-border/50 transition-all min-h-[240px]">
+                <button className="bg-neutral-900/60 border border-dashed border-white/25 rounded-2xl p-6 flex flex-col items-center justify-center text-white/80 hover:bg-neutral-800 hover:text-white hover:border-white/40 transition-all min-h-[220px]">
                     <Puzzle className="w-12 h-12 mb-4 opacity-50" />
                     <span className="font-bold">Install Component</span>
                     <span className="text-xs mt-2 opacity-70">Browse extensions library</span>
