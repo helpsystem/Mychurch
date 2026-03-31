@@ -1,6 +1,6 @@
 // src/app/api/ai/letters/route.ts
 import { NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 
 const getSystemPrompt = (mode: string, lang: string, topic?: string, body?: string) => {
   if (mode === "generate") {
@@ -60,16 +60,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Gemini API key not configured." }, { status: 500 });
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const genAI = new GoogleGenAI({ apiKey });
 
     const prompt = getSystemPrompt(mode, lang, topic, body);
     if (!prompt) {
       return NextResponse.json({ error: "Invalid mode." }, { status: 400 });
     }
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    const response = await genAI.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt
+    });
+    const text = response.text || "";
 
     return NextResponse.json({ result: text });
 

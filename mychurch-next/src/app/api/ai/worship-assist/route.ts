@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 
 export async function POST(req: Request) {
     try {
@@ -22,8 +22,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Gemini API key not configured." }, { status: 500 });
         }
 
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        const genAI = new GoogleGenAI({ apiKey });
 
         let prompt = "";
 
@@ -63,8 +62,11 @@ ${lyricsFA}`;
             return NextResponse.json({ error: "Invalid mode. Use 'translate' or 'chords'." }, { status: 400 });
         }
 
-        const result = await model.generateContent(prompt);
-        const text = result.response.text();
+        const response = await genAI.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: prompt
+        });
+        const text = response.text || "";
 
         return NextResponse.json({ result: text });
 

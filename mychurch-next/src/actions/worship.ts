@@ -3,6 +3,8 @@
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
+import { GoogleGenAI } from "@google/genai";
+
 export interface WorshipSong {
     id: string;
     title_fa: string;
@@ -255,41 +257,37 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
 
         let responseText = "";
         
-        if (aiConfig.active_provider === 'vertex' && aiConfig.vertex_project_id) {
-            try {
-                console.log(`[AI-Wizard] Calling Vertex AI (Project: ${aiConfig.vertex_project_id})`);
-                const { VertexAI } = await import('@google-cloud/vertexai');
-                const vertexAI = new VertexAI({
+        try {
+            console.log(`[AI-Wizard] Initializing Unified GoogleGenAI SDK...`);
+            let genAI;
+            
+            if (aiConfig.active_provider === 'vertex' && aiConfig.vertex_project_id) {
+                console.log(`[AI-Wizard] Mode: Vertex AI (Project: ${aiConfig.vertex_project_id})`);
+                genAI = new GoogleGenAI({
+                    vertexai: true,
                     project: aiConfig.vertex_project_id,
                     location: aiConfig.vertex_region || 'us-central1',
-                    googleAuthOptions: { credentials: aiConfig.vertex_service_account }
                 });
-                // Using 1.5-flash-001 which is widely available in us-central1
-                const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-flash-001' });
-                const result = await model.generateContent({ contents: [{ role: 'user', parts }] });
-                const response = await result.response;
-                responseText = response.candidates?.[0].content.parts[0].text || "";
-            } catch (e) {
-                console.error("[AI-Wizard] Vertex AI failed, falling back to Gemini Studio:", e);
-                // Fallback will happen naturally if responseText is empty
+            } else {
+                console.log(`[AI-Wizard] Mode: Google AI Studio`);
+                const apiKey = process.env.GEMINI_API_KEY || aiConfig.gemini_api_key;
+                if (!apiKey) throw new Error("Gemini API key not configured.");
+                genAI = new GoogleGenAI({ apiKey });
             }
-        }
 
-        if (!responseText) {
-            console.log(`[AI-Wizard] Calling Gemini AI Studio (gemini-2.0-flash)`);
-            const { GoogleGenerativeAI } = await import('@google/generative-ai');
-            const apiKey = process.env.GEMINI_API_KEY || aiConfig.gemini_api_key;
-            if (!apiKey) throw new Error("Gemini API key not configured.");
-            const genAI = new GoogleGenerativeAI(apiKey);
-            const model = genAI.getGenerativeModel({ 
+            console.log(`[AI-Wizard] Calling gemini-2.0-flash...`);
+            const response = await genAI.models.generateContent({
                 model: 'gemini-2.0-flash',
-                generationConfig: {
+                contents: parts,
+                config: {
                     responseMimeType: "application/json",
                     maxOutputTokens: 8192,
                 }
             });
-            const result = await model.generateContent(parts);
-            responseText = result.response.text();
+            
+            responseText = response.text || "";
+        } catch (e: any) {
+            console.error("[AI-Wizard] AI SDK failed:", e);
         }
 
         if (!responseText) throw new Error("No output returned from AI");
