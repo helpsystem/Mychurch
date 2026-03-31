@@ -40,10 +40,16 @@ if (-not (Test-Path $NotesFile)) {
   throw "Notes file '$NotesFile' not found in repo root."
 }
 
-Write-Host "[3/4] Checking GitHub auth status"
+Write-Host "[3/5] Checking GitHub auth status"
 & $ghCmd auth status | Out-Null
 
-Write-Host "[4/4] Creating draft release"
+Write-Host "[4/5] Checking existing release for tag: $Tag"
+& $ghCmd release view $Tag *> $null
+if ($LASTEXITCODE -eq 0) {
+  throw "A release for tag '$Tag' already exists. Use a new tag or edit the existing release."
+}
+
+Write-Host "[5/5] Creating draft release"
 & $ghCmd release create $Tag --title $Title --notes-file $NotesFile --draft
 
 Write-Host "Draft release created successfully for tag '$Tag'."
