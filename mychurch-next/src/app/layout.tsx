@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning>
+    <html lang="fa" dir="rtl" suppressHydrationWarning className="dark">
       <head>
         {/* Runtime Google Fonts to prevent Next.js build crash on VPN drop */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,10 +42,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `(() => {
               try {
-                const storedTheme = localStorage.getItem("theme");
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                const isDark = storedTheme ? storedTheme === "dark" : prefersDark;
-                document.documentElement.classList.toggle("dark", isDark);
+                document.documentElement.classList.add("dark");
               } catch {
                 document.documentElement.classList.add("dark");
               }

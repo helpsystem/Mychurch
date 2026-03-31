@@ -23,7 +23,7 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
     };
 
     return (
-        <div className={`glass rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden group ${widget.is_active ? 'border-primary/30 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'border-white/20 opacity-90 grayscale-[0.2]'}`}>
+        <div className={`bg-neutral-900/95 rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden group ${widget.is_active ? 'border-primary/30 shadow-[0_4px_30px_rgba(0,0,0,0.35)]' : 'border-white/20 opacity-90 grayscale-[0.2]'}`}>
 
             {/* Active Ambient Glow */}
             {widget.is_active && (
