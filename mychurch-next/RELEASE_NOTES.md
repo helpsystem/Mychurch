@@ -1,24 +1,24 @@
 # Release Notes
 
 ## v1.0.0-broadcast-hardening
-Date: 2026-03-31
+Published: 2026-03-31
 Tag: v1.0.0-broadcast-hardening
-Commit: 313cc03416b3c4fd34992ec65f17e192bc8b9523
+Core Commit: 313cc03416b3c4fd34992ec65f17e192bc8b9523
 
-### Summary
-این نسخه تمرکز کامل روی سخت‌سازی ماژول Broadcast دارد: کنترل دسترسی، لینک امن Viewer، محدودسازی رویدادهای Socket، و پایداری Sync.
+### خلاصه انتشار
+این نسخه با هدف افزایش امنیت، پایداری و آمادگی عملیاتی ماژول Broadcast منتشر شده است. محور اصلی تغییرات شامل سخت گیری دسترسی ها، امن سازی لینک Viewer، کنترل نرخ رویدادهای شبکه، و بهبود ثبات همگام سازی در سناریوهای چند دستگاهی است.
 
-### Changes
-- RBAC برای عملیات Presentation اضافه شد.
-- صدور لینک امن Viewer با Token امضاشده اضافه شد.
-- اعتبارسنجی Token در صفحه Viewer قبل از فعال شدن Sync اضافه شد.
-- Rate limit برای رویدادهای Socket اضافه شد.
-- Rate limit سبک برای صدور Token Viewer اضافه شد.
-- پایداری WebSocket Sync در تغییر Session بهبود داده شد.
-- چند بهبود Builder و Slide flow اعمال شد.
-- چک‌لیست E2E برای تست پیش از Deploy اضافه شد.
+### تغییرات کلیدی
+- اعمال کنترل دسترسی نقش محور (RBAC) برای عملیات حساس Presentation.
+- افزودن مکانیزم تولید لینک امن Viewer بر پایه Token امضاشده.
+- اعتبارسنجی Token در صفحه Viewer پیش از فعال شدن مسیر Sync.
+- افزودن Rate Limit برای رویدادهای Socket به منظور جلوگیری از Flood.
+- افزودن Rate Limit سبک برای Endpoint صدور Viewer Token.
+- بهبود پایداری WebSocket Sync هنگام تغییر Session.
+- اصلاح چند مورد در Builder و Slide Flow برای رفتار قابل پیش بینی تر.
+- اضافه شدن چک لیست E2E جهت آماده سازی پیش از Deploy.
 
-### Files
+### فایل های اصلی تغییر کرده
 - src/actions/presentations.ts
 - src/app/api/broadcast/viewer-token/route.ts
 - src/app/broadcast/builder/page.tsx
@@ -29,6 +29,9 @@ Commit: 313cc03416b3c4fd34992ec65f17e192bc8b9523
 - src/pages/api/socket.ts
 - tests/broadcast-e2e-checklist.md
 
-### Notes
-- برای امنیت بهتر در Production مقدار `BROADCAST_VIEWER_SECRET` را تنظیم کنید.
-- برای لینک‌های صحیح Viewer مقدار `NEXT_PUBLIC_SITE_URL` را تنظیم کنید.
+### الزامات محیط Production
+- مقدار BROADCAST_VIEWER_SECRET باید به صورت امن تنظیم شود.
+- مقدار NEXT_PUBLIC_SITE_URL باید روی دامنه نهایی سرویس تنظیم شود.
+
+### یادداشت عملیاتی
+پس از استقرار، اجرای کامل چک لیست موجود در tests/broadcast-e2e-checklist.md برای تایید نهایی توصیه می شود.
