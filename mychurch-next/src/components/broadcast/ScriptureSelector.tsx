@@ -112,6 +112,14 @@ const translations = {
 import { getBibleBooks } from './dataService';
 const bibleBooks = getBibleBooks();
 
+const normalizeSearchText = (value: string) =>
+  (value || '')
+    .toLowerCase()
+    .replace(/[يى]/g, 'ی')
+    .replace(/ك/g, 'ک')
+    .replace(/\s+/g, ' ')
+    .trim();
+
 // =============== COMPONENT ===============
 
 const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
@@ -148,13 +156,18 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [previewVerse, setPreviewVerse] = useState<SelectedVerse | null>(null);
 
   // Filter books by search
-  const filteredBooks = searchQuery
-    ? bibleBooks.filter((book: BibleBook) =>
-      book.name.fa.includes(searchQuery) ||
-      book.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      book.key.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+  const normalizedQuery = normalizeSearchText(searchQuery);
+  const searchedBooks = normalizedQuery
+    ? bibleBooks.filter((book: BibleBook) => {
+      const fa = normalizeSearchText(book.name.fa);
+      const en = normalizeSearchText(book.name.en);
+      const key = normalizeSearchText(book.key);
+      return fa.includes(normalizedQuery) || en.includes(normalizedQuery) || key.includes(normalizedQuery);
+    })
     : bibleBooks;
+
+  const hadNoExactResults = !!normalizedQuery && searchedBooks.length === 0;
+  const filteredBooks = hadNoExactResults ? bibleBooks : searchedBooks;
 
   const otBooks = filteredBooks.filter((b: BibleBook) => b.testament === 'OT');
   const ntBooks = filteredBooks.filter((b: BibleBook) => b.testament === 'NT');
@@ -436,6 +449,14 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                   placeholder={t.searchBook}
                   className="w-full bg-slate-800 text-white p-3 rounded-xl mb-4 focus:ring-2 focus:ring-indigo-500 border border-slate-700"
                 />
+
+                {hadNoExactResults && (
+                  <div className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-300">
+                    {isRTL
+                      ? 'نتیجه دقیقی پیدا نشد. برای جلوگیری از صفحه خالی، همه کتاب ها نمایش داده شد.'
+                      : 'No exact match found. Showing all books to avoid an empty screen.'}
+                  </div>
+                )}
 
                 {/* Old Testament */}
                 {otBooks.length > 0 && (
