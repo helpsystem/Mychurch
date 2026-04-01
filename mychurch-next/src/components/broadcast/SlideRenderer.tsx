@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { 
     Slide, SlideType, 
     SlideContentScripture, SlideContentLyrics, SlideContentMedia, 
-    SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting
+    SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, ScriptureReferenceItem
 } from "@/types/broadcast";
 import { cn } from "@/lib/utils";
 import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart } from "lucide-react";
@@ -16,6 +16,12 @@ interface SlideRendererProps {
 }
 
 export function SlideRenderer({ slide, className, isRemotePreview = false }: SlideRendererProps) {
+    const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
+
+    useEffect(() => {
+        setActiveReference(null);
+    }, [slide?.id]);
+
     if (!slide) {
         return (
             <div className={cn("w-full h-full flex flex-col items-center justify-center bg-black text-white/30", className)}>
@@ -116,6 +122,94 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                 const content = slide.content as SlideContentScripture;
                 const page = content.pages[0]; // For simplicity, showing first page in preview
                 if (!page) return null;
+
+                const references = page.referenceItems || [];
+                if (page.displayMode === 'referenceList' && references.length > 0) {
+                    return (
+                        <div className="w-full h-full bg-slate-950 p-10 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.2),_rgba(2,6,23,0.9))] -z-10" />
+                            <div className="h-full border border-indigo-500/20 rounded-3xl bg-black/30 backdrop-blur-sm p-8 flex flex-col gap-5">
+                                <div className="flex items-center justify-between">
+                                    <h2 className="text-3xl font-black text-indigo-300 font-[Vazirmatn]">فهرست آیات انتخابی</h2>
+                                    <span className="text-xs px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-200">
+                                        {references.length} Reference{references.length > 1 ? 's' : ''}
+                                    </span>
+                                </div>
+
+                                <div className="grid grid-cols-12 text-xs text-slate-400 border-b border-slate-700 pb-2 px-2">
+                                    <div className="col-span-6 text-right font-[Vazirmatn]">فارسی</div>
+                                    <div className="col-span-6 text-left">English</div>
+                                </div>
+
+                                <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+                                    {references.map((ref, idx) => (
+                                        <button
+                                            key={ref.id}
+                                            onClick={() => setActiveReference(ref)}
+                                            className="w-full grid grid-cols-12 items-center rounded-xl border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40 transition px-3 py-3"
+                                        >
+                                            <div className="col-span-6 text-right">
+                                                <p className="text-white font-bold font-[Vazirmatn]">
+                                                    {idx + 1}. {ref.bookName.fa} {ref.chapter}:{ref.verses}
+                                                </p>
+                                            </div>
+                                            <div className="col-span-6 text-left">
+                                                <p className="text-indigo-200 font-semibold">
+                                                    {idx + 1}. {ref.bookName.en} {ref.chapter}:{ref.verses}
+                                                </p>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {activeReference && (
+                                <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-10 z-50">
+                                    <div className="w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-3xl border border-indigo-500/30 bg-slate-900 p-8">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-2xl font-black text-white font-[Vazirmatn]">
+                                                {activeReference.bookName.fa} {activeReference.chapter}:{activeReference.verses}
+                                            </h3>
+                                            <button
+                                                onClick={() => setActiveReference(null)}
+                                                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm"
+                                            >
+                                                بستن
+                                            </button>
+                                        </div>
+
+                                        <p className="text-sm text-indigo-200 mb-6">{activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}</p>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="rounded-2xl border border-slate-700 bg-slate-950/60 p-4" dir="rtl">
+                                                <h4 className="text-emerald-300 font-bold mb-3 font-[Vazirmatn]">متن فارسی</h4>
+                                                <div className="space-y-2 text-slate-100 leading-8 font-[Vazirmatn]">
+                                                    {activeReference.textFa.map((line, i) => (
+                                                        <p key={`fa-${i}`}>
+                                                            <span className="text-amber-300 ml-2">{activeReference.verseNumbers[i] || ''}</span>
+                                                            {line}
+                                                        </p>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className="rounded-2xl border border-slate-700 bg-slate-950/60 p-4" dir="ltr">
+                                                <h4 className="text-blue-300 font-bold mb-3">English Text</h4>
+                                                <div className="space-y-2 text-slate-100 leading-8">
+                                                    {activeReference.textEn.map((line, i) => (
+                                                        <p key={`en-${i}`}>
+                                                            <span className="text-amber-300 mr-2">{activeReference.verseNumbers[i] || ''}</span>
+                                                            {line}
+                                                        </p>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    );
+                }
 
                 return (
                     <div className="w-full h-full flex flex-col bg-[url('/bg-dark-texture.jpg')] bg-cover bg-center items-center justify-center p-16 relative">

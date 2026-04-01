@@ -145,6 +145,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [showFa, setShowFa] = useState(true);
   const [showEn, setShowEn] = useState(true);
   const [slideMode, setSlideMode] = useState<'list' | 'bubble'>('list');
+  const [combineIntoOneSlide, setCombineIntoOneSlide] = useState(true);
+  const [referenceListMode, setReferenceListMode] = useState(true);
 
   // Data State
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
@@ -191,7 +193,17 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         const data = await response.json();
         if (data.success && data.verses && (Array.isArray(data.verses.fa) || Array.isArray(data.verses.en))) {
           const fa = Array.isArray(data.verses?.fa) ? data.verses.fa : [];
-          const en = Array.isArray(data.verses?.en) ? data.verses.en : [];
+          let en = Array.isArray(data.verses?.en) ? data.verses.en : [];
+
+          // If English response is empty, use local fallback so EN side is always available.
+          const enHasContent = en.some((line: string) => !!line?.trim());
+          if (!enHasContent) {
+            const localChapter = INITIAL_BIBLE_CONTENT?.[selectedBook.key]?.[String(selectedChapter)];
+            if (localChapter?.en && Array.isArray(localChapter.en)) {
+              en = localChapter.en;
+            }
+          }
+
           setVersesData({
             fa,
             en,
@@ -330,6 +342,50 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Add all selected verses as slides
   const handleAddAllSlides = () => {
+    if (selectedVerses.length === 0) return;
+
+    const sortedAll = [...selectedVerses].sort((a, b) => {
+      const byBook = a.book.name.fa.localeCompare(b.book.name.fa, 'fa');
+      if (byBook !== 0) return byBook;
+      if (a.chapter !== b.chapter) return a.chapter - b.chapter;
+      return a.verseStart - b.verseStart;
+    });
+
+    if (combineIntoOneSlide) {
+      const references = sortedAll.map((v) => ({
+        id: v.id,
+        book: v.book.key,
+        bookName: v.book.name,
+        chapter: v.chapter,
+        verses: v.verseStart === v.verseEnd ? `${v.verseStart}` : `${v.verseStart}-${v.verseEnd}`,
+        verseNumbers: v.verseNumbers,
+        textFa: v.textFa,
+        textEn: v.textEn,
+        translation: v.translation,
+        enTranslation: v.enTranslation,
+      }));
+
+      const mergedSlide: ScripturePage = {
+        id: crypto.randomUUID(),
+        book: 'MULTI',
+        bookName: { fa: 'مجموعه آیات', en: 'Verse Collection' },
+        chapter: 0,
+        verses: `${references.length} بخش`,
+        verseNumbers: [],
+        textPrimary: [],
+        textSecondary: [],
+        translation,
+        enTranslation,
+        displayMode: referenceListMode ? 'referenceList' : (slideMode as any),
+        referenceItems: references,
+      };
+
+      onAddSlides([mergedSlide]);
+      setSelectedVerses([]);
+      if (onClose) onClose();
+      return;
+    }
+
     // Group verses by Book & Chapter
     const groupedVerses: Record<string, SelectedVerse[]> = {};
 
@@ -372,7 +428,19 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         textPrimary: combinedTextFa,
         textSecondary: combinedTextEn,
         translation: first.translation,
-        displayMode: slideMode as any
+        displayMode: slideMode as any,
+        referenceItems: sortedGroup.map((v) => ({
+          id: v.id,
+          book: v.book.key,
+          bookName: v.book.name,
+          chapter: v.chapter,
+          verses: v.verseStart === v.verseEnd ? `${v.verseStart}` : `${v.verseStart}-${v.verseEnd}`,
+          verseNumbers: v.verseNumbers,
+          textFa: v.textFa,
+          textEn: v.textEn,
+          translation: v.translation,
+          enTranslation: v.enTranslation,
+        })),
       };
 
       return slide;
@@ -718,6 +786,24 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
             {selectedVerses.length > 0 && (
               <div className="p-4 bg-slate-800 border-t border-slate-700 z-40 relative flex flex-col gap-3">
+                <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={combineIntoOneSlide}
+                    onChange={(e) => setCombineIntoOneSlide(e.target.checked)}
+                    className="accent-indigo-500"
+                  />
+                  یک اسلاید برای همه آیات انتخابی
+                </label>
+                <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={referenceListMode}
+                    onChange={(e) => setReferenceListMode(e.target.checked)}
+                    className="accent-indigo-500"
+                  />
+                  حالت حرفه ای: لیست مرجع (بدون متن) + پاپ آپ جزئیات
+                </label>
                 <button
                   onClick={handleAddAllSlides}
                   className="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-500 transition shadow-lg shadow-emerald-500/20"

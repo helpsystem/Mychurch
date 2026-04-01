@@ -43,10 +43,24 @@ export interface ScripturePage {
     textSecondary: string[];
     translation?: string;
     enTranslation?: string;
-    displayMode?: 'list' | 'bubble';
+    displayMode?: 'list' | 'bubble' | 'referenceList';
+    referenceItems?: ScriptureReferenceItem[];
     glassPopupEnabled?: boolean;
     popupLabelFa?: string;
     popupLabelEn?: string;
+}
+
+export interface ScriptureReferenceItem {
+    id: string;
+    book: string;
+    bookName: { fa: string; en: string; };
+    chapter: number;
+    verses: string;
+    verseNumbers: number[];
+    textFa: string[];
+    textEn: string[];
+    translation?: string;
+    enTranslation?: string;
 }
 
 export interface SlideContentScripture {
