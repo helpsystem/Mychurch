@@ -5,10 +5,11 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(
     request: Request,
-    { params }: { params: { book: string; chapter: string } }
+    { params }: { params: Promise<{ book: string; chapter: string }> }
 ) {
     try {
-        const { book, chapter } = params;
+        const resolvedParams = await params;
+        const { book, chapter } = resolvedParams;
         const chapterNum = parseInt(chapter, 10);
 
         if (isNaN(chapterNum)) {

@@ -15,6 +15,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ScripturePage, BibleBook } from '@/types/broadcast';
 import { BookOpen, ChevronRight, X, Plus, Eye, Trash2, Languages, Check } from 'lucide-react';
+import { INITIAL_BIBLE_CONTENT } from '@/lib/bibleData';
 
 // =============== TYPES ===============
 
@@ -140,6 +141,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   // Data State
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
   const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Selected Verses List
   const [selectedVerses, setSelectedVerses] = useState<SelectedVerse[]>([]);
@@ -162,26 +164,57 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     if (!selectedBook) return;
 
     setLoading(true);
+    setLoadError(null);
     try {
       const response = await fetch(
         `/api/bible/content/${selectedBook.key}/${selectedChapter}?faTranslation=${translation}&enTranslation=${enTranslation}`
       );
+
+      let loaded = false;
       if (response.ok) {
         const data = await response.json();
-        if (data.success) {
+        if (data.success && data.verses && (Array.isArray(data.verses.fa) || Array.isArray(data.verses.en))) {
+          const fa = Array.isArray(data.verses?.fa) ? data.verses.fa : [];
+          const en = Array.isArray(data.verses?.en) ? data.verses.en : [];
           setVersesData({
-            fa: data.verses?.fa || [],
-            en: data.verses?.en || []
+            fa,
+            en,
           });
-          setVerseCount(Math.max(data.verses?.fa?.length || 0, data.verses?.en?.length || 0, 1));
+          setVerseCount(Math.max(fa.length, en.length, 1));
+          loaded = true;
+        }
+      }
+
+      if (!loaded) {
+        const localChapter = INITIAL_BIBLE_CONTENT?.[selectedBook.key]?.[String(selectedChapter)];
+        if (localChapter) {
+          const fa = Array.isArray(localChapter.fa) ? localChapter.fa : [];
+          const en = Array.isArray(localChapter.en) ? localChapter.en : [];
+          setVersesData({ fa, en });
+          setVerseCount(Math.max(fa.length, en.length, 1));
+        } else {
+          setVersesData({ fa: [], en: [] });
+          setVerseCount(1);
+          setLoadError(isRTL ? 'متن آیات برای این باب یافت نشد.' : 'No verse text found for this chapter.');
         }
       }
     } catch (error) {
       console.error('Error fetching verses:', error);
+      const localChapter = selectedBook ? INITIAL_BIBLE_CONTENT?.[selectedBook.key]?.[String(selectedChapter)] : undefined;
+      if (localChapter) {
+        const fa = Array.isArray(localChapter.fa) ? localChapter.fa : [];
+        const en = Array.isArray(localChapter.en) ? localChapter.en : [];
+        setVersesData({ fa, en });
+        setVerseCount(Math.max(fa.length, en.length, 1));
+      } else {
+        setVersesData({ fa: [], en: [] });
+        setVerseCount(1);
+        setLoadError(isRTL ? 'خطا در دریافت آیات. لطفا دوباره تلاش کنید.' : 'Error loading verses. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
-  }, [selectedBook, selectedChapter, translation, enTranslation]);
+  }, [selectedBook, selectedChapter, translation, enTranslation, isRTL]);
 
   useEffect(() => {
     if (step === 'verse' && selectedBook) {
@@ -541,20 +574,27 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     <p className="text-slate-400">{t.loading}</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-7 sm:grid-cols-10 gap-2">
-                    {Array.from({ length: verseCount }, (_, i) => i + 1).map(verse => (
-                      <button
-                        key={verse}
-                        onClick={() => handleVerseClick(verse)}
-                        className={`aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all
-                          ${isVerseInRange(verse)
-                            ? 'bg-indigo-600 text-white scale-105 shadow-lg shadow-indigo-500/30'
-                            : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'}`}
-                      >
-                        {verse}
-                      </button>
-                    ))}
-                  </div>
+                  <>
+                    {loadError && (
+                      <div className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-300 px-3 py-2 text-sm">
+                        {loadError}
+                      </div>
+                    )}
+                    <div className="grid grid-cols-7 sm:grid-cols-10 gap-2">
+                      {Array.from({ length: verseCount }, (_, i) => i + 1).map(verse => (
+                        <button
+                          key={verse}
+                          onClick={() => handleVerseClick(verse)}
+                          className={`aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all
+                            ${isVerseInRange(verse)
+                              ? 'bg-indigo-600 text-white scale-105 shadow-lg shadow-indigo-500/30'
+                              : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'}`}
+                        >
+                          {verse}
+                        </button>
+                      ))}
+                    </div>
+                  </>
                 )}
 
                 {!loading && verseStart !== null && verseEnd !== null && (
