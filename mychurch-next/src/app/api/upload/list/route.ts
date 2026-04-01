@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readdir, stat } from 'fs/promises';
+import { readdir, stat, mkdir } from 'fs/promises';
 import { join, relative } from 'path';
+import { existsSync } from 'fs';
 
 const uploadsBaseDir = join(process.cwd(), 'public', 'uploads');
 
@@ -45,11 +46,18 @@ export async function GET(req: NextRequest) {
         const folder = (req.nextUrl.searchParams.get('folder') || '').replace(/\.{2,}/g, '').replace(/^\/+/, '').trim();
         const targetDir = folder ? join(uploadsBaseDir, folder) : uploadsBaseDir;
 
+        // Ensure directory exists
+        if (!existsSync(targetDir)) {
+            await mkdir(targetDir, { recursive: true });
+            return NextResponse.json({ success: true, files: [] });
+        }
+
         const files = await walkFiles(targetDir, uploadsBaseDir);
         files.sort((a, b) => b.modifiedAt - a.modifiedAt);
 
         return NextResponse.json({ success: true, files });
     } catch (error: any) {
-        return NextResponse.json({ success: false, error: error?.message || 'Failed to list uploads' }, { status: 500 });
+        console.error('[Upload List Error]', error?.message);
+        return NextResponse.json({ success: false, error: error?.message || 'Failed to list uploads', files: [] }, { status: 200 });
     }
 }
