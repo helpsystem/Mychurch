@@ -5,6 +5,7 @@ import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
 import { translateFaToEn, translateEnToFa } from "@/actions/ai";
 import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film } from "lucide-react";
 import { NowruzPopup } from "@/components/widgets/NowruzPopup";
+import { toast } from "sonner";
 
 interface Props {
     widget: DashboardWidget;
@@ -27,6 +28,112 @@ const COMMON_PATH_OPTIONS = [
     "/login",
     "/signup",
 ];
+
+interface DualFieldProps {
+    label: string;
+    faValue: string;
+    enValue: string;
+    setFaValue: (value: string) => void;
+    setEnValue: (value: string) => void;
+    onTranslateFaToEn: () => Promise<void>;
+    onTranslateEnToFa: () => Promise<void>;
+    isTranslatingFaToEn: boolean;
+    isTranslatingEnToFa: boolean;
+    isTextarea?: boolean;
+    placeholderFa?: string;
+    placeholderEn?: string;
+}
+
+function DualField({
+    label,
+    faValue,
+    enValue,
+    setFaValue,
+    setEnValue,
+    onTranslateFaToEn,
+    onTranslateEnToFa,
+    isTranslatingFaToEn,
+    isTranslatingEnToFa,
+    isTextarea = false,
+    placeholderFa = "",
+    placeholderEn = "",
+}: DualFieldProps) {
+    return (
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3">
+            <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-bold text-foreground flex items-center gap-2">
+                    {label}
+                </label>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={onTranslateFaToEn}
+                        disabled={isTranslatingFaToEn || !faValue}
+                        title="ترجمه هوشمند فارسی به انگلیسی"
+                        className="text-xs flex items-center gap-1 bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
+                    >
+                        {isTranslatingFaToEn ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                        {isTranslatingFaToEn ? "در حال ترجمه..." : "FA → EN"}
+                    </button>
+                    <button
+                        onClick={onTranslateEnToFa}
+                        disabled={isTranslatingEnToFa || !enValue}
+                        title="ترجمه هوشمند انگلیسی به فارسی"
+                        className="text-xs flex items-center gap-1 bg-blue-500/20 hover:bg-blue-500/40 text-blue-300 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
+                    >
+                        {isTranslatingEnToFa ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                        {isTranslatingEnToFa ? "در حال ترجمه..." : "EN → FA"}
+                    </button>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                    <span className="text-xs text-muted-foreground mr-2 px-1 bg-secondary rounded-md">فارسی (FA)</span>
+                    {isTextarea ? (
+                        <textarea
+                            value={faValue}
+                            onChange={(e) => setFaValue(e.target.value)}
+                            placeholder={placeholderFa}
+                            rows={2}
+                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right font-vazirmatn resize-none"
+                            dir="rtl"
+                        />
+                    ) : (
+                        <input
+                            value={faValue}
+                            onChange={(e) => setFaValue(e.target.value)}
+                            placeholder={placeholderFa}
+                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right font-vazirmatn"
+                            dir="rtl"
+                        />
+                    )}
+                </div>
+
+                <div className="space-y-1">
+                    <span className="text-xs text-muted-foreground ml-2 px-1 bg-secondary rounded-md">English (EN)</span>
+                    {isTextarea ? (
+                        <textarea
+                            value={enValue}
+                            onChange={(e) => setEnValue(e.target.value)}
+                            placeholder={placeholderEn}
+                            rows={2}
+                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left resize-none"
+                            dir="ltr"
+                        />
+                    ) : (
+                        <input
+                            value={enValue}
+                            onChange={(e) => setEnValue(e.target.value)}
+                            placeholder={placeholderEn}
+                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left"
+                            dir="ltr"
+                        />
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
 
 export function WidgetSettingsModal({ widget, onClose }: Props) {
     const config = widget.config || {};
@@ -89,6 +196,8 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [showCloseButton, setShowCloseButton] = useState<boolean>(config.showCloseButton !== false);
     const [customPresets, setCustomPresets] = useState<any[]>(config.customPresets || []);
     const [newPresetName, setNewPresetName] = useState("");
+    const [translatingKey, setTranslatingKey] = useState<string | null>(null);
+    const [announcementRecords, setAnnouncementRecords] = useState<any[]>(config.announcementRecords || []);
 
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
@@ -228,6 +337,27 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         startTransition(async () => {
             let newConfig: any = {};
             
+            const shiftOneYear = (input?: string) => {
+                if (!input) return "";
+                const d = new Date(input);
+                if (Number.isNaN(d.getTime())) return "";
+                d.setFullYear(d.getFullYear() + 1);
+                return d.toISOString();
+            };
+
+            const newRecord = {
+                id: `rec_${Date.now()}`,
+                titleFa,
+                titleEn,
+                startAt,
+                endAt,
+                nextYearStartAt: shiftOneYear(startAt),
+                nextYearEndAt: shiftOneYear(endAt),
+                savedAt: new Date().toISOString(),
+            };
+            const nextRecords = [newRecord, ...announcementRecords].slice(0, 50);
+            setAnnouncementRecords(nextRecords);
+
             if (widget.id === 'w_global_popup') {
                 newConfig = { 
                     titleFa, titleEn, heroIcon, heroIconUrl,
@@ -239,6 +369,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     startAt, endAt,
                     enabledPaths, excludedPaths,
                     displayFrequency, storageKey, showCloseButton,
+                    announcementRecords: nextRecords,
                     badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En, 
                     messageFa, messageEn, 
                     subMessageFa, subMessageEn, 
@@ -275,11 +406,46 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     clearSeenKeys(localStorage);
                     clearSeenKeys(sessionStorage);
                 }
+                toast.success("تنظیمات پاپ‌آپ با موفقیت ذخیره شد.");
                 onClose();
             } else {
-                alert("امکان ذخیره تنظیمات وجود ندارد / Failed to save config.");
+                toast.error("امکان ذخیره تنظیمات وجود ندارد / Failed to save config.");
             }
         });
+    };
+
+    const handleTranslateFaToEn = async (key: string, source: string, setter: (value: string) => void) => {
+        if (!source) return;
+        setTranslatingKey(`fa-en:${key}`);
+        const translated = await translateFaToEn(source);
+        setter(translated);
+        setTranslatingKey(null);
+    };
+
+    const handleTranslateEnToFa = async (key: string, source: string, setter: (value: string) => void) => {
+        if (!source) return;
+        setTranslatingKey(`en-fa:${key}`);
+        const translated = await translateEnToFa(source);
+        setter(translated);
+        setTranslatingKey(null);
+    };
+
+    const loadForNextYear = (record: any) => {
+        if (record?.nextYearStartAt) {
+            const dt = new Date(record.nextYearStartAt);
+            if (!Number.isNaN(dt.getTime())) {
+                setStartAt(dt.toISOString().slice(0, 16));
+            }
+        }
+        if (record?.nextYearEndAt) {
+            const dt = new Date(record.nextYearEndAt);
+            if (!Number.isNaN(dt.getTime())) {
+                setEndAt(dt.toISOString().slice(0, 16));
+            }
+        }
+        if (record?.titleFa) setTitleFa(record.titleFa);
+        if (record?.titleEn) setTitleEn(record.titleEn);
+        toast.success("اطلاعات سال آینده بارگذاری شد.");
     };
 
     const applyPreset = (presetName: string) => {
@@ -412,93 +578,21 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         setCustomPresets(updated);
     };
 
-    const DualField = ({ 
-        label, faValue, enValue, setFaValue, setEnValue, isTextarea = false, placeholderFa = "", placeholderEn = "" 
-    }: any) => {
-        const [isTranslatingFaToEn, setIsTranslatingFaToEn] = useState(false);
-        const [isTranslatingEnToFa, setIsTranslatingEnToFa] = useState(false);
+    const toFaCalendar = (value?: string) => {
+        if (!value) return "-";
+        const d = new Date(value);
+        if (Number.isNaN(d.getTime())) return "-";
+        return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+            dateStyle: 'full',
+            timeStyle: 'short',
+        }).format(d);
+    };
 
-        const handleTranslateFaToEn = async () => {
-            if (!faValue) return;
-            setIsTranslatingFaToEn(true);
-            const translated = await translateFaToEn(faValue);
-            setEnValue(translated);
-            setIsTranslatingFaToEn(false);
-        };
-
-        const handleTranslateEnToFa = async () => {
-            if (!enValue) return;
-            setIsTranslatingEnToFa(true);
-            const translated = await translateEnToFa(enValue);
-            setFaValue(translated);
-            setIsTranslatingEnToFa(false);
-        };
-
-        return (
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3">
-                <div className="flex items-center justify-between mb-2">
-                    <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                        {label}
-                    </label>
-                    <div className="flex items-center gap-2">
-                        <button 
-                            onClick={handleTranslateFaToEn}
-                            disabled={isTranslatingFaToEn || !faValue}
-                            title="ترجمه هوشمند فارسی به انگلیسی"
-                            className="text-xs flex items-center gap-1 bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
-                        >
-                            {isTranslatingFaToEn ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                            {isTranslatingFaToEn ? "در حال ترجمه..." : "FA → EN"}
-                        </button>
-                        <button
-                            onClick={handleTranslateEnToFa}
-                            disabled={isTranslatingEnToFa || !enValue}
-                            title="ترجمه هوشمند انگلیسی به فارسی"
-                            className="text-xs flex items-center gap-1 bg-blue-500/20 hover:bg-blue-500/40 text-blue-300 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
-                        >
-                            {isTranslatingEnToFa ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                            {isTranslatingEnToFa ? "در حال ترجمه..." : "EN → FA"}
-                        </button>
-                    </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                        <span className="text-xs text-muted-foreground mr-2 px-1 bg-secondary rounded-md">فارسی (FA)</span>
-                        {isTextarea ? (
-                            <textarea 
-                                value={faValue} onChange={(e) => setFaValue(e.target.value)}
-                                placeholder={placeholderFa} rows={2}
-                                className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right font-vazirmatn resize-none" dir="rtl"
-                            />
-                        ) : (
-                            <input 
-                                value={faValue} onChange={(e) => setFaValue(e.target.value)}
-                                placeholder={placeholderFa}
-                                className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right font-vazirmatn" dir="rtl"
-                            />
-                        )}
-                    </div>
-                    
-                    <div className="space-y-1">
-                        <span className="text-xs text-muted-foreground ml-2 px-1 bg-secondary rounded-md">English (EN)</span>
-                        {isTextarea ? (
-                            <textarea 
-                                value={enValue} onChange={(e) => setEnValue(e.target.value)}
-                                placeholder={placeholderEn} rows={2}
-                                className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left resize-none" dir="ltr"
-                            />
-                        ) : (
-                            <input 
-                                value={enValue} onChange={(e) => setEnValue(e.target.value)}
-                                placeholder={placeholderEn}
-                                className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left" dir="ltr"
-                            />
-                        )}
-                    </div>
-                </div>
-            </div>
-        );
+    const toGregorianText = (value?: string) => {
+        if (!value) return "-";
+        const d = new Date(value);
+        if (Number.isNaN(d.getTime())) return "-";
+        return d.toLocaleString('en-GB');
     };
 
     return (
@@ -813,6 +907,9 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             onChange={(e) => setStartAt(e.target.value)}
                                             className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary"
                                         />
+                                        <p className="text-[11px] text-emerald-300/80 leading-5">
+                                            تبدیل خودکار شمسی: {toFaCalendar(startAt)}
+                                        </p>
                                     </div>
                                     <div className="space-y-1">
                                         <span className="text-xs text-muted-foreground">پایان نمایش (End At - اختیاری)</span>
@@ -822,6 +919,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             onChange={(e) => setEndAt(e.target.value)}
                                             className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary"
                                         />
+                                        <p className="text-[11px] text-blue-300/80 leading-5">
+                                            تبدیل خودکار میلادی: {toGregorianText(endAt)}
+                                        </p>
+                                    </div>
+                                    <div className="md:col-span-2 rounded-xl border border-white/10 bg-black/20 p-3 text-xs text-muted-foreground">
+                                        شروع: <span className="text-foreground">{toGregorianText(startAt)}</span>
+                                        <span className="mx-2">|</span>
+                                        پایان: <span className="text-foreground">{toFaCalendar(endAt)}</span>
                                     </div>
                                     <div className="space-y-1 md:col-span-2">
                                         <span className="text-xs text-muted-foreground">نمایش فقط در مسیرها (Enabled Paths)</span>
@@ -932,9 +1037,46 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                     />
                                     نمایش دکمه بستن (X)
                                 </label>
+
+                                <div className="border border-emerald-500/20 bg-emerald-500/5 rounded-2xl p-4 space-y-3">
+                                    <h5 className="text-sm font-bold text-emerald-300">رکوردهای ذخیره‌شده (برای استفاده سال آینده)</h5>
+                                    {announcementRecords.length === 0 ? (
+                                        <p className="text-xs text-muted-foreground">هنوز رکوردی ثبت نشده. با اولین ذخیره، رکورد خودکار ایجاد می‌شود.</p>
+                                    ) : (
+                                        <div className="space-y-2 max-h-48 overflow-y-auto custom-scrollbar">
+                                            {announcementRecords.slice(0, 8).map((record) => (
+                                                <div key={record.id} className="rounded-xl border border-white/10 bg-black/20 p-3 flex items-center justify-between gap-3">
+                                                    <div className="min-w-0">
+                                                        <p className="text-sm text-foreground truncate">{record.titleFa || record.titleEn || "بدون عنوان"}</p>
+                                                        <p className="text-[11px] text-muted-foreground">ذخیره: {toFaCalendar(record.savedAt)}</p>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => loadForNextYear(record)}
+                                                        className="px-3 py-1.5 rounded-lg text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold shrink-0"
+                                                    >
+                                                        بارگذاری سال آینده
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
-                            <DualField label="تیتر درشت اصلی" faValue={titleFa} enValue={titleEn} setFaValue={setTitleFa} setEnValue={setTitleEn} placeholderFa="نوروز خجسته باد / جلسه مهم" placeholderEn="Happy Nowruz / Important Meeting" />
+                            <DualField
+                                label="تیتر درشت اصلی"
+                                faValue={titleFa}
+                                enValue={titleEn}
+                                setFaValue={setTitleFa}
+                                setEnValue={setTitleEn}
+                                onTranslateFaToEn={() => handleTranslateFaToEn("title", titleFa, setTitleEn)}
+                                onTranslateEnToFa={() => handleTranslateEnToFa("title", titleEn, setTitleFa)}
+                                isTranslatingFaToEn={translatingKey === "fa-en:title"}
+                                isTranslatingEnToFa={translatingKey === "en-fa:title"}
+                                placeholderFa="نوروز خجسته باد / جلسه مهم"
+                                placeholderEn="Happy Nowruz / Important Meeting"
+                            />
 
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3">
                                 <label className="block text-sm font-bold text-foreground">آیکن اصلی (مانند 🌱)</label>
@@ -965,20 +1107,69 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                 </div>
                             </div>
                             
-                            <DualField label="پیام متنی (اندازه متوسط)" faValue={messageFa} enValue={messageEn} setFaValue={setMessageFa} setEnValue={setMessageEn} placeholderFa="به امید آزادی..." placeholderEn="Wishing you freedom..." />
+                            <DualField
+                                label="پیام متنی (اندازه متوسط)"
+                                faValue={messageFa}
+                                enValue={messageEn}
+                                setFaValue={setMessageFa}
+                                setEnValue={setMessageEn}
+                                onTranslateFaToEn={() => handleTranslateFaToEn("message", messageFa, setMessageEn)}
+                                onTranslateEnToFa={() => handleTranslateEnToFa("message", messageEn, setMessageFa)}
+                                isTranslatingFaToEn={translatingKey === "fa-en:message"}
+                                isTranslatingEnToFa={translatingKey === "en-fa:message"}
+                                placeholderFa="به امید آزادی..."
+                                placeholderEn="Wishing you freedom..."
+                            />
                             
-                            <DualField label="توضیحات تکمیلی" faValue={subMessageFa} enValue={subMessageEn} setFaValue={setSubMessageFa} setEnValue={setSubMessageEn} isTextarea placeholderFa="با آرزوی برکت..." placeholderEn="Wishing blessings..." />
+                            <DualField
+                                label="توضیحات تکمیلی"
+                                faValue={subMessageFa}
+                                enValue={subMessageEn}
+                                setFaValue={setSubMessageFa}
+                                setEnValue={setSubMessageEn}
+                                onTranslateFaToEn={() => handleTranslateFaToEn("subMessage", subMessageFa, setSubMessageEn)}
+                                onTranslateEnToFa={() => handleTranslateEnToFa("subMessage", subMessageEn, setSubMessageFa)}
+                                isTranslatingFaToEn={translatingKey === "fa-en:subMessage"}
+                                isTranslatingEnToFa={translatingKey === "en-fa:subMessage"}
+                                isTextarea
+                                placeholderFa="با آرزوی برکت..."
+                                placeholderEn="Wishing blessings..."
+                            />
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/5 border border-white/10 rounded-2xl p-4">
                                 <div className="space-y-3">
-                                    <DualField label="بج ۱ (نوار هشدار اول)" faValue={badge1Fa} enValue={badge1En} setFaValue={setBadge1Fa} setEnValue={setBadge1En} placeholderFa="مثال: ۱ فروردین" placeholderEn="March 20" />
+                                    <DualField
+                                        label="بج ۱ (نوار هشدار اول)"
+                                        faValue={badge1Fa}
+                                        enValue={badge1En}
+                                        setFaValue={setBadge1Fa}
+                                        setEnValue={setBadge1En}
+                                        onTranslateFaToEn={() => handleTranslateFaToEn("badge1", badge1Fa, setBadge1En)}
+                                        onTranslateEnToFa={() => handleTranslateEnToFa("badge1", badge1En, setBadge1Fa)}
+                                        isTranslatingFaToEn={translatingKey === "fa-en:badge1"}
+                                        isTranslatingEnToFa={translatingKey === "en-fa:badge1"}
+                                        placeholderFa="مثال: ۱ فروردین"
+                                        placeholderEn="March 20"
+                                    />
                                     <div className="flex gap-2 items-center px-1">
                                        <span className="text-xs text-muted-foreground mr-2 px-2 py-1 bg-black/40 border border-white/10 rounded-md">آیکن بج ۱:</span>
                                        <input value={badge1Icon} onChange={(e) => setBadge1Icon(e.target.value)} placeholder="🌿" className="w-16 bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-center font-bold focus:outline-none focus:border-primary" />
                                     </div>
                                 </div>
                                 <div className="space-y-3">
-                                    <DualField label="بج ۲ (نوار هشدار دوم)" faValue={badge2Fa} enValue={badge2En} setFaValue={setBadge2Fa} setEnValue={setBadge2En} placeholderFa="۲۵۸۵ شاهنشاهی" placeholderEn="Persian Year 2585" />
+                                    <DualField
+                                        label="بج ۲ (نوار هشدار دوم)"
+                                        faValue={badge2Fa}
+                                        enValue={badge2En}
+                                        setFaValue={setBadge2Fa}
+                                        setEnValue={setBadge2En}
+                                        onTranslateFaToEn={() => handleTranslateFaToEn("badge2", badge2Fa, setBadge2En)}
+                                        onTranslateEnToFa={() => handleTranslateEnToFa("badge2", badge2En, setBadge2Fa)}
+                                        isTranslatingFaToEn={translatingKey === "fa-en:badge2"}
+                                        isTranslatingEnToFa={translatingKey === "en-fa:badge2"}
+                                        placeholderFa="۲۵۸۵ شاهنشاهی"
+                                        placeholderEn="Persian Year 2585"
+                                    />
                                     <div className="flex gap-2 items-center px-1">
                                        <span className="text-xs text-muted-foreground mr-2 px-2 py-1 bg-black/40 border border-white/10 rounded-md">آیکن بج ۲:</span>
                                        <input value={badge2Icon} onChange={(e) => setBadge2Icon(e.target.value)} placeholder="✨" className="w-16 bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-center font-bold focus:outline-none focus:border-primary" />
