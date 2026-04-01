@@ -18,7 +18,7 @@ import { uploadToHiDrive, moveExternalToInternal } from "@/actions/hidrive";
 import { migrateLegacyWorshipData } from "@/actions/migration";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
 import BulkEnrichmentModal from "./BulkEnrichmentModal";
-import CronLogsViewer from "@/components/admin/CronLogsViewer";
+import CronDashboard from "@/components/admin/CronJobManager";
 import Link from "next/link";
 
 export default function WorshipAdminClient() {
@@ -354,7 +354,7 @@ export default function WorshipAdminClient() {
                         <Zap className="w-5 h-5" /> هوشمند سازی
                     </button>
 
-                    <CronLogsViewer />
+                    <CronDashboard />
 
                     <button
                         onClick={openNewSong}
