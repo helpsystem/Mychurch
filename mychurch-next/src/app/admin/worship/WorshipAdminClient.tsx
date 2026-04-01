@@ -18,6 +18,7 @@ import { uploadToHiDrive, moveExternalToInternal } from "@/actions/hidrive";
 import { migrateLegacyWorshipData } from "@/actions/migration";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
 import BulkEnrichmentModal from "./BulkEnrichmentModal";
+import CronLogsViewer from "@/components/admin/CronLogsViewer";
 import Link from "next/link";
 
 export default function WorshipAdminClient() {
@@ -347,11 +348,13 @@ export default function WorshipAdminClient() {
 
                     <button
                         onClick={() => setShowEnrichmentHub(true)}
-                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold transition shadow-sm border border-indigo-400/20"
+                        className="flex items-center gap-2 bg-indigo-600 border-indigo-400/20 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold transition shadow-sm border"
                         title="مرکز هوشمند غنی‌سازی اطلاعات (Bulk AI & Audio Match)"
                     >
                         <Zap className="w-5 h-5" /> هوشمند سازی
                     </button>
+
+                    <CronLogsViewer />
 
                     <button
                         onClick={openNewSong}
