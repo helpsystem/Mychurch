@@ -11,6 +11,7 @@
  */
 
 import { Pool } from 'pg';
+import { INITIAL_BIBLE_BOOKS } from '@/lib/bibleData';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 export interface UnifiedVerse {
@@ -154,10 +155,25 @@ function patchEnglishInDb(book: string, ch: number, enVerses: Record<number, str
 
 // ─── Main exported function ───────────────────────────────────────────────────
 export async function fetchChapterData(bookCode: string, chapterNum: number): Promise<ChapterData | null> {
-    const parsed = parseInt(bookCode, 10);
-    const code   = (!isNaN(parsed) && parsed >= 1 && parsed <= 66)
-        ? USFM[parsed - 1]
-        : bookCode;
+    const normalizedBook = (bookCode || '').trim();
+    const parsed = parseInt(normalizedBook, 10);
+
+    let code: string;
+    if (!isNaN(parsed) && parsed >= 1 && parsed <= 66) {
+        code = USFM[parsed - 1];
+    } else {
+        const upper = normalizedBook.toUpperCase();
+        if (USFM.includes(upper)) {
+            code = upper;
+        } else {
+            const index = INITIAL_BIBLE_BOOKS.findIndex((book) =>
+                book.key.toLowerCase() === normalizedBook.toLowerCase() ||
+                book.name.en.toLowerCase() === normalizedBook.toLowerCase() ||
+                book.name.fa === normalizedBook
+            );
+            code = index >= 0 ? USFM[index] : upper;
+        }
+    }
 
     const key = `${code}:${chapterNum}`;
 
@@ -208,7 +224,7 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
 
     const audioUrl = AUDIO_TPV(code, chapterNum);
     const result: ChapterData = {
-        book: bookCode, chapter: chapterNum,
+        book: normalizedBook || code, chapter: chapterNum,
         audioUrl, tpvAudioUrl: audioUrl, mojdehAudioUrl: audioUrl, qadimAudioUrl: '',
         verses,
     };
