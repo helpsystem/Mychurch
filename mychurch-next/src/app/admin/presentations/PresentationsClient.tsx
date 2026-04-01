@@ -33,7 +33,7 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                  toast.success("Presentation Created. Routing to builder...");
                  router.push(`/broadcast/builder?id=${newId}`);
              } else {
-                 toast.error("Failed to create presentation.");
+                 toast.error(res.error || "Failed to create presentation.");
              }
         });
     };

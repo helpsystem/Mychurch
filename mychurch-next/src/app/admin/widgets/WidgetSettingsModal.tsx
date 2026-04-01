@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useTransition } from "react";
 import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
-import { translateFaToEn } from "@/actions/ai";
+import { translateFaToEn, translateEnToFa } from "@/actions/ai";
 import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film } from "lucide-react";
 import { NowruzPopup } from "@/components/widgets/NowruzPopup";
 
@@ -415,13 +415,23 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const DualField = ({ 
         label, faValue, enValue, setFaValue, setEnValue, isTextarea = false, placeholderFa = "", placeholderEn = "" 
     }: any) => {
-        const [isTranslating, setIsTranslating] = useState(false);
-        const handleTranslate = async () => {
+        const [isTranslatingFaToEn, setIsTranslatingFaToEn] = useState(false);
+        const [isTranslatingEnToFa, setIsTranslatingEnToFa] = useState(false);
+
+        const handleTranslateFaToEn = async () => {
             if (!faValue) return;
-            setIsTranslating(true);
+            setIsTranslatingFaToEn(true);
             const translated = await translateFaToEn(faValue);
             setEnValue(translated);
-            setIsTranslating(false);
+            setIsTranslatingFaToEn(false);
+        };
+
+        const handleTranslateEnToFa = async () => {
+            if (!enValue) return;
+            setIsTranslatingEnToFa(true);
+            const translated = await translateEnToFa(enValue);
+            setFaValue(translated);
+            setIsTranslatingEnToFa(false);
         };
 
         return (
@@ -430,15 +440,26 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     <label className="text-sm font-bold text-foreground flex items-center gap-2">
                         {label}
                     </label>
-                    <button 
-                        onClick={handleTranslate}
-                        disabled={isTranslating || !faValue}
-                        title="ترجمه هوشمند به انگلیسی"
-                        className="text-xs flex items-center gap-1 bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
-                    >
-                        {isTranslating ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                        {isTranslating ? "در حال ترجمه..." : "ترجمه خودکار به انگلیسی"}
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button 
+                            onClick={handleTranslateFaToEn}
+                            disabled={isTranslatingFaToEn || !faValue}
+                            title="ترجمه هوشمند فارسی به انگلیسی"
+                            className="text-xs flex items-center gap-1 bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
+                        >
+                            {isTranslatingFaToEn ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                            {isTranslatingFaToEn ? "در حال ترجمه..." : "FA → EN"}
+                        </button>
+                        <button
+                            onClick={handleTranslateEnToFa}
+                            disabled={isTranslatingEnToFa || !enValue}
+                            title="ترجمه هوشمند انگلیسی به فارسی"
+                            className="text-xs flex items-center gap-1 bg-blue-500/20 hover:bg-blue-500/40 text-blue-300 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50 font-bold font-vazirmatn"
+                        >
+                            {isTranslatingEnToFa ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                            {isTranslatingEnToFa ? "در حال ترجمه..." : "EN → FA"}
+                        </button>
+                    </div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
