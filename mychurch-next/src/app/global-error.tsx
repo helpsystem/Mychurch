@@ -1,6 +1,6 @@
 "use client";
 
-import ErrorAnimatedPage from "@/components/ui/ErrorAnimatedPage";
+import Error500Animated from "@/components/ui/Error500Animated";
 
 export default function GlobalError({
     error,
@@ -12,12 +12,10 @@ export default function GlobalError({
     return (
         <html lang="fa">
             <body>
-                <ErrorAnimatedPage
-                    code={500}
+                <Error500Animated
                     title="خطای سراسری برنامه"
                     message={error?.message || "برنامه با خطای غیرمنتظره مواجه شد."}
                     hintEn="Unexpected Application Error"
-                    showRetry
                     onRetry={reset}
                 />
             </body>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import ErrorAnimatedPage from "@/components/ui/ErrorAnimatedPage";
+import Error500Animated from "@/components/ui/Error500Animated";
 
 export default function GlobalError({
     error,
@@ -16,12 +16,10 @@ export default function GlobalError({
     }, [error]);
 
     return (
-        <ErrorAnimatedPage
-            code={500}
+        <Error500Animated
             title="خطای داخلی سرور"
             message={error?.message || "در پردازش درخواست مشکلی رخ داد. لطفا دوباره تلاش کنید."}
             hintEn="Internal Server Error"
-            showRetry
             onRetry={reset}
         />
     );
