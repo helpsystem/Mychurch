@@ -381,10 +381,12 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
             {/* Resolution Scaling Container (Forces 16:9 1080p aspect internally for broadcast accuracy) */}
             <div className="absolute inset-0" style={{ containerType: 'size' }}>
                 <div 
-                    className="absolute left-1/2 top-1/2 origin-top-left"
+                    className="absolute"
                     style={{ 
                         width: '1920px', 
                         height: '1080px',
+                        left: '50%',
+                        top: '50%',
                         transform: `translate(-50%, -50%) scale(min(100cqw / 1920, 100cqh / 1080))`
                     }}
                 >

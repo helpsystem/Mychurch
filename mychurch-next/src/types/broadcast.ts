@@ -278,3 +278,41 @@ export interface BroadcastOverlayConfig {
     drawingColor?: string;
     drawingBrushSize?: number;
 }
+
+// ─── Preset System ───────────────────────────────────────────────────────
+export type ScripturePreset = {
+    id: string;
+    name: { fa: string; en: string; };
+    displayMode: 'list' | 'bubble' | 'referenceList';
+    fontFa: string;
+    fontEn: string;
+    background: { type: 'color' | 'gradient' | 'image' | 'video' | 'wavyPaper'; value?: string; opacity?: number };
+};
+
+export const SCRIPTURE_PRESETS: ScripturePreset[] = [
+    {
+        id: 'nastaliq-wavy',
+        name: { fa: 'نستعلیق + کاغذ موجی', en: 'Nastaliq + Wavy Paper' },
+        displayMode: 'referenceList',
+        fontFa: 'Noto Nastaliq Urdu',
+        fontEn: 'Inter',
+        background: { type: 'wavyPaper', value: 'متن آیات...', opacity: 100 },
+    },
+    {
+        id: 'professional-dark',
+        name: { fa: 'حرفه‌ای تیره', en: 'Professional Dark' },
+        displayMode: 'referenceList',
+        fontFa: 'Vazirmatn',
+        fontEn: 'Playfair Display',
+        background: { type: 'gradient', opacity: 100 },
+    },
+    {
+        id: 'elegant-serif',
+        name: { fa: 'الگان سریف', en: 'Elegant Serif' },
+        displayMode: 'list',
+        fontFa: 'Lalezar',
+        fontEn: 'Merriweather',
+        background: { type: 'color', value: '#1a1a2e', opacity: 100 },
+    },
+];
+

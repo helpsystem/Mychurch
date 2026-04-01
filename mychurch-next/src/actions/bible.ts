@@ -78,16 +78,35 @@ async function fetchEnglishVerses(bookCode: string, ch: number): Promise<Record<
         const html: string = apiJson?.html || apiJson?.content || '';
         if (!html) return {};
 
-        // Parse verse spans from YouVersion HTML — format: <span v="N">text</span>
+        // Parse verse spans from YouVersion HTML — multiple patterns to catch all formats
         const verseMap: Record<number, string> = {};
-        const verseRegex = /v="(\d+)"[^>]*>([\s\S]*?)(?=v="\d+"|<\/div>|$)/g;
+        
+        // Pattern 1: <span v="N">text</span> or <span data-v="N">text</span>
+        const verseRegex1 = /(?:v|data-v)="(\d+)"[^>]*>([\s\S]*?)(?=(?:v|data-v)="\d+"|<\/div>|<\/span>|$)/g;
         let match;
-        while ((match = verseRegex.exec(html)) !== null) {
+        while ((match = verseRegex1.exec(html)) !== null) {
             const vNum = parseInt(match[1]);
-            const text = match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-            if (text && vNum > 0) verseMap[vNum] = text;
+            const text = match[2].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+            if (text && vNum > 0 && text.length > 0) {
+                verseMap[vNum] = text;
+            }
         }
 
+        // Pattern 2: Try alternate parsing if first pattern yields too few verses
+        if (Object.keys(verseMap).length < 5) {
+            // Try splitting by verse indicators
+            const altRegex = /\b(\d+)\s+([^0-9]+?)(?=\b\d+\s|$)/g;
+            let altMatch;
+            while ((altMatch = altRegex.exec(html)) !== null) {
+                const vNum = parseInt(altMatch[1]);
+                const text = altMatch[2].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+                if (text && vNum > 0 && vNum <= 180 && text.length > 5 && !verseMap[vNum]) {
+                    verseMap[vNum] = text;
+                }
+            }
+        }
+
+        console.log(`[Bible/BSB] ${bookCode}:${ch} parsed ${Object.keys(verseMap).length} verses`);
         return verseMap;
     } catch (e: any) {
         console.warn(`[Bible/BSB] ${bookCode}:${ch} — ${e.message}`);
@@ -185,14 +204,50 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
         return mem.d;
     }
 
-    // ── 2. Fetch in parallel: English from API + Persian from DB ──────────────
-    console.log(`[Bible] 🌐+🗄️  Fetching ${code} ${chapterNum}...`);
-    const [enRaw, faRaw] = await Promise.all([
-        fetchEnglishVerses(code, chapterNum),
-        loadPersianFromDb(code, chapterNum),
-    ]);
+    // ── 2. PRIORITY: Load from local PostgreSQL database (all translations) ──
+    console.log(`[Bible] 🗄️  Loading ${code} ${chapterNum} from database...`);
+    const faRaw = await loadPersianFromDb(code, chapterNum);
 
-    // Union of verse numbers from both sources
+    // If we have data in the database, use it (don't fetch from YouVersion)
+    if (Object.keys(faRaw).length > 0) {
+        const allNums = new Set(Object.keys(faRaw).map(Number));
+        
+        if (allNums.size === 0) {
+            console.error(`[Bible] No verses for ${code} ${chapterNum}`);
+            return null;
+        }
+
+        const verses: UnifiedVerse[] = Array.from(allNums).sort((a, b) => a - b).map(n => {
+            const fa = faRaw[n] || { fa_tpv: '', fa_mojdeh: '', fa_qadim: '', fa_wp: '', en_kjv: '', audio_start: 0, audio_end: 0 };
+            return {
+                number:    n,
+                fa:        fa.fa_mojdeh || fa.fa_tpv || fa.fa_qadim || fa.fa_wp || '',
+                en:        fa.en_kjv || '',
+                fa_mojdeh: fa.fa_mojdeh || '',
+                fa_tpv:    fa.fa_tpv    || '',
+                fa_qadim:  fa.fa_qadim  || '',
+                fa_wp:     fa.fa_wp     || '',
+                start:     fa.audio_start || 0, 
+                end:       fa.audio_end || 0,
+            };
+        });
+
+        const audioUrl = AUDIO_TPV(code, chapterNum);
+        const result: ChapterData = {
+            book: normalizedBook || code, chapter: chapterNum,
+            audioUrl, tpvAudioUrl: audioUrl, mojdehAudioUrl: audioUrl, qadimAudioUrl: '',
+            verses,
+        };
+
+        MEM.set(key, { d: result, exp: Date.now() + TTL });
+        return result;
+    }
+
+    // ── 3. FALLBACK: Try YouVersion API if DB is empty ──────────────────────
+    console.log(`[Bible] 🌐 Database empty, trying YouVersion API fallback...`);
+    const enRaw = await fetchEnglishVerses(code, chapterNum);
+
+    // Union of verse numbers from both sources (if YouVersion returns data)
     const allNums = new Set([
         ...Object.keys(enRaw),
         ...Object.keys(faRaw),

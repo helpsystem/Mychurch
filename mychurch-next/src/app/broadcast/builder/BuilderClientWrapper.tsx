@@ -139,23 +139,25 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 <div className="flex-1 bg-neutral-950 flex flex-col items-center justify-center p-8 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.1))] relative overflow-hidden">
                      <div className="absolute inset-0 bg-indigo-500/5 mix-blend-overlay pointer-events-none" />
                      
-                     {/* Preview Wrapper forces 16:9 aspect ratio */}
-                     <div className="w-full max-w-5xl aspect-video bg-black rounded-3xl border-4 border-neutral-800 shadow-[0_0_100px_rgba(0,0,0,0.8)] relative overflow-hidden group">
-                          {session.slides.length > 0 ? (
-                              <SlideRenderer 
-                                  slide={session.slides[activeSlideIndex]} 
-                                  isRemotePreview={true} 
-                              />
-                          ) : (
-                              <div className="text-center h-full w-full flex flex-col items-center justify-center bg-neutral-900 absolute top-0 left-0 z-10 transition-transform group-hover:scale-105">
-                                  <div className="text-8xl mb-6 drop-shadow-2xl opacity-50">🎬</div>
-                                  <h2 className="text-3xl font-black text-white tracking-widest uppercase opacity-40">{t.emptySession || 'Empty Session'}</h2>
-                                  <p className="text-indigo-400 font-bold mt-2 font-[Vazirmatn]">{t.addFirstSlide || 'Add first slide'}</p>
-                              </div>
-                          )}
-                          
-                          {/* Subtle ambient glow effect radiating from behind */}
-                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none -z-20" />
+                     {/* Preview Wrapper forces 16:9 aspect ratio - perfectly centered */}
+                     <div className="relative w-screen h-screen flex items-center justify-center" style={{width: '100%', height: '100%'}}>
+                          <div className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl border-4 border-neutral-800 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden group">
+                               {session.slides.length > 0 ? (
+                                   <SlideRenderer 
+                                       slide={session.slides[activeSlideIndex]} 
+                                       isRemotePreview={true} 
+                                   />
+                               ) : (
+                                   <div className="text-center h-full w-full flex flex-col items-center justify-center bg-neutral-900 absolute top-0 left-0 z-10 transition-transform group-hover:scale-105">
+                                       <div className="text-8xl mb-6 drop-shadow-2xl opacity-50">🎬</div>
+                                       <h2 className="text-3xl font-black text-white tracking-widest uppercase opacity-40">{t.emptySession || 'Empty Session'}</h2>
+                                       <p className="text-indigo-400 font-bold mt-2 font-[Vazirmatn]">{t.addFirstSlide || 'Add first slide'}</p>
+                                   </div>
+                               )}
+                               
+                               {/* Subtle ambient glow effect radiating from behind */}
+                               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none -z-20" />
+                          </div>
                      </div>
                 </div>
             </div>
