@@ -6,6 +6,7 @@ import Image from "next/image";
 import { X, ArrowRight, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface PopupConfig {
     titleFa?: string; titleEn?: string;
@@ -27,11 +28,20 @@ interface PopupConfig {
     position?: "center" | "top" | "bottom";
     animationStyle?: "spring" | "fade" | "slideUp";
     autoCloseTimer?: number;
+    displayDelaySeconds?: number;
+    startAt?: string;
+    endAt?: string;
+    enabledPaths?: string;
+    excludedPaths?: string;
+    displayFrequency?: "always" | "session" | "24h" | "7d";
+    storageKey?: string;
+    showCloseButton?: boolean;
     customPresets?: any[];
 }
 
 export function NowruzPopup({ config = {}, isPreview = false }: { config?: PopupConfig, isPreview?: boolean }) {
     const { language } = useLanguage();
+    const pathname = usePathname();
     const isEn = language === 'en';
     const alignClass = isEn ? 'text-left' : 'text-center';
     
@@ -126,15 +136,72 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
     };
     const activeAnimation = animations[animStyle];
 
+    const parsePathList = (raw?: string) => {
+        if (!raw) return [] as string[];
+        return raw
+            .split(/[\n,]/g)
+            .map((s) => s.trim())
+            .filter(Boolean);
+    };
+
+    const routeAllowed = React.useMemo(() => {
+        if (isPreview) return true;
+        const currentPath = pathname || "/";
+        const includes = parsePathList(config.enabledPaths);
+        const excludes = parsePathList(config.excludedPaths);
+
+        const inEnabled = includes.length === 0 || includes.some((p) => currentPath === p || currentPath.startsWith(`${p}/`));
+        const inExcluded = excludes.some((p) => currentPath === p || currentPath.startsWith(`${p}/`));
+        return inEnabled && !inExcluded;
+    }, [config.enabledPaths, config.excludedPaths, pathname, isPreview]);
+
+    const makeSeenKey = () => {
+        const userKey = (config.storageKey || "").trim();
+        if (userKey) return `popup_seen_${userKey}`;
+        const signature = `${title}|${config.startAt || ""}|${config.endAt || ""}`;
+        return `popup_seen_auto_${encodeURIComponent(signature).slice(0, 120)}`;
+    };
+
     useEffect(() => {
         if (isPreview) {
             setIsVisible(true);
             return;
         }
-        // use 'hasSeenPopupSession' instead of 'hasSeenNowruz2026' to apply generically
-        const hasSeen = sessionStorage.getItem("hasSeenPopupSession");
-        if (!hasSeen && title) {
-            const timer = setTimeout(() => setIsVisible(true), 1500);
+
+        const currentTs = Date.now();
+        const startTs = config.startAt ? new Date(config.startAt).getTime() : null;
+        const endTs = config.endAt ? new Date(config.endAt).getTime() : null;
+        const inScheduleWindow = (startTs === null || currentTs >= startTs) && (endTs === null || currentTs <= endTs);
+
+        if (!title || !routeAllowed || !inScheduleWindow) {
+            setIsVisible(false);
+            return;
+        }
+
+        const seenKey = makeSeenKey();
+        const frequency = config.displayFrequency || "session";
+
+        let hasSeen = false;
+        try {
+            if (frequency === "always") {
+                hasSeen = false;
+            } else if (frequency === "session") {
+                hasSeen = sessionStorage.getItem(seenKey) === "true";
+            } else {
+                const lastSeen = localStorage.getItem(seenKey);
+                if (lastSeen) {
+                    const delta = currentTs - Number(lastSeen);
+                    const ttl = frequency === "24h" ? 24 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000;
+                    hasSeen = delta < ttl;
+                }
+            }
+        } catch {
+            hasSeen = false;
+        }
+
+        if (!hasSeen) {
+            const delaySeconds = Number(config.displayDelaySeconds || 1.5);
+            const timer = setTimeout(() => setIsVisible(true), Math.max(0, delaySeconds) * 1000);
             
             if (effect !== 'none') {
                 const baseCount = effect === 'snow' ? 30 : effect === 'sparkles' ? 25 : 18;
@@ -154,7 +221,9 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
             
             return () => clearTimeout(timer);
         }
-    }, [config, title, effect, isPreview]);
+
+        setIsVisible(false);
+    }, [config, title, effect, isPreview, routeAllowed]);
 
     // Auto-close handling
     useEffect(() => {
@@ -172,7 +241,18 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
     const handleClose = () => {
         if (isPreview) return; // Don't close preview
         setIsVisible(false);
-        sessionStorage.setItem("hasSeenPopupSession", "true");
+
+        const seenKey = makeSeenKey();
+        const frequency = config.displayFrequency || "session";
+        try {
+            if (frequency === "session") {
+                sessionStorage.setItem(seenKey, "true");
+            } else if (frequency === "24h" || frequency === "7d") {
+                localStorage.setItem(seenKey, String(Date.now()));
+            }
+        } catch {
+            // no-op
+        }
     };
 
     if (!isVisible) return null;
@@ -243,13 +323,15 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                             // This block was previously for Image component, now it's just an empty fallback
                             null
                         )}
-                        <button 
-                            onClick={handleClose}
-                            title="بستن"
-                            className={`absolute top-4 ${isEn ? 'right-4' : 'left-4'} p-2 bg-black/40 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-all z-10`}
-                        >
-                            <X className="w-5 h-5" />
-                        </button>
+                        {config.showCloseButton !== false && (
+                            <button 
+                                onClick={handleClose}
+                                title="بستن"
+                                className={`absolute top-4 ${isEn ? 'right-4' : 'left-4'} p-2 bg-black/40 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-all z-10`}
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
                     </div>
 

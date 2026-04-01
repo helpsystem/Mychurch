@@ -51,6 +51,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [position, setPosition] = useState<any>(config.position || "center");
     const [animationStyle, setAnimationStyle] = useState<any>(config.animationStyle || "spring");
     const [autoCloseTimer, setAutoCloseTimer] = useState<number | ''>(config.autoCloseTimer || '');
+    const [displayDelaySeconds, setDisplayDelaySeconds] = useState<number | ''>(config.displayDelaySeconds || '');
+    const [startAt, setStartAt] = useState(config.startAt || "");
+    const [endAt, setEndAt] = useState(config.endAt || "");
+    const [enabledPaths, setEnabledPaths] = useState(config.enabledPaths || "");
+    const [excludedPaths, setExcludedPaths] = useState(config.excludedPaths || "");
+    const [displayFrequency, setDisplayFrequency] = useState<any>(config.displayFrequency || "session");
+    const [storageKey, setStorageKey] = useState(config.storageKey || "");
+    const [showCloseButton, setShowCloseButton] = useState<boolean>(config.showCloseButton !== false);
     const [customPresets, setCustomPresets] = useState<any[]>(config.customPresets || []);
     const [newPresetName, setNewPresetName] = useState("");
 
@@ -97,6 +105,10 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     imageUrl, imageFit, imageHeight, imageBgColor,
                     themeColor, overlayOpacity, particleEffect, particleDensity,
                     position, animationStyle, autoCloseTimer,
+                    displayDelaySeconds,
+                    startAt, endAt,
+                    enabledPaths, excludedPaths,
+                    displayFrequency, storageKey, showCloseButton,
                     badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En, 
                     messageFa, messageEn, 
                     subMessageFa, subMessageEn, 
@@ -115,8 +127,23 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             const success = await updateWidgetConfig(widget.id, newConfig);
             if (success) {
                 if (widget.id === 'w_global_popup') {
-                    // Bust caching so testing reveals popup immediately
+                    // Bust seen caches so latest popup config is testable immediately.
                     localStorage.removeItem("hasSeenPopupSession");
+                    sessionStorage.removeItem("hasSeenPopupSession");
+
+                    const clearSeenKeys = (storage: Storage) => {
+                        const keysToRemove: string[] = [];
+                        for (let i = 0; i < storage.length; i += 1) {
+                            const key = storage.key(i);
+                            if (key && (key.startsWith("popup_seen_") || key.startsWith("popup_seen_auto_"))) {
+                                keysToRemove.push(key);
+                            }
+                        }
+                        keysToRemove.forEach((key) => storage.removeItem(key));
+                    };
+
+                    clearSeenKeys(localStorage);
+                    clearSeenKeys(sessionStorage);
                 }
                 onClose();
             } else {
@@ -136,6 +163,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setPosition("center");
             setAnimationStyle("spring");
             setAutoCloseTimer('');
+            setDisplayDelaySeconds('');
+            setStartAt("");
+            setEndAt("");
+            setEnabledPaths("");
+            setExcludedPaths("");
+            setDisplayFrequency("session");
+            setStorageKey("");
+            setShowCloseButton(true);
             setBadge1Fa("۱ فروردین");
             setBadge1En("March 20th");
             setBadge2Fa("عید نوروز");
@@ -157,6 +192,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setPosition("center");
             setAnimationStyle("fade");
             setAutoCloseTimer('');
+            setDisplayDelaySeconds('');
+            setStartAt("");
+            setEndAt("");
+            setEnabledPaths("");
+            setExcludedPaths("");
+            setDisplayFrequency("session");
+            setStorageKey("");
+            setShowCloseButton(true);
             setBadge1Fa("خوش‌آمدید");
             setBadge1En("Welcome");
             setBadge2Fa("کلیسا");
@@ -169,7 +212,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setButtonTextEn("View Schedule");
             setButtonLink("/about");
         } else if (presetName === 'empty') {
-            setTitleFa(""); setTitleEn(""); setImageUrl(""); setBadge1Fa(""); setBadge1En(""); setBadge2Fa(""); setBadge2En(""); setMessageFa(""); setMessageEn(""); setSubMessageFa(""); setSubMessageEn(""); setButtonTextFa(""); setButtonTextEn(""); setButtonLink(""); setParticleEffect("none"); setThemeColor("primary"); setOverlayOpacity("medium"); setPosition("center"); setAnimationStyle("spring"); setAutoCloseTimer('');
+            setTitleFa(""); setTitleEn(""); setImageUrl(""); setBadge1Fa(""); setBadge1En(""); setBadge2Fa(""); setBadge2En(""); setMessageFa(""); setMessageEn(""); setSubMessageFa(""); setSubMessageEn(""); setButtonTextFa(""); setButtonTextEn(""); setButtonLink(""); setParticleEffect("none"); setThemeColor("primary"); setOverlayOpacity("medium"); setPosition("center"); setAnimationStyle("spring"); setAutoCloseTimer(''); setDisplayDelaySeconds(''); setStartAt(""); setEndAt(""); setEnabledPaths(""); setExcludedPaths(""); setDisplayFrequency("session"); setStorageKey(""); setShowCloseButton(true);
         }
     };
 
@@ -179,7 +222,8 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             name: newPresetName.trim(),
             settings: {
                 titleFa, titleEn, imageUrl, imageFit, imageHeight, imageBgColor, themeColor, overlayOpacity, particleEffect, particleDensity,
-                position, animationStyle, autoCloseTimer, badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
+                position, animationStyle, autoCloseTimer, displayDelaySeconds, startAt, endAt, enabledPaths, excludedPaths, displayFrequency, storageKey, showCloseButton,
+                badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
                 messageFa, messageEn, subMessageFa, subMessageEn, buttonTextFa, buttonTextEn, buttonLink
             }
         };
@@ -197,6 +241,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         setParticleEffect(s.particleEffect || "none"); setParticleDensity(s.particleDensity || "medium");
         setPosition(s.position || "center");
         setAnimationStyle(s.animationStyle || "spring"); setAutoCloseTimer(s.autoCloseTimer || '');
+        setDisplayDelaySeconds(s.displayDelaySeconds || '');
+        setStartAt(s.startAt || "");
+        setEndAt(s.endAt || "");
+        setEnabledPaths(s.enabledPaths || "");
+        setExcludedPaths(s.excludedPaths || "");
+        setDisplayFrequency(s.displayFrequency || "session");
+        setStorageKey(s.storageKey || "");
+        setShowCloseButton(s.showCloseButton !== false);
         setBadge1Fa(s.badge1Fa || ""); setBadge1En(s.badge1En || ""); setBadge2Fa(s.badge2Fa || ""); setBadge2En(s.badge2En || "");
         setMessageFa(s.messageFa || ""); setMessageEn(s.messageEn || ""); setSubMessageFa(s.subMessageFa || ""); setSubMessageEn(s.subMessageEn || "");
         setButtonTextFa(s.buttonTextFa || ""); setButtonTextEn(s.buttonTextEn || ""); setButtonLink(s.buttonLink || "");
@@ -459,6 +511,17 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center focus:outline-none focus:border-primary transition-colors text-emerald-400 font-mono" dir="ltr" 
                                         />
                                     </div>
+                                    <div className="col-span-2">
+                                        <label className="block text-sm text-foreground mb-2 bg-black/20 p-2 rounded-lg text-center">تاخیر نمایش اولیه (ثانیه - Initial Delay)</label>
+                                        <input
+                                            type="number"
+                                            value={displayDelaySeconds}
+                                            onChange={(e) => setDisplayDelaySeconds(e.target.value ? Number(e.target.value) : '')}
+                                            placeholder="مثال: 1.5"
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center focus:outline-none focus:border-primary transition-colors text-emerald-400 font-mono"
+                                            dir="ltr"
+                                        />
+                                    </div>
                                     <div className="col-span-2 md:col-span-1">
                                         <label className="block text-sm text-foreground mb-2 bg-black/20 p-2 rounded-lg text-center" htmlFor="particleSelect">افکت ذرات معلق (Particles)</label>
                                         <select id="particleSelect" title="Particle Effect" value={particleEffect} onChange={(e) => setParticleEffect(e.target.value)} className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center custom-select font-bold">
@@ -479,6 +542,82 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-4">
+                                <h4 className="text-sm font-bold text-foreground">هدف‌گذاری نمایش و زمان‌بندی</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <span className="text-xs text-muted-foreground">شروع نمایش (Start At - اختیاری)</span>
+                                        <input
+                                            type="datetime-local"
+                                            value={startAt}
+                                            onChange={(e) => setStartAt(e.target.value)}
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary"
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="text-xs text-muted-foreground">پایان نمایش (End At - اختیاری)</span>
+                                        <input
+                                            type="datetime-local"
+                                            value={endAt}
+                                            onChange={(e) => setEndAt(e.target.value)}
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary"
+                                        />
+                                    </div>
+                                    <div className="space-y-1 md:col-span-2">
+                                        <span className="text-xs text-muted-foreground">نمایش فقط در مسیرها (Enabled Paths)</span>
+                                        <input
+                                            value={enabledPaths}
+                                            onChange={(e) => setEnabledPaths(e.target.value)}
+                                            placeholder="مثال: /,/worship,/calendar"
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary text-left"
+                                            dir="ltr"
+                                        />
+                                    </div>
+                                    <div className="space-y-1 md:col-span-2">
+                                        <span className="text-xs text-muted-foreground">عدم نمایش در مسیرها (Excluded Paths)</span>
+                                        <input
+                                            value={excludedPaths}
+                                            onChange={(e) => setExcludedPaths(e.target.value)}
+                                            placeholder="مثال: /admin,/login,/signup"
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary text-left"
+                                            dir="ltr"
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="text-xs text-muted-foreground">فرکانس نمایش</span>
+                                        <select
+                                            value={displayFrequency}
+                                            onChange={(e) => setDisplayFrequency(e.target.value)}
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2"
+                                        >
+                                            <option value="always">هر بار بازدید (Always)</option>
+                                            <option value="session">یکبار در هر سشن (Session)</option>
+                                            <option value="24h">یکبار در 24 ساعت</option>
+                                            <option value="7d">یکبار در 7 روز</option>
+                                        </select>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="text-xs text-muted-foreground">کلید ذخیره‌سازی سفارشی (اختیاری)</span>
+                                        <input
+                                            value={storageKey}
+                                            onChange={(e) => setStorageKey(e.target.value)}
+                                            placeholder="مثال: easter_2026_campaign"
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary text-left"
+                                            dir="ltr"
+                                        />
+                                    </div>
+                                </div>
+                                <label className="flex items-center gap-2 text-sm text-foreground">
+                                    <input
+                                        type="checkbox"
+                                        checked={showCloseButton}
+                                        onChange={(e) => setShowCloseButton(e.target.checked)}
+                                        className="accent-primary"
+                                    />
+                                    نمایش دکمه بستن (X)
+                                </label>
                             </div>
 
                             <DualField label="تیتر درشت اصلی" faValue={titleFa} enValue={titleEn} setFaValue={setTitleFa} setEnValue={setTitleEn} placeholderFa="نوروز خجسته باد / جلسه مهم" placeholderEn="Happy Nowruz / Important Meeting" />
