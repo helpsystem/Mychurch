@@ -3,7 +3,7 @@
 import React, { useState, useRef, useTransition } from "react";
 import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
 import { translateFaToEn } from "@/actions/ai";
-import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen } from "lucide-react";
+import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film } from "lucide-react";
 import { NowruzPopup } from "@/components/widgets/NowruzPopup";
 
 interface Props {
@@ -11,18 +11,46 @@ interface Props {
     onClose: () => void;
 }
 
+const COMMON_PATH_OPTIONS = [
+    "/",
+    "/about",
+    "/contact",
+    "/worship",
+    "/calendar",
+    "/sermons",
+    "/documents",
+    "/gallery",
+    "/bible",
+    "/broadcast",
+    "/profile",
+    "/admin",
+    "/login",
+    "/signup",
+];
+
 export function WidgetSettingsModal({ widget, onClose }: Props) {
     const config = widget.config || {};
     
     // Popup specific state
     const [titleFa, setTitleFa] = useState(config.titleFa || "اطلاعیه مهم");
     const [titleEn, setTitleEn] = useState(config.titleEn || "Important Announcement");
+    const [heroIcon, setHeroIcon] = useState(config.heroIcon || "🌱");
+    const [heroIconUrl, setHeroIconUrl] = useState(config.heroIconUrl || "");
     
     const [imageUrl, setImageUrl] = useState(config.imageUrl || "/images/nowruz-bg.png");
+    const [mediaType, setMediaType] = useState<any>(config.mediaType || "image");
+    const [videoUrl, setVideoUrl] = useState(config.videoUrl || "");
+    const [videoPosterUrl, setVideoPosterUrl] = useState(config.videoPosterUrl || "");
+    const [videoAutoplay, setVideoAutoplay] = useState<boolean>(config.videoAutoplay !== false);
+    const [videoMuted, setVideoMuted] = useState<boolean>(config.videoMuted !== false);
+    const [videoLoop, setVideoLoop] = useState<boolean>(config.videoLoop !== false);
+    const [videoControls, setVideoControls] = useState<boolean>(config.videoControls === true);
+    const [videoPreload, setVideoPreload] = useState<any>(config.videoPreload || "metadata");
     const [imageFit, setImageFit] = useState<any>(config.imageFit || "cover");
     const [imageHeight, setImageHeight] = useState<any>(config.imageHeight || "md");
     const [imageBgColor, setImageBgColor] = useState<string>(config.imageBgColor || "#000000");
     const [particleDensity, setParticleDensity] = useState<any>(config.particleDensity || "medium");
+    const [particleAssetUrl, setParticleAssetUrl] = useState(config.particleAssetUrl || "");
     
     const [badge1Icon, setBadge1Icon] = useState(config.badge1Icon || "🌿");
     const [badge1Fa, setBadge1Fa] = useState(config.badge1Fa || "");
@@ -65,6 +93,39 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const heroIconFileInputRef = useRef<HTMLInputElement>(null);
+    const particleAssetFileInputRef = useRef<HTMLInputElement>(null);
+
+    const parsePathList = (raw: string) =>
+        raw
+            .split(/[\n,]/g)
+            .map((p) => p.trim())
+            .filter(Boolean);
+
+    const formatPathList = (list: string[]) =>
+        Array.from(new Set(list.map((p) => p.trim()).filter(Boolean))).join(",");
+
+    const togglePathValue = (
+        path: string,
+        source: string,
+        setter: (value: string) => void
+    ) => {
+        const set = new Set(parsePathList(source));
+        if (set.has(path)) {
+            set.delete(path);
+        } else {
+            set.add(path);
+        }
+        setter(formatPathList(Array.from(set)));
+    };
+
+    const removePathValue = (
+        path: string,
+        source: string,
+        setter: (value: string) => void
+    ) => {
+        setter(formatPathList(parsePathList(source).filter((p) => p !== path)));
+    };
 
     const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -82,9 +143,16 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
 
             const data = await res.json();
             if (data.success) {
-                setImageUrl(data.url);
+                if (data.mediaType === 'video') {
+                    setMediaType('video');
+                    setVideoUrl(data.url);
+                    if (!videoPosterUrl) setVideoPosterUrl('');
+                } else {
+                    setMediaType('image');
+                    setImageUrl(data.url);
+                }
             } else {
-                alert('آپلود تصویر با خطا مواجه شد: ' + data.error);
+                alert('آپلود مدیا با خطا مواجه شد: ' + data.error);
             }
         } catch (error) {
             console.error('Upload Error:', error);
@@ -95,15 +163,77 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         }
     };
 
+    const handleHeroIconUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('folder', 'popup-icons');
+
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                setHeroIconUrl(data.url);
+            } else {
+                alert('آپلود آیکن با خطا مواجه شد: ' + data.error);
+            }
+        } catch (error) {
+            console.error('Icon Upload Error:', error);
+            alert('متاسفانه ارتباط با سرور قطع شد.');
+        } finally {
+            setIsUploading(false);
+            if (heroIconFileInputRef.current) heroIconFileInputRef.current.value = "";
+        }
+    };
+
+    const handleParticleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('folder', 'popup-particles');
+
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                setParticleAssetUrl(data.url);
+                setParticleEffect('customAsset');
+            } else {
+                alert('آپلود فایل ذره با خطا مواجه شد: ' + data.error);
+            }
+        } catch (error) {
+            console.error('Particle Upload Error:', error);
+            alert('متاسفانه ارتباط با سرور قطع شد.');
+        } finally {
+            setIsUploading(false);
+            if (particleAssetFileInputRef.current) particleAssetFileInputRef.current.value = "";
+        }
+    };
+
     const handleSave = () => {
         startTransition(async () => {
             let newConfig: any = {};
             
             if (widget.id === 'w_global_popup') {
                 newConfig = { 
-                    titleFa, titleEn, 
+                    titleFa, titleEn, heroIcon, heroIconUrl,
                     imageUrl, imageFit, imageHeight, imageBgColor,
-                    themeColor, overlayOpacity, particleEffect, particleDensity,
+                    mediaType, videoUrl, videoPosterUrl, videoAutoplay, videoMuted, videoLoop, videoControls, videoPreload,
+                    themeColor, overlayOpacity, particleEffect, particleDensity, particleAssetUrl,
                     position, animationStyle, autoCloseTimer,
                     displayDelaySeconds,
                     startAt, endAt,
@@ -156,10 +286,16 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         if (presetName === 'nowruz') {
             setTitleFa("نوروز خجسته باد");
             setTitleEn("Happy Nowruz");
+            setHeroIcon("🌱");
+            setHeroIconUrl("");
+            setMediaType("image");
             setImageUrl("/images/nowruz-bg.png");
+            setVideoUrl("");
+            setVideoPosterUrl("");
             setThemeColor("emerald");
             setOverlayOpacity("medium");
             setParticleEffect("blossoms");
+            setParticleAssetUrl("");
             setPosition("center");
             setAnimationStyle("spring");
             setAutoCloseTimer('');
@@ -185,10 +321,16 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         } else if (presetName === 'welcome') {
             setTitleFa("به کلیسای ما خوش آمدید");
             setTitleEn("Welcome to Our Church");
+            setHeroIcon("✨");
+            setHeroIconUrl("");
+            setMediaType("image");
             setImageUrl("https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop");
+            setVideoUrl("");
+            setVideoPosterUrl("");
             setThemeColor("blue");
             setOverlayOpacity("dark");
             setParticleEffect("sparkles");
+            setParticleAssetUrl("");
             setPosition("center");
             setAnimationStyle("fade");
             setAutoCloseTimer('');
@@ -212,7 +354,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
             setButtonTextEn("View Schedule");
             setButtonLink("/about");
         } else if (presetName === 'empty') {
-            setTitleFa(""); setTitleEn(""); setImageUrl(""); setBadge1Fa(""); setBadge1En(""); setBadge2Fa(""); setBadge2En(""); setMessageFa(""); setMessageEn(""); setSubMessageFa(""); setSubMessageEn(""); setButtonTextFa(""); setButtonTextEn(""); setButtonLink(""); setParticleEffect("none"); setThemeColor("primary"); setOverlayOpacity("medium"); setPosition("center"); setAnimationStyle("spring"); setAutoCloseTimer(''); setDisplayDelaySeconds(''); setStartAt(""); setEndAt(""); setEnabledPaths(""); setExcludedPaths(""); setDisplayFrequency("session"); setStorageKey(""); setShowCloseButton(true);
+            setTitleFa(""); setTitleEn(""); setHeroIcon(""); setHeroIconUrl(""); setMediaType("image"); setImageUrl(""); setVideoUrl(""); setVideoPosterUrl(""); setBadge1Fa(""); setBadge1En(""); setBadge2Fa(""); setBadge2En(""); setMessageFa(""); setMessageEn(""); setSubMessageFa(""); setSubMessageEn(""); setButtonTextFa(""); setButtonTextEn(""); setButtonLink(""); setParticleEffect("none"); setParticleAssetUrl(""); setThemeColor("primary"); setOverlayOpacity("medium"); setPosition("center"); setAnimationStyle("spring"); setAutoCloseTimer(''); setDisplayDelaySeconds(''); setStartAt(""); setEndAt(""); setEnabledPaths(""); setExcludedPaths(""); setDisplayFrequency("session"); setStorageKey(""); setShowCloseButton(true);
         }
     };
 
@@ -221,7 +363,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         const newPreset = {
             name: newPresetName.trim(),
             settings: {
-                titleFa, titleEn, imageUrl, imageFit, imageHeight, imageBgColor, themeColor, overlayOpacity, particleEffect, particleDensity,
+                titleFa, titleEn, heroIcon, heroIconUrl, imageUrl, imageFit, imageHeight, imageBgColor, mediaType, videoUrl, videoPosterUrl, videoAutoplay, videoMuted, videoLoop, videoControls, videoPreload, themeColor, overlayOpacity, particleEffect, particleDensity, particleAssetUrl,
                 position, animationStyle, autoCloseTimer, displayDelaySeconds, startAt, endAt, enabledPaths, excludedPaths, displayFrequency, storageKey, showCloseButton,
                 badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
                 messageFa, messageEn, subMessageFa, subMessageEn, buttonTextFa, buttonTextEn, buttonLink
@@ -234,11 +376,20 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
 
     const loadCustomPreset = (preset: any) => {
         const s = preset.settings;
-        setTitleFa(s.titleFa || ""); setTitleEn(s.titleEn || ""); setImageUrl(s.imageUrl || "");
+        setTitleFa(s.titleFa || ""); setTitleEn(s.titleEn || ""); setHeroIcon(s.heroIcon || ""); setHeroIconUrl(s.heroIconUrl || ""); setImageUrl(s.imageUrl || "");
+        setMediaType(s.mediaType || "image");
+        setVideoUrl(s.videoUrl || "");
+        setVideoPosterUrl(s.videoPosterUrl || "");
+        setVideoAutoplay(s.videoAutoplay !== false);
+        setVideoMuted(s.videoMuted !== false);
+        setVideoLoop(s.videoLoop !== false);
+        setVideoControls(s.videoControls === true);
+        setVideoPreload(s.videoPreload || "metadata");
         setImageFit(s.imageFit || "cover"); setImageHeight(s.imageHeight || "md");
         setImageBgColor(s.imageBgColor || "#000000");
         setThemeColor(s.themeColor || "primary"); setOverlayOpacity(s.overlayOpacity || "medium");
         setParticleEffect(s.particleEffect || "none"); setParticleDensity(s.particleDensity || "medium");
+        setParticleAssetUrl(s.particleAssetUrl || "");
         setPosition(s.position || "center");
         setAnimationStyle(s.animationStyle || "spring"); setAutoCloseTimer(s.autoCloseTimer || '');
         setDisplayDelaySeconds(s.displayDelaySeconds || '');
@@ -354,9 +505,11 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                 </h3>
                                 <div className="flex-1 relative rounded-[2rem] overflow-hidden border border-white/10 flex items-center justify-center bg-gradient-to-br from-blue-900/10 to-purple-900/10">
                                     <NowruzPopup isPreview config={{
-                                        titleFa, titleEn, imageUrl, imageFit, imageHeight, imageBgColor, badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
+                                        titleFa, titleEn, heroIcon, heroIconUrl, imageUrl, imageFit, imageHeight, imageBgColor,
+                                        mediaType, videoUrl, videoPosterUrl, videoAutoplay, videoMuted, videoLoop, videoControls, videoPreload,
+                                        badge1Icon, badge1Fa, badge1En, badge2Icon, badge2Fa, badge2En,
                                         messageFa, messageEn, subMessageFa, subMessageEn, buttonTextFa, buttonTextEn, buttonLink,
-                                        themeColor, overlayOpacity, particleEffect, particleDensity, position, animationStyle, autoCloseTimer: Number(autoCloseTimer) || 0
+                                        themeColor, overlayOpacity, particleEffect, particleDensity, particleAssetUrl, position, animationStyle, autoCloseTimer: Number(autoCloseTimer) || 0
                                     }} />
                                     {/* Abstract decor for preview bounds */}
                                     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/50 to-transparent pointer-events-none" />
@@ -405,7 +558,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
                                 <label className="block text-sm font-bold text-foreground mb-4 flex items-center justify-between">
                                     <span className="flex items-center gap-2">
-                                        <ImageIcon className="w-4 h-4 text-emerald-400" /> تصویر پس‌زمینه پاپ‌آپ
+                                        {mediaType === 'video' ? <Film className="w-4 h-4 text-emerald-400" /> : <ImageIcon className="w-4 h-4 text-emerald-400" />} مدیا پس‌زمینه پاپ‌آپ
                                     </span>
                                     
                                     <button 
@@ -414,20 +567,83 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                         className="text-sm flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
                                     >
                                         {isUploading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
-                                        {isUploading ? "درحال آپلود..." : "آپلود مستقیم تصویر (انتخاب فایل)"}
+                                        {isUploading ? "درحال آپلود..." : "آپلود مستقیم عکس/ویدیو"}
                                     </button>
-                                    <input type="file" ref={fileInputRef} onChange={handleUpload} accept="image/*" className="hidden" />
+                                    <input type="file" ref={fileInputRef} onChange={handleUpload} accept="image/*,video/mp4,video/webm,video/quicktime" className="hidden" />
                                 </label>
+
+                                <div className="grid grid-cols-2 gap-2 mb-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => setMediaType('image')}
+                                        className={`px-3 py-2 rounded-xl text-sm font-bold border transition ${mediaType === 'image' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-secondary border-white/10 text-muted-foreground'}`}
+                                    >
+                                        تصویر
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setMediaType('video')}
+                                        className={`px-3 py-2 rounded-xl text-sm font-bold border transition ${mediaType === 'video' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-secondary border-white/10 text-muted-foreground'}`}
+                                    >
+                                        ویدیو
+                                    </button>
+                                </div>
                                 
+                                {mediaType === 'image' ? (
                                 <input 
                                     title="مسیر عکس"
-                                    placeholder="شماره میتوانید لینک اینترنتی عکس را اینجا پیست کنید و یا از دکمه آپلود استفاده کنید..."
+                                    placeholder="می‌توانید لینک اینترنتی عکس را اینجا پیست کنید یا از دکمه آپلود استفاده کنید"
                                     value={imageUrl} onChange={(e) => setImageUrl(e.target.value)}
                                     className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm" dir="ltr"
                                 />
-                                {imageUrl && (
+                                ) : (
+                                    <div className="space-y-3">
+                                        <input
+                                            title="مسیر ویدیو"
+                                            placeholder="URL ویدیو (mp4/webm/mov)"
+                                            value={videoUrl}
+                                            onChange={(e) => setVideoUrl(e.target.value)}
+                                            className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm"
+                                            dir="ltr"
+                                        />
+                                        <input
+                                            title="پوستر ویدیو"
+                                            placeholder="URL تصویر پوستر ویدیو (اختیاری)"
+                                            value={videoPosterUrl}
+                                            onChange={(e) => setVideoPosterUrl(e.target.value)}
+                                            className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm"
+                                            dir="ltr"
+                                        />
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                                            <label className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2"><input type="checkbox" checked={videoAutoplay} onChange={(e) => setVideoAutoplay(e.target.checked)} className="accent-primary" /> Autoplay</label>
+                                            <label className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2"><input type="checkbox" checked={videoMuted} onChange={(e) => setVideoMuted(e.target.checked)} className="accent-primary" /> Muted</label>
+                                            <label className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2"><input type="checkbox" checked={videoLoop} onChange={(e) => setVideoLoop(e.target.checked)} className="accent-primary" /> Loop</label>
+                                            <label className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2"><input type="checkbox" checked={videoControls} onChange={(e) => setVideoControls(e.target.checked)} className="accent-primary" /> Controls</label>
+                                            <select value={videoPreload} onChange={(e) => setVideoPreload(e.target.value)} className="bg-secondary border border-white/10 rounded-xl px-3 py-2 col-span-1 md:col-span-2">
+                                                <option value="none">Preload: none</option>
+                                                <option value="metadata">Preload: metadata</option>
+                                                <option value="auto">Preload: auto</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {mediaType === 'image' && imageUrl && (
                                     <div className="mt-3 relative w-full rounded-xl overflow-hidden border border-white/10 opacity-70 flex items-center justify-center" style={{ backgroundColor: imageBgColor, height: imageHeight === 'sm' ? '160px' : imageHeight === 'md' ? '256px' : imageHeight === 'lg' ? '320px' : '384px' }}>
                                         <img src={imageUrl} alt="Preview" className={`w-full h-full ${imageFit === 'contain' ? 'object-contain' : imageFit === 'fill' ? 'object-fill' : 'object-cover'} object-center`} />
+                                    </div>
+                                )}
+
+                                {mediaType === 'video' && videoUrl && (
+                                    <div className="mt-3 relative w-full rounded-xl overflow-hidden border border-white/10 flex items-center justify-center" style={{ backgroundColor: imageBgColor, height: imageHeight === 'sm' ? '160px' : imageHeight === 'md' ? '256px' : imageHeight === 'lg' ? '320px' : '384px' }}>
+                                        <video
+                                            src={videoUrl}
+                                            poster={videoPosterUrl || undefined}
+                                            className={`w-full h-full ${imageFit === 'contain' ? 'object-contain' : imageFit === 'fill' ? 'object-fill' : 'object-cover'} object-center`}
+                                            preload="metadata"
+                                            muted
+                                            playsInline
+                                        />
                                     </div>
                                 )}
                                 
@@ -530,6 +746,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             <option value="sparkles" className="text-amber-400">✨ ستاره‌های درخشان (Sparkles)</option>
                                             <option value="confetti" className="text-emerald-400">🎉 کاغذ رنگی (Confetti)</option>
                                             <option value="snow" className="text-blue-300">❄️ بارش برف (Snow)</option>
+                                            <option value="customAsset" className="text-violet-300">🖼️ فایل سفارشی (Custom Asset)</option>
                                         </select>
                                     </div>
                                     <div className="col-span-2 md:col-span-1">
@@ -540,6 +757,26 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             <option value="heavy" className="text-emerald-400">زیاد (Heavy)</option>
                                             <option value="insane" className="text-rose-400">جنون‌آمیز (Insane!)</option>
                                         </select>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <label className="block text-sm text-foreground mb-2 bg-black/20 p-2 rounded-lg text-center">فایل ذرات سفارشی (PNG/WebP/SVG)</label>
+                                        <div className="flex gap-2">
+                                            <input
+                                                value={particleAssetUrl}
+                                                onChange={(e) => setParticleAssetUrl(e.target.value)}
+                                                placeholder="URL فایل ذره یا از دکمه آپلود استفاده کنید"
+                                                className="flex-1 bg-secondary border border-white/5 rounded-xl px-4 py-2 text-left font-mono text-xs"
+                                                dir="ltr"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => particleAssetFileInputRef.current?.click()}
+                                                className="px-3 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold"
+                                            >
+                                                آپلود
+                                            </button>
+                                            <input type="file" ref={particleAssetFileInputRef} onChange={handleParticleAssetUpload} accept="image/*" className="hidden" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -567,6 +804,21 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                     </div>
                                     <div className="space-y-1 md:col-span-2">
                                         <span className="text-xs text-muted-foreground">نمایش فقط در مسیرها (Enabled Paths)</span>
+                                        <div className="flex flex-wrap gap-2 mb-2">
+                                            {COMMON_PATH_OPTIONS.map((path) => {
+                                                const active = parsePathList(enabledPaths).includes(path);
+                                                return (
+                                                    <button
+                                                        key={`enabled-${path}`}
+                                                        type="button"
+                                                        onClick={() => togglePathValue(path, enabledPaths, setEnabledPaths)}
+                                                        className={`px-2.5 py-1.5 rounded-lg text-xs border transition ${active ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300' : 'bg-secondary border-white/10 text-muted-foreground hover:text-foreground'}`}
+                                                    >
+                                                        {path}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
                                         <input
                                             value={enabledPaths}
                                             onChange={(e) => setEnabledPaths(e.target.value)}
@@ -574,9 +826,37 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary text-left"
                                             dir="ltr"
                                         />
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {parsePathList(enabledPaths).map((path) => (
+                                                <button
+                                                    key={`enabled-chip-${path}`}
+                                                    type="button"
+                                                    onClick={() => removePathValue(path, enabledPaths, setEnabledPaths)}
+                                                    className="px-2 py-1 rounded-md text-xs bg-emerald-500/15 border border-emerald-500/30 text-emerald-300"
+                                                    title="حذف از لیست"
+                                                >
+                                                    {path} ×
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                     <div className="space-y-1 md:col-span-2">
                                         <span className="text-xs text-muted-foreground">عدم نمایش در مسیرها (Excluded Paths)</span>
+                                        <div className="flex flex-wrap gap-2 mb-2">
+                                            {COMMON_PATH_OPTIONS.map((path) => {
+                                                const active = parsePathList(excludedPaths).includes(path);
+                                                return (
+                                                    <button
+                                                        key={`excluded-${path}`}
+                                                        type="button"
+                                                        onClick={() => togglePathValue(path, excludedPaths, setExcludedPaths)}
+                                                        className={`px-2.5 py-1.5 rounded-lg text-xs border transition ${active ? 'bg-rose-500/20 border-rose-500/40 text-rose-300' : 'bg-secondary border-white/10 text-muted-foreground hover:text-foreground'}`}
+                                                    >
+                                                        {path}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
                                         <input
                                             value={excludedPaths}
                                             onChange={(e) => setExcludedPaths(e.target.value)}
@@ -584,6 +864,19 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:outline-none focus:border-primary text-left"
                                             dir="ltr"
                                         />
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {parsePathList(excludedPaths).map((path) => (
+                                                <button
+                                                    key={`excluded-chip-${path}`}
+                                                    type="button"
+                                                    onClick={() => removePathValue(path, excludedPaths, setExcludedPaths)}
+                                                    className="px-2 py-1 rounded-md text-xs bg-rose-500/15 border border-rose-500/30 text-rose-300"
+                                                    title="حذف از لیست"
+                                                >
+                                                    {path} ×
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                     <div className="space-y-1">
                                         <span className="text-xs text-muted-foreground">فرکانس نمایش</span>
@@ -621,6 +914,35 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                             </div>
 
                             <DualField label="تیتر درشت اصلی" faValue={titleFa} enValue={titleEn} setFaValue={setTitleFa} setEnValue={setTitleEn} placeholderFa="نوروز خجسته باد / جلسه مهم" placeholderEn="Happy Nowruz / Important Meeting" />
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3">
+                                <label className="block text-sm font-bold text-foreground">آیکن اصلی (مانند 🌱)</label>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <input
+                                        value={heroIcon}
+                                        onChange={(e) => setHeroIcon(e.target.value)}
+                                        placeholder="🌱 یا ✨"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 text-center"
+                                    />
+                                    <div className="flex gap-2">
+                                        <input
+                                            value={heroIconUrl}
+                                            onChange={(e) => setHeroIconUrl(e.target.value)}
+                                            placeholder="URL آیکن تصویری (اختیاری)"
+                                            className="flex-1 bg-secondary border border-white/5 rounded-xl px-4 py-2 text-left font-mono text-xs"
+                                            dir="ltr"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => heroIconFileInputRef.current?.click()}
+                                            className="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold"
+                                        >
+                                            آپلود
+                                        </button>
+                                        <input type="file" ref={heroIconFileInputRef} onChange={handleHeroIconUpload} accept="image/*" className="hidden" />
+                                    </div>
+                                </div>
+                            </div>
                             
                             <DualField label="پیام متنی (اندازه متوسط)" faValue={messageFa} enValue={messageEn} setFaValue={setMessageFa} setEnValue={setMessageEn} placeholderFa="به امید آزادی..." placeholderEn="Wishing you freedom..." />
                             

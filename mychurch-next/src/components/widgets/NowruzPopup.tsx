@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { X, ArrowRight, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import Link from "next/link";
@@ -10,6 +9,9 @@ import { usePathname } from "next/navigation";
 
 interface PopupConfig {
     titleFa?: string; titleEn?: string;
+    heroIcon?: string;
+    heroIconUrl?: string;
+    mediaType?: "image" | "video";
     imageUrl?: string;
     imageFit?: "cover" | "contain" | "fill";
     imageHeight?: "sm" | "md" | "lg" | "xl";
@@ -23,7 +25,8 @@ interface PopupConfig {
     buttonLink?: string;
     themeColor?: "emerald" | "blue" | "rose" | "amber" | "purple" | "primary";
     showConfetti?: boolean; // Legacy fallback
-    particleEffect?: "none" | "confetti" | "blossoms" | "sparkles" | "snow";
+    particleEffect?: "none" | "confetti" | "blossoms" | "sparkles" | "snow" | "customAsset";
+    particleAssetUrl?: string;
     overlayOpacity?: "light" | "medium" | "dark" | "heavy";
     position?: "center" | "top" | "bottom";
     animationStyle?: "spring" | "fade" | "slideUp";
@@ -50,12 +53,19 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
 
     const title = (isEn ? config.titleEn : config.titleFa) || "";
     const imageUrl = config.imageUrl || "/images/nowruz-bg.png";
+    const mediaType = config.mediaType || "image";
+    const rawVideoUrl = (config.videoUrl || "").trim();
+    const rawVideoPosterUrl = (config.videoPosterUrl || "").trim();
     const badge1 = (isEn ? config.badge1En : config.badge1Fa) || "";
     const badge2 = (isEn ? config.badge2En : config.badge2Fa) || "";
     const message = (isEn ? config.messageEn : config.messageFa) || "";
     const subMessage = (isEn ? config.subMessageEn : config.subMessageFa) || "";
     const buttonText = (isEn ? config.buttonTextEn : config.buttonTextFa) || (isEn ? "Enter" : "ورود");
     const buttonLink = config.buttonLink || "";
+    const heroIconValue = (config.heroIcon || "").trim();
+    const heroIconUrl = (config.heroIconUrl || "").trim();
+
+    const isIconUrl = (value: string) => /^(https?:\/\/|\/|data:image\/)/i.test(value);
 
     // Infer Nowruz strictly for fallback
     const isNowruz = title.includes("نوروز") || title.toLowerCase().includes("nowruz");
@@ -85,6 +95,20 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
         if (!config.imageUrl.startsWith('/')) return `/api/serve/${config.imageUrl}`;
         return config.imageUrl;
     }, [config.imageUrl]);
+
+    const resolveMediaUrl = React.useCallback((value?: string) => {
+        if (!value) return "";
+        if (value.startsWith('http') || value.startsWith('data:')) return value;
+        if (value.startsWith('/api/serve/')) return value;
+        if (value.startsWith('/uploads/')) return value.replace('/uploads/', '/api/serve/');
+        if (value.startsWith('/images/')) return value;
+        if (!value.startsWith('/')) return `/api/serve/${value}`;
+        return value;
+    }, []);
+
+    const resolvedVideoUrl = React.useMemo(() => resolveMediaUrl(rawVideoUrl), [rawVideoUrl, resolveMediaUrl]);
+    const resolvedVideoPosterUrl = React.useMemo(() => resolveMediaUrl(rawVideoPosterUrl), [rawVideoPosterUrl, resolveMediaUrl]);
+    const resolvedParticleAssetUrl = React.useMemo(() => resolveMediaUrl(config.particleAssetUrl), [config.particleAssetUrl, resolveMediaUrl]);
 
     const colors = {
         emerald: { text: "text-emerald-500", shadow: "shadow-emerald-500/20", glow: "shadow-[0_0_15px_rgba(16,185,129,0.8)]", confetti: "bg-emerald-300" },
@@ -291,6 +315,17 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                                     <div key={petal.id} className="absolute w-3 h-3 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-snow" 
                                         style={{ left: petal.left, top: petal.top, animationDuration: petal.animationDuration, animationDelay: petal.animationDelay, transform: petal.transform }} />
                                 );
+                            } else if (effect === 'customAsset' && resolvedParticleAssetUrl) {
+                                return (
+                                    <img
+                                        key={petal.id}
+                                        src={resolvedParticleAssetUrl}
+                                        alt="particle"
+                                        className="absolute w-4 h-4 animate-fall object-contain"
+                                        style={{ left: petal.left, top: petal.top, animationDuration: petal.animationDuration, animationDelay: petal.animationDelay, transform: petal.transform }}
+                                        loading="lazy"
+                                    />
+                                );
                             } else {
                                 // Confetti
                                 return (
@@ -311,18 +346,27 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                     dir={isEn ? "ltr" : "rtl"}
                 >
                     <div className={`relative w-full ${imageHeightClass} shrink-0 transition-all duration-300 flex items-center justify-center`} style={{ backgroundColor: config.imageBgColor || '#000000' }}>
-                        {displayUrl ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img 
-                                src={displayUrl} 
-                                alt="Popup Media" 
+                        {mediaType === 'video' && resolvedVideoUrl ? (
+                            <video
+                                src={resolvedVideoUrl}
+                                poster={resolvedVideoPosterUrl || undefined}
                                 className={`absolute inset-0 w-full h-full ${imageFitClass} z-0`}
+                                autoPlay={config.videoAutoplay !== false}
+                                muted={config.videoMuted !== false}
+                                loop={config.videoLoop !== false}
+                                controls={config.videoControls === true}
+                                preload={config.videoPreload || 'metadata'}
+                                playsInline
                             />
-                        ) : (
-                            // Fallback if displayUrl is empty, though imageUrl has a default
-                            // This block was previously for Image component, now it's just an empty fallback
-                            null
-                        )}
+                        ) : displayUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                                src={displayUrl}
+                                alt="Popup Media"
+                                className={`absolute inset-0 w-full h-full ${imageFitClass} z-0`}
+                                loading="eager"
+                            />
+                        ) : null}
                         {config.showCloseButton !== false && (
                             <button 
                                 onClick={handleClose}
@@ -336,14 +380,18 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                     </div>
 
                     <div className={`relative px-8 pb-10 pt-2 z-10 bg-background ${alignClass}`}>
-                        {isNowruz && (
+                        {(isNowruz || heroIconValue || heroIconUrl) && (
                             <motion.div 
                                 initial={{ y: 20, opacity: 0 }} 
                                 animate={{ y: 0, opacity: 1 }} 
                                 transition={{ delay: 0.3 }}
                                 className="text-5xl mb-2 -mt-4 text-emerald-500 drop-shadow-sm text-center"
                             >
-                                {isNowruz ? "🌱" : "✨"}
+                                {heroIconUrl ? (
+                                    <img src={heroIconUrl} alt="hero icon" className="w-14 h-14 mx-auto object-contain" loading="lazy" />
+                                ) : (
+                                    <span>{heroIconValue || (isNowruz ? "🌱" : "✨")}</span>
+                                )}
                             </motion.div>
                         )}
                         
@@ -365,8 +413,18 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                                 transition={{ delay: 0.5 }}
                                 className={`flex flex-wrap gap-2 font-bold text-sm text-foreground mb-8 bg-secondary/30 p-4 rounded-xl border border-white/5 shadow-inner ${isEn ? '' : 'justify-center'}`}
                             >
-                                {badge1 && <span className="hover:scale-105 transition-transform cursor-default bg-white/5 px-3 py-1 rounded-full">{badge1}</span>}
-                                {badge2 && <span className="hover:scale-105 transition-transform cursor-default bg-white/5 px-3 py-1 rounded-full">{badge2}</span>}
+                                {badge1 && (
+                                    <span className="hover:scale-105 transition-transform cursor-default bg-white/5 px-3 py-1 rounded-full inline-flex items-center gap-1.5">
+                                        {config.badge1Icon && (isIconUrl(config.badge1Icon) ? <img src={config.badge1Icon} alt="badge1" className="w-4 h-4 object-contain" loading="lazy" /> : <span>{config.badge1Icon}</span>)}
+                                        <span>{badge1}</span>
+                                    </span>
+                                )}
+                                {badge2 && (
+                                    <span className="hover:scale-105 transition-transform cursor-default bg-white/5 px-3 py-1 rounded-full inline-flex items-center gap-1.5">
+                                        {config.badge2Icon && (isIconUrl(config.badge2Icon) ? <img src={config.badge2Icon} alt="badge2" className="w-4 h-4 object-contain" loading="lazy" /> : <span>{config.badge2Icon}</span>)}
+                                        <span>{badge2}</span>
+                                    </span>
+                                )}
                             </motion.div>
                         )}
 
