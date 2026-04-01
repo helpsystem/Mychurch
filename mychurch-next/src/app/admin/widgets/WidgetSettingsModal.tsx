@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useTransition } from "react";
+import React, { useEffect, useState, useRef, useTransition } from "react";
 import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
 import { translateFaToEn, translateEnToFa } from "@/actions/ai";
 import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film } from "lucide-react";
@@ -10,6 +10,15 @@ import { toast } from "sonner";
 interface Props {
     widget: DashboardWidget;
     onClose: () => void;
+}
+
+interface UploadAsset {
+    path: string;
+    name: string;
+    url: string;
+    type: 'image' | 'video' | 'other';
+    size: number;
+    modifiedAt: number;
 }
 
 const COMMON_PATH_OPTIONS = [
@@ -201,6 +210,10 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
 
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
+    const [libraryLoading, setLibraryLoading] = useState(false);
+    const [libraryFolder, setLibraryFolder] = useState('');
+    const [libraryTarget, setLibraryTarget] = useState<'background' | 'videoPoster' | 'heroIcon' | 'particleAsset'>('background');
+    const [libraryAssets, setLibraryAssets] = useState<UploadAsset[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const heroIconFileInputRef = useRef<HTMLInputElement>(null);
     const particleAssetFileInputRef = useRef<HTMLInputElement>(null);
@@ -330,6 +343,75 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         } finally {
             setIsUploading(false);
             if (particleAssetFileInputRef.current) particleAssetFileInputRef.current.value = "";
+        }
+    };
+
+    const loadLibrary = async () => {
+        setLibraryLoading(true);
+        try {
+            const query = libraryFolder ? `?folder=${encodeURIComponent(libraryFolder)}` : '';
+            const res = await fetch(`/api/upload/list${query}`, { cache: 'no-store' });
+            const data = await res.json();
+            if (data?.success && Array.isArray(data.files)) {
+                setLibraryAssets(data.files as UploadAsset[]);
+            } else {
+                setLibraryAssets([]);
+            }
+        } catch {
+            setLibraryAssets([]);
+        } finally {
+            setLibraryLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        void loadLibrary();
+    }, [libraryFolder]);
+
+    const applyLibraryAsset = (asset: UploadAsset) => {
+        if (libraryTarget === 'background') {
+            if (asset.type === 'video') {
+                setMediaType('video');
+                setVideoUrl(asset.url);
+            } else {
+                setMediaType('image');
+                setImageUrl(asset.url);
+            }
+            return;
+        }
+
+        if (libraryTarget === 'videoPoster') {
+            setVideoPosterUrl(asset.url);
+            return;
+        }
+
+        if (libraryTarget === 'heroIcon') {
+            setHeroIconUrl(asset.url);
+            return;
+        }
+
+        setParticleAssetUrl(asset.url);
+        setParticleEffect('customAsset');
+    };
+
+    const handleDeleteLibraryAsset = async (asset: UploadAsset) => {
+        const ok = confirm(`حذف فایل؟\n${asset.path}`);
+        if (!ok) return;
+
+        try {
+            const res = await fetch('/api/upload/delete', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path: asset.path }),
+            });
+            const data = await res.json();
+            if (!res.ok || !data?.success) {
+                throw new Error(data?.error || 'delete_failed');
+            }
+            toast.success('فایل از سرور حذف شد.');
+            await loadLibrary();
+        } catch (error: any) {
+            toast.error(error?.message || 'حذف فایل انجام نشد.');
         }
     };
 

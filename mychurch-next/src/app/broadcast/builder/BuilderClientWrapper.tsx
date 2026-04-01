@@ -63,8 +63,30 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
              }
 
              if (res.serverSaved) {
-                 toast.success("ذخیره در سرور با موفقیت انجام شد. انتقال به صفحه بررسی...");
-                 router.push('/admin/presentations');
+                 const statusLabel = statusInfo[session.status]?.label || "وضعیت نامشخص";
+                 toast.success(`ذخیره شد: ${statusLabel}`);
+
+                 if (session.status === "ready" || session.status === "live") {
+                     try {
+                         const tokenRes = await fetch('/api/broadcast/viewer-token', {
+                             method: 'POST',
+                             headers: { 'Content-Type': 'application/json' },
+                             body: JSON.stringify({ sessionId: session.id }),
+                         });
+
+                         const tokenData = await tokenRes.json();
+                         if (!tokenRes.ok || !tokenData?.token) {
+                             throw new Error(tokenData?.error || 'token_failed');
+                         }
+
+                         router.push(`/broadcast/view?session=${encodeURIComponent(session.id)}&token=${encodeURIComponent(tokenData.token)}`);
+                         return;
+                     } catch {
+                         toast.error("ذخیره انجام شد اما لینک Viewer امن ساخته نشد.");
+                         return;
+                     }
+                 }
+
                  return;
              }
 

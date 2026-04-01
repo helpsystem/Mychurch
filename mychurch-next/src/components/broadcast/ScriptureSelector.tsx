@@ -149,6 +149,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [slideMode, setSlideMode] = useState<'list' | 'bubble'>('list');
   const [combineIntoOneSlide, setCombineIntoOneSlide] = useState(true);
   const [referenceListMode, setReferenceListMode] = useState(true);
+  const [selectedPreset, setSelectedPreset] = useState<'manual' | 'nastaliq-wavy-ref'>('manual');
   const [fontFa, setFontFa] = useState('var(--font-vazirmatn)');
   const [fontEn, setFontEn] = useState('var(--font-inter)');
 
@@ -387,6 +388,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         displayMode: referenceListMode ? 'referenceList' : (slideMode as any),
         fontFa,
         fontEn,
+        glassPopupEnabled: selectedPreset === 'nastaliq-wavy-ref',
         referenceItems: references,
       };
 
@@ -439,6 +441,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         textSecondary: combinedTextEn,
         fontFa,
         fontEn,
+        glassPopupEnabled: selectedPreset === 'nastaliq-wavy-ref',
         translation: first.translation,
         displayMode: slideMode as any,
         referenceItems: sortedGroup.map((v) => ({
@@ -474,6 +477,19 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   // Get translation label
   const getTranslationLabel = (trans: string) => {
     return t[trans as keyof typeof t] || trans;
+  };
+
+  const applyPreset = (preset: 'manual' | 'nastaliq-wavy-ref') => {
+    setSelectedPreset(preset);
+    if (preset === 'nastaliq-wavy-ref') {
+      setFontFa('var(--font-nastaliq)');
+      setFontEn('var(--font-inter)');
+      setSlideMode('list');
+      setCombineIntoOneSlide(true);
+      setReferenceListMode(true);
+      setShowFa(true);
+      setShowEn(true);
+    }
   };
 
   return (
@@ -688,6 +704,18 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                       <option value="var(--font-inter)">Inter</option>
                       <option value="var(--font-playfair)">Playfair</option>
                       <option value="var(--font-merriweather)">Merriweather</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-slate-400 text-sm">Preset:</span>
+                    <select
+                      value={selectedPreset}
+                      onChange={(e) => applyPreset(e.target.value as 'manual' | 'nastaliq-wavy-ref')}
+                      className="bg-slate-700 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs"
+                    >
+                      <option value="manual">Manual</option>
+                      <option value="nastaliq-wavy-ref">Nastaliq + Wavy + ReferenceList</option>
                     </select>
                   </div>
 
