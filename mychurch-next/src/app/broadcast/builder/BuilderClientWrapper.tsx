@@ -9,21 +9,30 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
+import { useRouter } from "next/navigation";
 
 export default function BuilderClientWrapper({ initialSession }: { initialSession: BroadcastSession }) {
     const [session, setSession] = useState<BroadcastSession>(initialSession);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [isPending, startTransition] = useTransition();
     const { t, language } = useLanguage();
+    const router = useRouter();
 
     const handleSave = () => {
         startTransition(async () => {
              const res = await savePresentation(session);
-             if (res.success) {
-                 toast.success(t.saveSuccess || "Saved");
-             } else {
+             if (!res.success) {
                  toast.error(res.error || t.saveError || "Error");
+                 return;
              }
+
+             if (res.serverSaved) {
+                 toast.success("ذخیره در سرور با موفقیت انجام شد. انتقال به صفحه بررسی...");
+                 router.push('/admin/presentations');
+                 return;
+             }
+
+             toast.error(res.error || "ذخیره در سرور انجام نشد. در همین صفحه بمانید و دوباره تلاش کنید.");
         });
     };
 

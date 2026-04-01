@@ -126,8 +126,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
-  const [verseStart, setVerseStart] = useState(1);
-  const [verseEnd, setVerseEnd] = useState(1);
+  const [verseStart, setVerseStart] = useState<number | null>(null);
+  const [verseEnd, setVerseEnd] = useState<number | null>(null);
   const [verseCount, setVerseCount] = useState(31);
   const [translation, setTranslation] = useState<'mojdeh' | 'qadim' | 'tafsiri'>('mojdeh');
   const [enTranslation, setEnTranslation] = useState<'asv' | 'net' | 'kjv'>('asv'); 
@@ -193,58 +193,68 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const handleBookSelect = (book: BibleBook) => {
     setSelectedBook(book);
     setSelectedChapter(1);
-    setVerseStart(1);
-    setVerseEnd(1);
+    setVerseStart(null);
+    setVerseEnd(null);
     setStep('chapter');
   };
 
   // Handle chapter selection
   const handleChapterSelect = (chapter: number) => {
     setSelectedChapter(chapter);
-    setVerseStart(1);
-    setVerseEnd(1);
+    setVerseStart(null);
+    setVerseEnd(null);
     setStep('verse');
   };
 
   // Handle verse click (range selection)
   const handleVerseClick = (verse: number) => {
-    if (verseStart === verseEnd) {
-      // First click or single verse selected
+    if (verseStart === null) {
+      setVerseStart(verse);
+      setVerseEnd(verse);
+      return;
+    }
+
+    if (verseEnd === null || verseEnd === verseStart) {
       if (verse >= verseStart) {
         setVerseEnd(verse);
       } else {
         setVerseStart(verse);
+        setVerseEnd(verseStart);
       }
-    } else {
-      // Reset to single verse
-      setVerseStart(verse);
-      setVerseEnd(verse);
+      return;
     }
+
+    // Reset and start a new range
+    setVerseStart(verse);
+    setVerseEnd(verse);
   };
 
   // Add current selection to list
   const addToList = () => {
-    if (!selectedBook) return;
+    if (!selectedBook || verseStart === null || verseEnd === null) return;
+
+    const normalizedStart = Math.min(verseStart, verseEnd);
+    const normalizedEnd = Math.max(verseStart, verseEnd);
 
     const verseNumbers = Array.from(
-      { length: verseEnd - verseStart + 1 },
-      (_, i) => verseStart + i
+      { length: normalizedEnd - normalizedStart + 1 },
+      (_, i) => normalizedStart + i
     );
 
     const textFaSlice = versesData.fa.length > 0
-      ? versesData.fa.slice(verseStart - 1, verseEnd)
+      ? versesData.fa.slice(normalizedStart - 1, normalizedEnd)
       : verseNumbers.map(() => '');
 
     const textEnSlice = versesData.en.length > 0
-      ? versesData.en.slice(verseStart - 1, verseEnd)
+      ? versesData.en.slice(normalizedStart - 1, normalizedEnd)
       : verseNumbers.map(() => '');
 
     const newVerse: SelectedVerse = {
       id: crypto.randomUUID(),
       book: selectedBook,
       chapter: selectedChapter,
-      verseStart,
-      verseEnd,
+      verseStart: normalizedStart,
+      verseEnd: normalizedEnd,
       translation,
       enTranslation,
       showFa,
@@ -257,8 +267,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     setSelectedVerses(prev => [...prev, newVerse]);
 
     // Reset for next selection
-    setVerseStart(verseEnd + 1 > verseCount ? 1 : verseEnd + 1);
-    setVerseEnd(verseEnd + 1 > verseCount ? 1 : verseEnd + 1);
+    setVerseStart(null);
+    setVerseEnd(null);
   };
 
   // Remove verse from list
@@ -326,6 +336,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Check if verse is in selected range
   const isVerseInRange = (verse: number) => {
+    if (verseStart === null || verseEnd === null) return false;
     return verse >= verseStart && verse <= verseEnd;
   };
 
@@ -515,7 +526,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     </label>
                   </div>
 
-                  {verseStart > 0 && (
+                  {verseStart !== null && verseEnd !== null && (
                     <div className="bg-indigo-600/20 border border-indigo-500/30 px-4 py-1.5 rounded-lg">
                       <span className="text-indigo-400 font-bold">
                         {verseStart === verseEnd ? verseStart : `${verseStart}-${verseEnd}`}
@@ -546,7 +557,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                   </div>
                 )}
 
-                {!loading && verseStart > 0 && (
+                {!loading && verseStart !== null && verseEnd !== null && (
                   <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-emerald-400 font-bold flex items-center gap-2">

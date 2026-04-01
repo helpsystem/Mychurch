@@ -8,10 +8,11 @@ export const dynamic = "force-dynamic";
 export default async function SlideBuilderPage({
     searchParams,
 }: {
-    searchParams: { id?: string } | Promise<{ id?: string }>;
+    searchParams: { id?: string | string[] } | Promise<{ id?: string | string[] }>;
 }) {
     const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams;
-    const id = resolvedParams?.id;
+    const rawId = resolvedParams?.id;
+    const id = Array.isArray(rawId) ? rawId[0] : rawId;
 
     let initialSession: BroadcastSession;
 

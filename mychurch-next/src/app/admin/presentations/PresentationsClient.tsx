@@ -29,9 +29,11 @@ export default function PresentationsClient({ initialPresentations }: { initialP
 
         startTransition(async () => {
              const res = await savePresentation(newSession);
-             if (res.success) {
+             if (res.success && res.serverSaved) {
                  toast.success("Presentation Created. Routing to builder...");
                  router.push(`/broadcast/builder?id=${newId}`);
+             } else if (res.success && !res.serverSaved) {
+                 toast.error(res.error || "Saved locally only. Server save failed.");
              } else {
                  toast.error(res.error || "Failed to create presentation.");
              }

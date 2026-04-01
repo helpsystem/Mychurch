@@ -61,6 +61,18 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
     await requireRole(["Admin", "Leader", "Operator"]);
 
     try {
+        await query(`
+            CREATE TABLE IF NOT EXISTS presentations (
+                id VARCHAR(255) PRIMARY KEY,
+                title VARCHAR(255) NOT NULL,
+                date TIMESTAMP WITH TIME ZONE NOT NULL,
+                host_name VARCHAR(255),
+                slides_json JSONB NOT NULL DEFAULT '[]',
+                status VARCHAR(50) NOT NULL DEFAULT 'draft',
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            );
+        `);
+
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
         
@@ -79,12 +91,12 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
     }
 }
 
-export async function savePresentation(session: BroadcastSession): Promise<{ success: boolean; error?: string }> {
+export async function savePresentation(session: BroadcastSession): Promise<{ success: boolean; serverSaved: boolean; fallbackSaved?: boolean; error?: string }> {
     await requireRole(["Admin", "Leader", "Operator"]);
 
     const safeSession = normalizeSession(session);
     if (!safeSession.id || !safeSession.title) {
-        return { success: false, error: "Invalid presentation payload" };
+        return { success: false, serverSaved: false, error: "Invalid presentation payload" };
     }
 
     try {
@@ -126,7 +138,7 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
         if (index > -1) mockPresentations[index] = safeSession;
         else mockPresentations.push(safeSession);
 
-        return { success: true };
+        return { success: true, serverSaved: true };
     } catch (error) {
         console.error('[Action] Failed to save presentation in DB, fallback to mock:', error);
 
@@ -137,7 +149,12 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
 
         revalidatePath('/admin/presentations');
         revalidatePath('/broadcast');
-        return { success: true, error: 'Saved in fallback mode (database unreachable).' };
+        return {
+            success: true,
+            serverSaved: false,
+            fallbackSaved: true,
+            error: 'ذخیره روی سرور انجام نشد (ارتباط دیتابیس قطع است). تغییرات فقط موقتاً نگه‌داری شد.'
+        };
     }
 }
 
