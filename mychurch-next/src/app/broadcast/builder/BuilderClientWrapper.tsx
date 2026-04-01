@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
 import { BroadcastSession, AppLanguage } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
-import { ArrowRight, Loader2, Save } from "lucide-react";
+import { ArrowRight, CalendarDays, Loader2, Save } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -17,6 +17,42 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const [isPending, startTransition] = useTransition();
     const { t, language } = useLanguage();
     const router = useRouter();
+
+    const statusInfo: Record<BroadcastSession["status"], { label: string; description: string }> = {
+        draft: {
+            label: "پیش نویس",
+            description: "برای آماده سازی اولیه اسلایدها و ویرایش مداوم قبل از تایید نهایی.",
+        },
+        ready: {
+            label: "آماده پخش",
+            description: "محتوا نهایی شده و آماده اجرا در برنامه زنده است.",
+        },
+        live: {
+            label: "زنده",
+            description: "این جلسه همین الان در پخش یا ارائه فعال استفاده می شود.",
+        },
+        ended: {
+            label: "آرشیو",
+            description: "جلسه تمام شده و برای مراجعه بعدی، گزارش و استفاده مجدد نگهداری می شود.",
+        },
+    };
+
+    const formatDateForInput = (value: Date | string) => {
+        const date = value instanceof Date ? value : new Date(value);
+        if (Number.isNaN(date.getTime())) return "";
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}-${m}-${d}`;
+    };
+
+    const handleDateChange = (nextDate: string) => {
+        if (!nextDate) return;
+        const [y, m, d] = nextDate.split("-").map(Number);
+        const base = session.date instanceof Date ? new Date(session.date) : new Date(session.date);
+        base.setFullYear(y, (m || 1) - 1, d || 1);
+        setSession({ ...session, date: base });
+    };
 
     const handleSave = () => {
         startTransition(async () => {
@@ -52,16 +88,26 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                         className="bg-transparent text-white font-bold outline-none border-b border-transparent hover:border-white/20 focus:border-indigo-500 transition-colors py-1 px-2 rounded"
                         placeholder={t.presentationName || "Name..."}
                     />
+                    <div className="flex items-center gap-2 bg-neutral-900 border border-white/20 rounded-md px-2 py-1.5">
+                        <CalendarDays className="w-4 h-4 text-indigo-300" />
+                        <input
+                            type="date"
+                            value={formatDateForInput(session.date)}
+                            onChange={(e) => handleDateChange(e.target.value)}
+                            className="bg-transparent text-xs text-slate-200 outline-none"
+                            aria-label="Session Date"
+                        />
+                    </div>
                     <select 
                         title="Presentation Status"
                         value={session.status}
                         onChange={(e) => setSession({...session, status: e.target.value as any})}
                         className="bg-neutral-900 border border-white/20 rounded-md text-xs px-2 py-1 text-muted-foreground focus:outline-none"
                     >
-                        <option value="draft">{t.draft || 'Draft'}</option>
-                        <option value="ready">{t.ready || 'Ready'}</option>
-                        <option value="live">{t.live || 'Live'}</option>
-                        <option value="ended">{t.ended || 'Ended'}</option>
+                        <option value="draft">{statusInfo.draft.label}</option>
+                        <option value="ready">{statusInfo.ready.label}</option>
+                        <option value="live">{statusInfo.live.label}</option>
+                        <option value="ended">{statusInfo.ended.label}</option>
                     </select>
                 </div>
                 
@@ -73,6 +119,11 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                     {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                     {t.cloudSave || 'Cloud Save'}
                 </button>
+            </div>
+
+            <div className="h-10 bg-slate-900/70 border-b border-slate-800 px-6 flex items-center text-xs text-slate-300">
+                <span className="font-bold text-indigo-300 ml-2">{statusInfo[session.status].label}:</span>
+                <span>{statusInfo[session.status].description}</span>
             </div>
 
             <div className="flex flex-1 overflow-hidden" dir={language === 'fa' ? 'rtl' : 'ltr'}>

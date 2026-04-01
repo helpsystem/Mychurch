@@ -16,6 +16,36 @@ export default function PresentationsClient({ initialPresentations }: { initialP
     const router = useRouter();
     const { t, language } = useLanguage();
 
+    const statusHelp: Array<{ key: BroadcastSession['status']; label: string; desc: string }> = [
+        {
+            key: 'draft',
+            label: 'پیش نویس',
+            desc: 'مناسب برای ساخت اولیه اسلایدها، تغییرات سریع، و بازبینی داخلی.',
+        },
+        {
+            key: 'ready',
+            label: 'آماده پخش',
+            desc: 'جلسه تایید شده و آماده شروع در زمان برنامه است.',
+        },
+        {
+            key: 'live',
+            label: 'زنده',
+            desc: 'جلسه در حال اجرا است و برای پخش/نمایش لحظه ای استفاده می شود.',
+        },
+        {
+            key: 'ended',
+            label: 'آرشیو',
+            desc: 'جلسه پایان یافته و برای رجوع بعدی، گزارش و استفاده مجدد نگهداری می شود.',
+        },
+    ];
+
+    const statusLabel: Record<BroadcastSession['status'], string> = {
+        draft: 'پیش نویس',
+        ready: 'آماده پخش',
+        live: 'زنده',
+        ended: 'آرشیو',
+    };
+
     const handleCreateNew = () => {
         const newId = crypto.randomUUID();
         const newSession: BroadcastSession = {
@@ -88,6 +118,15 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                 </div>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" dir="rtl">
+                {statusHelp.map((item) => (
+                    <div key={item.key} className="glass-strong border border-white/10 rounded-xl p-4">
+                        <p className="text-sm font-bold text-indigo-300">{item.label}</p>
+                        <p className="text-xs text-muted-foreground mt-1 leading-6">{item.desc}</p>
+                    </div>
+                ))}
+            </div>
+
             {/* Presentations Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-[Vazirmatn]" dir="rtl">
                 {presentations.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase())).map((pres) => (
@@ -99,8 +138,8 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                                 <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform shadow-inner shadow-indigo-500/20">
                                     <FileJson className="w-6 h-6" />
                                 </div>
-                                <span className={`text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold border ${pres.status === 'live' ? 'bg-red-500/10 text-red-400 border-red-500/30 animate-pulse' : 'bg-neutral-500/10 text-neutral-400 border-neutral-500/30'}`}>
-                                    {pres.status}
+                                <span className={`text-[10px] tracking-widest px-3 py-1 rounded-full font-bold border ${pres.status === 'live' ? 'bg-red-500/10 text-red-400 border-red-500/30 animate-pulse' : 'bg-neutral-500/10 text-neutral-400 border-neutral-500/30'}`}>
+                                    {statusLabel[pres.status] || pres.status}
                                 </span>
                             </div>
                             <h3 className="text-xl font-bold mb-2 truncate" title={pres.title}>{pres.title}</h3>
