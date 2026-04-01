@@ -15,7 +15,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ScripturePage, BibleBook } from '@/types/broadcast';
 import { BookOpen, ChevronRight, X, Plus, Eye, Trash2, Languages, Check } from 'lucide-react';
-import { INITIAL_BIBLE_CONTENT } from '@/lib/bibleData';
+import { INITIAL_BIBLE_CONTENT, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleData';
 
 // =============== TYPES ===============
 
@@ -169,8 +169,11 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const hadNoExactResults = !!normalizedQuery && searchedBooks.length === 0;
   const filteredBooks = hadNoExactResults ? bibleBooks : searchedBooks;
 
-  const otBooks = filteredBooks.filter((b: BibleBook) => b.testament === 'OT');
-  const ntBooks = filteredBooks.filter((b: BibleBook) => b.testament === 'NT');
+  const otKeySet = new Set(OLD_TESTAMENT_BOOKS.map((key) => key.toLowerCase()));
+  const ntKeySet = new Set(NEW_TESTAMENT_BOOKS.map((key) => key.toLowerCase()));
+
+  const otBooks = filteredBooks.filter((b: BibleBook) => otKeySet.has((b.key || '').toLowerCase()));
+  const ntBooks = filteredBooks.filter((b: BibleBook) => ntKeySet.has((b.key || '').toLowerCase()));
 
   // Fetch verses when chapter changes
   const fetchChapterData = useCallback(async () => {
