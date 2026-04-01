@@ -57,6 +57,32 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                         <source src={bgConfig.value} type="video/mp4" />
                     </video>
                 );
+            case 'wavyPaper': {
+                const line = (bgConfig.value || 'Sample text / نمونه متن').trim() || 'Sample text / نمونه متن';
+                const lines = Array.from({ length: 4 }, () => line);
+                return (
+                    <div className="absolute inset-0 -z-10 overflow-hidden bg-[#fffef0]">
+                        <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
+                            <filter id="wavy2">
+                                <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1" />
+                                <feDisplacementMap in="SourceGraphic" scale="15" />
+                            </filter>
+                        </svg>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.03)_1px,transparent_1px)] [background-size:4px_4px]" />
+                        <div className="relative h-full w-full p-10 space-y-5 text-[#41290e]">
+                            {lines.map((item, idx) => (
+                                <blockquote
+                                    key={idx}
+                                    className="relative rounded-md p-4 leading-tight bg-[#fffef0] shadow-[2px_3px_10px_rgba(0,0,0,0.45),inset_0_0_30px_#8a4d0f]"
+                                    style={{ filter: 'url(#wavy2)' }}
+                                >
+                                    <p className="relative z-10 text-sm md:text-base">{item}</p>
+                                </blockquote>
+                            ))}
+                        </div>
+                    </div>
+                );
+            }
             default:
                 return <div className="absolute inset-0 bg-black -z-10" />;
         }
@@ -149,12 +175,12 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                                             className="w-full grid grid-cols-12 items-center rounded-xl border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40 transition px-3 py-3"
                                         >
                                             <div className="col-span-6 text-right">
-                                                <p className="text-white font-bold font-[Vazirmatn]">
+                                                <p className="text-white font-bold" style={{ fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
                                                     {idx + 1}. {ref.bookName.fa} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
                                             <div className="col-span-6 text-left">
-                                                <p className="text-indigo-200 font-semibold">
+                                                <p className="text-indigo-200 font-semibold" style={{ fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
                                                     {idx + 1}. {ref.bookName.en} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
@@ -183,7 +209,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="rounded-2xl border border-slate-700 bg-slate-950/60 p-4" dir="rtl">
                                                 <h4 className="text-emerald-300 font-bold mb-3 font-[Vazirmatn]">متن فارسی</h4>
-                                                <div className="space-y-2 text-slate-100 leading-8 font-[Vazirmatn]">
+                                                <div className="space-y-2 text-slate-100 leading-8" style={{ fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
                                                     {activeReference.textFa.map((line, i) => (
                                                         <p key={`fa-${i}`}>
                                                             <span className="text-amber-300 ml-2">{activeReference.verseNumbers[i] || ''}</span>
@@ -194,7 +220,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                                             </div>
                                             <div className="rounded-2xl border border-slate-700 bg-slate-950/60 p-4" dir="ltr">
                                                 <h4 className="text-blue-300 font-bold mb-3">English Text</h4>
-                                                <div className="space-y-2 text-slate-100 leading-8">
+                                                <div className="space-y-2 text-slate-100 leading-8" style={{ fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}>
                                                     {activeReference.textEn.map((line, i) => (
                                                         <p key={`en-${i}`}>
                                                             <span className="text-amber-300 mr-2">{activeReference.verseNumbers[i] || ''}</span>
@@ -221,12 +247,20 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                         </div>
                         
                         <div className="max-w-6xl w-full text-center space-y-12">
-                            <p className="text-5xl md:text-7xl leading-snug font-bold text-white font-[Vazirmatn]" dir="rtl" style={{ textShadow: "0 4px 12px rgba(0,0,0,0.5)" }}>
+                            <p
+                                className="text-5xl md:text-7xl leading-snug font-bold text-white"
+                                dir="rtl"
+                                style={{ textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}
+                            >
                                 {page.textPrimary.join(" ")}
                             </p>
                             
                             {page.textSecondary && page.textSecondary.length > 0 && (
-                                <p className="text-3xl md:text-5xl leading-relaxed text-amber-200/80 font-serif italic" dir="ltr">
+                                <p
+                                    className="text-3xl md:text-5xl leading-relaxed text-amber-200/80 italic"
+                                    dir="ltr"
+                                    style={{ fontFamily: page.fontEn || "var(--font-inter)" }}
+                                >
                                     {page.textSecondary.join(" ")}
                                 </p>
                             )}
@@ -299,6 +333,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                         <div 
                             className={`w-full h-full flex flex-col z-10 ${content.layout === 'centered' ? 'items-center justify-center text-center' : content.layout === 'split-left' ? 'items-start justify-center w-1/2' : 'items-center justify-center'}`} 
                             dir="rtl"
+                            style={{ fontFamily: content.fontFamily || 'var(--font-vazirmatn)' }}
                             dangerouslySetInnerHTML={{ __html: content.htmlContent }} 
                         />
                     </div>
@@ -346,11 +381,11 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
             {/* Resolution Scaling Container (Forces 16:9 1080p aspect internally for broadcast accuracy) */}
             <div className="absolute inset-0" style={{ containerType: 'size' }}>
                 <div 
-                    className="absolute inset-0 origin-top-left flex items-center justify-center"
+                    className="absolute left-1/2 top-1/2 origin-top-left"
                     style={{ 
                         width: '1920px', 
                         height: '1080px',
-                        transform: `scale(min(100cqw / 1920, 100cqh / 1080))`
+                        transform: `translate(-50%, -50%) scale(min(100cqw / 1920, 100cqh / 1080))`
                     }}
                 >
                     <div className="w-[1920px] h-[1080px] bg-black overflow-hidden relative shadow-2xl">

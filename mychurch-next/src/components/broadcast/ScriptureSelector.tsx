@@ -32,6 +32,8 @@ interface SelectedVerse {
   textFa: string[];
   textEn: string[];
   verseNumbers: number[];
+  fontFa?: string;
+  fontEn?: string;
 }
 
 interface ScriptureSelectorProps {
@@ -147,6 +149,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [slideMode, setSlideMode] = useState<'list' | 'bubble'>('list');
   const [combineIntoOneSlide, setCombineIntoOneSlide] = useState(true);
   const [referenceListMode, setReferenceListMode] = useState(true);
+  const [fontFa, setFontFa] = useState('var(--font-vazirmatn)');
+  const [fontEn, setFontEn] = useState('var(--font-inter)');
 
   // Data State
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
@@ -322,7 +326,9 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
       showEn,
       textFa: textFaSlice,
       textEn: textEnSlice,
-      verseNumbers
+      verseNumbers,
+      fontFa,
+      fontEn,
     };
 
     setSelectedVerses(prev => [...prev, newVerse]);
@@ -361,6 +367,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         verseNumbers: v.verseNumbers,
         textFa: v.textFa,
         textEn: v.textEn,
+        fontFa: v.fontFa,
+        fontEn: v.fontEn,
         translation: v.translation,
         enTranslation: v.enTranslation,
       }));
@@ -377,6 +385,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         translation,
         enTranslation,
         displayMode: referenceListMode ? 'referenceList' : (slideMode as any),
+        fontFa,
+        fontEn,
         referenceItems: references,
       };
 
@@ -427,6 +437,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         verseNumbers: combinedVerseNumbers,
         textPrimary: combinedTextFa,
         textSecondary: combinedTextEn,
+        fontFa,
+        fontEn,
         translation: first.translation,
         displayMode: slideMode as any,
         referenceItems: sortedGroup.map((v) => ({
@@ -438,6 +450,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
           verseNumbers: v.verseNumbers,
           textFa: v.textFa,
           textEn: v.textEn,
+          fontFa: v.fontFa,
+          fontEn: v.fontEn,
           translation: v.translation,
           enTranslation: v.enTranslation,
         })),
@@ -649,6 +663,32 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                       />
                       <span className="text-slate-300 text-sm">{t.showEnglish}</span>
                     </label>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-slate-400 text-sm">FA Font:</span>
+                    <select
+                      value={fontFa}
+                      onChange={(e) => setFontFa(e.target.value)}
+                      className="bg-slate-700 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs"
+                    >
+                      <option value="var(--font-vazirmatn)">Vazirmatn</option>
+                      <option value="var(--font-nastaliq)">Nastaliq</option>
+                      <option value="var(--font-lalezar)">Lalezar</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-slate-400 text-sm">EN Font:</span>
+                    <select
+                      value={fontEn}
+                      onChange={(e) => setFontEn(e.target.value)}
+                      className="bg-slate-700 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs"
+                    >
+                      <option value="var(--font-inter)">Inter</option>
+                      <option value="var(--font-playfair)">Playfair</option>
+                      <option value="var(--font-merriweather)">Merriweather</option>
+                    </select>
                   </div>
 
                   {verseStart !== null && verseEnd !== null && (

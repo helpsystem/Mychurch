@@ -66,7 +66,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [liveDataPoints, setLiveDataPoints] = useState<ChartDataPoint[]>([{ label: 'Item 1', value: 10, color: '#3b82f6' }]);
   const [liveDataShowLegend, setLiveDataShowLegend] = useState(true);
   const [liveDataShowValues, setLiveDataShowValues] = useState(true);
-  const [liveDataBackgroundType, setLiveDataBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient'>('color');
+  const [liveDataBackgroundType, setLiveDataBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient' | 'wavyPaper'>('color');
   const [liveDataBackgroundValue, setLiveDataBackgroundValue] = useState('#000000');
 
   // Data State
@@ -122,9 +122,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Generic Slide State
   const [genericTitle, setGenericTitle] = useState('');
   const [genericHtmlContent, setGenericHtmlContent] = useState('');
-  const [genericBackgroundType, setGenericBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient'>('color');
+  const [genericBackgroundType, setGenericBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient' | 'wavyPaper'>('color');
   const [genericBackgroundValue, setGenericBackgroundValue] = useState('#000000');
   const [genericLayout, setGenericLayout] = useState<'title-only' | 'text-only' | 'split-left' | 'split-right' | 'centered'>('centered');
+  const [genericFontFamily, setGenericFontFamily] = useState<string>('var(--font-vazirmatn)');
 
   // Meeting Form State
   const [meetingRoomName, setMeetingRoomName] = useState(`Mychurch-${Math.floor(Math.random() * 10000)}`);
@@ -170,6 +171,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setGenericBackgroundType('color');
     setGenericBackgroundValue('#000000');
     setGenericLayout('centered');
+    setGenericFontFamily('var(--font-vazirmatn)');
     setLiveDataTitle('');
     setLiveDataChartType('bar');
     setLiveDataPoints([{ label: 'Item 1', value: 10, color: '#3b82f6' }]);
@@ -274,6 +276,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         setGenericBackgroundValue(content.background.value);
       }
       setGenericLayout(content.layout || 'centered');
+      setGenericFontFamily(content.fontFamily || 'var(--font-vazirmatn)');
       setActiveModal('GENERIC');
     } else if (slide.type === SlideType.LIVEDATA) {
       const content = slide.content as SlideContentLiveData;
@@ -494,6 +497,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     const content: SlideContentGeneric = {
       title: genericTitle || undefined,
       htmlContent: finalHtmlContent,
+      fontFamily: genericFontFamily,
       background: {
         type: genericBackgroundType,
         value: genericBackgroundValue,
@@ -1506,6 +1510,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   <option value="gradient">Gradient</option>
                   <option value="image">Image URL</option>
                   <option value="video">Video URL</option>
+                  <option value="wavyPaper">Wavy Paper (blockquote)</option>
                 </select>
               </div>
               <div>
@@ -1516,10 +1521,27 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   type="text"
                   value={genericBackgroundValue}
                   onChange={(e) => setGenericBackgroundValue(e.target.value)}
-                  placeholder={genericBackgroundType === 'color' ? '#000000' : 'URL or Gradient CSS'}
+                  placeholder={genericBackgroundType === 'color' ? '#000000' : genericBackgroundType === 'wavyPaper' ? 'متن الگوی کاغذی...' : 'URL or Gradient CSS'}
                   className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
                 />
               </div>
+            </div>
+
+            <div className="mb-4">
+              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {isRTL ? 'فونت اسلاید' : 'Slide Font'}
+              </label>
+              <select
+                value={genericFontFamily}
+                onChange={(e) => setGenericFontFamily(e.target.value)}
+                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+              >
+                <option value="var(--font-vazirmatn)">Vazirmatn</option>
+                <option value="var(--font-nastaliq)">Nastaliq</option>
+                <option value="var(--font-lalezar)">Lalezar</option>
+                <option value="var(--font-playfair)">Playfair Display</option>
+                <option value="var(--font-merriweather)">Merriweather</option>
+              </select>
             </div>
 
             {/* HTML Content */}
@@ -1732,6 +1754,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   <option value="gradient">Gradient</option>
                   <option value="image">Image URL</option>
                   <option value="video">Video URL</option>
+                  <option value="wavyPaper">Wavy Paper (blockquote)</option>
                 </select>
               </div>
               <div>

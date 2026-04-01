@@ -121,6 +121,22 @@
 
 /* Glassmorphism utilities */
 @layer utilities {
+  .font-nastaliq {
+    font-family: var(--font-nastaliq), var(--font-vazirmatn), serif;
+  }
+
+  .font-lalezar {
+    font-family: var(--font-lalezar), var(--font-vazirmatn), cursive;
+  }
+
+  .font-playfair {
+    font-family: var(--font-playfair), var(--font-inter), serif;
+  }
+
+  .font-merriweather {
+    font-family: var(--font-merriweather), var(--font-inter), serif;
+  }
+
   .glass {
     @apply bg-background/60 backdrop-blur-lg border border-white/10 dark:border-white/5 shadow-xl;
   }

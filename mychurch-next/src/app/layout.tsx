@@ -36,7 +36,7 @@ export default function RootLayout({
         {/* Runtime Google Fonts to prevent Next.js build crash on VPN drop */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Lalezar&family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
         
         <script
           dangerouslySetInnerHTML={{
@@ -53,6 +53,10 @@ export default function RootLayout({
           :root {
             --font-inter: 'Inter', sans-serif;
             --font-vazirmatn: 'Vazirmatn', sans-serif;
+            --font-nastaliq: 'Noto Nastaliq Urdu', serif;
+            --font-lalezar: 'Lalezar', cursive;
+            --font-playfair: 'Playfair Display', serif;
+            --font-merriweather: 'Merriweather', serif;
           }
         `}} />
       </head>

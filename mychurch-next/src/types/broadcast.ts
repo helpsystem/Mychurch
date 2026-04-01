@@ -44,6 +44,8 @@ export interface ScripturePage {
     translation?: string;
     enTranslation?: string;
     displayMode?: 'list' | 'bubble' | 'referenceList';
+    fontFa?: string;
+    fontEn?: string;
     referenceItems?: ScriptureReferenceItem[];
     glassPopupEnabled?: boolean;
     popupLabelFa?: string;
@@ -59,6 +61,8 @@ export interface ScriptureReferenceItem {
     verseNumbers: number[];
     textFa: string[];
     textEn: string[];
+    fontFa?: string;
+    fontEn?: string;
     translation?: string;
     enTranslation?: string;
 }
@@ -138,8 +142,9 @@ export interface SlideContentAnnouncement {
 export interface SlideContentGeneric {
     title?: string;
     htmlContent: string;
+    fontFamily?: string;
     background?: {
-        type: 'color' | 'image' | 'video' | 'gradient';
+        type: 'color' | 'image' | 'video' | 'gradient' | 'wavyPaper';
         value: string;
         opacity?: number;
     };
@@ -158,7 +163,7 @@ export interface SlideContentLiveData {
     data: ChartDataPoint[];
     showLegend: boolean;
     showValues: boolean;
-    background?: { type: 'color' | 'image' | 'video' | 'gradient'; value: string; opacity?: number; };
+    background?: { type: 'color' | 'image' | 'video' | 'gradient' | 'wavyPaper'; value: string; opacity?: number; };
 }
 
 export interface SlideContentMeeting {

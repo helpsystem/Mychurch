@@ -129,6 +129,21 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
             JSON.stringify(safeSession.slides),
             safeSession.status
         ]);
+
+        const verify = await query(
+            'SELECT id, status, slides_json FROM presentations WHERE id = $1 LIMIT 1',
+            [safeSession.id]
+        );
+
+        if (verify.rows.length === 0) {
+            return { success: false, serverSaved: false, error: 'ذخیره تایید نشد. رکورد در سرور یافت نشد.' };
+        }
+
+        const persisted = verify.rows[0];
+        const persistedSlideCount = Array.isArray(persisted.slides_json) ? persisted.slides_json.length : 0;
+        if (persisted.status !== safeSession.status || persistedSlideCount !== safeSession.slides.length) {
+            return { success: false, serverSaved: false, error: 'ذخیره ناقص بود. لطفا دوباره ذخیره کنید.' };
+        }
         
         revalidatePath('/admin/presentations');
         revalidatePath('/broadcast');
@@ -141,19 +156,10 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
         return { success: true, serverSaved: true };
     } catch (error) {
         console.error('[Action] Failed to save presentation in DB, fallback to mock:', error);
-
-        // Keep the user flow alive when DB is temporarily unavailable.
-        const index = mockPresentations.findIndex(p => p.id === safeSession.id);
-        if (index > -1) mockPresentations[index] = safeSession;
-        else mockPresentations.push(safeSession);
-
-        revalidatePath('/admin/presentations');
-        revalidatePath('/broadcast');
         return {
-            success: true,
+            success: false,
             serverSaved: false,
-            fallbackSaved: true,
-            error: 'ذخیره روی سرور انجام نشد (ارتباط دیتابیس قطع است). تغییرات فقط موقتاً نگه‌داری شد.'
+            error: 'ذخیره روی سرور انجام نشد. لطفا چند ثانیه بعد دوباره تلاش کنید.'
         };
     }
 }

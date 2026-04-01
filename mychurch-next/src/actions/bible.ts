@@ -113,17 +113,18 @@ export async function initBibleSyncColumns() {
 async function loadPersianFromDb(book: string, ch: number) {
     try {
         const { rows } = await pool.query(
-            `SELECT verse, fa_tpv, fa_mojdeh, fa_qadim, fa_wp, audio_start, audio_end FROM unified_bible_verses
+            `SELECT verse, fa_tpv, fa_mojdeh, fa_qadim, fa_wp, en_kjv, audio_start, audio_end FROM unified_bible_verses
              WHERE book_code=$1 AND chapter=$2 ORDER BY verse`,
             [book, ch]
         );
-        const fa: Record<number, { fa_tpv: string; fa_mojdeh: string; fa_qadim: string; fa_wp: string; audio_start: number; audio_end: number; }> = {};
+        const fa: Record<number, { fa_tpv: string; fa_mojdeh: string; fa_qadim: string; fa_wp: string; en_kjv: string; audio_start: number; audio_end: number; }> = {};
         rows.forEach(r => {
             fa[r.verse] = {
                 fa_tpv:    r.fa_tpv    || '',
                 fa_mojdeh: r.fa_mojdeh || '',
                 fa_qadim:  r.fa_qadim  || '',
                 fa_wp:     r.fa_wp     || '',
+                en_kjv:    r.en_kjv    || '',
                 audio_start: r.audio_start || 0,
                 audio_end:   r.audio_end || 0,
             };
@@ -208,11 +209,11 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
     }
 
     const verses: UnifiedVerse[] = Array.from(allNums).sort((a, b) => a - b).map(n => {
-        const fa = faRaw[n] || { fa_tpv: '', fa_mojdeh: '', fa_qadim: '', fa_wp: '', audio_start: 0, audio_end: 0 };
+        const fa = faRaw[n] || { fa_tpv: '', fa_mojdeh: '', fa_qadim: '', fa_wp: '', en_kjv: '', audio_start: 0, audio_end: 0 };
         return {
             number:    n,
             fa:        fa.fa_mojdeh || fa.fa_tpv || fa.fa_qadim || fa.fa_wp || '',
-            en:        enRaw[n]  || '',
+            en:        enRaw[n] || fa.en_kjv || '',
             fa_mojdeh: fa.fa_mojdeh || '',
             fa_tpv:    fa.fa_tpv    || '',
             fa_qadim:  fa.fa_qadim  || '',
