@@ -21,8 +21,8 @@ export async function GET() {
         const { rows: totals } = await query(`
             SELECT 
                 COUNT(*) as total_songs,
-                COUNT(*) FILTER (WHERE lyrics_fa IS NOT NULL AND audio_url IS NOT NULL) as eligible_songs,
-                COUNT(*) FILTER (WHERE timing_data IS NOT NULL) as enriched_songs
+                COUNT(*) FILTER (WHERE lyrics_fa IS NOT NULL AND lyrics_fa != '') as eligible_songs,
+                COUNT(*) FILTER (WHERE lyrics_en IS NOT NULL AND lyrics_en != '') as enriched_songs
             FROM church_worship_songs
         `);
 
