@@ -15,9 +15,10 @@ interface SlideRendererProps {
     isRemotePreview?: boolean;
     previewZoom?: number;
     previewMode?: 'fit' | 'fixed';
+    internalPageIndex?: number;
 }
 
-export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, previewMode = 'fit' }: SlideRendererProps) {
+export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, previewMode = 'fit', internalPageIndex = 0 }: SlideRendererProps) {
     const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
 
     useEffect(() => {
@@ -148,7 +149,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
 
             case SlideType.SCRIPTURE: {
                 const content = slide.content as SlideContentScripture;
-                const page = content.pages[0]; // For simplicity, showing first page in preview
+                const page = content.pages[internalPageIndex] || content.pages[0];
                 if (!page) return null;
 
                 const references = page.referenceItems || [];

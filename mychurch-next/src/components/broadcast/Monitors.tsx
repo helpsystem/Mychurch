@@ -6,9 +6,13 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { SmartWorshipPlayer } from "@/components/worship/SmartWorshipPlayer";
 import { SlideType, SlideContentLyrics } from "@/types/broadcast";
+import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 
 export function PreviewMonitor() {
     const { t } = useLanguage();
+    const slides = useBroadcastStore((state) => state.slides);
+    const activeSlideIndex = useBroadcastStore((state) => state.activeSlideIndex);
+    const previewSlide = slides[activeSlideIndex + 1] || slides[activeSlideIndex] || null;
 
     return (
         <div className="flex-1 flex flex-col bg-neutral-900 rounded-xl border border-border/10 overflow-hidden relative group">
@@ -16,8 +20,12 @@ export function PreviewMonitor() {
                 {t.preview}
             </div>
 
-            <div className="flex-1 flex items-center justify-center bg-neutral-950 pattern-grid-lg text-neutral-800 relative">
-                <MonitorPlay className="w-12 h-12 opacity-20" />
+            <div className="flex-1 flex items-center justify-center bg-neutral-950 pattern-grid-lg text-neutral-800 relative overflow-hidden">
+                {previewSlide ? (
+                    <SlideRenderer slide={previewSlide} isRemotePreview={true} />
+                ) : (
+                    <MonitorPlay className="w-12 h-12 opacity-20" />
+                )}
             </div>
 
             <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-end gap-2">
@@ -36,6 +44,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const { t } = useLanguage();
     const slides = useBroadcastStore((state) => state.slides);
     const activeSlideIndex = useBroadcastStore((state) => state.activeSlideIndex);
+    const internalPageIndex = useBroadcastStore((state) => state.internalPageIndex);
     const sessionId = useBroadcastStore((state) => state.sessionId);
     
     const activeSlide = slides[activeSlideIndex];
@@ -85,10 +94,18 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                             />
                         </div>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <MonitorPlay className="w-16 h-16 text-primary/50 animate-pulse" />
-                            <p className="absolute bottom-10 text-muted-foreground text-sm">Slide {activeSlideIndex + 1} - {(activeSlide?.type || 'No slide')}</p>
-                        </div>
+                        <>
+                            <div className="absolute inset-0">
+                                <SlideRenderer
+                                    slide={activeSlide}
+                                    isRemotePreview={false}
+                                    internalPageIndex={internalPageIndex}
+                                />
+                            </div>
+                            <p className="absolute bottom-3 right-3 text-[11px] text-white/70 bg-black/50 rounded px-2 py-1 z-[65]">
+                                Slide {activeSlideIndex + 1} - {activeSlide?.type || 'No slide'}
+                            </p>
+                        </>
                     )
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center">

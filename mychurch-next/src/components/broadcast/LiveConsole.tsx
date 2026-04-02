@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2 } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -25,7 +25,16 @@ export default function LiveConsole() {
     const setSlides = useBroadcastStore(state => state.setSlides);
     const setSessionId = useBroadcastStore(state => state.setSessionId);
     const sessionId = useBroadcastStore(state => state.sessionId);
+    const slides = useBroadcastStore(state => state.slides);
+    const activeSlideIndex = useBroadcastStore(state => state.activeSlideIndex);
+    const internalPageIndex = useBroadcastStore(state => state.internalPageIndex);
+    const setActiveSlideIndex = useBroadcastStore(state => state.setActiveSlideIndex);
+    const setInternalPageIndex = useBroadcastStore(state => state.setInternalPageIndex);
+    const nextSlide = useBroadcastStore(state => state.nextSlide);
+    const prevSlide = useBroadcastStore(state => state.prevSlide);
+    const config = useBroadcastStore(state => state.config);
     const { initRemoteSync, disconnectSync, isConnected } = useBroadcastStore();
+    const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
 
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
@@ -48,8 +57,34 @@ export default function LiveConsole() {
     const handleLoadSession = (session: BroadcastSession) => {
         setSessionId(session.id);
         setSlides(session.slides);
+        setActiveSlideIndex(0, true);
+        setInternalPageIndex(0, true);
         setIsLoadModalOpen(false);
     };
+
+    const getCurrentPageCount = React.useCallback(() => {
+        const current = slides[activeSlideIndex];
+        if (!current || current.type !== 'SCRIPTURE') return 1;
+        const scripture = current.content as any;
+        return Array.isArray(scripture?.pages) && scripture.pages.length > 0 ? scripture.pages.length : 1;
+    }, [slides, activeSlideIndex]);
+
+    const goNextStep = React.useCallback(() => {
+        const pageCount = getCurrentPageCount();
+        if (internalPageIndex < pageCount - 1) {
+            setInternalPageIndex(internalPageIndex + 1);
+            return;
+        }
+        nextSlide();
+    }, [getCurrentPageCount, internalPageIndex, nextSlide, setInternalPageIndex]);
+
+    const goPrevStep = React.useCallback(() => {
+        if (internalPageIndex > 0) {
+            setInternalPageIndex(internalPageIndex - 1);
+            return;
+        }
+        prevSlide();
+    }, [internalPageIndex, prevSlide, setInternalPageIndex]);
 
     const handleCopyViewerLink = async () => {
         if (!sessionId) {
@@ -85,6 +120,85 @@ export default function LiveConsole() {
         initRemoteSync();
         return () => disconnectSync();
     }, [initRemoteSync, disconnectSync]);
+
+    useEffect(() => {
+        if (!sessionId) {
+            viewerChannelRef.current?.close();
+            viewerChannelRef.current = null;
+            return;
+        }
+
+        const channel = new BroadcastChannel(`broadcast-console-${sessionId}`);
+        viewerChannelRef.current = channel;
+
+        const pushFullState = () => {
+            const currentSlide = slides[activeSlideIndex] || null;
+            channel.postMessage({
+                type: 'full_state',
+                payload: {
+                    currentSlide,
+                    slideIndex: activeSlideIndex,
+                    internalPageIndex,
+                    config
+                }
+            });
+        };
+
+        channel.onmessage = (event) => {
+            if (event.data?.type === 'viewer_ready') {
+                pushFullState();
+            }
+        };
+
+        pushFullState();
+
+        return () => {
+            channel.close();
+            viewerChannelRef.current = null;
+        };
+    }, [sessionId, slides, activeSlideIndex, internalPageIndex, config]);
+
+    useEffect(() => {
+        if (!sessionId || !viewerChannelRef.current) return;
+        const currentSlide = slides[activeSlideIndex] || null;
+        viewerChannelRef.current.postMessage({
+            type: 'slide_change',
+            payload: {
+                slide: currentSlide,
+                index: activeSlideIndex,
+                internalPageIndex
+            }
+        });
+    }, [sessionId, slides, activeSlideIndex, internalPageIndex]);
+
+    useEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            const target = event.target as HTMLElement | null;
+            if (target?.closest('input, textarea, select, [contenteditable=true]')) {
+                return;
+            }
+
+            if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+                event.preventDefault();
+                goNextStep();
+            } else if (event.key === 'ArrowLeft' || event.key === 'PageUp' || event.key === 'Backspace') {
+                event.preventDefault();
+                goPrevStep();
+            } else if (event.key === 'Home') {
+                event.preventDefault();
+                setActiveSlideIndex(0);
+                setInternalPageIndex(0);
+            } else if (event.key === 'End') {
+                event.preventDefault();
+                const lastIndex = Math.max(0, slides.length - 1);
+                setActiveSlideIndex(lastIndex);
+                setInternalPageIndex(0);
+            }
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [goNextStep, goPrevStep, setActiveSlideIndex, setInternalPageIndex, slides.length]);
 
     return (
         <div className="flex flex-col h-[100dvh] w-full bg-neutral-950 text-foreground overflow-hidden font-sans selection:bg-primary/30">
@@ -150,6 +264,49 @@ export default function LiveConsole() {
                     {/* Action Footer */}
                     <div className="h-16 shrink-0 flex items-center gap-4 border-t border-border/10 justify-center mt-2 p-2">
                         <button
+                            onClick={() => {
+                                setActiveSlideIndex(0);
+                                setInternalPageIndex(0);
+                            }}
+                            disabled={slides.length === 0}
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            title="First Slide"
+                        >
+                            <SkipBack className="w-4 h-4" /> اول
+                        </button>
+                        <button
+                            onClick={goPrevStep}
+                            disabled={slides.length === 0}
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            title="Previous"
+                        >
+                            <ChevronLeft className="w-4 h-4" /> قبلی
+                        </button>
+                        <div className="px-4 py-2 rounded-lg border border-border/20 bg-neutral-900 text-xs text-muted-foreground min-w-[140px] text-center">
+                            Slide {slides.length === 0 ? 0 : activeSlideIndex + 1}/{slides.length} | Page {internalPageIndex + 1}/{getCurrentPageCount()}
+                        </div>
+                        <button
+                            onClick={goNextStep}
+                            disabled={slides.length === 0}
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            title="Next"
+                        >
+                            بعدی <ChevronRight className="w-4 h-4" />
+                        </button>
+                        <button
+                            onClick={() => {
+                                const lastIndex = Math.max(0, slides.length - 1);
+                                setActiveSlideIndex(lastIndex);
+                                setInternalPageIndex(0);
+                            }}
+                            disabled={slides.length === 0}
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            title="Last Slide"
+                        >
+                            آخر <SkipForward className="w-4 h-4" />
+                        </button>
+
+                        <button
                             onClick={() => setIsLive(!isLive)}
                             className={cn(
                                 "px-8 py-3 font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm tracking-wide",
@@ -170,6 +327,13 @@ export default function LiveConsole() {
                         >
                             {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} Viewer Link
                         </button>
+                        <Link
+                            href={sessionId ? `/broadcast/view?session=${encodeURIComponent(sessionId)}` : '/broadcast/view'}
+                            target="_blank"
+                            className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm"
+                        >
+                            <ExternalLink className="w-4 h-4" /> Viewer
+                        </Link>
                     </div>
                 </main>
 

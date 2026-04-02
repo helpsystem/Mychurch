@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon } from "lucide-react";
+import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { BroadcastSession } from "@/types/broadcast";
 import { deletePresentation, savePresentation } from "@/actions/presentations";
@@ -12,6 +12,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 export default function PresentationsClient({ initialPresentations }: { initialPresentations: BroadcastSession[] }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [presentations, setPresentations] = useState<BroadcastSession[]>(initialPresentations);
+    const [sharingId, setSharingId] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
     const { t, language } = useLanguage();
@@ -81,6 +82,30 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                     toast.error(t.deleteError || "Error deleting");
                 }
             });
+        }
+    };
+
+    const handleCopyShareLink = async (sessionId: string) => {
+        setSharingId(sessionId);
+        try {
+            const tokenRes = await fetch('/api/broadcast/viewer-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId }),
+            });
+
+            const tokenData = await tokenRes.json();
+            if (!tokenRes.ok || !tokenData?.token) {
+                throw new Error(tokenData?.error || 'token_failed');
+            }
+
+            const viewerUrl = `${window.location.origin}/broadcast/view?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(tokenData.token)}`;
+            await navigator.clipboard.writeText(viewerUrl);
+            toast.success(language === 'fa' ? 'لینک اشتراک Viewer کپی شد' : 'Viewer share link copied');
+        } catch (error: any) {
+            toast.error(error?.message || (language === 'fa' ? 'خطا در ساخت لینک اشتراک' : 'Failed to generate share link'));
+        } finally {
+            setSharingId(null);
         }
     };
 
@@ -155,6 +180,14 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                                 <Link href={`/broadcast/builder?id=${pres.id}`} title={t.openInPresenter} className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors shadow-lg">
                                     <MonitorPlay className="w-4 h-4" />
                                 </Link>
+                                <button
+                                    onClick={() => handleCopyShareLink(pres.id)}
+                                    title={language === 'fa' ? 'اشتراک‌گذاری Viewer' : 'Share Viewer'}
+                                    className="p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors shadow-lg disabled:opacity-60"
+                                    disabled={sharingId === pres.id}
+                                >
+                                    {sharingId === pres.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Share2 className="w-4 h-4" />}
+                                </button>
                              </div>
                              <div className="flex items-center gap-2">
                                 <Link href={`/broadcast/builder?id=${pres.id}`} title={t.editOutput} className="p-2 text-muted-foreground hover:text-white transition-colors">
