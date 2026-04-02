@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { BibleBook, ScripturePage } from '@/types/broadcast';
-import { fetchBibleVerse, getBibleBooks, searchBibleBooks } from './dataService';
+import { fetchBibleVerse, getBibleBooks, searchBibleBooks, fetchBibleBooksFromDB } from './dataService';
 
 interface VerseGridPickerProps {
     onVerseSelect: (verses: ScripturePage[]) => void;
@@ -77,9 +77,11 @@ const VerseGridPicker: React.FC<VerseGridPickerProps> = ({
     const [preview, setPreview] = useState<ScripturePage | null>(null);
     const [loading, setLoading] = useState(false);
 
-    // Load books on mount
+    // Load books on mount — from live API (same source as /bible page)
     useEffect(() => {
+        // Immediately show cached/fallback data, then refresh from API
         setBooks(getBibleBooks());
+        fetchBibleBooksFromDB().then(setBooks).catch(() => {/* keep fallback */});
     }, []);
 
     // Filter books

@@ -110,21 +110,84 @@ export function parseLyrics(lyricsText: string): { text: string; isChorus: boole
 
 // =============== BIBLE SERVICE ===============
 
+// Map USFM codes (from SQLite) back to the key format used in the app
+const USFM_TO_KEY: Record<string, string> = {
+  GEN:"Genesis",EXO:"Exodus",LEV:"Leviticus",NUM:"Numbers",DEU:"Deuteronomy",
+  JOS:"Joshua",JDG:"Judges",RUT:"Ruth","1SA":"1Samuel","2SA":"2Samuel",
+  "1KI":"1Kings","2KI":"2Kings","1CH":"1Chronicles","2CH":"2Chronicles",
+  EZR:"Ezra",NEH:"Nehemiah",EST:"Esther",JOB:"Job",PSA:"Psalms",
+  PRO:"Proverbs",ECC:"Ecclesiastes",SNG:"SongOfSongs",ISA:"Isaiah",
+  JER:"Jeremiah",LAM:"Lamentations",EZK:"Ezekiel",DAN:"Daniel",
+  HOS:"Hosea",JOL:"Joel",AMO:"Amos",OBA:"Obadiah",JON:"Jonah",
+  MIC:"Micah",NAM:"Nahum",HAB:"Habakkuk",ZEP:"Zephaniah",HAG:"Haggai",
+  ZEC:"Zechariah",MAL:"Malachi",MAT:"Matthew",MRK:"Mark",LUK:"Luke",
+  JHN:"John",ACT:"Acts",ROM:"Romans","1CO":"1Corinthians","2CO":"2Corinthians",
+  GAL:"Galatians",EPH:"Ephesians",PHP:"Philippians",COL:"Colossians",
+  "1TH":"1Thessalonians","2TH":"2Thessalonians","1TI":"1Timothy","2TI":"2Timothy",
+  TIT:"Titus",PHM:"Philemon",HEB:"Hebrews",JAS:"James","1PE":"1Peter",
+  "2PE":"2Peter","1JN":"1John","2JN":"2John","3JN":"3John",JUD:"Jude",REV:"Revelation",
+};
+
+// In-memory cache for live Bible books (refreshed every 24h)
+let _bibleBookCache: BibleBook[] | null = null;
+let _bibleBookCacheExpiry = 0;
+
 /**
- * دریافت لیست کتاب‌های کتاب مقدس
+ * دریافت لیست کتاب‌های کتاب مقدس از همان API که صفحه Bible استفاده می‌کند
+ * با fallback به INITIAL_BIBLE_BOOKS اگر API در دسترس نباشد
+ */
+export async function fetchBibleBooksFromDB(): Promise<BibleBook[]> {
+  // Return cache if still fresh
+  if (_bibleBookCache && Date.now() < _bibleBookCacheExpiry) {
+    return _bibleBookCache;
+  }
+
+  try {
+    const res = await fetch('/api/bible/books?version=BSB');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.books && Array.isArray(data.books)) {
+        const mapped: BibleBook[] = data.books.map((b: {
+          book_id: string;
+          book_name_en: string;
+          book_name_fa: string;
+          chapter_count: number;
+          testament: string;
+        }) => ({
+          key: USFM_TO_KEY[b.book_id] || b.book_id,
+          name: { en: b.book_name_en, fa: b.book_name_fa },
+          chapters: b.chapter_count,
+        }));
+        _bibleBookCache = mapped;
+        _bibleBookCacheExpiry = Date.now() + 24 * 3600 * 1000; // 24h TTL
+        return mapped;
+      }
+    }
+  } catch (e) {
+    console.warn('[dataService] Bible books API unavailable, using fallback');
+  }
+
+  // Fallback to hardcoded list
+  return INITIAL_BIBLE_BOOKS;
+}
+
+/**
+ * دریافت لیست کتاب‌های کتاب مقدس — sync version با fallback (برای backward compat)
  */
 export function getBibleBooks(): BibleBook[] {
-  return INITIAL_BIBLE_BOOKS;
+  // Return cached live data if available, otherwise hardcoded fallback
+  return _bibleBookCache || INITIAL_BIBLE_BOOKS;
 }
 
 /**
  * جستجوی کتاب با نام
  */
 export function searchBibleBooks(query: string): BibleBook[] {
-  if (!query.trim()) return INITIAL_BIBLE_BOOKS;
+  const books = _bibleBookCache || INITIAL_BIBLE_BOOKS;
+  if (!query.trim()) return books;
 
   const q = query.toLowerCase();
-  return INITIAL_BIBLE_BOOKS.filter(book =>
+  return books.filter(book =>
     book.key.toLowerCase().includes(q) ||
     book.name.en.toLowerCase().includes(q) ||
     book.name.fa.includes(q)
