@@ -13,9 +13,11 @@ interface SlideRendererProps {
     slide: Slide | undefined;
     className?: string;
     isRemotePreview?: boolean;
+    previewZoom?: number;
+    previewMode?: 'fit' | 'fixed';
 }
 
-export function SlideRenderer({ slide, className, isRemotePreview = false }: SlideRendererProps) {
+export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, previewMode = 'fit' }: SlideRendererProps) {
     const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
 
     useEffect(() => {
@@ -401,8 +403,10 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                         height: '1080px',
                         left: '50%',
                         top: '50%',
-                        // Use valid CSS math so browsers keep transform and scale correctly.
-                        transform: 'translate(-50%, -50%) scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)))',
+                        // Fit to container unless the preview is in fixed-page mode.
+                        transform: previewMode === 'fit'
+                            ? `translate(-50%, -50%) scale(calc(min(calc(100cqw / 1920px), calc(100cqh / 1080px)) * ${previewZoom}))`
+                            : `translate(-50%, -50%) scale(${previewZoom})`,
                         transformOrigin: 'center center'
                     }}
                 >
