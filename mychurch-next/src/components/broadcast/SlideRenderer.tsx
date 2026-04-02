@@ -20,6 +20,7 @@ interface SlideRendererProps {
 
 export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, previewMode = 'fit', internalPageIndex = 0 }: SlideRendererProps) {
     const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
+    const safeZoom = Number.isFinite(previewZoom) ? Math.max(0.25, Math.min(previewZoom, 3)) : 1;
 
     useEffect(() => {
         setActiveReference(null);
@@ -404,15 +405,21 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         height: '1080px',
                         left: '50%',
                         top: '50%',
-                        // Fit to container unless the preview is in fixed-page mode.
-                        transform: previewMode === 'fit'
-                            ? `translate(-50%, -50%) scale(calc(min(calc(100cqw / 1920px), calc(100cqh / 1080px)) * ${previewZoom}))`
-                            : `translate(-50%, -50%) scale(${previewZoom})`,
+                        // Keep outer frame constrained to parent; zoom is applied inside the frame.
+                        transform: 'translate(-50%, -50%) scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)))',
                         transformOrigin: 'center center'
                     }}
                 >
                     <div className="w-[1920px] h-[1080px] bg-black overflow-hidden relative shadow-2xl">
-                        {renderContent()}
+                        <div
+                            className="w-full h-full"
+                            style={{
+                                transform: `scale(${safeZoom})`,
+                                transformOrigin: previewMode === 'fit' ? 'center center' : 'top center'
+                            }}
+                        >
+                            {renderContent()}
+                        </div>
                     </div>
                 </div>
             </div>

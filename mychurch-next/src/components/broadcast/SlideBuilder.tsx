@@ -35,6 +35,16 @@ interface SlideBuilderProps {
 
 type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA' | 'MEETING';
 
+type LibraryAsset = {
+  name: string;
+  path: string;
+  url: string;
+  source: 'uploads' | 'media' | 'images';
+  type: 'image' | 'video' | 'audio' | 'other';
+  size: number;
+  modifiedAt: number;
+};
+
 export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   session,
   setSession,
@@ -137,10 +147,53 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Edit State
   const [editingSlideIndex, setEditingSlideIndex] = useState<number | null>(null);
 
+  // Shared asset library state (public/images + public/media + public/uploads)
+  const [libraryAssets, setLibraryAssets] = useState<LibraryAsset[]>([]);
+  const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
+  const [libraryError, setLibraryError] = useState('');
+  const [assetSearchQuery, setAssetSearchQuery] = useState('');
+  const [uploadingAsset, setUploadingAsset] = useState(false);
+
   // Load songs on mount
   useEffect(() => {
     fetchWorshipSongs().then(setSongs);
   }, []);
+
+  const loadLibraryAssets = useCallback(async (type: 'all' | 'image' | 'video' | 'audio' = 'all') => {
+    try {
+      setIsLoadingLibrary(true);
+      setLibraryError('');
+      const response = await fetch(`/api/broadcast/assets?type=${type}`, { cache: 'no-store' });
+      const data = await response.json();
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error || 'Failed to load assets');
+      }
+      setLibraryAssets(Array.isArray(data.assets) ? data.assets : []);
+    } catch (error: any) {
+      setLibraryError(error?.message || 'Failed to load assets');
+      setLibraryAssets([]);
+    } finally {
+      setIsLoadingLibrary(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeModal === 'MEDIA') {
+      loadLibraryAssets(mediaType);
+      return;
+    }
+    if (activeModal === 'GENERIC') {
+      if (genericBackgroundType === 'image' || genericBackgroundType === 'video') {
+        loadLibraryAssets(genericBackgroundType);
+      }
+      return;
+    }
+    if (activeModal === 'LIVEDATA') {
+      if (liveDataBackgroundType === 'image' || liveDataBackgroundType === 'video') {
+        loadLibraryAssets(liveDataBackgroundType);
+      }
+    }
+  }, [activeModal, mediaType, genericBackgroundType, liveDataBackgroundType, loadLibraryAssets]);
 
   // Filter songs based on search - show all if button clicked, otherwise limit
   const filteredSongs = showAllSongs
@@ -182,6 +235,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setMeetingRoomName(`Mychurch-${Math.floor(Math.random() * 10000)}`);
     setMeetingSubject('');
     setEditingSlideIndex(null);
+    setLibraryError('');
+    setAssetSearchQuery('');
   };
 
   // Add slide to session
@@ -568,26 +623,74 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     }
   };
 
+  const uploadAssetFile = useCallback(async (
+    file: File,
+    options?: { target?: 'uploads' | 'media'; folder?: string }
+  ): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('target', options?.target || 'uploads');
+    if (options?.folder) {
+      formData.append('folder', options.folder);
+    }
+
+    setUploadingAsset(true);
+    setLibraryError('');
+    try {
+      const response = await fetch('/api/broadcast/assets/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      if (!response.ok || !data?.success || !data?.url) {
+        throw new Error(data?.error || 'Upload failed');
+      }
+      return data.url as string;
+    } catch (error: any) {
+      setLibraryError(error?.message || 'Upload failed');
+      return null;
+    } finally {
+      setUploadingAsset(false);
+    }
+  }, []);
+
   // Handle Announcement Image Upload
-  const handleAnnouncementImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAnnouncementImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const objectUrl = URL.createObjectURL(file);
-    setAnnouncementImageUrl(objectUrl);
+    const uploadedUrl = await uploadAssetFile(file, { target: 'uploads', folder: 'broadcast/announcements' });
+    if (uploadedUrl) {
+      setAnnouncementImageUrl(uploadedUrl);
+      loadLibraryAssets('image');
+    }
   };
 
   // Handle file upload
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const objectUrl = URL.createObjectURL(file);
-    setMediaUrl(objectUrl);
+    const uploadedUrl = await uploadAssetFile(file, {
+      target: file.type.startsWith('audio/') ? 'media' : 'uploads',
+      folder: file.type.startsWith('audio/') ? undefined : 'broadcast/slides',
+    });
+
+    if (uploadedUrl) {
+      setMediaUrl(uploadedUrl);
+    }
 
     // Auto-detect type
     if (file.type.startsWith('image/')) setMediaType('image');
     else if (file.type.startsWith('video/')) setMediaType('video');
     else if (file.type.startsWith('audio/')) setMediaType('audio');
+
+    loadLibraryAssets(file.type.startsWith('image/') ? 'image' : file.type.startsWith('video/') ? 'video' : 'audio');
   };
+
+  const filteredLibraryAssets = libraryAssets.filter((asset) => {
+    if (!assetSearchQuery.trim()) return true;
+    const query = assetSearchQuery.toLowerCase();
+    return asset.name.toLowerCase().includes(query) || asset.path.toLowerCase().includes(query);
+  });
 
   // Drag handlers
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -1130,6 +1233,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className="w-full text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-slate-700 file:text-white hover:file:bg-slate-600"
                 aria-label={t.uploadFile}
               />
+              {uploadingAsset && (
+                <p className={`mt-2 text-xs text-amber-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'در حال آپلود فایل...' : 'Uploading file...'}
+                </p>
+              )}
             </div>
 
             {/* Or URL */}
@@ -1145,6 +1253,53 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
                 aria-label={t.fileUrl}
               />
+            </div>
+
+            {/* Asset Library */}
+            <div className="mb-4 bg-slate-900/70 border border-slate-700 rounded-lg p-3">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <p className={`text-xs text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'انتخاب از پوشه تصاویر/ویدیوها/مدیا' : 'Pick from existing image/video/media folders'}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => loadLibraryAssets(mediaType)}
+                  className="text-xs px-2 py-1 bg-slate-700 rounded text-slate-200 hover:bg-slate-600"
+                >
+                  {isRTL ? 'بروزرسانی' : 'Refresh'}
+                </button>
+              </div>
+
+              <input
+                type="text"
+                value={assetSearchQuery}
+                onChange={(e) => setAssetSearchQuery(e.target.value)}
+                placeholder={isRTL ? 'جستجو نام فایل...' : 'Search file name...'}
+                className="w-full mb-2 bg-slate-800 border border-slate-600 rounded px-2 py-1.5 text-sm text-white"
+              />
+
+              {isLoadingLibrary ? (
+                <p className="text-xs text-slate-400">{isRTL ? 'در حال دریافت فایل‌ها...' : 'Loading assets...'}</p>
+              ) : (
+                <div className="max-h-44 overflow-y-auto space-y-1 pr-1">
+                  {filteredLibraryAssets.filter(a => mediaType === 'audio' ? a.type === 'audio' : a.type === mediaType).slice(0, 40).map((asset) => (
+                    <button
+                      key={`${asset.source}-${asset.path}`}
+                      type="button"
+                      onClick={() => {
+                        setMediaUrl(asset.url);
+                        if (asset.type === 'image' || asset.type === 'video' || asset.type === 'audio') {
+                          setMediaType(asset.type);
+                        }
+                      }}
+                      className="w-full text-left px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 flex items-center justify-between gap-2"
+                    >
+                      <span className="truncate">{asset.name}</span>
+                      <span className="text-[10px] text-slate-400">{asset.source}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Preview */}
@@ -1527,6 +1682,43 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </div>
             </div>
 
+            {(genericBackgroundType === 'image' || genericBackgroundType === 'video') && (
+              <div className="mb-4 bg-slate-900/70 border border-slate-700 rounded-lg p-3">
+                <p className={`text-xs text-slate-300 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'انتخاب پس‌زمینه از فولدرهای موجود' : 'Choose background from existing folders'}
+                </p>
+
+                <input
+                  type="file"
+                  accept={genericBackgroundType === 'image' ? 'image/*' : 'video/*'}
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const uploadedUrl = await uploadAssetFile(file, { target: 'uploads', folder: 'broadcast/backgrounds' });
+                    if (uploadedUrl) {
+                      setGenericBackgroundValue(uploadedUrl);
+                      loadLibraryAssets(genericBackgroundType);
+                    }
+                  }}
+                  className="w-full mb-2 text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-slate-700 file:text-white"
+                />
+
+                <div className="max-h-40 overflow-y-auto space-y-1 pr-1">
+                  {filteredLibraryAssets.filter(a => a.type === genericBackgroundType).slice(0, 30).map((asset) => (
+                    <button
+                      key={`generic-${asset.source}-${asset.path}`}
+                      type="button"
+                      onClick={() => setGenericBackgroundValue(asset.url)}
+                      className="w-full text-left px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 flex items-center justify-between"
+                    >
+                      <span className="truncate">{asset.name}</span>
+                      <span className="text-[10px] text-slate-400">{asset.source}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                 {isRTL ? 'فونت اسلاید' : 'Slide Font'}
@@ -1770,6 +1962,49 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 />
               </div>
             </div>
+
+            {(liveDataBackgroundType === 'image' || liveDataBackgroundType === 'video') && (
+              <div className="mb-4 bg-slate-900/70 border border-slate-700 rounded-lg p-3">
+                <p className={`text-xs text-slate-300 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'انتخاب پس‌زمینه از فولدرهای عکس/ویدیو' : 'Choose background from existing media folders'}
+                </p>
+
+                <input
+                  type="file"
+                  accept={liveDataBackgroundType === 'image' ? 'image/*' : 'video/*'}
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const uploadedUrl = await uploadAssetFile(file, { target: 'uploads', folder: 'broadcast/backgrounds' });
+                    if (uploadedUrl) {
+                      setLiveDataBackgroundValue(uploadedUrl);
+                      loadLibraryAssets(liveDataBackgroundType);
+                    }
+                  }}
+                  className="w-full mb-2 text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-slate-700 file:text-white"
+                />
+
+                <div className="max-h-40 overflow-y-auto space-y-1 pr-1">
+                  {filteredLibraryAssets.filter(a => a.type === liveDataBackgroundType).slice(0, 30).map((asset) => (
+                    <button
+                      key={`live-${asset.source}-${asset.path}`}
+                      type="button"
+                      onClick={() => setLiveDataBackgroundValue(asset.url)}
+                      className="w-full text-left px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 flex items-center justify-between"
+                    >
+                      <span className="truncate">{asset.name}</span>
+                      <span className="text-[10px] text-slate-400">{asset.source}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {libraryError && (
+              <p className={`text-xs text-red-300 mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                {libraryError}
+              </p>
+            )}
 
             {/* Actions */}
             <div className="flex gap-3 justify-end">
