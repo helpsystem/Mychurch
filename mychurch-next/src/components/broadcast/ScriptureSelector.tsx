@@ -14,8 +14,16 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { ScripturePage, BibleBook } from '@/types/broadcast';
-import { BookOpen, ChevronRight, X, Plus, Eye, Trash2, Languages, Check } from 'lucide-react';
+import { BookOpen, ChevronRight, X, Plus, Eye, Trash2, Languages, Check, Loader2 } from 'lucide-react';
 import { INITIAL_BIBLE_CONTENT, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleData';
+
+interface BibleVersion {
+  version_id: number;
+  abbr: string;
+  name: string;
+  language: string;
+  hasAudio?: boolean;
+}
 
 // =============== TYPES ===============
 
@@ -140,8 +148,33 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const [verseStart, setVerseStart] = useState<number | null>(null);
   const [verseEnd, setVerseEnd] = useState<number | null>(null);
   const [verseCount, setVerseCount] = useState(31);
-  const [translation, setTranslation] = useState<'mojdeh' | 'qadim' | 'tafsiri'>('mojdeh');
-  const [enTranslation, setEnTranslation] = useState<'asv' | 'net' | 'kjv'>('asv'); 
+  const [translation, setTranslation] = useState<string>('NMV');
+  const [enTranslation, setEnTranslation] = useState<string>('BSB'); 
+
+  // Dynamic Versions State
+  const [versions, setVersions] = useState<BibleVersion[]>([]);
+  const englishVersions = versions.filter(v => v.language !== 'fa');
+  const persianVersions = versions.filter(v => v.language === 'fa');
+
+  // Load versions on mount
+  useEffect(() => {
+    fetch("/api/bible/versions")
+      .then(r => r.json())
+      .then(d => {
+        if (d.versions) {
+          setVersions(d.versions);
+          const hasNMV = d.versions.some((v: any) => v.abbr === 'NMV');
+          const hasBSB = d.versions.some((v: any) => v.abbr === 'BSB');
+          if (!hasNMV && d.versions.filter((v: any) => v.language === 'fa').length > 0) {
+             setTranslation(d.versions.find((v: any) => v.language === 'fa').abbr);
+          }
+          if (!hasBSB && d.versions.filter((v: any) => v.language !== 'fa').length > 0) {
+             setEnTranslation(d.versions.find((v: any) => v.language !== 'fa').abbr);
+          }
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   // Display Options
   const [showFa, setShowFa] = useState(true);
@@ -182,7 +215,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const otBooks = filteredBooks.filter((b: BibleBook) => otKeySet.has((b.key || '').toLowerCase()));
   const ntBooks = filteredBooks.filter((b: BibleBook) => ntKeySet.has((b.key || '').toLowerCase()));
 
-  // Fetch verses when chapter changes
+  // Fetch verses when chapter changes using the matching parallel API
   const fetchChapterData = useCallback(async () => {
     if (!selectedBook) return;
 
@@ -190,30 +223,31 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     setLoadError(null);
     try {
       const response = await fetch(
-        `/api/bible/content/${selectedBook.key}/${selectedChapter}?faTranslation=${translation}&enTranslation=${enTranslation}`
+        `/api/bible/parallel?versionEn=${enTranslation}&versionFa=${translation}&book=${selectedBook.key}&chapter=${selectedChapter}`
       );
 
       let loaded = false;
       if (response.ok) {
         const data = await response.json();
-        if (data.success && data.verses && (Array.isArray(data.verses.fa) || Array.isArray(data.verses.en))) {
-          const fa = Array.isArray(data.verses?.fa) ? data.verses.fa : [];
-          let en = Array.isArray(data.verses?.en) ? data.verses.en : [];
-
-          // If English response is empty, use local fallback so EN side is always available.
-          const enHasContent = en.some((line: string) => !!line?.trim());
-          if (!enHasContent) {
-            const localChapter = INITIAL_BIBLE_CONTENT?.[selectedBook.key]?.[String(selectedChapter)];
-            if (localChapter?.en && Array.isArray(localChapter.en)) {
-              en = localChapter.en;
-            }
-          }
+        if (data.parallel && Array.isArray(data.parallel)) {
+          // data.parallel is an array of ParallelVerse: { verse_num, en, fa }
+          const maxVerse = data.parallel.reduce((max: number, v: any) => Math.max(max, v.verse_num), 0);
+          
+          const faArray = new Array(maxVerse).fill('');
+          const enArray = new Array(maxVerse).fill('');
+          
+          data.parallel.forEach((v: any) => {
+             if (v.verse_num > 0) {
+                 if (v.fa) faArray[v.verse_num - 1] = v.fa;
+                 if (v.en) enArray[v.verse_num - 1] = v.en;
+             }
+          });
 
           setVersesData({
-            fa,
-            en,
+            fa: faArray,
+            en: enArray,
           });
-          setVerseCount(Math.max(fa.length, en.length, 1));
+          setVerseCount(Math.max(faArray.length, enArray.length, 1));
           loaded = true;
         }
       }
@@ -638,12 +672,17 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     <span className="text-slate-400 text-sm">🇮🇷 {t.translation}:</span>
                     <select
                       value={translation}
-                      onChange={(e) => setTranslation(e.target.value as any)}
-                      className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm"
+                      onChange={(e) => setTranslation(e.target.value)}
+                      className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm font-[Vazirmatn] w-36 truncate"
+                      dir="rtl"
                     >
-                      <option value="mojdeh">{t.mojdeh}</option>
-                      <option value="qadim">{t.qadim}</option>
-                      <option value="tafsiri">{t.tafsiri}</option>
+                      {persianVersions.length === 0 ? (
+                        <option value="NMV">هزارۀ نو</option>
+                      ) : (
+                        persianVersions.map(v => (
+                           <option key={v.abbr} value={v.abbr}>{v.name}</option>
+                        ))
+                      )}
                     </select>
                   </div>
 
@@ -651,12 +690,16 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     <span className="text-slate-400 text-sm">🇺🇸 {t.enTranslation}:</span>
                     <select
                       value={enTranslation}
-                      onChange={(e) => setEnTranslation(e.target.value as any)}
-                      className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm"
+                      onChange={(e) => setEnTranslation(e.target.value)}
+                      className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm w-28 truncate"
                     >
-                      <option value="asv">{t.asv}</option>
-                      <option value="net">{t.net}</option>
-                      <option value="kjv">{t.kjv}</option>
+                      {englishVersions.length === 0 ? (
+                        <option value="BSB">BSB</option>
+                      ) : (
+                        englishVersions.map(v => (
+                           <option key={v.abbr} value={v.abbr}>{v.abbr}</option>
+                        ))
+                      )}
                     </select>
                   </div>
 
