@@ -18,7 +18,7 @@ interface SlideRendererProps {
     internalPageIndex?: number;
 }
 
-export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, previewMode = 'fit', internalPageIndex = 0 }: SlideRendererProps) {
+export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, internalPageIndex = 0 }: SlideRendererProps) {
     const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
     const safeZoom = Number.isFinite(previewZoom) ? Math.max(0.25, Math.min(previewZoom, 3)) : 1;
 
