@@ -157,7 +157,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 if (page.displayMode === 'referenceList' && references.length > 0) {
                     const useWavyPaper = page.glassPopupEnabled === true;
                     return (
-                        <div className={`w-full h-full p-10 relative overflow-hidden ${useWavyPaper ? 'bg-[#fffef0]' : 'bg-slate-950'}`}>
+                        <div className={`w-full h-full p-6 md:p-8 lg:p-10 relative overflow-hidden ${useWavyPaper ? 'bg-[#fffef0]' : 'bg-slate-950'}`}>
                             {useWavyPaper ? (
                                 <>
                                     <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
@@ -172,33 +172,33 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.2),_rgba(2,6,23,0.9))] -z-10" />
                             )}
 
-                            <div className={`h-full rounded-3xl p-8 flex flex-col gap-5 ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`} style={useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined}>
+                            <div className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`} style={useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined}>
                                 <div className="flex items-center justify-between">
-                                    <h2 className={`text-3xl font-black font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>فهرست آیات انتخابی</h2>
-                                    <span className={`text-xs px-3 py-1 rounded-full ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`}>
+                                    <h2 className={`text-2xl md:text-3xl font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>فهرست آیات انتخابی</h2>
+                                    <span className={`text-[10px] md:text-xs px-2.5 py-1 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`}>
                                         {references.length} Reference{references.length > 1 ? 's' : ''}
                                     </span>
                                 </div>
 
-                                <div className={`grid grid-cols-12 text-xs pb-2 px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`}>
+                                <div className={`grid grid-cols-12 text-[10px] md:text-xs pb-2 px-1 md:px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`}>
                                     <div className="col-span-6 text-right font-[Vazirmatn]">فارسی</div>
                                     <div className="col-span-6 text-left">English</div>
                                 </div>
 
-                                <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+                                <div className="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1">
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
                                             onClick={() => setActiveReference(ref)}
-                                            className={`w-full grid grid-cols-12 items-center rounded-xl transition px-3 py-3 ${useWavyPaper ? 'border border-[#8a4d0f]/30 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40'}`}
+                                            className={`w-full grid grid-cols-12 items-center rounded-xl transition px-2.5 py-2.5 md:px-3 md:py-3 ${useWavyPaper ? 'border border-[#8a4d0f]/30 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40'}`}
                                         >
                                             <div className="col-span-6 text-right">
-                                                <p className={`font-bold ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
+                                                <p className={`font-bold text-sm md:text-base lg:text-lg leading-snug break-words ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
                                                     {idx + 1}. {ref.bookName.fa} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
                                             <div className="col-span-6 text-left">
-                                                <p className={`font-semibold ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
+                                                <p className={`font-semibold text-sm md:text-base lg:text-lg leading-snug break-words ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
                                                     {idx + 1}. {ref.bookName.en} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
