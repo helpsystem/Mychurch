@@ -8,6 +8,76 @@ import { requireRole } from "@/utils/rbac";
 // Fallback in-memory storage for offline testing
 let mockPresentations: BroadcastSession[] = [];
 
+async function ensurePresentationsSchema(): Promise<void> {
+    // Keep compatibility with older schema versions (session_date/slides)
+    // while supporting the newer fields (date/slides_json/host_name/status).
+    await query(`
+        CREATE TABLE IF NOT EXISTS presentations (
+            id VARCHAR(255) PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            date TIMESTAMP WITH TIME ZONE,
+            host_name VARCHAR(255),
+            slides_json JSONB NOT NULL DEFAULT '[]',
+            status VARCHAR(50) NOT NULL DEFAULT 'draft',
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+        );
+    `);
+
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS date TIMESTAMP WITH TIME ZONE;`);
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS host_name VARCHAR(255);`);
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS slides_json JSONB DEFAULT '[]'::jsonb;`);
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'draft';`);
+
+    // Backfill from legacy columns if they exist.
+    await query(`
+        UPDATE presentations
+        SET date = COALESCE(date, created_at, NOW())
+        WHERE date IS NULL;
+    `);
+
+    await query(`
+        DO $$
+        BEGIN
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.columns
+                WHERE table_name = 'presentations' AND column_name = 'session_date'
+            ) THEN
+                UPDATE presentations
+                SET date = COALESCE(date, session_date::timestamptz, created_at, NOW())
+                WHERE date IS NULL;
+            END IF;
+
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.columns
+                WHERE table_name = 'presentations' AND column_name = 'slides'
+            ) THEN
+                UPDATE presentations
+                SET slides_json = COALESCE(slides_json, slides, '[]'::jsonb)
+                WHERE slides_json IS NULL OR slides_json = 'null'::jsonb;
+            END IF;
+        END
+        $$;
+    `);
+
+    await query(`UPDATE presentations SET status = COALESCE(NULLIF(status, ''), 'draft');`);
+}
+
+function rowToSession(row: any): BroadcastSession {
+    const rawDate = row.date ?? row.session_date ?? row.created_at ?? new Date().toISOString();
+    const rawSlides = row.slides_json ?? row.slides ?? [];
+
+    return {
+        id: row.id,
+        title: row.title,
+        date: new Date(rawDate),
+        hostName: row.host_name,
+        slides: Array.isArray(rawSlides) ? rawSlides : [],
+        status: (row.status || 'draft') as BroadcastSession['status'],
+    };
+}
+
 function normalizeSession(input: BroadcastSession): BroadcastSession {
     const normalizedDate = input.date instanceof Date ? input.date : new Date(input.date);
     const safeStatus = ['draft', 'ready', 'live', 'ended'].includes(input.status)
@@ -28,29 +98,15 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
     await requireRole(["Admin", "Leader", "Operator"]);
 
     try {
-        // Ensure table exists on first run
-        await query(`
-            CREATE TABLE IF NOT EXISTS presentations (
-                id VARCHAR(255) PRIMARY KEY,
-                title VARCHAR(255) NOT NULL,
-                date TIMESTAMP WITH TIME ZONE NOT NULL,
-                host_name VARCHAR(255),
-                slides_json JSONB NOT NULL DEFAULT '[]',
-                status VARCHAR(50) NOT NULL DEFAULT 'draft',
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-            );
-        `);
+        await ensurePresentationsSchema();
 
-        const { rows } = await query('SELECT * FROM presentations ORDER BY date DESC, created_at DESC');
+        const { rows } = await query(`
+            SELECT *
+            FROM presentations
+            ORDER BY COALESCE(date, created_at, NOW()) DESC, created_at DESC
+        `);
         
-        return rows.map(row => ({
-            id: row.id,
-            title: row.title,
-            date: new Date(row.date),
-            hostName: row.host_name,
-            slides: row.slides_json,
-            status: row.status as any,
-        }));
+        return rows.map(rowToSession);
     } catch (error) {
         console.error('[Action] Database unreachable, falling back to mock presentations.');
         return [...mockPresentations].sort((a, b) => b.date.getTime() - a.date.getTime());
@@ -61,30 +117,12 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
     await requireRole(["Admin", "Leader", "Operator"]);
 
     try {
-        await query(`
-            CREATE TABLE IF NOT EXISTS presentations (
-                id VARCHAR(255) PRIMARY KEY,
-                title VARCHAR(255) NOT NULL,
-                date TIMESTAMP WITH TIME ZONE NOT NULL,
-                host_name VARCHAR(255),
-                slides_json JSONB NOT NULL DEFAULT '[]',
-                status VARCHAR(50) NOT NULL DEFAULT 'draft',
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-            );
-        `);
+        await ensurePresentationsSchema();
 
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
         
-        const row = rows[0];
-        return {
-            id: row.id,
-            title: row.title,
-            date: new Date(row.date),
-            hostName: row.host_name,
-            slides: row.slides_json,
-            status: row.status as any,
-        };
+        return rowToSession(rows[0]);
     } catch (error) {
         console.error('[Action] Database unreachable, fallback to mock fetch.');
         return mockPresentations.find(p => p.id === id) || null;
@@ -100,17 +138,7 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
     }
 
     try {
-        await query(`
-            CREATE TABLE IF NOT EXISTS presentations (
-                id VARCHAR(255) PRIMARY KEY,
-                title VARCHAR(255) NOT NULL,
-                date TIMESTAMP WITH TIME ZONE NOT NULL,
-                host_name VARCHAR(255),
-                slides_json JSONB NOT NULL DEFAULT '[]',
-                status VARCHAR(50) NOT NULL DEFAULT 'draft',
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-            );
-        `);
+        await ensurePresentationsSchema();
 
         await query(`
             INSERT INTO presentations (id, title, date, host_name, slides_json, status, created_at)

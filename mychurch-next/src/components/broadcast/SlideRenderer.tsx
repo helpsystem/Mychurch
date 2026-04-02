@@ -401,7 +401,9 @@ export function SlideRenderer({ slide, className, isRemotePreview = false }: Sli
                         height: '1080px',
                         left: '50%',
                         top: '50%',
-                        transform: `translate(-50%, -50%) scale(min(100cqw / 1920, 100cqh / 1080))`
+                        // Use valid CSS math so browsers keep transform and scale correctly.
+                        transform: 'translate(-50%, -50%) scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)))',
+                        transformOrigin: 'center center'
                     }}
                 >
                     <div className="w-[1920px] h-[1080px] bg-black overflow-hidden relative shadow-2xl">

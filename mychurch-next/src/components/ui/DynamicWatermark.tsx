@@ -78,17 +78,20 @@ export function DynamicWatermark({
         };
     }, []);
 
-    // Prevent rendering until we know the actual config to avoid flickers
-    if (!isLoaded) return null;
-
+    // Always render a container to prevent hydration mismatch
+    // Use WatermarkLogo only when config is loaded to avoid flickers
     return (
-        <WatermarkLogo
-            size={config?.size || defaultSize}
-            position={config?.position || defaultPosition}
-            opacity={config?.opacity || defaultOpacity}
-            imageUrl={config?.imageUrl}
-            customOffsets={config?.customOffsets || defaultCustomOffsets}
-            className={className}
-        />
+        <>
+            {isLoaded && (
+                <WatermarkLogo
+                    size={config?.size || defaultSize}
+                    position={config?.position || defaultPosition}
+                    opacity={config?.opacity || defaultOpacity}
+                    imageUrl={config?.imageUrl}
+                    customOffsets={config?.customOffsets || defaultCustomOffsets}
+                    className={className}
+                />
+            )}
+        </>
     );
 }

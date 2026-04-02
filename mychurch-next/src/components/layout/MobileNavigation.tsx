@@ -49,17 +49,6 @@ export function MobileNavigation() {
     };
   }, [isMenuOpen]);
 
-  // Hide on admin or broadcast fullscreen routes, or if a modal is open
-  if (
-    pathname?.startsWith("/admin") ||
-    pathname?.startsWith("/broadcast") ||
-    pathname === "/login" ||
-    pathname === "/signup" ||
-    isModalOpen
-  ) {
-    return null;
-  }
-
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -70,6 +59,17 @@ export function MobileNavigation() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  // Hide on admin or broadcast fullscreen routes, or if a modal is open
+  if (
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/broadcast") ||
+    pathname === "/login" ||
+    pathname === "/signup" ||
+    isModalOpen
+  ) {
+    return null;
+  }
 
   const navItems = [
     { label: t?.home || "خانه", path: "/", icon: Home },
