@@ -194,22 +194,18 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.2),_rgba(2,6,23,0.9))] -z-10" />
                             )}
 
-                                                        <div
-                                                            className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
-                                                            style={{
-                                                                ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined),
-                                                                transform: `scale(${slideZoom})`,
-                                                                transformOrigin: 'center center'
-                                                            }}
-                                                        >
-                                <div className="flex items-center justify-between">
-                                    <h2 className={`text-2xl md:text-3xl font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>فهرست آیات انتخابی</h2>
-                                    <span className={`text-[10px] md:text-xs px-2.5 py-1 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`}>
+                            <div
+                                className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
+                                style={{ ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined) }}
+                            >
+                                <div className="flex items-center justify-between" style={{ fontSize: `${1.4 * slideZoom}rem` }}>
+                                    <h2 className={`font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                    <span className={`px-2.5 py-1 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`} style={{ fontSize: `${0.75 * slideZoom}rem` }}>
                                         {references.length} Reference{references.length > 1 ? 's' : ''}
                                     </span>
                                 </div>
 
-                                <div className={`grid grid-cols-12 text-[10px] md:text-xs pb-2 px-1 md:px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`}>
+                                <div className={`grid grid-cols-12 pb-2 px-1 md:px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`} style={{ fontSize: `${0.8 * slideZoom}rem` }}>
                                     <div className="col-span-6 text-right font-[Vazirmatn]">فارسی</div>
                                     <div className="col-span-6 text-left">English</div>
                                 </div>
@@ -222,12 +218,12 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                             className={`w-full grid grid-cols-12 items-center rounded-xl transition px-2.5 py-2.5 md:px-3 md:py-3 ${useWavyPaper ? 'border border-[#8a4d0f]/30 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40'}`}
                                         >
                                             <div className="col-span-6 text-right">
-                                                <p className={`font-bold text-sm md:text-base lg:text-lg leading-snug break-words ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
+                                                <p className={`font-bold leading-snug break-words ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontSize: `${1.3 * slideZoom}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
                                                     {idx + 1}. {ref.bookName.fa} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
                                             <div className="col-span-6 text-left">
-                                                <p className={`font-semibold text-sm md:text-base lg:text-lg leading-snug break-words ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
+                                                <p className={`font-semibold leading-snug break-words ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontSize: `${1.1 * slideZoom}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
                                                     {idx + 1}. {ref.bookName.en} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
@@ -290,23 +286,23 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         
                         {/* Reference Badge */}
                         <div className="absolute top-12 left-12 bg-amber-500/20 border border-amber-500/30 px-6 py-2 rounded-full backdrop-blur-md">
-                            <span className="text-amber-400 font-bold text-2xl font-[Vazirmatn]">{page.bookName.fa} {page.chapter}:{page.verses}</span>
+                            <span className="font-bold font-[Vazirmatn]" style={{ fontSize: `${1.5 * slideZoom}rem`, color: 'rgb(251 191 36)' }}>{page.bookName.fa} {page.chapter}:{page.verses}</span>
                         </div>
                         
-                        <div className="max-w-6xl w-full text-center space-y-12">
+                        <div className="max-w-6xl w-full text-center space-y-10">
                             <p
-                                className="text-5xl md:text-7xl leading-snug font-bold text-white"
+                                className="leading-snug font-bold text-white"
                                 dir="rtl"
-                                style={{ textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}
+                                style={{ fontSize: `${3.5 * slideZoom}rem`, textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}
                             >
                                 {page.textPrimary.join(" ")}
                             </p>
                             
                             {page.textSecondary && page.textSecondary.length > 0 && (
                                 <p
-                                    className="text-3xl md:text-5xl leading-relaxed text-amber-200/80 italic"
+                                    className="leading-relaxed text-amber-200/80 italic"
                                     dir="ltr"
-                                    style={{ fontFamily: page.fontEn || "var(--font-inter)" }}
+                                    style={{ fontSize: `${2 * slideZoom}rem`, fontFamily: page.fontEn || "var(--font-inter)" }}
                                 >
                                     {page.textSecondary.join(" ")}
                                 </p>
