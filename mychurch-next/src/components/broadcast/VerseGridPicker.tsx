@@ -270,20 +270,34 @@ const VerseGridPicker: React.FC<VerseGridPickerProps> = ({
                                 className="w-full bg-slate-800 text-white p-3 rounded-lg mb-4 focus:ring-2 focus:ring-indigo-500"
                             />
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[50vh] overflow-y-auto">
-                                {filteredBooks.map(book => (
-                                    <button
-                                        key={book.key}
-                                        onClick={() => handleBookSelect(book)}
-                                        className="bg-slate-800 hover:bg-indigo-600 p-3 rounded-lg text-left transition-colors"
-                                    >
-                                        <div className="text-white font-medium">
-                                            {isRTL ? book.name.fa : book.name.en}
-                                        </div>
-                                        <div className="text-slate-400 text-xs">
-                                            {book.chapters} {t.chapters}
-                                        </div>
-                                    </button>
-                                ))}
+                                {filteredBooks.map((book, idx) => {
+                                    // Old Testament = first 39 books, New Testament = last 27
+                                    const isNT = idx >= 39;
+                                    return (
+                                        <button
+                                            key={book.key}
+                                            onClick={() => handleBookSelect(book)}
+                                            className={`p-3 rounded-lg text-right transition-all border ${isNT
+                                                ? 'bg-emerald-950/40 border-emerald-800/30 hover:bg-emerald-700/60 hover:border-emerald-500/60'
+                                                : 'bg-amber-950/30 border-amber-800/20 hover:bg-amber-700/50 hover:border-amber-500/50'
+                                            }`}
+                                            dir="rtl"
+                                        >
+                                            {/* Farsi name — primary */}
+                                            <div className="text-white font-bold text-sm leading-tight font-[Vazirmatn]">
+                                                {book.name.fa}
+                                            </div>
+                                            {/* English name — secondary */}
+                                            <div className="text-slate-400 text-xs mt-0.5 text-left" dir="ltr">
+                                                {book.name.en}
+                                            </div>
+                                            {/* Chapter count */}
+                                            <div className={`text-xs mt-1 font-[Vazirmatn] ${isNT ? 'text-emerald-400' : 'text-amber-400'}`}>
+                                                {book.chapters} {t.chapters}
+                                            </div>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </>
                     )}
