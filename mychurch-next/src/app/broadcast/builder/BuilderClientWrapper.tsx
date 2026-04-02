@@ -2,19 +2,21 @@
 
 import React, { useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
-import { BroadcastSession, AppLanguage } from "@/types/broadcast";
+import { BroadcastSession, AppLanguage, Slide } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
-import { ArrowRight, CalendarDays, Loader2, Save } from "lucide-react";
+import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, Download } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 import { useRouter } from "next/navigation";
+import TemplateManager from "@/components/broadcast/TemplateManager";
 
 export default function BuilderClientWrapper({ initialSession }: { initialSession: BroadcastSession }) {
     const [session, setSession] = useState<BroadcastSession>(initialSession);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [isPending, startTransition] = useTransition();
+    const [templateModalOpen, setTemplateModalOpen] = useState(false);
     const { t, language } = useLanguage();
     const router = useRouter();
 
@@ -141,6 +143,16 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                     {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                     {t.cloudSave || 'Cloud Save'}
                 </button>
+
+                <div className="flex items-center gap-2 ml-4">
+                    <button 
+                        onClick={() => setTemplateModalOpen(true)}
+                        className="flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-amber-500/20"
+                    >
+                        <BookOpen className="w-4 h-4" />
+                        {language === 'fa' ? '💾 نمونه' : '💾 Templates'}
+                    </button>
+                </div>
             </div>
 
             <div className="h-10 bg-slate-900/70 border-b border-slate-800 px-6 flex items-center text-xs text-slate-300">
@@ -183,6 +195,24 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                      </div>
                 </div>
             </div>
+
+            {/* Template Manager Modal */}
+            <TemplateManager
+                isOpen={templateModalOpen}
+                onClose={() => setTemplateModalOpen(false)}
+                onLoadTemplate={(slides: Slide[]) => {
+                    setSession({...session, slides});
+                    setActiveSlideIndex(0);
+                    setTemplateModalOpen(false);
+                    toast.success(language === 'fa' ? 'نمونه بارگذاری شد' : 'Template loaded');
+                }}
+                onSaveTemplate={() => {
+                    toast.success(language === 'fa' ? 'نمونه ذخیره شد' : 'Template saved');
+                    setTemplateModalOpen(false);
+                }}
+                currentSlides={session.slides}
+                isRTL={language === 'fa'}
+            />
         </div>
     );
 }

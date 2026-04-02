@@ -279,6 +279,35 @@ export interface BroadcastOverlayConfig {
     drawingBrushSize?: number;
 }
 
+// ─── Template/Sample System ──────────────────────────────────────────────────
+export interface SlideTemplate {
+    id: string;
+    name: { fa: string; en: string; };
+    description?: { fa: string; en: string; };
+    slideType: SlideType;
+    content: SlideContent;
+    thumbnail?: string;
+    tags?: string[];
+    category?: 'scripture' | 'lyrics' | 'media' | 'announcement' | 'design' | 'chart' | 'meeting';
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface SessionTemplate {
+    id: string;
+    name: { fa: string; en: string; };
+    description?: { fa: string; en: string; };
+    slides: Slide[];
+    thumbnail?: string;
+    tags?: string[];
+    category?: 'worship' | 'sermon' | 'prayer' | 'announcement' | 'event' | 'custom';
+    slideCount: number;
+    isPublic: boolean;
+    isFavorite: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 // ─── Preset System ───────────────────────────────────────────────────────
 export type ScripturePreset = {
     id: string;
