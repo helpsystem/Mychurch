@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2 } from "lucide-react";
+import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play } from "lucide-react";
 import { toast } from "sonner";
 import { BroadcastSession } from "@/types/broadcast";
 import { deletePresentation, savePresentation } from "@/actions/presentations";
@@ -13,6 +13,7 @@ export default function PresentationsClient({ initialPresentations }: { initialP
     const [searchTerm, setSearchTerm] = useState("");
     const [presentations, setPresentations] = useState<BroadcastSession[]>(initialPresentations);
     const [sharingId, setSharingId] = useState<string | null>(null);
+    const [viewingId, setViewingId] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
     const { t, language } = useLanguage();
@@ -109,6 +110,26 @@ export default function PresentationsClient({ initialPresentations }: { initialP
         }
     };
 
+    const handleOpenViewer = async (sessionId: string) => {
+        setViewingId(sessionId);
+        try {
+            const tokenRes = await fetch('/api/broadcast/viewer-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId }),
+            });
+            const tokenData = await tokenRes.json();
+            if (!tokenRes.ok || !tokenData?.token) {
+                throw new Error(tokenData?.error || 'token_failed');
+            }
+            router.push(`/broadcast/view?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(tokenData.token)}`);
+        } catch (error: any) {
+            toast.error(language === 'fa' ? 'خطا در باز کردن پرزنتر' : 'Failed to open presenter');
+        } finally {
+            setViewingId(null);
+        }
+    };
+
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -175,29 +196,40 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between p-4 bg-black/40 border-t border-white/10 relative z-10 group-hover:bg-indigo-950/20 transition-colors">
-                             <div className="flex items-center gap-2">
-                                <Link href={`/broadcast/builder?id=${pres.id}`} title={t.openInPresenter} className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors shadow-lg">
-                                    <MonitorPlay className="w-4 h-4" />
-                                </Link>
-                                <button
-                                    onClick={() => handleCopyShareLink(pres.id)}
-                                    title={language === 'fa' ? 'اشتراک‌گذاری Viewer' : 'Share Viewer'}
-                                    className="p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors shadow-lg disabled:opacity-60"
-                                    disabled={sharingId === pres.id}
-                                >
-                                    {sharingId === pres.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Share2 className="w-4 h-4" />}
-                                </button>
+                         <div className="flex items-center justify-between p-4 bg-black/40 border-t border-white/10 relative z-10 group-hover:bg-indigo-950/20 transition-colors">
+                              <div className="flex items-center gap-2">
+                                  {/* 🎬 پخش / Viewer — opens /broadcast/view */}
+                                  <button
+                                      onClick={() => handleOpenViewer(pres.id)}
+                                      title={language === 'fa' ? '▶ باز کردن پرزنتر (حالت پخش)' : '▶ Open Presenter (View mode)'}
+                                      disabled={viewingId === pres.id}
+                                      className="flex items-center gap-1.5 px-3 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-500 transition-colors shadow-lg text-xs font-bold disabled:opacity-60"
+                                  >
+                                      {viewingId === pres.id
+                                          ? <Loader2 className="w-4 h-4 animate-spin" />
+                                          : <Play className="w-4 h-4 fill-white" />}
+                                      {language === 'fa' ? 'پخش' : 'View'}
+                                  </button>
+                                  {/* 📤 Share link */}
+                                 <button
+                                     onClick={() => handleCopyShareLink(pres.id)}
+                                     title={language === 'fa' ? 'اشتراک‌گذاری Viewer' : 'Share Viewer'}
+                                     className="p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors shadow-lg disabled:opacity-60"
+                                     disabled={sharingId === pres.id}
+                                 >
+                                     {sharingId === pres.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Share2 className="w-4 h-4" />}
+                                 </button>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                 {/* ✏️ ویرایش — goes to /broadcast/builder */}
+                                 <Link href={`/broadcast/builder?id=${pres.id}`} title={language === 'fa' ? 'ویرایش اسلایدها' : 'Edit slides'} className="p-2 text-muted-foreground hover:text-white transition-colors">
+                                     <Edit2 className="w-4 h-4" />
+                                 </Link>
+                                 <button title={t.delete} onClick={() => handleDelete(pres.id)} disabled={isPending} className="p-2 text-muted-foreground hover:text-red-500 transition-colors disabled:opacity-50">
+                                     <Trash2 className="w-4 h-4" />
+                                 </button>
                              </div>
-                             <div className="flex items-center gap-2">
-                                <Link href={`/broadcast/builder?id=${pres.id}`} title={t.editOutput} className="p-2 text-muted-foreground hover:text-white transition-colors">
-                                    <Edit2 className="w-4 h-4" />
-                                </Link>
-                                <button title={t.delete} onClick={() => handleDelete(pres.id)} disabled={isPending} className="p-2 text-muted-foreground hover:text-red-500 transition-colors disabled:opacity-50">
-                                    <Trash2 className="w-4 h-4" />
-                                </button>
-                            </div>
-                        </div>
+                         </div>
                     </div>
                 ))}
                 
