@@ -115,21 +115,32 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             </div>
                         )}
                         
-                        <div className={`space-y-8 z-10 ${opts?.textShadow ? 'drop-shadow-2xl' : ''}`}>
+                        {/* slideZoom scales the lyrics block; overflow-hidden on parent prevents clip */}
+                        <div
+                            className={`space-y-8 z-10 w-full max-w-[90%] ${opts?.textShadow ? 'drop-shadow-2xl' : ''}`}
+                            style={{
+                                transform: `scale(${slideZoom})`,
+                                transformOrigin: 'center center',
+                            }}
+                        >
                             {content.lines.map((line, idx) => (
                                 <div key={idx} className="flex flex-col items-center justify-center gap-2">
                                     {showFa && line.text && (
-                                        <h1 className="text-5xl md:text-7xl font-bold font-[Vazirmatn] text-white leading-tight" dir="rtl">
+                                        <h1
+                                            className="text-5xl md:text-7xl font-bold font-[Vazirmatn] text-white leading-tight break-words w-full"
+                                            dir="rtl"
+                                            style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                        >
                                             {line.text}
                                         </h1>
                                     )}
                                     {showFinglish && content.finglishLines && content.finglishLines[idx] && (
-                                        <h3 className="text-2xl md:text-3xl text-yellow-300 font-medium tracking-wide">
+                                        <h3 className="text-2xl md:text-3xl text-yellow-300 font-medium tracking-wide break-words w-full">
                                             {content.finglishLines[idx]}
                                         </h3>
                                     )}
                                     {showEn && content.lyricsEnLines && content.lyricsEnLines[idx] && (
-                                        <h2 className="text-3xl md:text-5xl text-blue-200 font-serif opacity-90 mt-2">
+                                        <h2 className="text-3xl md:text-5xl text-blue-200 font-serif opacity-90 mt-2 break-words w-full">
                                             {content.lyricsEnLines[idx]}
                                         </h2>
                                     )}
@@ -175,11 +186,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
 
                                                         <div
                                                             className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
-                                                            style={{
-                                                                ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined),
-                                                                transform: `scale(${slideZoom})`,
-                                                                transformOrigin: 'center center'
-                                                            }}
+                                                            style={{ ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined) }}
                                                         >
                                 <div className="flex items-center justify-between">
                                     <h2 className={`text-2xl md:text-3xl font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>فهرست آیات انتخابی</h2>
@@ -193,7 +200,10 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                     <div className="col-span-6 text-left">English</div>
                                 </div>
 
-                                <div className="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1">
+                                <div
+                                    className="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1"
+                                    style={{ transform: `scale(${slideZoom})`, transformOrigin: 'top center' }}
+                                >
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
