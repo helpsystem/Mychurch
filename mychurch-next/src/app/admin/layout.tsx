@@ -3,24 +3,42 @@ import Link from "next/link";
 import { LayoutDashboard, Users, LayoutTemplate, Settings, Power, FileVideo, Music, UserCircle, Megaphone, Crown, Tags, MonitorPlay } from "lucide-react";
 import Image from "next/image";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
-import { requireRole, getUserPermissions } from "@/utils/rbac";
 import { logout } from "@/actions/auth";
 import { createClient } from "@/utils/supabase/server";
 import { Toaster } from "sonner";
 import AdminSidebar from "@/components/admin/AdminSidebar";
+import { redirect } from "next/navigation";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-    // 1. Enforce Role-Based Access Control
-    // Allow Admins, Leaders, and Operators to enter. The sidebar options are restricted individually.
-    const role = await requireRole(['Admin', 'Leader', 'Operator']);
-    const permissions = await getUserPermissions();
-    const isAdmin = role === 'Admin';
-
-    // 2. Get the logged-in user's info for the profile section
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        redirect('/login');
+    }
+
     const userEmail = user?.email || '';
     const initials = userEmail ? userEmail.substring(0, 2).toUpperCase() : '??';
+
+    const [roleResult, permissionsResult] = await Promise.all([
+        supabase
+            .from('users')
+            .select('role')
+            .eq('email', userEmail)
+            .single(),
+        supabase
+            .from('users')
+            .select('permissions')
+            .eq('email', userEmail)
+            .single(),
+    ]);
+
+    const role = roleResult.data?.role;
+    if (!role || !['Admin', 'Leader', 'Operator'].includes(role)) {
+        redirect('/unauthorized');
+    }
+
+    const permissions = permissionsResult.data?.permissions || {};
+    const isAdmin = role === 'Admin';
 
     return (
         <div className="dark flex h-[100dvh] w-full bg-[#09090b] text-neutral-50 font-sans selection:bg-primary/30 relative overflow-hidden">

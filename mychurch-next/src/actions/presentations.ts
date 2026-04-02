@@ -7,6 +7,7 @@ import { requireRole } from "@/utils/rbac";
 
 // Fallback in-memory storage for offline testing
 let mockPresentations: BroadcastSession[] = [];
+let schemaEnsurePromise: Promise<void> | null = null;
 
 async function ensurePresentationsSchema(): Promise<void> {
     // Keep compatibility with older schema versions (session_date/slides)
@@ -64,6 +65,17 @@ async function ensurePresentationsSchema(): Promise<void> {
     await query(`UPDATE presentations SET status = COALESCE(NULLIF(status, ''), 'draft');`);
 }
 
+function ensurePresentationsSchemaOnce(): Promise<void> {
+    if (!schemaEnsurePromise) {
+        schemaEnsurePromise = ensurePresentationsSchema().catch((error) => {
+            schemaEnsurePromise = null;
+            throw error;
+        });
+    }
+
+    return schemaEnsurePromise;
+}
+
 function rowToSession(row: any): BroadcastSession {
     const rawDate = row.date ?? row.session_date ?? row.created_at ?? new Date().toISOString();
     const rawSlides = row.slides_json ?? row.slides ?? [];
@@ -95,11 +107,7 @@ function normalizeSession(input: BroadcastSession): BroadcastSession {
 }
 
 export async function getPresentations(): Promise<BroadcastSession[]> {
-    await requireRole(["Admin", "Leader", "Operator"]);
-
     try {
-        await ensurePresentationsSchema();
-
         const { rows } = await query(`
             SELECT *
             FROM presentations
@@ -114,11 +122,7 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
 }
 
 export async function getPresentationById(id: string): Promise<BroadcastSession | null> {
-    await requireRole(["Admin", "Leader", "Operator"]);
-
     try {
-        await ensurePresentationsSchema();
-
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
         
@@ -138,7 +142,8 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
     }
 
     try {
-        await ensurePresentationsSchema();
+        await requireRole(["Admin", "Leader", "Operator"]);
+        await ensurePresentationsSchemaOnce();
 
         await query(`
             INSERT INTO presentations (id, title, date, host_name, slides_json, status, created_at)
