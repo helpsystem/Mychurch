@@ -147,6 +147,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   // Edit State
   const [editingSlideIndex, setEditingSlideIndex] = useState<number | null>(null);
 
+  // Slide Templates (persisted to localStorage)
+  type SlideTemplate = { id: string; name: string; slide: Slide };
+  const [templates, setTemplates] = useState<SlideTemplate[]>(() => {
+    try { return JSON.parse(localStorage.getItem('slideTemplates') || '[]'); } catch { return []; }
+  });
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [savingTemplateName, setSavingTemplateName] = useState('');
+  const [showSaveTemplateInput, setShowSaveTemplateInput] = useState(false);
+
   // Shared asset library state (public/images + public/media + public/uploads)
   const [libraryAssets, setLibraryAssets] = useState<LibraryAsset[]>([]);
   const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
@@ -373,6 +382,36 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   }, [setSession]);
 
   const clampZoom = (value: number) => Math.min(2, Math.max(0.5, Number(value.toFixed(2))));
+
+  // Save active slide as a template
+  const saveTemplate = useCallback((name: string) => {
+    const slide = session.slides[activeSlideIndex];
+    if (!slide) return;
+    const newTemplate: SlideTemplate = {
+      id: crypto.randomUUID(),
+      name: name.trim() || `نمونه ${templates.length + 1}`,
+      slide: { ...slide, id: crypto.randomUUID() }
+    };
+    const updated = [...templates, newTemplate];
+    setTemplates(updated);
+    localStorage.setItem('slideTemplates', JSON.stringify(updated));
+    setShowSaveTemplateInput(false);
+    setSavingTemplateName('');
+  }, [session.slides, activeSlideIndex, templates]);
+
+  // Load a template (adds a copy as a new slide)
+  const loadTemplate = useCallback((template: SlideTemplate) => {
+    const newSlide: Slide = { ...template.slide, id: crypto.randomUUID(), order: session.slides.length };
+    setSession(prev => ({ ...prev, slides: [...prev.slides, newSlide] }));
+    onSlideSelect(session.slides.length);
+  }, [session.slides.length, setSession, onSlideSelect]);
+
+  // Delete a template
+  const deleteTemplate = useCallback((id: string) => {
+    const updated = templates.filter(t => t.id !== id);
+    setTemplates(updated);
+    localStorage.setItem('slideTemplates', JSON.stringify(updated));
+  }, [templates]);
 
   // Handle Scripture Search
   const handleScriptureSearch = async () => {
@@ -902,6 +941,69 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1.15)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">115%</button>
               <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1.3)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">130%</button>
             </div>
+
+          {/* Save as Template */}
+          {showSaveTemplateInput ? (
+            <div className="flex gap-2 mt-2">
+              <input
+                autoFocus
+                type="text"
+                placeholder={isRTL ? 'نام نمونه...' : 'Template name...'}
+                value={savingTemplateName}
+                onChange={e => setSavingTemplateName(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') saveTemplate(savingTemplateName); if (e.key === 'Escape') setShowSaveTemplateInput(false); }}
+                className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white outline-none focus:border-indigo-500"
+              />
+              <button type="button" onClick={() => saveTemplate(savingTemplateName)} className="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 rounded text-white text-xs font-bold" title="ذخیره">✓</button>
+              <button type="button" onClick={() => setShowSaveTemplateInput(false)} className="px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded text-white text-xs" title="لغو">✕</button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setShowSaveTemplateInput(true)}
+              className="mt-2 w-full flex items-center justify-center gap-1.5 py-1.5 bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-600/30 rounded-lg text-emerald-400 text-xs font-bold transition"
+              title={isRTL ? 'ذخیره این اسلاید به عنوان نمونه' : 'Save slide as template'}
+            >
+              <span>💾</span>
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ذخیره به‌عنوان نمونه' : 'Save as Template'}</span>
+            </button>
+          )}
+        </div>
+        )}
+
+        {/* Saved Templates */}
+        {templates.length > 0 && (
+          <div className="mb-4 rounded-xl border border-slate-700 bg-slate-950/70 p-3">
+            <button
+              type="button"
+              onClick={() => setShowTemplates(v => !v)}
+              className="w-full flex items-center justify-between text-xs text-slate-300 font-bold"
+            >
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>📁 {isRTL ? `نمونه‌های ذخیره‌شده (${templates.length})` : `Saved Templates (${templates.length})`}</span>
+              <span>{showTemplates ? '▲' : '▼'}</span>
+            </button>
+            {showTemplates && (
+              <div className="mt-2 space-y-1 max-h-40 overflow-y-auto">
+                {templates.map(t => (
+                  <div key={t.id} className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => loadTemplate(t)}
+                      className="flex-1 text-left px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-indigo-700/30 hover:border-indigo-500/40 border border-transparent text-xs text-slate-200 transition truncate"
+                      title={isRTL ? 'اضافه کردن این نمونه' : 'Add this template'}
+                    >
+                      {t.name}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => deleteTemplate(t.id)}
+                      className="p-1 text-slate-600 hover:text-red-400 transition rounded"
+                      title={isRTL ? 'حذف نمونه' : 'Delete template'}
+                    >✕</button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
