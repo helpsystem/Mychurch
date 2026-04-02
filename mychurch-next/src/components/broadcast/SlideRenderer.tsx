@@ -101,6 +101,17 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 const showFa = opts?.showFarsiLyrics !== false;
                 const showEn = opts?.showEnglishLyrics !== false;
                 const showFinglish = opts?.showFinglish !== false;
+                const lineCount = content.lines.length;
+                // Auto-fit: base font size decreases as line count grows so all lines fit 1080px
+                // slideZoom (0.5–2.5) lets user override the auto-fit on a per-slide basis
+                const baseFontRem = lineCount <= 2 ? 4.5
+                    : lineCount <= 4 ? 3.75
+                    : lineCount <= 6 ? 3.0
+                    : lineCount <= 9 ? 2.25
+                    : 1.75;
+                const fontRem = baseFontRem * slideZoom;
+                const finglishRem = (fontRem * 0.55);
+                const englishRem = (fontRem * 0.75);
 
                 return (
                     <div className="w-full h-full flex flex-col items-center justify-center p-12 text-center relative overflow-hidden">
@@ -115,34 +126,33 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             </div>
                         )}
                         
-                        {/* slideZoom scales the lyrics block; overflow-hidden on parent prevents clip */}
-                        <div
-                            className={`space-y-8 z-10 w-full max-w-[90%] ${opts?.textShadow ? 'drop-shadow-2xl' : ''}`}
-                            style={{
-                                transform: `scale(${slideZoom})`,
-                                transformOrigin: 'center center',
-                            }}
-                        >
+                        <div className={`space-y-4 z-10 w-full max-w-[90%] ${opts?.textShadow ? 'drop-shadow-2xl' : ''}`}>
                             {content.lines.map((line, idx) => (
-                                <div key={idx} className="flex flex-col items-center justify-center gap-2">
+                                <div key={idx} className="flex flex-col items-center justify-center gap-1">
                                     {showFa && line.text && (
-                                        <h1
-                                            className="text-5xl md:text-7xl font-bold font-[Vazirmatn] text-white leading-tight break-words w-full"
+                                        <p
+                                            className="font-bold font-[Vazirmatn] text-white leading-snug w-full"
                                             dir="rtl"
-                                            style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                            style={{ fontSize: `${fontRem}rem`, wordBreak: 'break-word' }}
                                         >
                                             {line.text}
-                                        </h1>
+                                        </p>
                                     )}
                                     {showFinglish && content.finglishLines && content.finglishLines[idx] && (
-                                        <h3 className="text-2xl md:text-3xl text-yellow-300 font-medium tracking-wide break-words w-full">
+                                        <p
+                                            className="text-yellow-300 font-medium tracking-wide w-full"
+                                            style={{ fontSize: `${finglishRem}rem` }}
+                                        >
                                             {content.finglishLines[idx]}
-                                        </h3>
+                                        </p>
                                     )}
                                     {showEn && content.lyricsEnLines && content.lyricsEnLines[idx] && (
-                                        <h2 className="text-3xl md:text-5xl text-blue-200 font-serif opacity-90 mt-2 break-words w-full">
+                                        <p
+                                            className="text-blue-200 font-serif opacity-90 w-full"
+                                            style={{ fontSize: `${englishRem}rem` }}
+                                        >
                                             {content.lyricsEnLines[idx]}
-                                        </h2>
+                                        </p>
                                     )}
                                 </div>
                             ))}
@@ -186,7 +196,11 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
 
                                                         <div
                                                             className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
-                                                            style={{ ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined) }}
+                                                            style={{
+                                                                ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined),
+                                                                transform: `scale(${slideZoom})`,
+                                                                transformOrigin: 'center center'
+                                                            }}
                                                         >
                                 <div className="flex items-center justify-between">
                                     <h2 className={`text-2xl md:text-3xl font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>فهرست آیات انتخابی</h2>
@@ -200,10 +214,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                     <div className="col-span-6 text-left">English</div>
                                 </div>
 
-                                <div
-                                    className="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1"
-                                    style={{ transform: `scale(${slideZoom})`, transformOrigin: 'top center' }}
-                                >
+                                <div className="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1">
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
