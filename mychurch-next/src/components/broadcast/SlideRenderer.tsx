@@ -415,7 +415,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             className="w-full h-full"
                             style={{
                                 transform: `scale(${safeZoom})`,
-                                transformOrigin: previewMode === 'fit' ? 'center center' : 'top center'
+                                transformOrigin: 'center center'
                             }}
                         >
                             {renderContent()}
