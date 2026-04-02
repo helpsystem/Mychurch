@@ -195,37 +195,115 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             )}
 
                             <div
-                                className={`h-full min-h-0 rounded-3xl p-8 flex flex-col gap-4 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
+                                className={`h-full min-h-0 rounded-3xl flex flex-col gap-0 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
                                 style={{ ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined) }}
                             >
-                                <div className="flex items-center justify-between">
-                                    <h2 className={`font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontSize: `${3.2 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
-                                    <span className={`px-3 py-1.5 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>
-                                        {references.length} Reference{references.length > 1 ? 's' : ''}
+                                {/* Header */}
+                                <div className="shrink-0 flex items-center justify-between" style={{ padding: `${1.5 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.12 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
+                                    <h2 className={`font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                    <span style={{ fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
+                                        {references.length} آیه
                                     </span>
                                 </div>
 
-                                <div className={`grid grid-cols-12 pb-3 px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`} style={{ fontSize: `${1.8 * slideZoom}rem` }}>
-                                    <div className="col-span-6 text-right font-[Vazirmatn]">فارسی</div>
-                                    <div className="col-span-6 text-left">English</div>
+                                {/* Column Labels */}
+                                <div className="shrink-0 grid grid-cols-2" style={{ padding: `${0.8 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.08 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` }}>
+                                    {/* Farsi label — RTL */}
+                                    <div dir="rtl" className={`text-right font-[Vazirmatn] font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>فارسی</div>
+                                    {/* English label — LTR */}
+                                    <div dir="ltr" className={`text-left font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>English</div>
                                 </div>
 
-                                <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-1">
+                                {/* Reference Rows */}
+                                <div className="flex-1 min-h-0 overflow-y-auto" style={{ padding: `${0.8 * slideZoom}rem`, display: 'flex', flexDirection: 'column', gap: `${0.8 * slideZoom}rem` }}>
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
                                             onClick={() => setActiveReference(ref)}
-                                            className={`w-full grid grid-cols-12 items-center rounded-2xl transition px-4 py-4 ${useWavyPaper ? 'border border-[#8a4d0f]/30 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40'}`}
+                                            title={`${ref.bookName.fa} ${ref.chapter}:${ref.verses}`}
+                                            className={`w-full grid grid-cols-2 transition-all ${useWavyPaper ? 'border border-[#8a4d0f]/25 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/60 bg-slate-900/60 hover:bg-indigo-500/10 hover:border-indigo-500/50'}`}
+                                            style={{ borderRadius: `${1.2 * slideZoom}rem`, overflow: 'hidden' }}
                                         >
-                                            <div className="col-span-6 text-right">
-                                                <p className={`font-bold leading-snug break-words ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontSize: `${2.8 * slideZoom}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
-                                                    {idx + 1}. {ref.bookName.fa} {ref.chapter}:{ref.verses}
-                                                </p>
+                                            {/* Farsi half — RTL */}
+                                            <div
+                                                dir="rtl"
+                                                className={`flex items-center gap-0 ${useWavyPaper ? 'border-l border-[#8a4d0f]/15' : 'border-l border-slate-700/40'}`}
+                                                style={{ padding: `${1.2 * slideZoom}rem ${1.5 * slideZoom}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}
+                                            >
+                                                {/* Row badge */}
+                                                <span
+                                                    className="shrink-0 font-black text-center"
+                                                    style={{
+                                                        fontSize: `${1.8 * slideZoom}rem`,
+                                                        minWidth: `${3 * slideZoom}rem`,
+                                                        height: `${3 * slideZoom}rem`,
+                                                        lineHeight: `${3 * slideZoom}rem`,
+                                                        borderRadius: `${0.6 * slideZoom}rem`,
+                                                        marginLeft: `${1 * slideZoom}rem`,
+                                                        background: 'rgba(251,191,36,0.2)',
+                                                        color: '#fbbf24',
+                                                        border: '1px solid rgba(251,191,36,0.35)',
+                                                    }}
+                                                >{idx + 1}</span>
+                                                {/* Book name */}
+                                                <span
+                                                    className={`font-bold leading-snug ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
+                                                    style={{ fontSize: `${2.4 * slideZoom}rem`, marginLeft: `${0.5 * slideZoom}rem` }}
+                                                >{ref.bookName.fa}</span>
+                                                {/* Chapter:verse badge */}
+                                                <span
+                                                    className="shrink-0 font-black tabular-nums"
+                                                    style={{
+                                                        fontSize: `${2 * slideZoom}rem`,
+                                                        padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
+                                                        borderRadius: `${0.5 * slideZoom}rem`,
+                                                        marginRight: 'auto',
+                                                        background: useWavyPaper ? 'rgba(138,77,15,0.12)' : 'rgba(34,211,238,0.15)',
+                                                        color: useWavyPaper ? '#8a4d0f' : '#22d3ee',
+                                                        border: useWavyPaper ? '1px solid rgba(138,77,15,0.25)' : '1px solid rgba(34,211,238,0.3)',
+                                                    }}
+                                                >{ref.chapter}:{ref.verses}</span>
                                             </div>
-                                            <div className="col-span-6 text-left">
-                                                <p className={`font-semibold leading-snug break-words ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontSize: `${2.2 * slideZoom}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
-                                                    {idx + 1}. {ref.bookName.en} {ref.chapter}:{ref.verses}
-                                                </p>
+
+                                            {/* English half — LTR */}
+                                            <div
+                                                dir="ltr"
+                                                className="flex items-center"
+                                                style={{ padding: `${1.2 * slideZoom}rem ${1.5 * slideZoom}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}
+                                            >
+                                                {/* Row badge */}
+                                                <span
+                                                    className="shrink-0 font-black text-center"
+                                                    style={{
+                                                        fontSize: `${1.8 * slideZoom}rem`,
+                                                        minWidth: `${3 * slideZoom}rem`,
+                                                        height: `${3 * slideZoom}rem`,
+                                                        lineHeight: `${3 * slideZoom}rem`,
+                                                        borderRadius: `${0.6 * slideZoom}rem`,
+                                                        marginRight: `${1 * slideZoom}rem`,
+                                                        background: 'rgba(251,191,36,0.2)',
+                                                        color: '#fbbf24',
+                                                        border: '1px solid rgba(251,191,36,0.35)',
+                                                    }}
+                                                >{idx + 1}</span>
+                                                {/* Book name */}
+                                                <span
+                                                    className={`font-semibold leading-snug ${useWavyPaper ? 'text-[#5e4021]' : 'text-slate-200'}`}
+                                                    style={{ fontSize: `${2 * slideZoom}rem`, marginRight: `${0.5 * slideZoom}rem` }}
+                                                >{ref.bookName.en}</span>
+                                                {/* Chapter:verse badge */}
+                                                <span
+                                                    className="shrink-0 font-black tabular-nums ml-auto"
+                                                    style={{
+                                                        fontSize: `${1.8 * slideZoom}rem`,
+                                                        padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
+                                                        borderRadius: `${0.5 * slideZoom}rem`,
+                                                        marginLeft: 'auto',
+                                                        background: useWavyPaper ? 'rgba(138,77,15,0.12)' : 'rgba(34,211,238,0.15)',
+                                                        color: useWavyPaper ? '#8a4d0f' : '#22d3ee',
+                                                        border: useWavyPaper ? '1px solid rgba(138,77,15,0.25)' : '1px solid rgba(34,211,238,0.3)',
+                                                    }}
+                                                >{ref.chapter}:{ref.verses}</span>
                                             </div>
                                         </button>
                                     ))}
