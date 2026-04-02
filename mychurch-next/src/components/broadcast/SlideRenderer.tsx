@@ -195,35 +195,35 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             )}
 
                             <div
-                                className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
+                                className={`h-full min-h-0 rounded-3xl p-8 flex flex-col gap-4 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
                                 style={{ ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined) }}
                             >
-                                <div className="flex items-center justify-between" style={{ fontSize: `${1.4 * slideZoom}rem` }}>
-                                    <h2 className={`font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
-                                    <span className={`px-2.5 py-1 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`} style={{ fontSize: `${0.75 * slideZoom}rem` }}>
+                                <div className="flex items-center justify-between">
+                                    <h2 className={`font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontSize: `${3.2 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                    <span className={`px-3 py-1.5 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>
                                         {references.length} Reference{references.length > 1 ? 's' : ''}
                                     </span>
                                 </div>
 
-                                <div className={`grid grid-cols-12 pb-2 px-1 md:px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`} style={{ fontSize: `${0.8 * slideZoom}rem` }}>
+                                <div className={`grid grid-cols-12 pb-3 px-2 ${useWavyPaper ? 'text-[#5e4021] border-b border-[#8a4d0f]/30' : 'text-slate-400 border-b border-slate-700'}`} style={{ fontSize: `${1.8 * slideZoom}rem` }}>
                                     <div className="col-span-6 text-right font-[Vazirmatn]">فارسی</div>
                                     <div className="col-span-6 text-left">English</div>
                                 </div>
 
-                                <div className="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1">
+                                <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-1">
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
                                             onClick={() => setActiveReference(ref)}
-                                            className={`w-full grid grid-cols-12 items-center rounded-xl transition px-2.5 py-2.5 md:px-3 md:py-3 ${useWavyPaper ? 'border border-[#8a4d0f]/30 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40'}`}
+                                            className={`w-full grid grid-cols-12 items-center rounded-2xl transition px-4 py-4 ${useWavyPaper ? 'border border-[#8a4d0f]/30 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/80 bg-slate-900/50 hover:bg-indigo-500/10 hover:border-indigo-500/40'}`}
                                         >
                                             <div className="col-span-6 text-right">
-                                                <p className={`font-bold leading-snug break-words ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontSize: `${1.3 * slideZoom}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
+                                                <p className={`font-bold leading-snug break-words ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`} style={{ fontSize: `${2.8 * slideZoom}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
                                                     {idx + 1}. {ref.bookName.fa} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
                                             <div className="col-span-6 text-left">
-                                                <p className={`font-semibold leading-snug break-words ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontSize: `${1.1 * slideZoom}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
+                                                <p className={`font-semibold leading-snug break-words ${useWavyPaper ? 'text-[#5e4021]' : 'text-indigo-200'}`} style={{ fontSize: `${2.2 * slideZoom}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}>
                                                     {idx + 1}. {ref.bookName.en} {ref.chapter}:{ref.verses}
                                                 </p>
                                             </div>
