@@ -246,7 +246,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       order: session.slides.length,
       type,
       content,
-      notes: ''
+      notes: '',
+      zoom: type === SlideType.SCRIPTURE ? 1.15 : 1
     };
     setSession(prev => ({
       ...prev,
@@ -363,6 +364,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setActiveModal('NONE');
     resetForms();
   }, [setSession]);
+
+  const updateSlideZoom = useCallback((index: number, zoom: number) => {
+    setSession(prev => ({
+      ...prev,
+      slides: prev.slides.map((slide, i) => (i === index ? { ...slide, zoom } : slide))
+    }));
+  }, [setSession]);
+
+  const clampZoom = (value: number) => Math.min(2, Math.max(0.5, Number(value.toFixed(2))));
 
   // Handle Scripture Search
   const handleScriptureSearch = async () => {
@@ -867,6 +877,33 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         <h2 className={`text-lg font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
           {t.smartBuilder}
         </h2>
+
+        {session.slides[activeSlideIndex] && (
+          <div className="mb-4 rounded-xl border border-slate-700 bg-slate-950/70 p-3 space-y-2">
+            <div className="flex items-center justify-between text-xs text-slate-300">
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'زوم اسلاید فعال' : 'Active slide zoom'}</span>
+              <span className="font-mono text-indigo-300">
+                {Math.round((session.slides[activeSlideIndex].zoom || 1) * 100)}%
+              </span>
+            </div>
+            <input
+              type="range"
+              min="0.5"
+              max="2"
+              step="0.05"
+              value={session.slides[activeSlideIndex].zoom || 1}
+              onChange={(e) => updateSlideZoom(activeSlideIndex, clampZoom(parseFloat(e.target.value)))}
+              className="w-full accent-indigo-500"
+              aria-label={isRTL ? 'زوم اسلاید فعال' : 'Active slide zoom'}
+            />
+            <div className="flex gap-2 text-[10px] text-slate-500">
+              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 0.85)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">85%</button>
+              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">100%</button>
+              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1.15)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">115%</button>
+              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1.3)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">130%</button>
+            </div>
+          </div>
+        )}
 
         {/* Quick Add Buttons */}
         <div className="grid grid-cols-2 gap-2">

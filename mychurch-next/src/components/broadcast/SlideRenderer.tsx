@@ -20,6 +20,7 @@ interface SlideRendererProps {
 
 export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, internalPageIndex = 0 }: SlideRendererProps) {
     const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
+    const slideZoom = Number.isFinite(slide?.zoom || 1) ? Math.max(0.5, Math.min(slide?.zoom || 1, 2.5)) : 1;
     const safeZoom = Number.isFinite(previewZoom) ? Math.max(0.25, Math.min(previewZoom, 3)) : 1;
 
     useEffect(() => {
@@ -172,7 +173,14 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.2),_rgba(2,6,23,0.9))] -z-10" />
                             )}
 
-                            <div className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`} style={useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined}>
+                                                        <div
+                                                            className={`h-full min-h-0 rounded-3xl p-5 md:p-6 flex flex-col gap-3 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
+                                                            style={{
+                                                                ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined),
+                                                                transform: `scale(${slideZoom})`,
+                                                                transformOrigin: 'center center'
+                                                            }}
+                                                        >
                                 <div className="flex items-center justify-between">
                                     <h2 className={`text-2xl md:text-3xl font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>فهرست آیات انتخابی</h2>
                                     <span className={`text-[10px] md:text-xs px-2.5 py-1 rounded-full whitespace-nowrap ${useWavyPaper ? 'bg-[#8a4d0f]/10 border border-[#8a4d0f]/30 text-[#41290e]' : 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-200'}`}>
