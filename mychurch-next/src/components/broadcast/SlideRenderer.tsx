@@ -232,41 +232,56 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                 </div>
                             </div>
 
+
                             {activeReference && (
-                                <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-10 z-50">
-                                    <div className="w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-3xl border border-indigo-500/30 bg-slate-900 p-8">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-2xl font-black text-white font-[Vazirmatn]">
-                                                {activeReference.bookName.fa} {activeReference.chapter}:{activeReference.verses}
-                                            </h3>
+                                <div className="absolute inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center z-50" style={{ padding: `${2.5 * slideZoom}rem` }}>
+                                    <div className="w-full h-full flex flex-col rounded-3xl overflow-hidden" style={{ border: `${0.15 * slideZoom}rem solid rgba(99,102,241,0.4)`, background: 'rgba(15,23,42,0.97)' }}>
+                                        {/* Header */}
+                                        <div className="flex items-center justify-between shrink-0" style={{ padding: `${1.5 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.1 * slideZoom}rem solid rgba(99,102,241,0.2)` }}>
+                                            <div>
+                                                <h3 className="font-black text-white font-[Vazirmatn]" style={{ fontSize: `${4 * slideZoom}rem`, lineHeight: 1.2 }}>
+                                                    {activeReference.bookName.fa} {activeReference.chapter}:{activeReference.verses}
+                                                </h3>
+                                                <p className="text-indigo-300 font-semibold" style={{ fontSize: `${2.2 * slideZoom}rem`, marginTop: `${0.3 * slideZoom}rem` }}>
+                                                    {activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}
+                                                </p>
+                                            </div>
                                             <button
                                                 onClick={() => setActiveReference(null)}
-                                                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm"
+                                                title="بستن"
+                                                className="rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all"
+                                                style={{ padding: `${0.8 * slideZoom}rem ${1.6 * slideZoom}rem`, fontSize: `${2 * slideZoom}rem` }}
                                             >
-                                                بستن
+                                                ✕
                                             </button>
                                         </div>
 
-                                        <p className="text-sm text-indigo-200 mb-6">{activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}</p>
-
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div className="rounded-2xl border border-slate-700 bg-slate-950/60 p-4" dir="rtl">
-                                                <h4 className="text-emerald-300 font-bold mb-3 font-[Vazirmatn]">متن فارسی</h4>
-                                                <div className="space-y-2 text-slate-100 leading-8" style={{ fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
+                                        {/* Body — two columns */}
+                                        <div className="flex-1 min-h-0 grid grid-cols-2 overflow-hidden" style={{ gap: 0 }}>
+                                            {/* Farsi column */}
+                                            <div className="overflow-y-auto" dir="rtl" style={{ padding: `${2 * slideZoom}rem`, borderLeft: `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)`, fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
+                                                <h4 className="text-emerald-400 font-black font-[Vazirmatn] sticky top-0 bg-slate-950/90 pb-2" style={{ fontSize: `${2.4 * slideZoom}rem`, marginBottom: `${1.2 * slideZoom}rem` }}>
+                                                    متن فارسی
+                                                </h4>
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
                                                     {activeReference.textFa.map((line, i) => (
-                                                        <p key={`fa-${i}`}>
-                                                            <span className="text-amber-300 ml-2">{activeReference.verseNumbers[i] || ''}</span>
+                                                        <p key={`fa-${i}`} className="text-slate-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${2.8 * slideZoom}rem` }}>
+                                                            <span className="text-amber-400 font-black" style={{ marginLeft: `${0.6 * slideZoom}rem` }}>{activeReference.verseNumbers[i] || ''}</span>
                                                             {line}
                                                         </p>
                                                     ))}
                                                 </div>
                                             </div>
-                                            <div className="rounded-2xl border border-slate-700 bg-slate-950/60 p-4" dir="ltr">
-                                                <h4 className="text-blue-300 font-bold mb-3">English Text</h4>
-                                                <div className="space-y-2 text-slate-100 leading-8" style={{ fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}>
+
+                                            {/* English column */}
+                                            <div className="overflow-y-auto" dir="ltr" style={{ padding: `${2 * slideZoom}rem`, fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}>
+                                                <h4 className="text-blue-400 font-black sticky top-0 bg-slate-950/90 pb-2" style={{ fontSize: `${2.4 * slideZoom}rem`, marginBottom: `${1.2 * slideZoom}rem` }}>
+                                                    English Text
+                                                </h4>
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
                                                     {activeReference.textEn.map((line, i) => (
-                                                        <p key={`en-${i}`}>
-                                                            <span className="text-amber-300 mr-2">{activeReference.verseNumbers[i] || ''}</span>
+                                                        <p key={`en-${i}`} className="text-slate-200 leading-relaxed" style={{ fontSize: `${2.2 * slideZoom}rem` }}>
+                                                            <span className="text-amber-400 font-black" style={{ marginRight: `${0.6 * slideZoom}rem` }}>{activeReference.verseNumbers[i] || ''}</span>
                                                             {line}
                                                         </p>
                                                     ))}

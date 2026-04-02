@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
 import { BroadcastSession, AppLanguage, Slide } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
-import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, ZoomIn, ZoomOut, Maximize2, Minimize2 } from "lucide-react";
+import { ArrowRight, CalendarDays, Loader2, Save, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -17,8 +17,6 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [isPending, startTransition] = useTransition();
     const [templateModalOpen, setTemplateModalOpen] = useState(false);
-    const [previewZoom, setPreviewZoom] = useState(1);
-    const [previewMode, setPreviewMode] = useState<'fit' | 'fixed'>('fit');
     const { t, language } = useLanguage();
     const router = useRouter();
 
@@ -58,8 +56,6 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
         setSession({ ...session, date: base });
     };
 
-    const clampZoom = (value: number) => Math.min(2, Math.max(0.5, Number(value.toFixed(2))));
-    const zoomStep = 0.1;
 
     const handleSave = () => {
         startTransition(async () => {
@@ -177,46 +173,15 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 {/* Advanced Live Preview Hub */}
                 <div className="flex-1 bg-neutral-950 flex flex-col items-center justify-center p-8 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.1))] relative overflow-hidden">
                      <div className="absolute inset-0 bg-indigo-500/5 mix-blend-overlay pointer-events-none" />
-                     <div className="absolute top-4 right-4 z-30 flex items-center gap-2 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl px-3 py-2 shadow-2xl">
-                         <button
-                             type="button"
-                             onClick={() => setPreviewZoom((value) => clampZoom(value - zoomStep))}
-                             className="p-2 rounded-lg bg-white/5 text-white hover:bg-white/10 transition"
-                             title={language === 'fa' ? 'کوچک‌نمایی' : 'Zoom out'}
-                         >
-                             <ZoomOut className="w-4 h-4" />
-                         </button>
-                         <span className="min-w-14 text-center text-xs font-bold text-white/80 tabular-nums">
-                             {Math.round(previewZoom * 100)}%
-                         </span>
-                         <button
-                             type="button"
-                             onClick={() => setPreviewZoom((value) => clampZoom(value + zoomStep))}
-                             className="p-2 rounded-lg bg-white/5 text-white hover:bg-white/10 transition"
-                             title={language === 'fa' ? 'بزرگ‌نمایی' : 'Zoom in'}
-                         >
-                             <ZoomIn className="w-4 h-4" />
-                         </button>
-                         <div className="w-px h-6 bg-white/10 mx-1" />
-                         <button
-                             type="button"
-                             onClick={() => setPreviewMode((mode) => mode === 'fit' ? 'fixed' : 'fit')}
-                             className={`p-2 rounded-lg transition ${previewMode === 'fixed' ? 'bg-indigo-600 text-white' : 'bg-white/5 text-white hover:bg-white/10'}`}
-                             title={previewMode === 'fixed' ? (language === 'fa' ? 'حالت فیکس' : 'Fixed mode') : (language === 'fa' ? 'حالت فیت' : 'Fit mode')}
-                         >
-                             {previewMode === 'fixed' ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-                         </button>
-                     </div>
+
                      
                      {/* Preview Wrapper forces 16:9 aspect ratio - perfectly centered */}
                      <div className="relative w-screen h-screen flex items-center justify-center" style={{width: '100%', height: '100%'}}>
-                          <div className={`relative w-full aspect-video bg-black rounded-3xl border-4 border-neutral-800 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden group ${previewMode === 'fixed' ? 'max-w-[1920px]' : 'max-w-5xl'}`}>
+                          <div className="relative w-full aspect-video bg-black rounded-3xl border-4 border-neutral-800 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden group max-w-5xl">
                                {session.slides.length > 0 ? (
                                    <SlideRenderer 
                                        slide={session.slides[activeSlideIndex]} 
                                        isRemotePreview={true}
-                                       previewZoom={previewZoom}
-                                       previewMode={previewMode}
                                    />
                                ) : (
                                    <div className="text-center h-full w-full flex flex-col items-center justify-center bg-neutral-900 absolute top-0 left-0 z-10 transition-transform group-hover:scale-105">
