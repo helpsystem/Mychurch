@@ -119,8 +119,7 @@ const translations = {
 
 // =============== BIBLE BOOKS DATA ===============
 
-import { getBibleBooks } from './dataService';
-const bibleBooks = getBibleBooks();
+import { getBibleBooks, fetchBibleBooksFromDB } from './dataService';
 
 const normalizeSearchText = (value: string) =>
   (value || '')
@@ -139,6 +138,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 }) => {
   const t = translations[lang];
   const isRTL = lang === 'fa';
+  
+  const [bibleBooks, setBibleBooks] = useState<BibleBook[]>(getBibleBooks());
 
   // Selection State
   const [step, setStep] = useState<'book' | 'chapter' | 'verse'>('book');
@@ -156,8 +157,9 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const englishVersions = versions.filter(v => v.language !== 'fa');
   const persianVersions = versions.filter(v => v.language === 'fa');
 
-  // Load versions on mount
+  // Load versions and book metadata on mount
   useEffect(() => {
+    // 1. Load Versions
     fetch("/api/bible/versions")
       .then(r => r.json())
       .then(d => {
@@ -174,6 +176,13 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         }
       })
       .catch(console.error);
+
+    // 2. Load Books
+    fetchBibleBooksFromDB().then(liveBooks => {
+       if (liveBooks && liveBooks.length > 0) {
+           setBibleBooks(liveBooks);
+       }
+    }).catch(console.error);
   }, []);
 
   // Display Options
