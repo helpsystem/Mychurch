@@ -24,6 +24,7 @@ export const viewport: Viewport = {
 
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { GlobalPopupWrapper } from "@/components/widgets/GlobalPopupWrapper";
+import GlobalErrorReporter from "@/components/error/GlobalErrorReporter";
 
 export default function RootLayout({
   children,
@@ -62,6 +63,7 @@ export default function RootLayout({
       </head>
       <body className={`antialiased bg-background text-foreground`} style={{ fontFamily: 'var(--font-vazirmatn)' }}>
         <LanguageProvider>
+          <GlobalErrorReporter />
           {children}
           <MobileNavigation />
           <GlobalPopupWrapper />

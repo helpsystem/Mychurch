@@ -11,8 +11,24 @@ export default function GlobalError({
     reset: () => void;
 }) {
     useEffect(() => {
-        // Log the error to an error reporting service
         console.error("Global Error Boundary Caught:", error);
+
+        fetch("/api/admin/report-error", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            keepalive: true,
+            body: JSON.stringify({
+                message: error?.message || "Global error boundary",
+                code: "NEXT_GLOBAL_ERROR_BOUNDARY",
+                stack: error?.stack || null,
+                url: typeof window !== "undefined" ? window.location.href : null,
+                timestamp: new Date().toISOString(),
+                userAgent: typeof navigator !== "undefined" ? navigator.userAgent : null,
+                source: "app/error.tsx",
+            }),
+        }).catch(() => {
+            // Best effort only.
+        });
     }, [error]);
 
     return (
