@@ -313,8 +313,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
           
           data.parallel.forEach((v: any) => {
              if (v.verse_num > 0) {
-                 if (v.fa) faArray[v.verse_num - 1] = v.fa;
-                 if (v.en) enArray[v.verse_num - 1] = v.en;
+                 faArray[v.verse_num - 1] = v.fa || '';
+                 enArray[v.verse_num - 1] = v.en || '';
              }
           });
 
