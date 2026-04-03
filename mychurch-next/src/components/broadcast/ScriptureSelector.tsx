@@ -748,8 +748,14 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                 {/* Old Testament */}
                 {otBooks.length > 0 && (
                   <div className="mb-6">
-                    <h3 className="text-amber-400 font-bold mb-3 text-sm uppercase tracking-wide">
+                    <h3 className="text-amber-400 font-bold mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
                       {primaryLang === 'fa' ? t.oldTestament : translations.en.oldTestament}
+                      <span className="text-amber-500/50 text-xs font-normal border border-amber-500/20 px-2 py-0.5 rounded-full bg-amber-500/10">
+                         {primaryLang === 'fa' 
+                            ? persianVersions.find(v => v.abbr === translation)?.name || translation
+                            : englishVersions.find(v => v.abbr === enTranslation)?.name || enTranslation
+                         }
+                      </span>
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                       {otBooks.map((book: BibleBook) => (
@@ -774,8 +780,14 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                 {/* New Testament */}
                 {ntBooks.length > 0 && (
                   <div>
-                    <h3 className="text-emerald-400 font-bold mb-3 text-sm uppercase tracking-wide">
+                    <h3 className="text-emerald-400 font-bold mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
                       {primaryLang === 'fa' ? t.newTestament : translations.en.newTestament}
+                      <span className="text-emerald-500/50 text-xs font-normal border border-emerald-500/20 px-2 py-0.5 rounded-full bg-emerald-500/10">
+                         {primaryLang === 'fa' 
+                            ? persianVersions.find(v => v.abbr === translation)?.name || translation
+                            : englishVersions.find(v => v.abbr === enTranslation)?.name || enTranslation
+                         }
+                      </span>
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                       {ntBooks.map((book: BibleBook) => (
