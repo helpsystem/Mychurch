@@ -14,7 +14,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { ScripturePage, BibleBook } from '@/types/broadcast';
-import { BookOpen, ChevronRight, X, Plus, Eye, Trash2, Languages, Check, Loader2 } from 'lucide-react';
+import { BookOpen, ChevronRight, X, Plus, Eye, Trash2, Languages, Check, Loader2, Settings } from 'lucide-react';
 import { INITIAL_BIBLE_CONTENT, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleData';
 
 interface BibleVersion {
@@ -625,97 +625,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
           )}
         </div>
 
-        {/* Global Options Bar (Always Visible) */}
-        <div className="bg-slate-900 border-b border-slate-700 px-4 py-3 flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400 text-sm">🇮🇷 {t.translation}:</span>
-            <select
-              value={translation}
-              onChange={(e) => {
-                setTranslation(e.target.value);
-                localStorage.setItem('broadcast_verse_fa_trans', e.target.value);
-              }}
-              className="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm font-[Vazirmatn] w-36 truncate focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-              dir="rtl"
-            >
-              {persianVersions.length === 0 ? (
-                <option value="NMV">هزارۀ نو</option>
-              ) : (
-                persianVersions.map(v => (
-                   <option key={v.abbr} value={v.abbr}>{v.name}</option>
-                ))
-              )}
-            </select>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400 text-sm">🇺🇸 {t.enTranslation}:</span>
-            <select
-              value={enTranslation}
-              onChange={(e) => {
-                setEnTranslation(e.target.value);
-                localStorage.setItem('broadcast_verse_en_trans', e.target.value);
-              }}
-              className="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm w-36 truncate focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-            >
-              {englishVersions.length === 0 ? (
-                <option value="BSB">BSB</option>
-              ) : (
-                englishVersions.map(v => (
-                   <option key={v.abbr} value={v.abbr}>{v.abbr}</option>
-                ))
-              )}
-            </select>
-          </div>
-          
-          <div className="h-6 w-px bg-slate-700 mx-1 hidden md:block"></div>
-
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400 text-sm">ردیف اول (اصلی):</span>
-            <select
-              value={primaryLang}
-              onChange={(e) => {
-                const val = e.target.value as 'fa' | 'en';
-                setPrimaryLang(val);
-                localStorage.setItem('broadcast_verse_primary_lang', val);
-              }}
-              className="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-            >
-              <option value="fa">فارسی (بالا)</option>
-              <option value="en">English (Top)</option>
-            </select>
-          </div>
-          
-          <div className="flex items-center gap-2 ml-auto">
-            <span className="text-slate-400 text-sm whitespace-nowrap">فونت‌ها:</span>
-            <select
-              value={fontFa}
-              onChange={(e) => {
-                setFontFa(e.target.value);
-                localStorage.setItem('broadcast_verse_font_fa', e.target.value);
-              }}
-              className="bg-slate-800 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs w-24"
-              title="FA Font"
-            >
-              <option value="var(--font-vazirmatn)">Vazirmatn</option>
-              <option value="var(--font-nastaliq)">Nastaliq</option>
-              <option value="var(--font-lalezar)">Lalezar</option>
-            </select>
-            <select
-              value={fontEn}
-              onChange={(e) => {
-                setFontEn(e.target.value);
-                localStorage.setItem('broadcast_verse_font_en', e.target.value);
-              }}
-              className="bg-slate-800 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs w-24"
-              title="EN Font"
-            >
-              <option value="var(--font-inter)">Inter</option>
-              <option value="var(--font-playfair)">Playfair</option>
-              <option value="var(--font-cinzel)">Cinzel</option>
-            </select>
-          </div>
-        </div>
+        {/* Global Options Bar is removed, layout settings integrated directly into the main page view */}
 
         {/* Content Area */}
         <div className="flex-1 overflow-hidden flex">
@@ -731,6 +641,96 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                   placeholder={t.searchBook}
                   className="w-full bg-slate-800 text-white p-3 rounded-xl mb-4 focus:ring-2 focus:ring-indigo-500 border border-slate-700"
                 />
+
+                {/* TRANSLATION & LAYOUT SETTINGS - FRONT AND CENTER */}
+                <div className="bg-slate-800/40 rounded-2xl p-5 mb-6 border border-slate-700/50 backdrop-blur-sm" dir="rtl">
+                  <h3 className="text-white font-bold mb-4 flex items-center gap-2">
+                    <Settings className="w-5 h-5 text-indigo-400" />
+                    تنظیمات ترجمه‌ها و چیدمان
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Persian Translations */}
+                    <div>
+                      <label className="text-slate-400 text-sm mb-3 block font-medium">🇮🇷 ترجمه‌های فارسی (نصب شده):</label>
+                      <div className="flex flex-wrap gap-2 relative z-10">
+                        {persianVersions.map(v => (
+                          <button
+                            key={v.abbr}
+                            onClick={() => { setTranslation(v.abbr); localStorage.setItem('broadcast_verse_fa_trans', v.abbr); }}
+                            className={`px-3 py-2 rounded-xl text-sm font-bold transition-all border ${translation === v.abbr ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/25 border-indigo-400' : 'bg-slate-900/60 text-slate-300 border-slate-700 hover:border-slate-500 hover:bg-slate-800'}`}
+                          >
+                            {v.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* English Translations */}
+                    <div dir="ltr" className="text-left">
+                      <label className="text-slate-400 text-sm mb-3 block font-medium">🇺🇸 English Translations:</label>
+                      <div className="flex flex-wrap gap-2">
+                        {englishVersions.map(v => (
+                          <button
+                            key={v.abbr}
+                            onClick={() => { setEnTranslation(v.abbr); localStorage.setItem('broadcast_verse_en_trans', v.abbr); }}
+                            className={`px-3 py-2 rounded-xl text-sm font-bold transition-all border ${enTranslation === v.abbr ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/25 border-indigo-400' : 'bg-slate-900/60 text-slate-300 border-slate-700 hover:border-slate-500 hover:bg-slate-800'}`}
+                          >
+                            {v.abbr}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 pt-5 border-t border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Layout Preference */}
+                    <div>
+                        <label className="text-slate-400 text-sm mb-3 block font-medium">✨ تعیین ردیف اول (زبان اصلی):</label>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => { setPrimaryLang('fa'); localStorage.setItem('broadcast_verse_primary_lang', 'fa'); }}
+                                className={`flex-1 py-3 px-4 rounded-xl flex items-center justify-center gap-2 font-bold transition-all border ${primaryLang === 'fa' ? 'bg-emerald-600/20 text-emerald-400 shadow-lg border-emerald-500/50' : 'bg-slate-900/60 text-slate-400 border-slate-700 hover:bg-slate-800'}`}
+                            >
+                                🇮🇷 فارسی (بالا/راست)
+                            </button>
+                            <button
+                                onClick={() => { setPrimaryLang('en'); localStorage.setItem('broadcast_verse_primary_lang', 'en'); }}
+                                className={`flex-1 py-3 px-4 rounded-xl flex items-center justify-center gap-2 font-bold transition-all border ${primaryLang === 'en' ? 'bg-blue-600/20 text-blue-400 shadow-lg border-blue-500/50' : 'bg-slate-900/60 text-slate-400 border-slate-700 hover:bg-slate-800'}`}
+                            >
+                                🇺🇸 English (Top/Left)
+                            </button>
+                        </div>
+                    </div>
+                    {/* Fonts Selection */}
+                    <div className="grid grid-cols-2 gap-3">
+                        <div>
+                            <label className="text-slate-400 text-sm mb-3 block font-medium">فونت فارسی:</label>
+                            <select
+                                value={fontFa}
+                                onChange={(e) => { setFontFa(e.target.value); localStorage.setItem('broadcast_verse_font_fa', e.target.value); }}
+                                className="w-full bg-slate-900/60 text-white px-3 py-2.5 rounded-xl border border-slate-700 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                            >
+                                <option value="var(--font-vazirmatn)">Vazirmatn</option>
+                                <option value="var(--font-nastaliq)">Nastaliq</option>
+                                <option value="var(--font-lalezar)">Lalezar</option>
+                            </select>
+                        </div>
+                        <div dir="ltr" className="text-left">
+                            <label className="text-slate-400 text-sm mb-3 block font-medium">English Font:</label>
+                            <select
+                                value={fontEn}
+                                onChange={(e) => { setFontEn(e.target.value); localStorage.setItem('broadcast_verse_font_en', e.target.value); }}
+                                className="w-full bg-slate-900/60 text-white px-3 py-2.5 rounded-xl border border-slate-700 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                            >
+                                <option value="var(--font-inter)">Inter</option>
+                                <option value="var(--font-playfair)">Playfair</option>
+                                <option value="var(--font-cinzel)">Cinzel</option>
+                            </select>
+                        </div>
+                    </div>
+                  </div>
+                </div>
 
                 {hadNoExactResults && (
                   <div className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-300">
