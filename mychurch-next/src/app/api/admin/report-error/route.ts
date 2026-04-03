@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { query } from "@/lib/db";
 import { sendMail } from "@/lib/mailer";
+import { getAIConfig } from "@/actions/ai-config";
 
 type ErrorReportInput = {
   message?: string;
@@ -74,7 +75,16 @@ async function aiTriage(input: {
   source: string | null;
   stack: string | null;
 }): Promise<AIResult> {
-  const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+  let key = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || null;
+  if (!key) {
+    try {
+      const aiConfig = await getAIConfig();
+      key = aiConfig?.gemini_api_key || null;
+    } catch {
+      key = null;
+    }
+  }
+
   if (!key) {
     return fallbackTriage(input.message);
   }
