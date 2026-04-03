@@ -50,6 +50,7 @@ export interface ScripturePage {
     glassPopupEnabled?: boolean;
     popupLabelFa?: string;
     popupLabelEn?: string;
+    primaryLanguage?: 'fa' | 'en';
 }
 
 export interface ScriptureReferenceItem {

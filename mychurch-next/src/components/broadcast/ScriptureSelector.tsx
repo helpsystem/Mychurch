@@ -165,13 +165,25 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
       .then(d => {
         if (d.versions) {
           setVersions(d.versions);
-          const hasNMV = d.versions.some((v: any) => v.abbr === 'NMV');
-          const hasBSB = d.versions.some((v: any) => v.abbr === 'BSB');
-          if (!hasNMV && d.versions.filter((v: any) => v.language === 'fa').length > 0) {
-             setTranslation(d.versions.find((v: any) => v.language === 'fa').abbr);
+          const savedFa = localStorage.getItem('broadcast_verse_fa_trans');
+          const savedEn = localStorage.getItem('broadcast_verse_en_trans');
+          
+          if (savedFa && d.versions.some((v: any) => v.abbr === savedFa)) {
+             setTranslation(savedFa);
+          } else {
+             const hasNMV = d.versions.some((v: any) => v.abbr === 'NMV');
+             if (!hasNMV && d.versions.filter((v: any) => v.language === 'fa').length > 0) {
+                setTranslation(d.versions.find((v: any) => v.language === 'fa').abbr);
+             } else if (hasNMV) setTranslation('NMV');
           }
-          if (!hasBSB && d.versions.filter((v: any) => v.language !== 'fa').length > 0) {
-             setEnTranslation(d.versions.find((v: any) => v.language !== 'fa').abbr);
+          
+          if (savedEn && d.versions.some((v: any) => v.abbr === savedEn)) {
+             setEnTranslation(savedEn);
+          } else {
+             const hasBSB = d.versions.some((v: any) => v.abbr === 'BSB');
+             if (!hasBSB && d.versions.filter((v: any) => v.language !== 'fa').length > 0) {
+                setEnTranslation(d.versions.find((v: any) => v.language !== 'fa').abbr);
+             } else if (hasBSB) setEnTranslation('BSB');
           }
         }
       })
@@ -188,12 +200,26 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   // Display Options
   const [showFa, setShowFa] = useState(true);
   const [showEn, setShowEn] = useState(true);
+  const [primaryLang, setPrimaryLang] = useState<'fa' | 'en'>('fa');
   const [slideMode, setSlideMode] = useState<'list' | 'bubble'>('list');
   const [combineIntoOneSlide, setCombineIntoOneSlide] = useState(true);
   const [referenceListMode, setReferenceListMode] = useState(true);
   const [selectedPreset, setSelectedPreset] = useState<'manual' | 'nastaliq-wavy-ref'>('manual');
+  
+  // Font States initialized from localStorage
   const [fontFa, setFontFa] = useState('var(--font-vazirmatn)');
   const [fontEn, setFontEn] = useState('var(--font-inter)');
+
+  useEffect(() => {
+     const savedPri = localStorage.getItem('broadcast_verse_primary_lang');
+     if (savedPri === 'fa' || savedPri === 'en') setPrimaryLang(savedPri);
+     
+     const savedFontFa = localStorage.getItem('broadcast_verse_font_fa');
+     if (savedFontFa) setFontFa(savedFontFa);
+     
+     const savedFontEn = localStorage.getItem('broadcast_verse_font_en');
+     if (savedFontEn) setFontEn(savedFontEn);
+  }, []);
 
   // Data State
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
@@ -499,10 +525,11 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         chapter: first.chapter,
         verses: verseRange,
         verseNumbers: combinedVerseNumbers,
-        textPrimary: combinedTextFa,
-        textSecondary: combinedTextEn,
-        fontFa,
-        fontEn,
+        textPrimary: primaryLang === 'fa' ? combinedTextFa : combinedTextEn,
+        textSecondary: primaryLang === 'fa' ? combinedTextEn : combinedTextFa,
+        fontFa: primaryLang === 'fa' ? fontFa : fontEn,
+        fontEn: primaryLang === 'fa' ? fontEn : fontFa,
+        primaryLanguage: primaryLang,
         glassPopupEnabled: selectedPreset === 'nastaliq-wavy-ref',
         translation: first.translation,
         displayMode: slideMode as any,
@@ -598,10 +625,102 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
           )}
         </div>
 
+        {/* Global Options Bar (Always Visible) */}
+        <div className="bg-slate-900 border-b border-slate-700 px-4 py-3 flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400 text-sm">🇮🇷 {t.translation}:</span>
+            <select
+              value={translation}
+              onChange={(e) => {
+                setTranslation(e.target.value);
+                localStorage.setItem('broadcast_verse_fa_trans', e.target.value);
+              }}
+              className="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm font-[Vazirmatn] w-36 truncate focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+              dir="rtl"
+            >
+              {persianVersions.length === 0 ? (
+                <option value="NMV">هزارۀ نو</option>
+              ) : (
+                persianVersions.map(v => (
+                   <option key={v.abbr} value={v.abbr}>{v.name}</option>
+                ))
+              )}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400 text-sm">🇺🇸 {t.enTranslation}:</span>
+            <select
+              value={enTranslation}
+              onChange={(e) => {
+                setEnTranslation(e.target.value);
+                localStorage.setItem('broadcast_verse_en_trans', e.target.value);
+              }}
+              className="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm w-36 truncate focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+            >
+              {englishVersions.length === 0 ? (
+                <option value="BSB">BSB</option>
+              ) : (
+                englishVersions.map(v => (
+                   <option key={v.abbr} value={v.abbr}>{v.abbr}</option>
+                ))
+              )}
+            </select>
+          </div>
+          
+          <div className="h-6 w-px bg-slate-700 mx-1 hidden md:block"></div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400 text-sm">ردیف اول (اصلی):</span>
+            <select
+              value={primaryLang}
+              onChange={(e) => {
+                const val = e.target.value as 'fa' | 'en';
+                setPrimaryLang(val);
+                localStorage.setItem('broadcast_verse_primary_lang', val);
+              }}
+              className="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="fa">فارسی (بالا)</option>
+              <option value="en">English (Top)</option>
+            </select>
+          </div>
+          
+          <div className="flex items-center gap-2 ml-auto">
+            <span className="text-slate-400 text-sm whitespace-nowrap">فونت‌ها:</span>
+            <select
+              value={fontFa}
+              onChange={(e) => {
+                setFontFa(e.target.value);
+                localStorage.setItem('broadcast_verse_font_fa', e.target.value);
+              }}
+              className="bg-slate-800 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs w-24"
+              title="FA Font"
+            >
+              <option value="var(--font-vazirmatn)">Vazirmatn</option>
+              <option value="var(--font-nastaliq)">Nastaliq</option>
+              <option value="var(--font-lalezar)">Lalezar</option>
+            </select>
+            <select
+              value={fontEn}
+              onChange={(e) => {
+                setFontEn(e.target.value);
+                localStorage.setItem('broadcast_verse_font_en', e.target.value);
+              }}
+              className="bg-slate-800 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs w-24"
+              title="EN Font"
+            >
+              <option value="var(--font-inter)">Inter</option>
+              <option value="var(--font-playfair)">Playfair</option>
+              <option value="var(--font-cinzel)">Cinzel</option>
+            </select>
+          </div>
+        </div>
+
         {/* Content Area */}
         <div className="flex-1 overflow-hidden flex">
           {/* Left Panel: Selection */}
-          <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
             {/* Step 1: Book Selection */}
             {step === 'book' && (
               <>
