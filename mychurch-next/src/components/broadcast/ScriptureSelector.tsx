@@ -143,6 +143,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   // Selection State
   const [step, setStep] = useState<'book' | 'chapter' | 'verse'>('book');
+  const [testamentFilter, setTestamentFilter] = useState<'all' | 'ot' | 'nt'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
@@ -221,11 +222,25 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
     fetchBibleBooksFromDB(activeTranslationForBooks).then(liveBooks => {
        if (liveBooks && liveBooks.length > 0) {
            setBibleBooks(liveBooks);
-           // If a book is currently selected but doesn't exist in the new translation, we should arguably clear it
-           // but keeping it simple for now to just update the available list and chapter counts.
+           setSelectedBook((prev) => {
+             if (!prev) return prev;
+             const matched = liveBooks.find((b) => b.key === prev.key);
+             if (!matched) {
+               setStep('book');
+               setVerseStart(null);
+               setVerseEnd(null);
+               return null;
+             }
+             if (selectedChapter > matched.chapters) {
+               setSelectedChapter(matched.chapters);
+               setVerseStart(null);
+               setVerseEnd(null);
+             }
+             return matched;
+           });
        }
     }).catch(console.error);
-  }, [activeTranslationForBooks]);
+  }, [activeTranslationForBooks, selectedChapter]);
 
   // Data State
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
@@ -255,6 +270,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   const otBooks = filteredBooks.filter((b: BibleBook) => otKeySet.has((b.key || '').toLowerCase()));
   const ntBooks = filteredBooks.filter((b: BibleBook) => ntKeySet.has((b.key || '').toLowerCase()));
+  const visibleBooks = testamentFilter === 'ot' ? otBooks : testamentFilter === 'nt' ? ntBooks : filteredBooks;
   // Fetch verses when chapter changes using the matching parallel API
   const fetchChapterData = useCallback(async () => {
     if (!selectedBook) return;
@@ -662,7 +678,10 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                         {persianVersions.map(v => (
                           <button
                             key={v.abbr}
-                            onClick={() => { setTranslation(v.abbr); localStorage.setItem('broadcast_verse_fa_trans', v.abbr); }}
+                            onClick={() => {
+                              setTranslation(v.abbr);
+                              localStorage.setItem('broadcast_verse_fa_trans', v.abbr);
+                            }}
                             className={`px-3 py-2 rounded-xl text-sm font-bold transition-all border ${translation === v.abbr ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/25 border-indigo-400' : 'bg-slate-900/60 text-slate-300 border-slate-700 hover:border-slate-500 hover:bg-slate-800'}`}
                           >
                             {v.name}
@@ -678,7 +697,10 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                         {englishVersions.map(v => (
                           <button
                             key={v.abbr}
-                            onClick={() => { setEnTranslation(v.abbr); localStorage.setItem('broadcast_verse_en_trans', v.abbr); }}
+                            onClick={() => {
+                              setEnTranslation(v.abbr);
+                              localStorage.setItem('broadcast_verse_en_trans', v.abbr);
+                            }}
                             className={`px-3 py-2 rounded-xl text-sm font-bold transition-all border ${enTranslation === v.abbr ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/25 border-indigo-400' : 'bg-slate-900/60 text-slate-300 border-slate-700 hover:border-slate-500 hover:bg-slate-800'}`}
                           >
                             {v.abbr}
@@ -745,59 +767,41 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                   </div>
                 )}
 
-                {/* Old Testament */}
-                {otBooks.length > 0 && (
-                  <div className="mb-6">
-                    <h3 className="text-amber-400 font-bold mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
+                <div className="rounded-xl border border-slate-700 bg-slate-900/40 p-3">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    <button
+                      onClick={() => setTestamentFilter('all')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${testamentFilter === 'all' ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                    >
+                      {isRTL ? 'همه کتاب ها' : 'All Books'}
+                    </button>
+                    <button
+                      onClick={() => setTestamentFilter('ot')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${testamentFilter === 'ot' ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                    >
                       {primaryLang === 'fa' ? t.oldTestament : translations.en.oldTestament}
-                      <span className="text-amber-500/50 text-xs font-normal border border-amber-500/20 px-2 py-0.5 rounded-full bg-amber-500/10">
-                         {primaryLang === 'fa' 
-                            ? persianVersions.find(v => v.abbr === translation)?.name || translation
-                            : englishVersions.find(v => v.abbr === enTranslation)?.name || enTranslation
-                         }
-                      </span>
-                    </h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                      {otBooks.map((book: BibleBook) => (
-                        <button
-                          key={book.key}
-                          onClick={() => handleBookSelect(book)}
-                          className="bg-slate-800 hover:bg-amber-600/20 border border-slate-700 hover:border-amber-500/50 p-3 rounded-xl text-right transition group"
-                          dir={primaryLang === 'fa' ? 'rtl' : 'ltr'}
-                        >
-                          <div className={`text-white font-medium group-hover:text-amber-400 transition ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
-                            {primaryLang === 'fa' ? book.name.fa : book.name.en}
-                          </div>
-                          <div className={`text-slate-500 text-xs ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
-                            {book.chapters} {primaryLang === 'fa' ? t.chapters : translations.en.chapters}
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* New Testament */}
-                {ntBooks.length > 0 && (
-                  <div>
-                    <h3 className="text-emerald-400 font-bold mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
+                    </button>
+                    <button
+                      onClick={() => setTestamentFilter('nt')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${testamentFilter === 'nt' ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                    >
                       {primaryLang === 'fa' ? t.newTestament : translations.en.newTestament}
-                      <span className="text-emerald-500/50 text-xs font-normal border border-emerald-500/20 px-2 py-0.5 rounded-full bg-emerald-500/10">
-                         {primaryLang === 'fa' 
-                            ? persianVersions.find(v => v.abbr === translation)?.name || translation
-                            : englishVersions.find(v => v.abbr === enTranslation)?.name || enTranslation
-                         }
-                      </span>
-                    </h3>
+                    </button>
+                    <span className="mr-auto text-xs text-slate-400">
+                      {isRTL ? `${visibleBooks.length} کتاب` : `${visibleBooks.length} books`}
+                    </span>
+                  </div>
+
+                  {visibleBooks.length > 0 ? (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                      {ntBooks.map((book: BibleBook) => (
+                      {visibleBooks.map((book: BibleBook) => (
                         <button
                           key={book.key}
                           onClick={() => handleBookSelect(book)}
-                          className="bg-slate-800 hover:bg-emerald-600/20 border border-slate-700 hover:border-emerald-500/50 p-3 rounded-xl transition group"
+                          className="bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 p-3 rounded-xl transition group"
                           dir={primaryLang === 'fa' ? 'rtl' : 'ltr'}
                         >
-                          <div className={`text-white font-medium group-hover:text-emerald-400 transition ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
+                          <div className={`text-white font-medium group-hover:text-indigo-300 transition ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
                             {primaryLang === 'fa' ? book.name.fa : book.name.en}
                           </div>
                           <div className={`text-slate-500 text-xs ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
@@ -806,8 +810,12 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                         </button>
                       ))}
                     </div>
-                  </div>
-                )}
+                  ) : (
+                    <div className="rounded-lg border border-slate-700/60 bg-slate-900/50 px-4 py-6 text-center text-sm text-slate-400">
+                      {isRTL ? 'کتابی برای این فیلتر پیدا نشد.' : 'No books found for this filter.'}
+                    </div>
+                  )}
+                </div>
               </>
             )}
 
@@ -838,7 +846,10 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     <span className="text-slate-400 text-sm">🇮🇷 {t.translation}:</span>
                     <select
                       value={translation}
-                      onChange={(e) => setTranslation(e.target.value)}
+                      onChange={(e) => {
+                        setTranslation(e.target.value);
+                        localStorage.setItem('broadcast_verse_fa_trans', e.target.value);
+                      }}
                       className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm font-[Vazirmatn] w-36 truncate"
                       dir="rtl"
                     >
@@ -856,7 +867,10 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                     <span className="text-slate-400 text-sm">🇺🇸 {t.enTranslation}:</span>
                     <select
                       value={enTranslation}
-                      onChange={(e) => setEnTranslation(e.target.value)}
+                      onChange={(e) => {
+                        setEnTranslation(e.target.value);
+                        localStorage.setItem('broadcast_verse_en_trans', e.target.value);
+                      }}
                       className="bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-600 text-sm w-28 truncate"
                     >
                       {englishVersions.length === 0 ? (

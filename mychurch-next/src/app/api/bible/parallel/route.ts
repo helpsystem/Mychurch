@@ -62,14 +62,18 @@ export async function GET(req: Request) {
       )
     ]);
 
-    // Build a map for fast lookup of Farsi verses by verse_num
+    // Build maps for both languages and align using the union of verse numbers.
     const faMap = new Map(faVerses.map((v) => [v.verse_num, v.text]));
+    const enMap = new Map(enVerses.map((v) => [v.verse_num, v.text]));
+    const verseNumbers = Array.from(
+      new Set([...enVerses.map((v) => v.verse_num), ...faVerses.map((v) => v.verse_num)])
+    ).sort((a, b) => a - b);
 
-    // Create matched pairs
-    const parallel = enVerses.map((v) => ({
-      verse_num: v.verse_num,
-      en: v.text,
-      fa: faMap.get(v.verse_num) ?? null,
+    // Create matched pairs with nullable values where a translation is missing.
+    const parallel = verseNumbers.map((verseNum) => ({
+      verse_num: verseNum,
+      en: enMap.get(verseNum) ?? null,
+      fa: faMap.get(verseNum) ?? null,
     }));
 
     return NextResponse.json({

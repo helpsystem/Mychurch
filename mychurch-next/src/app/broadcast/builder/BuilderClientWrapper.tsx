@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
 import { BroadcastSession, AppLanguage, Slide } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
-import { ArrowRight, CalendarDays, Loader2, Save, BookOpen } from "lucide-react";
+import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, MonitorPlay } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -16,6 +16,7 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const [session, setSession] = useState<BroadcastSession>(initialSession);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [isPending, startTransition] = useTransition();
+    const [isOpeningPresenter, setIsOpeningPresenter] = useState(false);
     const [templateModalOpen, setTemplateModalOpen] = useState(false);
     const { t, language } = useLanguage();
     const router = useRouter();
@@ -97,6 +98,35 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
         });
     };
 
+    const handleOpenPresenter = async () => {
+        if (!session.id) {
+            toast.error("شناسه ارائه نامعتبر است.");
+            return;
+        }
+
+        setIsOpeningPresenter(true);
+        try {
+            const tokenRes = await fetch('/api/broadcast/viewer-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId: session.id }),
+            });
+            const tokenData = await tokenRes.json();
+
+            if (!tokenRes.ok || !tokenData?.token) {
+                throw new Error(tokenData?.error || 'token_failed');
+            }
+
+            const url = `/broadcast/view?session=${encodeURIComponent(session.id)}&token=${encodeURIComponent(tokenData.token)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+            toast.success(language === 'fa' ? 'Presenter باز شد' : 'Presenter opened');
+        } catch {
+            toast.error(language === 'fa' ? 'ساخت لینک Presenter ناموفق بود.' : 'Failed to open presenter link.');
+        } finally {
+            setIsOpeningPresenter(false);
+        }
+    };
+
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-950 font-[Vazirmatn]">
             {/* Top Toolbar for Cloud Sync */}
@@ -143,6 +173,15 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 >
                     {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                     {t.cloudSave || 'Cloud Save'}
+                </button>
+
+                <button
+                    onClick={handleOpenPresenter}
+                    disabled={isOpeningPresenter}
+                    className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
+                >
+                    {isOpeningPresenter ? <Loader2 className="w-4 h-4 animate-spin" /> : <MonitorPlay className="w-4 h-4" />}
+                    {language === 'fa' ? 'باز کردن Presenter' : 'Open Presenter'}
                 </button>
 
                 <div className="flex items-center gap-2 ml-4">
