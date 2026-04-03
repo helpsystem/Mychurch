@@ -143,7 +143,7 @@ export async function fetchBibleBooksFromDB(): Promise<BibleBook[]> {
   }
 
   try {
-    const res = await fetch('/api/bible/books?version=BSB');
+    const res = await fetch(`/api/bible/books?version=BSB&t=${Date.now()}`);
     if (res.ok) {
       const data = await res.json();
       if (data.books && Array.isArray(data.books)) {
