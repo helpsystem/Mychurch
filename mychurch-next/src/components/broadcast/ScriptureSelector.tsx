@@ -255,34 +255,6 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
 
   const otBooks = filteredBooks.filter((b: BibleBook) => otKeySet.has((b.key || '').toLowerCase()));
   const ntBooks = filteredBooks.filter((b: BibleBook) => ntKeySet.has((b.key || '').toLowerCase()));
-  const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
-  const [loading, setLoading] = useState(false);
-  const [loadError, setLoadError] = useState<string | null>(null);
-
-  // Selected Verses List
-  const [selectedVerses, setSelectedVerses] = useState<SelectedVerse[]>([]);
-  const [previewVerse, setPreviewVerse] = useState<SelectedVerse | null>(null);
-
-  // Filter books by search
-  const normalizedQuery = normalizeSearchText(searchQuery);
-  const searchedBooks = normalizedQuery
-    ? bibleBooks.filter((book: BibleBook) => {
-      const fa = normalizeSearchText(book.name.fa);
-      const en = normalizeSearchText(book.name.en);
-      const key = normalizeSearchText(book.key);
-      return fa.includes(normalizedQuery) || en.includes(normalizedQuery) || key.includes(normalizedQuery);
-    })
-    : bibleBooks;
-
-  const hadNoExactResults = !!normalizedQuery && searchedBooks.length === 0;
-  const filteredBooks = hadNoExactResults ? bibleBooks : searchedBooks;
-
-  const otKeySet = new Set(OLD_TESTAMENT_BOOKS.map((key) => key.toLowerCase()));
-  const ntKeySet = new Set(NEW_TESTAMENT_BOOKS.map((key) => key.toLowerCase()));
-
-  const otBooks = filteredBooks.filter((b: BibleBook) => otKeySet.has((b.key || '').toLowerCase()));
-  const ntBooks = filteredBooks.filter((b: BibleBook) => ntKeySet.has((b.key || '').toLowerCase()));
-
   // Fetch verses when chapter changes using the matching parallel API
   const fetchChapterData = useCallback(async () => {
     if (!selectedBook) return;
