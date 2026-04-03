@@ -157,9 +157,8 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
   const englishVersions = versions.filter(v => v.language !== 'fa');
   const persianVersions = versions.filter(v => v.language === 'fa');
 
-  // Load versions and book metadata on mount
+  // Load versions on mount
   useEffect(() => {
-    // 1. Load Versions
     fetch("/api/bible/versions")
       .then(r => r.json())
       .then(d => {
@@ -188,13 +187,6 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
         }
       })
       .catch(console.error);
-
-    // 2. Load Books
-    fetchBibleBooksFromDB().then(liveBooks => {
-       if (liveBooks && liveBooks.length > 0) {
-           setBibleBooks(liveBooks);
-       }
-    }).catch(console.error);
   }, []);
 
   // Display Options
@@ -221,7 +213,48 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
      if (savedFontEn) setFontEn(savedFontEn);
   }, []);
 
+  // Sync Book List dynamically based on the primary active translation
+  const activeTranslationForBooks = primaryLang === 'fa' ? translation : enTranslation;
+  useEffect(() => {
+    if (!activeTranslationForBooks) return;
+    
+    fetchBibleBooksFromDB(activeTranslationForBooks).then(liveBooks => {
+       if (liveBooks && liveBooks.length > 0) {
+           setBibleBooks(liveBooks);
+           // If a book is currently selected but doesn't exist in the new translation, we should arguably clear it
+           // but keeping it simple for now to just update the available list and chapter counts.
+       }
+    }).catch(console.error);
+  }, [activeTranslationForBooks]);
+
   // Data State
+  const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
+  const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Selected Verses List
+  const [selectedVerses, setSelectedVerses] = useState<SelectedVerse[]>([]);
+  const [previewVerse, setPreviewVerse] = useState<SelectedVerse | null>(null);
+
+  // Filter books by search
+  const normalizedQuery = normalizeSearchText(searchQuery);
+  const searchedBooks = normalizedQuery
+    ? bibleBooks.filter((book: BibleBook) => {
+      const fa = normalizeSearchText(book.name.fa);
+      const en = normalizeSearchText(book.name.en);
+      const key = normalizeSearchText(book.key);
+      return fa.includes(normalizedQuery) || en.includes(normalizedQuery) || key.includes(normalizedQuery);
+    })
+    : bibleBooks;
+
+  const hadNoExactResults = !!normalizedQuery && searchedBooks.length === 0;
+  const filteredBooks = hadNoExactResults ? bibleBooks : searchedBooks;
+
+  const otKeySet = new Set(OLD_TESTAMENT_BOOKS.map((key) => key.toLowerCase()));
+  const ntKeySet = new Set(NEW_TESTAMENT_BOOKS.map((key) => key.toLowerCase()));
+
+  const otBooks = filteredBooks.filter((b: BibleBook) => otKeySet.has((b.key || '').toLowerCase()));
+  const ntBooks = filteredBooks.filter((b: BibleBook) => ntKeySet.has((b.key || '').toLowerCase()));
   const [versesData, setVersesData] = useState<{ fa: string[]; en: string[] }>({ fa: [], en: [] });
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);

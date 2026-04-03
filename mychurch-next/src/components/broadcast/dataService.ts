@@ -129,21 +129,21 @@ const USFM_TO_KEY: Record<string, string> = {
 };
 
 // In-memory cache for live Bible books (refreshed every 24h)
-let _bibleBookCache: BibleBook[] | null = null;
-let _bibleBookCacheExpiry = 0;
+let _bibleBookCache: Record<string, { data: BibleBook[], expiry: number }> = {};
 
 /**
  * دریافت لیست کتاب‌های کتاب مقدس از همان API که صفحه Bible استفاده می‌کند
  * با fallback به INITIAL_BIBLE_BOOKS اگر API در دسترس نباشد
  */
-export async function fetchBibleBooksFromDB(): Promise<BibleBook[]> {
+export async function fetchBibleBooksFromDB(version: string = 'BSB'): Promise<BibleBook[]> {
   // Return cache if still fresh
-  if (_bibleBookCache && Date.now() < _bibleBookCacheExpiry) {
-    return _bibleBookCache;
+  const cacheHit = _bibleBookCache[version];
+  if (cacheHit && Date.now() < cacheHit.expiry) {
+    return cacheHit.data;
   }
 
   try {
-    const res = await fetch(`/api/bible/books?version=BSB&t=${Date.now()}`);
+    const res = await fetch(`/api/bible/books?version=${version}&t=${Date.now()}`);
     if (res.ok) {
       const data = await res.json();
       if (data.books && Array.isArray(data.books)) {
@@ -158,13 +158,12 @@ export async function fetchBibleBooksFromDB(): Promise<BibleBook[]> {
           name: { en: b.book_name_en, fa: b.book_name_fa },
           chapters: b.chapter_count,
         }));
-        _bibleBookCache = mapped;
-        _bibleBookCacheExpiry = Date.now() + 24 * 3600 * 1000; // 24h TTL
+        _bibleBookCache[version] = { data: mapped, expiry: Date.now() + 24 * 3600 * 1000 };
         return mapped;
       }
     }
   } catch (e) {
-    console.warn('[dataService] Bible books API unavailable, using fallback');
+    console.warn(`[dataService] Bible books API unavailable for ${version}, using fallback`);
   }
 
   // Fallback to hardcoded list
@@ -174,9 +173,9 @@ export async function fetchBibleBooksFromDB(): Promise<BibleBook[]> {
 /**
  * دریافت لیست کتاب‌های کتاب مقدس — sync version با fallback (برای backward compat)
  */
-export function getBibleBooks(): BibleBook[] {
+export function getBibleBooks(version: string = 'BSB'): BibleBook[] {
   // Return cached live data if available, otherwise hardcoded fallback
-  return _bibleBookCache || INITIAL_BIBLE_BOOKS;
+  return _bibleBookCache[version]?.data || INITIAL_BIBLE_BOOKS;
 }
 
 /**
