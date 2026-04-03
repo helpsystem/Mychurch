@@ -744,7 +744,7 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                 {otBooks.length > 0 && (
                   <div className="mb-6">
                     <h3 className="text-amber-400 font-bold mb-3 text-sm uppercase tracking-wide">
-                      {t.oldTestament}
+                      {primaryLang === 'fa' ? t.oldTestament : translations.en.oldTestament}
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                       {otBooks.map((book: BibleBook) => (
@@ -752,12 +752,13 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                           key={book.key}
                           onClick={() => handleBookSelect(book)}
                           className="bg-slate-800 hover:bg-amber-600/20 border border-slate-700 hover:border-amber-500/50 p-3 rounded-xl text-right transition group"
+                          dir={primaryLang === 'fa' ? 'rtl' : 'ltr'}
                         >
-                          <div className="text-white font-medium group-hover:text-amber-400 transition">
-                            {isRTL ? book.name.fa : book.name.en}
+                          <div className={`text-white font-medium group-hover:text-amber-400 transition ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
+                            {primaryLang === 'fa' ? book.name.fa : book.name.en}
                           </div>
-                          <div className="text-slate-500 text-xs">
-                            {book.chapters} {t.chapters}
+                          <div className={`text-slate-500 text-xs ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
+                            {book.chapters} {primaryLang === 'fa' ? t.chapters : translations.en.chapters}
                           </div>
                         </button>
                       ))}
@@ -769,20 +770,21 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
                 {ntBooks.length > 0 && (
                   <div>
                     <h3 className="text-emerald-400 font-bold mb-3 text-sm uppercase tracking-wide">
-                      {t.newTestament}
+                      {primaryLang === 'fa' ? t.newTestament : translations.en.newTestament}
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                       {ntBooks.map((book: BibleBook) => (
                         <button
                           key={book.key}
                           onClick={() => handleBookSelect(book)}
-                          className="bg-slate-800 hover:bg-emerald-600/20 border border-slate-700 hover:border-emerald-500/50 p-3 rounded-xl text-right transition group"
+                          className="bg-slate-800 hover:bg-emerald-600/20 border border-slate-700 hover:border-emerald-500/50 p-3 rounded-xl transition group"
+                          dir={primaryLang === 'fa' ? 'rtl' : 'ltr'}
                         >
-                          <div className="text-white font-medium group-hover:text-emerald-400 transition">
-                            {isRTL ? book.name.fa : book.name.en}
+                          <div className={`text-white font-medium group-hover:text-emerald-400 transition ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
+                            {primaryLang === 'fa' ? book.name.fa : book.name.en}
                           </div>
-                          <div className="text-slate-500 text-xs">
-                            {book.chapters} {t.chapters}
+                          <div className={`text-slate-500 text-xs ${primaryLang === 'en' ? 'text-left' : 'text-right'}`}>
+                            {book.chapters} {primaryLang === 'fa' ? t.chapters : translations.en.chapters}
                           </div>
                         </button>
                       ))}
