@@ -128,6 +128,23 @@ const USFM_TO_KEY: Record<string, string> = {
   "2PE":"2Peter","1JN":"1John","2JN":"2John","3JN":"3John",JUD:"Jude",REV:"Revelation",
 };
 
+function alignVerseRange(verses: string[], startVerse: number, endVerse: number) {
+  const aligned = Array.from({ length: Math.max(endVerse - startVerse + 1, 0) }, (_, index) => {
+    const verseNum = startVerse + index;
+    const value = verses[verseNum - 1] ?? '';
+    return {
+      verseNum,
+      value,
+      missing: !String(value || '').trim(),
+    };
+  });
+
+  return {
+    values: aligned.map((item) => item.value),
+    missingVerseNumbers: aligned.filter((item) => item.missing).map((item) => item.verseNum),
+  };
+}
+
 // In-memory cache for live Bible books (refreshed every 24h)
 let _bibleBookCache: Record<string, { data: BibleBook[], expiry: number }> = {};
 
@@ -220,12 +237,9 @@ export async function fetchBibleVerse(
           ? verses.split('-').map(Number)
           : [parseInt(verses), parseInt(verses)];
 
-        // Extract Persian and English verses as arrays
-        const faVerses = data.verses.fa
-          ?.slice(startVerse - 1, endVerse) || [];
-        const enVerses = data.verses.en
-          ?.slice(startVerse - 1, endVerse) || [];
-        
+        const faAligned = alignVerseRange(data.verses.fa || [], startVerse, endVerse);
+        const enAligned = alignVerseRange(data.verses.en || [], startVerse, endVerse);
+
         // Create verse numbers array
         const verseNumbers = Array.from(
           { length: endVerse - startVerse + 1 },
@@ -239,8 +253,10 @@ export async function fetchBibleVerse(
           chapter,
           verses,
           verseNumbers,
-          textPrimary: faVerses,
-          textSecondary: enVerses,
+          textPrimary: faAligned.values,
+          textSecondary: enAligned.values,
+          missingPrimaryVerses: faAligned.missingVerseNumbers,
+          missingSecondaryVerses: enAligned.missingVerseNumbers,
           translation
         };
       }
@@ -257,10 +273,8 @@ export async function fetchBibleVerse(
       ? verses.split('-').map(Number)
       : [parseInt(verses), parseInt(verses)];
 
-    const faVerses = localContent.fa
-      ?.slice(startVerse - 1, endVerse) || [];
-    const enVerses = localContent.en
-      ?.slice(startVerse - 1, endVerse) || [];
+    const faAligned = alignVerseRange(localContent.fa || [], startVerse, endVerse);
+    const enAligned = alignVerseRange(localContent.en || [], startVerse, endVerse);
     
     // Create verse numbers array
     const verseNumbers = Array.from(
@@ -275,8 +289,10 @@ export async function fetchBibleVerse(
       chapter,
       verses,
       verseNumbers,
-      textPrimary: faVerses,
-      textSecondary: enVerses,
+      textPrimary: faAligned.values,
+      textSecondary: enAligned.values,
+      missingPrimaryVerses: faAligned.missingVerseNumbers,
+      missingSecondaryVerses: enAligned.missingVerseNumbers,
       translation: 'local'
     };
   }

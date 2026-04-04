@@ -9,6 +9,8 @@ import {
 import { cn } from "@/lib/utils";
 import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart } from "lucide-react";
 
+const isNonEmptyText = (value: unknown) => typeof value === 'string' && value.trim().length > 0;
+
 interface SlideRendererProps {
     slide: Slide | undefined;
     className?: string;
@@ -176,6 +178,11 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 if (!page) return null;
 
                 const references = page.referenceItems || [];
+                const renderMissingVerseMarker = (isRtl: boolean) => (
+                    <span className={`text-rose-400 font-bold uppercase tracking-wider ${isRtl ? 'font-[Vazirmatn]' : ''}`} style={{ fontSize: `${1.2 * slideZoom}rem` }}>
+                        {isRtl ? 'آیه در این ترجمه موجود نیست' : 'Verse missing in this translation'}
+                    </span>
+                );
                 if (page.displayMode === 'referenceList' && references.length > 0) {
                     const useWavyPaper = page.glassPopupEnabled === true;
                     return (
@@ -374,7 +381,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                             {activeReference.textFa.map((line, i) => (
                                                                 <p key={`fa-${i}`} className="text-slate-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${2.8 * slideZoom}rem` }}>
                                                                     <span className="text-amber-400 font-black" style={{ marginLeft: `${0.6 * slideZoom}rem` }}>{activeReference.verseNumbers[i] || ''}</span>
-                                                                    {line}
+                                                                    {isNonEmptyText(line) ? line : renderMissingVerseMarker(true)}
                                                                 </p>
                                                             ))}
                                                         </div>
@@ -390,7 +397,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                             {activeReference.textEn.map((line, i) => (
                                                                 <p key={`en-${i}`} className="text-slate-200 leading-relaxed" style={{ fontSize: `${2.2 * slideZoom}rem` }}>
                                                                     <span className="text-amber-400 font-black" style={{ marginRight: `${0.6 * slideZoom}rem` }}>{activeReference.verseNumbers[i] || ''}</span>
-                                                                    {line}
+                                                                    {isNonEmptyText(line) ? line : renderMissingVerseMarker(false)}
                                                                 </p>
                                                             ))}
                                                         </div>
@@ -427,22 +434,34 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         </div>
                         
                         <div className="max-w-6xl w-full text-center space-y-10">
-                            <p
-                                className="leading-snug font-bold text-white"
-                                dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'}
-                                style={{ fontSize: `${3.5 * slideZoom}rem`, textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}
-                            >
-                                {page.textPrimary.join(" ")}
-                            </p>
+                            <div className="leading-snug font-bold text-white" dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'} style={{ fontSize: `${3.5 * slideZoom}rem`, textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}>
+                                {page.textPrimary.map((verse, idx) => (
+                                    <div key={idx} className="flex flex-wrap items-start justify-center gap-3 mb-4">
+                                        <span className="text-amber-400 font-black tabular-nums" style={{ fontSize: `${2.2 * slideZoom}rem` }}>
+                                            {page.verseNumbers?.[idx] || idx + 1}
+                                        </span>
+                                        <span>
+                                            {isNonEmptyText(verse) ? verse : renderMissingVerseMarker(page.primaryLanguage !== 'en')}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                             
                             {page.textSecondary && page.textSecondary.length > 0 && (
-                                <p
+                                <div
                                     className="leading-relaxed text-amber-200/80 italic"
                                     dir={page.primaryLanguage === 'en' ? 'rtl' : 'ltr'}
                                     style={{ fontSize: `${2 * slideZoom}rem`, fontFamily: page.fontEn || "var(--font-inter)" }}
                                 >
-                                    {page.textSecondary.join(" ")}
-                                </p>
+                                    {page.textSecondary.map((verse, idx) => (
+                                        <div key={idx} className="flex flex-wrap items-start justify-center gap-3 mb-3">
+                                            <span className="text-amber-400 font-black tabular-nums" style={{ fontSize: `${1.6 * slideZoom}rem` }}>
+                                                {page.verseNumbers?.[idx] || idx + 1}
+                                            </span>
+                                            <span>{isNonEmptyText(verse) ? verse : renderMissingVerseMarker(page.primaryLanguage === 'en')}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             )}
                         </div>
                     </div>

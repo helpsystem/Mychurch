@@ -51,6 +51,8 @@ export interface ScripturePage {
     popupLabelFa?: string;
     popupLabelEn?: string;
     primaryLanguage?: 'fa' | 'en';
+    missingPrimaryVerses?: number[];
+    missingSecondaryVerses?: number[];
 }
 
 export interface ScriptureReferenceItem {
@@ -66,6 +68,8 @@ export interface ScriptureReferenceItem {
     fontEn?: string;
     translation?: string;
     enTranslation?: string;
+    missingFaVerses?: number[];
+    missingEnVerses?: number[];
 }
 
 export interface SlideContentScripture {

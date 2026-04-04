@@ -429,6 +429,21 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const handleScriptureSubmit = () => {
     if (scripturePages.length === 0) return;
 
+    const hasMissingVerses = scripturePages.some((page) => {
+      const missingPrimary = page.missingPrimaryVerses?.length ?? 0;
+      const missingSecondary = page.missingSecondaryVerses?.length ?? 0;
+      return missingPrimary > 0 || missingSecondary > 0;
+    });
+
+    if (hasMissingVerses) {
+      const confirmed = window.confirm(
+        isRTL
+          ? 'در این محدوده، بعضی آیه‌ها در یکی از ترجمه‌ها موجود نیستند. برای جلوگیری از حذف بی‌صدا، ادامه می‌دهید؟'
+          : 'Some verses in this range are missing in one of the translations. Continue anyway?'
+      );
+      if (!confirmed) return;
+    }
+
     const content: SlideContentScripture = {
       pages: scripturePages.map(page => ({
         ...page,
@@ -1254,9 +1269,17 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                             <span className="text-amber-400 font-bold min-w-[30px]">
                               {page.verseNumbers?.[idx] || (idx + 1)}
                             </span>
-                            <p className={`text-white text-base leading-relaxed flex-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                              {verse}
-                            </p>
+                            <div className="flex-1">
+                              {String(verse || '').trim() ? (
+                                <p className={`text-white text-base leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                                  {verse}
+                                </p>
+                              ) : (
+                                <p className="text-rose-400 text-xs font-bold uppercase tracking-wider">
+                                  {isRTL ? 'آیه در این ترجمه موجود نیست' : 'Verse missing in this translation'}
+                                </p>
+                              )}
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -1273,9 +1296,17 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                               <span className="text-slate-500 font-bold min-w-[30px] text-sm">
                                 {page.verseNumbers?.[idx] || (idx + 1)}
                               </span>
-                              <p className="text-slate-400 text-sm leading-relaxed flex-1">
-                                {verse}
-                              </p>
+                              <div className="flex-1">
+                                {String(verse || '').trim() ? (
+                                  <p className="text-slate-400 text-sm leading-relaxed">
+                                    {verse}
+                                  </p>
+                                ) : (
+                                  <p className="text-rose-400 text-xs font-bold uppercase tracking-wider">
+                                    {isRTL ? 'آیه در این ترجمه موجود نیست' : 'Verse missing in this translation'}
+                                  </p>
+                                )}
+                              </div>
                             </div>
                           ))}
                         </div>
