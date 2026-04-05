@@ -199,11 +199,12 @@ export function getBibleBooks(version: string = 'BSB'): BibleBook[] {
  * جستجوی کتاب با نام
  */
 export function searchBibleBooks(query: string): BibleBook[] {
-  const books = _bibleBookCache || INITIAL_BIBLE_BOOKS;
+  // Use BSB cache if available, otherwise fall back to hardcoded list
+  const books: BibleBook[] = _bibleBookCache['BSB']?.data || INITIAL_BIBLE_BOOKS;
   if (!query.trim()) return books;
 
   const q = query.toLowerCase();
-  return books.filter(book =>
+  return books.filter((book: BibleBook) =>
     book.key.toLowerCase().includes(q) ||
     book.name.en.toLowerCase().includes(q) ||
     book.name.fa.includes(q)
