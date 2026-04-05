@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useRef, useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
 import { BroadcastSession, AppLanguage, Slide } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
@@ -18,8 +18,59 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const [isPending, startTransition] = useTransition();
     const [isOpeningPresenter, setIsOpeningPresenter] = useState(false);
     const [templateModalOpen, setTemplateModalOpen] = useState(false);
+    const viewerChannelRef = useRef<BroadcastChannel | null>(null);
     const { t, language } = useLanguage();
     const router = useRouter();
+
+    useEffect(() => {
+        const sessionId = session.id;
+        if (!sessionId) {
+            viewerChannelRef.current?.close();
+            viewerChannelRef.current = null;
+            return;
+        }
+
+        const channel = new BroadcastChannel(`broadcast-console-${sessionId}`);
+        viewerChannelRef.current = channel;
+
+        const pushFullState = () => {
+            const currentSlide = session.slides[activeSlideIndex] || null;
+            channel.postMessage({
+                type: "full_state",
+                payload: {
+                    currentSlide,
+                    slideIndex: activeSlideIndex,
+                    internalPageIndex: 0,
+                    config: null
+                }
+            });
+        };
+
+        channel.onmessage = (event) => {
+            if (event.data?.type === "viewer_ready") {
+                pushFullState();
+            }
+        };
+
+        pushFullState();
+
+        return () => {
+            channel.close();
+        };
+    }, [session.id, session.slides, activeSlideIndex]);
+
+    useEffect(() => {
+        if (!session.id || !viewerChannelRef.current) return;
+        const currentSlide = session.slides[activeSlideIndex] || null;
+        viewerChannelRef.current.postMessage({
+            type: "slide_change",
+            payload: {
+                slide: currentSlide,
+                index: activeSlideIndex,
+                internalPageIndex: 0
+            }
+        });
+    }, [session.id, session.slides, activeSlideIndex]);
 
     const statusInfo: Record<BroadcastSession["status"], { label: string; description: string }> = {
         draft: {

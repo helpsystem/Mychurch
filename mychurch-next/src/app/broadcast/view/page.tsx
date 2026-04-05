@@ -114,9 +114,23 @@ function ViewerContent() {
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
     const [tokenState, setTokenState] = useState<"checking" | "valid" | "invalid">("checking");
+    const [tokenCheckTimeout, setTokenCheckTimeout] = useState(false);
+    const [initialStateTimeout, setInitialStateTimeout] = useState(false);
+    const [sessionSlides, setSessionSlides] = useState<Slide[]>([]);
+    const slidesRef = useRef<Slide[]>([]);
+
+    useEffect(() => {
+        slidesRef.current = sessionSlides;
+    }, [sessionSlides]);
 
     useEffect(() => {
         let isMounted = true;
+        const timeoutId = window.setTimeout(() => {
+            if (isMounted) {
+                setTokenCheckTimeout(true);
+                setTokenState("invalid");
+            }
+        }, 8000);
 
         const validateToken = async () => {
             if (!viewerToken) {
@@ -130,6 +144,7 @@ function ViewerContent() {
                     { cache: 'no-store' }
                 );
                 if (!isMounted) return;
+                clearTimeout(timeoutId);
                 setTokenState(res.ok ? "valid" : "invalid");
             } catch {
                 if (isMounted) setTokenState("invalid");
@@ -139,21 +154,83 @@ function ViewerContent() {
         void validateToken();
         return () => {
             isMounted = false;
+            clearTimeout(timeoutId);
         };
     }, [sessionId, viewerToken]);
 
     useEffect(() => {
+        setInitialStateTimeout(false);
+        if (tokenState !== "valid") return;
+        if (state.connected || state.currentSlide) return;
+
+        const timeoutId = window.setTimeout(() => {
+            setInitialStateTimeout(true);
+        }, 10000);
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [tokenState, state.connected, state.currentSlide, sessionId]);
+
+    useEffect(() => {
         setShowGlassPopup(false);
     }, [state.slideIndex, state.internalPageIndex]);
+
+    useEffect(() => {
+        if (tokenState !== "valid") return;
+        let isMounted = true;
+
+        const loadSessionSlides = async () => {
+            try {
+                const res = await fetch(
+                    `/api/broadcast/viewer-session?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(viewerToken)}`,
+                    { cache: 'no-store' }
+                );
+                if (!res.ok) return;
+
+                const data = await res.json();
+                if (!isMounted || !Array.isArray(data?.slides)) return;
+                setSessionSlides(data.slides as Slide[]);
+            } catch {
+                // Viewer can still run via BroadcastChannel in same-browser mode.
+            }
+        };
+
+        void loadSessionSlides();
+        return () => {
+            isMounted = false;
+        };
+    }, [tokenState, sessionId, viewerToken]);
 
     // WebSocket sync (for cross-device communication)
     const { state: syncState } = useWebSocketSync({
         sessionId: tokenState === "valid" ? sessionId : undefined,
         isLeader: false,
         onSlideChange: (index) => {
-            // WebSocket implementation might be simpler, handling it in useEffect below
+            const fromSession = slidesRef.current[index] || null;
+            setState(prev => ({
+                ...prev,
+                currentSlide: fromSession,
+                slideIndex: index,
+                internalPageIndex: 0,
+                connected: true,
+                connectionType: prev.connectionType === 'broadcast-channel' ? prev.connectionType : 'websocket'
+            }));
         }
     });
+
+    useEffect(() => {
+        if (!sessionSlides.length) return;
+        if (state.currentSlide) return;
+
+        const fromSession = sessionSlides[state.slideIndex] || null;
+        if (!fromSession) return;
+
+        setState(prev => ({
+            ...prev,
+            currentSlide: fromSession
+        }));
+    }, [sessionSlides, state.slideIndex, state.currentSlide]);
 
     // BroadcastChannel for same-browser communication (more reliable for local use)
     useEffect(() => {
@@ -632,7 +709,7 @@ function ViewerContent() {
             {tokenState === "invalid" && (
                 <div className="absolute inset-0 z-[80] bg-black text-red-400 flex flex-col items-center justify-center gap-4 font-[Vazirmatn]">
                     <div className="text-4xl font-bold">دسترسی نامعتبر</div>
-                    <div className="text-xl text-red-300">لینک Viewer منقضی شده یا معتبر نیست.</div>
+                    <div className="text-xl text-red-300">{tokenCheckTimeout ? 'بررسی دسترسی timeout شد. دوباره لینک جدید بسازید.' : 'لینک Viewer منقضی شده یا معتبر نیست.'}</div>
                 </div>
             )}
             {!state.connected && !state.currentSlide && (
@@ -641,6 +718,12 @@ function ViewerContent() {
                         <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
                         <span className="font-bold">⚠️ در انتظار اتصال...</span>
                     </div>
+                </div>
+            )}
+            {tokenState === "valid" && initialStateTimeout && !state.currentSlide && (
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-amber-500/95 text-black px-6 py-3 rounded-xl z-50 shadow-2xl border border-amber-200 font-[Vazirmatn]">
+                    <div className="font-bold text-lg">اتصال اولیه دریافت نشد</div>
+                    <div className="text-sm">کنسول پخش را باز نگه دارید و دوباره Open Presenter را بزنید.</div>
                 </div>
             )}
             <div className="w-full h-full">{renderSlideContent()}</div>

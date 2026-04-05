@@ -6,6 +6,7 @@ import Link from "next/link";
 import { UserPlus, Lock, Mail, Loader2, User, ArrowRight, CheckCircle } from "lucide-react";
 import { signUp } from "@/actions/auth";
 import { PageVisuals } from "@/components/ui/PageVisuals";
+import { resolvePublicSiteUrl } from "@/lib/site-url";
 
 export default function SignupPage() {
     const [isPending, startTransition] = useTransition();
@@ -15,9 +16,9 @@ export default function SignupPage() {
     const handleGoogleLogin = async () => {
         const { createClient } = await import("@/utils/supabase/client");
         const supabase = createClient();
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
-        
-        await supabase.auth.signInWithOAuth({
+        const siteUrl = resolvePublicSiteUrl();
+
+        const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
                 redirectTo: `${siteUrl}/api/auth/callback`,
@@ -27,6 +28,10 @@ export default function SignupPage() {
                 },
             },
         });
+
+        if (error) {
+            setError(error.message || "خطا در ثبت‌نام با گوگل / Google sign-up failed");
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

@@ -1,23 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { createClient as createAdminClient } from "@supabase/supabase-js";
-
-function resolvePublicSiteUrl() {
-    const raw = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
-    const fallback = "https://samanabyar.online";
-
-    if (!raw) return fallback;
-
-    try {
-        const parsed = new URL(raw.startsWith("http") ? raw : `https://${raw}`);
-        const host = parsed.hostname.toLowerCase();
-        const isLocal = host === "localhost" || host === "127.0.0.1" || host.endsWith(".local");
-        if (isLocal) return fallback;
-        return parsed.origin;
-    } catch {
-        return fallback;
-    }
-}
+import { resolvePublicSiteUrl } from "@/lib/site-url";
 
 export async function POST(req: Request) {
     try {
