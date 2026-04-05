@@ -586,48 +586,49 @@ const ScriptureSelector: React.FC<ScriptureSelectorProps> = ({
             </div>
           </div>
 
-          {/* Persian Version */}
+          {/* Persian Version — select like Bible page */}
           <div className="p-3 border-b border-white/10">
             <label className="text-[11px] text-slate-500 font-semibold uppercase tracking-widest block mb-2">
               🇮🇷 {isRTL ? "ترجمه فارسی" : "Persian Version"}
             </label>
-            {persianVersions.length === 0 ? (
-              <p className="text-xs text-slate-600 italic">Loading...</p>
-            ) : (
-              <div className="flex flex-wrap gap-1.5">
-                {persianVersions.map((v) => (
-                  <button
-                    key={v.abbr}
-                    onClick={() => { setSelectedVersionFa(v.abbr); persist("bs_ver_fa", v.abbr); }}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all font-[Vazirmatn] ${selectedVersionFa === v.abbr ? "bg-purple-600/20 text-purple-300 border-purple-500/50 shadow-md" : "bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-white"}`}
-                  >
-                    {v.name.length > 15 ? v.abbr : v.name}
-                  </button>
-                ))}
-              </div>
-            )}
+            <select
+              value={selectedVersionFa}
+              onChange={(e) => { setSelectedVersionFa(e.target.value); persist("bs_ver_fa", e.target.value); }}
+              aria-label="Farsi Bible version"
+              className="w-full font-[Vazirmatn] bg-white/5 border border-purple-500/30 rounded-xl px-3 py-2 text-sm font-bold text-white outline-none focus:border-purple-500 cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white"
+              dir="rtl"
+            >
+              {persianVersions.length === 0
+                ? <option value="" className="bg-zinc-900 text-white">— در حال بارگذاری... —</option>
+                : persianVersions.map((v) => (
+                    <option key={v.abbr} value={v.abbr} className="bg-zinc-900 text-white">
+                      {v.name} {v.hasAudio ? "🔊" : ""}
+                    </option>
+                  ))
+              }
+            </select>
           </div>
 
-          {/* English Version */}
+          {/* English Version — select like Bible page */}
           <div className="p-3 border-b border-white/10">
             <label className="text-[11px] text-slate-500 font-semibold uppercase tracking-widest block mb-2">
               🇺🇸 {isRTL ? "ترجمه انگلیسی" : "English Version"}
             </label>
-            {englishVersions.length === 0 ? (
-              <p className="text-xs text-slate-600 italic">Loading...</p>
-            ) : (
-              <div className="flex flex-wrap gap-1.5">
-                {englishVersions.slice(0, 8).map((v) => (
-                  <button
-                    key={v.abbr}
-                    onClick={() => { setSelectedVersionEn(v.abbr); persist("bs_ver_en", v.abbr); }}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all ${selectedVersionEn === v.abbr ? "bg-blue-600/20 text-blue-300 border-blue-500/50 shadow-md" : "bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-white"}`}
-                  >
-                    {v.hasAudio ? "🔊 " : ""}{v.abbr}
-                  </button>
-                ))}
-              </div>
-            )}
+            <select
+              value={selectedVersionEn}
+              onChange={(e) => { setSelectedVersionEn(e.target.value); persist("bs_ver_en", e.target.value); }}
+              aria-label="English Bible version"
+              className="w-full bg-white/5 border border-blue-500/30 rounded-xl px-3 py-2 text-sm font-bold text-white outline-none focus:border-blue-500 cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white"
+            >
+              {englishVersions.length === 0
+                ? <option value="" className="bg-zinc-900 text-white">— Loading... —</option>
+                : englishVersions.map((v) => (
+                    <option key={v.abbr} value={v.abbr} className="bg-zinc-900 text-white">
+                      {v.hasAudio ? "🔊 " : ""}{v.abbr} — {v.name.slice(0, 22)}
+                    </option>
+                  ))
+              }
+            </select>
           </div>
 
           {/* Fonts */}
