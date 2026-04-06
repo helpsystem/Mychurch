@@ -92,6 +92,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const [selectedBookId, setSelectedBookId] = useState("GEN");
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [bookSearch, setBookSearch] = useState("");
+  const [verseSearch, setVerseSearch] = useState("");
   const [showBookList, setShowBookList] = useState(false);
   const [showChapterGrid, setShowChapterGrid] = useState(false);
   const [readingMode, setReadingMode] = useState<ReadingMode>(() => load("bp_reading_mode", "parallel") as ReadingMode);
@@ -120,6 +121,21 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const englishVersions = versions.filter((version) => version.language !== "fa");
   const persianVersions = versions.filter((version) => version.language === "fa");
   const headingMap = new Map(headings.map((heading) => [heading.before_verse, heading.text]));
+
+  // Filter verses based on search query
+  const filterVersesBySearch = (verseList: VerseRow[]): VerseRow[] => {
+    if (!verseSearch.trim()) return verseList;
+    const query = verseSearch.toLowerCase();
+    return verseList.filter((verse) => verse.text.toLowerCase().includes(query));
+  };
+
+  const filteredVerses = filterVersesBySearch(verses);
+  const filteredFaVerses = filterVersesBySearch(faVerses);
+  const filteredParallelVerses = parallelVerses.filter((verse) => {
+    if (!verseSearch.trim()) return true;
+    const query = verseSearch.toLowerCase();
+    return (verse.en?.toLowerCase().includes(query) || verse.fa?.toLowerCase().includes(query));
+  });
 
   useEffect(() => {
     fetch("/api/bible/versions")
@@ -207,6 +223,8 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     loadChapter();
     setIsPlaying(false);
     setAudioProgress(0);
+    // Optionally clear verse search when chapter changes
+    // setVerseSearch("");
   }, [loadChapter]);
 
   useEffect(() => {
@@ -446,52 +464,84 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
         <div className="max-w-5xl mx-auto px-4 pt-4 pb-1"><p className="text-xs text-slate-600 text-center">{isRTL ? "برای انتخاب هر آیه روی آن کلیک کنید" : "Click on any verse to select it"}</p></div>
 
+        <div className="max-w-5xl mx-auto px-4 py-3">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <input
+              value={verseSearch}
+              onChange={(event) => setVerseSearch(event.target.value)}
+              placeholder={isRTL ? "جستجو در آیات..." : "Search in verses..."}
+              className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-3 py-2.5 text-sm outline-none focus:border-blue-500/50 focus:bg-white/10 text-white placeholder-slate-600 transition-all"
+            />
+            {verseSearch && (
+              <button
+                onClick={() => setVerseSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+        </div>
+
         {loading ? (
           <div className="flex items-center justify-center py-24"><Loader2 className="w-8 h-8 animate-spin text-blue-400" /></div>
         ) : (
           <div className="max-w-5xl mx-auto px-4 pb-16 pt-4">
             {readingMode === "parallel" && (
               <div className="space-y-3">
-                {parallelVerses.map((verse) => {
-                  const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
-                  return (
-                    <div key={verse.verse_num} onClick={() => toggleVerse(verse.verse_num)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${selected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5 border border-transparent"}`}>
-                      <div className="flex gap-3" dir="ltr"><span className="text-xs font-black text-blue-500/60 mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize}px`, fontFamily: fontEn }}>{verse.en || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
-                      <div className="flex gap-3 text-right" dir="rtl"><span className="text-xs font-black text-purple-500/60 mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize + 2}px`, fontFamily: fontFa }}>{verse.fa || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
-                    </div>
-                  );
-                })}
+                {filteredParallelVerses.length > 0 ? (
+                  filteredParallelVerses.map((verse) => {
+                    const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
+                    return (
+                      <div key={verse.verse_num} onClick={() => toggleVerse(verse.verse_num)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${selected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5 border border-transparent"}`}>
+                        <div className="flex gap-3" dir="ltr"><span className="text-xs font-black text-blue-500/60 mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize}px`, fontFamily: fontEn }}>{verse.en || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
+                        <div className="flex gap-3 text-right" dir="rtl"><span className="text-xs font-black text-purple-500/60 mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize + 2}px`, fontFamily: fontFa }}>{verse.fa || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p className="text-center text-slate-600 py-16">{isRTL ? "آیه‌ای مطابقت یافت نشد" : "No verses found"}</p>
+                )}
               </div>
             )}
 
             {readingMode === "en" && (
               <div className="space-y-1 prose prose-invert max-w-none" dir="ltr" style={{ fontSize: `${fontSize}px`, lineHeight: 1.9, fontFamily: fontEn }}>
-                {verses.map((verse) => {
-                  const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
-                  return (
-                    <span key={verse.verse_num}>
-                      {headingMap.has(verse.verse_num) && <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(verse.verse_num)}</h3>}
-                      <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={() => toggleVerse(verse.verse_num)}>
-                        <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{verse.verse_num}</sup>
-                        {verse.text} 
+                {filteredVerses.length > 0 ? (
+                  filteredVerses.map((verse) => {
+                    const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
+                    return (
+                      <span key={verse.verse_num}>
+                        {headingMap.has(verse.verse_num) && <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(verse.verse_num)}</h3>}
+                        <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={() => toggleVerse(verse.verse_num)}>
+                          <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{verse.verse_num}</sup>
+                          {verse.text} 
+                        </span>
                       </span>
-                    </span>
-                  );
-                })}
+                    );
+                  })
+                ) : (
+                  <p className="text-center text-slate-600 py-16 not-prose">{isRTL ? "آیه‌ای مطابقت یافت نشد" : "No verses found"}</p>
+                )}
               </div>
             )}
 
             {readingMode === "fa" && (
               <div className="text-right space-y-0.5" dir="rtl" style={{ fontSize: `${fontSize}px`, lineHeight: 2.3, fontFamily: fontFa }}>
-                {faVerses.length === 0 ? <p className="text-center text-slate-600 italic py-8">— ترجمه‌ای یافت نشد —</p> : faVerses.map((verse) => {
-                  const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
-                  return (
-                    <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={() => toggleVerse(verse.verse_num)}>
-                      <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{verse.verse_num}</sup>
-                      {verse.text} 
-                    </span>
-                  );
-                })}
+                {filteredFaVerses.length === 0 ? (
+                  <p className="text-center text-slate-600 italic py-8">{faVerses.length === 0 ? "— ترجمه‌ای یافت نشد —" : "— آیه‌ای مطابقت یافت نشد —"}</p>
+                ) : (
+                  filteredFaVerses.map((verse) => {
+                    const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
+                    return (
+                      <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={() => toggleVerse(verse.verse_num)}>
+                        <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{verse.verse_num}</sup>
+                        {verse.text} 
+                      </span>
+                    );
+                  })
+                )}
               </div>
             )}
 
