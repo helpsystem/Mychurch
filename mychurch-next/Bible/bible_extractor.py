@@ -59,6 +59,12 @@ CACHE_DIR = OUTPUT_DIR / "cache"
 RATE_LIMIT = 0.5           # seconds between requests
 MAX_RETRIES = 5
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+EXTRACTION_SCHEMA_VERSION = 6
+
+VERSE_MARKER_RE = re.compile(
+    r'<span[^>]*class="[^"]*(?:\bverse\b|__verse\b)[^"]*"[^>]*data-usfm="([A-Z0-9]{3}\.\d+\.\d+(?:-\d+)?)"[^>]*>',
+    re.IGNORECASE,
+)
 
 # ═══════════════════════════════════════════════════════════════
 #  BIBLE VERSIONS
@@ -92,6 +98,7 @@ ENGLISH_VERSIONS = {
     206:  {"abbr": "WEB",   "name": "World English Bible",            "lang": "en", "publisher": "eBible.org"},
     68:   {"abbr": "GNT",   "name": "Good News Translation",          "lang": "en", "publisher": "American Bible Society"},
     2079: {"abbr": "EASY",  "name": "EasyEnglish Bible 2024",         "lang": "en", "publisher": "MissionAssist"},
+    4669: {"abbr": "AFINT", "name": "African International New Testament: Literal Translation (British English Edition)", "lang": "en", "publisher": "Biblica, Inc."},
 }
 
 ALL_VERSIONS = {**PERSIAN_VERSIONS, **ENGLISH_VERSIONS}
@@ -202,29 +209,79 @@ class VerseExtractor(HTMLParser):
     - Section headings
     - Footnotes
     """
+    BLOCK_TYPES = {
+        "p", "q", "q1", "q2", "q3", "q4", "s", "s1", "s2", "s3",
+        "r", "cl", "d", "m", "mi", "pi", "pm", "pmc", "qr", "b",
+    }
+
     def __init__(self):
         super().__init__()
         self.verses = {}        # {verse_num: text}
+        self.verse_usfm = {}    # {verse_num: "JHN.1.1"}
+        self.verse_line_type = {}  # {verse_num: "p"|"q1"|...}
         self.headings = []      # [{"before_verse": N, "text": "..."}]
-        self.footnotes = []     # [{"verse": N, "text": "..."}]
+        self.footnotes = []     # [{"verse": N, "text": "...", ...}]
+        self.blocks = []        # [{"index": N, "type": "p", ...}]
         
         self._current_verse = None
         self._in_content = False
         self._in_heading = False
         self._in_note = False
         self._in_label = False
+        self._in_note_body = False
+        self._in_note_ref = False
+        self._in_note_text = False
         self._heading_text = ""
         self._note_text = ""
         self._label_text = ""
-        self._depth = 0
+        self._current_note = None
+        self._note_tag_stack = []
+
+        self._div_depth = 0
+        self._block_stack = []
+
+    @staticmethod
+    def _class_tokens(cls: str) -> list[str]:
+        return [c.strip() for c in cls.split() if c.strip()]
+
+    @staticmethod
+    def _has_class_suffix(cls: str, suffix: str) -> bool:
+        for token in VerseExtractor._class_tokens(cls):
+            if token == suffix or token.endswith(f"__{suffix}"):
+                return True
+        return False
+
+    @staticmethod
+    def _extract_block_type(cls: str) -> str | None:
+        for token in VerseExtractor._class_tokens(cls):
+            if token in VerseExtractor.BLOCK_TYPES:
+                return token
+            m = re.search(r"__([A-Za-z0-9]+)$", token)
+            if not m:
+                continue
+            candidate = m.group(1)
+            if candidate in VerseExtractor.BLOCK_TYPES:
+                return candidate
+        return None
         
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
         cls = attrs_dict.get("class", "")
         usfm = attrs_dict.get("data-usfm", "")
         
-        # Verse span: <span class="verse v1" data-usfm="GEN.1.1">
-        if "verse" in cls and usfm:
+        if tag == "div":
+            self._div_depth += 1
+            block_type = self._extract_block_type(cls)
+            if block_type:
+                self._block_stack.append({
+                    "depth": self._div_depth,
+                    "type": block_type,
+                    "verses": set(),
+                    "usfms": set(),
+                })
+
+        # Verse span: <span class="...__verse" data-usfm="GEN.1.1">
+        if self._has_class_suffix(cls, "verse") and usfm:
             parts = usfm.split(".")
             if len(parts) >= 3:
                 try:
@@ -232,48 +289,115 @@ class VerseExtractor(HTMLParser):
                     self._current_verse = v_num
                     if v_num not in self.verses:
                         self.verses[v_num] = ""
+                    self.verse_usfm[v_num] = usfm
+
+                    if self._block_stack:
+                        active = self._block_stack[-1]
+                        active["verses"].add(v_num)
+                        active["usfms"].add(usfm)
+                        self.verse_line_type.setdefault(v_num, active["type"])
                 except ValueError:
                     pass
         
         # Content span
-        if cls == "content":
+        if self._has_class_suffix(cls, "content"):
             self._in_content = True
         
         # Label (verse number display)
-        if cls == "label":
+        if self._has_class_suffix(cls, "label"):
             self._in_label = True
             self._label_text = ""
         
         # Section heading
-        if cls == "heading":
+        if self._has_class_suffix(cls, "heading"):
             self._in_heading = True
             self._heading_text = ""
         
         # Footnote
-        if "note" in cls and tag == "span":
+        if self._has_class_suffix(cls, "note") and tag == "span":
             self._in_note = True
             self._note_text = ""
+            note_type = "cross_reference" if self._has_class_suffix(cls, "x") else "footnote"
+            self._current_note = {
+                "verse": self._current_verse,
+                "usfm": self.verse_usfm.get(self._current_verse),
+                "note_ref": "",
+                "note_type": note_type,
+                "references": [],
+                "text": "",
+            }
+            self._note_tag_stack = ["note"]
+
+        elif self._in_note and tag == "span":
+            marker = None
+            if self._has_class_suffix(cls, "body"):
+                marker = "body"
+                self._in_note_body = True
+            elif self._has_class_suffix(cls, "fr"):
+                marker = "fr"
+                self._in_note_ref = True
+            elif self._has_class_suffix(cls, "ft"):
+                marker = "ft"
+                self._in_note_text = True
+            self._note_tag_stack.append(marker)
+
+        if self._in_note and self._has_class_suffix(cls, "ref") and usfm and self._current_note is not None:
+            if usfm not in self._current_note["references"]:
+                self._current_note["references"].append(usfm)
         
         # Line break
         if tag in ("br",) and self._in_content and self._current_verse:
             self.verses[self._current_verse] += " "
             
     def handle_endtag(self, tag):
+        if tag == "div":
+            if self._block_stack and self._block_stack[-1]["depth"] == self._div_depth:
+                finished = self._block_stack.pop()
+                verses = sorted(finished["verses"])
+                if verses:
+                    self.blocks.append({
+                        "index": len(self.blocks) + 1,
+                        "type": finished["type"],
+                        "start_verse": verses[0],
+                        "end_verse": verses[-1],
+                        "verses": verses,
+                        "usfms": sorted(finished["usfms"]),
+                    })
+            self._div_depth = max(0, self._div_depth - 1)
+
         if tag == "span":
             if self._in_heading:
                 self._in_heading = False
                 if self._heading_text.strip():
+                    next_verse = 1 if self._current_verse is None else self._current_verse + 1
                     self.headings.append({
-                        "before_verse": self._current_verse or 1,
+                        "before_verse": next_verse,
                         "text": self._heading_text.strip(),
                     })
+
             if self._in_note:
+                marker = self._note_tag_stack.pop() if self._note_tag_stack else None
+                if marker == "fr":
+                    self._in_note_ref = False
+                elif marker == "ft":
+                    self._in_note_text = False
+                elif marker == "body":
+                    self._in_note_body = False
+
+            if self._in_note and not self._note_tag_stack:
                 self._in_note = False
-                if self._note_text.strip():
-                    self.footnotes.append({
-                        "verse": self._current_verse,
-                        "text": self._note_text.strip(),
-                    })
+                if self._current_note is not None:
+                    note_text = re.sub(r"\s+", " ", (self._current_note.get("text") or self._note_text or "")).strip()
+                    note_ref = re.sub(r"\s+", " ", self._current_note.get("note_ref", "")).strip()
+                    if note_text:
+                        self._current_note["text"] = note_text
+                        self._current_note["note_ref"] = note_ref
+                        self.footnotes.append(self._current_note)
+                self._current_note = None
+                self._in_note_body = False
+                self._in_note_ref = False
+                self._in_note_text = False
+
             if self._in_label:
                 self._in_label = False
             self._in_content = False
@@ -288,7 +412,14 @@ class VerseExtractor(HTMLParser):
             return
             
         if self._in_note:
-            self._note_text += data
+            if self._in_note_ref and self._current_note is not None:
+                self._current_note["note_ref"] += data
+            elif self._in_note_text and self._current_note is not None:
+                self._current_note["text"] += data
+            elif self._current_note is not None:
+                self._current_note["text"] += data
+            else:
+                self._note_text += data
             return
             
         if self._in_content and self._current_verse is not None:
@@ -301,7 +432,12 @@ class VerseExtractor(HTMLParser):
         elif self._in_heading:
             self._heading_text += char
         elif self._in_note:
-            self._note_text += char
+            if self._in_note_ref and self._current_note is not None:
+                self._current_note["note_ref"] += char
+            elif self._current_note is not None:
+                self._current_note["text"] += char
+            else:
+                self._note_text += char
     
     def handle_charref(self, name):
         char = html.unescape(f"&#{name};")
@@ -310,7 +446,12 @@ class VerseExtractor(HTMLParser):
         elif self._in_heading:
             self._heading_text += char
         elif self._in_note:
-            self._note_text += char
+            if self._in_note_ref and self._current_note is not None:
+                self._current_note["note_ref"] += char
+            elif self._current_note is not None:
+                self._current_note["text"] += char
+            else:
+                self._note_text += char
     
     def get_results(self):
         """Return cleaned-up results."""
@@ -320,23 +461,30 @@ class VerseExtractor(HTMLParser):
             # Normalize whitespace
             text = re.sub(r'\s+', ' ', text).strip()
             if text:
-                clean_verses.append({"verse": v_num, "text": text})
+                clean_verses.append({
+                    "verse": v_num,
+                    "usfm": self.verse_usfm.get(v_num),
+                    "line_type": self.verse_line_type.get(v_num),
+                    "text": text,
+                })
         
         return {
             "verses": clean_verses,
             "headings": self.headings,
             "footnotes": self.footnotes,
+            "blocks": self.blocks,
         }
 
 
 def parse_chapter_html(html_content: str) -> dict:
     """Parse YouVersion chapter HTML and extract structured data."""
     if not html_content:
-        return {"verses": [], "headings": [], "footnotes": []}
-    
-    # Decode HTML entities in the content first
-    content = html.unescape(html_content)
-    
+        return {"verses": [], "headings": [], "footnotes": [], "blocks": []}
+
+    # Do not unescape the full HTML string before parsing. Doing so can turn
+    # escaped text into pseudo-tags and corrupt verse boundaries.
+    content = html_content
+
     parser = VerseExtractor()
     try:
         parser.feed(content)
@@ -344,6 +492,63 @@ def parse_chapter_html(html_content: str) -> dict:
         pass
     
     return parser.get_results()
+
+
+def extract_html_verse_numbers(html_content: str) -> list[int]:
+    """Extract verse numbers from raw chapter HTML markers."""
+    verse_numbers = set()
+    for usfm in VERSE_MARKER_RE.findall(html_content or ""):
+        parts = usfm.split(".")
+        if len(parts) < 3:
+            continue
+        try:
+            verse_numbers.add(int(parts[2].split("-")[0]))
+        except ValueError:
+            continue
+    return sorted(verse_numbers)
+
+
+def validate_chapter_alignment(parsed: dict, html_content: str) -> dict:
+    """Validate parsed verses against raw HTML verse markers."""
+    raw_numbers = set(extract_html_verse_numbers(html_content))
+    parsed_numbers = {v.get("verse") for v in parsed.get("verses", []) if isinstance(v.get("verse"), int)}
+
+    missing = sorted(raw_numbers - parsed_numbers)
+    extra = sorted(parsed_numbers - raw_numbers)
+    empty_text = sum(1 for v in parsed.get("verses", []) if not str(v.get("text", "")).strip())
+
+    return {
+        "ok": not missing and not extra and empty_text == 0,
+        "raw_count": len(raw_numbers),
+        "parsed_count": len(parsed_numbers),
+        "missing": missing,
+        "extra": extra,
+        "empty_text": empty_text,
+    }
+
+
+def _coerce_meta_str(value) -> str:
+    """Coerce version metadata values to plain strings for safe SQLite binding."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        for key in ("name", "local_name", "english_name", "title", "code", "id"):
+            v = value.get(key)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+            if isinstance(v, int):
+                return str(v)
+        return ""
+    if isinstance(value, (list, tuple, set)):
+        items: list[str] = []
+        for item in value:
+            s = _coerce_meta_str(item)
+            if s:
+                items.append(s)
+        return ",".join(items)
+    return str(value)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -417,7 +622,7 @@ def extract_chapter(version_id: int, book_id: str, chapter: int, version_abbr: s
     if cache_file.exists():
         try:
             cached = json.loads(cache_file.read_text(encoding="utf-8"))
-            if cached.get("verses"):  # Valid cache
+            if cached.get("schema_version") == EXTRACTION_SCHEMA_VERSION and cached.get("verses"):
                 return cached
         except (json.JSONDecodeError, KeyError):
             pass
@@ -439,9 +644,53 @@ def extract_chapter(version_id: int, book_id: str, chapter: int, version_abbr: s
     props = next_data.get("props", {}).get("pageProps", {})
     chapter_info = props.get("chapterInfo") or {}
     
-    # 1. Parse chapter text HTML
+    # 1. Parse chapter text HTML with strict alignment checks
     content_html = chapter_info.get("content", "")
     parsed = parse_chapter_html(content_html)
+    alignment = validate_chapter_alignment(parsed, content_html)
+
+    if not alignment["ok"]:
+        log.warning(
+            "    ⚠️ Verse alignment mismatch %s.%s (%s) on first pass: raw=%s parsed=%s missing=%s extra=%s empty=%s",
+            book_id,
+            chapter,
+            version_abbr,
+            alignment["raw_count"],
+            alignment["parsed_count"],
+            alignment["missing"][:10],
+            alignment["extra"][:10],
+            alignment["empty_text"],
+        )
+
+        # Retry once with a fresh fetch to avoid transient/partial HTML responses.
+        retry_html = fetch_page(url)
+        if retry_html:
+            retry_next_data = extract_next_data(retry_html)
+            retry_props = retry_next_data.get("props", {}).get("pageProps", {})
+            retry_chapter_info = retry_props.get("chapterInfo") or {}
+            retry_content_html = retry_chapter_info.get("content", "")
+
+            if retry_content_html:
+                retry_parsed = parse_chapter_html(retry_content_html)
+                retry_alignment = validate_chapter_alignment(retry_parsed, retry_content_html)
+                if retry_alignment["ok"]:
+                    parsed = retry_parsed
+                    alignment = retry_alignment
+                    content_html = retry_content_html
+                    chapter_info = retry_chapter_info
+                    props = retry_props
+                    log.info("    ✅ Verse alignment recovered on retry for %s.%s (%s)", book_id, chapter, version_abbr)
+                else:
+                    alignment = retry_alignment
+
+        if not alignment["ok"]:
+            log.error(
+                "    ❌ Skipping %s.%s (%s) due to persistent verse alignment mismatch",
+                book_id,
+                chapter,
+                version_abbr,
+            )
+            return None
     
     # 2. Extract audio info
     audio_info = []
@@ -471,7 +720,12 @@ def extract_chapter(version_id: int, book_id: str, chapter: int, version_abbr: s
     version_data = props.get("versionData", {})
     
     # Build result
+    prev_ref = chapter_info.get("previous")
+    next_ref = chapter_info.get("next")
+    chapter_ref = chapter_info.get("reference")
+
     result = {
+        "schema_version": EXTRACTION_SCHEMA_VERSION,
         "book_id": book_id,
         "chapter": chapter,
         "chapter_usfm": f"{book_id}.{chapter}",
@@ -481,8 +735,28 @@ def extract_chapter(version_id: int, book_id: str, chapter: int, version_abbr: s
         "verse_count": len(parsed["verses"]),
         "headings": parsed["headings"],
         "footnotes": parsed["footnotes"],
+        "blocks": parsed.get("blocks", []),
         "audio": audio_info,
         "has_audio": len(audio_info) > 0,
+        "quality": {
+            "verse_alignment": alignment,
+        },
+        "chapter_meta": {
+            "source_url": url,
+            "reference": chapter_ref,
+            "previous": prev_ref,
+            "next": next_ref,
+        },
+        "version_meta": {
+            "id": version_data.get("id"),
+            "abbreviation": version_data.get("abbreviation") or version_data.get("local_abbreviation") or version_abbr,
+            "local_abbreviation": version_data.get("local_abbreviation"),
+            "title": version_data.get("title") or version_data.get("local_title"),
+            "local_title": version_data.get("local_title"),
+            "language": version_data.get("language"),
+            "publisher": version_data.get("publisher"),
+            "audio_enabled": bool(version_data.get("audio")),
+        },
         "raw_html": content_html if len(content_html) < 100000 else "",  # Skip very large HTML
     }
     
@@ -596,10 +870,57 @@ def run_extraction(version_ids: list[int], book_filter: str | None, resume: bool
             
             total_v = book_data.get("total_verses", 0)
             log.info(f"  📊 {book['name_en']}: {book_data['chapter_count']} chapters, {total_v} verses")
+
+        resolved_info = dict(version_info)
+        for b in books_data:
+            for ch in b.get("chapters", []):
+                vm = ch.get("version_meta") or {}
+                if vm.get("abbreviation"):
+                    resolved_info["abbr"] = vm.get("abbreviation")
+                if vm.get("title"):
+                    resolved_info["name"] = vm.get("title")
+                if vm.get("local_title"):
+                    resolved_info["name_local"] = vm.get("local_title")
+                if vm.get("local_abbreviation"):
+                    resolved_info["abbr_local"] = vm.get("local_abbreviation")
+                if vm.get("publisher"):
+                    resolved_info["publisher"] = _coerce_meta_str(vm.get("publisher"))
+                if vm.get("language"):
+                    resolved_info["lang"] = _coerce_meta_str(vm.get("language"))
+                if vm:
+                    break
+            if resolved_info.get("name_local"):
+                break
+
+        audio_chapters = 0
+        audio_files = 0
+        audio_capable = False
+        for b in books_data:
+            for ch in b.get("chapters", []):
+                vm = ch.get("version_meta") or {}
+                if vm.get("audio_enabled"):
+                    audio_capable = True
+                audios = ch.get("audio", [])
+                if audios:
+                    audio_chapters += 1
+                for a in audios:
+                    if a.get("mp3_url") or a.get("hls_url"):
+                        audio_files += 1
+                        audio_capable = True
+
+        resolved_info["abbr"] = _coerce_meta_str(resolved_info.get("abbr") or v_abbr)
+        resolved_info["abbr_local"] = _coerce_meta_str(resolved_info.get("abbr_local"))
+        resolved_info["name"] = _coerce_meta_str(resolved_info.get("name") or v_name)
+        resolved_info["name_local"] = _coerce_meta_str(resolved_info.get("name_local"))
+        resolved_info["lang"] = _coerce_meta_str(resolved_info.get("lang") or lang)
+        resolved_info["publisher"] = _coerce_meta_str(resolved_info.get("publisher"))
+        resolved_info["audio_capable"] = bool(audio_capable)
+        resolved_info["audio_chapters"] = audio_chapters
+        resolved_info["audio_files"] = audio_files
         
         results[version_id] = {
             "version_id": version_id,
-            "version_info": version_info,
+            "version_info": resolved_info,
             "books": books_data,
         }
     
@@ -638,7 +959,12 @@ def export_json(results: dict):
             "version_id": vid,
             "version_abbr": v_abbr,
             "version_name": v_name,
+            "version_local_abbr": vdata["version_info"].get("abbr_local"),
+            "version_local_name": vdata["version_info"].get("name_local"),
             "language": lang,
+            "audio_capable": bool(vdata["version_info"].get("audio_capable")),
+            "audio_chapters": int(vdata["version_info"].get("audio_chapters", 0) or 0),
+            "audio_files": int(vdata["version_info"].get("audio_files", 0) or 0),
             "extracted_at": datetime.now().isoformat(),
             "book_count": len(vdata["books"]),
             "total_chapters": sum(b.get("chapter_count", 0) for b in vdata["books"]),
@@ -668,6 +994,7 @@ def export_sqlite(results: dict):
     cur = conn.cursor()
     
     cur.executescript("""
+        DROP TABLE IF EXISTS chapter_blocks;
         DROP TABLE IF EXISTS audio;
         DROP TABLE IF EXISTS footnotes;
         DROP TABLE IF EXISTS headings;
@@ -679,9 +1006,14 @@ def export_sqlite(results: dict):
         CREATE TABLE versions (
             version_id   INTEGER PRIMARY KEY,
             abbr         TEXT NOT NULL,
+            local_abbr   TEXT,
             name         TEXT NOT NULL,
+            local_name   TEXT,
             language     TEXT,
-            publisher    TEXT
+            publisher    TEXT,
+            audio_capable BOOLEAN DEFAULT 0,
+            audio_chapters INTEGER DEFAULT 0,
+            audio_files   INTEGER DEFAULT 0
         );
         
         CREATE TABLE books (
@@ -706,6 +1038,9 @@ def export_sqlite(results: dict):
             chapter_usfm TEXT,
             verse_count  INTEGER,
             has_audio    BOOLEAN DEFAULT 0,
+            source_url   TEXT,
+            previous_usfm TEXT,
+            next_usfm    TEXT,
             FOREIGN KEY (version_id) REFERENCES versions(version_id),
             UNIQUE(version_id, book_id, chapter_num)
         );
@@ -717,6 +1052,7 @@ def export_sqlite(results: dict):
             chapter_num  INTEGER NOT NULL,
             verse_num    INTEGER NOT NULL,
             verse_usfm   TEXT,
+            line_type    TEXT,
             text         TEXT NOT NULL,
             FOREIGN KEY (version_id) REFERENCES versions(version_id),
             UNIQUE(version_id, book_id, chapter_num, verse_num)
@@ -738,7 +1074,24 @@ def export_sqlite(results: dict):
             book_id      TEXT NOT NULL,
             chapter_num  INTEGER NOT NULL,
             verse_num    INTEGER,
+            note_ref     TEXT,
+            note_type    TEXT,
+            references_json TEXT,
             text         TEXT,
+            FOREIGN KEY (version_id) REFERENCES versions(version_id)
+        );
+
+        CREATE TABLE chapter_blocks (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            version_id   INTEGER NOT NULL,
+            book_id      TEXT NOT NULL,
+            chapter_num  INTEGER NOT NULL,
+            block_index  INTEGER,
+            block_type   TEXT,
+            start_verse  INTEGER,
+            end_verse    INTEGER,
+            verses_json  TEXT,
+            usfms_json   TEXT,
             FOREIGN KEY (version_id) REFERENCES versions(version_id)
         );
         
@@ -764,9 +1117,21 @@ def export_sqlite(results: dict):
     
     for vid, vdata in results.items():
         vi = vdata["version_info"]
-        cur.execute("INSERT OR REPLACE INTO versions VALUES (?,?,?,?,?)",
-                    (vid, vi["abbr"], vi.get("name", vi["abbr"]),
-                     vi.get("lang", ""), vi.get("publisher", "")))
+        cur.execute(
+            "INSERT OR REPLACE INTO versions (version_id, abbr, local_abbr, name, local_name, language, publisher, audio_capable, audio_chapters, audio_files) VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (
+                vid,
+                vi["abbr"],
+                vi.get("abbr_local"),
+                vi.get("name", vi["abbr"]),
+                vi.get("name_local"),
+                vi.get("lang", ""),
+                vi.get("publisher", ""),
+                1 if vi.get("audio_capable") else 0,
+                int(vi.get("audio_chapters", 0) or 0),
+                int(vi.get("audio_files", 0) or 0),
+            ),
+        )
         
         for order, book in enumerate(vdata["books"], 1):
             cur.execute(
@@ -777,17 +1142,24 @@ def export_sqlite(results: dict):
             
             for ch in book["chapters"]:
                 ch_num = ch["chapter"]
+                ch_meta = ch.get("chapter_meta") or {}
+                prev_obj = ch_meta.get("previous")
+                next_obj = ch_meta.get("next")
+                prev_usfm = _coerce_meta_str(prev_obj.get("usfm") if isinstance(prev_obj, dict) else prev_obj)
+                next_usfm = _coerce_meta_str(next_obj.get("usfm") if isinstance(next_obj, dict) else next_obj)
                 cur.execute(
-                    "INSERT OR REPLACE INTO chapters (version_id, book_id, chapter_num, chapter_usfm, verse_count, has_audio) VALUES (?,?,?,?,?,?)",
+                    "INSERT OR REPLACE INTO chapters (version_id, book_id, chapter_num, chapter_usfm, verse_count, has_audio, source_url, previous_usfm, next_usfm) VALUES (?,?,?,?,?,?,?,?,?)",
                     (vid, book["book_id"], ch_num, ch.get("chapter_usfm", ""),
-                     ch.get("verse_count", 0), 1 if ch.get("has_audio") else 0)
+                     ch.get("verse_count", 0), 1 if ch.get("has_audio") else 0,
+                     _coerce_meta_str(ch_meta.get("source_url", "")), prev_usfm, next_usfm)
                 )
                 
                 for v in ch.get("verses", []):
                     cur.execute(
-                        "INSERT OR REPLACE INTO verses (version_id, book_id, chapter_num, verse_num, verse_usfm, text) VALUES (?,?,?,?,?,?)",
+                        "INSERT OR REPLACE INTO verses (version_id, book_id, chapter_num, verse_num, verse_usfm, line_type, text) VALUES (?,?,?,?,?,?,?)",
                         (vid, book["book_id"], ch_num, v["verse"],
-                         f"{book['book_id']}.{ch_num}.{v['verse']}", v["text"])
+                         v.get("usfm") or f"{book['book_id']}.{ch_num}.{v['verse']}",
+                         v.get("line_type"), v["text"])
                     )
                 
                 for h in ch.get("headings", []):
@@ -798,8 +1170,33 @@ def export_sqlite(results: dict):
                 
                 for fn in ch.get("footnotes", []):
                     cur.execute(
-                        "INSERT INTO footnotes (version_id, book_id, chapter_num, verse_num, text) VALUES (?,?,?,?,?)",
-                        (vid, book["book_id"], ch_num, fn.get("verse"), fn.get("text", ""))
+                        "INSERT INTO footnotes (version_id, book_id, chapter_num, verse_num, note_ref, note_type, references_json, text) VALUES (?,?,?,?,?,?,?,?)",
+                        (
+                            vid,
+                            book["book_id"],
+                            ch_num,
+                            fn.get("verse"),
+                            fn.get("note_ref", ""),
+                            fn.get("note_type", "footnote"),
+                            json.dumps(fn.get("references", []), ensure_ascii=False),
+                            fn.get("text", ""),
+                        )
+                    )
+
+                for blk in ch.get("blocks", []):
+                    cur.execute(
+                        "INSERT INTO chapter_blocks (version_id, book_id, chapter_num, block_index, block_type, start_verse, end_verse, verses_json, usfms_json) VALUES (?,?,?,?,?,?,?,?,?)",
+                        (
+                            vid,
+                            book["book_id"],
+                            ch_num,
+                            blk.get("index"),
+                            blk.get("type"),
+                            blk.get("start_verse"),
+                            blk.get("end_verse"),
+                            json.dumps(blk.get("verses", []), ensure_ascii=False),
+                            json.dumps(blk.get("usfms", []), ensure_ascii=False),
+                        )
                     )
                 
                 for aud in ch.get("audio", []):
@@ -833,7 +1230,7 @@ def export_csv(results: dict):
     with open(all_csv, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
         w.writerow(["version_id", "version_abbr", "language", "book_id", "book_name_en",
-                     "book_name_fa", "testament", "chapter", "verse", "usfm", "text"])
+                     "book_name_fa", "testament", "chapter", "verse", "usfm", "line_type", "text"])
         
         for vid, vdata in results.items():
             vi = vdata["version_info"]
@@ -844,7 +1241,9 @@ def export_csv(results: dict):
                             vid, vi["abbr"], vi.get("lang", ""),
                             book["book_id"], book["book_name_en"], book["book_name_fa"],
                             book["testament"], ch["chapter"], v["verse"],
-                            f"{book['book_id']}.{ch['chapter']}.{v['verse']}", v["text"]
+                            v.get("usfm") or f"{book['book_id']}.{ch['chapter']}.{v['verse']}",
+                            v.get("line_type", ""),
+                            v["text"]
                         ])
     
     # Audio links CSV
@@ -885,7 +1284,10 @@ def export_csv(results: dict):
     fn_csv = csv_dir / "all_footnotes.csv"
     with open(fn_csv, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
-        w.writerow(["version_id", "version_abbr", "book_id", "chapter", "verse", "footnote_text"])
+        w.writerow([
+            "version_id", "version_abbr", "book_id", "chapter", "verse",
+            "note_ref", "note_type", "references_json", "footnote_text"
+        ])
         
         for vid, vdata in results.items():
             vi = vdata["version_info"]
@@ -894,7 +1296,39 @@ def export_csv(results: dict):
                     for fn in ch.get("footnotes", []):
                         w.writerow([
                             vid, vi["abbr"], book["book_id"], ch["chapter"],
-                            fn.get("verse"), fn.get("text", "")
+                            fn.get("verse"),
+                            fn.get("note_ref", ""),
+                            fn.get("note_type", "footnote"),
+                            json.dumps(fn.get("references", []), ensure_ascii=False),
+                            fn.get("text", "")
+                        ])
+
+    # Chapter blocks CSV (paragraph / poetry / section layout)
+    blocks_csv = csv_dir / "chapter_blocks.csv"
+    with open(blocks_csv, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.writer(f)
+        w.writerow([
+            "version_id", "version_abbr", "book_id", "chapter",
+            "block_index", "block_type", "start_verse", "end_verse",
+            "verses_json", "usfms_json"
+        ])
+
+        for vid, vdata in results.items():
+            vi = vdata["version_info"]
+            for book in vdata["books"]:
+                for ch in book["chapters"]:
+                    for blk in ch.get("blocks", []):
+                        w.writerow([
+                            vid,
+                            vi["abbr"],
+                            book["book_id"],
+                            ch["chapter"],
+                            blk.get("index"),
+                            blk.get("type", ""),
+                            blk.get("start_verse"),
+                            blk.get("end_verse"),
+                            json.dumps(blk.get("verses", []), ensure_ascii=False),
+                            json.dumps(blk.get("usfms", []), ensure_ascii=False),
                         ])
     
     log.info(f"  📊 CSV files: {csv_dir}")
@@ -938,6 +1372,22 @@ def print_stats(results: dict):
     print("═" * 70 + "\n")
 
 
+def parse_version_tokens(raw_versions: str) -> list[int]:
+    """Parse version IDs or abbreviations, e.g. '118,AFINT,3034'."""
+    version_ids: list[int] = []
+    for tok in [t.strip() for t in raw_versions.split(",") if t.strip()]:
+        if tok.isdigit():
+            version_ids.append(int(tok))
+            continue
+        match = next((vid for vid, info in ALL_VERSIONS.items() if info.get("abbr", "").upper() == tok.upper()), None)
+        if match is None:
+            raise ValueError(f"Unknown version token: {tok}")
+        version_ids.append(match)
+
+    # Keep order while removing duplicates.
+    return list(dict.fromkeys(version_ids))
+
+
 # ═══════════════════════════════════════════════════════════════
 #  MAIN
 # ═══════════════════════════════════════════════════════════════
@@ -951,7 +1401,8 @@ def main():
         epilog="""
 Examples:
   %(prog)s                                  Extract all versions (FA + EN)
-  %(prog)s --versions 118,3034              Only NMV Persian + BSB English
+    %(prog)s --versions 118,3034              Only NMV Persian + BSB English
+    %(prog)s --versions AFINT,118             Select by abbreviation + ID
   %(prog)s --versions 118 --book JHN        Only John in NMV
   %(prog)s --persian-only                   Only Persian translations
   %(prog)s --english-only                   Only English translations
@@ -959,7 +1410,7 @@ Examples:
   %(prog)s --list-versions                  Show all available versions
         """,
     )
-    parser.add_argument("--versions", type=str, help="Comma-separated version IDs (e.g. 118,3034)")
+    parser.add_argument("--versions", type=str, help="Comma-separated version IDs/abbr (e.g. 118,3034,AFINT)")
     parser.add_argument("--book", type=str, help="Extract only one book (e.g. GEN, PSA, JHN)")
     parser.add_argument("--persian-only", action="store_true", help="Only Persian translations")
     parser.add_argument("--english-only", action="store_true", help="Only English translations")
@@ -984,7 +1435,7 @@ Examples:
         
         print("\n  🇺🇸 ENGLISH VERSIONS:")
         print(f"  {'ID':<6} {'Abbr':<10} {'Name'}")
-        print(f"  {'─'*6} {'─'*10} {'─'*40}")
+        print(f"  {'─'*6} {'─'*10} {'─'*60}")
         for vid, vi in sorted(ENGLISH_VERSIONS.items()):
             print(f"  {vid:<6} {vi['abbr']:<10} {vi['name']}")
         
@@ -995,7 +1446,7 @@ Examples:
     
     # Determine which versions to extract
     if args.versions:
-        version_ids = [int(v.strip()) for v in args.versions.split(",")]
+        version_ids = parse_version_tokens(args.versions)
     elif args.persian_only:
         version_ids = list(PERSIAN_VERSIONS.keys())
     elif args.english_only:

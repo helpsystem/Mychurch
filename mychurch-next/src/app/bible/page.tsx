@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Book, Music2, ChevronLeft, ChevronRight, Play, Pause,
-  Columns2, Search, Loader2, List, Languages, X
+  Columns2, Search, Loader2, List, X, ExternalLink, Highlighter, Copy, GitCompareArrows, Share2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PublicHeader } from "@/components/layout/PublicHeader";
@@ -44,6 +44,7 @@ export default function BibleReaderPage() {
   const [fontSize, setFontSize] = useState(18);
 
   const [selectedVerses, setSelectedVerses] = useState<ParallelVerse[]>([]);
+  const [selectedHighlightColor, setSelectedHighlightColor] = useState("#fffe00");
   const [loading, setLoading] = useState(false);
   const [bookSearch, setBookSearch] = useState("");
   const [showBookList, setShowBookList] = useState(false);
@@ -73,7 +74,6 @@ export default function BibleReaderPage() {
     }).join('\n');
     navigator.clipboard.writeText(text).then(() => {
       alert(language === 'fa' ? "آیات کپی شدند" : "Verses copied to clipboard");
-      setSelectedVerses([]);
     });
   };
 
@@ -197,6 +197,24 @@ export default function BibleReaderPage() {
   const englishVersions = versions.filter(v => v.language !== 'fa');
   const persianVersions = versions.filter(v => v.language === 'fa');
   const headingMap = new Map(headings.map(h => [h.before_verse, h.text]));
+  const highlightPalette = ["#fffe00", "#5dff79", "#00d6ff", "#ffc66f", "#ff95ef"];
+  const selectedStyle = (isSelected: boolean) =>
+    isSelected
+      ? {
+          backgroundColor: `${selectedHighlightColor}3a`,
+          borderBottom: `2px solid ${selectedHighlightColor}`,
+        }
+      : undefined;
+
+  const verseNums = selectedVerses.map(v => v.verse_num).sort((a, b) => a - b);
+  const firstVerse = verseNums[0];
+  const lastVerse = verseNums[verseNums.length - 1];
+  const selectedRef = verseNums.length <= 1 ? `${selectedChapter}:${firstVerse || ""}` : `${selectedChapter}:${firstVerse}-${lastVerse}`;
+  const selectedVersionAbbr = readingMode === "en" ? selectedVersionEn : selectedVersionFa;
+  const selectedVersionId = versions.find(v => v.abbr === selectedVersionAbbr)?.version_id;
+  const bibleComUrl = selectedVersionId && firstVerse
+    ? `https://www.bible.com/fa/bible/${selectedVersionId}/${selectedBook}.${selectedChapter}.${firstVerse}.${selectedVersionAbbr.toLowerCase()}`
+    : "https://www.bible.com/fa/bible";
 
   // ─── Render ──────────────────────────────────────────────────────────────────
   // The entire page root always uses dir="ltr" 
@@ -398,7 +416,8 @@ export default function BibleReaderPage() {
                       )}
                       <span
                         dir="ltr"
-                        className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`}
+                        className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "text-white" : "hover:bg-white/5 active:scale-95"}`}
+                        style={selectedStyle(isSelected)}
                         onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: v.text, fa: null })}
                       >
                         <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{v.verse_num}</sup>
@@ -421,7 +440,8 @@ export default function BibleReaderPage() {
                     return (
                       <span
                         key={v.verse_num}
-                        className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`}
+                        className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "text-white" : "hover:bg-white/5 active:scale-95"}`}
+                        style={selectedStyle(isSelected)}
                         onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: null, fa: v.text })}
                       >
                         <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{v.verse_num}</sup>
@@ -441,7 +461,8 @@ export default function BibleReaderPage() {
                   return (
                     <div
                       key={v.verse_num}
-                      className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${isSelected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5"}`}
+                      className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${isSelected ? "border" : "hover:bg-white/5"}`}
+                      style={isSelected ? { backgroundColor: `${selectedHighlightColor}1f`, borderColor: `${selectedHighlightColor}66` } : undefined}
                       onClick={() => toggleVerseSelection(v)}
                     >
                       <div className="flex gap-3" dir="ltr">
@@ -461,23 +482,75 @@ export default function BibleReaderPage() {
         )}
       </main>
 
-      {/* ── Contextual Action Bar ── */}
-      <div 
-        className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] transition-all duration-500 cubic-bezier(0.175, 0.885, 0.32, 1.275) ${selectedVerses.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"}`}
+      {/* ── YouVersion-style Selection Action Panel ── */}
+      <div
+        className={`fixed left-1/2 z-[999] w-[calc(100%-1.25rem)] max-w-[480px] -translate-x-1/2 rounded-t-2xl bg-white text-zinc-900 shadow-2xl transition-all duration-300 ${selectedVerses.length > 0 ? "bottom-0 translate-y-0 opacity-100" : "-bottom-8 translate-y-10 opacity-0 pointer-events-none"}`}
+        dir="rtl"
       >
-        <div className="bg-amber-500 text-black px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-6 font-bold">
-          <span className="text-sm font-black border-r border-black/20 pr-4">
-            {selectedVerses.length} {language === 'fa' ? "آیه انتخاب شد" : "verses selected"}
-          </span>
-          <button onClick={copySelected} className="flex items-center gap-2 hover:opacity-70 transition-opacity">
-            <span>📋</span> {language === 'fa' ? "کپی" : "Copy"}
-          </button>
-          <button onClick={shareSelected} className="flex items-center gap-2 hover:opacity-70 transition-opacity">
-            <span>🔗</span> {language === 'fa' ? "اشتراک" : "Share"}
-          </button>
-          <button onClick={() => setSelectedVerses([])} className="ml-2 text-black/50 hover:text-black">
-            ✕
-          </button>
+        <div className="p-3">
+          <div className="flex items-center justify-between rtl:flex-row-reverse rtl:text-end">
+            <div className="flex flex-col -space-y-1">
+              <p className="text-[13px] font-medium text-zinc-500">اکنون انتخاب شده:</p>
+              <a className="flex items-center gap-1 no-underline" href={bibleComUrl} target="_blank" rel="noreferrer">
+                <p className="text-[15px] font-bold text-zinc-900 font-[Vazirmatn]">
+                  {(language === "fa" ? currentBook?.book_name_fa : currentBook?.book_name_en) || selectedBook} {selectedRef} {selectedVersionAbbr.toLowerCase()}
+                </p>
+                <ExternalLink className="h-[18px] w-[18px]" />
+              </a>
+            </div>
+            <button
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-100 hover:shadow"
+              aria-label="انصراف"
+              onClick={() => setSelectedVerses([])}
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          <div className="mt-2 flex flex-col divide-y divide-zinc-100">
+            <div className="flex items-center justify-between p-[14px] rtl:flex-row-reverse">
+              <div className="flex w-full items-center gap-1 rtl:flex-row-reverse hover:cursor-default">
+                <Highlighter className="h-5 w-5" />
+                <p className="text-[15px] font-bold">های‌لایت</p>
+              </div>
+              <div className="flex w-full justify-start gap-3 rtl:flex-row-reverse">
+                {highlightPalette.map(color => (
+                  <button
+                    key={color}
+                    type="button"
+                    className={`h-4 w-4 rounded-full ring-2 transition ${selectedHighlightColor === color ? "ring-zinc-700" : "ring-transparent"}`}
+                    style={{ backgroundColor: color }}
+                    aria-label={`highlight-${color}`}
+                    onClick={() => setSelectedHighlightColor(color)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <button className="flex items-center justify-between p-[14px] rtl:flex-row-reverse" onClick={copySelected}>
+              <div className="flex w-full items-center gap-1 rtl:flex-row-reverse hover:cursor-pointer">
+                <Copy className="h-5 w-5" />
+                <p className="text-[15px] font-bold">کپی</p>
+              </div>
+              <div className="flex w-full gap-1.5 rtl:flex-row-reverse" />
+            </button>
+
+            <button className="flex items-center justify-between p-[14px] rtl:flex-row-reverse" onClick={() => setReadingMode("parallel")}>
+              <div className="flex w-full items-center gap-1 rtl:flex-row-reverse hover:cursor-pointer">
+                <GitCompareArrows className="h-5 w-5" />
+                <p className="text-[15px] font-bold">compare</p>
+              </div>
+              <div className="flex w-full gap-1.5 rtl:flex-row-reverse" />
+            </button>
+
+            <button className="flex items-center justify-between p-[14px] rtl:flex-row-reverse" onClick={shareSelected}>
+              <div className="flex w-full items-center gap-1 rtl:flex-row-reverse hover:cursor-pointer">
+                <Share2 className="h-5 w-5" />
+                <p className="text-[15px] font-bold">به اشتراک گذاشتن</p>
+              </div>
+              <div className="flex w-full gap-1.5 rtl:flex-row-reverse" />
+            </button>
+          </div>
         </div>
       </div>
 

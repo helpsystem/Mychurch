@@ -1,7 +1,7 @@
 $nginxConf = Get-Content ".\vps-nginx.txt" -Raw
 
-# We want to replace everything from "    # API Proxy - اینجا مهم است!" to the end of the file
-$pattern = "(?s)    # API Proxy - اینجا مهم است!.*"
+# Replace everything from the API proxy marker to the end of the file
+$pattern = "(?s)    # API Proxy - .*"
 $replacement = @"
     # Protected old media folders (Bibles, audio, uploads, etc.)
     location ~ ^/(uploads|audio|images|bible_data|media)/ {
@@ -35,14 +35,14 @@ $newNginxConf = $newNginxConf.Replace("`r`n", "`n")
 $newFilePath = ".\vps-nginx-nextjs.conf"
 [IO.File]::WriteAllText((Resolve-Path .).Path + "\vps-nginx-nextjs.conf", $newNginxConf)
 
-Write-Host "✅ Generated vps-nginx-nextjs.conf locally!" -ForegroundColor Green
-Write-Host "🚀 Uploading to VPS and restarting NGINX..." -ForegroundColor Yellow
+Write-Host "Generated vps-nginx-nextjs.conf locally!" -ForegroundColor Green
+Write-Host "Uploading to VPS and restarting NGINX..." -ForegroundColor Yellow
 
 scp $newFilePath root@samanabyar.online:/etc/nginx/sites-available/default
 if ($?) {
     ssh root@samanabyar.online "if [ -f /etc/nginx/sites-enabled/mychurch ]; then sed -i 's/listen 443 ssl http2;/listen 443 ssl;/g' /etc/nginx/sites-enabled/mychurch; sed -i 's/listen \[::\]:443 ssl http2;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/mychurch; sed -i 's/listen \[::\]:443 ssl ipv6only=on;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/mychurch; cp /etc/nginx/sites-enabled/mychurch /etc/nginx/sites-available/mychurch || true; fi; if [ -f /etc/nginx/sites-enabled/n8n ]; then sed -i 's/listen 443 ssl http2;/listen 443 ssl;/g' /etc/nginx/sites-enabled/n8n; sed -i 's/listen \[::\]:443 ssl http2;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/n8n; sed -i 's/listen \[::\]:443 ssl ipv6only=on;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/n8n; fi; find /etc/nginx/sites-enabled -maxdepth 1 -type f -name '*.bak-*' -delete || true; nginx -t && systemctl reload nginx && nginx -t"
-    Write-Host "🎉 NGINX successfully updated! Your Next.js site is now LIVE!" -ForegroundColor Cyan
+    Write-Host "NGINX successfully updated! Your Next.js site is now LIVE!" -ForegroundColor Cyan
 }
 else {
-    Write-Host "❌ Failed to upload NGINX config." -ForegroundColor Red
+    Write-Host "Failed to upload NGINX config." -ForegroundColor Red
 }

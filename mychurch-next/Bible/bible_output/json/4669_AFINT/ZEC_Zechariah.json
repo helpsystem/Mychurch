@@ -1,0 +1,700 @@
+{
+  "book_id": "ZEC",
+  "book_name_en": "Zechariah",
+  "book_name_fa": "زکریا",
+  "testament": "OT",
+  "version_id": 4669,
+  "version_abbr": "AFINT",
+  "version_name": "African International New Testament: Literal Translation (British English Edition)",
+  "language": "en",
+  "chapter_count": 14,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 1,
+      "chapter_usfm": "ZEC.1",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.1.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 2,
+      "chapter_usfm": "ZEC.2",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.2.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 3,
+      "chapter_usfm": "ZEC.3",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.3.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 4,
+      "chapter_usfm": "ZEC.4",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.4.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 5,
+      "chapter_usfm": "ZEC.5",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.5.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 6,
+      "chapter_usfm": "ZEC.6",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.6.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 7,
+      "chapter_usfm": "ZEC.7",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.7.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 8,
+      "chapter_usfm": "ZEC.8",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.8.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 9,
+      "chapter_usfm": "ZEC.9",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.9.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 10,
+      "chapter_usfm": "ZEC.10",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.10.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 11,
+      "chapter_usfm": "ZEC.11",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.11.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 12,
+      "chapter_usfm": "ZEC.12",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.12.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 13,
+      "chapter_usfm": "ZEC.13",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.13.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ZEC",
+      "chapter": 14,
+      "chapter_usfm": "ZEC.14",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ZEC.14.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

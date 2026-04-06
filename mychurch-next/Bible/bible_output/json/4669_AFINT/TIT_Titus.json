@@ -1,0 +1,1082 @@
+{
+  "book_id": "TIT",
+  "book_name_en": "Titus",
+  "book_name_fa": "تیتوس",
+  "testament": "NT",
+  "version_id": 4669,
+  "version_abbr": "AFINT",
+  "version_name": "African International New Testament: Literal Translation (British English Edition)",
+  "language": "en",
+  "chapter_count": 3,
+  "total_verses": 46,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "TIT",
+      "chapter": 1,
+      "chapter_usfm": "TIT.1",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
+          "text": "Paul, a servant of God and an apostle of Jesus Christ,* for the faith of God’s elect and the knowledge of the truth that accords with godliness,"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
+          "text": "on the basis of* the hope of eternal life which God, who does not lie, promised before the beginning of the ages,*"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
+          "text": "but at the proper time* manifested His word in* the preaching with which I was entrusted according to the commandment of God our Saviour;"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
+          "text": "To Titus, genuine child according to a common faith: Grace and peace from God the Father and Christ Jesus* our Saviour."
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
+          "text": "On account of this, I left you in Crete, so that you might set in order what remained and appoint elders in every city, as I directed you—"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
+          "text": "If anyone is blameless, the husband of one wife, having children who believe and not subject to accusation of dissipation or insubordination."
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
+          "text": "For it is necessary for the overseer to be blameless as God’s steward, not self-pleasing, not quick-tempered, not given to wine, not violent, not fond of ill-gotten gain,"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
+          "text": "but hospitable, loving what is good, self-controlled, just, pious, disciplined,"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
+          "text": "holding firmly the trustworthy word that accords with the teaching, so that he may be able both to exhort in sound teaching* and to refute those who speak against it."
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
+          "text": "For there are many insubordinate people—empty talkers and deceivers—especially those of the circumcision,"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
+          "text": "who ought to be silenced, who subvert whole households, teaching things which they ought not, for the sake of shameful gain."
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.1.12",
+          "line_type": "p",
+          "text": "One of them, a prophet of their own, has stated, “Cretans are always liars, evil beasts, lazy gluttons.”"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.1.13",
+          "line_type": "p",
+          "text": "This testimony is true. For this* reason, reprove them sharply, so that they may be sound in the faith,"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
+          "text": "not paying attention to Jewish myths and the commandments of men* who have turned away from the truth."
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
+          "text": "All things are pure to the pure; but to those who are defiled and unbelieving, nothing is pure, but both their mind and conscience have been defiled."
+        },
+        {
+          "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
+          "text": "They profess to know God, but by their deeds they deny Him, being detestable and disobedient and unfit for any good deed. 1 Three ancient Greek manuscripts transpose Jesus Christ to Christ Jesus 2 Or in 2 Greek eternal times 3 Greek in their own seasons 3 Or through 4 Two ancient Greek manuscripts transpose Christ Jesus to Jesus Christ, while others read Lord Jesus Christ 9 Greek teaching that is being sound 13 Greek which 14 Or people, as the term is generically understood"
+        }
+      ],
+      "verse_count": 16,
+      "headings": [
+        {
+          "before_verse": 5,
+          "text": "Qualifications of Elders"
+        },
+        {
+          "before_verse": 17,
+          "text": "Notes"
+        }
+      ],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.2",
+            "TIT.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "TIT.1.3",
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 9,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.1.4",
+            "TIT.1.5",
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 16,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.12",
+            "TIT.1.13",
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "TIT.1.16"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/TIT.1.AFINT",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "TIT 1",
+          "version_id": 4669
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2TI 4",
+          "toc": true,
+          "version_id": 4669
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "TIT 2",
+          "toc": true,
+          "version_id": 4669
+        }
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "TIT",
+      "chapter": 2,
+      "chapter_usfm": "TIT.2",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
+          "text": "But you, speak the things that are consistent with sound teaching.*"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
+          "text": "Older men are to be sober-minded, dignified, self-controlled, sound in faith, in love, in endurance."
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
+          "text": "Older women likewise are to be reverent in behaviour, not slanderous, not enslaved to much wine, teaching what is good,"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
+          "text": "so that they may instruct the young women* to love their husbands, to love their children,*"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
+          "text": "to be self-controlled, pure, workers at home, good, subject to their own husbands, so that the word of God* may not be maligned."
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
+          "text": "Likewise, exhort the younger men* to be of sound judgment;"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
+          "text": "in all things show yourself as an example of good deeds, in your* teaching, demonstrating* integrity, dignity,"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
+          "text": "and sound speech that is beyond reproach, so that the opponent* may be put to shame, having nothing evil to say about us."
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
+          "text": "Slaves must be submissive to their own masters in every way, to be well-pleasing, not to be disputatious,"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
+          "text": "not stealing, but demonstrating all good faith, so that they may adorn the teaching about God our Saviour in everything."
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
+          "text": "For the grace of God has appeared, bringing salvation to all men,*"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
+          "text": "instructing* us, so that, denying ungodliness and worldly desires, we may live self-controlled and righteously and godly in the present age,"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
+          "text": "waiting for the blessed hope and the glorious appearing of our great God and Saviour, Jesus Christ,"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
+          "text": "who gave Himself for us to redeem us from all lawlessness and to purify for Himself a special people, zealous for good deeds."
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
+          "text": "These things speak, and exhort, and reprove with all authority. Let no one despise you. 1 Greek teaching that is being sound 4 Greek young ones 4 Greek lovers of their husbands, lovers of their children 5 One ancient Greek manuscript inserts the expression and the teaching at this point, in order to harmonise the reading with a similar parallel in 1 Tim. 6:1 6 Greek younger ones 7 Greek the . Here, the Greek definite article functions pronominally, corresponding contextually to the English possessive your 7 The participle demonstrating is supplied to the text on contextual considerations for the sake of clarity 8 Greek the one from the opposite side 11 Or people, as the term is generically understood 12 Or training"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 11,
+          "text": "The Instructing Grace"
+        },
+        {
+          "before_verse": 16,
+          "text": "Notes"
+        }
+      ],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.2.5",
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.8",
+            "TIT.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 14,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.14",
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.2.15"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/TIT.2.AFINT",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "TIT 2",
+          "version_id": 4669
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "TIT 1",
+          "toc": true,
+          "version_id": 4669
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "TIT 3",
+          "toc": true,
+          "version_id": 4669
+        }
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "TIT",
+      "chapter": 3,
+      "chapter_usfm": "TIT.3",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
+          "text": "Remind them to be submissive to rulers and to authorities, to obey, to be ready for every good work,"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
+          "text": "to speak evil of no one, to avoid fighting, gentle, showing utmost consideration for all men.*"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
+          "text": "For we also were once foolish, disobedient, led astray, serving various desires and pleasures, living in malice and envy, hateful, hating one another."
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
+          "text": "But when the kindness and love for mankind of God our Saviour appeared,"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
+          "text": "He saved us, not by works which we did in righteousness, but according to His own mercy, through the washing of regeneration and renewal by the Holy Spirit,"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
+          "text": "whom He poured out on us richly through Jesus Christ our Saviour,"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
+          "text": "so that, having been justified by His grace, we may become heirs according to the hope of eternal life."
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
+          "text": "The saying is trustworthy, and concerning these things I want you to assert them emphatically, so that those who have believed in God may be careful to devote themselves to good works. These things are good and beneficial for men.*"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
+          "text": "But avoid foolish controversies and genealogies* and contentions and quarrels about the Law, for they are useless and worthless."
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
+          "text": "Have no further dealings with a divisive man* after a first and second admonition,"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
+          "text": "knowing that such an individual is perverted and persists in sin, being self-condemned."
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
+          "text": "When I send Artemas to you, or Tychicus, make every effort to come to me in Nicopolis, for I have decided to spend the winter there."
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
+          "text": "Diligently provide for Zenas the lawyer and Apollos on their journey so that they lack nothing."
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
+          "text": "And let our people also learn to devote themselves to good works for necessary needs, so that they will not be unfruitful."
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.3.15",
+          "line_type": "p",
+          "text": "All those with me send their greetings. Greet those who love us in the faith. Grace be with all of you.* 2 Or people, as the term is generically understood. So also v. 8 9 Two ancient Greek manuscripts replace this word with disputes about words, in order to harmonise the reading with a similar parallel in 1 Tim. 6:4 10 Or person, as the term is generically understood 15 Some ancient manuscripts insert Amen at this point"
+        }
+      ],
+      "verse_count": 15,
+      "headings": [
+        {
+          "before_verse": 3,
+          "text": "The Grace of God and Good Works"
+        },
+        {
+          "before_verse": 9,
+          "text": "Final Instructions and Greetings"
+        },
+        {
+          "before_verse": 16,
+          "text": "Notes"
+        }
+      ],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 8,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.3.2",
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7",
+            "TIT.3.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.3.11",
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.3.14",
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/TIT.3.AFINT",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "TIT 3",
+          "version_id": 4669
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "TIT 2",
+          "toc": true,
+          "version_id": 4669
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "PHM 1",
+          "toc": true,
+          "version_id": 4669
+        }
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

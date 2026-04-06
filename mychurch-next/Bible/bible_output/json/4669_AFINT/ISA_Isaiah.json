@@ -1,0 +1,3248 @@
+{
+  "book_id": "ISA",
+  "book_name_en": "Isaiah",
+  "book_name_fa": "اشعیا",
+  "testament": "OT",
+  "version_id": 4669,
+  "version_abbr": "AFINT",
+  "version_name": "African International New Testament: Literal Translation (British English Edition)",
+  "language": "en",
+  "chapter_count": 66,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 1,
+      "chapter_usfm": "ISA.1",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.1.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 2,
+      "chapter_usfm": "ISA.2",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.2.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 3,
+      "chapter_usfm": "ISA.3",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.3.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 4,
+      "chapter_usfm": "ISA.4",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.4.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 5,
+      "chapter_usfm": "ISA.5",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.5.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 6,
+      "chapter_usfm": "ISA.6",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.6.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 7,
+      "chapter_usfm": "ISA.7",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.7.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 8,
+      "chapter_usfm": "ISA.8",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.8.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 9,
+      "chapter_usfm": "ISA.9",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.9.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 10,
+      "chapter_usfm": "ISA.10",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.10.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 11,
+      "chapter_usfm": "ISA.11",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.11.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 12,
+      "chapter_usfm": "ISA.12",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.12.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 13,
+      "chapter_usfm": "ISA.13",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.13.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 14,
+      "chapter_usfm": "ISA.14",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.14.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 15,
+      "chapter_usfm": "ISA.15",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.15.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 16,
+      "chapter_usfm": "ISA.16",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.16.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 17,
+      "chapter_usfm": "ISA.17",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.17.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 18,
+      "chapter_usfm": "ISA.18",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.18.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 19,
+      "chapter_usfm": "ISA.19",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.19.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 20,
+      "chapter_usfm": "ISA.20",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.20.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 21,
+      "chapter_usfm": "ISA.21",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.21.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 22,
+      "chapter_usfm": "ISA.22",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.22.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 23,
+      "chapter_usfm": "ISA.23",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.23.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 24,
+      "chapter_usfm": "ISA.24",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.24.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 25,
+      "chapter_usfm": "ISA.25",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.25.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 26,
+      "chapter_usfm": "ISA.26",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.26.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 27,
+      "chapter_usfm": "ISA.27",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.27.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 28,
+      "chapter_usfm": "ISA.28",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.28.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 29,
+      "chapter_usfm": "ISA.29",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.29.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 30,
+      "chapter_usfm": "ISA.30",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.30.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 31,
+      "chapter_usfm": "ISA.31",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.31.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 32,
+      "chapter_usfm": "ISA.32",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.32.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 33,
+      "chapter_usfm": "ISA.33",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.33.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 34,
+      "chapter_usfm": "ISA.34",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.34.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 35,
+      "chapter_usfm": "ISA.35",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.35.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 36,
+      "chapter_usfm": "ISA.36",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.36.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 37,
+      "chapter_usfm": "ISA.37",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.37.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 38,
+      "chapter_usfm": "ISA.38",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.38.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 39,
+      "chapter_usfm": "ISA.39",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.39.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 40,
+      "chapter_usfm": "ISA.40",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.40.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 41,
+      "chapter_usfm": "ISA.41",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.41.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 42,
+      "chapter_usfm": "ISA.42",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.42.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 43,
+      "chapter_usfm": "ISA.43",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.43.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 44,
+      "chapter_usfm": "ISA.44",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.44.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 45,
+      "chapter_usfm": "ISA.45",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.45.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 46,
+      "chapter_usfm": "ISA.46",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.46.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 47,
+      "chapter_usfm": "ISA.47",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.47.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 48,
+      "chapter_usfm": "ISA.48",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.48.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 49,
+      "chapter_usfm": "ISA.49",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.49.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 50,
+      "chapter_usfm": "ISA.50",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.50.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 51,
+      "chapter_usfm": "ISA.51",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.51.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 52,
+      "chapter_usfm": "ISA.52",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.52.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 53,
+      "chapter_usfm": "ISA.53",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.53.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 54,
+      "chapter_usfm": "ISA.54",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.54.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 55,
+      "chapter_usfm": "ISA.55",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.55.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 56,
+      "chapter_usfm": "ISA.56",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.56.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 57,
+      "chapter_usfm": "ISA.57",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.57.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 58,
+      "chapter_usfm": "ISA.58",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.58.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 59,
+      "chapter_usfm": "ISA.59",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.59.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 60,
+      "chapter_usfm": "ISA.60",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.60.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 61,
+      "chapter_usfm": "ISA.61",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.61.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 62,
+      "chapter_usfm": "ISA.62",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.62.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 63,
+      "chapter_usfm": "ISA.63",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.63.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 64,
+      "chapter_usfm": "ISA.64",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.64.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 65,
+      "chapter_usfm": "ISA.65",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.65.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "ISA",
+      "chapter": 66,
+      "chapter_usfm": "ISA.66",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/ISA.66.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

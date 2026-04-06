@@ -1,0 +1,504 @@
+{
+  "book_id": "EZR",
+  "book_name_en": "Ezra",
+  "book_name_fa": "عزرا",
+  "testament": "OT",
+  "version_id": 4669,
+  "version_abbr": "AFINT",
+  "version_name": "African International New Testament: Literal Translation (British English Edition)",
+  "language": "en",
+  "chapter_count": 10,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 1,
+      "chapter_usfm": "EZR.1",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.1.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 2,
+      "chapter_usfm": "EZR.2",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.2.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 3,
+      "chapter_usfm": "EZR.3",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.3.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 4,
+      "chapter_usfm": "EZR.4",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.4.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 5,
+      "chapter_usfm": "EZR.5",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.5.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 6,
+      "chapter_usfm": "EZR.6",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.6.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 7,
+      "chapter_usfm": "EZR.7",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.7.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 8,
+      "chapter_usfm": "EZR.8",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.8.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 9,
+      "chapter_usfm": "EZR.9",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.9.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "EZR",
+      "chapter": 10,
+      "chapter_usfm": "EZR.10",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/EZR.10.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

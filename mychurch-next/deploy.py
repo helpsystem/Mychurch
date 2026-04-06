@@ -23,6 +23,10 @@ def zipdir(path, ziph):
 
 print("\n--- Next.js 1-Click Deploy Script ---")
 
+print("\n🛡️ STEP 0: Running local Audio KPI gate...")
+run_cmd('"d:/Windows.old/Users/Sami/Desktop/Iran Church DC/Git/Mychurch/mychurch-next/Bible/.venv/Scripts/python.exe" scripts/check_audio_kpis.py')
+run_cmd('"d:/Windows.old/Users/Sami/Desktop/Iran Church DC/Git/Mychurch/mychurch-next/Bible/.venv/Scripts/python.exe" scripts/audio_kpi_brief.py --lang fa --output Bible/bible_output/audio_kpi_brief.txt')
+
 print("\n📦 STEP 1: Building Next.js production bundle...")
 run_cmd("npm run build")
 
@@ -42,5 +46,11 @@ run_cmd("scp -r public/wasm root@samanabyar.online:/root/mychurch-v2/mychurch-ne
 
 print("\n🔄 STEP 4: Extracting and Restarting PM2 Server...")
 run_cmd('ssh root@samanabyar.online "cd /root/mychurch-v2/mychurch-next/ && unzip -o next_build.zip && pm2 restart mychurch-next"')
+
+print("\n📣 STEP 5: Sending optional KPI notification (Slack/Telegram)...")
+notify_cmd = '"d:/Windows.old/Users/Sami/Desktop/Iran Church DC/Git/Mychurch/mychurch-next/Bible/.venv/Scripts/python.exe" scripts/send_audio_kpi_notification.py --text-file Bible/bible_output/audio_kpi_brief.txt'
+result = subprocess.run(notify_cmd, shell=True)
+if result.returncode != 0:
+    print("⚠️ Notification step reported an issue (deployment continues).")
 
 print("\n🎉 DEPLOYMENT COMPLETE! The Live Site has been updated without any PowerShell errors.")

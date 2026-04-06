@@ -1,0 +1,651 @@
+{
+  "book_id": "NEH",
+  "book_name_en": "Nehemiah",
+  "book_name_fa": "نحمیا",
+  "testament": "OT",
+  "version_id": 4669,
+  "version_abbr": "AFINT",
+  "version_name": "African International New Testament: Literal Translation (British English Edition)",
+  "language": "en",
+  "chapter_count": 13,
+  "total_verses": 0,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 1,
+      "chapter_usfm": "NEH.1",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.1.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 2,
+      "chapter_usfm": "NEH.2",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.2.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 3,
+      "chapter_usfm": "NEH.3",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.3.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 4,
+      "chapter_usfm": "NEH.4",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.4.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 5,
+      "chapter_usfm": "NEH.5",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.5.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 6,
+      "chapter_usfm": "NEH.6",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.6.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 7,
+      "chapter_usfm": "NEH.7",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.7.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 8,
+      "chapter_usfm": "NEH.8",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.8.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 9,
+      "chapter_usfm": "NEH.9",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.9.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 10,
+      "chapter_usfm": "NEH.10",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.10.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 11,
+      "chapter_usfm": "NEH.11",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.11.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 12,
+      "chapter_usfm": "NEH.12",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.12.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "NEH",
+      "chapter": 13,
+      "chapter_usfm": "NEH.13",
+      "version_id": 4669,
+      "version_abbr": "AFINT",
+      "verses": [],
+      "verse_count": 0,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4669/NEH.13.AFINT",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4669,
+        "abbreviation": "AFINTLIT",
+        "local_abbreviation": "AFINTLIT",
+        "title": "African International New Testament: Literal Translation (British English Edition)",
+        "local_title": "African International New Testament: Literal Translation (British English Edition)",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Word Biblical  Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

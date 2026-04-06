@@ -1,0 +1,72 @@
+{
+  "total_versions": 25,
+  "audio_capable_versions": 19,
+  "versions_with_audio_files_gt_0": 19,
+  "top_versions_by_audio_files": [
+    {
+      "file": "bible_116_NLT_complete.json",
+      "version_id": "116",
+      "version_abbr": "NLT",
+      "version_name": "New Living Translation",
+      "audio_capable": true,
+      "audio_chapters": 1189,
+      "audio_files": 11016
+    },
+    {
+      "file": "bible_111_NIV_complete.json",
+      "version_id": "111",
+      "version_abbr": "NIV",
+      "version_name": "New International Version",
+      "audio_capable": true,
+      "audio_chapters": 1189,
+      "audio_files": 9512
+    },
+    {
+      "file": "bible_114_NKJV_complete.json",
+      "version_id": "114",
+      "version_abbr": "NKJV",
+      "version_name": "New King James Version",
+      "audio_capable": true,
+      "audio_chapters": 1189,
+      "audio_files": 4756
+    },
+    {
+      "file": "bible_181_TPV_complete.json",
+      "version_id": "181",
+      "version_abbr": "TPV",
+      "version_name": "مژده برای عصر جدید",
+      "audio_capable": true,
+      "audio_chapters": 1189,
+      "audio_files": 4756
+    },
+    {
+      "file": "bible_2692_NASB2020_complete.json",
+      "version_id": "2692",
+      "version_abbr": "NASB2020",
+      "version_name": "NASB 2020",
+      "audio_capable": true,
+      "audio_chapters": 1189,
+      "audio_files": 4756
+    }
+  ],
+  "top_versions_by_audio_files_compact": [
+    "NLT=11016",
+    "NIV=9512",
+    "NKJV=4756",
+    "TPV=4756",
+    "NASB2020=4756"
+  ],
+  "zero_audio_versions": [
+    "POV",
+    "مژده",
+    "PES",
+    "BBK",
+    "RCPV",
+    "AFINT"
+  ],
+  "zero_audio_count": 6,
+  "lang": "fa",
+  "one_line_fa": "PASS شاخص صوت | versions=25 | capable=19 | files=19",
+  "one_line_en": "AUDIO KPI PASS | versions=25 | capable=19 | files=19",
+  "one_line": "PASS شاخص صوت | versions=25 | capable=19 | files=19"
+}

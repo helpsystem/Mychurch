@@ -1,0 +1,227 @@
+[
+  {
+    "file": "bible_100_NASB1995_complete.json",
+    "version_id": "100",
+    "version_abbr": "NASB1995",
+    "version_name": "NASB 1995",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2378
+  },
+  {
+    "file": "bible_111_NIV_complete.json",
+    "version_id": "111",
+    "version_abbr": "NIV",
+    "version_name": "New International Version",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 9512
+  },
+  {
+    "file": "bible_114_NKJV_complete.json",
+    "version_id": "114",
+    "version_abbr": "NKJV",
+    "version_name": "New King James Version",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 4756
+  },
+  {
+    "file": "bible_116_NLT_complete.json",
+    "version_id": "116",
+    "version_abbr": "NLT",
+    "version_name": "New Living Translation",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 11016
+  },
+  {
+    "file": "bible_118_NMV_complete.json",
+    "version_id": "118",
+    "version_abbr": "NMV",
+    "version_name": "هزارۀ نو",
+    "audio_capable": true,
+    "audio_chapters": 441,
+    "audio_files": 1402
+  },
+  {
+    "file": "bible_12_ASV_complete.json",
+    "version_id": "12",
+    "version_abbr": "ASV",
+    "version_name": "American Standard Version",
+    "audio_capable": true,
+    "audio_chapters": 260,
+    "audio_files": 520
+  },
+  {
+    "file": "bible_136_POV_complete.json",
+    "version_id": "136",
+    "version_abbr": "POV",
+    "version_name": "ترجمۀ قدیم",
+    "audio_capable": false,
+    "audio_chapters": 0,
+    "audio_files": 0
+  },
+  {
+    "file": "bible_1619_PCB_complete.json",
+    "version_id": "1619",
+    "version_abbr": "PCB",
+    "version_name": "ترجمۀ معاصر",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2378
+  },
+  {
+    "file": "bible_1713_CSB_complete.json",
+    "version_id": "1713",
+    "version_abbr": "CSB",
+    "version_name": "Christian Standard Bible",
+    "audio_capable": true,
+    "audio_chapters": 1188,
+    "audio_files": 2376
+  },
+  {
+    "file": "bible_181_TPV_complete.json",
+    "version_id": "181",
+    "version_abbr": "TPV",
+    "version_name": "مژده برای عصر جدید",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 4756
+  },
+  {
+    "file": "bible_1_KJV_complete.json",
+    "version_id": "1",
+    "version_abbr": "KJV",
+    "version_name": "King James Version",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2378
+  },
+  {
+    "file": "bible_206_WEB_complete.json",
+    "version_id": "206",
+    "version_abbr": "WEB",
+    "version_name": "World English Bible",
+    "audio_capable": true,
+    "audio_chapters": 260,
+    "audio_files": 520
+  },
+  {
+    "file": "bible_2079_EASY_complete.json",
+    "version_id": "2079",
+    "version_abbr": "EASY",
+    "version_name": "EasyEnglish Bible 2024",
+    "audio_capable": true,
+    "audio_chapters": 89,
+    "audio_files": 178
+  },
+  {
+    "file": "bible_2692_NASB2020_complete.json",
+    "version_id": "2692",
+    "version_abbr": "NASB2020",
+    "version_name": "NASB 2020",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 4756
+  },
+  {
+    "file": "bible_3034_BSB_complete.json",
+    "version_id": "3034",
+    "version_abbr": "BSB",
+    "version_name": "Berean Standard Bible",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2378
+  },
+  {
+    "file": "bible_3737_مژده_complete.json",
+    "version_id": "3737",
+    "version_abbr": "مژده",
+    "version_name": "مژده برای عصر جدید - ویرایش ۲۰۲۳",
+    "audio_capable": false,
+    "audio_chapters": 0,
+    "audio_files": 0
+  },
+  {
+    "file": "bible_3950_PES_complete.json",
+    "version_id": "3950",
+    "version_abbr": "PES",
+    "version_name": "Bandari Bible - Korpu",
+    "audio_capable": false,
+    "audio_chapters": 0,
+    "audio_files": 0
+  },
+  {
+    "file": "bible_4204_BBK_complete.json",
+    "version_id": "4204",
+    "version_abbr": "BBK",
+    "version_name": "کتاب مقدس به زبان بندری",
+    "audio_capable": false,
+    "audio_chapters": 0,
+    "audio_files": 0
+  },
+  {
+    "file": "bible_4205_RCPV_complete.json",
+    "version_id": "4205",
+    "version_abbr": "RCPV",
+    "version_name": "ترجمه کلاسیک بازنگری شده",
+    "audio_capable": false,
+    "audio_chapters": 0,
+    "audio_files": 0
+  },
+  {
+    "file": "bible_4669_AFINT_complete.json",
+    "version_id": "4669",
+    "version_abbr": "AFINT",
+    "version_name": "African International New Testament: Literal Translation (British English Edition)",
+    "audio_capable": false,
+    "audio_chapters": 0,
+    "audio_files": 0
+  },
+  {
+    "file": "bible_59_ESV_complete.json",
+    "version_id": "59",
+    "version_abbr": "ESV",
+    "version_name": "English Standard Version 2025",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2894
+  },
+  {
+    "file": "bible_68_GNT_complete.json",
+    "version_id": "68",
+    "version_abbr": "GNT",
+    "version_name": "Good News Translation",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2378
+  },
+  {
+    "file": "bible_72_HCSB_complete.json",
+    "version_id": "72",
+    "version_abbr": "HCSB",
+    "version_name": "Holman Christian Standard Bible",
+    "audio_capable": true,
+    "audio_chapters": 1187,
+    "audio_files": 2374
+  },
+  {
+    "file": "bible_90_LEB_complete.json",
+    "version_id": "90",
+    "version_abbr": "LEB",
+    "version_name": "Lexham English Bible",
+    "audio_capable": true,
+    "audio_chapters": 260,
+    "audio_files": 520
+  },
+  {
+    "file": "bible_97_MSG_complete.json",
+    "version_id": "97",
+    "version_abbr": "MSG",
+    "version_name": "The Message",
+    "audio_capable": true,
+    "audio_chapters": 1189,
+    "audio_files": 2378
+  }
+]
