@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X } from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 
@@ -53,6 +53,15 @@ interface SelectedVerseEntry {
 
 type ReadingMode = "en" | "fa" | "parallel";
 type PrimaryLang = "fa" | "en";
+type SlideBuildMode = "single" | "perReference" | "perVerse";
+
+const VERSION_SELECT_STYLE = {
+  en: "max-w-[92px] md:max-w-[120px]",
+  fa: "max-w-[132px] md:max-w-[200px]",
+  base: "bg-white/5 border rounded-xl px-2 md:px-3 py-2 text-xs md:text-sm font-bold outline-none cursor-pointer shrink-0 [&>option]:bg-zinc-900 [&>option]:text-white",
+  normal: "border-purple-500/30 focus:border-purple-500 text-white",
+  empty: "border-red-500/30 text-red-100",
+} as const;
 
 interface BiblePresentationSelectorProps {
   onClose: () => void;
@@ -100,7 +109,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const [fontFa, setFontFa] = useState(() => load("bp_font_fa", "var(--font-vazirmatn)"));
   const [fontEn, setFontEn] = useState(() => load("bp_font_en", "var(--font-inter)"));
   const [primaryLang, setPrimaryLang] = useState<PrimaryLang>(() => load("bp_primary_lang", "fa") as PrimaryLang);
-  const [combineIntoOneSlide] = useState(() => load("bp_combine", "true") === "true");
+  const [slideBuildMode, setSlideBuildMode] = useState<SlideBuildMode>(() => load("bp_slide_mode", "perReference") as SlideBuildMode);
 
   const [verses, setVerses] = useState<VerseRow[]>([]);
   const [faVerses, setFaVerses] = useState<VerseRow[]>([]);
@@ -113,6 +122,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const [audioDuration, setAudioDuration] = useState(0);
   const [loading, setLoading] = useState(false);
   const [selectedVerses, setSelectedVerses] = useState<SelectedVerseEntry[]>([]);
+  const [lastInteractedVerse, setLastInteractedVerse] = useState<number | null>(null);
 
   const currentBook = books.find((book) => book.book_id === selectedBookId) || null;
   const filteredBooks = bookSearch
@@ -136,6 +146,12 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     const query = verseSearch.toLowerCase();
     return (verse.en?.toLowerCase().includes(query) || verse.fa?.toLowerCase().includes(query));
   });
+
+  const visibleVerseNumbers = useMemo(() => {
+    if (readingMode === "parallel") return filteredParallelVerses.map((verse) => verse.verse_num);
+    if (readingMode === "fa") return filteredFaVerses.map((verse) => verse.verse_num);
+    return filteredVerses.map((verse) => verse.verse_num);
+  }, [filteredFaVerses, filteredParallelVerses, filteredVerses, readingMode]);
 
   useEffect(() => {
     fetch("/api/bible/versions")
@@ -277,6 +293,88 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     });
   };
 
+  const isCurrentVerseSelected = (verseNum: number) => selectedVerses.some((entry) => entry.book_id === currentBook?.book_id && entry.chapter === selectedChapter && entry.verse_num === verseNum);
+
+  const applyRangeSelection = (toVerseNum: number) => {
+    if (!currentBook || lastInteractedVerse === null) {
+      toggleVerse(toVerseNum);
+      setLastInteractedVerse(toVerseNum);
+      return;
+    }
+
+    const start = Math.min(lastInteractedVerse, toVerseNum);
+    const end = Math.max(lastInteractedVerse, toVerseNum);
+    const range = Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
+    const shouldSelect = !isCurrentVerseSelected(toVerseNum);
+
+    setSelectedVerses((previous) => {
+      if (!currentBook) return previous;
+      if (!shouldSelect) {
+        const idsToRemove = new Set(range.map((verseNum) => `${currentBook.book_id}-${selectedChapter}-${verseNum}`));
+        return previous.filter((entry) => !idsToRemove.has(entry.id));
+      }
+
+      const byId = new Map(previous.map((entry) => [entry.id, entry]));
+      range.forEach((verseNum) => {
+        const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
+        const texts = getVerseTexts(verseNum);
+        byId.set(id, {
+          id,
+          book_id: currentBook.book_id,
+          book_name_en: currentBook.book_name_en,
+          book_name_fa: currentBook.book_name_fa,
+          book_order: currentBook.book_order,
+          chapter: selectedChapter,
+          verse_num: verseNum,
+          en: texts.en,
+          fa: texts.fa,
+        });
+      });
+
+      return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
+    });
+
+    setLastInteractedVerse(toVerseNum);
+  };
+
+  const handleVerseClick = (verseNum: number, shiftKey: boolean) => {
+    if (shiftKey && lastInteractedVerse !== null) {
+      applyRangeSelection(verseNum);
+      return;
+    }
+    toggleVerse(verseNum);
+    setLastInteractedVerse(verseNum);
+  };
+
+  const addVisibleVerses = () => {
+    if (!currentBook || visibleVerseNumbers.length === 0) return;
+    setSelectedVerses((previous) => {
+      const byId = new Map(previous.map((entry) => [entry.id, entry]));
+      visibleVerseNumbers.forEach((verseNum) => {
+        const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
+        if (byId.has(id)) return;
+        const texts = getVerseTexts(verseNum);
+        byId.set(id, {
+          id,
+          book_id: currentBook.book_id,
+          book_name_en: currentBook.book_name_en,
+          book_name_fa: currentBook.book_name_fa,
+          book_order: currentBook.book_order,
+          chapter: selectedChapter,
+          verse_num: verseNum,
+          en: texts.en,
+          fa: texts.fa,
+        });
+      });
+      return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
+    });
+  };
+
+  const clearCurrentChapterSelection = () => {
+    if (!currentBook) return;
+    setSelectedVerses((previous) => previous.filter((entry) => !(entry.book_id === currentBook.book_id && entry.chapter === selectedChapter)));
+  };
+
   const buildSlides = (): ScripturePage[] => {
     const sorted = [...selectedVerses].sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     const groups = new Map<string, SelectedVerseEntry[]>();
@@ -286,30 +384,50 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       groups.get(key)!.push(entry);
     });
 
-    const referenceItems: ScriptureReferenceItem[] = Array.from(groups.values()).map((group) => {
-      const first = group[0];
-      const numbers = group.map((entry) => entry.verse_num).sort((a, b) => a - b);
-      const min = numbers[0];
-      const max = numbers[numbers.length - 1];
-      const versesLabel = min === max ? `${min}` : `${min}-${max}`;
+    const referenceItems: ScriptureReferenceItem[] = Array.from(groups.values()).flatMap((group) => {
+      const sortedGroup = [...group].sort((a, b) => a.verse_num - b.verse_num);
+      const chunks: SelectedVerseEntry[][] = [];
 
-      return {
-        id: crypto.randomUUID(),
-        book: first.book_id,
-        bookName: { fa: first.book_name_fa, en: first.book_name_en },
-        chapter: first.chapter,
-        verses: versesLabel,
-        verseNumbers: numbers,
-        textFa: group.map((entry) => entry.fa),
-        textEn: group.map((entry) => entry.en),
-        fontFa,
-        fontEn,
-        translation: selectedVersionFa,
-        enTranslation: selectedVersionEn,
-      };
+      sortedGroup.forEach((entry) => {
+        const lastChunk = chunks[chunks.length - 1];
+        if (!lastChunk) {
+          chunks.push([entry]);
+          return;
+        }
+
+        const lastEntry = lastChunk[lastChunk.length - 1];
+        if (entry.verse_num === lastEntry.verse_num + 1) {
+          lastChunk.push(entry);
+        } else {
+          chunks.push([entry]);
+        }
+      });
+
+      return chunks.map((chunk) => {
+        const first = chunk[0];
+        const numbers = chunk.map((entry) => entry.verse_num);
+        const min = numbers[0];
+        const max = numbers[numbers.length - 1];
+        const versesLabel = min === max ? `${min}` : `${min}-${max}`;
+
+        return {
+          id: crypto.randomUUID(),
+          book: first.book_id,
+          bookName: { fa: first.book_name_fa, en: first.book_name_en },
+          chapter: first.chapter,
+          verses: versesLabel,
+          verseNumbers: numbers,
+          textFa: chunk.map((entry) => entry.fa),
+          textEn: chunk.map((entry) => entry.en),
+          fontFa,
+          fontEn,
+          translation: selectedVersionFa,
+          enTranslation: selectedVersionEn,
+        };
+      });
     });
 
-    if (combineIntoOneSlide || referenceItems.length > 1) {
+    if (slideBuildMode === "single") {
       const firstReference = referenceItems[0];
       const single = referenceItems.length === 1;
       return [{
@@ -332,6 +450,30 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         popupLabelFa: single ? `${firstReference.bookName.fa} ${firstReference.chapter}:${firstReference.verses}` : `${referenceItems.length} آیه انتخابی`,
         popupLabelEn: single ? `${firstReference.bookName.en} ${firstReference.chapter}:${firstReference.verses}` : `${referenceItems.length} Selected Verses`,
       }];
+    }
+
+    if (slideBuildMode === "perVerse") {
+      let slideNumber = 1;
+      return referenceItems.flatMap((reference) => reference.verseNumbers.map((verseNum, idx) => ({
+        id: crypto.randomUUID(),
+        book: reference.book,
+        bookName: reference.bookName,
+        chapter: reference.chapter,
+        verses: `${verseNum}`,
+        verseNumbers: [verseNum],
+        textPrimary: [primaryLang === "fa" ? reference.textFa[idx] : reference.textEn[idx]],
+        textSecondary: [primaryLang === "fa" ? reference.textEn[idx] : reference.textFa[idx]],
+        translation: selectedVersionFa,
+        enTranslation: selectedVersionEn,
+        displayMode: "list" as const,
+        fontFa,
+        fontEn,
+        primaryLanguage: primaryLang,
+        glassPopupEnabled: false,
+        referenceItems: [{ ...reference, verses: `${verseNum}`, verseNumbers: [verseNum], textFa: [reference.textFa[idx]], textEn: [reference.textEn[idx]] }],
+        popupLabelFa: `اسلاید ${slideNumber++}: ${reference.bookName.fa} ${reference.chapter}:${verseNum}`,
+        popupLabelEn: `Slide ${slideNumber - 1}: ${reference.bookName.en} ${reference.chapter}:${verseNum}`,
+      })));
     }
 
     return referenceItems.map((reference) => ({
@@ -382,12 +524,12 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         onEnded={() => setIsPlaying(false)}
       />
 
-      <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex items-center gap-3 flex-wrap">
-        <BookOpen className="w-5 h-5 text-blue-400 shrink-0" />
-        <span className="font-bold text-white text-base shrink-0">{isRTL ? "انتخاب آیه کتاب مقدس" : "Select Bible Verse"}</span>
+      <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex flex-wrap items-center gap-2 md:gap-3">
+        <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-blue-400 shrink-0" />
+        <span className={`font-bold text-white text-sm md:text-base shrink-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? "انتخاب آیه کتاب مقدس" : "Select Bible Verse"}</span>
 
         <div className="relative">
-          <button onClick={() => { setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2.5 text-sm font-bold transition-all text-left" aria-label="Select Bible book">
+          <button onClick={() => { setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all text-left min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none" aria-label="Select Bible book">
             <BookOpen className="w-4 h-4 text-blue-400 shrink-0" />
             <span className="flex-1 truncate text-white">{currentBook ? (isRTL ? <span className="font-[Vazirmatn]">{currentBook.book_name_fa}</span> : currentBook.book_name_en) : (isRTL ? "انتخاب کتاب..." : "Select a book...")}</span>
             <List className="w-3.5 h-3.5 text-slate-500 shrink-0" />
@@ -408,27 +550,27 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           )}
         </div>
 
-        <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl overflow-hidden" dir="ltr">
-          <button onClick={prevChapter} disabled={selectedChapter <= 1} className="p-2.5 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Previous chapter"><ChevronLeft className="w-4 h-4" /></button>
-          <button onClick={() => setShowChapterGrid((value) => !value)} className="bg-white/5 hover:bg-white/10 text-sm font-bold px-4 py-2 transition-all border-x border-white/5 flex items-center gap-2"><span className="text-blue-400">Ch.</span><span>{selectedChapter}</span></button>
-          <button onClick={nextChapter} disabled={!currentBook || selectedChapter >= currentBook.chapter_count} className="p-2.5 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Next chapter"><ChevronRight className="w-4 h-4" /></button>
+        <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0" dir="ltr">
+          <button onClick={prevChapter} disabled={selectedChapter <= 1} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Previous chapter"><ChevronLeft className="w-4 h-4" /></button>
+          <button onClick={() => setShowChapterGrid((value) => !value)} className="bg-white/5 hover:bg-white/10 text-xs md:text-sm font-bold px-3 md:px-4 py-2 transition-all border-x border-white/5 flex items-center gap-2"><span className="text-blue-400">Ch.</span><span>{selectedChapter}</span></button>
+          <button onClick={nextChapter} disabled={!currentBook || selectedChapter >= currentBook.chapter_count} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Next chapter"><ChevronRight className="w-4 h-4" /></button>
         </div>
 
-        <select value={selectedVersionEn} onChange={(event) => { setSelectedVersionEn(event.target.value); persist("bp_ver_en", event.target.value); }} aria-label="English Bible version" className="max-w-[100px] md:max-w-[120px] bg-white/5 border border-white/10 rounded-xl px-2 md:px-3 py-2.5 text-sm font-bold outline-none focus:border-blue-500/50 cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white">
+        <select value={selectedVersionEn} onChange={(event) => { setSelectedVersionEn(event.target.value); persist("bp_ver_en", event.target.value); }} aria-label="English Bible version" className={`${VERSION_SELECT_STYLE.en} ${VERSION_SELECT_STYLE.base} border-white/10 focus:border-blue-500/50`}>
           {englishVersions.map((version) => <option key={version.abbr} value={version.abbr} title={version.name} className="bg-zinc-900 text-white">{version.hasAudio ? "🔊 " : ""}{version.abbr}</option>)}
         </select>
 
-        <select value={selectedVersionFa} onChange={(event) => { setSelectedVersionFa(event.target.value); persist("bp_ver_fa", event.target.value); }} aria-label="Farsi Bible version" className={`font-[Vazirmatn] max-w-[140px] md:max-w-[200px] truncate bg-white/5 border rounded-xl px-2 md:px-3 py-2.5 text-sm font-bold outline-none cursor-pointer [&>option]:bg-zinc-900 [&>option]:text-white ${persianVersions.length === 0 ? "border-red-500/30 text-red-100" : "border-purple-500/30 focus:border-purple-500"}`} dir="rtl">
+        <select value={selectedVersionFa} onChange={(event) => { setSelectedVersionFa(event.target.value); persist("bp_ver_fa", event.target.value); }} aria-label="Farsi Bible version" className={`font-[Vazirmatn] ${VERSION_SELECT_STYLE.fa} ${VERSION_SELECT_STYLE.base} truncate ${persianVersions.length === 0 ? VERSION_SELECT_STYLE.empty : VERSION_SELECT_STYLE.normal}`} dir="rtl">
           {persianVersions.length === 0 ? <option value="" className="bg-zinc-900 text-white">— ترجمه‌ای یافت نشد —</option> : persianVersions.map((version) => <option key={version.abbr} value={version.abbr} className="bg-zinc-900 text-white">{version.name} {version.hasAudio ? "🔊" : ""}</option>)}
         </select>
 
         <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1 shrink-0" dir="ltr">
-          <button onClick={() => { setReadingMode("en"); persist("bp_reading_mode", "en"); }} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${readingMode === "en" ? "bg-blue-500 text-white shadow" : "text-slate-400 hover:text-white"}`}>EN</button>
-          <button onClick={() => { setReadingMode("fa"); persist("bp_reading_mode", "fa"); }} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${readingMode === "fa" ? "bg-purple-500 text-white shadow" : "text-slate-400 hover:text-white"}`}>FA</button>
-          <button onClick={() => { setReadingMode("parallel"); persist("bp_reading_mode", "parallel"); }} className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${readingMode === "parallel" ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow" : "text-slate-400 hover:text-white"}`}><Columns2 className="w-3 h-3" /> EN|FA</button>
+          <button onClick={() => { setReadingMode("en"); persist("bp_reading_mode", "en"); }} className={`px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "en" ? "bg-blue-500 text-white shadow" : "text-slate-400 hover:text-white"}`}>EN</button>
+          <button onClick={() => { setReadingMode("fa"); persist("bp_reading_mode", "fa"); }} className={`px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "fa" ? "bg-purple-500 text-white shadow" : "text-slate-400 hover:text-white"}`}>FA</button>
+          <button onClick={() => { setReadingMode("parallel"); persist("bp_reading_mode", "parallel"); }} className={`flex items-center gap-1 px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "parallel" ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow" : "text-slate-400 hover:text-white"}`}><Columns2 className="w-3 h-3" /> EN|FA</button>
           <div className="w-px h-5 bg-white/20 mx-1 shrink-0" />
-          <button onClick={() => { const next = Math.max(13, fontSize - 2); setFontSize(next); persist("bp_font_size", String(next)); }} className="px-2 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all hover:bg-white/10 shrink-0">A-</button>
-          <button onClick={() => { const next = Math.min(36, fontSize + 2); setFontSize(next); persist("bp_font_size", String(next)); }} className="px-2 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition-all hover:bg-white/10 shrink-0">A+</button>
+          <button onClick={() => { const next = Math.max(13, fontSize - 2); setFontSize(next); persist("bp_font_size", String(next)); }} className="px-2 py-1.5 rounded-lg text-[11px] md:text-xs font-bold text-slate-400 hover:text-white transition-all hover:bg-white/10 shrink-0">A-</button>
+          <button onClick={() => { const next = Math.min(36, fontSize + 2); setFontSize(next); persist("bp_font_size", String(next)); }} className="px-2 py-1.5 rounded-lg text-[11px] md:text-sm font-bold text-slate-400 hover:text-white transition-all hover:bg-white/10 shrink-0">A+</button>
         </div>
 
         <button onClick={onClose} className="ml-auto p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-all" aria-label="Close scripture selector"><X className="w-5 h-5" /></button>
@@ -464,6 +606,24 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
         <div className="max-w-5xl mx-auto px-4 pt-4 pb-1"><p className="text-xs text-slate-600 text-center">{isRTL ? "برای انتخاب هر آیه روی آن کلیک کنید" : "Click on any verse to select it"}</p></div>
 
+        <div className="max-w-5xl mx-auto px-4 pb-2 flex flex-wrap items-center justify-center gap-2">
+          <button
+            onClick={addVisibleVerses}
+            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-600/30 transition"
+          >
+            {isRTL ? "افزودن همه نتایج" : "Select All Results"}
+          </button>
+          <button
+            onClick={clearCurrentChapterSelection}
+            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600/15 border border-rose-500/35 text-rose-300 hover:bg-rose-600/25 transition"
+          >
+            {isRTL ? "پاک کردن انتخاب‌های این باب" : "Clear Chapter Selection"}
+          </button>
+          <p className="text-[11px] text-slate-500 font-[Vazirmatn]">
+            {isRTL ? "برای انتخاب بازه، Shift + کلیک استفاده کنید" : "Use Shift+Click to select a range"}
+          </p>
+        </div>
+
         <div className="max-w-5xl mx-auto px-4 py-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -494,7 +654,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                   filteredParallelVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <div key={verse.verse_num} onClick={() => toggleVerse(verse.verse_num)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${selected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5 border border-transparent"}`}>
+                      <div key={verse.verse_num} onClick={(event) => handleVerseClick(verse.verse_num, event.shiftKey)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${selected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5 border border-transparent"}`}>
                         <div className="flex gap-3" dir="ltr"><span className="text-xs font-black text-blue-500/60 mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize}px`, fontFamily: fontEn }}>{verse.en || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
                         <div className="flex gap-3 text-right" dir="rtl"><span className="text-xs font-black text-purple-500/60 mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize + 2}px`, fontFamily: fontFa }}>{verse.fa || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
                       </div>
@@ -514,7 +674,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     return (
                       <span key={verse.verse_num}>
                         {headingMap.has(verse.verse_num) && <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(verse.verse_num)}</h3>}
-                        <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={() => toggleVerse(verse.verse_num)}>
+                        <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event.shiftKey)}>
                           <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{verse.verse_num}</sup>
                           {verse.text} 
                         </span>
@@ -535,7 +695,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                   filteredFaVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={() => toggleVerse(verse.verse_num)}>
+                      <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event.shiftKey)}>
                         <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{verse.verse_num}</sup>
                         {verse.text} 
                       </span>
@@ -576,14 +736,43 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       )}
 
       <div className={`fixed bottom-52 md:bottom-24 left-0 right-0 z-40 flex items-center justify-center gap-2 md:gap-3 pointer-events-none transition-all duration-500 ${selectedVerses.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`} dir="ltr">
-        <div className="pointer-events-auto bg-amber-500 text-black px-4 md:px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-4 font-bold flex-wrap max-w-[95vw]">
-          <span className="text-sm font-black border-r border-black/20 pr-4 shrink-0">{selectedVerses.length} {isRTL ? "آیه انتخاب شده" : "verses selected"}</span>
+        <div className="pointer-events-auto bg-amber-500 text-black px-4 md:px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-4 font-bold flex-wrap max-w-[95vw] border border-amber-300/40">
+          <span className={`text-sm font-black border-r border-black/20 pr-4 shrink-0 ${isRTL ? "font-[Vazirmatn]" : ""}`}>{selectedVerses.length} {isRTL ? "آیه انتخاب شده" : "verses selected"}</span>
           <div className="flex-1 flex flex-wrap gap-1.5 min-w-0 overflow-hidden">
             {selectedReferences.slice(0, 4).map((reference) => <span key={reference} className="text-xs bg-black/15 text-black/80 px-2 py-0.5 rounded-full font-[Vazirmatn] shrink-0">{reference}</span>)}
             {selectedReferences.length > 4 && <span className="text-xs bg-black/15 text-black/80 px-2 py-0.5 rounded-full shrink-0">…</span>}
           </div>
-          <button onClick={() => setSelectedVerses([])} className="flex items-center gap-1.5 hover:opacity-70 transition-opacity shrink-0 text-sm"><Trash2 className="w-4 h-4" />{isRTL ? "پاک کردن" : "Clear"}</button>
-          <button onClick={handleAddSlides} className="flex items-center gap-2 bg-black text-white px-5 py-2 rounded-xl hover:bg-black/80 transition-all font-bold shadow-xl shrink-0">{isRTL ? "افزودن به اسلاید" : "Add to Slide"}</button>
+          <div className="flex items-center gap-1 bg-black/15 rounded-lg p-1 border border-black/15">
+            <button
+              onClick={() => {
+                setSlideBuildMode("single");
+                persist("bp_slide_mode", "single");
+              }}
+              className={`px-2.5 py-1 rounded-md text-[11px] font-black transition ${slideBuildMode === "single" ? "bg-black text-white" : "text-black/70 hover:bg-black/10"}`}
+            >
+              {isRTL ? "تک" : "Single"}
+            </button>
+            <button
+              onClick={() => {
+                setSlideBuildMode("perReference");
+                persist("bp_slide_mode", "perReference");
+              }}
+              className={`px-2.5 py-1 rounded-md text-[11px] font-black transition ${slideBuildMode === "perReference" ? "bg-black text-white" : "text-black/70 hover:bg-black/10"}`}
+            >
+              {isRTL ? "چندبخشی" : "Per Group"}
+            </button>
+            <button
+              onClick={() => {
+                setSlideBuildMode("perVerse");
+                persist("bp_slide_mode", "perVerse");
+              }}
+              className={`px-2.5 py-1 rounded-md text-[11px] font-black transition ${slideBuildMode === "perVerse" ? "bg-black text-white" : "text-black/70 hover:bg-black/10"}`}
+            >
+              {isRTL ? "هر آیه" : "Per Verse"}
+            </button>
+          </div>
+          <button onClick={() => setSelectedVerses([])} className={`flex items-center gap-1.5 hover:opacity-70 transition-opacity shrink-0 text-sm ${isRTL ? "font-[Vazirmatn]" : ""}`}><Trash2 className="w-4 h-4" />{isRTL ? "پاک کردن" : "Clear"}</button>
+          <button onClick={handleAddSlides} className={`flex items-center gap-2 bg-black text-white px-5 py-2 rounded-xl hover:bg-black/80 transition-all font-bold shadow-xl shrink-0 ${isRTL ? "font-[Vazirmatn]" : ""}`}>{isRTL ? "افزودن اسلایدها" : "Add Slides"}</button>
         </div>
       </div>
 

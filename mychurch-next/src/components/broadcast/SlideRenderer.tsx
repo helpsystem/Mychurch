@@ -11,6 +11,82 @@ import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart } fr
 
 const isNonEmptyText = (value: unknown) => typeof value === 'string' && value.trim().length > 0;
 
+const SCRIPTURE_LAYOUT = {
+    headerPaddingY: 1.5,
+    headerPaddingX: 2,
+    columnPaddingY: 0.8,
+    columnPaddingX: 2,
+    rowGap: 0.8,
+    cellPaddingY: 1.2,
+    cellPaddingX: 1.5,
+    headerBorder: 0.12,
+    columnBorder: 0.08,
+} as const;
+
+const SCRIPTURE_COLUMNS = {
+    fa: { label: 'فارسی', dir: 'rtl' as const },
+    en: { label: 'English', dir: 'ltr' as const },
+} as const;
+
+const renderWavyPaperFilter = (id: string, scale: number, seed: number) => (
+    <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
+        <filter id={id}>
+            <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed={seed} />
+            <feDisplacementMap in="SourceGraphic" scale={scale} />
+        </filter>
+    </svg>
+);
+
+const getScriptureColumnOrder = (primaryLanguage: 'en' | 'fa') => (
+    primaryLanguage === 'en'
+        ? [SCRIPTURE_COLUMNS.en, SCRIPTURE_COLUMNS.fa]
+        : [SCRIPTURE_COLUMNS.fa, SCRIPTURE_COLUMNS.en]
+);
+
+type VerseBadgeSize = 'sm' | 'md';
+
+const VerseNumberBadge = ({
+    children,
+    size = 'md',
+    isWavyPaper = false,
+}: {
+    children: React.ReactNode;
+    size?: VerseBadgeSize;
+    isWavyPaper?: boolean;
+}) => {
+    const sizeMap: Record<VerseBadgeSize, { fontSize: string; minWidth: string; height: string; lineHeight: string; radius: string }> = {
+        sm: { fontSize: '1.3rem', minWidth: '2.25rem', height: '2.25rem', lineHeight: '2.25rem', radius: '0.45rem' },
+        md: { fontSize: '1.8rem', minWidth: '3rem', height: '3rem', lineHeight: '3rem', radius: '0.6rem' },
+    };
+
+    return (
+        <span
+            className="shrink-0 font-black text-center inline-flex items-center justify-center tabular-nums"
+            style={{
+                fontSize: sizeMap[size].fontSize,
+                minWidth: sizeMap[size].minWidth,
+                height: sizeMap[size].height,
+                lineHeight: sizeMap[size].lineHeight,
+                borderRadius: sizeMap[size].radius,
+                background: isWavyPaper ? 'rgba(251,191,36,0.18)' : 'rgba(251,191,36,0.2)',
+                color: '#fbbf24',
+                border: isWavyPaper ? '1px solid rgba(251,191,36,0.28)' : '1px solid rgba(251,191,36,0.35)',
+            }}
+        >
+            {children}
+        </span>
+    );
+};
+
+const StickyScriptureHeader = ({ children, tone }: { children: React.ReactNode; tone: 'emerald' | 'blue' }) => (
+    <h4
+        className={`sticky top-0 z-20 inline-flex items-center rounded-full bg-slate-950/70 px-3 py-1.5 backdrop-blur-sm font-black shadow-sm ${tone === 'emerald' ? 'text-emerald-400 font-[Vazirmatn]' : 'text-blue-400'}`}
+        style={{ fontSize: '1.9rem', marginBottom: '0.7rem' }}
+    >
+        {children}
+    </h4>
+);
+
 interface SlideRendererProps {
     slide: Slide | undefined;
     className?: string;
@@ -69,12 +145,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 const lines = Array.from({ length: 4 }, () => line);
                 return (
                     <div className="absolute inset-0 -z-10 overflow-hidden bg-[#fffef0]">
-                        <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
-                            <filter id="wavy2">
-                                <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1" />
-                                <feDisplacementMap in="SourceGraphic" scale="15" />
-                            </filter>
-                        </svg>
+                        {renderWavyPaperFilter('wavy2', 15, 1)}
                         <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.03)_1px,transparent_1px)] [background-size:4px_4px]" />
                         <div className="relative h-full w-full p-10 space-y-5 text-[#41290e]">
                             {lines.map((item, idx) => (
@@ -185,16 +256,21 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 );
                 if (page.displayMode === 'referenceList' && references.length > 0) {
                     const useWavyPaper = page.glassPopupEnabled === true;
+                    const columnOrder = getScriptureColumnOrder(page.primaryLanguage || 'fa');
+                    const headerPaddingY = SCRIPTURE_LAYOUT.headerPaddingY * slideZoom;
+                    const headerPaddingX = SCRIPTURE_LAYOUT.headerPaddingX * slideZoom;
+                    const columnPaddingY = SCRIPTURE_LAYOUT.columnPaddingY * slideZoom;
+                    const columnPaddingX = SCRIPTURE_LAYOUT.columnPaddingX * slideZoom;
+                    const rowGap = SCRIPTURE_LAYOUT.rowGap * slideZoom;
+                    const cellPaddingY = SCRIPTURE_LAYOUT.cellPaddingY * slideZoom;
+                    const cellPaddingX = SCRIPTURE_LAYOUT.cellPaddingX * slideZoom;
+                    const headerBorder = SCRIPTURE_LAYOUT.headerBorder * slideZoom;
+                    const columnBorder = SCRIPTURE_LAYOUT.columnBorder * slideZoom;
                     return (
                         <div className={`w-full h-full p-6 md:p-8 lg:p-10 relative overflow-hidden ${useWavyPaper ? 'bg-[#fffef0]' : 'bg-slate-950'}`}>
                             {useWavyPaper ? (
                                 <>
-                                    <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
-                                        <filter id="wavyRefBg">
-                                            <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="2" />
-                                            <feDisplacementMap in="SourceGraphic" scale="12" />
-                                        </filter>
-                                    </svg>
+                                    {renderWavyPaperFilter('wavyRefBg', 12, 2)}
                                     <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.03)_1px,transparent_1px)] [background-size:4px_4px] -z-10" />
                                 </>
                             ) : (
@@ -206,34 +282,29 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                 style={{ ...(useWavyPaper ? { filter: 'url(#wavyRefBg)' } : undefined) }}
                             >
                                 {/* Header */}
-                                <div className="shrink-0 flex items-center justify-between" style={{ padding: `${1.5 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.12 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
-                                    <h2 className={`font-black font-[Vazirmatn] leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
-                                    <span style={{ fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
+                                <div className="shrink-0 flex items-center justify-between" style={{ padding: `${headerPaddingY}rem ${headerPaddingX}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
+                                    <h2 className={`font-black leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                    <span style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
                                         {references.length} آیه
                                     </span>
                                 </div>
 
                                 {/* Column Labels */}
-                                <div className="shrink-0 grid grid-cols-2" style={{ padding: `${0.8 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.08 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` }}>
-                                    {page.primaryLanguage === 'en' ? (
-                                        <>
-                                            {/* English label — LTR (Left now) */}
-                                            <div dir="ltr" className={`text-left font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>English</div>
-                                            {/* Farsi label — RTL (Right now) */}
-                                            <div dir="rtl" className={`text-right font-[Vazirmatn] font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>فارسی</div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            {/* Farsi label — RTL */}
-                                            <div dir="rtl" className={`text-right font-[Vazirmatn] font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>فارسی</div>
-                                            {/* English label — LTR */}
-                                            <div dir="ltr" className={`text-left font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} style={{ fontSize: `${1.6 * slideZoom}rem` }}>English</div>
-                                        </>
-                                    )}
+                                <div className="shrink-0 grid grid-cols-2" style={{ padding: `${columnPaddingY}rem ${columnPaddingX}rem`, borderBottom: `${columnBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` }}>
+                                    {columnOrder.map((column) => (
+                                        <div
+                                            key={column.dir}
+                                            dir={column.dir}
+                                            className={`text-${column.dir === 'rtl' ? 'right' : 'left'} font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'} ${column.dir === 'rtl' ? 'font-[Vazirmatn]' : ''}`}
+                                            style={{ fontFamily: column.dir === 'rtl' ? (page.fontFa || 'var(--font-vazirmatn)') : (page.fontEn || 'var(--font-inter)'), fontSize: `${1.6 * slideZoom}rem` }}
+                                        >
+                                            {column.label}
+                                        </div>
+                                    ))}
                                 </div>
 
                                 {/* Reference Rows */}
-                                <div className="flex-1 min-h-0 overflow-y-auto" style={{ padding: `${0.8 * slideZoom}rem`, display: 'flex', flexDirection: 'column', gap: `${0.8 * slideZoom}rem` }}>
+                                <div className="flex-1 min-h-0 overflow-y-auto" style={{ padding: `${rowGap}rem`, display: 'flex', flexDirection: 'column', gap: `${rowGap}rem` }}>
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
@@ -248,7 +319,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                     <div
                                                         dir="rtl"
                                                         className={`flex items-center gap-0 ${useWavyPaper ? (page.primaryLanguage === 'en' ? 'border-l border-[#8a4d0f]/15' : 'border-l border-[#8a4d0f]/15') : (page.primaryLanguage === 'en' ? 'border-l border-slate-700/40' : 'border-l border-slate-700/40')}`}
-                                                        style={{ padding: `${1.2 * slideZoom}rem ${1.5 * slideZoom}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}
+                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}
                                                     >
                                                         {/* Row badge */}
                                                         <span
@@ -290,7 +361,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                     <div
                                                         dir="ltr"
                                                         className="flex items-center"
-                                                        style={{ padding: `${1.2 * slideZoom}rem ${1.5 * slideZoom}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}
+                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}
                                                     >
                                                         {/* Row badge */}
                                                         <span
@@ -374,13 +445,15 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                             {(() => {
                                                 const faSide = (
                                                     <div className="overflow-y-auto" dir="rtl" style={{ padding: `${2 * slideZoom}rem`, borderLeft: page.primaryLanguage !== 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
-                                                        <h4 className="text-emerald-400 font-black font-[Vazirmatn] sticky top-0 bg-slate-950/90 pb-2" style={{ fontSize: `${2.4 * slideZoom}rem`, marginBottom: `${1.2 * slideZoom}rem` }}>
+                                                        <StickyScriptureHeader tone="emerald">
                                                             متن فارسی
-                                                        </h4>
+                                                        </StickyScriptureHeader>
                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
                                                             {activeReference.textFa.map((line, i) => (
                                                                 <p key={`fa-${i}`} className="text-slate-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${2.8 * slideZoom}rem` }}>
-                                                                    <span className="text-amber-400 font-black" style={{ marginLeft: `${0.6 * slideZoom}rem` }}>{activeReference.verseNumbers[i] || ''}</span>
+                                                                    <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
+                                                                        {activeReference.verseNumbers[i] || ''}
+                                                                    </VerseNumberBadge>
                                                                     {isNonEmptyText(line) ? line : renderMissingVerseMarker(true)}
                                                                 </p>
                                                             ))}
@@ -390,13 +463,15 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
 
                                                 const enSide = (
                                                     <div className="overflow-y-auto" dir="ltr" style={{ padding: `${2 * slideZoom}rem`, borderRight: page.primaryLanguage === 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}>
-                                                        <h4 className="text-blue-400 font-black sticky top-0 bg-slate-950/90 pb-2" style={{ fontSize: `${2.4 * slideZoom}rem`, marginBottom: `${1.2 * slideZoom}rem` }}>
+                                                        <StickyScriptureHeader tone="blue">
                                                             English Text
-                                                        </h4>
+                                                        </StickyScriptureHeader>
                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
                                                             {activeReference.textEn.map((line, i) => (
                                                                 <p key={`en-${i}`} className="text-slate-200 leading-relaxed" style={{ fontSize: `${2.2 * slideZoom}rem` }}>
-                                                                    <span className="text-amber-400 font-black" style={{ marginRight: `${0.6 * slideZoom}rem` }}>{activeReference.verseNumbers[i] || ''}</span>
+                                                                    <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
+                                                                        {activeReference.verseNumbers[i] || ''}
+                                                                    </VerseNumberBadge>
                                                                     {isNonEmptyText(line) ? line : renderMissingVerseMarker(false)}
                                                                 </p>
                                                             ))}
@@ -429,17 +504,17 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm -z-10" />
                         
                         {/* Reference Badge */}
-                        <div className="absolute top-12 left-12 bg-amber-500/20 border border-amber-500/30 px-6 py-2 rounded-full backdrop-blur-md">
-                            <span className="font-bold font-[Vazirmatn]" style={{ fontSize: `${1.5 * slideZoom}rem`, color: 'rgb(251 191 36)' }}>{page.bookName.fa} {page.chapter}:{page.verses}</span>
+                        <div className="absolute top-4 left-4 sm:top-8 sm:left-8 bg-amber-500/15 border border-amber-500/25 px-3 py-1.5 rounded-full backdrop-blur-md shadow-sm">
+                            <span className="font-bold font-[Vazirmatn] text-[0.95rem] sm:text-[1.2rem]" style={{ color: 'rgb(251 191 36)' }}>{page.bookName.fa} {page.chapter}:{page.verses}</span>
                         </div>
                         
-                        <div className="max-w-6xl w-full text-center space-y-10">
-                            <div className="leading-snug font-bold text-white" dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'} style={{ fontSize: `${3.5 * slideZoom}rem`, textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}>
+                        <div className="max-w-6xl w-full text-center space-y-5 sm:space-y-6">
+                            <div className="leading-[1.85] font-bold text-white" dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'} style={{ fontSize: `${3.1 * slideZoom}rem`, textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}>
                                 {page.textPrimary.map((verse, idx) => (
-                                    <div key={idx} className="flex flex-wrap items-start justify-center gap-3 mb-4">
-                                        <span className="text-amber-400 font-black tabular-nums" style={{ fontSize: `${2.2 * slideZoom}rem` }}>
+                                    <div key={idx} className="flex flex-wrap items-start justify-center gap-2 mb-2 sm:mb-2.5">
+                                        <VerseNumberBadge size="md">
                                             {page.verseNumbers?.[idx] || idx + 1}
-                                        </span>
+                                        </VerseNumberBadge>
                                         <span>
                                             {isNonEmptyText(verse) ? verse : renderMissingVerseMarker(page.primaryLanguage !== 'en')}
                                         </span>
@@ -449,15 +524,15 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             
                             {page.textSecondary && page.textSecondary.length > 0 && (
                                 <div
-                                    className="leading-relaxed text-amber-200/80 italic"
+                                    className="leading-[1.75] text-amber-200/80 italic"
                                     dir={page.primaryLanguage === 'en' ? 'rtl' : 'ltr'}
-                                    style={{ fontSize: `${2 * slideZoom}rem`, fontFamily: page.fontEn || "var(--font-inter)" }}
+                                    style={{ fontSize: `${1.8 * slideZoom}rem`, fontFamily: page.fontEn || "var(--font-inter)" }}
                                 >
                                     {page.textSecondary.map((verse, idx) => (
-                                        <div key={idx} className="flex flex-wrap items-start justify-center gap-3 mb-3">
-                                            <span className="text-amber-400 font-black tabular-nums" style={{ fontSize: `${1.6 * slideZoom}rem` }}>
+                                        <div key={idx} className="flex flex-wrap items-start justify-center gap-2 mb-1.5 sm:mb-2">
+                                            <VerseNumberBadge size="sm">
                                                 {page.verseNumbers?.[idx] || idx + 1}
-                                            </span>
+                                            </VerseNumberBadge>
                                             <span>{isNonEmptyText(verse) ? verse : renderMissingVerseMarker(page.primaryLanguage === 'en')}</span>
                                         </div>
                                     ))}
