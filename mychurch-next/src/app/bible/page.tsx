@@ -264,59 +264,270 @@ export default function BibleReaderPage() {
   const compareReferenceMap = new Map((compareReferenceRow?.entries || []).map((entry) => [entry.verseNum, entry.text]));
   const compareComparableRows = compareVisibleRows.filter((row) => row.abbr !== (compareReferenceRow?.abbr || ""));
 
-  const buildCompareExportText = useCallback(() => {
-    if (!compareReferenceRow) return "";
+  const downloadComparePdf = () => {
+    if (!compareReferenceRow) return;
+
+    const printableRows = compareComparableRows.map((row, index) => ({
+      ...row,
+      accent: ["#2563eb", "#7c3aed", "#059669", "#f59e0b", "#db2777", "#0ea5e9"][index % 6],
+    }));
+
+    const escapeHtml = (value: string) =>
+      value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 
     const filterLabel = compareLanguageFilter === "all"
-      ? (language === "fa" ? "همه ترجمه‌ها" : "all translations")
+      ? (language === "fa" ? "همه ترجمه‌ها" : "All translations")
       : compareLanguageFilter === "fa"
         ? (language === "fa" ? "فقط فارسی" : "Persian only")
         : (language === "fa" ? "فقط انگلیسی" : "English only");
 
-    const exportHeader = [
-      `${selectedBookLabel} ${selectedRef}`,
-      `Reference: ${compareReferenceRow.abbr} - ${compareReferenceRow.name}`,
-      `Filter: ${filterLabel}`,
-      "",
-    ];
+    const tableRows = verseNums.map((verseNum) => {
+      const refText = compareReferenceMap.get(verseNum) || "-";
+      const translationCells = printableRows
+        .map((row) => {
+          const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-";
+          return `
+            <div class="compare-card">
+              <div class="compare-card-head" style="--accent:${row.accent}">
+                <span class="compare-card-abbr">${escapeHtml(row.abbr)}</span>
+                <span class="compare-card-name">${escapeHtml(row.name)}</span>
+              </div>
+              <div class="compare-card-body" dir="${row.language === "fa" ? "rtl" : "ltr"}">${escapeHtml(targetText)}</div>
+            </div>
+          `;
+        })
+        .join("");
 
-    const exportBody = verseNums.map((verseNum) => {
-      const lines = [
-        `Verse ${verseNum}`,
-        `Reference: ${compareReferenceMap.get(verseNum) || "-"}`,
-      ];
+      return `
+        <section class="verse-block">
+          <div class="verse-number">${verseNum}</div>
+          <div class="verse-reference" dir="${compareReferenceRow.language === "fa" ? "rtl" : "ltr"}">
+            <div class="verse-reference-label">Reference</div>
+            <div class="verse-reference-text">${escapeHtml(refText)}</div>
+          </div>
+          <div class="verse-translations">
+            ${translationCells}
+          </div>
+        </section>
+      `;
+    }).join("");
 
-      compareComparableRows.forEach((row) => {
-        const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-";
-        lines.push(`${row.abbr}: ${targetText}`);
-      });
+    const printWindow = window.open("", "_blank", "noopener,noreferrer,width=1240,height=900");
+    if (!printWindow) return;
 
-      return lines.join("\n");
-    }).join("\n\n");
-
-    return [...exportHeader, exportBody].join("\n");
-  }, [compareComparableRows, compareLanguageFilter, compareReferenceMap, compareReferenceRow, language, selectedRef, selectedBookLabel, verseNums]);
-
-  const copyCompareTable = () => {
-    const text = buildCompareExportText();
-    if (!text) return;
-
-    navigator.clipboard.writeText(text).then(() => {
-      alert(language === "fa" ? "جدول مقایسه کپی شد" : "Comparison table copied");
-    });
-  };
-
-  const downloadCompareTable = () => {
-    const text = buildCompareExportText();
-    if (!text) return;
-
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = `bible-compare-${selectedBook}-${selectedChapter}.txt`;
-    anchor.click();
-    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    printWindow.document.write(`
+      <!doctype html>
+      <html lang="fa" dir="rtl">
+        <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>${escapeHtml(selectedBookLabel)} ${escapeHtml(selectedRef)} - Bible Compare</title>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+          <style>
+            :root {
+              --bg: #f7f9fc;
+              --ink: #0f172a;
+              --muted: #475569;
+              --card: rgba(255,255,255,0.92);
+              --line: rgba(15,23,42,0.09);
+            }
+            * { box-sizing: border-box; }
+            html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: 'Vazirmatn', sans-serif; }
+            body { padding: 24px; }
+            .sheet {
+              max-width: 1120px;
+              margin: 0 auto;
+              background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+              border: 1px solid rgba(37,99,235,0.12);
+              border-radius: 28px;
+              overflow: hidden;
+              box-shadow: 0 30px 80px rgba(15,23,42,0.10);
+            }
+            .hero {
+              background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #7c3aed 100%);
+              color: white;
+              padding: 28px 30px 22px;
+            }
+            .hero-top {
+              display: flex;
+              justify-content: space-between;
+              gap: 16px;
+              align-items: flex-start;
+            }
+            .title { font-size: 30px; font-weight: 900; line-height: 1.15; margin: 0 0 8px; }
+            .subtitle { font-size: 14px; opacity: 0.85; margin: 0; }
+            .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+            .pill {
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              padding: 9px 14px;
+              border-radius: 999px;
+              background: rgba(255,255,255,0.12);
+              border: 1px solid rgba(255,255,255,0.18);
+              font-size: 12px;
+              font-weight: 800;
+              letter-spacing: 0.01em;
+              backdrop-filter: blur(10px);
+            }
+            .content { padding: 22px; }
+            .section-note {
+              display: flex;
+              justify-content: space-between;
+              gap: 12px;
+              align-items: center;
+              margin-bottom: 18px;
+              color: var(--muted);
+              font-size: 13px;
+              font-weight: 700;
+            }
+            .verse-block {
+              display: grid;
+              grid-template-columns: 72px 1.1fr 1.4fr;
+              gap: 14px;
+              margin-bottom: 16px;
+              padding: 16px;
+              background: var(--card);
+              border: 1px solid var(--line);
+              border-radius: 22px;
+              break-inside: avoid;
+              page-break-inside: avoid;
+            }
+            .verse-number {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              min-height: 100%;
+              border-radius: 18px;
+              background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+              color: white;
+              font-size: 28px;
+              font-weight: 900;
+              box-shadow: 0 16px 30px rgba(37,99,235,0.22);
+            }
+            .verse-reference {
+              border-radius: 18px;
+              padding: 14px 16px;
+              background: linear-gradient(180deg, rgba(245,158,11,0.10), rgba(245,158,11,0.04));
+              border: 1px solid rgba(245,158,11,0.18);
+            }
+            .verse-reference-label {
+              display: inline-flex;
+              align-items: center;
+              padding: 6px 10px;
+              border-radius: 999px;
+              background: rgba(245,158,11,0.18);
+              color: #92400e;
+              font-size: 11px;
+              font-weight: 900;
+              margin-bottom: 10px;
+            }
+            .verse-reference-text {
+              font-size: 14px;
+              line-height: 1.95;
+              font-weight: 700;
+              color: #0f172a;
+              white-space: pre-wrap;
+            }
+            .verse-translations {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+              gap: 10px;
+            }
+            .compare-card {
+              overflow: hidden;
+              border-radius: 18px;
+              background: white;
+              border: 1px solid rgba(15,23,42,0.08);
+              box-shadow: 0 10px 24px rgba(15,23,42,0.05);
+            }
+            .compare-card-head {
+              display: flex;
+              justify-content: space-between;
+              gap: 10px;
+              align-items: center;
+              padding: 10px 12px;
+              background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, white), rgba(255,255,255,0.9));
+              border-bottom: 1px solid rgba(15,23,42,0.06);
+            }
+            .compare-card-abbr {
+              display: inline-flex;
+              align-items: center;
+              border-radius: 999px;
+              background: var(--accent);
+              color: white;
+              padding: 5px 9px;
+              font-size: 11px;
+              font-weight: 900;
+              letter-spacing: 0.02em;
+            }
+            .compare-card-name {
+              flex: 1;
+              min-width: 0;
+              color: #0f172a;
+              font-size: 11px;
+              font-weight: 800;
+              text-align: end;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            .compare-card-body {
+              padding: 12px 13px 14px;
+              font-size: 13px;
+              line-height: 1.95;
+              color: #0f172a;
+              white-space: pre-wrap;
+            }
+            @media print {
+              body { padding: 0; background: white; }
+              .sheet { box-shadow: none; border: none; border-radius: 0; }
+              .content { padding: 18px; }
+              .verse-block { break-inside: avoid; page-break-inside: avoid; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="sheet">
+            <header class="hero">
+              <div class="hero-top">
+                <div>
+                  <h1 class="title">${escapeHtml(selectedBookLabel)} ${escapeHtml(selectedRef)}</h1>
+                  <p class="subtitle">${escapeHtml(compareReferenceRow.name)} · ${escapeHtml(filterLabel)}</p>
+                </div>
+                <div class="pill">Bible Compare PDF</div>
+              </div>
+              <div class="meta-row">
+                <div class="pill">Reference: ${escapeHtml(compareReferenceRow.abbr)} - ${escapeHtml(compareReferenceRow.name)}</div>
+                <div class="pill">Rows: ${compareVisibleRows.length}</div>
+                <div class="pill">Verses: ${verseNums.length}</div>
+              </div>
+            </header>
+            <div class="content">
+              <div class="section-note">
+                <span>Reference column is highlighted in amber. Translation cards are color coded for quick scanning.</span>
+                <span>${escapeHtml(selectedBookLabel)} · ${escapeHtml(selectedRef)}</span>
+              </div>
+              ${tableRows}
+            </div>
+          </div>
+          <script>
+            window.onload = () => {
+              window.focus();
+              window.print();
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
   };
 
   const loadCompareRows = useCallback(async () => {
@@ -827,7 +1038,7 @@ export default function BibleReaderPage() {
               <p className="mb-3 text-sm text-zinc-400" dir="ltr">{selectedBookLabel} {selectedRef}</p>
 
               {!compareLoading && compareRows.length > 0 && (
-                <div className="mb-3 grid gap-2 md:grid-cols-[1.3fr_auto_auto]">
+                <div className="mb-3 grid gap-2 md:grid-cols-[1.3fr_auto]">
                   <div className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3">
                     <label className="mb-1 block text-xs font-bold text-zinc-400">فیلتر زبان</label>
                     <select
@@ -844,20 +1055,11 @@ export default function BibleReaderPage() {
 
                   <button
                     type="button"
-                    onClick={copyCompareTable}
-                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-bold text-zinc-100 transition hover:border-zinc-500 hover:bg-zinc-800"
-                  >
-                    <Copy className="h-4 w-4" />
-                    کپی جدول
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={downloadCompareTable}
-                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-bold text-zinc-100 transition hover:border-zinc-500 hover:bg-zinc-800"
+                    onClick={downloadComparePdf}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-blue-400/30 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 px-5 py-3 text-sm font-black text-white shadow-lg shadow-blue-500/20 transition hover:brightness-110 hover:shadow-blue-500/30"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    دانلود TXT
+                    دانلود PDF
                   </button>
                 </div>
               )}
