@@ -823,7 +823,7 @@ export default function BibleReaderPage() {
                 <X className="h-4 w-4" />
               </button>
 
-              <h2 className="pb-1 text-[22px] font-black font-[Vazirmatn]">مقایسه ترجمه‌ها از دیتابیس داخلی</h2>
+              <h2 className="pb-1 text-[22px] font-black font-[Vazirmatn]">مقایسه ترجمه‌ها</h2>
               <p className="mb-3 text-sm text-zinc-400" dir="ltr">{selectedBookLabel} {selectedRef}</p>
 
               {!compareLoading && compareRows.length > 0 && (

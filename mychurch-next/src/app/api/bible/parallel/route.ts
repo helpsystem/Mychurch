@@ -16,8 +16,8 @@ export async function GET(req: Request) {
 
     // Resolve both version_ids
     const [vEn, vFa] = await Promise.all([
-      dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE abbr = ? LIMIT 1", [versionEn]),
-      dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE abbr = ? LIMIT 1", [versionFa]),
+      dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionEn]),
+      dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionFa]),
     ]);
 
     if (!vEn || !vFa) {

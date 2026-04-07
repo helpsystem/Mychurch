@@ -2,7 +2,20 @@ import { NextResponse } from "next/server";
 import { dbAll } from "@/lib/bibleDb";
 
 // These version abbreviations are known Farsi/Persian translations
-const FARSI_ABBRS = new Set(["NMV", "TPV", "PCB", "FARSIO", "TR1895FA", "MNJFA", "AVD", "NMVFA"]);
+const FARSI_ABBRS = new Set([
+  "NMV", "TPV", "PCB", "FARSIO", "TR1895FA", "MNJFA", "AVD", "NMVFA",
+  "BBK", "RCPV", "PES", "POV-FAS", "مژده",
+]);
+
+function normalizeAbbr(abbr: string): string {
+  const asciiOnly = /^[\x00-\x7F]+$/.test(abbr);
+  return asciiOnly ? abbr.toUpperCase() : abbr;
+}
+
+function isFarsiLanguage(value: string | null | undefined): boolean {
+  const lang = (value || "").toLowerCase().trim();
+  return lang === "fa" || lang.includes("persian") || lang.includes("فارسی");
+}
 
 export async function GET() {
   try {
@@ -20,12 +33,17 @@ export async function GET() {
     );
     const audioSet = new Set(audioVersions.map(a => a.version_id));
 
-    const versions = rows.map(v => ({
-      ...v,
-      // Override language to 'fa' for known Farsi abbrs
-      language: FARSI_ABBRS.has(v.abbr.toUpperCase()) ? "fa" : v.language ?? "en",
-      hasAudio: audioSet.has(v.version_id),
-    }));
+    const versions = rows.map(v => {
+      const normalizedAbbr = normalizeAbbr(v.abbr);
+      const isFa = FARSI_ABBRS.has(normalizedAbbr) || isFarsiLanguage(v.language);
+
+      return {
+        ...v,
+        abbr: normalizedAbbr,
+        language: isFa ? "fa" : "en",
+        hasAudio: audioSet.has(v.version_id),
+      };
+    });
 
     return NextResponse.json({ versions });
   } catch (err: unknown) {

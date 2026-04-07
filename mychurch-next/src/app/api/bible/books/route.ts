@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 
     // Get the version_id for the requested abbreviation
     const versions = await dbAll<{ version_id: number }>(
-      "SELECT version_id FROM versions WHERE abbr = ? LIMIT 1",
+      "SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1",
       [versionAbbr]
     );
 

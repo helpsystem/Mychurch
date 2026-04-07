@@ -10,7 +10,7 @@ export async function GET(req: Request) {
 
     // Resolve version_id
     const ver = await dbGet<{ version_id: number }>(
-      "SELECT version_id FROM versions WHERE abbr = ? LIMIT 1",
+      "SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1",
       [versionAbbr]
     );
     if (!ver) return NextResponse.json({ error: "Version not found" }, { status: 404 });
