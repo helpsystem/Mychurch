@@ -553,35 +553,15 @@ export default function BibleReaderPage() {
 
     try {
       const targetVerseNums = [...selectedVerses].map(v => v.verse_num).sort((a, b) => a - b);
+      const versionsParam = encodeURIComponent(versions.map((version) => version.abbr).join(","));
+      const versesParam = encodeURIComponent(targetVerseNums.join(","));
+      const response = await fetch(`/api/bible/compare?book=${selectedBook}&chapter=${selectedChapter}&versions=${versionsParam}&verses=${versesParam}`);
+      if (!response.ok) {
+        throw new Error("Failed to load compare rows");
+      }
 
-      const rows = await Promise.all(versions.map(async (version) => {
-        try {
-          const response = await fetch(`/api/bible/chapter?version=${version.abbr}&book=${selectedBook}&chapter=${selectedChapter}`);
-          if (!response.ok) {
-            return { abbr: version.abbr, name: version.name, language: version.language, entries: [], hasContent: false };
-          }
-
-          const data = await response.json();
-          const chapterVerses: BibleVerse[] = data.verses || [];
-          const verseMap = new Map(chapterVerses.map((v) => [v.verse_num, v.text]));
-          const entries = targetVerseNums
-            .map((num) => {
-              const text = verseMap.get(num);
-              return text ? { verseNum: num, text } : null;
-            })
-            .filter(Boolean);
-
-          return {
-            abbr: version.abbr,
-            name: version.name,
-            language: version.language,
-            entries: entries as CompareVerseEntry[],
-            hasContent: entries.length > 0,
-          };
-        } catch {
-          return { abbr: version.abbr, name: version.name, language: version.language, entries: [], hasContent: false };
-        }
-      }));
+      const data = await response.json();
+      const rows: CompareVersionRow[] = data.rows || [];
 
       const sortedRows = rows.sort((a, b) => {
         if (a.language === b.language) return a.name.localeCompare(b.name);

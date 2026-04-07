@@ -6,6 +6,11 @@ interface VerseRow {
   text: string;
 }
 
+export const revalidate = 3600;
+
+const CACHE_TTL_MS = 60 * 60 * 1000;
+const parallelCache = new Map<string, { ts: number; payload: unknown }>();
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -13,6 +18,17 @@ export async function GET(req: Request) {
     const versionFa = searchParams.get("versionFa") || "NMV";
     const bookId = searchParams.get("book") || "GEN";
     const chapterNum = parseInt(searchParams.get("chapter") || "1", 10);
+    const cacheKey = `${versionEn.toUpperCase()}|${versionFa.toUpperCase()}|${bookId.toUpperCase()}|${chapterNum}`;
+
+    const cached = parallelCache.get(cacheKey);
+    if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+      return NextResponse.json(cached.payload, {
+        headers: {
+          "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+          "X-Cache": "HIT",
+        },
+      });
+    }
 
     // Resolve both version_ids
     const [vEn, vFa] = await Promise.all([
@@ -76,7 +92,7 @@ export async function GET(req: Request) {
       fa: faMap.get(verseNum) ?? null,
     }));
 
-    return NextResponse.json({
+    const payload = {
       versionEn,
       versionFa,
       book: bookId.toUpperCase(),
@@ -84,6 +100,15 @@ export async function GET(req: Request) {
       parallel,
       audioEn,
       audioFa,
+    };
+
+    parallelCache.set(cacheKey, { ts: Date.now(), payload });
+
+    return NextResponse.json(payload, {
+      headers: {
+        "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+        "X-Cache": "MISS",
+      },
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";

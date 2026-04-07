@@ -1,12 +1,28 @@
 import { NextResponse } from "next/server";
 import { dbAll, dbGet } from "@/lib/bibleDb";
 
+export const revalidate = 3600;
+
+const CACHE_TTL_MS = 60 * 60 * 1000;
+const chapterCache = new Map<string, { ts: number; payload: unknown }>();
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const versionAbbr = searchParams.get("version") || "BSB";
     const bookId = searchParams.get("book") || "GEN";
     const chapterNum = parseInt(searchParams.get("chapter") || "1", 10);
+    const cacheKey = `${versionAbbr.toUpperCase()}|${bookId.toUpperCase()}|${chapterNum}`;
+
+    const cached = chapterCache.get(cacheKey);
+    if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+      return NextResponse.json(cached.payload, {
+        headers: {
+          "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+          "X-Cache": "HIT",
+        },
+      });
+    }
 
     // Resolve version_id
     const ver = await dbGet<{ version_id: number }>(
@@ -57,7 +73,7 @@ export async function GET(req: Request) {
       [versionId, bookId.toUpperCase()]
     );
 
-    return NextResponse.json({
+    const payload = {
       version: versionAbbr,
       book: bookId.toUpperCase(),
       bookNameEn: book?.book_name_en,
@@ -67,6 +83,15 @@ export async function GET(req: Request) {
       verses,
       headings,
       audio,
+    };
+
+    chapterCache.set(cacheKey, { ts: Date.now(), payload });
+
+    return NextResponse.json(payload, {
+      headers: {
+        "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+        "X-Cache": "MISS",
+      },
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";

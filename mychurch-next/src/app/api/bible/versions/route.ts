@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { dbAll } from "@/lib/bibleDb";
 
+export const revalidate = 3600;
+
+const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+let versionsCache: { ts: number; payload: { versions: unknown[] } } | null = null;
+
 // These version abbreviations are known Farsi/Persian translations
 const FARSI_ABBRS = new Set([
   "NMV", "TPV", "PCB", "FARSIO", "TR1895FA", "MNJFA", "AVD", "NMVFA",
@@ -19,6 +24,15 @@ function isFarsiLanguage(value: string | null | undefined): boolean {
 
 export async function GET() {
   try {
+    if (versionsCache && Date.now() - versionsCache.ts < CACHE_TTL_MS) {
+      return NextResponse.json(versionsCache.payload, {
+        headers: {
+          "Cache-Control": "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400",
+          "X-Cache": "HIT",
+        },
+      });
+    }
+
     const rows = await dbAll<{
       version_id: number;
       abbr: string;
@@ -45,7 +59,15 @@ export async function GET() {
       };
     });
 
-    return NextResponse.json({ versions });
+    const payload = { versions };
+    versionsCache = { ts: Date.now(), payload };
+
+    return NextResponse.json(payload, {
+      headers: {
+        "Cache-Control": "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400",
+        "X-Cache": "MISS",
+      },
+    });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: msg }, { status: 500 });

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { dbAll } from "@/lib/bibleDb";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 // Server-side in-memory cache: version -> books (cleared on restart)
 const _cache = new Map<string, { data: unknown[]; ts: number }>();

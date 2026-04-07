@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server';
 import { dbAll, dbGet } from '@/lib/bibleDb';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+const CACHE_TTL_MS = 60 * 60 * 1000;
+const contentCache = new Map<string, { ts: number; payload: unknown }>();
+let availableTranslationsCache: {
+    ts: number;
+    fa: string[];
+    en: string[];
+} | null = null;
 
 const BOOK_KEY_TO_USFM: Record<string, string> = {
     Genesis: 'GEN', Exodus: 'EXO', Leviticus: 'LEV', Numbers: 'NUM', Deuteronomy: 'DEU',
@@ -59,6 +67,33 @@ function mapEnCandidates(value: string) {
     return ['KJV', 'BSB', 'NIV'];
 }
 
+async function getAvailableTranslations() {
+    if (availableTranslationsCache && Date.now() - availableTranslationsCache.ts < CACHE_TTL_MS) {
+        return availableTranslationsCache;
+    }
+
+    const [availableFaRows, availableEnRows] = await Promise.all([
+        dbAll<{ abbr: string }>(
+            `SELECT DISTINCT abbr FROM versions
+             WHERE language IN ('فارسی', 'fa', 'Persian')
+             ORDER BY abbr ASC`
+        ),
+        dbAll<{ abbr: string }>(
+            `SELECT DISTINCT abbr FROM versions
+             WHERE language IN ('English', 'en')
+             ORDER BY abbr ASC`
+        ),
+    ]);
+
+    availableTranslationsCache = {
+        ts: Date.now(),
+        fa: availableFaRows.map((row) => row.abbr),
+        en: availableEnRows.map((row) => row.abbr),
+    };
+
+    return availableTranslationsCache;
+}
+
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ book: string; chapter: string }> }
@@ -71,6 +106,17 @@ export async function GET(
         const faTranslation = (url.searchParams.get('faTranslation') || 'mojdeh').toLowerCase();
         const enTranslation = (url.searchParams.get('enTranslation') || 'kjv').toLowerCase();
         const bookId = normalizeBookId(book);
+        const cacheKey = `${bookId}|${chapterNum}|${faTranslation}|${enTranslation}`;
+
+        const cached = contentCache.get(cacheKey);
+        if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+            return NextResponse.json(cached.payload, {
+                headers: {
+                    'Cache-Control': 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400',
+                    'X-Cache': 'HIT',
+                }
+            });
+        }
 
         if (isNaN(chapterNum)) {
             return NextResponse.json({ success: false, error: 'Invalid chapter number' }, { status: 400 });
@@ -120,18 +166,7 @@ export async function GET(
             if (v.verse_num > 0) enVerses[v.verse_num - 1] = v.text || '';
         });
 
-        const availableFaRows = await dbAll<{ abbr: string }>(
-            `SELECT DISTINCT v.abbr FROM versions v
-             JOIN verses s ON s.version_id = v.version_id
-             WHERE v.language IN ('فارسی', 'fa', 'Persian')
-             ORDER BY v.abbr ASC`
-        );
-        const availableEnRows = await dbAll<{ abbr: string }>(
-            `SELECT DISTINCT v.abbr FROM versions v
-             JOIN verses s ON s.version_id = v.version_id
-             WHERE v.language IN ('English', 'en')
-             ORDER BY v.abbr ASC`
-        );
+        const available = await getAvailableTranslations();
 
         const bookMeta = await dbGet<{ book_name_en: string; book_name_fa: string }>(
             `SELECT book_name_en, book_name_fa FROM books
@@ -139,15 +174,15 @@ export async function GET(
             [enVersion.version_id, bookId]
         );
 
-        return NextResponse.json({
+        const payload = {
             success: true,
             selected: {
                 faTranslation,
                 enTranslation,
                 faVersion: faVersion.abbr,
                 enVersion: enVersion.abbr,
-                availableFa: availableFaRows.map((row) => row.abbr),
-                availableEn: availableEnRows.map((row) => row.abbr),
+                availableFa: available.fa,
+                availableEn: available.en,
                 bookId,
                 bookNameEn: bookMeta?.book_name_en || bookId,
                 bookNameFa: bookMeta?.book_name_fa || bookId,
@@ -155,6 +190,15 @@ export async function GET(
             verses: {
                 fa: faVerses,
                 en: enVerses
+            }
+        };
+
+        contentCache.set(cacheKey, { ts: Date.now(), payload });
+
+        return NextResponse.json(payload, {
+            headers: {
+                'Cache-Control': 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400',
+                'X-Cache': 'MISS',
             }
         });
 
