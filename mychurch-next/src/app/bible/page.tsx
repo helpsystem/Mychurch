@@ -354,6 +354,9 @@ export default function BibleReaderPage() {
               background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #7c3aed 100%);
               color: white;
               padding: 28px 30px 22px;
+              position: sticky;
+              top: 0;
+              z-index: 50;
             }
             .hero-top {
               display: flex;
@@ -487,9 +490,18 @@ export default function BibleReaderPage() {
               white-space: pre-wrap;
             }
             @media print {
+              @page { size: A4; margin: 14mm; }
               body { padding: 0; background: white; }
-              .sheet { box-shadow: none; border: none; border-radius: 0; }
-              .content { padding: 18px; }
+              .sheet { box-shadow: none; border: none; border-radius: 0; overflow: visible; background: white; }
+              .hero {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                border-radius: 0;
+                box-shadow: none;
+              }
+              .content { padding: 210px 18px 18px; }
               .verse-block { break-inside: avoid; page-break-inside: avoid; }
             }
           </style>
@@ -1087,9 +1099,9 @@ export default function BibleReaderPage() {
               ) : compareError ? (
                 <div className="rounded-2xl border border-rose-500/40 bg-rose-500/10 p-4 text-sm text-rose-200">{compareError}</div>
               ) : (
-                <div className="max-h-[70vh] overflow-y-auto pr-1">
+                <div className="max-h-[70vh] overflow-hidden">
                   {compareReferenceRow && (
-                    <div className="mb-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-3">
+                    <div className="sticky top-0 z-20 mb-3 rounded-2xl border border-amber-500/30 bg-zinc-950/95 p-3 backdrop-blur-sm">
                       <div className="mb-2 flex items-center justify-between" dir="ltr">
                         <h3 className="text-sm font-black text-amber-300">Reference: {compareReferenceRow.abbr} - {compareReferenceRow.name}</h3>
                         <span className="rounded-lg bg-amber-500/20 px-2 py-0.5 text-[11px] font-black text-amber-300">مرجع</span>
@@ -1106,18 +1118,19 @@ export default function BibleReaderPage() {
                     </div>
                   )}
 
-                  <div className="mb-3 rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3 text-xs text-zinc-400">
-                    {compareLanguageFilter === "all" ? "All languages" : compareLanguageFilter === "fa" ? "فقط فارسی" : "Only English"} · {compareVisibleRows.length} ترجمه
-                  </div>
-
-                  {compareVisibleRows.length === 0 ? (
-                    <div className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-4 text-sm text-zinc-300">
-                      {language === "fa" ? "هیچ ترجمه‌ای با این فیلتر پیدا نشد." : "No translations match this filter."}
+                  <div className="h-[calc(70vh-170px)] min-h-[320px] overflow-y-auto pr-1">
+                    <div className="mb-3 rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3 text-xs text-zinc-400">
+                      {compareLanguageFilter === "all" ? "All languages" : compareLanguageFilter === "fa" ? "فقط فارسی" : "Only English"} · {compareVisibleRows.length} ترجمه
                     </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {compareComparableRows.map((row) => (
-                        <div key={row.abbr} className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3">
+
+                    {compareVisibleRows.length === 0 ? (
+                      <div className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-4 text-sm text-zinc-300">
+                        {language === "fa" ? "هیچ ترجمه‌ای با این فیلتر پیدا نشد." : "No translations match this filter."}
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {compareComparableRows.map((row) => (
+                          <div key={row.abbr} className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3">
                           <div className="mb-2 flex items-center justify-between" dir="ltr">
                             <h3 className="text-sm font-bold text-blue-300">{row.abbr} - {row.name}</h3>
                             <span className="rounded-lg bg-blue-500/15 px-2 py-0.5 text-[11px] font-black text-blue-300">Compare</span>
@@ -1146,10 +1159,11 @@ export default function BibleReaderPage() {
                               );
                             })}
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </motion.div>
