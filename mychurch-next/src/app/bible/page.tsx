@@ -20,6 +20,14 @@ interface AudioTrack { audio_version_id: number; title: string; dramatized: numb
 interface BibleVerse { verse_num: number; text: string; }
 interface Heading { before_verse: number; text: string; }
 interface ParallelVerse { verse_num: number; en: string; fa: string | null; }
+interface CompareVerseEntry { verseNum: number; text: string; }
+interface CompareVersionRow {
+  abbr: string;
+  name: string;
+  language: string;
+  entries: CompareVerseEntry[];
+  hasContent: boolean;
+}
 
 // "en" = English single, "fa" = Farsi single, "parallel" = side-by-side
 type ReadingMode = "en" | "fa" | "parallel";
@@ -47,6 +55,12 @@ export default function BibleReaderPage() {
   const [selectedHighlightColor, setSelectedHighlightColor] = useState("#fffe00");
   const [showShareModal, setShowShareModal] = useState(false);
   const [shareLinkCopied, setShareLinkCopied] = useState(false);
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  const [compareLoading, setCompareLoading] = useState(false);
+  const [compareRows, setCompareRows] = useState<CompareVersionRow[]>([]);
+  const [compareReferenceAbbr, setCompareReferenceAbbr] = useState<string>("");
+  const [compareLanguageFilter, setCompareLanguageFilter] = useState<"all" | "en" | "fa">("all");
+  const [compareError, setCompareError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [bookSearch, setBookSearch] = useState("");
   const [showBookList, setShowBookList] = useState(false);
@@ -215,9 +229,6 @@ export default function BibleReaderPage() {
   const bibleComUrl = selectedVersionId && firstVerse
     ? `https://www.bible.com/fa/bible/${selectedVersionId}/${selectedBook}.${selectedChapter}.${firstVerse}.${selectedVersionAbbr.toLowerCase()}`
     : "https://www.bible.com/fa/bible";
-  const compareUrl = firstVerse
-    ? `https://www.bible.com/fa/bible/compare/${selectedBook}.${selectedChapter}.${firstVerse}`
-    : `https://www.bible.com/fa/bible/compare/${selectedBook}.${selectedChapter}`;
   const selectedBookLabel = (language === "fa" ? currentBook?.book_name_fa : currentBook?.book_name_en) || selectedBook;
   const shareTitle = `${selectedBookLabel} ${selectedRef} ${selectedVersionAbbr.toLowerCase()}`;
   const selectedSnippetRaw = getSelectedVersesText().replace(/\s+/g, " ").trim();
@@ -244,6 +255,126 @@ export default function BibleReaderPage() {
       window.setTimeout(() => setShareLinkCopied(false), 1600);
     });
   };
+
+  const compareVisibleRows = compareRows.filter((row) => compareLanguageFilter === "all" || row.language === compareLanguageFilter);
+  const compareReferenceRow = compareVisibleRows.find((row) => row.abbr === compareReferenceAbbr && row.hasContent)
+    || compareVisibleRows.find((row) => row.hasContent)
+    || compareVisibleRows[0]
+    || null;
+  const compareReferenceMap = new Map((compareReferenceRow?.entries || []).map((entry) => [entry.verseNum, entry.text]));
+  const compareComparableRows = compareVisibleRows.filter((row) => row.abbr !== (compareReferenceRow?.abbr || ""));
+
+  const buildCompareExportText = useCallback(() => {
+    if (!compareReferenceRow) return "";
+
+    const filterLabel = compareLanguageFilter === "all"
+      ? (language === "fa" ? "همه ترجمه‌ها" : "all translations")
+      : compareLanguageFilter === "fa"
+        ? (language === "fa" ? "فقط فارسی" : "Persian only")
+        : (language === "fa" ? "فقط انگلیسی" : "English only");
+
+    const exportHeader = [
+      `${selectedBookLabel} ${selectedRef}`,
+      `Reference: ${compareReferenceRow.abbr} - ${compareReferenceRow.name}`,
+      `Filter: ${filterLabel}`,
+      "",
+    ];
+
+    const exportBody = verseNums.map((verseNum) => {
+      const lines = [
+        `Verse ${verseNum}`,
+        `Reference: ${compareReferenceMap.get(verseNum) || "-"}`,
+      ];
+
+      compareComparableRows.forEach((row) => {
+        const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-";
+        lines.push(`${row.abbr}: ${targetText}`);
+      });
+
+      return lines.join("\n");
+    }).join("\n\n");
+
+    return [...exportHeader, exportBody].join("\n");
+  }, [compareComparableRows, compareLanguageFilter, compareReferenceMap, compareReferenceRow, language, selectedRef, selectedBookLabel, verseNums]);
+
+  const copyCompareTable = () => {
+    const text = buildCompareExportText();
+    if (!text) return;
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert(language === "fa" ? "جدول مقایسه کپی شد" : "Comparison table copied");
+    });
+  };
+
+  const downloadCompareTable = () => {
+    const text = buildCompareExportText();
+    if (!text) return;
+
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `bible-compare-${selectedBook}-${selectedChapter}.txt`;
+    anchor.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+  };
+
+  const loadCompareRows = useCallback(async () => {
+    if (!selectedVerses.length || !versions.length) {
+      setCompareRows([]);
+      return;
+    }
+
+    setCompareLoading(true);
+    setCompareError(null);
+
+    try {
+      const targetVerseNums = [...selectedVerses].map(v => v.verse_num).sort((a, b) => a - b);
+
+      const rows = await Promise.all(versions.map(async (version) => {
+        try {
+          const response = await fetch(`/api/bible/chapter?version=${version.abbr}&book=${selectedBook}&chapter=${selectedChapter}`);
+          if (!response.ok) {
+            return { abbr: version.abbr, name: version.name, language: version.language, entries: [], hasContent: false };
+          }
+
+          const data = await response.json();
+          const chapterVerses: BibleVerse[] = data.verses || [];
+          const verseMap = new Map(chapterVerses.map((v) => [v.verse_num, v.text]));
+          const entries = targetVerseNums
+            .map((num) => {
+              const text = verseMap.get(num);
+              return text ? { verseNum: num, text } : null;
+            })
+            .filter(Boolean);
+
+          return {
+            abbr: version.abbr,
+            name: version.name,
+            language: version.language,
+            entries: entries as CompareVerseEntry[],
+            hasContent: entries.length > 0,
+          };
+        } catch {
+          return { abbr: version.abbr, name: version.name, language: version.language, entries: [], hasContent: false };
+        }
+      }));
+
+      const sortedRows = rows.sort((a, b) => {
+        if (a.language === b.language) return a.name.localeCompare(b.name);
+        return a.language === "fa" ? -1 : 1;
+      });
+
+      setCompareRows(sortedRows);
+      const preferredReference = sortedRows.find((row) => row.abbr === selectedVersionAbbr && row.hasContent);
+      setCompareReferenceAbbr(preferredReference?.abbr || sortedRows.find((row) => row.hasContent)?.abbr || sortedRows[0]?.abbr || "");
+    } catch {
+      setCompareError(language === "fa" ? "خطا در دریافت داده‌های مقایسه" : "Failed to load comparison data");
+      setCompareRows([]);
+    } finally {
+      setCompareLoading(false);
+    }
+  }, [language, selectedBook, selectedChapter, selectedVerses, selectedVersionAbbr, versions]);
 
   // ─── Render ──────────────────────────────────────────────────────────────────
   // The entire page root always uses dir="ltr" 
@@ -567,7 +698,8 @@ export default function BibleReaderPage() {
             <button
               className="flex items-center justify-between bg-white p-[14px] rtl:flex-row-reverse"
               onClick={() => {
-                window.open(compareUrl, "_blank", "noopener,noreferrer");
+                setShowCompareModal(true);
+                void loadCompareRows();
               }}
             >
               <div className="flex w-full items-center gap-1 rtl:flex-row-reverse hover:cursor-pointer">
@@ -659,6 +791,165 @@ export default function BibleReaderPage() {
                   </a>
                 ))}
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Internal Compare Modal (Database Driven) ── */}
+      <AnimatePresence>
+        {showCompareModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+            onClick={() => setShowCompareModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.96, y: 10, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.96, y: 10, opacity: 0 }}
+              className="relative w-full max-w-[1000px] rounded-3xl border border-zinc-700 bg-zinc-950 p-4 text-zinc-100 shadow-2xl"
+              dir="rtl"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                type="button"
+                onClick={() => setShowCompareModal(false)}
+                aria-label="close-compare-modal"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              <h2 className="pb-1 text-[22px] font-black font-[Vazirmatn]">مقایسه ترجمه‌ها از دیتابیس داخلی</h2>
+              <p className="mb-3 text-sm text-zinc-400" dir="ltr">{selectedBookLabel} {selectedRef}</p>
+
+              {!compareLoading && compareRows.length > 0 && (
+                <div className="mb-3 grid gap-2 md:grid-cols-[1.3fr_auto_auto]">
+                  <div className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3">
+                    <label className="mb-1 block text-xs font-bold text-zinc-400">فیلتر زبان</label>
+                    <select
+                      value={compareLanguageFilter}
+                      onChange={(event) => setCompareLanguageFilter(event.target.value as "all" | "en" | "fa")}
+                      className="w-full rounded-xl border border-zinc-600 bg-zinc-950 px-3 py-2 text-sm font-bold text-zinc-100 outline-none focus:border-blue-500"
+                      dir="ltr"
+                    >
+                      <option value="all">All translations / همه ترجمه‌ها</option>
+                      <option value="fa">فقط فارسی</option>
+                      <option value="en">Only English</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={copyCompareTable}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-bold text-zinc-100 transition hover:border-zinc-500 hover:bg-zinc-800"
+                  >
+                    <Copy className="h-4 w-4" />
+                    کپی جدول
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={downloadCompareTable}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-bold text-zinc-100 transition hover:border-zinc-500 hover:bg-zinc-800"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    دانلود TXT
+                  </button>
+                </div>
+              )}
+
+              {!compareLoading && compareRows.length > 0 && (
+                <div className="mb-3 rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3">
+                  <label className="mb-1 block text-xs font-bold text-zinc-400">ترجمه مرجع</label>
+                  <select
+                    value={compareReferenceRow?.abbr || compareReferenceAbbr}
+                    onChange={(event) => setCompareReferenceAbbr(event.target.value)}
+                    className="w-full rounded-xl border border-zinc-600 bg-zinc-950 px-3 py-2 text-sm font-bold text-zinc-100 outline-none focus:border-blue-500"
+                    dir="ltr"
+                  >
+                    {compareVisibleRows.map((row) => (
+                      <option key={row.abbr} value={row.abbr}>{row.abbr} - {row.name}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {compareLoading ? (
+                <div className="flex items-center justify-center py-14">
+                  <Loader2 className="h-7 w-7 animate-spin text-blue-400" />
+                </div>
+              ) : compareError ? (
+                <div className="rounded-2xl border border-rose-500/40 bg-rose-500/10 p-4 text-sm text-rose-200">{compareError}</div>
+              ) : (
+                <div className="max-h-[70vh] overflow-y-auto pr-1">
+                  {compareReferenceRow && (
+                    <div className="mb-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-3">
+                      <div className="mb-2 flex items-center justify-between" dir="ltr">
+                        <h3 className="text-sm font-black text-amber-300">Reference: {compareReferenceRow.abbr} - {compareReferenceRow.name}</h3>
+                        <span className="rounded-lg bg-amber-500/20 px-2 py-0.5 text-[11px] font-black text-amber-300">مرجع</span>
+                      </div>
+                      {compareReferenceRow.hasContent ? (
+                        <div className="space-y-2 text-sm leading-7 text-zinc-100" dir={compareReferenceRow.language === "fa" ? "rtl" : "ltr"}>
+                          {compareReferenceRow.entries.map((entry) => (
+                            <p key={`ref-${entry.verseNum}`}><span className="font-black text-amber-300">{entry.verseNum}. </span>{entry.text}</p>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-xs text-zinc-400">Reference has no verse content</p>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="mb-3 rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3 text-xs text-zinc-400">
+                    {compareLanguageFilter === "all" ? "All languages" : compareLanguageFilter === "fa" ? "فقط فارسی" : "Only English"} · {compareVisibleRows.length} ترجمه
+                  </div>
+
+                  {compareVisibleRows.length === 0 ? (
+                    <div className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-4 text-sm text-zinc-300">
+                      {language === "fa" ? "هیچ ترجمه‌ای با این فیلتر پیدا نشد." : "No translations match this filter."}
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {compareComparableRows.map((row) => (
+                        <div key={row.abbr} className="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3">
+                          <div className="mb-2 flex items-center justify-between" dir="ltr">
+                            <h3 className="text-sm font-bold text-blue-300">{row.abbr} - {row.name}</h3>
+                            <span className="rounded-lg bg-blue-500/15 px-2 py-0.5 text-[11px] font-black text-blue-300">Compare</span>
+                          </div>
+
+                          <div className="overflow-hidden rounded-xl border border-zinc-700">
+                            <div className="grid grid-cols-[64px_1fr_1fr] bg-zinc-800/70 text-[11px] font-black text-zinc-300" dir="ltr">
+                              <div className="border-r border-zinc-700 px-2 py-1.5">Verse</div>
+                              <div className="border-r border-zinc-700 px-2 py-1.5">Reference</div>
+                              <div className="px-2 py-1.5">{row.abbr}</div>
+                            </div>
+
+                            {verseNums.map((verseNum) => {
+                              const refText = compareReferenceMap.get(verseNum) || "";
+                              const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "";
+                              return (
+                                <div key={`${row.abbr}-${verseNum}`} className="grid grid-cols-[64px_1fr_1fr] border-t border-zinc-800/80 text-sm">
+                                  <div className="border-r border-zinc-800 px-2 py-2 font-black text-zinc-400" dir="ltr">{verseNum}</div>
+                                  <div className="border-r border-zinc-800 px-2 py-2 text-zinc-200" dir={compareReferenceRow?.language === "fa" ? "rtl" : "ltr"}>
+                                    {refText || <span className="text-zinc-500 text-xs">-</span>}
+                                  </div>
+                                  <div className="px-2 py-2 text-zinc-100" dir={row.language === "fa" ? "rtl" : "ltr"}>
+                                    {targetText || <span className="text-zinc-500 text-xs">-</span>}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
