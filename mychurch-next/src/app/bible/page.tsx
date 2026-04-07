@@ -263,9 +263,18 @@ export default function BibleReaderPage() {
     || null;
   const compareReferenceMap = new Map((compareReferenceRow?.entries || []).map((entry) => [entry.verseNum, entry.text]));
   const compareComparableRows = compareVisibleRows.filter((row) => row.abbr !== (compareReferenceRow?.abbr || ""));
+  const compareVerseNums = Array.from(
+    new Set([
+      ...(compareReferenceRow?.entries || []).map((entry) => entry.verseNum),
+      ...compareComparableRows.flatMap((row) => row.entries.map((entry) => entry.verseNum)),
+    ]),
+  ).sort((a, b) => a - b);
 
   const downloadComparePdf = () => {
-    if (!compareReferenceRow) return;
+    if (!compareReferenceRow || compareComparableRows.length === 0 || compareVerseNums.length === 0) {
+      alert(language === "fa" ? "برای خروجی PDF ابتدا آیات و ترجمه‌ها را انتخاب کنید." : "Select verses and translations before exporting PDF.");
+      return;
+    }
 
     const printableRows = compareComparableRows.map((row, index) => ({
       ...row,
@@ -286,39 +295,55 @@ export default function BibleReaderPage() {
         ? (language === "fa" ? "فقط فارسی" : "Persian only")
         : (language === "fa" ? "فقط انگلیسی" : "English only");
 
-    const tableRows = verseNums.map((verseNum) => {
+    const referenceRows = compareVerseNums.map((verseNum) => {
       const refText = compareReferenceMap.get(verseNum) || "-";
-      const translationCells = printableRows
+      return `
+        <tr>
+          <td class="verse-cell">${verseNum}</td>
+          <td class="text-cell" dir="${compareReferenceRow.language === "fa" ? "rtl" : "ltr"}">${escapeHtml(refText)}</td>
+        </tr>
+      `;
+    }).join("");
+
+    const translationTables = printableRows
         .map((row) => {
-          const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-";
+          const rowsHtml = compareVerseNums.map((verseNum) => {
+            const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-";
+            return `
+              <tr>
+                <td class="verse-cell">${verseNum}</td>
+                <td class="text-cell" dir="${row.language === "fa" ? "rtl" : "ltr"}">${escapeHtml(targetText)}</td>
+              </tr>
+            `;
+          }).join("");
+
           return `
-            <div class="compare-card">
-              <div class="compare-card-head" style="--accent:${row.accent}">
-                <span class="compare-card-abbr">${escapeHtml(row.abbr)}</span>
-                <span class="compare-card-name">${escapeHtml(row.name)}</span>
+            <section class="translation-card" style="--accent:${row.accent}">
+              <div class="translation-card-head">
+                <span class="translation-card-abbr">${escapeHtml(row.abbr)}</span>
+                <span class="translation-card-name">${escapeHtml(row.name)}</span>
               </div>
-              <div class="compare-card-body" dir="${row.language === "fa" ? "rtl" : "ltr"}">${escapeHtml(targetText)}</div>
-            </div>
+              <table class="translation-table">
+                <thead>
+                  <tr>
+                    <th class="verse-head">Verse</th>
+                    <th class="text-head">${escapeHtml(row.abbr)}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rowsHtml}
+                </tbody>
+              </table>
+            </section>
           `;
         })
         .join("");
 
-      return `
-        <section class="verse-block">
-          <div class="verse-number">${verseNum}</div>
-          <div class="verse-reference" dir="${compareReferenceRow.language === "fa" ? "rtl" : "ltr"}">
-            <div class="verse-reference-label">Reference</div>
-            <div class="verse-reference-text">${escapeHtml(refText)}</div>
-          </div>
-          <div class="verse-translations">
-            ${translationCells}
-          </div>
-        </section>
-      `;
-    }).join("");
-
     const printWindow = window.open("", "_blank", "noopener,noreferrer,width=1240,height=900");
-    if (!printWindow) return;
+    if (!printWindow) {
+      alert(language === "fa" ? "Popup مسدود شده است. لطفاً popup را برای سایت فعال کنید." : "Popup was blocked. Please allow popups for this site.");
+      return;
+    }
 
     printWindow.document.write(`
       <!doctype html>
@@ -391,67 +416,35 @@ export default function BibleReaderPage() {
               font-size: 13px;
               font-weight: 700;
             }
-            .verse-block {
-              display: grid;
-              grid-template-columns: 72px 1.1fr 1.4fr;
-              gap: 14px;
-              margin-bottom: 16px;
-              padding: 16px;
-              background: var(--card);
-              border: 1px solid var(--line);
+            .reference-panel {
+              margin-bottom: 18px;
+              background: linear-gradient(180deg, rgba(245,158,11,0.12), rgba(245,158,11,0.04));
+              border: 1px solid rgba(245,158,11,0.20);
               border-radius: 22px;
+              padding: 14px;
               break-inside: avoid;
               page-break-inside: avoid;
             }
-            .verse-number {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              min-height: 100%;
-              border-radius: 18px;
-              background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
-              color: white;
-              font-size: 28px;
-              font-weight: 900;
-              box-shadow: 0 16px 30px rgba(37,99,235,0.22);
-            }
-            .verse-reference {
-              border-radius: 18px;
-              padding: 14px 16px;
-              background: linear-gradient(180deg, rgba(245,158,11,0.10), rgba(245,158,11,0.04));
-              border: 1px solid rgba(245,158,11,0.18);
-            }
-            .verse-reference-label {
-              display: inline-flex;
-              align-items: center;
-              padding: 6px 10px;
-              border-radius: 999px;
-              background: rgba(245,158,11,0.18);
-              color: #92400e;
-              font-size: 11px;
-              font-weight: 900;
-              margin-bottom: 10px;
-            }
-            .verse-reference-text {
+            .reference-title {
+              margin: 0 0 10px;
               font-size: 14px;
-              line-height: 1.95;
-              font-weight: 700;
-              color: #0f172a;
-              white-space: pre-wrap;
+              font-weight: 900;
+              color: #92400e;
             }
-            .verse-translations {
+            .translations-wrap {
               display: grid;
-              grid-template-columns: repeat(2, minmax(0, 1fr));
-              gap: 10px;
+              grid-template-columns: 1fr;
+              gap: 14px;
             }
-            .compare-card {
+            .translation-card {
               overflow: hidden;
               border-radius: 18px;
+              border: 1px solid var(--line);
               background: white;
-              border: 1px solid rgba(15,23,42,0.08);
-              box-shadow: 0 10px 24px rgba(15,23,42,0.05);
+              break-inside: avoid;
+              page-break-inside: avoid;
             }
-            .compare-card-head {
+            .translation-card-head {
               display: flex;
               justify-content: space-between;
               gap: 10px;
@@ -460,7 +453,7 @@ export default function BibleReaderPage() {
               background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, white), rgba(255,255,255,0.9));
               border-bottom: 1px solid rgba(15,23,42,0.06);
             }
-            .compare-card-abbr {
+            .translation-card-abbr {
               display: inline-flex;
               align-items: center;
               border-radius: 999px;
@@ -471,7 +464,7 @@ export default function BibleReaderPage() {
               font-weight: 900;
               letter-spacing: 0.02em;
             }
-            .compare-card-name {
+            .translation-card-name {
               flex: 1;
               min-width: 0;
               color: #0f172a;
@@ -482,12 +475,36 @@ export default function BibleReaderPage() {
               overflow: hidden;
               text-overflow: ellipsis;
             }
-            .compare-card-body {
-              padding: 12px 13px 14px;
-              font-size: 13px;
-              line-height: 1.95;
+            .translation-table {
+              width: 100%;
+              border-collapse: collapse;
+            }
+            .translation-table th,
+            .translation-table td {
+              border-top: 1px solid rgba(15,23,42,0.08);
+              padding: 8px 10px;
+              vertical-align: top;
+            }
+            .translation-table thead th {
+              background: #f8fafc;
+              font-size: 11px;
+              font-weight: 900;
+              color: #334155;
+            }
+            .verse-head,
+            .verse-cell {
+              width: 72px;
+              text-align: center;
+              font-weight: 900;
+              color: #1e293b;
+              white-space: nowrap;
+            }
+            .text-head,
+            .text-cell {
+              text-align: start;
               color: #0f172a;
-              white-space: pre-wrap;
+              font-size: 11px;
+              line-height: 1.9;
             }
             @media print {
               @page { size: A4; margin: 14mm; }
@@ -502,7 +519,8 @@ export default function BibleReaderPage() {
                 box-shadow: none;
               }
               .content { padding: 210px 18px 18px; }
-              .verse-block { break-inside: avoid; page-break-inside: avoid; }
+              .reference-panel,
+              .translation-card { break-inside: avoid; page-break-inside: avoid; }
             }
           </style>
         </head>
@@ -518,28 +536,52 @@ export default function BibleReaderPage() {
               </div>
               <div class="meta-row">
                 <div class="pill">Reference: ${escapeHtml(compareReferenceRow.abbr)} - ${escapeHtml(compareReferenceRow.name)}</div>
-                <div class="pill">Rows: ${compareVisibleRows.length}</div>
-                <div class="pill">Verses: ${verseNums.length}</div>
+                <div class="pill">Translations: ${compareComparableRows.length}</div>
+                <div class="pill">Verses: ${compareVerseNums.length}</div>
               </div>
             </header>
             <div class="content">
               <div class="section-note">
-                <span>Reference column is highlighted in amber. Translation cards are color coded for quick scanning.</span>
+                <span>Reference appears once at the top. Tabular view is only for compared translations.</span>
                 <span>${escapeHtml(selectedBookLabel)} · ${escapeHtml(selectedRef)}</span>
               </div>
-              ${tableRows}
+
+              <section class="reference-panel">
+                <h2 class="reference-title">Reference: ${escapeHtml(compareReferenceRow.abbr)} - ${escapeHtml(compareReferenceRow.name)}</h2>
+                <table class="translation-table">
+                  <thead>
+                    <tr>
+                      <th class="verse-head">Verse</th>
+                      <th class="text-head">Reference Text</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${referenceRows}
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="translations-wrap">
+                ${translationTables}
+              </section>
             </div>
           </div>
-          <script>
-            window.onload = () => {
-              window.focus();
-              window.print();
-            };
-          </script>
         </body>
       </html>
     `);
     printWindow.document.close();
+
+    const triggerPrint = () => {
+      try {
+        printWindow.focus();
+        printWindow.print();
+      } catch {
+        // no-op: user can still manually print from opened window
+      }
+    };
+
+    printWindow.addEventListener("load", () => window.setTimeout(triggerPrint, 250), { once: true });
+    window.setTimeout(triggerPrint, 900);
   };
 
   const loadCompareRows = useCallback(async () => {
@@ -1117,21 +1159,16 @@ export default function BibleReaderPage() {
                           </div>
 
                           <div className="overflow-hidden rounded-xl border border-zinc-700">
-                            <div className="grid grid-cols-[64px_1fr_1fr] bg-zinc-800/70 text-[11px] font-black text-zinc-300" dir="ltr">
+                            <div className="grid grid-cols-[64px_1fr] bg-zinc-800/70 text-[11px] font-black text-zinc-300" dir="ltr">
                               <div className="border-r border-zinc-700 px-2 py-1.5">Verse</div>
-                              <div className="border-r border-zinc-700 px-2 py-1.5">Reference</div>
                               <div className="px-2 py-1.5">{row.abbr}</div>
                             </div>
 
-                            {verseNums.map((verseNum) => {
-                              const refText = compareReferenceMap.get(verseNum) || "";
+                            {compareVerseNums.map((verseNum) => {
                               const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "";
                               return (
-                                <div key={`${row.abbr}-${verseNum}`} className="grid grid-cols-[64px_1fr_1fr] border-t border-zinc-800/80 text-sm">
+                                <div key={`${row.abbr}-${verseNum}`} className="grid grid-cols-[64px_1fr] border-t border-zinc-800/80 text-sm">
                                   <div className="border-r border-zinc-800 px-2 py-2 font-black text-zinc-400" dir="ltr">{verseNum}</div>
-                                  <div className="border-r border-zinc-800 px-2 py-2 text-zinc-200" dir={compareReferenceRow?.language === "fa" ? "rtl" : "ltr"}>
-                                    {refText || <span className="text-zinc-500 text-xs">-</span>}
-                                  </div>
                                   <div className="px-2 py-2 text-zinc-100" dir={row.language === "fa" ? "rtl" : "ltr"}>
                                     {targetText || <span className="text-zinc-500 text-xs">-</span>}
                                   </div>
