@@ -65,36 +65,7 @@ else {
 
 # Step 3: Run the build and PM2 process directly via SSH
 Write-Host "`n[3/4] Installing and Building Next.js on VPS..." -ForegroundColor Yellow
-$deployCmd = @"
-set -e
-cd $VPS_NEXT_PATH
-
-export NEXT_TELEMETRY_DISABLED=1
-export NODE_OPTIONS=--max-old-space-size=3072
-
-if [ ! -f /swapfile ]; then
-    (fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048) >/dev/null 2>&1
-    chmod 600 /swapfile
-    mkswap /swapfile >/dev/null 2>&1 || true
-    swapon /swapfile >/dev/null 2>&1 || true
-fi
-
-if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
-    echo "Dependencies unchanged, skipping npm install"
-else
-    npm ci --no-audit --no-fund
-    cp package-lock.json .deps-lock.json
-fi
-
-npm run build
-
-if pm2 show mychurch-next > /dev/null 2>&1; then
-    pm2 restart mychurch-next --update-env
-else
-    pm2 start npm --name 'mychurch-next' -- start
-fi
-pm2 save
-"@
+$deployCmd = "set -e; cd $VPS_NEXT_PATH; export NEXT_TELEMETRY_DISABLED=1; export NODE_OPTIONS=--max-old-space-size=3072; if [ ! -f /swapfile ]; then (fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048) >/dev/null 2>&1; chmod 600 /swapfile; mkswap /swapfile >/dev/null 2>&1 || true; swapon /swapfile >/dev/null 2>&1 || true; fi; if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then echo 'Dependencies unchanged, skipping npm install'; else npm ci --no-audit --no-fund; cp package-lock.json .deps-lock.json; fi; npm run build; if pm2 show mychurch-next > /dev/null 2>&1; then pm2 restart mychurch-next --update-env; else pm2 start npm --name 'mychurch-next' -- start; fi; pm2 save"
 
 ssh $VPS_USER@$VPS_HOST $deployCmd
 if ($LASTEXITCODE -ne 0) {
